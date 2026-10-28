@@ -263,7 +263,7 @@ class Integration(unittest.TestCase):
 
     def test_real_medium_report_is_complete_and_full_file_is_not_published(self):
         for name in ('run.py', 'reporting.py', 'config.json'):
-            (self.seed / name).write_bytes((HERE.parent / name).read_bytes())
+            (self.seed / name).write_bytes((HERE / 'fixtures' / ('demo_' + name)).read_bytes())
         commit = self.commit_source('Test the actual medium-report implementation')
         rid = 'github_real_medium_report'
         self.request(rid, commit)
