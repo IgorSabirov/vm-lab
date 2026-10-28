@@ -1,5 +1,486 @@
 {
-  "mode": "success",
-  "numbers": [2, 3, 5],
-  "expected_sum": 10
+  "experiment_id": "E001X_SQRT",
+  "version": "v001",
+  "mode": "calibration",
+  "models": {
+    "base_PP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Pi"
+    },
+    "base_PQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Q"
+    },
+    "base_PS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "S"
+    },
+    "base_QP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Pi"
+    },
+    "base_QQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "base_QS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    },
+    "n0_PP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Pi",
+      "gate_idle": "Pi"
+    },
+    "n0_PQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Pi",
+      "gate_idle": "Q"
+    },
+    "n0_PS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Pi",
+      "gate_idle": "S"
+    },
+    "n0_QP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Q",
+      "gate_idle": "Pi"
+    },
+    "n0_QQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "n0_QS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.0,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    },
+    "n05_PP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Pi",
+      "gate_idle": "Pi"
+    },
+    "n05_PQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Pi",
+      "gate_idle": "Q"
+    },
+    "n05_PS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Pi",
+      "gate_idle": "S"
+    },
+    "n05_QP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Q",
+      "gate_idle": "Pi"
+    },
+    "n05_QQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "n05_QS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.5,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    }
+  },
+  "cases": [
+    {
+      "id": "base_PP_mix",
+      "model": "base_PP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_PP_fine",
+      "model": "base_PP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "base_PQ_mix",
+      "model": "base_PQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_PQ_fine",
+      "model": "base_PQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "base_PS_mix",
+      "model": "base_PS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_PS_fine",
+      "model": "base_PS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "base_QP_mix",
+      "model": "base_QP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_QP_fine",
+      "model": "base_QP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "base_QQ_mix",
+      "model": "base_QQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_QQ_fine",
+      "model": "base_QQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "base_QS_mix",
+      "model": "base_QS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "base_QS_fine",
+      "model": "base_QS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 5.0
+    },
+    {
+      "id": "n0_PP_mix",
+      "model": "n0_PP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n0_PQ_mix",
+      "model": "n0_PQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n0_PS_mix",
+      "model": "n0_PS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n0_QP_mix",
+      "model": "n0_QP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n0_QQ_mix",
+      "model": "n0_QQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n0_QS_mix",
+      "model": "n0_QS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_PP_mix",
+      "model": "n05_PP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_PQ_mix",
+      "model": "n05_PQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_PS_mix",
+      "model": "n05_PS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_QP_mix",
+      "model": "n05_QP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_QQ_mix",
+      "model": "n05_QQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    },
+    {
+      "id": "n05_QS_mix",
+      "model": "n05_QS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 10.0
+    }
+  ],
+  "integration": {
+    "dt": 0.01,
+    "observable_interval": 0.2,
+    "rho_interval": 1.0,
+    "positivity_interval": 5.0,
+    "heartbeat_seconds": 5
+  },
+  "stationarity": {
+    "relative_rhs": 1e-06,
+    "relative_flux_range": 0.0001,
+    "relative_rho_change": 1e-05
+  },
+  "acceptance": {
+    "algebra": 1e-10,
+    "trace": 1e-08,
+    "hermiticity": 1e-08,
+    "positivity": 1e-07,
+    "expm_reference_relative": 2e-06,
+    "refinement_observables": 2e-05,
+    "mixture_error": 2e-07,
+    "disk_floor_bytes": 1500000000
+  },
+  "practical_relative_effect": 0.001,
+  "runtime_forecast": {
+    "expected_seconds": 100.0,
+    "lower_seconds": 40.0,
+    "upper_seconds": 160.0,
+    "reference": "Uncalibrated short SQRT benchmark: 24x1000 steps plus 18 preflight x300 steps. CONT measured ~0.00246 s/step including I/O. Extra model construction, preflight/expm, report provisionally budgeted ~28 s. Not a main-run forecast.",
+    "uncalibrated": true
+  },
+  "retention": {
+    "full": "all states every 1 and all 164 observables every .2",
+    "report": "RESULT.md <=24KiB; all cases; 31 specified series observables .2 through 20 then 2; global all-observable extrema/mean/std over every sample; counts and failures; snapshots not published"
+  },
+  "no_early_stopping": true,
+  "conditional_extensions": false,
+  "automatic_reboot_resume": false,
+  "parent_model_commit": "f0c182527a9d1fd9208a56cbb1894d82510e4c79",
+  "primary_question": "Compare PS-PP and QS-QP flow at T200 at fixed formation; rate/action control PS-PQ and QS-QQ; no damage/recovery in this run.",
+  "predictions_not_acceptance": {
+    "time": 100,
+    "QS_F": [
+      0.1102,
+      0.1111
+    ],
+    "PS_F": [
+      0.1121,
+      0.1126
+    ]
+  },
+  "interpretation_limits": [
+    "Own-channel protection is not a full dark subspace or BIC.",
+    "P and S do not match all-state event rates.",
+    "Currents are signed and sink storage term must be retained.",
+    "Only base has full-horizon step-halving and four-phase ensemble checks.",
+    "No E002, J0, self-repair or quantum-advantage claim."
+  ]
 }
