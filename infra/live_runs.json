@@ -1,0 +1,25 @@
+{
+  "purpose": "Real integration check; task dispatch goes directly to VM; report acceptance uses GitHub only",
+  "full_vm_data_access_authorized": false,
+  "runs": [
+    {
+      "run_id": "LAB_20261028_SUCCESS_01",
+      "source_commit": "a7c5ae61784a740e49c2134cf3eb892668dbc076",
+      "expected_exit_code": 0,
+      "expected_sum": 10
+    },
+    {
+      "run_id": "LAB_20261028_EXPECTED_FAIL_01",
+      "source_commit": "5bccf44106b8015b07072863e35e544b19e85626",
+      "expected_exit_code": 7,
+      "expected_sum": 120
+    }
+  ],
+  "acceptance": [
+    "Read run.json and artifacts only from an immutable GitHub result commit",
+    "Verify source commit, artifact hashes, detailed-report coverage and expected exit codes",
+    "Verify full data is described but absent from published artifacts",
+    "Repeat identical success request without a new execution"
+  ],
+  "status": "prepared; waiting for GitHub deploy key; no live result confirmed"
+}
