@@ -1,0 +1,1852 @@
+{
+  "run_id": "E001X_SQRT_CAL_v001_r001",
+  "repository": "IgorSabirov/vm-lab",
+  "source_commit": "648d5e36ceb82d18312b17ba340ee234a59647cf",
+  "input_sha256": {
+    "AGENTS.md": "e2ea48b4f9ab010daf794b3b7abd6ffe4b7a85cdde868bd3a6234a7368b25c10",
+    "E002.md": "037d35ccfcbb1eab5f1205902c65850874c09eb134de31fe2f0295c5c4844fe0",
+    "README.md": "562659a314c97f8797f002d6582270fc402c4a44598d9e4fbc4a44a1d4b8de41",
+    "REPORT_FORMAT.md": "3a8eacb911e3d519f35320af0fe4e459f12effde9db23695f9b45687033ed4a6",
+    "RUNTIME_GATE.md": "40519498c5fa2d39438284b8199e9480e992b48b34175ac8cf18297c17158335",
+    "SQRT.md": "258bc035ebd93b455420aa3f6891ac0d97c0d3663459af012f6b1b2659ac1864",
+    "VALIDATION.md": "6f624115e9f5b705718c82058eaca3bdb1c64c630bc1e2778da0d1683702b0b4",
+    "config.json": "66d738832d0151c8c8fcfe6febdf570f4e9421d55e545baa32ca488a79ceb93c",
+    "reporting.py": "0ff3fd41d984dff46cdca878d6f9d4e2f390e74f893d9e11a798b9e235f01933",
+    "run.py": "900c70dbbb8d59032d034b9c4e560d855a8296b39968ffc40d9621004279ce00",
+    "sqrt_exp/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sqrt_exp/engine.py": "495af9a29a84c86ad62964e058abc1a8a993d8beb3cd977262a759c7a6da74f8",
+    "sqrt_exp/model.py": "dd021c4df6c4f3edaebd1470ed3fc20d19b839254edb3cdb7901e6113193d306",
+    "sqrt_exp/report.py": "4dcbc9b5ad8eb4e99df1feda203a6cae7de358b5dbc977a1f6c51da738bf07f9",
+    "sqrt_exp/task.py": "9f70ed2bea34e8e7e595ba683beeadc71924fdffd75f389cf52995a59a2e0e42"
+  },
+  "job": {
+    "state": "completed",
+    "created": 1793194421.0677404,
+    "source_sha256": "44cfbfe1270e71d7c50b0c2e1f24cacd4b07ce5be9a85923c6e68bc626be770b",
+    "started": 1793194421.2000165,
+    "pid": 70620,
+    "output_directory": "/var/lib/vm-lab/work/results/E001X_SQRT_CAL_v001_r001",
+    "exit_code": 0,
+    "finished": 1793194501.2907512,
+    "reason": null
+  },
+  "export_errors": [],
+  "report_profile": "medium-v1",
+  "selection": "Only report/ is published; full/ remains on VM",
+  "full_data": [
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_fine.json",
+      "bytes": 7907,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_fine.jsonl",
+      "bytes": 66712,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_fine_diagnostics.json",
+      "bytes": 1361,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_mix.json",
+      "bytes": 7908,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_mix.jsonl",
+      "bytes": 131830,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_mix_diagnostics.json",
+      "bytes": 2528,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PP_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_fine.json",
+      "bytes": 7856,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_fine.jsonl",
+      "bytes": 66141,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_fine_diagnostics.json",
+      "bytes": 1361,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_mix.json",
+      "bytes": 7859,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_mix.jsonl",
+      "bytes": 131126,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_mix_diagnostics.json",
+      "bytes": 2533,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PQ_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_fine.json",
+      "bytes": 7860,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_fine.jsonl",
+      "bytes": 66184,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_fine_diagnostics.json",
+      "bytes": 1367,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_mix.json",
+      "bytes": 7866,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_mix.jsonl",
+      "bytes": 131070,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_mix_diagnostics.json",
+      "bytes": 2530,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_PS_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_fine.json",
+      "bytes": 7826,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_fine.jsonl",
+      "bytes": 65430,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_fine_diagnostics.json",
+      "bytes": 1365,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_mix.json",
+      "bytes": 7824,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_mix.jsonl",
+      "bytes": 129162,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_mix_diagnostics.json",
+      "bytes": 2532,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QP_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_fine.json",
+      "bytes": 7798,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_fine.jsonl",
+      "bytes": 64896,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_fine_diagnostics.json",
+      "bytes": 1365,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_mix.json",
+      "bytes": 7787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_mix.jsonl",
+      "bytes": 128159,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_mix_diagnostics.json",
+      "bytes": 2533,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QQ_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_fine.json",
+      "bytes": 7783,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_fine.jsonl",
+      "bytes": 65003,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_fine_diagnostics.json",
+      "bytes": 1367,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_fine_schema.json",
+      "bytes": 3787,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_mix.json",
+      "bytes": 7785,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_mix.jsonl",
+      "bytes": 128196,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_mix_diagnostics.json",
+      "bytes": 2534,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/base_QS_mix_schema.json",
+      "bytes": 3786,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PP_mix.json",
+      "bytes": 7906,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PP_mix.jsonl",
+      "bytes": 131469,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PP_mix_diagnostics.json",
+      "bytes": 2524,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PP_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PQ_mix.json",
+      "bytes": 7861,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PQ_mix.jsonl",
+      "bytes": 130422,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PQ_mix_diagnostics.json",
+      "bytes": 2537,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PQ_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PS_mix.json",
+      "bytes": 7865,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PS_mix.jsonl",
+      "bytes": 130580,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PS_mix_diagnostics.json",
+      "bytes": 2524,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_PS_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QP_mix.json",
+      "bytes": 7816,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QP_mix.jsonl",
+      "bytes": 128219,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QP_mix_diagnostics.json",
+      "bytes": 2525,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QP_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QQ_mix.json",
+      "bytes": 7784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QQ_mix.jsonl",
+      "bytes": 127738,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QQ_mix_diagnostics.json",
+      "bytes": 2533,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QQ_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QS_mix.json",
+      "bytes": 7730,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QS_mix.jsonl",
+      "bytes": 127425,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QS_mix_diagnostics.json",
+      "bytes": 2527,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n05_QS_mix_schema.json",
+      "bytes": 3784,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PP_mix.json",
+      "bytes": 7792,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PP_mix.jsonl",
+      "bytes": 127099,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PP_mix_diagnostics.json",
+      "bytes": 2527,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PP_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PQ_mix.json",
+      "bytes": 7757,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PQ_mix.jsonl",
+      "bytes": 126198,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PQ_mix_diagnostics.json",
+      "bytes": 2525,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PQ_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PS_mix.json",
+      "bytes": 7753,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PS_mix.jsonl",
+      "bytes": 126118,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PS_mix_diagnostics.json",
+      "bytes": 2523,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_PS_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QP_mix.json",
+      "bytes": 7714,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QP_mix.jsonl",
+      "bytes": 124063,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QP_mix_diagnostics.json",
+      "bytes": 2536,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QP_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QQ_mix.json",
+      "bytes": 7675,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QQ_mix.jsonl",
+      "bytes": 123313,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QQ_mix_diagnostics.json",
+      "bytes": 2532,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QQ_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QS_mix.json",
+      "bytes": 7670,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QS_mix.jsonl",
+      "bytes": 123202,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QS_mix_diagnostics.json",
+      "bytes": 2533,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/cases/n0_QS_mix_schema.json",
+      "bytes": 3782,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/checkpoint_latest.json",
+      "bytes": 210,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/config_snapshot.json",
+      "bytes": 10223,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/execution.json",
+      "bytes": 988,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/outcome.json",
+      "bytes": 236524,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/preflight.json",
+      "bytes": 8965,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/progress.json",
+      "bytes": 598,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/snapshot_events.jsonl",
+      "bytes": 45510,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step000000.npz",
+      "bytes": 1633,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step000200.npz",
+      "bytes": 42788,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step000400.npz",
+      "bytes": 42819,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step000600.npz",
+      "bytes": 43025,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step000800.npz",
+      "bytes": 43100,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_fine/rho_step001000.npz",
+      "bytes": 43137,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000000.npz",
+      "bytes": 1625,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000100.npz",
+      "bytes": 42852,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000200.npz",
+      "bytes": 42816,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000300.npz",
+      "bytes": 42865,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000400.npz",
+      "bytes": 42940,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000500.npz",
+      "bytes": 43122,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000600.npz",
+      "bytes": 43104,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000700.npz",
+      "bytes": 43095,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000800.npz",
+      "bytes": 42993,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step000900.npz",
+      "bytes": 43034,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PP_mix/rho_step001000.npz",
+      "bytes": 42939,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step000000.npz",
+      "bytes": 1634,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step000200.npz",
+      "bytes": 42681,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step000400.npz",
+      "bytes": 42735,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step000600.npz",
+      "bytes": 42760,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step000800.npz",
+      "bytes": 42936,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_fine/rho_step001000.npz",
+      "bytes": 43016,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000000.npz",
+      "bytes": 1626,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000100.npz",
+      "bytes": 42773,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000200.npz",
+      "bytes": 42646,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000300.npz",
+      "bytes": 42712,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000400.npz",
+      "bytes": 42819,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000500.npz",
+      "bytes": 42970,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000600.npz",
+      "bytes": 42924,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000700.npz",
+      "bytes": 42967,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000800.npz",
+      "bytes": 42940,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step000900.npz",
+      "bytes": 42972,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PQ_mix/rho_step001000.npz",
+      "bytes": 42896,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step000000.npz",
+      "bytes": 1634,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step000200.npz",
+      "bytes": 42822,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step000400.npz",
+      "bytes": 42792,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step000600.npz",
+      "bytes": 42897,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step000800.npz",
+      "bytes": 42959,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_fine/rho_step001000.npz",
+      "bytes": 43084,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000000.npz",
+      "bytes": 1626,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000100.npz",
+      "bytes": 42886,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000200.npz",
+      "bytes": 42766,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000300.npz",
+      "bytes": 42878,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000400.npz",
+      "bytes": 42962,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000500.npz",
+      "bytes": 43011,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000600.npz",
+      "bytes": 43039,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000700.npz",
+      "bytes": 42946,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000800.npz",
+      "bytes": 43018,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step000900.npz",
+      "bytes": 42962,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_PS_mix/rho_step001000.npz",
+      "bytes": 42967,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step000000.npz",
+      "bytes": 1634,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step000200.npz",
+      "bytes": 42651,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step000400.npz",
+      "bytes": 42765,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step000600.npz",
+      "bytes": 42845,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step000800.npz",
+      "bytes": 42892,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_fine/rho_step001000.npz",
+      "bytes": 42871,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000000.npz",
+      "bytes": 1626,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000100.npz",
+      "bytes": 42755,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000200.npz",
+      "bytes": 42728,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000300.npz",
+      "bytes": 42803,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000400.npz",
+      "bytes": 42889,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000500.npz",
+      "bytes": 43015,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000600.npz",
+      "bytes": 43143,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000700.npz",
+      "bytes": 43127,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000800.npz",
+      "bytes": 43090,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step000900.npz",
+      "bytes": 43033,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QP_mix/rho_step001000.npz",
+      "bytes": 42960,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step000000.npz",
+      "bytes": 1633,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step000200.npz",
+      "bytes": 42672,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step000400.npz",
+      "bytes": 42760,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step000600.npz",
+      "bytes": 42843,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step000800.npz",
+      "bytes": 42854,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_fine/rho_step001000.npz",
+      "bytes": 42891,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000000.npz",
+      "bytes": 1625,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000100.npz",
+      "bytes": 42705,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000200.npz",
+      "bytes": 42656,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000300.npz",
+      "bytes": 42851,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000400.npz",
+      "bytes": 42812,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000500.npz",
+      "bytes": 42894,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000600.npz",
+      "bytes": 42949,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000700.npz",
+      "bytes": 42920,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000800.npz",
+      "bytes": 42904,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step000900.npz",
+      "bytes": 42924,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QQ_mix/rho_step001000.npz",
+      "bytes": 42887,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step000000.npz",
+      "bytes": 1634,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step000200.npz",
+      "bytes": 42632,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step000400.npz",
+      "bytes": 42854,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step000600.npz",
+      "bytes": 42797,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step000800.npz",
+      "bytes": 42878,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_fine/rho_step001000.npz",
+      "bytes": 42886,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000000.npz",
+      "bytes": 1626,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000100.npz",
+      "bytes": 42598,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000200.npz",
+      "bytes": 42768,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000300.npz",
+      "bytes": 42739,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000400.npz",
+      "bytes": 42838,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000500.npz",
+      "bytes": 42916,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000600.npz",
+      "bytes": 42988,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000700.npz",
+      "bytes": 42989,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000800.npz",
+      "bytes": 43050,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step000900.npz",
+      "bytes": 42998,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/base_QS_mix/rho_step001000.npz",
+      "bytes": 42932,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000000.npz",
+      "bytes": 1623,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000100.npz",
+      "bytes": 42755,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000200.npz",
+      "bytes": 42798,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000300.npz",
+      "bytes": 42737,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000400.npz",
+      "bytes": 42804,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000500.npz",
+      "bytes": 42805,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000600.npz",
+      "bytes": 42821,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000700.npz",
+      "bytes": 42863,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000800.npz",
+      "bytes": 42785,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step000900.npz",
+      "bytes": 42815,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PP_mix/rho_step001000.npz",
+      "bytes": 42791,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000000.npz",
+      "bytes": 1624,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000100.npz",
+      "bytes": 42700,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000200.npz",
+      "bytes": 42798,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000300.npz",
+      "bytes": 42840,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000400.npz",
+      "bytes": 42824,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000500.npz",
+      "bytes": 42803,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000600.npz",
+      "bytes": 42872,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000700.npz",
+      "bytes": 42811,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000800.npz",
+      "bytes": 42741,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step000900.npz",
+      "bytes": 42703,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PQ_mix/rho_step001000.npz",
+      "bytes": 42718,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000000.npz",
+      "bytes": 1624,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000100.npz",
+      "bytes": 42679,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000200.npz",
+      "bytes": 42794,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000300.npz",
+      "bytes": 42653,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000400.npz",
+      "bytes": 42754,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000500.npz",
+      "bytes": 42709,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000600.npz",
+      "bytes": 42739,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000700.npz",
+      "bytes": 42751,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000800.npz",
+      "bytes": 42776,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step000900.npz",
+      "bytes": 42692,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_PS_mix/rho_step001000.npz",
+      "bytes": 42699,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000000.npz",
+      "bytes": 1624,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000100.npz",
+      "bytes": 42691,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000200.npz",
+      "bytes": 42685,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000300.npz",
+      "bytes": 42698,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000400.npz",
+      "bytes": 42596,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000500.npz",
+      "bytes": 42677,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000600.npz",
+      "bytes": 42684,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000700.npz",
+      "bytes": 42744,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000800.npz",
+      "bytes": 42780,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step000900.npz",
+      "bytes": 42795,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QP_mix/rho_step001000.npz",
+      "bytes": 42901,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000000.npz",
+      "bytes": 1623,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000100.npz",
+      "bytes": 42548,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000200.npz",
+      "bytes": 42665,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000300.npz",
+      "bytes": 42605,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000400.npz",
+      "bytes": 42667,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000500.npz",
+      "bytes": 42767,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000600.npz",
+      "bytes": 42794,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000700.npz",
+      "bytes": 42736,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000800.npz",
+      "bytes": 42827,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step000900.npz",
+      "bytes": 42901,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QQ_mix/rho_step001000.npz",
+      "bytes": 42964,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000000.npz",
+      "bytes": 1624,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000100.npz",
+      "bytes": 42719,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000200.npz",
+      "bytes": 42674,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000300.npz",
+      "bytes": 42642,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000400.npz",
+      "bytes": 42686,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000500.npz",
+      "bytes": 42697,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000600.npz",
+      "bytes": 42756,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000700.npz",
+      "bytes": 42746,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000800.npz",
+      "bytes": 42904,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step000900.npz",
+      "bytes": 42834,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n05_QS_mix/rho_step001000.npz",
+      "bytes": 42892,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000000.npz",
+      "bytes": 1621,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000100.npz",
+      "bytes": 42717,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000200.npz",
+      "bytes": 42760,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000300.npz",
+      "bytes": 42817,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000400.npz",
+      "bytes": 43076,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000500.npz",
+      "bytes": 43127,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000600.npz",
+      "bytes": 43141,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000700.npz",
+      "bytes": 43061,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000800.npz",
+      "bytes": 43033,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step000900.npz",
+      "bytes": 43055,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PP_mix/rho_step001000.npz",
+      "bytes": 43155,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000000.npz",
+      "bytes": 1622,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000100.npz",
+      "bytes": 42713,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000200.npz",
+      "bytes": 42807,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000300.npz",
+      "bytes": 42931,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000400.npz",
+      "bytes": 43096,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000500.npz",
+      "bytes": 43134,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000600.npz",
+      "bytes": 43100,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000700.npz",
+      "bytes": 43129,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000800.npz",
+      "bytes": 43057,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step000900.npz",
+      "bytes": 43032,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PQ_mix/rho_step001000.npz",
+      "bytes": 43085,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000000.npz",
+      "bytes": 1622,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000100.npz",
+      "bytes": 42716,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000200.npz",
+      "bytes": 42681,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000300.npz",
+      "bytes": 42835,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000400.npz",
+      "bytes": 43008,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000500.npz",
+      "bytes": 43125,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000600.npz",
+      "bytes": 43143,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000700.npz",
+      "bytes": 43062,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000800.npz",
+      "bytes": 43037,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step000900.npz",
+      "bytes": 43109,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_PS_mix/rho_step001000.npz",
+      "bytes": 43048,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000000.npz",
+      "bytes": 1622,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000100.npz",
+      "bytes": 42720,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000200.npz",
+      "bytes": 42761,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000300.npz",
+      "bytes": 42840,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000400.npz",
+      "bytes": 43017,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000500.npz",
+      "bytes": 43062,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000600.npz",
+      "bytes": 43174,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000700.npz",
+      "bytes": 43090,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000800.npz",
+      "bytes": 43097,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step000900.npz",
+      "bytes": 43129,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QP_mix/rho_step001000.npz",
+      "bytes": 43036,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000000.npz",
+      "bytes": 1621,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000100.npz",
+      "bytes": 42548,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000200.npz",
+      "bytes": 42726,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000300.npz",
+      "bytes": 42778,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000400.npz",
+      "bytes": 42883,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000500.npz",
+      "bytes": 42917,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000600.npz",
+      "bytes": 43075,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000700.npz",
+      "bytes": 43107,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000800.npz",
+      "bytes": 43061,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step000900.npz",
+      "bytes": 43035,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QQ_mix/rho_step001000.npz",
+      "bytes": 43040,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000000.npz",
+      "bytes": 1622,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000100.npz",
+      "bytes": 42620,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000200.npz",
+      "bytes": 42915,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000300.npz",
+      "bytes": 42860,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000400.npz",
+      "bytes": 42907,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000500.npz",
+      "bytes": 43075,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000600.npz",
+      "bytes": 43202,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000700.npz",
+      "bytes": 43183,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000800.npz",
+      "bytes": 43147,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step000900.npz",
+      "bytes": 43045,
+      "type": "file"
+    },
+    {
+      "path": "results/E001X_SQRT_CAL_v001_r001/full/states/n0_QS_mix/rho_step001000.npz",
+      "bytes": 43015,
+      "type": "file"
+    }
+  ],
+  "full_data_inventory_errors": [],
+  "log_export": {
+    "full_path": "jobs/E001X_SQRT_CAL_v001_r001/output.log",
+    "method": "full",
+    "original_bytes": 3441,
+    "omitted_bytes": 0
+  },
+  "files": {
+    "output.log": {
+      "sha256": "c4abecef2971dabff5494e5fe3e94fe8fdc02fc8724ff7a07400272de81e87eb",
+      "bytes": 3441
+    },
+    "files/README.md": {
+      "sha256": "32e1093f2a65d4978e2a016e9299db6be4df079a428f2a8e504c437a78d07581",
+      "bytes": 272
+    },
+    "files/RESULT.md": {
+      "sha256": "3a512afec6c344404e830bbf7345d5d128e2aff8dfcfa30b7efa1d62b6c65628",
+      "bytes": 11091
+    },
+    "files/checks.json": {
+      "sha256": "49f5b6710c1d09350874281e5c4b905493cc01ac7c436e557f6a3fb6e2e2b7cd",
+      "bytes": 20031
+    },
+    "files/data_manifest.json": {
+      "sha256": "bfa7ae7876e482e9ecbdb64013eb2c9191778a3a240cbbc5c46a58e351e05ab9",
+      "bytes": 85747
+    },
+    "files/metrics.json": {
+      "sha256": "7944524e1c76effb445636806cfd9d3a70cf784d651d57376ea333a9b113c39d",
+      "bytes": 1449799
+    },
+    "files/series/base_PP_fine.csv": {
+      "sha256": "be5719e1c502fcc26f282f0232c1e74cc242b0037a7739d106f5617b251b413a",
+      "bytes": 16991
+    },
+    "files/series/base_PP_mix.csv": {
+      "sha256": "8779bc0eda53214d1e9c95f144813fa4fe16e2d66d1b4577e131555571ae9159",
+      "bytes": 33450
+    },
+    "files/series/base_PQ_fine.csv": {
+      "sha256": "558d55a7e074a9c04ecca39ae5589839d3bef899dd762850e553501937b0cc8d",
+      "bytes": 14906
+    },
+    "files/series/base_PQ_mix.csv": {
+      "sha256": "13d926564fc365a2cdd565813a787500fcfc9bba78571837ffffe1fb15ed6f18",
+      "bytes": 29266
+    },
+    "files/series/base_PS_fine.csv": {
+      "sha256": "22f1316abfc4ce5693a3ad424c3f62507e1a15744d5add6b589fcbdae1ecbea3",
+      "bytes": 14901
+    },
+    "files/series/base_PS_mix.csv": {
+      "sha256": "1e8f1c0b5bac200efac7dc1cf659db99e63522bb547f34bbb7ea68dbb1c6ee9b",
+      "bytes": 29273
+    },
+    "files/series/base_QP_fine.csv": {
+      "sha256": "d3d175406a169d349e7a4669d569bf1a3608fa9c962d95b77339d122c233a9ce",
+      "bytes": 15111
+    },
+    "files/series/base_QP_mix.csv": {
+      "sha256": "6e1beba435e2c3b0873dc1f0e94f9dc30168d7b22d40f558f0acd6d3801821be",
+      "bytes": 29728
+    },
+    "files/series/base_QQ_fine.csv": {
+      "sha256": "d2ecd7f3b0d1fbf0ebd6d3f30757b2855f74d019345bab50c9c4c1cc8d72112c",
+      "bytes": 12987
+    },
+    "files/series/base_QQ_mix.csv": {
+      "sha256": "74622ef0d67375481dc71b24fc425b7fb48d94eed0566c68715da2338ad5d171",
+      "bytes": 25459
+    },
+    "files/series/base_QS_fine.csv": {
+      "sha256": "09cd76fdf4a8c2a57b4713af148c24ff9d088feaefca83464b69636c36ea4ae7",
+      "bytes": 12990
+    },
+    "files/series/base_QS_mix.csv": {
+      "sha256": "ccfbcbe4bd852f5787002b0b735d7cc022a8f2c752443851e96202da3a59948d",
+      "bytes": 25474
+    },
+    "files/series/n05_PP_mix.csv": {
+      "sha256": "aec3cced184a9e9aa873040d8397e10633a1cebffeb43a5b5454eb51a4458ebe",
+      "bytes": 33425
+    },
+    "files/series/n05_PQ_mix.csv": {
+      "sha256": "0b27243102a075dfad65be907f9be54a6d3400407554640fcdfe353bb3fe295d",
+      "bytes": 29309
+    },
+    "files/series/n05_PS_mix.csv": {
+      "sha256": "0c67c7825b5ca8c075afd5e20865c7119ab216b1617c5e051e205aa101cb7d13",
+      "bytes": 29324
+    },
+    "files/series/n05_QP_mix.csv": {
+      "sha256": "b40f76253f1ffdf68557481427aa89dd7ea4a4cc92d9b1f1a898eb2fe7575271",
+      "bytes": 29525
+    },
+    "files/series/n05_QQ_mix.csv": {
+      "sha256": "0c917e7ea14625addf0883e584ef0fb437b6f401d4f1233e9ac14bddd95bb164",
+      "bytes": 25397
+    },
+    "files/series/n05_QS_mix.csv": {
+      "sha256": "d414ff07892c3f5cdfce993b55ce9f56d8e9b474d0d01d0824b9c98b2f896b45",
+      "bytes": 25429
+    },
+    "files/series/n0_PP_mix.csv": {
+      "sha256": "18b51b588dac8f61453024d22f11c4c33793e50d62bbbafe6f08d2eb7ed9b1ad",
+      "bytes": 33501
+    },
+    "files/series/n0_PQ_mix.csv": {
+      "sha256": "2cb6f1d46876538e52a8776691eaa1cacc0f1fb07e4474d035d5e5a19555c61d",
+      "bytes": 29323
+    },
+    "files/series/n0_PS_mix.csv": {
+      "sha256": "fc656ce09955756bd1c43bcbcb420bddf13d38292c26b6c932f3b68081d6ffb6",
+      "bytes": 29310
+    },
+    "files/series/n0_QP_mix.csv": {
+      "sha256": "3dd0f3b2674e86595689262e0bfb171f8c59e3e81d01c4017d9e45c7b77e5492",
+      "bytes": 29783
+    },
+    "files/series/n0_QQ_mix.csv": {
+      "sha256": "b4da51e3964a1072ce6e3e50994cca64c37655e18100be4bce1387559f247db8",
+      "bytes": 25471
+    },
+    "files/series/n0_QS_mix.csv": {
+      "sha256": "d7351f9c665bc4a7240ddb1a9c14e2a14d4c759d1248dd4e04bf94e7c129fa65",
+      "bytes": 25509
+    }
+  }
+}
