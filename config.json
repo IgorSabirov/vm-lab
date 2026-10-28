@@ -1,5 +1,570 @@
 {
-  "mode": "success",
-  "numbers": [2, 3, 5],
-  "expected_sum": 10
+  "experiment_id": "E001X_J0",
+  "version": "v001",
+  "mode": "main",
+  "models": {
+    "j0_PP": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Pi"
+    },
+    "j0_PQ": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Q"
+    },
+    "j0_PS": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "S"
+    },
+    "j0_QP": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Pi"
+    },
+    "j0_QQ": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "j0_QS": {
+      "J": 0.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    },
+    "j1_PP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Pi"
+    },
+    "j1_PQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "Q"
+    },
+    "j1_PS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Pi",
+      "gate_idle": "S"
+    },
+    "j1_QP": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Pi"
+    },
+    "j1_QQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "j1_QS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "phi_n": 0.05,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    }
+  },
+  "cases": [
+    {
+      "id": "j0_PP_mix",
+      "model": "j0_PP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_PP_fine",
+      "model": "j0_PP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_PQ_mix",
+      "model": "j0_PQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_PQ_fine",
+      "model": "j0_PQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_PS_mix",
+      "model": "j0_PS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_PS_fine",
+      "model": "j0_PS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QP_mix",
+      "model": "j0_QP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QP_fine",
+      "model": "j0_QP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QQ_mix",
+      "model": "j0_QQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QQ_fine",
+      "model": "j0_QQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QS_mix",
+      "model": "j0_QS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j0_QS_fine",
+      "model": "j0_QS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PP_mix",
+      "model": "j1_PP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PP_fine",
+      "model": "j1_PP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PQ_mix",
+      "model": "j1_PQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PQ_fine",
+      "model": "j1_PQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PS_mix",
+      "model": "j1_PS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_PS_fine",
+      "model": "j1_PS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QP_mix",
+      "model": "j1_QP",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QP_fine",
+      "model": "j1_QP",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QQ_mix",
+      "model": "j1_QQ",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QQ_fine",
+      "model": "j1_QQ",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QS_mix",
+      "model": "j1_QS",
+      "state": "mix",
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "j1_QS_fine",
+      "model": "j1_QS",
+      "state": "mix",
+      "dt": 0.005,
+      "horizon": 200.0
+    }
+  ],
+  "integration": {
+    "dt": 0.01,
+    "observable_interval": 0.2,
+    "rho_interval": 2.0,
+    "positivity_interval": 10.0,
+    "heartbeat_seconds": 5
+  },
+  "stationarity": {
+    "relative_rhs": 1e-06,
+    "relative_flux_range": 0.0001,
+    "absolute_flux_range": 1e-10,
+    "relative_rho_change": 1e-05
+  },
+  "acceptance": {
+    "algebra": 1e-10,
+    "trace": 1e-08,
+    "hermiticity": 1e-08,
+    "positivity": 1e-07,
+    "expm_reference_relative": 2e-06,
+    "refinement_observables": 2e-05,
+    "mixture_error": 2e-07,
+    "disk_floor_bytes": 1500000000
+  },
+  "practical_relative_effect": 0.001,
+  "runtime_forecast": {
+    "expected_seconds": 1743.0898936200829,
+    "lower_seconds": 1045.8539361720498,
+    "upper_seconds": 2440.3258510681158,
+    "reference": "SQRT VM E001X_SQRT_GH_v001_r001; report commit 2ad72395cbd131ac10c46afdee75a860997f1a60; metrics SHA256 81551c1c86d3c91c0509ccd4976efee4c05775c0ece3cc76320e4436f394b936",
+    "cases": [
+      {
+        "case_id": "j0_PP_mix",
+        "steps": 20000,
+        "expected_seconds": 55.5814919960103,
+        "timing_source": "base_PP_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_PP_fine",
+        "steps": 40000,
+        "expected_seconds": 102.64511987101287,
+        "timing_source": "base_PP_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_PQ_mix",
+        "steps": 20000,
+        "expected_seconds": 52.986584764003055,
+        "timing_source": "base_PQ_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_PQ_fine",
+        "steps": 40000,
+        "expected_seconds": 96.65532880599494,
+        "timing_source": "base_PQ_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_PS_mix",
+        "steps": 20000,
+        "expected_seconds": 52.09873516600055,
+        "timing_source": "base_PS_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_PS_fine",
+        "steps": 40000,
+        "expected_seconds": 97.76200510199124,
+        "timing_source": "base_PS_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QP_mix",
+        "steps": 20000,
+        "expected_seconds": 48.4487771490094,
+        "timing_source": "base_QP_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QP_fine",
+        "steps": 40000,
+        "expected_seconds": 89.30044669201015,
+        "timing_source": "base_QP_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QQ_mix",
+        "steps": 20000,
+        "expected_seconds": 46.80319376400439,
+        "timing_source": "base_QQ_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QQ_fine",
+        "steps": 40000,
+        "expected_seconds": 85.4411914049997,
+        "timing_source": "base_QQ_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QS_mix",
+        "steps": 20000,
+        "expected_seconds": 46.277193104004255,
+        "timing_source": "base_QS_mix",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j0_QS_fine",
+        "steps": 40000,
+        "expected_seconds": 82.54487899100059,
+        "timing_source": "base_QS_fine",
+        "proxy_for_J0": true
+      },
+      {
+        "case_id": "j1_PP_mix",
+        "steps": 20000,
+        "expected_seconds": 55.5814919960103,
+        "timing_source": "base_PP_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_PP_fine",
+        "steps": 40000,
+        "expected_seconds": 102.64511987101287,
+        "timing_source": "base_PP_fine",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_PQ_mix",
+        "steps": 20000,
+        "expected_seconds": 52.986584764003055,
+        "timing_source": "base_PQ_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_PQ_fine",
+        "steps": 40000,
+        "expected_seconds": 96.65532880599494,
+        "timing_source": "base_PQ_fine",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_PS_mix",
+        "steps": 20000,
+        "expected_seconds": 52.09873516600055,
+        "timing_source": "base_PS_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_PS_fine",
+        "steps": 40000,
+        "expected_seconds": 97.76200510199124,
+        "timing_source": "base_PS_fine",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QP_mix",
+        "steps": 20000,
+        "expected_seconds": 48.4487771490094,
+        "timing_source": "base_QP_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QP_fine",
+        "steps": 40000,
+        "expected_seconds": 89.30044669201015,
+        "timing_source": "base_QP_fine",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QQ_mix",
+        "steps": 20000,
+        "expected_seconds": 46.80319376400439,
+        "timing_source": "base_QQ_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QQ_fine",
+        "steps": 40000,
+        "expected_seconds": 85.4411914049997,
+        "timing_source": "base_QQ_fine",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QS_mix",
+        "steps": 20000,
+        "expected_seconds": 46.277193104004255,
+        "timing_source": "base_QS_mix",
+        "proxy_for_J0": false
+      },
+      {
+        "case_id": "j1_QS_fine",
+        "steps": 40000,
+        "expected_seconds": 82.54487899100059,
+        "timing_source": "base_QS_fine",
+        "proxy_for_J0": false
+      }
+    ],
+    "setup_report_allowance_seconds": 30,
+    "assumptions": [
+      "J0 uses same-variant measured J1 time as a proxy, NOT a measured J0 calibration.",
+      "J0 may run faster with a sparser generator; checkpoints every 2 instead of 1 also reduce I/O.",
+      "Range +/-40%; mismatch requires workload and timing breakdown review; no padding or sleeping.",
+      "720000 main steps + 3600 preflight steps. No conditional extensions. Queue/publication excluded."
+    ]
+  },
+  "primary_question": "How much sink output survives switching off ready-link hopping? Paired J0/J1 for six gates; this is not additive attribution or damage recovery.",
+  "null_flux_tolerance": 1e-10,
+  "ratio_denominator_floor": 1e-08,
+  "ledger_absolute_tolerance": 0.0001,
+  "ledger_relative_tolerance": 1e-05,
+  "full_inventory_limit": 4500,
+  "no_early_stopping": true,
+  "conditional_extensions": false,
+  "automatic_reboot_resume": false,
+  "retention": {
+    "full": "164 observables each .2; rho each 2; positivity each 10; no omission of cases",
+    "report": "RESULT <=24KiB, full regular ledger CSV each .2, 31-observable selected series and extrema, all-observable statistics"
+  },
+  "interpretation_limits": [
+    "J0 disables hop, not link formation or existence.",
+    "J0/J1 ratio is an intervention response, not the machine fraction in J1.",
+    "Only base phi_n=.05; no phase ensemble, uniqueness proof, E002, BIC or quantum-advantage claim."
+  ]
 }
