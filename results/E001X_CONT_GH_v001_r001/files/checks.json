@@ -1,0 +1,353 @@
+[
+  {
+    "name": "task_execution",
+    "category": "execution",
+    "expected_exit_code": 0,
+    "actual_exit_code": 0,
+    "passed": true
+  },
+  {
+    "name": "preflight",
+    "category": "numerical",
+    "expected": true,
+    "actual": true,
+    "passed": true
+  },
+  {
+    "name": "operators_QQ",
+    "category": "numerical",
+    "actual_max_residual": 3.0253577421035516e-15,
+    "tolerance": 1e-10,
+    "passed": true,
+    "individual_residuals": {
+      "H_hermiticity": 0.0,
+      "trace_generator": 9.992007221626409e-16,
+      "resource_identity": 3.0253577421035516e-15,
+      "edge_balance": 9.43689570931383e-16,
+      "partition_01": 0.0,
+      "idle_current_01": 0.0,
+      "bright_node_dephase_01": 1.3877787807814457e-17,
+      "bright_edge_dephase_01": 0.0,
+      "bright_idle_01": 8.673617379884035e-19,
+      "idle_rate_01": 6.938893903907228e-18,
+      "partition_12": 0.0,
+      "idle_current_12": 0.0,
+      "bright_node_dephase_12": 1.3877787807814457e-17,
+      "bright_edge_dephase_12": 0.0,
+      "bright_idle_12": 8.673617379884035e-19,
+      "idle_rate_12": 6.938893903907228e-18,
+      "partition_02": 0.0,
+      "idle_current_02": 0.0,
+      "bright_node_dephase_02": 1.3877787807814457e-17,
+      "bright_edge_dephase_02": 0.0,
+      "bright_idle_02": 8.673617379884035e-19,
+      "idle_rate_02": 6.938893903907228e-18,
+      "node_balance_0": 1.1102230246251565e-16,
+      "node_balance_1": 0.0,
+      "node_balance_2": 1.1102230246251565e-16
+    }
+  },
+  {
+    "name": "operators_QP",
+    "category": "numerical",
+    "actual_max_residual": 3.3861802251067274e-15,
+    "tolerance": 1e-10,
+    "passed": true,
+    "individual_residuals": {
+      "H_hermiticity": 0.0,
+      "trace_generator": 9.992007221626409e-16,
+      "resource_identity": 3.3861802251067274e-15,
+      "edge_balance": 9.992007221626409e-16,
+      "partition_01": 0.0,
+      "idle_current_01": 1.734723475976807e-18,
+      "bright_node_dephase_01": 1.3877787807814457e-17,
+      "bright_edge_dephase_01": 0.0,
+      "bright_idle_01": 0.0,
+      "idle_rate_01": 6.938893903907228e-18,
+      "partition_12": 0.0,
+      "idle_current_12": 1.734723475976807e-18,
+      "bright_node_dephase_12": 1.3877787807814457e-17,
+      "bright_edge_dephase_12": 0.0,
+      "bright_idle_12": 0.0,
+      "idle_rate_12": 6.938893903907228e-18,
+      "partition_02": 0.0,
+      "idle_current_02": 1.734723475976807e-18,
+      "bright_node_dephase_02": 1.3877787807814457e-17,
+      "bright_edge_dephase_02": 0.0,
+      "bright_idle_02": 0.0,
+      "idle_rate_02": 6.938893903907228e-18,
+      "node_balance_0": 1.1102230246251565e-16,
+      "node_balance_1": 0.0,
+      "node_balance_2": 1.1102230246251565e-16
+    }
+  },
+  {
+    "name": "integration_QQ_phi1",
+    "category": "numerical",
+    "actual": {
+      "initial_state_checks": {
+        "trace_error": 7.10542736042875e-15,
+        "hermiticity_error": 3.469870442581002e-18,
+        "finite": true,
+        "min_eigenvalue": 1.969902877669424e-05
+      },
+      "rhs_relative_error": 3.8707156810265416e-10,
+      "expm_relative_error": 6.225596293438603e-16,
+      "dt_halving_max_observable_difference": 5.721131652595581e-16,
+      "seconds_per_100_steps": 0.1837801590008894
+    },
+    "limits": {
+      "rhs_relative_error": 1e-06,
+      "expm_reference_relative": 2e-06,
+      "refinement_observables": 2e-05
+    },
+    "passed": true
+  },
+  {
+    "name": "integration_QQ_phi3",
+    "category": "numerical",
+    "actual": {
+      "initial_state_checks": {
+        "trace_error": 5.551115124393939e-15,
+        "hermiticity_error": 3.472092920941463e-18,
+        "finite": true,
+        "min_eigenvalue": 1.9699023410858324e-05
+      },
+      "rhs_relative_error": 1.7240454770584018e-10,
+      "expm_relative_error": 3.8489701959582243e-16,
+      "dt_halving_max_observable_difference": 3.795656334692892e-16,
+      "seconds_per_100_steps": 0.18480471600196324
+    },
+    "limits": {
+      "rhs_relative_error": 1e-06,
+      "expm_reference_relative": 2e-06,
+      "refinement_observables": 2e-05
+    },
+    "passed": true
+  },
+  {
+    "name": "integration_QP_phi1",
+    "category": "numerical",
+    "actual": {
+      "initial_state_checks": {
+        "trace_error": 5.10702591342437e-15,
+        "hermiticity_error": 6.942281208919283e-18,
+        "finite": true,
+        "min_eigenvalue": 1.8331768543457974e-05
+      },
+      "rhs_relative_error": 4.5765366586875187e-10,
+      "expm_relative_error": 4.264262064248281e-16,
+      "dt_halving_max_observable_difference": 2.283871879256338e-16,
+      "seconds_per_100_steps": 0.19417814000917133
+    },
+    "limits": {
+      "rhs_relative_error": 1e-06,
+      "expm_reference_relative": 2e-06,
+      "refinement_observables": 2e-05
+    },
+    "passed": true
+  },
+  {
+    "name": "integration_QP_phi3",
+    "category": "numerical",
+    "actual": {
+      "initial_state_checks": {
+        "trace_error": 4.662936706029582e-15,
+        "hermiticity_error": 6.938893903907228e-18,
+        "finite": true,
+        "min_eigenvalue": 1.8331763296768657e-05
+      },
+      "rhs_relative_error": 1.4810517700634313e-10,
+      "expm_relative_error": 4.731584972359403e-16,
+      "dt_halving_max_observable_difference": 7.279943258123833e-16,
+      "seconds_per_100_steps": 0.19439776299986988
+    },
+    "limits": {
+      "rhs_relative_error": 1e-06,
+      "expm_reference_relative": 2e-06,
+      "refinement_observables": 2e-05
+    },
+    "passed": true
+  },
+  {
+    "name": "coverage_QQ_phi1",
+    "category": "report",
+    "actual": 2001,
+    "expected": 2001,
+    "passed": true
+  },
+  {
+    "name": "state_quality_QQ_phi1",
+    "category": "numerical",
+    "actual": {
+      "trace_max": 1.7319488953517784e-14,
+      "hermiticity_max": 2.775562855513763e-17,
+      "minimum_eigenvalue": 1.969902877669424e-05,
+      "all_finite": true
+    },
+    "limits": {
+      "trace": 1e-08,
+      "hermiticity": 1e-08,
+      "positivity": 1e-07
+    },
+    "passed": true
+  },
+  {
+    "name": "stationarity_QQ_phi1",
+    "category": "scientific",
+    "actual": {
+      "window_start": 490.0,
+      "window_end": 500.0,
+      "max_relative_rhs": 8.405911043390499e-15,
+      "relative_flux_range": 0.0,
+      "relative_rho_change": 2.1492526358321892e-19,
+      "passed": true
+    },
+    "limits": {
+      "window_length": 10,
+      "relative_rhs": 1e-06,
+      "relative_flux_range": 0.0001,
+      "relative_rho_change": 1e-05,
+      "logic": "All three must pass; same tolerances as E001X. These are finite-window diagnostics, not proof of unique steady state."
+    },
+    "passed": true
+  },
+  {
+    "name": "coverage_QQ_phi3",
+    "category": "report",
+    "actual": 2001,
+    "expected": 2001,
+    "passed": true
+  },
+  {
+    "name": "state_quality_QQ_phi3",
+    "category": "numerical",
+    "actual": {
+      "trace_max": 1.5099033139624307e-14,
+      "hermiticity_max": 5.551115784870233e-17,
+      "minimum_eigenvalue": 1.9699023410858324e-05,
+      "all_finite": true
+    },
+    "limits": {
+      "trace": 1e-08,
+      "hermiticity": 1e-08,
+      "positivity": 1e-07
+    },
+    "passed": true
+  },
+  {
+    "name": "stationarity_QQ_phi3",
+    "category": "scientific",
+    "actual": {
+      "window_start": 490.0,
+      "window_end": 500.0,
+      "max_relative_rhs": 8.405857185122628e-15,
+      "relative_flux_range": 0.0,
+      "relative_rho_change": 4.575609408005236e-19,
+      "passed": true
+    },
+    "limits": {
+      "window_length": 10,
+      "relative_rhs": 1e-06,
+      "relative_flux_range": 0.0001,
+      "relative_rho_change": 1e-05,
+      "logic": "All three must pass; same tolerances as E001X. These are finite-window diagnostics, not proof of unique steady state."
+    },
+    "passed": true
+  },
+  {
+    "name": "coverage_QP_phi1",
+    "category": "report",
+    "actual": 2001,
+    "expected": 2001,
+    "passed": true
+  },
+  {
+    "name": "state_quality_QP_phi1",
+    "category": "numerical",
+    "actual": {
+      "trace_max": 1.3766765868244923e-14,
+      "hermiticity_max": 7.980199367819594e-17,
+      "minimum_eigenvalue": 1.8331768543457974e-05,
+      "all_finite": true
+    },
+    "limits": {
+      "trace": 1e-08,
+      "hermiticity": 1e-08,
+      "positivity": 1e-07
+    },
+    "passed": true
+  },
+  {
+    "name": "stationarity_QP_phi1",
+    "category": "scientific",
+    "actual": {
+      "window_start": 490.0,
+      "window_end": 500.0,
+      "max_relative_rhs": 8.2410676404061e-15,
+      "relative_flux_range": 0.0,
+      "relative_rho_change": 1.985633069651092e-18,
+      "passed": true
+    },
+    "limits": {
+      "window_length": 10,
+      "relative_rhs": 1e-06,
+      "relative_flux_range": 0.0001,
+      "relative_rho_change": 1e-05,
+      "logic": "All three must pass; same tolerances as E001X. These are finite-window diagnostics, not proof of unique steady state."
+    },
+    "passed": true
+  },
+  {
+    "name": "coverage_QP_phi3",
+    "category": "report",
+    "actual": 2001,
+    "expected": 2001,
+    "passed": true
+  },
+  {
+    "name": "state_quality_QP_phi3",
+    "category": "numerical",
+    "actual": {
+      "trace_max": 1.3100661763637676e-14,
+      "hermiticity_max": 3.816776642705927e-17,
+      "minimum_eigenvalue": 1.8331763296768657e-05,
+      "all_finite": true
+    },
+    "limits": {
+      "trace": 1e-08,
+      "hermiticity": 1e-08,
+      "positivity": 1e-07
+    },
+    "passed": true
+  },
+  {
+    "name": "stationarity_QP_phi3",
+    "category": "scientific",
+    "actual": {
+      "window_start": 490.0,
+      "window_end": 500.0,
+      "max_relative_rhs": 8.251763721650602e-15,
+      "relative_flux_range": 0.0,
+      "relative_rho_change": 8.472026147860023e-19,
+      "passed": true
+    },
+    "limits": {
+      "window_length": 10,
+      "relative_rhs": 1e-06,
+      "relative_flux_range": 0.0001,
+      "relative_rho_change": 1e-05,
+      "logic": "All three must pass; same tolerances as E001X. These are finite-window diagnostics, not proof of unique steady state."
+    },
+    "passed": true
+  },
+  {
+    "name": "snapshot_retention",
+    "category": "retention",
+    "actual": {
+      "passed": true,
+      "snapshots": 1604
+    },
+    "passed": true
+  }
+]
