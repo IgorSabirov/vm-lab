@@ -1,7 +1,7 @@
 {
   "experiment_id": "E001X_SQRT",
   "version": "v001",
-  "mode": "calibration",
+  "mode": "main",
   "models": {
     "base_PP": {
       "J": 1.0,
@@ -258,172 +258,364 @@
   },
   "cases": [
     {
+      "id": "base_PP_p0",
+      "model": "base_PP",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PP_p1",
+      "model": "base_PP",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PP_p2",
+      "model": "base_PP",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PP_p3",
+      "model": "base_PP",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
       "id": "base_PP_mix",
       "model": "base_PP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_PP_fine",
       "model": "base_PP",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PQ_p0",
+      "model": "base_PQ",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PQ_p1",
+      "model": "base_PQ",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PQ_p2",
+      "model": "base_PQ",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PQ_p3",
+      "model": "base_PQ",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
     },
     {
       "id": "base_PQ_mix",
       "model": "base_PQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_PQ_fine",
       "model": "base_PQ",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PS_p0",
+      "model": "base_PS",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PS_p1",
+      "model": "base_PS",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PS_p2",
+      "model": "base_PS",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_PS_p3",
+      "model": "base_PS",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
     },
     {
       "id": "base_PS_mix",
       "model": "base_PS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_PS_fine",
       "model": "base_PS",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QP_p0",
+      "model": "base_QP",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QP_p1",
+      "model": "base_QP",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QP_p2",
+      "model": "base_QP",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QP_p3",
+      "model": "base_QP",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
     },
     {
       "id": "base_QP_mix",
       "model": "base_QP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_QP_fine",
       "model": "base_QP",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QQ_p0",
+      "model": "base_QQ",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QQ_p1",
+      "model": "base_QQ",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QQ_p2",
+      "model": "base_QQ",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QQ_p3",
+      "model": "base_QQ",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
     },
     {
       "id": "base_QQ_mix",
       "model": "base_QQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_QQ_fine",
       "model": "base_QQ",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QS_p0",
+      "model": "base_QS",
+      "state": "phase",
+      "phase_index": 0,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QS_p1",
+      "model": "base_QS",
+      "state": "phase",
+      "phase_index": 1,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QS_p2",
+      "model": "base_QS",
+      "state": "phase",
+      "phase_index": 2,
+      "dt": 0.01,
+      "horizon": 200.0
+    },
+    {
+      "id": "base_QS_p3",
+      "model": "base_QS",
+      "state": "phase",
+      "phase_index": 3,
+      "dt": 0.01,
+      "horizon": 200.0
     },
     {
       "id": "base_QS_mix",
       "model": "base_QS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "base_QS_fine",
       "model": "base_QS",
       "state": "mix",
       "dt": 0.005,
-      "horizon": 5.0
+      "horizon": 200.0
     },
     {
       "id": "n0_PP_mix",
       "model": "n0_PP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n0_PQ_mix",
       "model": "n0_PQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n0_PS_mix",
       "model": "n0_PS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n0_QP_mix",
       "model": "n0_QP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n0_QQ_mix",
       "model": "n0_QQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n0_QS_mix",
       "model": "n0_QS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_PP_mix",
       "model": "n05_PP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_PQ_mix",
       "model": "n05_PQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_PS_mix",
       "model": "n05_PS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_QP_mix",
       "model": "n05_QP",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_QQ_mix",
       "model": "n05_QQ",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     },
     {
       "id": "n05_QS_mix",
       "model": "n05_QS",
       "state": "mix",
       "dt": 0.01,
-      "horizon": 10.0
+      "horizon": 200.0
     }
   ],
   "integration": {
@@ -450,11 +642,410 @@
   },
   "practical_relative_effect": 0.001,
   "runtime_forecast": {
-    "expected_seconds": 100.0,
-    "lower_seconds": 40.0,
-    "upper_seconds": 160.0,
-    "reference": "Uncalibrated short SQRT benchmark: 24x1000 steps plus 18 preflight x300 steps. CONT measured ~0.00246 s/step including I/O. Extra model construction, preflight/expm, report provisionally budgeted ~28 s. Not a main-run forecast.",
-    "uncalibrated": true
+    "expected_seconds": 2733.5633210671267,
+    "lower_seconds": 1913.4943247469887,
+    "upper_seconds": 3553.6323173872647,
+    "uncalibrated": false,
+    "reference": "IgorSabirov/vm-lab report 8f49b4bb3c2f31c58b36c6e2e79d37e7e6fa3c9e / E001X_SQRT_CAL_v001_r001; source 648d5e36ceb82d18312b17ba340ee234a59647cf",
+    "calibration_metrics_sha256": "7944524e1c76effb445636806cfd9d3a70cf784d651d57376ea333a9b113c39d",
+    "formula": "setup + sum(each measured complete case time / measured steps * main steps) + scaled retention + report allowance. Complete case times already include I/O/diagnostics; no double addition.",
+    "setup_seconds": 18.68584017797548,
+    "cases_seconds": 2704.269144720165,
+    "retention_seconds": 0.6083361689861004,
+    "report_allowance_seconds": 10.0,
+    "case_terms": [
+      {
+        "case_id": "base_PP_p0",
+        "calibration_case": "base_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9869486140087247,
+        "planned_steps": 20000,
+        "expected_seconds": 59.738972280174494
+      },
+      {
+        "case_id": "base_PP_p1",
+        "calibration_case": "base_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9869486140087247,
+        "planned_steps": 20000,
+        "expected_seconds": 59.738972280174494
+      },
+      {
+        "case_id": "base_PP_p2",
+        "calibration_case": "base_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9869486140087247,
+        "planned_steps": 20000,
+        "expected_seconds": 59.738972280174494
+      },
+      {
+        "case_id": "base_PP_p3",
+        "calibration_case": "base_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9869486140087247,
+        "planned_steps": 20000,
+        "expected_seconds": 59.738972280174494
+      },
+      {
+        "case_id": "base_PP_mix",
+        "calibration_case": "base_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9869486140087247,
+        "planned_steps": 20000,
+        "expected_seconds": 59.738972280174494
+      },
+      {
+        "case_id": "base_PP_fine",
+        "calibration_case": "base_PP_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.610623806991498,
+        "planned_steps": 40000,
+        "expected_seconds": 104.42495227965992
+      },
+      {
+        "case_id": "base_PQ_p0",
+        "calibration_case": "base_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.720401963000768,
+        "planned_steps": 20000,
+        "expected_seconds": 54.40803926001536
+      },
+      {
+        "case_id": "base_PQ_p1",
+        "calibration_case": "base_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.720401963000768,
+        "planned_steps": 20000,
+        "expected_seconds": 54.40803926001536
+      },
+      {
+        "case_id": "base_PQ_p2",
+        "calibration_case": "base_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.720401963000768,
+        "planned_steps": 20000,
+        "expected_seconds": 54.40803926001536
+      },
+      {
+        "case_id": "base_PQ_p3",
+        "calibration_case": "base_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.720401963000768,
+        "planned_steps": 20000,
+        "expected_seconds": 54.40803926001536
+      },
+      {
+        "case_id": "base_PQ_mix",
+        "calibration_case": "base_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.720401963000768,
+        "planned_steps": 20000,
+        "expected_seconds": 54.40803926001536
+      },
+      {
+        "case_id": "base_PQ_fine",
+        "calibration_case": "base_PQ_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.4141194480034756,
+        "planned_steps": 40000,
+        "expected_seconds": 96.56477792013902
+      },
+      {
+        "case_id": "base_PS_p0",
+        "calibration_case": "base_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.674370391003322,
+        "planned_steps": 20000,
+        "expected_seconds": 53.48740782006644
+      },
+      {
+        "case_id": "base_PS_p1",
+        "calibration_case": "base_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.674370391003322,
+        "planned_steps": 20000,
+        "expected_seconds": 53.48740782006644
+      },
+      {
+        "case_id": "base_PS_p2",
+        "calibration_case": "base_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.674370391003322,
+        "planned_steps": 20000,
+        "expected_seconds": 53.48740782006644
+      },
+      {
+        "case_id": "base_PS_p3",
+        "calibration_case": "base_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.674370391003322,
+        "planned_steps": 20000,
+        "expected_seconds": 53.48740782006644
+      },
+      {
+        "case_id": "base_PS_mix",
+        "calibration_case": "base_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.674370391003322,
+        "planned_steps": 20000,
+        "expected_seconds": 53.48740782006644
+      },
+      {
+        "case_id": "base_PS_fine",
+        "calibration_case": "base_PS_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.530920667006285,
+        "planned_steps": 40000,
+        "expected_seconds": 101.2368266802514
+      },
+      {
+        "case_id": "base_QP_p0",
+        "calibration_case": "base_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3857785389991477,
+        "planned_steps": 20000,
+        "expected_seconds": 47.715570779982954
+      },
+      {
+        "case_id": "base_QP_p1",
+        "calibration_case": "base_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3857785389991477,
+        "planned_steps": 20000,
+        "expected_seconds": 47.715570779982954
+      },
+      {
+        "case_id": "base_QP_p2",
+        "calibration_case": "base_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3857785389991477,
+        "planned_steps": 20000,
+        "expected_seconds": 47.715570779982954
+      },
+      {
+        "case_id": "base_QP_p3",
+        "calibration_case": "base_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3857785389991477,
+        "planned_steps": 20000,
+        "expected_seconds": 47.715570779982954
+      },
+      {
+        "case_id": "base_QP_mix",
+        "calibration_case": "base_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3857785389991477,
+        "planned_steps": 20000,
+        "expected_seconds": 47.715570779982954
+      },
+      {
+        "case_id": "base_QP_fine",
+        "calibration_case": "base_QP_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.186193749002996,
+        "planned_steps": 40000,
+        "expected_seconds": 87.44774996011984
+      },
+      {
+        "case_id": "base_QQ_p0",
+        "calibration_case": "base_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2713297459995374,
+        "planned_steps": 20000,
+        "expected_seconds": 45.42659491999075
+      },
+      {
+        "case_id": "base_QQ_p1",
+        "calibration_case": "base_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2713297459995374,
+        "planned_steps": 20000,
+        "expected_seconds": 45.42659491999075
+      },
+      {
+        "case_id": "base_QQ_p2",
+        "calibration_case": "base_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2713297459995374,
+        "planned_steps": 20000,
+        "expected_seconds": 45.42659491999075
+      },
+      {
+        "case_id": "base_QQ_p3",
+        "calibration_case": "base_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2713297459995374,
+        "planned_steps": 20000,
+        "expected_seconds": 45.42659491999075
+      },
+      {
+        "case_id": "base_QQ_mix",
+        "calibration_case": "base_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2713297459995374,
+        "planned_steps": 20000,
+        "expected_seconds": 45.42659491999075
+      },
+      {
+        "case_id": "base_QQ_fine",
+        "calibration_case": "base_QQ_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.0715205839951523,
+        "planned_steps": 40000,
+        "expected_seconds": 82.86082335980609
+      },
+      {
+        "case_id": "base_QS_p0",
+        "calibration_case": "base_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2722805419907672,
+        "planned_steps": 20000,
+        "expected_seconds": 45.445610839815345
+      },
+      {
+        "case_id": "base_QS_p1",
+        "calibration_case": "base_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2722805419907672,
+        "planned_steps": 20000,
+        "expected_seconds": 45.445610839815345
+      },
+      {
+        "case_id": "base_QS_p2",
+        "calibration_case": "base_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2722805419907672,
+        "planned_steps": 20000,
+        "expected_seconds": 45.445610839815345
+      },
+      {
+        "case_id": "base_QS_p3",
+        "calibration_case": "base_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2722805419907672,
+        "planned_steps": 20000,
+        "expected_seconds": 45.445610839815345
+      },
+      {
+        "case_id": "base_QS_mix",
+        "calibration_case": "base_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2722805419907672,
+        "planned_steps": 20000,
+        "expected_seconds": 45.445610839815345
+      },
+      {
+        "case_id": "base_QS_fine",
+        "calibration_case": "base_QS_fine",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.0609949589997996,
+        "planned_steps": 40000,
+        "expected_seconds": 82.43979835999198
+      },
+      {
+        "case_id": "n0_PP_mix",
+        "calibration_case": "n0_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.841307492009946,
+        "planned_steps": 20000,
+        "expected_seconds": 56.82614984019892
+      },
+      {
+        "case_id": "n0_PQ_mix",
+        "calibration_case": "n0_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.6610097399970982,
+        "planned_steps": 20000,
+        "expected_seconds": 53.220194799941964
+      },
+      {
+        "case_id": "n0_PS_mix",
+        "calibration_case": "n0_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.6219093809922924,
+        "planned_steps": 20000,
+        "expected_seconds": 52.43818761984585
+      },
+      {
+        "case_id": "n0_QP_mix",
+        "calibration_case": "n0_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.3337113870074973,
+        "planned_steps": 20000,
+        "expected_seconds": 46.674227740149945
+      },
+      {
+        "case_id": "n0_QQ_mix",
+        "calibration_case": "n0_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.349100052000722,
+        "planned_steps": 20000,
+        "expected_seconds": 46.98200104001444
+      },
+      {
+        "case_id": "n0_QS_mix",
+        "calibration_case": "n0_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.2550433889991837,
+        "planned_steps": 20000,
+        "expected_seconds": 45.10086777998367
+      },
+      {
+        "case_id": "n05_PP_mix",
+        "calibration_case": "n05_PP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9009562589926645,
+        "planned_steps": 20000,
+        "expected_seconds": 58.01912517985329
+      },
+      {
+        "case_id": "n05_PQ_mix",
+        "calibration_case": "n05_PQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.6673445779888425,
+        "planned_steps": 20000,
+        "expected_seconds": 53.34689155977685
+      },
+      {
+        "case_id": "n05_PS_mix",
+        "calibration_case": "n05_PS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.9019525640032953,
+        "planned_steps": 20000,
+        "expected_seconds": 58.039051280065905
+      },
+      {
+        "case_id": "n05_QP_mix",
+        "calibration_case": "n05_QP_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.550414023004123,
+        "planned_steps": 20000,
+        "expected_seconds": 51.00828046008246
+      },
+      {
+        "case_id": "n05_QQ_mix",
+        "calibration_case": "n05_QQ_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.349367048998829,
+        "planned_steps": 20000,
+        "expected_seconds": 46.98734097997658
+      },
+      {
+        "case_id": "n05_QS_mix",
+        "calibration_case": "n05_QS_mix",
+        "calibration_steps": 1000,
+        "calibration_case_seconds": 2.477045919004013,
+        "planned_steps": 20000,
+        "expected_seconds": 49.54091838008026
+      }
+    ],
+    "assumptions": [
+      "Same exact model/runner/report code, same VM limits and sequential execution.",
+      "For phase inputs use same-model mixture timing; sparse multiplication shape fixed but compression/diagnostic cost may differ.",
+      "One initial checkpoint per benchmark causes conservative repeated overhead in scaling.",
+      "Report allowance 10 seconds vs measured calibration 0.241 seconds, scaled for 9648 rather than 234 snapshots.",
+      "Main horizon fixed T200; no conditional extension; queue and GitHub publication excluded."
+    ]
   },
   "retention": {
     "full": "all states every 1 and all 164 observables every .2",
