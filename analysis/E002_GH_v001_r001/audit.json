@@ -1,0 +1,342 @@
+{
+  "result_commit": "06b767966c5ecce5f2c38936361c8eee74ffca97",
+  "source_commit": "9809c90cd3d3042157a6aa2f28ec09889f7b7651",
+  "run_id": "E002_GH_v001_r001",
+  "runtime": {
+    "actual_seconds": 4424.883606910706,
+    "expected_seconds": 4858.362407833338,
+    "deviation_percent": -8.922323296090806,
+    "lower_seconds": 2915.0174447000027,
+    "upper_seconds": 6801.707370966673,
+    "internal_seconds": 4424.50246066699,
+    "status": "PASS"
+  },
+  "technical_status": "VERIFIED_GITHUB_PACKAGE",
+  "user_acceptance": "NOT_ASSIGNED_BY_ASSISTANT",
+  "artifacts_verified": 106,
+  "artifact_bytes": 22219128,
+  "input_files_verified": 22,
+  "csv_verification": {
+    "passed": true,
+    "cases": 50,
+    "steps": 2190000
+  },
+  "checks_reported_pass": 247,
+  "full_inventory_files": 3055,
+  "full_inventory_bytes": 284237486,
+  "matrix_snapshots": 2750,
+  "all_case_pre_and_final_stationarity_reported": true,
+  "refinement_pairs": 23,
+  "max_published_recovery_delta": 1.1982125014409206e-10,
+  "max_reported_all_observable_delta": 1.5939261022168694e-10,
+  "matching_recomputed_from_csv": {
+    "RR": {
+      "max_relative_error": 5.636219159201675e-14,
+      "baseline_hop_difference_percent": -2.1697370488535594,
+      "loss_target_factor": 1
+    },
+    "RR2": {
+      "max_relative_error": 5.865443383379734e-14,
+      "baseline_hop_difference_percent": 11.957737242892952,
+      "loss_target_factor": 2
+    }
+  },
+  "primary_outcome": "repair_not_better_than_control",
+  "PP_RR_ratio": 0.7965085805835458,
+  "PP_improvement_percent": 20.34914194164542,
+  "formation_pairs": [
+    {
+      "left": "PP",
+      "right": "QP",
+      "ratio": 1.4408882920630708,
+      "P_excess_percent": 44.08882920630708,
+      "Q_reduction_percent": 30.598367305199268,
+      "absolute_loss_P_excess_percent": 9.109612226786524
+    },
+    {
+      "left": "PQ",
+      "right": "QQ",
+      "ratio": 1.4506202896650555,
+      "P_excess_percent": 45.06202896650555,
+      "Q_reduction_percent": 31.063972624366265,
+      "absolute_loss_P_excess_percent": 11.25171145867303
+    },
+    {
+      "left": "PS",
+      "right": "QS",
+      "ratio": 1.459418464569329,
+      "P_excess_percent": 45.94184645693291,
+      "Q_reduction_percent": 31.479556804490784,
+      "absolute_loss_P_excess_percent": 11.13494542081408
+    }
+  ],
+  "cases": {
+    "PP": {
+      "Lambda_hop": 3.3460940327298134,
+      "Lambda_total": 1.8649818493348964,
+      "baseline_hop": 0.08316309297378309,
+      "baseline_F": 0.11286289729962098,
+      "Qhop": 8.038037770754961,
+      "QF": 11.075802960415055,
+      "Qpump": 6.474959920361383,
+      "excess_Qpump": 0.34859655324064054,
+      "signed_absolute_hop_loss": 0.2782715266234028,
+      "machine_share": 0.27427049647707263,
+      "DeltaQform": 0.07040057662680521,
+      "DeltaQidle": -0.002615032375549345,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 7.800000000000011,
+        "overshoot_area": 3.0296881892155625e-08
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.7301964526156592,
+        "t_min": 1.4000000000000057,
+        "t90_stay_on_0p2_grid": 7.800000000000011,
+        "overshoot_area": 4.300617051367084e-06
+      },
+      "ledger_only_percent": 3.346094002433575,
+      "Lambda_minus_ledger_percent": 3.029623840689055e-08
+    },
+    "PQ": {
+      "Lambda_hop": 3.462609966460812,
+      "Lambda_total": 1.9458481195537025,
+      "baseline_hop": 0.08523571846782646,
+      "baseline_F": 0.1137250091050537,
+      "Qhop": 8.228433799867775,
+      "QF": 11.151209579551562,
+      "Qpump": 6.610829593201953,
+      "excess_Qpump": 0.34548241465239826,
+      "signed_absolute_hop_loss": 0.29513804691491075,
+      "machine_share": 0.26210399365322995,
+      "DeltaQform": 0.0738475011417048,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 8.0,
+        "overshoot_area": 1.58416164630637e-08
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.7249967564181627,
+        "t_min": 1.4000000000000057,
+        "t90_stay_on_0p2_grid": 8.200000000000017,
+        "overshoot_area": 2.3227915337820093e-06
+      },
+      "ledger_only_percent": 3.462609950619633,
+      "Lambda_minus_ledger_percent": 1.5841179035192e-08
+    },
+    "PS": {
+      "Lambda_hop": 3.3886326629304975,
+      "Lambda_total": 1.8769816449108263,
+      "baseline_hop": 0.08364019551102778,
+      "baseline_F": 0.11259263466941113,
+      "Qhop": 8.080593655799955,
+      "QF": 11.04792973535778,
+      "Qpump": 6.465161613720548,
+      "excess_Qpump": 0.34463081940921647,
+      "signed_absolute_hop_loss": 0.2834258953028659,
+      "machine_share": 0.26858759422981565,
+      "DeltaQform": 0.07209295300125973,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 8.0,
+        "overshoot_area": 3.753862420907694e-08
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.7292509300051635,
+        "t_min": 1.4000000000000057,
+        "t90_stay_on_0p2_grid": 8.0,
+        "overshoot_area": 5.125053740728802e-06
+      },
+      "ledger_only_percent": 3.3886326253923627,
+      "Lambda_minus_ledger_percent": 3.753813482276769e-08
+    },
+    "QP": {
+      "Lambda_hop": 2.3222438902177904,
+      "Lambda_total": 2.340593601565013,
+      "baseline_hop": 0.10982862362172027,
+      "baseline_F": 0.11020786399256402,
+      "Qhop": 10.72782385469818,
+      "QF": 10.762841961006487,
+      "Qpump": 6.511116580928393,
+      "excess_Qpump": 0.3234011090195512,
+      "signed_absolute_hop_loss": 0.25503850755606194,
+      "machine_share": 0.003253345756903589,
+      "DeltaQform": 0.0,
+      "DeltaQidle": -0.002908790882357973,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 7.0,
+        "overshoot_area": 9.417128595545776e-05
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.592514336709281,
+        "t_min": 1.5999999999999943,
+        "t90_stay_on_0p2_grid": 9.0,
+        "overshoot_area": 6.699207261595674e-05
+      },
+      "ledger_only_percent": 2.3221497196630136,
+      "Lambda_minus_ledger_percent": 9.41705547767846e-05
+    },
+    "QQ": {
+      "Lambda_hop": 2.3869857543908473,
+      "Lambda_total": 2.38694544565553,
+      "baseline_hop": 0.1111431917296922,
+      "baseline_F": 0.11114319172947477,
+      "Qhop": 10.849030627772036,
+      "QF": 10.849033451541075,
+      "Qpump": 6.657737811436451,
+      "excess_Qpump": 0.32531596847285904,
+      "signed_absolute_hop_loss": 0.2652885452683993,
+      "machine_share": 0.0,
+      "DeltaQform": 0.0,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 7.0,
+        "overshoot_area": 7.80089089293945e-05
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.5897103871363697,
+        "t_min": 1.5999999999999943,
+        "t90_stay_on_0p2_grid": 9.0,
+        "overshoot_area": 6.310695038669323e-05
+      },
+      "ledger_only_percent": 2.3869077461073696,
+      "Lambda_minus_ledger_percent": 7.800828347770405e-05
+    },
+    "QS": {
+      "Lambda_hop": 2.321906118907763,
+      "Lambda_total": 2.321862277054957,
+      "baseline_hop": 0.10984009321686046,
+      "baseline_F": 0.10984009321663837,
+      "Qhop": 10.728980721861962,
+      "QF": 10.728983582888274,
+      "Qpump": 6.494629865938357,
+      "excess_Qpump": 0.3236518047107806,
+      "signed_absolute_hop_loss": 0.25502859989688176,
+      "machine_share": 0.0,
+      "DeltaQform": 0.0,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 7.0,
+        "overshoot_area": 8.908147523811749e-05
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.5920974423167731,
+        "t_min": 1.5999999999999943,
+        "t90_stay_on_0p2_grid": 8.800000000000011,
+        "overshoot_area": 7.128701479963695e-05
+      },
+      "ledger_only_percent": 2.3218170380799097,
+      "Lambda_minus_ledger_percent": 8.908082785330507e-05
+    },
+    "RR": {
+      "Lambda_hop": 4.200951646093211,
+      "Lambda_total": 4.200896821985791,
+      "baseline_hop": 0.08135867253455839,
+      "baseline_F": 0.08135867182259007,
+      "Qhop": 7.794109609092068,
+      "QF": 7.794108706997193,
+      "Qpump": 6.381044721916143,
+      "excess_Qpump": 0.2546813547954345,
+      "signed_absolute_hop_loss": 0.34175815329403747,
+      "machine_share": 0.0,
+      "DeltaQform": 0.0,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 10.599999999999994,
+        "overshoot_area": 0.0003220915905473021
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.5436150523752658,
+        "t_min": 3.4000000000000057,
+        "t90_stay_on_0p2_grid": 13.200000000000017,
+        "overshoot_area": 0.0002570179456009569
+      },
+      "ledger_only_percent": 4.200635547127007,
+      "Lambda_minus_ledger_percent": 0.00031609896620388156
+    },
+    "RR2": {
+      "Lambda_hop": 2.2132640818095357,
+      "Lambda_total": 2.213158306089312,
+      "baseline_hop": 0.09310751711465085,
+      "baseline_F": 0.09310751710760226,
+      "Qhop": 9.104704035996392,
+      "QF": 9.104702042436314,
+      "Qpump": 6.534398557879655,
+      "excess_Qpump": 0.40803519075890016,
+      "signed_absolute_hop_loss": 0.2060476785107639,
+      "machine_share": 0.0,
+      "DeltaQform": 0.0,
+      "DeltaQidle": 0.0,
+      "I_hop_sink_diagnostic": {
+        "min_fraction": 0.0,
+        "t_min": 0.0,
+        "t90_stay_on_0p2_grid": 5.800000000000011,
+        "overshoot_area": 0.00025613299946236623
+      },
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.6613372745674079,
+        "t_min": 1.5999999999999943,
+        "t90_stay_on_0p2_grid": 8.200000000000017,
+        "overshoot_area": 0.00012895330585926956
+      },
+      "ledger_only_percent": 2.213007980759696,
+      "Lambda_minus_ledger_percent": 0.00025610104983986304
+    },
+    "PP_J0": {
+      "Lambda_hop": null,
+      "Lambda_total": 1.2589903890209555,
+      "baseline_hop": 0.0,
+      "baseline_F": 0.10164577618672432,
+      "Qhop": 0.0,
+      "QF": 10.036626737828445,
+      "Qpump": 8.913275283221678,
+      "excess_Qpump": 0.5469718297919393,
+      "signed_absolute_hop_loss": 0.0,
+      "machine_share": 0.9999999959730694,
+      "DeltaQform": -0.11830786290990503,
+      "DeltaQidle": -0.00964305835105217,
+      "sink_flux_diagnostic": {
+        "min_fraction": 0.6919795966229133,
+        "t_min": 1.5999999999999943,
+        "t90_stay_on_0p2_grid": 4.800000000000011,
+        "overshoot_area": 0.00019847809160333796
+      }
+    },
+    "RR_J0": {
+      "Lambda_hop": null,
+      "Lambda_total": null,
+      "baseline_hop": 0.0,
+      "baseline_F": 0.0,
+      "Qhop": 0.0,
+      "QF": 0.0,
+      "Qpump": 6.381044721916182,
+      "excess_Qpump": 0.25468135479589815,
+      "signed_absolute_hop_loss": 0.0,
+      "machine_share": null,
+      "DeltaQform": 0.0,
+      "DeltaQidle": 0.0
+    }
+  },
+  "J0_damage_retention": 0.9874120808907061,
+  "J0_J1_baseline_ratio": 0.9006128552316163,
+  "limitations": [
+    "Raw VM density matrices not read; their hashes are reported, not independently rehashed.",
+    "Pre/post-window CSV arithmetic verified; density positivity and full-state stationarity rely on published diagnostics.",
+    "All 23 published coarse/fine recovery arrays differ; counters and pinned source support separate integration, not execution attestation.",
+    "t90, excess pump and absolute deficits are post-hoc diagnostics; preregistered primary metric and threshold unchanged.",
+    "QQ/PP comparison changes a generator term and its stationary state, not only measured coherence."
+  ]
+}
