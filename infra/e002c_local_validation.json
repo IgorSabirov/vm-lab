@@ -1,18 +1,38 @@
 {
   "local_only": true,
-  "elapsed_whole_seconds": 33.8683851779997,
+  "elapsed_whole_seconds": 194.6643578229996,
   "work": {
-    "trajectories": 8,
+    "trajectories": 12,
     "fit_trajectories": 0,
-    "steps": 16000,
-    "expected_steps": 16000,
-    "rhs_calls": 64000,
-    "scalar_records": 808,
-    "diagnostic_records": 88,
-    "snapshots": 56
+    "steps": 25000,
+    "expected_steps": 25000,
+    "rhs_calls": 100000,
+    "scalar_records": 1262,
+    "diagnostic_records": 136,
+    "snapshots": 80
   },
   "checks": "COMPLETED_CHECKS_NO_TECHNICAL_FAILURE",
-  "kernel_sha256": "0f6a9db30be78b8e9880259f5cfbdee8eb7d5b05feb2207167fcf5634e9ca102",
+  "runtime_gate": {
+    "forecast_scope": "VM",
+    "execution_scope": "local_test",
+    "expected_seconds": 240,
+    "lower_seconds": 60,
+    "upper_seconds": 720,
+    "actual_seconds": 193.14999717499995,
+    "actual_over_expected": 0.8047916548958332,
+    "status": "NOT_EVALUABLE",
+    "calibration_reference": {
+      "status": "provisional_calibration"
+    },
+    "executed_branch": {
+      "mode": "calibration",
+      "ic_structural_status": "not_run",
+      "ic_transport_status": "not_evaluated",
+      "steps": 25000
+    },
+    "measured_interval": "task entry to before final report assembly; external process time must be checked in run.json"
+  },
+  "kernel_sha256": "59b7a3bd09e410f19930e93d0d4948513694ab173f0bb4494952204d486faabd",
   "environment": {
     "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
     "numpy": "2.3.5",
@@ -23,15 +43,17 @@
       "OMP_NUM_THREADS": "1",
       "MKL_NUM_THREADS": "1"
     },
-    "kernel_sha256": "0f6a9db30be78b8e9880259f5cfbdee8eb7d5b05feb2207167fcf5634e9ca102"
+    "kernel_sha256": "59b7a3bd09e410f19930e93d0d4948513694ab173f0bb4494952204d486faabd"
   },
+  "fast_tests": 16,
+  "integration_tests": 24,
   "synthetic_maximum_export": {
-    "bytes": 29206930,
+    "bytes": 31035768,
     "files": 302,
     "full_bytes": 0,
-    "result_md_bytes": 13485,
+    "result_md_bytes": 14557,
     "series_columns": 54,
-    "diagnostic_columns": 93,
+    "diagnostic_columns": 101,
     "evidence_max_bytes": 71390,
     "synthetic": true,
     "extra_metadata_reserve": 1048576

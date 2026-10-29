@@ -154,7 +154,7 @@ class Planning(unittest.TestCase):
         p=json.loads((ROOT/'experiments/e002c/plan.json').read_text())
         self.assertEqual(len(p['cases']),72);self.assertEqual(sum(x['main_steps'] for x in p['cases']),1600000)
         self.assertEqual(len(p['conditional_ic_cases']),24);self.assertEqual(sum(x['main_steps'] for x in p['conditional_ic_cases']),560000)
-        self.assertEqual(len(calibration_cases()),8);self.assertEqual(len(grouped(p['cases'])),64)
+        self.assertEqual(len(calibration_cases()),12);self.assertEqual(len(grouped(p['cases'])),64)
         self.assertEqual(sum(len(g)==2 for g in grouped(p['cases'])),8)
 
     def test_optimizer_budget_no_hop(self):
@@ -268,7 +268,8 @@ class Orchestration(unittest.TestCase):
                   forecast={'seconds_per_step':.002,'fixed_seconds':90}),td)
             self.assertEqual(len(recorded),98 if matched else 72)
             self.assertEqual(m['work']['steps'],2700000 if matched else 2080000)
-            self.assertEqual(m['ic_status'],'transport_close_5pct' if matched else 'no_match_found_within_declared_search')
+            self.assertEqual(m['ic_structural_status'],'structural_PASS' if matched else 'no_match_found_within_declared_search')
+            self.assertEqual(m['ic_transport_status'],'transport_close_5pct' if matched else 'not_evaluated')
             self.assertEqual(sum(x['model'] in ('QS','RR_QS') for x in recorded),72)
             self.assertTrue(c['work_volume_pass'])
 

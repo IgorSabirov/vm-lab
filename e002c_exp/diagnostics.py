@@ -75,6 +75,20 @@ def certificate(blocks):
         vectors[s],alpha[s],overlap[s]=witnesses(rho)
     return dict(blocks=blocks,vectors=vectors,alpha=alpha,overlap=overlap,valid=valid)
 
+def coherence_values(blocks):
+    """C01=<010|rho_m|100>, unnormalised; conditional values divide by mask trace."""
+    names=[];values=[]
+    for conditional in (False,True):
+        for m in (7,6):
+            weight=float(np.trace(blocks[m+1]).real);c=complex(blocks[m+1,2,4])
+            if conditional:c=c/weight if weight>FLOOR else complex(np.nan,np.nan)
+            for part,value in (('re',c.real),('im',c.imag)):
+                names.append(f"{'c' if conditional else 'C'}01_m{m}_{part}");values.append(value)
+    return names,np.array(values,dtype=float)
+
+def coherence_quality(weight):
+    return 'undefined' if weight<=FLOOR else ('low_weight' if weight<1e-5 else 'ok')
+
 def expanded(rho,model):
     blocks=node_blocks(rho);cert=certificate(blocks)
     n=[];v=[]
@@ -100,6 +114,7 @@ def expanded(rho,model):
             add(f'N_s{s}_cut{cut}',negativity(blocks[s]/weight,[2,2,2],[cut])[0] if valid else np.nan)
         add(f'W_s{s}',float(np.min(cert['alpha'][s]-cert['overlap'][s])) if valid else np.nan)
         add(f'valid_s{s}',float(valid))
+    cn,cv=coherence_values(blocks);n.extend(cn);v.extend(cv)
     return n,np.array(v,dtype=np.float64),cert
 
 def quality(rho,L):

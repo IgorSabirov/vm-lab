@@ -83,7 +83,12 @@ def manifest(report,full):
     return dict(bytes=total,files=len(files),full_bytes=fullbytes)
 
 def schema(names,dnames):
-    return dict(version='e002c-1',series=['time']+names,diagnostics=['time']+dnames,
+    return dict(version='e002c-2',series=['time']+names,diagnostics=['time']+dnames,
+        coherence_convention='C01_m=rho_node_block_m[2,4]=Tr(rho (|100><010| tensor M_m)); nodes register precedes edges; blocks[m+1]',
+        conditional_coherence='c01_m=C01_m/p_m if p_m>1e-6; NaN in both components otherwise; unnormalized C is always finite',
+        coherence_accuracy='Exact PSD gives |c01|<=1/2. FLOOR is a validity convention, not an accuracy guarantee. Numerical error is amplified by 1/p_m; full-state min_eigen >=-1e-8 permits conditional violations of the exact bound.',
+        coherence_low_weight='undefined: p<=1e-6; low_weight: 1e-6<p<1e-5; ok: p>=1e-5. No second null threshold.',
+        comparison_policy='Stationary: same horizon, stationary, no failure; refinement checked or explicitly SCREENING_ONLY with passed numerical screen. Finite-time: common [190,200], separate statuses.',
         mask_bits=['01','12','02'],node_basis='000,001,010,011,100,101,110,111',
         states=['unconditional']+[f'mask_{m}' for m in range(8)],
         evidence='unnormalized node blocks; vectors indexed state,template,node basis',
@@ -106,7 +111,7 @@ def compact_result(metrics,checks):
            'Базис: 3 кубита × 3 qutrit, размер 216. J=1, g=.5, eta=.25, delta=.1, gamma_bg=.01, gamma_r=.05, source=sink=.5, edge dephasing=.05.',
            'Phi=theta01+theta12-theta02; theta02=-Phi. epsilon*n1; независимые sqrt(gamma)Z_i. Начало: равная смесь |100;RRR> и |010;RRR>.',
            'QS: Q=C/2, S=sqrt(I-Q). RR сохраняет когерентный hop. IC: только sqrt(alpha)Bplus*C, без H_form и обратного IC-скачка.',
-           '',f"IC: {metrics.get('ic_status','not_run')}. Выбор по pL/ell; hop в цель подбора не входит.",
+           '',f"IC: структура={metrics.get('ic_structural_status','not_run')}; транспорт={metrics.get('ic_transport_status','not_evaluated')}. Выбор по pL/ell; hop исключён из цели.",
            f"Объём: {metrics['work']}. Операторный допуск 1e-10; физичность trace/hermiticity 1e-10, eigen >=-1e-8; dt: 1e-6+1e-4*scale.",
            f"Проверки: {checks.get('summary')}. Все провалы: {checks.get('failures',[])}.",
            '', '|Случай (Phi/pi;epsilon;gamma;dt)|T|h|F|min/max h (t>0)|tau90|стационарность|',
@@ -123,13 +128,15 @@ def compact_result(metrics,checks):
         pairmax=max((v for j in joint for v in j['pair_negativity_max'].values()),default=0.)
         lines.append(f'Максимальная парная negativity на полной диагностической сетке: {pairmax:.9g}.')
     for g in metrics.get('gaps',[]):
-        if g['phi_over_pi']==0 and g['detuning']==0 and g['dephasing']==.05:
+        if g['phi_over_pi']==0 and g['detuning']==0 and g['dephasing']==.05 and g.get('comparison',{}).get('comparable'):
             lines.append(f"Базовая QS/{g['control']}: Delta h={g['delta_h']:.9g}; I12={g['I12_gap']:.9g}, I02={g['I02_gap']:.9g}; знаменатель QS={g['denominator_QS']:.9g}; относительный зазор={g['relative_gap']:.7g}.")
-    if metrics.get('phase'):
-        p=max(metrics['phase'],key=lambda x:abs(x['delta_h']))
+    phase=[p for p in metrics.get('phase',[]) if p.get('comparison',{}).get('comparable') and p['delta_h'] is not None]
+    if phase:
+        p=max(phase,key=lambda x:abs(x['delta_h']))
         lines.append(f"Максимальный фазовый сдвиг h: {p['delta_h']:.9g} ({p['model']}; Phi/pi={p['phi_over_pi']}, epsilon={p['detuning']}, gamma={p['dephasing']}); {p['population_status']}, структурный сдвиг {p['structural_relative_max']:.7g}.")
-    if metrics.get('interactions'):
-        v=max(metrics['interactions'],key=lambda x:abs(x['value']))
+    interactions=[p for p in metrics.get('interactions',[]) if p.get('comparison',{}).get('comparable') and p['value'] is not None]
+    if interactions:
+        v=max(interactions,key=lambda x:abs(x['value']))
         lines.append(f"Максимальное взаимодействие фаза×дефазировка в зазоре: {v['value']:.9g}; {v['control']}, epsilon={v['detuning']}, gamma={v['dephasing']}. Это не доказательство роли GME.")
     for s in metrics['cases']:
         c=s['case'];ref=s['reference']
@@ -137,6 +144,8 @@ def compact_result(metrics,checks):
             probs=', '.join(f"{ref[f'p_m{m}']:.6g}" for m in range(8))
             dark=sum(ref[f'd_m{m}'] for m in range(8));weight=sum(ref[f'w1_m{m}'] for m in range(8))
             lines.append(f"{c['model']}, базовая fine: веса масок 0…7=[{probs}]; суммарный тёмный вес={dark:.8g}, вес сектора одного возбуждения={weight:.8g}.")
+    blocked=sum(not row['comparison']['comparable'] for section in ('gaps','phase','interactions','gap_phase','flux_spans') for row in metrics.get(section,[]))
+    lines.append(f'Несопоставимых стационарных сравнений: {blocked}; причины опубликованы в metrics.json. Общий переходный интервал [190,200] вынесен отдельно, без стационарной интерпретации.')
     lines += ['', 'Идентификаторы P01…P32 соответствуют полной сетке в cases.csv; там даны Phi/pi, epsilon, gamma, dt и модель для каждой строки.',
               'Все сравнения QS/RR/IC, знаковые зазоры и знаменатели, фазовые разности и взаимодействия — в metrics.json.',
               'Публикуются GME-сертификаты и negativity тех же состояний. Нулевые свидетели не означают отсутствия GME; Bell×|0> не является GME.',

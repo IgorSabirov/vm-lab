@@ -1,0 +1,147 @@
+{
+  "version": "v002",
+  "supersedes_calibration_in": "experiments/e002c/plan.json",
+  "cases": [
+    {
+      "model": "QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "id": "CAL_01",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "QS",
+      "phi_over_pi": 0.5,
+      "detuning": 0.5,
+      "dephasing": 0.25,
+      "id": "CAL_02",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "RR_QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "id": "CAL_03",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "RR_QS",
+      "phi_over_pi": 0.5,
+      "detuning": 0.5,
+      "dephasing": 0.25,
+      "id": "CAL_04",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "IC1_QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "alpha": [
+        0.01,
+        0.01,
+        0.01
+      ],
+      "id": "CAL_05",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "IC1_QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "alpha": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "id": "CAL_06",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "QS",
+      "phi_over_pi": 0.5,
+      "detuning": 2.0,
+      "dephasing": 0.05,
+      "id": "CAL_07",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "model": "RR_QS",
+      "phi_over_pi": 0.5,
+      "detuning": 2.0,
+      "dephasing": 0.05,
+      "id": "CAL_08",
+      "dt": 0.01,
+      "horizon": 20.0,
+      "family": "calibration"
+    },
+    {
+      "id": "CAL_SHORT_QS",
+      "model": "QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "dt": 0.01,
+      "horizon": 5.0,
+      "family": "calibration"
+    },
+    {
+      "id": "CAL_ZERO_QS",
+      "model": "QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.0,
+      "dt": 0.01,
+      "horizon": 40.0,
+      "family": "calibration"
+    },
+    {
+      "id": "CAL_SHORT_RR_QS",
+      "model": "RR_QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.05,
+      "dt": 0.01,
+      "horizon": 5.0,
+      "family": "calibration"
+    },
+    {
+      "id": "CAL_ZERO_RR_QS",
+      "model": "RR_QS",
+      "phi_over_pi": 0.0,
+      "detuning": 0.0,
+      "dephasing": 0.0,
+      "dt": 0.01,
+      "horizon": 40.0,
+      "family": "calibration"
+    }
+  ],
+  "main_steps": 25000,
+  "rhs_calls": 100000,
+  "forecast": {
+    "expected_seconds": 240,
+    "lower_seconds": 60,
+    "upper_seconds": 720,
+    "provisional": true
+  },
+  "forecast_basis": "Before VM measurement: previous provisional 120s for 16000 steps, workload ratio 25000/16000 gives 187.5s; 240s central rounded engineering allowance for added cases and amended diagnostics, not a measured slope. Band 60..720s deliberately provisional.",
+  "purpose": "Cost and early gamma=0 diagnostics. T40 does not predict the number of T200 extensions.",
+  "short_T5_policy": "Scalar endpoint T5; last diagnostic/certificate T4 on the unchanged dt_diag=2 grid. No stationarity claim."
+}

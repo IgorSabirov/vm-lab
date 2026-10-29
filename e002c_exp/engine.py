@@ -97,7 +97,9 @@ class Trajectory:
                 tau=float(series[i,0]);reason=None
             else:reason='final_in_band_window_shorter_than_10'
         summary=dict(case=self.case,alpha=None if self.model['alpha'] is None else list(self.model['alpha']),
-            horizon=end,steps=self.step,rhs_calls=4*self.step,scalar_records=len(series),diagnostic_records=len(diag),
+            horizon=end,requested_horizon=self.case['horizon'],extended=bool(end>self.case['horizon']+1e-9),
+            transition_reference=integral_mean(series,self.model['names'],200.) if end>=200 else None,
+            refinement_status='not_refined',steps=self.step,rhs_calls=4*self.step,scalar_records=len(series),diagnostic_records=len(diag),
             snapshots=len(self.snapshots),stationarity=st,reference=ref,failed=self.failure,
             state_status='finite_time_only' if not st['pass_gate'] else 'stationary',tau90=tau,tau90_reason=reason,
             operator_checks=self.model['checks'],dark_geometry=[x['info'] for x in self.model['dark']],node_edge=self.node_edge,
