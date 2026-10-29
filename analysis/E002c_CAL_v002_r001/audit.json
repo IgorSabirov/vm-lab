@@ -1,0 +1,215 @@
+{
+  "run_id": "E002c_CAL_v002_r001",
+  "report_commit": "26ddea1e48f1c48d8ae767d389452297376a5b1f",
+  "source_commit": "ca15a197834bc3193f3da87d1bbd9ab1a538bf90",
+  "time_first": {
+    "expected_seconds": 240,
+    "actual_seconds": 51.30707621574402,
+    "lower_seconds": 60,
+    "upper_seconds": 720,
+    "actual_over_expected": 0.21377948423226675,
+    "deviation_percent": -78.62205157677332,
+    "queue_seconds": 0.16749143600463867,
+    "internal_seconds": 50.66111686898512,
+    "status": "REVIEW_REQUIRED"
+  },
+  "technical_status": "VERIFIED_EXPORTED_ARRAYS",
+  "deviation_review": {
+    "status": "EXPLAINED_PENDING_USER_ACCEPTANCE",
+    "cause": "Uncalibrated engineering forecast overestimated the measured full-cycle cost. No reduced workload, resumed run or omitted output detected.",
+    "original_runtime_status_preserved": true,
+    "user_acceptance": null
+  },
+  "source_files_verified": 41,
+  "exported_files_verified": 45,
+  "exported_bytes": 1487695,
+  "full_data_accessed": false,
+  "work": {
+    "trajectories": 12,
+    "fit_trajectories": 0,
+    "steps": 25000,
+    "expected_steps": 25000,
+    "rhs_calls": 100000,
+    "scalar_records": 1262,
+    "diagnostic_records": 136,
+    "snapshots": 80
+  },
+  "kernel_sha256": "59b7a3bd09e410f19930e93d0d4948513694ab173f0bb4494952204d486faabd",
+  "environment": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "kernel_sha256": "59b7a3bd09e410f19930e93d0d4948513694ab173f0bb4494952204d486faabd"
+  },
+  "timing": {
+    "integration_seconds": 41.9941306792025,
+    "diagnostic_seconds": 2.4128849979606457,
+    "other_trajectory_seconds": 6.147510552837048,
+    "outside_trajectory_seconds": 0.7525499857438263,
+    "other_trajectory_includes": "build, scalar sampling, snapshots/PT, I/O and loop overhead; not separately instrumented",
+    "outside_trajectory_includes": "imports, preflight, exports and final report verification; not separately instrumented"
+  },
+  "per_case": [
+    {
+      "id": "CAL_01",
+      "model": "QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 4.460720414004754,
+      "integrator_seconds": 3.7038949402049184,
+      "diagnostic_seconds": 0.2006267819670029
+    },
+    {
+      "id": "CAL_02",
+      "model": "QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 4.341227469994919,
+      "integrator_seconds": 3.67621357619646,
+      "diagnostic_seconds": 0.1960920719720889
+    },
+    {
+      "id": "CAL_03",
+      "model": "RR_QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 3.830090873001609,
+      "integrator_seconds": 3.128079300367972,
+      "diagnostic_seconds": 0.19398058397928253
+    },
+    {
+      "id": "CAL_04",
+      "model": "RR_QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 3.768334805004997,
+      "integrator_seconds": 3.1019080251571722,
+      "diagnostic_seconds": 0.19326729903696105
+    },
+    {
+      "id": "CAL_05",
+      "model": "IC1_QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 3.744831994001288,
+      "integrator_seconds": 3.0240622691926546,
+      "diagnostic_seconds": 0.19240414691739716
+    },
+    {
+      "id": "CAL_06",
+      "model": "IC1_QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 3.7059358470141888,
+      "integrator_seconds": 3.010751003108453,
+      "diagnostic_seconds": 0.19346524099819362
+    },
+    {
+      "id": "CAL_07",
+      "model": "QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 4.6970989760011435,
+      "integrator_seconds": 3.706565886270255,
+      "diagnostic_seconds": 0.1967901709722355
+    },
+    {
+      "id": "CAL_08",
+      "model": "RR_QS",
+      "horizon": 20.0,
+      "steps": 2000,
+      "elapsed_seconds": 3.8342527709901333,
+      "integrator_seconds": 3.1589086068270262,
+      "diagnostic_seconds": 0.19409396703122184
+    },
+    {
+      "id": "CAL_SHORT_QS",
+      "model": "QS",
+      "horizon": 5.0,
+      "steps": 500,
+      "elapsed_seconds": 1.3330590889963787,
+      "integrator_seconds": 0.9335201166686602,
+      "diagnostic_seconds": 0.050666861003264785
+    },
+    {
+      "id": "CAL_ZERO_QS",
+      "model": "QS",
+      "horizon": 40.0,
+      "steps": 4000,
+      "elapsed_seconds": 8.424508708005305,
+      "integrator_seconds": 7.460642167163314,
+      "diagnostic_seconds": 0.37852395806112327
+    },
+    {
+      "id": "CAL_SHORT_RR_QS",
+      "model": "RR_QS",
+      "horizon": 5.0,
+      "steps": 500,
+      "elapsed_seconds": 1.1892922569822986,
+      "integrator_seconds": 0.7940224607882556,
+      "diagnostic_seconds": 0.05002848099684343
+    },
+    {
+      "id": "CAL_ZERO_RR_QS",
+      "model": "RR_QS",
+      "horizon": 40.0,
+      "steps": 4000,
+      "elapsed_seconds": 7.225173026003176,
+      "integrator_seconds": 6.2955623272573575,
+      "diagnostic_seconds": 0.37294543502503075
+    }
+  ],
+  "quality_on_published_rows": {
+    "trace": {
+      "minimum": 0.0,
+      "maximum": 2.664535935822927e-15,
+      "scope": "published diagnostic rows only"
+    },
+    "hermiticity": {
+      "minimum": 0.0,
+      "maximum": 3.31935867896941e-17,
+      "scope": "published diagnostic rows only"
+    },
+    "min_eigen": {
+      "minimum": 0.0,
+      "maximum": 2.7562027990244896e-05,
+      "scope": "published diagnostic rows only"
+    },
+    "rhs": {
+      "minimum": 0.00014785547089998097,
+      "maximum": 5.123475382979799,
+      "scope": "published diagnostic rows only"
+    }
+  },
+  "independent_verifier": {
+    "status": "VERIFIED_EXPORTED_ARRAYS",
+    "cases": [
+      "CAL_01",
+      "CAL_02",
+      "CAL_03",
+      "CAL_04",
+      "CAL_05",
+      "CAL_06",
+      "CAL_07",
+      "CAL_08",
+      "CAL_SHORT_QS",
+      "CAL_ZERO_QS",
+      "CAL_SHORT_RR_QS",
+      "CAL_ZERO_RR_QS"
+    ],
+    "limitations": [
+      "Full-state positivity and nodes|edges PT require full VM states.",
+      "Extrema on omitted samples are reported, not independently recoverable from sparse grids.",
+      "No full density matrix reconstruction from node reductions."
+    ],
+    "runtime_acceptance": "requires external run.json and user review"
+  },
+  "dt_refinement_measured_on_VM": false,
+  "production_submitted": false
+}
