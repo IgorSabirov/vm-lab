@@ -97,7 +97,9 @@ def main():
         seconds = coefficient*steps
         branches[name] = dict(steps=steps,expected_seconds=seconds,
             lower_seconds=.6*seconds,upper_seconds=1.4*seconds)
-    forecast = dict(status='CANDIDATE_PENDING_USER_ACCEPTANCE',accepted_by_user=False,
+    forecast = dict(status='WITHDRAWN_PENDING_COMPONENT_FORECAST',accepted_by_user=False,
+        do_not_use_for_production=True,
+        withdrawal_reason='Single full-cycle slope conflates model/dt costs and fixed overhead; see TIME_ROOT_CAUSE.md.',
         production_submitted=False,source_commit=SOURCE,report_commit=REPORT,
         kernel_sha256=kernel.hexdigest(),numpy_version=metrics['environment']['numpy'],
         scipy_version=metrics['environment']['scipy'],seconds_per_step=coefficient,
