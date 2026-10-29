@@ -8,6 +8,37 @@ from .model import save_json,sha
 from .metrics import recovery,classify
 
 
+def rr_matching(a,b,factor,tolerance):
+    errors={k:abs(a[k]-b[k])/max(abs(b[k]),1e-12) for k in ['pL01','pL12','pL02','inventory','pump_flux','break_flux']}
+    channels={}
+    for e in ['01','12','02']:
+        channel=lambda x,k:x['event_rate__'+k+'_'+e]
+        base={k:channel(b,k) for k in ['break','background','idle']}
+        expected=factor*sum(base.values())
+        actual=sum(channel(a,k) for k in base)
+        errors['loss_'+e]=abs(actual-expected)/max(abs(expected),1e-12)
+        errors['renew_'+e]=abs(channel(a,'renew')-expected)/max(abs(expected),1e-12)
+        # For factor2, fixed break/background require idle2=2*idle+break+background.
+        targets={**base,'idle':factor*base['idle']+(factor-1)*(base['break']+base['background']),'renew':expected}
+        channels[e]={k:dict(actual=channel(a,k),expected=v) for k,v in targets.items()}
+    return dict(relative_errors=errors,channel_comparison=channels,passed=max(errors.values())<=tolerance,
+        F_mismatch=a['sink_flux']-b['sink_flux'],hop_mismatch=a['I_hop_sink']-b['I_hop_sink'])
+
+
+def apply_acceptance(result,checks):
+    # Preserve mathematical candidates for diagnosis, but never leave a live
+    # positive classification after a late technical failure.
+    result.setdefault('provisional_outcomes',{k:result[k] for k in ['primary_outcome','RR2_outcome']})
+    blockers=[x['name'] for x in checks if not x['passed']]
+    if result.get('failure') or result.get('task_exit_code',0):blockers.append('task_failure')
+    result['acceptance_blockers']=sorted(set(blockers))
+    result['acceptance_status']='BLOCKED' if blockers else 'AWAITING_GITHUB_VERIFICATION'
+    for k,v in result['provisional_outcomes'].items():result[k]='metric_undefined' if blockers else v
+    for q in result['qualifiers']:
+        q.setdefault('provisional_candidate',q['candidate'])
+        q['candidate']=q['provisional_candidate'] and not blockers
+
+
 def load_series(full,case):
     cid=case['id'];names=json.loads((full/'cases'/f'{cid}_schema.json').read_text())['observable_names']
     rows=[json.loads(s) for s in (full/'cases'/f'{cid}.jsonl').read_text().splitlines()]
@@ -56,10 +87,15 @@ def prepare(root,cfg,meta,outcome):
             for j,tm in enumerate(rt):writer.writerow([format(tm,'.17g'),*[format(ra[j,names.index(k)],'.17g') for k in KEYS]])
     planned={c['id']:c for c in cfg['cases']}
     checks.append(dict(name='all_cases',passed=set(cases)==set(planned),actual=len(cases),expected=len(planned)))
-    pp=cases.get('PP_none_fine');ppref=pp['reference'] if pp else {'I_hop_sink':0.,'sink_flux':0.}
+    required={'PP_none_fine'}|{c['model']+'_none_fine' for c in cfg['cases']}
+    missing=sorted(required-set(cases))
+    checks.append(dict(name='required_baselines',missing=missing,passed=not missing))
+    pp=cases.get('PP_none_fine');ppref=pp['reference'] if pp else None
     for cid,r in cases.items():
         case=r['summary']['case'];base=cases.get(case['model']+'_none_fine')
-        if base is None:continue
+        if ppref is None or base is None:
+            r['recovery_unavailable']='Missing completed baseline: '+', '.join(sorted({'PP_none_fine',case['model']+'_none_fine'}-set(cases)))
+            continue
         baseid=base['summary']['case']['id'];bt,ba,bn,brt,bs=allarrays[baseid]
         bq=float(simpson(bs['sink_flux'],x=brt));_,_,_,rt,series=allarrays[cid]
         rec=recovery(rt,series,base['reference'],ppref,bq);r['recovery']=rec
@@ -92,23 +128,15 @@ def prepare(root,cfg,meta,outcome):
         for v in ['RR','RR2']:
             rr=cases.get(v+'_none_fine')
             if not rr:continue
-            a,b=rr['reference'],pp['reference'];errors={}
-            for k in ['pL01','pL12','pL02','inventory','pump_flux','break_flux']:
-                errors[k]=abs(a[k]-b[k])/max(abs(b[k]),1e-12)
-            for e in ['01','12','02']:
-                loss=lambda x:cfg['models']['PP']['delta']*x['pL'+e]+x['event_rate__background_'+e]+x['event_rate__idle_'+e]
-                expected=loss(b)*(2 if v=='RR2' else 1)
-                errors['loss_'+e]=abs(loss(a)-expected)/max(abs(expected),1e-12)
-            matches[v]=dict(relative_errors=errors,passed=max(errors.values())<=cfg['matching_tolerance'],
-                F_mismatch=a['sink_flux']-b['sink_flux'],hop_mismatch=a['I_hop_sink']-b['I_hop_sink'])
+            matches[v]=rr_matching(rr['reference'],pp['reference'],2 if v=='RR2' else 1,cfg['matching_tolerance'])
     def eligible(cid):
         r=cases.get(cid,{});model=r.get('summary',{}).get('case',{}).get('model','')
         return bool(r.get('summary',{}).get('pre_stationarity',{}).get('passed') and cases.get(model+'_none_fine',{}).get('summary',{}).get('pre_stationarity',{}).get('passed') and refinements.get(cid,{}).get('passed'))
     primary='metric_undefined';sensitivity='metric_undefined'
-    if 'PP_link_coarse' in cases and 'RR_link_coarse' in cases:
+    if all('recovery' in cases.get(cid,{}) for cid in ['PP_link_coarse','RR_link_coarse']):
         ppd=cases['PP_link_coarse']['recovery'];rrd=cases['RR_link_coarse']['recovery']
         primary=classify(ppd,rrd,matches.get('RR',{}).get('passed',False),eligible('PP_link_coarse') and eligible('RR_link_coarse') and all(c['passed'] for c in checks))
-        if 'RR2_link_coarse' in cases:
+        if 'recovery' in cases.get('RR2_link_coarse',{}):
             sensitivity=classify(ppd,cases['RR2_link_coarse']['recovery'],matches.get('RR2',{}).get('passed',False),eligible('PP_link_coarse') and eligible('RR2_link_coarse') and all(c['passed'] for c in checks))
     qualifiers=[]
     for left,right in [('PP','QP'),('PQ','QQ'),('PS','QS'),('PP','PQ'),('PP','PS')]:
@@ -122,7 +150,7 @@ def prepare(root,cfg,meta,outcome):
     manifest=dict(run_id=meta['run_id'],source_commit=meta['source_commit'],full_files=inventory,full_file_count=len(inventory),full_bytes=sum(x['bytes'] for x in inventory),
       coverage='All raw observables at .2, post-damage t200 replaces pre in ordinary row; pre data and pre state separate. GitHub CSV retains all recovery and pre-window samples for 31 named quantities; ALL-observable global and recovery extrema/means/std in metrics. No claims between samples. Matrices only t0, t>=196 every2, plus pre-damage. No full-matrix archive for early preparation.')
     save_json(report/'data_manifest.json',manifest)
-    return dict(**meta,protocol=cfg,cases=cases,refinements=refinements,matches=matches,primary_outcome=primary,RR2_outcome=sensitivity,qualifiers=qualifiers,
+    return dict(**meta,protocol=cfg,cases=cases,refinements=refinements,matches=matches,primary_outcome=primary,RR2_outcome=sensitivity,qualifiers=qualifiers,missing_baselines=missing,
       failure=outcome.get('failure'),actual_steps=sum(r['summary']['steps'] for r in cases.values()),planned_steps=cfg['runtime_forecast']['main_steps'],full_file_count=len(inventory),full_bytes=manifest['full_bytes']),checks
 
 
@@ -130,9 +158,10 @@ def finalize(root,result,checks,actual):
     report=root/'report';cfg=result['protocol'];g=cfg['runtime_forecast'];work=result['actual_steps']==result['planned_steps']
     gate=dict(expected=g['expected_seconds'],actual=actual,lower=g['lower_seconds'],upper=g['upper_seconds'],passed=bool(work and g['lower_seconds']<=actual<=g['upper_seconds']))
     gate.update(expected_seconds=gate['expected'],actual_seconds=actual,lower_seconds=gate['lower'],upper_seconds=gate['upper'],
-        actual_over_expected=actual/gate['expected'],calibration_reference=g['reference'],executed_branch='fixed_50_cases',
+        actual_over_expected=actual/gate['expected'],calibration_reference=g['reference'],executed_branch=f'fixed_{len(cfg["cases"])}_cases',
         status='PASS' if gate['passed'] else 'REVIEW_REQUIRED',measurement='entry timer to before final metrics/RESULT writes; verify whole-process run.json separately')
     result['runtime_gate']=gate;checks.append(dict(name='runtime_gate',**gate))
+    apply_acceptance(result,checks)
     save_json(report/'metrics.json',result);save_json(report/'checks.json',checks)
     lines=['# E002 — повреждение и восстановление','',f'Время: прогноз {gate["expected"]:.1f} с; внутренний факт {actual:.1f} с; отклонение {100*(actual/gate["expected"]-1):+.2f}%; диапазон {gate["lower"]:.1f}–{gate["upper"]:.1f}; PASS={gate["passed"]}.',
       'Сначала сверить полное время по run.json. Внутренний замер исключает финальную запись. При выходе за границы сначала разбор объёма и времени; исходы ниже до этого не принимаются.',
@@ -141,6 +170,7 @@ def finalize(root,result,checks,actual):
       'PP/PQ/PS/QP/QQ/QS: первая буква образование, вторая idle-фактор P:I−Π, Q:I−diagΠ, S:sqrt(I−diagΠ). RR удаляет form и условный idle, вводит независимые R→L/L→R. RR2 удваивает суммарную скорость потерь и согласованную скорость образования при той же стационарной населённости. J0 выключает только hop.',
       'Подпитка η=.25, поломка δ=.1, g=.5, J=1 (кроме J0), κin=κout=.5, φn=φe=.05, γr=.05, γbg=.01. RRR и равная смесь узлов |100>,|010>. Все параметры/скорости заранее в config.',
       f'Предварительная классификация: **{result["primary_outcome"]}**. Проверка RR×2: **{result["RR2_outcome"]}**.',
+      'Статус пакета: '+result['acceptance_status']+'. Блокировки: '+(', '.join(result['acceptance_blockers']) or 'нет внутренних; проверка GitHub ещё обязательна')+'.',
       'Порог ремонта Λhop≤50; преимущество PP: Λhop_PP≤0.7Λhop_RR; guard для каждого варианта Mmachine≤Mmachine_none,same_window+0.20. Неопределённые метрики не равны нулю. Сравнение RR меняет также прямой транспорт form/idle: преимущество не доказывает уникальный механизм или необходимость обратной связи вообще.','',
       '| Случай | Λhop | Λtotal | Mmachine | guard | Qpump | pre steady |', '|---|---:|---:|---:|---|---:|---|']
     fmt=lambda x:'—' if x is None else format(x,'.7g')
@@ -162,9 +192,21 @@ def finalize(root,result,checks,actual):
       'Снимки rho: t0, 196…300 каждые2, плюс отдельно 200−. Ранние матрицы не сохранялись по плану; scalar-ряды полные. SHA и размеры: run.json и data_manifest.json. Ошибки обеих описей блокируют приёмку.',
       'Никаких выводов о квантовой необходимости, автопоэзисе, BIC. Гейтовые квалификаторы — кандидаты, не доказательство. Источник подпитки внешний. Порог 0.7 практический, не статистическая значимость. RR2 — чувствительность, не доказанная граница всех возможных RR.']
     if result['failure']:lines.append('Ошибка: '+str(result['failure']))
+    if result['missing_baselines']:lines.append('Нет завершённых baseline: '+', '.join(result['missing_baselines'])+'. Нулевыми числами они не заменялись.')
     text='\n'.join(lines)+'\n'
-    if len(text.encode())>24576:raise ValueError('RESULT exceeds 24KiB')
+    if len(text.encode())>24576:
+        checks.append(dict(name='result_budget',passed=False,bytes=len(text.encode())))
+        result['task_exit_code']=2;apply_acceptance(result,checks)
+        save_json(report/'metrics.json',result);save_json(report/'checks.json',checks)
+        (report/'RESULT.md').write_text('\n'.join(lines[:5])+'\n\nBLOCKED: result_budget. Компактный отчёт превышает лимит.\n')
+        raise ValueError('RESULT exceeds 24KiB')
     (report/'RESULT.md').write_text(text);(report/'README.md').write_text('# E002\n\n[Главный результат](RESULT.md).\n')
     sizes=[p.stat().st_size for p in report.rglob('*') if p.is_file()]
-    if len(sizes)>500 or max(sizes,default=0)>8*1024**2 or sum(sizes)>30*1024**2:raise ValueError('Export budget exceeded')
+    if len(sizes)>500 or max(sizes,default=0)>8*1024**2 or sum(sizes)>30*1024**2:
+        checks.append(dict(name='export_budget',passed=False,files=len(sizes),bytes=sum(sizes)))
+        result['task_exit_code']=2
+        apply_acceptance(result,checks)
+        save_json(report/'metrics.json',result);save_json(report/'checks.json',checks)
+        (report/'RESULT.md').write_text('\n'.join(lines[:5])+'\n\nBLOCKED: export_budget. Научная классификация недоступна: пакет превышает лимиты.\n')
+        raise ValueError('Export budget exceeded')
     return dict(files=len(sizes),bytes=sum(sizes),result_bytes=len(text.encode()))

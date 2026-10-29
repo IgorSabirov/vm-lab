@@ -37,6 +37,14 @@ def tensor(factors):
     return out
 
 def build_model(p):
+    if 'rr_rates' in p:
+        if p['g'] != 0:
+            raise ValueError('RR requires g=0: coherent H_form is forbidden')
+        if set(p['rr_rates']) != {'01','12','02'}:
+            raise ValueError('RR rates must specify edges 01,12,02')
+        for rates in p['rr_rates'].values():
+            if len(rates)!=2 or not np.isfinite(rates).all() or min(rates)<0:
+                raise ValueError('Invalid RR rates')
     if p['gate_form'] not in {'Pi', 'Q'} or p['gate_idle'] not in {'Pi', 'Q', 'S'}:
         raise ValueError('Unknown gate')
     dims = [2, 2, 2, 3, 3, 3]
@@ -215,6 +223,8 @@ def measurement_model(parameters, acceptance):
         even = eye - 2*q
         gf = pi if parameters['gate_form'] == 'Pi' else q
         hf = parameters['g'] * (bp+bm) @ gf
+        if 'rr_rates' in parameters:
+            checks['rr_H_form_zero_'+en] = maxabs(hf)
         hh = parameters['J'] * pl @ hop
         bl, ml, el = pl @ pi, pl @ pm, pl @ even
         for label, op in [('B_L', bl), ('B_R', pr@pi), ('M_L',ml), ('E_L',el)]:
@@ -222,7 +232,8 @@ def measurement_model(parameters, acceptance):
             protected_totals[label] += op
         checks['partition_'+en] = maxabs(bl+ml+el-pl)
         own_idle = adjoint_jump(jd['idle_'+en], n[j])
-        target_idle = parameters['gamma_r']/4 * pl @ (n[i]-n[j]) if parameters['gate_idle']=='Pi' else 0*pl
+        conditional_pi = 'rr_rates' not in parameters and parameters['gate_idle']=='Pi'
+        target_idle = parameters['gamma_r']/4 * pl @ (n[i]-n[j]) if conditional_pi else 0*pl
         checks['idle_current_'+en] = maxabs(own_idle-target_idle)
         pieces = {'hop':1j*(hh@n[j]-n[j]@hh), 'form':1j*(hf@n[j]-n[j]@hf), 'idle':own_idle}
         for label, op in pieces.items():

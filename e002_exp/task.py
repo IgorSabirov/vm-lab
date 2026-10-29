@@ -8,12 +8,25 @@ from .engine import Progress,preflight,run_case
 from .report import prepare,finalize
 
 
+def validate_config(cfg):
+    ids=[c['id'] for c in cfg['cases']]
+    if len(ids)!=len(set(ids)):raise ValueError('Duplicate cases')
+    required={m+'_none_fine' for m in cfg['models']}
+    required.update(m+'_link_'+step for m in ['PP','RR','RR2'] for step in ['coarse','fine'])
+    missing=sorted(required-set(ids))
+    if missing:raise ValueError('Missing required cases: '+', '.join(missing))
+    for c in cfg['cases']:
+        if c['model'] not in cfg['models']:raise ValueError('Unknown model: '+c['model'])
+        if c['damage'] not in {'none','link','feed','resource','hard'}:raise ValueError('Unknown damage: '+c['damage'])
+    if sum(round(c['horizon']/c['dt']) for c in cfg['cases'])!=cfg['runtime_forecast']['main_steps']:
+        raise ValueError('Forecast step count differs from configured cases')
+
+
 def execute(cfg,source,entry):
     root=Path.cwd();run=os.environ.get('VM_JOB_ID','');commit=os.environ.get('VM_SOURCE_COMMIT','')
     if not re.fullmatch('[A-Za-z0-9_-]{12,64}',run) or not re.fullmatch('[a-f0-9]{40}',commit):raise ValueError('Missing pinned identity')
     if shutil.disk_usage(root).free<cfg['required_free_disk_bytes']:raise ValueError('Insufficient declared disk reserve')
     ids=[c['id'] for c in cfg['cases']]
-    if len(ids)!=len(set(ids)):raise ValueError('Duplicate cases')
     full=root/'full';full.mkdir(exist_ok=False)
     meta=dict(run_id=run,source_commit=commit,config_sha256=sha(source/'config.json'),python=sys.version,numpy=np.__version__,scipy=scipy.__version__,
       source_files={str(p.relative_to(source)):sha(p) for folder in ['e002_exp','sqrt_exp','j0_exp'] for p in sorted((source/folder).glob('*.py'))})
@@ -21,6 +34,7 @@ def execute(cfg,source,entry):
     outcome=dict(cases=[],checks=[],failure=None);progress=None;code=0
     timings=dict(models=0.,preflight=0.,cases=0.)
     try:
+        validate_config(cfg)
         os.chdir(full);progress=Progress(len(ids));progress.update(experiment='E002',status='building')
         models={}
         for name,p in cfg['models'].items():

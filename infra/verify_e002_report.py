@@ -9,6 +9,14 @@ def verify(artifacts):
     assert set(m['cases'])=={c['id'] for c in cfg['cases']}
     assert len(man['full_files'])==man['full_file_count']
     assert sum(f['bytes'] for f in man['full_files'])==man['full_bytes']
+    checks=json.loads(artifacts['files/checks.json'])
+    blockers={c['name'] for c in checks if not c['passed']}
+    if m.get('failure') or m.get('task_exit_code',0):blockers.add('task_failure')
+    assert set(m['acceptance_blockers'])==blockers
+    assert m['acceptance_status']==('BLOCKED' if blockers else 'AWAITING_GITHUB_VERIFICATION')
+    if blockers:
+        assert m['primary_outcome']==m['RR2_outcome']=='metric_undefined'
+        assert not any(q['candidate'] for q in m['qualifiers'])
     def read(path):
         rows=list(csv.DictReader(io.StringIO(artifacts['files/'+path].decode())))
         return {k:np.array([float(r[k]) for r in rows]) for k in rows[0]}
