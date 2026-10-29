@@ -1,5 +1,261 @@
 {
-  "mode": "success",
-  "numbers": [2, 3, 5],
-  "expected_sum": 10
+  "experiment_id": "E002b_FEAS",
+  "version": "v001",
+  "mode": "production",
+  "stage": "feasibility_only",
+  "candidates": [
+    "QS",
+    "QQ"
+  ],
+  "primary_candidate": "QS",
+  "secondary_candidate": "QQ",
+  "models": {
+    "QS": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_n": 0.05,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "gate_form": "Q",
+      "gate_idle": "S"
+    },
+    "RR_QS": {
+      "J": 1.0,
+      "g": 0.0,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_n": 0.05,
+      "phi_e": 0.05,
+      "gamma_r": 0.0,
+      "gamma_bg": 0.01,
+      "gate_form": "Q",
+      "gate_idle": "Q",
+      "rr_rates": {
+        "01": [
+          0.034391922002445986,
+          0.03673596724712181
+        ],
+        "12": [
+          0.0343919220002473,
+          0.03673596724703888
+        ],
+        "02": [
+          0.06080323306206624,
+          0.03505876323286412
+        ]
+      }
+    },
+    "QQ": {
+      "J": 1.0,
+      "g": 0.5,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_n": 0.05,
+      "phi_e": 0.05,
+      "gamma_r": 0.05,
+      "gamma_bg": 0.01,
+      "gate_form": "Q",
+      "gate_idle": "Q"
+    },
+    "RR_QQ": {
+      "J": 1.0,
+      "g": 0.0,
+      "eta": 0.25,
+      "delta": 0.1,
+      "kappa_in": 0.5,
+      "kappa_out": 0.5,
+      "phi_n": 0.05,
+      "phi_e": 0.05,
+      "gamma_r": 0.0,
+      "gamma_bg": 0.01,
+      "gate_form": "Q",
+      "gate_idle": "Q",
+      "rr_rates": {
+        "01": [
+          0.03404354416201322,
+          0.03004516044895201
+        ],
+        "12": [
+          0.034043544159876434,
+          0.030045160448833354
+        ],
+        "02": [
+          0.05990438120102178,
+          0.027583810354628514
+        ]
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "QS_coarse",
+      "model": "QS",
+      "dt": 0.01
+    },
+    {
+      "id": "QS_fine",
+      "model": "QS",
+      "dt": 0.005
+    },
+    {
+      "id": "RR_QS_coarse",
+      "model": "RR_QS",
+      "dt": 0.01
+    },
+    {
+      "id": "RR_QS_fine",
+      "model": "RR_QS",
+      "dt": 0.005
+    },
+    {
+      "id": "QQ_coarse",
+      "model": "QQ",
+      "dt": 0.01
+    },
+    {
+      "id": "QQ_fine",
+      "model": "QQ",
+      "dt": 0.005
+    },
+    {
+      "id": "RR_QQ_coarse",
+      "model": "RR_QQ",
+      "dt": 0.01
+    },
+    {
+      "id": "RR_QQ_fine",
+      "model": "RR_QQ",
+      "dt": 0.005
+    }
+  ],
+  "horizon": 200.0,
+  "baseline_window": 10.0,
+  "observable_interval": 0.2,
+  "diagnostic_interval": 2.0,
+  "positivity_interval": 10.0,
+  "target_file": "data/e002b_targets.json",
+  "acceptance": {
+    "algebra": 1e-10,
+    "trace": 1e-08,
+    "hermiticity": 1e-08,
+    "positivity": 1e-07,
+    "expm_reference_relative": 2e-06,
+    "refinement_observables": 2e-05,
+    "disk_floor_bytes": 1500000000
+  },
+  "stationarity": {
+    "relative_rhs": 1e-06,
+    "relative_rho_change": 1e-05,
+    "absolute_flux_range": 1e-10,
+    "relative_flux_range": 0.0001
+  },
+  "matching": {
+    "population_relative": 0.01,
+    "loss_relative": 0.01,
+    "hop_preferred_relative": 0.05,
+    "hop_max_relative": 0.1,
+    "relative_denominator_floor": 1e-12,
+    "weak_hop_floor": 1e-05,
+    "renew_relative": 0.01,
+    "historical_reproduction_relative": 0.01
+  },
+  "full_file_limit": 400,
+  "report_file_limit": 100,
+  "report_bytes_limit": 31457280,
+  "report_single_file_limit": 8388608,
+  "result_bytes_limit": 24576,
+  "required_free_disk_bytes": 2000000000,
+  "runtime_forecast": {
+    "expected_seconds": 482.49743506595644,
+    "lower_seconds": 289.49846103957384,
+    "upper_seconds": 675.4964090923389,
+    "main_steps": 240000,
+    "preflight_steps": 1200,
+    "formula": "sum(60000 * pooled elapsed/steps for QS,QQ,RR,RR from E002) + 60 seconds",
+    "calibration_commit": "06b767966c5ecce5f2c38936361c8eee74ffca97",
+    "calibration": {
+      "QS": {
+        "proxy_model": "QS",
+        "seconds_per_step": 0.0018958052473443483,
+        "seconds_for_60000_steps": 113.7483148406609
+      },
+      "RR_QS": {
+        "proxy_model": "RR",
+        "seconds_per_step": 0.0016100695961885827,
+        "seconds_for_60000_steps": 96.60417577131496
+      },
+      "QQ": {
+        "proxy_model": "QQ",
+        "seconds_per_step": 0.0019256794780444276,
+        "seconds_for_60000_steps": 115.54076868266566
+      },
+      "RR_QQ": {
+        "proxy_model": "RR",
+        "seconds_per_step": 0.0016100695961885827,
+        "seconds_for_60000_steps": 96.60417577131496
+      }
+    },
+    "assumptions": [
+      "Each of four models is prepared independently at dt .01 and .005 to T200.",
+      "No optimizer, early success stop, horizon extension or automatic damage.",
+      "RR_QS/RR_QQ use RR timing proxy; +60s for setup, preflight and reporting. +/-40% engineering band."
+    ]
+  },
+  "damage_plan": {
+    "conditional_pairs": [
+      "QS/RR_QS",
+      "QQ/RR_QQ"
+    ],
+    "primary_candidate": "QS",
+    "damage_time": 200.0,
+    "horizon": 300.0,
+    "damage": "L_to_0_all_edges",
+    "dt": [
+      0.01,
+      0.005
+    ],
+    "none_controls": true,
+    "advantage_ratio": 0.7,
+    "max_candidate_deficit": 50.0,
+    "min_control_deficit": 1e-08,
+    "allow_automatic_launch": false,
+    "sensitivity_lambda_in_this_version": [],
+    "baseline_policy": "each variant own fine none mean [190,200]; integrals on [200,300]",
+    "runtime_estimates_from_E002": {
+      "QS_only": {
+        "branches": 8,
+        "main_steps": 360000,
+        "preflight_steps": 600,
+        "expected_seconds": 691.0574718359276,
+        "lower_seconds": 414.63448310155655,
+        "upper_seconds": 967.4804605702985
+      },
+      "QQ_only_secondary": {
+        "branches": 8,
+        "main_steps": 360000,
+        "preflight_steps": 600,
+        "expected_seconds": 696.4348333619419,
+        "lower_seconds": 417.8609000171651,
+        "upper_seconds": 975.0087667067186
+      },
+      "both": {
+        "branches": 16,
+        "main_steps": 720000,
+        "preflight_steps": 1200,
+        "expected_seconds": 1357.4923051978694,
+        "lower_seconds": 814.4953831187216,
+        "upper_seconds": 1900.489227277017
+      }
+    },
+    "forecast_before_damage": "sum(180000 * A elapsed_model_both_dts / 60000 for all eligible models) + 60 + 30*(pair_count-1); freeze before submission; verify A GitHub first."
+  }
 }
