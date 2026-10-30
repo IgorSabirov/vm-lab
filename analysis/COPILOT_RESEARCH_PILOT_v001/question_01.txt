@@ -1,0 +1,23 @@
+You are a technical reviewer for a small private quantum-network research project. You have no repository, files, shell or tools: review only the explicit material below. Do not claim to run code. Give a concise answer in Russian, at most 800 words, with derivation and a minimal NumPy check we can run. Do not assume that the claim under review is correct.
+
+Hilbert space: 8 node basis states times 27 edge states, node-major ordering. Edge basis consists of three qutrits; value 2 means active L. Mask bits for edges (01,12,02) are (1,2,4). Q_m projects onto edge microstates of mask m. P_a projects onto node basis index a. Independent Hermitian diagonal Lindblad channels (same gamma>0) are:
+A_minus=sqrt(gamma)*(P_5-P_6) tensor Q_2
+B_minus=sqrt(gamma)*(P_3-P_6) tensor Q_4
+A_plus =sqrt(gamma)*(P_5+P_6) tensor Q_2
+B_plus =sqrt(gamma)*(P_3+P_6) tensor Q_4.
+Target is the list [A_minus,B_minus]; matched control is [A_plus,B_plus].
+D[L](rho)=L rho L† - {L†L,rho}/2.
+
+A reviewer claims: "Even with a list of separate independent channels, the combined target/control is not matched: for coherence (mask2,node5)<->(mask4,node6), target dephases at 2gamma and control at zero. Therefore composite probes must be secondary and only pairwise probes are valid."
+
+Their proposed numerical check takes the real diagonal vectors without sqrt(gamma):
+def rates(jumps,gamma):
+    v = np.sum(jumps,axis=0)
+    return gamma/2*(v[:,None]-v[None,:])**2
+
+Tasks:
+1. Assess the claim and the function under the stated independent-channel contract. Distinguish changing the bath model from an implementation correction.
+2. Identify exactly which full density-matrix entries can differ between target and control, including hidden edge microstates.
+3. Does matching all collateral generator rates require collateral stationary coherence amplitudes to match within 5%? Explain what follows and what does not.
+4. Supply the smallest meaningful independently checkable counterexample/test and corrected function if needed.
+Do not infer a transport advantage, Fano physics or a new experiment from this algebra.
