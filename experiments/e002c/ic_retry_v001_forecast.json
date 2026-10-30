@@ -1,0 +1,74 @@
+{
+  "config": {
+    "experiment": "E002c",
+    "version": "ic_retry_v001",
+    "mode": "ic_retry",
+    "run_id": "E002c_IC_RETRY_v001_r001",
+    "calibration": {
+      "report_commit": "670cc4f527ee2b55a6811e7cd1af997a6b337e29",
+      "source_commit": "2cab87ea3f6cb453730a8051eb198600dd302211",
+      "kernel_sha256": "50b45825b56e5f5b5b7061a999325d4b5b7755de1ff13402b14ac49735e7e3a8",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "runtime_status": "PASS",
+      "volume_pass": true,
+      "user_authorization": "одобрить повторный IC-1-поиск с проверяемым охватом"
+    },
+    "forecast": {
+      "fixed_seconds": 10.0,
+      "seconds_per_fit": 18.47445445600897,
+      "seconds_per_validation_step": 0.0017,
+      "relative_band": 0.4,
+      "minimum_band_seconds": 60.0,
+      "source": "experiments/e002c/IC_RETRY_FORECAST_V001.md; E002c_IC_RETRY_CAL_v002_r001 report 670cc4f527ee2b55a6811e7cd1af997a6b337e29"
+    },
+    "baseline_source": {
+      "run_id": "E002c_REPAIR_v001_r001",
+      "report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
+      "metrics_sha256": "b7ca2385a31a7bd9a1e95c47fa61706188ccbcb5578bdf342d9b40837ab12f45"
+    }
+  },
+  "branches": [
+    {
+      "branch": "Все звёзды невалидны; нет кандидата",
+      "fit_computations": 21,
+      "validation_steps": 0,
+      "expected_seconds": 397.9635435761884,
+      "lower_seconds": 238.77812614571303,
+      "upper_seconds": 557.1489610066637
+    },
+    {
+      "branch": "Потолок fit + валидация T200",
+      "fit_computations": 141,
+      "validation_steps": 60000,
+      "expected_seconds": 2716.898078297265,
+      "lower_seconds": 1630.138846978359,
+      "upper_seconds": 3803.657309616171
+    },
+    {
+      "branch": "Потолок fit + валидация T400",
+      "fit_computations": 141,
+      "validation_steps": 120000,
+      "expected_seconds": 2818.898078297265,
+      "lower_seconds": 1691.3388469783588,
+      "upper_seconds": 3946.457309616171
+    }
+  ],
+  "calibration_verification": {
+    "verified_files": 19,
+    "external_runtime": {
+      "status": "PASS",
+      "expected": 37.0,
+      "actual": 33.04041600227356,
+      "delta_percent": -10.701578372233623,
+      "queue": 0.23439788818359375
+    },
+    "report": {
+      "status": "VERIFIED_RETRY_REPORT",
+      "trajectory_count": 3,
+      "steps": 12000
+    },
+    "maximum_initial_weight_vs_old_report_error": 5.551115123125783e-17,
+    "release_grid_points": 1608
+  }
+}

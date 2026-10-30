@@ -1,42 +1,29 @@
 {
   "experiment": "E002c",
   "version": "ic_retry_v001",
-  "mode": "ic_retry_calibration",
-  "run_id": "E002c_IC_RETRY_CAL_v002_r001",
-  "previous_alpha": [
-    0.09374267239435262,
-    0.06878384400049463,
-    0.12160646612413249
-  ],
-  "release_source_files": {
-    "QS_P05_dt005": {
-      "path": "QS_P05_dt005/final.npz",
-      "bytes": 746756,
-      "sha256": "e94c9b109dc23b1f902e89c40612d2d8b0b7bb08de0e51b5003f4391c9089914"
-    },
-    "RR_QS_P05_dt005": {
-      "path": "RR_QS_P05_dt005/final.npz",
-      "bytes": 746756,
-      "sha256": "101062d1592f4132bb3d7fff0910904c29a419ca5d71e09812beeea86d4ce024"
-    }
+  "mode": "ic_retry",
+  "run_id": "E002c_IC_RETRY_v001_r001",
+  "calibration": {
+    "report_commit": "670cc4f527ee2b55a6811e7cd1af997a6b337e29",
+    "source_commit": "2cab87ea3f6cb453730a8051eb198600dd302211",
+    "kernel_sha256": "50b45825b56e5f5b5b7061a999325d4b5b7755de1ff13402b14ac49735e7e3a8",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "runtime_status": "PASS",
+    "volume_pass": true,
+    "user_authorization": "одобрить повторный IC-1-поиск с проверяемым охватом"
   },
-  "release_source_report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
   "forecast": {
-    "expected_seconds": 37.0,
-    "lower_seconds": 0.0,
-    "upper_seconds": 97.0,
-    "provisional": true,
-    "source": "experiments/e002c/IC_RETRY_V001.md, second short calibration: 23.513 s measured IC trajectories plus complete release solver and augmented integral certificates"
+    "fixed_seconds": 10.0,
+    "seconds_per_fit": 18.47445445600897,
+    "seconds_per_validation_step": 0.0017,
+    "relative_band": 0.4,
+    "minimum_band_seconds": 60.0,
+    "source": "experiments/e002c/IC_RETRY_FORECAST_V001.md; E002c_IC_RETRY_CAL_v002_r001 report 670cc4f527ee2b55a6811e7cd1af997a6b337e29"
   },
-  "work": {
-    "trajectories": 3,
-    "steps": 12000,
-    "rhs_calls": 48000,
-    "scalar_records": 1203,
-    "diagnostic_records": 123,
-    "snapshots": 25,
-    "release_source_states": 2,
-    "release_initial_states": 8,
-    "release_time_points_per_state": 201
+  "baseline_source": {
+    "run_id": "E002c_REPAIR_v001_r001",
+    "report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
+    "metrics_sha256": "b7ca2385a31a7bd9a1e95c47fa61706188ccbcb5578bdf342d9b40837ab12f45"
   }
 }
