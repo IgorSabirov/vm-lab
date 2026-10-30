@@ -1,0 +1,31 @@
+{
+  "run_id": "E002c_CAL_v003_r001",
+  "local_only": true,
+  "unit_test_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=.:tests python -m unittest infra.test_e002c.EndToEnd infra.test_e002c.Planning.test_missing_calibration_forecast_disk_blocks -v",
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "unittest_elapsed_seconds": 5.354,
+  "smoke": {
+    "trajectories": 6,
+    "steps": 1800,
+    "integration_rhs_calls": 7200,
+    "independent_reader_pass": true,
+    "failures": []
+  },
+  "forecast_matches_plan": true,
+  "work_independently_recounted": {
+    "trajectories": 12,
+    "steps": 25000,
+    "integration_rhs_calls": 100000,
+    "full_scalar_records": 1262,
+    "full_diagnostic_records": 136,
+    "exported_scalar_records": 632,
+    "exported_diagnostic_records": 126,
+    "scheduled_snapshots": 80,
+    "final_states": 12,
+    "conditional_extensions": 0
+  },
+  "kernel_sha256": "0e9791fae65f6ec063a1328ab6e71e5b2a8fc3b5a16fa87b3a96c1b2e92002d1",
+  "production_authorized": false,
+  "old_runtime_gate_changed": false
+}

@@ -136,12 +136,39 @@
   "main_steps": 25000,
   "rhs_calls": 100000,
   "forecast": {
-    "expected_seconds": 240,
-    "lower_seconds": 60,
-    "upper_seconds": 720,
+    "expected_seconds": 52,
+    "lower_seconds": 30,
+    "upper_seconds": 90,
     "provisional": true
   },
-  "forecast_basis": "Before VM measurement: previous provisional 120s for 16000 steps, workload ratio 25000/16000 gives 187.5s; 240s central rounded engineering allowance for added cases and amended diagnostics, not a measured slope. Band 60..720s deliberately provisional.",
+  "forecast_basis": "Same 12-case/25000-step workload as E002c_CAL_v002_r001: measured integration 41.9941306792 s + diagnostics 2.4128849980 s + remaining trajectory work 6.1475105528 s + outside-trajectory process cost 0.7525499857 s = 51.3070762157 s. Rounded to 52 s for this new run. No duplicated I/O or fixed allowance. Engineering interval 30..90 s (not statistical confidence): flags major acceleration/omission and allows moderate slowdown/load. Queue and GitHub publication excluded.",
   "purpose": "Cost and early gamma=0 diagnostics. T40 does not predict the number of T200 extensions.",
-  "short_T5_policy": "Scalar endpoint T5; last diagnostic/certificate T4 on the unchanged dt_diag=2 grid. No stationarity claim."
+  "short_T5_policy": "Scalar endpoint T5; last diagnostic/certificate T4 on the unchanged dt_diag=2 grid. No stationarity claim.",
+  "forecast_revision": "v003",
+  "forecast_reference": {
+    "run_id": "E002c_CAL_v002_r001",
+    "report_commit": "26ddea1e48f1c48d8ae767d389452297376a5b1f",
+    "source_commit": "ca15a197834bc3193f3da87d1bbd9ab1a538bf90",
+    "audit_commit": "c4e884dfd25e60f4e4d771b31bb0676fd687d447",
+    "audit_path": "analysis/E002c_CAL_v002_r001/time_root_cause.json",
+    "scope": "Measured execution-cost reference only; previous runtime discrepancy and scientific acceptance are not closed by this forecast."
+  },
+  "forecast_components_seconds": {
+    "integration": 41.9941306792025,
+    "diagnostics": 2.4128849979606457,
+    "other_inside_trajectories": 6.147510552837048,
+    "outside_trajectories": 0.7525499857438263
+  },
+  "expected_work": {
+    "trajectories": 12,
+    "steps": 25000,
+    "integration_rhs_calls": 100000,
+    "full_scalar_records": 1262,
+    "full_diagnostic_records": 136,
+    "exported_scalar_records": 632,
+    "exported_diagnostic_records": 126,
+    "scheduled_snapshots": 80,
+    "final_states": 12,
+    "conditional_extensions": 0
+  }
 }
