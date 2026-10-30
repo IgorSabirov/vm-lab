@@ -4,6 +4,24 @@ import numpy as np
 from e002c_exp.model import sector_hamiltonian,dark_projectors
 
 class DarkProjectors(unittest.TestCase):
+    def test_mask_numbering_and_sink_disconnected_component(self):
+        expected=((),((0,1),),((1,2),),((0,1),(1,2)),
+                  ((0,2),),((0,1),(0,2)),((1,2),(0,2)),((0,1),(1,2),(0,2)))
+        pairs=((0,1),(1,2),(0,2))
+        for mask,edges in enumerate(expected):
+            h=sector_hamiltonian(mask)
+            self.assertEqual(tuple(edge for edge in pairs if abs(h[edge])>0),edges)
+        _,d,iso,inter,info=dark_projectors(sector_hamiltonian(1))
+        self.assertEqual(info['D']['dimension'],2)
+        self.assertTrue(np.allclose(iso,np.diag([1.,1.,0.])))
+        self.assertTrue(np.allclose(d,iso));self.assertLess(np.linalg.norm(inter),1e-12)
+        # Node 2 IS the sink. Both modes on the disconnected component 0--1
+        # are dark; no coherence is needed to populate this component.
+        self.assertLess(np.linalg.norm(iso@np.array([0.,0.,1.])),1e-12)
+        mixture=np.diag([.5,.5,0.])
+        self.assertAlmostEqual(np.trace(iso@mixture).real,1.)
+        self.assertEqual(mixture[1,0],0.)
+
     def test_builder_phase_and_residuals(self):
         c=np.array([0.,0.,1.]);I=np.eye(3)
         for phi,dim in ((0.,1),(np.pi/2,0),(np.pi,1)):

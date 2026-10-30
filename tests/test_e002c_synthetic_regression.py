@@ -14,6 +14,14 @@ from e002c_exp.verify import verify,verify_protocol_tables,InvalidReport
 from fixtures_e002c import fixture,make_case,repack
 
 class StatusTable(unittest.TestCase):
+    def test_missing_and_nonboolean_structural_decisions_fail(self):
+        fit={'selected':{'alpha':[.1]*3}}
+        self.assertEqual(decide_ic_status(fit,None)['ic_structural_status'],
+                         'structural_candidate_found_validation_pending')
+        for validation in [{},*[{'structural_pass':v} for v in (None,0,1,0.,1.,'',[],{},'false')]]:
+            with self.subTest(validation=validation),self.assertRaises(ValueError):
+                decide_ic_status(fit,validation)
+
     def test_all_valid_transitions_and_boundaries(self):
         selected={'selected':{'alpha':[.1]*3}};valid={'structural_pass':True}
         rows=[(None,None,None,'not_run','not_evaluated'),
@@ -91,6 +99,36 @@ class ComparisonContract(unittest.TestCase):
         self.assertTrue(all(r['comparison']['comparable'] for r in m['transition_comparisons']['phase']))
         self.assertTrue(all(r['status']=='no_resolved_finite_time_difference' for r in m['transition_comparisons']['phase']))
 
+    def test_failed_phase_base_is_published_and_cannot_disappear(self):
+        cases=[self.summary('base',stationary=False),self.summary('phase',phi=.5)]
+        m=dict(cases=cases,**comparison_tables(cases,True,1e-5),
+               transition_comparisons=comparison_tables(cases,True,1e-5,'transition_200'),
+               fit=None,ic_validation=None,ic_transport=None,**decide_ic_status(None,None))
+        checks={'pairs':{'synthetic_gate':{'pass_gate':True,'errors':{}}}}
+        self.assertEqual(len(m['phase']),1)
+        self.assertEqual(m['phase'][0]['status'],'not_comparable')
+        self.assertIn('not_stationary',m['phase'][0]['comparison']['reasons'])
+        verify_protocol_tables(m,checks)
+        m['phase']=[]
+        with self.assertRaisesRegex(InvalidReport,'Missing phase rows'):
+            verify_protocol_tables(m,checks)
+
+    def test_nonboolean_transport_evaluability_is_rejected(self):
+        cases=[self.summary('q',stationary=False),self.summary('i',model='IC1_QS')]
+        checks={'pairs':{'synthetic_gate':{'pass_gate':True,'errors':{}}}}
+        fit={'selected':{'alpha':[.1]*3}};validation={'structural_pass':True}
+        transport=dict(QS_case_id='q',IC_case_id='i',evaluable=False,
+                       comparison=comparison_gate(cases,True))
+        m=dict(cases=cases,**comparison_tables(cases,True,1e-5),
+               transition_comparisons=comparison_tables(cases,True,1e-5,'transition_200'),
+               fit=fit,ic_validation=validation,ic_transport=transport,
+               **decide_ic_status(fit,validation,transport))
+        verify_protocol_tables(m,checks)
+        for value in (0,0.,None,'false'):
+            bad=copy.deepcopy(m);bad['ic_transport']['evaluable']=value
+            with self.subTest(value=value),self.assertRaises(InvalidReport):
+                verify_protocol_tables(bad,checks)
+
 class ReportFixture(unittest.TestCase):
     def mutate(self,mutation,results=None,rejected=False):
         with tempfile.TemporaryDirectory() as td:
@@ -124,6 +162,24 @@ class ReportFixture(unittest.TestCase):
 
     def test_rejected_candidate_not_no_match(self):
         self.mutate(lambda p:self.obj(p/'metrics.json',lambda a:a.__setitem__('ic_structural_status','no_match_found_within_declared_search')),rejected=True)
+
+    def test_malformed_structural_decision_cannot_pass_full_verifier(self):
+        # Rewrite the manifest too: this must fail semantic validation, not hashes.
+        with tempfile.TemporaryDirectory() as td:
+            report=fixture(td,rejected=True);verify(report)
+            original=json.loads((report/'metrics.json').read_text())
+            for validation in [{},*[{'structural_pass':v} for v in (None,0,1,0.,1.,'',[],{},'false')]]:
+                m=copy.deepcopy(original);m['ic_validation']=validation
+                truthy=bool(validation.get('structural_pass'))
+                m['ic_structural_status']='structural_PASS' if truthy else 'structural_candidate_rejected_by_validation'
+                m['ic_transport_status']='transport_pending' if truthy else 'not_evaluated'
+                (report/'metrics.json').write_text(json.dumps(m,allow_nan=False));repack(report)
+                with self.subTest(validation=validation),self.assertRaises(InvalidReport):verify(report)
+
+    def test_evidence_time_must_match_diagnostic_time(self):
+        def shift(report):
+            self.npz(report/'evidence/QS_coarse.npz',lambda a:a['time'].__setitem__(0,a['time'][0]+2e-8))
+        self.mutate(shift)
 
     def test_mixed_horizon_gap_and_transition(self):
         results=[make_case('Q0',dt=.01),make_case('Q1',dt=.005),make_case('R0','RR_QS',dt=.01,horizon=400),make_case('R1','RR_QS',dt=.005,horizon=400)]

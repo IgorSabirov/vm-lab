@@ -1,0 +1,45 @@
+{
+  "scope": "source_review_and_synthetic_regressions_only",
+  "source_commit": "ca15a197834bc3193f3da87d1bbd9ab1a538bf90",
+  "before": {
+    "reproducer": {
+      "ic_validation": {
+        "structural_pass": null
+      },
+      "producer_result": "ValueError: Missing structural decision",
+      "verifier_result": "VERIFIED_EXPORTED_ARRAYS"
+    },
+    "new_guard_tests": 2,
+    "failures": 11,
+    "errors": 1
+  },
+  "after": {
+    "command": "PYTHONPATH=.:tests python -m unittest test_dark_projectors test_e002c_synthetic_regression -v",
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "status": "PASS",
+    "unittest_elapsed_seconds": 1.391
+  },
+  "kernel_before": "59b7a3bd09e410f19930e93d0d4948513694ab173f0bb4494952204d486faabd",
+  "kernel_after": "4dcb32e0f85d7c81cb4a42ab90af31a6a74b9139ae449d5ccac26001356d1167",
+  "coherence_masks_unchanged": [
+    7,
+    6
+  ],
+  "diagnostic_column_count_including_time": {
+    "current": 101,
+    "five_masks": 113,
+    "all_eight_masks": 125,
+    "limit": 128
+  },
+  "vm_jobs_submitted": 0,
+  "production_accepted": false,
+  "runtime_gate_changed": false,
+  "file_sha256": {
+    "e002c_exp/verify.py": "8e50a3bdda36b948b3a76cb86736489bc3738744ceba8087c03955ce6902ca5e",
+    "tests/test_dark_projectors.py": "173b2b210fc1a625380e12f34cc766c1ada3e6e43b17851ed49e666422ce69f4",
+    "tests/test_e002c_synthetic_regression.py": "5462e9d4b02ed950da1894cff4ad252a00490f60e92073043fd3bf0fc23317c6",
+    "E002c.md": "688b4639a142e7798a85d35ae0d6c72c8d7fc1fdb2817d30e9e2c99512e63a1b"
+  }
+}

@@ -281,6 +281,12 @@ def verify_protocol_tables(metrics,checks):
             equal(p['plus_minus_difference'],delta(vs[1],vs[2]),'Plus/minus mismatch');audit_row(p,records,kind,span,'flux_response','no_resolved_response')
         require(seen==expected,'Missing spans')
     fit=metrics.get('fit');validation=metrics.get('ic_validation');transport=metrics.get('ic_transport')
+    if validation is not None:
+        require(isinstance(validation,dict) and type(validation.get('structural_pass')) is bool,
+                'Malformed IC validation: structural_pass must be a boolean')
+    if transport is not None:
+        require(isinstance(transport,dict) and type(transport.get('evaluable')) is bool,
+                'Malformed IC transport: evaluable must be a boolean')
     structural='not_run';tr='not_evaluated'
     if fit is None:require(validation is None and transport is None,'Outcome without IC fit')
     elif fit.get('selected') is None:
