@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from scipy.sparse.linalg import splu,expm_multiply
 from e002c_exp.model import build,operators
-from e002c_exp.lifetimes import absorption_generator
+from e002c_exp.lifetimes import absorption_generator,accumulated_integral
 
 
 class ReleaseLifetimeTests(unittest.TestCase):
@@ -23,6 +23,9 @@ class ReleaseLifetimeTests(unittest.TestCase):
             self.assertLess(np.diff(survival).max(),1e-10)
             self.assertLess(survival[-1],1e-4)
             self.assertGreater(np.vdot(dual,rho).real,0.)
+            final,integral=accumulated_integral(a,rho[:,None],trace[:,None],400.)
+            self.assertLess(abs((integral+dual.conj()@final)[0,0]-np.vdot(dual,rho)),1e-8)
+            self.assertLess(np.max(abs(final[:,0]-trajectory[-1])),1e-9)
 
 
 if __name__=='__main__':unittest.main()

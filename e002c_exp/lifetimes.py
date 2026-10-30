@@ -11,6 +11,15 @@ from .export import digest
 MASKS = (0,1,2,4)
 
 
+def accumulated_integral(a,initial,observables,horizon):
+    """Independent exponential action on an augmented ODE, without quadrature."""
+    count=observables.shape[1]
+    augmented=sp.bmat([[a,None],[sp.csr_matrix(observables.conj().T),sp.csr_matrix((count,count))]],format='csc')
+    state=np.vstack([initial,np.zeros((count,initial.shape[1]),complex)])
+    final=expm_multiply(augmented*horizon,state,traceA=a.diagonal().sum()*horizon)
+    return final[:-count],final[-count:]
+
+
 def absorption_generator(model):
     ix = (ONE[:,None]*27+np.arange(27)).ravel()
     h = model['H'][ix,:][:,ix]
@@ -79,8 +88,16 @@ def measure(full_source, source_files, output):
         final_min=float(min(np.linalg.eigvalsh(evolved[-1,:,j].reshape(81,81,order='F'))[0] for j in range(4)))
         if np.max(abs(survival[0]-1))>1e-10 or monotonic>1e-10 or survival.min()<-1e-10 or final_min<-1e-9 or isolated.min()<-1e-10 or np.max(isolated-survival)>1e-10:
             raise ValueError('Survival physical check failed')
-        # Coarse Simpson is an independent sanity check, not the lifetime estimator.
-        if np.max(integration_error)>0.02:raise ValueError('Time-integral certificate inconsistent with survival series')
+        # A step-two display grid can alias fast isolated-population oscillations.
+        # Certify the integral with a separate augmented exponential, not a loose
+        # quadrature tolerance. Preserve the old Simpson residual in the report.
+        final_aug,integral_aug=accumulated_integral(a,initial,obs,400.)
+        augmented_error=float(np.max(abs(integral_aug+dual.conj().T@final_aug-exact)))
+        propagation_error=float(np.max(abs(final_aug-evolved[-1])))
+        if augmented_error>1e-7 or propagation_error>1e-9:
+            raise ValueError(f'Augmented integral mismatch: {augmented_error}; propagation {propagation_error}')
+        certificate.update(augmented_integral_residual=augmented_error,augmented_propagation_residual=propagation_error,
+            coarse_Simpson_error=integration_error.tolist(),original_Simpson_gate_pass=bool(np.max(integration_error)<=.02))
         rows=[dict(mask=mask,initial_weight=weights[j],mean_absorption_time=float(exact[0,j]),
             accumulated_isolated_time=float(exact[1,j]),accumulated_transport_time=float(exact[0,j]-exact[1,j]),
             survival_200=float(survival[100,j]),survival_400=float(survival[200,j]),
