@@ -1,0 +1,95 @@
+{
+  "run_id": "E002c_CAL_v003_r001",
+  "source_commit": "d07886660ce3e5b85ca17b17fb9d7913d5f13548",
+  "report_commit": "5764c8c582c2383e735207b291597f2779ee5afd",
+  "time_first": {
+    "expected_seconds": 52,
+    "actual_seconds": 51.05954909324646,
+    "lower_seconds": 30,
+    "upper_seconds": 90,
+    "deviation_seconds": -0.94045090675354,
+    "deviation_percent": -1.8085594360645052,
+    "queue_seconds": 0.15971064567565918,
+    "internal_seconds": 50.50620901398361,
+    "publication_seconds": null,
+    "publication_note": "Not measured in run.json; excluded from the process-time gate.",
+    "status": "PASS"
+  },
+  "status": "VERIFIED_EXPORTED_ARRAYS",
+  "source_files_verified": 45,
+  "output_files_verified": 45,
+  "output_bytes": 1487652,
+  "work": {
+    "trajectories": 12,
+    "fit_trajectories": 0,
+    "steps": 25000,
+    "expected_steps": 25000,
+    "rhs_calls": 100000,
+    "scalar_records": 1262,
+    "diagnostic_records": 136,
+    "snapshots": 80
+  },
+  "environment": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "kernel_sha256": "0e9791fae65f6ec063a1328ab6e71e5b2a8fc3b5a16fa87b3a96c1b2e92002d1"
+  },
+  "quality_published_rows": {
+    "trace": {
+      "minimum": 0.0,
+      "maximum": 2.664535935822927e-15
+    },
+    "hermiticity": {
+      "minimum": 0.0,
+      "maximum": 3.31935867896941e-17
+    },
+    "min_eigen": {
+      "minimum": 0.0,
+      "maximum": 2.7562027990244896e-05
+    },
+    "rhs": {
+      "minimum": 0.00014785547089998097,
+      "maximum": 5.123475382979799
+    }
+  },
+  "independent_verifier": {
+    "status": "VERIFIED_EXPORTED_ARRAYS",
+    "cases": [
+      "CAL_01",
+      "CAL_02",
+      "CAL_03",
+      "CAL_04",
+      "CAL_05",
+      "CAL_06",
+      "CAL_07",
+      "CAL_08",
+      "CAL_SHORT_QS",
+      "CAL_ZERO_QS",
+      "CAL_SHORT_RR_QS",
+      "CAL_ZERO_RR_QS"
+    ],
+    "limitations": [
+      "Full-state positivity and nodes|edges PT require full VM states.",
+      "Extrema on omitted samples are reported, not independently recoverable from sparse grids.",
+      "No full density matrix reconstruction from node reductions."
+    ],
+    "runtime_acceptance": "requires external run.json and user review"
+  },
+  "full_data_accessed": false,
+  "stationarity_pass_count": 0,
+  "stationarity_note": "Short calibration probes are timing/physical-quality tests, not stationary production results.",
+  "dt_refinement_measured_on_VM": false,
+  "acceptance": {
+    "scope": "v003 technical calibration and permission to launch production if checks pass",
+    "user_instruction": "Проверь результаты и если все прошло дай команду на запуск основного прогона",
+    "conditions_satisfied": true,
+    "old_v002_status_unchanged": true
+  }
+}

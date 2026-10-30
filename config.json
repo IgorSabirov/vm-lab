@@ -1,12 +1,26 @@
 {
   "experiment": "E002c",
-  "version": "v003",
-  "mode": "calibration",
-  "run_id": "E002c_CAL_v003_r001",
+  "version": "production_v001",
+  "mode": "production",
+  "run_id": "E002c_PROD_v001_r001",
+  "calibration": {
+    "report_commit": "5764c8c582c2383e735207b291597f2779ee5afd",
+    "source_commit": "d07886660ce3e5b85ca17b17fb9d7913d5f13548",
+    "kernel_sha256": "0e9791fae65f6ec063a1328ab6e71e5b2a8fc3b5a16fa87b3a96c1b2e92002d1",
+    "scipy_version": "1.11.4",
+    "numpy_version": "1.26.4",
+    "accepted_by_user": true,
+    "acceptance": {
+      "scope": "v003 technical calibration and permission to launch production if checks pass",
+      "user_instruction": "Проверь результаты и если все прошло дай команду на запуск основного прогона",
+      "conditions_satisfied": true,
+      "old_v002_status_unchanged": true
+    }
+  },
   "forecast": {
-    "expected_seconds": 52,
-    "lower_seconds": 30,
-    "upper_seconds": 90,
-    "provisional": true
+    "seconds_per_step": 0.0017125032470267755,
+    "fixed_seconds": 266.09288799963315,
+    "relative_band": 0.4,
+    "source": "experiments/e002c/production_v001_forecast.json; calibration GitHub 5764c8c582c2383e735207b291597f2779ee5afd; reproduced by analysis/E002c_CAL_v003_r001/audit_and_forecast.py"
   }
 }

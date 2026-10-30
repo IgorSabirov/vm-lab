@@ -1,0 +1,152 @@
+{
+  "status": "FROZEN_BEFORE_PRODUCTION",
+  "calibration_report_commit": "5764c8c582c2383e735207b291597f2779ee5afd",
+  "calibration_source_commit": "d07886660ce3e5b85ca17b17fb9d7913d5f13548",
+  "kernel_sha256": "0e9791fae65f6ec063a1328ab6e71e5b2a8fc3b5a16fa87b3a96c1b2e92002d1",
+  "seconds_per_step": 0.0017125032470267755,
+  "fixed_seconds": 266.09288799963315,
+  "relative_band": 0.4,
+  "formula": "T_expected = fixed_seconds + seconds_per_step * declared_executed_RK4_steps; gate [0.6*T_expected,1.4*T_expected]",
+  "component_formula": "sum(model_step_rate*N_steps + diagnostic_rate*N_diagnostic + remainder_coefficients@[1,N_snapshots,N_scalar] + outside_seconds/12 for published cases)",
+  "model_step_rates": {
+    "QS": 0.0018499928721049357,
+    "RR_QS": 0.0015750136219486151,
+    "IC1_QS": 0.0015102670898631914
+  },
+  "diagnostic_rate": 0.01778874914153301,
+  "remainder_coefficients": [
+    0.21698550583687415,
+    0.01985463832306774,
+    0.0014064899396544208
+  ],
+  "remainder_design_columns": [
+    "case",
+    "snapshot",
+    "scalar_record"
+  ],
+  "remainder_residual_l2_seconds": 0.16468232438689762,
+  "remainder_max_abs_residual_seconds": 0.09180437959366827,
+  "outside_seconds": 0.6694552232511342,
+  "outside_allocation_per_published_case": 0.055787935270927846,
+  "reduction": {
+    "minimum_ratio": 0.9860387633131669,
+    "maximum_ratio": 1.0585700711624293,
+    "scope": "All 3 structural branches, fit count 0..48, every paired-group extension subset; superset of executable branches."
+  },
+  "stages": {
+    "main_base": {
+      "trajectories": 72,
+      "horizon": 200,
+      "steps": 1600000,
+      "component_seconds": 3006.098083242474,
+      "affine_seconds": 3006.098083242474
+    },
+    "main_extended": {
+      "trajectories": 72,
+      "horizon": 400,
+      "steps": 3200000,
+      "component_seconds": 5979.738149837252,
+      "affine_seconds": 5746.103278485314
+    },
+    "fit_maximum": {
+      "trajectories": 48,
+      "horizon": 200,
+      "steps": 480000,
+      "component_seconds": 899.6456409077491,
+      "affine_seconds": 822.0015585728522
+    },
+    "validation_base": {
+      "trajectories": 2,
+      "horizon": 200,
+      "steps": 60000,
+      "component_seconds": 98.0074945028924,
+      "affine_seconds": 102.75019482160653
+    },
+    "validation_extended": {
+      "trajectories": 2,
+      "horizon": 400,
+      "steps": 120000,
+      "component_seconds": 195.1133774322377,
+      "affine_seconds": 205.50038964321305
+    },
+    "transfer_base": {
+      "trajectories": 24,
+      "horizon": 200,
+      "steps": 560000,
+      "component_seconds": 934.4471996565982,
+      "affine_seconds": 959.0018183349943
+    },
+    "transfer_extended": {
+      "trajectories": 24,
+      "horizon": 400,
+      "steps": 1120000,
+      "component_seconds": 1858.0750604306313,
+      "affine_seconds": 1918.0036366699885
+    }
+  },
+  "branches": {
+    "no_selected_fit48_T200": {
+      "steps": 2080000,
+      "reported_trajectories": 72,
+      "fit_trajectories": 48,
+      "component_seconds": 3905.743724150223,
+      "expected_seconds": 3828.0996418153263,
+      "lower_seconds": 2296.8597850891956,
+      "upper_seconds": 5359.339498541456
+    },
+    "no_selected_fit48_T400": {
+      "steps": 3680000,
+      "reported_trajectories": 72,
+      "fit_trajectories": 48,
+      "component_seconds": 6879.3837907450015,
+      "expected_seconds": 6568.104837058167,
+      "lower_seconds": 3940.8629022348996,
+      "upper_seconds": 9195.346771881432
+    },
+    "validation_rejected_fit48_T200": {
+      "steps": 2140000,
+      "reported_trajectories": 74,
+      "fit_trajectories": 48,
+      "component_seconds": 4003.7512186531153,
+      "expected_seconds": 3930.8498366369327,
+      "lower_seconds": 2358.5099019821596,
+      "upper_seconds": 5503.189771291705
+    },
+    "validation_rejected_fit48_T400": {
+      "steps": 3800000,
+      "reported_trajectories": 74,
+      "fit_trajectories": 48,
+      "component_seconds": 7074.4971681772395,
+      "expected_seconds": 6773.60522670138,
+      "lower_seconds": 4064.163136020828,
+      "upper_seconds": 9483.047317381932
+    },
+    "validation_passed_fit48_T200": {
+      "steps": 2700000,
+      "reported_trajectories": 98,
+      "fit_trajectories": 48,
+      "component_seconds": 4938.198418309714,
+      "expected_seconds": 4889.851654971928,
+      "lower_seconds": 2933.9109929831566,
+      "upper_seconds": 6845.792316960698
+    },
+    "validation_passed_fit48_T400": {
+      "steps": 4920000,
+      "reported_trajectories": 98,
+      "fit_trajectories": 48,
+      "component_seconds": 8932.57222860787,
+      "expected_seconds": 8691.60886337137,
+      "lower_seconds": 5214.9653180228215,
+      "upper_seconds": 12168.252408719916
+    }
+  },
+  "no_double_counting": "Integration/diagnostics subtracted before remainder fit. Outside process cost allocated once to published cases. No additional total-cycle-per-step term.",
+  "limitations": [
+    "Remainder coefficients are an empirical regression, not independently measured setup/snapshot/scalar timers.",
+    "Outside process cost is allocated per published case; fixed imports and variable export cannot be separated by this one calibration.",
+    "dt=.005 and .02 use the same RK4 kernel but were not separately timed on the VM; IC alpha varies in the search.",
+    "T200/T400 costs extrapolate T5/T20/T40. The +/-40% engineering band covers reduction error, load, long-horizon export and uninstrumented search/report overhead; it is not a confidence interval.",
+    "Stationarity of T40 does not predict extension counts. No post-hoc threshold or forecast change is permitted.",
+    "Pair summary elapsed_seconds overlap because both members are finished after the group; do not sum production elapsed_seconds as independent process time."
+  ]
+}
