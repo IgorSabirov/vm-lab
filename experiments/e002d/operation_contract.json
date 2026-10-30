@@ -1,0 +1,65 @@
+{
+  "version": "E002d-v003",
+  "source_physics_commit": "29fe4496485c17e935b2e2ffa9c88b7d75ba6efe",
+  "primary_dose": 0.1,
+  "secondary_doses": [
+    0.05,
+    0.2
+  ],
+  "primary_delta": 0.125,
+  "secondary_deltas": [
+    0.0625,
+    0.25
+  ],
+  "probability_floor": 1e-06,
+  "maximum_relative_denominator_uncertainty": 0.1,
+  "primitive_absolute_floor": 1e-08,
+  "resolution_multiplier": 10.0,
+  "stationarity": {
+    "rhs": 1e-07,
+    "drift": 1e-06,
+    "flux_absolute": 1e-08,
+    "flux_relative": 1e-05
+  },
+  "physicality": {
+    "trace": 1e-10,
+    "hermiticity": 1e-10,
+    "minimum_eigenvalue": -1e-08
+  },
+  "refinement": {
+    "absolute": 1e-06,
+    "relative": 0.0001
+  },
+  "operator_tolerance": 1e-12,
+  "structure_absolute": 1e-06,
+  "structure_relative": 0.01,
+  "horizons": [
+    200.0,
+    400.0
+  ],
+  "extension_rule": "ALL_184_TO_400_IF_ANY_T200_STATIONARITY_FAILS",
+  "primary_A": [
+    "E",
+    "S"
+  ],
+  "primary_B": [
+    "D_delta_0.125",
+    "CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS"
+  ],
+  "primary_C": [
+    "D_T_minus_D_C",
+    "QS_minus_RR_of_D_T_minus_D_C"
+  ],
+  "composition": "sum_of_independent_dissipators",
+  "automatic_Fano_label": false,
+  "minimum_suppression_required": null,
+  "uncertainty": "u=1e-8+10*(abs(fine_mean-coarse_mean)+max(fine_window_range,coarse_window_range)); interval propagation; engineering envelope, not significance or rigorous total-error bound",
+  "report": {
+    "maximum_bytes": 31457280,
+    "maximum_files": 500,
+    "maximum_file_bytes": 8388608,
+    "series": "0:.2:10 then multiples of 4; exact final and T200 windows at step 2",
+    "diagnostics": "0:2:20 then multiples of 4; full-grid extrema before sampling",
+    "case_format": "one lossless compressed NPZ per case; full states/full grids stay on VM"
+  }
+}
