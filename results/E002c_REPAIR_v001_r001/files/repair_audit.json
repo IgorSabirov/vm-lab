@@ -1,0 +1,208 @@
+{
+  "source": {
+    "repository": "IgorSabirov/vm-lab",
+    "run_id": "E002c_PROD_v001_r001",
+    "source_commit": "acb401f9972e064779a7c7345938cb1aea2997f6",
+    "report_commit": "f90548be3bfc46407dfbf587fa5297ec96950371"
+  },
+  "repair_identity": {
+    "run_id": "E002c_REPAIR_v001_r001",
+    "source_commit": "ae867241bc94ee6e2ce36ade26131ab28bcc939d"
+  },
+  "changes": [
+    {
+      "case": "RR_QS_P21_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7145401653849937,
+      "new_h": 0.0816447066155635,
+      "maximum_absolute_change": 55.063217551018255
+    },
+    {
+      "case": "RR_QS_P22_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7611490453760734,
+      "new_h": 0.08386422787790733,
+      "maximum_absolute_change": 55.06321755101825
+    },
+    {
+      "case": "RR_QS_P25_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7611490416362017,
+      "new_h": 0.08386422645143685,
+      "maximum_absolute_change": 55.06321755101825
+    },
+    {
+      "case": "RR_QS_P26_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7145401247800975,
+      "new_h": 0.08164469416520359,
+      "maximum_absolute_change": 55.06321755101829
+    },
+    {
+      "case": "RR_QS_P27_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7172887930685288,
+      "new_h": 0.08177558899621377,
+      "maximum_absolute_change": 55.0632175510184
+    },
+    {
+      "case": "RR_QS_P28_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7646885203801577,
+      "new_h": 0.0840327737757999,
+      "maximum_absolute_change": 55.06321755101824
+    },
+    {
+      "case": "RR_QS_P31_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7646885203801574,
+      "new_h": 0.08403277377579987,
+      "maximum_absolute_change": 55.06321755101824
+    },
+    {
+      "case": "RR_QS_P32_dt010",
+      "horizon": 400.0,
+      "old_h": 1.7172887930685286,
+      "new_h": 0.08177558899621377,
+      "maximum_absolute_change": 55.06321755101838
+    }
+  ],
+  "resolved_failure": "independent_export_verification: Transition mean mismatch",
+  "original_failure_preserved": true,
+  "source_report_files_verified": 231,
+  "unchanged_npz_files": 222,
+  "trajectory_runtime_gate": {
+    "forecast_scope": "VM",
+    "execution_scope": "VM",
+    "expected_seconds": 4204.850356161217,
+    "lower_seconds": 2522.91021369673,
+    "upper_seconds": 5886.790498625704,
+    "actual_seconds": 4228.108482599258,
+    "actual_over_expected": 1.0055312613929202,
+    "status": "PASS",
+    "calibration_reference": {
+      "report_commit": "5764c8c582c2383e735207b291597f2779ee5afd",
+      "source_commit": "d07886660ce3e5b85ca17b17fb9d7913d5f13548",
+      "kernel_sha256": "0e9791fae65f6ec063a1328ab6e71e5b2a8fc3b5a16fa87b3a96c1b2e92002d1",
+      "scipy_version": "1.11.4",
+      "numpy_version": "1.26.4",
+      "accepted_by_user": true,
+      "acceptance": {
+        "scope": "v003 technical calibration and permission to launch production if checks pass",
+        "user_instruction": "Проверь результаты и если все прошло дай команду на запуск основного прогона",
+        "conditions_satisfied": true,
+        "old_v002_status_unchanged": true
+      }
+    },
+    "executed_branch": {
+      "mode": "production",
+      "ic_structural_status": "structural_candidate_rejected_by_validation",
+      "ic_transport_status": "not_evaluated",
+      "steps": 2300000
+    },
+    "measured_interval": "Original external process: run.json job.finished - job.started",
+    "deviation_seconds": 23.258126438041472,
+    "deviation_percent": 0.553126139292015,
+    "queue_seconds": 0.23673295974731445,
+    "publication_seconds": null
+  },
+  "postprocessing_work": {
+    "integration_steps": 0,
+    "rhs_calls": 0,
+    "new_trajectories": 0,
+    "source_cases": 74,
+    "corrected_windows": 8,
+    "full_states_read": 0
+  },
+  "scope": "Only transition_reference and derived transition_comparisons change; primary references and all NPZ bytes remain unchanged.",
+  "limitations": [
+    "Original full-state and omitted-grid limitations remain.",
+    "The rejected selected IC candidate does not exclude every IC parameterization.",
+    "The 22.58% gap describes the baseline point, not all parameter points."
+  ],
+  "independent_verifier": {
+    "status": "VERIFIED_EXPORTED_ARRAYS",
+    "cases": [
+      "IC_VALIDATE_0.01",
+      "IC_VALIDATE_0.005",
+      "QS_P01_dt010",
+      "QS_P01_dt005",
+      "QS_P02_dt010",
+      "QS_P03_dt010",
+      "QS_P04_dt010",
+      "QS_P05_dt010",
+      "QS_P05_dt005",
+      "QS_P06_dt010",
+      "QS_P07_dt010",
+      "QS_P08_dt010",
+      "QS_P09_dt010",
+      "QS_P10_dt010",
+      "QS_P11_dt010",
+      "QS_P12_dt010",
+      "QS_P13_dt010",
+      "QS_P14_dt010",
+      "QS_P14_dt005",
+      "QS_P15_dt010",
+      "QS_P16_dt010",
+      "QS_P17_dt010",
+      "QS_P18_dt010",
+      "QS_P18_dt005",
+      "QS_P19_dt010",
+      "QS_P20_dt010",
+      "QS_P21_dt010",
+      "QS_P22_dt010",
+      "QS_P23_dt010",
+      "QS_P24_dt010",
+      "QS_P25_dt010",
+      "QS_P26_dt010",
+      "QS_P27_dt010",
+      "QS_P28_dt010",
+      "QS_P29_dt010",
+      "QS_P30_dt010",
+      "QS_P31_dt010",
+      "QS_P32_dt010",
+      "RR_QS_P01_dt010",
+      "RR_QS_P01_dt005",
+      "RR_QS_P02_dt010",
+      "RR_QS_P03_dt010",
+      "RR_QS_P04_dt010",
+      "RR_QS_P05_dt010",
+      "RR_QS_P05_dt005",
+      "RR_QS_P06_dt010",
+      "RR_QS_P07_dt010",
+      "RR_QS_P08_dt010",
+      "RR_QS_P09_dt010",
+      "RR_QS_P10_dt010",
+      "RR_QS_P11_dt010",
+      "RR_QS_P12_dt010",
+      "RR_QS_P13_dt010",
+      "RR_QS_P14_dt010",
+      "RR_QS_P14_dt005",
+      "RR_QS_P15_dt010",
+      "RR_QS_P16_dt010",
+      "RR_QS_P17_dt010",
+      "RR_QS_P18_dt010",
+      "RR_QS_P18_dt005",
+      "RR_QS_P19_dt010",
+      "RR_QS_P20_dt010",
+      "RR_QS_P21_dt010",
+      "RR_QS_P22_dt010",
+      "RR_QS_P23_dt010",
+      "RR_QS_P24_dt010",
+      "RR_QS_P25_dt010",
+      "RR_QS_P26_dt010",
+      "RR_QS_P27_dt010",
+      "RR_QS_P28_dt010",
+      "RR_QS_P29_dt010",
+      "RR_QS_P30_dt010",
+      "RR_QS_P31_dt010",
+      "RR_QS_P32_dt010"
+    ],
+    "limitations": [
+      "Full-state positivity and nodes|edges PT require full VM states.",
+      "Extrema on omitted samples are reported, not independently recoverable from sparse grids.",
+      "No full density matrix reconstruction from node reductions."
+    ],
+    "runtime_acceptance": "requires external run.json and user review"
+  }
+}
