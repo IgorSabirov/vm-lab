@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/var/lib/vm-lab/work/jobs/E002c_IC_RETRY_CAL_v001_r001/main.py", line 13, in <module>
+    runpy.run_path(sys.argv[0], run_name="__main__")
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002c_IC_RETRY_CAL_v001_r001/run.py", line 16, in <module>
+    run(config)
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002c_IC_RETRY_CAL_v001_r001/e002c_exp/retry_task.py", line 176, in run
+    if failures:raise RuntimeError('; '.join(failures))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Time-integral certificate inconsistent with survival series; work_volume_mismatch
