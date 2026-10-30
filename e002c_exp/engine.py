@@ -5,19 +5,12 @@ import time
 from collections import deque
 from pathlib import Path
 import numpy as np
-from scipy.integrate import simpson
 from e002_exp.model import rk4, save_json
 from .model import build, initial
 from .diagnostics import expanded, quality, negativity
+from .windows import integral_mean
 
 SNAPSHOTS=(0,.2,1,2,5,10,20,50,100,190,200,300,390,400)
-
-def integral_mean(series, names, horizon):
-    # Fixed even-time grid in last 10 units, present losslessly in report export.
-    take=(series[:,0]>=horizon-10-1e-8)&np.isclose(series[:,0]/2,np.round(series[:,0]/2),atol=1e-8)
-    a=series[take]
-    if len(a)<6:return None
-    return dict(zip(names,(simpson(a[:,1:],x=a[:,0],axis=0)/10).tolist()))
 
 def stationarity(window, horizon):
     if len(window)<6 or abs(window[0]['t']-(horizon-10))>1e-8:
