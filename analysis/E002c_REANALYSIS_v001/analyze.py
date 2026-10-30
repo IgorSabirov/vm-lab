@@ -170,6 +170,43 @@ def main():
             'Symmetric weight/conditional split is descriptive, not an intervention or identification of causality.',
             'Outside paired points, the original screening limitations remain.',
             'No new IC search, selective dephasing, or damage experiment is authorized or executed here.'])
+    # One shared mask/sector table, with different numerators kept explicit.
+    cross=[]
+    for i in range(8):
+        a=sectors['QS']['rows'][i];b=sectors['RR_QS']['rows'][i]
+        cross.append(dict(mask=i,edges=baseline['rows'][i]['edges'],
+            dark_difference_one_excitation=dark['RR_QS']['by_mask'][i]['dark']-dark['QS']['by_mask'][i]['dark'],
+            isolated_difference_one_excitation=dark['RR_QS']['by_mask'][i]['isolated']-dark['QS']['by_mask'][i]['isolated'],
+            current_gap_one_excitation=a['one_excitation_current']-b['one_excitation_current'],
+            current_gap_two_excitation=a['two_excitation_current']-b['two_excitation_current'],
+            current_gap_all=baseline['rows'][i]['delta']))
+    source_paths=[f'{kind}/{model}_P05_dt005.npz' for kind in ('series','diagnostics','evidence') for model in ('QS','RR_QS')]
+    results['boundary_cross_table']=dict(rows=cross,report_commit=REPORT,time=200.,dt=.005,
+        sources={path:raw['files']['files/'+path] for path in source_paths},
+        definitions=dict(isolated_dark_99_69='(D_iso_RR-D_iso_QS)/(D_RR-D_QS), one-excitation sector only',
+            two_excitation_current_66_23='(h_N2_QS-h_N2_RR)/(h_QS-h_RR), all masks',
+            single_edge_current_77_5='(delta_h_m2+delta_h_m4)/(h_QS-h_RR), all excitation sectors'),
+        common_cell_claim=False,
+        reason='Common mask m2 is important, but the isolated-dark numerator is in N=1 and the two-excitation current numerator is in N=2. They cannot be the same mask-sector cell.')
+    lines=['Время: исходный расчёт 4228.108483 с при прогнозе 4204.850356 с, PASS; пересборка 4.755989 с при прогнозе 9 с (0–69 с), PASS.',
+        '', '# Три границы на одной таблице', '',
+        f'Источник: неизменяемый отчёт `{REPORT}`, `results/{RUN}/files/`. Пара `QS_P05_dt005`, `RR_QS_P05_dt005`; Phi=epsilon=0, gamma=.05, dt=.005, общая точка t=200.',
+        '', f"**99,69%** = {dark['isolated_share_of_difference_percent']:.12f}%: изоляционный вклад в разность RR−QS тёмного веса, только N=1.",
+        f"**66,23%** = {sectors['two_excitation_gap_share_percent']:.12f}%: вклад N=2 в токовый зазор QS−RR по всем маскам.",
+        f"**77,5%** = {baseline['single_edge_share_percent']:.12f}%: вклад m2+m4 в тот же токовый зазор по всем секторам.",
+        '', '|Маска|Рёбра|ΔD, N=1, RR−QS|ΔD_iso, N=1|Δh, N=1, QS−RR|Δh, N=2|Δh, всего|',
+        '|---|---|---:|---:|---:|---:|---:|']
+    for row in cross:
+        lines.append('|'+str(row['mask'])+'|'+','.join(row['edges'])+'|'+'|'.join(f"{row[k]:.12g}" for k in
+            ('dark_difference_one_excitation','isolated_difference_one_excitation','current_gap_one_excitation','current_gap_two_excitation','current_gap_all'))+'|')
+    lines += ['', 'Числа относятся к одной физической базовой паре, но **не к одной ячейке маска×сектор** и не к одному знаменателю. m2 даёт большой положительный вклад в обе колонки; N=1 и N=2 остаются ортогональными секторами. Отрицательные масочные вклады не скрыты.',
+        '', 'Сетки: series — 0:.2:10 затем 12:2:200; diagnostics — 0:2:20 затем 24:4:200; evidence — t=2,20,200. Здесь везде используется ровно t=200. Стационарные средние [190,200] не подставляются в эти дроби.',
+        'Ранее проверенное общее окно [192,196,200] подтверждает устойчивость масочной доли 77,496450106%; это отдельная Simpson-проверка [192,200], не окно [190,200]. Для секторной доли evidence содержит только конечную точку в этом окне.',
+        '', 'Воспроизведение: `OPENBLAS_NUM_THREADS=1 python analysis/E002c_REANALYSIS_v001/analyze.py --github-cache <cache>`; перед вычислением повторно проверяются все 233 файла через github_result_reader и E002c verify.',
+        '', '|Файл|SHA256|', '|---|---|']
+    lines += [f"|`{p}`|`{raw['files']['files/'+p]['sha256']}`|" for p in source_paths]
+    lines += ['', 'Все исходные значения, определения числителей и таблица без округления: `findings.json → boundary_cross_table`. Это описательное разложение; причинная роль ловушек требует динамической пробы.']
+    (out/'BOUNDARIES.md').write_text('\n'.join(lines)+'\n')
     (out/'findings.json').write_text(json.dumps(results,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
     make_plot(out,baseline,dark,noise,arrays,dn)
     print(json.dumps(dict(status='VERIFIED_REANALYSIS',mask_single_edge_share=baseline['single_edge_share_percent'],

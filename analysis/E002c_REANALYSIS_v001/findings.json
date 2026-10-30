@@ -1232,5 +1232,136 @@
     "Symmetric weight/conditional split is descriptive, not an intervention or identification of causality.",
     "Outside paired points, the original screening limitations remain.",
     "No new IC search, selective dephasing, or damage experiment is authorized or executed here."
-  ]
+  ],
+  "boundary_cross_table": {
+    "rows": [
+      {
+        "mask": 0,
+        "edges": [],
+        "dark_difference_one_excitation": 0.005468224869550009,
+        "isolated_difference_one_excitation": 0.005468224869549981,
+        "current_gap_one_excitation": 0.0,
+        "current_gap_two_excitation": 0.0,
+        "current_gap_all": 0.0
+      },
+      {
+        "mask": 1,
+        "edges": [
+          "01"
+        ],
+        "dark_difference_one_excitation": -0.014902775170403726,
+        "isolated_difference_one_excitation": -0.014902775170403726,
+        "current_gap_one_excitation": 0.0,
+        "current_gap_two_excitation": 0.0,
+        "current_gap_all": 0.0
+      },
+      {
+        "mask": 2,
+        "edges": [
+          "12"
+        ],
+        "dark_difference_one_excitation": 0.027594866691625308,
+        "isolated_difference_one_excitation": 0.027594866691625315,
+        "current_gap_one_excitation": 0.0011683603299928302,
+        "current_gap_two_excitation": 0.008755650306463636,
+        "current_gap_all": 0.009924010636456471
+      },
+      {
+        "mask": 3,
+        "edges": [
+          "01",
+          "12"
+        ],
+        "dark_difference_one_excitation": 0.0,
+        "isolated_difference_one_excitation": 0.0,
+        "current_gap_one_excitation": 0.0017162225625654741,
+        "current_gap_two_excitation": 0.0016625274034357458,
+        "current_gap_all": 0.0033787499660012195
+      },
+      {
+        "mask": 4,
+        "edges": [
+          "02"
+        ],
+        "dark_difference_one_excitation": 0.0006697842426986803,
+        "isolated_difference_one_excitation": 0.0006697842426986803,
+        "current_gap_one_excitation": 0.004650028108665143,
+        "current_gap_two_excitation": 0.004650052711083111,
+        "current_gap_all": 0.00930008081974825
+      },
+      {
+        "mask": 5,
+        "edges": [
+          "01",
+          "02"
+        ],
+        "dark_difference_one_excitation": 0.0,
+        "isolated_difference_one_excitation": 0.0,
+        "current_gap_one_excitation": 0.0009690424414286677,
+        "current_gap_two_excitation": -0.0006794583352257681,
+        "current_gap_all": 0.0002895841062028996
+      },
+      {
+        "mask": 6,
+        "edges": [
+          "12",
+          "02"
+        ],
+        "dark_difference_one_excitation": 0.0005864300778381498,
+        "isolated_difference_one_excitation": 0.0,
+        "current_gap_one_excitation": -0.00032653371828580795,
+        "current_gap_two_excitation": 0.001833600318207831,
+        "current_gap_all": 0.0015070665999220231
+      },
+      {
+        "mask": 7,
+        "edges": [
+          "01",
+          "12",
+          "02"
+        ],
+        "dark_difference_one_excitation": -0.0005282917329299979,
+        "isolated_difference_one_excitation": 0.0,
+        "current_gap_one_excitation": 0.00019877543059014925,
+        "current_gap_two_excitation": 0.00020814785863344158,
+        "current_gap_all": 0.00040692328922359083
+      }
+    ],
+    "report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
+    "time": 200.0,
+    "dt": 0.005,
+    "sources": {
+      "series/QS_P05_dt005.npz": {
+        "sha256": "b63bc05511f6883f850d4231196adc88700ebe1bcc0cc8d78cabfbf75e7612c5",
+        "bytes": 63338
+      },
+      "series/RR_QS_P05_dt005.npz": {
+        "sha256": "f652229036c6db9d46ea3cd7a5117a2818db94ddaf0d3f03b11e37699fb731b2",
+        "bytes": 63338
+      },
+      "diagnostics/QS_P05_dt005.npz": {
+        "sha256": "c0d3ace24cb51a47c6a466355b1cd91ac740f604a20fa6e24e065c6bf2d161ab",
+        "bytes": 45514
+      },
+      "diagnostics/RR_QS_P05_dt005.npz": {
+        "sha256": "64ff4376fd5a3071b9cd1ac1fc040fc0bef83c67558ed90b56cd0d5eced0adfb",
+        "bytes": 45514
+      },
+      "evidence/QS_P05_dt005.npz": {
+        "sha256": "e1ca23a7325fa082141eacf538bb36d160c89001ae835d680c55323e81158607",
+        "bytes": 71390
+      },
+      "evidence/RR_QS_P05_dt005.npz": {
+        "sha256": "1e87d2375fa976eee439b034864ea70b91fe13b63a111bc4a0fc494af353d4a5",
+        "bytes": 71390
+      }
+    },
+    "definitions": {
+      "isolated_dark_99_69": "(D_iso_RR-D_iso_QS)/(D_RR-D_QS), one-excitation sector only",
+      "two_excitation_current_66_23": "(h_N2_QS-h_N2_RR)/(h_QS-h_RR), all masks",
+      "single_edge_current_77_5": "(delta_h_m2+delta_h_m4)/(h_QS-h_RR), all excitation sectors"
+    },
+    "common_cell_claim": false,
+    "reason": "Common mask m2 is important, but the isolated-dark numerator is in N=1 and the two-excitation current numerator is in N=2. They cannot be the same mask-sector cell."
+  }
 }

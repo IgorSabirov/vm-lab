@@ -1,23 +1,42 @@
 {
   "experiment": "E002c",
-  "version": "report_repair_v001",
-  "mode": "repair_report",
-  "run_id": "E002c_REPAIR_v001_r001",
-  "source_run_id": "E002c_PROD_v001_r001",
-  "source_report_commit": "f90548be3bfc46407dfbf587fa5297ec96950371",
+  "version": "ic_retry_v001",
+  "mode": "ic_retry_calibration",
+  "run_id": "E002c_IC_RETRY_CAL_v001_r001",
+  "previous_alpha": [
+    0.09374267239435262,
+    0.06878384400049463,
+    0.12160646612413249
+  ],
+  "release_source_files": {
+    "QS_P05_dt005": {
+      "path": "QS_P05_dt005/final.npz",
+      "bytes": 746756,
+      "sha256": "e94c9b109dc23b1f902e89c40612d2d8b0b7bb08de0e51b5003f4391c9089914"
+    },
+    "RR_QS_P05_dt005": {
+      "path": "RR_QS_P05_dt005/final.npz",
+      "bytes": 746756,
+      "sha256": "101062d1592f4132bb3d7fff0910904c29a419ca5d71e09812beeea86d4ce024"
+    }
+  },
+  "release_source_report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
   "forecast": {
-    "expected_seconds": 9.0,
+    "expected_seconds": 34.0,
     "lower_seconds": 0.0,
-    "upper_seconds": 69.0,
-    "source": "experiments/e002c/REPAIR_V001.md; two report verification passes extrapolated from calibration v003 outside-trajectory cost",
-    "provisional": true
+    "upper_seconds": 94.0,
+    "provisional": true,
+    "source": "experiments/e002c/IC_RETRY_V001.md: previous VM IC rate plus explicit new source-off solver allowance; calibration only"
   },
   "work": {
-    "new_trajectories": 0,
-    "integration_steps": 0,
-    "rhs_calls": 0,
-    "source_report_cases": 74,
-    "corrected_windows": 8,
-    "npz_copied_unchanged": 222
+    "trajectories": 3,
+    "steps": 12000,
+    "rhs_calls": 48000,
+    "scalar_records": 1203,
+    "diagnostic_records": 123,
+    "snapshots": 25,
+    "release_source_states": 2,
+    "release_initial_states": 8,
+    "release_time_points_per_state": 201
   }
 }
