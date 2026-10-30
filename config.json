@@ -1,29 +1,86 @@
 {
   "experiment": "E002c",
-  "version": "ic_retry_v001",
-  "mode": "ic_retry",
-  "run_id": "E002c_IC_RETRY_v001_r001",
-  "calibration": {
-    "report_commit": "670cc4f527ee2b55a6811e7cd1af997a6b337e29",
-    "source_commit": "2cab87ea3f6cb453730a8051eb198600dd302211",
-    "kernel_sha256": "50b45825b56e5f5b5b7061a999325d4b5b7755de1ff13402b14ac49735e7e3a8",
-    "numpy": "1.26.4",
-    "scipy": "1.11.4",
-    "runtime_status": "PASS",
-    "volume_pass": true,
-    "user_authorization": "одобрить повторный IC-1-поиск с проверяемым охватом"
-  },
+  "version": "window_export_v001",
+  "mode": "window_export",
+  "run_id": "E002c_WINDOW_EXPORT_v001_r001",
+  "authorization": "User explicitly authorized this archive access and necessary export on 2026-10-30; normal work remains GitHub-only.",
   "forecast": {
-    "fixed_seconds": 10.0,
-    "seconds_per_fit": 18.47445445600897,
-    "seconds_per_validation_step": 0.0017,
-    "relative_band": 0.4,
-    "minimum_band_seconds": 60.0,
-    "source": "experiments/e002c/IC_RETRY_FORECAST_V001.md; E002c_IC_RETRY_CAL_v002_r001 report 670cc4f527ee2b55a6811e7cd1af997a6b337e29"
+    "expected_seconds": 5.0,
+    "lower_seconds": 0.0,
+    "upper_seconds": 65.0,
+    "calibration_reference": "E002c_REPAIR_v001_r001 at 7fd36d60044b436484e81a5e92a80163c4688b45: external 4.755989 s for report-only processing, 0 new evolution steps. Engineering analogy, not a fresh physics-kernel calibration.",
+    "formula": "0.5 s startup + 2 s read/hash/validate about 6.7 MB + 1.5 s window diagnostics + 1 s report; band=max(30%,60 s).",
+    "failure_branch": "Early validation failure: expected <=5 s within the same [0,65] interval; never scientific PASS."
   },
-  "baseline_source": {
-    "run_id": "E002c_REPAIR_v001_r001",
-    "report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
-    "metrics_sha256": "b7ca2385a31a7bd9a1e95c47fa61706188ccbcb5578bdf342d9b40837ab12f45"
-  }
+  "work_budget": {
+    "models": 3,
+    "source_time_points_per_model": 101,
+    "window_time_points_per_model": 6,
+    "matrix_blocks": 162,
+    "new_trajectories": 0,
+    "integration_steps": 0,
+    "rhs_calls": 0,
+    "report_max_bytes": 1048576,
+    "peak_memory_budget_mib": 256
+  },
+  "window": [
+    190,
+    192,
+    194,
+    196,
+    198,
+    200
+  ],
+  "simpson_normalized_weights": [
+    0.06666666666666667,
+    0.26666666666666666,
+    0.13333333333333333,
+    0.25,
+    0.2,
+    0.08333333333333333
+  ],
+  "sources": [
+    {
+      "label": "QS",
+      "run_id": "E002c_PROD_v001_r001",
+      "case_id": "QS_P05_dt005",
+      "certificates_sha256": "b767d4bea7d29abd5f854de16999df10ae988f305b6523e229402564830e430b",
+      "model_sha256": "8bb128a727e46f2e745d3fec61d1f716d45ea2e56295981080dfd13e1a37bb5b",
+      "github_report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
+      "github_report_run_id": "E002c_REPAIR_v001_r001",
+      "github_T200_anchors": {
+        "blocks_T200": "4f7a68f246f3f2cb0a9d99d6bdad793a4a12571242a2fac2ae84d1b3a068d3b8",
+        "series_T200": "f68aa33b3ede3408fd4414f52893c86ace30647d72178bf46e8f679eb1ef981b",
+        "diagnostics_T200": "cd0babc2d47a3e35c3874d2262da7ac6319df7e69704178f0b333c14f56509c4"
+      }
+    },
+    {
+      "label": "IC",
+      "run_id": "E002c_IC_RETRY_v001_r001",
+      "case_id": "RETRY_VALIDATE_0.005",
+      "certificates_sha256": "7a0d32993e99aa4cf5e8d5a2f27d4f61fccb130fde5ec53b893e040c6bcb9c54",
+      "model_sha256": "cbfa22137d5746877a0a05ea359e83faa510929191094381eb16378271693799",
+      "github_report_commit": "3839e9229ef97c230479f024d055a8507ae86fa5",
+      "github_report_run_id": "E002c_IC_RETRY_v001_r001",
+      "github_T200_anchors": {
+        "blocks_T200": "8772e2ee8b2725ded44aba98cf2fd4cfd21fadf63e5d7108fcb03a63c53912de",
+        "series_T200": "bd91599490bce4ca1325f6cba2216155bf44d87748dcd6ad03f8f352e715c4f6",
+        "diagnostics_T200": "c1bdb3b3c883451b7b4e7cff9bca05015d575aed29781c47bb8836f38b84b38a"
+      }
+    },
+    {
+      "label": "RR",
+      "run_id": "E002c_PROD_v001_r001",
+      "case_id": "RR_QS_P05_dt005",
+      "certificates_sha256": "f0fab88d093e1588a70023bd539369df14cf77587208bd2f85e161ea5d9a5e7d",
+      "model_sha256": "156e9a363de3c3e34e2aaa8e2c3be942a619133e0456afb269dab259ffd25a69",
+      "github_report_commit": "7fd36d60044b436484e81a5e92a80163c4688b45",
+      "github_report_run_id": "E002c_REPAIR_v001_r001",
+      "github_T200_anchors": {
+        "blocks_T200": "200c4fb23958f854f3e1f8cf7285e5f25395d7925b6f780d3153ecd3cb968634",
+        "series_T200": "6304405bdcd07dda7c7bc4058941a6a968f1ad8bbff436d75eb1f68b7de74532",
+        "diagnostics_T200": "7c1b62c6dd3061158bbac105671fac516a9b224499e1018d4d75d602a80416b0"
+      }
+    }
+  ]
 }

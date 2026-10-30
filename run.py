@@ -7,7 +7,9 @@ import json
 from pathlib import Path
 if __name__=='__main__':
     config=json.loads(Path(__file__).with_name('config.json').read_text())
-    if config.get('mode') in ('ic_retry_calibration','ic_retry'):
+    if config.get('mode')=='window_export':
+        from e002c_exp.window_export import run
+    elif config.get('mode') in ('ic_retry_calibration','ic_retry'):
         from e002c_exp.retry_task import run
     elif config.get('mode')=='repair_report':
         from e002c_exp.repair import run
