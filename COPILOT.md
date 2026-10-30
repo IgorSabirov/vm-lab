@@ -197,3 +197,15 @@ python3 -m unittest discover -s infra -p 'test_copilot_bridge.py' -v
 - [Авторизация CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli)
 - [Программные вызовы](https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/run-cli-programmatically)
 - [Сетевые ограничения Work](https://learn.chatgpt.com/docs/sandboxing)
+
+## Проверенные возможности для повышения устойчивости
+
+30 октября 2026 отдельной двухходовой пробой подтверждены явный UUID сессии,
+продолжение разговора новым процессом без повторной передачи прежнего вопроса,
+потоковый журнал JSONL и локальный экспорт переписки/расхода.
+План, измерения, границы проверки и схема доработки:
+[COPILOT_RELIABILITY_v001/RESULT.md](analysis/COPILOT_RELIABILITY_v001/RESULT.md).
+Основной `infra/copilot_bridge.py` пока не изменён: постоянная очередь,
+восстановление после аварии и независимый фоновый исполнитель не развёрнуты.
+Сохранённая сессия не гарантирует сохранность незавершённого процесса при
+потере среды. Прежнее правило ожидания без обрыва остаётся в силе.
