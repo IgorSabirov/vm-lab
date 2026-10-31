@@ -1,0 +1,1927 @@
+Audit the fixed E002d specification against the supplied implementation. You are the technical reviewer, not the scientific decision maker. First find correctness bugs, invalid comparisons, missing verification, failure/continuation hazards and export/resource failures. Then propose equivalent algorithmic optimizations. You have no tools here: do NOT claim to have run anything. Give severity, exact file/function, concrete reasoning, a small reproducer/counterexample, correction and test for each finding. Distinguish definite defects from suggestions. Inspect phase/current signs, overlapping independent jumps, identities/denominators, uncertainty propagation, shared baselines/horizons and source/calibration binding. Faster methods need proof obligations and end-to-end benchmarks. Do not change the physical scope or thresholds to make the code easier. Owner tests are evidence, not proof. Return a prioritized concise review.
+
+
+# E002d v003 technical review
+
+Pinned source commit: c37d0684f52aeb18e96f7ac984d06d834a62a88c
+User authorized this review on 31 October 2026 after scientific peer review.
+Scientific objective, model and verdicts remain the assistant's responsibility.
+Copilot is asked to inspect this implemented package against its fixed specification,
+find reproducible defects and propose equivalent optimizations with measurable benefit.
+Own validation: 8 test groups PASS in 43.958 seconds; forecast60,range0–300.
+No production run; VM calibration awaits review and checked corrections.
+Review does not authorize changing physical scope, thresholds or sample coverage.
+Record the exact prompt hash, response, defects accepted/rejected and verification.
+
+
+=== FILE E002d.md SHA256 d0906079cea16a41df22881d09cccdadf233f5bf36722d2c0f119d007dcab7b7 ===
+# E002d v003 — итоговое ТЗ после двух раундов рецензий
+Дата: 31 октября 2026. Пользователь: «Поддерживаю. Приступай».
+Статус: разрешена подготовка реализации, техническое ревью Copilot и окончательная калибровка. Производственный запуск требует завершённого предзапускового пакета и закреплённого бюджета; текущий config запускает только калибровку.
+
+## Научная задача
+Единая серия A/B/C сохраняет три разных проверяемых вопроса.
+A: как физически заданные селективные каналы в N=1/N=2 изменяют зазор QS/RR относительно согласованного контроля?
+B: разрешим ли центральный контраст условного тока m6,N2 при Phi=pi/2; расположен ли центр ниже обоих измеренных соседей?
+C: меняют ли воздействия в m6 этот контраст; различается ли отклик N=1/N=2 и QS/RR?
+Общий механизм A и B/C не предполагается доказанным. Дополнительные перекрёстные 24 траектории не включены. Ни N2, ни отклик дефазировки не доказывают необходимость GME, Фано или автопоэзис.
+
+## Источники и принятые поправки
+Исходная физика: commit 29fe4496485c17e935b2e2ffa9c88b7d75ba6efe, e002_exp/model.py и e002c_exp/model.py.
+Концепт v002: SHA256 9092615c523c7f34a18af73769156d5a3c8db57fb0b7c03558428d6da42e8abc.
+Разбор 30 октября: E002d_REVIEW_20261030.txt, SHA256 b8721c217b6db17340b49703ac54e634e880d3eebb50178c568b8124319bd002.
+Вторая редакционная рецензия: Вставленный текст(20261030-233135).txt.
+Исправлены знак S, коэффициенты gamma/2 и 2.5gamma; отвергнуты 50%-ный барьер и требование неизменности стационарной цели в C. Структурная перестройка измеряется, не отменяет полный причинный отклик. В коде нет автоматического присвоения Фано. Неравенства соседей дают минимум на проверенной тройке, не доказательство точного минимума непрерывной кривой. Проверяем равенство Lminus†Lminus=Lplus†Lplus как операторов, не только норм.
+
+## Фиксированная модель
+Три кубита × три qutrit: размер 216. Узловой базис 000,001,010,011,100,101,110,111; узлы перед рёбрами. N1={1,2,4}, N2={3,5,6}; источник/сток связывают населённости секторов. Начало: равная смесь |100;RRR> и |010;RRR>.
+J=1, g=.5 для QS, eta=.25, delta=.1, gamma_bg=.01, gamma_r=.05, source=sink=.5, phi_e=.05; phi_n=.05 или .25 по сетке. Detuning=epsilon*n1. theta01=theta12=0,theta02=-Phi.
+QS: Q=Cij/2, S=sqrt(I-Q), прежние совместные H_form и idle. RR: прежние фиксированные renewal rates, когерентный hop сохраняется; параметры RR не переподгоняются.
+RR (alpha,beta) по рёбрам 01,12,02:
+(.034391922002445986,.03673596724712181),
+(.0343919220002473,.03673596724703888),
+(.06080323306206624,.03505876323286412).
+Прежние исходные операторы H и скачки сохраняются; добавляются только объявленные независимые диагональные скачки.
+
+## Контракт операций
+Биты маски: 01=1,12=2,02=4; активное ребро — состояние L=2.
+A=Pa tensor Qm; B=Pb tensor Qm; Lminus=sqrt(gamma)(A-B); Lplus=sqrt(gamma)(A+B).
+D[L]rho=LrhoL†-{L†L,rho}/2. Для диагонального L: Gamma_xy=(l_x-l_y)^2/2.
+Разность генераторов T-C равна -2gamma(A rho B+B rho A).
+Одиночная цель: скорости 2gamma/0; смежные элементы gamma/2 в обеих ветках.
+Пересечение пар (5,6)+(3,6) в m6: цели 2.5gamma/.5gamma; пара5/3 gamma/gamma. N1-композиция имеет аналогичную карту. Все скачки независимы: D[L1]+D[L2], никогда D[L1+L2].
+Полная карта 216×216 публикуется в lossless NPZ для каждой операции; прямое действие на населённости нулевое, последующая их перестройка допустима. Для одной цели Qm включает все микросостояния, а не один редуцированный элемент.
+
+## Реестр из 184 случаев
+A, Phi=epsilon=0, phi_n=.05, обе модели:
+S2a=(m2,5/6),S2b=(m4,3/6),S1a=(m2,1/2),S1b=(m4,1/4).
+Каждая одиночная T/C gamma=.1. Независимые композиции S2 и S1: T/C gamma=.05,.1,.2.
+Fine .005:42; coarse .01:26 (baseline+все основные .1). Всего68.
+B, Phi/pi=.5, обе модели, phi_n=.05,.25:
+epsilon=-.5,-.25,-.125,-.0625,0,.0625,.125,.25,.5, fine.
+Coarse на -.125,0,.125. Фазовый контроль Phi=0 на тех же центральных трёх, оба шума, модели и dt. После повторного использования A:46 новых fine+22 coarse=68.
+C, Phi/pi=.5,phi_n=.05,epsilon=-.125,0,.125:
+M2=(m6,5/6)+(m6,3/6); M1=(m6,1/2)+(m6,1/4); T/C gamma=.1,обе модели,оба dt.
+Baseline из B. Новых24 fine+24 coarse=48.
+Итого112fine+72coarse; 5920000 шагов RK4 и23680000 RHS доT200.
+Точный реестр и связи: experiments/e002d/plan.json. ID учитывает модель, фазу, epsilon,шум,операцию,ветку,дозу,dt; горизонт/начало/версия записаны отдельно. Результаты проверок не являются частью идентичности случая.
+
+## Горизонты и численные условия
+RK4 complex128, BLAS1. T=200. Если хотя бы один случай не проходит прежнюю стационарность, все184 продолжаются с собственных T200 до общего T400. Это один заранее объявленный класс продления с сохранением [190,200], максимум×2.
+Физичность на диагностической сетке: ошибка trace и Hermiticity<=1e-10,lambda_min>=-1e-8; без исправления состояния.
+Стационарность на шести точках [T-10,T] через2: relative RHS<=1e-7,relative drift<=1e-6,range(F)<=1e-8+1e-5|F_last|.
+Fine/coarse сравниваются на полных общих скалярных и диагностических сетках: abs error<=1e-6+1e-4*max(abs values); несовпадение допустимости условных диагностик фиксируется.
+ПослеT400 нестационарность не скрывается: конечновременные данные сохраняются, стационарные утверждения блокируются. Дополнительные дозы/масштабы без coarse получают SCREENING_ONLY.
+
+## Основные показатели и разрешение
+Среднее окна: Simpson на шести точках через2. Условные токи — отношение средних, не среднее отношений.
+G0=hQS0-hRR0;GT=hQST-hRRT;GC=hQSC-hRRC;E=GT-GC;S=E/G0. ПриG0>0 отрицательноеS означает GT<GC, не долю доказанного механизма. Сохраняются компоненты,T-0,C-0,r_M=(hT-hC)/h0,Q=rQS-rRR.
+Для каждого примитивного скаляра x численный запас:
+u_x=1e-8+10*(abs(mean_fine-mean_coarse)+max(range_fine_window,range_coarse_window)).
+Это консервативная инженерная огибающая по двум dt и окну, не статистическая значимость и не строгая граница всех ошибок.
+Суммы/разности: интервалы складываются; отношения: крайние значения интервалов. Знаковый отклик разрешён, когда итоговый интервал не содержит0 и все необходимые случаи прошли качество,стационарность,dt. Отсутствие разрешения не доказывает равенство.
+Вероятностный знаменатель допустим при p-u_p>1e-6 и u_p<=.1*p, во всех ветках и точках. Для G0,h0 требуется интервал, не содержащий0, и относительный запас<=.1. При нарушении сохраняются сырые значения, отношение=null с причиной.
+Структурный сдвиг маркируется, если |pT-pC| превышает и численный запас, и 1e-6+.01*max(|pT|,|pC|); аналогично pL,ell. Метка не отменяет полный отклик. Публикуются также T-0,C-0 и точное симметричное разложение hT-hC по весу и условному току.
+Комплексные цели публикуются с модулем,сдвигом и фазовым сдвигом arg(cT*conj(cC)); фаза не определяется при неразрешимом модуле. Никакого 50%-ного барьера. Экспортируются полные нормы целевых блоков на диагностической сетке; редуцированная когерентность может содержать компенсацию микросостояний.
+B: D=j(0)-(j(-.125)+j(.125))/2, j=h_m6,N2/p_m6,N2. Отдельно те же контрасты raw h и p. CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS требует обеих положительных разностей с численным запасом. Другое положение минимума показывается только как разведочная особенность сетки.
+C: D_T-D_C; разность этих откликов QS-RR и M2-M1. Различие секторов не является обязательным условием когерентной чувствительности.
+
+## Сохранение и независимая проверка
+Полные состояния216×216,полные ряды,сертификаты,контрольные точки остаются наВМ. Ядра Liouvillian освобождаются между случаями; при продлении пересобираются без изменения состояния.
+GitHub: один сжатый NPZ наслучай: scalar .2 до10,далее шаг4; diagnostic2 до20,далее4; полные окна[190,200] ифинальныечерез2; узловые блоки8×8 всех масок и безусловный; выборочные сертификаты. Подробный анализ сохраняется в analysis.json.gz без потери чисел,с проверяемой хеш-ссылкой из metrics.json. JSON содержит все экстремумы до разрежения,счётчики,причиныотказов. Сжатие lossless.
+Пределы: общийreport<=30MiB,<=500файлов,каждый<=8MiB;RESULT.md<=24KiB. Для всех184 публикуются конечные значения и общий охват; детализация—по реестру,а не скрытый отбор успешных случаев.
+Независимый проверяющий модуль не импортирует эволюцию,сборщик наблюдаемых или анализ. Он проверяет хеши,полноту случаев,блоки,веса,фазозависимые токи,комплексные цели,оконные средние,суммы и основные контрасты. Полную позитивность216×216 и node-edgeNPT нельзя независимо восстановить из узловых блоков; ограничение явно указано.
+
+## Технический порядок и время
+Пользователь подтвердил второй вариант: собственноеТЗ→код+проверки→Copilotreview→проверка замечаний→окончательная калибровка.
+Copilot получает закреплённые ТЗ,код,тесты и известные ограничения; ищет воспроизводимые дефекты и эквивалентные оптимизации. Физическая цель и критерии вывода остаются ответственностью ассистента. Спор по цели/допускам/цене выносится пользователю; его вердикт окончателен.
+До review локальная проверка:10короткихтраекторий T2,3000шагов,12000RHS; плюс полные карты,аналитические и независимые проверки. Прогноз всего набора60с,диапазон0–300с (источник: прошлый набор9.4с,расширение до8операций,фазы,верификация и отрицательные тесты; широкая предзапусковая оценка).
+Послеreview: репрезентативная калибровка48случаев доT10,72000шагов,288000RHS; обе модели,dt,одиночная и составныеN1/N2,фаза,шум. Предварительный прогноз180с,60–480с; перед фактической отправкой обновляется только при изменении реализации/обоснования,никогда после результата.
+Окончательный производственный прогноз формируется из проверенного отчёта калибровки: отдельно сборка,интегратор,диагностика,сохранения,экспорт и верификация; верхняя ветка учитывает вторую сборку иT400. Исходный прогноз,факт и отклонение сохраняются.
+
+
+=== FILE e002d_exp/__init__.py SHA256 b3322362bcecd23a1ce0058e7d1a3e43f74ffbb469e7819f5864c57df3eb656c ===
+"""E002d selective dephasing experiment."""
+
+
+=== FILE e002d_exp/analysis.py SHA256 c22153d83e606d41e224afc3a1afa4d8fb4b4b93ac8f1ef9627788c00c9246f7 ===
+"""Window comparisons for the frozen A/B/C design, with propagated envelopes."""
+import numpy as np
+from e002c_exp.engine import compare_pair
+from e002c_exp.windows import integral_mean
+from .plan import MODELS,TARGETS,OPERATIONS,CONTRACT,physics_key
+from .numerics import estimate,linear,ratio,signed,contrast,sampled_minimum
+
+STRUCTURE_NAMES=[f"p_m{m}" for m in range(8)]+[f"p_m{m}_N{n}" for m in range(8) for n in range(4)]+["pL01","pL12","pL02","ell01","ell12","ell02"]
+
+def analyze(results,mode):
+    by={physics_key(r["summary"]["case"]):r for r in results};pairs={}
+    for k,r in by.items():
+        if r["summary"]["case"]["dt"]!=.005:continue
+        other=(*k[:-1],.01)
+        if other not in by:continue
+        check=compare_pair(r,by[other]);pairs[r["summary"]["case"]["id"]]=check
+        for obj in (r,by[other]):obj["summary"]["refinement_status"]="passed" if check["pass_gate"] else "failed"
+    if mode!="production":
+        return dict(pairs=pairs,A=[],B=[],C=[],scope="short technical run; no scientific interpretation")
+    horizons=sorted({200.}|{float(r["summary"]["horizon"]) for r in results})
+    cache={}
+    def get(model,target="base",kind="base",gamma=0.,phi=0.,epsilon=0.,noise=.05,horizon=200.):
+        key=(model,phi,epsilon,noise,target,kind,gamma,.005)
+        ck=(key,horizon)
+        if ck in cache:return cache[ck]
+        if key not in by:return None
+        fine=by[key];coarse=by.get((*key[:-1],.01))
+        fm=integral_mean(fine["series"],fine["names"],horizon)
+        cm=integral_mean(coarse["series"],coarse["names"],horizon) if coarse is not None else None
+        if fm is None:return None
+        times=horizon-10+2*np.arange(6)
+        def ranges(r):
+            idx=[int(np.argmin(abs(r["series"][:,0]-t))) for t in times]
+            if not np.array_equal(r["series"][idx,0],times):raise ValueError("Exact window missing")
+            return dict(zip(r["names"],np.ptp(r["series"][idx,1:],axis=0)))
+        fr=ranges(fine);cr=ranges(coarse) if cm is not None else None
+        vals={name:estimate(value,None if cm is None else
+                CONTRACT["primitive_absolute_floor"]+CONTRACT["resolution_multiplier"]*
+                (abs(value-cm[name])+max(fr[name],cr[name]))) for name,value in fm.items()}
+        matched=(coarse is not None and cm is not None)
+        allr=[fine]+([coarse] if matched else [])
+        stationary=all(r["summary"]["horizon"]==horizon and r["summary"]["stationarity"]["pass_gate"] and
+                       not r["summary"].get("failed") for r in allr)
+        refined=matched and all(r["summary"].get("refinement_status")=="passed" for r in allr)
+        reason="READY" if stationary and refined else "FINITE_TIME_ONLY" if not stationary else "SCREENING_ONLY" if not matched else "REFINEMENT_FAILED"
+        out=dict(values=vals,eligible=stationary and refined,reason=reason,
+                 cases=[r["summary"]["case"]["id"] for r in allr],horizon=horizon)
+        cache[ck]=out
+        return out
+    def structural(base,t,c):
+        out={}
+        for tag,left,right in [("T_minus_C",t,c),("T_minus_0",t,base),("C_minus_0",c,base)]:
+            rows=[]
+            for name in STRUCTURE_NAMES:
+                x,y=left["values"][name],right["values"][name]
+                d=linear([(1,x),(-1,y)])
+                practical=CONTRACT["structure_absolute"]+CONTRACT["structure_relative"]*max(abs(x["value"]),abs(y["value"]))
+                changed=(d["uncertainty"] is not None and abs(d["value"])>max(d["uncertainty"],practical))
+                rows.append(dict(name=name,delta=d,practical_threshold=practical,changed=changed))
+            out[tag]=rows
+        out["status"]="STRUCTURE_COUPLED" if any(x["changed"] for x in out["T_minus_C"]) else "NO_RESOLVED_STRUCTURAL_SHIFT"
+        return out
+    def response_metrics(base,t,c):
+        b,tv,cv=base["values"],t["values"],c["values"]
+        delta=linear([(1,tv["h"]),(-1,cv["h"])])
+        return dict(h0=b["h"],hT=tv["h"],hC=cv["h"],delta=delta,r=ratio(delta,b["h"]),
+                    T_minus_0=linear([(1,tv["h"]),(-1,b["h"])]),
+                    C_minus_0=linear([(1,cv["h"]),(-1,b["h"])]))
+    A=[]
+    for horizon in horizons:
+        for target,gamma in [(x,.1) for x in ("S2a","S2b","S1a","S1b")]+[(x,g) for x in ("S2","S1") for g in (.05,.1,.2)]:
+            inputs={m:[get(m,horizon=horizon),get(m,target,"T",gamma,horizon=horizon),get(m,target,"C",gamma,horizon=horizon)] for m in MODELS}
+            row=dict(target=target,gamma=gamma,horizon=horizon)
+            if any(x is None for rs in inputs.values() for x in rs):
+                row["status"]="NOT_EVALUABLE";A.append(row);continue
+            ready=all(x["eligible"] for rs in inputs.values() for x in rs)
+            row["models"]={m:response_metrics(*rs) for m,rs in inputs.items()}
+            q,r=[row["models"][m] for m in MODELS]
+            G0=linear([(1,q["h0"]),(-1,r["h0"])])
+            GT=linear([(1,q["hT"]),(-1,r["hT"])]);GC=linear([(1,q["hC"]),(-1,r["hC"])])
+            E=linear([(1,q["delta"]),(-1,r["delta"])])
+            row.update(G0=G0,GT=GT,GC=GC,E=E,S=ratio(E,G0),Q=linear([(1,q["r"]),(-1,r["r"])]),
+                eligible=ready,reasons=sorted(set(x["reason"] for rs in inputs.values() for x in rs)),
+                status=signed(E,ready),S_status=signed(ratio(E,G0),ready))
+            row["structure"]={m:structural(*rs) for m,rs in inputs.items()}
+            components=[];coherences={}
+            for mask in range(8):
+                for n in range(4):
+                    hn=f"h_m{mask}_N{n}";pn=f"p_m{mask}_N{n}";ds=[];decomposed={}
+                    for m in MODELS:
+                        b,t,c=inputs[m];tv,cv=t["values"],c["values"]
+                        d=linear([(1,tv[hn]),(-1,cv[hn])]);ds.append(d)
+                        jt=ratio(tv[hn],tv[pn],True);jc=ratio(cv[hn],cv[pn],True)
+                        pt,pc=tv[pn]["value"],cv[pn]["value"]
+                        jw=None if jt["value"] is None or jc["value"] is None else (pt-pc)*(jt["value"]+jc["value"])/2
+                        cj=None if jt["value"] is None or jc["value"] is None else (jt["value"]-jc["value"])*(pt+pc)/2
+                        decomposed[m]=dict(delta=d,jT=jt,jC=jc,weight_term=jw,conditional_term=cj,
+                            decomposition_residual=None if jw is None else d["value"]-jw-cj)
+                    component=linear([(1,ds[0]),(-1,ds[1])])
+                    components.append(dict(mask=mask,N=n,E=component,S=ratio(component,G0),models=decomposed))
+            row["components"]=components
+            row["component_sum_error"]=abs(sum(x["E"]["value"] for x in components)-E["value"])
+            if row["component_sum_error"]>1e-10:raise ValueError("Incomplete gap decomposition")
+            for m in MODELS:
+                b,t,c=inputs[m];coherences[m]={}
+                for target_key in OPERATIONS[target]:
+                    mask,a,bb=TARGETS[target_key];nn=a.bit_count();records={}
+                    for branch,ctx in [("base",b),("T",t),("C",c)]:
+                        v=ctx["values"];re=v["C_"+target_key+"_re"];im=v["C_"+target_key+"_im"]
+                        z=complex(re["value"],im["value"]);u=None if re["uncertainty"] is None else float(np.hypot(re["uncertainty"],im["uncertainty"]))
+                        records[branch]=dict(re=re,im=im,absolute=float(abs(z)),absolute_uncertainty=u,
+                            conditional_re=ratio(re,v[f"p_m{mask}_N{nn}"],True),
+                            conditional_im=ratio(im,v[f"p_m{mask}_N{nn}"],True),
+                            activity_at_dose=linear([(gamma,v["aunit_"+target_key])]))
+                    zt=complex(records["T"]["re"]["value"],records["T"]["im"]["value"])
+                    zc=complex(records["C"]["re"]["value"],records["C"]["im"]["value"])
+                    phase_valid=all(records[k]["absolute_uncertainty"] is not None and records[k]["absolute"]>
+                                    records[k]["absolute_uncertainty"] for k in ("T","C"))
+                    records["T_minus_C"]=dict(re=float((zt-zc).real),im=float((zt-zc).imag),
+                        phase_shift=float(np.angle(zt*zc.conjugate())) if phase_valid else None)
+                    coherences[m][target_key]=records
+            row["coherences"]=coherences;A.append(row)
+    def dip(model,phi,noise,horizon,target="base",kind="base",gamma=0.,delta=.125):
+        ctx=[get(model,target,kind,gamma,phi,e,noise,horizon) for e in (-delta,0.,delta)]
+        if any(x is None for x in ctx):return dict(status="NOT_EVALUABLE",eligible=False)
+        hs=[x["values"]["h_m6_N2"] for x in ctx];ps=[x["values"]["p_m6_N2"] for x in ctx]
+        js=[ratio(h,p,True) for h,p in zip(hs,ps)];d=contrast(*js)
+        eligible=all(x["eligible"] for x in ctx)
+        return dict(D=d,raw_D=contrast(*hs),weight_D=contrast(*ps),j=js,h=hs,p=ps,
+            eligible=eligible,status=signed(d,eligible),minimum=sampled_minimum(*js,eligible),
+            reasons=sorted(set(x["reason"] for x in ctx)),cases=[x["cases"] for x in ctx])
+    B=[]
+    for horizon in horizons:
+        for model in MODELS:
+            for phi in (0.,.5):
+                for noise in (.05,.25):
+                    for delta in ((.125,.0625,.25) if phi==.5 else (.125,)):
+                        B.append(dict(model=model,phi_over_pi=phi,dephasing=noise,delta=delta,horizon=horizon,
+                                      **dip(model,phi,noise,horizon,delta=delta)))
+    C=[];link={}
+    for horizon in horizons:
+        for model in MODELS:
+            for target in ("M2","M1"):
+                t=dip(model,.5,.05,horizon,target,"T",.1)
+                c=dip(model,.5,.05,horizon,target,"C",.1)
+                b=dip(model,.5,.05,horizon)
+                row=dict(model=model,target=target,horizon=horizon,T=t,C=c,baseline=b)
+                if "D" in t and "D" in c:
+                    d=linear([(1,t["D"]),(-1,c["D"])])
+                    row.update(delta_D=d,raw_delta_D=linear([(1,t["raw_D"]),(-1,c["raw_D"])]),
+                        weight_delta_D=linear([(1,t["weight_D"]),(-1,c["weight_D"])]),
+                        eligible=t["eligible"] and c["eligible"],status=signed(d,t["eligible"] and c["eligible"]))
+                    link[horizon,model,target]=row
+                else:row.update(eligible=False,status="NOT_EVALUABLE")
+                C.append(row)
+        for axis in ("model","sector"):
+            values=("M2","M1") if axis=="model" else MODELS
+            for value in values:
+                lk=(horizon,"QS",value) if axis=="model" else (horizon,value,"M2")
+                rk=(horizon,"RR_QS",value) if axis=="model" else (horizon,value,"M1")
+                if lk not in link or rk not in link:continue
+                left,right=link[lk],link[rk];d=linear([(1,left["delta_D"]),(-1,right["delta_D"])])
+                C.append(dict(comparison="QS_minus_RR" if axis=="model" else "M2_minus_M1",
+                    fixed=value,horizon=horizon,delta_D=d,eligible=left["eligible"] and right["eligible"],
+                    status=signed(d,left["eligible"] and right["eligible"])))
+    return dict(pairs=pairs,A=A,B=B,C=C,scope="finite-dose causal channel contrasts; no automatic Fano/entanglement necessity claim")
+
+
+=== FILE e002d_exp/engine.py SHA256 ce1fb817584ced92daa26c8e56ff0cbfc2e66bc7a1572574b65ed51b58628a0c ===
+"""Extend diagnostics while preserving the pinned RK4 integration."""
+import numpy as np
+from e002c_exp.engine import Trajectory as BaseTrajectory
+from e002c_exp.model import operators
+from .plan import TARGETS
+
+class Trajectory(BaseTrajectory):
+    def sample(self,step):
+        super().sample(step)
+        if step%round(2/self.case["dt"])==0:
+            rho=self.v.reshape(216,216,order="F");values=[];names=[]
+            for key,(mask,a,b) in TARGETS.items():
+                edge=np.flatnonzero(operators()["mask_id"]==mask)
+                block=rho[np.ix_(a*27+edge,b*27+edge)]
+                names.append("full_target_norm_"+key);values.append(float(np.linalg.norm(block)))
+            self.dnames+=names;self.diags[-1]=np.r_[self.diags[-1],values]
+
+    def release_kernel(self):
+        # State/window/history remain for the declared continuation. Never retain 184 Liouvillians.
+        self.model={k:self.model[k] for k in ("names","alpha","dark","checks")}
+
+    def rebuild_kernel(self,builder):
+        before=self.model["names"];model=builder(self.case)
+        if model["names"]!=before:raise ValueError("Kernel schema changed across continuation")
+        self.model=model
+
+
+
+=== FILE e002d_exp/export.py SHA256 caeaa01e1537457b3c1cfda52b5dab69b10eea1669b47d04137c09dc754a99fa ===
+"""One compressed, self-describing case artifact; medium-v1 size limits stay fixed."""
+import hashlib,json,gzip
+from pathlib import Path
+import numpy as np
+from e002c_exp.export import extrema,evidence,array_spec,digest
+from e002_exp.model import save_json
+from .plan import CONTRACT
+
+def export_case(report,r,mode):
+    (report/"cases").mkdir(exist_ok=True)
+    a,b=r["series"],r["diagnostics"];end=r["summary"]["horizon"]
+    t=b[:,0]
+    chosen=np.ones(len(t),bool) if mode!="production" else (((t>=190)&(t<=200))|((t>=end-10)&(t<=end)))
+    times=t[chosen];indices=[int(np.argmin(abs(a[:,0]-x))) for x in times]
+    keep_a=(a[:,0]<=10+1e-8)|np.isclose(a[:,0]/4,np.round(a[:,0]/4),atol=1e-9)
+    keep_b=(b[:,0]<=20+1e-8)|np.isclose(b[:,0]/4,np.round(b[:,0]/4),atol=1e-9)
+    ev={"e_"+k:v for k,v in evidence(r).items()}
+    np.savez_compressed(report/"cases"/(r["summary"]["case"]["id"]+".npz"),
+        series=a[keep_a],diagnostics=b[keep_b],window_time=times,
+        window_blocks=r["certs"]["blocks"][chosen],window_scalar=a[indices],window_diagnostics=b[chosen],**ev)
+    hidx=1+r["names"].index("h")
+    return dict(scalar=extrema(a),diagnostic=extrema(b),scalar_records=len(a),diagnostic_records=len(b),
+                h_t_positive=extrema(a[a[:,0]>0][:,[0,hidx]])[0],h_start=float(a[0,hidx]))
+
+def write_manifest(report,full):
+    records=[];original=[]
+    for root,out in ((report,records),(full,original)):
+        for p in sorted(root.rglob("*")):
+            if not p.is_file() or p.name=="data_manifest.json":continue
+            row=dict(path=p.relative_to(root).as_posix(),bytes=p.stat().st_size,sha256=digest(p))
+            if root==report and p.suffix==".npz":row["arrays"]=array_spec(p)
+            out.append(row)
+    save_json(report/"data_manifest.json",dict(exported=records,full=original,
+        full_bytes=sum(x["bytes"] for x in original),selection=CONTRACT["report"],
+        limitations=["Full-state positivity and node-edge negativity cannot be recovered from reduced node blocks.",
+          "Full-target Frobenius norms use the VM full state; reduced complex coherences are independently reconstructible.",
+          "Full-grid extrema are computed before sampling; omitted samples stay on VM.",
+          "Short calibration windows are not stationary scientific data."]))
+    files=[p for p in report.rglob("*") if p.is_file()];cfg=CONTRACT["report"]
+    total=sum(p.stat().st_size for p in files)
+    if len(files)>cfg["maximum_files"] or total>cfg["maximum_bytes"] or any(p.stat().st_size>cfg["maximum_file_bytes"] for p in files):
+        raise ValueError(f"Report budget exceeded: {len(files)} files, {total} bytes")
+    return dict(bytes=total,files=len(files))
+
+def compact(metrics,checks):
+    rt=checks["runtime_gate"];analysis=metrics["analysis"]
+    text=[f"Время: прогноз {rt['expected_seconds']:.3f} с; диапазон {rt['lower_seconds']:.3f}–{rt['upper_seconds']:.3f}; внутренний факт {rt['actual_seconds']:.3f}; статус {rt['status']}.",
+      "Полное время процесса, включая завершение отчёта, проверяется по run.json; очередь и публикация отдельно.",
+      "",f"# E002d v003 | {metrics['identity']['run_id']} | {metrics['mode']}",
+      f"Исходный commit: {metrics['identity']['source_commit']}. Ядро SHA256: {metrics['environment']['kernel_sha256']}.",
+      "A: изменение зазора QS/RR воздействиями N1/N2. B: центральный контраст m6,N2. C: изменение контраста воздействиями m6.",
+      "Модель: 3 кубита×3 qutrit,216 состояний; начальная смесь |100;RRR>/|010;RRR>. J=1,g_QS=.5,eta=.25,delta=.1,gamma_bg=.01,gamma_r=.05,source=sink=.5,phi_e=.05. RR с прежними фиксированными скоростями сохраняет когерентный hop.",
+      "Phi задаётся theta02=-Phi; epsilon*n1; phi_n=.05/.25. T/C=sqrt(gamma)(Pa∓Pb)Qm; композиции независимы.",
+      "A: S2a=m2(5,6),S2b=m4(3,6),S1a=m2(1,2),S1b=m4(1,4). S2/S1 — пары этих мишеней. M2=m6(5,6)+(3,6),M1=m6(1,2)+(1,4).",
+      "A: Phi=epsilon=0,noise=.05,одиночные gamma=.1,композиции .05/.1/.2. B: Phi/pi=.5,epsilon=0,±.0625,±.125,±.25,±.5,noise=.05/.25; Phi=0 контроль0,±.125. C: Phi/pi=.5,epsilon=0,±.125,noise=.05,gamma=.1.",
+      "Fine/coarse=.005/.01; coarse у A только gamma=.1,у B только epsilon=0,±.125; C весь paired. Общий горизонт200 или400; mean=Simpson по6точкамчерез2.",
+      f"Объём план/факт: {metrics['work']}. Численные/технические замечания: {checks['failures']}.",
+      "trace/hermiticity<=1e-10,eigen>=-1e-8. Стационарность RHS<=1e-7,drift<=1e-6,rangeF<=1e-8+1e-5|F|. dt<=1e-6+1e-4*scale. Неопределённость примитива=1e-8+10*(dt-разность+max оконных диапазонов); интервалы распространяются. Это не статистическая значимость.",
+      "Условные значения требуют p-u>1e-6,u<=.1p. Структурная метка использует допуск1e-6+.01*scale и численный запас; не отменяет полный эффект.",
+      "", "Все случаи: Q=QS,R=RR; f/c=.005/.01. Условие P=Phi/pi,e=epsilon,n=phi_n; базовая ветка b. ! означает непрошедшую стационарность или dt; s — без coarse. hmin/max получены по всем точкам t>0.",
+      "|случай/условие|T|h окна|hmin@t / hmax@t|качество|",
+      "|---|---:|---:|---|---|"]
+    for s in metrics["cases"]:
+        c=s["case"];hm=(s.get("reference") or {}).get("h");e=s["h_extrema"]
+        case=f"{c['label']}:{'Q' if c['model']=='QS' else 'R'},{c['target']}{c['kind']},g{c['gamma']:g},P{c['phi_over_pi']:g},e{c['detuning']:g},n{c['dephasing']:g},{'f' if c['dt']==.005 else 'c'}"
+        flag="!" if not s["stationarity"]["pass_gate"] or s["refinement_status"]=="failed" else "s" if s["refinement_status"]=="not_refined" else "ok"
+        text.append(f"|{case}|{s['horizon']:g}|{hm:.7g}|" + f"{e[0]:.5g}@{e[1]:g}/{e[2]:.5g}@{e[3]:g}|{flag}|" if hm is not None else f"|{case}|{s['horizon']:g}|null|{e[0]:.5g}@{e[1]:g}/{e[2]:.5g}@{e[3]:g}|{flag}|")
+    if metrics["mode"]!="production":
+        text+=["","Короткая техническая калибровка/проверка: стационарность и научный эффект не оцениваются."]
+    else:
+        text+=["","E=(hQST-hQSC)-(hRRT-hRRC);S=E/G0. S<0 означает уменьшение зазора относительно C, не долю механизма. Q и r — дополнительные.",
+               "|A:цель,g,T|E|S|статус|","|---|---:|---:|---|"]
+        for r in analysis["A"]:
+            if "E" not in r:text.append(f"|{r['target']},{r['gamma']:g},{r['horizon']:g}|—|—|{r['status']}|");continue
+            sv=r["S"]["value"];text.append(f"|{r['target']},{r['gamma']:g},{r['horizon']:g}|{r['E']['value']:.7g}|{sv if sv is not None else 'null'}|{r['status']}|")
+        text+=["","D=j(0)-(j(-delta)+j(delta))/2,j=h_m6N2/p_m6N2. D<0 не доказывает минимум; отдельный статус проверяет обоих соседей.",
+               "|B:M,P,n,delta,T|D|статус|ниже обоих соседей|","|---|---:|---|---|"]
+        for r in analysis["B"]:
+            dv=r.get("D",{}).get("value")
+            text.append(f"|{r['model']},{r['phi_over_pi']:g},{r['dephasing']:g},{r['delta']:g},{r['horizon']:g}|{dv if dv is not None else 'null'}|{r['status']}|{r.get('minimum',{}).get('status')=='CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS'}|")
+        text+=["","|C:сравнение,T|delta D|статус|","|---|---:|---|"]
+        for r in analysis["C"]:
+            ident=r.get("model","")+r.get("target","")+r.get("comparison","")+r.get("fixed","")
+            dv=r.get("delta_D",{}).get("value")
+            text.append(f"|{ident},{r['horizon']:g}|{dv if dv is not None else 'null'}|{r['status']}|")
+    text+=["","Полные условия и ID: case_registry.json. Все компоненты,знаменатели,структурные сдвиги,комплексные цели,арифметическое разложение и причины отказов: metrics.json и analysis.json.gz (lossless,хеш ссылки проверяется).",
+      "Экстремумы всех величин до разрежения: extrema.json.gz. Один lossless NPZ на случай: cases/. Ряды .2 до10 затем4; диагностика2 до20 затем4; все окна/матрицы через2. Счётчики,размеры и SHA256: data_manifest.json. Цифры текста округлены,NPZ/JSON сохраняют точность.",
+      "Полные матрицы и полные ряды остаются на ВМ. Проверяющий отчёт восстанавливает токи,веса,когерентности и основные контрасты из узловых блоков; полные positivity/node-edge NPT по ним не восстанавливаются.",
+      "Нет автоматического статуса Фано; N2 не доказывает GME; нулевые свидетели не доказывают сепарабельность. A и B/C не доказывают общий механизм. Научная приёмка — пользователь."]
+    result="\n".join(text)+"\n"
+    if len(result.encode())>24*1024:raise ValueError(f"Compact report too large: {len(result.encode())}")
+    return result
+
+
+
+=== FILE e002d_exp/model.py SHA256 b267eb4bebac23fb6407e7351d758c557e23d9ca04e0c32c14d702c29c850053 ===
+"""Pinned physical generator plus independent diagonal intervention channels."""
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import clean,maxabs
+from e002c_exp.model import build as base_build,operators
+from .plan import TARGETS,OPERATIONS
+MONITORS=TARGETS
+NUMBERS=np.array([i.bit_count() for i in range(8)])
+
+def jump_diagonals(target,kind,gamma):
+    if target=="base":
+        if kind!="base" or gamma!=0:raise ValueError("Invalid baseline")
+        return []
+    if target not in OPERATIONS or kind not in ("T","C") or not np.isfinite(gamma) or gamma<0:
+        raise ValueError("Invalid intervention")
+    result=[]
+    for key in OPERATIONS[target]:
+        mask,a,b=TARGETS[key];node=np.zeros(8);node[a]=1;node[b]=-1 if kind=="T" else 1
+        result.append((key,np.sqrt(gamma)*np.kron(node,(operators()["mask_id"]==mask).astype(float))))
+    return result
+
+def damping(diagonals):
+    rates=np.zeros((216,216))
+    for _,d in diagonals:rates+=.5*(d[:,None]-d[None,:])**2
+    return rates
+
+def consequence_map(with_arrays=False):
+    result={};arrays={}
+    for target,keys in OPERATIONS.items():
+        t=damping(jump_diagonals(target,"T",1.));c=damping(jump_diagonals(target,"C",1.))
+        expected=np.zeros_like(t);target_rows=[]
+        for key in keys:
+            mask,a,b=TARGETS[key];edge=np.flatnonzero(operators()["mask_id"]==mask)
+            ia=a*27+edge;ib=b*27+edge
+            expected[np.ix_(ia,ib)]+=2.;expected[np.ix_(ib,ia)]+=2.
+            target_rows.append(dict(target=key,T=float(t[ia[0],ib[0]]),C=float(c[ia[0],ib[0]])))
+        error=float(np.max(abs(t-c-expected)))
+        result[target]=dict(gamma=1.,difference_error=error,targets=target_rows,
+             changed_matrix_entries=int(np.count_nonzero(expected)),
+             population_damping=float(max(abs(t.diagonal()).max(),abs(c.diagonal()).max())),
+             independent_jump_count=len(keys))
+        arrays[target+"_T"]=t;arrays[target+"_C"]=c;arrays[target+"_difference"]=t-c
+        if error>1e-12:raise ValueError("Unmatched collateral")
+    return (result,arrays) if with_arrays else result
+
+def extra_observables(model):
+    names=[];ops=[];o=operators();h=model["currents"][1]+model["currents"][2]
+    for m in range(8):
+        for n in range(4):
+            p=sp.kron(sp.diags((NUMBERS==n).astype(float)),o["masks"][m],format="csr")
+            names.append(f"p_m{m}_N{n}");ops.append(p)
+            for tag,op in [("h",h),*zip(("I01","I12","I02"),model["currents"])]:
+                names.append(f"{tag}_m{m}_N{n}");ops.append(clean(p@op))
+    for key,(m,a,b) in TARGETS.items():
+        node=np.zeros((8,8),complex);node[b,a]=1
+        op=sp.kron(node,o["masks"][m],format="csr")
+        names.extend([f"C_{key}_re",f"C_{key}_im"]);ops.extend([clean((op+op.getH())/2),clean((op-op.getH())/(2j))])
+        support=np.zeros(8);support[[a,b]]=1
+        names.append("aunit_"+key);ops.append(sp.kron(sp.diags(support),o["masks"][m],format="csr"))
+    activity=0*o["eye"]
+    for _,jump in model["jumps"]:
+        # Only intervention jumps are counted in this dedicated activity.
+        if _.startswith("selective_"):activity+=jump.getH()@jump
+    names.append("activity_added");ops.append(clean(activity))
+    rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order="F")) for op in ops],format="csr")
+    return names,rows
+
+def build(case,alpha=None):
+    if alpha is not None or case["model"] not in ("QS","RR_QS"):raise ValueError("E002d scope is QS/RR")
+    model=base_build(case)
+    ds=jump_diagonals(case["target"],case["kind"],float(case["gamma"]))
+    rates=damping(ds);addition=-sp.diags(rates.reshape(-1,order="F"),format="csr")
+    model["L"]=clean(model["L"]+addition)
+    model["jumps"] += [(f"selective_{key}_{case['kind']}",sp.diags(d,format="csr")) for key,d in ds]
+    names,rows=extra_observables(model)
+    model["rows"]=sp.vstack([model["rows"],rows],format="csr");model["names"]+=names
+    model["checks"].update(selective_population_damping=float(abs(rates.diagonal()).max()),
+        selective_trace=float(maxabs(sp.csr_matrix(np.eye(216).reshape(1,-1,order="F"))@addition)),selective_H_change=0.)
+    if max(model["checks"].values())>1e-10:raise ValueError("Operator identity failed")
+    return model
+
+
+=== FILE e002d_exp/numerics.py SHA256 274ca48f1912e0305c8ff2fbc5e6307b8e8dfe38d74b08c30c99b1d9110e4b8c ===
+"""Explicit deterministic error envelopes; no statistical significance claims."""
+import numpy as np
+from .plan import CONTRACT
+def estimate(value,uncertainty=None,reason=None):
+    value=None if value is None else float(value)
+    if value is None or not np.isfinite(value):
+        return dict(value=None,lower=None,upper=None,uncertainty=None,reason=reason or "nonfinite")
+    if uncertainty is None:
+        return dict(value=value,lower=None,upper=None,uncertainty=None,reason=reason or "no_coarse_pair")
+    u=float(uncertainty)
+    if not np.isfinite(u) or u<0:raise ValueError("Invalid uncertainty")
+    return dict(value=value,lower=value-u,upper=value+u,uncertainty=u,reason=reason)
+
+def linear(terms):
+    if any(x["value"] is None for _,x in terms):return estimate(None,reason="undefined_operand")
+    value=sum(k*x["value"] for k,x in terms)
+    if any(x["uncertainty"] is None for _,x in terms):return estimate(value)
+    return estimate(value,sum(abs(k)*x["uncertainty"] for k,x in terms))
+
+def ratio(a,b,probability=False):
+    floor=CONTRACT["probability_floor"] if probability else CONTRACT["primitive_absolute_floor"]
+    if a["value"] is None or b["value"] is None or abs(b["value"])<=floor or (probability and b["value"]<=floor):
+        return estimate(None,reason="small_denominator")
+    value=a["value"]/b["value"]
+    if a["uncertainty"] is None or b["uncertainty"] is None:return estimate(value)
+    lo,hi=b["lower"],b["upper"]
+    if lo<=0<=hi or min(abs(lo),abs(hi))<=floor or b["uncertainty"]>.1*abs(b["value"]):
+        return estimate(None,reason="uncertain_denominator")
+    values=[x/y for x in (a["lower"],a["upper"]) for y in (lo,hi)]
+    result=estimate(value,max(value-min(values),max(values)-value))
+    # Retain the true interval; the symmetric radius is only a summary.
+    result.update(lower=min(values),upper=max(values))
+    return result
+
+def signed(x,eligible=True):
+    if not eligible:return "INELIGIBLE"
+    if x["value"] is None:return "UNDEFINED"
+    if x["uncertainty"] is None:return "SCREENING_ONLY"
+    if x["lower"]>0:return "RESOLVED_POSITIVE"
+    if x["upper"]<0:return "RESOLVED_NEGATIVE"
+    return "UNRESOLVED_AT_TOLERANCE"
+
+def contrast(left,center,right):
+    return linear([(1.,center),(-.5,left),(-.5,right)])
+
+def sampled_minimum(left,center,right,eligible=True):
+    dl=linear([(1.,left),(-1.,center)]);dr=linear([(1.,right),(-1.,center)])
+    return dict(left_minus_center=dl,right_minus_center=dr,
+        status="CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS" if eligible and signed(dl)=="RESOLVED_POSITIVE" and signed(dr)=="RESOLVED_POSITIVE"
+        else "SAMPLED_MINIMUM_NOT_RESOLVED")
+
+
+
+=== FILE e002d_exp/plan.py SHA256 6034c772ae14bf287d713f522cc91e1360017b299858e9be10415431c061bcc4 ===
+"""Frozen E002d v003 cases; identities include every varied physical parameter."""
+import hashlib
+import json
+VERSION="E002d-v003"
+MODELS=("QS","RR_QS")
+EPSILON_GRID=(-.5,-.25,-.125,-.0625,0.,.0625,.125,.25,.5)
+CENTRAL_GRID=(-.125,0.,.125)
+TARGETS={"S2a":(2,5,6),"S2b":(4,3,6),"S1a":(2,1,2),"S1b":(4,1,4),
+         "M2a":(6,5,6),"M2b":(6,3,6),"M1a":(6,1,2),"M1b":(6,1,4)}
+OPERATIONS={**{k:(k,) for k in ("S2a","S2b","S1a","S1b")},
+            "S2":("S2a","S2b"),"S1":("S1a","S1b"),"M2":("M2a","M2b"),"M1":("M1a","M1b")}
+CONTRACT=dict(version=VERSION,source_physics_commit="29fe4496485c17e935b2e2ffa9c88b7d75ba6efe",
+ primary_dose=.1,secondary_doses=[.05,.2],primary_delta=.125,secondary_deltas=[.0625,.25],
+ probability_floor=1e-6,maximum_relative_denominator_uncertainty=.1,
+ primitive_absolute_floor=1e-8,resolution_multiplier=10.,
+ stationarity=dict(rhs=1e-7,drift=1e-6,flux_absolute=1e-8,flux_relative=1e-5),
+ physicality=dict(trace=1e-10,hermiticity=1e-10,minimum_eigenvalue=-1e-8),
+ refinement=dict(absolute=1e-6,relative=1e-4),operator_tolerance=1e-12,
+ structure_absolute=1e-6,structure_relative=.01,horizons=[200.,400.],
+ extension_rule="ALL_184_TO_400_IF_ANY_T200_STATIONARITY_FAILS",
+ primary_A=["E","S"],primary_B=["D_delta_0.125","CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS"],
+ primary_C=["D_T_minus_D_C","QS_minus_RR_of_D_T_minus_D_C"],
+ composition="sum_of_independent_dissipators",automatic_Fano_label=False,minimum_suppression_required=None,
+ uncertainty="u=1e-8+10*(abs(fine_mean-coarse_mean)+max(fine_window_range,coarse_window_range)); interval propagation; engineering envelope, not significance or rigorous total-error bound",
+ report=dict(maximum_bytes=30*1024**2,maximum_files=500,maximum_file_bytes=8*1024**2,
+ series="0:.2:10 then multiples of 4; exact final and T200 windows at step 2",
+ diagnostics="0:2:20 then multiples of 4; full-grid extrema before sampling",
+ case_format="one lossless compressed NPZ per case; full states/full grids stay on VM"))
+
+def physics_key(c,include_dt=True):
+    fields=("model","phi_over_pi","detuning","dephasing","target","kind","gamma")
+    return tuple(c[k] for k in fields)+((c["dt"],) if include_dt else ())
+
+def case(model,target="base",kind="base",gamma=0.,dt=.005,horizon=200.,phi=0.,epsilon=0.,noise=.05):
+    c=dict(model=model,target=target,kind=kind,gamma=float(gamma),dt=float(dt),horizon=float(horizon),
+           phi_over_pi=float(phi),detuning=float(epsilon),dephasing=float(noise),family=VERSION)
+    c["id"]=("Q" if model=="QS" else "R")+"_"+hashlib.sha256(json.dumps(physics_key(c),separators=(",",":")).encode()).hexdigest()[:12]
+    return c
+
+def cases(mode="production"):
+    unique={}
+    def add(block,model,target="base",kind="base",gamma=0.,dt=.005,phi=0.,epsilon=0.,noise=.05):
+        c=case(model,target,kind,gamma,dt,phi=phi,epsilon=epsilon,noise=noise);k=physics_key(c)
+        if k not in unique:unique[k]=dict(c,blocks=[])
+        if block not in unique[k]["blocks"]:unique[k]["blocks"].append(block)
+    for model in MODELS:
+        for dt in (.005,.01):
+            add("A",model,dt=dt)
+            for target in ("S2a","S2b","S1a","S1b"):
+                for kind in ("T","C"):add("A",model,target,kind,.1,dt)
+            for target in ("S2","S1"):
+                for gamma in ((.05,.1,.2) if dt==.005 else (.1,)):
+                    for kind in ("T","C"):add("A",model,target,kind,gamma,dt)
+        for noise in (.05,.25):
+            for dt in (.005,.01):
+                for epsilon in (EPSILON_GRID if dt==.005 else CENTRAL_GRID):
+                    add("B",model,dt=dt,phi=.5,epsilon=epsilon,noise=noise)
+                for epsilon in CENTRAL_GRID:add("B",model,dt=dt,phi=0.,epsilon=epsilon,noise=noise)
+        for dt in (.005,.01):
+            for epsilon in CENTRAL_GRID:
+                add("C",model,dt=dt,phi=.5,epsilon=epsilon)
+                for target in ("M2","M1"):
+                    for kind in ("T","C"):add("C",model,target,kind,.1,dt,phi=.5,epsilon=epsilon)
+    out=list(unique.values())
+    for i,c in enumerate(out):c["label"]=f"C{i:03d}"
+    if mode=="production":return out
+    if mode=="calibration":
+        selected=[]
+        for c in out:
+            a=(c["phi_over_pi"]==0 and c["detuning"]==0 and c["dephasing"]==.05 and
+               (c["target"]=="base" or (c["target"] in ("S2a","S2","S1") and c["gamma"]==.1)))
+            b=(c["phi_over_pi"]==.5 and c["detuning"]==.125 and c["dephasing"]==.25 and c["target"]=="base")
+            d=(c["phi_over_pi"]==.5 and c["detuning"]==.125 and c["dephasing"]==.05 and c["target"] in ("M1","M2"))
+            if a or b or d:selected.append(dict(c,horizon=10.))
+        return selected
+    if mode=="smoke":
+        requests=[("QS","S2","T",0.,0.,.05),("QS","M1","C",.5,.125,.05),
+                  ("RR_QS","S1a","C",0.,0.,.05),("RR_QS","M2","T",.5,-.125,.05),
+                  ("RR_QS","base","base",.5,.125,.25)]
+        return [dict(c,horizon=2.) for c in out if
+                (c["model"],c["target"],c["kind"],c["phi_over_pi"],c["detuning"],c["dephasing"]) in requests
+                and (c["target"]=="base" or c["gamma"]==.1)]
+    raise ValueError("Unknown mode: "+mode)
+
+def counts(mode,horizon=None):
+    cs=cases(mode);steps=sum(round((c["horizon"] if horizon is None else horizon)/c["dt"]) for c in cs)
+    return dict(trajectories=len(cs),steps=steps,rhs_calls=4*steps)
+
+def comparison_graph():
+    cs=cases();by={physics_key(c):c for c in cs};edges=[]
+    for c in cs:
+        if c["dt"]==.005 and physics_key(dict(c,dt=.01)) in by:
+            edges.append(dict(kind="dt",members=[c["id"],by[physics_key(dict(c,dt=.01))]["id"]]))
+        if c["kind"]=="T":
+            ks=[c,dict(c,kind="C"),dict(c,target="base",kind="base",gamma=0.)]
+            edges.append(dict(kind="T_C_baseline",members=[by[physics_key(x)]["id"] for x in ks]))
+        if c["model"]=="QS":
+            edges.append(dict(kind="QS_RR",members=[c["id"],by[physics_key(dict(c,model="RR_QS"))]["id"]]))
+        if c["detuning"]==0 and ("B" in c["blocks"] or "C" in c["blocks"]):
+            trio=[dict(c,detuning=e) for e in CENTRAL_GRID]
+            if all(physics_key(x) in by for x in trio):
+                edges.append(dict(kind="epsilon_triple",members=[by[physics_key(x)]["id"] for x in trio]))
+    return dict(extension_cohorts=[[c["id"] for c in cs]],edges=edges)
+
+CALIBRATION_FORECAST=dict(expected_seconds=180.,lower_seconds=60.,upper_seconds=480.,
+ source="72,000 RK4 steps at prior VM full-CSR ~.0017s/step=122s; 48 builds and diagnostics/export ~58s; provisional before final review")
+
+
+=== FILE e002d_exp/task.py SHA256 d48b3a18fc40c7c0ed488e4a5e7b9708b52fcdda4e2c2a25d9f879768b20300e ===
+"""E002d v003 orchestration. No networking or Copilot inside scientific jobs."""
+import gc,gzip,hashlib,json,os,platform,shutil,sys,time,traceback
+from pathlib import Path
+import numpy as np
+import scipy
+from e002_exp.model import save_json
+from e002c_exp.engine import stationarity
+from e002c_exp.windows import integral_mean
+from .engine import Trajectory
+from .model import build,consequence_map
+from .plan import cases,counts,CONTRACT,VERSION,CALIBRATION_FORECAST,comparison_graph
+from .analysis import analyze
+from .export import export_case,write_manifest,compact
+ROOT=Path(__file__).resolve().parents[1]
+
+def save_metrics(report,metrics):
+    # The two-horizon scientific analysis exceeds the per-file cap as pretty JSON.
+    # Keep all numbers, compress the detail and leave a verified pointer in metrics.json.
+    path=report/"analysis.json.gz"
+    with gzip.open(path,"wt",encoding="utf-8") as stream:
+        json.dump(metrics["analysis"],stream,ensure_ascii=False,allow_nan=False,separators=(",",":"))
+    public=dict(metrics,analysis=dict(file=path.name,encoding="gzip+json",
+                                    sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+    save_json(report/"metrics.json",public)
+
+def kernel_files():
+    return [ROOT/"e002_exp/model.py",*[ROOT/"e002c_exp"/f for f in
+        ("model.py","engine.py","diagnostics.py","windows.py","export.py")],
+        *sorted((ROOT/"e002d_exp").glob("*.py")),ROOT/"run.py"]
+
+def kernel_hash():
+    h=hashlib.sha256()
+    for p in kernel_files():h.update(p.relative_to(ROOT).as_posix().encode()+b"\0"+p.read_bytes())
+    return h.hexdigest()
+
+def preflight(config):
+    mode=config["mode"];cs=cases(mode)
+    if len({c["id"] for c in cs})!=len(cs):raise ValueError("Duplicate case IDs")
+    expected={"production":(184,5920000),"calibration":(48,72000),"smoke":(10,3000)}
+    n,s=expected[mode]
+    if counts(mode)!=dict(trajectories=n,steps=s,rhs_calls=4*s):raise ValueError("Invalid work volume")
+    if mode=="production":
+        cal=config["calibration"]
+        if cal["kernel_sha256"]!=kernel_hash():raise ValueError("Kernel changed since calibration")
+        if cal["numpy"]!=np.__version__ or cal["scipy"]!=scipy.__version__:raise ValueError("Library version changed")
+        if cal.get("review_status")!="VERIFIED_GITHUB":raise ValueError("Unverified calibration")
+        if any(len(cal[k])!=40 for k in ("report_commit","source_commit")):raise ValueError("Calibration not pinned")
+        if config.get("copilot_review_status")!="REVIEWED_AND_CHECKED":raise ValueError("Copilot findings not closed")
+        if set(config["forecast"]["branches"])!={"T200","T400"}:raise ValueError("Missing extension budget")
+    elif mode=="calibration":
+        if config["forecast"]!=CALIBRATION_FORECAST:raise ValueError("Unregistered calibration forecast")
+    if os.environ.get("VM_SOURCE_DIR") and Path(os.environ["VM_SOURCE_DIR"]).name!=config["run_id"]:
+        raise ValueError("Run identity differs from source directory")
+    minimum=(6 if mode=="production" else 3)*1024**3
+    if mode!="smoke" and shutil.disk_usage(".").free<minimum:raise ValueError("Insufficient disk reserve")
+    return cs
+
+def run(config,workdir=None):
+    started=time.monotonic();root=Path.cwd() if workdir is None else Path(workdir)
+    report=root/"report";full=root/"full";report.mkdir(parents=True,exist_ok=False);full.mkdir(parents=True,exist_ok=False)
+    identity=dict(run_id=config["run_id"],source_commit=os.environ.get("VM_SOURCE_COMMIT",config.get("local_source_commit","LOCAL_TEST")))
+    mode=config["mode"];runs=[];results=[];timings=[];fatal=None;extended=False;phase={}
+    plan=cases(mode)
+    try:
+        plan=preflight(config);maps,arrays=consequence_map(True)
+        save_json(report/"intervention_map.json",maps);np.savez_compressed(report/"intervention_rates.npz",**arrays)
+        save_json(report/"operation_contract.json",CONTRACT)
+        save_json(report/"case_registry.json",dict(cases=plan,graph=comparison_graph()))
+        for case in plan:
+            print("START",case["label"],case["id"],flush=True);t=time.monotonic()
+            tr=Trajectory(case,full,disk_floor=0 if mode=="smoke" else 1.5*1024**3,builder=build)
+            setup=time.monotonic()-t;t=time.monotonic();gate=tr.advance(case["horizon"])
+            timing=dict(id=case["id"],model=case["model"],setup_seconds=setup,rebuild_seconds=0.,
+                        advance_seconds=time.monotonic()-t)
+            tr.initial_stationarity=gate;tr.release_kernel();runs.append(tr);timings.append(timing)
+            print("DONE",case["label"],"stationary",gate["pass_gate"],flush=True)
+        if mode=="production" and not all(tr.initial_stationarity["pass_gate"] for tr in runs):
+            extended=True
+            for tr,timing in zip(runs,timings):
+                print("EXTEND",tr.case["label"],flush=True);t=time.monotonic()
+                tr.rebuild_kernel(build);timing["rebuild_seconds"]=time.monotonic()-t;t=time.monotonic()
+                tr.advance(400.);timing["advance_seconds"]+=time.monotonic()-t;tr.release_kernel()
+    except Exception as exc:
+        fatal=dict(type=type(exc).__name__,message=str(exc),traceback=traceback.format_exc())
+        save_json(full/"failure.json",fatal)
+    for i,(tr,timing) in enumerate(zip(runs,timings)):
+        t=time.monotonic();r=tr.finish();timing["finish_seconds"]=time.monotonic()-t
+        timing.update(steps=tr.step,integrator_seconds=tr.integrator_seconds,diagnostic_seconds=tr.diagnostic_seconds)
+        r["summary"]["initial_stationarity"]=tr.initial_stationarity
+        if r["summary"]["horizon"]==200:r["summary"]["transition_reference"]=None
+        results.append(r);runs[i]=None
+    del runs
+    gc.collect();t=time.monotonic();analysis=analyze(results,mode);phase["analysis_seconds"]=time.monotonic()-t
+    all_extrema={};t=time.monotonic()
+    for r in results:
+        s=r["summary"];cid=s["case"]["id"];all_extrema[cid]=export_case(report,r,mode)
+        s["h_extrema"]=all_extrema[cid]["h_t_positive"]
+        s["reference_horizons"]=[]
+        for horizon in sorted(set([200.,s["horizon"]])):
+            ref=integral_mean(r["series"],r["names"],horizon)
+            if ref is not None:s["reference_horizons"].append(float(horizon))
+    phase["export_seconds"]=time.monotonic()-t
+    with gzip.open(report/"extrema.json.gz","wt",encoding="utf-8") as f:json.dump(all_extrema,f,allow_nan=False,separators=(",",":"))
+    planned=counts(mode,400. if extended else None);steps=sum(r["summary"]["steps"] for r in results)
+    volume=len(results)==planned["trajectories"] and steps==planned["steps"] and all(
+        r["summary"]["rhs_calls"]==4*r["summary"]["steps"] and
+        r["summary"]["scalar_records"]==round(r["summary"]["horizon"]/.2)+1 and
+        r["summary"]["diagnostic_records"]==int(r["summary"]["horizon"]//2)+1 for r in results)
+    failures=([fatal["message"]] if fatal else [])+([] if volume else ["work_volume_mismatch"])
+    failures += [cid+":refinement_failed" for cid,pair in analysis["pairs"].items() if not pair["pass_gate"]]
+    baseline=[]
+    if mode=="production":
+        for r in results:
+            c=r["summary"]["case"]
+            if not(c["target"]=="base" and c["dt"]==.005 and c["phi_over_pi"]==0 and c["detuning"]==0 and c["dephasing"]==.05):continue
+            ref=integral_mean(r["series"],r["names"],200.)
+            expected={"QS":.1098400932168605,"RR_QS":.0850336762}[c["model"]]
+            err=None if ref is None else abs(ref["h"]-expected);passed=err is not None and err<=1e-6
+            baseline.append(dict(model=c["model"],expected_h=expected,actual_h=None if ref is None else ref["h"],
+                absolute_error=err,tolerance=1e-6,pass_gate=passed,source="E002c_WINDOW_EXPORT_v001_r001 [190,200]"))
+            if not passed:failures.append(c["id"]+":baseline_reproduction_failed")
+    branch="T400" if extended else "T200"
+    f=config["forecast"]["branches"][branch] if mode=="production" else config["forecast"]
+    runtime=dict(expected_seconds=f["expected_seconds"],lower_seconds=f["lower_seconds"],upper_seconds=f["upper_seconds"],
+        actual_seconds=time.monotonic()-started,status="PENDING_FINAL_ASSEMBLY",branch=branch if mode=="production" else mode,
+        measured_interval="entry to before final metadata rewrite; complete process checked via run.json",source=config["forecast"].get("source"))
+    metrics=dict(identity=identity,version=VERSION,mode=mode,cases=[r["summary"] for r in results],analysis=analysis,
+        work=dict(planned=planned,actual=dict(trajectories=len(results),steps=steps,rhs_calls=4*steps)),
+        timing=timings,phase_timing=phase,fatal=fatal,environment=dict(kernel_sha256=kernel_hash(),
+            numpy=np.__version__,scipy=scipy.__version__,python=sys.version,platform=platform.platform(),
+            threads={k:os.environ.get(k) for k in ("OPENBLAS_NUM_THREADS","OMP_NUM_THREADS","MKL_NUM_THREADS")}))
+    checks=dict(runtime_gate=runtime,work_volume_pass=bool(volume),baseline_reproduction=baseline,failures=failures,
+        technical_status="FAILED" if failures else "PASS",scientific_acceptance="USER_REVIEW_REQUIRED")
+    if results:
+        save_json(report/"schema.json",dict(series=["time"]+results[0]["names"],diagnostics=["time"]+results[0]["dnames"],
+            states=["unconditional"]+[f"mask_{m}" for m in range(8)],node_basis="000,001,010,011,100,101,110,111",
+            mask_bits=["01","12","02"],window="six even-time points [T-10,T], plus [190,200] when extended",
+            coherence="C_key=rho_node_mask[a,b], unnormalised; full_target_norm includes all edge microstate pairs",
+            mean="Simpson on six points, ratios of means",Fano_status="NOT_AUTOMATIC"))
+    save_json(report/"config.json",config);save_metrics(report,metrics);save_json(report/"checks.json",checks)
+    (report/"README.md").write_text("E002d v003: RESULT.md, metrics.json, checks.json, schema.json; one compressed NPZ per case.\n")
+    (report/"RESULT.md").write_text(compact(metrics,checks));write_manifest(report,full)
+    if not fatal and volume:
+        from .verify import verify
+        t=time.monotonic();verification=verify(report);phase["verification_seconds"]=time.monotonic()-t
+        save_json(report/"verification.json",verification)
+    runtime["actual_seconds"]=time.monotonic()-started
+    runtime["actual_over_expected"]=runtime["actual_seconds"]/runtime["expected_seconds"]
+    runtime["status"]="PASS" if runtime["lower_seconds"]<=runtime["actual_seconds"]<=runtime["upper_seconds"] and volume and not fatal else "REVIEW_REQUIRED"
+    save_metrics(report,metrics);save_json(report/"checks.json",checks)
+    (report/"RESULT.md").write_text(compact(metrics,checks));budget=write_manifest(report,full)
+    print(json.dumps(dict(runtime=runtime,work=metrics["work"],report_budget=budget,failures=failures),ensure_ascii=False),flush=True)
+    if failures:raise RuntimeError("; ".join(failures))
+    return metrics,checks
+
+
+=== FILE e002d_exp/verify.py SHA256 bc85ed792ee4680caf3e1ed94f5b0991e383c205eac9f84ba535c81a95ae0e58 ===
+"""Independent report-only reconstruction. Imports no evolution/model/analysis code."""
+import gzip,hashlib,json
+from pathlib import Path
+import numpy as np
+from scipy.integrate import simpson
+TARGETS={"S2a":(2,5,6),"S2b":(4,3,6),"S1a":(2,1,2),"S1b":(4,1,4),
+         "M2a":(6,5,6),"M2b":(6,3,6),"M1a":(6,1,2),"M1b":(6,1,4)}
+OPS={**{k:(k,) for k in ("S2a","S2b","S1a","S1b")},
+     "S2":("S2a","S2b"),"S1":("S1a","S1b"),"M2":("M2a","M2b"),"M1":("M1a","M1b")}
+
+def verify(report):
+    root=Path(report);manifest=json.loads((root/"data_manifest.json").read_text())
+    for item in manifest["exported"]:
+        path=Path(item["path"])
+        if path.is_absolute() or ".." in path.parts:raise ValueError("Unsafe export path")
+        data=(root/path).read_bytes()
+        if len(data)!=item["bytes"] or hashlib.sha256(data).hexdigest()!=item["sha256"]:
+            raise ValueError("Export hash mismatch: "+item["path"])
+    metrics=json.loads((root/"metrics.json").read_text());schema=json.loads((root/"schema.json").read_text())
+    pointer=metrics["analysis"]
+    if "file" in pointer:
+        if pointer["file"]!="analysis.json.gz":raise ValueError("Unexpected analysis path")
+        data=(root/pointer["file"]).read_bytes()
+        if hashlib.sha256(data).hexdigest()!=pointer["sha256"]:raise ValueError("Analysis hash mismatch")
+        metrics["analysis"]=json.loads(gzip.decompress(data))
+    registry=json.loads((root/"case_registry.json").read_text())["cases"]
+    ids=[c["id"] for c in registry];actual=[s["case"]["id"] for s in metrics["cases"]]
+    if len(set(ids))!=len(ids) or set(actual)!=set(ids) or len(actual)!=len(ids):raise ValueError("Case coverage mismatch")
+    registered={c["id"]:c for c in registry}
+    names=schema["series"];maximum=0.;mineig=1.;means={};windows=0;certificates=0
+    def check(a,b,label,tolerance=1e-10):
+        nonlocal maximum
+        a,b=np.asarray(a),np.asarray(b)
+        if a.shape!=b.shape:raise ValueError("Reconstruction shape: "+label)
+        if not np.isfinite(a).all() or not np.isfinite(b).all():raise ValueError("Nonfinite reconstruction: "+label)
+        error=float(np.max(abs(a-b),initial=0));maximum=max(maximum,error)
+        if error>tolerance:raise ValueError("Reconstruction failed: "+label+" "+str(error))
+    for s in metrics["cases"]:
+        c=s["case"];cid=c["id"]
+        if c!=registered[cid]:raise ValueError("Case identity mismatch")
+        with np.load(root/"cases"/(cid+".npz"),allow_pickle=False) as z:
+            time=z["window_time"];blocks=z["window_blocks"];values=z["window_scalar"]
+            if blocks.shape!=(len(time),9,8,8) or not np.array_equal(time,values[:,0]):raise ValueError("Window shape/grid mismatch")
+            check(blocks,blocks.swapaxes(-1,-2).conj(),"Hermiticity")
+            ev=np.linalg.eigvalsh(blocks);mineig=min(mineig,float(ev.min()))
+            if ev.min() < -1e-8:raise ValueError("Nonpositive reduced block")
+            check(blocks[:,0],blocks[:,1:].sum(axis=1),"mask sum")
+            check(np.trace(blocks[:,0],axis1=1,axis2=2),np.ones(len(time)),"trace")
+            numbers=np.array([i.bit_count() for i in range(8)])
+            allcurr=np.zeros((len(time),3));activity=np.zeros(len(time))
+            for mask in range(8):
+                b=blocks[:,mask+1]
+                check(values[:,names.index(f"p_m{mask}")],np.trace(b,axis1=1,axis2=2).real,"mask weight")
+                for n in range(4):
+                    weight=np.trace(b[:,numbers==n][:,:,numbers==n],axis1=1,axis2=2).real
+                    curr=np.zeros((len(time),3))
+                    if n in (1,2):
+                        pairs=((2,4),(1,2),(1,4)) if n==1 else ((3,5),(5,6),(3,6))
+                        for e,(a,bb) in enumerate(pairs):
+                            if mask&(1<<e):
+                                phase=np.exp(-1j*np.pi*c["phi_over_pi"]) if e==2 else 1.
+                                curr[:,e]=-2*(phase*b[:,a,bb]).imag
+                    current=curr[:,1]+curr[:,2]
+                    check(values[:,names.index(f"p_m{mask}_N{n}")],weight,"sector weight")
+                    for tag,expected in [("h",current),*[(tag,curr[:,e]) for e,tag in enumerate(("I01","I12","I02"))]]:
+                        check(values[:,names.index(f"{tag}_m{mask}_N{n}")],expected,tag+" sector current")
+                    norm=np.sqrt(bool(mask&2)+bool(mask&4)) if n in (1,2) else 0.
+                    if np.any(abs(current)>norm*weight+1e-7):raise ValueError("Conditional current exceeds operator bound")
+                    allcurr+=curr
+                for key,(m,a,bb) in TARGETS.items():
+                    if m!=mask:continue
+                    check(values[:,names.index("C_"+key+"_re")],b[:,a,bb].real,"coherence real")
+                    check(values[:,names.index("C_"+key+"_im")],b[:,a,bb].imag,"coherence imaginary")
+                    support=(b[:,a,a]+b[:,bb,bb]).real
+                    check(values[:,names.index("aunit_"+key)],support,"jump support")
+                    if key in OPS.get(c["target"],()):activity+=c["gamma"]*support
+            for e,tag in enumerate(("I01","I12","I02")):check(values[:,names.index(tag)],allcurr[:,e],tag+" sum")
+            check(values[:,names.index("h")],allcurr[:,1]+allcurr[:,2],"hop sum")
+            check(values[:,names.index("activity_added")],activity,"activity")
+            for horizon in s.get("reference_horizons",[]):
+                reference=s["reference"] if horizon==s["horizon"] else s["transition_reference"]
+                wanted=horizon-10+2*np.arange(6)
+                take=np.isin(time,wanted)
+                if not np.array_equal(time[take],wanted):raise ValueError("Incomplete reference window")
+                mean=simpson(values[take,1:],x=time[take],axis=0)/10
+                check(mean,np.array([reference[name] for name in names[1:]]),"mean")
+                record=dict(zip(names[1:],mean.tolist()))
+                pk=(c["model"],c["target"],c["kind"],c["gamma"],c["phi_over_pi"],c["detuning"],c["dephasing"],c["dt"],horizon)
+                means[pk]=record
+                if horizon==s["horizon"]:
+                    check(mean,np.array([s["reference"][name] for name in names[1:]]),"final mean")
+            # Recompute the exported pure-state witness constants without the production helper.
+            for ti in range(len(z["e_time"])):
+                for state in range(9):
+                    if not z["e_valid"][ti,state]:continue
+                    block=z["e_blocks"][ti,state];rho=block/np.trace(block).real
+                    for j,psi in enumerate(z["e_vectors"][ti,state]):
+                        check(np.array(np.vdot(psi,psi).real),np.array(1.),"witness vector norm")
+                        alphas=[]
+                        for cut in range(3):
+                            mat=np.moveaxis(psi.reshape(2,2,2),cut,0).reshape(2,4)
+                            alphas.append(float(np.linalg.svd(mat,compute_uv=False)[0]**2))
+                        check(np.array(max(alphas)),np.array(z["e_alpha"][ti,state,j]),"witness alpha")
+                        check(np.array(np.vdot(psi,rho@psi).real),np.array(z["e_overlap"][ti,state,j]),"witness overlap")
+                        certificates+=1
+        windows+=1
+    # Check full rate maps by independently building diagonal eigenvalue patterns.
+    mask_ids=np.array([(int(a==2)+2*int(b==2)+4*int(c==2)) for a in range(3) for b in range(3) for c in range(3)])
+    with np.load(root/"intervention_rates.npz",allow_pickle=False) as z:
+        for op,keys in OPS.items():
+            for branch in ("T","C"):
+                expected=np.zeros((216,216))
+                for key in keys:
+                    m,a,b=TARGETS[key];v=np.zeros(216);edge=np.flatnonzero(mask_ids==m)
+                    v[a*27+edge]=1.;v[b*27+edge]=-1. if branch=="T" else 1.
+                    expected+=(v[:,None]-v[None,:])**2/2
+                check(z[op+"_"+branch],expected,"rate map",1e-12)
+            check(z[op+"_difference"],z[op+"_T"]-z[op+"_C"],"rate difference",1e-12)
+    # Reconstruct central values of the published scientific comparisons; no import of analysis.
+    def get(model,target,kind,gamma,phi,epsilon,noise,horizon):
+        return means[(model,target,kind,gamma,phi,epsilon,noise,.005,horizon)]
+    def dval(model,target,kind,gamma,phi,noise,horizon,delta=.125,variable="j"):
+        records=[get(model,target,kind,gamma,phi,e,noise,horizon) for e in (-delta,0.,delta)]
+        ys=[r["h_m6_N2"]/r["p_m6_N2"] if variable=="j" else r[variable] for r in records]
+        return ys[1]-(ys[0]+ys[2])/2
+    def metric_check(reported,expected,label):
+        if reported.get("value") is not None:check(np.array(reported["value"]),np.array(expected),label)
+    comparison_count=0
+    for row in metrics["analysis"]["A"]:
+        if "E" not in row:continue
+        h=row["horizon"];g=row["gamma"];target=row["target"]
+        b=[get(m,"base","base",0.,0.,0.,.05,h) for m in ("QS","RR_QS")]
+        t=[get(m,target,"T",g,0.,0.,.05,h) for m in ("QS","RR_QS")]
+        c=[get(m,target,"C",g,0.,0.,.05,h) for m in ("QS","RR_QS")]
+        E=(t[0]["h"]-c[0]["h"])-(t[1]["h"]-c[1]["h"]);G=b[0]["h"]-b[1]["h"]
+        metric_check(row["E"],E,"E")
+        if row["S"]["value"] is not None:metric_check(row["S"],E/G,"S")
+        for part in row["components"]:
+            name=f"h_m{part['mask']}_N{part['N']}"
+            val=(t[0][name]-c[0][name])-(t[1][name]-c[1][name])
+            metric_check(part["E"],val,"sector E")
+        comparison_count+=1
+    for row in metrics["analysis"]["B"]:
+        if "D" not in row:continue
+        args=(row["model"],"base","base",0.,row["phi_over_pi"],row["dephasing"],row["horizon"],row["delta"])
+        if row["D"]["value"] is not None:metric_check(row["D"],dval(*args),"D")
+        metric_check(row["raw_D"],dval(*args,variable="h_m6_N2"),"raw D")
+        metric_check(row["weight_D"],dval(*args,variable="p_m6_N2"),"weight D");comparison_count+=1
+    def response(model,target,horizon):
+        return dval(model,target,"T",.1,.5,.05,horizon)-dval(model,target,"C",.1,.5,.05,horizon)
+    for row in metrics["analysis"]["C"]:
+        if "delta_D" not in row or row["delta_D"]["value"] is None:continue
+        h=row["horizon"]
+        if "model" in row:expected=response(row["model"],row["target"],h)
+        elif row["comparison"]=="QS_minus_RR":expected=response("QS",row["fixed"],h)-response("RR_QS",row["fixed"],h)
+        else:expected=response(row["fixed"],"M2",h)-response(row["fixed"],"M1",h)
+        metric_check(row["delta_D"],expected,"C delta D");comparison_count+=1
+    if windows!=metrics["work"]["actual"]["trajectories"]:raise ValueError("Window count mismatch")
+    return dict(status="PASS",case_windows=windows,reconstruction_max_error=maximum,min_reduced_eigenvalue=mineig,
+        witness_certificates=certificates,scientific_comparisons=comparison_count,
+        limitations=["Full-state positivity, full-target norms and node-edge negativity require full VM states.",
+          "Scalar central values reconstructed independently; engineering uncertainty rules require separate tests and review."])
+
+
+=== FILE e002_exp/model.py SHA256 9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2 ===
+"""E001X operators plus explicit sqrt(I-Q) idle control; P/Q definitions retained."""
+import hashlib,json,os
+from pathlib import Path
+import numpy as np
+from scipy import sparse as sp
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+def save_json(path, obj):
+    path = Path(path)
+    temp = path.with_name(path.name + '.tmp')
+    with temp.open('w', encoding='utf-8') as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2, allow_nan=False)
+        f.write('\n')
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(temp, path)
+
+def maxabs(a):
+    values = a.data if sp.issparse(a) else np.asarray(a)
+    return float(np.max(np.abs(values), initial=0.0))
+
+def clean(a):
+    a = a.tocsr()
+    a.sum_duplicates()
+    a.eliminate_zeros()
+    a.sort_indices()
+    return a
+
+def ketbra(d, a, b):
+    return sp.csr_matrix(([1.0 + 0j], ([a], [b])), shape=(d, d))
+
+def tensor(factors):
+    out = sp.csr_matrix([[1.0 + 0j]])
+    for a in factors:
+        out = sp.kron(out, a, format='csr')
+    return out
+
+def build_model(p):
+    if 'rr_rates' in p:
+        if p['g'] != 0:
+            raise ValueError('RR requires g=0: coherent H_form is forbidden')
+        if set(p['rr_rates']) != {'01','12','02'}:
+            raise ValueError('RR rates must specify edges 01,12,02')
+        for rates in p['rr_rates'].values():
+            if len(rates)!=2 or not np.isfinite(rates).all() or min(rates)<0:
+                raise ValueError('Invalid RR rates')
+    if p['gate_form'] not in {'Pi', 'Q'} or p['gate_idle'] not in {'Pi', 'Q', 'S'}:
+        raise ValueError('Unknown gate')
+    dims = [2, 2, 2, 3, 3, 3]
+    identities = [sp.eye(d, format='csr', dtype=complex) for d in dims]
+    size = int(np.prod(dims))
+    eye = sp.eye(size, format='csr', dtype=complex)
+
+    def embed(a, at):
+        factors = identities.copy()
+        factors[at] = a
+        return tensor(factors)
+
+    plus = [embed(ketbra(2, 1, 0), i) for i in range(3)]
+    minus = [a.getH().tocsr() for a in plus]
+    n = [clean(a @ b) for a, b in zip(plus, minus)]
+    z = [eye - 2 * a for a in n]
+    edge_pairs = [(0, 1), (1, 2), (0, 2)]
+    h_hop = sp.csr_matrix((size, size), dtype=complex)
+    h_form = h_hop.copy()
+    jumps = []
+    p0s, prs, pls = [], [], []
+    for e, (i, j) in enumerate(edge_pairs):
+        at = e + 3
+        p0, pr, pl = [embed(ketbra(3, k, k), at) for k in range(3)]
+        bplus = embed(ketbra(3, 2, 1), at)
+        bminus = bplus.getH().tocsr()
+        pump = embed(ketbra(3, 1, 0), at)
+        broken = embed(ketbra(3, 0, 2), at)
+        hop = plus[i] @ minus[j] + plus[j] @ minus[i]
+        p_single = (eye - z[i] @ z[j]) / 2
+        pi_plus = (p_single + hop) / 2
+        q = p_single / 2
+        g_form = pi_plus if p["gate_form"] == "Pi" else q
+        # Q has eigenvalues 0 and 1/2; this is sqrt(I-Q), NOT I-sqrt(I-Q).
+        idle_factor = (eye - pi_plus if p['gate_idle'] == 'Pi' else
+                       eye - q if p['gate_idle'] == 'Q' else
+                       eye - (2 - np.sqrt(2))*q)
+        h_hop += p['J'] * (pl @ hop)
+        h_form += p['g'] * ((bplus + bminus) @ g_form)
+        channels = [
+            ('pump', p['eta'], pump),
+            ('break', p['delta'], broken),
+            ('idle', p['gamma_r'], bminus @ idle_factor),
+            ('background', p['gamma_bg'], bminus),
+            ('edge_dephase', p['phi_e'], pr - pl),
+        ]
+        if 'rr_rates' in p:
+            channels=[x for x in channels if x[0]!='idle']
+            alpha,beta=p['rr_rates'][f'{i}{j}']
+            channels += [('idle',beta,bminus),('renew',alpha,bplus)]
+        for label, rate, op in channels:
+            jumps.append((f'{label}_{i}{j}', clean(np.sqrt(rate) * op)))
+        p0s.append(p0)
+        prs.append(pr)
+        pls.append(pl)
+    jumps.append(('source_0', clean(np.sqrt(p['kappa_in']) * plus[0])))
+    jumps.append(('sink_2', clean(np.sqrt(p['kappa_out']) * minus[2])))
+    jumps.extend((f'node_dephase_{i}', clean(np.sqrt(p['phi_n']) * z[i])) for i in range(3))
+    return clean(h_hop + h_form), jumps, clean(sum(prs) + sum(pls)), clean(p['eta'] * sum(p0s) - p['delta'] * sum(pls)), dims
+
+def build_liouvillian(h, jumps):
+    eye = sp.eye(h.shape[0], format='csr', dtype=complex)
+    result = -1j * (sp.kron(eye, h, format='csr') - sp.kron(h.T, eye, format='csr'))
+    for _, c in jumps:
+        a = clean(c.getH() @ c)
+        result += sp.kron(c.conjugate(), c, format='csr')
+        result -= 0.5 * sp.kron(eye, a, format='csr')
+        result -= 0.5 * sp.kron(a.T, eye, format='csr')
+    return clean(result)
+
+def right(rho, a):
+    return (a.T @ rho.T).T
+
+def make_direct_rhs(h, jumps):
+    products = [(c, c.getH().tocsr(), clean(c.getH() @ c)) for _, c in jumps]
+
+    def rhs(v):
+        rho = v.reshape(h.shape, order='F')
+        out = -1j * (h @ rho - right(rho, h))
+        for c, ch, a in products:
+            out += right(c @ rho, ch) - 0.5 * (a @ rho + right(rho, a))
+        return out.reshape(-1, order='F')
+    return rhs
+
+def rk4(rhs, v, dt):
+    a = rhs(v)
+    b = rhs(v + dt * a / 2)
+    c = rhs(v + dt * b / 2)
+    d = rhs(v + dt * c)
+    return v + dt * (a + 2*b + 2*c + d) / 6
+
+def measurement_operators(p,h,jumps,L):
+    dims=[2,2,2,3,3,3];I=sp.eye(216,format='csr',dtype=complex)
+    def emb(a,k):
+        fs=[sp.eye(d,format='csr',dtype=complex) for d in dims];fs[k]=a;return tensor(fs)
+    n=[emb(ketbra(2,1,1),i) for i in range(3)];z=[I-2*x for x in n]
+    up=[emb(ketbra(2,1,0),i) for i in range(3)]
+    p0=[emb(ketbra(3,0,0),i+3) for i in range(3)]
+    pr=[emb(ketbra(3,1,1),i+3) for i in range(3)]
+    pl=[emb(ketbra(3,2,2),i+3) for i in range(3)]
+    names=[];ops=[]
+    def add(name,op):names.append(name);ops.append(clean(op))
+    pairs=[(0,1),(1,2),(0,2)]
+    for e,(i,j) in enumerate(pairs):
+        en=f'{i}{j}'
+        for label,arr in [('p0',p0),('pR',pr),('pL',pl)]:add(label+en,arr[e])
+        bp=emb(ketbra(3,2,1),e+3);bm=bp.getH();hop=up[i]@up[j].getH()+up[j]@up[i].getH()
+        q=(I-z[i]@z[j])/4;pi=q+hop/2;G=pi if p['gate_form']=='Pi' else q
+        add('gate_Pi'+en,pi);add('gate_Q'+en,q)
+        add('edge_coherence_Re'+en,(bp+bm)/2);add('edge_coherence_Im'+en,(bp-bm)/(2j))
+        add('formation_current'+en,1j*p['g']*((bm-bp)@G))
+        add('dPL_H_'+en,1j*(h@pl[e]-pl[e]@h))
+        for name,c in jumps:
+            ch=c.getH();a=ch@c;add('dPL_'+en+'__'+name,ch@pl[e]@c-(a@pl[e]+pl[e]@a)/2)
+    for i,x in enumerate(n):add('n'+str(i),x)
+    add('sum_pL',sum(pl));add('sum_pR',sum(pr));add('inventory',sum(pl)+sum(pr))
+    add('sink_flux',p['kappa_out']*n[2]);add('source_flux',p['kappa_in']*(I-n[0]))
+    add('pump_flux',p['eta']*sum(p0));add('break_flux',p['delta']*sum(pl))
+    add('path_probability',pl[2]+(I-pl[2])@pl[0]@pl[1])
+    for name,c in jumps:add('event_rate__'+name,c.getH()@c)
+    rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in ops],format='csr')
+    idx={name:i for i,name in enumerate(names)}
+    balance=0.
+    for i,j in pairs:
+        en=f'{i}{j}';row=rows[idx['dPL_H_'+en]].copy()
+        for name,_ in jumps:row+=rows[idx['dPL_'+en+'__'+name]]
+        balance=max(balance,maxabs(rows[idx['pL'+en]]@L-row))
+    return rows,names,balance
+
+def validate(v,tol,eigen=False):
+    rho=v.reshape((216,216),order='F');x={'trace_error':float(abs(np.trace(rho)-1)),'hermiticity_error':maxabs(rho-rho.conj().T),'finite':bool(np.isfinite(v).all())}
+    if eigen:x['min_eigenvalue']=float(np.linalg.eigvalsh((rho+rho.conj().T)/2)[0])
+    good=x['finite'] and x['trace_error']<=tol['trace'] and x['hermiticity_error']<=tol['hermiticity'] and x.get('min_eigenvalue',0)>=-tol['positivity']
+    if not good:raise RuntimeError('Invalid state: '+json.dumps(x))
+    return x
+
+def adjoint_jump(c, observable):
+    a = c.getH() @ c
+    return clean(c.getH() @ observable @ c - (a @ observable + observable @ a) / 2)
+
+def measurement_model(parameters, acceptance):
+    h, jumps, inventory, resource_rhs, dims = build_model(parameters)
+    generator = build_liouvillian(h, jumps)
+    old_rows, names, edge_balance = measurement_operators(parameters, h, jumps, generator)
+    names = list(names)
+    extra = []
+    eye = sp.eye(216, format='csr', dtype=complex)
+    def emb(a, at):
+        fs = [sp.eye(d, format='csr', dtype=complex) for d in dims]
+        fs[at] = a
+        return tensor(fs)
+    def add(name, op):
+        names.append(name)
+        extra.append(clean(op))
+    n = [emb(ketbra(2, 1, 1), i) for i in range(3)]
+    up = [emb(ketbra(2, 1, 0), i) for i in range(3)]
+    jd = dict(jumps)
+    checks = {
+        'H_hermiticity': maxabs(h - h.getH()),
+        'trace_generator': maxabs(generator.getH() @ np.eye(216).reshape(-1, order='F')),
+        'resource_identity': maxabs(generator.getH() @ inventory.toarray().reshape(-1, order='F') - resource_rhs.toarray().reshape(-1, order='F')),
+        'edge_balance': edge_balance,
+    }
+    node_currents = {k: [sp.csr_matrix((216,216), dtype=complex) for _ in range(3)] for k in ['hop','form','idle']}
+    protected_totals = {k:sp.csr_matrix((216,216),dtype=complex) for k in ['B_L','B_R','M_L','E_L']}
+    for e, (i,j) in enumerate([(0,1),(1,2),(0,2)]):
+        en = f'{i}{j}'
+        pl = emb(ketbra(3,2,2), e+3)
+        pr = emb(ketbra(3,1,1), e+3)
+        bp = emb(ketbra(3,2,1), e+3)
+        bm = bp.getH()
+        hop = up[i] @ up[j].getH() + up[j] @ up[i].getH()
+        q = ((eye-n[i]) @ n[j] + n[i] @ (eye-n[j])) / 2
+        pi = q + hop/2
+        pm = q - hop/2
+        even = eye - 2*q
+        gf = pi if parameters['gate_form'] == 'Pi' else q
+        hf = parameters['g'] * (bp+bm) @ gf
+        if 'rr_rates' in parameters:
+            checks['rr_H_form_zero_'+en] = maxabs(hf)
+        hh = parameters['J'] * pl @ hop
+        bl, ml, el = pl @ pi, pl @ pm, pl @ even
+        for label, op in [('B_L', bl), ('B_R', pr@pi), ('M_L',ml), ('E_L',el)]:
+            add(label+en, op)
+            protected_totals[label] += op
+        checks['partition_'+en] = maxabs(bl+ml+el-pl)
+        own_idle = adjoint_jump(jd['idle_'+en], n[j])
+        conditional_pi = 'rr_rates' not in parameters and parameters['gate_idle']=='Pi'
+        target_idle = parameters['gamma_r']/4 * pl @ (n[i]-n[j]) if conditional_pi else 0*pl
+        checks['idle_current_'+en] = maxabs(own_idle-target_idle)
+        pieces = {'hop':1j*(hh@n[j]-n[j]@hh), 'form':1j*(hf@n[j]-n[j]@hf), 'idle':own_idle}
+        for label, op in pieces.items():
+            add('I_'+label+en, op)
+            node_currents[label][i] -= op
+            node_currents[label][j] += op
+        add('I_total'+en, sum(pieces.values()))
+        deph = adjoint_jump(jd['node_dephase_'+str(i)],bl)+adjoint_jump(jd['node_dephase_'+str(j)],bl)
+        ed = adjoint_jump(jd['edge_dephase_'+en],bl)
+        own_idle_bl = adjoint_jump(jd['idle_'+en],bl)
+        for label, op in [('node_dephase',deph),('edge_dephase',ed),('break',adjoint_jump(jd['break_'+en],bl)),('idle',own_idle_bl)]:
+            add('dBL_'+label+en,op)
+        checks['bright_node_dephase_'+en]=maxabs(deph-2*parameters['phi_n']*(ml-bl))
+        checks['bright_edge_dephase_'+en]=maxabs(ed)
+        idle_bl_target=0*bl if parameters['gate_idle']=='Pi' else -parameters['gamma_r']*(0.5 if parameters['gate_idle']=='S' else 0.25)*bl
+        if 'rr_rates' in parameters:
+            idle_bl_target=-parameters['rr_rates'][en][1]*bl
+        checks['bright_idle_'+en]=maxabs(own_idle_bl-idle_bl_target)
+        idle_rate_target=parameters['gamma_r']*(ml+el if parameters['gate_idle']=='Pi' else (bl+ml)*(0.5 if parameters['gate_idle']=='S' else 0.25)+el)
+        if 'rr_rates' in parameters:
+            idle_rate_target=parameters['rr_rates'][en][1]*pl
+        checks['idle_rate_'+en]=maxabs(jd['idle_'+en].getH()@jd['idle_'+en]-idle_rate_target)
+    for label, op in protected_totals.items():
+        add(label+'_total',op)
+    for label in node_currents:
+        add('I_'+label+'_sink',node_currents[label][2])
+    for i in range(3):
+        full=clean(1j*(h@n[i]-n[i]@h)+sum(adjoint_jump(c,n[i]) for _,c in jumps))
+        transport=sum(node_currents[k][i] for k in node_currents)
+        external=parameters['kappa_in']*(eye-n[0]) if i==0 else (-parameters['kappa_out']*n[2] if i==2 else 0*eye)
+        checks['node_balance_'+str(i)]=maxabs(full-transport-external)
+        add('dn'+str(i)+'_dt',full)
+    extra_rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in extra],format='csr')
+    rows=sp.vstack([old_rows,extra_rows],format='csr')
+    if max(checks.values())>acceptance['algebra']:
+        raise RuntimeError('Operator checks failed: '+json.dumps(checks))
+    return {'H':h,'jumps':jumps,'L':generator,'rows':rows,'names':names,'index':{n:i for i,n in enumerate(names)},'checks':checks}
+
+
+=== FILE e002c_exp/model.py SHA256 fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491 ===
+"""E002c changes around the byte-for-byte pinned E002b operator builder."""
+from functools import lru_cache
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import (build_model, build_liouvillian, tensor, ketbra,
+                            clean, maxabs, adjoint_jump)
+
+EDGES = ('01', '12', '02')
+PAIRS = ((0, 1), (1, 2), (0, 2))
+BASE = dict(J=1., g=.5, eta=.25, delta=.1, gamma_bg=.01, gamma_r=.05,
+            kappa_in=.5, kappa_out=.5, phi_e=.05, phi_n=.05,
+            gate_form='Q', gate_idle='S')
+RR = dict(zip(EDGES, ((.034391922002445986, .03673596724712181),
+                     (.0343919220002473, .03673596724703888),
+                     (.06080323306206624, .03505876323286412))))
+ONE = np.array([4, 2, 1])
+TWO = np.array([6, 5, 3])
+
+@lru_cache(None)
+def operators():
+    dims = [2, 2, 2, 3, 3, 3]
+    def emb(a, k):
+        fs = [sp.eye(d, dtype=complex, format='csr') for d in dims]
+        fs[k] = a
+        return tensor(fs)
+    eye = sp.eye(216, dtype=complex, format='csr')
+    n = [emb(ketbra(2, 1, 1), i) for i in range(3)]
+    up = [emb(ketbra(2, 1, 0), i) for i in range(3)]
+    pl = [emb(ketbra(3, 2, 2), i+3) for i in range(3)]
+    pr = [emb(ketbra(3, 1, 1), i+3) for i in range(3)]
+    bp = [emb(ketbra(3, 2, 1), i+3) for i in range(3)]
+    c = [(eye-n[i])@n[j]+n[i]@(eye-n[j]) for i, j in PAIRS]
+    edge_states = np.array(list(np.ndindex(3, 3, 3)))
+    mask_id = ((edge_states == 2) * [1, 2, 4]).sum(axis=1)
+    masks = [sp.diags((mask_id == m).astype(float), format='csr') for m in range(8)]
+    return dict(eye=eye, n=n, up=up, pl=pl, pr=pr, bp=bp, c=c,
+                mask_id=mask_id, masks=masks)
+
+def initial():
+    r = np.zeros((216, 216), complex)
+    for node in (4, 2):
+        k = node*27+13  # RRR = ternary 111
+        r[k, k] = .5
+    return r.reshape(-1, order='F')
+
+def sector_hamiltonian(mask, phi=0., epsilon=0., amplitudes=(1., 1., 1.), theta=None):
+    theta = [0., 0., -phi] if theta is None else theta
+    h = np.diag([0., epsilon, 0.]).astype(complex)
+    for e, (i, j) in enumerate(PAIRS):
+        if mask & (1 << e):
+            h[i, j] = amplitudes[e]*np.exp(1j*theta[e])
+            h[j, i] = h[i, j].conjugate()
+    return h
+
+def null_projector(a):
+    _, s, vh = np.linalg.svd(a, full_matrices=True)
+    tol = 1e-10*max(1., s[0] if len(s) else 0.)
+    v = vh[int(np.sum(s > tol)):].conj().T
+    p = v@v.conj().T
+    return p, dict(singular_values=s.tolist(), tolerance=tol,
+                   dimension=v.shape[1], residual=float(np.linalg.norm(a@p)))
+
+def dark_projectors(h):
+    c = np.array([[0., 0., 1.]])
+    k, ki = null_projector(np.vstack([c, c@h]))
+    d, di = null_projector(np.vstack([c, c@h, c@h@h]))
+    connected = {2}
+    for _ in range(3):
+        connected |= {j for i in list(connected) for j in range(3)
+                      if i != j and abs(h[i, j]) > 1e-12}
+    isolated = np.diag([float(i not in connected) for i in range(3)])
+    # Every sink-disconnected component is invariant; separate it from interference.
+    return k, d, isolated, d-isolated, dict(K=ki, D=di)
+
+def build(case, alpha=None):
+    o = operators(); p = dict(BASE, phi_n=float(case['dephasing']))
+    variant = case['model']
+    if variant == 'RR_QS':
+        p.update(g=0., gamma_r=0., rr_rates=RR)
+    elif variant == 'IC1_QS':
+        if alpha is None or np.shape(alpha) != (3,) or not np.isfinite(alpha).all() or min(alpha)<1e-4 or max(alpha)>2:
+            raise ValueError('IC requires three declared rates in [1e-4,2]')
+        p['g'] = 0.
+    elif variant != 'QS':
+        raise ValueError('Unknown model')
+    h, jumps, inventory, resource, _ = build_model(p)
+    theta = [0., 0., -float(case['phi_over_pi'])*np.pi]
+    currents = []; hh_total = 0*h
+    for e, (i, j) in enumerate(PAIRS):
+        a = o['up'][i]@o['up'][j].getH()
+        old = p['J']*o['pl'][e]@(a+a.getH())
+        hh = p['J']*o['pl'][e]@(np.exp(1j*theta[e])*a+np.exp(-1j*theta[e])*a.getH())
+        h += hh-old; hh_total += hh
+        currents.append(clean(1j*(hh@o['n'][j]-o['n'][j]@hh)))
+        if variant == 'IC1_QS':
+            jumps.append(('feed_'+EDGES[e], clean(np.sqrt(alpha[e])*o['bp'][e]@o['c'][e])))
+    h = clean(h+float(case['detuning'])*o['n'][1])
+    L = build_liouvillian(h, jumps)
+    jd = dict(jumps)
+    ell = [clean(sum(jd[k+'_'+e].getH()@jd[k+'_'+e] for k in ('break', 'background', 'idle'))) for e in EDGES]
+    feed = [clean(jd[('feed_' if variant == 'IC1_QS' else 'renew_')+e].getH()@
+                  jd[('feed_' if variant == 'IC1_QS' else 'renew_')+e])
+            if variant != 'QS' else 0*o['eye'] for e in EDGES]
+    ops = [*currents, currents[1]+currents[2], .5*o['n'][2], *o['n'],
+           *o['pl'], *ell, .25*(3*o['eye']-inventory), .1*sum(o['pl']), inventory,
+           .5*(o['eye']-o['n'][0]), *feed]
+    names = ['I01','I12','I02','h','F','n0','n1','n2',
+             'pL01','pL12','pL02','ell01','ell12','ell02','pump','break','inventory',
+             'source','feed01','feed12','feed02']
+    dark=[]; masks=o['masks']; p1=np.zeros((8,8));p1[ONE,ONE]=1
+    def embed_node(a):
+        v=np.zeros((8,8),complex);v[np.ix_(ONE,ONE)]=a;return v
+    for m in range(8):
+        hm=sector_hamiltonian(m, float(case['phi_over_pi'])*np.pi, case['detuning'])
+        k,d,iso,inter,info=dark_projectors(hm)
+        dark.append(dict(k=embed_node(k),d=embed_node(d),isolated=embed_node(iso),
+                         interference=embed_node(inter),info=info))
+        for tag,op in [('p',np.eye(8)),('w1',p1),('k',embed_node(k)),('d',embed_node(d))]:
+            names.append(f'{tag}_m{m}');ops.append(sp.kron(op,masks[m],format='csr'))
+    rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in ops],format='csr')
+    def adj(op):
+        return clean(1j*(h@op-op@h)+sum(adjoint_jump(c,op) for _,c in jumps))
+    checks={'H_hermiticity':maxabs(h-h.getH()),
+            'trace':maxabs(adj(o['eye'])), 'resource':maxabs(adj(inventory)-resource)}
+    checks['node0']=maxabs(adj(o['n'][0])-(-currents[0]-currents[2]+.5*(o['eye']-o['n'][0])))
+    checks['node1']=maxabs(adj(o['n'][1])-(currents[0]-currents[1]))
+    checks['node2']=maxabs(adj(o['n'][2])-(currents[1]+currents[2]-.5*o['n'][2]))
+    hf=clean(h-hh_total-case['detuning']*o['n'][1])
+    for i in range(3):
+        checks[f'form_current{i}']=maxabs(hf@o['n'][i]-o['n'][i]@hf)
+        checks[f'idle_current{i}']=maxabs(sum(adjoint_jump(jd['idle_'+e],o['n'][i]) for e in EDGES))
+    if variant == 'IC1_QS':
+        checks['IC_form_zero']=maxabs(hf)
+        for e in range(3):
+            checks[f'IC_feed{e}']=maxabs(adjoint_jump(jd['feed_'+EDGES[e]],o['pl'][e])-alpha[e]*o['pr'][e]@o['c'][e])
+            checks[f'IC_balance{e}']=maxabs(adj(o['pl'][e])-feed[e]+ell[e])
+    if variant in ('QS','IC1_QS'):
+        for e in range(3):
+            checks[f'loss{e}']=maxabs(ell[e]-(.16*o['pl'][e]-.025*o['pl'][e]@o['c'][e]))
+    if max(checks.values()) > 1e-10:
+        raise ValueError('Operator identity failed: '+str(checks))
+    return dict(H=h,jumps=jumps,L=L,rows=rows,names=names,dark=dark,checks=checks,
+                case=case,currents=currents,alpha=alpha)
+
+
+=== FILE e002c_exp/engine.py SHA256 f2eccdf662a8f0bae10ddf11b713ca07a8dd89238a164a6cb991a61bc91c1715 ===
+"""Fixed RK4 grids and one stationarity-driven extension, without state repairs."""
+import json
+import shutil
+import time
+from collections import deque
+from pathlib import Path
+import numpy as np
+from e002_exp.model import rk4, save_json
+from .model import build, initial
+from .diagnostics import expanded, quality, negativity
+from .windows import integral_mean
+
+SNAPSHOTS=(0,.2,1,2,5,10,20,50,100,190,200,300,390,400)
+
+def stationarity(window, horizon):
+    if len(window)<6 or abs(window[0]['t']-(horizon-10))>1e-8:
+        return dict(pass_gate=False,reason='window_short',rhs=None,drift=None,flux_range=None)
+    rhs=max(x['rhs'] for x in window)
+    drift=float(np.linalg.norm(window[-1]['v']-window[0]['v'])/np.linalg.norm(window[-1]['v']))
+    flux=np.array([x['F'] for x in window]);frange=float(np.ptp(flux))
+    limit=1e-8+1e-5*abs(flux[-1])
+    return dict(pass_gate=bool(rhs<=1e-7 and drift<=1e-6 and frange<=limit),rhs=rhs,
+                drift=drift,flux_range=frange,flux_limit=float(limit),reason=None)
+
+class Trajectory:
+    def __init__(self,case,root,alpha=None,disk_floor=1.5*1024**3,builder=None):
+        self.case=dict(case);self.root=Path(root)/case['id'];self.root.mkdir(parents=True,exist_ok=False)
+        self.started=time.monotonic();self.model=(build if builder is None else builder)(case,alpha);self.v=initial();self.step=0
+        self.series=[];self.diags=[];self.certs=[];self.window=deque(maxlen=6)
+        self.snapshots=[];self.node_edge=[];self.dnames=None;self.disk_floor=disk_floor
+        self.integrator_seconds=0.;self.diagnostic_seconds=0.;self.failure=None;self.completed_horizon=0.
+        save_json(self.root/'model.json',dict(case=case,alpha=None if alpha is None else list(alpha),
+                    checks=self.model['checks'],dark=[d['info'] for d in self.model['dark']]))
+        self.sample(0)
+
+    def sample(self,step):
+        dt=self.case['dt'];t=round(step*dt,10);r=self.v.reshape(216,216,order='F')
+        scalar_stride=round(.2/dt);diag_stride=round(2/dt)
+        if step%scalar_stride==0:
+            raw=np.asarray(self.model['rows']@self.v)
+            if not np.isfinite(raw).all() or max(abs(raw.imag))>1e-8:raise ValueError('Invalid observables')
+            self.series.append(np.r_[t,raw.real])
+        if step%diag_stride==0:
+            start=time.monotonic();q=quality(r,self.model['L'])
+            n,values,cert=expanded(r,self.model)
+            self.dnames=n+['trace','hermiticity','min_eigen','rhs']
+            self.diags.append(np.r_[t,values,[q[k] for k in ('trace','hermiticity','min_eigen','rhs')]])
+            self.certs.append(cert)
+            self.window.append(dict(t=t,v=self.v.copy(),rhs=q['rhs'],F=float(self.series[-1][5])))
+            self.diagnostic_seconds+=time.monotonic()-start
+            if shutil.disk_usage(self.root).free<self.disk_floor:raise RuntimeError('Disk reserve reached')
+            save_json(self.root.parent/'progress.json',dict(case=self.case['id'],step=step,time=t,
+                     elapsed_seconds=time.monotonic()-self.started))
+        if any(abs(t-s)<1e-9 for s in SNAPSHOTS):
+            path=self.root/f'rho_{t:g}.npz'
+            np.savez(path,rho=r,time=np.array(t),step=np.array(step,dtype=np.int64))
+            neg,mineig=negativity(r,[8,27],[0])
+            self.node_edge.append(dict(time=t,negativity=neg,min_eigen=mineig,
+                status='NODE_EDGE_NPT_DETECTED' if mineig < -1e-8 else 'NODE_EDGE_NPT_NOT_DETECTED',
+                independent_reconstruction_from_node_export=False))
+            self.snapshots.append(path.name)
+            save_json(self.root/'checkpoint.json',dict(step=step,time=t,path=path.name,dt=dt))
+
+    def advance(self,horizon):
+        dt=self.case['dt'];target=round(horizon/dt)
+        if abs(target*dt-horizon)>1e-9:raise ValueError('Non-integral step count')
+        if target<=self.step:raise ValueError('Extension must advance time')
+        for step in range(self.step+1,target+1):
+            start=time.monotonic();self.v=rk4(self.model['L'].dot,self.v,dt)
+            self.integrator_seconds+=time.monotonic()-start;self.step=step
+            self.sample(step)
+        self.completed_horizon=horizon
+        return stationarity(self.window,horizon)
+
+    def finish(self):
+        series=np.asarray(self.series,dtype=np.float64);diag=np.asarray(self.diags,dtype=np.float64)
+        np.savez(self.root/'series.npz',values=series)
+        np.savez(self.root/'diagnostics.npz',values=diag)
+        certs={k:np.array([c[k] for c in self.certs]) for k in ('blocks','vectors','alpha','overlap','valid')}
+        np.savez(self.root/'certificates.npz',time=diag[:,0],**certs)
+        np.savez(self.root/'final.npz',rho=self.v.reshape(216,216,order='F'))
+        end=float(series[-1,0]);st=stationarity(self.window,end)
+        ref=integral_mean(series,self.model['names'],end)
+        h=series[:,1+self.model['names'].index('h')]
+        tau=None;reason='not_stationary_or_short_window'
+        if st['pass_gate'] and ref is not None:
+            outside=np.flatnonzero(abs(h-ref['h'])>max(.1*abs(ref['h']),1e-6))
+            i=int(outside[-1]+1) if len(outside) else 0
+            if i<len(series) and end-series[i,0]>=10:
+                tau=float(series[i,0]);reason=None
+            else:reason='final_in_band_window_shorter_than_10'
+        summary=dict(case=self.case,alpha=None if self.model['alpha'] is None else list(self.model['alpha']),
+            horizon=end,requested_horizon=self.case['horizon'],extended=bool(end>self.case['horizon']+1e-9),
+            transition_reference=integral_mean(series,self.model['names'],200.) if end>=200 else None,
+            refinement_status='not_refined',steps=self.step,rhs_calls=4*self.step,scalar_records=len(series),diagnostic_records=len(diag),
+            snapshots=len(self.snapshots),stationarity=st,reference=ref,failed=self.failure,
+            state_status='finite_time_only' if not st['pass_gate'] else 'stationary',tau90=tau,tau90_reason=reason,
+            operator_checks=self.model['checks'],dark_geometry=[x['info'] for x in self.model['dark']],node_edge=self.node_edge,
+            elapsed_seconds=time.monotonic()-self.started,integrator_seconds=self.integrator_seconds,
+            diagnostic_seconds=self.diagnostic_seconds)
+        save_json(self.root/'summary.json',summary)
+        return dict(summary=summary,series=series,diagnostics=diag,certs=certs,
+                    names=self.model['names'],dnames=self.dnames,root=self.root)
+
+def run_group(cases,full,alpha=None,extend=True,disk_floor=1.5*1024**3):
+    # The members of one group have the same physics and distinct dt.
+    runs=[];gates=[]
+    for case in cases:
+        run=Trajectory(case,full,alpha,disk_floor);runs.append(run)
+        try:gates.append(run.advance(case['horizon'])['pass_gate'])
+        except ValueError as e:run.failure=str(e);gates.append(False)
+    if extend and not all(gates):
+        for run in runs:
+            if run.failure is None:
+                try:run.advance(400.)
+                except ValueError as e:run.failure=str(e)
+    return [r.finish() for r in runs]
+
+def compare_pair(a,b):
+    # Full common scalar/diagnostic grids, not just the reduced report grid.
+    result={};passed=True
+    for key in ('series','diagnostics'):
+        x,y=a[key],b[key]
+        if x.shape!=y.shape or not np.array_equal(x[:,0],y[:,0]):
+            return dict(pass_gate=False,reason='grid_mismatch',errors={})
+        if not np.array_equal(np.isnan(x),np.isnan(y)):
+            return dict(pass_gate=False,reason='conditional_validity_mismatch',errors={})
+        finite=np.isfinite(x)&np.isfinite(y)
+        error=np.where(finite,abs(x-y),0.)
+        scale=1e-6+1e-4*np.maximum(np.nan_to_num(abs(x)),np.nan_to_num(abs(y)))
+        # Quality RHS/eigenvalues are still compared, as are all measured diagnostics.
+        passed &= bool(np.all(error<=scale))
+        names=['time']+(a['names'] if key=='series' else a['dnames'])
+        result[key]=dict(zip(names,error.max(axis=0).tolist()))
+    return dict(pass_gate=passed,reason=None,errors=result)
+
+
+=== FILE e002c_exp/diagnostics.py SHA256 324f46b24f53daaa20ed14005e19457da2dd0af671375cf33da560dcb2da4fa6 ===
+"""State diagnostics. No separability claim is inferred from a zero negativity."""
+import numpy as np
+from .model import ONE, TWO, operators
+
+FLOOR = 1e-6
+
+def partial_transpose(rho, dims, subsystems):
+    n=len(dims); axes=list(range(2*n))
+    for i in subsystems: axes[i],axes[n+i]=axes[n+i],axes[i]
+    return rho.reshape(tuple(dims)*2).transpose(axes).reshape(rho.shape)
+
+def negativity(rho, dims, subsystems):
+    pt=partial_transpose(rho,dims,subsystems)
+    ev=np.linalg.eigvalsh((pt+pt.conj().T)/2)
+    return float(-ev[ev<0].sum()),float(ev[0])
+
+def node_blocks(rho):
+    # Trace only diagonal edge blocks; projection on a mask is not on excitation number.
+    a=np.einsum('aebe->eab',rho.reshape(8,27,8,27))
+    masks=operators()['mask_id']
+    blocks=np.array([a[masks==m].sum(axis=0) for m in range(8)])
+    return np.concatenate([blocks.sum(axis=0)[None],blocks])
+
+def pair_reduction(rho, excluded):
+    a=rho.reshape(2,2,2,2,2,2)
+    return np.trace(a,axis1=excluded,axis2=excluded+3).reshape(4,4)
+
+def phase_fix(v):
+    i=np.flatnonzero(abs(v)>1e-12)
+    return v if not len(i) else v*np.exp(-1j*np.angle(v[i[0]]))
+
+def deterministic_eigh(a):
+    vals,vecs=np.linalg.eigh((a+a.conj().T)/2)
+    out=[];i=0
+    while i<len(vals):
+        j=i+1
+        while j<len(vals) and abs(vals[j]-vals[i])<=1e-12*max(1.,np.max(abs(vals))):j+=1
+        projector=vecs[:,i:j]@vecs[:,i:j].conj().T
+        basis=[]
+        for col in projector.T:
+            v=col.astype(complex,copy=True)
+            for _ in range(2):
+                for u in basis:v-=u*np.vdot(u,v)
+            norm=np.linalg.norm(v)
+            if norm>1e-10:
+                basis.append(phase_fix(v/norm))
+            if len(basis)==j-i:break
+        if len(basis)!=j-i:raise ValueError('Degenerate basis construction failed')
+        out.extend(basis);i=j
+    return np.array(out).T
+
+def schmidt_alpha(psi):
+    t=psi.reshape(2,2,2)
+    return max(float(np.linalg.svd(np.moveaxis(t,i,0).reshape(2,4),compute_uv=False)[0]**2) for i in range(3))
+
+def witnesses(rho):
+    vs=[]
+    for sector in (ONE,TWO):
+        v=deterministic_eigh(rho[np.ix_(sector,sector)])
+        for j in range(3):
+            psi=np.zeros(8,complex);psi[sector]=v[:,j];vs.append(psi)
+    vs=np.array(vs);alpha=np.array([schmidt_alpha(v) for v in vs])
+    overlap=np.array([np.vdot(v,rho@v).real for v in vs])
+    return vs,alpha,overlap
+
+def conditional_fraction(numerator,weight):
+    if weight<=FLOOR:return dict(value=None,reason='weight_le_1e-6',weight=float(weight))
+    return dict(value=float(numerator/weight),reason=None,weight=float(weight))
+
+def certificate(blocks):
+    vectors=np.zeros((9,6,8),complex);alpha=np.zeros((9,6));overlap=np.zeros((9,6))
+    valid=np.trace(blocks,axis1=1,axis2=2).real>FLOOR
+    for s in np.flatnonzero(valid):
+        rho=blocks[s]/np.trace(blocks[s]).real
+        vectors[s],alpha[s],overlap[s]=witnesses(rho)
+    return dict(blocks=blocks,vectors=vectors,alpha=alpha,overlap=overlap,valid=valid)
+
+def coherence_values(blocks):
+    """C01=<010|rho_m|100>, unnormalised; conditional values divide by mask trace."""
+    names=[];values=[]
+    for conditional in (False,True):
+        for m in (7,6):
+            weight=float(np.trace(blocks[m+1]).real);c=complex(blocks[m+1,2,4])
+            if conditional:c=c/weight if weight>FLOOR else complex(np.nan,np.nan)
+            for part,value in (('re',c.real),('im',c.imag)):
+                names.append(f"{'c' if conditional else 'C'}01_m{m}_{part}");values.append(value)
+    return names,np.array(values,dtype=float)
+
+def coherence_quality(weight):
+    return 'undefined' if weight<=FLOOR else ('low_weight' if weight<1e-5 else 'ok')
+
+def expanded(rho,model):
+    blocks=node_blocks(rho);cert=certificate(blocks)
+    n=[];v=[]
+    def add(name,value):n.append(name);v.append(value)
+    # Conditional mask currents, unnormalised. They sum to the full currents.
+    a=rho.reshape(8,27,8,27)
+    for m in range(8):
+        sel=operators()['mask_id']==m
+        for e,op in enumerate(model['currents']):
+            # An edge-diagonal current permits extraction of its fixed edge block.
+            inds=np.flatnonzero(sel)
+            current=0.
+            for k in inds:
+                on=op[k::27,k::27].toarray()
+                current+=np.trace(on@a[:,k,:,k]).real
+            add(f'I{("01","12","02")[e]}_m{m}',current)
+    for tag in ('isolated','interference'):
+        for m in range(8):add(f'd_{tag}_m{m}',np.trace(model['dark'][m][tag]@blocks[m+1]).real)
+    for excluded in range(3):add(f'pair_N_exclude{excluded}',negativity(pair_reduction(blocks[0],excluded),[2,2],[0])[0])
+    for s in range(9):
+        valid=bool(cert['valid'][s]);weight=np.trace(blocks[s]).real
+        for cut in range(3):
+            add(f'N_s{s}_cut{cut}',negativity(blocks[s]/weight,[2,2,2],[cut])[0] if valid else np.nan)
+        add(f'W_s{s}',float(np.min(cert['alpha'][s]-cert['overlap'][s])) if valid else np.nan)
+        add(f'valid_s{s}',float(valid))
+    cn,cv=coherence_values(blocks);n.extend(cn);v.extend(cv)
+    return n,np.array(v,dtype=np.float64),cert
+
+def quality(rho,L):
+    trace=float(abs(np.trace(rho)-1));herm=float(np.max(abs(rho-rho.conj().T)))
+    eigen=float(np.linalg.eigvalsh((rho+rho.conj().T)/2)[0])
+    rhs=float(np.linalg.norm(L@rho.reshape(-1,order='F'))/np.linalg.norm(rho))
+    values=dict(trace=trace,hermiticity=herm,min_eigen=eigen,rhs=rhs)
+    if not np.isfinite(list(values.values())).all() or trace>1e-10 or herm>1e-10 or eigen < -1e-8:
+        raise ValueError('Unphysical state: '+str(values))
+    return values
+
+
+=== FILE e002c_exp/windows.py SHA256 6198ec08bea932c5a12e9e6762da7467fb7b391b353193afd28ca2f8cc021386 ===
+"""Fixed ten-unit reference windows on the even-time grid; no dynamics imports."""
+import numpy as np
+from scipy.integrate import simpson
+
+
+def integral_mean(series, names, horizon):
+    take = ((series[:, 0] >= horizon - 10 - 1e-8) &
+            (series[:, 0] <= horizon + 1e-8) &
+            np.isclose(series[:, 0] / 2, np.round(series[:, 0] / 2), atol=1e-8))
+    a = series[take]
+    expected = horizon - 10 + 2 * np.arange(6)
+    if len(a) != 6 or not np.allclose(a[:, 0], expected, atol=1e-8, rtol=0):
+        return None
+    return dict(zip(names, (simpson(a[:, 1:], x=a[:, 0], axis=0) / 10).tolist()))
+
+
+=== FILE tests/test_e002d.py SHA256 c3712b0dacf4a384fed3ae8342706c54d63675f5b040e4990c997d8f9c49119a ===
+import copy,json,tempfile,time,unittest
+from pathlib import Path
+import numpy as np
+from e002_exp.model import build_liouvillian,make_direct_rhs,maxabs,save_json
+from e002c_exp.model import build as old_build
+from e002c_exp.diagnostics import node_blocks,certificate
+from e002d_exp.model import build,jump_diagonals,damping,consequence_map
+from e002d_exp.plan import case,cases,counts,comparison_graph,physics_key,OPERATIONS,TARGETS
+from e002d_exp.numerics import estimate,linear,ratio,signed,contrast,sampled_minimum
+from e002d_exp.analysis import analyze
+from e002d_exp.task import run,save_metrics
+from e002d_exp.verify import verify
+from e002d_exp.export import compact,write_manifest,export_case
+
+def synthetic_results(horizon=200.):
+    names=build(case("QS"))["names"]
+    times=np.arange(190.,202.,2.) if horizon==200 else np.r_[np.arange(190.,202.,2.),np.arange(390.,402.,2.)]
+    results=[]
+    for c in cases():
+        h=1. if c["model"]=="QS" else .8
+        if c["target"]=="S2a" and c["kind"]=="T":h-=.2 if c["model"]=="QS" else .05
+        values=dict.fromkeys(names,0.)
+        for m in range(8):
+            values[f"p_m{m}"]=1/8
+            for n in range(4):
+                values[f"p_m{m}_N{n}"]=1/32
+                values[f"h_m{m}_N{n}"]=h/32
+        if c["phi_over_pi"]==.5:
+            e=c["detuning"];j=1+e+e*e
+            if c["kind"]=="T" and c["target"]=="M2":j-=.2*e*e
+            values["h_m6_N2"]=j/32
+            values["h_m0_N0"]+=h-sum(values[f"h_m{m}_N{n}"] for m in range(8) for n in range(4))
+        values["h"]=h
+        for target in TARGETS:
+            values["C_"+target+"_re"]=.01;values["C_"+target+"_im"]=-.02
+            values["aunit_"+target]=.05
+        for name in ("pL01","pL12","pL02"):values[name]=.5
+        for name in ("ell01","ell12","ell02"):values[name]=.1
+        series=np.column_stack([times,np.tile([values[n] for n in names],(len(times),1))])
+        summary=dict(case=c,horizon=horizon,stationarity={"pass_gate":True},refinement_status="not_refined",
+                     failed=None,reference=values,h_extrema=[h,2.,h,200.,1000])
+        results.append(dict(summary=summary,names=names,dnames=["dummy"],series=series,
+                            diagnostics=np.column_stack([times,np.zeros(len(times))])))
+    return results
+
+class E002dTests(unittest.TestCase):
+    def test_grid_and_comparison_graph(self):
+        self.assertEqual(counts("production"),dict(trajectories=184,steps=5920000,rhs_calls=23680000))
+        self.assertEqual(counts("production",400.)["steps"],11840000)
+        self.assertEqual(counts("calibration"),dict(trajectories=48,steps=72000,rhs_calls=288000))
+        self.assertEqual(counts("smoke")["steps"],3000)
+        cs=cases();self.assertEqual(sum(c["dt"]==.005 for c in cs),112)
+        self.assertEqual(len({physics_key(c) for c in cs}),184)
+        ids={c["id"] for c in cs};graph=comparison_graph()
+        self.assertEqual(set(graph["extension_cohorts"][0]),ids)
+        self.assertTrue(all(set(x["members"])<=ids for x in graph["edges"]))
+        c=case("QS")
+        varied=[case("QS",phi=.5),case("QS",epsilon=.125),case("QS",noise=.25)]
+        self.assertEqual(len({c["id"],*[x["id"] for x in varied]}),4)
+        # Six phase-control baselines are shared between B and C (two models, two dt, three eps =>12).
+        self.assertEqual(sum(set(c["blocks"])=={"B","C"} for c in cs),12)
+
+    def test_full_map_and_overlapping_composition(self):
+        for x in consequence_map().values():self.assertLess(x["difference_error"],1e-12)
+        t=damping(jump_diagonals("M2","T",.1));c=damping(jump_diagonals("M2","C",.1))
+        # edge ternary 0,L,L belongs to m6.
+        e=8
+        self.assertAlmostEqual(t[5*27+e,6*27+e],.25)
+        self.assertAlmostEqual(c[5*27+e,6*27+e],.05)
+        self.assertAlmostEqual(t[5*27+e,3*27+e],.1)
+        wrong=damping([("wrong",sum(d for _,d in jump_diagonals("M2","T",.1)))])
+        self.assertGreater(np.max(abs(wrong-t)),.05)
+        self.assertTrue(np.array_equal(t.diagonal(),np.zeros(216)))
+        for op in OPERATIONS:
+            ds=jump_diagonals(op,"T",.1);cs=jump_diagonals(op,"C",.1)
+            for (_,x),(_,y) in zip(ds,cs):np.testing.assert_allclose(x*x,y*y,atol=0,rtol=0)
+
+    def test_physics_and_independent_rhs(self):
+        rng=np.random.default_rng(17);a=rng.normal(size=(216,4))+1j*rng.normal(size=(216,4))
+        rho=a@a.conj().T;rho/=np.trace(rho);v=rho.reshape(-1,order="F");blocks=node_blocks(rho)
+        for model in ("QS","RR_QS"):
+            old=old_build(case(model,phi=.5,epsilon=.125,noise=.25))
+            new=build(case(model,phi=.5,epsilon=.125,noise=.25))
+            self.assertEqual(maxabs(old["L"]-new["L"]),0.)
+            for op in OPERATIONS:
+                for branch in ("T","C"):
+                    cc=case(model,op,branch,.1,phi=.5,epsilon=.125,noise=.25);m=build(cc)
+                    reference=build_liouvillian(m["H"],m["jumps"])
+                    self.assertLess(maxabs(m["L"]-reference),1e-12)
+                    self.assertEqual(maxabs(m["H"]-old["H"]),0.)
+                    self.assertLess(np.max(abs(m["L"]@v-make_direct_rhs(m["H"],m["jumps"])(v))),1e-12)
+                    values=m["rows"]@v
+                    for key,(mask,a,b) in TARGETS.items():
+                        z=values[m["names"].index("C_"+key+"_re")]+1j*values[m["names"].index("C_"+key+"_im")]
+                        self.assertLess(abs(z-blocks[mask+1,a,b]),1e-12)
+                    self.assertAlmostEqual(sum(values[m["names"].index(f"h_m{mask}_N{n}")].real for mask in range(8) for n in range(4)),values[m["names"].index("h")].real,places=12)
+
+    def test_signed_effect_and_monotone_counterexample(self):
+        rs=synthetic_results();a=analyze(rs,"production")
+        r=next(x for x in a["A"] if x["target"]=="S2a")
+        self.assertAlmostEqual(r["E"]["value"],-.15)
+        self.assertAlmostEqual(r["S"]["value"],-.75)
+        self.assertEqual(r["status"],"RESOLVED_NEGATIVE")
+        self.assertLess(r["component_sum_error"],1e-12)
+        b=next(x for x in a["B"] if x["model"]=="QS" and x["phi_over_pi"]==.5 and x["delta"]==.125)
+        self.assertLess(b["D"]["value"],0)
+        self.assertEqual(b["minimum"]["status"],"SAMPLED_MINIMUM_NOT_RESOLVED")
+        self.assertTrue(any(x.get("target")=="M2" and x["status"]=="RESOLVED_POSITIVE" for x in a["C"]))
+        # dt failure must block a sign claim.
+        r=next(r for r in rs if r["summary"]["case"]["model"]=="QS" and r["summary"]["case"]["target"]=="S2a" and r["summary"]["case"]["kind"]=="T" and r["summary"]["case"]["dt"]==.01)
+        r["series"][:,1+r["names"].index("h")]+=.01
+        a=analyze(rs,"production")
+        self.assertFalse(next(x for x in a["A"] if x["target"]=="S2a")["eligible"])
+
+    def test_envelopes_denominators_and_minimum(self):
+        self.assertIsNone(ratio(estimate(1.,.01),estimate(1e-7,1e-9),True)["value"])
+        self.assertIsNone(ratio(estimate(1.,.01),estimate(1.,.2),True)["value"])
+        self.assertEqual(signed(estimate(.01,.02)),"UNRESOLVED_AT_TOLERANCE")
+        d=contrast(estimate(2.,.01),estimate(1.,.01),estimate(3.,.01))
+        self.assertEqual(signed(d),"RESOLVED_NEGATIVE")
+        self.assertEqual(sampled_minimum(estimate(2.,.01),estimate(1.,.01),estimate(3.,.01))["status"],"CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS")
+        self.assertEqual(signed(estimate(1.,None)),"SCREENING_ONLY")
+
+    def test_full_report_size(self):
+        results=synthetic_results(400.);analysis=analyze(results,"production")
+        metrics=dict(identity=dict(run_id="TEST_REPORT",source_commit="0"*40),mode="production",
+            cases=[r["summary"] for r in results],analysis=analysis,work=dict(planned=counts("production",400.),actual=counts("production",400.)),
+            environment=dict(kernel_sha256="0"*64))
+        checks=dict(runtime_gate=dict(expected_seconds=100.,lower_seconds=60.,upper_seconds=140.,actual_seconds=100.,status="PASS"),failures=[])
+        self.assertLessEqual(len(compact(metrics,checks).encode()),24*1024)
+        geometry=[x["info"] for x in old_build(case("QS"))["dark"]]
+        for s in metrics["cases"]:
+            s["transition_reference"]=s["reference"]
+            s["reference_horizons"]=[200.,400.]
+            s["dark_geometry"]=geometry
+            s["node_edge"]=[dict(time=float(i),negativity=.123456789012345,min_eigen=-.123456789012345,
+                status="NODE_EDGE_NPT_DETECTED",independent_reconstruction_from_node_export=False) for i in range(14)]
+        def wide_numbers(x):
+            if isinstance(x,float):return -1.2345678901234567e-123
+            if isinstance(x,dict):return {k:wide_numbers(v) for k,v in x.items()}
+            if isinstance(x,list):return [wide_numbers(v) for v in x]
+            return x
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);save_metrics(root,wide_numbers(metrics))
+            self.assertLess((root/"metrics.json").stat().st_size,7*1024**2)
+            self.assertLess((root/"analysis.json.gz").stat().st_size,8*1024**2)
+
+    def test_independent_six_point_window_mean(self):
+        # Manufactured positive matrix curve: the exact mean is (2*rhoA+rhoB)/3.
+        # This verifies the reference-window branch without a long evolution.
+        c=next(c for c in cases() if c["model"]=="QS" and c["target"]=="M2" and c["kind"]=="T" and c["dt"]==.005 and c["detuning"]==.125)
+        model=build(c);rng=np.random.default_rng(2401);states=[]
+        for _ in range(2):
+            a=rng.normal(size=(216,3))+1j*rng.normal(size=(216,3));rho=a@a.conj().T
+            states.append(rho/np.trace(rho))
+        times=np.arange(190.,202.,2.);certs=[];rows=[]
+        for t in times:
+            x=(t-190)/10;rho=(1-x*x)*states[0]+x*x*states[1]
+            certs.append(certificate(node_blocks(rho)))
+            rows.append(np.r_[t,np.asarray(model["rows"]@rho.reshape(-1,order="F")).real])
+        mean=np.asarray(model["rows"]@((2*states[0]+states[1])/3).reshape(-1,order="F")).real
+        reference=dict(zip(model["names"],mean.tolist()))
+        summary=dict(case=c,horizon=200.,reference=reference,transition_reference=None,reference_horizons=[200.])
+        result=dict(summary=summary,series=np.array(rows),diagnostics=np.column_stack([times,np.zeros(6)]),
+            names=model["names"],dnames=["dummy"],certs={k:np.array([s[k] for s in certs]) for k in certs[0]})
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);report=root/"report";full=root/"full";report.mkdir();full.mkdir()
+            export_case(report,result,"production")
+            save_json(report/"schema.json",dict(series=["time"]+model["names"]))
+            save_json(report/"case_registry.json",dict(cases=[c]))
+            _,rates=consequence_map(True);np.savez_compressed(report/"intervention_rates.npz",**rates)
+            metrics=dict(cases=[summary],work=dict(actual=dict(trajectories=1)),analysis=dict(A=[],B=[],C=[]))
+            save_metrics(report,metrics);write_manifest(report,full)
+            self.assertEqual(verify(report)["status"],"PASS")
+            metrics["cases"][0]["reference"]["h"]+=.001
+            save_metrics(report,metrics);write_manifest(report,full)
+            with self.assertRaisesRegex(ValueError,"mean"):verify(report)
+
+    def test_end_to_end_and_independent_corruption_rejection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg=dict(mode="smoke",run_id="E002d_LOCAL_v003_SMOKE",local_source_commit="LOCAL_TEST",
+                forecast=dict(expected_seconds=60.,lower_seconds=0.,upper_seconds=300.))
+            metrics,checks=run(cfg,tmp)
+            self.assertEqual(checks["technical_status"],"PASS")
+            self.assertEqual(metrics["work"]["actual"]["steps"],3000)
+            root=Path(tmp)/"report";self.assertEqual(verify(root)["status"],"PASS")
+            path=next((root/"cases").glob("*.npz"));data=path.read_bytes();path.write_bytes(data+b"X")
+            with self.assertRaisesRegex(ValueError,"hash mismatch"):verify(root)
+            path.write_bytes(data)
+            with np.load(path,allow_pickle=False) as z:arrays={k:z[k] for k in z.files}
+            schema=json.loads((root/"schema.json").read_text())
+            arrays["window_scalar"][-1,schema["series"].index("h")]+=.001
+            np.savez_compressed(path,**arrays)
+            write_manifest(root,Path(tmp)/"full")
+            with self.assertRaisesRegex(ValueError,"Reconstruction failed"):verify(root)
+
+if __name__=="__main__":unittest.main()
+
+
+=== FILE run.py SHA256 63c7dff6ce8330062fb5176486d6355c8f1c795dfe611ce52d4cda4ce5df79e9 ===
+"""Pinned E002d entry point; no Copilot or network access."""
+import os
+for key in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):
+    os.environ[key]='1'
+import json
+from pathlib import Path
+from e002d_exp.task import run
+if __name__=='__main__':run(json.loads(Path(__file__).with_name('config.json').read_text()))
+
+
+=== e002c_exp/export.py: exact excerpts of all functions used by v003; omitted legacy report builder unused ===
+import hashlib
+from pathlib import Path
+import numpy as np
+def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+def extrema(a):
+    data=[]
+    for j in range(1,a.shape[1]):
+        valid=np.isfinite(a[:,j]);rows=np.flatnonzero(valid)
+        if len(rows):
+            lo=rows[np.argmin(a[valid,j])];hi=rows[np.argmax(a[valid,j])]
+            data.append([float(a[lo,j]),float(a[lo,0]),float(a[hi,j]),float(a[hi,0]),len(rows)])
+        else:data.append([None,None,None,None,0])
+    return data
+
+def evidence(result):
+    c=result['certs'];t=result['diagnostics'][:,0];end=t[-1]
+    fixed=np.array([i for i,x in enumerate(t) if x in {2.,20.,end}],dtype=int)
+    out={'time':t[fixed]}
+    for k in ('blocks','vectors','alpha','overlap','valid'):
+        out[k]=c[k][fixed].astype(complex if k in ('blocks','vectors') else np.float64)
+    ext=[]
+    for s in range(9):
+        valid=np.flatnonzero(c['valid'][:,s])
+        if len(valid):
+            w=np.min(c['alpha'][valid,s]-c['overlap'][valid,s],axis=1)
+            ext.append(int(valid[np.argmin(w)]))
+        else:ext.append(-1)
+    out['extreme_time']=np.array([t[i] if i>=0 else np.nan for i in ext],dtype=float)
+    for k in ('blocks','vectors','alpha','overlap','valid'):
+        shape=c[k].shape[2:]
+        out['extreme_'+k]=np.array([c[k][i,s] if i>=0 else np.zeros(shape,dtype=c[k].dtype)
+                                  for s,i in enumerate(ext)],dtype=complex if k in ('blocks','vectors') else float)
+    return out
+
+def array_spec(path):
+    with np.load(path,allow_pickle=False) as z:
+        return {k:dict(dtype=str(z[k].dtype),shape=list(z[k].shape)) for k in z.files}
+
+Validation: 8 groups PASS,43.958s,forecast60s/range0-300. End-to-end10trajectories,T2,3000steps,12000RHS,545443reportbytes. Manufactured six-point PSD curve independently verifies exact Simpson mean. Worst-case metadata size tested. No production or VM calibration. Base six files match pinned Git blobs.
