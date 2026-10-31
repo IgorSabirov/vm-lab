@@ -28,7 +28,8 @@ def environment():
         from threadpoolctl import threadpool_info
         pools = [{k: p.get(k) for k in ('user_api', 'internal_api', 'num_threads', 'version', 'architecture')} for p in threadpool_info()]
     except ImportError:
-        pools = None
+        from .vendor_threadpoolctl import threadpool_info
+        pools = [{k: p.get(k) for k in ('user_api', 'internal_api', 'num_threads', 'version', 'architecture')} for p in threadpool_info()]
     return dict(observed_at_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
                 python=sys.version, executable=sys.executable, platform=platform.platform(), machine=platform.machine(),
                 cpu_model=cpu, logical_cpus=os.cpu_count(), affinity=sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
@@ -40,7 +41,10 @@ def environment():
                 requested_threads={k: os.environ.get(k) for k in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS')},
                 optimize=sys.flags.optimize, cache_state='OS_CACHE_NOT_CONTROLLED',
                 infrastructure_unknowns=['physical host contention', 'CPU frequency history', 'storage contention'],
-                max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+                max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                address_space_rlimit=list(resource.getrlimit(resource.RLIMIT_AS)),
+                cgroup_membership=read_optional('/proc/self/cgroup'),
+                cgroup_visibility='VISIBLE' if read_optional('/sys/fs/cgroup/memory.max') is not None else 'NOT_MOUNTED_IN_JOB_NAMESPACE')
 
 
 def memory_preflight(budget, current):

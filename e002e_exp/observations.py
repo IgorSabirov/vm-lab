@@ -2,7 +2,8 @@
 import time
 import numpy as np
 from scipy import sparse as sp
-from scipy.sparse.linalg import splu, gmres, LinearOperator
+from scipy.sparse.linalg import splu, LinearOperator
+from .compat import gmres, trapezoid
 from e002_exp.model import maxabs
 from .space import dissipator_action
 from .model import selective_difference
@@ -77,7 +78,7 @@ def propagate_qrt(model, state, horizon, dt, sample_interval, names=('J_h', 'P_m
     times = np.array(times); out = np.array(out); normalized = np.full_like(out, np.nan)
     den = np.sqrt(var[:, None]*var[None, :]); valid = den > FLOOR
     normalized[:, valid] = out[:, valid]/den[valid]
-    integral = np.trapezoid(abs(out.diagonal(axis1=1, axis2=2)), times, axis=0)
+    integral = trapezoid(abs(out.diagonal(axis1=1, axis2=2)), times, axis=0)
     tau = [float(a/v) if v > FLOOR else None for a, v in zip(integral, var)]
     late = out[int(.8*len(out)):]
     summary = dict(steps=steps, block_rhs_calls=4*steps, scalar_rhs_equivalents=4*steps*len(names),

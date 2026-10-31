@@ -26,6 +26,15 @@ def bind_source(config):
 
 if __name__=='__main__':
     config=json.loads(Path(__file__).with_name('config.json').read_text())
+    if config.get('address_space_limit_bytes') is not None:
+        import resource
+        ceiling = config['address_space_limit_bytes']
+        if type(ceiling) is not int or ceiling <= 0:
+            raise ValueError('Invalid declared address-space ceiling')
+        soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+        if hard != resource.RLIM_INFINITY and ceiling > hard:
+            raise ValueError('Declared address-space ceiling exceeds existing hard limit')
+        resource.setrlimit(resource.RLIMIT_AS, (ceiling, ceiling))
     if config.get('experiment')=='E002e':
         config=bind_source(config)
         from e002e_exp.task import run
