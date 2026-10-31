@@ -36,10 +36,24 @@ def solver_probe(config, report, metrics):
     metrics['cases'] = []; metrics['phase_times'] = []
     Path('full').mkdir(exist_ok=False)
     def phase(name, fn):
-        print('START '+name, flush=True); t=time.perf_counter(); value=fn()
+        import threading
+        peak_threads=[1]; stop=threading.Event()
+        def sample_threads():
+            while not stop.is_set():
+                peak_threads[0]=max(peak_threads[0],len(list(Path('/proc/self/task').iterdir()))-1)
+                stop.wait(.05)
+        watcher=threading.Thread(target=sample_threads,daemon=True)
+        print('START '+name, flush=True); t=time.perf_counter(); cpu=time.process_time()
+        watcher.start()
+        try:
+            value=fn()
+        finally:
+            stop.set();watcher.join()
         row=dict(name=name, seconds=time.perf_counter()-t,
+                 cpu_seconds=time.process_time()-cpu,max_compute_threads_observed=peak_threads[0],
                  max_rss_bytes=1024*resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
         metrics['phase_times'].append(row)
+        if peak_threads[0] != 1:raise ValueError('Unexpected compute threads during '+name)
         save(report/'progress.json', dict(last_phase=row, completed_cases=len(metrics['cases'])))
         print('DONE '+name+' '+str(row['seconds']), flush=True)
         return value
@@ -145,8 +159,12 @@ def run(config):
         if config['calibration_phase'] == 'environment':
             metrics['status'] = 'ENVIRONMENT_MEASURED_NOT_NUMERICALLY_CALIBRATED'
         elif config['calibration_phase'] == 'solver':
-            if not env['threadpools'] or any(p['num_threads'] != 1 for p in env['threadpools']):
-                raise ValueError('Single BLAS thread not measured')
+            if env['threadpools']:
+                if any(p['num_threads'] != 1 for p in env['threadpools']):
+                    raise ValueError('Single BLAS thread not measured')
+            elif (metrics['blas_audit']['loaded_libraries'] != config.get('expected_blas_libraries')
+                  or metrics['blas_audit']['process_threads'] != 1):
+                raise ValueError('Unmanaged BLAS differs from the measured pinned libraries')
             if resource.getrlimit(resource.RLIMIT_AS)[0] != config['address_space_limit_bytes']:
                 raise ValueError('Declared job address-space ceiling is not active')
             if int(env['memory_available'].split()[0])*1024 < config['address_space_limit_bytes']+1024**3:

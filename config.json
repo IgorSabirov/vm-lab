@@ -1,12 +1,12 @@
 {
   "experiment": "E002e_CALIBRATION",
-  "run_id": "E002e_ENV_v002_r001",
-  "calibration_phase": "environment",
+  "run_id": "E002e_SOLVER_CAL_v001_r002",
+  "calibration_phase": "solver",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "forecast": {
-    "expected_seconds": 0.25,
-    "lower_seconds": 0.15,
-    "upper_seconds": 1.5
+    "expected_seconds": 120.0,
+    "lower_seconds": 10.0,
+    "upper_seconds": 900.0
   },
   "address_space_limit_bytes": 8589934592,
   "case_ids": [
@@ -83,9 +83,35 @@
     "e002e_exp/space.py": "e909e3fc72fceb649891ebd6d7d2d0f9459936ebef8d5eb703533b40bf442ab1",
     "e002e_exp/task.py": "cf18726ea7481ad494efb104944233b1ea2698c42852421bbb71f3cc179d6a6e",
     "e002e_exp/vendor_threadpoolctl.py": "12fb9526b6a74d2e686b7ec148dc165c3587999b14fa86984aa180e10802400b",
-    "experiments/e002e/calibration.py": "d1d7df20389ae19fe4af5d734ce83daed1d20debd68b6beb25ac4cc1dcc732ff"
+    "experiments/e002e/calibration.py": "dd5455abd23723f7f0457429f63389af8a61c2921bc2dd850ecb5d6c48d51c5c"
   },
   "source_kernel_sha256": "961eb9a5e7245559697bc923178ddf16387a4c63efd41dcd199b67a7ff08c1db",
   "previous_copilot_kernel_sha256": "9264d19764462081e07d24907109764bb04839eb1c3c998e640858634ff91bd3",
-  "supplemental_review_status": "OWN_CHECKS_REQUIRED_COPILOT_DELTA_NOT_REVIEWED"
+  "supplemental_review_status": "OWN_CHECKS_REQUIRED_COPILOT_DELTA_NOT_REVIEWED",
+  "expected_blas_libraries": [
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+      "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+      "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+    }
+  ]
 }
