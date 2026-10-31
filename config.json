@@ -1,74 +1,67 @@
 {
-  "run_id": "E002d_PROD_v003_r001",
+  "experiment": "E002e",
   "mode": "production",
-  "forecast": {
-    "source": "Verified E002d_CAL_v003_r002 at 4b5151c97234310e5ad1796b84a2ce07a4ec1ebe; stratified model/dt full advance cost including diagnostics and IO; final assembly scaled separately",
-    "branches": {
-      "T200": {
-        "expected_seconds": 11160,
-        "lower_seconds": 7812.0,
-        "upper_seconds": 14508.0,
-        "components": {
-          "setup_seconds": 72.20697851339348,
-          "advance_seconds": 11009.797536262771,
-          "finish_seconds": 8.924276270910529,
-          "export_seconds": 6.898712746660655,
-          "verification_seconds": 9.684369897440774,
-          "assembly_seconds": 16.227034472765816,
-          "production_analysis_allowance_seconds": 30.0
-        },
-        "raw_estimate_seconds": 11153.738908163943,
-        "work": {
-          "trajectories": 184,
-          "steps": 5920000,
-          "rhs_calls": 23680000
-        },
-        "estimated_full_bytes": 2346364057,
-        "report_hard_limit_bytes": 31457280,
-        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
-      },
-      "T400": {
-        "expected_seconds": 22260,
-        "lower_seconds": 15582.0,
-        "upper_seconds": 28938.0,
-        "components": {
-          "setup_seconds": 144.41395702678696,
-          "advance_seconds": 22019.595072525542,
-          "finish_seconds": 16.284476274929812,
-          "export_seconds": 10.748811209903204,
-          "verification_seconds": 12.912493196587699,
-          "assembly_seconds": 23.83182178852199,
-          "production_analysis_allowance_seconds": 30.0
-        },
-        "raw_estimate_seconds": 22257.78663202227,
-        "work": {
-          "trajectories": 184,
-          "steps": 11840000,
-          "rhs_calls": 47360000
-        },
-        "estimated_full_bytes": 3445985781,
-        "report_hard_limit_bytes": 31457280,
-        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
-      }
-    }
-  },
-  "calibration": {
-    "run_id": "E002d_CAL_v003_r002",
-    "kernel_sha256": "16acf9b4f5ccfa8e5705762cf9952231fc56b71653f4880357194bf63b56cb9f",
-    "numpy": "1.26.4",
-    "scipy": "1.11.4",
-    "review_status": "VERIFIED_GITHUB",
-    "report_commit": "4b5151c97234310e5ad1796b84a2ce07a4ec1ebe",
-    "source_commit": "fb7b63df7c4602380d951458438c14ace735ca8f",
-    "run_manifest_sha256": "6522c14127e740e661a9ebd979b687cafebacd9042ae4daa71ece3d5eb90d6b0"
+  "stage": "G",
+  "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
+  "source_kernel_sha256": "733307d239ec67deae17b9e6e2631be8a73d963229491b27ae9a9ba4a6416494",
+  "address_space_limit_bytes": 8589934592,
+  "copilot_review": {
+    "path": "experiments/e002e/implementation_review_final.json",
+    "sha256": "d064639ec4f4ef50076e436858bd7eda8e846b6250736018611f4a66eef47555"
   },
   "calibration_verification": {
-    "path": "experiments/e002d/calibration_verification.json",
-    "sha256": "0364aa2059ac1efa263924e5efd9d7ffcc8f2948fa69daeae1cb2fb4b991fe15"
+    "path": "experiments/e002e/calibration_verification_final.json",
+    "sha256": "bad87270a3acb1bea71c14f037cb1383dd91789b7d2c1e09843cb579ccdc27ff"
   },
-  "copilot_review": {
-    "path": "analysis/COPILOT_E002d_v003/REVIEW_CLOSURE.json",
-    "sha256": "1395eba0743c8fb7c9e2c9816cc26bf23a4138ddeff2ffdac4b26ff6b84b957f"
+  "forecast": {
+    "expected_seconds": 6.0,
+    "lower_seconds": 3.9,
+    "upper_seconds": 11.3
   },
-  "copilot_review_status": "REVIEWED_AND_CHECKED"
+  "expected_workload": {
+    "small_NESS": 92,
+    "full_NESS": 0,
+    "static_responses": 0,
+    "frequency_responses": 0,
+    "correlation_inputs": 0,
+    "refinement_NESS": 92,
+    "refinement_static_responses": 0,
+    "refinement_frequency_responses": 0
+  },
+  "numerics": {
+    "solver": {
+      "method": "lu",
+      "rtol": 1e-12,
+      "atol": 1e-14
+    },
+    "refinement_solver": {
+      "method": "gmres_ilu",
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "maxiter": 400,
+      "restart": 100,
+      "ilu_drop_tol": 1e-05,
+      "ilu_fill_factor": 10
+    },
+    "state_tolerance": 1e-10,
+    "estimate_condition": true,
+    "error_envelope": {
+      "absolute_floor": 1e-10,
+      "difference_multiplier": 10
+    },
+    "refinement_limits": {
+      "vector_inf": 1e-09,
+      "observable_absolute": 1e-09,
+      "observable_relative": 1e-07
+    },
+    "qrt": {
+      "horizon": 100,
+      "dt_fine": 0.005,
+      "dt_coarse": 0.01,
+      "sample_interval": 0.1,
+      "checkpoint_stride_steps": 2000,
+      "absolute_tolerance": 1e-08,
+      "relative_tolerance": 1e-05
+    }
+  }
 }

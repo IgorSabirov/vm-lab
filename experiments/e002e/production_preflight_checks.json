@@ -1,0 +1,69 @@
+{
+  "G": {
+    "status": "PASS",
+    "workload": {
+      "small_NESS": 92,
+      "full_NESS": 0,
+      "static_responses": 0,
+      "frequency_responses": 0,
+      "correlation_inputs": 0,
+      "refinement_NESS": 92,
+      "refinement_static_responses": 0,
+      "refinement_frequency_responses": 0
+    },
+    "environment": {
+      "comparable": true,
+      "missing": [],
+      "differences": [],
+      "note": "Matching manifest does not eliminate unobserved host/cgroup contention; inspect runtime deviations",
+      "memory": {
+        "needed_bytes": 2147483648,
+        "available_bytes": 8510803968,
+        "status": "PASS",
+        "resource_mode": "HARD_RLIMIT_AS_AND_HOST_CGROUP_UNOBSERVED",
+        "caveat": "Unknown ancestor cgroup cannot be measured inside namespace"
+      }
+    }
+  },
+  "baseline": {
+    "status": "PASS",
+    "workload": {
+      "small_NESS": 0,
+      "full_NESS": 24,
+      "static_responses": 30,
+      "frequency_responses": 20,
+      "correlation_inputs": 18,
+      "refinement_NESS": 24,
+      "refinement_static_responses": 30,
+      "refinement_frequency_responses": 20
+    },
+    "environment": {
+      "comparable": true,
+      "missing": [],
+      "differences": [],
+      "note": "Matching manifest does not eliminate unobserved host/cgroup contention; inspect runtime deviations",
+      "memory": {
+        "needed_bytes": 2147483648,
+        "available_bytes": 8510803968,
+        "status": "PASS",
+        "resource_mode": "HARD_RLIMIT_AS_AND_HOST_CGROUP_UNOBSERVED",
+        "caveat": "Unknown ancestor cgroup cannot be measured inside namespace"
+      }
+    }
+  },
+  "F2": {
+    "status": "CORRECTLY_BLOCKED",
+    "reason": "Missing verified baseline_report; predictions are also absent"
+  },
+  "kernel_sha256": "733307d239ec67deae17b9e6e2631be8a73d963229491b27ae9a9ba4a6416494",
+  "scope": "Dry configuration checks only; no scientific execution; live resources and actual queue source SHA rechecked at launch",
+  "runtime": {
+    "expected_seconds": 0.3,
+    "lower_seconds": 0.05,
+    "upper_seconds": 2.0,
+    "actual_seconds": 0.09769890899951861,
+    "status": "PASS",
+    "measurement": "parent process monotonic clock around child startup through child exit",
+    "exit_code": 0
+  }
+}

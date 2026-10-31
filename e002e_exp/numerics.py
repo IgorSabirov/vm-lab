@@ -2,7 +2,8 @@
 import time
 import numpy as np
 from scipy import sparse as sp
-from scipy.sparse.linalg import splu, spilu, gmres, LinearOperator, onenormest
+from scipy.sparse.linalg import splu, spilu, LinearOperator, onenormest
+from .compat import gmres
 from e002_exp.model import maxabs
 
 FLOOR = 1e-6

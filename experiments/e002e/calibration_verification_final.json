@@ -1,0 +1,268 @@
+{
+  "status": "VERIFIED_GITHUB",
+  "kernel_sha256": "733307d239ec67deae17b9e6e2631be8a73d963229491b27ae9a9ba4a6416494",
+  "source_commit": "fd5f922c2a06895723f98bf866e5dc8bc0c32114",
+  "report_commit": "ac2f894c15967463a0688843f7558039f36554f6",
+  "run_id": "E002e_FINAL_CAL_v001_r001",
+  "environment": {
+    "observed_at_utc": "2026-10-31T15:11:07Z",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "logical_cpus": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_quota": null,
+    "memory_limit": null,
+    "memory_current": null,
+    "memory_available": "   15603656 kB",
+    "memory_total": "       16374620 kB",
+    "load_average": [
+      0.17431640625,
+      0.19482421875,
+      0.13623046875
+    ],
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "threadpools": [],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 55752,
+    "address_space_rlimit": [
+      8589934592,
+      8589934592
+    ],
+    "process_vm_size_bytes": 79130624,
+    "blas_library_identity": [
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+      }
+    ],
+    "cgroup_membership": "0::/system.slice/vm-lab-worker.service",
+    "cgroup_visibility": "NOT_MOUNTED_IN_JOB_NAMESPACE"
+  },
+  "numerics": {
+    "solver": {
+      "method": "lu",
+      "rtol": 1e-12,
+      "atol": 1e-14
+    },
+    "refinement_solver": {
+      "method": "gmres_ilu",
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "maxiter": 400,
+      "restart": 100,
+      "ilu_drop_tol": 1e-05,
+      "ilu_fill_factor": 10
+    },
+    "state_tolerance": 1e-10,
+    "estimate_condition": true,
+    "error_envelope": {
+      "absolute_floor": 1e-10,
+      "difference_multiplier": 10
+    },
+    "refinement_limits": {
+      "vector_inf": 1e-09,
+      "observable_absolute": 1e-09,
+      "observable_relative": 1e-07
+    },
+    "qrt": {
+      "horizon": 100,
+      "dt_fine": 0.005,
+      "dt_coarse": 0.01,
+      "sample_interval": 0.1,
+      "checkpoint_stride_steps": 2000,
+      "absolute_tolerance": 1e-08,
+      "relative_tolerance": 1e-05
+    }
+  },
+  "baseline_equivalence_pass": true,
+  "observable_accuracy_pass": true,
+  "baseline_checks": [
+    {
+      "model": "QS",
+      "primitive_count": 164,
+      "maximum_primitive_difference": 4.123618113638372e-12,
+      "maximum_node_difference": 4.0564218650729345e-12,
+      "j6_difference": 3.296751760473171e-12,
+      "tolerance": 1e-08,
+      "status": "PASS",
+      "reference_path": "results/E002d_PROD_v003_r001/files/cases/Q_0e86769c9bfa.npz.xz",
+      "reference_sha256": "c827e51e9dd6a40afcb9eccb246173f840fcd869947d8a2ef02d6de7b47e046f"
+    },
+    {
+      "model": "RR_QS",
+      "primitive_count": 164,
+      "maximum_primitive_difference": 1.1349722975340093e-07,
+      "maximum_node_difference": 1.4839055101356635e-07,
+      "j6_difference": 2.558762274285087e-08,
+      "tolerance": 5e-06,
+      "status": "PASS",
+      "reference_path": "results/E002d_PROD_v003_r001/files/cases/R_fdacb6c30bd7.npz.xz",
+      "reference_sha256": "f44b810df115cab3f3b6060f0108cbf0f76bc2059f93a4172c38e36b312b0cf8"
+    }
+  ],
+  "qrt_validation": {
+    "status": "VERIFIED_GITHUB",
+    "full_model_representative": true,
+    "reference_method": "third_RK4_grid",
+    "maximum_scaled_discrepancy": 0.0010579931590745946,
+    "horizon": 100.0,
+    "grids": [
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "source_commit": "fd5f922c2a06895723f98bf866e5dc8bc0c32114",
+    "report_commit": "ac2f894c15967463a0688843f7558039f36554f6",
+    "tail_status": "TAIL_UNRESOLVED"
+  },
+  "stage_budgets": {
+    "G": {
+      "expected_seconds": 6.0,
+      "lower_seconds": 3.9,
+      "upper_seconds": 11.3
+    },
+    "baseline": {
+      "expected_seconds": 378.0,
+      "lower_seconds": 245.7,
+      "upper_seconds": 587.9
+    },
+    "F2": {
+      "expected_seconds": 34.0,
+      "lower_seconds": 15.3,
+      "upper_seconds": 90.0
+    }
+  },
+  "stage_memory_budgets": {
+    "G": {
+      "peak_additional_bytes": 1073741824,
+      "reserve_bytes": 1073741824,
+      "measured_peak_rss_bytes": 361611264,
+      "measured_peak_vm_bytes": 532471808,
+      "simultaneous_factor_storage_bytes": 135901172
+    },
+    "baseline": {
+      "peak_additional_bytes": 1073741824,
+      "reserve_bytes": 1073741824,
+      "measured_peak_rss_bytes": 361611264,
+      "measured_peak_vm_bytes": 532471808,
+      "simultaneous_factor_storage_bytes": 135901172
+    },
+    "F2": {
+      "peak_additional_bytes": 1073741824,
+      "reserve_bytes": 1073741824,
+      "measured_peak_rss_bytes": 361611264,
+      "measured_peak_vm_bytes": 532471808,
+      "simultaneous_factor_storage_bytes": 135901172
+    }
+  },
+  "measured_rates": {
+    "QS": {
+      "ness": 2.4773056000703946,
+      "static_pair": 0.34639366500778124,
+      "frequency_pair": 1.9731401019962505,
+      "qrt_step": 0.0020707764895632865
+    },
+    "RR_QS": {
+      "ness": 0.4958616799558513,
+      "static_pair": 0.04507623898098245,
+      "frequency_pair": 0.09796362195629627,
+      "qrt_step": 0.0016182261798530816
+    },
+    "IC1_QS": {
+      "ness": 0.4753283550380729,
+      "static_pair": 0.04414752894081175,
+      "frequency_pair": 0.0,
+      "qrt_step": 0.0015887450001901015
+    }
+  },
+  "budget_components": {
+    "G": {
+      "small_solve_and_checks": 3.242026459425688,
+      "condition_export_and_startup": 2.0
+    },
+    "baseline": {
+      "ness": 31.63298622041475,
+      "static_pairs": 4.356174329295754,
+      "frequency_pairs": 20.711037239525467,
+      "qrt_two_grids": 316.6648601763882,
+      "unmeasured_export_and_overhead": 3.88
+    },
+    "F2": {
+      "ness": 29.73167280026246,
+      "static_pairs": 0.0,
+      "frequency_pairs": 0,
+      "qrt_two_grids": 0,
+      "unmeasured_export_and_overhead": 3.4
+    }
+  },
+  "runtime": {
+    "expected_seconds": 166.0,
+    "actual_seconds": 161.93572735786438,
+    "deviation_seconds": -4.06427264213562,
+    "status": "PASS"
+  },
+  "work": {
+    "tests": 42,
+    "small_cases": 10,
+    "full_cases": 6,
+    "ness_solves": 12,
+    "static_solves": 36,
+    "frequency_solves": 4,
+    "qrt_steps": 71500,
+    "block_rhs": 286000
+  },
+  "limitations": [
+    "QRT third-grid validation covers QS phi=pi/2; RR/IC production remains checked on two grids.",
+    "RR/IC H100 runtime extrapolated from H1; F2 v=0/.5 costs extrapolated without viewing heldout outcomes.",
+    "Sampled VmSize is not a continuous maximum; 2x forecast plus 1 GiB reserve used.",
+    "Ancestor cgroup and CPU quota are hidden; hard process address-space limit is measured and enforced.",
+    "Two-method errors are engineering estimates, not rigorous total-error bounds.",
+    "F2 requires frozen predictions after declared training; full-line width and infinite correlation tails remain unresolved."
+  ],
+  "scientific_acceptance": false,
+  "production_started": false
+}

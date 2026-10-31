@@ -1,0 +1,67 @@
+{
+  "experiment": "E002e",
+  "mode": "production",
+  "stage": "G",
+  "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
+  "source_kernel_sha256": "733307d239ec67deae17b9e6e2631be8a73d963229491b27ae9a9ba4a6416494",
+  "address_space_limit_bytes": 8589934592,
+  "copilot_review": {
+    "path": "experiments/e002e/implementation_review_final.json",
+    "sha256": "d064639ec4f4ef50076e436858bd7eda8e846b6250736018611f4a66eef47555"
+  },
+  "calibration_verification": {
+    "path": "experiments/e002e/calibration_verification_final.json",
+    "sha256": "bad87270a3acb1bea71c14f037cb1383dd91789b7d2c1e09843cb579ccdc27ff"
+  },
+  "forecast": {
+    "expected_seconds": 6.0,
+    "lower_seconds": 3.9,
+    "upper_seconds": 11.3
+  },
+  "expected_workload": {
+    "small_NESS": 92,
+    "full_NESS": 0,
+    "static_responses": 0,
+    "frequency_responses": 0,
+    "correlation_inputs": 0,
+    "refinement_NESS": 92,
+    "refinement_static_responses": 0,
+    "refinement_frequency_responses": 0
+  },
+  "numerics": {
+    "solver": {
+      "method": "lu",
+      "rtol": 1e-12,
+      "atol": 1e-14
+    },
+    "refinement_solver": {
+      "method": "gmres_ilu",
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "maxiter": 400,
+      "restart": 100,
+      "ilu_drop_tol": 1e-05,
+      "ilu_fill_factor": 10
+    },
+    "state_tolerance": 1e-10,
+    "estimate_condition": true,
+    "error_envelope": {
+      "absolute_floor": 1e-10,
+      "difference_multiplier": 10
+    },
+    "refinement_limits": {
+      "vector_inf": 1e-09,
+      "observable_absolute": 1e-09,
+      "observable_relative": 1e-07
+    },
+    "qrt": {
+      "horizon": 100,
+      "dt_fine": 0.005,
+      "dt_coarse": 0.01,
+      "sample_interval": 0.1,
+      "checkpoint_stride_steps": 2000,
+      "absolute_tolerance": 1e-08,
+      "relative_tolerance": 1e-05
+    }
+  }
+}
