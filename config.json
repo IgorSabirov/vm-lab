@@ -1,7 +1,7 @@
 {
   "experiment": "E002e",
   "mode": "production",
-  "stage": "G",
+  "stage": "baseline",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "source_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
   "address_space_limit_bytes": 8589934592,
@@ -14,19 +14,19 @@
     "sha256": "589709c066ac48b5ac74d51e07e0a0a0a63926a024993d7f3483dab0d2598f82"
   },
   "forecast": {
-    "expected_seconds": 6.0,
-    "lower_seconds": 3.9,
-    "upper_seconds": 11.3
+    "expected_seconds": 383.0,
+    "lower_seconds": 248.95,
+    "upper_seconds": 595.65
   },
   "expected_workload": {
-    "small_NESS": 92,
-    "full_NESS": 0,
-    "static_responses": 0,
-    "frequency_responses": 0,
-    "correlation_inputs": 0,
-    "refinement_NESS": 92,
-    "refinement_static_responses": 0,
-    "refinement_frequency_responses": 0
+    "small_NESS": 0,
+    "full_NESS": 24,
+    "static_responses": 30,
+    "frequency_responses": 20,
+    "correlation_inputs": 18,
+    "refinement_NESS": 24,
+    "refinement_static_responses": 30,
+    "refinement_frequency_responses": 20
   },
   "numerics": {
     "solver": {
