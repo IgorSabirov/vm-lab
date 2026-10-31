@@ -8,15 +8,15 @@ import traceback
 import numpy as np
 from e002_exp.model import save_json
 from .model import make_full, make_small
-from .numerics import Bordered, state_checks, values
+from .numerics import Bordered, state_checks, values, refinement_check
 from .observations import static_response, frequency_response, propagate_qrt, compare_qrt
-from .plan import preflight, workload, pinned_file
-from .analysis import renewal_check, symmetry_check, f2_differences, evaluate_predictions
+from .plan import preflight, workload, pinned_file, full_physical_key
+from .analysis import renewal_check, symmetry_check, f2_differences, evaluate_predictions, measured_symmetries
 from .runtime import environment, runtime_gate, kernel_hash
 from .export import serial, real_values, conditional_values, summaries, save_case, save_correlations, write_manifest, write_result, verify_report
 
 
-def run(config, output=Path('.')):
+def _run(config, output=Path('.')):
     started = time.perf_counter(); output = Path(output)
     report = output/'report'; full = output/'full'
     report.mkdir(parents=True, exist_ok=False); full.mkdir(parents=True, exist_ok=False)
@@ -48,14 +48,20 @@ def run(config, output=Path('.')):
                 raise ArithmeticError('Independent NESS verification failed')
             actual['refinement_NESS'] += 1
             raw = real_values(values(model, state)); ref_raw = real_values(values(model, ref_state))
+            refinement_gate = refinement_check(state, ref_state, raw, ref_raw, config['numerics']['refinement_limits'])
+            if not refinement_gate['pass_gate']:
+                save_json(report/(case_id+'_refinement_failure.json'), serial(refinement_gate))
+                raise ArithmeticError('Independent NESS disagreement exceeds calibrated limits')
             errors = error_envelope(raw, ref_raw); conditional = conditional_values(raw, errors)
             if abs(raw['J_h']-raw['F']) > quality_tolerance*10 or abs(raw['source']-raw['F']) > quality_tolerance*10:
                 raise ArithmeticError('Stationary flux balance failed')
             rec = dict(id=case_id, case=case, raw=raw, conditional=conditional, quality=quality,
+                       physical_key=None if small else full_physical_key(case),
                        solve_check=solve_check, branch=model.get('branch', 'unique_NESS_candidate'),
                        operator_checks=model.get('checks', {}), hilbert_dimension=space.d,
                        liouville_dimension=space.size, generator_nnz=model['L'].nnz,
                        primitive_uncertainty=errors, refinement=dict(quality=ref_quality, solve=ref_checks,
+                       gate=refinement_gate,
                        state_difference_inf=float(abs(state-ref_state).max()), error_policy=error_policy,
                        uncertainty_kind='ENGINEERING_TWO_METHOD_ENVELOPE_NOT_RIGOROUS_TOTAL_ERROR_BOUND'),
                        condition=solver.condition_estimate() if config['numerics'].get('estimate_condition', True) else {'status':'NOT_ESTIMATED'})
@@ -70,17 +76,25 @@ def run(config, output=Path('.')):
             for target in case.get('tasks', [])[1:]:
                 x, out, checks = static_response(model, state, target, solver)
                 xr, outr, checkr = static_response(model, ref_state, target, independent)
+                agreement = refinement_check(x, xr, out, outr, config['numerics']['refinement_limits'])
+                if not agreement['pass_gate']:
+                    save_json(report/(case_id+'_'+target+'_refinement_failure.json'), serial(agreement))
+                    raise ArithmeticError('Static response disagreement exceeds calibrated limits')
                 responses.append(dict(base_id=case_id, kind='static', target=target, values=out, checks=checks,
-                                      refinement_checks=checkr, uncertainty=error_envelope(out, outr)))
+                                      refinement_checks=checkr, refinement_gate=agreement, uncertainty=error_envelope(out, outr)))
                 actual['static_responses'] += 1
                 actual['refinement_static_responses'] += 1
             independent_metrics = independent.metrics(); del independent
             for freq in [f for f in work['frequency'] if f['base_id'] == case_id]:
                 x, out, checks, met = frequency_response(model, state, freq['omega_over_J'], solver, **solver_options)
                 xr, outr, checkr, metr = frequency_response(model, ref_state, freq['omega_over_J'], None, **refinement_options)
+                agreement = refinement_check(x, xr, out, outr, config['numerics']['refinement_limits'])
+                if not agreement['pass_gate']:
+                    save_json(report/(case_id+'_frequency_refinement_failure.json'), serial(agreement))
+                    raise ArithmeticError('Frequency response disagreement exceeds calibrated limits')
                 responses.append(dict(base_id=case_id, kind='frequency', omega=freq['omega_over_J'], values=out,
                                       checks=checks, solver=met, refinement_checks=checkr, refinement_solver=metr,
-                                      uncertainty=error_envelope(out, outr)))
+                                      refinement_gate=agreement, uncertainty=error_envelope(out, outr)))
                 actual['frequency_responses'] += 1
                 actual['refinement_frequency_responses'] += 1
             corr = [c for c in work['correlations'] if c['base_id'] == case_id]
@@ -108,6 +122,10 @@ def run(config, output=Path('.')):
         failure = type(exc).__name__+': '+str(exc)
         save_json(report/'failure.json', dict(message=failure, traceback=traceback.format_exc()))
     comparisons = summaries(records)
+    symmetry_pairs = measured_symmetries(records, responses)
+    save_json(report/'symmetry_pairs.json', serial(symmetry_pairs))
+    if any(x['status'] == 'FAIL' for x in symmetry_pairs):
+        failure = failure or 'Measured symmetry exceeds propagated numerical tolerance'
     if config['stage'] == 'F2' and not failure:
         differences = f2_differences(records, pinned_file(config['baseline_report']))
         verdicts = evaluate_predictions(pinned_file(config['predictions']), records, differences)
@@ -125,8 +143,41 @@ def run(config, output=Path('.')):
                    scientific_status='NOT_ACCEPTED_AUTOMATICALLY', full_process_time='USE_SERVICE_RUN_JSON')
     save_json(report/'metrics.json', serial(metrics))
     write_result(report, config, records, failure, gate, comparisons, qrts)
-    write_manifest(report); verification = verify_report(report)
+    from .export import write_full_manifest
+    write_full_manifest(report, full)
+    save_json(report/'status.json', dict(status='COMPLETED_NOT_ACCEPTED' if not failure else 'FAILED', failure=failure))
+    write_manifest(report); verification = verify_report(report, full) if not failure else {'status': 'PARTIAL_FAILED_RUN'}
     print(json.dumps(dict(failure=failure, runtime_gate=gate, verification=verification)), flush=True)
     if failure:
         raise RuntimeError(failure)
     return metrics
+
+
+def run(config, output=Path('.')):
+    """Persist failure even in preflight/evaluation/export; never rewrite old runs."""
+    output = Path(output); report = output/'report'
+    if report.exists() or (output/'full').exists():
+        raise FileExistsError('Output already contains a run; refusing to modify it')
+    start = time.perf_counter()
+    try:
+        return _run(config, output)
+    except Exception as exc:
+        failure = dict(status='FAILED', type=type(exc).__name__, message=str(exc),
+                       traceback=traceback.format_exc(), elapsed_seconds=time.perf_counter()-start,
+                       scientific_acceptance=False)
+        try:
+            report.mkdir(parents=True, exist_ok=True)
+            save_json(report/'terminal_failure.json', failure)
+            save_json(report/'status.json', dict(status='FAILED', failure=failure['message']))
+            metrics_path = report/'metrics.json'
+            metrics = json.loads(metrics_path.read_text()) if metrics_path.exists() else {}
+            metrics.update(failure=failure['message'], terminal_status='FAILED', scientific_status='NOT_ACCEPTED')
+            gate = metrics.setdefault('runtime_gate', {})
+            gate['status'] = 'REVIEW_REQUIRED' if gate.get('status') == 'PASS' else gate.get('status', 'NOT_EVALUABLE')
+            save_json(metrics_path, metrics)
+            (report/'RESULT.md').write_text('Время: NOT_EVALUABLE либо требует повторной проверки полного процесса.\n\n'
+                'Расчёт завершён с ошибкой. Результат не принят.\n\n'+failure['type']+': '+failure['message']+'\n'
+                'Подробности: terminal_failure.json. Частичные файлы сохраняются; прежний манифест не пересоздаётся для их принятия.\n')
+        except Exception:
+            print('FAILED_TO_PERSIST_TERMINAL_DIAGNOSTICS', traceback.format_exc(), flush=True)
+        raise

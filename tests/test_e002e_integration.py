@@ -19,6 +19,7 @@ def config(work, stage):
                               refinement_solver=dict(method='gmres_ilu', rtol=1e-12, atol=1e-14),
                               state_tolerance=1e-10, estimate_condition=True,
                               error_envelope=dict(absolute_floor=1e-10, difference_multiplier=10),
+                              refinement_limits=dict(vector_inf=1e-9, observable_absolute=1e-9, observable_relative=1e-7),
                               qrt=dict(horizon=.1, dt_fine=.002, dt_coarse=.004, sample_interval=.02,
                                        checkpoint_stride_steps=20, absolute_tolerance=1e-8, relative_tolerance=1e-5)))
 

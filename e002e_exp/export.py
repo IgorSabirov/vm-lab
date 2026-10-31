@@ -117,6 +117,15 @@ def write_manifest(report):
     save_json(Path(report)/'manifest.json', dict(files=entries, total_bytes=sum(x['size'] for x in entries)))
 
 
+def write_full_manifest(report, full):
+    entries = []
+    for p in sorted(Path(full).iterdir()):
+        if p.is_file():
+            entries.append(dict(path=p.name, size=p.stat().st_size, sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+    save_json(Path(report)/'full_manifest.json', dict(files=entries, total_bytes=sum(x['size'] for x in entries),
+                                                    storage='full/ stays on VM; hashes are published'))
+
+
 def write_result(report, config, records, failure, gate, comparisons, qrt_summaries):
     lines = [f"Время: прогноз {gate['expected_seconds']:.6g} с; факт внутреннего участка {gate['actual_seconds']:.6g} с; "
              f"отклонение {gate['deviation_seconds']:.6g} с; статус {gate['status']}. Полное время процесса проверяется по run.json.",
@@ -147,8 +156,14 @@ def write_result(report, config, records, failure, gate, comparisons, qrt_summar
     (Path(report)/'RESULT.md').write_text(text)
 
 
-def verify_report(report):
+def verify_report(report, full=None):
     report = Path(report); manifest = json.loads((report/'manifest.json').read_text())
+    listed = [entry['path'] for entry in manifest['files']]
+    if len(listed) != len(set(listed)) or set(listed) != {p.name for p in report.iterdir() if p.is_file() and p.name != 'manifest.json'}:
+        raise ValueError('Report manifest completeness mismatch')
+    status_path = report/'status.json'
+    if status_path.exists() and json.loads(status_path.read_text()).get('status') == 'FAILED':
+        raise ValueError('Failed run cannot be verified as complete')
     for entry in manifest['files']:
         name = Path(entry['path'])
         if name.name != str(name):
@@ -156,7 +171,21 @@ def verify_report(report):
         p = report/name
         if p.stat().st_size != entry['size'] or hashlib.sha256(p.read_bytes()).hexdigest() != entry['sha256']:
             raise ValueError('Report hash mismatch')
-        if p.suffix == '.json' and p.name.startswith(('full_', 'small_')) and '_qrt' not in p.name:
+        if p.suffix == '.json' and p.name.startswith(('full_', 'small_')) and '_qrt' not in p.name and p.name != 'full_manifest.json' and not p.name.endswith('_failure.json'):
             r = json.loads(p.read_text())
             validate_conditionals(r['raw'], r['conditional'], r.get('primitive_uncertainty'))
-    return dict(status='REPORT_BYTES_AND_CONDITIONALS_VERIFIED', files=len(manifest['files']))
+    full_status = 'NOT_CHECKED_REQUIRES_EXPLICIT_RAW_ACCESS'
+    if full is not None:
+        full = Path(full); m = json.loads((report/'full_manifest.json').read_text())
+        names = [e['path'] for e in m['files']]
+        if len(names) != len(set(names)) or set(names) != {p.name for p in full.iterdir() if p.is_file()}:
+            raise ValueError('Full data completeness mismatch')
+        for e in m['files']:
+            name = Path(e['path'])
+            if name.name != str(name):
+                raise ValueError('Unsafe full-data path')
+            p = full/name
+            if p.stat().st_size != e['size'] or hashlib.sha256(p.read_bytes()).hexdigest() != e['sha256']:
+                raise ValueError('Full data hash mismatch')
+        full_status = 'VERIFIED'
+    return dict(status='REPORT_BYTES_AND_CONDITIONALS_VERIFIED', files=len(manifest['files']), full_data=full_status)

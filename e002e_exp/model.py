@@ -76,6 +76,8 @@ def make_small(case):
 
 
 def make_full(case, assemble=True):
+    from .plan import full_physical_key
+    full_physical_key(case)
     o = operators(); model = case['model']; p = dict(BASE, phi_n=float(case['node_noise']))
     if model == 'RR_QS':
         p.update(g=0., gamma_r=0., rr_rates=RR)

@@ -58,21 +58,67 @@ def symmetry_check(model, tolerance=1e-12):
 
 def f2_differences(records, baseline):
     # Baseline is a pinned, previously verified report of undeformed cases.
-    refs = {(r['case']['model'], r['case']['phi_over_pi'], r['case']['epsilon'], r['case']['node_noise']): r
-            for r in baseline['records'] if r['case'].get('m6_v_over_J') == 1.}
+    from .plan import full_physical_key
+    refs = {}
+    for r in baseline['records']:
+        if r['case'].get('m6_v_over_J') != 1.:
+            raise ValueError('Baseline must contain only undeformed cases')
+        key = full_physical_key(r['case'])
+        if r.get('physical_key') != key:
+            raise ValueError('Baseline lacks matching complete physical fingerprint')
+        if key in refs:
+            raise ValueError('Duplicate baseline physical case')
+        refs[key] = r
     if baseline.get('status') != 'VERIFIED_GITHUB':
         raise ValueError('Unverified baseline')
     out = []
     for record in records:
-        c = record['case']; key = (c['model'], c['phi_over_pi'], c['epsilon'], c['node_noise'])
+        c = record['case']; key = full_physical_key(c, undeformed=True)
         if key not in refs:
             raise ValueError('F2 lacks matching baseline')
         base = refs[key]; changes = {name: record['raw'][name]-base['raw'][name] for name in ('J_h', 'h6', 'P_m6_N2')}
+        for name in ('J_h', 'h6', 'P_m6_N2'):
+            a_u, b_u = record.get('primitive_uncertainty', {}).get(name), base.get('primitive_uncertainty', {}).get(name)
+            changes[name+'_uncertainty'] = None if a_u is None or b_u is None else a_u+b_u
         a, b = record['conditional']['j6'], base['conditional']['j6']
         changes['j6'] = None if a['value'] is None or b['value'] is None else a['value']-b['value']
         changes['j6_uncertainty'] = None if a['uncertainty'] is None or b['uncertainty'] is None else a['uncertainty']+b['uncertainty']
         out.append(dict(id=record['id'], baseline_id=base['id'], changes=changes))
     return out
+
+
+def measured_symmetries(records, responses):
+    groups = {}; results = []
+    for r in records:
+        c = r['case']
+        if not r.get('symmetry', {}).get('symmetry_applicable'):
+            continue
+        key = (c['model'], c['phi_over_pi'], c['node_noise'], c['m6_v_over_J'])
+        groups.setdefault(key, {})[float(c['epsilon'])] = r
+    for key, line in groups.items():
+        for eps in sorted(e for e in line if e > 0 and -e in line):
+            a, b = line[eps], line[-eps]
+            for name in ('J_h', 'h6', 'P_m6_N2'):
+                error = abs(a['raw'][name]-b['raw'][name])
+                limit = a['primitive_uncertainty'][name]+b['primitive_uncertainty'][name]
+                results.append(dict(kind='antiunitary_parity', cases=[a['id'], b['id']], observable=name,
+                                    error=float(error), tolerance=float(limit), status='PASS' if error <= limit else 'FAIL'))
+    freq = {}
+    for r in responses:
+        if r['kind'] == 'frequency':
+            freq.setdefault(r['base_id'], {})[r['omega']] = r
+    for case, line in freq.items():
+        if -.5 not in line or .5 not in line:
+            continue
+        a, b = line[.5], line[-.5]
+        for name in ('J_h', 'K', 'P_m6_N2', 'j6'):
+            if a['values'].get(name) is None or b['values'].get(name) is None:
+                continue
+            error = abs(a['values'][name]-np.conj(b['values'][name]))
+            limit = a['uncertainty'][name]+b['uncertainty'][name]
+            results.append(dict(kind='frequency_conjugacy', cases=[case], observable=name,
+                                error=float(error), tolerance=float(limit), status='PASS' if error <= limit else 'FAIL'))
+    return results
 
 
 def evaluate_predictions(predictions, records, differences):

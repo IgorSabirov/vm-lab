@@ -1,0 +1,135 @@
+{
+  "suite": "integration",
+  "declared_tests": 2,
+  "executed_tests": 2,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "test_timings": [
+    {
+      "id": "test_e002e_integration.WorkerIntegration.test_small_stage_exports_all_declared_cases",
+      "seconds": 0.07351641199966252
+    },
+    {
+      "id": "test_e002e_integration.WorkerIntegration.test_synthetic_baseline_frequency_and_qrt",
+      "seconds": 0.05505425900082628
+    }
+  ],
+  "source_commit": "19a63d7d669f203442ff135510be925b51505257",
+  "kernel_sha256": "cfe7311df8c4b5638f265bee261638591577ad6a3004adaac08ddeb799ab90f9",
+  "environment_before": {
+    "observed_at_utc": "2026-10-31T08:07:15Z",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus": 9,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_quota": "800000 100000",
+    "memory_limit": "8589934592",
+    "memory_available": "    9341916 kB",
+    "memory_total": "       10206472 kB",
+    "load_average": [
+      0.029296875,
+      0.0673828125,
+      0.0224609375
+    ],
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "threadpools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.30",
+        "architecture": "SkylakeX"
+      }
+    ],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 44624
+  },
+  "environment_after": {
+    "observed_at_utc": "2026-10-31T08:07:15Z",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus": 9,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_quota": "800000 100000",
+    "memory_limit": "8589934592",
+    "memory_available": "    9339408 kB",
+    "memory_total": "       10206472 kB",
+    "load_average": [
+      0.029296875,
+      0.0673828125,
+      0.0224609375
+    ],
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "threadpools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.30",
+        "architecture": "SkylakeX"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.30",
+        "architecture": "SkylakeX"
+      }
+    ],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 52028
+  },
+  "internal_seconds_to_report": 0.34456581599988567,
+  "scope": "Code validation only; no production full-model NESS or E002e run"
+}

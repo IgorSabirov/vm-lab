@@ -22,7 +22,7 @@ def main():
     from e002_exp.model import save_json
     before = environment()
     names = ['test_e002e.ReducedAlgebra.test_small_generators_against_full_kron_all_columns',
-             'test_e002e.FullOperators.test_pinned_builder_and_reduction'] if args.suite == 'pilot' else (['test_e002e_integration'] if args.suite == 'integration' else ['test_e002e', 'test_e002e_integration'])
+             'test_e002e.FullOperators.test_pinned_builder_and_reduction'] if args.suite == 'pilot' else (['test_e002e_integration'] if args.suite == 'integration' else ['test_e002e', 'test_e002e_integration', 'test_e002e_review'])
     suite = unittest.defaultTestLoader.loadTestsFromNames(names); count = suite.countTestCases()
     class TimedResult(unittest.TextTestResult):
         def __init__(self, *a, **kw):

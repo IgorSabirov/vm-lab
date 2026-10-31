@@ -33,6 +33,7 @@ def environment():
                 python=sys.version, executable=sys.executable, platform=platform.platform(), machine=platform.machine(),
                 cpu_model=cpu, logical_cpus=os.cpu_count(), affinity=sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
                 cpu_quota=read_optional('/sys/fs/cgroup/cpu.max'), memory_limit=read_optional('/sys/fs/cgroup/memory.max'),
+                memory_current=read_optional('/sys/fs/cgroup/memory.current'),
                 memory_available=mem.get('MemAvailable', None), memory_total=mem.get('MemTotal', None),
                 load_average=list(os.getloadavg()) if hasattr(os, 'getloadavg') else None,
                 numpy=np.__version__, scipy=scipy.__version__, threadpools=pools,
@@ -40,6 +41,26 @@ def environment():
                 optimize=sys.flags.optimize, cache_state='OS_CACHE_NOT_CONTROLLED',
                 infrastructure_unknowns=['physical host contention', 'CPU frequency history', 'storage contention'],
                 max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+
+
+def memory_preflight(budget, current):
+    required = ('peak_additional_bytes', 'reserve_bytes', 'measured_peak_rss_bytes', 'simultaneous_factor_storage_bytes')
+    if any(isinstance(budget.get(k), bool) or not isinstance(budget.get(k), (int, float)) or not np.isfinite(budget[k]) or budget[k] <= 0 for k in required):
+        raise ValueError('Memory budget lacks measured peak/factor storage and positive reserve')
+    if budget['peak_additional_bytes'] < budget['simultaneous_factor_storage_bytes']:
+        raise ValueError('Memory budget cannot be smaller than simultaneous factors')
+    if budget['peak_additional_bytes'] < budget['measured_peak_rss_bytes']:
+        raise ValueError('Memory forecast below measured reference peak')
+    try:
+        limit = int(current['memory_limit']); used = int(current['memory_current'])
+        available = int(current['memory_available'].split()[0])*1024
+    except (KeyError, TypeError, ValueError):
+        raise ValueError('Available cgroup/host memory is not measurable') from None
+    remaining = min(limit-used, available)
+    needed = budget['peak_additional_bytes']+budget['reserve_bytes']
+    if needed > remaining:
+        raise MemoryError(f'Memory budget needs {needed} bytes, available {remaining}')
+    return dict(needed_bytes=needed, available_bytes=remaining, status='PASS')
 
 
 def kernel_files():

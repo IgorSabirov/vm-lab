@@ -8,6 +8,18 @@ from e002_exp.model import maxabs
 FLOOR = 1e-6
 
 
+def refinement_check(primary, reference, values_primary, values_reference, limits):
+    """Calibrated engineering acceptance thresholds; not a rigorous error bound."""
+    state_difference = maxabs(np.asarray(primary)-np.asarray(reference))
+    errors = {name: float(abs(value-values_reference[name])) for name, value in values_primary.items()
+              if value is not None and values_reference.get(name) is not None}
+    failed = [name for name, error in errors.items() if error > limits['observable_absolute']+
+              limits['observable_relative']*max(abs(values_primary[name]), abs(values_reference[name]))]
+    passed = state_difference <= limits['vector_inf'] and not failed
+    return dict(pass_gate=bool(passed), vector_difference_inf=state_difference, observable_differences=errors,
+                failed_observables=failed, limits=limits, status='PASS' if passed else 'NUMERICALLY_UNRESOLVED')
+
+
 def residual(A, x, b):
     r = A@x-b
     return dict(absolute_inf=maxabs(r), relative_2=float(np.linalg.norm(r)/max(np.linalg.norm(b), 1.)))
