@@ -1,7 +1,7 @@
 {
   "experiment": "E002e",
   "mode": "production",
-  "stage": "baseline",
+  "stage": "F2",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "source_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
   "address_space_limit_bytes": 8589934592,
@@ -14,19 +14,19 @@
     "sha256": "589709c066ac48b5ac74d51e07e0a0a0a63926a024993d7f3483dab0d2598f82"
   },
   "forecast": {
-    "expected_seconds": 383.0,
-    "lower_seconds": 248.95,
-    "upper_seconds": 595.65
+    "expected_seconds": 34.0,
+    "lower_seconds": 15.3,
+    "upper_seconds": 90.0
   },
   "expected_workload": {
     "small_NESS": 0,
-    "full_NESS": 24,
-    "static_responses": 30,
-    "frequency_responses": 20,
-    "correlation_inputs": 18,
-    "refinement_NESS": 24,
-    "refinement_static_responses": 30,
-    "refinement_frequency_responses": 20
+    "full_NESS": 20,
+    "static_responses": 0,
+    "frequency_responses": 0,
+    "correlation_inputs": 0,
+    "refinement_NESS": 20,
+    "refinement_static_responses": 0,
+    "refinement_frequency_responses": 0
   },
   "numerics": {
     "solver": {
@@ -63,5 +63,19 @@
       "absolute_tolerance": 1e-08,
       "relative_tolerance": 1e-05
     }
+  },
+  "submitted_at_utc": "2026-10-31T16:14:54.551082Z",
+  "baseline_report": {
+    "path": "analysis/E002e_F2_v001/baseline_bundle.json",
+    "sha256": "6d5615793bb4d9edc2f46dbde95ff06d18e3509b65348bdd95a54dbeb27bf053"
+  },
+  "predictions": {
+    "path": "analysis/E002e_F2_v001/f2_prereg_predictions.json",
+    "sha256": "852121879615d0da3c157271a44a8a77786e94e94e334bf8f071af40070daace",
+    "commit": "11fa1009090d58dd30fa0a285ff4ed83c60c6f79"
+  },
+  "prediction_verification": {
+    "path": "analysis/E002e_F2_v001/prediction_verification.json",
+    "sha256": "d6a3d348acf7734e8da47d9480ec6a05ca96d10325b1665bb986fe4f40aa579b"
   }
 }
