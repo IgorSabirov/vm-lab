@@ -1,0 +1,245 @@
+Follow-up on your static review. Context: this is the same E002d v003 review; not a new scientific task. You have no tools. I am checking your findings, not asking for scientific approval.
+Your prior review:
+**Static review: 2 high- and 3 medium-severity defects.** I did not run commands or tests; line numbers were not provided, so locations are by file and function.
+
+1. **HIGH — calibration/source provenance is not bound.** `e002d_exp/task.py::preflight` checks that `report_commit` and `source_commit` have length 40, but not that they are hexadecimal, match the pinned source commit, or match the source actually used. `run` independently takes the reported identity from `VM_SOURCE_COMMIT` or config. **Counterexample:** a valid kernel hash and review flags with calibration commits set to `"a"*40` and `"b"*40`, while `VM_SOURCE_COMMIT` is `"c"*40`, pass these checks. **Correction:** validate the exact pinned implementation commit, hexadecimal commit IDs, and agreement among running source, calibration, and report; bind the reviewed report/config too. **Test:** mismatched, non-hex, and wrong-pinned commits must fail preflight.
+
+2. **HIGH — an evolution failure can discard a partial case and stop cohort continuation.** In `e002d_exp/task.py::run`, a trajectory is appended to `runs` only *after* `advance` succeeds. The broad catch then exits the case loop; during extension, one failed `advance(400.)` also prevents later cases from extending. The partial trajectory is not finished or exported, despite files/checkpoints already existing. **Counterexample:** make one trajectory raise at a diagnostic step during its initial advance; that case is absent from `results`, and later planned cases never run. **Correction:** retain each trajectory as soon as constructed, record per-case failures and partial state, and continue unaffected cases; do not silently treat an incomplete cohort as complete. **Test:** inject a failure mid-case and verify the partial case is recorded, later cases proceed, and eligibility is blocked.
+
+3. **MEDIUM — refinement can pass on non-finite mismatches.** `e002c_exp/engine.py::compare_pair` compares NaN masks, but not finite masks; it sets error to zero wherever either value is non-finite. **Counterexample:** same grids, `x[:, 1] = 1`, `y[:, 1] = inf` yields zero error for that column and can pass. Matching NaNs may be legitimate for undefined conditional diagnostics; infinities and finite/non-finite mismatches are not. **Correction:** require matching finite/NaN patterns, reject infinities, and allow NaNs only in explicitly conditional columns. **Test:** reject finite-vs-infinite, finite-vs-NaN, and infinite-vs-infinite pairs while preserving valid matching undefined-condition cases.
+
+4. **MEDIUM — the independent verifier does not independently check several published analysis results.** `e002d_exp/verify.py::verify` reconstructs sampled coherence inputs and primary central contrasts, but does not recompute the published A complex-coherence summaries/phase shifts, uncertainty intervals, or resolution statuses. **Counterexample:** alter an `analysis.json.gz` A-row phase shift, then update its metrics pointer hash and manifest; semantic verification has no check for that value. Likewise, incorrect propagated intervals can pass. **Correction:** independently reconstruct complex magnitudes, conditional values, phase validity/shifts, and the specified interval propagation and statuses. **Test:** mutate each derived field while updating hashes and require verification to reject it.
+
+5. **MEDIUM — reported runtime omits final report assembly.** `e002d_exp/task.py::run` sets the final runtime and status before the second metrics/checks/RESULT writes and final `write_manifest`; the supplied entry point does not write the stated `run.json` full-process timing. The forecast gate can therefore pass using a shorter-than-complete runtime. **Counterexample:** delay the final manifest write; `runtime.actual_seconds` and its status do not include that delay. **Correction:** make an external completion record authoritative for full-process time and gate status, or otherwise measure through final assembly without claiming a pre-finalization time is complete. **Test:** inject finalization delay and verify the authoritative elapsed time includes it.
+
+**Equivalent optimization suggestions—not defects:** (a) compute only the minimum eigenvalue in `e002c_exp/diagnostics.py::quality` using a symmetric/Hermitian subset eigensolver instead of all eigenvalues; prove agreement with the current solver, especially near the physicality threshold. (b) Precompute/vectorize the repeated mask/sector current contractions in `e002c_exp/diagnostics.py::expanded` and cache invariant observable rows in `e002d_exp/model.py::extra_observables`; prove phase-sign, mask, and sector agreement against independent trace calculations. For either, benchmark end-to-end—including setup, integration, diagnostics, continuation, export, and verification—and confirm unchanged gates, coverage, and report limits; microbenchmarks alone are insufficient.
+
+**Review record:** supplied `E002d.md` SHA256: `d0906079cea16a41df22881d09cccdadf233f5bf36722d2c0f119d007dcab7b7`. The exact review-prompt hash was not supplied and is not computed here. Findings are recorded above; owner acceptance/rejection is pending. Verification performed: static inspection only; no tests or production run.
+Owner assessment and intended corrections:
+1. Production source commit intentionally differs from the calibration commit when config/report/review records are committed later. Kernel hash binds all actual scientific modules; requiring equality of Git commits is incorrect. The external bridge pins/checks each fetched source and hashes all files; external result reader validates exact requested source, report ref, all report hashes. See code below. I accept strict hex validation and adding hash-pinned local review/calibration verification records, which preflight cross-checks against the kernel, versions and referenced commits. This strengthens the handoff, but is not an independent trust root. Do you agree that requiring running-source == calibration-source would be wrong here?
+2. Accept retaining failed partial trajectories and recording per-case error. Numerical ValueError may allow other cases to proceed, while resource failure (disk/memory/OS) aborts the cohort and marks skipped cases. No scientific claims from an incomplete cohort. Failed trajectories are not extended. Full/partial states are retained. The declared scientific run stays FAILED, never silently accepted.
+3. Reproduce and fix nonfinite comparison in E002d-specific wrapper (preserve old module). Reject any infinity, require NaN-mask match, allow NaN only in specified conditional diagnostics when support is invalid; test finite/inf, inf/inf, finite/NaN and allowed conditional NaNs.
+4. Accept expanding independent report reconstruction to derived coherences, phase and numerical envelopes/statuses. Full-grid dt outcome and full216 positivity cannot be independently recovered from the reduced export; these limitations remain explicit. Window primitives and their uncertainty envelopes can be independently checked using all six exported fine/coarse window samples.
+5. Full process duration is measured externally by the worker; bridge publishes its status verbatim into run.json. The owner reads and verifies this before scientific acceptance, as expressly stated in the spec and RESULT. Entry point must not synthesize its own run.json. I will rename the internal gate status to INTERNAL_PASS_AWAITING_PROCESS / INTERNAL_REVIEW_REQUIRED to remove possible ambiguity; the GitHub acceptance record remains authoritative and includes final report assembly. Is there still a concrete missing measurement after accounting for this wrapper?
+Optimization proposals are optional, not required corrections. No acceleration is claimed; retain the tested full-CSR RK4 baseline for this run, with diagnostics/IO included in final VM calibration. Do not demand a long optimization project as a gate.
+Please respond to these distinctions and flag any issue with the proposed corrections. Concise, reproducible concerns only.
+
+=== Source-pinning and external report adapter excerpts ===
+    def prepare(self, record):
+        rid, commit = record['run_id'], record['source_commit']
+        self.git('fetch', '--no-tags', '--depth=1', 'origin', commit)
+        actual = self.git('rev-parse', 'FETCH_HEAD').decode().strip()
+        if actual != commit:
+            raise ValueError('Fetched commit differs from request')
+        # No checkout, hooks, attributes, submodules or repository code on the networked host.
+        tree = self.git('ls-tree', '-rz', '--full-tree', commit)
+        allowed = []
+        total = 0
+        for item in tree.split(b'\0'):
+            if not item:
+                continue
+            metadata, name = item.split(b'\t', 1)
+            name = name.decode('utf-8')
+            if name.split('/')[0] in {'infra', 'results'} or any(p.startswith('.') for p in PurePosixPath(name).parts):
+                continue
+            safe_parts(name)
+            mode, kind, oid = metadata.decode().split()
+            if kind != 'blob' or mode not in {'100644', '100755'}:
+                raise ValueError('Source symlinks and submodules are unsupported')
+            size = int(self.git('cat-file', '-s', oid))
+            total += size
+            if size > MAX_FILE or total > MAX_TOTAL or len(allowed) >= MAX_FILES:
+                raise ValueError('Source snapshot exceeds limits')
+            allowed.append((name, oid))
+        files = {name: self.git('cat-file', 'blob', oid) for name, oid in allowed}
+        if not {'run.py', 'config.json'} <= files.keys():
+            raise ValueError('The source commit needs run.py and config.json')
+        json.loads(files['config.json'])
+        manifest = {name: digest(data) for name, data in files.items()}
+        prefix = self.source_dir + '/' + rid
+        for name, data in files.items():
+            self.work.write(prefix + '/' + name, data, replace=False)
+        wrapper = (
+            'import hashlib, os, runpy, sys\nfrom pathlib import Path\n'
+            + 'root = Path(' + repr(str(self.work.path / prefix)) + ')\n'
+            + 'expected = ' + repr(manifest) + '\n'
+            + 'for name, sha in expected.items():\n'
+            + '    p = root / name\n'
+            + '    if p.is_symlink() or hashlib.sha256(p.read_bytes()).hexdigest() != sha:\n'
+            + '        raise RuntimeError("Source input changed: " + name)\n'
+            + 'os.environ["VM_SOURCE_COMMIT"] = ' + repr(commit) + '\n'
+            + 'os.environ["VM_SOURCE_DIR"] = str(root)\n'
+            + 'sys.path.insert(0, str(root))\nsys.argv = [str(root / "run.py")]\n'
+            + 'runpy.run_path(sys.argv[0], run_name="__main__")\n'
+        ).encode()
+        record.update(input_sha256=manifest, wrapper_sha256=digest(wrapper))
+        self.save(record)  # Persist identity before publishing a runnable job.
+        self.queue_job(rid, wrapper)
+        record.update(stage='queued', last_error=None)
+        self.save(record)
+
+    def collect(self, record, status):
+        rid = record['run_id']
+        files, errors, total = {}, [], 0
+        candidates = []
+        log_metadata = {'full_path': 'jobs/' + rid + '/output.log'}
+        try:
+            data, detail = self.export_log(log_metadata['full_path'])
+            files['output.log'] = data
+            total += len(data)
+            log_metadata.update(detail)
+        except FileNotFoundError as exc:
+            if 'started' not in status:
+                files['output.log'] = ('No process was started; worker state: ' + str(status.get('state')) + '\n').encode()
+                log_metadata.update(method='no_process', original_bytes=0, omitted_bytes=0)
+            else:
+                errors.append('output.log: ' + str(exc))
+        except (OSError, ValueError) as exc:
+            errors.append('output.log: ' + str(exc))
+        try:
+            for name in self.work.files('results/' + rid + '/report'):
+                candidates.append(('files/' + name, 'results/' + rid + '/report/' + name))
+                if len(candidates) >= MAX_FILES:
+                    errors.append('More than %d result files; excess omitted' % MAX_FILES)
+                    break
+        except FileNotFoundError:
+            if status.get('state') == 'completed':
+                errors.append('Successful job did not create report/')
+        except (OSError, ValueError) as exc:
+            errors.append('Result listing: ' + str(exc))
+        for destination, source in candidates[:MAX_FILES - 1]:
+            try:
+                data = self.work.read(source)
+                if total + len(data) > MAX_TOTAL:
+                    raise ValueError('Total result export limit exceeded')
+                files[destination] = data
+                total += len(data)
+            except (OSError, ValueError) as exc:
+                errors.append(destination + ': ' + str(exc))
+        if status.get('state') == 'completed':
+            for required in ('files/README.md', 'files/metrics.json', 'files/data_manifest.json'):
+                if required not in files:
+                    errors.append('Required report file missing: ' + required)
+        retained, retained_errors = self.retained_inventory(rid)
+        manifest = {
+            'run_id': rid, 'repository': record['repository'], 'source_commit': record['source_commit'],
+            'input_sha256': record['input_sha256'], 'job': status, 'export_errors': errors,
+            'report_profile': 'medium-v1', 'selection': 'Only report/ is published; full/ remains on VM',
+            'full_data': retained, 'full_data_inventory_errors': retained_errors, 'log_export': log_metadata,
+            'files': {name: {'sha256': digest(data), 'bytes': len(data)} for name, data in files.items()},
+        }
+        files['run.json'] = json_bytes(manifest)
+        spool = self.state / 'exports' / rid
+        spool.mkdir(parents=True, exist_ok=True)
+        for name, data in files.items():
+            target = spool / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open('wb') as handle:
+                handle.write(data)
+                handle.flush()
+                os.fsync(handle.fileno())
+        for directory, _, _ in os.walk(spool):
+            fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(fd)
+            finally:
+                os.close(fd)
+        record.update(stage='exporting', job_state=status.get('state'),
+                      export_files=list(files), export_sha256={name: digest(data) for name, data in files.items()},
+                      export_errors=errors)
+        self.save(record)
+
+
+=== External verified report reader ===
+"""Accept execution reports only through a supplied GitHub file reader.
+
+There is intentionally no VM client, filesystem reader, or fallback transport.
+The production adapter calls the GitHub connector for each path at result_commit.
+Local integration tests substitute a separate bare Git repository for GitHub.
+"""
+import hashlib
+import json
+import re
+
+
+class UnconfirmedResult(RuntimeError):
+    """No complete, matching report has been verified in GitHub."""
+
+
+def _relative(path):
+    return isinstance(path, str) and bool(path) and all(
+        part and not part.startswith('.') and not any(ord(c) < 32 for c in part)
+        for part in path.split('/')
+    )
+
+
+def read_github_result(fetch_file, *, repository, result_commit, run_id, source_commit):
+    """fetch_file(repository, path, ref) -> bytes; every read pins the same ref.
+
+    Return a verified report, including artifacts obtained from GitHub. A valid
+    failed/cancelled/interrupted execution is a confirmed report, not a success.
+    Missing files, wrong versions, changed bytes and incomplete exports fail closed.
+    """
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
+        raise UnconfirmedResult('Invalid repository')
+    if not re.fullmatch(r'[A-Za-z0-9_-]{12,64}', run_id):
+        raise UnconfirmedResult('Invalid run id')
+    for value in (source_commit, result_commit):
+        if not re.fullmatch(r'[0-9a-f]{40}', value):
+            raise UnconfirmedResult('A full immutable commit SHA is required')
+    prefix = 'results/' + run_id + '/'
+
+    def get(path):
+        try:
+            data = fetch_file(repository, path, result_commit)
+        except Exception as exc:
+            raise UnconfirmedResult('GitHub report is unavailable: ' + path) from exc
+        if not isinstance(data, bytes):
+            raise UnconfirmedResult('GitHub adapter must return exact bytes')
+        return data
+
+    try:
+        report = json.loads(get(prefix + 'run.json'))
+    except (ValueError, UnicodeError) as exc:
+        raise UnconfirmedResult('Invalid GitHub report JSON') from exc
+    if not isinstance(report, dict) or any(report.get(key) != value for key, value in {
+        'repository': repository, 'run_id': run_id, 'source_commit': source_commit,
+    }.items()):
+        raise UnconfirmedResult('Report does not match the requested repository, run or code version')
+    if report.get('export_errors') != []:
+        raise UnconfirmedResult('GitHub export is incomplete; inspect export_errors in GitHub')
+    job = report.get('job')
+    if not isinstance(job, dict) or job.get('state') not in {'completed', 'failed', 'cancelled', 'interrupted'}:
+        raise UnconfirmedResult('Report has no terminal execution state')
+    if job['state'] == 'completed' and (type(job.get('exit_code')) is not int or job['exit_code'] != 0):
+        raise UnconfirmedResult('Completed report has an invalid exit code')
+    files = report.get('files')
+    if not isinstance(files, dict) or 'output.log' not in files or len(files) > 512:
+        raise UnconfirmedResult('Report has no exported log')
+    if report.get('report_profile') != 'medium-v1':
+        raise UnconfirmedResult('Unknown report profile')
+    if job['state'] == 'completed' and not {
+        'files/README.md', 'files/metrics.json', 'files/data_manifest.json'
+    } <= files.keys():
+        raise UnconfirmedResult('Successful execution lacks the required detailed report')
+    artifacts = {}
+    total = 0
+    for name, expected in files.items():
+        if not _relative(name) or (name != 'output.log' and not name.startswith('files/')):
+            raise UnconfirmedResult('Artifact path escapes the result directory')
+        if not isinstance(expected, dict) or type(expected.get('bytes')) is not int or not 0 <= expected['bytes'] <= 8 * 1024**2:
+            raise UnconfirmedResult('Invalid artifact metadata')
+        total += expected['bytes']
+        if total > 32 * 1024**2:
+            raise UnconfirmedResult('Artifact set exceeds the supported export size')
+        data = get(prefix + name)
+        if len(data) != expected['bytes'] or hashlib.sha256(data).hexdigest() != expected.get('sha256'):
+            raise UnconfirmedResult('GitHub artifact size/hash mismatch: ' + name)
+        artifacts[name] = data
+    return {
+        'result_source': 'github', 'repository': repository, 'result_commit': result_commit,
+        'source_commit': source_commit, 'run_id': run_id, 'report': report,
+        'execution_succeeded': job['state'] == 'completed' and job['exit_code'] == 0,
+        'artifacts': artifacts,
+    }
+

@@ -23,3 +23,8 @@
 Добавлен независимый тест шести точек на искусственной положительной матричной кривой с аналитически известным средним; подмена среднего отклоняется. Добавлен тест лимита metadata с длинными числовыми представлениями.
 Итоговый повтор:8группPASS за43.958с,при прежнем прогнозе60с и диапазоне0–300с. Smoke:16.5632с,545443байта,24файла.
 Отдельно исправлен классификатор моста: реальный ответ No authentication information found теперь AUTH_REQUIRED; проверен на полученном сообщении.
+
+## Review regression checks — preregistered before execution
+31 October 2026. After Copilot review: forecast 90 seconds, interval 0–300 seconds.
+Basis: original 8 groups took43.958 seconds; add another short smoke run with an injected failure, independent full184-case derived-field corruption checks, nonfinite and provenance tests.
+Planned13 test groups; no production evolution. Actual results will be appended separately.
