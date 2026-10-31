@@ -1,4 +1,4 @@
-import copy,hashlib,json,os,tempfile,unittest
+import copy,hashlib,json,os,tempfile,unittest,io,lzma,zipfile
 from pathlib import Path
 from unittest.mock import patch
 import numpy as np
@@ -8,6 +8,8 @@ from e002d_exp.engine import compare_pair,Trajectory
 from e002d_exp.analysis import analyze
 from e002d_exp.task import execute_cohort,run,validate_provenance
 from e002d_exp.verify_analysis import verify_derived
+from e002d_exp.export import write_case_archive,write_manifest
+from e002d_exp.verify import read_case
 
 class ReviewRegressionTests(unittest.TestCase):
     def test_nonfinite_comparisons(self):
@@ -83,10 +85,33 @@ class ReviewRegressionTests(unittest.TestCase):
             partial=next(s for s in metrics["cases"] if s["case"]["id"]==triggered[0])
             self.assertEqual(partial["horizon"],.4);self.assertIsNotNone(partial["failed"])
             self.assertTrue((root/"full"/triggered[0]/"final.npz").is_file())
-            self.assertTrue((root/"report/cases"/(triggered[0]+".npz")).is_file())
+            self.assertTrue((root/"report/cases"/(triggered[0]+".npz.xz")).is_file())
             self.assertEqual(checks["technical_status"],"FAILED")
             self.assertEqual(checks["runtime_gate"]["status"],"INTERNAL_REVIEW_REQUIRED")
             self.assertEqual(sum(s["horizon"]==2 for s in metrics["cases"]),9)
+
+    def test_case_archive_bitwise_roundtrip_and_inner_guards(self):
+        words=np.array([0,0x8000000000000000,0x7ff8000000000017,0x7ff0000000000000,0xfff0000000000000,0x3ff0000000000000],dtype=np.uint64)
+        arrays=dict(real=words.view(np.float64).reshape(2,3),complex=words.view(np.complex128),integer=np.arange(6).reshape(2,3))
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);full=root/"full";full.mkdir();(root/"cases").mkdir();path=root/"cases/test.npz.xz"
+            write_case_archive(path,arrays);first=path.read_bytes();write_case_archive(path,arrays)
+            self.assertEqual(first,path.read_bytes());write_manifest(root,full)
+            manifest=json.loads((root/"data_manifest.json").read_text())
+            with read_case(root,"test",manifest) as z:
+                self.assertEqual(set(z.files),set(arrays))
+                for key,a in arrays.items():
+                    self.assertEqual(z[key].dtype,a.dtype);self.assertEqual(z[key].shape,a.shape)
+                    self.assertEqual(z[key].tobytes(),a.tobytes())
+            item=next(x for x in manifest["exported"] if x["path"]=="cases/test.npz.xz")
+            item["uncompressed_sha256"]="0"*64
+            with self.assertRaisesRegex(ValueError,"hash/size"):read_case(root,"test",manifest)
+            raw=io.BytesIO()
+            with zipfile.ZipFile(raw,"w",compression=zipfile.ZIP_STORED) as archive:
+                member=io.BytesIO();np.lib.format.write_array_header_1_0(member,dict(descr="<f8",fortran_order=False,shape=(10**12,)))
+                archive.writestr("huge.npy",member.getvalue())
+            data=raw.getvalue();path.write_bytes(lzma.compress(data));item.update(uncompressed_bytes=len(data),uncompressed_sha256=hashlib.sha256(data).hexdigest())
+            with self.assertRaisesRegex(ValueError,"NPY payload"):read_case(root,"test",manifest)
 
     def test_derived_fields_and_semantic_corruption(self):
         for horizon in (200.,400.):

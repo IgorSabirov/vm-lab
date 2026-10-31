@@ -37,3 +37,7 @@ No acceleration integrated; full-CSR RK4 unchanged. Final VM calibration remains
 
 ## Packaging correction regression — preregistered
 Forecast90seconds,range0–300. Fourteen groups: prior13 plus archivebitwise/signedzero/NaNpayload/type/shape/determinism and bounded innerNPY decoding. Real smoke and failure-report export now usewholeNPZ+XZ; metadata compactJSON muststaybelow4MiB in worst-number fixture. Final48-caseVMcalibration will be repeated on thenewkernel; previous156.935s result remains immutable.
+
+Packaging tests:14groups in63.275s,13PASS and one allocation failure (4,249,266byteJSON vs4MiBsub-allocation; fixed30MiB/8MiB limits were not exceeded). Metadata sub-allocation corrected to5MiB,2MiB reserved forothermetadata. The only affected check rerun:PASS in2.071s vsforecast10[0,60]. All14groups now covered bypassing checks on unchanged functionalcode. Normal smoke16.063s,388679bytes24files; failing-case smoke16.573s,372295bytes23files,expectedFAILED and retainedpartialdata.
+WholeNPZ+XZ preservesexactnames/shapes/dtypes/canonicalarraybytes inclsignedzeros/NaNpayloads; independentinnerpayloadhash/length andNPYsize guards passed. OldNPZreports remainreadable.
+Final r002calibration forecast180s[60,480] based on verifiedr001156.935s and addedpackagingcost. Afterr002 every publishedcasearray will be comparedbitwisewithr001 to check numericalequivalence.

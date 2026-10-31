@@ -1,10 +1,31 @@
 """One compressed, self-describing case artifact; medium-v1 size limits stay fixed."""
-import hashlib,json,gzip
+import hashlib,json,gzip,io,lzma,zipfile
 from pathlib import Path
 import numpy as np
 from e002c_exp.export import extrema,evidence,array_spec,digest
 from e002_exp.model import save_json
 from .plan import CONTRACT
+
+MAX_CASE_PAYLOAD=8*1024**2
+
+def write_case_archive(path,arrays):
+    """Ordinary NPY members; one XZ stream can exploit cross-array duplication."""
+    stream=io.BytesIO()
+    with zipfile.ZipFile(stream,"w",compression=zipfile.ZIP_STORED,allowZip64=True) as archive:
+        for key in sorted(arrays):
+            a=np.asfortranarray(arrays[key]);member=io.BytesIO();np.save(member,a,allow_pickle=False)
+            info=zipfile.ZipInfo(key+".npy",date_time=(1980,1,1,0,0,0));info.compress_type=zipfile.ZIP_STORED
+            archive.writestr(info,member.getvalue())
+    data=stream.getvalue()
+    if len(data)>MAX_CASE_PAYLOAD:raise ValueError("Uncompressed case payload exceeds cap")
+    Path(path).write_bytes(lzma.compress(data,format=lzma.FORMAT_XZ,preset=6))
+
+def archive_payload(path):
+    decoder=lzma.LZMADecompressor(format=lzma.FORMAT_XZ,memlimit=128*1024**2)
+    raw=decoder.decompress(Path(path).read_bytes(),max_length=MAX_CASE_PAYLOAD+1)
+    if len(raw)>MAX_CASE_PAYLOAD or not decoder.eof or decoder.unused_data:
+        raise ValueError("Invalid or oversized case archive")
+    return raw
 
 def export_case(report,r,mode):
     (report/"cases").mkdir(exist_ok=True)
@@ -15,9 +36,9 @@ def export_case(report,r,mode):
     keep_a=(a[:,0]<=10+1e-8)|np.isclose(a[:,0]/4,np.round(a[:,0]/4),atol=1e-9)
     keep_b=(b[:,0]<=20+1e-8)|np.isclose(b[:,0]/4,np.round(b[:,0]/4),atol=1e-9)
     ev={"e_"+k:v for k,v in evidence(r).items()}
-    np.savez_compressed(report/"cases"/(r["summary"]["case"]["id"]+".npz"),
-        series=a[keep_a],diagnostics=b[keep_b],window_time=times,
-        window_blocks=r["certs"]["blocks"][chosen],window_scalar=a[indices],window_diagnostics=b[chosen],**ev)
+    write_case_archive(report/"cases"/(r["summary"]["case"]["id"]+".npz.xz"),
+        dict(series=a[keep_a],diagnostics=b[keep_b],window_time=times,
+        window_blocks=r["certs"]["blocks"][chosen],window_scalar=a[indices],window_diagnostics=b[chosen],**ev))
     hidx=1+r["names"].index("h")
     return dict(scalar=extrema(a),diagnostic=extrema(b),scalar_records=len(a),diagnostic_records=len(b),
                 h_t_positive=extrema(a[a[:,0]>0][:,[0,hidx]])[0],h_start=float(a[0,hidx]))
@@ -29,6 +50,11 @@ def write_manifest(report,full):
             if not p.is_file() or p.name=="data_manifest.json":continue
             row=dict(path=p.relative_to(root).as_posix(),bytes=p.stat().st_size,sha256=digest(p))
             if root==report and p.suffix==".npz":row["arrays"]=array_spec(p)
+            if root==report and p.name.endswith(".npz.xz"):
+                raw=archive_payload(p)
+                row.update(encoding="xz+stored-npz",uncompressed_bytes=len(raw),uncompressed_sha256=hashlib.sha256(raw).hexdigest())
+                with np.load(io.BytesIO(raw),allow_pickle=False) as z:
+                    row["arrays"]={k:dict(dtype=str(z[k].dtype),shape=list(z[k].shape)) for k in z.files}
             out.append(row)
     save_json(report/"data_manifest.json",dict(exported=records,full=original,
         full_bytes=sum(x["bytes"] for x in original),selection=CONTRACT["report"],
@@ -86,7 +112,7 @@ def compact(metrics,checks):
             dv=r.get("delta_D",{}).get("value")
             text.append(f"|{ident},{r['horizon']:g}|{dv if dv is not None else 'null'}|{r['status']}|")
     text+=["","Полные условия и ID: case_registry.json. Все компоненты,знаменатели,структурные сдвиги,комплексные цели,арифметическое разложение и причины отказов: metrics.json и analysis.json.gz (lossless,хеш ссылки проверяется).",
-      "Экстремумы всех величин до разрежения: extrema.json.gz. Один lossless NPZ на случай: cases/. Ряды .2 до10 затем4; диагностика2 до20 затем4; все окна/матрицы через2. Счётчики,размеры и SHA256: data_manifest.json. Цифры текста округлены,NPZ/JSON сохраняют точность.",
+      "Экстремумы: extrema.json.gz. На случай cases/*.npz.xz: сначалаXZ-распаковка,затемобычныйNPZ; всеимена/формы/типы/биты сохранены. Ряды .2 до10 затем4; диагностика2 до20 затем4; окна/матрицы через2. Размеры/SHA256 сжатого и распакованного: data_manifest.json. Округлён только этоттекст.",
       "Полные матрицы и полные ряды остаются на ВМ. Проверяющий отчёт восстанавливает токи,веса,когерентности и основные контрасты из узловых блоков; полные positivity/node-edge NPT по ним не восстанавливаются.",
       "Нет автоматического статуса Фано; N2 не доказывает GME; нулевые свидетели не доказывают сепарабельность. A и B/C не доказывают общий механизм. Научная приёмка — пользователь."]
     result="\n".join(text)+"\n"

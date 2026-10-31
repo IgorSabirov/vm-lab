@@ -1,5 +1,5 @@
 """Independent report-only reconstruction. Imports no evolution/model/analysis code."""
-import gzip,hashlib,json
+import gzip,hashlib,json,io,lzma,zipfile,math
 from pathlib import Path
 import numpy as np
 from scipy.integrate import simpson
@@ -7,6 +7,32 @@ TARGETS={"S2a":(2,5,6),"S2b":(4,3,6),"S1a":(2,1,2),"S1b":(4,1,4),
          "M2a":(6,5,6),"M2b":(6,3,6),"M1a":(6,1,2),"M1b":(6,1,4)}
 OPS={**{k:(k,) for k in ("S2a","S2b","S1a","S1b")},
      "S2":("S2a","S2b"),"S1":("S1a","S1b"),"M2":("M2a","M2b"),"M1":("M1a","M1b")}
+
+def read_case(root,cid,manifest):
+    """Independent bounded decoder; no producer import. Old NPZ reports remain readable."""
+    relative="cases/"+cid+".npz.xz";path=root/relative
+    if not path.exists():return np.load(root/"cases"/(cid+".npz"),allow_pickle=False)
+    item=next(x for x in manifest["exported"] if x["path"]==relative)
+    size=item["uncompressed_bytes"]
+    if not isinstance(size,int) or not 0<size<=8*1024**2:raise ValueError("Invalid decoded case size")
+    decoder=lzma.LZMADecompressor(format=lzma.FORMAT_XZ,memlimit=128*1024**2)
+    raw=decoder.decompress(path.read_bytes(),max_length=size+1)
+    if len(raw)!=size or not decoder.eof or decoder.unused_data or hashlib.sha256(raw).hexdigest()!=item["uncompressed_sha256"]:
+        raise ValueError("Decoded case hash/size mismatch")
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        members=archive.infolist()
+        if len({x.filename for x in members})!=len(members) or any(x.compress_type!=zipfile.ZIP_STORED or not x.filename.endswith(".npy") or "/" in x.filename for x in members):
+            raise ValueError("Invalid NPZ member layout")
+        if len(members)>32:raise ValueError("Too many case arrays")
+        for member in members:
+            with archive.open(member) as stream:
+                version=np.lib.format.read_magic(stream)
+                if version==(1,0):shape,order,dtype=np.lib.format.read_array_header_1_0(stream)
+                elif version==(2,0):shape,order,dtype=np.lib.format.read_array_header_2_0(stream)
+                else:raise ValueError("Unsupported NPY format")
+                if dtype.hasobject or stream.tell()+math.prod(shape)*dtype.itemsize!=member.file_size:
+                    raise ValueError("Invalid NPY payload size/type")
+    return np.load(io.BytesIO(raw),allow_pickle=False)
 
 def verify(report):
     root=Path(report);manifest=json.loads((root/"data_manifest.json").read_text())
@@ -38,7 +64,7 @@ def verify(report):
     for s in metrics["cases"]:
         c=s["case"];cid=c["id"]
         if c!=registered[cid]:raise ValueError("Case identity mismatch")
-        with np.load(root/"cases"/(cid+".npz"),allow_pickle=False) as z:
+        with read_case(root,cid,manifest) as z:
             time=z["window_time"];blocks=z["window_blocks"];values=z["window_scalar"]
             if blocks.shape!=(len(time),9,8,8) or not np.array_equal(time,values[:,0]):raise ValueError("Window shape/grid mismatch")
             check(blocks,blocks.swapaxes(-1,-2).conj(),"Hermiticity")

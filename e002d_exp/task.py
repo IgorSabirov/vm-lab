@@ -21,7 +21,12 @@ def save_metrics(report,metrics):
         json.dump(metrics["analysis"],stream,ensure_ascii=False,allow_nan=False,separators=(",",":"))
     public=dict(metrics,analysis=dict(file=path.name,encoding="gzip+json",
                                     sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
-    save_json(report/"metrics.json",public)
+    # Whitespace is not scientific data; retain every field/float without pretty-print inflation.
+    path=report/"metrics.json";temporary=path.with_suffix(".json.tmp")
+    with temporary.open("w",encoding="utf-8") as stream:
+        json.dump(public,stream,ensure_ascii=False,allow_nan=False,separators=(",",":"));stream.write("\n")
+        stream.flush();os.fsync(stream.fileno())
+    os.replace(temporary,path)
 
 def kernel_files():
     return [ROOT/"e002_exp/model.py",*[ROOT/"e002c_exp"/f for f in
@@ -193,7 +198,7 @@ def run(config,workdir=None):
             coherence="C_key=rho_node_mask[a,b], unnormalised; full_target_norm includes all edge microstate pairs",
             mean="Simpson on six points, ratios of means",Fano_status="NOT_AUTOMATIC"))
     save_json(report/"config.json",config);save_metrics(report,metrics);save_json(report/"checks.json",checks)
-    (report/"README.md").write_text("E002d v003: RESULT.md, metrics.json, checks.json, schema.json; one compressed NPZ per case.\n")
+    (report/"README.md").write_text("E002d v003: RESULT.md, metrics.json, checks.json, schema.json; cases/*.npz.xz: XZ-decompress before np.load. Manifest verifies compressed and uncompressed bytes.\n")
     (report/"RESULT.md").write_text(compact(metrics,checks));write_manifest(report,full)
     if not fatal and not case_failures and volume:
         from .verify import verify

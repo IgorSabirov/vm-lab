@@ -1,4 +1,4 @@
-import copy,json,tempfile,time,unittest
+import copy,json,tempfile,time,unittest,io,lzma
 from pathlib import Path
 import numpy as np
 from e002_exp.model import build_liouvillian,make_direct_rhs,maxabs,save_json
@@ -10,7 +10,7 @@ from e002d_exp.numerics import estimate,linear,ratio,signed,contrast,sampled_min
 from e002d_exp.analysis import analyze
 from e002d_exp.task import run,save_metrics
 from e002d_exp.verify import verify
-from e002d_exp.export import compact,write_manifest,export_case
+from e002d_exp.export import compact,write_manifest,export_case,write_case_archive
 
 def synthetic_results(horizon=200.):
     names=build(case("QS"))["names"]
@@ -142,7 +142,7 @@ class E002dTests(unittest.TestCase):
             return x
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);save_metrics(root,wide_numbers(metrics))
-            self.assertLess((root/"metrics.json").stat().st_size,7*1024**2)
+            self.assertLess((root/"metrics.json").stat().st_size,5*1024**2)
             self.assertLess((root/"analysis.json.gz").stat().st_size,8*1024**2)
 
     def test_independent_six_point_window_mean(self):
@@ -184,13 +184,13 @@ class E002dTests(unittest.TestCase):
             self.assertEqual(checks["technical_status"],"PASS")
             self.assertEqual(metrics["work"]["actual"]["steps"],3000)
             root=Path(tmp)/"report";self.assertEqual(verify(root)["status"],"PASS")
-            path=next((root/"cases").glob("*.npz"));data=path.read_bytes();path.write_bytes(data+b"X")
+            path=next((root/"cases").glob("*.npz.xz"));data=path.read_bytes();path.write_bytes(data+b"X")
             with self.assertRaisesRegex(ValueError,"hash mismatch"):verify(root)
             path.write_bytes(data)
-            with np.load(path,allow_pickle=False) as z:arrays={k:z[k] for k in z.files}
+            with np.load(io.BytesIO(lzma.decompress(path.read_bytes())),allow_pickle=False) as z:arrays={k:z[k] for k in z.files}
             schema=json.loads((root/"schema.json").read_text())
             arrays["window_scalar"][-1,schema["series"].index("h")]+=.001
-            np.savez_compressed(path,**arrays)
+            write_case_archive(path,arrays)
             write_manifest(root,Path(tmp)/"full")
             with self.assertRaisesRegex(ValueError,"Reconstruction failed"):verify(root)
 

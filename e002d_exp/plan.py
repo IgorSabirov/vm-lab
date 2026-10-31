@@ -25,7 +25,7 @@ CONTRACT=dict(version=VERSION,source_physics_commit="29fe4496485c17e935b2e2ffa9c
  report=dict(maximum_bytes=30*1024**2,maximum_files=500,maximum_file_bytes=8*1024**2,
  series="0:.2:10 then multiples of 4; exact final and T200 windows at step 2",
  diagnostics="0:2:20 then multiples of 4; full-grid extrema before sampling",
- case_format="one lossless compressed NPZ per case; full states/full grids stay on VM"))
+ case_format="one .npz.xz per case: XZ around stored NPZ, NPY Fortran layout; compressed/payload hashes and bounded decoder; all bits retained; full states/full grids stay on VM"))
 
 def physics_key(c,include_dt=True):
     fields=("model","phi_over_pi","detuning","dephasing","target","kind","gamma")
@@ -103,4 +103,4 @@ def comparison_graph():
     return dict(extension_cohorts=[[c["id"] for c in cs]],edges=edges)
 
 CALIBRATION_FORECAST=dict(expected_seconds=180.,lower_seconds=60.,upper_seconds=480.,
- source="72,000 RK4 steps at prior VM full-CSR ~.0017s/step=122s; 48 builds and diagnostics/export ~58s; provisional before final review")
+ source="Verified E002d_CAL_v003_r001 process156.935s for48cases/72000steps; same evolution plus whole-caseXZ packaging and bounded decoding;180s forecast with60–480s range before r002")

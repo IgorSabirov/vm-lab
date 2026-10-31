@@ -1,0 +1,79 @@
+{
+  "status": "VERIFIED_GITHUB",
+  "source_commit": "f66f2b00b368b8cdb7cc97f53ac063d79347a0d3",
+  "report_commit": "b068334b2a39bf03249a418b55c5aca1b3506778",
+  "run_id": "E002d_CAL_v003_r001",
+  "execution_succeeded": true,
+  "files": 63,
+  "bytes": 5688322,
+  "runtime": {
+    "expected_seconds": 180.0,
+    "actual_seconds": 156.93542408943176,
+    "lower_seconds": 60.0,
+    "upper_seconds": 480.0,
+    "deviation_seconds": -23.064575910568237,
+    "status": "PASS"
+  },
+  "verification": {
+    "status": "PASS",
+    "case_windows": 48,
+    "reconstruction_max_error": 2.1094237469052604e-15,
+    "min_reduced_eigenvalue": 0.0,
+    "witness_certificates": 5184,
+    "scientific_comparisons": 0,
+    "independently_reconstructed_derived_fields": 0,
+    "limitations": [
+      "Full-state positivity, full-target norms and node-edge negativity require full VM states.",
+      "Full-grid dt, quality and stationarity gates cannot be independently repeated from the reduced export; reconstructed resolution statuses are conditional on those reported gates."
+    ]
+  },
+  "checks": {
+    "runtime_gate": {
+      "expected_seconds": 180.0,
+      "lower_seconds": 60.0,
+      "upper_seconds": 480.0,
+      "actual_seconds": 156.097694511991,
+      "status": "INTERNAL_PASS_AWAITING_PROCESS",
+      "branch": "calibration",
+      "measured_interval": "entry to before final metadata rewrite; complete process checked via run.json",
+      "source": "72,000 RK4 steps at prior VM full-CSR ~.0017s/step=122s; 48 builds and diagnostics/export ~58s; provisional before final review",
+      "actual_over_expected": 0.8672094139555055
+    },
+    "work_volume_pass": true,
+    "baseline_reproduction": [],
+    "failures": [],
+    "technical_status": "PASS",
+    "scientific_acceptance": "USER_REVIEW_REQUIRED"
+  },
+  "work": {
+    "planned": {
+      "trajectories": 48,
+      "steps": 72000,
+      "rhs_calls": 288000
+    },
+    "actual": {
+      "trajectories": 48,
+      "steps": 72000,
+      "rhs_calls": 288000
+    }
+  },
+  "environment": {
+    "kernel_sha256": "64fba4e2dbb65c4d6b93d2d1d5c7c93e6684106127817c1a9789c427c381360a",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "phase_timing": {
+    "analysis_seconds": 0.0251871119835414,
+    "export_seconds": 0.39040048699826,
+    "verification_seconds": 2.068367075000424
+  },
+  "run_manifest_sha256": "5ac0425e5bcda8459c3cf5603442d20f8a2da0072d3d2f055fea9a72612ab607",
+  "queue_seconds": 0.06351947784423828
+}
