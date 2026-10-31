@@ -1,0 +1,99 @@
+{
+  "forecast": {
+    "source": "Verified E002d_CAL_v003_r002 at 4b5151c97234310e5ad1796b84a2ce07a4ec1ebe; stratified model/dt full advance cost including diagnostics and IO; final assembly scaled separately",
+    "branches": {
+      "T200": {
+        "expected_seconds": 11160,
+        "lower_seconds": 7812.0,
+        "upper_seconds": 14508.0,
+        "components": {
+          "setup_seconds": 72.20697851339348,
+          "advance_seconds": 11009.797536262771,
+          "finish_seconds": 8.924276270910529,
+          "export_seconds": 6.898712746660655,
+          "verification_seconds": 9.684369897440774,
+          "assembly_seconds": 16.227034472765816,
+          "production_analysis_allowance_seconds": 30.0
+        },
+        "raw_estimate_seconds": 11153.738908163943,
+        "work": {
+          "trajectories": 184,
+          "steps": 5920000,
+          "rhs_calls": 23680000
+        },
+        "estimated_full_bytes": 2346364057,
+        "report_hard_limit_bytes": 31457280,
+        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
+      },
+      "T400": {
+        "expected_seconds": 22260,
+        "lower_seconds": 15582.0,
+        "upper_seconds": 28938.0,
+        "components": {
+          "setup_seconds": 144.41395702678696,
+          "advance_seconds": 22019.595072525542,
+          "finish_seconds": 16.284476274929812,
+          "export_seconds": 10.748811209903204,
+          "verification_seconds": 12.912493196587699,
+          "assembly_seconds": 23.83182178852199,
+          "production_analysis_allowance_seconds": 30.0
+        },
+        "raw_estimate_seconds": 22257.78663202227,
+        "work": {
+          "trajectories": 184,
+          "steps": 11840000,
+          "rhs_calls": 47360000
+        },
+        "estimated_full_bytes": 3445985781,
+        "report_hard_limit_bytes": 31457280,
+        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
+      }
+    }
+  },
+  "calibration_costs": {
+    "QS:0.005": {
+      "calibration_cases": 12,
+      "calibration_steps": 24000,
+      "setup_per_case": 0.39194380850434146,
+      "advance_per_step": 0.001958210051457475,
+      "integrator_per_step": 0.0018454234848856383,
+      "finish_per_case": 0.010818922329538813
+    },
+    "QS:0.01": {
+      "calibration_cases": 12,
+      "calibration_steps": 12000,
+      "setup_per_case": 0.40208481940984103,
+      "advance_per_step": 0.002067138891162661,
+      "integrator_per_step": 0.0018520353386605468,
+      "finish_per_case": 0.009093992091948166
+    },
+    "RR_QS:0.005": {
+      "calibration_cases": 12,
+      "calibration_steps": 24000,
+      "setup_per_case": 0.3868469148389219,
+      "advance_per_step": 0.0016991158484621943,
+      "integrator_per_step": 0.001578201131708435,
+      "finish_per_case": 0.010864113423546465
+    },
+    "RR_QS:0.01": {
+      "calibration_cases": 12,
+      "calibration_steps": 12000,
+      "setup_per_case": 0.3922123474282368,
+      "advance_per_step": 0.0018458993316744455,
+      "integrator_per_step": 0.001615159624828569,
+      "finish_per_case": 0.010113881590465704
+    }
+  },
+  "measured_finalization_residual_seconds": 1.8107023261254653,
+  "case_payload_bytes": {
+    "10.0": 226072,
+    "200.0": 378520,
+    "400.0": 589768
+  },
+  "accounting": "advance already includes integrator, diagnostics, snapshots and progress IO; these are never added again. Rebuild estimated by full initial setup, conservatively. Finish scaled by retained array bytes, export by selected payload bytes, verification by windows/evidence, residual by file inventory bytes. Production-only arithmetic gets30s. Queue/publication excluded.",
+  "limitations": [
+    "Short T10 timing extrapolated toT200/T400; drift/load may change cost.",
+    "Compression stress is not a guarantee of the actual report size. Hard 30MiB gate remains; no samples dropped.",
+    "This script prepares configuration only; production is not queued."
+  ]
+}
