@@ -49,7 +49,7 @@ def main():
             contrasts={str(d):contrast(line,d) for d in (.0625,.125,.25,.5) if contrast(line,d) is not None},background='UNRESOLVED',width='UNRESOLVED'))
     groups={}
     for r in small:
-        c=r['case'];key=(c['block'],c['dimension'],c['mask'],c['phi_over_pi'],c['v_over_J'])
+        c=r['case'];key=(c['block'],c['dimension'],c['mask'],c['phi_over_pi'],c.get('v_over_J',1.))
         groups.setdefault(key,{})[c['epsilon']]=r
     small_lines=[]
     for key,line in groups.items():
