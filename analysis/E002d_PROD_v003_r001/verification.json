@@ -1,0 +1,56 @@
+{
+  "result_commit": "071e15ebc37227b1549e660121bc735a1d86cb13",
+  "source_commit": "1f12d2f56145a30d2066f4b9f53592ebdc8a96e9",
+  "run_id": "E002d_PROD_v003_r001",
+  "downloaded_artifacts": 199,
+  "downloaded_bytes": 24685073,
+  "export_errors": [],
+  "execution_succeeded": true,
+  "runtime": {
+    "expected_seconds": 11160,
+    "actual_seconds": 10925.777152061462,
+    "deviation_seconds": -234.2228479385376,
+    "deviation_percent": -2.0987710388757796,
+    "lower_seconds": 7812,
+    "upper_seconds": 14508,
+    "status": "PASS",
+    "queue_seconds": 0.019999265670776367
+  },
+  "verifier_source": [
+    {
+      "path": "infra/github_result_reader.py",
+      "sha256": "0f8374273542c0f20660d3276f24cdcc1e8b202f63caf70fcf17a54584db9cf5",
+      "pinned_in_run": false
+    },
+    {
+      "path": "e002d_exp/verify.py",
+      "sha256": "861048e12418483e7881673cd7a4034f50f5250cd47953ed0e45f1f44d13ef47",
+      "pinned_in_run": true
+    },
+    {
+      "path": "e002d_exp/verify_analysis.py",
+      "sha256": "d2674f9266f3dd36775d2ef22a8e698f821a40ea71bc5044495df31c13146f7a",
+      "pinned_in_run": true
+    }
+  ],
+  "independent": {
+    "status": "PASS",
+    "case_windows": 184,
+    "reconstruction_max_error": 1.4210854715210877e-14,
+    "min_reduced_eigenvalue": 0.00046168339010324897,
+    "witness_certificates": 29808,
+    "scientific_comparisons": 34,
+    "independently_reconstructed_derived_fields": 43554,
+    "limitations": [
+      "Full-state positivity, full-target norms and node-edge negativity require full VM states.",
+      "Full-grid dt, quality and stationarity gates cannot be independently repeated from the reduced export; reconstructed resolution statuses are conditional on those reported gates."
+    ]
+  },
+  "audit_runtime": {
+    "expected_seconds": 60,
+    "lower_seconds": 0,
+    "upper_seconds": 600,
+    "actual_seconds": 7.65780413799996,
+    "status": "PASS"
+  }
+}
