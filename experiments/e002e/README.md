@@ -1,11 +1,12 @@
 # E002e — объединённый концепт v003
 
-**Статус: концепт v003 согласован пользователем; реализация и предзапусковые проверки. Производственный G/R/F/T не запускался.**
+**Статус: концепт v003 реализован; 32/32 проверки пройдены, техническое ревью Copilot завершено. NOT_CALIBRATED: целевая калибровка ВМ и производственный G/R/F/T ещё не выполнялись.**
 
+- [Итог кода и ревью](../../analysis/E002e_CODE_v001/RESULT.md).
 - [IMPLEMENTATION_SPEC.md](IMPLEMENTATION_SPEC.md) — контракт кода и этапов.
 - [e002e_exp](../../e002e_exp) — вычислительное ядро и worker.
 - [План проверки кода](../../analysis/E002e_CODE_v001/PLAN.md).
-- [production_config.template.json](production_config.template.json) — неисполняемый до ревью и калибровки шаблон.
+- [production_config.template.json](production_config.template.json) — неисполняемый до привязки проверенного ревью и калибровки шаблон.
 
 - [CONCEPT_v003.md](CONCEPT_v003.md) — текущая самостоятельная редакция для рецензирования.
 - [Разбор дымового отзыва](../../analysis/E002e_SMOKE_REVIEW_v001/RESULT.md) и [формульное приложение](../../analysis/E002e_SMOKE_REVIEW_v001/DERIVATIONS.md).
