@@ -130,7 +130,7 @@ def validate_predictions(record, expected_code_commit, tolerance_caps=None):
             if actual_cases != set(p['physical_case_ids']):
                 raise ValueError('Declared prediction coverage differs from nonzero observable terms')
             expected_value = p['expected_value_or_sign_or_interval']
-            if p['prediction_type'] == 'sign' and expected_value not in (-1, 1):
+            if p['prediction_type'] == 'sign' and (isinstance(expected_value, bool) or expected_value not in (-1, 1)):
                 raise ValueError('Sign must be -1 or +1')
             if p['prediction_type'] == 'interval' and (not isinstance(expected_value, list) or len(expected_value) != 2 or not all(math.isfinite(float(v)) for v in expected_value) or expected_value[0] > expected_value[1]):
                 raise ValueError('Invalid prediction interval')
@@ -191,7 +191,8 @@ def preflight(config, current_environment):
             raise ValueError('Baseline/accuracy verification missing')
         if work['correlations']:
             qrt = cal.get('qrt_validation', {})
-            if qrt.get('status') != 'VERIFIED_GITHUB' or not qrt.get('full_model_representative') or qrt.get('maximum_scaled_discrepancy', float('inf')) > 1 or qrt.get('reference_method') not in ('third_RK4_grid', 'independent_exponential_action'):
+            discrepancy = qrt.get('maximum_scaled_discrepancy')
+            if qrt.get('status') != 'VERIFIED_GITHUB' or not qrt.get('full_model_representative') or not isinstance(discrepancy, (int, float)) or not math.isfinite(discrepancy) or not 0 <= discrepancy <= 1 or qrt.get('reference_method') not in ('third_RK4_grid', 'independent_exponential_action'):
                 raise ValueError('Representative full-model QRT calibration is missing')
         if cal.get('numerics') != config.get('numerics'):
             raise ValueError('Numerical method differs from calibration')

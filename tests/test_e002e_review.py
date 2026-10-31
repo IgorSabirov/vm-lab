@@ -31,6 +31,19 @@ def predictions():
 
 
 class ReviewRegressions(unittest.TestCase):
+    def test_sign_prediction_zero_and_boundary_are_not_confirmed(self):
+        for sign in (-1, 1):
+            r = predictions(); p = r['predictions'][0]
+            p['physical_case_ids'] = ['one']; p['observable_definition']['linear_terms'] = [dict(case_id='one', coefficient=1.)]
+            p['prediction_type'] = 'sign'; p['expected_value_or_sign_or_interval'] = sign
+            for tolerance in (0., .01):
+                p['tolerance_and_error_rule']['absolute_tolerance'] = tolerance
+                for value, uncertainty in ((0., 0.), (sign*tolerance, 0.), (sign*(tolerance+.1), .1)):
+                    rows = [dict(id='one', conditional={'j6': {'value': value, 'uncertainty': uncertainty}}, raw={})]
+                    self.assertNotEqual(evaluate_predictions(r, rows, [])[0]['status'], 'SUPPORTED_WITHIN_DECLARED_TOLERANCE')
+                rows = [dict(id='one', conditional={'j6': {'value': sign*(tolerance+.2), 'uncertainty': .01}}, raw={})]
+                self.assertEqual(evaluate_predictions(r, rows, [])[0]['status'], 'SUPPORTED_WITHIN_DECLARED_TOLERANCE')
+
     def test_finite_tolerance_and_external_cap(self):
         r = predictions(); validate_predictions(r, 'a'*40, {'p1': .02})
         for value in (float('inf'), float('nan'), 1e300, -.1, '0.01', True):

@@ -148,14 +148,19 @@ def evaluate_predictions(predictions, records, differences):
         result.update(value=None if unresolved else float(value), uncertainty=None if missing_error else float(uncertainty))
         if unresolved or missing_error:
             result['status'] = 'NUMERICALLY_UNRESOLVED'; out.append(result); continue
+        if not np.isfinite([value, uncertainty]).all() or uncertainty < 0:
+            raise ValueError('Prediction evaluation has invalid value/error')
         tol = p['tolerance_and_error_rule']['absolute_tolerance']; expected = p['expected_value_or_sign_or_interval']
+        a, b = value-uncertainty, value+uncertainty
+        if p['prediction_type'] == 'sign':
+            supported = a > tol if expected == 1 else b < -tol
+            opposite = b < -tol if expected == 1 else a > tol
+            result['status'] = 'SUPPORTED_WITHIN_DECLARED_TOLERANCE' if supported else ('PREDICTION_FAILED' if opposite else 'NUMERICALLY_UNRESOLVED')
+            out.append(result); continue
         if p['prediction_type'] == 'value':
             lower, upper = float(expected)-tol, float(expected)+tol
         elif p['prediction_type'] == 'interval':
             lower, upper = float(expected[0])-tol, float(expected[1])+tol
-        else:
-            lower, upper = (tol, np.inf) if expected == 1 else (-np.inf, -tol)
-        a, b = value-uncertainty, value+uncertainty
         result['status'] = 'SUPPORTED_WITHIN_DECLARED_TOLERANCE' if a >= lower and b <= upper else ('PREDICTION_FAILED' if b < lower or a > upper else 'NUMERICALLY_UNRESOLVED')
         out.append(result)
     return out

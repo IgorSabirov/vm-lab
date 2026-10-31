@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 99.633,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "The supplied code resolves most of the earlier implementation blockers: LU/GMRES disagreement now gates results, F2 baseline matching checks the full physical key and propagates uncertainties, failures are persisted across the run lifecycle, memory preflight is enforced, and `full/` files are hashed and checked. I found **two remaining code-level gaps**:\n\n| Severity | File/function | Counterexample and consequence | Regression test |\n|---|---|---|---|\n| **Medium — false confirmatory verdict** | `e002e_exp/analysis.py::evaluate_predictions` | A sign prediction with `expected_value=1`, `absolute_tolerance=0`, and measured value/uncertainty both `0` is marked `SUPPORTED_WITHIN_DECLARED_TOLERANCE`: the positive-sign lower bound is inclusive (`a >= 0`). `plan.validate_predictions` permits a zero tolerance/cap. Zero does not establish a positive sign. | Evaluate that exact prediction and assert it is not supported; use a strict sign boundary or explicitly classify zero as unresolved/failed. |\n| **Medium — commit binding not enforced** | `e002e_exp/plan.py::preflight` | `source_commit` is matched to `VM_SOURCE_COMMIT`, and the review’s `reviewed_source_commit` is checked only for 40-hex format. The code never requires those commits to match. For F2, `code_commit` is matched to `review.implementation_commit`, but that also is not tied to the worker’s `source_commit`. Thus valid, independently verified records can refer to a different commit than the VM run while the worker accepts them. This is a cross-record consistency gap, not a demand that the offline worker verify GitHub history itself. | With otherwise-valid pinned records, set the VM/config source commit to one hash and `reviewed_source_commit` to another; require preflight to reject. Also assert the prediction-verification record is bound to the reviewed/run commit. |\n\nThe full stationary solve, target-VM resource/numerical calibration, and third-grid or independent-action QRT check on a bounded representative remain **intentional preflight blockers**, not code defects to be bypassed with a production run. The code does not silently add batching or third-grid work across all six blocks, consistent with the stated scope. I reviewed the function bodies supplied here; I did not independently rerun the reported test suite.",
+  "error": "",
+  "prompt_sha256": "711f28438baf7edc5fcdbd8f33e92c3ae6b52f521dd73a99584ca3e4d95e4fa7",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-10-31T08:18:36.672105+00:00"
+}
