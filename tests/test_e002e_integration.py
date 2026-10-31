@@ -25,6 +25,17 @@ def config(work, stage):
 
 
 class WorkerIntegration(unittest.TestCase):
+    def assert_bridge_contract(self, report):
+        for required in ('README.md', 'metrics.json', 'data_manifest.json'):
+            self.assertTrue((report/required).is_file(), required)
+        self.assertEqual((report/'README.md').read_bytes(), (report/'RESULT.md').read_bytes())
+        data = json.loads((report/'data_manifest.json').read_text())
+        full = json.loads((report/'full_manifest.json').read_text())
+        self.assertEqual(data['full_files'], full['files'])
+        self.assertEqual(data['full_total_bytes'], full['total_bytes'])
+        names = {x['path'] for x in json.loads((report/'manifest.json').read_text())['files']}
+        self.assertTrue({'README.md', 'metrics.json', 'data_manifest.json'} <= names)
+
     def test_small_stage_exports_all_declared_cases(self):
         work = dict(small=[small_case(), small_case(8, 6, v=0.)], full=[], frequency=[], correlations=[])
         cfg = config(work, 'G')
@@ -34,6 +45,7 @@ class WorkerIntegration(unittest.TestCase):
             self.assertEqual(result['actual_counts'], workload(work))
             self.assertEqual(result['runtime_gate']['status'], 'PASS')
             self.assertIn('VERIFIED', verify_report(Path(temp)/'report')['status'])
+            self.assert_bridge_contract(Path(temp)/'report')
             rec = json.loads((Path(temp)/'report/small_000.json').read_text())
             self.assertIsNotNone(rec['conditional']['F_over_p_e']['uncertainty'])
 
@@ -51,6 +63,7 @@ class WorkerIntegration(unittest.TestCase):
             self.assertTrue((Path(temp)/'report/full_synthetic_qrt.npz').exists())
             self.assertEqual(len(json.loads((Path(temp)/'report/responses.json').read_text())), 3)
             verify_report(Path(temp)/'report')
+            self.assert_bridge_contract(Path(temp)/'report')
 
 
 if __name__ == '__main__':

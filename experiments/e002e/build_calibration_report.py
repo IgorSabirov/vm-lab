@@ -11,8 +11,11 @@ def save(name,data):
     p=DEST/name;p.write_text(json.dumps(data,ensure_ascii=False,indent=2,allow_nan=False)+'\n');return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def main():
-    start=time.perf_counter();p=argparse.ArgumentParser();p.add_argument('--report-commit',required=True);a=p.parse_args()
-    folder=ROOT/'results/E002e_FINAL_CAL_v001_r001';r=json.loads((folder/'run.json').read_text());m=json.loads((folder/'files/metrics.json').read_text())
+    start=time.perf_counter();p=argparse.ArgumentParser();p.add_argument('--report-commit',required=True)
+    p.add_argument('--run-id',default='E002e_FINAL_CAL_v001_r001');p.add_argument('--artifact-tag',default='final')
+    p.add_argument('--prior-production-run');a=p.parse_args()
+    if not a.run_id.replace('_','').isalnum() or not a.artifact_tag.replace('_','').isalnum():raise ValueError('Unsafe artifact identifier')
+    folder=ROOT/'results'/a.run_id;r=json.loads((folder/'run.json').read_text());m=json.loads((folder/'files/metrics.json').read_text())
     assert r['job']['exit_code']==0 and r['export_errors']==[] and m['status']=='CALIBRATION_COMPLETED_NOT_ACCEPTED'
     # Caller has already used github_result_reader. Repeat byte checks locally.
     for name,meta in r['files'].items():
@@ -36,7 +39,7 @@ def main():
         j=c['conditional']['j6']['value'];jr=ref['scalar_endpoint']['h_m6_N2']/ref['scalar_endpoint']['p_m6_N2']
         check=dict(model=model,primitive_count=len(dx),maximum_primitive_difference=max(dx.values()),maximum_node_difference=nd,j6_difference=abs(j-jr),tolerance=tol,status='PASS' if max(max(dx.values()),nd)<=tol else 'FAIL',reference_path=ref['path'],reference_sha256=ref['sha256'])
         assert check['status']=='PASS';checks.append(check)
-    save('baseline_final_checks.json',checks)
+    save('baseline_'+a.artifact_tag+'_checks.json',checks)
     rates={}
     ness_names={'build','LU_factor','LU_NESS','LU_quality','ILU_factor','GMRES_NESS','GMRES_quality','condition'}
     for c in cases:
@@ -78,17 +81,18 @@ def main():
         runtime=dict(expected_seconds=forecast['expected_seconds'],actual_seconds=seconds,deviation_seconds=seconds-forecast['expected_seconds'],status='PASS'),
         work=dict(tests=42,small_cases=10,full_cases=6,ness_solves=12,static_solves=36,frequency_solves=4,qrt_steps=qsteps,block_rhs=4*qsteps),
         limitations=['QRT third-grid validation covers QS phi=pi/2; RR/IC production remains checked on two grids.', 'RR/IC H100 runtime extrapolated from H1; F2 v=0/.5 costs extrapolated without viewing heldout outcomes.', 'Sampled VmSize is not a continuous maximum; 2x forecast plus 1 GiB reserve used.', 'Ancestor cgroup and CPU quota are hidden; hard process address-space limit is measured and enforced.', 'Two-method errors are engineering estimates, not rigorous total-error bounds.', 'F2 requires frozen predictions after declared training; full-line width and infinite correlation tails remain unresolved.'],
-        scientific_acceptance=False,production_started=False)
-    calsha=save('calibration_verification_final.json',verification)
+        scientific_acceptance=False,production_started=bool(a.prior_production_run),prior_production_run=a.prior_production_run)
+    calname='calibration_verification_'+a.artifact_tag+'.json';reviewname='implementation_review_'+a.artifact_tag+'.json'
+    calsha=save(calname,verification)
     review=dict(status='REVIEWED_AND_CHECKED',kernel_sha256=kernel_hash(),implementation_commit=r['source_commit'],reviewed_source_commit=r['source_commit'],
-        review_scope='Prior Copilot review of scientific implementation plus assistant-reviewed launcher/library/resource compatibility delta and 42 tests on target VM',
+        review_scope='Prior Copilot review of scientific implementation plus assistant-reviewed launcher/library/resource/report-contract delta and 42 tests on target VM',
         prior_copilot_implementation_commit='98cb6b0a7d8c60036308307e9ef1c3005f1d6dc8',prior_copilot_kernel_sha256='9264d19764462081e07d24907109764bb04839eb1c3c998e640858634ff91bd3',
         copilot_reviewed_new_delta=False,delta_reviewed_by='assistant',target_vm_test_report_commit=a.report_commit,tests_passed=42,open_code_findings=[],scientific_acceptance=False)
-    reviewsha=save('implementation_review_final.json',review)
+    reviewsha=save(reviewname,review)
     for stage in ('G','baseline'):
         config=dict(experiment='E002e',mode='production',stage=stage,source_commit='FROM_VERIFIED_VM_LAUNCHER',source_kernel_sha256=kernel_hash(),address_space_limit_bytes=8*1024**3,
-            copilot_review=dict(path='experiments/e002e/implementation_review_final.json',sha256=reviewsha),
-            calibration_verification=dict(path='experiments/e002e/calibration_verification_final.json',sha256=calsha),
+            copilot_review=dict(path='experiments/e002e/'+reviewname,sha256=reviewsha),
+            calibration_verification=dict(path='experiments/e002e/'+calname,sha256=calsha),
             forecast=budgets[stage],expected_workload=workload(selected_work(stage)),numerics=verification['numerics'])
         save('production_'+stage+'_config.json',config)
     save('calibration_report_build_runtime.json',dict(expected_seconds=.3,lower_seconds=.05,upper_seconds=2.,internal_seconds=time.perf_counter()-start))

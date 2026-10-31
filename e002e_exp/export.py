@@ -124,6 +124,11 @@ def write_full_manifest(report, full):
             entries.append(dict(path=p.name, size=p.stat().st_size, sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
     save_json(Path(report)/'full_manifest.json', dict(files=entries, total_bytes=sum(x['size'] for x in entries),
                                                     storage='full/ stays on VM; hashes are published'))
+    save_json(Path(report)/'data_manifest.json', dict(full_files=entries,
+        full_total_bytes=sum(x['size'] for x in entries),
+        selection='All declared case records and response values are published; QRT retains every common sample',
+        detail_not_published='Full state matrices, QRT final vectors and checkpoints remain on VM; their hashes are in full_manifest.json',
+        full_data_access='Only after a separate explicit instruction from the user'))
 
 
 def write_result(report, config, records, failure, gate, comparisons, qrt_summaries):
@@ -154,6 +159,8 @@ def write_result(report, config, records, failure, gate, comparisons, qrt_summar
     if len(text.encode()) > 24*1024:
         raise ValueError('RESULT exceeds portable report cap; no silent truncation')
     (Path(report)/'RESULT.md').write_text(text)
+    # The GitHub bridge's medium-v1 contract requires README.md as well.
+    (Path(report)/'README.md').write_text(text)
 
 
 def verify_report(report, full=None):
