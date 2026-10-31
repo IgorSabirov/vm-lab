@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 49.872,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "Whole-file XZ around a normal `ZIP_STORED` NPZ is a reasonable, simple lossless next test. It retains ordinary NPY members after decompression and lets LZMA exploit repetition across arrays that `np.savez_compressed`’s per-member DEFLATE misses. Emit a clear `.npz.xz` extension: `np.load` cannot read it directly, so update `array_spec`, the independent decoder, and report instructions. Stream through a temporary file if the uncompressed NPZ could make a `BytesIO` copy too costly. Use explicit `FORMAT_XZ` settings and fail the existing hard budget gates—don’t silently fall back or imply a size guarantee.\n\nFor validation, compare member names, shapes, and dtypes, then compare canonical logical-array bytes; value equality alone misses signed-zero and NaN-payload changes. Record and verify hashes for both the compressed artifact and uncompressed NPZ payload. Make archive member order deterministic; for gzip metadata, use a fixed `mtime` if reproducible hashes matter. Whole-file compression adds decoder cost and memory requirements, so measure report time and bound decompression to the expected payload size.\n\nThe perturbation test is useful as an encoding stress test, not a production-size bound. Broken physical identities are irrelevant to byte compression, but the synthetic tail’s structure makes its direction ambiguous: independent low-bit perturbations can reduce compression, while repeating a constant tail can increase it. If perturbations were applied separately to arrays that normally share rows, that also removes real cross-array redundancy; if applied before export, those copies remain. Either way, rerun packaging on the retained calibration report and treat the result as an estimate, not a guarantee. A possible over-pessimism in this stress test does not remove the genuine risk from the current per-array compression or justify relaxing the budget.",
+  "error": "",
+  "prompt_sha256": "a3e36eae3880c59f9ee8f5553ddd5e688967bae15d5284c46c7bf912c0d6a144",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-10-31T00:46:59.905211+00:00"
+}

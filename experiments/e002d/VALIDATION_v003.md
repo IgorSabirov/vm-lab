@@ -34,3 +34,6 @@ Includes all184 synthetic cases at both horizons; independently reconstructed de
 Normal10-case smoke16.385s,545642bytes24files. Injected-failure smoke13.499s retained all10 cases including partialT=.4;9 other cases completedT2; whole cohort FAILED and scientific comparisons withheld, as intended.
 Nonfinite, pinned-record mismatch, extension failure and resource/programming abort regressions passed.
 No acceleration integrated; full-CSR RK4 unchanged. Final VM calibration remains48cases,T10,72000steps,forecast180s[60,480].
+
+## Packaging correction regression — preregistered
+Forecast90seconds,range0–300. Fourteen groups: prior13 plus archivebitwise/signedzero/NaNpayload/type/shape/determinism and bounded innerNPY decoding. Real smoke and failure-report export now usewholeNPZ+XZ; metadata compactJSON muststaybelow4MiB in worst-number fixture. Final48-caseVMcalibration will be repeated on thenewkernel; previous156.935s result remains immutable.
