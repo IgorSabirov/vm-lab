@@ -1,74 +1,32 @@
 {
-  "run_id": "E002d_PROD_v003_r001",
-  "mode": "production",
+  "experiment": "E002e_CALIBRATION",
+  "run_id": "E002e_ENV_v001_r001",
+  "calibration_phase": "environment",
+  "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "forecast": {
-    "source": "Verified E002d_CAL_v003_r002 at 4b5151c97234310e5ad1796b84a2ce07a4ec1ebe; stratified model/dt full advance cost including diagnostics and IO; final assembly scaled separately",
-    "branches": {
-      "T200": {
-        "expected_seconds": 11160,
-        "lower_seconds": 7812.0,
-        "upper_seconds": 14508.0,
-        "components": {
-          "setup_seconds": 72.20697851339348,
-          "advance_seconds": 11009.797536262771,
-          "finish_seconds": 8.924276270910529,
-          "export_seconds": 6.898712746660655,
-          "verification_seconds": 9.684369897440774,
-          "assembly_seconds": 16.227034472765816,
-          "production_analysis_allowance_seconds": 30.0
-        },
-        "raw_estimate_seconds": 11153.738908163943,
-        "work": {
-          "trajectories": 184,
-          "steps": 5920000,
-          "rhs_calls": 23680000
-        },
-        "estimated_full_bytes": 2346364057,
-        "report_hard_limit_bytes": 31457280,
-        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
-      },
-      "T400": {
-        "expected_seconds": 22260,
-        "lower_seconds": 15582.0,
-        "upper_seconds": 28938.0,
-        "components": {
-          "setup_seconds": 144.41395702678696,
-          "advance_seconds": 22019.595072525542,
-          "finish_seconds": 16.284476274929812,
-          "export_seconds": 10.748811209903204,
-          "verification_seconds": 12.912493196587699,
-          "assembly_seconds": 23.83182178852199,
-          "production_analysis_allowance_seconds": 30.0
-        },
-        "raw_estimate_seconds": 22257.78663202227,
-        "work": {
-          "trajectories": 184,
-          "steps": 11840000,
-          "rhs_calls": 47360000
-        },
-        "estimated_full_bytes": 3445985781,
-        "report_hard_limit_bytes": 31457280,
-        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
-      }
-    }
+    "expected_seconds": 2.0,
+    "lower_seconds": 0.5,
+    "upper_seconds": 10.0
   },
-  "calibration": {
-    "run_id": "E002d_CAL_v003_r002",
-    "kernel_sha256": "16acf9b4f5ccfa8e5705762cf9952231fc56b71653f4880357194bf63b56cb9f",
-    "numpy": "1.26.4",
-    "scipy": "1.11.4",
-    "review_status": "VERIFIED_GITHUB",
-    "report_commit": "4b5151c97234310e5ad1796b84a2ce07a4ec1ebe",
-    "source_commit": "fb7b63df7c4602380d951458438c14ace735ca8f",
-    "run_manifest_sha256": "6522c14127e740e661a9ebd979b687cafebacd9042ae4daa71ece3d5eb90d6b0"
-  },
-  "calibration_verification": {
-    "path": "experiments/e002d/calibration_verification.json",
-    "sha256": "0364aa2059ac1efa263924e5efd9d7ffcc8f2948fa69daeae1cb2fb4b991fe15"
-  },
-  "copilot_review": {
-    "path": "analysis/COPILOT_E002d_v003/REVIEW_CLOSURE.json",
-    "sha256": "1395eba0743c8fb7c9e2c9816cc26bf23a4138ddeff2ffdac4b26ff6b84b957f"
-  },
-  "copilot_review_status": "REVIEWED_AND_CHECKED"
+  "reviewed_scientific_files": {
+    "e002_exp/model.py": "9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2",
+    "e002c_exp/model.py": "fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491",
+    "e002d_exp/plan.py": "d1cf1ebfb02d8b97defaa6a420314b6306dcb9d3d800c4a40154ecb50987fd97",
+    "experiments/e002e/case_inventory_v003.json": "32409313c6c8fe62f9d6d9754a83567919d9eadbbf16e8ae7e7b699ebb9bd2f4",
+    "e002e_exp/__init__.py": "9b51b2012190c8775fba184b2289f0c43b9d186ef6d730206fea3c6446ed87ed",
+    "e002e_exp/analysis.py": "ab8de8f80ebeb6504a93dc9359f801a714b38297b68dc527223cab465377d4a8",
+    "e002e_exp/export.py": "17f2eacf447522a6073cbda4b2e430fd2807a2bbda24cbd835c1f79cd4e5b02c",
+    "e002e_exp/model.py": "1b10dba2734b5f76b7767350e207e6969ef59e5b36b8920b0bee05509d6cb7fd",
+    "e002e_exp/numerics.py": "2a3640ac10619f594e432ed41c0940f077efc561c635d236bc57aaedc90e4d06",
+    "e002e_exp/observations.py": "47ce9b67d22e25802160a30c4726798b3116f347630880ba019cad3a8dc7a53d",
+    "e002e_exp/plan.py": "4431921b635dbe03692ac8ae28b978d3934522c8da967d891b1207be49468370",
+    "e002e_exp/runtime.py": "5747c39ba77b56e6a0b6896e01414e933c0781343e1ce5b8e64e98c6597da98b",
+    "e002e_exp/space.py": "e909e3fc72fceb649891ebd6d7d2d0f9459936ebef8d5eb703533b40bf442ab1",
+    "e002e_exp/task.py": "cf18726ea7481ad494efb104944233b1ea2698c42852421bbb71f3cc179d6a6e",
+    "tests/test_e002e.py": "cc01fd9423c7fec9062e1e0973e280fadd9911f120868e6ae8773ed42174eca2",
+    "tests/test_e002e_integration.py": "3970131a810587151db07d0769a224040708cb175b3dc20101b47311a7864cf4",
+    "tests/test_e002e_review.py": "1878dbc4947bd6f29808128ee8af56a383d3fd09d56aa624c84da837a019bcd6",
+    "experiments/e002e/validate.py": "cd89f1378eaae521670a0fdaea0d4e461d24c8adb4038586df7943209356e4b5",
+    "experiments/e002e/production_config.template.json": "85691d31b5a998a816a76814091c65205f9c172a2b4da696e0aa9b32f2af5294"
+  }
 }
