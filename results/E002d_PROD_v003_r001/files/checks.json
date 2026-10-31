@@ -1,0 +1,37 @@
+{
+  "runtime_gate": {
+    "expected_seconds": 11160,
+    "lower_seconds": 7812.0,
+    "upper_seconds": 14508.0,
+    "actual_seconds": 10909.182456763985,
+    "status": "INTERNAL_PASS_AWAITING_PROCESS",
+    "branch": "T200",
+    "measured_interval": "entry to before final metadata rewrite; complete process checked via run.json",
+    "source": "Verified E002d_CAL_v003_r002 at 4b5151c97234310e5ad1796b84a2ce07a4ec1ebe; stratified model/dt full advance cost including diagnostics and IO; final assembly scaled separately",
+    "actual_over_expected": 0.9775253097458768
+  },
+  "work_volume_pass": true,
+  "baseline_reproduction": [
+    {
+      "model": "QS",
+      "expected_h": 0.1098400932168605,
+      "actual_h": 0.1098400932168605,
+      "absolute_error": 0.0,
+      "tolerance": 1e-06,
+      "pass_gate": true,
+      "source": "E002c_WINDOW_EXPORT_v001_r001 [190,200]"
+    },
+    {
+      "model": "RR_QS",
+      "expected_h": 0.0850336762,
+      "actual_h": 0.08503367623606524,
+      "absolute_error": 3.606523413246521e-11,
+      "tolerance": 1e-06,
+      "pass_gate": true,
+      "source": "E002c_WINDOW_EXPORT_v001_r001 [190,200]"
+    }
+  ],
+  "failures": [],
+  "technical_status": "PASS",
+  "scientific_acceptance": "USER_REVIEW_REQUIRED"
+}

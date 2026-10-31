@@ -1,0 +1,74 @@
+{
+  "run_id": "E002d_PROD_v003_r001",
+  "mode": "production",
+  "forecast": {
+    "source": "Verified E002d_CAL_v003_r002 at 4b5151c97234310e5ad1796b84a2ce07a4ec1ebe; stratified model/dt full advance cost including diagnostics and IO; final assembly scaled separately",
+    "branches": {
+      "T200": {
+        "expected_seconds": 11160,
+        "lower_seconds": 7812.0,
+        "upper_seconds": 14508.0,
+        "components": {
+          "setup_seconds": 72.20697851339348,
+          "advance_seconds": 11009.797536262771,
+          "finish_seconds": 8.924276270910529,
+          "export_seconds": 6.898712746660655,
+          "verification_seconds": 9.684369897440774,
+          "assembly_seconds": 16.227034472765816,
+          "production_analysis_allowance_seconds": 30.0
+        },
+        "raw_estimate_seconds": 11153.738908163943,
+        "work": {
+          "trajectories": 184,
+          "steps": 5920000,
+          "rhs_calls": 23680000
+        },
+        "estimated_full_bytes": 2346364057,
+        "report_hard_limit_bytes": 31457280,
+        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
+      },
+      "T400": {
+        "expected_seconds": 22260,
+        "lower_seconds": 15582.0,
+        "upper_seconds": 28938.0,
+        "components": {
+          "setup_seconds": 144.41395702678696,
+          "advance_seconds": 22019.595072525542,
+          "finish_seconds": 16.284476274929812,
+          "export_seconds": 10.748811209903204,
+          "verification_seconds": 12.912493196587699,
+          "assembly_seconds": 23.83182178852199,
+          "production_analysis_allowance_seconds": 30.0
+        },
+        "raw_estimate_seconds": 22257.78663202227,
+        "work": {
+          "trajectories": 184,
+          "steps": 11840000,
+          "rhs_calls": 47360000
+        },
+        "estimated_full_bytes": 3445985781,
+        "report_hard_limit_bytes": 31457280,
+        "range_basis": "RUNTIME_GATE base tolerance +/-30%; not a statistical confidence interval"
+      }
+    }
+  },
+  "calibration": {
+    "run_id": "E002d_CAL_v003_r002",
+    "kernel_sha256": "16acf9b4f5ccfa8e5705762cf9952231fc56b71653f4880357194bf63b56cb9f",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "review_status": "VERIFIED_GITHUB",
+    "report_commit": "4b5151c97234310e5ad1796b84a2ce07a4ec1ebe",
+    "source_commit": "fb7b63df7c4602380d951458438c14ace735ca8f",
+    "run_manifest_sha256": "6522c14127e740e661a9ebd979b687cafebacd9042ae4daa71ece3d5eb90d6b0"
+  },
+  "calibration_verification": {
+    "path": "experiments/e002d/calibration_verification.json",
+    "sha256": "0364aa2059ac1efa263924e5efd9d7ffcc8f2948fa69daeae1cb2fb4b991fe15"
+  },
+  "copilot_review": {
+    "path": "analysis/COPILOT_E002d_v003/REVIEW_CLOSURE.json",
+    "sha256": "1395eba0743c8fb7c9e2c9816cc26bf23a4138ddeff2ffdac4b26ff6b84b957f"
+  },
+  "copilot_review_status": "REVIEWED_AND_CHECKED"
+}
