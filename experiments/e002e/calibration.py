@@ -132,6 +132,16 @@ def run(config):
             gmres_accepts_rtol='rtol' in inspect.signature(gmres).parameters,
             numpy_has_trapezoid=hasattr(np, 'trapezoid'),
             blas_threadpools_observed=env['threadpools'] is not None)
+        import io, contextlib, scipy
+        buf=io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            np.show_config(); scipy.show_config()
+        maps=read('/proc/self/maps') or ''
+        library_paths=sorted({line.split()[-1] for line in maps.splitlines()
+            if '/' in line and any(key in line.lower() for key in ('blas','lapack','libomp','libgomp','libmkl'))})
+        metrics['blas_audit']=dict(build_config=buf.getvalue(),loaded_libraries=[
+            dict(path=p,sha256=hashlib.sha256(Path(p).read_bytes()).hexdigest()) for p in library_paths],
+            process_threads=len(list(Path('/proc/self/task').iterdir())))
         if config['calibration_phase'] == 'environment':
             metrics['status'] = 'ENVIRONMENT_MEASURED_NOT_NUMERICALLY_CALIBRATED'
         elif config['calibration_phase'] == 'solver':
