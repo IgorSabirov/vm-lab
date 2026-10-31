@@ -1,0 +1,86 @@
+{
+  "scope": "small algebra only; no evolution or VM data",
+  "cases": [
+    {
+      "gamma": "1/10",
+      "observed": "1/42",
+      "exact_bridge": "1/42",
+      "true_linear_response": "1/40",
+      "linear_relative_error": 0.05
+    },
+    {
+      "gamma": "1",
+      "observed": "1/6",
+      "exact_bridge": "1/6",
+      "true_linear_response": "1/4",
+      "linear_relative_error": 0.5
+    },
+    {
+      "gamma": "2",
+      "observed": "1/4",
+      "exact_bridge": "1/4",
+      "true_linear_response": "1/2",
+      "linear_relative_error": 1.0
+    }
+  ],
+  "unconstrained_minimum_norm": {
+    "x": [
+      -0.1333333333333333,
+      0.26666666666666655
+    ],
+    "trace": 0.13333333333333325,
+    "correct_trace_zero_x": [
+      -0.2222222222222222,
+      0.2222222222222222
+    ]
+  },
+  "rescaling": {
+    "right_square_before": 1.0,
+    "right_square_after": 0.25,
+    "two_sided_before": 0.5,
+    "two_sided_after": 0.5
+  },
+  "source_transfers_coherence": {
+    "from_N1_pair": [
+      2,
+      1
+    ],
+    "to_N2_pair": [
+      6,
+      5
+    ],
+    "amplitude": 1.0
+  },
+  "selection_counterexample": {
+    "nearest_zero": "(-0.02+0j)",
+    "slowest_damping": "(-0.01-10j)",
+    "physical_example": "two-level amplitude damping Gamma=.02 and energy splitting 10"
+  },
+  "tail": {
+    "exp_minus_5": 0.006737946999085467,
+    "exp_minus_10": 4.5399929762484854e-05,
+    "time_for_1e_minus_6_at_kappa_point1": 138.15510557964274
+  },
+  "normal_truncation_counterexample": {
+    "generator_trace_zero_diagonal": [
+      -1,
+      -10
+    ],
+    "input": [
+      1,
+      10
+    ],
+    "observable": [
+      1,
+      1
+    ],
+    "full_static_response": 2.0,
+    "slow_mode_only_response": 1.0,
+    "interpretation": "50 percent truncation error with a normal generator"
+  },
+  "dense_complex128_storage": {
+    "14580_bytes": 3401222400,
+    "46656_bytes": 34828517376
+  },
+  "passed": true
+}
