@@ -80,7 +80,7 @@ def solver_probe(config, report, metrics):
             raise ArithmeticError('Stationary flux balance failed')
         record['condition']=phase(cid+'/condition',primary.condition_estimate)
         record['simultaneous_factor_storage_bytes']=primary.factor_storage_bytes+independent.factor_storage_bytes
-        for target in config.get('static_targets',[]):
+        for target in config.get('static_targets_by_case',{}).get(cid,config.get('static_targets',[])):
             if target not in case['tasks']:raise ValueError('Target outside declared baseline case')
             y,v,ch=phase(cid+'/static_'+target,lambda:static_response(model,x,target,primary))
             yr,vr,chr=phase(cid+'/static_ref_'+target,lambda:static_response(model,xr,target,independent))
@@ -89,7 +89,7 @@ def solver_probe(config, report, metrics):
             record['responses'].append(dict(kind='static',target=target,values=v,check=ch,refinement=gate))
         record['primary_solver']=primary.metrics();record['independent_solver']=independent.metrics()
         del independent;gc.collect()
-        for omega in config.get('frequencies',[]):
+        for omega in config.get('frequencies_by_case',{}).get(cid,config.get('frequencies',[])):
             y,v,ch,met=phase(cid+'/frequency_'+str(omega),lambda:frequency_response(model,x,omega,primary,**num['solver']))
             yr,vr,chr,metr=phase(cid+'/frequency_ref_'+str(omega),lambda:frequency_response(model,xr,omega,None,**num['refinement_solver']))
             gate=refinement_check(y,yr,v,vr,num['refinement_limits'])
@@ -112,6 +112,25 @@ def solver_probe(config, report, metrics):
         save(report/(cid+'.json'),serial(record));metrics['cases'].append(serial(record))
         del primary,model,x,xr;gc.collect()
     metrics['status']='CALIBRATION_COMPLETED_NOT_ACCEPTED'
+
+def small_probe(config, report, metrics):
+    import numpy as np
+    from e002e_exp.plan import selected_work
+    from e002e_exp.model import make_small
+    from e002e_exp.numerics import Bordered,state_checks,values,refinement_check
+    from e002e_exp.export import serial,real_values
+    from e002e_exp.analysis import renewal_check
+    all_cases=selected_work('G')['small']; out=[];num=config['numerics']
+    for index in config.get('small_indices',[]):
+        start=time.perf_counter();case=all_cases[index];model=make_small(case);s=model['space']
+        a=Bordered(model['L'],s,**num['solver']);x,ch=a.solve(trace=1.)
+        b=Bordered(model['L'],s,**num['refinement_solver']);y,chr=b.solve(trace=1.)
+        qa=state_checks(model['L'],s,x,num['state_tolerance']);qb=state_checks(model['L'],s,y,num['state_tolerance'])
+        va=real_values(values(model,x));vb=real_values(values(model,y));gate=refinement_check(x,y,va,vb,num['refinement_limits']);renew=renewal_check(model,x)
+        if not qa['pass'] or not qb['pass'] or not gate['pass_gate'] or renew['status']=='FAIL':raise ArithmeticError('Small calibration failed')
+        out.append(dict(index=index,case=case,seconds=time.perf_counter()-start,dimension=s.size,quality=qa,refinement=gate,renewal=renew,primary=a.metrics(),independent=b.metrics()))
+    metrics['small_cases']=serial(out)
+    save(report/'small_cases.json',serial(out))
 
 def run(config):
     started = time.perf_counter()
@@ -169,6 +188,15 @@ def run(config):
                 raise ValueError('Declared job address-space ceiling is not active')
             if int(env['memory_available'].split()[0])*1024 < config['address_space_limit_bytes']+1024**3:
                 raise MemoryError('Host memory below declared ceiling plus 1 GiB reserve')
+            if config.get('run_validation'):
+                import subprocess
+                ts=time.perf_counter()
+                with (report/'tests.log').open('w') as log:
+                    child=subprocess.run([__import__('sys').executable,'-m','unittest','discover','-s','tests','-p','test_e002e*.py','-v'],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
+                metrics['validation']=dict(seconds=time.perf_counter()-ts,exit_code=child.returncode,
+                    declared_tests=38,child_peak_rss_bytes=1024*resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
+                if child.returncode:raise ArithmeticError('Target VM code tests failed')
+            small_probe(config,report,metrics)
             solver_probe(config,report,metrics)
         else:
             raise ValueError('Undeclared calibration phase')

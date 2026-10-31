@@ -1,24 +1,23 @@
 {
   "experiment": "E002e_CALIBRATION",
-  "run_id": "E002e_QRT_CAL_v001_r001",
+  "run_id": "E002e_COVERAGE_CAL_v001_r001",
   "calibration_phase": "solver",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "forecast": {
-    "expected_seconds": 155.0,
-    "lower_seconds": 105.0,
-    "upper_seconds": 230.0
+    "expected_seconds": 25.0,
+    "lower_seconds": 8.0,
+    "upper_seconds": 55.0
   },
   "address_space_limit_bytes": 8589934592,
   "case_ids": [
-    "full_7c1820e764ee"
+    "full_f9b055f16d41",
+    "full_b48f717c5018",
+    "full_5222212ebc04",
+    "full_52be73f1ff34",
+    "full_a2a1b36cf33b"
   ],
-  "static_targets": [
-    "M1",
-    "M2"
-  ],
-  "frequencies": [
-    1.0
-  ],
+  "static_targets": [],
+  "frequencies": [],
   "numerics": {
     "solver": {
       "method": "lu",
@@ -56,11 +55,10 @@
     }
   },
   "qrt_probe": {
-    "horizon": 100.0,
+    "horizon": 1.0,
     "steps": [
       0.01,
-      0.005,
-      0.0025
+      0.005
     ],
     "sample_interval": 0.1,
     "absolute_tolerance": 1e-08,
@@ -84,7 +82,7 @@
     "e002e_exp/space.py": "e909e3fc72fceb649891ebd6d7d2d0f9459936ebef8d5eb703533b40bf442ab1",
     "e002e_exp/task.py": "cf18726ea7481ad494efb104944233b1ea2698c42852421bbb71f3cc179d6a6e",
     "e002e_exp/vendor_threadpoolctl.py": "12fb9526b6a74d2e686b7ec148dc165c3587999b14fa86984aa180e10802400b",
-    "experiments/e002e/calibration.py": "dd5455abd23723f7f0457429f63389af8a61c2921bc2dd850ecb5d6c48d51c5c"
+    "experiments/e002e/calibration.py": "0929cc43b5ece9799a6771f015b138a61d21187d66e08b901a6b60f1d5c19048"
   },
   "source_kernel_sha256": "961eb9a5e7245559697bc923178ddf16387a4c63efd41dcd199b67a7ff08c1db",
   "previous_copilot_kernel_sha256": "9264d19764462081e07d24907109764bb04839eb1c3c998e640858634ff91bd3",
@@ -114,5 +112,51 @@
       "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
       "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
     }
+  ],
+  "run_validation": true,
+  "static_targets_by_case": {
+    "full_f9b055f16d41": [
+      "S2a",
+      "S2b",
+      "S1a",
+      "S1b"
+    ],
+    "full_b48f717c5018": [
+      "S2a",
+      "S2b",
+      "S1a",
+      "S1b"
+    ],
+    "full_5222212ebc04": [
+      "M1",
+      "M2"
+    ],
+    "full_52be73f1ff34": [
+      "S2a",
+      "S2b",
+      "S1a",
+      "S1b"
+    ],
+    "full_a2a1b36cf33b": [
+      "M1",
+      "M2"
+    ]
+  },
+  "frequencies_by_case": {
+    "full_5222212ebc04": [
+      1.0
+    ]
+  },
+  "small_indices": [
+    2,
+    12,
+    20,
+    30,
+    38,
+    48,
+    56,
+    66,
+    76,
+    91
   ]
 }
