@@ -28,3 +28,9 @@
 31 October 2026. After Copilot review: forecast 90 seconds, interval 0–300 seconds.
 Basis: original 8 groups took43.958 seconds; add another short smoke run with an injected failure, independent full184-case derived-field corruption checks, nonfinite and provenance tests.
 Planned13 test groups; no production evolution. Actual results will be appended separately.
+
+Review regression result:13 groups PASS in56.078s, exit0, forecast90s[0,300]=>PASS.
+Includes all184 synthetic cases at both horizons; independently reconstructed derived values/envelopes/statuses and9 semantic corruptions per horizon.
+Normal10-case smoke16.385s,545642bytes24files. Injected-failure smoke13.499s retained all10 cases including partialT=.4;9 other cases completedT2; whole cohort FAILED and scientific comparisons withheld, as intended.
+Nonfinite, pinned-record mismatch, extension failure and resource/programming abort regressions passed.
+No acceleration integrated; full-CSR RK4 unchanged. Final VM calibration remains48cases,T10,72000steps,forecast180s[60,480].

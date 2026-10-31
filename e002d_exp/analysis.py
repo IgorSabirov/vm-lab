@@ -1,6 +1,6 @@
 """Window comparisons for the frozen A/B/C design, with propagated envelopes."""
 import numpy as np
-from e002c_exp.engine import compare_pair
+from .engine import compare_pair
 from e002c_exp.windows import integral_mean
 from .plan import MODELS,TARGETS,OPERATIONS,CONTRACT,physics_key
 from .numerics import estimate,linear,ratio,signed,contrast,sampled_minimum

@@ -63,8 +63,10 @@ def compact(metrics,checks):
     for s in metrics["cases"]:
         c=s["case"];hm=(s.get("reference") or {}).get("h");e=s["h_extrema"]
         case=f"{c['label']}:{'Q' if c['model']=='QS' else 'R'},{c['target']}{c['kind']},g{c['gamma']:g},P{c['phi_over_pi']:g},e{c['detuning']:g},n{c['dephasing']:g},{'f' if c['dt']==.005 else 'c'}"
-        flag="!" if not s["stationarity"]["pass_gate"] or s["refinement_status"]=="failed" else "s" if s["refinement_status"]=="not_refined" else "ok"
-        text.append(f"|{case}|{s['horizon']:g}|{hm:.7g}|" + f"{e[0]:.5g}@{e[1]:g}/{e[2]:.5g}@{e[3]:g}|{flag}|" if hm is not None else f"|{case}|{s['horizon']:g}|null|{e[0]:.5g}@{e[1]:g}/{e[2]:.5g}@{e[3]:g}|{flag}|")
+        flag="!" if s.get("failed") or not s["stationarity"]["pass_gate"] or s["refinement_status"]=="failed" else "s" if s["refinement_status"]=="not_refined" else "ok"
+        extremes="unavailable" if e[0] is None else f"{e[0]:.5g}@{e[1]:g}/{e[2]:.5g}@{e[3]:g}"
+        hv="null" if hm is None else f"{hm:.7g}"
+        text.append(f"|{case}|{s['horizon']:g}|{hv}|{extremes}|{flag}|")
     if metrics["mode"]!="production":
         text+=["","Короткая техническая калибровка/проверка: стационарность и научный эффект не оцениваются."]
     else:

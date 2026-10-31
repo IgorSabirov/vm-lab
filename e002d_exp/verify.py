@@ -27,7 +27,7 @@ def verify(report):
     ids=[c["id"] for c in registry];actual=[s["case"]["id"] for s in metrics["cases"]]
     if len(set(ids))!=len(ids) or set(actual)!=set(ids) or len(actual)!=len(ids):raise ValueError("Case coverage mismatch")
     registered={c["id"]:c for c in registry}
-    names=schema["series"];maximum=0.;mineig=1.;means={};windows=0;certificates=0
+    names=schema["series"];maximum=0.;mineig=1.;means={};window_stats={};windows=0;certificates=0
     def check(a,b,label,tolerance=1e-10):
         nonlocal maximum
         a,b=np.asarray(a),np.asarray(b)
@@ -87,6 +87,7 @@ def verify(report):
                 record=dict(zip(names[1:],mean.tolist()))
                 pk=(c["model"],c["target"],c["kind"],c["gamma"],c["phi_over_pi"],c["detuning"],c["dephasing"],c["dt"],horizon)
                 means[pk]=record
+                window_stats[pk]=dict(id=cid,mean=record,range=dict(zip(names[1:],np.ptp(values[take,1:],axis=0).tolist())))
                 if horizon==s["horizon"]:
                     check(mean,np.array([s["reference"][name] for name in names[1:]]),"final mean")
             # Recompute the exported pure-state witness constants without the production helper.
@@ -156,7 +157,10 @@ def verify(report):
         else:expected=response(row["fixed"],"M2",h)-response(row["fixed"],"M1",h)
         metric_check(row["delta_D"],expected,"C delta D");comparison_count+=1
     if windows!=metrics["work"]["actual"]["trajectories"]:raise ValueError("Window count mismatch")
+    from .verify_analysis import verify_derived
+    derived_fields=verify_derived(metrics,window_stats)
     return dict(status="PASS",case_windows=windows,reconstruction_max_error=maximum,min_reduced_eigenvalue=mineig,
         witness_certificates=certificates,scientific_comparisons=comparison_count,
+        independently_reconstructed_derived_fields=derived_fields,
         limitations=["Full-state positivity, full-target norms and node-edge negativity require full VM states.",
-          "Scalar central values reconstructed independently; engineering uncertainty rules require separate tests and review."])
+          "Full-grid dt, quality and stationarity gates cannot be independently repeated from the reduced export; reconstructed resolution statuses are conditional on those reported gates."])
