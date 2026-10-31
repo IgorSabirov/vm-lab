@@ -15,14 +15,14 @@ sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT/'tests'))
 
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument('--suite', choices=('pilot', 'all'), required=True)
+    parser = argparse.ArgumentParser(); parser.add_argument('--suite', choices=('pilot', 'all', 'integration'), required=True)
     parser.add_argument('--output', type=Path, required=True); args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     from e002e_exp.runtime import environment, kernel_hash
     from e002_exp.model import save_json
     before = environment()
     names = ['test_e002e.ReducedAlgebra.test_small_generators_against_full_kron_all_columns',
-             'test_e002e.FullOperators.test_pinned_builder_and_reduction'] if args.suite == 'pilot' else ['test_e002e']
+             'test_e002e.FullOperators.test_pinned_builder_and_reduction'] if args.suite == 'pilot' else (['test_e002e_integration'] if args.suite == 'integration' else ['test_e002e', 'test_e002e_integration'])
     suite = unittest.defaultTestLoader.loadTestsFromNames(names); count = suite.countTestCases()
     class TimedResult(unittest.TextTestResult):
         def __init__(self, *a, **kw):
