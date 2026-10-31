@@ -1,15 +1,16 @@
 {
   "experiment": "E002e_CALIBRATION",
-  "run_id": "E002e_COVERAGE_CAL_v001_r001",
+  "run_id": "E002e_FINAL_CAL_v001_r001",
   "calibration_phase": "solver",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "forecast": {
-    "expected_seconds": 25.0,
-    "lower_seconds": 8.0,
-    "upper_seconds": 55.0
+    "expected_seconds": 166.0,
+    "lower_seconds": 130.0,
+    "upper_seconds": 240.0
   },
   "address_space_limit_bytes": 8589934592,
   "case_ids": [
+    "full_7c1820e764ee",
     "full_f9b055f16d41",
     "full_b48f717c5018",
     "full_5222212ebc04",
@@ -78,13 +79,13 @@
     "e002e_exp/numerics.py": "052239b0c481dbde1d54dec51f7dc8143c8b24927254a9458acd0792a636fba2",
     "e002e_exp/observations.py": "6c432c605efa32e9572b395803049c56c802a97913db08ff0375e1685402a8ca",
     "e002e_exp/plan.py": "4431921b635dbe03692ac8ae28b978d3934522c8da967d891b1207be49468370",
-    "e002e_exp/runtime.py": "30c0e026a2768bd7ebb690b1c9fe9e54dcdb3cb27737428a8f0c948088f324d1",
+    "e002e_exp/runtime.py": "8207c7855f6c5f74c38768d01339105dd2aeb4a6c73d76084dbd3f651e685586",
     "e002e_exp/space.py": "e909e3fc72fceb649891ebd6d7d2d0f9459936ebef8d5eb703533b40bf442ab1",
     "e002e_exp/task.py": "cf18726ea7481ad494efb104944233b1ea2698c42852421bbb71f3cc179d6a6e",
     "e002e_exp/vendor_threadpoolctl.py": "12fb9526b6a74d2e686b7ec148dc165c3587999b14fa86984aa180e10802400b",
-    "experiments/e002e/calibration.py": "0929cc43b5ece9799a6771f015b138a61d21187d66e08b901a6b60f1d5c19048"
+    "experiments/e002e/calibration.py": "6ab005065f7eee929700e42da4469b6f02dbc4d00ebd42c53b3486499de17816"
   },
-  "source_kernel_sha256": "961eb9a5e7245559697bc923178ddf16387a4c63efd41dcd199b67a7ff08c1db",
+  "source_kernel_sha256": "733307d239ec67deae17b9e6e2631be8a73d963229491b27ae9a9ba4a6416494",
   "previous_copilot_kernel_sha256": "9264d19764462081e07d24907109764bb04839eb1c3c998e640858634ff91bd3",
   "supplemental_review_status": "OWN_CHECKS_REQUIRED_COPILOT_DELTA_NOT_REVIEWED",
   "expected_blas_libraries": [
@@ -115,6 +116,10 @@
   ],
   "run_validation": true,
   "static_targets_by_case": {
+    "full_7c1820e764ee": [
+      "M1",
+      "M2"
+    ],
     "full_f9b055f16d41": [
       "S2a",
       "S2b",
@@ -145,6 +150,9 @@
   "frequencies_by_case": {
     "full_5222212ebc04": [
       1.0
+    ],
+    "full_7c1820e764ee": [
+      1.0
     ]
   },
   "small_indices": [
@@ -158,5 +166,19 @@
     66,
     76,
     91
-  ]
+  ],
+  "declared_validation_tests": 42,
+  "qrt_probe_by_case": {
+    "full_7c1820e764ee": {
+      "horizon": 100.0,
+      "steps": [
+        0.01,
+        0.005,
+        0.0025
+      ],
+      "sample_interval": 0.1,
+      "absolute_tolerance": 1e-08,
+      "relative_tolerance": 1e-05
+    }
+  }
 }

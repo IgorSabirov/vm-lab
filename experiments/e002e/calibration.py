@@ -37,10 +37,13 @@ def solver_probe(config, report, metrics):
     Path('full').mkdir(exist_ok=False)
     def phase(name, fn):
         import threading
-        peak_threads=[1]; stop=threading.Event()
+        peak_threads=[1]; peak_vm=[0]; stop=threading.Event()
         def sample_threads():
             while not stop.is_set():
                 peak_threads[0]=max(peak_threads[0],len(list(Path('/proc/self/task').iterdir()))-1)
+                ps=read('/proc/self/status') or ''
+                vm=next((int(x.split()[1])*1024 for x in ps.splitlines() if x.startswith('VmSize:')),0)
+                peak_vm[0]=max(peak_vm[0],vm)
                 stop.wait(.05)
         watcher=threading.Thread(target=sample_threads,daemon=True)
         print('START '+name, flush=True); t=time.perf_counter(); cpu=time.process_time()
@@ -51,6 +54,7 @@ def solver_probe(config, report, metrics):
             stop.set();watcher.join()
         row=dict(name=name, seconds=time.perf_counter()-t,
                  cpu_seconds=time.process_time()-cpu,max_compute_threads_observed=peak_threads[0],
+                 max_vm_bytes_sampled=peak_vm[0],
                  max_rss_bytes=1024*resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
         metrics['phase_times'].append(row)
         if peak_threads[0] != 1:raise ValueError('Unexpected compute threads during '+name)
@@ -99,7 +103,7 @@ def solver_probe(config, report, metrics):
         np.savez_compressed(Path('full')/(cid+'_state.npz'),state=x,reference=xr)
         blocks=node_blocks(s.unpack(x))
         save(report/(cid+'_nodes.json'),dict(real=blocks.real.tolist(),imag=blocks.imag.tolist()))
-        q=config.get('qrt_probe')
+        q=config.get('qrt_probe_by_case',{}).get(cid,config.get('qrt_probe'))
         if q:
             outputs=[]
             for dt in q['steps']:
@@ -193,9 +197,13 @@ def run(config):
                 ts=time.perf_counter()
                 with (report/'tests.log').open('w') as log:
                     child=subprocess.run([__import__('sys').executable,'-m','unittest','discover','-s','tests','-p','test_e002e*.py','-v'],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT)
+                import re
+                match=re.search(r'Ran (\d+) tests', (report/'tests.log').read_text())
+                count=int(match.group(1)) if match else None
                 metrics['validation']=dict(seconds=time.perf_counter()-ts,exit_code=child.returncode,
-                    declared_tests=38,child_peak_rss_bytes=1024*resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
-                if child.returncode:raise ArithmeticError('Target VM code tests failed')
+                    declared_tests=config.get('declared_validation_tests',38),executed_tests=count,
+                    child_peak_rss_bytes=1024*resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss)
+                if child.returncode or count!=metrics['validation']['declared_tests']:raise ArithmeticError('Target VM code tests failed or count differs')
             small_probe(config,report,metrics)
             solver_probe(config,report,metrics)
         else:
