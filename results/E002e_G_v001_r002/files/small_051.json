@@ -1,0 +1,153 @@
+{
+  "id": "small_051",
+  "case": {
+    "block": "G",
+    "dimension": 8,
+    "mask": 6,
+    "phi_over_pi": 0.0,
+    "epsilon": -0.125,
+    "v_over_J": 1.0,
+    "changed_edge": "12"
+  },
+  "raw": {
+    "J_h": 0.20721647456568185,
+    "F": 0.20721647456568176,
+    "p_e": 0.39522557246358264,
+    "P_N2": 0.4125024996648696,
+    "K": -0.20721647456568185,
+    "source": 0.2072164745656818,
+    "p_N0": 0.09491199713092276,
+    "h_N0": 0.0,
+    "p_N1": 0.39522557246358264,
+    "h_N1": 0.0949119971309228,
+    "p_N2": 0.4125024996648696,
+    "h_N2": 0.11230447743475906,
+    "p_N3": 0.09735993074062504,
+    "h_N3": 0.0
+  },
+  "conditional": {
+    "j_N0": {
+      "value": 0.0,
+      "uncertainty": 1.0536075852183349e-09,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "j_N1": {
+      "value": 0.2401463967508537,
+      "uncertainty": 3.1378433831857443e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "j_N2": {
+      "value": 0.27225162884103454,
+      "uncertainty": 3.084300130703776e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "j_N3": {
+      "value": 0.0,
+      "uncertainty": 1.0271165903878918e-09,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "F_over_p_e": {
+      "value": 0.5242992584564485,
+      "uncertainty": 3.85684017981157e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    }
+  },
+  "quality": {
+    "trace_error": 9.62964972193618e-35,
+    "hermiticity": 1.734723475976807e-17,
+    "minimum_eigenvalue": 0.042300002478012765,
+    "Lrho_inf": 2.7757422363788554e-17,
+    "Lrho_2": 4.4065088006746814e-17,
+    "pass": true
+  },
+  "physical_key": null,
+  "solve_check": {
+    "absolute_inf": 2.7757422363788554e-17,
+    "relative_2": 4.4065088006746814e-17,
+    "trace_error": 9.62964972193618e-35,
+    "border_multiplier": 2.6187851216852404e-18,
+    "iterations": 0
+  },
+  "branch": "empty_initial_state_unique_stationary_candidate",
+  "operator_checks": {},
+  "hilbert_dimension": 8,
+  "liouville_dimension": 20,
+  "generator_nnz": 78,
+  "primitive_uncertainty": {
+    "J_h": 1.0000249800180541e-10,
+    "F": 1.0000138777878079e-10,
+    "p_e": 1.0000166533453694e-10,
+    "P_N2": 1.0000333066907388e-10,
+    "K": 1.0000138777878079e-10,
+    "source": 1.0000111022302463e-10,
+    "p_N0": 1.0000027755575616e-10,
+    "h_N0": 1e-10,
+    "p_N1": 1.0000166533453694e-10,
+    "h_N1": 1.0000055511151232e-10,
+    "p_N2": 1.0000333066907388e-10,
+    "h_N2": 1.0000208166817118e-10,
+    "p_N3": 1.0000041633363424e-10,
+    "h_N3": 1e-10
+  },
+  "refinement": {
+    "quality": {
+      "trace_error": 4.441075656747628e-16,
+      "hermiticity": 2.1510964558979807e-17,
+      "minimum_eigenvalue": 0.04230000247801274,
+      "Lrho_inf": 1.5964200684858472e-16,
+      "Lrho_2": 2.2299845527784125e-16,
+      "pass": true
+    },
+    "solve": {
+      "absolute_inf": 1.5964200684858472e-16,
+      "relative_2": 2.2299845527784125e-16,
+      "trace_error": 4.441075656747628e-16,
+      "border_multiplier": 8.287601002288195e-17,
+      "iterations": 1
+    },
+    "gate": {
+      "pass_gate": true,
+      "vector_difference_inf": 1.3880869762989824e-16,
+      "observable_differences": {
+        "J_h": 2.498001805406602e-16,
+        "F": 1.3877787807814457e-16,
+        "p_e": 1.6653345369377348e-16,
+        "P_N2": 3.3306690738754696e-16,
+        "K": 1.3877787807814457e-16,
+        "source": 1.1102230246251565e-16,
+        "p_N0": 2.7755575615628914e-17,
+        "h_N0": 0.0,
+        "p_N1": 1.6653345369377348e-16,
+        "h_N1": 5.551115123125783e-17,
+        "p_N2": 3.3306690738754696e-16,
+        "h_N2": 2.0816681711721685e-16,
+        "p_N3": 4.163336342344337e-17,
+        "h_N3": 0.0
+      },
+      "failed_observables": [],
+      "limits": {
+        "vector_inf": 1e-09,
+        "observable_absolute": 1e-09,
+        "observable_relative": 1e-07
+      },
+      "status": "PASS"
+    },
+    "state_difference_inf": 1.3880869762989824e-16,
+    "error_policy": {
+      "absolute_floor": 1e-10,
+      "difference_multiplier": 10
+    },
+    "uncertainty_kind": "ENGINEERING_TWO_METHOD_ENVELOPE_NOT_RIGOROUS_TOTAL_ERROR_BOUND"
+  },
+  "condition": {
+    "value": 55.151990171945904,
+    "status": "ONE_NORM_ESTIMATE_NOT_RIGOROUS_ERROR_BOUND"
+  },
+  "renewal": {
+    "status": "NOT_APPLICABLE"
+  },
+  "symmetry": {
+    "symmetry_applicable": false,
+    "parity_status": "SMALL_GAUGE_TESTED_SEPARATELY"
+  }
+}

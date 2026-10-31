@@ -1,0 +1,161 @@
+{
+  "id": "small_074",
+  "case": {
+    "block": "G1_reduced_pump",
+    "dimension": 4,
+    "mask": 6,
+    "phi_over_pi": 0.5,
+    "epsilon": 0.125,
+    "v_over_J": 1.0,
+    "source": 0.05,
+    "sink": 0.5,
+    "node_noise": 0.05,
+    "jump_convention": "three_sqrt_phi_Z"
+  },
+  "raw": {
+    "J_h": 0.032129644924429726,
+    "F": 0.03212964492442971,
+    "p_e": 0.35740710151140553,
+    "P_N2": 0.0,
+    "K": -0.03212964492442971,
+    "source": 0.032129644924429726,
+    "p_N0": 0.6425928984885945,
+    "h_N0": 0.0,
+    "p_N1": 0.35740710151140553,
+    "h_N1": 0.032129644924429726,
+    "p_N2": 0.0,
+    "h_N2": 0.0,
+    "p_N3": 0.0,
+    "h_N3": 0.0
+  },
+  "conditional": {
+    "j_N0": {
+      "value": 0.0,
+      "uncertainty": 1.5561952248580167e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "j_N1": {
+      "value": 0.08989649279088095,
+      "uncertainty": 3.049455879237577e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    },
+    "j_N2": {
+      "value": null,
+      "uncertainty": null,
+      "status": "SMALL_DENOMINATOR"
+    },
+    "j_N3": {
+      "value": null,
+      "uncertainty": null,
+      "status": "SMALL_DENOMINATOR"
+    },
+    "F_over_p_e": {
+      "value": 0.08989649279088092,
+      "uncertainty": 3.049455879237577e-10,
+      "status": "PROPAGATED_ESTIMATE"
+    }
+  },
+  "quality": {
+    "trace_error": 0.0,
+    "hermiticity": 6.938893903907228e-18,
+    "minimum_eigenvalue": 0.054137062609428035,
+    "Lrho_inf": 1.3878787697065543e-17,
+    "Lrho_2": 2.0878917963671363e-17,
+    "pass": true
+  },
+  "physical_key": null,
+  "solve_check": {
+    "absolute_inf": 1.3878787697065543e-17,
+    "relative_2": 2.0878917963671363e-17,
+    "trace_error": 0.0,
+    "border_multiplier": 2.7849545521872728e-18,
+    "iterations": 0
+  },
+  "branch": "empty_initial_state_unique_stationary_candidate",
+  "operator_checks": {},
+  "hilbert_dimension": 4,
+  "liouville_dimension": 10,
+  "generator_nnz": 34,
+  "primitive_uncertainty": {
+    "J_h": 1.0000006938893904e-10,
+    "F": 1.0000006938893904e-10,
+    "p_e": 1e-10,
+    "P_N2": 1e-10,
+    "K": 1.0000013877787808e-10,
+    "source": 1.0000006938893904e-10,
+    "p_N0": 1.0000222044604925e-10,
+    "h_N0": 1e-10,
+    "p_N1": 1e-10,
+    "h_N1": 1.0000006938893904e-10,
+    "p_N2": 1e-10,
+    "h_N2": 1e-10,
+    "p_N3": 1e-10,
+    "h_N3": 1e-10
+  },
+  "refinement": {
+    "quality": {
+      "trace_error": 2.223603264063238e-16,
+      "hermiticity": 1.2920740147795087e-17,
+      "minimum_eigenvalue": 0.05413706260942805,
+      "Lrho_inf": 1.4454890128447627e-17,
+      "Lrho_2": 2.5632420991830843e-17,
+      "pass": true
+    },
+    "solve": {
+      "absolute_inf": 1.4454890128447627e-17,
+      "relative_2": 2.5632420991830843e-17,
+      "trace_error": 2.223603264063238e-16,
+      "border_multiplier": 2.1703887203687145e-17,
+      "iterations": 1
+    },
+    "gate": {
+      "pass_gate": true,
+      "vector_difference_inf": 2.220467368933714e-16,
+      "observable_differences": {
+        "J_h": 6.938893903907228e-18,
+        "F": 6.938893903907228e-18,
+        "p_e": 0.0,
+        "P_N2": 0.0,
+        "K": 1.3877787807814457e-17,
+        "source": 6.938893903907228e-18,
+        "p_N0": 2.220446049250313e-16,
+        "h_N0": 0.0,
+        "p_N1": 0.0,
+        "h_N1": 6.938893903907228e-18,
+        "p_N2": 0.0,
+        "h_N2": 0.0,
+        "p_N3": 0.0,
+        "h_N3": 0.0
+      },
+      "failed_observables": [],
+      "limits": {
+        "vector_inf": 1e-09,
+        "observable_absolute": 1e-09,
+        "observable_relative": 1e-07
+      },
+      "status": "PASS"
+    },
+    "state_difference_inf": 2.220467368933714e-16,
+    "error_policy": {
+      "absolute_floor": 1e-10,
+      "difference_multiplier": 10
+    },
+    "uncertainty_kind": "ENGINEERING_TWO_METHOD_ENVELOPE_NOT_RIGOROUS_TOTAL_ERROR_BOUND"
+  },
+  "condition": {
+    "value": 72.87959517634286,
+    "status": "ONE_NORM_ESTIMATE_NOT_RIGOROUS_ERROR_BOUND"
+  },
+  "renewal": {
+    "status": "PASS",
+    "tau": 11.123904492316738,
+    "P_tau": 0.5561952246158368,
+    "predicted_F": 0.032129644924429726,
+    "predicted_F_over_p_e": 0.08989649279088097,
+    "state_error_inf": 1.1103844916884556e-16
+  },
+  "symmetry": {
+    "symmetry_applicable": false,
+    "parity_status": "SMALL_GAUGE_TESTED_SEPARATELY"
+  }
+}
