@@ -117,7 +117,7 @@ def failure_status(result):
         return "POLICY_BLOCKED"
     if any(term in text for term in ("quota", "rate limit", "429", "insufficient credits", "credits exhausted")):
         return "LIMIT_REACHED"
-    if any(term in text for term in ("401", "unauthorized", "not logged in", "not authenticated", "token expired", "please sign in", "please log in")):
+    if any(term in text for term in ("401", "unauthorized", "not logged in", "not authenticated", "token expired", "please sign in", "please log in", "no authentication information found")):
         return "AUTH_REQUIRED"
     return "REQUEST_FAILED"
 
@@ -281,3 +281,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+

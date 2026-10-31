@@ -1,5 +1,5 @@
 """Independent report-only reconstruction. Imports no evolution/model/analysis code."""
-import hashlib,json
+import gzip,hashlib,json
 from pathlib import Path
 import numpy as np
 from scipy.integrate import simpson
@@ -17,6 +17,12 @@ def verify(report):
         if len(data)!=item["bytes"] or hashlib.sha256(data).hexdigest()!=item["sha256"]:
             raise ValueError("Export hash mismatch: "+item["path"])
     metrics=json.loads((root/"metrics.json").read_text());schema=json.loads((root/"schema.json").read_text())
+    pointer=metrics["analysis"]
+    if "file" in pointer:
+        if pointer["file"]!="analysis.json.gz":raise ValueError("Unexpected analysis path")
+        data=(root/pointer["file"]).read_bytes()
+        if hashlib.sha256(data).hexdigest()!=pointer["sha256"]:raise ValueError("Analysis hash mismatch")
+        metrics["analysis"]=json.loads(gzip.decompress(data))
     registry=json.loads((root/"case_registry.json").read_text())["cases"]
     ids=[c["id"] for c in registry];actual=[s["case"]["id"] for s in metrics["cases"]]
     if len(set(ids))!=len(ids) or set(actual)!=set(ids) or len(actual)!=len(ids):raise ValueError("Case coverage mismatch")
@@ -71,8 +77,9 @@ def verify(report):
             for e,tag in enumerate(("I01","I12","I02")):check(values[:,names.index(tag)],allcurr[:,e],tag+" sum")
             check(values[:,names.index("h")],allcurr[:,1]+allcurr[:,2],"hop sum")
             check(values[:,names.index("activity_added")],activity,"activity")
-            for horizon_text,reference in s.get("window_references",{}).items():
-                horizon=float(horizon_text);wanted=horizon-10+2*np.arange(6)
+            for horizon in s.get("reference_horizons",[]):
+                reference=s["reference"] if horizon==s["horizon"] else s["transition_reference"]
+                wanted=horizon-10+2*np.arange(6)
                 take=np.isin(time,wanted)
                 if not np.array_equal(time[take],wanted):raise ValueError("Incomplete reference window")
                 mean=simpson(values[take,1:],x=time[take],axis=0)/10

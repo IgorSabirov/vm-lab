@@ -1,16 +1,16 @@
 import copy,json,tempfile,time,unittest
 from pathlib import Path
 import numpy as np
-from e002_exp.model import build_liouvillian,make_direct_rhs,maxabs
+from e002_exp.model import build_liouvillian,make_direct_rhs,maxabs,save_json
 from e002c_exp.model import build as old_build
-from e002c_exp.diagnostics import node_blocks
+from e002c_exp.diagnostics import node_blocks,certificate
 from e002d_exp.model import build,jump_diagonals,damping,consequence_map
 from e002d_exp.plan import case,cases,counts,comparison_graph,physics_key,OPERATIONS,TARGETS
 from e002d_exp.numerics import estimate,linear,ratio,signed,contrast,sampled_minimum
 from e002d_exp.analysis import analyze
-from e002d_exp.task import run
+from e002d_exp.task import run,save_metrics
 from e002d_exp.verify import verify
-from e002d_exp.export import compact,write_manifest
+from e002d_exp.export import compact,write_manifest,export_case
 
 def synthetic_results(horizon=200.):
     names=build(case("QS"))["names"]
@@ -128,6 +128,53 @@ class E002dTests(unittest.TestCase):
             environment=dict(kernel_sha256="0"*64))
         checks=dict(runtime_gate=dict(expected_seconds=100.,lower_seconds=60.,upper_seconds=140.,actual_seconds=100.,status="PASS"),failures=[])
         self.assertLessEqual(len(compact(metrics,checks).encode()),24*1024)
+        geometry=[x["info"] for x in old_build(case("QS"))["dark"]]
+        for s in metrics["cases"]:
+            s["transition_reference"]=s["reference"]
+            s["reference_horizons"]=[200.,400.]
+            s["dark_geometry"]=geometry
+            s["node_edge"]=[dict(time=float(i),negativity=.123456789012345,min_eigen=-.123456789012345,
+                status="NODE_EDGE_NPT_DETECTED",independent_reconstruction_from_node_export=False) for i in range(14)]
+        def wide_numbers(x):
+            if isinstance(x,float):return -1.2345678901234567e-123
+            if isinstance(x,dict):return {k:wide_numbers(v) for k,v in x.items()}
+            if isinstance(x,list):return [wide_numbers(v) for v in x]
+            return x
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);save_metrics(root,wide_numbers(metrics))
+            self.assertLess((root/"metrics.json").stat().st_size,7*1024**2)
+            self.assertLess((root/"analysis.json.gz").stat().st_size,8*1024**2)
+
+    def test_independent_six_point_window_mean(self):
+        # Manufactured positive matrix curve: the exact mean is (2*rhoA+rhoB)/3.
+        # This verifies the reference-window branch without a long evolution.
+        c=next(c for c in cases() if c["model"]=="QS" and c["target"]=="M2" and c["kind"]=="T" and c["dt"]==.005 and c["detuning"]==.125)
+        model=build(c);rng=np.random.default_rng(2401);states=[]
+        for _ in range(2):
+            a=rng.normal(size=(216,3))+1j*rng.normal(size=(216,3));rho=a@a.conj().T
+            states.append(rho/np.trace(rho))
+        times=np.arange(190.,202.,2.);certs=[];rows=[]
+        for t in times:
+            x=(t-190)/10;rho=(1-x*x)*states[0]+x*x*states[1]
+            certs.append(certificate(node_blocks(rho)))
+            rows.append(np.r_[t,np.asarray(model["rows"]@rho.reshape(-1,order="F")).real])
+        mean=np.asarray(model["rows"]@((2*states[0]+states[1])/3).reshape(-1,order="F")).real
+        reference=dict(zip(model["names"],mean.tolist()))
+        summary=dict(case=c,horizon=200.,reference=reference,transition_reference=None,reference_horizons=[200.])
+        result=dict(summary=summary,series=np.array(rows),diagnostics=np.column_stack([times,np.zeros(6)]),
+            names=model["names"],dnames=["dummy"],certs={k:np.array([s[k] for s in certs]) for k in certs[0]})
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);report=root/"report";full=root/"full";report.mkdir();full.mkdir()
+            export_case(report,result,"production")
+            save_json(report/"schema.json",dict(series=["time"]+model["names"]))
+            save_json(report/"case_registry.json",dict(cases=[c]))
+            _,rates=consequence_map(True);np.savez_compressed(report/"intervention_rates.npz",**rates)
+            metrics=dict(cases=[summary],work=dict(actual=dict(trajectories=1)),analysis=dict(A=[],B=[],C=[]))
+            save_metrics(report,metrics);write_manifest(report,full)
+            self.assertEqual(verify(report)["status"],"PASS")
+            metrics["cases"][0]["reference"]["h"]+=.001
+            save_metrics(report,metrics);write_manifest(report,full)
+            with self.assertRaisesRegex(ValueError,"mean"):verify(report)
 
     def test_end_to_end_and_independent_corruption_rejection(self):
         with tempfile.TemporaryDirectory() as tmp:

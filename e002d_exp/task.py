@@ -13,6 +13,16 @@ from .analysis import analyze
 from .export import export_case,write_manifest,compact
 ROOT=Path(__file__).resolve().parents[1]
 
+def save_metrics(report,metrics):
+    # The two-horizon scientific analysis exceeds the per-file cap as pretty JSON.
+    # Keep all numbers, compress the detail and leave a verified pointer in metrics.json.
+    path=report/"analysis.json.gz"
+    with gzip.open(path,"wt",encoding="utf-8") as stream:
+        json.dump(metrics["analysis"],stream,ensure_ascii=False,allow_nan=False,separators=(",",":"))
+    public=dict(metrics,analysis=dict(file=path.name,encoding="gzip+json",
+                                    sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+    save_json(report/"metrics.json",public)
+
 def kernel_files():
     return [ROOT/"e002_exp/model.py",*[ROOT/"e002c_exp"/f for f in
         ("model.py","engine.py","diagnostics.py","windows.py","export.py")],
@@ -85,10 +95,10 @@ def run(config,workdir=None):
     for r in results:
         s=r["summary"];cid=s["case"]["id"];all_extrema[cid]=export_case(report,r,mode)
         s["h_extrema"]=all_extrema[cid]["h_t_positive"]
-        s["window_references"]={}
+        s["reference_horizons"]=[]
         for horizon in sorted(set([200.,s["horizon"]])):
             ref=integral_mean(r["series"],r["names"],horizon)
-            if ref is not None:s["window_references"][str(float(horizon))]=ref
+            if ref is not None:s["reference_horizons"].append(float(horizon))
     phase["export_seconds"]=time.monotonic()-t
     with gzip.open(report/"extrema.json.gz","wt",encoding="utf-8") as f:json.dump(all_extrema,f,allow_nan=False,separators=(",",":"))
     planned=counts(mode,400. if extended else None);steps=sum(r["summary"]["steps"] for r in results)
@@ -127,7 +137,7 @@ def run(config,workdir=None):
             mask_bits=["01","12","02"],window="six even-time points [T-10,T], plus [190,200] when extended",
             coherence="C_key=rho_node_mask[a,b], unnormalised; full_target_norm includes all edge microstate pairs",
             mean="Simpson on six points, ratios of means",Fano_status="NOT_AUTOMATIC"))
-    save_json(report/"config.json",config);save_json(report/"metrics.json",metrics);save_json(report/"checks.json",checks)
+    save_json(report/"config.json",config);save_metrics(report,metrics);save_json(report/"checks.json",checks)
     (report/"README.md").write_text("E002d v003: RESULT.md, metrics.json, checks.json, schema.json; one compressed NPZ per case.\n")
     (report/"RESULT.md").write_text(compact(metrics,checks));write_manifest(report,full)
     if not fatal and volume:
@@ -137,7 +147,7 @@ def run(config,workdir=None):
     runtime["actual_seconds"]=time.monotonic()-started
     runtime["actual_over_expected"]=runtime["actual_seconds"]/runtime["expected_seconds"]
     runtime["status"]="PASS" if runtime["lower_seconds"]<=runtime["actual_seconds"]<=runtime["upper_seconds"] and volume and not fatal else "REVIEW_REQUIRED"
-    save_json(report/"metrics.json",metrics);save_json(report/"checks.json",checks)
+    save_metrics(report,metrics);save_json(report/"checks.json",checks)
     (report/"RESULT.md").write_text(compact(metrics,checks));budget=write_manifest(report,full)
     print(json.dumps(dict(runtime=runtime,work=metrics["work"],report_budget=budget,failures=failures),ensure_ascii=False),flush=True)
     if failures:raise RuntimeError("; ".join(failures))
