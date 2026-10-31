@@ -1,0 +1,94 @@
+{
+  "date_utc": "2026-10-31",
+  "repository": "IgorSabirov/vm-lab",
+  "parent_analysis_commit": "a694a38a69c5f5ef9fced11ca25d9929c94735cd",
+  "source_commit": "1f12d2f56145a30d2066f4b9f53592ebdc8a96e9",
+  "report_commit": "071e15ebc37227b1549e660121bc735a1d86cb13",
+  "run_id": "E002d_PROD_v003_r001",
+  "peer_review": {
+    "filename": "Вставленный текст(20261031-053422).txt",
+    "library_file_id": "libfile_b8577b9174a48191a9e678fd57d94c16",
+    "bytes": 50357,
+    "sha256": "c3bb5af886e54e3a9e69af23365eb8817071e6dbb62c23767eb5d1ee93761d78"
+  },
+  "inputs": {
+    "metrics.json": {
+      "sha256": "45995032a7c0e9234b6f6b71264a576b8e5d8ddac77e9db1e486881b42c6d18d",
+      "bytes": 2034796
+    },
+    "analysis.json.gz": {
+      "sha256": "17d523c412ca4b8741a4f49edfdc5f3c8161d3580eb713f147dc0a8715082878",
+      "bytes": 354517
+    },
+    "case_registry.json": {
+      "sha256": "b633edf3374a97fb8042d92b626dc2d96d2ce3323bab75901287f6728ee40509",
+      "bytes": 102363
+    }
+  },
+  "source_files": {
+    "e002_exp/model.py": "9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2",
+    "e002c_exp/model.py": "fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491",
+    "e002d_exp/model.py": "b267eb4bebac23fb6407e7351d758c557e23d9ca04e0c32c14d702c29c850053",
+    "e002d_exp/plan.py": "d1cf1ebfb02d8b97defaa6a420314b6306dcb9d3d800c4a40154ecb50987fd97"
+  },
+  "runtime": {
+    "expected_seconds": 30,
+    "lower_seconds": 0,
+    "upper_seconds": 180,
+    "actual_seconds": 2.2206304629999067,
+    "status": "PASS"
+  },
+  "runtime_scope": "Inside checks.main; excludes Python startup/imports and review/document preparation",
+  "forecast_record": "PLAN.md saved locally before checks; published together with results, not a previously Git-committed production forecast",
+  "new_evolution_steps": 0,
+  "new_full_NESS_or_spectral_solve": false,
+  "new_VM_access": false,
+  "full_generator_builds": 8,
+  "parity_pairs": 20,
+  "Fano_status": "CONFIRMED_IN_EXPLICIT_AUXILIARY_SCATTERING_MODEL; FULL_LINDBLAD_MECHANISM_PROPOSED_FOR_TESTING",
+  "scientific_acceptance": "USER_REVIEW",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1103/PhysRev.124.1866",
+      "purpose": "Original Fano profile"
+    },
+    {
+      "url": "https://arxiv.org/abs/cond-mat/0505023",
+      "purpose": "Resonant side-defect interference in discrete networks"
+    },
+    {
+      "url": "https://arxiv.org/abs/1503.03051",
+      "purpose": "Specific dissipative Fano model; not a direct formula for E002d current"
+    },
+    {
+      "url": "https://arxiv.org/html/2610.30266v1",
+      "purpose": "DTL methodology; noisy approximately periodic cavity drive, not identification of E002d as DTL"
+    }
+  ],
+  "artifact_manifest": {
+    "CONCEPT.md": {
+      "bytes": 32178,
+      "sha256": "456e743b8ab42f02e17c654569552c5fdc0073266b1c7b575d72a89a810ec07a"
+    },
+    "PLAN.md": {
+      "bytes": 2063,
+      "sha256": "20772fb11b72888fa371bb71733b610569af3b55d99b1f102ed05725da3a2adf"
+    },
+    "README.md": {
+      "bytes": 2539,
+      "sha256": "69ce6b20e067216057e512a2cbfb26c14c2b721bce684f100acbac943c1790fc"
+    },
+    "RESULT.md": {
+      "bytes": 10511,
+      "sha256": "e7c5e218932d5bc6f90654b498efddb056420e3c1a026fcd13f935030c2799b2"
+    },
+    "checks.json": {
+      "bytes": 17740,
+      "sha256": "6fa81574cb1e88126becf5e6582e64c234dd6a2873321f5234122ce19be00e4f"
+    },
+    "checks.py": {
+      "bytes": 6005,
+      "sha256": "cebd8199183cf50651cf1e95a2fc9219a95b486c21aabcf4fe5115e70b33d096"
+    }
+  }
+}
