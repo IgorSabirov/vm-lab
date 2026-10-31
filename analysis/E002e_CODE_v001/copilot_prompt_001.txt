@@ -1,0 +1,2145 @@
+You are GitHub Copilot, technical reviewer for the user's private vm-lab research project. The user explicitly authorized this review. Review the concrete E002e implementation below against its approved scientific contract. The author retains science; do not change physical parameters, experimental questions or mandatory coverage. No tools or repository access are provided. This is a technical prelaunch review, not scientific acceptance.
+Code commit: 25617ee26b6037c46e3e203f821597b5d50fc03e. Test plan/report commit: edb5f01d52f297aa406d8e028bbb79b1d17acf33 (suite results supplied separately below). Core SHA256: cfe7311df8c4b5638f265bee261638591577ad6a3004adaac08ddeb799ab90f9.
+Twenty declared unit tests passed in 2.525363092 s against forecast 3.2 s [2.1,5.2], same measured environment. No full physical 216-state NESS/frequency/QRT production was run. No claim of production memory/runtime feasibility. Final calibration is after review on target VM. Source equivalence against E002c (including IC) was tested, sparse full/reduced generators matched. Tests do not imply that orchestration and guard coverage is exhaustive: scrutinize them.
+Please identify concrete bugs and false acceptance paths, numerical conditioning/covariance/trace issues, lifecycle/export failures, missing coverage, and equivalent optimizations. Prioritize severity, provide exact file/function, a reproducible scenario, and proposed patch/test. Review especially independent refinement/uncertainty, end-to-end worker execution, F2 freeze and prediction checks, resource budget/environment matching and QRT. Do not call a heuristic rigorous. If a change increases computation, count it. The package includes a helper for candidate F4 decomposition, not automated physical candidate selection. Return in Russian if possible, concrete and concise but complete. No approval is assumed from silence.
+
+Время основных проверок: прогноз 3,2 с [2,1;5,2]; факт 2,525363092 с;
+отклонение −0,674636908 с (−21,0824%); PASS после сверки всех 20 тестов и среды.
+
+# Состояние кода перед техническим ревью
+
+Код: 25617ee26b6037c46e3e203f821597b5d50fc03e; план полного набора:
+edb5f01d52f297aa406d8e028bbb79b1d17acf33.
+Хеш вычислительного ядра: cfe7311df8c4b5638f265bee261638591577ad6a3004adaac08ddeb799ab90f9.
+
+Первый pilot: 1,980963683 с против неоткалиброванного ориентира 5 с,
+NOT_EVALUABLE сохранён. После измерения стоимость полного набора оценена
+как 1,981+0,49+0,73=3,2 с. Фактическая дополнительная масочная проверка заняла
+0,3272 с; дополнительные малые тесты оказались дешевле запаса. Самый дорогой
+блок вырос с 1,4622 до 1,5530 с. Признаков пропуска работы нет.
+
+Двадцать тестов выполнены из двадцати; ошибок/падений 0; код не менялся между
+pilot и suite. Python, ОС, CPU, affinity, квота, память, NumPy/SciPy, BLAS и
+фактические потоки совпали. Это локальная проверка кода, не калибровка ВМ.
+
+Проверены: q=0 индексы/след/комплексный выход; четыре малых генератора по всем
+столбцам; три полных генератора QS/RR/IC против прежней реализации и шесть
+комплексных полных действий; перенос когерентностей источником; термальная
+точная NESS и производная; малая NESS против expm и независимого GMRES/ILU;
+нулевая ветвь; gauge/renewal; частотный отклик против плотного решения;
+QRT против expm; Schur против прямого решения; G0 против резольвенты;
+независимая масочная деформация и межмасочная когерентность; селективные
+каналы; состав стадий, запрет шаблона F2, null/error policy, время и хеши.
+
+Производственные расчёты G/R/F/T не запускались. Все полноразмерные NESS,
+память факторизаций, стоимость QRT на ВМ и точность эффектов остаются
+неизмеренными. F4-примитив реализован и проверен на малом независимом примере;
+физическое разбиение и бюджет большой реконструкции не выбираются автоматически.
+Production-шаблон намеренно неисполняем до проверенных ревью/калибровки.
+
+## Следующий прямой запрос Copilot
+
+Полномочия пользователя действуют. Передаются только относящиеся к E002e
+исходники, ТЗ и результаты проверок. Секреты и доступ к среде не передаются.
+Вопрос: технические дефекты, соответствие контракту, пропущенные проверки,
+эквивалентные оптимизации с условиями применимости и тестом; физика неизменна.
+
+Ориентир ответа 180 с, инженерный диапазон [10;600] с: предыдущая консультация
+по методике заняла 115,964 с, уточнение 30,352 с; нынешний пакет заметно больше.
+Это слабый ориентир задержки внешней модели, не вычислительная калибровка:
+её внутренние ресурсы не известны. При отклонении фиксируется факт без
+автоматического обрыва. У запросов мостом нет тайм-аута по умолчанию.
+Успешная связь означает получение ответа, не принятие его рекомендаций.
+
+
+===== FILE experiments/e002e/IMPLEMENTATION_SPEC.md =====
+# E002e v003 — согласованный контракт реализации
+
+31 октября 2026 пользователь согласовал CONCEPT_v003 и поручил написать код
+в GitHub, затем передать его Copilot для технического ревью. Научные параметры
+и состав основного опыта сохранены. Большой прогон этим пакетом не запускается.
+
+## Соответствие концепту
+
+|Блок|Код и контракт|
+|---|---|
+|G|model.make_small: 4/8 состояний; шум, источник, сток и изменяемая ветвь из inventory; v=0,m6 — инвариантная ветвь n1=0 из пустого состояния|
+|G0|observations.g0: аналитические комплексные амплитуды и независимая проверка через обратную 3×3 матрицу рассеяния|
+|R|observations.static_response: L X=−(V_T−V_C)rho; единичная доза, производная условного тока с производной знаменателя|
+|F1/F2|model.make_full: полная физика E002c; масочная деформация hopping12 во всех N, сохранены межмасочные когерентности; токи пересобраны|
+|F3|source_input: D[полный source jump]rho; ненулевая частота iω−L; нулевая через ограниченную L с правильным знаком|
+|F4|schur_response: полное T/B-разбиение, преобразование входа/выхода, матрично-свободное Schur-дополнение; только кандидат механизма|
+|T|propagate_qrt: три упорядоченных связных входа, девять комплексных функций, две сетки RK4, все отсчёты и экстремумы; бесконечный хвост не объявляется покрытым|
+|Гейты|plan.preflight: совпадение кода с ревью, калибровка среды, бюджет; F2 требует ранее закреплённого полного файла предсказаний и baseline|
+
+Полная модель собирается в q=0 непосредственно из блоков H и jumps:
+27²+81²+81²+27²=14580. Никакая когерентность внутри этих блоков не отбрасывается.
+Полная Liouville-матрица используется только независимым прежним сборщиком в
+предзапусковых тестах сравнения. Плотная обратная 14580×14580 не строится.
+
+Численное ядро: ограниченная разреженная система с r=vec(I/d) и явным следом.
+Основной кандидат — LU; независимый метод — GMRES/ILU. Итерационный код при
+несходимости останавливает соответствующий этап. Никакой нормировки, обрезания
+отрицательных собственных значений или искусственного симметризования результата.
+Для проверки минимального собственного значения используется эрмитова часть,
+но исходная эрмитовость проверяется отдельно, и состояние не изменяется.
+
+Проверка двумя методами даёт инженерную оценку ошибки:
+u=absolute_floor+difference_multiplier*|основной−независимый|.
+Это не строгая граница общей погрешности. Floor/множитель должны проверяться
+на калибровке и по опубликованным baseline E002d. Условные ошибки учитывают
+ошибки числителя и знаменателя. Остаток системы сам по себе не гарантирует точности.
+Численные значения шаблона ниже являются исходными настройками для калибровки,
+не утверждённой точностью производственного расчёта.
+
+## Объём и расходы сверх прежнего счёта
+
+Научное ядро: 92 малые задачи; 44 полные NESS; 30 статических производных;
+20 частотных RHS; 18 QRT-входов на двух сетках. Итого прежние 94 большие RHS
+сохраняются. Дополнительно явно оплачиваются независимые проверки всех NESS,
+статических и частотных решений, оценка обусловленности, операторные проверки,
+сохранения и подготовка отчёта. Они отражены в workload и фазовых метриках;
+старый счёт 94 не выдаётся за полный бюджет.
+
+На одном случае могут одновременно существовать две факторизации. Память и
+fill-in должны быть измерены перед выбором LU/ILU на ВМ. Все 44 факторизации
+одновременно не хранятся. Сдвинутая матрица не использует LU другого сдвига
+как точный решатель. Валидация сравнивает полное/сокращённое действие и перенос
+когерентностей источником/стоком.
+
+F4 не назначает физическое разбиение автоматически и не запускает серию
+дополнительных факторизаций без отдельного плана/бюджета. Его готовый вычислительный
+примитив принимает объявленное T, включает всё дополнение B, сверяет исходную
+резольвенту и сохраняет амплитуды/перекрёстный член. z=0 отклоняется явно:
+для такого разбиения нужен отдельный учёт стационарного ограничения.
+Уточнение частот, горизонта, шума и дополнительные G2 не включены скрыто.
+
+## Этапы и файлы
+
+Запуск через run.py с experiment=E002e и stage=G/baseline/F2. G содержит 92
+малые точки. baseline содержит R/F1/F3/T с 24 полными NESS. F2 содержит 20
+новых NESS. Калибровка выбирает явно ограниченные индексы/ID baseline; F2
+для неё запрещён. Шаблон production_config.template.json не исполним до
+заполнения проверенных ревью, бюджета и калибровки.
+
+Перед F2 пользовательский научный выбор оформляется frozen-файлом с ссылками
+и хешами обучающих данных, покрытием всех 20 случаев и численными правилами.
+Для машинной проверки observable_definition задаёт kind=linear_combination
+или baseline_difference, observable и linear_terms[{case_id,coefficient}].
+Трёхточечный D задаётся коэффициентами 1,−0.5,−0.5. Сравнение допускает
+value/sign/interval и распространённую инженерную ошибку. Отсутствие
+разрешённой ошибки даёт NUMERICALLY_UNRESOLVED, не подтверждение/опровержение.
+Разведочный исход объявляется до F2. Временная отметка/формат файла не доказывают
+непросмотренность данных: проверенные ссылки и последовательность коммитов
+проверяет ассистент до выдачи заявки.
+
+report/: RESULT.md≤24 КиБ, case JSON, responses/contrasts/prediction JSON,
+полные общие QRT-сетки NPZ, описания экстремумов, паспорт среды, фазы,
+счётчики, ошибки, контрольные суммы. full/: состояния и последние QRT-векторы.
+Явные checkpoints сохраняются; автоматическое возобновление пока не заявляется.
+Внутренний таймер имеет объявленные границы; полное время процесса берётся из
+служебного run.json. Сеть и Copilot в коде ВМ отсутствуют.
+
+## Что должно быть проверено до основного запуска
+
+1. Предзапусковые тесты и техническое ревью Copilot с проверкой замечаний.
+2. Ограниченная калибровка финального ядра на реальной ВМ с паспортом ресурсов,
+   библиотек и потоков; память двух факторизаций, сборка, solve, QRT, I/O.
+3. Сверка NESS/наблюдаемых с опубликованными E002d; требуемая точность выбранных
+   эффектов, пределы итераций и допустимый размер шага QRT.
+4. Закреплённые бюджеты каждого этапа и условных расширений. Предсказания F2
+   замораживаются после объявленных обучающих расчётов и до F2.
+
+Код не объявляется измеренным производственным решением до этих проверок.
+
+
+===== FILE experiments/e002e/production_config.template.json =====
+{
+  "experiment": "E002e",
+  "mode": "production",
+  "stage": "baseline",
+  "source_commit": null,
+  "source_kernel_sha256": null,
+  "copilot_review": {"path": "REQUIRED_REVIEW_RECORD", "sha256": null},
+  "calibration_verification": {"path": "REQUIRED_TARGET_VM_CALIBRATION", "sha256": null},
+  "forecast": {"expected_seconds": null, "lower_seconds": null, "upper_seconds": null},
+  "expected_workload": {
+    "small_NESS": 0, "full_NESS": 24, "static_responses": 30,
+    "frequency_responses": 20, "correlation_inputs": 18,
+    "refinement_NESS": 24, "refinement_static_responses": 30, "refinement_frequency_responses": 20
+  },
+  "numerics": {
+    "solver": {"method": "lu", "rtol": 1e-12, "atol": 1e-14},
+    "refinement_solver": {"method": "gmres_ilu", "rtol": 1e-12, "atol": 1e-14, "maxiter": 400, "restart": 100, "ilu_drop_tol": 1e-5, "ilu_fill_factor": 10},
+    "state_tolerance": 1e-10,
+    "estimate_condition": true,
+    "error_envelope": {"absolute_floor": 1e-10, "difference_multiplier": 10},
+    "qrt": {"horizon": 100, "dt_fine": 0.005, "dt_coarse": 0.01, "sample_interval": 0.1, "checkpoint_stride_steps": 2000, "absolute_tolerance": 1e-8, "relative_tolerance": 1e-5}
+  },
+  "template_status": "NOT_RUNNABLE_NOT_CALIBRATED"
+}
+
+
+===== FILE run.py =====
+"""Pinned experiment entry point; no Copilot or network access in VM jobs."""
+import os
+for key in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):
+    os.environ[key]='1'
+import json
+from pathlib import Path
+if __name__=='__main__':
+    config=json.loads(Path(__file__).with_name('config.json').read_text())
+    if config.get('experiment')=='E002e':
+        from e002e_exp.task import run
+    else:
+        from e002d_exp.task import run
+    run(config)
+
+
+===== FILE e002e_exp/__init__.py =====
+"""E002e v003: explicit staged calculations with no networking."""
+
+
+===== FILE e002e_exp/analysis.py =====
+"""Explicit diagnostics and predeclared prediction evaluation; no fitted labels."""
+import numpy as np
+from scipy import sparse as sp
+from scipy.sparse.linalg import splu
+from e002_exp.model import maxabs
+from .numerics import FLOOR, ratio
+
+
+def renewal_check(model, state, tolerance=1e-9):
+    if model.get('original_dimension') != 4:
+        return dict(status='NOT_APPLICABLE')
+    space = model['space']; groups = [i for i, g in enumerate(space.groups) if space.charges[g[0]] == 1]
+    if len(groups) != 1:
+        return dict(status='UNRESOLVED_EXCITATION_BLOCK')
+    group = groups[0]; lo, hi = space.offsets[group:group+2]
+    # Injection state is generated by the physical source from the empty state.
+    C = dict(model['jumps'])['source_0']; empty = np.flatnonzero(space.charges == 0)
+    if len(empty) != 1:
+        return dict(status='UNRESOLVED_EMPTY_BRANCH')
+    rho0 = np.zeros((space.d, space.d), complex); rho0[empty[0], empty[0]] = 1.
+    injection = C@rho0@C.getH(); P = float(np.trace(injection).real)
+    b = space.pack(injection/P)[lo:hi]; K = model['L'][lo:hi, lo:hi]
+    try:
+        R = splu(K.tocsc()).solve(-b)
+    except RuntimeError:
+        return dict(status='DARK_OR_SINGULAR_BLOCK_REQUIRES_BRANCH_ANALYSIS')
+    full_R = np.zeros(space.size, complex); full_R[lo:hi] = R
+    tau = float(space.trace(full_R).real)
+    if tau <= 0 or maxabs(K@R+b) > tolerance:
+        return dict(status='INVALID_RENEWAL_SOLUTION')
+    predicted = P*full_R/(1+P*tau)
+    ground = np.zeros((space.d, space.d), complex); ground[empty[0], empty[0]] = 1/(1+P*tau)
+    predicted += space.pack(ground)
+    error = maxabs(predicted-state)
+    return dict(status='PASS' if error <= tolerance else 'FAIL', tau=tau, P_tau=P*tau,
+                predicted_F=P/(1+P*tau), predicted_F_over_p_e=1/tau, state_error_inf=error)
+
+
+def symmetry_check(model, tolerance=1e-12):
+    """Test W K relating epsilon and -epsilon at Phi=pi/2, before using parity."""
+    if model['space'].d != 216 or abs(model['case']['phi_over_pi']-.5) > 1e-12:
+        return dict(symmetry_applicable=False, operator_covariance_residual=None,
+                    parity_residual_max=None, parity_tolerance=None, parity_status='NOT_APPLICABLE')
+    edges = np.array(list(np.ndindex(3, 3, 3)))
+    diagonal = np.array([(-1.)**(((node >> 1) & 1)+sum(edge == 2)) for node in range(8) for edge in edges])
+    W = sp.diags(diagonal); H = model['H']; epsilon = model['case']['epsilon']
+    err = maxabs((H-2*epsilon*model['n'][1])+W@H.conjugate()@W)
+    for _, C in model['jumps']:
+        transformed = W@C.conjugate()@W
+        # All declared jumps transform up to a real sign in this convention.
+        err = max(err, min(maxabs(transformed-C), maxabs(transformed+C)))
+    P = model['observables']['P_m6_N2']; J = model['observables']['h6']
+    err = max(err, maxabs(W@P.conjugate()@W-P), maxabs(W@J.conjugate()@W-J))
+    return dict(symmetry_applicable=err <= tolerance, operator_covariance_residual=err,
+                parity_residual_max=None, parity_tolerance=None,
+                parity_status='OPERATOR_CHECK_PASSED_STATE_PAIRS_PENDING' if err <= tolerance else 'OPERATOR_CHECK_FAILED')
+
+
+def f2_differences(records, baseline):
+    # Baseline is a pinned, previously verified report of undeformed cases.
+    refs = {(r['case']['model'], r['case']['phi_over_pi'], r['case']['epsilon'], r['case']['node_noise']): r
+            for r in baseline['records'] if r['case'].get('m6_v_over_J') == 1.}
+    if baseline.get('status') != 'VERIFIED_GITHUB':
+        raise ValueError('Unverified baseline')
+    out = []
+    for record in records:
+        c = record['case']; key = (c['model'], c['phi_over_pi'], c['epsilon'], c['node_noise'])
+        if key not in refs:
+            raise ValueError('F2 lacks matching baseline')
+        base = refs[key]; changes = {name: record['raw'][name]-base['raw'][name] for name in ('J_h', 'h6', 'P_m6_N2')}
+        a, b = record['conditional']['j6'], base['conditional']['j6']
+        changes['j6'] = None if a['value'] is None or b['value'] is None else a['value']-b['value']
+        changes['j6_uncertainty'] = None if a['uncertainty'] is None or b['uncertainty'] is None else a['uncertainty']+b['uncertainty']
+        out.append(dict(id=record['id'], baseline_id=base['id'], changes=changes))
+    return out
+
+
+def evaluate_predictions(predictions, records, differences):
+    """Numerical verdict only when the requested metric and error are resolved."""
+    records = {r['id']: r for r in records}; diffs = {r['id']: r for r in differences}; out = []
+    for p in predictions['predictions']:
+        result = dict(prediction_id=p['prediction_id'], status='EXPLORATORY')
+        if p['confirmatory_or_exploratory'] == 'exploratory':
+            out.append(result); continue
+        definition = p['observable_definition']; name = definition['observable']; terms = definition['linear_terms']
+        value = 0.; uncertainty = 0.; unresolved = False; missing_error = False
+        for term in terms:
+            case_id = term['case_id']; coefficient = float(term['coefficient']); r = records[case_id]
+            if definition['kind'] == 'baseline_difference':
+                d = diffs[case_id]['changes']; v = d.get(name); u = d.get(name+'_uncertainty')
+            elif name in r['conditional']:
+                v, u = r['conditional'][name]['value'], r['conditional'][name]['uncertainty']
+            else:
+                v = r['raw'].get(name); u = r.get('primitive_uncertainty', {}).get(name)
+            if v is None:
+                unresolved = True; continue
+            value += coefficient*v
+            if u is None:
+                missing_error = True
+            else:
+                uncertainty += abs(coefficient)*u
+        result.update(value=None if unresolved else float(value), uncertainty=None if missing_error else float(uncertainty))
+        if unresolved or missing_error:
+            result['status'] = 'NUMERICALLY_UNRESOLVED'; out.append(result); continue
+        tol = p['tolerance_and_error_rule']['absolute_tolerance']; expected = p['expected_value_or_sign_or_interval']
+        if p['prediction_type'] == 'value':
+            lower, upper = float(expected)-tol, float(expected)+tol
+        elif p['prediction_type'] == 'interval':
+            lower, upper = float(expected[0])-tol, float(expected[1])+tol
+        else:
+            lower, upper = (tol, np.inf) if expected == 1 else (-np.inf, -tol)
+        a, b = value-uncertainty, value+uncertainty
+        result['status'] = 'SUPPORTED_WITHIN_DECLARED_TOLERANCE' if a >= lower and b <= upper else ('PREDICTION_FAILED' if b < lower or a > upper else 'NUMERICALLY_UNRESOLVED')
+        out.append(result)
+    return out
+
+
+===== FILE e002e_exp/export.py =====
+"""Lossless machine report, local full arrays and a portable result summary."""
+import gzip
+import hashlib
+import json
+from pathlib import Path
+import numpy as np
+from e002_exp.model import save_json
+from .numerics import ratio, contrast, FLOOR
+
+
+def serial(value):
+    if isinstance(value, complex):
+        if not np.isfinite([value.real, value.imag]).all():
+            raise ValueError('Nonfinite complex output')
+        return dict(re=float(value.real), im=float(value.imag))
+    if isinstance(value, np.ndarray):
+        return serial(value.tolist())
+    if isinstance(value, np.generic):
+        return serial(value.item())
+    if isinstance(value, dict):
+        return {k: serial(v) for k, v in value.items()}
+    if isinstance(value, (tuple, list)):
+        return [serial(v) for v in value]
+    return value
+
+
+def real_values(values, tolerance=1e-9):
+    out = {}
+    for name, v in values.items():
+        if name.startswith('C_'):
+            out[name] = complex(v)
+        elif abs(complex(v).imag) > tolerance:
+            raise ArithmeticError('Hermitian observable has imaginary residue: '+name)
+        else:
+            out[name] = float(complex(v).real)
+    return out
+
+
+def conditional_values(raw, errors=None):
+    errors = errors or {}
+    def conditional(h, p):
+        return ratio(raw[h], raw[p], errors.get(h), errors.get(p))
+    out = {}
+    for key in raw:
+        if key.startswith('p_m') and '_N' in key:
+            suffix = key[1:]; out['j'+suffix] = conditional('h'+suffix, key)
+        if key.startswith('p_N'):
+            out['j'+key[1:]] = conditional('h'+key[1:], key)
+    if 'P_m6_N2' in raw:
+        out['j6'] = conditional('h6', 'P_m6_N2')
+    if 'p_e' in raw:
+        out['F_over_p_e'] = conditional('F', 'p_e')
+    return out
+
+
+def validate_conditionals(raw, conditioned, errors=None):
+    expected = conditional_values(raw, errors)
+    if set(expected) != set(conditioned):
+        raise ValueError('Conditional fields mismatch')
+    for key, item in expected.items():
+        actual = conditioned[key]['value']
+        if (item['value'] is None) != (actual is None):
+            raise ValueError('Conditional null policy mismatch')
+        if actual is not None and (not np.isfinite(actual) or abs(actual-item['value']) > 1e-12*max(1., abs(actual))):
+            raise ValueError('Conditional reconstruction mismatch')
+        if conditioned[key].get('uncertainty') != item['uncertainty']:
+            raise ValueError('Conditional uncertainty mismatch')
+
+
+def summaries(records):
+    groups = {}; results = []
+    for rec in records:
+        c = rec['case']
+        fields = ('model', 'dimension', 'mask', 'phi_over_pi', 'node_noise', 'm6_v_over_J', 'v_over_J', 'source', 'sink', 'jump_convention', 'block')
+        # R and F1 are one baseline line; F2 remains separated by physical v.
+        key = tuple((k, c.get(k)) for k in fields if k != 'block')
+        groups.setdefault(key, {})[float(c['epsilon'])] = rec
+    for key, line in groups.items():
+        if not all(e in line for e in (-.125, 0., .125)):
+            continue
+        common = set.intersection(*(set(line[e]['conditional']) for e in (-.125, 0., .125)))
+        for name in sorted(common):
+            result = contrast(*(line[e]['conditional'][name] for e in (-.125, 0., .125)), .125)
+            results.append(dict(physical_group=dict(key), observable=name, delta=.125, **result))
+    return results
+
+
+def save_case(report, full, record, state, space):
+    case_id = record['id']; validate_conditionals(record['raw'], record['conditional'], record.get('primitive_uncertainty'))
+    np.savez_compressed(full/(case_id+'_state.npz'), reduced_state=state, full_indices=space.indices,
+                        charges=space.charges, rho=space.unpack(state))
+    save_json(report/(case_id+'.json'), serial(record))
+
+
+def save_correlations(report, full, case_id, fine, coarse, refinement):
+    np.savez_compressed(full/(case_id+'_qrt_final.npz'), fine=fine['final'], coarse=coarse['final'])
+    np.savez_compressed(report/(case_id+'_qrt.npz'), time=fine['times'], C=fine['C'], coarse_C=coarse['C'],
+                        normalized=fine['normalized'], normalization_valid=fine['normalization_valid'])
+    absval = abs(fine['C']); flat = absval.reshape(len(fine['times']), -1)
+    extrema = []
+    for col in range(flat.shape[1]):
+        i = int(np.argmax(flat[:, col])); j = int(np.argmin(flat[:, col]))
+        extrema.append(dict(output=col//fine['C'].shape[2], input=col%fine['C'].shape[2],
+                            max_abs=float(flat[i, col]), time_max=float(fine['times'][i]),
+                            min_abs=float(flat[j, col]), time_min=float(fine['times'][j])))
+    result = dict(fine=fine['summary'], coarse=coarse['summary'], refinement=refinement,
+                  extrema_all_saved_samples=extrema, time_grid_retained='all common samples; no downsampling')
+    save_json(report/(case_id+'_qrt.json'), serial(result))
+    return result
+
+
+def write_manifest(report):
+    entries = []
+    for p in sorted(Path(report).iterdir()):
+        if p.is_file() and p.name != 'manifest.json':
+            entries.append(dict(path=p.name, size=p.stat().st_size, sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+    save_json(Path(report)/'manifest.json', dict(files=entries, total_bytes=sum(x['size'] for x in entries)))
+
+
+def write_result(report, config, records, failure, gate, comparisons, qrt_summaries):
+    lines = [f"Время: прогноз {gate['expected_seconds']:.6g} с; факт внутреннего участка {gate['actual_seconds']:.6g} с; "
+             f"отклонение {gate['deviation_seconds']:.6g} с; статус {gate['status']}. Полное время процесса проверяется по run.json.",
+             '', '# E002e: '+config['stage'], '',
+             'Режим: '+config['mode']+'. Источник: '+config.get('source_commit', 'UNKNOWN')+'.',
+             'Объём план/факт: '+json.dumps(gate['expected_counts'])+' / '+json.dumps(gate['actual_counts'])+'.',
+             'Полная физика: 3 двухуровневых узла и 3 трёхуровневых ребра; 216 состояний, q=0: 14580 координат. '
+             'J=1, источник/сток=0,5, шум узлов=0,05; точные параметры каждого случая сохранены.',
+             '', '## Состояние проверки', '',
+             'Ошибка: '+(failure or 'не зарегистрирована')+'.',
+             'Малые невязки не являются гарантией ошибки наблюдаемых. Оценки условных величин без независимого '
+             'уточнения помечены ERROR_UNRESOLVED. Автоматического вывода о Фано нет.',
+             '', '|Случай|Модель/геометрия|ε|F|j6 или F/p_e|NESS|', '|---|---|---:|---:|---:|---|']
+    for r in records:
+        c = r['case']; j = r['conditional'].get('j6', r['conditional'].get('F_over_p_e', {})).get('value')
+        js = 'null' if j is None else f'{j:.8g}'
+        lines.append(f"|{r['id']}|{c.get('model', str(c.get('dimension'))+'/'+str(c.get('mask')))}|{c['epsilon']:g}|{r['raw']['F']:.8g}|{js}|{r['quality']['pass']}|")
+    lines += ['', 'Показатели таблицы округлены до 8 значащих цифр; JSON/NPZ сохраняют исходные числа.',
+              'Контрасты всех доступных троек: contrasts.json. Корреляции: все временные отсчёты в *_qrt.npz; '
+              'экстремумы по ним в *_qrt.json. Неразрешённый хвост помечен TAIL_UNRESOLVED.',
+              'Отклики с нулевым следом не проверяются на положительность состояния. '
+              'Новые фон/резонансные разложения требуют физического обоснования и отложенных предсказаний.',
+              'Паспорта среды до/после, фактические счётчики и фазовые времена: metrics.json; контрольные суммы: manifest.json.',
+              'Полные состояния и финальные QRT-векторы остаются в full/. Проверка времени предшествует научной приёмке.']
+    text = '\n'.join(lines)+'\n'
+    if len(text.encode()) > 24*1024:
+        raise ValueError('RESULT exceeds portable report cap; no silent truncation')
+    (Path(report)/'RESULT.md').write_text(text)
+
+
+def verify_report(report):
+    report = Path(report); manifest = json.loads((report/'manifest.json').read_text())
+    for entry in manifest['files']:
+        name = Path(entry['path'])
+        if name.name != str(name):
+            raise ValueError('Unsafe manifest path')
+        p = report/name
+        if p.stat().st_size != entry['size'] or hashlib.sha256(p.read_bytes()).hexdigest() != entry['sha256']:
+            raise ValueError('Report hash mismatch')
+        if p.suffix == '.json' and p.name.startswith(('full_', 'small_')) and '_qrt' not in p.name:
+            r = json.loads(p.read_text())
+            validate_conditionals(r['raw'], r['conditional'], r.get('primitive_uncertainty'))
+    return dict(status='REPORT_BYTES_AND_CONDITIONALS_VERIFIED', files=len(manifest['files']))
+
+
+===== FILE e002e_exp/model.py =====
+"""Physical operators for the approved geometry ladder and full model."""
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import build_model, clean, ketbra, tensor, maxabs, adjoint_jump
+from e002c_exp.model import BASE, RR, EDGES, PAIRS, operators
+from e002d_exp.plan import TARGETS, OPERATIONS
+from .space import Space, liouvillian, charge_checks
+
+IC_ALPHA = (.06489310345717117, .06489313511138023, .07065096360073866)
+
+
+def node_ops():
+    eye = sp.eye(8, dtype=complex, format='csr')
+    def emb(x, at):
+        return tensor([x if k == at else sp.eye(2, format='csr') for k in range(3)])
+    up = [emb(ketbra(2, 1, 0), k) for k in range(3)]
+    n = [x @ x.getH() for x in up]
+    return eye, up, n
+
+
+def make_small(case):
+    d = int(case['dimension']); mask = int(case['mask'])
+    if d not in (4, 8) or mask not in (6, 7):
+        raise ValueError('Unsupported ladder case')
+    source = float(case.get('source', .5)); sink = float(case.get('sink', .5))
+    noise = float(case.get('node_noise', .05)); v = float(case.get('v_over_J', 1.))
+    eps = float(case['epsilon']); phi = float(case['phi_over_pi'])*np.pi
+    if min(source, sink) <= 0 or min(noise, v) < 0 or not np.isfinite([source, sink, noise, v, eps, phi]).all():
+        raise ValueError('Invalid small-model parameters')
+    eye, up8, n8 = node_ops()
+    if d == 4:
+        # Order g, node0, node1, node2; independent global N<=1 model.
+        eye = sp.eye(4, format='csr', dtype=complex)
+        up = [ketbra(4, i+1, 0) for i in range(3)]
+        n = [ketbra(4, i+1, i+1) for i in range(3)]
+        charges = np.array([0, 1, 1, 1])
+        hops = [ketbra(4, i+1, j+1) for i, j in PAIRS]
+    else:
+        up, n = up8, n8
+        charges = np.array([k.bit_count() for k in range(8)])
+        hops = [up[i] @ up[j].getH() for i, j in PAIRS]
+    H = eps*n[1]; currents = []
+    for e, ((i, j), a, theta) in enumerate(zip(PAIRS, hops, (0., 0., -phi))):
+        amp = v if e == (1 if mask == 6 else 0) else 1.
+        h = amp*(np.exp(1j*theta)*a + np.exp(-1j*theta)*a.getH()) if mask & (1 << e) else 0*a
+        H += h; currents.append(clean(1j*(h@n[j]-n[j]@h)))
+    jumps = [('source_0', np.sqrt(source)*up[0]), ('sink_2', np.sqrt(sink)*up[2].getH())]
+    convention = case.get('jump_convention', 'three_sqrt_phi_Z')
+    if convention == 'sqrt(phi)*n1_only':
+        jumps.append(('node_dephase_1', np.sqrt(noise)*n[1]))
+    elif convention == 'three_sqrt_phi_Z':
+        jumps += [(f'node_dephase_{i}', np.sqrt(noise)*(eye-2*x)) for i, x in enumerate(n)]
+    else:
+        raise ValueError('Unknown small noise convention')
+    active = np.arange(d)
+    branch = 'empty_initial_state_unique_stationary_candidate'
+    if mask == 6 and v == 0:
+        active = np.flatnonzero(abs(n[1].diagonal()) < .5)
+        branch = 'n1_zero_invariant_from_empty_initial_state'
+        outside = np.setdiff1d(np.arange(d), active)
+        if maxabs(H[outside][:, active]) > 1e-12 or any(maxabs(c[outside][:, active]) > 1e-12 for _, c in jumps):
+            raise ValueError('Declared physical branch is not invariant')
+    restrict = lambda a: clean(a[active][:, active])
+    H = restrict(H); jumps = [(name, restrict(c)) for name, c in jumps]
+    n = [restrict(x) for x in n]; currents = [restrict(x) for x in currents]
+    space = Space(charges[active]); charges = charges[active]
+    obs = {'J_h': currents[1]+currents[2], 'F': sink*n[2], 'p_e': sp.diags((charges == 1).astype(float)),
+           'P_N2': sp.diags((charges == 2).astype(float)), 'K': currents[1]-currents[2],
+           'source': source*(sp.eye(len(active))-sum(n)) if d == 4 else source*(sp.eye(len(active))-n[0])}
+    for N in range(4):
+        p = sp.diags((charges == N).astype(float), format='csr')
+        obs[f'p_N{N}'] = p; obs[f'h_N{N}'] = clean(p@obs['J_h'])
+    return dict(H=H, jumps=jumps, space=space, observables=obs, currents=currents,
+                n=n, case=case, original_dimension=d, active=active, branch=branch,
+                L=liouvillian(H, jumps, space))
+
+
+def make_full(case, assemble=True):
+    o = operators(); model = case['model']; p = dict(BASE, phi_n=float(case['node_noise']))
+    if model == 'RR_QS':
+        p.update(g=0., gamma_r=0., rr_rates=RR)
+    elif model == 'IC1_QS':
+        p['g'] = 0.
+    elif model != 'QS':
+        raise ValueError('Unknown full model')
+    phi = float(case['phi_over_pi'])*np.pi; eps = float(case['epsilon']); v = float(case['m6_v_over_J'])
+    if not np.isfinite([phi, eps, v, p['phi_n']]).all() or min(v, p['phi_n']) < 0:
+        raise ValueError('Invalid full parameters')
+    H, jumps, inventory, resource, _ = build_model(p)
+    Q = sp.kron(sp.eye(8), o['masks'][6], format='csr')
+    currents = []; deformation = 0*H; hop_terms = []
+    for e, ((i, j), theta) in enumerate(zip(PAIRS, (0., 0., -phi))):
+        a = o['up'][i] @ o['up'][j].getH()
+        old = p['J']*o['pl'][e]@(a+a.getH())
+        h = p['J']*o['pl'][e]@(np.exp(1j*theta)*a+np.exp(-1j*theta)*a.getH())
+        if e == 1:
+            deformation = clean((v-1.)*Q@h); h += deformation
+        H += h-old; hop_terms.append(clean(h))
+        currents.append(clean(1j*(h@o['n'][j]-o['n'][j]@h)))
+        if model == 'IC1_QS':
+            jumps.append(('feed_'+EDGES[e], clean(np.sqrt(IC_ALPHA[e])*o['bp'][e]@o['c'][e])))
+    H = clean(H+eps*o['n'][1]); N = np.array([(k//27).bit_count() for k in range(216)])
+    space = Space(N)
+    obs = {'J_h': currents[1]+currents[2], 'K': currents[1]-currents[2], 'F': .5*o['n'][2],
+           'source': .5*(o['eye']-o['n'][0]), 'inventory': inventory}
+    for m in range(8):
+        for n in range(4):
+            pmn = sp.diags(((N == n) & np.tile(o['mask_id'] == m, 8)).astype(float), format='csr')
+            obs[f'p_m{m}_N{n}'] = pmn
+            obs[f'h_m{m}_N{n}'] = clean(pmn@obs['J_h'])
+            for tag, I in zip(('I01', 'I12', 'I02'), currents):
+                obs[f'{tag}_m{m}_N{n}'] = clean(pmn@I)
+    obs['P_m6_N2'] = obs['p_m6_N2']; obs['h6'] = obs['h_m6_N2']
+    for name, (m, a, b) in TARGETS.items():
+        # Tr(|b><a| rho) = rho[a,b], preserving the declared sign convention.
+        obs['C_'+name] = sp.kron(ketbra(8, b, a), o['masks'][m], format='csr')
+    adj = lambda a: clean(1j*(H@a-a@H)+sum(adjoint_jump(c, a) for _, c in jumps))
+    checks = dict(H_hermiticity=maxabs(H-H.getH()), trace=maxabs(adj(o['eye'])),
+                  node0=maxabs(adj(o['n'][0])+currents[0]+currents[2]-obs['source']),
+                  node1=maxabs(adj(o['n'][1])-currents[0]+currents[1]),
+                  node2=maxabs(adj(o['n'][2])-obs['J_h']+obs['F']),
+                  resource=maxabs(adj(inventory)-resource),
+                  deformation_support=maxabs((o['eye']-Q)@deformation),
+                  deformation_commutator=maxabs(Q@deformation-deformation@Q))
+    for m in range(8):
+        pm = sp.kron(sp.eye(8), o['masks'][m], format='csr')
+        obs[f'mask_balance_m{m}'] = adj(pm)
+    if max(checks.values()) > 1e-11:
+        raise ValueError('Full operator checks failed: '+str(checks))
+    result = dict(H=H, jumps=jumps, space=space, observables=obs, currents=currents,
+                  n=o['n'], case=case, checks=checks, deformation=deformation, hop_terms=hop_terms,
+                  charge_checks=charge_checks(H, jumps, space))
+    if assemble:
+        result['L'] = liouvillian(H, jumps, space)
+    return result
+
+
+def selective_difference(space, target):
+    if target not in OPERATIONS or space.d != 216:
+        raise ValueError('Unknown selective target or space')
+    rates = np.zeros((216, 216))
+    masks = operators()['mask_id']
+    for name in OPERATIONS[target]:
+        m, a, b = TARGETS[name]
+        ds = []
+        for sign in (-1., 1.):
+            x = np.zeros(8); x[a] = 1.; x[b] = sign
+            ds.append(np.kron(x, (masks == m).astype(float)))
+        rates += -.5*((ds[0][:, None]-ds[0][None, :])**2 - (ds[1][:, None]-ds[1][None, :])**2)
+    return sp.diags(rates.ravel(order='F')[space.indices], format='csr')
+
+
+===== FILE e002e_exp/numerics.py =====
+"""Bordered sparse solves; state and response checks deliberately differ."""
+import time
+import numpy as np
+from scipy import sparse as sp
+from scipy.sparse.linalg import splu, spilu, gmres, LinearOperator, onenormest
+from e002_exp.model import maxabs
+
+FLOOR = 1e-6
+
+
+def residual(A, x, b):
+    r = A@x-b
+    return dict(absolute_inf=maxabs(r), relative_2=float(np.linalg.norm(r)/max(np.linalg.norm(b), 1.)))
+
+
+class Bordered:
+    def __init__(self, L, space, z=0j, method='lu', rtol=1e-11, atol=1e-13,
+                 maxiter=400, restart=100, ilu_drop_tol=1e-5, ilu_fill_factor=10.):
+        self.space = space; self.L = sp.csr_matrix(L); self.z = complex(z)
+        self.A = self.L if z == 0 else (z*sp.eye(space.size, format='csr')-self.L)
+        r = space.trace_row.T/space.d
+        self.matrix = sp.bmat([[self.A, r], [space.trace_row, None]], format='csc')
+        self.rtol, self.atol, self.maxiter, self.restart = rtol, atol, maxiter, restart
+        self.method = method; self.factor = None; self.preconditioner = None
+        self.iterations = 0; self.solves = 0; self.solve_seconds = 0.
+        start = time.perf_counter()
+        if method == 'lu':
+            self.factor = splu(self.matrix)
+        elif method == 'gmres_ilu':
+            self.factor = spilu(self.matrix, drop_tol=ilu_drop_tol, fill_factor=ilu_fill_factor)
+            self.preconditioner = LinearOperator(self.matrix.shape, matvec=self.factor.solve, dtype=complex)
+        else:
+            raise ValueError('Unsupported solver')
+        self.factor_seconds = time.perf_counter()-start
+        self.factor_nnz = int(self.factor.L.nnz+self.factor.U.nnz)
+        self.factor_storage_bytes = int(sum(a.data.nbytes+a.indices.nbytes+a.indptr.nbytes for a in (self.factor.L, self.factor.U)))
+
+    def solve(self, b=None, trace=0.):
+        b = np.zeros(self.space.size, complex) if b is None else np.asarray(b, complex)
+        if b.shape != (self.space.size,) or not np.isfinite(b).all():
+            raise ValueError('Invalid RHS')
+        if abs(self.space.trace(b)) > max(1e-11, 10*self.atol):
+            raise ValueError('RHS must have zero trace')
+        if self.z != 0 and trace != 0:
+            raise ValueError('Nonzero frequency expects traceless response')
+        rhs = np.r_[b, trace]; start = time.perf_counter(); iterations = 0
+        if self.method == 'lu':
+            x = self.factor.solve(rhs)
+            # Residual correction, never a state projection or renormalization.
+            for _ in range(2):
+                correction = self.factor.solve(rhs-self.matrix@x)
+                x += correction
+        else:
+            def count(_):
+                nonlocal iterations
+                iterations += 1
+            x, info = gmres(self.matrix, rhs, M=self.preconditioner, rtol=self.rtol,
+                            atol=self.atol, maxiter=self.maxiter, restart=self.restart,
+                            callback=count, callback_type='pr_norm')
+            if info != 0:
+                raise ArithmeticError('GMRES did not converge: '+str(info))
+        self.solve_seconds += time.perf_counter()-start; self.solves += 1; self.iterations += iterations
+        checks = residual(self.A, x[:-1], b)
+        checks.update(trace_error=float(abs(self.space.trace(x[:-1])-trace)), border_multiplier=float(abs(x[-1])), iterations=iterations)
+        limit = max(10*self.atol, 10*self.rtol*max(1., np.linalg.norm(b)))
+        if not np.isfinite(x).all() or max(checks['absolute_inf'], checks['trace_error'], checks['border_multiplier']) > limit:
+            raise ArithmeticError('Original equation/trace residual failed: '+str(checks))
+        return x[:-1], checks
+
+    def condition_estimate(self):
+        if self.method != 'lu':
+            return dict(value=None, status='NOT_ESTIMATED_FOR_ITERATIVE_SOLVER')
+        inverse = LinearOperator(self.matrix.shape, matvec=self.factor.solve,
+                                 rmatvec=lambda x: self.factor.solve(x, trans='H'), dtype=complex)
+        estimate = float(sp.linalg.norm(self.matrix, 1)*onenormest(inverse))
+        return dict(value=estimate, status='ONE_NORM_ESTIMATE_NOT_RIGOROUS_ERROR_BOUND')
+
+    def metrics(self):
+        return dict(method=self.method, matrix_nnz=int(self.matrix.nnz), factor_nnz=self.factor_nnz,
+                    factor_storage_bytes=self.factor_storage_bytes, factor_seconds=self.factor_seconds,
+                    solves=self.solves, solve_seconds=self.solve_seconds, iterations=self.iterations)
+
+
+def state_checks(L, space, x, tolerance=1e-10):
+    rho = space.unpack(x)
+    eigmin = min(float(np.linalg.eigvalsh((rho[np.ix_(g, g)]+rho[np.ix_(g, g)].conj().T)/2).min()) for g in space.groups)
+    result = dict(trace_error=float(abs(space.trace(x)-1)), hermiticity=maxabs(rho-rho.conj().T),
+                  minimum_eigenvalue=eigmin, Lrho_inf=maxabs(L@x), Lrho_2=float(np.linalg.norm(L@x)))
+    result['pass'] = bool(result['trace_error'] <= tolerance and result['hermiticity'] <= tolerance
+                          and eigmin >= -tolerance and result['Lrho_inf'] <= tolerance)
+    return result
+
+
+def values(model, vector):
+    return {name: complex(model['space'].row(op)@vector) for name, op in model['observables'].items()}
+
+
+def ratio(h, p, uh=None, up=None):
+    if not np.isfinite([h, p]).all() or p <= FLOOR:
+        return dict(value=None, uncertainty=None, status='SMALL_DENOMINATOR')
+    j = h/p
+    if uh is None or up is None:
+        return dict(value=float(j), uncertainty=None, status='ERROR_UNRESOLVED')
+    if min(uh, up) < 0 or not np.isfinite([uh, up]).all():
+        raise ValueError('Invalid error estimates')
+    if p-up <= FLOOR:
+        return dict(value=None, uncertainty=None, status='DENOMINATOR_UNRESOLVED')
+    return dict(value=float(j), uncertainty=float((uh+abs(j)*up)/(p-up)), status='PROPAGATED_ESTIMATE')
+
+
+def contrast(left, center, right, delta):
+    if delta <= 0:
+        raise ValueError('delta must be positive')
+    if any(x['value'] is None for x in (left, center, right)):
+        return dict(D=None, d=None, curvature=None, uncertainty_D=None, status='UNDEFINED')
+    D = center['value']-(left['value']+right['value'])/2
+    u = None if any(x['uncertainty'] is None for x in (left, center, right)) else center['uncertainty']+(left['uncertainty']+right['uncertainty'])/2
+    return dict(D=float(D), d=None if abs(center['value']) <= FLOOR else float(-D/center['value']),
+                curvature=float(-2*D/delta**2), uncertainty_D=u,
+                center_below_both=bool(center['value'] < min(left['value'], right['value'])),
+                status='ERROR_UNRESOLVED' if u is None else 'PROPAGATED_ESTIMATE')
+
+
+===== FILE e002e_exp/observations.py =====
+"""Static responses, source modulation, QRT and explicit Fano candidates."""
+import time
+import numpy as np
+from scipy import sparse as sp
+from scipy.sparse.linalg import splu, gmres, LinearOperator
+from e002_exp.model import maxabs
+from .space import dissipator_action
+from .model import selective_difference
+from .numerics import Bordered, FLOOR, values
+
+
+def response_outputs(model, state, x):
+    vals = values(model, x); base = values(model, state)
+    if 'P_m6_N2' in vals:
+        p = base['P_m6_N2'].real; h = base['h6'].real
+        vals['j6'] = None if p <= FLOOR else (vals['h6']-(h/p)*vals['P_m6_N2'])/p
+    return vals
+
+
+def static_response(model, state, target, prepared):
+    V = selective_difference(model['space'], target)
+    x, checks = prepared.solve(-(V@state))
+    return x, response_outputs(model, state, x), checks
+
+
+def source_input(model, state):
+    # The jump already includes sqrt(kappa_in); D[C] = kappa_in D[sigma+].
+    C = dict(model['jumps'])['source_0']
+    return model['space'].pack(dissipator_action(C, model['space'].unpack(state)))
+
+
+def frequency_response(model, state, omega, prepared_zero=None, **solver_options):
+    b = source_input(model, state)
+    solver = prepared_zero if omega == 0 and prepared_zero is not None else Bordered(model['L'], model['space'], z=1j*omega, **solver_options)
+    x, checks = solver.solve(-b if omega == 0 else b)
+    return x, response_outputs(model, state, x), checks, solver.metrics()
+
+
+def qrt_inputs(model, state, names=('J_h', 'P_m6_N2', 'K')):
+    space = model['space']; rho = space.unpack(state); base = values(model, state)
+    inputs = []; variances = []
+    for name in names:
+        B = model['observables'][name]; mean = base[name]
+        if abs(mean.imag) > 1e-10:
+            raise ArithmeticError('Hermitian mean is complex')
+        y = space.pack(B@rho-mean*rho)
+        if abs(space.trace(y)) > 1e-10:
+            raise ArithmeticError('QRT input trace failed')
+        var = complex(space.row(B@B)@state-mean**2)
+        if abs(var.imag) > 1e-10 or var.real < -1e-10:
+            raise ArithmeticError('Invalid variance')
+        inputs.append(y); variances.append(max(0., var.real))
+    return np.column_stack(inputs), np.array(variances)
+
+
+def propagate_qrt(model, state, horizon, dt, sample_interval, names=('J_h', 'P_m6_N2', 'K'), checkpoint=None):
+    if min(horizon, dt, sample_interval) <= 0:
+        raise ValueError('Invalid QRT grid')
+    steps = round(horizon/dt); stride = round(sample_interval/dt)
+    if stride < 1 or abs(steps*dt-horizon) > 1e-9 or abs(stride*dt-sample_interval) > 1e-9 or steps % stride:
+        raise ValueError('QRT grid must have integral steps and common final sample')
+    y, var = qrt_inputs(model, state, names); L = model['L']; space = model['space']
+    rows = np.vstack([space.row(model['observables'][name]) for name in names])
+    times = [0.]; out = [rows@y]; trace_max = maxabs(space.trace(y)); start = time.perf_counter()
+    for step in range(1, steps+1):
+        a = L@y; b = L@(y+dt*a/2); c = L@(y+dt*b/2); d = L@(y+dt*c)
+        y += dt*(a+2*b+2*c+d)/6
+        if step % stride == 0:
+            if not np.isfinite(y).all():
+                raise ArithmeticError('QRT became nonfinite')
+            t = step*dt; times.append(t); out.append(rows@y)
+            trace_max = max(trace_max, maxabs(space.trace(y)))
+            if checkpoint:
+                checkpoint(step, t, y)
+    if trace_max > 1e-8:
+        raise ArithmeticError('QRT trace drift: '+str(trace_max))
+    times = np.array(times); out = np.array(out); normalized = np.full_like(out, np.nan)
+    den = np.sqrt(var[:, None]*var[None, :]); valid = den > FLOOR
+    normalized[:, valid] = out[:, valid]/den[valid]
+    integral = np.trapezoid(abs(out.diagonal(axis1=1, axis2=2)), times, axis=0)
+    tau = [float(a/v) if v > FLOOR else None for a, v in zip(integral, var)]
+    late = out[int(.8*len(out)):]
+    summary = dict(steps=steps, block_rhs_calls=4*steps, scalar_rhs_equivalents=4*steps*len(names),
+                   inputs=len(names), outputs_per_input=len(names), samples=len(times), trace_max=trace_max,
+                   elapsed_seconds=time.perf_counter()-start, variances=var.tolist(), tau_int_truncated=tau,
+                   late_window_abs_max=float(abs(late).max()), tail_status='TAIL_UNRESOLVED',
+                   infinite_integral=None, input_convention='(B-mean_B)rho; ordered connected QRT',
+                   positivity_test_applied=False)
+    return dict(times=times, C=out, normalized=normalized, normalization_valid=valid, summary=summary, final=y)
+
+
+def compare_qrt(fine, coarse, atol, rtol):
+    if not np.array_equal(fine['times'], coarse['times']):
+        raise ValueError('QRT comparison grids differ')
+    err = abs(fine['C']-coarse['C']); scale = atol+rtol*np.maximum(abs(fine['C']), abs(coarse['C']))
+    return dict(pass_gate=bool(np.all(err <= scale)), max_abs=float(err.max()),
+                max_scaled=float((err/scale).max()), uncertainty_kind='EMPIRICAL_DT_DIFFERENCE_NOT_RIGOROUS_BOUND')
+
+
+def schur_response(L, b, row, target, z, rtol=1e-10, maxiter=300):
+    """Complete T/B partition; matrix-free Schur complement, no dense inverse.
+
+    This candidate decomposition alone cannot certify Fano. z=0 is deliberately
+    rejected here: stationary constraints need the separately validated border.
+    """
+    if z == 0:
+        raise ValueError('Schur candidate at z=0 requires a separately declared constrained partition')
+    L = sp.csr_matrix(L); n = L.shape[0]; target = np.asarray(target, dtype=int)
+    if target.ndim != 1 or len(np.unique(target)) != len(target) or not 0 < len(target) < n or min(target) < 0 or max(target) >= n:
+        raise ValueError('Invalid Schur partition')
+    other = np.setdiff1d(np.arange(n), target); A = z*sp.eye(n, format='csr')-L
+    tt = A[target][:, target]; tb = A[target][:, other]; bt = A[other][:, target]; bb = A[other][:, other]
+    factor = splu(bb.tocsc()); rb_b = factor.solve(np.asarray(b)[other])
+    eff = LinearOperator(tt.shape, matvec=lambda x: tt@x-tb@factor.solve(bt@x), dtype=complex)
+    rhs = np.asarray(b)[target]-tb@rb_b
+    xt, info = gmres(eff, rhs, rtol=rtol, atol=rtol*1e-2, maxiter=maxiter)
+    if info:
+        raise ArithmeticError('Schur GMRES did not converge')
+    xb = factor.solve(np.asarray(b)[other]-bt@xt)
+    x = np.empty(n, complex); x[target] = xt; x[other] = xb
+    err = maxabs(A@x-b)
+    if err > 10*rtol*max(1., np.linalg.norm(b)):
+        raise ArithmeticError('Schur reconstruction residual failed')
+    row = np.asarray(row); bg = complex(row[other]@rb_b)
+    mediated = complex(row[target]@xt-row[other]@factor.solve(bt@xt))
+    total = complex(row@x)
+    return dict(x=x, background=bg, mediated=mediated, total=total,
+                cross_intensity=float(2*np.real(bg.conjugate()*mediated)), reconstruction_error=float(abs(total-bg-mediated)),
+                equation_residual=err, target_size=len(target), complement_size=len(other),
+                interpretation='CANDIDATE_DECOMPOSITION_REQUIRES_PHYSICAL_PARTITION_AND_HELDOUT_CHECKS')
+
+
+def g0(epsilon, v, J=1., kappa_left=.5, kappa_right=.5):
+    A = J*J+kappa_left*kappa_right/4; width = kappa_left*v*v/(2*A)
+    bg = -J*np.sqrt(kappa_left*kappa_right)/A
+    if v == 0:
+        amplitude, resonance = complex(bg), 0j
+    else:
+        amplitude = bg*epsilon/(epsilon-1j*width); resonance = amplitude-bg
+    return dict(amplitude=amplitude, background=complex(bg), resonance=resonance,
+                intensity=float(abs(amplitude)**2), width=width,
+                cross=float(2*np.real(complex(bg).conjugate()*resonance)))
+
+
+===== FILE e002e_exp/plan.py =====
+"""Immutable inventory, staged work selection and fail-closed provenance."""
+import hashlib
+import json
+import re
+from pathlib import Path
+import math
+from .runtime import ROOT, kernel_hash, compare_environment
+
+
+def inventory():
+    return json.loads((ROOT/'experiments/e002e/case_inventory_v003.json').read_text())
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def pinned_file(spec):
+    path = Path(spec['path'])
+    if path.is_absolute() or '..' in path.parts:
+        raise ValueError('Pinned input must be within source tree')
+    path = ROOT/path
+    if not re.fullmatch(r'[0-9a-f]{64}', spec['sha256']) or digest(path) != spec['sha256']:
+        raise ValueError('Pinned input hash mismatch')
+    return json.loads(path.read_text())
+
+
+def selected_work(stage):
+    inv = inventory()
+    if stage == 'G':
+        return dict(small=inv['small_main']+inv['small_weak_G1']+inv['small_peer'], full=[], frequency=[], correlations=[])
+    if stage not in ('baseline', 'F2'):
+        raise ValueError('Stage must be G, baseline, or F2')
+    return dict(small=[], full=[c for c in inv['full_static'] if (c['block'] == 'F2') == (stage == 'F2')],
+                frequency=inv['frequency'] if stage == 'baseline' else [],
+                correlations=inv['correlations'] if stage == 'baseline' else [])
+
+
+def workload(work):
+    return dict(small_NESS=len(work['small']), full_NESS=len(work['full']),
+                static_responses=sum(len(c['tasks'])-1 for c in work['full']),
+                frequency_responses=len(work['frequency']), correlation_inputs=len(work['correlations']),
+                refinement_NESS=len(work['small'])+len(work['full']),
+                refinement_static_responses=sum(len(c['tasks'])-1 for c in work['full']),
+                refinement_frequency_responses=len(work['frequency']))
+
+
+def validate_predictions(record, expected_code_commit):
+    inv = inventory(); expected = set(inv['F2_gate']['heldout_case_ids'])
+    if record.get('status') != 'FROZEN' or record.get('code_commit') != expected_code_commit:
+        raise ValueError('F2 predictions not frozen for this reviewed implementation')
+    if record.get('concept_sha256') != digest(ROOT/'experiments/e002e/CONCEPT_v003.md'):
+        raise ValueError('Prediction concept differs')
+    if set(record.get('heldout_case_ids', [])) != expected or len(record['heldout_case_ids']) != len(expected):
+        raise ValueError('Held-out coverage differs')
+    if not record.get('frozen_at_utc') or not record.get('created_at_utc'):
+        raise ValueError('Freeze timestamps missing')
+    inputs = record.get('training_inputs', []); ids = set()
+    for item in inputs:
+        if item.get('block') not in record.get('allowed_training_blocks', []) or item.get('block', '').startswith('F2'):
+            raise ValueError('Undeclared training block')
+        if not re.fullmatch('[0-9a-f]{40}', item.get('report_commit', '')) or not re.fullmatch('[0-9a-f]{64}', item.get('sha256', '')):
+            raise ValueError('Training input lacks immutable provenance')
+        if item.get('id') in ids or not item.get('id'):
+            raise ValueError('Duplicate or missing training ID')
+        ids.add(item['id'])
+    if not inputs:
+        raise ValueError('Training inputs must be declared')
+    required = json.loads((ROOT/'experiments/e002e/f2_prereg_predictions.template.json').read_text())['required_prediction_fields']
+    covered = set(); prediction_ids = set()
+    for p in record.get('predictions', []):
+        if any(k not in p or p[k] is None for k in required):
+            raise ValueError('Incomplete prediction')
+        if p['prediction_id'] in prediction_ids:
+            raise ValueError('Duplicate prediction ID')
+        prediction_ids.add(p['prediction_id'])
+        if not set(p['physical_case_ids']) <= expected or not set(p['training_input_ids']) <= ids:
+            raise ValueError('Prediction refers to unknown cases or inputs')
+        mode = p['confirmatory_or_exploratory']
+        if mode not in ('confirmatory', 'exploratory'):
+            raise ValueError('Prediction mode missing')
+        if mode == 'confirmatory':
+            rule = p['tolerance_and_error_rule']
+            if not isinstance(rule, dict) or rule.get('absolute_tolerance', -1) < 0 or rule.get('error_rule') != 'interval_with_numerical_uncertainty':
+                raise ValueError('Confirmatory prediction requires explicit numerical error rule')
+            if p['prediction_type'] not in ('value', 'sign', 'interval'):
+                raise ValueError('Unsupported confirmatory prediction')
+            definition = p['observable_definition']
+            if not isinstance(definition, dict) or definition.get('kind') not in ('linear_combination', 'baseline_difference') or not definition.get('observable') or not definition.get('linear_terms'):
+                raise ValueError('Machine-readable observable definition required')
+            for term in definition['linear_terms']:
+                if term.get('case_id') not in p['physical_case_ids'] or not math.isfinite(float(term['coefficient'])):
+                    raise ValueError('Invalid observable term')
+            expected_value = p['expected_value_or_sign_or_interval']
+            if p['prediction_type'] == 'sign' and expected_value not in (-1, 1):
+                raise ValueError('Sign must be -1 or +1')
+            if p['prediction_type'] == 'interval' and (not isinstance(expected_value, list) or len(expected_value) != 2 or not all(math.isfinite(float(v)) for v in expected_value) or expected_value[0] > expected_value[1]):
+                raise ValueError('Invalid prediction interval')
+            if p['prediction_type'] == 'value' and not math.isfinite(float(expected_value)):
+                raise ValueError('Invalid expected value')
+        covered.update(p['physical_case_ids'])
+    if covered != expected:
+        raise ValueError('Every F2 case requires confirmatory or explicit exploratory coverage')
+    return dict(status='FROZEN_FILE_VALID', covered=len(covered), predictions=len(prediction_ids),
+                provenance_note='External training reports must also be verified by reviewer before submission')
+
+
+def preflight(config, current_environment):
+    work = selected_work(config['stage'])
+    num = config['numerics']
+    if num['solver']['method'] == num['refinement_solver']['method']:
+        raise ValueError('Independent solution check requires a distinct solver method')
+    if num['error_envelope']['absolute_floor'] <= 0 or num['error_envelope']['difference_multiplier'] < 1:
+        raise ValueError('Invalid engineering error envelope')
+    if config.get('mode') not in ('calibration', 'production'):
+        raise ValueError('Explicit calibration or production mode required')
+    if config.get('source_kernel_sha256') != kernel_hash():
+        raise ValueError('Running kernel differs from requested source')
+    review = pinned_file(config['copilot_review'])
+    if review.get('status') != 'REVIEWED_AND_CHECKED' or review.get('kernel_sha256') != kernel_hash():
+        raise ValueError('Technical review not completed for this kernel')
+    if config['mode'] == 'calibration':
+        # A bounded, explicit subset; no held-out F2 solutions during calibration.
+        if config['stage'] == 'F2':
+            raise ValueError('Calibrating on held-out F2 is prohibited')
+        selected = set(config['calibration_case_ids'])
+        if config['stage'] == 'G':
+            if not selected or any(not str(i).isdigit() for i in selected):
+                raise ValueError('Small calibration indices required')
+            work['small'] = [c for i, c in enumerate(work['small']) if str(i) in selected]
+        else:
+            work['full'] = [c for c in work['full'] if c['id'] in selected]
+            work['frequency'] = [f for f in work['frequency'] if f['base_id'] in selected]
+            work['correlations'] = [f for f in work['correlations'] if f['base_id'] in selected]
+        if len(work['small'])+len(work['full']) != len(selected):
+            raise ValueError('Calibration selection mismatch')
+        env_check = dict(comparable=False, reason='FIRST_TARGET_ENVIRONMENT_CALIBRATION')
+    else:
+        cal = pinned_file(config['calibration_verification'])
+        if cal.get('status') != 'VERIFIED_GITHUB' or cal.get('kernel_sha256') != kernel_hash():
+            raise ValueError('Calibration has not been verified for current kernel')
+        if not cal.get('baseline_equivalence_pass') or not cal.get('observable_accuracy_pass'):
+            raise ValueError('Baseline/accuracy verification missing')
+        if cal.get('numerics') != config.get('numerics'):
+            raise ValueError('Numerical method differs from calibration')
+        env_check = compare_environment(cal['environment'], current_environment)
+        if not env_check['comparable']:
+            raise ValueError('Target environment differs: '+str(env_check))
+        if cal.get('stage_budgets', {}).get(config['stage']) != config.get('forecast'):
+            raise ValueError('Forecast differs from verified stage budget')
+    if config['stage'] == 'F2':
+        baseline = pinned_file(config['baseline_report'])
+        if baseline.get('status') != 'VERIFIED_GITHUB':
+            raise ValueError('F2 requires previously verified baseline data')
+        predictions = pinned_file(config['predictions'])
+        if not re.fullmatch('[0-9a-f]{40}', config['predictions'].get('commit', '')):
+            raise ValueError('Frozen prediction commit required')
+        validate_predictions(predictions, review['implementation_commit'])
+    if config['expected_workload'] != workload(work):
+        raise ValueError('Declared workload differs from selected cases')
+    return work, env_check
+
+
+===== FILE e002e_exp/runtime.py =====
+"""Measured environment, source identity and non-retroactive runtime gates."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import platform
+import resource
+import sys
+import time
+import numpy as np
+import scipy
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read_optional(path):
+    try:
+        return Path(path).read_text().strip()
+    except OSError:
+        return None
+
+
+def environment():
+    cpuinfo = read_optional('/proc/cpuinfo') or ''
+    cpu = next((x.split(':', 1)[1].strip() for x in cpuinfo.splitlines() if x.startswith('model name')), None)
+    mem = dict(x.split(':', 1) for x in (read_optional('/proc/meminfo') or '').splitlines() if ':' in x)
+    try:
+        from threadpoolctl import threadpool_info
+        pools = [{k: p.get(k) for k in ('user_api', 'internal_api', 'num_threads', 'version', 'architecture')} for p in threadpool_info()]
+    except ImportError:
+        pools = None
+    return dict(observed_at_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+                python=sys.version, executable=sys.executable, platform=platform.platform(), machine=platform.machine(),
+                cpu_model=cpu, logical_cpus=os.cpu_count(), affinity=sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
+                cpu_quota=read_optional('/sys/fs/cgroup/cpu.max'), memory_limit=read_optional('/sys/fs/cgroup/memory.max'),
+                memory_available=mem.get('MemAvailable', None), memory_total=mem.get('MemTotal', None),
+                load_average=list(os.getloadavg()) if hasattr(os, 'getloadavg') else None,
+                numpy=np.__version__, scipy=scipy.__version__, threadpools=pools,
+                requested_threads={k: os.environ.get(k) for k in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS')},
+                optimize=sys.flags.optimize, cache_state='OS_CACHE_NOT_CONTROLLED',
+                infrastructure_unknowns=['physical host contention', 'CPU frequency history', 'storage contention'],
+                max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+
+
+def kernel_files():
+    return [ROOT/'run.py', ROOT/'e002_exp/model.py', ROOT/'e002c_exp/model.py', ROOT/'e002d_exp/plan.py',
+            ROOT/'experiments/e002e/case_inventory_v003.json', *sorted((ROOT/'e002e_exp').glob('*.py'))]
+
+
+def kernel_hash():
+    h = hashlib.sha256()
+    for path in kernel_files():
+        h.update(path.relative_to(ROOT).as_posix().encode()+b'\0'+path.read_bytes())
+    return h.hexdigest()
+
+
+def compare_environment(reference, current):
+    required = ('python', 'platform', 'machine', 'cpu_model', 'logical_cpus', 'affinity', 'cpu_quota',
+                'memory_limit', 'numpy', 'scipy', 'threadpools', 'requested_threads')
+    missing = [k for k in required if reference.get(k) is None or current.get(k) is None]
+    differences = [k for k in required if reference.get(k) != current.get(k)]
+    return dict(comparable=not missing and not differences, missing=missing, differences=differences,
+                note='Matching manifest does not eliminate unobserved host contention; inspect runtime deviations')
+
+
+def runtime_gate(forecast, elapsed, expected_counts, actual_counts, environment_match, calibrated):
+    complete = all(k in forecast and np.isfinite(forecast[k]) for k in ('expected_seconds', 'lower_seconds', 'upper_seconds'))
+    valid = complete and 0 < forecast['expected_seconds'] and 0 <= forecast['lower_seconds'] <= forecast['expected_seconds'] <= forecast['upper_seconds']
+    if not valid:
+        raise ValueError('Invalid declared runtime forecast')
+    if not calibrated or not environment_match:
+        status = 'NOT_EVALUABLE'
+    elif expected_counts != actual_counts or not forecast['lower_seconds'] <= elapsed <= forecast['upper_seconds']:
+        status = 'REVIEW_REQUIRED'
+    else:
+        status = 'PASS'
+    return dict(**forecast, actual_seconds=elapsed, actual_over_expected=elapsed/forecast['expected_seconds'],
+                deviation_seconds=elapsed-forecast['expected_seconds'], status=status,
+                expected_counts=expected_counts, actual_counts=actual_counts,
+                environment_comparable=environment_match, calibrated=calibrated,
+                scope='Worker internal measured interval; enclosing process duration must be checked separately')
+
+
+===== FILE e002e_exp/space.py =====
+"""Charge-covariant q=0 Liouvillian, without a dense Liouville matrix."""
+from dataclasses import dataclass
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import clean, maxabs
+
+
+@dataclass
+class Space:
+    charges: np.ndarray
+
+    def __post_init__(self):
+        self.charges = np.asarray(self.charges, dtype=int)
+        self.d = len(self.charges)
+        self.groups = [np.flatnonzero(self.charges == n) for n in np.unique(self.charges)]
+        self.sizes = [len(g) ** 2 for g in self.groups]
+        self.offsets = np.r_[0, np.cumsum(self.sizes)]
+        self.indices = np.concatenate([(g[:, None] + self.d*g[None, :]).ravel(order='F') for g in self.groups])
+        self.trace_indices = np.concatenate([off + np.arange(len(g))*(len(g)+1)
+                                            for off, g in zip(self.offsets, self.groups)])
+        self.size = len(self.indices)
+        self.trace_row = sp.csr_matrix((np.ones(self.d), (np.zeros(self.d, int), self.trace_indices)), shape=(1, self.size))
+
+    def pack(self, matrix, tolerance=1e-12):
+        a = matrix.toarray() if sp.issparse(matrix) else np.asarray(matrix)
+        if a.shape != (self.d, self.d):
+            raise ValueError('Hilbert dimensions disagree')
+        if maxabs(np.where(self.charges[:, None] != self.charges[None, :], a, 0)) > tolerance:
+            raise ValueError('Input has components outside q=0')
+        return a.ravel(order='F')[self.indices].copy()
+
+    def unpack(self, vector):
+        v = np.asarray(vector)
+        if v.shape != (self.size,):
+            raise ValueError('Reduced vector shape mismatch')
+        a = np.zeros(self.d*self.d, complex)
+        a[self.indices] = v
+        return a.reshape(self.d, self.d, order='F')
+
+    def row(self, operator):
+        # trace(O rho), without conjugation of O: vec(O.T)^T vec(rho).
+        a = operator.toarray() if sp.issparse(operator) else np.asarray(operator)
+        return a.T.ravel(order='F')[self.indices]
+
+    def trace(self, vector):
+        return np.asarray(vector)[self.trace_indices].sum(axis=0)
+
+
+def charge_checks(H, jumps, space, tolerance=1e-12):
+    h = sp.coo_matrix(H)
+    hbad = maxabs(h.data[space.charges[h.row] != space.charges[h.col]])
+    deltas = {}
+    for name, C in jumps:
+        c = sp.coo_matrix(C)
+        nz = abs(c.data) > tolerance
+        ds = np.unique(space.charges[c.row[nz]] - space.charges[c.col[nz]])
+        if len(ds) > 1:
+            raise ValueError('Jump lacks definite charge: ' + name)
+        deltas[name] = int(ds[0]) if len(ds) else None
+    if hbad > tolerance:
+        raise ValueError('Hamiltonian violates charge covariance')
+    return dict(H_charge_residual=hbad, jump_charge_changes=deltas)
+
+
+def liouvillian(H, jumps, space):
+    """Exact block construction; every within-charge coherence is retained."""
+    charge_checks(H, jumps, space)
+    H = sp.csr_matrix(H)
+    count = len(space.groups)
+    blocks = [[sp.csr_matrix((space.sizes[a], space.sizes[b]), dtype=complex)
+               for b in range(count)] for a in range(count)]
+    for a, g in enumerate(space.groups):
+        h = H[g][:, g]; eye = sp.eye(len(g), format='csr')
+        blocks[a][a] += -1j*(sp.kron(eye, h) - sp.kron(h.T, eye))
+    for _, C in jumps:
+        C = sp.csr_matrix(C); loss = clean(C.getH() @ C)
+        for a, ga in enumerate(space.groups):
+            eye = sp.eye(len(ga), format='csr'); m = loss[ga][:, ga]
+            blocks[a][a] -= .5*(sp.kron(eye, m) + sp.kron(m.T, eye))
+            for b, gb in enumerate(space.groups):
+                c = C[ga][:, gb]
+                if c.nnz:
+                    blocks[a][b] += sp.kron(c.conjugate(), c)
+    L = clean(sp.bmat(blocks, format='csr'))
+    if maxabs(space.trace_row @ L) > 1e-11:
+        raise ValueError('Reduced generator is not trace preserving')
+    return L
+
+
+def dissipator_action(C, rho):
+    C = sp.csr_matrix(C); m = C.getH() @ C
+    right = lambda a, b: (b.T @ a.T).T
+    return right(C @ rho, C.getH()) - .5*(m @ rho + right(rho, m))
+
+
+===== FILE e002e_exp/task.py =====
+"""Staged VM worker. No network, peer messaging, or automatic production launch."""
+import gc
+import json
+import os
+from pathlib import Path
+import time
+import traceback
+import numpy as np
+from e002_exp.model import save_json
+from .model import make_full, make_small
+from .numerics import Bordered, state_checks, values
+from .observations import static_response, frequency_response, propagate_qrt, compare_qrt
+from .plan import preflight, workload, pinned_file
+from .analysis import renewal_check, symmetry_check, f2_differences, evaluate_predictions
+from .runtime import environment, runtime_gate, kernel_hash
+from .export import serial, real_values, conditional_values, summaries, save_case, save_correlations, write_manifest, write_result, verify_report
+
+
+def run(config, output=Path('.')):
+    started = time.perf_counter(); output = Path(output)
+    report = output/'report'; full = output/'full'
+    report.mkdir(parents=True, exist_ok=False); full.mkdir(parents=True, exist_ok=False)
+    env_before = environment(); work, env_check = preflight(config, env_before)
+    save_json(report/'config.json', config); save_json(report/'environment_before.json', env_before)
+    records = []; responses = []; qrts = []; phases = []; failure = None
+    actual = dict.fromkeys(config['expected_workload'], 0)
+    solver_options = config['numerics']['solver']; quality_tolerance = config['numerics']['state_tolerance']
+    refinement_options = config['numerics']['refinement_solver']; error_policy = config['numerics']['error_envelope']
+    def error_envelope(a, b):
+        return {k: error_policy['absolute_floor']+error_policy['difference_multiplier']*float(abs(v-b[k]))
+                for k, v in a.items() if v is not None and b.get(k) is not None}
+    try:
+        cases = [(f'small_{i:03d}', c, True) for i, c in enumerate(work['small'])]
+        cases += [(c['id'], c, False) for c in work['full']]
+        for case_id, case, small in cases:
+            print('START', case_id, flush=True); start = time.perf_counter()
+            model = make_small(case) if small else make_full(case)
+            setup_time = time.perf_counter()-start; space = model['space']
+            solver = Bordered(model['L'], space, **solver_options)
+            state, solve_check = solver.solve(trace=1.)
+            quality = state_checks(model['L'], space, state, quality_tolerance)
+            if not quality['pass']:
+                raise ArithmeticError('Unphysical or nonstationary NESS: '+str(quality))
+            independent = Bordered(model['L'], space, **refinement_options)
+            ref_state, ref_checks = independent.solve(trace=1.)
+            ref_quality = state_checks(model['L'], space, ref_state, quality_tolerance)
+            if not ref_quality['pass']:
+                raise ArithmeticError('Independent NESS verification failed')
+            actual['refinement_NESS'] += 1
+            raw = real_values(values(model, state)); ref_raw = real_values(values(model, ref_state))
+            errors = error_envelope(raw, ref_raw); conditional = conditional_values(raw, errors)
+            if abs(raw['J_h']-raw['F']) > quality_tolerance*10 or abs(raw['source']-raw['F']) > quality_tolerance*10:
+                raise ArithmeticError('Stationary flux balance failed')
+            rec = dict(id=case_id, case=case, raw=raw, conditional=conditional, quality=quality,
+                       solve_check=solve_check, branch=model.get('branch', 'unique_NESS_candidate'),
+                       operator_checks=model.get('checks', {}), hilbert_dimension=space.d,
+                       liouville_dimension=space.size, generator_nnz=model['L'].nnz,
+                       primitive_uncertainty=errors, refinement=dict(quality=ref_quality, solve=ref_checks,
+                       state_difference_inf=float(abs(state-ref_state).max()), error_policy=error_policy,
+                       uncertainty_kind='ENGINEERING_TWO_METHOD_ENVELOPE_NOT_RIGOROUS_TOTAL_ERROR_BOUND'),
+                       condition=solver.condition_estimate() if config['numerics'].get('estimate_condition', True) else {'status':'NOT_ESTIMATED'})
+            rec['renewal'] = renewal_check(model, state) if small else {'status': 'NOT_APPLICABLE'}
+            rec['symmetry'] = symmetry_check(model) if not small else {'symmetry_applicable': False, 'parity_status': 'SMALL_GAUGE_TESTED_SEPARATELY'}
+            if rec['renewal']['status'] == 'FAIL':
+                raise ArithmeticError('G1 renewal identity failed')
+            if rec['symmetry'].get('parity_status') == 'OPERATOR_CHECK_FAILED':
+                raise ArithmeticError('Declared antiunitary symmetry failed')
+            save_case(report, full, rec, state, space); records.append(rec)
+            actual['small_NESS' if small else 'full_NESS'] += 1
+            for target in case.get('tasks', [])[1:]:
+                x, out, checks = static_response(model, state, target, solver)
+                xr, outr, checkr = static_response(model, ref_state, target, independent)
+                responses.append(dict(base_id=case_id, kind='static', target=target, values=out, checks=checks,
+                                      refinement_checks=checkr, uncertainty=error_envelope(out, outr)))
+                actual['static_responses'] += 1
+                actual['refinement_static_responses'] += 1
+            independent_metrics = independent.metrics(); del independent
+            for freq in [f for f in work['frequency'] if f['base_id'] == case_id]:
+                x, out, checks, met = frequency_response(model, state, freq['omega_over_J'], solver, **solver_options)
+                xr, outr, checkr, metr = frequency_response(model, ref_state, freq['omega_over_J'], None, **refinement_options)
+                responses.append(dict(base_id=case_id, kind='frequency', omega=freq['omega_over_J'], values=out,
+                                      checks=checks, solver=met, refinement_checks=checkr, refinement_solver=metr,
+                                      uncertainty=error_envelope(out, outr)))
+                actual['frequency_responses'] += 1
+                actual['refinement_frequency_responses'] += 1
+            corr = [c for c in work['correlations'] if c['base_id'] == case_id]
+            if corr:
+                names = tuple(c['input'] for c in corr); q = config['numerics']['qrt']
+                def checkpoint(step, t, y):
+                    # Checkpoint is explicit; automatic resume is intentionally not claimed.
+                    if step % q['checkpoint_stride_steps'] == 0:
+                        tmp = full/(case_id+'_qrt_checkpoint.tmp.npz')
+                        np.savez_compressed(tmp, y=y, step=step, time=t, kernel_sha256=kernel_hash())
+                        os.replace(tmp, full/(case_id+'_qrt_checkpoint.npz'))
+                fine = propagate_qrt(model, state, q['horizon'], q['dt_fine'], q['sample_interval'], names, checkpoint)
+                coarse = propagate_qrt(model, state, q['horizon'], q['dt_coarse'], q['sample_interval'], names)
+                ref = compare_qrt(fine, coarse, q['absolute_tolerance'], q['relative_tolerance'])
+                qrts.append(dict(id=case_id, **save_correlations(report, full, case_id, fine, coarse, ref)))
+                actual['correlation_inputs'] += len(corr)
+                if not ref['pass_gate']:
+                    raise ArithmeticError('QRT refinement failed; finer continuation requires a declared budget')
+            phases.append(dict(id=case_id, setup_seconds=setup_time, total_case_seconds=time.perf_counter()-start,
+                               solver=solver.metrics(), refinement_solver=independent_metrics))
+            save_json(report/'progress.json', dict(last_case=case_id, actual_counts=actual, elapsed_seconds=time.perf_counter()-started))
+            print('DONE', case_id, flush=True)
+            del solver, model, state; gc.collect()
+    except Exception as exc:
+        failure = type(exc).__name__+': '+str(exc)
+        save_json(report/'failure.json', dict(message=failure, traceback=traceback.format_exc()))
+    comparisons = summaries(records)
+    if config['stage'] == 'F2' and not failure:
+        differences = f2_differences(records, pinned_file(config['baseline_report']))
+        verdicts = evaluate_predictions(pinned_file(config['predictions']), records, differences)
+        save_json(report/'f2_differences.json', serial(differences))
+        save_json(report/'prediction_verdicts.json', serial(verdicts))
+    save_json(report/'contrasts.json', serial(comparisons)); save_json(report/'responses.json', serial(responses))
+    elapsed = time.perf_counter()-started
+    gate = runtime_gate(config['forecast'], elapsed, config['expected_workload'], actual,
+                        env_check['comparable'], config['mode'] == 'production')
+    if failure and gate['status'] == 'PASS':
+        gate['status'] = 'REVIEW_REQUIRED'
+    metrics = dict(runtime_gate=gate, phases=phases, environment_after=environment(),
+                   environment_comparison=env_check, actual_counts=actual, qrt=qrts, failure=failure,
+                   kernel_sha256=kernel_hash(), source_commit=os.environ.get('VM_SOURCE_COMMIT', config.get('source_commit')),
+                   scientific_status='NOT_ACCEPTED_AUTOMATICALLY', full_process_time='USE_SERVICE_RUN_JSON')
+    save_json(report/'metrics.json', serial(metrics))
+    write_result(report, config, records, failure, gate, comparisons, qrts)
+    write_manifest(report); verification = verify_report(report)
+    print(json.dumps(dict(failure=failure, runtime_gate=gate, verification=verification)), flush=True)
+    if failure:
+        raise RuntimeError(failure)
+    return metrics
+
+
+===== FILE tests/test_e002e.py =====
+"""Independent identities, solver references and stage/provenance failures."""
+import copy
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+import numpy as np
+from scipy import sparse as sp
+from scipy.linalg import expm
+from e002_exp.model import build_liouvillian, make_direct_rhs, ketbra, maxabs
+from e002c_exp.model import build as old_build
+from e002d_exp.model import build as d_build, jump_diagonals, damping
+from e002e_exp.space import Space, liouvillian
+from e002e_exp.model import make_small, make_full, selective_difference, IC_ALPHA
+from e002e_exp.numerics import Bordered, state_checks, values, ratio
+from e002e_exp.observations import frequency_response, propagate_qrt, schur_response, g0, qrt_inputs
+from e002e_exp.analysis import renewal_check, symmetry_check, evaluate_predictions
+from e002e_exp.export import conditional_values, validate_conditionals, serial, real_values, save_case, write_manifest, verify_report
+from e002e_exp.plan import inventory, selected_work, workload, validate_predictions, ROOT
+from e002e_exp.runtime import runtime_gate, compare_environment
+
+
+def small_case(d=4, mask=6, epsilon=.17, phi=.5, v=1., source=.5):
+    return dict(dimension=d, mask=mask, epsilon=epsilon, phi_over_pi=phi, v_over_J=v, source=source,
+                sink=.5, node_noise=.05, jump_convention='three_sqrt_phi_Z')
+
+
+def full_case(model='QS', epsilon=.17, phi=.5, v=1.):
+    return dict(model=model, epsilon=epsilon, phi_over_pi=phi, node_noise=.05, m6_v_over_J=v)
+
+
+def stationary(model, method='lu'):
+    solver = Bordered(model['L'], model['space'], method=method, rtol=1e-12, atol=1e-14)
+    state, _ = solver.solve(trace=1.)
+    return state, solver
+
+
+class ReducedAlgebra(unittest.TestCase):
+    def test_indices_and_complex_observable(self):
+        space = Space(np.array([(k//27).bit_count() for k in range(216)]))
+        self.assertEqual([len(g) for g in space.groups], [27, 81, 81, 27])
+        self.assertEqual(space.size, 14580)
+        rng = np.random.default_rng(842); x = rng.normal(size=space.size)+1j*rng.normal(size=space.size)
+        self.assertTrue(np.array_equal(space.pack(space.unpack(x)), x))
+        self.assertAlmostEqual(abs(space.trace(x)-np.trace(space.unpack(x))), 0., places=12)
+        a = np.zeros((216, 216), complex); a[54, 108] = 1j; a[108, 54] = 2.
+        self.assertAlmostEqual(abs(space.row(a)@x-np.trace(a@space.unpack(x))), 0., places=12)
+
+    def test_small_generators_against_full_kron_all_columns(self):
+        for d, mask, v in ((4, 6, 0.), (4, 7, .5), (8, 6, 0.), (8, 7, .5)):
+            model = make_small(small_case(d, mask, v=v)); s = model['space']
+            full = build_liouvillian(model['H'], model['jumps'])
+            self.assertLess(maxabs(model['L']-full[s.indices][:, s.indices]), 1e-13)
+
+    def test_charge_violating_jump_rejected(self):
+        with self.assertRaises(ValueError):
+            liouvillian(sp.csr_matrix((2, 2)), [('x', ketbra(2, 0, 1)+ketbra(2, 1, 0))], Space([0, 1]))
+
+    def test_source_transfers_two_sector_coherences(self):
+        s = Space([k.bit_count() for k in range(8)])
+        C = sp.kron(ketbra(2, 1, 0), sp.eye(4), format='csr')
+        L = liouvillian(sp.csr_matrix((8, 8)), [('source', C)], s)
+        a = np.zeros((8, 8), complex); a[1, 2] = .7+.2j
+        out = s.unpack(L@s.pack(a))
+        self.assertAlmostEqual(abs(out[5, 6]-(.7+.2j)), 0.)
+        self.assertAlmostEqual(abs(out[1, 2]+(.7+.2j)), 0.)
+
+
+class NumericalReferences(unittest.TestCase):
+    def test_thermal_stationary_and_response(self):
+        s = Space([0, 1]); up = ketbra(2, 1, 0); down = up.getH()
+        L = liouvillian(sp.csr_matrix((2, 2)), [('up', up), ('down', np.sqrt(2.)*down)], s)
+        solver = Bordered(L, s); x, _ = solver.solve(trace=1.)
+        np.testing.assert_allclose(x, [2/3, 1/3], atol=1e-14)
+        derivative, _ = solver.solve(np.array([2/3, -2/3]))
+        np.testing.assert_allclose(derivative, [-2/9, 2/9], atol=1e-14)
+        self.assertTrue(state_checks(L, s, x)['pass'])
+
+    def test_small_ness_independent_exponential_and_solver(self):
+        model = make_small(small_case(4, 7)); x, _ = stationary(model); y, _ = stationary(model, 'gmres_ilu')
+        empty = np.zeros(model['space'].size, complex); empty[0] = 1.
+        reference = expm(model['L'].toarray()*250.)@empty
+        np.testing.assert_allclose(x, reference, atol=2e-10)
+        np.testing.assert_allclose(x, y, atol=1e-11)
+
+    def test_zero_link_branch_and_nonunique_unrestricted(self):
+        for d in (4, 8):
+            model = make_small(small_case(d, 6, v=0.)); state, _ = stationary(model)
+            self.assertIn('n1_zero', model['branch'])
+            self.assertLess(abs(values(model, state)['F'].imag), 1e-12)
+            self.assertLess(maxabs(model['n'][1]), 1e-15)
+        with self.assertRaises(RuntimeError):
+            Bordered(sp.csr_matrix((2, 2)), Space([0, 1]))
+
+    def test_gauge_noise_and_renewal(self):
+        records = []
+        for phi in (0., .5):
+            model = make_small(small_case(4, 6, phi=phi)); state, _ = stationary(model)
+            records.append(values(model, state)['F'])
+            self.assertEqual(renewal_check(model, state)['status'], 'PASS')
+        self.assertAlmostEqual(abs(records[0]-records[1]), 0., places=12)
+        conditional = []
+        for pump in (.05, .5):
+            model = make_small(small_case(4, 7, source=pump)); x, _ = stationary(model); vals = values(model, x)
+            conditional.append(vals['F']/vals['p_e'])
+            self.assertEqual(renewal_check(model, x)['status'], 'PASS')
+        self.assertAlmostEqual(abs(conditional[0]-conditional[1]), 0., places=11)
+
+    def test_frequency_against_dense_and_conjugate(self):
+        model = make_small(small_case()); state, prepared = stationary(model)
+        xp, vp, _, _ = frequency_response(model, state, .7)
+        xm, vm, _, _ = frequency_response(model, state, -.7)
+        np.testing.assert_allclose(vp['F'], np.conj(vm['F']), atol=1e-12)
+        from e002e_exp.observations import source_input
+        reference = np.linalg.solve(.7j*np.eye(model['space'].size)-model['L'].toarray(), source_input(model, state))
+        np.testing.assert_allclose(xp, reference, atol=1e-12)
+        x0, _, _, _ = frequency_response(model, state, 0., prepared)
+        self.assertLess(maxabs(model['L']@x0+source_input(model, state)), 1e-11)
+
+    def test_qrt_against_matrix_exponential(self):
+        model = make_small(small_case()); x, _ = stationary(model); names = ('J_h', 'p_e', 'K')
+        result = propagate_qrt(model, x, .2, .002, .02, names)
+        inputs, var = qrt_inputs(model, x, names); rows = np.vstack([model['space'].row(model['observables'][n]) for n in names])
+        expected = np.array([rows@expm(model['L'].toarray()*t)@inputs for t in result['times']])
+        np.testing.assert_allclose(result['C'], expected, atol=2e-11)
+        self.assertEqual(result['summary']['tail_status'], 'TAIL_UNRESOLVED')
+        self.assertFalse(result['summary']['positivity_test_applied'])
+
+    def test_schur_matches_direct_with_complex_input_output(self):
+        rng = np.random.default_rng(11); a = rng.normal(size=(7, 7))+1j*rng.normal(size=(7, 7)); L = a-10*np.eye(7)
+        b = rng.normal(size=7)+1j*rng.normal(size=7); row = rng.normal(size=7)+1j*rng.normal(size=7)
+        s = schur_response(sp.csr_matrix(L), b, row, [1, 3, 4], .7j, rtol=1e-12)
+        np.testing.assert_allclose(s['x'], np.linalg.solve(.7j*np.eye(7)-L, b), atol=1e-11)
+        self.assertLess(s['reconstruction_error'], 1e-12)
+        self.assertAlmostEqual(abs(s['total'])**2, abs(s['background'])**2+abs(s['mediated'])**2+s['cross_intensity'], places=12)
+        with self.assertRaises(ValueError):
+            schur_response(sp.csr_matrix(L), b, row, [1], 0.)
+
+    def test_g0_against_scattering_inverse(self):
+        for eps in (-.5, -.125, 0., .125, .5):
+            for v in (.5, 1.):
+                H = np.array([[0., 0., 1.], [0., eps, v], [1., v, 0.]])
+                G = np.linalg.inv(-H+.5j*np.diag([.5, 0., .5]))
+                self.assertAlmostEqual(.25*abs(G[2, 0])**2, g0(eps, v)['intensity'], places=12)
+
+
+class FullOperators(unittest.TestCase):
+    def test_pinned_builder_and_reduction(self):
+        rng = np.random.default_rng(349)
+        for variant in ('QS', 'RR_QS', 'IC1_QS'):
+            c = full_case(variant); m = make_full(c)
+            old = old_build(dict(model=variant, phi_over_pi=.5, detuning=.17, dephasing=.05), IC_ALPHA if variant == 'IC1_QS' else None)
+            self.assertLess(maxabs(m['H']-old['H']), 1e-12)
+            s = m['space']; self.assertLess(maxabs(m['L']-old['L'][s.indices][:, s.indices]), 1e-12)
+            direct = make_direct_rhs(m['H'], m['jumps'])
+            for _ in range(2):
+                v = rng.normal(size=s.size)+1j*rng.normal(size=s.size)
+                expected = s.pack(direct(s.unpack(v).ravel(order='F')).reshape(216, 216, order='F'), tolerance=1e-10)
+                self.assertLess(maxabs(expected-m['L']@v), 5e-12)
+            self.assertTrue(symmetry_check(m)['symmetry_applicable'])
+
+    def test_mask_deformation_independent_and_cross_coherence(self):
+        from e002c_exp.model import operators
+        o = operators(); base = make_full(full_case(), assemble=False); changed = make_full(full_case(v=.5), assemble=False)
+        support = sp.diags(np.tile((o['mask_id'] == 6).astype(float), 8))
+        up = o['up']; hop = up[1]@up[2].getH()+up[2]@up[1].getH()
+        expected = -.5*support@hop
+        self.assertLess(maxabs(changed['H']-base['H']-expected), 1e-12)
+        self.assertLess(maxabs(changed['currents'][1]-(sp.eye(216)-.5*support)@base['currents'][1]), 1e-12)
+        rho = np.zeros((216, 216), complex); rho[2*27+8, 4*27+26] = .5
+        rho += rho.conj().T
+        self.assertGreater(maxabs(expected@rho-rho@expected), .1)
+        self.assertTrue(symmetry_check(changed)['symmetry_applicable'])
+
+    def test_selective_derivative_against_original_channels(self):
+        s = Space([(k//27).bit_count() for k in range(216)])
+        for name in ('S2a', 'S1b', 'M1', 'M2'):
+            old = -damping(jump_diagonals(name, 'T', 1.))+damping(jump_diagonals(name, 'C', 1.))
+            np.testing.assert_allclose(selective_difference(s, name).diagonal(), old.ravel(order='F')[s.indices], atol=1e-15)
+
+
+class WorkflowGuards(unittest.TestCase):
+    def test_inventory_and_stages(self):
+        g, b, f = [selected_work(x) for x in ('G', 'baseline', 'F2')]
+        self.assertEqual(len(g['small']), 92); self.assertEqual(len(b['full']), 24); self.assertEqual(len(f['full']), 20)
+        self.assertEqual(sum(len(x['tasks']) for x in b['full'])+20+len(b['frequency']), 94)
+        self.assertEqual(workload(b)['correlation_inputs'], 18)
+        self.assertTrue(all(x['m6_v_over_J'] == 1 for x in b['full']))
+
+    def test_template_and_missing_predictions_rejected(self):
+        template = json.loads((ROOT/'experiments/e002e/f2_prereg_predictions.template.json').read_text())
+        with self.assertRaises(ValueError):
+            validate_predictions(template, 'a'*40)
+        template.update(status='FROZEN', code_commit='a'*40, created_at_utc='2026-10-31T00:00:00Z', frozen_at_utc='2026-10-31T00:00:01Z')
+        with self.assertRaises(ValueError):
+            validate_predictions(template, 'a'*40)
+
+    def test_null_and_uncertainty_reconstruction(self):
+        self.assertIsNone(ratio(1., 1e-7)['value'])
+        self.assertIsNone(ratio(1., 1.1e-6, 1e-9, 2e-7)['value'])
+        raw = dict(h6=.1, P_m6_N2=.2); err = dict(h6=1e-8, P_m6_N2=2e-8)
+        c = conditional_values(raw, err); validate_conditionals(raw, c, err)
+        c['j6']['value'] += 1e-4
+        with self.assertRaises(ValueError):
+            validate_conditionals(raw, c, err)
+
+    def test_runtime_does_not_accept_unknown_calibration_or_short_work(self):
+        f = dict(expected_seconds=1., lower_seconds=.8, upper_seconds=1.3)
+        self.assertEqual(runtime_gate(f, 1., {'n': 2}, {'n': 2}, True, False)['status'], 'NOT_EVALUABLE')
+        self.assertEqual(runtime_gate(f, 1., {'n': 2}, {'n': 1}, True, True)['status'], 'REVIEW_REQUIRED')
+        self.assertEqual(runtime_gate(f, .1, {'n': 2}, {'n': 2}, True, True)['status'], 'REVIEW_REQUIRED')
+        self.assertFalse(compare_environment({}, {})['comparable'])
+
+    def test_report_tamper_detected(self):
+        m = make_small(small_case()); state, _ = stationary(m); raw = real_values(values(m, state))
+        with tempfile.TemporaryDirectory() as temp:
+            report = Path(temp)/'report'; report.mkdir(); full = Path(temp)/'full'; full.mkdir()
+            rec = dict(id='small_000', case=m['case'], raw=raw, conditional=conditional_values(raw), quality={'pass': True})
+            save_case(report, full, rec, state, m['space']); write_manifest(report); verify_report(report)
+            p = report/'small_000.json'; p.write_text(p.read_text()+' ')
+            with self.assertRaises(ValueError):
+                verify_report(report)
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+===== FILE e002_exp/model.py =====
+"""E001X operators plus explicit sqrt(I-Q) idle control; P/Q definitions retained."""
+import hashlib,json,os
+from pathlib import Path
+import numpy as np
+from scipy import sparse as sp
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+def save_json(path, obj):
+    path = Path(path)
+    temp = path.with_name(path.name + '.tmp')
+    with temp.open('w', encoding='utf-8') as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2, allow_nan=False)
+        f.write('\n')
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(temp, path)
+
+def maxabs(a):
+    values = a.data if sp.issparse(a) else np.asarray(a)
+    return float(np.max(np.abs(values), initial=0.0))
+
+def clean(a):
+    a = a.tocsr()
+    a.sum_duplicates()
+    a.eliminate_zeros()
+    a.sort_indices()
+    return a
+
+def ketbra(d, a, b):
+    return sp.csr_matrix(([1.0 + 0j], ([a], [b])), shape=(d, d))
+
+def tensor(factors):
+    out = sp.csr_matrix([[1.0 + 0j]])
+    for a in factors:
+        out = sp.kron(out, a, format='csr')
+    return out
+
+def build_model(p):
+    if 'rr_rates' in p:
+        if p['g'] != 0:
+            raise ValueError('RR requires g=0: coherent H_form is forbidden')
+        if set(p['rr_rates']) != {'01','12','02'}:
+            raise ValueError('RR rates must specify edges 01,12,02')
+        for rates in p['rr_rates'].values():
+            if len(rates)!=2 or not np.isfinite(rates).all() or min(rates)<0:
+                raise ValueError('Invalid RR rates')
+    if p['gate_form'] not in {'Pi', 'Q'} or p['gate_idle'] not in {'Pi', 'Q', 'S'}:
+        raise ValueError('Unknown gate')
+    dims = [2, 2, 2, 3, 3, 3]
+    identities = [sp.eye(d, format='csr', dtype=complex) for d in dims]
+    size = int(np.prod(dims))
+    eye = sp.eye(size, format='csr', dtype=complex)
+
+    def embed(a, at):
+        factors = identities.copy()
+        factors[at] = a
+        return tensor(factors)
+
+    plus = [embed(ketbra(2, 1, 0), i) for i in range(3)]
+    minus = [a.getH().tocsr() for a in plus]
+    n = [clean(a @ b) for a, b in zip(plus, minus)]
+    z = [eye - 2 * a for a in n]
+    edge_pairs = [(0, 1), (1, 2), (0, 2)]
+    h_hop = sp.csr_matrix((size, size), dtype=complex)
+    h_form = h_hop.copy()
+    jumps = []
+    p0s, prs, pls = [], [], []
+    for e, (i, j) in enumerate(edge_pairs):
+        at = e + 3
+        p0, pr, pl = [embed(ketbra(3, k, k), at) for k in range(3)]
+        bplus = embed(ketbra(3, 2, 1), at)
+        bminus = bplus.getH().tocsr()
+        pump = embed(ketbra(3, 1, 0), at)
+        broken = embed(ketbra(3, 0, 2), at)
+        hop = plus[i] @ minus[j] + plus[j] @ minus[i]
+        p_single = (eye - z[i] @ z[j]) / 2
+        pi_plus = (p_single + hop) / 2
+        q = p_single / 2
+        g_form = pi_plus if p["gate_form"] == "Pi" else q
+        # Q has eigenvalues 0 and 1/2; this is sqrt(I-Q), NOT I-sqrt(I-Q).
+        idle_factor = (eye - pi_plus if p['gate_idle'] == 'Pi' else
+                       eye - q if p['gate_idle'] == 'Q' else
+                       eye - (2 - np.sqrt(2))*q)
+        h_hop += p['J'] * (pl @ hop)
+        h_form += p['g'] * ((bplus + bminus) @ g_form)
+        channels = [
+            ('pump', p['eta'], pump),
+            ('break', p['delta'], broken),
+            ('idle', p['gamma_r'], bminus @ idle_factor),
+            ('background', p['gamma_bg'], bminus),
+            ('edge_dephase', p['phi_e'], pr - pl),
+        ]
+        if 'rr_rates' in p:
+            channels=[x for x in channels if x[0]!='idle']
+            alpha,beta=p['rr_rates'][f'{i}{j}']
+            channels += [('idle',beta,bminus),('renew',alpha,bplus)]
+        for label, rate, op in channels:
+            jumps.append((f'{label}_{i}{j}', clean(np.sqrt(rate) * op)))
+        p0s.append(p0)
+        prs.append(pr)
+        pls.append(pl)
+    jumps.append(('source_0', clean(np.sqrt(p['kappa_in']) * plus[0])))
+    jumps.append(('sink_2', clean(np.sqrt(p['kappa_out']) * minus[2])))
+    jumps.extend((f'node_dephase_{i}', clean(np.sqrt(p['phi_n']) * z[i])) for i in range(3))
+    return clean(h_hop + h_form), jumps, clean(sum(prs) + sum(pls)), clean(p['eta'] * sum(p0s) - p['delta'] * sum(pls)), dims
+
+def build_liouvillian(h, jumps):
+    eye = sp.eye(h.shape[0], format='csr', dtype=complex)
+    result = -1j * (sp.kron(eye, h, format='csr') - sp.kron(h.T, eye, format='csr'))
+    for _, c in jumps:
+        a = clean(c.getH() @ c)
+        result += sp.kron(c.conjugate(), c, format='csr')
+        result -= 0.5 * sp.kron(eye, a, format='csr')
+        result -= 0.5 * sp.kron(a.T, eye, format='csr')
+    return clean(result)
+
+def right(rho, a):
+    return (a.T @ rho.T).T
+
+def make_direct_rhs(h, jumps):
+    products = [(c, c.getH().tocsr(), clean(c.getH() @ c)) for _, c in jumps]
+
+    def rhs(v):
+        rho = v.reshape(h.shape, order='F')
+        out = -1j * (h @ rho - right(rho, h))
+        for c, ch, a in products:
+            out += right(c @ rho, ch) - 0.5 * (a @ rho + right(rho, a))
+        return out.reshape(-1, order='F')
+    return rhs
+
+def rk4(rhs, v, dt):
+    a = rhs(v)
+    b = rhs(v + dt * a / 2)
+    c = rhs(v + dt * b / 2)
+    d = rhs(v + dt * c)
+    return v + dt * (a + 2*b + 2*c + d) / 6
+
+def measurement_operators(p,h,jumps,L):
+    dims=[2,2,2,3,3,3];I=sp.eye(216,format='csr',dtype=complex)
+    def emb(a,k):
+        fs=[sp.eye(d,format='csr',dtype=complex) for d in dims];fs[k]=a;return tensor(fs)
+    n=[emb(ketbra(2,1,1),i) for i in range(3)];z=[I-2*x for x in n]
+    up=[emb(ketbra(2,1,0),i) for i in range(3)]
+    p0=[emb(ketbra(3,0,0),i+3) for i in range(3)]
+    pr=[emb(ketbra(3,1,1),i+3) for i in range(3)]
+    pl=[emb(ketbra(3,2,2),i+3) for i in range(3)]
+    names=[];ops=[]
+    def add(name,op):names.append(name);ops.append(clean(op))
+    pairs=[(0,1),(1,2),(0,2)]
+    for e,(i,j) in enumerate(pairs):
+        en=f'{i}{j}'
+        for label,arr in [('p0',p0),('pR',pr),('pL',pl)]:add(label+en,arr[e])
+        bp=emb(ketbra(3,2,1),e+3);bm=bp.getH();hop=up[i]@up[j].getH()+up[j]@up[i].getH()
+        q=(I-z[i]@z[j])/4;pi=q+hop/2;G=pi if p['gate_form']=='Pi' else q
+        add('gate_Pi'+en,pi);add('gate_Q'+en,q)
+        add('edge_coherence_Re'+en,(bp+bm)/2);add('edge_coherence_Im'+en,(bp-bm)/(2j))
+        add('formation_current'+en,1j*p['g']*((bm-bp)@G))
+        add('dPL_H_'+en,1j*(h@pl[e]-pl[e]@h))
+        for name,c in jumps:
+            ch=c.getH();a=ch@c;add('dPL_'+en+'__'+name,ch@pl[e]@c-(a@pl[e]+pl[e]@a)/2)
+    for i,x in enumerate(n):add('n'+str(i),x)
+    add('sum_pL',sum(pl));add('sum_pR',sum(pr));add('inventory',sum(pl)+sum(pr))
+    add('sink_flux',p['kappa_out']*n[2]);add('source_flux',p['kappa_in']*(I-n[0]))
+    add('pump_flux',p['eta']*sum(p0));add('break_flux',p['delta']*sum(pl))
+    add('path_probability',pl[2]+(I-pl[2])@pl[0]@pl[1])
+    for name,c in jumps:add('event_rate__'+name,c.getH()@c)
+    rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in ops],format='csr')
+    idx={name:i for i,name in enumerate(names)}
+    balance=0.
+    for i,j in pairs:
+        en=f'{i}{j}';row=rows[idx['dPL_H_'+en]].copy()
+        for name,_ in jumps:row+=rows[idx['dPL_'+en+'__'+name]]
+        balance=max(balance,maxabs(rows[idx['pL'+en]]@L-row))
+    return rows,names,balance
+
+def validate(v,tol,eigen=False):
+    rho=v.reshape((216,216),order='F');x={'trace_error':float(abs(np.trace(rho)-1)),'hermiticity_error':maxabs(rho-rho.conj().T),'finite':bool(np.isfinite(v).all())}
+    if eigen:x['min_eigenvalue']=float(np.linalg.eigvalsh((rho+rho.conj().T)/2)[0])
+    good=x['finite'] and x['trace_error']<=tol['trace'] and x['hermiticity_error']<=tol['hermiticity'] and x.get('min_eigenvalue',0)>=-tol['positivity']
+    if not good:raise RuntimeError('Invalid state: '+json.dumps(x))
+    return x
+
+def adjoint_jump(c, observable):
+    a = c.getH() @ c
+    return clean(c.getH() @ observable @ c - (a @ observable + observable @ a) / 2)
+
+def measurement_model(parameters, acceptance):
+    h, jumps, inventory, resource_rhs, dims = build_model(parameters)
+    generator = build_liouvillian(h, jumps)
+    old_rows, names, edge_balance = measurement_operators(parameters, h, jumps, generator)
+    names = list(names)
+    extra = []
+    eye = sp.eye(216, format='csr', dtype=complex)
+    def emb(a, at):
+        fs = [sp.eye(d, format='csr', dtype=complex) for d in dims]
+        fs[at] = a
+        return tensor(fs)
+    def add(name, op):
+        names.append(name)
+        extra.append(clean(op))
+    n = [emb(ketbra(2, 1, 1), i) for i in range(3)]
+    up = [emb(ketbra(2, 1, 0), i) for i in range(3)]
+    jd = dict(jumps)
+    checks = {
+        'H_hermiticity': maxabs(h - h.getH()),
+        'trace_generator': maxabs(generator.getH() @ np.eye(216).reshape(-1, order='F')),
+        'resource_identity': maxabs(generator.getH() @ inventory.toarray().reshape(-1, order='F') - resource_rhs.toarray().reshape(-1, order='F')),
+        'edge_balance': edge_balance,
+    }
+    node_currents = {k: [sp.csr_matrix((216,216), dtype=complex) for _ in range(3)] for k in ['hop','form','idle']}
+    protected_totals = {k:sp.csr_matrix((216,216),dtype=complex) for k in ['B_L','B_R','M_L','E_L']}
+    for e, (i,j) in enumerate([(0,1),(1,2),(0,2)]):
+        en = f'{i}{j}'
+        pl = emb(ketbra(3,2,2), e+3)
+        pr = emb(ketbra(3,1,1), e+3)
+        bp = emb(ketbra(3,2,1), e+3)
+        bm = bp.getH()
+        hop = up[i] @ up[j].getH() + up[j] @ up[i].getH()
+        q = ((eye-n[i]) @ n[j] + n[i] @ (eye-n[j])) / 2
+        pi = q + hop/2
+        pm = q - hop/2
+        even = eye - 2*q
+        gf = pi if parameters['gate_form'] == 'Pi' else q
+        hf = parameters['g'] * (bp+bm) @ gf
+        if 'rr_rates' in parameters:
+            checks['rr_H_form_zero_'+en] = maxabs(hf)
+        hh = parameters['J'] * pl @ hop
+        bl, ml, el = pl @ pi, pl @ pm, pl @ even
+        for label, op in [('B_L', bl), ('B_R', pr@pi), ('M_L',ml), ('E_L',el)]:
+            add(label+en, op)
+            protected_totals[label] += op
+        checks['partition_'+en] = maxabs(bl+ml+el-pl)
+        own_idle = adjoint_jump(jd['idle_'+en], n[j])
+        conditional_pi = 'rr_rates' not in parameters and parameters['gate_idle']=='Pi'
+        target_idle = parameters['gamma_r']/4 * pl @ (n[i]-n[j]) if conditional_pi else 0*pl
+        checks['idle_current_'+en] = maxabs(own_idle-target_idle)
+        pieces = {'hop':1j*(hh@n[j]-n[j]@hh), 'form':1j*(hf@n[j]-n[j]@hf), 'idle':own_idle}
+        for label, op in pieces.items():
+            add('I_'+label+en, op)
+            node_currents[label][i] -= op
+            node_currents[label][j] += op
+        add('I_total'+en, sum(pieces.values()))
+        deph = adjoint_jump(jd['node_dephase_'+str(i)],bl)+adjoint_jump(jd['node_dephase_'+str(j)],bl)
+        ed = adjoint_jump(jd['edge_dephase_'+en],bl)
+        own_idle_bl = adjoint_jump(jd['idle_'+en],bl)
+        for label, op in [('node_dephase',deph),('edge_dephase',ed),('break',adjoint_jump(jd['break_'+en],bl)),('idle',own_idle_bl)]:
+            add('dBL_'+label+en,op)
+        checks['bright_node_dephase_'+en]=maxabs(deph-2*parameters['phi_n']*(ml-bl))
+        checks['bright_edge_dephase_'+en]=maxabs(ed)
+        idle_bl_target=0*bl if parameters['gate_idle']=='Pi' else -parameters['gamma_r']*(0.5 if parameters['gate_idle']=='S' else 0.25)*bl
+        if 'rr_rates' in parameters:
+            idle_bl_target=-parameters['rr_rates'][en][1]*bl
+        checks['bright_idle_'+en]=maxabs(own_idle_bl-idle_bl_target)
+        idle_rate_target=parameters['gamma_r']*(ml+el if parameters['gate_idle']=='Pi' else (bl+ml)*(0.5 if parameters['gate_idle']=='S' else 0.25)+el)
+        if 'rr_rates' in parameters:
+            idle_rate_target=parameters['rr_rates'][en][1]*pl
+        checks['idle_rate_'+en]=maxabs(jd['idle_'+en].getH()@jd['idle_'+en]-idle_rate_target)
+    for label, op in protected_totals.items():
+        add(label+'_total',op)
+    for label in node_currents:
+        add('I_'+label+'_sink',node_currents[label][2])
+    for i in range(3):
+        full=clean(1j*(h@n[i]-n[i]@h)+sum(adjoint_jump(c,n[i]) for _,c in jumps))
+        transport=sum(node_currents[k][i] for k in node_currents)
+        external=parameters['kappa_in']*(eye-n[0]) if i==0 else (-parameters['kappa_out']*n[2] if i==2 else 0*eye)
+        checks['node_balance_'+str(i)]=maxabs(full-transport-external)
+        add('dn'+str(i)+'_dt',full)
+    extra_rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in extra],format='csr')
+    rows=sp.vstack([old_rows,extra_rows],format='csr')
+    if max(checks.values())>acceptance['algebra']:
+        raise RuntimeError('Operator checks failed: '+json.dumps(checks))
+    return {'H':h,'jumps':jumps,'L':generator,'rows':rows,'names':names,'index':{n:i for i,n in enumerate(names)},'checks':checks}
+
+
+===== FILE e002c_exp/model.py =====
+"""E002c changes around the byte-for-byte pinned E002b operator builder."""
+from functools import lru_cache
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import (build_model, build_liouvillian, tensor, ketbra,
+                            clean, maxabs, adjoint_jump)
+
+EDGES = ('01', '12', '02')
+PAIRS = ((0, 1), (1, 2), (0, 2))
+BASE = dict(J=1., g=.5, eta=.25, delta=.1, gamma_bg=.01, gamma_r=.05,
+            kappa_in=.5, kappa_out=.5, phi_e=.05, phi_n=.05,
+            gate_form='Q', gate_idle='S')
+RR = dict(zip(EDGES, ((.034391922002445986, .03673596724712181),
+                     (.0343919220002473, .03673596724703888),
+                     (.06080323306206624, .03505876323286412))))
+ONE = np.array([4, 2, 1])
+TWO = np.array([6, 5, 3])
+
+@lru_cache(None)
+def operators():
+    dims = [2, 2, 2, 3, 3, 3]
+    def emb(a, k):
+        fs = [sp.eye(d, dtype=complex, format='csr') for d in dims]
+        fs[k] = a
+        return tensor(fs)
+    eye = sp.eye(216, dtype=complex, format='csr')
+    n = [emb(ketbra(2, 1, 1), i) for i in range(3)]
+    up = [emb(ketbra(2, 1, 0), i) for i in range(3)]
+    pl = [emb(ketbra(3, 2, 2), i+3) for i in range(3)]
+    pr = [emb(ketbra(3, 1, 1), i+3) for i in range(3)]
+    bp = [emb(ketbra(3, 2, 1), i+3) for i in range(3)]
+    c = [(eye-n[i])@n[j]+n[i]@(eye-n[j]) for i, j in PAIRS]
+    edge_states = np.array(list(np.ndindex(3, 3, 3)))
+    mask_id = ((edge_states == 2) * [1, 2, 4]).sum(axis=1)
+    masks = [sp.diags((mask_id == m).astype(float), format='csr') for m in range(8)]
+    return dict(eye=eye, n=n, up=up, pl=pl, pr=pr, bp=bp, c=c,
+                mask_id=mask_id, masks=masks)
+
+def initial():
+    r = np.zeros((216, 216), complex)
+    for node in (4, 2):
+        k = node*27+13  # RRR = ternary 111
+        r[k, k] = .5
+    return r.reshape(-1, order='F')
+
+def sector_hamiltonian(mask, phi=0., epsilon=0., amplitudes=(1., 1., 1.), theta=None):
+    theta = [0., 0., -phi] if theta is None else theta
+    h = np.diag([0., epsilon, 0.]).astype(complex)
+    for e, (i, j) in enumerate(PAIRS):
+        if mask & (1 << e):
+            h[i, j] = amplitudes[e]*np.exp(1j*theta[e])
+            h[j, i] = h[i, j].conjugate()
+    return h
+
+def null_projector(a):
+    _, s, vh = np.linalg.svd(a, full_matrices=True)
+    tol = 1e-10*max(1., s[0] if len(s) else 0.)
+    v = vh[int(np.sum(s > tol)):].conj().T
+    p = v@v.conj().T
+    return p, dict(singular_values=s.tolist(), tolerance=tol,
+                   dimension=v.shape[1], residual=float(np.linalg.norm(a@p)))
+
+def dark_projectors(h):
+    c = np.array([[0., 0., 1.]])
+    k, ki = null_projector(np.vstack([c, c@h]))
+    d, di = null_projector(np.vstack([c, c@h, c@h@h]))
+    connected = {2}
+    for _ in range(3):
+        connected |= {j for i in list(connected) for j in range(3)
+                      if i != j and abs(h[i, j]) > 1e-12}
+    isolated = np.diag([float(i not in connected) for i in range(3)])
+    # Every sink-disconnected component is invariant; separate it from interference.
+    return k, d, isolated, d-isolated, dict(K=ki, D=di)
+
+def build(case, alpha=None):
+    o = operators(); p = dict(BASE, phi_n=float(case['dephasing']))
+    variant = case['model']
+    if variant == 'RR_QS':
+        p.update(g=0., gamma_r=0., rr_rates=RR)
+    elif variant == 'IC1_QS':
+        if alpha is None or np.shape(alpha) != (3,) or not np.isfinite(alpha).all() or min(alpha)<1e-4 or max(alpha)>2:
+            raise ValueError('IC requires three declared rates in [1e-4,2]')
+        p['g'] = 0.
+    elif variant != 'QS':
+        raise ValueError('Unknown model')
+    h, jumps, inventory, resource, _ = build_model(p)
+    theta = [0., 0., -float(case['phi_over_pi'])*np.pi]
+    currents = []; hh_total = 0*h
+    for e, (i, j) in enumerate(PAIRS):
+        a = o['up'][i]@o['up'][j].getH()
+        old = p['J']*o['pl'][e]@(a+a.getH())
+        hh = p['J']*o['pl'][e]@(np.exp(1j*theta[e])*a+np.exp(-1j*theta[e])*a.getH())
+        h += hh-old; hh_total += hh
+        currents.append(clean(1j*(hh@o['n'][j]-o['n'][j]@hh)))
+        if variant == 'IC1_QS':
+            jumps.append(('feed_'+EDGES[e], clean(np.sqrt(alpha[e])*o['bp'][e]@o['c'][e])))
+    h = clean(h+float(case['detuning'])*o['n'][1])
+    L = build_liouvillian(h, jumps)
+    jd = dict(jumps)
+    ell = [clean(sum(jd[k+'_'+e].getH()@jd[k+'_'+e] for k in ('break', 'background', 'idle'))) for e in EDGES]
+    feed = [clean(jd[('feed_' if variant == 'IC1_QS' else 'renew_')+e].getH()@
+                  jd[('feed_' if variant == 'IC1_QS' else 'renew_')+e])
+            if variant != 'QS' else 0*o['eye'] for e in EDGES]
+    ops = [*currents, currents[1]+currents[2], .5*o['n'][2], *o['n'],
+           *o['pl'], *ell, .25*(3*o['eye']-inventory), .1*sum(o['pl']), inventory,
+           .5*(o['eye']-o['n'][0]), *feed]
+    names = ['I01','I12','I02','h','F','n0','n1','n2',
+             'pL01','pL12','pL02','ell01','ell12','ell02','pump','break','inventory',
+             'source','feed01','feed12','feed02']
+    dark=[]; masks=o['masks']; p1=np.zeros((8,8));p1[ONE,ONE]=1
+    def embed_node(a):
+        v=np.zeros((8,8),complex);v[np.ix_(ONE,ONE)]=a;return v
+    for m in range(8):
+        hm=sector_hamiltonian(m, float(case['phi_over_pi'])*np.pi, case['detuning'])
+        k,d,iso,inter,info=dark_projectors(hm)
+        dark.append(dict(k=embed_node(k),d=embed_node(d),isolated=embed_node(iso),
+                         interference=embed_node(inter),info=info))
+        for tag,op in [('p',np.eye(8)),('w1',p1),('k',embed_node(k)),('d',embed_node(d))]:
+            names.append(f'{tag}_m{m}');ops.append(sp.kron(op,masks[m],format='csr'))
+    rows=sp.vstack([sp.csr_matrix(op.T.toarray().reshape(1,-1,order='F')) for op in ops],format='csr')
+    def adj(op):
+        return clean(1j*(h@op-op@h)+sum(adjoint_jump(c,op) for _,c in jumps))
+    checks={'H_hermiticity':maxabs(h-h.getH()),
+            'trace':maxabs(adj(o['eye'])), 'resource':maxabs(adj(inventory)-resource)}
+    checks['node0']=maxabs(adj(o['n'][0])-(-currents[0]-currents[2]+.5*(o['eye']-o['n'][0])))
+    checks['node1']=maxabs(adj(o['n'][1])-(currents[0]-currents[1]))
+    checks['node2']=maxabs(adj(o['n'][2])-(currents[1]+currents[2]-.5*o['n'][2]))
+    hf=clean(h-hh_total-case['detuning']*o['n'][1])
+    for i in range(3):
+        checks[f'form_current{i}']=maxabs(hf@o['n'][i]-o['n'][i]@hf)
+        checks[f'idle_current{i}']=maxabs(sum(adjoint_jump(jd['idle_'+e],o['n'][i]) for e in EDGES))
+    if variant == 'IC1_QS':
+        checks['IC_form_zero']=maxabs(hf)
+        for e in range(3):
+            checks[f'IC_feed{e}']=maxabs(adjoint_jump(jd['feed_'+EDGES[e]],o['pl'][e])-alpha[e]*o['pr'][e]@o['c'][e])
+            checks[f'IC_balance{e}']=maxabs(adj(o['pl'][e])-feed[e]+ell[e])
+    if variant in ('QS','IC1_QS'):
+        for e in range(3):
+            checks[f'loss{e}']=maxabs(ell[e]-(.16*o['pl'][e]-.025*o['pl'][e]@o['c'][e]))
+    if max(checks.values()) > 1e-10:
+        raise ValueError('Operator identity failed: '+str(checks))
+    return dict(H=h,jumps=jumps,L=L,rows=rows,names=names,dark=dark,checks=checks,
+                case=case,currents=currents,alpha=alpha)
+
+
+===== FILE e002d_exp/plan.py =====
+"""Frozen E002d v003 cases; identities include every varied physical parameter."""
+import hashlib
+import json
+VERSION="E002d-v003"
+MODELS=("QS","RR_QS")
+EPSILON_GRID=(-.5,-.25,-.125,-.0625,0.,.0625,.125,.25,.5)
+CENTRAL_GRID=(-.125,0.,.125)
+TARGETS={"S2a":(2,5,6),"S2b":(4,3,6),"S1a":(2,1,2),"S1b":(4,1,4),
+         "M2a":(6,5,6),"M2b":(6,3,6),"M1a":(6,1,2),"M1b":(6,1,4)}
+OPERATIONS={**{k:(k,) for k in ("S2a","S2b","S1a","S1b")},
+            "S2":("S2a","S2b"),"S1":("S1a","S1b"),"M2":("M2a","M2b"),"M1":("M1a","M1b")}
+CONTRACT=dict(version=VERSION,source_physics_commit="29fe4496485c17e935b2e2ffa9c88b7d75ba6efe",
+ primary_dose=.1,secondary_doses=[.05,.2],primary_delta=.125,secondary_deltas=[.0625,.25],
+ probability_floor=1e-6,maximum_relative_denominator_uncertainty=.1,
+ primitive_absolute_floor=1e-8,resolution_multiplier=10.,
+ stationarity=dict(rhs=1e-7,drift=1e-6,flux_absolute=1e-8,flux_relative=1e-5),
+ physicality=dict(trace=1e-10,hermiticity=1e-10,minimum_eigenvalue=-1e-8),
+ refinement=dict(absolute=1e-6,relative=1e-4),operator_tolerance=1e-12,
+ structure_absolute=1e-6,structure_relative=.01,horizons=[200.,400.],
+ extension_rule="ALL_184_TO_400_IF_ANY_T200_STATIONARITY_FAILS",
+ primary_A=["E","S"],primary_B=["D_delta_0.125","CENTER_BELOW_BOTH_SAMPLED_NEIGHBORS"],
+ primary_C=["D_T_minus_D_C","QS_minus_RR_of_D_T_minus_D_C"],
+ composition="sum_of_independent_dissipators",automatic_Fano_label=False,minimum_suppression_required=None,
+ uncertainty="u=1e-8+10*(abs(fine_mean-coarse_mean)+max(fine_window_range,coarse_window_range)); interval propagation; engineering envelope, not significance or rigorous total-error bound",
+ report=dict(maximum_bytes=30*1024**2,maximum_files=500,maximum_file_bytes=8*1024**2,
+ series="0:.2:10 then multiples of 4; exact final and T200 windows at step 2",
+ diagnostics="0:2:20 then multiples of 4; full-grid extrema before sampling",
+ case_format="one .npz.xz per case: XZ around stored NPZ, NPY Fortran layout; compressed/payload hashes and bounded decoder; all bits retained; full states/full grids stay on VM"))
+
+def physics_key(c,include_dt=True):
+    fields=("model","phi_over_pi","detuning","dephasing","target","kind","gamma")
+    return tuple(c[k] for k in fields)+((c["dt"],) if include_dt else ())
+
+def case(model,target="base",kind="base",gamma=0.,dt=.005,horizon=200.,phi=0.,epsilon=0.,noise=.05):
+    c=dict(model=model,target=target,kind=kind,gamma=float(gamma),dt=float(dt),horizon=float(horizon),
+           phi_over_pi=float(phi),detuning=float(epsilon),dephasing=float(noise),family=VERSION)
+    c["id"]=("Q" if model=="QS" else "R")+"_"+hashlib.sha256(json.dumps(physics_key(c),separators=(",",":")).encode()).hexdigest()[:12]
+    return c
+
+def cases(mode="production"):
+    unique={}
+    def add(block,model,target="base",kind="base",gamma=0.,dt=.005,phi=0.,epsilon=0.,noise=.05):
+        c=case(model,target,kind,gamma,dt,phi=phi,epsilon=epsilon,noise=noise);k=physics_key(c)
+        if k not in unique:unique[k]=dict(c,blocks=[])
+        if block not in unique[k]["blocks"]:unique[k]["blocks"].append(block)
+    for model in MODELS:
+        for dt in (.005,.01):
+            add("A",model,dt=dt)
+            for target in ("S2a","S2b","S1a","S1b"):
+                for kind in ("T","C"):add("A",model,target,kind,.1,dt)
+            for target in ("S2","S1"):
+                for gamma in ((.05,.1,.2) if dt==.005 else (.1,)):
+                    for kind in ("T","C"):add("A",model,target,kind,gamma,dt)
+        for noise in (.05,.25):
+            for dt in (.005,.01):
+                for epsilon in (EPSILON_GRID if dt==.005 else CENTRAL_GRID):
+                    add("B",model,dt=dt,phi=.5,epsilon=epsilon,noise=noise)
+                for epsilon in CENTRAL_GRID:add("B",model,dt=dt,phi=0.,epsilon=epsilon,noise=noise)
+        for dt in (.005,.01):
+            for epsilon in CENTRAL_GRID:
+                add("C",model,dt=dt,phi=.5,epsilon=epsilon)
+                for target in ("M2","M1"):
+                    for kind in ("T","C"):add("C",model,target,kind,.1,dt,phi=.5,epsilon=epsilon)
+    out=list(unique.values())
+    for i,c in enumerate(out):c["label"]=f"C{i:03d}"
+    if mode=="production":return out
+    if mode=="calibration":
+        selected=[]
+        for c in out:
+            a=(c["phi_over_pi"]==0 and c["detuning"]==0 and c["dephasing"]==.05 and
+               (c["target"]=="base" or (c["target"] in ("S2a","S2","S1") and c["gamma"]==.1)))
+            b=(c["phi_over_pi"]==.5 and c["detuning"]==.125 and c["dephasing"]==.25 and c["target"]=="base")
+            d=(c["phi_over_pi"]==.5 and c["detuning"]==.125 and c["dephasing"]==.05 and c["target"] in ("M1","M2"))
+            if a or b or d:selected.append(dict(c,horizon=10.))
+        return selected
+    if mode=="smoke":
+        requests=[("QS","S2","T",0.,0.,.05),("QS","M1","C",.5,.125,.05),
+                  ("RR_QS","S1a","C",0.,0.,.05),("RR_QS","M2","T",.5,-.125,.05),
+                  ("RR_QS","base","base",.5,.125,.25)]
+        return [dict(c,horizon=2.) for c in out if
+                (c["model"],c["target"],c["kind"],c["phi_over_pi"],c["detuning"],c["dephasing"]) in requests
+                and (c["target"]=="base" or c["gamma"]==.1)]
+    raise ValueError("Unknown mode: "+mode)
+
+def counts(mode,horizon=None):
+    cs=cases(mode);steps=sum(round((c["horizon"] if horizon is None else horizon)/c["dt"]) for c in cs)
+    return dict(trajectories=len(cs),steps=steps,rhs_calls=4*steps)
+
+def comparison_graph():
+    cs=cases();by={physics_key(c):c for c in cs};edges=[]
+    for c in cs:
+        if c["dt"]==.005 and physics_key(dict(c,dt=.01)) in by:
+            edges.append(dict(kind="dt",members=[c["id"],by[physics_key(dict(c,dt=.01))]["id"]]))
+        if c["kind"]=="T":
+            ks=[c,dict(c,kind="C"),dict(c,target="base",kind="base",gamma=0.)]
+            edges.append(dict(kind="T_C_baseline",members=[by[physics_key(x)]["id"] for x in ks]))
+        if c["model"]=="QS":
+            edges.append(dict(kind="QS_RR",members=[c["id"],by[physics_key(dict(c,model="RR_QS"))]["id"]]))
+        if c["detuning"]==0 and ("B" in c["blocks"] or "C" in c["blocks"]):
+            trio=[dict(c,detuning=e) for e in CENTRAL_GRID]
+            if all(physics_key(x) in by for x in trio):
+                edges.append(dict(kind="epsilon_triple",members=[by[physics_key(x)]["id"] for x in trio]))
+    return dict(extension_cohorts=[[c["id"] for c in cs]],edges=edges)
+
+CALIBRATION_FORECAST=dict(expected_seconds=180.,lower_seconds=60.,upper_seconds=480.,
+ source="Verified E002d_CAL_v003_r001 process156.935s for48cases/72000steps; same evolution plus whole-caseXZ packaging and bounded decoding;180s forecast with60–480s range before r002")
