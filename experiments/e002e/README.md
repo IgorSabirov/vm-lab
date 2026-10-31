@@ -7,6 +7,7 @@
 Научная приёмка остаётся за пользователем.**
 
 - [Главный итог F2 и разбор отзыва](../../analysis/E002e_F2_v001/F2_RESULT.md).
+- [Новый соседский отзыв: проверка1 ноября, единственность NESS и разложение h/p](../../analysis/E002e_NEIGHBOR_REVIEW_20261101/RESULT.md).
 - [Проверка F2](F2_v001_r001_verification.json), [запуск](launches/E002e_F2_v001_r001.json).
 
 - [Статус baseline и проверенные объёмы](BASELINE_STATUS_v001.md).
