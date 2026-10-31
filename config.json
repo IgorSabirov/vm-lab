@@ -1,12 +1,12 @@
 {
   "experiment": "E002e_CALIBRATION",
-  "run_id": "E002e_SOLVER_CAL_v001_r002",
+  "run_id": "E002e_QRT_CAL_v001_r001",
   "calibration_phase": "solver",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
   "forecast": {
-    "expected_seconds": 120.0,
-    "lower_seconds": 10.0,
-    "upper_seconds": 900.0
+    "expected_seconds": 155.0,
+    "lower_seconds": 105.0,
+    "upper_seconds": 230.0
   },
   "address_space_limit_bytes": 8589934592,
   "case_ids": [
@@ -56,10 +56,11 @@
     }
   },
   "qrt_probe": {
-    "horizon": 1.0,
+    "horizon": 100.0,
     "steps": [
       0.01,
-      0.005
+      0.005,
+      0.0025
     ],
     "sample_interval": 0.1,
     "absolute_tolerance": 1e-08,
