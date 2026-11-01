@@ -1,0 +1,59 @@
+{
+  "status": "VERIFIED_GITHUB_NOT_SCIENTIFIC_ACCEPTANCE",
+  "run_id": "E002e_RESET_v001_r001",
+  "source_commit": "8bf153b67f527f0f7409163fa7f528b053a0a332",
+  "report_commit": "e00fa36ff682611ab853e853b87c4dccaf5cf942",
+  "files_verified": 42,
+  "full_process_time": {
+    "expected_seconds": 16.74080067075556,
+    "actual_seconds": 14.51559329032898,
+    "relative_deviation": -0.13292120396091855,
+    "within_declared_range": true,
+    "scope": "ENCLOSING_SERVICE_PROCESS_NO_QUEUE_OR_PUBLICATION",
+    "lower_seconds": 8.37040033537778,
+    "upper_seconds": 33.48160134151112,
+    "basis": "Original measured forecast components plus measured unclassified model orchestration after subtracting ALL recorded I/O to avoid duplication. 12 factors/low-rank setups,2x random/known solve proxy,3x density diagnostics/first verification, measured preflight and2xI/O; startup from priorVM. Final immutable verification covered by verification allowance. Random RHS is a proxy, not prediction of physical values.",
+    "actual_over_expected": 0.8670787960390814,
+    "deviation_seconds": -2.225207380426582,
+    "status": "PASS",
+    "expected_counts": {
+      "NESS": 12,
+      "response": 4,
+      "random_rhs": 0,
+      "factorizations": 12,
+      "condition_estimates": 6
+    },
+    "actual_counts": {
+      "NESS": 12,
+      "response": 4,
+      "random_rhs": 0,
+      "factorizations": 12,
+      "condition_estimates": 6
+    },
+    "environment_comparable": true,
+    "calibrated": true
+  },
+  "verification": {
+    "status": "VERIFIED",
+    "cases": [
+      {
+        "status": "VECTORS_OPERATORS_AND_DECISIONS_VERIFIED",
+        "model": "QS"
+      },
+      {
+        "status": "VECTORS_OPERATORS_AND_DECISIONS_VERIFIED",
+        "model": "RR_QS"
+      }
+    ],
+    "counts": {
+      "NESS": 12,
+      "response": 4,
+      "random_rhs": 0,
+      "factorizations": 12,
+      "condition_estimates": 6
+    },
+    "full_archive_access": false
+  },
+  "offline_verification_seconds": 1.4705244209999364,
+  "full_archive_accessed": false
+}
