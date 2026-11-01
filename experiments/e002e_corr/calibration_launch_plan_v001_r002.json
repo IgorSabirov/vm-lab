@@ -1,0 +1,63 @@
+{
+  "run_id": "E002e_CORR_CAL_v001_r002",
+  "mode": "calibration",
+  "source_commit": "TO_BE_PINNED_BEFORE_QUEUE",
+  "counts": {
+    "NESS": 3,
+    "refinement_NESS": 3,
+    "propagations": 9,
+    "block_steps": 3000,
+    "checkpoint_writes": 27,
+    "block_rhs_calls": 12000,
+    "scalar_rhs_equivalents": 24000
+  },
+  "forecast": {
+    "expected_seconds": 13.48,
+    "lower_seconds": 7.0,
+    "upper_seconds": 25.0,
+    "basis": "Same-VM E002e measured rates; 1000 RK4 block steps/model, scaled 2/3 columns. New PSD/checkpoint/verification costs are explicit provisional estimates, NOT calibrated bounds."
+  },
+  "components_seconds": {
+    "known_NESS_pairs_and_setup_proxy": 3.493870978069026,
+    "two_column_RK4_proxy": 3.5746023452569107,
+    "full_PSD_54_checks_estimate": 2.16,
+    "27_checkpoint_compressions_and_3_initial_files_estimate": 1.5,
+    "diagnostics_case_export_two_core_verifications_estimate": 2.5,
+    "process_startup_from_environment_probe": 0.25055742263793945
+  },
+  "memory_budget": {
+    "peak_additional_bytes": 1073741824,
+    "reserve_bytes": 1073741824,
+    "measured_peak_rss_bytes": 362213376,
+    "measured_peak_vm_bytes": 532467712,
+    "simultaneous_factor_storage_bytes": 135901172
+  },
+  "address_space_limit_bytes": 8589934592,
+  "kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "implementation_sha256": "9a0d07fdc3701d50fb6058e4811f94b0c2d11dcb8772d339c7921be0ede00a9b",
+  "protocol_sha256": "167fba7ef98bf91716904cbbb2c623a2e26c7173d943bb425235dc32f11883da",
+  "reference_report_commit": "a1ee51059f3b2b91c2fb1e67dd6f45a6698f65cb",
+  "current_environment_report_commit": "4f24e9ccf9ed54ed2c64b95595131f426b7fb538",
+  "forecast_limitations": [
+    "2/3 column scaling is a proxy; sparse memory traffic may not scale linearly.",
+    "Dense full-Hilbert PSD and new report/checkpoint I/O are not yet timed on VM.",
+    "Range 7..25s covers 0.5..1.5 of borrowed 7.07s compute proxy plus 3.5..14.4s unmeasured diagnostics/startup; it is a provisional calibration expectation.",
+    "First CORR calibration retains NOT_EVALUABLE runtime gate; review enclosing complete process duration before production."
+  ],
+  "science": "Known baseline sham only; no product-marginal preparation or intervention verdict",
+  "user_authorization": "2026-11-01: Дай команду на ВМ на запуск",
+  "memory_reference": "Prior same-size 14580 Liouville factorization: measured peak RSS362213376,Vm532467712,factors135901172 bytes; 1GiB forecast plus1GiB reserve under8GiB hard AS; new peak measured in this calibration.",
+  "queue_path": "data/vm_lab_queue/E002e_CORR_CAL_v001_r002.json",
+  "state": "PREPARED",
+  "launch_branch": "run/e002e-corr-cal-v001-r002",
+  "retry_of": "E002e_CORR_CAL_v001_r001",
+  "retry_reason": "Config-only removal of duplicated calibrated keyword; implementation hash unchanged; original failed attempt preserved.",
+  "prior_report_commit": "81bd5fec06af961dc306afed0e695c98322f76ab",
+  "forecast_calibrated": false,
+  "configuration_smoke_forecast": {
+    "expected_seconds": 0.1,
+    "lower_seconds": 0.03,
+    "upper_seconds": 0.5,
+    "basis": "Same-host import-only environment check took .0678s; runtime_gate performs scalar bookkeeping only."
+  }
+}
