@@ -1,0 +1,165 @@
+{
+  "runtime_gate": {
+    "expected_seconds": 13.48,
+    "lower_seconds": 7.0,
+    "upper_seconds": 25.0,
+    "basis": "Same-VM E002e measured rates; 1000 RK4 block steps/model, scaled 2/3 columns. New PSD/checkpoint/verification costs are explicit provisional estimates, NOT calibrated bounds.",
+    "actual_seconds": 9.817586846998893,
+    "actual_over_expected": 0.7283076295993244,
+    "deviation_seconds": -3.6624131530011077,
+    "status": "NOT_EVALUABLE",
+    "expected_counts": {
+      "NESS": 3,
+      "refinement_NESS": 3,
+      "propagations": 9,
+      "block_steps": 3000,
+      "checkpoint_writes": 27,
+      "block_rhs_calls": 12000,
+      "scalar_rhs_equivalents": 24000
+    },
+    "actual_counts": {
+      "NESS": 3,
+      "refinement_NESS": 3,
+      "propagations": 9,
+      "block_steps": 3000,
+      "checkpoint_writes": 27,
+      "block_rhs_calls": 12000,
+      "scalar_rhs_equivalents": 24000
+    },
+    "environment_comparable": false,
+    "calibrated": false,
+    "scope": "Worker internal measured interval; enclosing process duration must be checked separately"
+  },
+  "actual_counts": {
+    "NESS": 3,
+    "refinement_NESS": 3,
+    "propagations": 9,
+    "block_steps": 3000,
+    "checkpoint_writes": 27,
+    "block_rhs_calls": 12000,
+    "scalar_rhs_equivalents": 24000
+  },
+  "phases": [
+    {
+      "id": "full_7c1820e764ee",
+      "assembly": 0.38541151100071147,
+      "baseline": 2.0219871519948356,
+      "propagation": 2.28502629394643,
+      "total": 4.740260336024221,
+      "checkpoint_io_seconds": 0.03463336906861514,
+      "checkpoint_bytes_written": 434608,
+      "preparation_and_initial_io_seconds": 0.02403246401809156,
+      "factor_bytes": 68174456
+    },
+    {
+      "id": "full_5222212ebc04",
+      "assembly": 0.40062158898217604,
+      "baseline": 0.07796509697800502,
+      "propagation": 1.926947201951407,
+      "total": 2.447563926980365,
+      "checkpoint_io_seconds": 0.02491994184674695,
+      "checkpoint_bytes_written": 122516,
+      "preparation_and_initial_io_seconds": 0.022123363974969834,
+      "factor_bytes": 4762236
+    },
+    {
+      "id": "full_a2a1b36cf33b",
+      "assembly": 0.3967240679776296,
+      "baseline": 0.06754223100142553,
+      "propagation": 1.9806830049492419,
+      "total": 2.490647997998167,
+      "checkpoint_io_seconds": 0.025298727967310697,
+      "checkpoint_bytes_written": 122918,
+      "preparation_and_initial_io_seconds": 0.0236317950184457,
+      "factor_bytes": 3668376
+    }
+  ],
+  "environment_after": {
+    "observed_at_utc": "2026-11-01T04:02:06Z",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "logical_cpus": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_quota": null,
+    "memory_limit": null,
+    "memory_current": null,
+    "memory_available": "   15530996 kB",
+    "memory_total": "       16374620 kB",
+    "load_average": [
+      0.16162109375,
+      0.0576171875,
+      0.0107421875
+    ],
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "threadpools": [],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 201348,
+    "address_space_rlimit": [
+      8589934592,
+      8589934592
+    ],
+    "process_vm_size_bytes": 137666560,
+    "blas_library_identity": [
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+      }
+    ],
+    "cgroup_membership": "0::/system.slice/vm-lab-worker.service",
+    "cgroup_visibility": "NOT_MOUNTED_IN_JOB_NAMESPACE",
+    "process_threads": 1
+  },
+  "kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "implementation_sha256": "9a0d07fdc3701d50fb6058e4811f94b0c2d11dcb8772d339c7921be0ede00a9b",
+  "protocol_sha256": "167fba7ef98bf91716904cbbb2c623a2e26c7173d943bb425235dc32f11883da",
+  "source_commit": "da5496388a2a809e504182995ebcb7b4637e2e8f",
+  "full_manifest_hashing_seconds": 0.0015362949925474823,
+  "science": "FINITE_WINDOW_INTERVENTION_ONLY_NO_AUTOMATIC_ACCEPTANCE",
+  "report_export_seconds": 0.02389548596693203,
+  "verification_seconds": 0.05366207199404016,
+  "timing_scope": "THROUGH_FIRST_VERIFICATION; final summary/manifest rewrite and second verification require enclosing service time"
+}
