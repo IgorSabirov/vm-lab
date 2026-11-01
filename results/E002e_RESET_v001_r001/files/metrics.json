@@ -1,0 +1,141 @@
+{
+  "counts": {
+    "NESS": 12,
+    "response": 4,
+    "random_rhs": 0,
+    "factorizations": 12,
+    "condition_estimates": 6
+  },
+  "phases": [
+    {
+      "model": "QS",
+      "assembly_seconds": 0.3903707970166579,
+      "certificate_seconds": 0.2546079069725238,
+      "total_seconds": 8.03395906399237
+    },
+    {
+      "model": "RR_QS",
+      "assembly_seconds": 0.4048805730417371,
+      "certificate_seconds": 0.2844721010187641,
+      "total_seconds": 1.5835105470032431
+    }
+  ],
+  "environment_after": {
+    "observed_at_utc": "2026-11-01T05:47:08Z",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "logical_cpus": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_quota": null,
+    "memory_limit": null,
+    "memory_current": null,
+    "memory_available": "   15489940 kB",
+    "memory_total": "       16374620 kB",
+    "load_average": [
+      0.30322265625,
+      0.08837890625,
+      0.021484375
+    ],
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "threadpools": [],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 213792,
+    "address_space_rlimit": [
+      8589934592,
+      8589934592
+    ],
+    "process_vm_size_bytes": 150384640,
+    "blas_library_identity": [
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+      }
+    ],
+    "cgroup_membership": "0::/system.slice/vm-lab-worker.service",
+    "cgroup_visibility": "NOT_MOUNTED_IN_JOB_NAMESPACE",
+    "process_threads": 1,
+    "process_peak_vm_bytes": 276426752,
+    "process_peak_rss_bytes": 218923008
+  },
+  "preflight_seconds": 0.04674694500863552,
+  "io_seconds": 0.05755207280162722,
+  "implementation_sha256": "37e7e77ac98559957c4f6b2ee23c9ff0b9922fc6b05e67bacbfe051b358649f0",
+  "kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "protocol_sha256": "824216f31702e703162b078ba6ca33a73e5e7e0c93d7e15bcba89e1780cfa9c4",
+  "source_commit": "8bf153b67f527f0f7409163fa7f528b053a0a332",
+  "mode": "production",
+  "runtime_gate": {
+    "expected_seconds": 16.74080067075556,
+    "lower_seconds": 8.37040033537778,
+    "upper_seconds": 33.48160134151112,
+    "basis": "Original measured forecast components plus measured unclassified model orchestration after subtracting ALL recorded I/O to avoid duplication. 12 factors/low-rank setups,2x random/known solve proxy,3x density diagnostics/first verification, measured preflight and2xI/O; startup from priorVM. Final immutable verification covered by verification allowance. Random RHS is a proxy, not prediction of physical values.",
+    "actual_seconds": 11.979254484002013,
+    "actual_over_expected": 0.7155723743206933,
+    "deviation_seconds": -4.761546186753549,
+    "status": "PASS",
+    "expected_counts": {
+      "NESS": 12,
+      "response": 4,
+      "random_rhs": 0,
+      "factorizations": 12,
+      "condition_estimates": 6
+    },
+    "actual_counts": {
+      "NESS": 12,
+      "response": 4,
+      "random_rhs": 0,
+      "factorizations": 12,
+      "condition_estimates": 6
+    },
+    "environment_comparable": true,
+    "calibrated": true,
+    "scope": "Worker internal measured interval; enclosing process duration must be checked separately"
+  },
+  "verification_seconds": 2.2729268470429815,
+  "complete_body_seconds": 11.9792516399757,
+  "timing_scope": "Through first independent verification; final metadata and final immutable verification are covered by enclosing service duration"
+}

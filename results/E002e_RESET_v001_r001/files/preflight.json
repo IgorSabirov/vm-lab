@@ -1,0 +1,40 @@
+{
+  "counts": {
+    "NESS": 12,
+    "response": 4,
+    "random_rhs": 0,
+    "factorizations": 12,
+    "condition_estimates": 6
+  },
+  "environment": {
+    "comparable": true,
+    "missing": [],
+    "differences": [],
+    "note": "Matching manifest does not eliminate unobserved host/cgroup contention; inspect runtime deviations"
+  },
+  "threads": {
+    "status": "PASS",
+    "requested": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "measured": [],
+    "evidence_mode": "PINNED_UNMANAGED_LIBRARIES_AND_OBSERVED_PROCESS_THREAD",
+    "process_threads": 1
+  },
+  "memory": {
+    "needed_bytes": 1417590784,
+    "available_bytes": 8509755392,
+    "status": "PASS",
+    "resource_mode": "HARD_RLIMIT_AS_AND_HOST_CGROUP_UNOBSERVED",
+    "caveat": "Unknown ancestor cgroup cannot be measured inside namespace"
+  },
+  "storage": {
+    "status": "PASS",
+    "required_bytes": 134217728,
+    "reserve_bytes": 1073741824,
+    "available_bytes": 4781064192,
+    "retention": "LAST_ONLY_NO_RESUME"
+  }
+}
