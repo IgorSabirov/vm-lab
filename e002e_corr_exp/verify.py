@@ -1,13 +1,45 @@
 """Recompute finite-window scientific results from exported arrays."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import numpy as np
 from .core import analyze, prepare
-from .plan import PROTOCOL, workload, protocol_hash, implementation_hash, implementation_manifest, cases
+from .plan import PROTOCOL, workload, protocol_hash, implementation_hash, implementation_manifest, cases, thread_preflight
 from .reporting import render_result
 from .budget import forecast_components
-from e002e_exp.runtime import runtime_gate
+from e002e_exp.runtime import runtime_gate, compare_environment
+from e002e_exp.plan import pinned_file
+
+
+def verified_environment(report,cfg,metrics,preflight):
+    """Recompute from source-tree SHA-pinned calibration, never a stored flag.
+
+    The recorded current environment is still a worker measurement; independent
+    attestation/timing remains the enclosing service's acceptance responsibility.
+    """
+    before=json.loads((report/'environment_before.json').read_text())
+    after=metrics['environment_after']
+    thread_preflight(before);thread_preflight(after)
+    if not compare_environment(before,after)['comparable']:
+        raise ValueError('Recorded environment changed during execution')
+    if cfg['mode']=='production':
+        cal=pinned_file(cfg['calibration'])
+        if (cal.get('status')!='CALIBRATION_COMPLETE' or cal.get('runtime_review_status')!='REVIEWED'
+                or not re.fullmatch('[0-9a-f]{40}',cal.get('report_commit',''))
+                or cal.get('implementation_sha256')!=implementation_hash()
+                or cal.get('protocol_sha256')!=protocol_hash()
+                or cal.get('counts')!=workload(PROTOCOL['calibration_horizon'])
+                or cfg['forecast']!=cal.get('production_forecast') or cfg['memory_budget']!=cal.get('memory_budget')):
+            raise ValueError('Pinned calibration provenance/budget mismatch')
+        expected=compare_environment(cal['environment'],before)
+        if not expected['comparable']:
+            raise ValueError('Production environment differs from pinned calibration')
+    else:
+        expected=dict(comparable=False,reason='BOUNDED_FIRST_CALIBRATION_NO_CORRELATION_CUT')
+    if preflight['environment']!=expected:
+        raise ValueError('Saved environment decision differs from independent recomputation')
+    return expected
 
 
 def numeric_equal(a,b,atol=1e-13,rtol=1e-12):
@@ -89,11 +121,12 @@ def verify_report(report, full=None, model_factory=None, finalized=True):
     if metrics['actual_counts'] != workload(horizon):
         raise ValueError('Workload mismatch')
     preflight=json.loads((report/'preflight.json').read_text())
+    verified_env=verified_environment(report,cfg,metrics,preflight)
     rt=metrics['runtime_gate']
     if not isinstance(rt.get('actual_seconds'),(int,float)) or not np.isfinite(rt['actual_seconds']) or rt['actual_seconds']<0:
         raise ValueError('Invalid measured runtime')
     expected_runtime=runtime_gate(cfg['forecast'],rt['actual_seconds'],workload(horizon),metrics['actual_counts'],
-                                 preflight['environment']['comparable'],mode=='production')
+                                 verified_env['comparable'],mode=='production')
     if not numeric_equal(rt,expected_runtime):
         raise ValueError('Runtime gate differs from recomputed forecast/count/environment decision')
     records = list(report.glob('*_case.json'))

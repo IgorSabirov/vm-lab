@@ -11,7 +11,7 @@ from scipy.linalg import expm
 from e002e_exp.space import Space, liouvillian
 from e002e_exp.model import make_full
 from e002e_exp.export import write_manifest
-from e002e_exp.runtime import kernel_hash
+from e002e_exp.runtime import kernel_hash, environment, compare_environment
 from e002e_corr_exp.core import marginals, replacement, prepare, propagate, analyze, threshold_decision, physicality
 from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash, implementation_hash, thread_preflight
 from e002e_corr_exp.task import run, solve_baseline, select_observables, run_case, output_balance, atomic_npz
@@ -172,6 +172,12 @@ class PropagationTests(unittest.TestCase):
 
 
 class IntegrationTests(unittest.TestCase):
+    def setUp(self):
+        # Report verifier's repository-input loader is isolated here; the real
+        # pinned_file byte/hash validation has separate source-integrity tests.
+        loader=patch('e002e_corr_exp.verify.pinned_file',side_effect=lambda spec:self.pinned_calibration)
+        loader.start();self.addCleanup(loader.stop)
+
     def test_failure_is_saved_before_any_assembly_and_not_overwritten(self):
         with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.make_full') as builder:
             with self.assertRaises(ValueError):run({'mode':'production'},d)
@@ -183,11 +189,18 @@ class IntegrationTests(unittest.TestCase):
     def _worker(self, mode):
         model=classical_model();states,raw,_=solve_baseline(model)
         cs=cases()
+        env=environment()
         gate=dict(cases=cs,evidence={c['id']:dict(raw=raw[0]) for c in cs},
-                  counts=workload(1.),horizon=1.,environment={'comparable':False})
+                  counts=workload(1.),horizon=1.,environment=compare_environment(env,env) if mode=='production' else
+                  dict(comparable=False,reason='BOUNDED_FIRST_CALIBRATION_NO_CORRELATION_CUT'))
         cfg=dict(mode=mode,source_commit='0'*40,forecast=dict(expected_seconds=1.,lower_seconds=.01,upper_seconds=10.),
                  protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+                 calibration={'path':'synthetic_calibration.json','sha256':'0'*64},
                  memory_budget=dict(peak_additional_bytes=2**30,reserve_bytes=2**28))
+        self.pinned_calibration=dict(status='CALIBRATION_COMPLETE',runtime_review_status='REVIEWED',
+                 report_commit='1'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+                 counts=workload(PROTOCOL['calibration_horizon']),environment=env,
+                 production_forecast=cfg['forecast'],memory_budget=cfg['memory_budget'])
         return model,gate,cfg
 
     def test_complete_worker_and_semantic_tamper(self):
@@ -208,6 +221,17 @@ class IntegrationTests(unittest.TestCase):
                 np.savez_compressed(series,**arrays);write_manifest(report)
                 with self.assertRaisesRegex(ValueError,'Raw F'):verify_report(report)
                 series.write_bytes(original_bytes);write_manifest(report)
+                env_path=report/'environment_before.json';env_original=env_path.read_text()
+                modified=json.loads(env_original);modified['cpu_model']='UNMATCHED_CPU'
+                env_path.write_text(json.dumps(modified))
+                metric_path=report/'metrics.json';metric_original=metric_path.read_text()
+                m=json.loads(metric_original);m['environment_after']['cpu_model']='UNMATCHED_CPU'
+                # Saved comparison stays true and all displayed runtime fields
+                # remain a self-consistent PASS, but pinned CPU disagrees.
+                self.assertEqual(m['runtime_gate']['status'],'PASS')
+                metric_path.write_text(json.dumps(m));write_manifest(report)
+                with self.assertRaisesRegex(ValueError,'pinned calibration'):verify_report(report)
+                env_path.write_text(env_original);metric_path.write_text(metric_original);write_manifest(report)
                 p=report/(cases()[0]['id']+'_case.json');r=json.loads(p.read_text());r['result']['primary']['status']='FALSE_SUCCESS';p.write_text(json.dumps(r));write_manifest(report)
                 with self.assertRaisesRegex(ValueError,'verdict'):verify_report(report)
 

@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 101.029,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "**The three fixes are substantially closed, with one verifier gap in finding 3.** Findings 1 and 2 are closed in the supplied code: `forecast_components` accounts separately for both publications and verifications, with finalization deferred to the enclosing service; `verify_report` cross-checks each exported raw F series against sampled all-step flux.\n\nFor finding 3, changing only the runtime status is rejected. But `verify_report` recomputes that status using `preflight['environment']['comparable']` as trusted input; it does not independently validate that decision against the recorded environment and pinned calibration environment. **Repro:** in a production report whose environment comparison was false, change that preflight flag to true, recompute `metrics.runtime_gate` with the in-range recorded elapsed time, rerender `RESULT.md`/`README.md`, and rewrite the report manifest. The verifier can accept the resulting false `PASS`. Minimal fix: have verification recompute the comparison from authenticated environment inputs (or require the enclosing service to do so); add a test for this coordinated tamper, not just changing status alone.\n\nThis gap does **not** prevent the bounded sham-only calibration described: calibration mode cannot produce a runtime `PASS`, and the required enclosing-service review remains an independent gate. It does mean the report verifier alone is insufficient evidence for a production runtime `PASS`; production acceptance remains out of scope. I assessed the supplied source, not a local checkout or a fresh test run.",
+  "error": "",
+  "prompt_sha256": "a125bb2ffbafd83ec46caba7132b3189881a44f14d9d54747f977805d70ce2bc",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-11-01T03:35:24.543132+00:00"
+}
