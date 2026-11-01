@@ -1,0 +1,1829 @@
+Technical review of private vm-lab RESET implementation. User authorized this consultation. You are a numerical/code reviewer, not scientific acceptor. Do not propose changing scientific model, gamma grid, hypotheses, or thresholds. Source 4f07270ababb6d6c3b052e189485ad8666ba6931; unchanged original physical kernel. New synthetic tests: 20/20, enclosing process forecast1.6s actual1.6513043s. First failed dtype test retained. No full physical RESET NESS/response computed. Need your review BEFORE bounded calibration (known baselines and seeded random traceless RHS only). Report concrete blockers and improvements with file/line/function, and whether safe to proceed to calibration. Focus Woodbury inverse/adjoint, independent LU and GMRES targets, sign of LX=-q, residual and uncertainty propagation, calibration leakage, report verification, memory/budget accounting, actual dependency manifest, failed jobs, launch identity. No tools/network available; all code supplied below. Underlying space is complete charge-zero under Q=N_nodes x I_edges, dimensions8x27, dimension14580; node-only charge reset rank20. Original trace row is sparse, pack/unpack Fortran blockwise. Models return projected L, full H/jumps/observables. Kernel outputs physicality checks full PSD and trace; sector_check compares full state to exact allowed sector and repacking. Expected production 12 NESS plus4 response tasks,12factors6condition estimates; calibration4knownNESS plus13randomtasks,13factors6conditions. Review only, no execution. Timing proxy is provisional; measured calibration and enclosing service time will be reviewed before production.
+
+===== FILE analysis/E002e_RESET_REVIEW_v001/CONCEPT_v002.md =====
+# E002e_RESET_v002: стационарный отклик на редкие сбросы рёбер
+
+1 ноября 2026, Москва. **Уточнённый концепт после двух рецензий; ожидает
+научной приёмки пользователя. Не freeze, не разрешение производственного запуска.**
+Изменения и проверка возражений: [RESULT.md](RESULT.md). Производственный
+код RESET не написан; новых NESS и калибровок нет. Версия v001 сохранена.
+
+## 1. Вопрос и границы
+
+**Повышает или понижает редкий сброс рёбер к их исходному стационарному
+состоянию установившийся выходной поток QS?** RR_QS — заранее выбранное
+вторичное сравнение. Primary не переносится на точность временного окна.
+
+CORR установил, что начальные полные локальные матрицы не определяют весь
+будущий F(t): их произведение вместо совместной NESS меняет поток.
+Проверяем теперь стационарную функцию конкретного вмешательства. Это не
+доказательство вреда/пользы всех корреляций, квантовой специфичности,
+происхождения преимущества QS или автопоэзиса. Внешнее устройство сброса
+и исходные источники явно остаются частью постановки.
+
+## 2. Исходные данные и предлагаемый объём
+
+J=1, Φ=π/2, ε=0, v=1, φ_n=0,05, κ_in=κ_out=0,5;
+остальное — исходные случаи CORR `full_7c1820e764ee` (QS) и
+`full_5222212ebc04` (RR_QS). Hilbert 216=8×27, q=0 размерности 14580.
+γ∈{0;0,001;0,002} в единицах J. IC, новые ε/v/φ и дополнительные γ не входят.
+
+| Известная величина | QS | RR_QS |
+|---|---:|---:|
+| F₀ | 0,110926546775561 | 0,085234330506013 |
+| A₂₀=∫₀²⁰ΔF dt | 0,046451296164555 | 0,067933400612338 |
+| u_A, инженерная чувствительность | 2,6315131·10⁻⁶ | 3,2677455·10⁻⁶ |
+| ΔF(20) | +3,9732579·10⁻⁵ | −1,7516732·10⁻⁶ |
+
+Известный отчёт: `5654dff87b3b7ca9b32ec2ce2a51454316c7ac78`.
+Точные числа и хеши исходных case JSON были получены скриптом, не перепечатаны:
+[прогнозы v001](../E002e_CORR_MECHANISM_v001/proposal_predictions.json).
+В [proposal_predictions_v002.json](proposal_predictions_v002.json) те же
+числа, новые явно предложенные guards и правила решений. Просмотренные A₂₀
+являются материалом для прогноза; новый S_F пока не вычислялся.
+
+## 3. Операция и её физический смысл
+
+Для каждой модели воспроизводится её собственная NESS ρ₀. Затем один раз
+фиксируется τ_E=Tr_Nρ₀. В каждой конечной точке и при каждом применении карты
+τ_E остаётся тем же; адаптации к текущему состоянию нет:
+
+\[
+\mathcal R_E(X)=\operatorname{Tr}_E(X)\otimes\tau_E,\qquad
+\mathcal L_\gamma=\mathcal L+\gamma(\mathcal R_E-\mathcal I).
+\]
+
+Каждое пуассоновское событие заменяет рёбра независимой копией τ_E и
+сохраняет полную узловую матрицу. При baseline обе локальные матрицы
+сохраняются, как в CORR. При γ>0 текущий marginal рёбер вообще отличается
+от τ_E: вмешательство сочетает удаление N–E корреляций и закрепление рёбер.
+Это не универсальная нелинейная операция ρ→ρ_N⊗ρ_E с текущими marginals.
+
+При τ_E=Σ_aλ_a|a⟩⟨a| полный набор K_ab=I_N⊗√λ_a|a⟩⟨b| реализует
+R_E, Σ_abK_ab†K_ab=I. Поэтому γ(R_E−I) имеет Lindblad-форму.
+Каждое событие удаляет все N–E корреляции, включая классические;
+стационарная взаимная информация с ростом γ не обязана убывать.
+
+## 4. Сектор, единственность и измеряемая производная
+
+Q=N_nodes⊗I_edges; q=0 означает [X,Q]=0. Это не фиксированное население N
+или маски. R_E сохраняет q=0 при любом τ_E, поскольку Tr_E X коммутирует
+с N_nodes. Карта не проецирует состояние: off-sector и pack/unpack проверяются
+до решения и после него. Её ранг на q=0 равен 20; доказательство через образ
+карты дано в [DERIVATIONS.md](DERIVATIONS.md).
+
+Алгебраический сертификат v=0 переносится на v=1: возвращённые hopping12
+элементы не отменяют прежнюю сильную связность. Полный reset добавляет в
+H_eff только −iγI/2 и оставляет старые порождающие связи. Поэтому QS и RR
+имеют единственную полноранговую NESS при всех γ≥0. Для конечномерного
+GKSL это обеспечивает релаксацию и сходимость интеграла ниже; численная
+величина щели и размер хвоста отсюда не известны.
+
+Будущая реализация экспортирует `uniqueness_scope_v1.json` с точными
+параметрами, хешами операторов и проверками предпосылок этого доказательства.
+Текущий текст — аналитическое расширение прежнего сертификата, не новый
+численный спектральный расчёт. При несовпадении операторных условий гейт
+блокируется; minimum-norm выбор ветви или скрытая проекция запрещены.
+
+Определяем q=R_Eρ₀−ρ₀. Это точно тот же kick, что начальный сдвиг CORR.
+Решаем
+
+\[
+\mathcal L X=-q,\quad \operatorname{Tr}X=0,\quad
+S_F=\operatorname{Tr}(F X)
+=\left.\partial_\gamma F_{ss}(\gamma)\right|_0
+=\int_0^\infty\Delta F_{CORR}(t)dt.
+\]
+
+Равенство — следствие уравнений, а знак S_F — неизвестный результат.
+Новая прямая величина Δ_tail=S_F−A₂₀ публикуется с u_tail=u_S+u_A.
+Она измеряет знаковую площадь хвоста; не является временем релаксации,
+спектральной шириной или доказательством отдельной медленной моды.
+
+## 5. Гипотезы и прогнозы
+
+**Primary H_sign: S_F(QS)>0.** Прогноз мотивирован положительной A₂₀;
+последний отсчёт не даёт границы хвоста и не делает знак предрешённым.
+Для RR положительный знак — вторичный прогноз.
+
+- S−u_S>0: SUPPORTED;
+- S+u_S<0: REFUTED;
+- иначе UNRESOLVED.
+
+**Secondary H_window:** |S−A₂₀|≤0,20|A₂₀|. Проверяет достаточность прежнего
+окна для этой производной. Отказ означает хвостовую площадь вне полосы;
+он не объясняется нелинейностью конечного γ и не доказывает спектральный механизм.
+
+**Secondary weak regime:** Q_γ=(F_ss(γ)−F₀)/γ удовлетворяет
+|Q_γ−S|≤0,10|S| для обеих γ и |Q_0.002−Q_0.001|≤0,10|S|.
+Поддержка требует всех трёх проверок; любой разрешённый отказ означает
+отказ выбранного слабого режима. При отсутствии отказов и хотя бы одной
+неразрешённой проверке общий статус UNRESOLVED. Это не меняет H_sign.
+
+Центральные значения γA₂₀ **при малом хвосте и линейном режиме**:
+
+| Модель | γ=0,001 | γ=0,002 |
+|---|---:|---:|
+| QS | ΔF≈+0,000046451296 | ΔF≈+0,000092902592 |
+| RR_QS | ΔF≈+0,000067933401 | ΔF≈+0,000135866801 |
+
+Это прогнозы на основе известных данных, не новые результаты и не
+независимые подтверждения H_window. Изменение разности QS−RR вторично.
+Предсказания не переобучаются после открытия S или конечных точек.
+
+## 6. Полностью определённые интервальные правила
+
+Предлагаемые новые guards до freeze: относительный тест со знаменателем z
+выполняется только при |z|>max(10u_z,10⁻⁶). Иначе
+NOT_ASSESSED_SMALL_SIGNAL. Для H_window z=A₂₀, для слабого режима z=S.
+Guard не превращается в положительный научный порог H_sign.
+
+Для каждого |x−y|≤α|z|:
+
+\[
+\begin{array}{ll}
+SUPPORTED:& |x-y|+u_x+u_y\le\alpha\max(0,|z|-u_z),\\
+REFUTED:& \max(0,|x-y|-u_x-u_y)>\alpha(|z|+u_z),\\
+UNRESOLVED:& \text{остальные случаи.}
+\end{array}
+\]
+
+Это консервативная арифметика инженерных интервалов. Общие ошибки не
+объявляются статистически независимыми; повторяющиеся S/F₀ не дают права
+заменять сумму ошибок корнем суммы квадратов. Научные полосы 20% и 10%
+отдельны от численных гейтов.
+
+## 7. Численные гейты и контроли
+
+Прямой LU и GMRES+ILU: исходные CORR-настройки rtol=10⁻¹¹, atol=10⁻¹³;
+state/vector гейты ≤10⁻⁹, операторные тождества ≤10⁻¹⁰.
+Основная ветвь использует LU-baseline и фиксированный LU-τ_E. Итерационная
+ветвь использует собственную независимую baseline и свой фиксированный τ_E;
+разница результатов включает чувствительность к этому исходному состоянию.
+Все факторы и target-хеши сохраняются; τ_E внутри ветви не меняется.
+
+Для NESS: исходная невязка L_γρ, след, эрмитовость, полный PSD всей 216×216
+матрицы, полный PSD τ_E, sector/roundtrip и баланс F=J_in=I₁₂+I₀₂.
+Для X: L X+q, след, эрмитовость, множитель окаймления; положительность не нужна.
+Публикуются ‖L X+q‖, отношение к ‖q‖ при q≠0 и прежняя нормировка
+на max(‖q‖,1). При q=0 относительная невязка undefined, абсолютная и X=0
+проверяются отдельно. Окаймлённая матрица 14581×14581 должна быть обратима.
+
+Оценки неопределённости:
+
+\[
+u_S=\max(10^{-10},3|S_{LU}-S_{GMRES}|),
+\]
+\[
+u_{\Delta F}=\max(10^{-10},3(|F_{\gamma,LU}-F_{\gamma,GMRES}|
++|F_{0,LU}-F_{0,GMRES}|)),\qquad u_Q=u_{\Delta F}/\gamma.
+\]
+
+Предлагаемые пределы u_S≤10⁻⁶ и u_ΔF≤10⁻⁸ сохранены. Статус:
+`ENGINEERING_SOLVER_AND_BASELINE_SENSITIVITY_NOT_RIGOROUS_BOUND`.
+Невязка и оценка 1-нормы обусловленности публикуются отдельно; `onenormest`
+не доказывает верхнюю границу общей ошибки. RESIDUAL_ENVELOPE без алгоритма
+перевода невязки в ошибку наблюдаемой не заявляется. Исправление решения
+невязкой допустимо с учётом работы; обрезание спектра, проекция и скрытая
+нормировка результата запрещены.
+
+Обязательные малые точные проверки до реализации производственного запуска:
+Kraus против partial trace, линейность при фиксированном τ_E, trace/Hermiticity,
+R²=R, q=0 без проекции, положительность, знак RHS, совпадение производной
+и интеграла в точной малой модели. Полный сброс R₀(X)=ρ₀TrX должен давать
+q=0 и нулевой отклик; это контроль реализации, не отдельная физическая модель.
+Случайные PSD-примеры проверяют код; CPTP обоснована Kraus-формой.
+
+Если численный гейт не проходит, сначала NUMERICALLY_UNRESOLVED.
+Он не превращается в физическое опровержение. Непредвиденные проверки
+оформляются отдельным бюджетом, не скрываются в исходных 16 задачах.
+
+## 8. Дополнительные наблюдаемые и ресурс
+
+I₁₂/I₀₂, секторные токи, h6,p6,j6 (последнее при p6−u_p>10⁻⁶),
+trace distance нового edge marginal от τ_E и I(N:E) вторичны и не меняют
+primary. Нельзя заключать по 21% балансового вклада m6, что m6 не может
+перестраивать другие токи причинно.
+
+Публикуются
+ΔE_event=Tr[H(R_Eρ_γ−ρ_γ)], P_reset=γΔE_event;
+δinventory_event и γδinventory_event; исходные pump/break и полный
+стационарный баланс inventory. Reset не вводит прямой node-поток, но может
+обмениваться энергией и ресурсом. Эти числа не равны полной внешней цене
+подготовки и замены рёбер; автономность из них не следует.
+
+## 9. Объём, бюджет и последующие действия
+
+6 NESS × 2 метода = 12 решений; 2 X × 2 метода = 4 решения.
+Итого **16 физических задач решения** на 6 генераторных точках, до 6 LU
+и 6 ILU-факторизаций; факторы при γ=0 переиспользуются для X.
+Внутренние обратные ходы LU, коррекции невязки, применения ILU и оценка
+обусловленности имеют собственный счётчик и входят в бюджет. Они не являются
+новыми научными точками, но их стоимость нельзя прятать за числом 16.
+
+Нет полных траекторий, новых спектров, fit τ_slow, дальней ε-сетки или
+автоматического добавления IC. Производственное время ещё не откалибровано.
+Прежние около 9 с для неизменённых матриц — только историческая ориентировка;
+RESET меняет заполнение и сходимость, низкий ранг R не гарантирует старую цену.
+
+После научной приёмки: реализация и малые проверки → техническое ревью
+Copilot и проверка его замечаний → ограниченная калибровка на производственной
+ВМ → окончательный freeze научных критериев, кода, evidence, среды, памяти
+и времени → согласованный запуск. Copilot не назначает научные пороги.
+
+Калибровка γ>0: сборка/факторизация и фиксированные случайные бесследовые RHS,
+без новых физических S/F. Варианты tolerance/ILU и оценка обусловленности
+имеют заранее конечный список и бюджет. Известная γ=0 baseline допустима.
+Физические RHS открываются после научного freeze, не во время выбора порогов.
+Требуются измеренный пик памяти, запас доступной памяти, BLAS/LAPACK identity,
+полный runtime manifest и проверка источников через GitHub.
+
+Исходные source/report SHA остаются явными pin, а не удаляются ради гибкости.
+Для новой реализации хешируются reset-код, проверяющий код, импортируемое
+ядро и конфигурация зависимостей; фактические библиотеки среды сверяются
+отдельно. Большие данные остаются на ВМ; обычная приёмка идёт через GitHub.
+
+## 10. Предлагаемое решение
+
+Принять уточнения v002 при сохранении primary, двух моделей и двух ненулевых
+частот. До приёмки это подготовленный документ, не утверждённый протокол.
+При любом исходе сохраняется отдельность функционального потока, достаточности
+временного окна, линейности и более сильного вопроса о самоподдержании.
+
+
+===== FILE experiments/e002e_reset/REVIEW_RESOLUTION.md =====
+# Последний отзыв: решения перед сборкой RESET
+
+Поручение пользователя 1 ноября 2026: «Изучи мнение соседей и собери полный
+прогон». На этой основе выполняется реализация принятого вопроса v002,
+проверки, техническое ревью и ограниченная калибровка. Производственная
+заявка на новый физический результат оформляется отдельно после готовности.
+
+Приняты машиночитаемые правила, явная primary LU-ветвь без усреднения с GMRES,
+хеши ρ₀/τ/q/X, сертификаты обоих генераторов, полный PSD, настоящая относительная
+невязка, точный список случайных калибровочных RHS и счётчики всех обращений
+к факторам. В калибровке не решаются новые S_F или finite-γ NESS.
+Научные критерии фиксируются **до** калибровки и ею не изменяются.
+
+Исправления к отзыву:
+
+- τ_E=Tr_Nρ₀. В отзыве снова ошибочно написан след по рёбрам.
+- Не было ошибки применения адаптивного канала в выполненном CORR:
+  `prepare` задавал одно начальное состояние, затем действовала исходная L.
+- Используется именно Q=N_nodes⊗I_edges. Добавление рёберных зарядов
+  перенесло бы другую модель; τ_E не обязана быть диагональна в рабочем базисе.
+  Спектр τ_E сам по себе также не доказывает коммутирование с каким-либо зарядом.
+- В Kraus-выводе для общего коррелированного X надо сохранять операторные
+  блоки X_N^{bb}; результат Σ_b X_N^{bb}⊗τ_E. Замена узлового блока на I_N
+  в промежуточной формуле отзыва некорректна.
+- Малый S отключает относительный тест линейности, но не H_window: его
+  знаменатель — известная A₂₀. Знак при этом может быть разрешён.
+- Сохраняются guards v002: |z|>max(10u_z,10⁻⁶), а не предложенное новое
+  абсолютное 10⁻⁵. При предельном u_S это уже требует |S|>10⁻⁵;
+  при меньшей фактической ошибке дополнительный запрет не обоснован.
+- Интервалы учитывают неопределённость обеих сторон; `max(|S|,floor)`
+  не заменяет нижнюю/верхнюю границы |S| после guard.
+- Если остатком Taylor можно пренебречь, двухчастотный критерий даёт
+  |F''(0)|≲200|S|, не 400|S|; критерий верхней частоты даёт ≲100|S|.
+  Это условное прочтение, не измерение кривизны или доказанная граница остатка.
+- |F₀,LU−F₀,GMRES| оценивает внутрипроцессную чувствительность.
+  Сверка с опубликованным F₀ обнаруживает межпрогонный дрейф, не «гасит» его.
+
+Primary H_sign, 20%-полоса окна, 10%-линейность, QS/RR и три γ сохранены.
+Новых моделей, фитов, временных рядов или дальних ε нет. Старое ядро не правится.
+
+Технический выбор: факторизовать окаймлённую L−γI и применить rank-20 Woodbury.
+LU использует точные разреженные факторы, GMRES — точное действие полной
+матрицы с независимым ILU/Woodbury-препобусловливателем. 20 вспомогательных
+столбцов на setup, коррекции, condition-estimation и ILU applications
+считаются отдельно; число научных задач остаётся 16.
+
+
+===== FILE experiments/e002e_reset/decision_rules.json =====
+{
+  "primary": "S_F_QS > 0; LU branch",
+  "sign": {
+    "supported": "S-uS>0",
+    "refuted": "S+uS<0",
+    "otherwise": "UNRESOLVED"
+  },
+  "relative": {
+    "form": "abs(x-y)<=alpha*abs(z)",
+    "guard": "abs(z)>max(10*uz,1e-6)",
+    "supported": "abs(x-y)+ux+uy<=alpha*max(0,abs(z)-uz)",
+    "refuted": "max(0,abs(x-y)-ux-uy)>alpha*(abs(z)+uz)",
+    "otherwise": "UNRESOLVED",
+    "guard_failure": "NOT_ASSESSED_SMALL_SIGNAL"
+  },
+  "window": {
+    "alpha": 0.2,
+    "z": "A20"
+  },
+  "linearity": {
+    "alpha": 0.1,
+    "z": "S"
+  },
+  "curvature_interpretation": "Only if Taylor remainder negligible: pair ~200|S|, upper gamma ~100|S|; no curvature measurement claimed",
+  "small_S_does_not_block_window": true
+}
+
+
+===== FILE experiments/e002e_reset/error_model.json =====
+{
+  "u_S": "max(1e-10,3*abs(S_LU-S_GMRES))",
+  "cap_u_S": 1e-06,
+  "u_delta_F": "max(1e-10,3*(abs(Fgamma_LU-Fgamma_GMRES)+abs(F0_LU-F0_GMRES)))",
+  "cap_u_delta_F": 1e-08,
+  "u_Q": "u_delta_F/gamma",
+  "state_cap": 1e-09,
+  "operator_cap": 1e-10,
+  "nature": "Engineering sensitivity envelope, not rigorous total-error bound",
+  "fixed_targets": "own baseline target within each solver branch; never average"
+}
+
+
+===== FILE experiments/e002e_reset/calibration_protocol.json =====
+{
+  "status": "FROZEN_BEFORE_CALIBRATION",
+  "counts": {
+    "NESS": 4,
+    "response": 0,
+    "random_rhs": 13,
+    "factorizations": 13,
+    "condition_estimates": 6
+  },
+  "seeds": {
+    "QS": 192601,
+    "RR_QS": 192602
+  },
+  "random_distribution": "Independent standard normal real and imaginary entries in each node-charge block; Hermitian part; subtract trace*I/d; normalize packed Frobenius norm",
+  "solver_variants": [
+    {
+      "method": "lu"
+    },
+    {
+      "method": "gmres_ilu"
+    }
+  ],
+  "extra": [
+    {
+      "model": "QS",
+      "gamma": 0.002,
+      "method": "gmres_ilu",
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "ilu_drop_tol": 1e-06,
+      "ilu_fill_factor": 15.0
+    }
+  ],
+  "wall_limit_seconds": 180.0,
+  "physical_baselines": "QS/RR epsilon0 v1 known baseline only",
+  "forbidden": [
+    "response RHS Rrho0-rho0",
+    "new finite-gamma physical NESS"
+  ],
+  "condition_estimates": "LU onenormest of full bordered operator and Woodbury inverse; heuristic only"
+}
+
+
+===== FILE e002e_reset_exp/__init__.py =====
+"""Fixed-edge reset experiment; original scientific kernel is unchanged."""
+
+
+===== FILE e002e_reset_exp/budget.py =====
+"""Measured costs; low-rank inverse work is explicitly inside setup/solve costs."""
+from .plan import protocol_hash,implementation_hash
+
+
+def forecast(config,metrics,records,before):
+    main=[r for rec in records for r in rec['rows'] if r['method']!='gmres_ilu_tight']
+    components=dict(
+        assemblies_and_operator_certificates=sum(p['assembly_seconds']+p['certificate_seconds'] for p in metrics['phases']),
+        factors_and_low_rank_columns=sum(r['solver']['timing']['factor_seconds']+r['solver']['timing']['low_rank_setup_seconds'] for r in main),
+        scientific_solves_proxy=2*sum(r['solver']['timing']['solve_seconds'] for r in main),
+        condition_estimates=sum(r['solver']['timing']['condition_seconds'] for r in main),
+        density_diagnostics=3*sum(r.get('diagnostic_seconds',0.) for r in main),
+        report_verification=3*metrics['verification_seconds'],
+        measured_preflight=metrics['preflight_seconds'],
+        vector_and_metadata_io=2*metrics['io_seconds'],
+        startup_proxy=.25055742263793945)
+    expected=sum(components.values());memory=dict(config['memory_budget']);after=metrics['environment_after']
+    memory.update(measured_peak_rss_bytes=after['max_rss_kib']*1024,measured_peak_vm_bytes=after['process_vm_size_bytes'],
+        simultaneous_factor_storage_bytes=max(r['solver']['factor_storage_bytes']+r['solver']['low_rank_dense_bytes'] for r in main))
+    memory['peak_additional_bytes']=max(memory['peak_additional_bytes'],memory['measured_peak_rss_bytes'],memory['measured_peak_vm_bytes'])
+    return dict(status='CALIBRATION_COMPLETE_REVIEW_PENDING',counts=metrics['counts'],report_commit=None,
+        implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash(),environment=before,memory_budget=memory,
+        forecast_components_seconds=components,
+        production_forecast=dict(expected_seconds=expected,lower_seconds=.5*expected,upper_seconds=2*expected,
+            basis='12 measured factor/low-rank setups; 2x random+known solve proxy; 3x known density diagnostics and independent vector verification; measured preflight and 2x vector/metadata I-O; .250557s prior VM process startup proxy. Review enclosing time before accepting forecast. Extra calibration sweep excluded.'),
+        limits=['No physical finite-gamma RHS was solved in calibration.','Random RHS timing is a proxy, not a guarantee.',
+                'Factor-application timing overlaps setup/solve/condition and is not added again.',
+                'Enclosing process time and memory must be reviewed from GitHub before production.'])
+
+
+===== FILE e002e_reset_exp/certificates.py =====
+"""Operator-premise checks for the published algebraic uniqueness argument."""
+import itertools
+import numpy as np
+from scipy import sparse as sp
+from scipy.sparse.csgraph import connected_components
+from e002_exp.model import maxabs,adjoint_jump
+from e002e_exp.model import make_full
+from e002e_corr_exp.core import physicality,marginals,sector_check,array_hash
+from .core import matrix_hash,entropy
+
+
+def support_graph(H,jumps):
+    loss=sum((c.getH()@c for _,c in jumps),sp.csr_matrix(H.shape,dtype=complex))
+    if maxabs(loss-sp.diags(loss.diagonal()))>1e-12:raise ArithmeticError('Original loss is not diagonal')
+    effective=H-.5j*loss;edges=set()
+    for A in [effective,*[c for _,c in jumps]]:
+        a=A.tocoo()
+        edges.update((int(j),int(i)) for i,j,v in zip(a.row,a.col,a.data) if i!=j and abs(v)>1e-12)
+    ij=np.array(sorted(edges),int).T
+    graph=sp.csr_matrix((np.ones(len(edges)),ij),shape=H.shape)
+    count,_=connected_components(graph,directed=True,connection='strong')
+    return edges,int(count),effective
+
+
+def uniqueness(model):
+    if model['space'].d!=216:raise ValueError('Production certificate requires 216 Hilbert states')
+    old=make_full(dict(model['case'],m6_v_over_J=0.),assemble=False)
+    names=['node_dephase_'+str(i) for i in range(3)]+['edge_dephase_'+s for s in ('01','12','02')]
+    jumps=dict(model['jumps']);diags=[];projector_error=0.
+    for name in names:
+        op=jumps[name];diag=op.diagonal();spectrum=np.unique(diag)
+        if maxabs(op-sp.diags(diag))>1e-12 or len(spectrum)!=(2 if name.startswith('node') else 3):
+            raise ArithmeticError('Dephasing premise failed')
+        diags.append(diag)
+        for value in spectrum:
+            p=np.ones(len(diag),complex)
+            for other in spectrum:
+                if other!=value:p*=((diag-other)/(value-other))
+            projector_error=max(projector_error,maxabs(p-(diag==value)))
+    if np.unique(np.array(diags).T,axis=0).shape[0]!=216 or projector_error>1e-12:
+        raise ArithmeticError('Joint rank-one projectors not complete')
+    if set(dict(old['jumps']))!=set(jumps) or any(matrix_hash(c)!=matrix_hash(jumps[n]) for n,c in old['jumps']):
+        raise ArithmeticError('v change altered jumps')
+    e0,c0,h0=support_graph(old['H'],old['jumps']);e1,c1,h1=support_graph(model['H'],model['jumps'])
+    if c0!=1 or c1!=1 or not e0<=e1:raise ArithmeticError('Connectivity extension premise failed')
+    return dict(status='OPERATOR_PREMISES_VERIFIED',model=model['case']['model'],dimension=216,
+        projectors=216,projector_error=projector_error,strong_components_v0=c0,strong_components_v1=c1,
+        original_edges=len(e0),v1_edges=len(e1),lost_edges=len(e0-e1),
+        H_effective_v0_sha256=matrix_hash(h0),H_effective_v1_sha256=matrix_hash(h1),
+        jump_sha256={n:matrix_hash(c) for n,c in model['jumps']},
+        gamma_extension='All double-index Kraus jumps: sum KdagK=I, Heff_gamma=Heff_v1-i*gamma*I/2',
+        result='UNIQUE_FAITHFUL_RELAXING_NESS',numerical_gap='NOT_MEASURED')
+
+
+def state_record(model,x,reset,gamma):
+    space=model['space'];rho=space.unpack(x)
+    quality=physicality(space,x,1e-9);sector=sector_check(space,rho,rho,1e-10)
+    action=reset.certify_action(x);rx=reset.apply(x);rr=space.unpack(rx)
+    raw={}
+    for n,op in model['observables'].items():
+        value=complex(space.row(op)@x)
+        if n.startswith('C_'):raw[n]=dict(re=float(value.real),im=float(value.imag))
+        else:
+            if abs(value.imag)>1e-9:raise ArithmeticError('Complex Hermitian observable '+n)
+            raw[n]=float(value.real)
+    if max(abs(raw['F']-raw['J_h']),abs(raw['F']-raw['source']))>1e-9:
+        raise ArithmeticError('Stationary output balance failed')
+    nodes,edges=marginals(rho,reset.dimensions)
+    e=[entropy(a) for a in (nodes,edges,rho)]
+    delta=rr-rho
+    energy=float(np.trace(model['H']@delta).real)
+    inv=model['observables']['inventory']
+    inv_event=float(np.trace(inv@delta).real)
+    base_resource=1j*(model['H']@inv-inv@model['H'])+sum(adjoint_jump(c,inv) for _,c in model['jumps'])
+    resource=float(np.trace(base_resource@rho).real)
+    if abs(resource+gamma*inv_event)>1e-9:raise ArithmeticError('Inventory balance failed')
+    dissipation={name:float(np.trace(adjoint_jump(c,model['H'])@rho).real) for name,c in model['jumps']}
+    power=gamma*energy
+    if abs(sum(dissipation.values())+power)>1e-9:raise ArithmeticError('Energy balance failed')
+    distance=float(np.abs(np.linalg.eigvalsh(((edges-reset.tau)+(edges-reset.tau).conj().T)/2)).sum()/2)
+    return dict(gamma=gamma,state_sha256=array_hash(x),raw=raw,physicality=quality,sector=sector,reset_action=action,
+        correlations=dict(mutual_information=e[0]['value']+e[1]['value']-e[2]['value'],entropy_diagnostics=e,
+                          edge_trace_distance_to_target=distance),
+        energy=dict(delta_E_event=energy,P_reset=power,dissipator_power=dissipation,
+                    balance_residual=abs(sum(dissipation.values())+power),full_external_cost='NOT_MEASURED'),
+        resource=dict(delta_inventory_event=inv_event,reset_rate=gamma*inv_event,original_rate=resource,
+                      balance_residual=abs(resource+gamma*inv_event)))
+
+
+===== FILE e002e_reset_exp/core.py =====
+"""Fixed-target replacement and decisions. No state projection or clipping."""
+import hashlib
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import maxabs
+from e002e_corr_exp.core import marginals, array_hash, physicality, sector_check
+
+
+def matrix_hash(matrix):
+    a=sp.csr_matrix(matrix).copy();a.sum_duplicates();a.sort_indices();a.eliminate_zeros()
+    h=hashlib.sha256(str(a.shape).encode())
+    for x,dtype in ((a.indptr,'<i8'),(a.indices,'<i8'),(a.data,'<c16')):
+        h.update(np.asarray(x,dtype=dtype).tobytes())
+    return h.hexdigest()
+
+
+def target_check(tau, tolerance=1e-10):
+    a=np.asarray(tau,complex)
+    if a.ndim!=2 or a.shape[0]!=a.shape[1] or not np.isfinite(a).all():
+        raise ValueError('Invalid target dimensions/data')
+    eig=np.linalg.eigvalsh((a+a.conj().T)/2)
+    result=dict(trace_error=float(abs(np.trace(a)-1)),hermiticity=maxabs(a-a.conj().T),
+                minimum_eigenvalue=float(eig.min()),spectrum=eig.tolist(),sha256=array_hash(a),
+                psd_mode='FULL_EIGVALSH_DIAGNOSTIC_SYMMETRIZATION_ONLY',tolerance=tolerance)
+    if max(result['trace_error'],result['hermiticity'],-result['minimum_eigenvalue'])>tolerance:
+        raise ArithmeticError('Invalid fixed target')
+    return result
+
+
+class Reset:
+    def __init__(self, space, tau, dimensions=(8,27)):
+        self.space=space;self.dimensions=tuple(dimensions);a,b=self.dimensions
+        if space.d!=a*b:raise ValueError('Reset dimension mismatch')
+        self.tau=np.array(tau,complex,copy=True);self.target=target_check(self.tau)
+        if self.tau.shape!=(b,b):raise ValueError('Wrong edge target size')
+        self.tau.setflags(write=False)
+        # This experiment's symmetry acts on nodes only. No edge charge is assumed.
+        charge=space.charges.reshape(a,b)
+        if not np.all(charge==charge[:,0,None]):raise ValueError('Expected Q=N_nodes tensor I_edges')
+        pairs=[(i,j) for j in range(a) for i in range(a) if charge[i,0]==charge[j,0]]
+        inverse=np.full(space.d**2,-1,int);inverse[space.indices]=np.arange(space.size)
+        columns=[];rows=[];cols=[]
+        for k,(i,j) in enumerate(pairs):
+            node=np.zeros((a,a),complex);node[i,j]=1
+            columns.append(space.pack(np.kron(node,self.tau)))
+            for e in range(b):
+                pos=inverse[(i*b+e)+space.d*(j*b+e)]
+                if pos<0:raise ValueError('Partial trace outside q=0')
+                rows.append(k);cols.append(pos)
+        self.U=sp.csc_matrix(np.column_stack(columns))
+        self.V=sp.csr_matrix((np.ones(len(rows)),(rows,cols)),shape=(len(pairs),space.size))
+        self.rank=len(pairs)
+        err=maxabs(self.V@self.U-sp.eye(self.rank))
+        trace_err=maxabs((space.trace_row@self.U)@self.V-space.trace_row)
+        if max(err,trace_err)>1e-10:raise ArithmeticError('Reset idempotence/trace identity failed')
+        self.certificate=dict(rank=self.rank,rank_formula='sum squared node-charge multiplicities',
+            idempotence_core_error=err,trace_preservation_error=trace_err,
+            target=self.target,U_sha256=matrix_hash(self.U),V_sha256=matrix_hash(self.V),
+            sector_operator='N_nodes tensor I_edges',edge_charge_constraint='NOT_PRESENT')
+
+    def apply(self, x):
+        return np.asarray(self.U@(self.V@x))
+
+    def independent_action(self, x):
+        rho=self.space.unpack(x);nodes,_=marginals(rho,self.dimensions)
+        return self.space.pack(np.kron(nodes,self.tau))
+
+    def certify_action(self, x, tolerance=1e-10):
+        rho=self.space.unpack(x);y=self.apply(x);out=self.space.unpack(y)
+        sector=sector_check(self.space,rho,out,tolerance)
+        before,_=marginals(rho,self.dimensions);after,_=marginals(out,self.dimensions)
+        errors=dict(independent_action=maxabs(y-self.independent_action(x)),
+                    node_marginal=maxabs(before-after),trace=float(abs(self.space.trace(y-x))))
+        if max(errors.values())>tolerance:raise ArithmeticError('Reset action certificate failed')
+        return dict(**errors,**sector,target_sha256=self.target['sha256'],status='PASSED')
+
+
+def sign_decision(value, uncertainty):
+    validate_numbers(value,uncertainty)
+    return dict(value=float(value),uncertainty=float(uncertainty),interval=[float(value-uncertainty),float(value+uncertainty)],
+                status='SUPPORTED' if value-uncertainty>0 else 'REFUTED' if value+uncertainty<0 else 'UNRESOLVED')
+
+
+def validate_numbers(value,uncertainty):
+    if not np.isfinite([value,uncertainty]).all() or uncertainty<0:raise ValueError('Invalid interval')
+
+
+def relative_decision(x,ux,y,uy,z,uz,alpha,floor=1e-6):
+    for v,u in ((x,ux),(y,uy),(z,uz)):validate_numbers(v,u)
+    if not np.isfinite([alpha,floor]).all() or min(alpha,floor)<=0:raise ValueError('Invalid rule')
+    guard=max(10*uz,floor);d=abs(x-y);u=ux+uy
+    lower=max(0.,d-u);upper=d+u;band_lower=alpha*max(0.,abs(z)-uz);band_upper=alpha*(abs(z)+uz)
+    if abs(z)<=guard:status='NOT_ASSESSED_SMALL_SIGNAL'
+    elif upper<=band_lower:status='SUPPORTED'
+    elif lower>band_upper:status='REFUTED'
+    else:status='UNRESOLVED'
+    return dict(status=status,difference=float(x-y),uncertainty=float(u),absolute_interval=[lower,upper],
+                band_interval=[band_lower,band_upper],guard=guard,alpha=alpha)
+
+
+def analyze(primary, reference, area, area_uncertainty, gammas=(.001,.002)):
+    S=primary['S'];uS=max(1e-10,3*abs(S-reference['S']))
+    if uS>1e-6:raise ArithmeticError('Reset derivative uncertainty cap failed')
+    sign=sign_decision(S,uS);window=relative_decision(S,uS,area,area_uncertainty,area,area_uncertainty,.20)
+    finite=[]
+    for gamma in gammas:
+        key=str(gamma);p=primary['flux'][key];r=reference['flux'][key]
+        delta=p-primary['flux']['0.0'];u=max(1e-10,3*(abs(p-r)+abs(primary['flux']['0.0']-reference['flux']['0.0'])))
+        if u>1e-8:raise ArithmeticError('Finite reset uncertainty cap failed')
+        q=delta/gamma;uq=u/gamma
+        finite.append(dict(gamma=gamma,delta_F=delta,u_delta_F=u,Q=q,u_Q=uq,
+                           linearity=relative_decision(q,uq,S,uS,S,uS,.10)))
+    pair=relative_decision(finite[1]['Q'],finite[1]['u_Q'],finite[0]['Q'],finite[0]['u_Q'],S,uS,.10)
+    statuses=[r['linearity']['status'] for r in finite]+[pair['status']]
+    overall=('NOT_ASSESSED_SMALL_SIGNAL' if 'NOT_ASSESSED_SMALL_SIGNAL' in statuses else
+             'REFUTED' if 'REFUTED' in statuses else 'SUPPORTED' if all(x=='SUPPORTED' for x in statuses) else 'UNRESOLVED')
+    return dict(sign=sign,window=window,finite=finite,linearity_pair=pair,linearity_status=overall,
+                tail=sign_decision(S-area,uS+area_uncertainty),
+                tail_meaning='SIGNED_AREA_NOT_LIFETIME_OR_SPECTRAL_WIDTH',
+                uncertainty_kind='ENGINEERING_SOLVER_AND_BASELINE_SENSITIVITY_NOT_RIGOROUS_BOUND')
+
+
+def entropy(rho,tolerance=1e-9):
+    vals=np.linalg.eigvalsh((rho+rho.conj().T)/2)
+    if vals.min() < -tolerance:raise ArithmeticError('Entropy requires PSD input')
+    # Only this diagnostic uses the positive part of eigenvalues; state is not altered.
+    pos=vals[vals>0]
+    return dict(value=float(-np.sum(pos*np.log(pos))),negative_mass=float(-vals[vals<0].sum()),
+                convention='NATURAL_LOG_POSITIVE_EIGENVALUES_ONLY_STATE_UNCHANGED')
+
+
+===== FILE e002e_reset_exp/numerics.py =====
+"""Bordered shifted sparse factors + rank-20 Woodbury; independent GMRES/ILU.
+
+Every factor application is counted, including columns, residual corrections,
+preconditioner applications and inverse-norm estimation. No eigenspectrum repair.
+"""
+import time
+import numpy as np
+from scipy import sparse as sp
+from scipy import linalg
+from scipy.sparse.linalg import splu,spilu,LinearOperator,onenormest
+from e002e_exp.compat import gmres
+from e002_exp.model import maxabs
+
+
+class Solver:
+    def __init__(self,L,space,gamma=0.,reset=None,method='lu',rtol=1e-11,atol=1e-13,
+                 ilu_drop_tol=1e-5,ilu_fill_factor=10.,restart=100,maxiter=400):
+        self.L=sp.csr_matrix(L);self.space=space;self.gamma=float(gamma);self.reset=reset
+        if not np.isfinite(gamma) or gamma<0 or (gamma and reset is None):raise ValueError('Invalid reset solve')
+        if method not in ('lu','gmres_ilu'):raise ValueError('Unknown method')
+        self.method=method;self.rtol=rtol;self.atol=atol;self.restart=restart;self.maxiter=maxiter
+        self.counts=dict(task_solves=0,factor_calls=0,factor_rhs_columns=0,preconditioner_calls=0,
+                         residual_corrections=0,gmres_iterations=0,condition_estimates=0)
+        self.times=dict(factor_seconds=0.,low_rank_setup_seconds=0.,factor_application_seconds=0.,solve_seconds=0.,condition_seconds=0.)
+        n=space.size;r=space.trace_row.T/space.d
+        self.base=sp.bmat([[self.L-gamma*sp.eye(n),r],[space.trace_row,None]],format='csc')
+        tick=time.perf_counter()
+        self.factor=splu(self.base) if method=='lu' else spilu(self.base,drop_tol=ilu_drop_tol,fill_factor=ilu_fill_factor)
+        self.times['factor_seconds']=time.perf_counter()-tick
+        self.U=sp.csc_matrix((n+1,0));self.V=sp.csr_matrix((0,n+1));self.W=None;self.small=None
+        tick=time.perf_counter()
+        if gamma:
+            self.U=sp.vstack([reset.U,sp.csr_matrix((1,reset.rank))],format='csc')
+            self.V=sp.hstack([reset.V,sp.csr_matrix((reset.rank,1))],format='csr')
+            self.W=self.factor_apply(self.U.toarray())
+            self.small=np.eye(reset.rank)+gamma*(self.V@self.W)
+            self.small_factor=linalg.lu_factor(self.small)
+            if not np.isfinite(self.small).all():raise ArithmeticError('Invalid Woodbury core')
+        self.times['low_rank_setup_seconds']=time.perf_counter()-tick
+        self.operator=LinearOperator(self.base.shape,matvec=self.apply,matmat=self.apply,dtype=complex)
+        self.preconditioner=LinearOperator(self.base.shape,matvec=self.precondition,dtype=complex)
+
+    def factor_apply(self,rhs,trans='N'):
+        tick=time.perf_counter();self.counts['factor_calls']+=1
+        self.counts['factor_rhs_columns']+=1 if np.ndim(rhs)==1 else rhs.shape[1]
+        out=self.factor.solve(np.asarray(rhs,complex),trans=trans)
+        self.times['factor_application_seconds']+=time.perf_counter()-tick
+        return out
+
+    def inverse(self,rhs,adjoint=False):
+        z=self.factor_apply(rhs,'H' if adjoint else 'N')
+        if self.gamma:
+            if adjoint:
+                c=linalg.lu_solve(self.small_factor,self.U.getH()@z,trans=2)
+                z-=self.gamma*self.factor_apply(self.V.getH()@c,'H')
+            else:
+                c=linalg.lu_solve(self.small_factor,self.V@z)
+                z-=self.gamma*(self.W@c)
+        return z
+
+    def precondition(self,rhs):
+        self.counts['preconditioner_calls']+=1
+        return self.inverse(rhs)
+
+    def apply(self,x):
+        return self.base@x+self.gamma*(self.U@(self.V@x))
+
+    def equation(self,x):
+        return self.L@x+(self.gamma*(self.reset.apply(x)-x) if self.gamma else 0)
+
+    def solve(self,b=None,trace=0.):
+        b=np.zeros(self.space.size,complex) if b is None else np.asarray(b,complex)
+        if b.shape!=(self.space.size,) or not np.isfinite(b).all():raise ValueError('Invalid RHS')
+        if abs(self.space.trace(b))>1e-11:raise ValueError('RHS is not traceless')
+        rhs=np.r_[b,trace];tick=time.perf_counter();self.counts['task_solves']+=1
+        if self.method=='lu':
+            x=self.inverse(rhs)
+            for _ in range(2):
+                x+=self.inverse(rhs-self.apply(x));self.counts['residual_corrections']+=1
+        else:
+            def count(_):self.counts['gmres_iterations']+=1
+            x,info=gmres(self.operator,rhs,M=self.preconditioner,rtol=self.rtol,atol=self.atol,
+                         restart=self.restart,maxiter=self.maxiter,callback=count,callback_type='pr_norm')
+            if info!=0:raise ArithmeticError('Reset GMRES did not converge: '+str(info))
+        self.times['solve_seconds']+=time.perf_counter()-tick
+        residual=self.equation(x[:-1])-b;bnorm=float(np.linalg.norm(b));rnorm=float(np.linalg.norm(residual))
+        checks=dict(absolute_inf=maxabs(residual),absolute_2=rnorm,
+                    relative_true=None if bnorm==0 else rnorm/bnorm,
+                    relative_true_status='ZERO_RHS' if bnorm==0 else 'DEFINED',
+                    relative_normalized=rnorm/max(bnorm,1.),trace_error=float(abs(self.space.trace(x[:-1])-trace)),
+                    border_multiplier=float(abs(x[-1])))
+        if (not np.isfinite(x).all() or max(checks['absolute_inf'],checks['trace_error'],checks['border_multiplier'])>1e-9):
+            raise ArithmeticError('Original reset equation/trace failed: '+str(checks))
+        return x[:-1],checks
+
+    def condition_estimate(self):
+        if self.method!='lu':return dict(value=None,status='NOT_ESTIMATED_FOR_ILU')
+        tick=time.perf_counter();self.counts['condition_estimates']+=1
+        inverse=LinearOperator(self.base.shape,matvec=self.inverse,
+            rmatvec=lambda x:self.inverse(x,adjoint=True),matmat=self.inverse,dtype=complex)
+        # Forming rank-20 update for a norm is cheap; it is never factorized.
+        matrix=self.base+self.gamma*(self.U@self.V)
+        value=float(sp.linalg.norm(matrix,1)*onenormest(inverse))
+        self.times['condition_seconds']+=time.perf_counter()-tick
+        if not np.isfinite(value):raise ArithmeticError('Nonfinite condition diagnostic')
+        return dict(value=value,status='ONE_NORM_ESTIMATE_NOT_RIGOROUS_BOUND')
+
+    def metrics(self):
+        factor_bytes=sum(a.data.nbytes+a.indices.nbytes+a.indptr.nbytes for a in (self.factor.L,self.factor.U))
+        return dict(method=self.method,gamma=self.gamma,base_nnz=int(self.base.nnz),
+                    factor_nnz=int(self.factor.L.nnz+self.factor.U.nnz),factor_storage_bytes=int(factor_bytes),
+                    woodbury_rank=0 if self.reset is None or not self.gamma else self.reset.rank,
+                    low_rank_dense_bytes=0 if self.W is None else self.W.nbytes,
+                    counts=dict(self.counts),timing=dict(self.times),
+                    timing_note='Factor-application time is a subcomponent; do not add twice.')
+
+
+===== FILE e002e_reset_exp/plan.py =====
+"""Frozen science, workload and fail-closed launch identity for RESET."""
+import hashlib,json,os,re
+from pathlib import Path
+import numpy as np
+from e002e_exp.runtime import ROOT,kernel_files,kernel_hash,compare_environment,memory_preflight
+from e002e_exp.plan import selected_work,pinned_file
+from e002e_corr_exp.plan import thread_preflight,storage_preflight
+
+PROTOCOL=dict(version='E002e_RESET_v001',concept='E002e_RESET_v002',models=['QS','RR_QS'],
+    gammas=[0.,.001,.002],primary='S_F_QS_POSITIVE',primary_branch='LU_WITH_OWN_FIXED_BASELINE_TARGET',
+    dimensions=[8,27],q0_dimension=14580,reset_rank=20,epsilon=0.,phi_over_pi=.5,m6_v_over_J=1.,node_noise=.05,
+    state_tolerance=1e-9,operator_tolerance=1e-10,small_signal_floor_S=1e-6,small_signal_floor_A=1e-6,
+    guard_safety=10.,window_fraction=.20,linearity_fraction=.10,uncertainty_safety=3.,uncertainty_floor=1e-10,
+    maximum_u_S=1e-6,maximum_u_delta_F=1e-8,conditional_floor=1e-6,
+    calibration_seeds={'QS':192601,'RR_QS':192602},calibration_rhs_per_factor=1,
+    calibration_wall_limit_seconds=180.,calibration_extra_factor_cases=[dict(model='QS',gamma=.002,method='gmres_ilu',
+        rtol=1e-12,atol=1e-14,ilu_drop_tol=1e-6,ilu_fill_factor=15.)],
+    excluded=['IC','new_epsilon','spectral_scan','tau_fit','physical_reset_rhs_in_calibration'])
+SOLVERS=[dict(method='lu'),dict(method='gmres_ilu')]
+
+
+def canonical(value):return json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)
+def protocol_hash():return hashlib.sha256(canonical(PROTOCOL).encode()).hexdigest()
+
+
+def implementation_manifest():
+    files=set(kernel_files())|set((ROOT/'e002e_reset_exp').glob('*.py'))
+    files|={ROOT/'e002e_corr_exp'/name for name in ('__init__.py','core.py','environment.py','plan.py')}
+    files|={ROOT/pkg/'__init__.py' for pkg in ('e002_exp','e002c_exp','e002d_exp')}
+    files.add(ROOT/'experiments/e002e_reset/vm_entry.py')
+    files.add(ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json')
+    return [dict(path=p.relative_to(ROOT).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(files)]
+
+
+def implementation_hash():return hashlib.sha256(canonical(implementation_manifest()).encode()).hexdigest()
+
+
+def cases():
+    result=[]
+    for model in PROTOCOL['models']:
+        rows=[c for c in selected_work('baseline')['full'] if c['model']==model and c['epsilon']==0
+              and c['phi_over_pi']==.5 and c['node_noise']==.05 and c['m6_v_over_J']==1.]
+        if len(rows)!=1:raise ValueError('Ambiguous baseline case')
+        result.append(dict(rows[0],tasks=['NESS']))
+    return result
+
+
+def workload(mode):
+    if mode=='production':return dict(NESS=12,response=4,random_rhs=0,factorizations=12,condition_estimates=6)
+    if mode=='calibration':return dict(NESS=4,response=0,random_rhs=13,factorizations=13,condition_estimates=6)
+    raise ValueError('Invalid mode')
+
+
+def preflight(config,env,require_checkout=True):
+    allowed={'mode','source_commit','protocol_sha256','implementation_sha256','technical_review','evidence',
+             'calibration','forecast','memory_budget','science_freeze'}
+    if set(config)-allowed:raise ValueError('Unsupported override')
+    mode=config.get('mode');counts=workload(mode)
+    if config.get('protocol_sha256')!=protocol_hash() or config.get('implementation_sha256')!=implementation_hash():
+        raise ValueError('Implementation/protocol mismatch')
+    if not re.fullmatch('[0-9a-f]{40}',config.get('source_commit','')) or (require_checkout and os.environ.get('VM_SOURCE_COMMIT')!=config['source_commit']):
+        raise ValueError('Checkout identity mismatch')
+    freeze=pinned_file(config['science_freeze'])
+    if freeze.get('protocol_sha256')!=protocol_hash() or freeze.get('status')!='SCIENCE_FROZEN_BEFORE_NEW_PHYSICAL_RHS':
+        raise ValueError('Science freeze missing')
+    review=pinned_file(config['technical_review'])
+    if review.get('status')!='REVIEWED_AND_CHECKED' or review.get('implementation_sha256')!=implementation_hash():
+        raise ValueError('Current implementation not reviewed')
+    evidence=pinned_file(config['evidence'])
+    if evidence.get('protocol_sha256')!=protocol_hash():raise ValueError('Evidence protocol mismatch')
+    records={}
+    for item in evidence['cases']:
+        baseline=pinned_file(item['baseline']);corr=pinned_file(item['corr'])
+        cid=item['case_id']
+        if cid in records or baseline['id']!=cid or corr['id']!=cid:raise ValueError('Duplicate/mismatched case evidence')
+        if not baseline['quality']['pass'] or not baseline['refinement']['gate']['pass_gate']:raise ValueError('Invalid baseline evidence')
+        records[cid]=dict(baseline=baseline,corr=corr)
+    if set(records)!={c['id'] for c in cases()}:raise ValueError('Incomplete evidence')
+    for case in cases():
+        if any(records[case['id']]['baseline']['case'][k]!=case[k] for k in ('model','epsilon','phi_over_pi','node_noise','m6_v_over_J')):
+            raise ValueError('Evidence physics mismatch')
+        corr=records[case['id']]['corr']
+        if any(corr['case'][k]!=case[k] for k in ('model','epsilon','phi_over_pi','node_noise','m6_v_over_J')):
+            raise ValueError('CORR evidence physics mismatch')
+        area=corr['result']['signed_area'];u=corr['result']['area_uncertainty']
+        if not np.isfinite([area,u]).all() or u<0:raise ValueError('Invalid CORR area evidence')
+    comparison=dict(comparable=False,reason='FIRST_BOUNDED_CALIBRATION')
+    if mode=='production':
+        cal=pinned_file(config['calibration'])
+        if (cal.get('status')!='CALIBRATION_REVIEWED' or cal.get('counts')!=workload('calibration')
+                or cal.get('implementation_sha256')!=implementation_hash() or cal.get('protocol_sha256')!=protocol_hash()
+                or not re.fullmatch('[0-9a-f]{40}',cal.get('report_commit',''))):raise ValueError('Calibration identity mismatch')
+        comparison=compare_environment(cal['environment'],env)
+        if not comparison['comparable']:raise ValueError('Calibration environment changed')
+        if config['forecast']!=cal['production_forecast'] or config['memory_budget']!=cal['memory_budget']:
+            raise ValueError('Measured budget mismatch')
+    f=config['forecast']
+    if not all(np.isfinite(f[k]) for k in ('expected_seconds','lower_seconds','upper_seconds')) or not 0<f['lower_seconds']<=f['expected_seconds']<=f['upper_seconds']:
+        raise ValueError('Invalid forecast')
+    return dict(evidence=records,counts=counts,environment=comparison,threads=thread_preflight(env),
+                memory=memory_preflight(config['memory_budget'],env))
+
+
+===== FILE e002e_reset_exp/reporting.py =====
+"""Portable result <=24 KiB; primitive vectors and certificates remain available."""
+from .plan import PROTOCOL
+
+
+def render(config,metrics,records):
+    g=metrics['runtime_gate']
+    lines=[f"# E002e RESET: {config['mode']}",
+        f"Время: прогноз {g['expected_seconds']:.6g} с; факт внутреннего участка {g['actual_seconds']:.6g} с; статус {g['status']}. Полное время — по служебному run.json.",
+        f"Source: `{config['source_commit']}`. Протокол: `{metrics['protocol_sha256']}`.",
+        'J=1, Φ=π/2, ε=0, v=1, φ_n=0,05. QS и RR_QS; γ=0/0,001/0,002. Полное пространство 216, q=0:14580.',
+        f"План/факт объёма: {metrics['counts']}. Внутренние обращения к факторам учтены отдельно в каждом solver record.",
+        'Primary — знак производной S_F(QS), LU-ветвь с собственным фиксированным τ_E. GMRES проверяет решение и чувствительность к baseline; ветви не усредняются.']
+    for rec in records:
+        lines+=['',f"## {rec['model']}"]
+        if config['mode']=='calibration':
+            lines+=['Только известные baseline и закреплённые случайные бесследовые RHS. Новые S_F/F_ss(γ>0) не вычислены.']
+        else:
+            r=rec['result'];s=r['sign'];w=r['window'];tail=r['tail']
+            lines += [f"S_F={s['value']:.12g} ± {s['uncertainty']:.3g}; H_sign: {s['status']}.",
+                f"A₂₀={rec['area_reference']:.12g}; H_window: {w['status']}; Δ_tail={tail['value']:.12g} ± {tail['uncertainty']:.3g}.",
+                f"Слабый режим: {r['linearity_status']}.",
+                '', '| γ | ΔF | u_ΔF | Qγ | Линейность |','|---|---:|---:|---:|---|']
+            for p in r['finite']:lines.append(f"| {p['gamma']} | {p['delta_F']:.12g} | {p['u_delta_F']:.3g} | {p['Q']:.12g} | {p['linearity']['status']} |")
+            lines+=['','| γ | F | ΔE/event | P_reset | I(N:E) |','|---|---:|---:|---:|---:|']
+            for row in rec['rows']:
+                if row['method']=='lu':
+                    d=row['diagnostics'];lines.append(f"| {row['gamma']} | {row['raw']['F']:.12g} | {d['energy']['delta_E_event']:.8g} | {d['energy']['P_reset']:.8g} | {d['correlations']['mutual_information']:.8g} |")
+        rows=rec['rows']
+        lines += [f"Факторизации: {len(rows)}; обращения к факторам: {sum(x['solver']['counts']['factor_calls'] for x in rows)}; обработанные столбцы RHS: {sum(x['solver']['counts']['factor_rhs_columns'] for x in rows)}.",
+                  'Экспортированы обе ветви, векторы, хеши targets, невязки, PSD/sector/balance и сертификат единственности.']
+    lines+=['','## Ограничения',
+        'Интервалы инженерные; согласие решателей и onenormest не являются строгой границей общей ошибки. 20%/10% — научные полосы, численные допуски отдельны.',
+        'Каждый reset сохраняет узловое состояние и заменяет рёбра фиксированным τ_E. При конечном γ это одновременно удаление корреляций и закрепление marginal рёбер.',
+        'Δ_tail — площадь, не время релаксации или спектральная ширина. P_reset не равен полной цене внешнего устройства.',
+        'Фано, квантовая специфичность, объяснение всего преимущества QS и автопоэзис не устанавливаются. Ширина/фон остаются UNRESOLVED.',
+        'Все научные точки и диагностические векторы опубликованы; непубликованный архив для этой проверки не нужен. Результат требует приёмки пользователем.']
+    result='\n'.join(line if line.startswith('|') or not line else line+'\n' for line in lines)+'\n'
+    if len(result.encode())>24576:raise ValueError('Portable report too large')
+    return result
+
+
+===== FILE e002e_reset_exp/task.py =====
+"""Static RESET worker: calibration solves only known NESS and seeded random RHS."""
+import gc,hashlib,json,signal,time,traceback
+from pathlib import Path
+import numpy as np
+from e002_exp.model import maxabs
+from e002e_exp.model import make_full
+from e002e_exp.export import serial,write_manifest,conditional_values
+from e002e_exp.runtime import runtime_gate,kernel_hash
+from e002e_corr_exp.environment import environment
+from e002e_corr_exp.core import physicality,marginals,sector_check,array_hash
+from .core import Reset,analyze,matrix_hash
+from .numerics import Solver
+from .certificates import uniqueness,state_record
+from .plan import PROTOCOL,workload,cases,preflight,implementation_hash,implementation_manifest,protocol_hash,storage_preflight
+
+IO_SECONDS=0.
+
+
+def save(path,value):
+    global IO_SECONDS
+    tick=time.perf_counter()
+    Path(path).write_text(json.dumps(serial(value),ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+    IO_SECONDS+=time.perf_counter()-tick
+
+
+def save_vector(folder,name,x):
+    global IO_SECONDS
+    tick=time.perf_counter()
+    path=folder/(name+'.npz');np.savez_compressed(path,vector=x)
+    IO_SECONDS+=time.perf_counter()-tick
+    if path.stat().st_size>900000:raise ValueError('Published vector exceeds per-file size cap')
+    return path.name
+
+
+def random_rhs(space,seed):
+    rng=np.random.default_rng(seed);rho=np.zeros((space.d,space.d),complex)
+    for g in space.groups:
+        z=rng.normal(size=(len(g),len(g)))+1j*rng.normal(size=(len(g),len(g)))
+        rho[np.ix_(g,g)]=(z+z.conj().T)/2
+    rho-=np.trace(rho)*np.eye(space.d)/space.d
+    x=space.pack(rho);x/=np.linalg.norm(x)
+    return x
+
+
+def measure_raw(model,x):
+    out={}
+    for name,op in model['observables'].items():
+        v=complex(model['space'].row(op)@x)
+        if name.startswith('C_'):out[name]=dict(re=v.real,im=v.imag)
+        else:
+            if abs(v.imag)>1e-9:raise ArithmeticError('Complex observable')
+            out[name]=float(v.real)
+    return out
+
+
+def solve_model(model,evidence,mode,report,counts):
+    """Also exercised end-to-end on independent small-model fixtures."""
+    name=model['case']['model'];space=model['space'];production=mode=='production'
+    rows=[];branches={};states={};targets={};reset_maps={};response_vectors={};phases=[]
+    seed=PROTOCOL['calibration_seeds'][name];rhs=random_rhs(space,seed)
+    baseline_rhs=None if production else save_vector(report,name+'_random_rhs',rhs)
+    for method in ('lu','gmres_ilu'):
+        branch=dict(flux={});branches[method]=branch;states[method]={}
+        baseline_solver=Solver(model['L'],space,method=method);counts['factorizations']+=1
+        start=time.perf_counter();rho0,eq=baseline_solver.solve(trace=1.);counts['NESS']+=1
+        physicality(space,rho0,1e-9);raw0=measure_raw(model,rho0)
+        for key in ('F','J_h','source','h6','P_m6_N2','inventory'):
+            if abs(raw0[key]-evidence['baseline']['raw'][key])>1e-8:raise ArithmeticError('Published baseline mismatch: '+key)
+        tau=marginals(space.unpack(rho0),tuple(PROTOCOL['dimensions']) if space.d==216 else model['dimensions'])[1]
+        reset=Reset(space,tau,tuple(PROTOCOL['dimensions']) if space.d==216 else model['dimensions'])
+        targets[method]=tau;reset_maps[method]=reset
+        branch.update(rho0_sha256=array_hash(rho0),tau_sha256=array_hash(tau),target=reset.target)
+        save_vector(report,name+'_'+method+'_target',tau)
+        for gamma in PROTOCOL['gammas']:
+            tick=time.perf_counter()
+            if gamma==0:solver=baseline_solver;x=rho0;equation=eq
+            else:
+                solver=Solver(model['L'],space,gamma,reset,method);counts['factorizations']+=1
+                if production:x,equation=solver.solve(trace=1.);counts['NESS']+=1
+            record=dict(model=name,method=method,gamma=gamma,reset=reset.certificate)
+            if gamma==0 or production:
+                key=str(gamma);states[method][key]=x;raw=measure_raw(model,x);branch['flux'][key]=raw['F']
+                record.update(state_file=save_vector(report,f'{name}_{method}_g{gamma}',x),equation=equation,
+                              physicality=physicality(space,x,1e-9),raw=raw,reset_action=reset.certify_action(x))
+                diag_start=time.perf_counter()
+                record['diagnostics']=state_record(model,x,reset,gamma)
+                record['diagnostic_seconds']=time.perf_counter()-diag_start
+            if production and gamma==0:
+                q=reset.apply(rho0)-rho0
+                X,response_eq=solver.solve(-q,trace=0.);counts['response']+=1
+                xr=space.unpack(X)
+                if maxabs(xr-xr.conj().T)>1e-9:raise ArithmeticError('Response is not Hermitian')
+                branch['S']=float((space.row(model['observables']['F'])@X).real)
+                branch['q_sha256']=array_hash(q);branch['X_sha256']=array_hash(X)
+                branch['response_equation']=response_eq
+                branch['response_file']=save_vector(report,name+'_'+method+'_X',X)
+                branch['q_file']=save_vector(report,name+'_'+method+'_q',q)
+                branch['response_sector']=sector_check(space,xr,xr,1e-10)
+                response_vectors[method]=X
+                record['response']=dict(branch)
+            elif not production:
+                random_x,random_eq=solver.solve(rhs,trace=0.);counts['random_rhs']+=1
+                record.update(random_equation=random_eq,random_rhs_file=baseline_rhs,
+                    random_solution_file=save_vector(report,f'{name}_{method}_g{gamma}_random',random_x),
+                    random_rhs_seed=seed,physical_reset_rhs_solved=False)
+            if method=='lu':record['condition']=solver.condition_estimate();counts['condition_estimates']+=1
+            record['solver']=solver.metrics();record['elapsed_seconds']=time.perf_counter()-tick
+            rows.append(record);phases.append(dict(model=name,method=method,gamma=gamma,**record['solver']['timing']))
+            if gamma==0:del baseline_solver
+            del solver;gc.collect()
+        branch['branch_seconds']=time.perf_counter()-start
+    if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ArithmeticError('Independent targets differ')
+    for key in states['lu']:
+        if maxabs(states['lu'][key]-states['gmres_ilu'][key])>1e-9:raise ArithmeticError('NESS solver discrepancy')
+    if production:
+        if maxabs(response_vectors['lu']-response_vectors['gmres_ilu'])>1e-9:raise ArithmeticError('Response solver discrepancy')
+        result=analyze(branches['lu'],branches['gmres_ilu'],evidence['corr']['result']['signed_area'],evidence['corr']['result']['area_uncertainty'])
+        for row in rows:
+            other=next(r for r in rows if r['gamma']==row['gamma'] and r['method']!=row['method'])
+            error={k:3*abs(row['raw'][k]-other['raw'][k]) for k in row['raw'] if not k.startswith('C_')}
+            row['primitive_uncertainty']=error;row['conditional']=conditional_values(row['raw'],error)
+    else:
+        result=dict(status='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS')
+        if name=='QS':
+            extra=PROTOCOL['calibration_extra_factor_cases'][0]
+            options={k:extra[k] for k in ('method','rtol','atol','ilu_drop_tol','ilu_fill_factor')}
+            solver=Solver(model['L'],space,extra['gamma'],reset_maps['lu'],**options);counts['factorizations']+=1
+            x,eq=solver.solve(rhs);counts['random_rhs']+=1
+            rows.append(dict(model=name,method='gmres_ilu_tight',gamma=extra['gamma'],random_equation=eq,
+                random_rhs_file=baseline_rhs,random_solution_file=save_vector(report,name+'_tight_random',x),
+                physical_reset_rhs_solved=False,reset=reset_maps['lu'].certificate,solver=solver.metrics()))
+            reference=next(r for r in rows if r['method']=='lu' and r['gamma']==extra['gamma'])
+            with np.load(report/reference['random_solution_file'],allow_pickle=False) as a:comparison=maxabs(a['vector']-x)
+            if comparison>1e-8:raise ArithmeticError('Calibration tight ILU comparison failed')
+            rows[-1]['independent_random_solution_difference']=comparison
+            del solver;gc.collect()
+    return dict(model=name,case=model['case'],branches=branches,rows=rows,result=result,phases=phases,
+                area_reference=evidence['corr']['result']['signed_area'],u_area=evidence['corr']['result']['area_uncertainty'])
+
+
+def run(config,output):
+    output=Path(output)
+    if (output/'report').exists():raise FileExistsError('Refusing overwrite')
+    report=output/'report';report.mkdir(parents=True);started=time.perf_counter()
+    try:
+        return _run(config,report,started)
+    except Exception as e:
+        save(report/'failure.json',dict(type=type(e).__name__,message=str(e),elapsed_seconds=time.perf_counter()-started,traceback=traceback.format_exc()))
+        save(report/'status.json',dict(status='FAILED',scientific_acceptance=False))
+        (report/'RESULT.md').write_text('Время: NOT_EVALUABLE. Аварийное завершение.\n\n'+str(e)+'\nЧастичные данные не приняты.\n')
+        write_manifest(report);raise
+    finally:
+        signal.setitimer(signal.ITIMER_REAL,0)
+
+
+def _run(config,report,started):
+    global IO_SECONDS
+    IO_SECONDS=0.
+    before=environment();save(report/'config.json',config);save(report/'environment_before.json',before)
+    gate=preflight(config,before);gate['storage']=storage_preflight(report.parent)
+    save(report/'preflight.json',{k:v for k,v in gate.items() if k!='evidence'})
+    preflight_seconds=time.perf_counter()-started
+    if config['mode']=='calibration':
+        def alarm(*_):raise TimeoutError('Predeclared bounded calibration wall limit')
+        signal.signal(signal.SIGALRM,alarm);signal.setitimer(signal.ITIMER_REAL,PROTOCOL['calibration_wall_limit_seconds'])
+    counts=dict.fromkeys(workload(config['mode']),0);records=[];phases=[]
+    for case in cases():
+        tick=time.perf_counter();print('START',case['model'],config['mode'],flush=True)
+        model=make_full(case);assembly=time.perf_counter()-tick
+        cert_start=time.perf_counter();certificate=uniqueness(model);cert_time=time.perf_counter()-cert_start
+        save(report/(case['model']+'_uniqueness_scope_v1.json'),certificate)
+        rec=solve_model(model,gate['evidence'][case['id']],config['mode'],report,counts)
+        save(report/(case['model']+'_case.json'),rec);records.append(rec)
+        phases.append(dict(model=case['model'],assembly_seconds=assembly,certificate_seconds=cert_time,total_seconds=time.perf_counter()-tick))
+        save(report/'progress.json',dict(counts=counts,phases=phases));print('DONE',case['model'],flush=True)
+        del model;gc.collect()
+    if counts!=workload(config['mode']):raise ArithmeticError('Workload mismatch')
+    save(report/'protocol.json',PROTOCOL);save(report/'dependencies.json',implementation_manifest())
+    save(report/'status.json',dict(status='COMPLETED_NOT_ACCEPTED',mode=config['mode']))
+    entries=[dict(path=p.name,size=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(report.glob('*.npz'))]
+    save(report/'data_manifest.json',dict(full_files=entries,full_total_bytes=sum(e['size'] for e in entries),
+         published_count=len(entries),selection='All solution, target and RHS arrays; no unpublished arrays',coverage=1.))
+    metrics=dict(counts=counts,phases=phases,environment_after=environment(),
+        preflight_seconds=preflight_seconds,io_seconds=IO_SECONDS,
+        implementation_sha256=implementation_hash(),kernel_sha256=kernel_hash(),protocol_sha256=protocol_hash(),
+        source_commit=config['source_commit'],mode=config['mode'],
+        runtime_gate=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production'))
+    save(report/'metrics.json',metrics)
+    from .reporting import render
+    text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text);write_manifest(report)
+    from .verify import verify_report
+    tick=time.perf_counter();verify_report(report);verification=time.perf_counter()-tick
+    metrics.update(verification_seconds=verification,complete_body_seconds=time.perf_counter()-started,
+                   timing_scope='Through independent report verification; final metadata requires enclosing service duration')
+    metrics['runtime_gate']=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production')
+    metrics['environment_after']=environment()
+    save(report/'metrics.json',metrics);text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text)
+    if config['mode']=='calibration':
+        from .budget import forecast
+        save(report/'calibration.json',forecast(config,metrics,records,before))
+    write_manifest(report)
+    return metrics
+
+
+===== FILE e002e_reset_exp/verify.py =====
+"""Rebuild pinned operators and recompute results from exported vectors; no solves."""
+import hashlib,json
+from pathlib import Path
+import numpy as np
+from e002_exp.model import maxabs
+from e002e_exp.model import make_full
+from e002e_exp.export import conditional_values
+from e002e_exp.runtime import compare_environment,runtime_gate
+from e002e_corr_exp.core import array_hash,physicality,marginals
+from .core import Reset,analyze
+from .certificates import state_record,uniqueness
+from .plan import cases,workload,PROTOCOL,protocol_hash,implementation_hash,implementation_manifest,thread_preflight
+
+
+def equal(a,b):
+    if isinstance(a,dict) and isinstance(b,dict):return a.keys()==b.keys() and all(equal(a[k],b[k]) for k in a)
+    if isinstance(a,list) and isinstance(b,list):return len(a)==len(b) and all(equal(x,y) for x,y in zip(a,b))
+    if a is None or b is None or isinstance(a,bool) or isinstance(b,bool):return type(a)==type(b) and a==b
+    if isinstance(a,(int,float)) and isinstance(b,(int,float)):return bool(np.isfinite([a,b]).all() and np.isclose(a,b,atol=1e-12,rtol=1e-11))
+    return a==b
+
+
+def vector(report,name):
+    if not isinstance(name,str) or Path(name).name!=name:raise ValueError('Unsafe vector path')
+    with np.load(report/name,allow_pickle=False) as a:
+        if a.files!=['vector']:raise ValueError('Unexpected arrays')
+        x=a['vector'].copy()
+    if not np.isfinite(x).all():raise ValueError('Nonfinite vector')
+    return x
+
+
+def verify_case(report,rec,model,mode):
+    space=model['space'];production=mode=='production';rows=rec['rows'];branches={};targets={};states={};responses={}
+    expected={(m,g) for m in ('lu','gmres_ilu') for g in PROTOCOL['gammas']}
+    actual=[(r['method'],r['gamma']) for r in rows if r['method']!='gmres_ilu_tight']
+    if len(actual)!=len(expected) or set(actual)!=expected:raise ValueError('Case coverage mismatch')
+    if sum(r['method']=='gmres_ilu_tight' for r in rows)!=(1 if not production and rec['model']=='QS' else 0):
+        raise ValueError('Calibration extra-factor coverage mismatch')
+    for method in ('lu','gmres_ilu'):
+        branch=rec['branches'][method];rho0=vector(report,next(r['state_file'] for r in rows if r['method']==method and r['gamma']==0))
+        dims=(8,27) if space.d==216 else model['dimensions']
+        tau=marginals(space.unpack(rho0),dims)[1];reset=Reset(space,tau,dims)
+        targets[method]=tau;states[method]={}
+        if maxabs(vector(report,rec['model']+'_'+method+'_target.npz')-tau)>1e-13:raise ValueError('Exported target differs')
+        if array_hash(rho0)!=branch['rho0_sha256'] or array_hash(tau)!=branch['tau_sha256']:raise ValueError('Branch target identity mismatch')
+        if not equal(reset.target,branch['target']):raise ValueError('Target physicality differs')
+        values=dict(flux={})
+        for row in (r for r in rows if r['method']==method):
+            gamma=row['gamma']
+            if not equal(row['reset'],reset.certificate):raise ValueError('Reset certificate mismatch')
+            nsolves=int(gamma==0 or production)+int(not production or gamma==0)
+            if row['solver']['counts']['task_solves']!=nsolves:raise ValueError('Internal solve count differs')
+            if 'condition' in row and (not np.isfinite(row['condition']['value']) or row['condition']['value']<1):raise ValueError('Invalid condition estimate')
+            def equation(x):return model['L']@x+gamma*(reset.apply(x)-x)
+            if gamma==0 or production:
+                x=vector(report,row['state_file'])
+                states[method][gamma]=x
+                if x.shape!=(space.size,) or maxabs(equation(x))>1e-9:raise ValueError('NESS equation failed')
+                check=state_record(model,x,reset,gamma)
+                if not equal(check,row['diagnostics']) or not equal(check['raw'],row['raw']):raise ValueError('State observables/certificates differ')
+                values['flux'][str(gamma)]=check['raw']['F']
+                if production:
+                    other=next(r for r in rows if r['gamma']==gamma and r['method'] not in (method,'gmres_ilu_tight'))
+                    errors={k:3*abs(row['raw'][k]-other['raw'][k]) for k in row['raw'] if not k.startswith('C_')}
+                    if not equal(errors,row['primitive_uncertainty']) or not equal(conditional_values(row['raw'],errors),row['conditional']):
+                        raise ValueError('Conditional metrics mismatch')
+            if not production:
+                if row.get('physical_reset_rhs_solved') is not False:raise ValueError('Calibration has physical reset solve')
+                x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
+                from .task import random_rhs
+                if maxabs(b-random_rhs(space,PROTOCOL['calibration_seeds'][rec['model']]))>1e-13:raise ValueError('Random RHS seed/distribution differs')
+                if maxabs(equation(x)-b)>1e-9 or abs(space.trace(x))>1e-9 or abs(space.trace(b))>1e-11:
+                    raise ValueError('Random calibration equation failed')
+            elif gamma==0:
+                q=reset.apply(rho0)-rho0;X=vector(report,branch['response_file'])
+                responses[method]=X
+                if (array_hash(q)!=branch['q_sha256'] or array_hash(X)!=branch['X_sha256']
+                        or maxabs(vector(report,branch['q_file'])-q)>1e-13):raise ValueError('Response identity mismatch')
+                if maxabs(model['L']@X+q)>1e-9 or abs(space.trace(X))>1e-9:raise ValueError('Response equation failed')
+                xr=space.unpack(X)
+                if maxabs(xr-xr.conj().T)>1e-9:raise ValueError('Response Hermiticity failed')
+                values['S']=float((space.row(model['observables']['F'])@X).real)
+        if not equal(values['flux'],branch['flux']) or (production and not equal(values['S'],branch['S'])):
+            raise ValueError('Branch values mismatch')
+        branches[method]=values
+    if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ValueError('Target discrepancy')
+    if any(maxabs(states['lu'][g]-states['gmres_ilu'][g])>1e-9 for g in states['lu']):raise ValueError('State discrepancy')
+    if production:
+        if maxabs(responses['lu']-responses['gmres_ilu'])>1e-9:raise ValueError('Response discrepancy')
+        result=analyze(branches['lu'],branches['gmres_ilu'],rec['area_reference'],rec['u_area'])
+        if not equal(result,rec['result']):raise ValueError('Scientific verdict differs')
+    else:
+        if any('S' in b for b in rec['branches'].values()) or any('state_file' in r and r['gamma']!=0 for r in rows) or rec['result']['status']!='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS':raise ValueError('Calibration leaks new physics')
+        if rec['model']=='QS':
+            row=next(r for r in rows if r['method']=='gmres_ilu_tight')
+            rho0=vector(report,next(r['state_file'] for r in rows if r['method']=='lu' and r['gamma']==0))
+            reset=Reset(space,marginals(space.unpack(rho0),dims)[1],dims)
+            x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
+            ref=next(r for r in rows if r['method']=='lu' and r['gamma']==row['gamma'])
+            if (maxabs(model['L']@x+row['gamma']*(reset.apply(x)-x)-b)>1e-9 or abs(space.trace(x))>1e-9
+                or maxabs(x-vector(report,ref['random_solution_file']))>1e-8):raise ValueError('Tight random solve failed')
+    return dict(status='VECTORS_OPERATORS_AND_DECISIONS_VERIFIED',model=rec['model'])
+
+
+def verify_report(report):
+    report=Path(report);load=lambda p:json.loads((report/p).read_text())
+    manifest=load('manifest.json');paths=[e['path'] for e in manifest['files']]
+    if len(paths)!=len(set(paths)) or set(paths)!={p.name for p in report.iterdir() if p.is_file() and p.name!='manifest.json'}:
+        raise ValueError('Manifest coverage mismatch')
+    for e in manifest['files']:
+        if Path(e['path']).name!=e['path']:raise ValueError('Unsafe manifest path')
+        data=(report/e['path']).read_bytes()
+        if len(data)!=e['size'] or hashlib.sha256(data).hexdigest()!=e['sha256']:raise ValueError('Checksum mismatch')
+    cfg=load('config.json');metrics=load('metrics.json');mode=cfg['mode']
+    if load('status.json')['status']!='COMPLETED_NOT_ACCEPTED':raise ValueError('Failed/incomplete report')
+    if (load('protocol.json')!=PROTOCOL or cfg['protocol_sha256']!=protocol_hash()
+            or cfg['implementation_sha256']!=implementation_hash() or load('dependencies.json')!=implementation_manifest()):
+        raise ValueError('Implementation/protocol provenance mismatch')
+    before=load('environment_before.json');after=metrics['environment_after'];thread_preflight(before);thread_preflight(after)
+    if not compare_environment(before,after)['comparable']:raise ValueError('Environment changed during run')
+    if metrics['counts']!=workload(mode):raise ValueError('Workload mismatch')
+    from .plan import preflight
+    # preflight also revalidates pinned evidence, technical review and calibrated budgets.
+    gate=preflight(cfg,before,require_checkout=False)
+    if not equal(gate['environment'],load('preflight.json')['environment']):raise ValueError('Stored environment verdict differs')
+    rt=metrics['runtime_gate'];expected=runtime_gate(cfg['forecast'],rt['actual_seconds'],workload(mode),metrics['counts'],gate['environment']['comparable'],mode=='production')
+    if not equal(rt,expected):raise ValueError('Stored time verdict differs')
+    out=[];count=dict.fromkeys(workload(mode),0)
+    for case in cases():
+        rec=load(case['model']+'_case.json')
+        if rec['case']!=case:raise ValueError('Case changed')
+        original=gate['evidence'][case['id']]['corr']['result']
+        if rec['area_reference']!=original['signed_area'] or rec['u_area']!=original['area_uncertainty']:raise ValueError('Area evidence changed')
+        model=make_full(case)
+        if not equal(uniqueness(model),load(case['model']+'_uniqueness_scope_v1.json')):raise ValueError('Uniqueness premises differ')
+        baseline=gate['evidence'][case['id']]['baseline']['raw']
+        for row in (r for r in rec['rows'] if r['gamma']==0):
+            if any(abs(row['raw'][k]-baseline[k])>1e-8 for k in ('F','J_h','source','h6','P_m6_N2','inventory')):raise ValueError('Published baseline differs')
+        out.append(verify_case(report,rec,model,mode))
+        for row in rec['rows']:
+            count['factorizations']+=1;count['NESS']+=int('state_file' in row)
+            count['response']+=int('response' in row);count['random_rhs']+=int('random_solution_file' in row)
+            count['condition_estimates']+=int('condition' in row)
+    if count!=workload(mode):raise ValueError('Actual exported workload differs')
+    return dict(status='VERIFIED',cases=out,counts=count,full_archive_access=False)
+
+
+===== FILE experiments/e002e_reset/vm_entry.py =====
+"""Dedicated immutable launch snapshot; main's original run.py stays unchanged."""
+import json,os,re,resource,sys
+from pathlib import Path
+
+
+def bind(config,source):
+    if not re.fullmatch('[0-9a-f]{40}',source or ''):raise ValueError('Invalid launch source')
+    if config.get('source_commit') not in ('FROM_VERIFIED_VM_LAUNCHER',source):raise ValueError('Launch source mismatch')
+    return dict(config,source_commit=source)
+
+
+def main(audit=False):
+    for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):os.environ[name]='1'
+    root=Path(__file__).resolve().parent
+    if Path(os.environ.get('VM_SOURCE_DIR','/nonexistent')).resolve()!=root:raise ValueError('Launch directory mismatch')
+    outer=json.loads((root/'config.json').read_text());ceiling=outer['address_space_limit_bytes']
+    if type(ceiling) is not int or ceiling<=0:raise ValueError('Invalid memory ceiling')
+    _,hard=resource.getrlimit(resource.RLIMIT_AS)
+    if hard!=resource.RLIM_INFINITY and ceiling>hard:raise ValueError('Cannot raise memory ceiling')
+    resource.setrlimit(resource.RLIMIT_AS,(ceiling,ceiling))
+    payload=root/'reset_payload';sys.path.insert(0,str(payload))
+    from e002e_exp.runtime import ROOT,kernel_hash
+    from e002e_reset_exp.plan import implementation_hash,protocol_hash
+    config=bind(outer['worker_config'],os.environ.get('VM_SOURCE_COMMIT'))
+    if ROOT.resolve()!=payload.resolve():raise ValueError('Modules loaded outside payload')
+    if (kernel_hash()!=outer['kernel_sha256'] or implementation_hash()!=config['implementation_sha256']
+            or protocol_hash()!=config['protocol_sha256']):raise ValueError('Payload identity mismatch')
+    if audit:
+        print(json.dumps(dict(status='PAYLOAD_IDENTITY_VERIFIED',numerical_work=0,source_commit=config['source_commit'])))
+        return
+    from e002e_reset_exp.task import run
+    run(config,Path.cwd())
+
+
+if __name__=='__main__':main(audit=sys.argv[1:]==['--audit'])
+
+
+===== FILE tests/test_e002e_reset.py =====
+"""Independent small-system truth plus failures that must block scientific output."""
+import json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import numpy as np
+from scipy import sparse as sp
+from scipy.linalg import expm
+from e002_exp.model import build_liouvillian,maxabs
+from e002e_exp.space import Space
+from e002e_reset_exp.core import Reset,analyze,sign_decision,relative_decision,target_check,entropy
+from e002e_reset_exp.numerics import Solver
+from e002e_reset_exp.task import solve_model,random_rhs,measure_raw,run
+from e002e_reset_exp.verify import verify_case,verify_report
+from e002e_reset_exp.plan import workload,PROTOCOL,implementation_hash,protocol_hash
+
+
+def toy(name='QS'):
+    lower=np.array([[0.,1.],[0.,0.]]);n=lower.T@lower;I=np.eye(2)
+    H=.4*(np.kron(lower.T,lower)+np.kron(lower,lower.T))+.2*np.kron(n,I)
+    jumps=[('down_N',sp.csr_matrix(np.sqrt(.7)*np.kron(lower,I))),
+           ('up_N',sp.csr_matrix(np.sqrt(.25)*np.kron(lower.T,I))),
+           ('down_E',sp.csr_matrix(np.sqrt(.5)*np.kron(I,lower))),
+           ('up_E',sp.csr_matrix(np.sqrt(.35)*np.kron(I,lower.T)))]
+    H=sp.csr_matrix(H);L=build_liouvillian(H,jumps);space=Space(np.zeros(4,int))
+    # space.pack uses the single all-operator block with standard Fortran vec.
+    F=sp.csr_matrix(np.kron(n,I));obs=dict(F=F,J_h=F,source=F,h6=.1*F,P_m6_N2=.2*sp.eye(4),inventory=sp.eye(4))
+    model=dict(H=H,L=L,jumps=jumps,space=space,observables=obs,dimensions=(2,2),case=dict(model=name,id='toy_'+name))
+    A=L.toarray().copy();b=np.zeros(16,complex);A[-1]=space.trace_row.toarray();b[-1]=1
+    rho=np.linalg.solve(A,b);raw=measure_raw(model,rho)
+    evidence=dict(baseline=dict(raw=raw),corr=dict(result=dict(signed_area=.02,area_uncertainty=1e-7)))
+    return model,rho,evidence
+
+
+class ResetAlgebra(unittest.TestCase):
+    def test_coherent_target_against_kraus_and_dense_superoperator(self):
+        model,_,_=toy();tau=np.array([[.6,.12j],[-.12j,.4]]);R=Reset(model['space'],tau,(2,2))
+        rng=np.random.default_rng(813);x=rng.normal(size=16)+1j*rng.normal(size=16);rho=model['space'].unpack(x)
+        vals,vecs=np.linalg.eigh(tau);out=np.zeros((4,4),complex);complete=np.zeros((4,4),complex)
+        for a in range(2):
+            for b in range(2):
+                K=np.kron(np.eye(2),np.sqrt(vals[a])*np.outer(vecs[:,a],vecs[:,b].conj()))
+                out+=K@rho@K.conj().T;complete+=K.conj().T@K
+        np.testing.assert_allclose(R.apply(x),model['space'].pack(out),atol=1e-13)
+        np.testing.assert_allclose(complete,np.eye(4),atol=1e-13)
+        np.testing.assert_allclose(R.apply(2*x+1j*x),2*R.apply(x)+1j*R.apply(x),atol=1e-13)
+        self.assertEqual(R.rank,4);R.certify_action(x)
+
+    def test_nontrivial_node_charge_rank_and_no_projection(self):
+        s=Space(np.repeat([0,1,1,2],2));R=Reset(s,np.array([[.5,.2],[.2,.5]]),(4,2))
+        self.assertEqual(R.rank,6)
+        x=random_rhs(s,17);R.certify_action(x)
+        rho=s.unpack(x);rho[0,7]=.01
+        with self.assertRaises(ValueError):s.pack(rho)
+
+    def test_invalid_target(self):
+        for a in (np.eye(2),np.array([[1.2,0],[0,-.2]]),np.array([[.5,1],[0,.5]]),np.array([[np.nan]])):
+            with self.assertRaises((ValueError,ArithmeticError)):target_check(a)
+
+    def test_target_is_immutable(self):
+        m,_,_=toy();tau=np.eye(2)/2;R=Reset(m['space'],tau,(2,2));tau[0,0]=0
+        self.assertEqual(R.tau[0,0],.5)
+        with self.assertRaises(ValueError):R.tau[0,0]=0
+
+    def test_poisson_finite_rate_exact_series(self):
+        # Pure reset generator is exactly an average over Poisson event counts.
+        m,_,_=toy();R=Reset(m['space'],np.diag([.7,.3]),(2,2));x=random_rhs(m['space'],9)
+        gamma=.4;t=.8;mat=(R.U@R.V).toarray();power=np.eye(16,dtype=complex);poisson=np.zeros((16,16),complex)
+        weight=np.exp(-gamma*t)
+        for n in range(24):
+            poisson+=weight*power;power=mat@power;weight*=gamma*t/(n+1)
+        np.testing.assert_allclose(poisson@x,expm(gamma*t*(mat-np.eye(16)))@x,atol=1e-13)
+
+
+class ResetSolvers(unittest.TestCase):
+    def test_woodbury_and_adjoint_match_dense(self):
+        m,rho,_=toy();R=Reset(m['space'],np.array([[.6,.1j],[-.1j,.4]]),(2,2));rhs=random_rhs(m['space'],66)
+        for method in ('lu','gmres_ilu'):
+            s=Solver(m['L'],m['space'],.2,R,method=method)
+            x,eq=s.solve(rhs);dense=s.base.toarray()+.2*(s.U@s.V).toarray()
+            truth=np.linalg.solve(dense,np.r_[rhs,0.])[:-1]
+            np.testing.assert_allclose(x,truth,atol=1e-10)
+            if method=='lu':
+                b=np.r_[rhs,0.];np.testing.assert_allclose(s.inverse(b,True),np.linalg.solve(dense.conj().T,b),atol=1e-12)
+                self.assertGreater(s.condition_estimate()['value'],0)
+            self.assertGreaterEqual(s.counts['factor_rhs_columns'],R.rank+1)
+            self.assertLess(eq['absolute_inf'],1e-10)
+
+    def test_response_sign_integral_and_finite_difference(self):
+        from e002e_corr_exp.core import marginals
+        m,rho,_=toy();s=Solver(m['L'],m['space']);R=Reset(m['space'],marginals(m['space'].unpack(rho),(2,2))[1],(2,2))
+        q=R.apply(rho)-rho;X,_=s.solve(-q)
+        # Exact augmented exponential integral, independent of inverse formula.
+        A=np.zeros((17,17),complex);A[:16,:16]=m['L'].toarray();A[:16,16]=q
+        integral=expm(A*100)[:16,16]
+        np.testing.assert_allclose(X,integral,atol=1e-11)
+        eps=1e-5;shifted=Solver(m['L'],m['space'],eps,R);new,_=shifted.solve(trace=1.)
+        np.testing.assert_allclose((new-rho)/eps,X,rtol=1e-4,atol=1e-6)
+
+    def test_zero_response_full_reset_control(self):
+        m,rho,_=toy();q=rho*m['space'].trace(rho)-rho
+        X,eq=Solver(m['L'],m['space']).solve(-q)
+        self.assertLess(maxabs(X),1e-12)
+        _,eq=Solver(m['L'],m['space']).solve(np.zeros(16))
+        self.assertIsNone(eq['relative_true'])
+
+    def test_traceful_rhs_rejected(self):
+        m,rho,_=toy()
+        with self.assertRaises(ValueError):Solver(m['L'],m['space']).solve(rho)
+
+    def test_gmres_failure_not_pass(self):
+        m,_,_=toy()
+        with patch('e002e_reset_exp.numerics.gmres',return_value=(np.zeros(17),7)):
+            with self.assertRaises(ArithmeticError):Solver(m['L'],m['space'],method='gmres_ilu').solve(trace=1.)
+
+
+class Decisions(unittest.TestCase):
+    def test_sign_boundaries(self):
+        for s,u,expected in [(1,0,'SUPPORTED'),(-1,0,'REFUTED'),(1,1,'UNRESOLVED'),(0,0,'UNRESOLVED')]:
+            self.assertEqual(sign_decision(s,u)['status'],expected)
+
+    def test_relative_intervals_and_guard(self):
+        self.assertEqual(relative_decision(1.01,.001,1,.001,1,.001,.1)['status'],'SUPPORTED')
+        self.assertEqual(relative_decision(1.2,.001,1,.001,1,.001,.1)['status'],'REFUTED')
+        self.assertEqual(relative_decision(1.1,.02,1,.02,1,.02,.1)['status'],'UNRESOLVED')
+        self.assertEqual(relative_decision(0,0,0,0,0,0,.1)['status'],'NOT_ASSESSED_SMALL_SIGNAL')
+
+    def test_small_S_does_not_disable_window_or_sign(self):
+        a=dict(S=5e-7,flux={'0.0':.1,'0.001':.1000000005,'0.002':.100000001})
+        r=analyze(a,a,.05,1e-6)
+        self.assertEqual(r['sign']['status'],'SUPPORTED')
+        self.assertEqual(r['linearity_status'],'NOT_ASSESSED_SMALL_SIGNAL')
+        self.assertEqual(r['window']['status'],'REFUTED')
+
+    def test_caps_and_nonfinite_block(self):
+        a=dict(S=.05,flux={'0.0':.1,'0.001':.10005,'0.002':.1001})
+        with self.assertRaises(ArithmeticError):analyze(a,dict(a,S=.051),.05,1e-6)
+        b=dict(a,flux=dict(a['flux'],**{'0.001':.10006}))
+        with self.assertRaises(ArithmeticError):analyze(a,b,.05,1e-6)
+        with self.assertRaises(ValueError):sign_decision(float('nan'),0)
+
+
+class Workflow(unittest.TestCase):
+    def test_complete_worker_and_manifest_tamper(self):
+        from contextlib import ExitStack
+        from e002e_exp.export import write_manifest
+        models={n:toy(n) for n in ('QS','RR_QS')};cs=[m[0]['case'] for m in models.values()]
+        cfg=dict(mode='production',source_commit='a'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+            forecast=dict(expected_seconds=1.,lower_seconds=.1,upper_seconds=5.))
+        gate=dict(evidence={m[0]['case']['id']:m[2] for m in models.values()},counts=workload('production'),environment=dict(comparable=True))
+        with tempfile.TemporaryDirectory() as d,ExitStack() as stack:
+            for module in ('task','verify'):
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.cases',return_value=cs))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.make_full',side_effect=lambda c:models[c['model']][0]))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.uniqueness',return_value={'status':'TEST_FIXTURE'}))
+            stack.enter_context(patch('e002e_reset_exp.task.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.plan.preflight',return_value=gate))
+            run(cfg,Path(d));folder=Path(d)/'report'
+            self.assertEqual(verify_report(folder)['status'],'VERIFIED')
+            self.assertTrue((folder/'README.md').exists());self.assertTrue((folder/'data_manifest.json').exists())
+            p=folder/'QS_uniqueness_scope_v1.json';p.write_text('{}');write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'Uniqueness'):verify_report(folder)
+
+    def test_calibration_seed_tamper(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder=Path(d);m,_,e=toy();r=solve_model(m,e,'calibration',folder,dict.fromkeys(workload('calibration'),0))
+            np.savez_compressed(folder/r['rows'][0]['random_rhs_file'],vector=random_rhs(m['space'],100))
+            with self.assertRaisesRegex(ValueError,'seed'):verify_case(folder,r,m,'calibration')
+
+    def test_production_complete_small_cycle_and_tamper(self):
+        with tempfile.TemporaryDirectory() as d:
+            counts=dict.fromkeys(workload('production'),0)
+            for name in ('QS','RR_QS'):
+                m,_,e=toy(name);rec=solve_model(m,e,'production',Path(d),counts)
+                verify_case(Path(d),rec,m,'production')
+                original=rec['result']['sign']['value'];rec['result']['sign']['value']+=.1
+                with self.assertRaises(ValueError):verify_case(Path(d),rec,m,'production')
+                rec['result']['sign']['value']=original
+            self.assertEqual(counts,workload('production'))
+
+    def test_calibration_no_response_or_finite_NESS(self):
+        with tempfile.TemporaryDirectory() as d:
+            counts=dict.fromkeys(workload('calibration'),0)
+            for name in ('QS','RR_QS'):
+                m,_,e=toy(name);rec=solve_model(m,e,'calibration',Path(d),counts)
+                verify_case(Path(d),rec,m,'calibration')
+                self.assertNotIn('S',rec['branches']['lu'])
+                self.assertEqual(list(rec['branches']['lu']['flux']),['0.0'])
+            self.assertEqual(counts,workload('calibration'))
+
+    def test_published_baseline_mismatch_blocks(self):
+        m,_,e=toy();e['baseline']['raw']['F']+=.01
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(ArithmeticError):solve_model(m,e,'production',Path(d),dict.fromkeys(workload('production'),0))
+
+    def test_worker_saves_failure(self):
+        with tempfile.TemporaryDirectory() as d,patch('e002e_reset_exp.task.preflight',side_effect=ValueError('bad provenance')):
+            with self.assertRaises(ValueError):run({},Path(d))
+            self.assertEqual(json.loads((Path(d)/'report/status.json').read_text())['status'],'FAILED')
+            self.assertTrue((Path(d)/'report/failure.json').exists())
+
+
+if __name__=='__main__':unittest.main()
+
+
+===== FILE e002e_corr_exp/core.py =====
+"""Fixed-marginal preparation, finite-window propagation and interval decisions.
+
+No projection, clipping, renormalization, inferred infinite tail or Fano label.
+The replacement channel has a fixed prepared edge state for each baseline.
+"""
+import hashlib
+import time
+import numpy as np
+from e002_exp.model import maxabs
+from e002e_exp.compat import trapezoid
+from e002e_exp.numerics import ratio
+
+
+def marginals(rho, dimensions):
+    a, b = dimensions
+    rho = np.asarray(rho, complex)
+    if rho.shape != (a*b, a*b) or not np.isfinite(rho).all():
+        raise ValueError('Invalid bipartite density matrix')
+    tensor = rho.reshape(a, b, a, b)
+    return np.trace(tensor, axis1=1, axis2=3), np.trace(tensor, axis1=0, axis2=2)
+
+
+def replacement(rho, edge_reference, dimensions):
+    """Linear CPTP only for a FIXED edge_reference.
+
+    prepare chooses a target from its known baseline; the overall map from an
+    arbitrary unknown baseline to its two marginals is not a universal channel.
+    """
+    nodes, _ = marginals(rho, dimensions)
+    b = dimensions[1]
+    edge_reference = np.asarray(edge_reference, complex)
+    if (edge_reference.shape != (b, b) or not np.isfinite(edge_reference).all()
+            or maxabs(edge_reference-edge_reference.conj().T) > 1e-10
+            or abs(np.trace(edge_reference)-1) > 1e-10
+            or np.linalg.eigvalsh(edge_reference).min() < -1e-10):
+        raise ValueError('Invalid fixed reference state')
+    return np.kron(nodes, edge_reference)
+
+
+def physicality(space, state, tolerance):
+    if not np.isfinite(state).all():
+        raise ArithmeticError('Density matrix is nonfinite')
+    rho = space.unpack(state)
+    herm = maxabs(rho-rho.conj().T)
+    minimum = float(np.linalg.eigvalsh((rho+rho.conj().T)/2).min())
+    check = dict(trace_error=float(abs(space.trace(state)-1)), hermiticity=herm,
+                 minimum_eigenvalue=minimum, psd_mode='FULL_HILBERT')
+    if (not np.isfinite(state).all() or check['trace_error'] > tolerance
+            or herm > tolerance or minimum < -tolerance):
+        raise ArithmeticError('Density matrix physicality failed: '+str(check))
+    return check
+
+
+def array_hash(a):
+    a = np.ascontiguousarray(a, dtype='<c16')
+    return hashlib.sha256(str(a.shape).encode()+b'\0'+a.tobytes()).hexdigest()
+
+
+def sector_check(space, rho, product, tolerance):
+    """Certify this builder's complete q=0 block algebra, with no projection.
+
+    The 216-state model has Q=N_nodes tensor I_edges. For [rho,Q]=0,
+    [Tr_edges(rho),N_nodes]=0, hence [rho_nodes tensor rho_edges,Q]=0.
+    No per-edge superselection rule from an older 512-state model is assumed.
+    """
+    joined = np.concatenate(space.groups)
+    if not np.array_equal(np.sort(joined), np.arange(space.d)):
+        raise ValueError('Charge groups do not partition full Hilbert space')
+    outside = space.charges[:, None] != space.charges[None, :]
+    errors = dict(input_off_sector=maxabs(np.where(outside, rho, 0)),
+                  product_off_sector=maxabs(np.where(outside, product, 0)),
+                  input_roundtrip=maxabs(space.unpack(space.pack(rho))-rho),
+                  product_roundtrip=maxabs(space.unpack(space.pack(product))-product))
+    if max(errors.values()) > tolerance:
+        raise ArithmeticError('Preparation violates q=0 sector/roundtrip')
+    return errors
+
+
+def prepare(model, state, dimensions=(8, 27), tolerance=1e-10):
+    space = model['space']; rho = space.unpack(state)
+    before = physicality(space, state, tolerance)
+    nodes, edges = marginals(rho, dimensions)
+    product = replacement(rho, edges, dimensions)
+    sector = sector_check(space, rho, product, tolerance)
+    cut = space.pack(product)
+    after = physicality(space, cut, tolerance)
+    # Verify the actual packed/unpacked state, not just the formal kron target.
+    new_nodes, new_edges = marginals(space.unpack(cut), dimensions)
+    errors = dict(nodes=maxabs(nodes-new_nodes), edges=maxabs(edges-new_edges))
+    if max(errors.values()) > tolerance:
+        raise ArithmeticError('Preparation changed a marginal')
+    change = space.unpack(cut)-rho
+    distance = .5*float(np.abs(np.linalg.eigvalsh((change+change.conj().T)/2)).sum())
+    record = dict(marginal_errors=errors, sector_errors=sector,
+                  sector_contract='COMPLETE_Q0_CHARGE_BLOCKS_NO_PROJECTION',
+                  preparation_type='PRODUCT_OF_KNOWN_BASELINE_MARGINALS_FIXED_TARGET',
+                  universal_cptp_channel=False,
+                  hashes={n:array_hash(a) for n,a in (('state',state),('cut',cut),('nodes',nodes),('edges',edges))},
+                  marginal_spectra=dict(nodes=np.linalg.eigvalsh((nodes+nodes.conj().T)/2).tolist(),
+                                        edges=np.linalg.eigvalsh((edges+edges.conj().T)/2).tolist()),
+                  sham_physicality=before, cut_physicality=after,
+                  trace_distance=distance, frobenius_distance=float(np.linalg.norm(change)),
+                  delta_energy=float(np.trace(model['H']@change).real),
+                  external_preparation_cost='NOT_ASSUMED_ZERO_NOT_MEASURED',
+                  removed_correlations='ALL_NODE_EDGE_CORRELATIONS_NOT_ONLY_ENTANGLEMENT')
+    return np.column_stack((state, cut)), record
+
+
+def grid_steps(horizon, dt, interval):
+    if not np.isfinite([horizon, dt, interval]).all() or min(horizon, dt, interval) <= 0:
+        raise ValueError('Invalid finite time grid')
+    n, stride = round(horizon/dt), round(interval/dt)
+    if n < 1 or stride < 1 or abs(n*dt-horizon) > 1e-10 or abs(stride*dt-interval) > 1e-10 or n % stride:
+        raise ValueError('Grid must contain exact integral steps and endpoint')
+    return n, stride
+
+
+def propagate(model, initial, *, horizon, dt, sample_interval, physicality_interval,
+              tolerance=1e-9, checkpoint=None, density_checks=True):
+    """Two density columns (sham/cut), RK4; retain flux at EVERY step.
+
+    Other observables are retained on the declared common grid. Physicality
+    is checked at the declared checkpoints, not claimed between checkpoints.
+    density_checks=False is reserved for synthetic calibration vectors.
+    """
+    steps, stride = grid_steps(horizon, dt, sample_interval)
+    _, check_stride = grid_steps(horizon, dt, physicality_interval)
+    space = model['space']; L = model['L']; y = np.asarray(initial, complex).copy()
+    if y.shape != (space.size, 2) or not np.isfinite(y).all():
+        raise ValueError('Expected two finite state columns')
+    names = tuple(model['observables']); rows = np.vstack([space.row(model['observables'][n]) for n in names])
+    frow = space.row(model['observables']['F'])
+    times = np.arange(steps+1)*dt; flux = np.empty((steps+1, 2))
+    output = []; checks = []; trace0 = space.trace(y)
+    start = time.perf_counter()
+    for step in range(steps+1):
+        if step:
+            a = L@y; b = L@(y+dt*a/2); c = L@(y+dt*b/2); d = L@(y+dt*c)
+            y += dt*(a+2*b+2*c+d)/6
+        f = frow@y
+        if not np.isfinite(y).all() or maxabs(f.imag) > tolerance:
+            raise ArithmeticError('Evolution is nonfinite or flux is complex')
+        flux[step] = f.real
+        if step % stride == 0:
+            output.append(rows@y)
+        if step % check_stride == 0:
+            if maxabs(space.trace(y)-trace0) > tolerance:
+                raise ArithmeticError('Evolution trace drift')
+            if density_checks:
+                checks.append(dict(time=float(times[step]), states=[physicality(space, y[:, k], tolerance) for k in range(2)]))
+            if checkpoint:
+                checkpoint(step, float(times[step]), y)
+    return dict(time=times, flux=flux, sample_time=times[::stride], raw=np.asarray(output), names=names,
+                time_index=np.arange(steps+1), sample_index=np.arange(steps+1)[::stride], dt=float(dt),
+                final=y, checks=checks, steps=steps, checkpoint_calls=steps//check_stride+1,
+                block_rhs_calls=4*steps,
+                scalar_rhs_equivalents=8*steps, elapsed_seconds=time.perf_counter()-start)
+
+
+def threshold_decision(value, uncertainty, threshold):
+    if (not np.isfinite([value, uncertainty, threshold]).all()
+            or value < 0 or uncertainty < 0 or threshold <= 0):
+        raise ValueError('Invalid nonnegative interval')
+    lo, hi = max(0., value-uncertainty), value+uncertainty
+    status = ('MARGINAL_SUFFICIENCY_REJECTED_AT_DECLARED_RESOLUTION' if lo > threshold else
+              'MARGINAL_SUFFICIENCY_NOT_REJECTED_IN_WINDOW' if hi < threshold else 'UNRESOLVED')
+    return dict(value=value, uncertainty=uncertainty, interval=[lo, hi], threshold=threshold, status=status)
+
+
+def analyze(fine, coarse, reference, *, baseline_flux, reference_flux, policy):
+    for run in (fine, coarse, reference):
+        if not np.isfinite(run['flux']).all():
+            raise ValueError('Nonfinite trajectory')
+    def same_grid(a,b):
+        return a.shape == b.shape and np.allclose(a,b,rtol=0.,atol=1e-12)
+    if (not same_grid(fine['time'], reference['time'])
+            or not same_grid(fine['sample_time'], coarse['sample_time'])
+            or not same_grid(fine['sample_time'], reference['sample_time'])
+            or fine['names'] != coarse['names'] or fine['names'] != reference['names']):
+        raise ValueError('Comparison grids or observables differ')
+    if abs(fine['time'][-1]-coarse['time'][-1]) > 1e-12:
+        raise ValueError('Comparison horizons differ')
+    if baseline_flux <= 1e-6 or reference_flux <= 1e-6:
+        raise ValueError('Unresolved normalization flux')
+    # Fixed numerical caps are independent of the scientific threshold.
+    comparisons = {}
+    for name, other in (('dt', coarse), ('initial_condition_and_solver_sensitivity', reference)):
+        err = abs(fine['raw']-other['raw'])
+        scale = policy['raw_absolute_tolerance']+policy['raw_relative_tolerance']*np.maximum(abs(fine['raw']), abs(other['raw']))
+        comparisons[name] = dict(max_abs=float(err.max()), max_scaled=float((err/scale).max()), passed=bool(np.all(err <= scale)))
+    if not all(x['passed'] for x in comparisons.values()):
+        raise ArithmeticError('Trajectory refinement failed: '+str(comparisons))
+    t = fine['time']; H = float(t[-1]); delta = fine['flux'][:, 1]-fine['flux'][:, 0]
+    dc = coarse['flux'][:, 1]-coarse['flux'][:, 0]; dr = reference['flux'][:, 1]-reference['flux'][:, 0]
+    u = policy['absolute_floor']+policy['safety']*(abs(delta-np.interp(t, coarse['time'], dc))+abs(delta-dr))
+    area = float(trapezoid(abs(delta), t)); u_area = float(trapezoid(u, t))
+    uf = policy['absolute_floor']+policy['safety']*abs(baseline_flux-reference_flux)
+    R = ratio(area, H*baseline_flux, u_area, H*uf)
+    if R['value'] is None or R['uncertainty'] is None or R['uncertainty'] > policy['maximum_metric_uncertainty']:
+        raise ArithmeticError('Primary uncertainty is unresolved or exceeds fixed cap')
+    verdict = threshold_decision(R['value'], R['uncertainty'], policy['primary_threshold'])
+    raw_error = policy['absolute_floor']+policy['safety']*(abs(fine['raw']-coarse['raw'])+abs(fine['raw']-reference['raw']))
+    h = fine['names'].index('h6'); p = fine['names'].index('P_m6_N2')
+    conditional = []
+    for i, ti in enumerate(fine['sample_time']):
+        row = []
+        for k in range(2):
+            hh, pp = fine['raw'][i, h, k], fine['raw'][i, p, k]
+            if max(abs(hh.imag), abs(pp.imag)) > policy['raw_absolute_tolerance']:
+                raise ArithmeticError('Conditional primitive is complex')
+            row.append(ratio(float(hh.real), float(pp.real), float(raw_error[i, h, k]), float(raw_error[i, p, k])))
+        conditional.append(dict(time=float(ti), sham=row[0], cut=row[1]))
+    peak = int(np.argmax(abs(delta)))
+    sham_drift = float(np.max(abs(fine['flux'][:, 0]-baseline_flux)))
+    reference_sham_drift = float(np.max(abs(reference['flux'][:,0]-reference_flux)))
+    coarse_sham_drift = float(np.max(abs(coarse['flux'][:,0]-baseline_flux)))
+    if max(sham_drift, reference_sham_drift, coarse_sham_drift) > policy['maximum_sham_drift']:
+        raise ArithmeticError('Sham stationary drift exceeds fixed cap')
+    return dict(primary=verdict, area_absolute=area, area_uncertainty=u_area,
+                signed_area=float(trapezoid(delta, t)), peak_relative=float(abs(delta[peak])/baseline_flux),
+                time_peak=float(t[peak]), final_delta_flux=float(delta[-1]), sham_drift=sham_drift,
+                reference_sham_drift=reference_sham_drift, coarse_sham_drift=coarse_sham_drift,
+                refinement=comparisons,
+                uncertainty_kind='ENGINEERING_DT_AND_INITIAL_CONDITION_SOLVER_SENSITIVITY_NOT_RIGOROUS_TOTAL_BOUND',
+                tail_status='FINITE_WINDOW_ONLY', conditional=conditional, raw_uncertainty=raw_error)
+
+
+===== FILE e002e_exp/space.py =====
+"""Charge-covariant q=0 Liouvillian, without a dense Liouville matrix."""
+from dataclasses import dataclass
+import numpy as np
+from scipy import sparse as sp
+from e002_exp.model import clean, maxabs
+
+
+@dataclass
+class Space:
+    charges: np.ndarray
+
+    def __post_init__(self):
+        self.charges = np.asarray(self.charges, dtype=int)
+        self.d = len(self.charges)
+        self.groups = [np.flatnonzero(self.charges == n) for n in np.unique(self.charges)]
+        self.sizes = [len(g) ** 2 for g in self.groups]
+        self.offsets = np.r_[0, np.cumsum(self.sizes)]
+        self.indices = np.concatenate([(g[:, None] + self.d*g[None, :]).ravel(order='F') for g in self.groups])
+        self.trace_indices = np.concatenate([off + np.arange(len(g))*(len(g)+1)
+                                            for off, g in zip(self.offsets, self.groups)])
+        self.size = len(self.indices)
+        self.trace_row = sp.csr_matrix((np.ones(self.d), (np.zeros(self.d, int), self.trace_indices)), shape=(1, self.size))
+
+    def pack(self, matrix, tolerance=1e-12):
+        a = matrix.toarray() if sp.issparse(matrix) else np.asarray(matrix)
+        if a.shape != (self.d, self.d):
+            raise ValueError('Hilbert dimensions disagree')
+        if maxabs(np.where(self.charges[:, None] != self.charges[None, :], a, 0)) > tolerance:
+            raise ValueError('Input has components outside q=0')
+        return a.ravel(order='F')[self.indices].copy()
+
+    def unpack(self, vector):
+        v = np.asarray(vector)
+        if v.shape != (self.size,):
+            raise ValueError('Reduced vector shape mismatch')
+        a = np.zeros(self.d*self.d, complex)
+        a[self.indices] = v
+        return a.reshape(self.d, self.d, order='F')
+
+    def row(self, operator):
+        # trace(O rho), without conjugation of O: vec(O.T)^T vec(rho).
+        a = operator.toarray() if sp.issparse(operator) else np.asarray(operator)
+        return a.T.ravel(order='F')[self.indices]
+
+    def trace(self, vector):
+        return np.asarray(vector)[self.trace_indices].sum(axis=0)
+
+
+def charge_checks(H, jumps, space, tolerance=1e-12):
+    h = sp.coo_matrix(H)
+    hbad = maxabs(h.data[space.charges[h.row] != space.charges[h.col]])
+    deltas = {}
+    for name, C in jumps:
+        c = sp.coo_matrix(C)
+        nz = abs(c.data) > tolerance
+        ds = np.unique(space.charges[c.row[nz]] - space.charges[c.col[nz]])
+        if len(ds) > 1:
+            raise ValueError('Jump lacks definite charge: ' + name)
+        deltas[name] = int(ds[0]) if len(ds) else None
+    if hbad > tolerance:
+        raise ValueError('Hamiltonian violates charge covariance')
+    return dict(H_charge_residual=hbad, jump_charge_changes=deltas)
+
+
+def liouvillian(H, jumps, space):
+    """Exact block construction; every within-charge coherence is retained."""
+    charge_checks(H, jumps, space)
+    H = sp.csr_matrix(H)
+    count = len(space.groups)
+    blocks = [[sp.csr_matrix((space.sizes[a], space.sizes[b]), dtype=complex)
+               for b in range(count)] for a in range(count)]
+    for a, g in enumerate(space.groups):
+        h = H[g][:, g]; eye = sp.eye(len(g), format='csr')
+        blocks[a][a] += -1j*(sp.kron(eye, h) - sp.kron(h.T, eye))
+    for _, C in jumps:
+        C = sp.csr_matrix(C); loss = clean(C.getH() @ C)
+        for a, ga in enumerate(space.groups):
+            eye = sp.eye(len(ga), format='csr'); m = loss[ga][:, ga]
+            blocks[a][a] -= .5*(sp.kron(eye, m) + sp.kron(m.T, eye))
+            for b, gb in enumerate(space.groups):
+                c = C[ga][:, gb]
+                if c.nnz:
+                    blocks[a][b] += sp.kron(c.conjugate(), c)
+    L = clean(sp.bmat(blocks, format='csr'))
+    if maxabs(space.trace_row @ L) > 1e-11:
+        raise ValueError('Reduced generator is not trace preserving')
+    return L
+
+
+def dissipator_action(C, rho):
+    C = sp.csr_matrix(C); m = C.getH() @ C
+    right = lambda a, b: (b.T @ a.T).T
+    return right(C @ rho, C.getH()) - .5*(m @ rho + right(rho, m))

@@ -1,0 +1,17 @@
+{
+  "run_id": "E002e_RESET_CAL_v001_r001",
+  "state": "PLAN_NOT_SUBMITTED",
+  "forecast": {"expected_seconds": 25.0, "lower_seconds": 8.0, "upper_seconds": 75.0,
+    "basis": "First bounded RESET calibration. Same-VM CORR known QS LU+GMRES2.022s and RR0.078s; three gamma factor pairs proxy6.3s plus extraILU1s. New low-rank setup5s, condition estimation4s, random solves2s, assembly/certificates2s, verification3s, I/O0.7s, startup0.25s and baseline/operator checks0.75s are explicit uncalibrated estimates. This does not certify production budget."},
+  "expected_status": "NOT_EVALUABLE_FIRST_BOUNDED_CALIBRATION",
+  "counts": {"NESS":4,"response":0,"random_rhs":13,"factorizations":13,"condition_estimates":6},
+  "wall_limit_seconds":180,
+  "address_space_limit_bytes":8589934592,
+  "memory_budget": {"peak_additional_bytes":1073741824,"reserve_bytes":1073741824,
+    "measured_peak_rss_bytes":362213376,"measured_peak_vm_bytes":532467712,"simultaneous_factor_storage_bytes":135901172},
+  "memory_basis":"Prior same-dimension VM measurements, explicit 1GiB allocation budget plus1GiB reserve; 20 complex dense columns require4.7MB per active factor; new full RSS and factor storage measured before production.",
+  "reference_run":"E002e_CORR_CAL_v001_r002",
+  "reference_source_commit":"da5496388a2a809e504182995ebcb7b4637e2e8f",
+  "environment":"AMD EPYC-Genoa, Python3.12.3, NumPy1.26.4, SciPy1.11.4; pinned unmanaged BLAS library hashes and one process thread; exact identity recaptured by worker",
+  "limits":["Known baseline NESS only. No physical RESET response or new finite-gamma NESS.","Random RHS timing is a proxy; first run must be reviewed against enclosing service duration.","Only one additional predeclared ILU tolerance case; no adaptive retries or enlarged physical volume."]
+}
