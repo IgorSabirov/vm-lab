@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 85.363,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "**The coordinated environment-tamper gap is closed**, and I found no remaining blocker to bounded sham-only calibration under the stated trust boundary. The verifier reloads the source-pinned calibration, recomputes comparability against the recorded pre-run environment, checks the post-run environment, rejects a saved decision that differs, and uses only the recomputed decision for the runtime gate. Calibration remains non-comparable and uncalibrated, so it cannot produce a runtime `PASS`.\n\nOne optional provenance hardening: `preflight` checks that `reviewed_source_commit` is a valid hash, but does not require it to equal the run’s `source_commit`. A review record for a different commit can therefore pass if its implementation hash matches. If review approval must attest the exact commit—not just the pinned implementation bytes—enforce that equality. This does not reopen the environment-verification gap. Worker-reported environment and elapsed time remain measurements, not attestation; the stated enclosing-service checks remain necessary for production acceptance.",
+  "error": "",
+  "prompt_sha256": "ffa6cd75e7bc6ef908854e134a8272192329e9643db63147ca83eaf0a93d2e5f",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-11-01T03:41:32.544333+00:00"
+}
