@@ -1,81 +1,33 @@
 {
-  "experiment": "E002e",
-  "mode": "production",
-  "stage": "F2",
-  "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
-  "source_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
   "address_space_limit_bytes": 8589934592,
-  "copilot_review": {
-    "path": "experiments/e002e/implementation_review_exportfix.json",
-    "sha256": "aee4c3697b6b3a9a4ddb06f7ee400b29872e41a170878689c09fda542033dc05"
-  },
-  "calibration_verification": {
-    "path": "experiments/e002e/calibration_verification_exportfix.json",
-    "sha256": "589709c066ac48b5ac74d51e07e0a0a0a63926a024993d7f3483dab0d2598f82"
-  },
-  "forecast": {
-    "expected_seconds": 34.0,
-    "lower_seconds": 15.3,
-    "upper_seconds": 90.0
-  },
-  "expected_workload": {
-    "small_NESS": 0,
-    "full_NESS": 20,
-    "static_responses": 0,
-    "frequency_responses": 0,
-    "correlation_inputs": 0,
-    "refinement_NESS": 20,
-    "refinement_static_responses": 0,
-    "refinement_frequency_responses": 0
-  },
-  "numerics": {
-    "solver": {
-      "method": "lu",
-      "rtol": 1e-12,
-      "atol": 1e-14
+  "kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "worker_config": {
+    "calibration": null,
+    "evidence": {
+      "path": "experiments/e002e_corr/evidence.json",
+      "sha256": "4bf9a72989870bd5b0446299b50d3c6516f54eb02191fba134834fe974cfd6a7"
     },
-    "refinement_solver": {
-      "method": "gmres_ilu",
-      "rtol": 1e-12,
-      "atol": 1e-14,
-      "maxiter": 400,
-      "restart": 100,
-      "ilu_drop_tol": 1e-05,
-      "ilu_fill_factor": 10
+    "forecast": {
+      "expected_seconds": 13.48,
+      "lower_seconds": 7.0,
+      "upper_seconds": 25.0,
+      "calibrated": false,
+      "basis": "Same-VM E002e measured rates; 1000 RK4 block steps/model, scaled 2/3 columns. New PSD/checkpoint/verification costs are explicit provisional estimates, NOT calibrated bounds."
     },
-    "state_tolerance": 1e-10,
-    "estimate_condition": true,
-    "error_envelope": {
-      "absolute_floor": 1e-10,
-      "difference_multiplier": 10
+    "implementation_sha256": "9a0d07fdc3701d50fb6058e4811f94b0c2d11dcb8772d339c7921be0ede00a9b",
+    "memory_budget": {
+      "peak_additional_bytes": 1073741824,
+      "reserve_bytes": 1073741824,
+      "measured_peak_rss_bytes": 362213376,
+      "measured_peak_vm_bytes": 532467712,
+      "simultaneous_factor_storage_bytes": 135901172
     },
-    "refinement_limits": {
-      "vector_inf": 1e-09,
-      "observable_absolute": 1e-09,
-      "observable_relative": 1e-07
-    },
-    "qrt": {
-      "horizon": 100,
-      "dt_fine": 0.005,
-      "dt_coarse": 0.01,
-      "sample_interval": 0.1,
-      "checkpoint_stride_steps": 2000,
-      "absolute_tolerance": 1e-08,
-      "relative_tolerance": 1e-05
+    "mode": "calibration",
+    "protocol_sha256": "167fba7ef98bf91716904cbbb2c623a2e26c7173d943bb425235dc32f11883da",
+    "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
+    "technical_review": {
+      "path": "analysis/E002e_CORR_REVIEW_20261101/technical_review.json",
+      "sha256": "7597866228790b83224f9f129a17e8bca4b709178cb2f08692e08c51491e72c6"
     }
-  },
-  "submitted_at_utc": "2026-10-31T16:14:54.551082Z",
-  "baseline_report": {
-    "path": "analysis/E002e_F2_v001/baseline_bundle.json",
-    "sha256": "6d5615793bb4d9edc2f46dbde95ff06d18e3509b65348bdd95a54dbeb27bf053"
-  },
-  "predictions": {
-    "path": "analysis/E002e_F2_v001/f2_prereg_predictions.json",
-    "sha256": "852121879615d0da3c157271a44a8a77786e94e94e334bf8f071af40070daace",
-    "commit": "11fa1009090d58dd30fa0a285ff4ed83c60c6f79"
-  },
-  "prediction_verification": {
-    "path": "analysis/E002e_F2_v001/prediction_verification.json",
-    "sha256": "d6a3d348acf7734e8da47d9480ec6a05ca96d10325b1665bb986fe4f40aa579b"
   }
 }
