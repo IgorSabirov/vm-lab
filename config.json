@@ -1,81 +1,35 @@
 {
-  "experiment": "E002e",
-  "mode": "production",
-  "stage": "F2",
-  "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
-  "source_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
-  "address_space_limit_bytes": 8589934592,
-  "copilot_review": {
-    "path": "experiments/e002e/implementation_review_exportfix.json",
-    "sha256": "aee4c3697b6b3a9a4ddb06f7ee400b29872e41a170878689c09fda542033dc05"
-  },
-  "calibration_verification": {
-    "path": "experiments/e002e/calibration_verification_exportfix.json",
-    "sha256": "589709c066ac48b5ac74d51e07e0a0a0a63926a024993d7f3483dab0d2598f82"
-  },
-  "forecast": {
-    "expected_seconds": 34.0,
-    "lower_seconds": 15.3,
-    "upper_seconds": 90.0
-  },
-  "expected_workload": {
-    "small_NESS": 0,
-    "full_NESS": 20,
-    "static_responses": 0,
-    "frequency_responses": 0,
-    "correlation_inputs": 0,
-    "refinement_NESS": 20,
-    "refinement_static_responses": 0,
-    "refinement_frequency_responses": 0
-  },
-  "numerics": {
-    "solver": {
-      "method": "lu",
-      "rtol": 1e-12,
-      "atol": 1e-14
+  "run_id": "E002e_CORR_EXPORT_v001_r001",
+  "files": [
+    {
+      "name": "full_5222212ebc04_series.npz",
+      "input": "inputs/full_5222212ebc04_series.npz",
+      "size": 1810665,
+      "sha256": "28ef067e038717316eb826a45d508ad29a44847d2229293b9d70a7eb1c21c9b2",
+      "git_blob": "2f9e95189181f69f4e0837d19c880293f0cdb63b"
     },
-    "refinement_solver": {
-      "method": "gmres_ilu",
-      "rtol": 1e-12,
-      "atol": 1e-14,
-      "maxiter": 400,
-      "restart": 100,
-      "ilu_drop_tol": 1e-05,
-      "ilu_fill_factor": 10
+    {
+      "name": "full_7c1820e764ee_series.npz",
+      "input": "inputs/full_7c1820e764ee_series.npz",
+      "size": 2195485,
+      "sha256": "5cd99b479f3882b5a80e9ef0986817453c3632e8ead68cd7796801a4b95af877",
+      "git_blob": "3ed0211ff748bbe610d211a677acd59f55983d71"
     },
-    "state_tolerance": 1e-10,
-    "estimate_condition": true,
-    "error_envelope": {
-      "absolute_floor": 1e-10,
-      "difference_multiplier": 10
-    },
-    "refinement_limits": {
-      "vector_inf": 1e-09,
-      "observable_absolute": 1e-09,
-      "observable_relative": 1e-07
-    },
-    "qrt": {
-      "horizon": 100,
-      "dt_fine": 0.005,
-      "dt_coarse": 0.01,
-      "sample_interval": 0.1,
-      "checkpoint_stride_steps": 2000,
-      "absolute_tolerance": 1e-08,
-      "relative_tolerance": 1e-05
+    {
+      "name": "full_a2a1b36cf33b_series.npz",
+      "input": "inputs/full_a2a1b36cf33b_series.npz",
+      "size": 2064312,
+      "sha256": "071e839731800845b6917cbd5743b3a77c446b785b5f6f489c4814e8543e4044",
+      "git_blob": "e299c90f126ea10d0dac8ceb93d7c1576ba3b8e5"
     }
-  },
-  "submitted_at_utc": "2026-10-31T16:14:54.551082Z",
-  "baseline_report": {
-    "path": "analysis/E002e_F2_v001/baseline_bundle.json",
-    "sha256": "6d5615793bb4d9edc2f46dbde95ff06d18e3509b65348bdd95a54dbeb27bf053"
-  },
-  "predictions": {
-    "path": "analysis/E002e_F2_v001/f2_prereg_predictions.json",
-    "sha256": "852121879615d0da3c157271a44a8a77786e94e94e334bf8f071af40070daace",
-    "commit": "11fa1009090d58dd30fa0a285ff4ed83c60c6f79"
-  },
-  "prediction_verification": {
-    "path": "analysis/E002e_F2_v001/prediction_verification.json",
-    "sha256": "d6a3d348acf7734e8da47d9480ec6a05ca96d10325b1665bb986fe4f40aa579b"
+  ],
+  "source_report_commit": "5654dff87b3b7ca9b32ec2ce2a51454316c7ac78",
+  "original_run": "E002e_CORR_v001_r001",
+  "original_source_commit": "426b83c7b5544cb953ca0d60b3abf01d1eb4b76e",
+  "forecast": {
+    "expected_seconds": 0.4,
+    "lower_seconds": 0.2,
+    "upper_seconds": 2,
+    "basis": "Same service startup0.2506s;6.07MB hash/base64/write estimated0.15s. Pure-stdlib bounded first transport probe; actual bytes/checks and enclosing elapsed required."
   }
 }

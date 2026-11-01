@@ -1,47 +1,51 @@
-"""Pinned experiment entry point; no Copilot or network access in VM jobs."""
-import os
-for key in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):
-    os.environ[key]='1'
+"""Lossless transport of GitHub-published files only; no VM archive access."""
+import base64
+import hashlib
 import json
-import re
+import os
 from pathlib import Path
+import resource
+import time
 
-def bind_source(config):
-    """Resolve the source SHA supplied by the hash-checking VM launcher.
 
-    A config cannot contain the hash of its own containing commit. The immutable
-    queue request pins that commit; the launcher checks FETCH_HEAD and every blob.
-    Explicit SHA configurations remain supported and must match the launcher.
-    """
-    actual = os.environ.get('VM_SOURCE_COMMIT', '')
-    if not re.fullmatch('[0-9a-f]{40}', actual):
-        raise ValueError('Verified VM launcher source SHA is missing')
-    requested = config.get('source_commit')
-    if requested != 'FROM_VERIFIED_VM_LAUNCHER' and requested != actual:
-        raise ValueError('Configured source SHA differs from VM launcher')
-    result = dict(config)
-    result['source_commit_binding'] = requested
-    result['source_commit'] = actual
-    return result
+def main():
+    start=time.perf_counter()
+    root=Path(__file__).resolve().parent
+    if root!=Path(os.environ['VM_SOURCE_DIR']).resolve():
+        raise ValueError('Source directory mismatch')
+    cfg=json.loads((root/'config.json').read_text())
+    resource.setrlimit(resource.RLIMIT_AS,(256*2**20,256*2**20))
+    report=Path('report');report.mkdir(exist_ok=False)
+    output=[]
+    for spec in cfg['files']:
+        if spec['input']!='inputs/'+spec['name'] or Path(spec['name']).name!=spec['name']:
+            raise ValueError('Invalid explicit input path')
+        data=(root/spec['input']).read_bytes()
+        git_blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+        if len(data)!=spec['size'] or hashlib.sha256(data).hexdigest()!=spec['sha256'] or git_blob!=spec['git_blob']:
+            raise ValueError('Published source identity mismatch')
+        parts=[]
+        for i,begin in enumerate(range(0,len(data),512*1024)):
+            raw=data[begin:begin+512*1024];name=spec['name']+'.part'+str(i).zfill(3)+'.b64'
+            encoded=base64.b64encode(raw)
+            (report/name).write_bytes(encoded)
+            if base64.b64decode((report/name).read_bytes(),validate=True)!=raw:
+                raise ValueError('Lossless transport verification failed')
+            parts.append(dict(name=name,offset=begin,raw_bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
+        output.append(dict(spec,parts=parts))
+    mapping=dict(source_report_commit=cfg['source_report_commit'],original_run=cfg['original_run'],
+                 original_source_commit=cfg['original_source_commit'],files=output,
+                 input_origin='GITHUB_BLOBS_IN_PINNED_LAUNCH_TREE',archive_accessed=False,scientific_solves=0)
+    (report/'transport.json').write_text(json.dumps(mapping,indent=2)+'\n')
+    (report/'data_manifest.json').write_text(json.dumps(mapping,indent=2)+'\n')
+    elapsed=time.perf_counter()-start
+    metrics=dict(status='LOSSLESS_EXPORT_COMPLETE',source_commit=os.environ['VM_SOURCE_COMMIT'],
+                 input_files=len(output),input_bytes=sum(s['size'] for s in output),parts=sum(len(s['parts']) for s in output),
+                 internal_seconds=elapsed,max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                 forecast=cfg['forecast'],full_process_time='CHECK_ENCLOSING_RUN_JSON',science='NO_NEW_SCIENTIFIC_WORK')
+    (report/'metrics.json').write_text(json.dumps(metrics,indent=2)+'\n')
+    text='Время: прогноз '+str(cfg['forecast']['expected_seconds'])+' с; внутренний факт '+str(elapsed)+' с. Полное время см. run.json.\n\nТранспорт опубликованных GitHub-данных без изменения байтов. Никаких новых решений или доступа к неопубликованному архиву. Исходный отчёт '+cfg['source_report_commit']+'.\n'
+    (report/'README.md').write_text(text);(report/'RESULT.md').write_text(text)
 
-if __name__=='__main__':
-    config=json.loads(Path(__file__).with_name('config.json').read_text())
-    if config.get('address_space_limit_bytes') is not None:
-        import resource
-        ceiling = config['address_space_limit_bytes']
-        if type(ceiling) is not int or ceiling <= 0:
-            raise ValueError('Invalid declared address-space ceiling')
-        soft, hard = resource.getrlimit(resource.RLIMIT_AS)
-        if hard != resource.RLIM_INFINITY and ceiling > hard:
-            raise ValueError('Declared address-space ceiling exceeds existing hard limit')
-        resource.setrlimit(resource.RLIMIT_AS, (ceiling, ceiling))
-    if config.get('experiment')=='E002e':
-        config=bind_source(config)
-        from e002e_exp.task import run
-    elif config.get('experiment')=='E002e_CALIBRATION':
-        config=bind_source(config)
-        from experiments.e002e.calibration import run
-    else:
-        from e002d_exp.task import run
-    run(config)
 
+if __name__=='__main__':main()
