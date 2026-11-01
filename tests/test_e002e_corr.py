@@ -13,7 +13,7 @@ from e002e_exp.model import make_full
 from e002e_exp.export import write_manifest
 from e002e_exp.runtime import kernel_hash
 from e002e_corr_exp.core import marginals, replacement, prepare, propagate, analyze, threshold_decision
-from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash
+from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash, implementation_hash
 from e002e_corr_exp.task import run, solve_baseline, select_observables, run_case
 from e002e_corr_exp.verify import verify_report
 
@@ -132,10 +132,11 @@ class IntegrationTests(unittest.TestCase):
 
     def _worker(self, mode):
         model=classical_model();states,raw,_=solve_baseline(model)
-        cs=[dict(id='test_'+m,model=m) for m in PROTOCOL['models']]
+        cs=cases()
         gate=dict(cases=cs,evidence={c['id']:dict(raw=raw[0]) for c in cs},
                   counts=workload(1.),horizon=1.,environment={'comparable':False})
         cfg=dict(mode=mode,source_commit='0'*40,forecast=dict(expected_seconds=1.,lower_seconds=.01,upper_seconds=10.),
+                 protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
                  memory_budget=dict(peak_additional_bytes=2**30,reserve_bytes=2**28))
         return model,gate,cfg
 
@@ -145,7 +146,7 @@ class IntegrationTests(unittest.TestCase):
             with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.preflight',return_value=gate),patch('e002e_corr_exp.task.make_full',return_value=model):
                 result=run(cfg,d);self.assertEqual(result['actual_counts'],workload(1.))
                 report=Path(d)/'report';verify_report(report)
-                p=report/'test_QS_case.json';r=json.loads(p.read_text());r['result']['primary']['status']='FALSE_SUCCESS';p.write_text(json.dumps(r));write_manifest(report)
+                p=report/(cases()[0]['id']+'_case.json');r=json.loads(p.read_text());r['result']['primary']['status']='FALSE_SUCCESS';p.write_text(json.dumps(r));write_manifest(report)
                 with self.assertRaisesRegex(ValueError,'verdict'):verify_report(report)
 
     def test_calibration_does_not_prepare_product_state(self):
@@ -153,8 +154,35 @@ class IntegrationTests(unittest.TestCase):
             model,gate,cfg=self._worker('calibration')
             with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.preflight',return_value=gate),patch('e002e_corr_exp.task.make_full',return_value=model),patch('e002e_corr_exp.task.prepare',side_effect=AssertionError('Held-out intervention accessed')):
                 run(cfg,d);verify_report(Path(d)/'report')
-                result=json.loads((Path(d)/'report/test_QS_case.json').read_text())['result']
+                result=json.loads((Path(d)/'report'/(cases()[0]['id']+'_case.json')).read_text())['result']
                 self.assertNotIn('primary',result)
+
+    def test_preflight_requires_reviewed_calibration_and_fixed_science(self):
+        from e002e_exp.runtime import ROOT
+        records={c['id']:json.loads((ROOT/'results/E002e_BASELINE_v001_r001/files'/(c['id']+'.json')).read_text()) for c in cases()}
+        review=dict(status='REVIEWED_AND_CHECKED',implementation_sha256=implementation_hash(),reviewed_source_commit='1'*40)
+        evidence=dict(schema='E002e_CORR_evidence_v1',protocol_sha256=protocol_hash(),baselines=[dict(case_id=k,path=k) for k in records])
+        forecast=dict(expected_seconds=10.,lower_seconds=5.,upper_seconds=20.)
+        cal=dict(status='CALIBRATION_COMPLETE',runtime_review_status='PENDING',report_commit='2'*40,
+                 implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash(),counts=workload(2.),
+                 environment={},production_forecast=forecast,memory_budget={})
+        items=dict(review=review,evidence=evidence,cal=cal,**records)
+        cfg=dict(mode='production',protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+                 source_commit='0'*40,technical_review={'path':'review'},evidence={'path':'evidence'},
+                 calibration={'path':'cal'},forecast=forecast,memory_budget={})
+        with patch.dict('os.environ',{'VM_SOURCE_COMMIT':'0'*40}),patch('e002e_corr_exp.plan.pinned_file',side_effect=lambda x:items[x['path']]),patch('e002e_corr_exp.plan.compare_environment',return_value={'comparable':True}),patch('e002e_corr_exp.plan.memory_preflight',return_value={'status':'PASS'}):
+            with self.assertRaisesRegex(ValueError,'Calibration'):preflight(cfg,{})
+            cal['runtime_review_status']='REVIEWED';self.assertEqual(preflight(cfg,{})['counts'],workload())
+            with self.assertRaisesRegex(ValueError,'override'):preflight(dict(cfg,primary_threshold=10),{})
+            with self.assertRaises(ValueError):preflight(dict(cfg,forecast=dict(forecast,expected_seconds=20)),{})
+
+    def test_bad_report_physics_is_rejected_after_rehash(self):
+        with patch.dict(PROTOCOL,dict(horizon=1.,dimensions=[2,2])):
+            model,gate,cfg=self._worker('production')
+            with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.preflight',return_value=gate),patch('e002e_corr_exp.task.make_full',return_value=model):
+                run(cfg,d);report=Path(d)/'report';p=report/(cases()[0]['id']+'_case.json')
+                r=json.loads(p.read_text());r['case']['epsilon']=8.;p.write_text(json.dumps(r));write_manifest(report)
+                with self.assertRaisesRegex(ValueError,'physics'):verify_report(report)
 
     def test_full_builder_interface_without_full_ness(self):
         self.assertEqual(kernel_hash(),'1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e')

@@ -23,6 +23,15 @@ if path.exists():
     raise FileExistsError('Attempt is immutable')
 env = environment()
 (DEST/('environment_local_'+attempt+'.json')).write_text(json.dumps(env, indent=2)+'\n')
+if attempt == '001':
+    forecast = dict(expected_seconds=6.,lower_seconds=1.,upper_seconds=20.,calibrated=False)
+    environment_match = False
+else:
+    forecast = json.loads((DEST/('development_forecast_'+attempt+'.json')).read_text())
+    reference = json.loads((DEST/forecast['environment_reference']).read_text())
+    keys = ('python','platform','machine','cpu_model','affinity','numpy','scipy',
+            'threadpools','requested_threads','blas_library_identity','cpu_quota','memory_limit')
+    environment_match = all(env[k] == reference[k] for k in keys)
 failure = None; test_result = None
 with (DEST/('development_attempt_'+attempt+'.log')).open('w') as log, contextlib.redirect_stdout(log), contextlib.redirect_stderr(log):
     try:
@@ -33,10 +42,14 @@ with (DEST/('development_attempt_'+attempt+'.log')).open('w') as log, contextlib
         import traceback
         traceback.print_exc(file=log); failure = type(exc).__name__+': '+str(exc)
 elapsed = time.perf_counter()-START
+within = forecast['lower_seconds'] <= elapsed <= forecast['upper_seconds']
+runtime_status = ('NOT_EVALUABLE_FIRST_SUITE_CALIBRATION' if not forecast['calibrated'] else
+                  'NOT_EVALUABLE_ENVIRONMENT_CHANGED' if not environment_match else
+                  'PASS' if within and test_result and test_result.wasSuccessful() else 'REVIEW_REQUIRED')
 out = dict(attempt=attempt, source_commit=os.environ.get('DEVELOPMENT_SOURCE_COMMIT'),
-           forecast=dict(expected_seconds=6.,lower_seconds=1.,upper_seconds=20.,calibrated=False),
-           internal_elapsed_seconds=elapsed, deviation_seconds=elapsed-6., runtime_status='NOT_EVALUABLE_FIRST_SUITE_CALIBRATION',
-           forecast_range_contains_time=1. <= elapsed <= 20.,
+           forecast=forecast, internal_elapsed_seconds=elapsed,
+           deviation_seconds=elapsed-forecast['expected_seconds'], runtime_status=runtime_status,
+           forecast_range_contains_time=within, environment_match=environment_match,
            tests_run=test_result.testsRun if test_result else 0,
            failures=len(test_result.failures) if test_result else None,
            errors=len(test_result.errors) if test_result else None,

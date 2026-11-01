@@ -9,7 +9,7 @@ from e002e_exp.runtime import ROOT, kernel_hash, compare_environment, memory_pre
 from e002e_exp.plan import pinned_file, selected_work
 
 MODELS = ('QS', 'RR_QS', 'IC1_QS')
-PROTOCOL = dict(version='E002e_CORR_v001', models=list(MODELS), phi_over_pi=.5,
+PROTOCOL = dict(version='E002e_CORR_v001', models=list(MODELS), primary_model='QS', phi_over_pi=.5,
                 epsilon=0., m6_v_over_J=1., node_noise=.05, dimensions=[8, 27],
                 horizon=20., dt_fine=.005, dt_coarse=.01, sample_interval=.02,
                 physicality_interval=1., primary='integral_abs_delta_F_over_H_Fss',
@@ -73,7 +73,8 @@ def preflight(config, current):
     if set(config)-allowed:
         raise ValueError('Unsupported configuration override')
     review = pinned_file(config['technical_review'])
-    if review.get('status') != 'REVIEWED_AND_CHECKED' or review.get('implementation_sha256') != implementation_hash():
+    if (review.get('status') != 'REVIEWED_AND_CHECKED' or review.get('implementation_sha256') != implementation_hash()
+            or not re.fullmatch('[0-9a-f]{40}', review.get('reviewed_source_commit', ''))):
         raise ValueError('Technical review missing for current implementation')
     evidence = pinned_file(config['evidence'])
     if evidence.get('schema') != 'E002e_CORR_evidence_v1' or evidence.get('protocol_sha256') != protocol_hash():
@@ -95,7 +96,9 @@ def preflight(config, current):
     horizon = PROTOCOL['horizon'] if mode == 'production' else PROTOCOL['calibration_horizon']
     if mode == 'production':
         cal = pinned_file(config['calibration'])
-        if (cal.get('status') != 'CALIBRATION_COMPLETE' or cal.get('implementation_sha256') != implementation_hash()
+        if (cal.get('status') != 'CALIBRATION_COMPLETE' or cal.get('runtime_review_status') != 'REVIEWED'
+                or not re.fullmatch('[0-9a-f]{40}', cal.get('report_commit', ''))
+                or cal.get('implementation_sha256') != implementation_hash()
                 or cal.get('protocol_sha256') != protocol_hash() or cal.get('counts') != workload(PROTOCOL['calibration_horizon'])):
             raise ValueError('Calibration identity/coverage mismatch')
         env = compare_environment(cal['environment'], current)

@@ -134,7 +134,9 @@ def _run(config, output):
                 arrays[label+'_'+n] = r[n]
             save(report/(case['id']+'_'+label+'_physicality.json'), r['checks'])
         np.savez_compressed(report/(case['id']+'_series.npz'), **arrays)
-        record = dict(id=case['id'], case=case, baseline=raw, numerical=numerical, result=result)
+        record = dict(id=case['id'], case=case, baseline=raw, numerical=numerical, result=result,
+                      hilbert_dimension=model['space'].d, liouville_dimension=model['space'].size,
+                      role='PRIMARY' if case['model'] == PROTOCOL['primary_model'] else 'COMPARATIVE_CONTROL')
         save(report/(case['id']+'_case.json'), record); records.append(record)
         phases.append(dict(id=case['id'], assembly=assembly, baseline=numerical['seconds'],
                            propagation=sum(r['elapsed_seconds'] for r in runs), total=time.perf_counter()-begin,
@@ -161,11 +163,22 @@ def _run(config, output):
                       measured_peak_vm_bytes=after['process_vm_size_bytes'],
                       simultaneous_factor_storage_bytes=max(p['factor_bytes'] for p in phases))
         memory['peak_additional_bytes'] = max(memory['peak_additional_bytes'], memory['measured_peak_rss_bytes'], memory['measured_peak_vm_bytes'])
-        save(report/'calibration.json', dict(status='CALIBRATION_COMPLETE', counts=actual,
+        save(report/'calibration.json', dict(status='CALIBRATION_COMPLETE', runtime_review_status='PENDING',
+             report_commit=None, counts=actual,
              protocol_sha256=protocol_hash(), implementation_sha256=implementation_hash(), environment=env,
              memory_budget=memory, production_forecast=dict(expected_seconds=predicted,
              lower_seconds=.5*predicted, upper_seconds=2.*predicted,
              basis='3 measured setups + 6 NESS + 10x two-second matching propagations/checkpoints + 8s preparation/export reserve; inspect range after first run')))
+    comparisons = []
+    if config['mode'] == 'production':
+        by_model = {r['case']['model']:r['result']['primary'] for r in records}
+        q = by_model['QS']
+        for name in ('RR_QS', 'IC1_QS'):
+            c = by_model[name]; value = q['value']-c['value']; u = q['uncertainty']+c['uncertainty']
+            comparisons.append(dict(comparison='QS_minus_'+name, delta_relative_response=value,
+                uncertainty=u, interval=[value-u,value+u], role='SECONDARY_DIFFERENT_INITIAL_PERTURBATIONS',
+                interpretation='RELATIVE_SENSITIVITY_NOT_QUANTUM_ADVANTAGE_OR_RECOVERY_SPEED'))
+    save(report/'comparisons.json', comparisons)
     lines = [f"Время: прогноз {rt['expected_seconds']:.6g} с; внутренний факт {rt['actual_seconds']:.6g} с; статус {rt['status']}.",
              'Полное время процесса проверяется отдельно по run.json.', '', '# E002e CORR v001', '',
              'Режим: '+config['mode']+'. Никакой автоматической научной приёмки.',
