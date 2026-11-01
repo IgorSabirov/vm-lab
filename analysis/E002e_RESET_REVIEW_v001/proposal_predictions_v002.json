@@ -1,0 +1,102 @@
+{
+  "status": "REVISED_CONCEPT_AWAITING_USER_SCIENTIFIC_ACCEPTANCE_NOT_FROZEN",
+  "not_a_frozen_launch": true,
+  "input_report_commit": "5654dff87b3b7ca9b32ec2ce2a51454316c7ac78",
+  "primary_model": "QS",
+  "primary_hypothesis": "S_F_QS > 0",
+  "gamma_grid": [
+    0.0,
+    0.001,
+    0.002
+  ],
+  "scientific_window_fraction": 0.2,
+  "scientific_weak_regime_fraction": 0.1,
+  "maximum_engineering_u_S": 1e-06,
+  "maximum_engineering_u_delta_F": 1e-08,
+  "models": [
+    {
+      "model": "QS",
+      "case_id": "full_7c1820e764ee",
+      "source_file": "results/E002e_CORR_v001_r001/files/full_7c1820e764ee_case.json",
+      "source_sha256": "75828aea1ac061f033da1d5d6b6f5a3c5122780d575f2c05a87d1a7f43d54e00",
+      "A20": 0.04645129616455532,
+      "u_A_engineering_not_tail_bound": 2.6315130599833965e-06,
+      "candidate_sign": "POSITIVE",
+      "candidate_S_center": 0.04645129616455532,
+      "candidate_S_scientific_band": [
+        0.037161036931644256,
+        0.05574155539746638
+      ],
+      "finite_rate_center_predictions": [
+        {
+          "gamma": 0.001,
+          "delta_F_center": 4.6451296164555316e-05
+        },
+        {
+          "gamma": 0.002,
+          "delta_F_center": 9.290259232911063e-05
+        }
+      ]
+    },
+    {
+      "model": "RR_QS",
+      "case_id": "full_5222212ebc04",
+      "source_file": "results/E002e_CORR_v001_r001/files/full_5222212ebc04_case.json",
+      "source_sha256": "cc648819fff02ce0df4fbdd121cfa2c931a99845388bb0d7b844edb083800b6c",
+      "A20": 0.06793340061233791,
+      "u_A_engineering_not_tail_bound": 3.2677455459360637e-06,
+      "candidate_sign": "POSITIVE",
+      "candidate_S_center": 0.06793340061233791,
+      "candidate_S_scientific_band": [
+        0.054346720489870326,
+        0.08152008073480549
+      ],
+      "finite_rate_center_predictions": [
+        {
+          "gamma": 0.001,
+          "delta_F_center": 6.793340061233791e-05
+        },
+        {
+          "gamma": 0.002,
+          "delta_F_center": 0.00013586680122467583
+        }
+      ]
+    }
+  ],
+  "new_physical_solutions": 0,
+  "limitations": [
+    "No infinite-tail bound follows from A20 or the final sample.",
+    "Scientific acceptance bands are not numerical uncertainties.",
+    "Finite-rate centers require both window transfer and a weak regime.",
+    "No claim of quantum specificity, self-maintenance or free resources."
+  ],
+  "proposal_version": "E002e_RESET_v002",
+  "predecessor_commit": "73f9f14958abaab160de35339714311edb382344",
+  "predecessor_prediction_sha256": "419043aa4de951b06962d788ac4c5b9ca829163fc3b6c8ac547dc077dc3ecaf0",
+  "relative_test_guard": {
+    "signal_to_uncertainty_factor": 10.0,
+    "S_absolute_floor": 1e-06,
+    "A20_absolute_floor": 1e-06
+  },
+  "interval_rule": {
+    "form": "abs(x-y) <= alpha*abs(z)",
+    "supported": "abs(x-y)+ux+uy <= alpha*max(0,abs(z)-uz)",
+    "refuted": "max(0,abs(x-y)-ux-uy) > alpha*(abs(z)+uz)",
+    "otherwise": "UNRESOLVED",
+    "interpretation": "CONSERVATIVE_ENGINEERING_INTERVALS_NOT_STATISTICAL_COVERAGE"
+  },
+  "tail": {
+    "value": "S_F - A20",
+    "uncertainty": "u_S + u_A",
+    "not_a_decay_time": true,
+    "not_a_spectral_width": true
+  },
+  "energy_per_event": "Tr(H*(R_E(rho_gamma)-rho_gamma))",
+  "scientific_tasks": {
+    "NESS": 6,
+    "response_RHS": 2,
+    "methods": 2,
+    "task_solves": 16,
+    "internal_backsolves_counted_separately": true
+  }
+}
