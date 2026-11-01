@@ -1,0 +1,1917 @@
+Follow-up technical review. Previous findings included final-report verification, memory peak, and provenance/job terminal record. Source e1f4e1b54871fc96441199f84c2db8dc2583bcc2. Changes: final verify_report(finalized=True) AFTER every write/manifest, independently recomputes calibration budget, then NO further report writes; provisional verification duration is explicitly first-pass only; total time is enclosing service job finished-started. VmPeak and VmHWM /proc high-water measurements replace endpoint as peak; configured limit and measured peaks distinct, budget1.25*VmPeak with separate1GiBreserve, available headroom validated memory_preflight. Singular SciPy LU warning promoted to failure; strict forbidden calibration fields/artifact set.21tests pass (full production and calibration synthetic workflows, altered calibration budget and manifest rejected); forecast2.4s actual2.2211s. Original kernel unchanged. Below ACTUAL existing trusted GitHub bridge and result reader, runtime/environment code: hash every input fetched from pinned Gitcommit, injects sourcecommit and source dir, validates hashes before execution; service records terminal statuses and timestamps, publishes manifest; result reader refuses missing/changed/incomplete outputs. No scientific acceptance without enclosing GitHub result. Child OOM cannot be caught by Python; service handles it. Environment includes Python/NumPy/SciPy, exact BLAS binaries, process threads, constraints; preflight requires pinned unmanaged libs on VM. Pending calibration no physical gamma>0/response solutions. Please confirm resolved blockers and identify any remaining concrete bug, technical scope only. Runtime/calibration predictions first bounded and explicitly uncalibrated; production requires later reviewing enclosing job and measured budget. This response does not grant scientific approval.
+
+Previous answer:
+**Not yet safe to start the bounded calibration as supplied.** The Woodbury update and adjoint formulas are consistent, and the response sign is correct: with \(q=R\rho_0-\rho_0\), solving `-q` gives \(LX+q=0\). The worker also appears to keep calibration to known baselines and seeded random RHS; I found no code path that solves the physical response or new finite-\(\gamma\) NESS during calibration.
+
+The pasted source has no line numbers, so locations below identify the file, function, and exact code landmark.
+
+| Priority | Location | Finding and required improvement |
+|---|---|---|
+| **Blocker** | `e002e_reset_exp/task.py` — `_run()`, from `verify_report(report)` through the final writes | Verification runs **before** final `metrics.json`/README updates, `calibration.json`, and the final manifest. Thus the delivered calibration artifacts are not what the verifier checked; in particular, the calibration forecast is never independently verified. Finalize all report artifacts before verification and make the verified report immutable afterward. Keep any verification duration in the enclosing service record if recording it would require changing the report. |
+| **Blocker** | `e002e_reset_exp/budget.py` — `forecast()`; `e002e_reset_exp/task.py` — `_run()` environment capture | `process_vm_size_bytes` is a current endpoint measurement, not a peak. `peak_additional_bytes` is then set to the maximum of a configured budget value and observed process values, conflating a limit with measured usage; it also does not establish available-memory headroom. Record peak memory with a high-water source (and the relevant VM/cgroup limit and headroom), and report configured limits separately from measured peaks before using calibration to set production budgets. |
+| **Blocker pending provenance confirmation** | `e002e_reset_exp/plan.py` — `implementation_manifest()`; `e002e_reset_exp/task.py` — `dependencies.json` write; `experiments/e002e_reset/vm_entry.py` — `bind()` / `main()` | `dependencies.json` is the implementation source-file hash list, not an actual runtime dependency manifest. The supplied code does not establish installed NumPy/SciPy or BLAS/LAPACK identities, nor independently bind `VM_SOURCE_COMMIT` to the payload’s source commit. Provide and verify the actual runtime manifest and a trusted launcher attestation tying the commit to the immutable payload. The payload hash checks are useful, but by themselves do not establish that commit relationship. |
+| **Blocker for accepting a calibration job** | `e002e_reset_exp/task.py` — `run()` exception handling; `experiments/e002e_reset/vm_entry.py` — launch path | Python exceptions produce a `FAILED` report, but an OOM kill or external termination can leave partial output without that terminal status. Require an enclosing job record with run identity and terminal exit status; accept only reports whose status and final manifest verify. Review the enclosing service runtime as well as the worker’s internal timing. |
+| **Improvement** | `e002e_reset_exp/numerics.py` — `Solver.__init__()`, `linalg.lu_factor(self.small)` | The finite-entry check on `self.small` does not detect a singular Woodbury core; SciPy LU can warn and return factors. Promote singular-factor warnings to hard failures and check the factor/solve result explicitly. This strengthens the stated fail-closed invertibility gate. |
+| **Improvement** | `e002e_reset_exp/verify.py` — `verify_case()` calibration checks | The verifier checks the expected absence of `S` and finite-\(\gamma\) state files, which is good. Make the calibration schema stricter by also rejecting response/physical-RHS fields and unexpected calibration artifacts, so future worker changes cannot silently weaken the no-leakage guarantee. |
+
+The uncertainty formulas are clearly labeled as solver/baseline sensitivity rather than rigorous total-error bounds, and the residual checks expose absolute and relative residuals. That is appropriate for this bounded calibration, but neither a small residual nor `onenormest` alone certifies observable error. The LU and GMRES branches also correctly construct separate baselines and fixed targets; their differences should continue to be interpreted as including baseline sensitivity, not as a pure solver-error estimate.
+
+**Decision:** resolve the report-finalization, peak-memory accounting, and provenance issues, and ensure the launcher records failed/terminated jobs before beginning calibration. With those controls in place, the shown calibration workload is appropriately bounded and does not appear to leak the physical RHS.
+===== FILE e002e_reset_exp/task.py =====
+"""Static RESET worker: calibration solves only known NESS and seeded random RHS."""
+import gc,hashlib,json,signal,time,traceback
+from pathlib import Path
+import numpy as np
+from e002_exp.model import maxabs
+from e002e_exp.model import make_full
+from e002e_exp.export import serial,write_manifest,conditional_values
+from e002e_exp.runtime import runtime_gate,kernel_hash
+from e002e_corr_exp.environment import environment
+from e002e_corr_exp.core import physicality,marginals,sector_check,array_hash
+from .core import Reset,analyze,matrix_hash
+from .numerics import Solver
+from .certificates import uniqueness,state_record
+from .plan import PROTOCOL,workload,cases,preflight,implementation_hash,implementation_manifest,protocol_hash,storage_preflight
+
+IO_SECONDS=0.
+
+
+def snapshot():
+    out=environment()
+    status=Path('/proc/self/status').read_text().splitlines()
+    for key,name in (('VmPeak:','process_peak_vm_bytes'),('VmHWM:','process_peak_rss_bytes')):
+        rows=[line for line in status if line.startswith(key)]
+        if len(rows)!=1:raise ValueError('Memory high-water measurement unavailable')
+        out[name]=int(rows[0].split()[1])*1024
+    return out
+
+
+def save(path,value):
+    global IO_SECONDS
+    tick=time.perf_counter()
+    Path(path).write_text(json.dumps(serial(value),ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+    IO_SECONDS+=time.perf_counter()-tick
+
+
+def save_vector(folder,name,x):
+    global IO_SECONDS
+    tick=time.perf_counter()
+    path=folder/(name+'.npz');np.savez_compressed(path,vector=x)
+    IO_SECONDS+=time.perf_counter()-tick
+    if path.stat().st_size>900000:raise ValueError('Published vector exceeds per-file size cap')
+    return path.name
+
+
+def random_rhs(space,seed):
+    rng=np.random.default_rng(seed);rho=np.zeros((space.d,space.d),complex)
+    for g in space.groups:
+        z=rng.normal(size=(len(g),len(g)))+1j*rng.normal(size=(len(g),len(g)))
+        rho[np.ix_(g,g)]=(z+z.conj().T)/2
+    rho-=np.trace(rho)*np.eye(space.d)/space.d
+    x=space.pack(rho);x/=np.linalg.norm(x)
+    return x
+
+
+def measure_raw(model,x):
+    out={}
+    for name,op in model['observables'].items():
+        v=complex(model['space'].row(op)@x)
+        if name.startswith('C_'):out[name]=dict(re=v.real,im=v.imag)
+        else:
+            if abs(v.imag)>1e-9:raise ArithmeticError('Complex observable')
+            out[name]=float(v.real)
+    return out
+
+
+def solve_model(model,evidence,mode,report,counts):
+    """Also exercised end-to-end on independent small-model fixtures."""
+    name=model['case']['model'];space=model['space'];production=mode=='production'
+    rows=[];branches={};states={};targets={};reset_maps={};response_vectors={};phases=[]
+    seed=PROTOCOL['calibration_seeds'][name];rhs=random_rhs(space,seed)
+    baseline_rhs=None if production else save_vector(report,name+'_random_rhs',rhs)
+    for method in ('lu','gmres_ilu'):
+        branch=dict(flux={});branches[method]=branch;states[method]={}
+        baseline_solver=Solver(model['L'],space,method=method);counts['factorizations']+=1
+        start=time.perf_counter();rho0,eq=baseline_solver.solve(trace=1.);counts['NESS']+=1
+        physicality(space,rho0,1e-9);raw0=measure_raw(model,rho0)
+        for key in ('F','J_h','source','h6','P_m6_N2','inventory'):
+            if abs(raw0[key]-evidence['baseline']['raw'][key])>1e-8:raise ArithmeticError('Published baseline mismatch: '+key)
+        tau=marginals(space.unpack(rho0),tuple(PROTOCOL['dimensions']) if space.d==216 else model['dimensions'])[1]
+        reset=Reset(space,tau,tuple(PROTOCOL['dimensions']) if space.d==216 else model['dimensions'])
+        targets[method]=tau;reset_maps[method]=reset
+        branch.update(rho0_sha256=array_hash(rho0),tau_sha256=array_hash(tau),target=reset.target)
+        save_vector(report,name+'_'+method+'_target',tau)
+        for gamma in PROTOCOL['gammas']:
+            tick=time.perf_counter()
+            if gamma==0:solver=baseline_solver;x=rho0;equation=eq
+            else:
+                solver=Solver(model['L'],space,gamma,reset,method);counts['factorizations']+=1
+                if production:x,equation=solver.solve(trace=1.);counts['NESS']+=1
+            record=dict(model=name,method=method,gamma=gamma,reset=reset.certificate)
+            if gamma==0 or production:
+                key=str(gamma);states[method][key]=x;raw=measure_raw(model,x);branch['flux'][key]=raw['F']
+                record.update(state_file=save_vector(report,f'{name}_{method}_g{gamma}',x),equation=equation,
+                              physicality=physicality(space,x,1e-9),raw=raw,reset_action=reset.certify_action(x))
+                diag_start=time.perf_counter()
+                record['diagnostics']=state_record(model,x,reset,gamma)
+                record['diagnostic_seconds']=time.perf_counter()-diag_start
+            if production and gamma==0:
+                q=reset.apply(rho0)-rho0
+                X,response_eq=solver.solve(-q,trace=0.);counts['response']+=1
+                xr=space.unpack(X)
+                if maxabs(xr-xr.conj().T)>1e-9:raise ArithmeticError('Response is not Hermitian')
+                branch['S']=float((space.row(model['observables']['F'])@X).real)
+                branch['q_sha256']=array_hash(q);branch['X_sha256']=array_hash(X)
+                branch['response_equation']=response_eq
+                branch['response_file']=save_vector(report,name+'_'+method+'_X',X)
+                branch['q_file']=save_vector(report,name+'_'+method+'_q',q)
+                branch['response_sector']=sector_check(space,xr,xr,1e-10)
+                response_vectors[method]=X
+                record['response']=dict(branch)
+            elif not production:
+                random_x,random_eq=solver.solve(rhs,trace=0.);counts['random_rhs']+=1
+                record.update(random_equation=random_eq,random_rhs_file=baseline_rhs,
+                    random_solution_file=save_vector(report,f'{name}_{method}_g{gamma}_random',random_x),
+                    random_rhs_seed=seed,physical_reset_rhs_solved=False)
+            if method=='lu':record['condition']=solver.condition_estimate();counts['condition_estimates']+=1
+            record['solver']=solver.metrics();record['elapsed_seconds']=time.perf_counter()-tick
+            rows.append(record);phases.append(dict(model=name,method=method,gamma=gamma,**record['solver']['timing']))
+            if gamma==0:del baseline_solver
+            del solver;gc.collect()
+        branch['branch_seconds']=time.perf_counter()-start
+    if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ArithmeticError('Independent targets differ')
+    for key in states['lu']:
+        if maxabs(states['lu'][key]-states['gmres_ilu'][key])>1e-9:raise ArithmeticError('NESS solver discrepancy')
+    if production:
+        if maxabs(response_vectors['lu']-response_vectors['gmres_ilu'])>1e-9:raise ArithmeticError('Response solver discrepancy')
+        result=analyze(branches['lu'],branches['gmres_ilu'],evidence['corr']['result']['signed_area'],evidence['corr']['result']['area_uncertainty'])
+        for row in rows:
+            other=next(r for r in rows if r['gamma']==row['gamma'] and r['method']!=row['method'])
+            error={k:3*abs(row['raw'][k]-other['raw'][k]) for k in row['raw'] if not k.startswith('C_')}
+            row['primitive_uncertainty']=error;row['conditional']=conditional_values(row['raw'],error)
+    else:
+        result=dict(status='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS')
+        if name=='QS':
+            extra=PROTOCOL['calibration_extra_factor_cases'][0]
+            options={k:extra[k] for k in ('method','rtol','atol','ilu_drop_tol','ilu_fill_factor')}
+            solver=Solver(model['L'],space,extra['gamma'],reset_maps['lu'],**options);counts['factorizations']+=1
+            x,eq=solver.solve(rhs);counts['random_rhs']+=1
+            rows.append(dict(model=name,method='gmres_ilu_tight',gamma=extra['gamma'],random_equation=eq,
+                random_rhs_file=baseline_rhs,random_solution_file=save_vector(report,name+'_tight_random',x),
+                physical_reset_rhs_solved=False,reset=reset_maps['lu'].certificate,solver=solver.metrics()))
+            reference=next(r for r in rows if r['method']=='lu' and r['gamma']==extra['gamma'])
+            with np.load(report/reference['random_solution_file'],allow_pickle=False) as a:comparison=maxabs(a['vector']-x)
+            if comparison>1e-8:raise ArithmeticError('Calibration tight ILU comparison failed')
+            rows[-1]['independent_random_solution_difference']=comparison
+            del solver;gc.collect()
+    return dict(model=name,case=model['case'],branches=branches,rows=rows,result=result,phases=phases,
+                area_reference=evidence['corr']['result']['signed_area'],u_area=evidence['corr']['result']['area_uncertainty'])
+
+
+def run(config,output):
+    output=Path(output)
+    if (output/'report').exists():raise FileExistsError('Refusing overwrite')
+    report=output/'report';report.mkdir(parents=True);started=time.perf_counter()
+    try:
+        return _run(config,report,started)
+    except Exception as e:
+        save(report/'failure.json',dict(type=type(e).__name__,message=str(e),elapsed_seconds=time.perf_counter()-started,traceback=traceback.format_exc()))
+        save(report/'status.json',dict(status='FAILED',scientific_acceptance=False))
+        (report/'RESULT.md').write_text('Время: NOT_EVALUABLE. Аварийное завершение.\n\n'+str(e)+'\nЧастичные данные не приняты.\n')
+        write_manifest(report);raise
+    finally:
+        signal.setitimer(signal.ITIMER_REAL,0)
+
+
+def _run(config,report,started):
+    global IO_SECONDS
+    IO_SECONDS=0.
+    before=snapshot();save(report/'config.json',config);save(report/'environment_before.json',before)
+    gate=preflight(config,before);gate['storage']=storage_preflight(report.parent)
+    save(report/'preflight.json',{k:v for k,v in gate.items() if k!='evidence'})
+    preflight_seconds=time.perf_counter()-started
+    if config['mode']=='calibration':
+        def alarm(*_):raise TimeoutError('Predeclared bounded calibration wall limit')
+        signal.signal(signal.SIGALRM,alarm);signal.setitimer(signal.ITIMER_REAL,PROTOCOL['calibration_wall_limit_seconds'])
+    counts=dict.fromkeys(workload(config['mode']),0);records=[];phases=[]
+    for case in cases():
+        tick=time.perf_counter();print('START',case['model'],config['mode'],flush=True)
+        model=make_full(case);assembly=time.perf_counter()-tick
+        cert_start=time.perf_counter();certificate=uniqueness(model);cert_time=time.perf_counter()-cert_start
+        save(report/(case['model']+'_uniqueness_scope_v1.json'),certificate)
+        rec=solve_model(model,gate['evidence'][case['id']],config['mode'],report,counts)
+        save(report/(case['model']+'_case.json'),rec);records.append(rec)
+        phases.append(dict(model=case['model'],assembly_seconds=assembly,certificate_seconds=cert_time,total_seconds=time.perf_counter()-tick))
+        save(report/'progress.json',dict(counts=counts,phases=phases));print('DONE',case['model'],flush=True)
+        del model;gc.collect()
+    if counts!=workload(config['mode']):raise ArithmeticError('Workload mismatch')
+    save(report/'protocol.json',PROTOCOL);save(report/'dependencies.json',implementation_manifest())
+    save(report/'status.json',dict(status='COMPLETED_NOT_ACCEPTED',mode=config['mode']))
+    entries=[dict(path=p.name,size=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(report.glob('*.npz'))]
+    save(report/'data_manifest.json',dict(full_files=entries,full_total_bytes=sum(e['size'] for e in entries),
+         published_count=len(entries),selection='All solution, target and RHS arrays; no unpublished arrays',coverage=1.))
+    metrics=dict(counts=counts,phases=phases,environment_after=snapshot(),
+        preflight_seconds=preflight_seconds,io_seconds=IO_SECONDS,
+        implementation_sha256=implementation_hash(),kernel_sha256=kernel_hash(),protocol_sha256=protocol_hash(),
+        source_commit=config['source_commit'],mode=config['mode'],
+        runtime_gate=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production'))
+    save(report/'metrics.json',metrics)
+    from .reporting import render
+    text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text);write_manifest(report)
+    from .verify import verify_report
+    tick=time.perf_counter();verify_report(report,finalized=False);verification=time.perf_counter()-tick
+    metrics.update(verification_seconds=verification,complete_body_seconds=time.perf_counter()-started,
+                   timing_scope='Through first independent verification; final metadata and final immutable verification are covered by enclosing service duration')
+    metrics['runtime_gate']=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production')
+    metrics['environment_after']=snapshot()
+    save(report/'metrics.json',metrics);text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text)
+    if config['mode']=='calibration':
+        from .budget import forecast
+        save(report/'calibration.json',forecast(config,metrics,records,before))
+    write_manifest(report)
+    verify_report(report,finalized=True)
+    print('FINAL_REPORT_VERIFIED_NO_SUBSEQUENT_REPORT_WRITES',flush=True)
+    return metrics
+
+
+===== FILE e002e_reset_exp/verify.py =====
+"""Rebuild pinned operators and recompute results from exported vectors; no solves."""
+import hashlib,json
+from pathlib import Path
+import numpy as np
+from e002_exp.model import maxabs
+from e002e_exp.model import make_full
+from e002e_exp.export import conditional_values
+from e002e_exp.runtime import compare_environment,runtime_gate
+from e002e_corr_exp.core import array_hash,physicality,marginals
+from .core import Reset,analyze
+from .certificates import state_record,uniqueness
+from .plan import cases,workload,PROTOCOL,protocol_hash,implementation_hash,implementation_manifest,thread_preflight
+
+
+def equal(a,b):
+    if isinstance(a,dict) and isinstance(b,dict):return a.keys()==b.keys() and all(equal(a[k],b[k]) for k in a)
+    if isinstance(a,list) and isinstance(b,list):return len(a)==len(b) and all(equal(x,y) for x,y in zip(a,b))
+    if a is None or b is None or isinstance(a,bool) or isinstance(b,bool):return type(a)==type(b) and a==b
+    if isinstance(a,(int,float)) and isinstance(b,(int,float)):return bool(np.isfinite([a,b]).all() and np.isclose(a,b,atol=1e-12,rtol=1e-11))
+    return a==b
+
+
+def vector(report,name):
+    if not isinstance(name,str) or Path(name).name!=name:raise ValueError('Unsafe vector path')
+    with np.load(report/name,allow_pickle=False) as a:
+        if a.files!=['vector']:raise ValueError('Unexpected arrays')
+        x=a['vector'].copy()
+    if not np.isfinite(x).all():raise ValueError('Nonfinite vector')
+    return x
+
+
+def verify_case(report,rec,model,mode):
+    space=model['space'];production=mode=='production';rows=rec['rows'];branches={};targets={};states={};responses={}
+    expected={(m,g) for m in ('lu','gmres_ilu') for g in PROTOCOL['gammas']}
+    actual=[(r['method'],r['gamma']) for r in rows if r['method']!='gmres_ilu_tight']
+    if len(actual)!=len(expected) or set(actual)!=expected:raise ValueError('Case coverage mismatch')
+    if sum(r['method']=='gmres_ilu_tight' for r in rows)!=(1 if not production and rec['model']=='QS' else 0):
+        raise ValueError('Calibration extra-factor coverage mismatch')
+    if not production:
+        forbidden={'S','q_file','q_sha256','response','response_file','response_equation','response_sector','X_sha256'}
+        if any(forbidden & set(b) for b in rec['branches'].values()) or any(forbidden & set(r) for r in rows):
+            raise ValueError('Forbidden physical calibration fields')
+        allowed={rec['model']+'_'+m+'_target.npz' for m in ('lu','gmres_ilu')}
+        allowed|={r[k] for r in rows for k in ('state_file','random_rhs_file','random_solution_file') if k in r}
+        if {p.name for p in report.glob(rec['model']+'_*.npz')}!=allowed:raise ValueError('Unexpected calibration arrays')
+    for method in ('lu','gmres_ilu'):
+        branch=rec['branches'][method];rho0=vector(report,next(r['state_file'] for r in rows if r['method']==method and r['gamma']==0))
+        dims=(8,27) if space.d==216 else model['dimensions']
+        tau=marginals(space.unpack(rho0),dims)[1];reset=Reset(space,tau,dims)
+        targets[method]=tau;states[method]={}
+        if maxabs(vector(report,rec['model']+'_'+method+'_target.npz')-tau)>1e-13:raise ValueError('Exported target differs')
+        if array_hash(rho0)!=branch['rho0_sha256'] or array_hash(tau)!=branch['tau_sha256']:raise ValueError('Branch target identity mismatch')
+        if not equal(reset.target,branch['target']):raise ValueError('Target physicality differs')
+        values=dict(flux={})
+        for row in (r for r in rows if r['method']==method):
+            gamma=row['gamma']
+            if not equal(row['reset'],reset.certificate):raise ValueError('Reset certificate mismatch')
+            nsolves=int(gamma==0 or production)+int(not production or gamma==0)
+            if row['solver']['counts']['task_solves']!=nsolves:raise ValueError('Internal solve count differs')
+            if 'condition' in row and (not np.isfinite(row['condition']['value']) or row['condition']['value']<1):raise ValueError('Invalid condition estimate')
+            def equation(x):return model['L']@x+gamma*(reset.apply(x)-x)
+            if gamma==0 or production:
+                x=vector(report,row['state_file'])
+                states[method][gamma]=x
+                if x.shape!=(space.size,) or maxabs(equation(x))>1e-9:raise ValueError('NESS equation failed')
+                check=state_record(model,x,reset,gamma)
+                if not equal(check,row['diagnostics']) or not equal(check['raw'],row['raw']):raise ValueError('State observables/certificates differ')
+                values['flux'][str(gamma)]=check['raw']['F']
+                if production:
+                    other=next(r for r in rows if r['gamma']==gamma and r['method'] not in (method,'gmres_ilu_tight'))
+                    errors={k:3*abs(row['raw'][k]-other['raw'][k]) for k in row['raw'] if not k.startswith('C_')}
+                    if not equal(errors,row['primitive_uncertainty']) or not equal(conditional_values(row['raw'],errors),row['conditional']):
+                        raise ValueError('Conditional metrics mismatch')
+            if not production:
+                if row.get('physical_reset_rhs_solved') is not False:raise ValueError('Calibration has physical reset solve')
+                x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
+                from .task import random_rhs
+                if maxabs(b-random_rhs(space,PROTOCOL['calibration_seeds'][rec['model']]))>1e-13:raise ValueError('Random RHS seed/distribution differs')
+                if maxabs(equation(x)-b)>1e-9 or abs(space.trace(x))>1e-9 or abs(space.trace(b))>1e-11:
+                    raise ValueError('Random calibration equation failed')
+            elif gamma==0:
+                q=reset.apply(rho0)-rho0;X=vector(report,branch['response_file'])
+                responses[method]=X
+                if (array_hash(q)!=branch['q_sha256'] or array_hash(X)!=branch['X_sha256']
+                        or maxabs(vector(report,branch['q_file'])-q)>1e-13):raise ValueError('Response identity mismatch')
+                if maxabs(model['L']@X+q)>1e-9 or abs(space.trace(X))>1e-9:raise ValueError('Response equation failed')
+                xr=space.unpack(X)
+                if maxabs(xr-xr.conj().T)>1e-9:raise ValueError('Response Hermiticity failed')
+                values['S']=float((space.row(model['observables']['F'])@X).real)
+        if not equal(values['flux'],branch['flux']) or (production and not equal(values['S'],branch['S'])):
+            raise ValueError('Branch values mismatch')
+        branches[method]=values
+    if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ValueError('Target discrepancy')
+    if any(maxabs(states['lu'][g]-states['gmres_ilu'][g])>1e-9 for g in states['lu']):raise ValueError('State discrepancy')
+    if production:
+        if maxabs(responses['lu']-responses['gmres_ilu'])>1e-9:raise ValueError('Response discrepancy')
+        result=analyze(branches['lu'],branches['gmres_ilu'],rec['area_reference'],rec['u_area'])
+        if not equal(result,rec['result']):raise ValueError('Scientific verdict differs')
+    else:
+        if any('S' in b for b in rec['branches'].values()) or any('state_file' in r and r['gamma']!=0 for r in rows) or rec['result']['status']!='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS':raise ValueError('Calibration leaks new physics')
+        if rec['model']=='QS':
+            row=next(r for r in rows if r['method']=='gmres_ilu_tight')
+            rho0=vector(report,next(r['state_file'] for r in rows if r['method']=='lu' and r['gamma']==0))
+            reset=Reset(space,marginals(space.unpack(rho0),dims)[1],dims)
+            x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
+            ref=next(r for r in rows if r['method']=='lu' and r['gamma']==row['gamma'])
+            if (maxabs(model['L']@x+row['gamma']*(reset.apply(x)-x)-b)>1e-9 or abs(space.trace(x))>1e-9
+                or maxabs(x-vector(report,ref['random_solution_file']))>1e-8):raise ValueError('Tight random solve failed')
+    return dict(status='VECTORS_OPERATORS_AND_DECISIONS_VERIFIED',model=rec['model'])
+
+
+def verify_report(report,finalized=True):
+    report=Path(report);load=lambda p:json.loads((report/p).read_text())
+    manifest=load('manifest.json');paths=[e['path'] for e in manifest['files']]
+    if len(paths)!=len(set(paths)) or set(paths)!={p.name for p in report.iterdir() if p.is_file() and p.name!='manifest.json'}:
+        raise ValueError('Manifest coverage mismatch')
+    for e in manifest['files']:
+        if Path(e['path']).name!=e['path']:raise ValueError('Unsafe manifest path')
+        data=(report/e['path']).read_bytes()
+        if len(data)!=e['size'] or hashlib.sha256(data).hexdigest()!=e['sha256']:raise ValueError('Checksum mismatch')
+    cfg=load('config.json');metrics=load('metrics.json');mode=cfg['mode']
+    if load('status.json')['status']!='COMPLETED_NOT_ACCEPTED':raise ValueError('Failed/incomplete report')
+    if (load('protocol.json')!=PROTOCOL or cfg['protocol_sha256']!=protocol_hash()
+            or cfg['implementation_sha256']!=implementation_hash() or load('dependencies.json')!=implementation_manifest()):
+        raise ValueError('Implementation/protocol provenance mismatch')
+    before=load('environment_before.json');after=metrics['environment_after'];thread_preflight(before);thread_preflight(after)
+    if not compare_environment(before,after)['comparable']:raise ValueError('Environment changed during run')
+    if metrics['counts']!=workload(mode):raise ValueError('Workload mismatch')
+    from .plan import preflight
+    # preflight also revalidates pinned evidence, technical review and calibrated budgets.
+    gate=preflight(cfg,before,require_checkout=False)
+    if not equal(gate['environment'],load('preflight.json')['environment']):raise ValueError('Stored environment verdict differs')
+    rt=metrics['runtime_gate'];expected=runtime_gate(cfg['forecast'],rt['actual_seconds'],workload(mode),metrics['counts'],gate['environment']['comparable'],mode=='production')
+    if not equal(rt,expected):raise ValueError('Stored time verdict differs')
+    out=[];records=[];count=dict.fromkeys(workload(mode),0)
+    for case in cases():
+        rec=load(case['model']+'_case.json')
+        records.append(rec)
+        if rec['case']!=case:raise ValueError('Case changed')
+        original=gate['evidence'][case['id']]['corr']['result']
+        if rec['area_reference']!=original['signed_area'] or rec['u_area']!=original['area_uncertainty']:raise ValueError('Area evidence changed')
+        model=make_full(case)
+        if not equal(uniqueness(model),load(case['model']+'_uniqueness_scope_v1.json')):raise ValueError('Uniqueness premises differ')
+        baseline=gate['evidence'][case['id']]['baseline']['raw']
+        for row in (r for r in rec['rows'] if r['gamma']==0):
+            if any(abs(row['raw'][k]-baseline[k])>1e-8 for k in ('F','J_h','source','h6','P_m6_N2','inventory')):raise ValueError('Published baseline differs')
+        out.append(verify_case(report,rec,model,mode))
+        for row in rec['rows']:
+            count['factorizations']+=1;count['NESS']+=int('state_file' in row)
+            count['response']+=int('response' in row);count['random_rhs']+=int('random_solution_file' in row)
+            count['condition_estimates']+=int('condition' in row)
+    if count!=workload(mode):raise ValueError('Actual exported workload differs')
+    if finalized and mode=='calibration':
+        from .budget import forecast
+        if not equal(load('calibration.json'),forecast(cfg,metrics,records,before)):raise ValueError('Calibration budget differs')
+        peak=after['process_peak_vm_bytes'];rss=after['process_peak_rss_bytes']
+        if peak<after['process_vm_size_bytes'] or rss<=0 or peak>=after['address_space_rlimit'][0]:raise ValueError('Invalid memory high-water record')
+    return dict(status='VERIFIED',cases=out,counts=count,full_archive_access=False)
+
+
+===== FILE e002e_reset_exp/numerics.py =====
+"""Bordered shifted sparse factors + rank-20 Woodbury; independent GMRES/ILU.
+
+Every factor application is counted, including columns, residual corrections,
+preconditioner applications and inverse-norm estimation. No eigenspectrum repair.
+"""
+import time,warnings
+import numpy as np
+from scipy import sparse as sp
+from scipy import linalg
+from scipy.sparse.linalg import splu,spilu,LinearOperator,onenormest
+from e002e_exp.compat import gmres
+from e002_exp.model import maxabs
+
+
+class Solver:
+    def __init__(self,L,space,gamma=0.,reset=None,method='lu',rtol=1e-11,atol=1e-13,
+                 ilu_drop_tol=1e-5,ilu_fill_factor=10.,restart=100,maxiter=400):
+        self.L=sp.csr_matrix(L);self.space=space;self.gamma=float(gamma);self.reset=reset
+        if not np.isfinite(gamma) or gamma<0 or (gamma and reset is None):raise ValueError('Invalid reset solve')
+        if method not in ('lu','gmres_ilu'):raise ValueError('Unknown method')
+        self.method=method;self.rtol=rtol;self.atol=atol;self.restart=restart;self.maxiter=maxiter
+        self.counts=dict(task_solves=0,factor_calls=0,factor_rhs_columns=0,preconditioner_calls=0,
+                         residual_corrections=0,gmres_iterations=0,condition_estimates=0)
+        self.times=dict(factor_seconds=0.,low_rank_setup_seconds=0.,factor_application_seconds=0.,solve_seconds=0.,condition_seconds=0.)
+        n=space.size;r=space.trace_row.T/space.d
+        self.base=sp.bmat([[self.L-gamma*sp.eye(n),r],[space.trace_row,None]],format='csc')
+        tick=time.perf_counter()
+        self.factor=splu(self.base) if method=='lu' else spilu(self.base,drop_tol=ilu_drop_tol,fill_factor=ilu_fill_factor)
+        self.times['factor_seconds']=time.perf_counter()-tick
+        self.U=sp.csc_matrix((n+1,0));self.V=sp.csr_matrix((0,n+1));self.W=None;self.small=None
+        tick=time.perf_counter()
+        if gamma:
+            self.U=sp.vstack([reset.U,sp.csr_matrix((1,reset.rank))],format='csc')
+            self.V=sp.hstack([reset.V,sp.csr_matrix((reset.rank,1))],format='csr')
+            self.W=self.factor_apply(self.U.toarray())
+            self.small=np.eye(reset.rank)+gamma*(self.V@self.W)
+            if not np.isfinite(self.small).all():raise ArithmeticError('Invalid Woodbury core')
+            with warnings.catch_warnings():
+                warnings.simplefilter('error',linalg.LinAlgWarning)
+                self.small_factor=linalg.lu_factor(self.small)
+            if not np.isfinite(self.small_factor[0]).all():raise ArithmeticError('Invalid Woodbury factor')
+        self.times['low_rank_setup_seconds']=time.perf_counter()-tick
+        self.operator=LinearOperator(self.base.shape,matvec=self.apply,matmat=self.apply,dtype=complex)
+        self.preconditioner=LinearOperator(self.base.shape,matvec=self.precondition,dtype=complex)
+
+    def factor_apply(self,rhs,trans='N'):
+        tick=time.perf_counter();self.counts['factor_calls']+=1
+        self.counts['factor_rhs_columns']+=1 if np.ndim(rhs)==1 else rhs.shape[1]
+        out=self.factor.solve(np.asarray(rhs,complex),trans=trans)
+        self.times['factor_application_seconds']+=time.perf_counter()-tick
+        return out
+
+    def inverse(self,rhs,adjoint=False):
+        z=self.factor_apply(rhs,'H' if adjoint else 'N')
+        if self.gamma:
+            if adjoint:
+                c=linalg.lu_solve(self.small_factor,self.U.getH()@z,trans=2)
+                z-=self.gamma*self.factor_apply(self.V.getH()@c,'H')
+            else:
+                c=linalg.lu_solve(self.small_factor,self.V@z)
+                z-=self.gamma*(self.W@c)
+        if not np.isfinite(z).all():raise ArithmeticError('Nonfinite inverse application')
+        return z
+
+    def precondition(self,rhs):
+        self.counts['preconditioner_calls']+=1
+        return self.inverse(rhs)
+
+    def apply(self,x):
+        return self.base@x+self.gamma*(self.U@(self.V@x))
+
+    def equation(self,x):
+        return self.L@x+(self.gamma*(self.reset.apply(x)-x) if self.gamma else 0)
+
+    def solve(self,b=None,trace=0.):
+        b=np.zeros(self.space.size,complex) if b is None else np.asarray(b,complex)
+        if b.shape!=(self.space.size,) or not np.isfinite(b).all():raise ValueError('Invalid RHS')
+        if abs(self.space.trace(b))>1e-11:raise ValueError('RHS is not traceless')
+        rhs=np.r_[b,trace];tick=time.perf_counter();self.counts['task_solves']+=1
+        if self.method=='lu':
+            x=self.inverse(rhs)
+            for _ in range(2):
+                x+=self.inverse(rhs-self.apply(x));self.counts['residual_corrections']+=1
+        else:
+            def count(_):self.counts['gmres_iterations']+=1
+            x,info=gmres(self.operator,rhs,M=self.preconditioner,rtol=self.rtol,atol=self.atol,
+                         restart=self.restart,maxiter=self.maxiter,callback=count,callback_type='pr_norm')
+            if info!=0:raise ArithmeticError('Reset GMRES did not converge: '+str(info))
+        self.times['solve_seconds']+=time.perf_counter()-tick
+        residual=self.equation(x[:-1])-b;bnorm=float(np.linalg.norm(b));rnorm=float(np.linalg.norm(residual))
+        checks=dict(absolute_inf=maxabs(residual),absolute_2=rnorm,
+                    relative_true=None if bnorm==0 else rnorm/bnorm,
+                    relative_true_status='ZERO_RHS' if bnorm==0 else 'DEFINED',
+                    relative_normalized=rnorm/max(bnorm,1.),trace_error=float(abs(self.space.trace(x[:-1])-trace)),
+                    border_multiplier=float(abs(x[-1])))
+        if (not np.isfinite(x).all() or max(checks['absolute_inf'],checks['trace_error'],checks['border_multiplier'])>1e-9):
+            raise ArithmeticError('Original reset equation/trace failed: '+str(checks))
+        return x[:-1],checks
+
+    def condition_estimate(self):
+        if self.method!='lu':return dict(value=None,status='NOT_ESTIMATED_FOR_ILU')
+        tick=time.perf_counter();self.counts['condition_estimates']+=1
+        inverse=LinearOperator(self.base.shape,matvec=self.inverse,
+            rmatvec=lambda x:self.inverse(x,adjoint=True),matmat=self.inverse,dtype=complex)
+        # Forming rank-20 update for a norm is cheap; it is never factorized.
+        matrix=self.base+self.gamma*(self.U@self.V)
+        value=float(sp.linalg.norm(matrix,1)*onenormest(inverse))
+        self.times['condition_seconds']+=time.perf_counter()-tick
+        if not np.isfinite(value):raise ArithmeticError('Nonfinite condition diagnostic')
+        return dict(value=value,status='ONE_NORM_ESTIMATE_NOT_RIGOROUS_BOUND')
+
+    def metrics(self):
+        factor_bytes=sum(a.data.nbytes+a.indices.nbytes+a.indptr.nbytes for a in (self.factor.L,self.factor.U))
+        return dict(method=self.method,gamma=self.gamma,base_nnz=int(self.base.nnz),
+                    factor_nnz=int(self.factor.L.nnz+self.factor.U.nnz),factor_storage_bytes=int(factor_bytes),
+                    woodbury_rank=0 if self.reset is None or not self.gamma else self.reset.rank,
+                    low_rank_dense_bytes=0 if self.W is None else self.W.nbytes,
+                    counts=dict(self.counts),timing=dict(self.times),
+                    timing_note='Factor-application time is a subcomponent; do not add twice.')
+
+
+===== FILE e002e_reset_exp/budget.py =====
+"""Measured costs; low-rank inverse work is explicitly inside setup/solve costs."""
+from .plan import protocol_hash,implementation_hash
+
+
+def forecast(config,metrics,records,before):
+    main=[r for rec in records for r in rec['rows'] if r['method']!='gmres_ilu_tight']
+    components=dict(
+        assemblies_and_operator_certificates=sum(p['assembly_seconds']+p['certificate_seconds'] for p in metrics['phases']),
+        factors_and_low_rank_columns=sum(r['solver']['timing']['factor_seconds']+r['solver']['timing']['low_rank_setup_seconds'] for r in main),
+        scientific_solves_proxy=2*sum(r['solver']['timing']['solve_seconds'] for r in main),
+        condition_estimates=sum(r['solver']['timing']['condition_seconds'] for r in main),
+        density_diagnostics=3*sum(r.get('diagnostic_seconds',0.) for r in main),
+        report_verification=3*metrics['verification_seconds'],
+        measured_preflight=metrics['preflight_seconds'],
+        vector_and_metadata_io=2*metrics['io_seconds'],
+        startup_proxy=.25055742263793945)
+    expected=sum(components.values());memory=dict(config['memory_budget']);after=metrics['environment_after']
+    memory.update(measured_peak_rss_bytes=after['process_peak_rss_bytes'],measured_peak_vm_bytes=after['process_peak_vm_bytes'],
+        simultaneous_factor_storage_bytes=max(r['solver']['factor_storage_bytes']+r['solver']['low_rank_dense_bytes'] for r in main))
+    memory['calibration_configured_peak_additional_bytes']=config['memory_budget']['peak_additional_bytes']
+    memory['peak_additional_bytes']=int(1.25*memory['measured_peak_vm_bytes'])
+    memory['forecast_rule']='1.25 times measured VmPeak; full process peak is conservative additional-allocation proxy; reserve separate'
+    memory['memory_high_water_source']='/proc/self/status VmHWM and VmPeak'
+    memory['address_space_headroom_at_peak_bytes']=after['address_space_rlimit'][0]-memory['measured_peak_vm_bytes']
+    return dict(status='CALIBRATION_COMPLETE_REVIEW_PENDING',counts=metrics['counts'],report_commit=None,
+        implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash(),environment=before,memory_budget=memory,
+        forecast_components_seconds=components,
+        production_forecast=dict(expected_seconds=expected,lower_seconds=.5*expected,upper_seconds=2*expected,
+            basis='12 measured factor/low-rank setups; 2x random+known solve proxy; 3x known density diagnostics and independent vector verification; measured preflight and 2x vector/metadata I-O; .250557s prior VM process startup proxy. Review enclosing time before accepting forecast. Extra calibration sweep excluded.'),
+        limits=['No physical finite-gamma RHS was solved in calibration.','Random RHS timing is a proxy, not a guarantee.',
+                'Factor-application timing overlaps setup/solve/condition and is not added again.',
+                'Enclosing process time and memory must be reviewed from GitHub before production.'])
+
+
+===== FILE e002e_reset_exp/plan.py =====
+"""Frozen science, workload and fail-closed launch identity for RESET."""
+import hashlib,json,os,re
+from pathlib import Path
+import numpy as np
+from e002e_exp.runtime import ROOT,kernel_files,kernel_hash,compare_environment,memory_preflight
+from e002e_exp.plan import selected_work,pinned_file
+from e002e_corr_exp.plan import thread_preflight,storage_preflight
+
+PROTOCOL=dict(version='E002e_RESET_v001',concept='E002e_RESET_v002',models=['QS','RR_QS'],
+    gammas=[0.,.001,.002],primary='S_F_QS_POSITIVE',primary_branch='LU_WITH_OWN_FIXED_BASELINE_TARGET',
+    dimensions=[8,27],q0_dimension=14580,reset_rank=20,epsilon=0.,phi_over_pi=.5,m6_v_over_J=1.,node_noise=.05,
+    state_tolerance=1e-9,operator_tolerance=1e-10,small_signal_floor_S=1e-6,small_signal_floor_A=1e-6,
+    guard_safety=10.,window_fraction=.20,linearity_fraction=.10,uncertainty_safety=3.,uncertainty_floor=1e-10,
+    maximum_u_S=1e-6,maximum_u_delta_F=1e-8,conditional_floor=1e-6,
+    calibration_seeds={'QS':192601,'RR_QS':192602},calibration_rhs_per_factor=1,
+    calibration_wall_limit_seconds=180.,calibration_extra_factor_cases=[dict(model='QS',gamma=.002,method='gmres_ilu',
+        rtol=1e-12,atol=1e-14,ilu_drop_tol=1e-6,ilu_fill_factor=15.)],
+    excluded=['IC','new_epsilon','spectral_scan','tau_fit','physical_reset_rhs_in_calibration'])
+SOLVERS=[dict(method='lu'),dict(method='gmres_ilu')]
+
+
+def canonical(value):return json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)
+def protocol_hash():return hashlib.sha256(canonical(PROTOCOL).encode()).hexdigest()
+
+
+def implementation_manifest():
+    files=set(kernel_files())|set((ROOT/'e002e_reset_exp').glob('*.py'))
+    files|={ROOT/'e002e_corr_exp'/name for name in ('__init__.py','core.py','environment.py','plan.py')}
+    files|={ROOT/pkg/'__init__.py' for pkg in ('e002_exp','e002c_exp','e002d_exp')}
+    files.add(ROOT/'experiments/e002e_reset/vm_entry.py')
+    files.add(ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json')
+    return [dict(path=p.relative_to(ROOT).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(files)]
+
+
+def implementation_hash():return hashlib.sha256(canonical(implementation_manifest()).encode()).hexdigest()
+
+
+def cases():
+    result=[]
+    for model in PROTOCOL['models']:
+        rows=[c for c in selected_work('baseline')['full'] if c['model']==model and c['epsilon']==0
+              and c['phi_over_pi']==.5 and c['node_noise']==.05 and c['m6_v_over_J']==1.]
+        if len(rows)!=1:raise ValueError('Ambiguous baseline case')
+        result.append(dict(rows[0],tasks=['NESS']))
+    return result
+
+
+def workload(mode):
+    if mode=='production':return dict(NESS=12,response=4,random_rhs=0,factorizations=12,condition_estimates=6)
+    if mode=='calibration':return dict(NESS=4,response=0,random_rhs=13,factorizations=13,condition_estimates=6)
+    raise ValueError('Invalid mode')
+
+
+def preflight(config,env,require_checkout=True):
+    allowed={'mode','source_commit','protocol_sha256','implementation_sha256','technical_review','evidence',
+             'calibration','forecast','memory_budget','science_freeze'}
+    if set(config)-allowed:raise ValueError('Unsupported override')
+    mode=config.get('mode');counts=workload(mode)
+    if config.get('protocol_sha256')!=protocol_hash() or config.get('implementation_sha256')!=implementation_hash():
+        raise ValueError('Implementation/protocol mismatch')
+    if not re.fullmatch('[0-9a-f]{40}',config.get('source_commit','')) or (require_checkout and os.environ.get('VM_SOURCE_COMMIT')!=config['source_commit']):
+        raise ValueError('Checkout identity mismatch')
+    freeze=pinned_file(config['science_freeze'])
+    if freeze.get('protocol_sha256')!=protocol_hash() or freeze.get('status')!='SCIENCE_FROZEN_BEFORE_NEW_PHYSICAL_RHS':
+        raise ValueError('Science freeze missing')
+    review=pinned_file(config['technical_review'])
+    if review.get('status')!='REVIEWED_AND_CHECKED' or review.get('implementation_sha256')!=implementation_hash():
+        raise ValueError('Current implementation not reviewed')
+    evidence=pinned_file(config['evidence'])
+    if evidence.get('protocol_sha256')!=protocol_hash():raise ValueError('Evidence protocol mismatch')
+    records={}
+    for item in evidence['cases']:
+        baseline=pinned_file(item['baseline']);corr=pinned_file(item['corr'])
+        cid=item['case_id']
+        if cid in records or baseline['id']!=cid or corr['id']!=cid:raise ValueError('Duplicate/mismatched case evidence')
+        if not baseline['quality']['pass'] or not baseline['refinement']['gate']['pass_gate']:raise ValueError('Invalid baseline evidence')
+        records[cid]=dict(baseline=baseline,corr=corr)
+    if set(records)!={c['id'] for c in cases()}:raise ValueError('Incomplete evidence')
+    for case in cases():
+        if any(records[case['id']]['baseline']['case'][k]!=case[k] for k in ('model','epsilon','phi_over_pi','node_noise','m6_v_over_J')):
+            raise ValueError('Evidence physics mismatch')
+        corr=records[case['id']]['corr']
+        if any(corr['case'][k]!=case[k] for k in ('model','epsilon','phi_over_pi','node_noise','m6_v_over_J')):
+            raise ValueError('CORR evidence physics mismatch')
+        area=corr['result']['signed_area'];u=corr['result']['area_uncertainty']
+        if not np.isfinite([area,u]).all() or u<0:raise ValueError('Invalid CORR area evidence')
+    comparison=dict(comparable=False,reason='FIRST_BOUNDED_CALIBRATION')
+    if mode=='production':
+        cal=pinned_file(config['calibration'])
+        if (cal.get('status')!='CALIBRATION_REVIEWED' or cal.get('counts')!=workload('calibration')
+                or cal.get('implementation_sha256')!=implementation_hash() or cal.get('protocol_sha256')!=protocol_hash()
+                or not re.fullmatch('[0-9a-f]{40}',cal.get('report_commit',''))):raise ValueError('Calibration identity mismatch')
+        comparison=compare_environment(cal['environment'],env)
+        if not comparison['comparable']:raise ValueError('Calibration environment changed')
+        if config['forecast']!=cal['production_forecast'] or config['memory_budget']!=cal['memory_budget']:
+            raise ValueError('Measured budget mismatch')
+    f=config['forecast']
+    if not all(np.isfinite(f[k]) for k in ('expected_seconds','lower_seconds','upper_seconds')) or not 0<f['lower_seconds']<=f['expected_seconds']<=f['upper_seconds']:
+        raise ValueError('Invalid forecast')
+    return dict(evidence=records,counts=counts,environment=comparison,threads=thread_preflight(env),
+                memory=memory_preflight(config['memory_budget'],env))
+
+
+===== FILE e002e_corr_exp/environment.py =====
+"""CORR environment observations supplement the unchanged E002e runtime."""
+from pathlib import Path
+from e002e_exp.runtime import environment as kernel_environment
+
+
+def environment():
+    result = kernel_environment()
+    try:
+        result['process_threads'] = len(list(Path('/proc/self/task').iterdir()))
+    except OSError:
+        result['process_threads'] = None
+    return result
+
+
+===== FILE e002e_corr_exp/plan.py =====
+"""Immutable science and fail-closed launch requirements for CORR v001."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import numpy as np
+from e002e_exp.runtime import ROOT, kernel_hash, kernel_files, compare_environment, memory_preflight
+from e002e_exp.plan import pinned_file, selected_work
+
+MODELS = ('QS', 'RR_QS', 'IC1_QS')
+PROTOCOL = dict(version='E002e_CORR_v001', models=list(MODELS), primary_model='QS', phi_over_pi=.5,
+                epsilon=0., m6_v_over_J=1., node_noise=.05, dimensions=[8, 27],
+                horizon=20., dt_fine=.005, dt_coarse=.01, sample_interval=.02,
+                physicality_interval=1., primary='integral_abs_delta_F_over_H_Fss',
+                primary_threshold=.001, maximum_metric_uncertainty=.0001,
+                absolute_floor=1e-10, safety=3., raw_absolute_tolerance=1e-8,
+                raw_relative_tolerance=1e-5, maximum_sham_drift=1e-8,
+                state_tolerance=1e-9, operator_tolerance=1e-10,
+                physicality_mode='FULL_PSD_AT_DECLARED_CHECKPOINTS',
+                sector_contract='COMPLETE_Q0_CHARGE_BLOCKS_NO_PROJECTION',
+                checkpoint_interval=1., checkpoint_retention='LAST_ONLY_NO_RESUME',
+                calibration_horizon=2., negative_result='finite_window_operational_non_rejection',
+                initial_preparation='replace_edges_by_fixed_own_baseline_marginal',
+                no_infinite_tail_or_quantum_specificity_claim=True)
+SOLVERS = (dict(method='lu', rtol=1e-11, atol=1e-13),
+           dict(method='gmres_ilu', rtol=1e-11, atol=1e-13, restart=100, maxiter=400,
+                ilu_drop_tol=1e-5, ilu_fill_factor=10.))
+LIMITS = dict(vector_inf=1e-9, observable_absolute=1e-9, observable_relative=1e-7)
+
+
+def canonical(value):
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+
+
+def protocol_hash():
+    return hashlib.sha256(canonical(dict(science=PROTOCOL, solvers=SOLVERS, refinement=LIMITS)).encode()).hexdigest()
+
+
+def implementation_manifest():
+    # kernel_files already covers numerics, space, export, runtime, compat,
+    # full-model builders, inventory and scientific constants. Include import
+    # package initializers explicitly; publish this dependency inventory.
+    files = set(kernel_files()) | set((ROOT/'e002e_corr_exp').glob('*.py'))
+    files.add(ROOT/'experiments/e002e_corr/input_integrity.json')
+    files.add(ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json')
+    files.add(ROOT/'experiments/e002e_corr/vm_entry.py')
+    files |= {ROOT/pkg/'__init__.py' for pkg in ('e002_exp','e002c_exp','e002d_exp')}
+    return [dict(path=p.relative_to(ROOT).as_posix(), sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            for p in sorted(files)]
+
+
+def implementation_hash():
+    return hashlib.sha256(canonical(implementation_manifest()).encode()).hexdigest()
+
+
+def thread_preflight(current):
+    requested = current.get('requested_threads', {})
+    if any(requested.get(k) != '1' for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS')):
+        raise ValueError('Exactly one requested BLAS/OpenMP thread is required')
+    pools = current.get('threadpools')
+    if pools:
+        if any(p.get('num_threads') != 1 for p in pools):
+            raise ValueError('Measured BLAS/OpenMP thread count must be one')
+        mode='MANAGED_THREADPOOL_API'
+    elif pools == []:
+        reference=json.loads((ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json').read_text())
+        if (current.get('blas_library_identity') != reference['libraries']
+                or current.get('process_threads') != 1 or reference['observed_process_threads'] != 1):
+            raise ValueError('Unmanaged BLAS needs exact pinned binaries and one observed process thread')
+        mode='PINNED_UNMANAGED_LIBRARIES_AND_OBSERVED_PROCESS_THREAD'
+    else:
+        raise ValueError('Measured BLAS/OpenMP thread count must be one')
+    return dict(status='PASS', requested=requested, measured=pools, evidence_mode=mode,
+                process_threads=current.get('process_threads'))
+
+
+def storage_preflight(destination):
+    # Retained data: 3 initial pairs + 9 rolling checkpoints (<8 MB raw),
+    # full sampled series ~12 MB, JSON diagnostics/manifests. Bound also
+    # covers one atomic temporary file; no 30000-checkpoint history is kept.
+    required = 128*2**20; reserve = 2**30
+    available = shutil.disk_usage(destination).free
+    if available < required+reserve:
+        raise OSError('Insufficient report/checkpoint storage reserve')
+    return dict(status='PASS', required_bytes=required, reserve_bytes=reserve,
+                available_bytes=available, retention='LAST_ONLY_NO_RESUME')
+
+
+def cases():
+    out = []
+    for name in MODELS:
+        matches = [c for c in selected_work('baseline')['full'] if c['model'] == name
+                   and c['phi_over_pi'] == .5 and c['epsilon'] == 0 and c['node_noise'] == .05
+                   and c['m6_v_over_J'] == PROTOCOL['m6_v_over_J']]
+        if len(matches) != 1:
+            raise ValueError('Baseline identity ambiguous')
+        out.append(dict(matches[0], tasks=['NESS']))
+    return out
+
+
+def workload(horizon=20.):
+    fine = round(horizon/PROTOCOL['dt_fine']); coarse = round(horizon/PROTOCOL['dt_coarse'])
+    return dict(NESS=3, refinement_NESS=3, propagations=9, block_steps=3*(2*fine+coarse),
+                checkpoint_writes=9*(round(horizon/PROTOCOL['checkpoint_interval'])+1),
+                block_rhs_calls=12*(2*fine+coarse), scalar_rhs_equivalents=24*(2*fine+coarse))
+
+
+def preflight(config, current):
+    mode = config.get('mode')
+    if mode not in ('calibration', 'production'):
+        raise ValueError('Explicit supported mode required')
+    if config.get('protocol_sha256') != protocol_hash() or config.get('implementation_sha256') != implementation_hash():
+        raise ValueError('Unpinned or changed protocol/implementation')
+    source = config.get('source_commit')
+    if not re.fullmatch('[0-9a-f]{40}', source or '') or os.environ.get('VM_SOURCE_COMMIT') != source:
+        raise ValueError('VM checkout/source identity mismatch')
+    # These settings are fixed in code; configuration cannot relax their caps.
+    allowed = {'mode', 'protocol_sha256', 'implementation_sha256', 'source_commit',
+               'technical_review', 'evidence', 'calibration', 'forecast', 'memory_budget'}
+    if set(config)-allowed:
+        raise ValueError('Unsupported configuration override')
+    threads = thread_preflight(current)
+    review = pinned_file(config['technical_review'])
+    if (review.get('status') != 'REVIEWED_AND_CHECKED' or review.get('implementation_sha256') != implementation_hash()
+            or not re.fullmatch('[0-9a-f]{40}', review.get('reviewed_source_commit', ''))):
+        raise ValueError('Technical review missing for current implementation')
+    evidence = pinned_file(config['evidence'])
+    if evidence.get('schema') != 'E002e_CORR_evidence_v1' or evidence.get('protocol_sha256') != protocol_hash():
+        raise ValueError('Evidence/protocol mismatch')
+    records = {}
+    for item in evidence['baselines']:
+        record = pinned_file(item)
+        if item['case_id'] in records or record['id'] != item['case_id']:
+            raise ValueError('Duplicate/mismatched evidence')
+        records[item['case_id']] = record
+    if set(records) != {c['id'] for c in cases()}:
+        raise ValueError('Incomplete baseline evidence')
+    for case in cases():
+        record = records[case['id']]
+        if any(record['case'][k] != case[k] for k in ('model', 'epsilon', 'phi_over_pi', 'node_noise', 'm6_v_over_J')):
+            raise ValueError('Baseline physics mismatch')
+        if not record['quality']['pass'] or not record['refinement']['gate']['pass_gate']:
+            raise ValueError('Unverified published baseline')
+    horizon = PROTOCOL['horizon'] if mode == 'production' else PROTOCOL['calibration_horizon']
+    if mode == 'production':
+        cal = pinned_file(config['calibration'])
+        if (cal.get('status') != 'CALIBRATION_COMPLETE' or cal.get('runtime_review_status') != 'REVIEWED'
+                or not re.fullmatch('[0-9a-f]{40}', cal.get('report_commit', ''))
+                or cal.get('implementation_sha256') != implementation_hash()
+                or cal.get('protocol_sha256') != protocol_hash() or cal.get('counts') != workload(PROTOCOL['calibration_horizon'])):
+            raise ValueError('Calibration identity/coverage mismatch')
+        env = compare_environment(cal['environment'], current)
+        if not env['comparable']:
+            raise ValueError('Production environment differs from measured calibration')
+        if config['forecast'] != cal['production_forecast'] or config['memory_budget'] != cal['memory_budget']:
+            raise ValueError('Budget is not the pinned measured budget')
+    else:
+        env = dict(comparable=False, reason='BOUNDED_FIRST_CALIBRATION_NO_CORRELATION_CUT')
+    f = config['forecast']
+    if (not all(np.isfinite(f[k]) for k in ('expected_seconds', 'lower_seconds', 'upper_seconds'))
+            or not 0 < f['lower_seconds'] <= f['expected_seconds'] <= f['upper_seconds']):
+        raise ValueError('Invalid runtime forecast')
+    memory = memory_preflight(config['memory_budget'], current)
+    return dict(cases=cases(), evidence=records, environment=env, memory=memory, threads=threads,
+                counts=workload(horizon), horizon=horizon)
+
+
+===== FILE e002e_exp/runtime.py =====
+"""Measured environment, source identity and non-retroactive runtime gates."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import platform
+import resource
+import sys
+import time
+import numpy as np
+import scipy
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read_optional(path):
+    try:
+        return Path(path).read_text().strip()
+    except OSError:
+        return None
+
+
+def environment():
+    cpuinfo = read_optional('/proc/cpuinfo') or ''
+    cpu = next((x.split(':', 1)[1].strip() for x in cpuinfo.splitlines() if x.startswith('model name')), None)
+    mem = dict(x.split(':', 1) for x in (read_optional('/proc/meminfo') or '').splitlines() if ':' in x)
+    try:
+        from threadpoolctl import threadpool_info
+        pools = [{k: p.get(k) for k in ('user_api', 'internal_api', 'num_threads', 'version', 'architecture')} for p in threadpool_info()]
+    except ImportError:
+        from .vendor_threadpoolctl import threadpool_info
+        pools = [{k: p.get(k) for k in ('user_api', 'internal_api', 'num_threads', 'version', 'architecture')} for p in threadpool_info()]
+    status = dict(x.split(':', 1) for x in (read_optional('/proc/self/status') or '').splitlines() if ':' in x)
+    maps = read_optional('/proc/self/maps') or ''
+    libraries = sorted({line.split()[-1] for line in maps.splitlines() if '/' in line and
+                        any(k in line.lower() for k in ('blas', 'lapack', 'libomp', 'libgomp', 'libmkl'))})
+    blas_identity = [{'path':p, 'sha256':hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in libraries]
+    return dict(observed_at_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+                python=sys.version, executable=sys.executable, platform=platform.platform(), machine=platform.machine(),
+                cpu_model=cpu, logical_cpus=os.cpu_count(), affinity=sorted(os.sched_getaffinity(0)) if hasattr(os, 'sched_getaffinity') else None,
+                cpu_quota=read_optional('/sys/fs/cgroup/cpu.max'), memory_limit=read_optional('/sys/fs/cgroup/memory.max'),
+                memory_current=read_optional('/sys/fs/cgroup/memory.current'),
+                memory_available=mem.get('MemAvailable', None), memory_total=mem.get('MemTotal', None),
+                load_average=list(os.getloadavg()) if hasattr(os, 'getloadavg') else None,
+                numpy=np.__version__, scipy=scipy.__version__, threadpools=pools,
+                requested_threads={k: os.environ.get(k) for k in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS')},
+                optimize=sys.flags.optimize, cache_state='OS_CACHE_NOT_CONTROLLED',
+                infrastructure_unknowns=['physical host contention', 'CPU frequency history', 'storage contention'],
+                max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                address_space_rlimit=list(resource.getrlimit(resource.RLIMIT_AS)),
+                process_vm_size_bytes=int(status['VmSize'].split()[0])*1024 if 'VmSize' in status else None,
+                blas_library_identity=blas_identity,
+                cgroup_membership=read_optional('/proc/self/cgroup'),
+                cgroup_visibility='VISIBLE' if read_optional('/sys/fs/cgroup/memory.max') is not None else 'NOT_MOUNTED_IN_JOB_NAMESPACE')
+
+
+def memory_preflight(budget, current):
+    required = ('peak_additional_bytes', 'reserve_bytes', 'measured_peak_rss_bytes', 'simultaneous_factor_storage_bytes')
+    if any(isinstance(budget.get(k), bool) or not isinstance(budget.get(k), (int, float)) or not np.isfinite(budget[k]) or budget[k] <= 0 for k in required):
+        raise ValueError('Memory budget lacks measured peak/factor storage and positive reserve')
+    if budget['peak_additional_bytes'] < budget['simultaneous_factor_storage_bytes']:
+        raise ValueError('Memory budget cannot be smaller than simultaneous factors')
+    if budget['peak_additional_bytes'] < budget['measured_peak_rss_bytes']:
+        raise ValueError('Memory forecast below measured reference peak')
+    try:
+        available = int(current['memory_available'].split()[0])*1024
+    except (KeyError, TypeError, ValueError):
+        raise ValueError('Host available memory is not measurable') from None
+    if current.get('memory_limit') is not None and current.get('memory_current') is not None:
+        try:
+            limit=int(current['memory_limit']); used=int(current['memory_current'])
+        except (TypeError,ValueError):
+            raise ValueError('Cgroup memory values are not finite limits') from None
+        mode='CGROUP_AND_HOST'
+    else:
+        limits=current.get('address_space_rlimit',[])
+        used=current.get('process_vm_size_bytes')
+        peak_vm=budget.get('measured_peak_vm_bytes')
+        if (current.get('cgroup_visibility') != 'NOT_MOUNTED_IN_JOB_NAMESPACE' or len(limits)!=2
+                or any(type(x) is not int or x<=0 for x in limits) or limits[0]!=limits[1]
+                or type(used) is not int or used<=0 or not isinstance(peak_vm,(int,float))
+                or not np.isfinite(peak_vm) or peak_vm<=0 or budget['peak_additional_bytes']<peak_vm):
+            raise ValueError('Missing finite enforced address-space limit and measured virtual-memory budget')
+        limit=limits[0];mode='HARD_RLIMIT_AS_AND_HOST_CGROUP_UNOBSERVED'
+    remaining = min(limit-used, available)
+    needed = budget['peak_additional_bytes']+budget['reserve_bytes']
+    if needed > remaining:
+        raise MemoryError(f'Memory budget needs {needed} bytes, available {remaining}')
+    return dict(needed_bytes=needed, available_bytes=remaining, status='PASS',resource_mode=mode,
+                caveat='Unknown ancestor cgroup cannot be measured inside namespace' if mode.startswith('HARD') else None)
+
+
+def kernel_files():
+    return [ROOT/'run.py', ROOT/'e002_exp/model.py', ROOT/'e002c_exp/model.py', ROOT/'e002d_exp/plan.py',
+            ROOT/'experiments/e002e/case_inventory_v003.json', *sorted((ROOT/'e002e_exp').glob('*.py'))]
+
+
+def kernel_hash():
+    h = hashlib.sha256()
+    for path in kernel_files():
+        h.update(path.relative_to(ROOT).as_posix().encode()+b'\0'+path.read_bytes())
+    return h.hexdigest()
+
+
+def compare_environment(reference, current):
+    required = ('python', 'platform', 'machine', 'cpu_model', 'logical_cpus', 'affinity',
+                'numpy', 'scipy', 'threadpools', 'requested_threads', 'blas_library_identity',
+                'cgroup_visibility', 'address_space_rlimit')
+    missing = [k for k in required if reference.get(k) is None or current.get(k) is None]
+    differences = [k for k in required if reference.get(k) != current.get(k)]
+    for k in ('cpu_quota','memory_limit'):
+        if reference.get(k)!=current.get(k):differences.append(k)
+    for value in (reference,current):
+        if value.get('cgroup_visibility')=='NOT_MOUNTED_IN_JOB_NAMESPACE':
+            limits=value.get('address_space_rlimit',[])
+            if len(limits)!=2 or any(type(x) is not int or x<=0 for x in limits) or limits[0]!=limits[1]:missing.append('enforced_address_space_limit')
+        elif value.get('cpu_quota') is None or value.get('memory_limit') is None:
+            missing.append('cgroup_limits')
+        if not value.get('blas_library_identity'):missing.append('blas_library_identity')
+    return dict(comparable=not missing and not differences, missing=missing, differences=differences,
+                note='Matching manifest does not eliminate unobserved host/cgroup contention; inspect runtime deviations')
+
+
+def runtime_gate(forecast, elapsed, expected_counts, actual_counts, environment_match, calibrated):
+    complete = all(k in forecast and np.isfinite(forecast[k]) for k in ('expected_seconds', 'lower_seconds', 'upper_seconds'))
+    valid = complete and 0 < forecast['expected_seconds'] and 0 <= forecast['lower_seconds'] <= forecast['expected_seconds'] <= forecast['upper_seconds']
+    if not valid:
+        raise ValueError('Invalid declared runtime forecast')
+    if not calibrated or not environment_match:
+        status = 'NOT_EVALUABLE'
+    elif expected_counts != actual_counts or not forecast['lower_seconds'] <= elapsed <= forecast['upper_seconds']:
+        status = 'REVIEW_REQUIRED'
+    else:
+        status = 'PASS'
+    return dict(**forecast, actual_seconds=elapsed, actual_over_expected=elapsed/forecast['expected_seconds'],
+                deviation_seconds=elapsed-forecast['expected_seconds'], status=status,
+                expected_counts=expected_counts, actual_counts=actual_counts,
+                environment_comparable=environment_match, calibrated=calibrated,
+                scope='Worker internal measured interval; enclosing process duration must be checked separately')
+
+
+===== FILE infra/github_bridge.py =====
+#!/usr/bin/env python3
+"""GitHub transport for the existing offline VM Compute worker (stdlib only)."""
+import argparse
+import contextlib
+import fcntl
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import secrets
+import shutil
+import stat
+import subprocess
+import time
+
+ID = re.compile(r'[A-Za-z0-9_-]{12,64}')
+SHA = re.compile(r'[0-9a-f]{40}')
+TERMINAL = {'completed', 'failed', 'cancelled', 'interrupted'}
+MAX_FILE = 8 * 1024**2
+MAX_TOTAL = 32 * 1024**2
+MAX_FILES = 512
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def json_bytes(value):
+    return (json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode()
+
+
+def atomic_private(path, value):
+    temp = path.with_name('.' + path.name + '-' + secrets.token_hex(8))
+    with temp.open('xb') as handle:
+        handle.write(json_bytes(value))
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temp, path)
+    fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
+
+
+def safe_parts(path):
+    p = PurePosixPath(path)
+    if not path or p.is_absolute() or str(p) != path or any(
+        x in ('.', '..') or x.startswith('.') or len(x) > 200 or
+        any(ord(c) < 32 for c in x) for x in p.parts
+    ):
+        raise ValueError('Unsafe relative path')
+    return p.parts
+
+
+class Workspace:
+    """All shared filesystem traversal uses directory FDs and refuses symlinks."""
+    def __init__(self, path):
+        self.path = Path(path)
+        self.fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+
+    @contextlib.contextmanager
+    def directory(self, parts, create=False):
+        fd = os.dup(self.fd)
+        try:
+            for part in parts:
+                if create:
+                    try:
+                        os.mkdir(part, 0o750, dir_fd=fd)
+                    except FileExistsError:
+                        pass
+                nxt = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                os.close(fd)
+                fd = nxt
+            yield fd
+        finally:
+            os.close(fd)
+
+    def read(self, path, limit=MAX_FILE):
+        parts = safe_parts(path)
+        with self.directory(parts[:-1]) as parent:
+            fd = os.open(parts[-1], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=parent)
+        with os.fdopen(fd, 'rb') as handle:
+            before = os.fstat(handle.fileno())
+            if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1 or before.st_size > limit:
+                raise ValueError('Expected bounded regular, non-hardlinked file: ' + path)
+            data = handle.read(limit + 1)
+            after = os.fstat(handle.fileno())
+        if len(data) > limit or (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+            raise ValueError('File changed or exceeds limit: ' + path)
+        return data
+
+    def write(self, path, data, replace=True):
+        parts = safe_parts(path)
+        with self.directory(parts[:-1], create=True) as parent:
+            if not replace:
+                try:
+                    if self.read(path) != data:
+                        raise ValueError('Existing input differs: ' + path)
+                    return
+                except FileNotFoundError:
+                    pass
+            temp = '.github-' + secrets.token_hex(12)
+            fd = os.open(temp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o640, dir_fd=parent)
+            try:
+                with os.fdopen(fd, 'wb') as handle:
+                    os.fchmod(handle.fileno(), 0o640)
+                    handle.write(data)
+                    handle.flush()
+                    os.fsync(handle.fileno())
+                os.replace(temp, parts[-1], src_dir_fd=parent, dst_dir_fd=parent)
+                os.fsync(parent)
+            finally:
+                try:
+                    os.unlink(temp, dir_fd=parent)
+                except FileNotFoundError:
+                    pass
+
+    def names(self, path):
+        with self.directory(safe_parts(path)) as fd:
+            return sorted(os.listdir(fd))
+
+    def files(self, path):
+        def walk(fd, prefix, depth):
+            if depth > 16:
+                raise ValueError('Too many nested result directories')
+            for name in sorted(os.listdir(fd)):
+                if name.startswith('.'):
+                    continue
+                safe_parts(name)
+                info = os.stat(name, dir_fd=fd, follow_symlinks=False)
+                relative = prefix + name
+                if stat.S_ISDIR(info.st_mode):
+                    child = os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    try:
+                        yield from walk(child, relative + '/', depth + 1)
+                    finally:
+                        os.close(child)
+                else:
+                    yield relative
+        with self.directory(safe_parts(path)) as root:
+            yield from walk(root, '', 0)
+
+
+class Bridge:
+    def __init__(self, config):
+        self.config = config
+        self.state = Path(config['state'])
+        self.work = Workspace(config['work'])
+        self.repo = self.state / 'repo.git'
+        self.records = self.state / 'runs'
+        self.records.mkdir(exist_ok=True)
+        self.status_dir = config.get('status_dir', 'data/vm_lab_status')
+        self.source_dir = config.get('source_dir', 'data/vm_lab_sources')
+        self.queue_dir = config.get('queue_dir', 'data/vm_lab_queue')
+        self.env = {
+            'PATH': '/usr/bin:/bin', 'HOME': str(self.state), 'LANG': 'C.UTF-8',
+            'GIT_CONFIG_NOSYSTEM': '1', 'GIT_CONFIG_GLOBAL': '/dev/null',
+            'GIT_TERMINAL_PROMPT': '0', 'GIT_SSH_COMMAND': config['ssh_command'],
+            'GIT_AUTHOR_NAME': 'VM Compute', 'GIT_AUTHOR_EMAIL': 'vm-compute@users.noreply.github.com',
+            'GIT_COMMITTER_NAME': 'VM Compute', 'GIT_COMMITTER_EMAIL': 'vm-compute@users.noreply.github.com',
+        }
+        if not self.repo.exists():
+            subprocess.run(['/usr/bin/git', 'init', '--bare', str(self.repo)],
+                           env=self.env, check=True, capture_output=True)
+            self.git('remote', 'add', 'origin', config['remote'])
+        elif self.git('remote', 'get-url', 'origin').decode().strip() != config['remote']:
+            raise ValueError('Existing clone belongs to another repository; clean setup required')
+
+    def git(self, *args, data=None, extra_env=None):
+        command = ['/usr/bin/git', '-c', 'core.hooksPath=/dev/null', '-c', 'gc.auto=0',
+                   '-c', 'protocol.file.allow=never', '-c', 'protocol.ext.allow=never',
+                   '--git-dir=' + str(self.repo), *args]
+        result = subprocess.run(command, input=data, env={**self.env, **(extra_env or {})},
+                                capture_output=True, timeout=120)
+        if result.returncode:
+            raise RuntimeError('git ' + args[0] + ': ' + result.stderr.decode('utf-8', 'replace')[-700:])
+        return result.stdout
+
+    def save(self, record):
+        record['updated'] = time.time()
+        atomic_private(self.records / (record['run_id'] + '.json'), record)
+        self.work.write(self.status_dir + '/' + record['run_id'] + '.json', json_bytes(record))
+
+    def discover(self):
+        for name in self.work.names(self.queue_dir)[:1000]:
+            if not name.endswith('.json') or not ID.fullmatch(name[:-5]):
+                continue
+            path = self.records / name
+            if path.exists():
+                continue
+            try:
+                request = json.loads(self.work.read(self.queue_dir + '/' + name, 4096))
+                if not isinstance(request, dict) or set(request) != {'run_id', 'commit'} or request['run_id'] != name[:-5] or not isinstance(request['commit'], str) or not SHA.fullmatch(request['commit']):
+                    raise ValueError('Expected run_id and a full 40-character commit SHA')
+            except (OSError, ValueError) as exc:
+                self.save({'run_id': name[:-5], 'stage': 'rejected', 'last_error': str(exc)[:1000]})
+                continue
+            self.save({'run_id': request['run_id'], 'source_commit': request['commit'],
+                       'repository': self.config['repository'], 'stage': 'accepted', 'created': time.time()})
+
+    def prepare(self, record):
+        rid, commit = record['run_id'], record['source_commit']
+        self.git('fetch', '--no-tags', '--depth=1', 'origin', commit)
+        actual = self.git('rev-parse', 'FETCH_HEAD').decode().strip()
+        if actual != commit:
+            raise ValueError('Fetched commit differs from request')
+        # No checkout, hooks, attributes, submodules or repository code on the networked host.
+        tree = self.git('ls-tree', '-rz', '--full-tree', commit)
+        allowed = []
+        total = 0
+        for item in tree.split(b'\0'):
+            if not item:
+                continue
+            metadata, name = item.split(b'\t', 1)
+            name = name.decode('utf-8')
+            if name.split('/')[0] in {'infra', 'results'} or any(p.startswith('.') for p in PurePosixPath(name).parts):
+                continue
+            safe_parts(name)
+            mode, kind, oid = metadata.decode().split()
+            if kind != 'blob' or mode not in {'100644', '100755'}:
+                raise ValueError('Source symlinks and submodules are unsupported')
+            size = int(self.git('cat-file', '-s', oid))
+            total += size
+            if size > MAX_FILE or total > MAX_TOTAL or len(allowed) >= MAX_FILES:
+                raise ValueError('Source snapshot exceeds limits')
+            allowed.append((name, oid))
+        files = {name: self.git('cat-file', 'blob', oid) for name, oid in allowed}
+        if not {'run.py', 'config.json'} <= files.keys():
+            raise ValueError('The source commit needs run.py and config.json')
+        json.loads(files['config.json'])
+        manifest = {name: digest(data) for name, data in files.items()}
+        prefix = self.source_dir + '/' + rid
+        for name, data in files.items():
+            self.work.write(prefix + '/' + name, data, replace=False)
+        wrapper = (
+            'import hashlib, os, runpy, sys\nfrom pathlib import Path\n'
+            + 'root = Path(' + repr(str(self.work.path / prefix)) + ')\n'
+            + 'expected = ' + repr(manifest) + '\n'
+            + 'for name, sha in expected.items():\n'
+            + '    p = root / name\n'
+            + '    if p.is_symlink() or hashlib.sha256(p.read_bytes()).hexdigest() != sha:\n'
+            + '        raise RuntimeError("Source input changed: " + name)\n'
+            + 'os.environ["VM_SOURCE_COMMIT"] = ' + repr(commit) + '\n'
+            + 'os.environ["VM_SOURCE_DIR"] = str(root)\n'
+            + 'sys.path.insert(0, str(root))\nsys.argv = [str(root / "run.py")]\n'
+            + 'runpy.run_path(sys.argv[0], run_name="__main__")\n'
+        ).encode()
+        record.update(input_sha256=manifest, wrapper_sha256=digest(wrapper))
+        self.save(record)  # Persist identity before publishing a runnable job.
+        self.queue_job(rid, wrapper)
+        record.update(stage='queued', last_error=None)
+        self.save(record)
+
+    def queue_job(self, rid, wrapper):
+        identity = {'source_sha256': digest(wrapper), 'args': []}
+        try:
+            old = json.loads(self.work.read('jobs/' + rid + '/request.json', 4096))
+            if old != identity:
+                raise ValueError('Job id already used for different code')
+            return
+        except FileNotFoundError:
+            pass
+        health = json.loads(self.work.read('worker-health.json', 4096))
+        if time.time() - health.get('heartbeat', 0) > 15:
+            raise RuntimeError('Existing worker is not responding')
+        if shutil.disk_usage(self.work.path).free < 768 * 1024**2:
+            raise RuntimeError('Less than 768 MiB free disk')
+        with self.work.directory(('jobs',)) as jobs:
+            temp = '.github-' + secrets.token_hex(12)
+            os.mkdir(temp, 0o770, dir_fd=jobs)
+            fd = os.open(temp, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=jobs)
+            try:
+                os.fchmod(fd, 0o770)
+                contents = {
+                    'main.py': wrapper, 'request.json': json_bytes(identity),
+                    'status.json': json_bytes({'state': 'queued', 'created': time.time(), 'source_sha256': digest(wrapper)}),
+                }
+                for name, data in contents.items():
+                    out = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o660, dir_fd=fd)
+                    with os.fdopen(out, 'wb') as handle:
+                        os.fchmod(handle.fileno(), 0o660)
+                        handle.write(data)
+                        handle.flush()
+                        os.fsync(handle.fileno())
+                os.fsync(fd)
+                os.rename(temp, rid, src_dir_fd=jobs, dst_dir_fd=jobs)
+                os.fsync(jobs)
+            finally:
+                os.close(fd)
+
+    def collect(self, record, status):
+        rid = record['run_id']
+        files, errors, total = {}, [], 0
+        candidates = []
+        log_metadata = {'full_path': 'jobs/' + rid + '/output.log'}
+        try:
+            data, detail = self.export_log(log_metadata['full_path'])
+            files['output.log'] = data
+            total += len(data)
+            log_metadata.update(detail)
+        except FileNotFoundError as exc:
+            if 'started' not in status:
+                files['output.log'] = ('No process was started; worker state: ' + str(status.get('state')) + '\n').encode()
+                log_metadata.update(method='no_process', original_bytes=0, omitted_bytes=0)
+            else:
+                errors.append('output.log: ' + str(exc))
+        except (OSError, ValueError) as exc:
+            errors.append('output.log: ' + str(exc))
+        try:
+            for name in self.work.files('results/' + rid + '/report'):
+                candidates.append(('files/' + name, 'results/' + rid + '/report/' + name))
+                if len(candidates) >= MAX_FILES:
+                    errors.append('More than %d result files; excess omitted' % MAX_FILES)
+                    break
+        except FileNotFoundError:
+            if status.get('state') == 'completed':
+                errors.append('Successful job did not create report/')
+        except (OSError, ValueError) as exc:
+            errors.append('Result listing: ' + str(exc))
+        for destination, source in candidates[:MAX_FILES - 1]:
+            try:
+                data = self.work.read(source)
+                if total + len(data) > MAX_TOTAL:
+                    raise ValueError('Total result export limit exceeded')
+                files[destination] = data
+                total += len(data)
+            except (OSError, ValueError) as exc:
+                errors.append(destination + ': ' + str(exc))
+        if status.get('state') == 'completed':
+            for required in ('files/README.md', 'files/metrics.json', 'files/data_manifest.json'):
+                if required not in files:
+                    errors.append('Required report file missing: ' + required)
+        retained, retained_errors = self.retained_inventory(rid)
+        manifest = {
+            'run_id': rid, 'repository': record['repository'], 'source_commit': record['source_commit'],
+            'input_sha256': record['input_sha256'], 'job': status, 'export_errors': errors,
+            'report_profile': 'medium-v1', 'selection': 'Only report/ is published; full/ remains on VM',
+            'full_data': retained, 'full_data_inventory_errors': retained_errors, 'log_export': log_metadata,
+            'files': {name: {'sha256': digest(data), 'bytes': len(data)} for name, data in files.items()},
+        }
+        files['run.json'] = json_bytes(manifest)
+        spool = self.state / 'exports' / rid
+        spool.mkdir(parents=True, exist_ok=True)
+        for name, data in files.items():
+            target = spool / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open('wb') as handle:
+                handle.write(data)
+                handle.flush()
+                os.fsync(handle.fileno())
+        for directory, _, _ in os.walk(spool):
+            fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(fd)
+            finally:
+                os.close(fd)
+        record.update(stage='exporting', job_state=status.get('state'),
+                      export_files=list(files), export_sha256={name: digest(data) for name, data in files.items()},
+                      export_errors=errors)
+        self.save(record)
+
+    def export_log(self, path):
+        parts = safe_parts(path)
+        with self.work.directory(parts[:-1]) as parent:
+            fd = os.open(parts[-1], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=parent)
+        with os.fdopen(fd, 'rb') as handle:
+            before = os.fstat(handle.fileno())
+            if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1:
+                raise ValueError('Log must be a regular non-hardlinked file')
+            size = before.st_size
+            if size <= MAX_FILE:
+                data = handle.read(MAX_FILE + 1)
+                detail = {'method': 'full', 'original_bytes': size, 'omitted_bytes': 0}
+            else:
+                part = MAX_FILE // 4
+                first = handle.read(part)
+                handle.seek(size - part)
+                last = handle.read(part)
+                omitted = size - len(first) - len(last)
+                data = first + ('\n[... %d log bytes omitted; full log retained on VM ...]\n' % omitted).encode() + last
+                detail = {'method': 'head_tail', 'original_bytes': size, 'head_bytes': len(first),
+                          'tail_bytes': len(last), 'omitted_bytes': omitted}
+            after = os.fstat(handle.fileno())
+            if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+                raise ValueError('Log changed while collecting')
+        return data, detail
+
+    def retained_inventory(self, rid):
+        entries, errors = [], []
+        root = 'results/' + rid + '/full'
+        try:
+            for name in self.work.files(root):
+                path = root + '/' + name
+                parts = safe_parts(path)
+                with self.work.directory(parts[:-1]) as parent:
+                    info = os.stat(parts[-1], dir_fd=parent, follow_symlinks=False)
+                entries.append({'path': path, 'bytes': info.st_size,
+                                'type': 'file' if stat.S_ISREG(info.st_mode) and info.st_nlink == 1 else 'blocked'})
+                if len(entries) >= 5000:
+                    errors.append('Full-data inventory capped at 5000 entries')
+                    break
+        except FileNotFoundError:
+            pass
+        except (OSError, ValueError) as exc:
+            errors.append(str(exc))
+        return entries, errors
+
+    def publish(self, record):
+        rid = record['run_id']
+        files = {}
+        for name in record['export_files']:
+            data = (self.state / 'exports' / rid / name).read_bytes()
+            if digest(data) != record['export_sha256'][name]:
+                raise ValueError('Saved export changed: ' + name)
+            files['results/' + rid + '/' + name] = data
+        commit = self.publish_files(files, 'VM results: ' + rid)
+        record.update(stage='published', results_commit=commit, last_error=None,
+                      results_url='https://github.com/' + record['repository'] + '/tree/' + commit + '/results/' + rid)
+        self.save(record)
+
+    def publish_files(self, files, message):
+        self.git('fetch', '--no-tags', '--depth=1', 'origin', 'refs/heads/main')
+        base = self.git('rev-parse', 'FETCH_HEAD').decode().strip()
+        index = self.state / ('index-' + secrets.token_hex(8))
+        environment = {'GIT_INDEX_FILE': str(index)}
+        try:
+            self.git('read-tree', base, extra_env=environment)
+            for name, data in files.items():
+                safe_parts(name)
+                oid = self.git('hash-object', '-w', '--stdin', data=data).decode().strip()
+                self.git('update-index', '--add', '--cacheinfo', '100644', oid,
+                         name, extra_env=environment)
+            tree = self.git('write-tree', extra_env=environment).decode().strip()
+            if tree == self.git('rev-parse', base + '^{tree}').decode().strip():
+                commit = base  # Previous push succeeded before the process stopped.
+            else:
+                commit = self.git('commit-tree', tree, '-p', base,
+                                  data=(message + '\n').encode()).decode().strip()
+                self.git('push', 'origin', commit + ':refs/heads/main')  # Never force-push.
+            return commit
+        finally:
+            index.unlink(missing_ok=True)
+
+    def tick(self):
+        self.discover()
+        for path in sorted(self.records.glob('*.json')):
+            record = json.loads(path.read_text())
+            if record['stage'] in {'published', 'rejected'} or record.get('retry_after', 0) > time.time():
+                continue
+            try:
+                if record['stage'] == 'accepted':
+                    self.prepare(record)
+                if record['stage'] == 'queued':
+                    status = json.loads(self.work.read('jobs/' + record['run_id'] + '/status.json', 16384))
+                    if status.get('state') in TERMINAL:
+                        self.collect(record, status)
+                if record['stage'] == 'exporting':
+                    self.publish(record)
+            except (OSError, ValueError, RuntimeError, TypeError, KeyError, subprocess.SubprocessError) as exc:
+                record.update(last_error=str(exc)[:1000], retry_after=time.time() + 30)
+                self.save(record)
+
+    def run(self, once=False):
+        lock = (self.state / 'bridge.lock').open('a')
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        self.work.write(self.status_dir + '/health.json', json_bytes({
+            'heartbeat': time.time(), 'service': 'vm-lab-sync',
+            'repository': self.config['repository'], 'initializing': True, 'error': None,
+        }))
+        while True:
+            error = None
+            try:
+                self.tick()
+            except (OSError, ValueError, RuntimeError, TypeError, KeyError, subprocess.SubprocessError) as exc:
+                error = str(exc)[:1000]
+                print(error, flush=True)
+            self.work.write(self.status_dir + '/health.json', json_bytes({
+                'heartbeat': time.time(), 'service': 'vm-lab-sync',
+                'repository': self.config['repository'], 'error': error,
+            }))
+            if once:
+                return
+            time.sleep(self.config.get('poll_seconds', 2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('config')
+    parser.add_argument('--once', action='store_true')
+    args = parser.parse_args()
+    os.umask(0o027)
+    Bridge(json.loads(Path(args.config).read_text())).run(once=args.once)
+
+
+===== FILE infra/github_result_reader.py =====
+"""Accept execution reports only through a supplied GitHub file reader.
+
+There is intentionally no VM client, filesystem reader, or fallback transport.
+The production adapter calls the GitHub connector for each path at result_commit.
+Local integration tests substitute a separate bare Git repository for GitHub.
+"""
+import hashlib
+import json
+import re
+
+
+class UnconfirmedResult(RuntimeError):
+    """No complete, matching report has been verified in GitHub."""
+
+
+def _relative(path):
+    return isinstance(path, str) and bool(path) and all(
+        part and not part.startswith('.') and not any(ord(c) < 32 for c in part)
+        for part in path.split('/')
+    )
+
+
+def read_github_result(fetch_file, *, repository, result_commit, run_id, source_commit):
+    """fetch_file(repository, path, ref) -> bytes; every read pins the same ref.
+
+    Return a verified report, including artifacts obtained from GitHub. A valid
+    failed/cancelled/interrupted execution is a confirmed report, not a success.
+    Missing files, wrong versions, changed bytes and incomplete exports fail closed.
+    """
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
+        raise UnconfirmedResult('Invalid repository')
+    if not re.fullmatch(r'[A-Za-z0-9_-]{12,64}', run_id):
+        raise UnconfirmedResult('Invalid run id')
+    for value in (source_commit, result_commit):
+        if not re.fullmatch(r'[0-9a-f]{40}', value):
+            raise UnconfirmedResult('A full immutable commit SHA is required')
+    prefix = 'results/' + run_id + '/'
+
+    def get(path):
+        try:
+            data = fetch_file(repository, path, result_commit)
+        except Exception as exc:
+            raise UnconfirmedResult('GitHub report is unavailable: ' + path) from exc
+        if not isinstance(data, bytes):
+            raise UnconfirmedResult('GitHub adapter must return exact bytes')
+        return data
+
+    try:
+        report = json.loads(get(prefix + 'run.json'))
+    except (ValueError, UnicodeError) as exc:
+        raise UnconfirmedResult('Invalid GitHub report JSON') from exc
+    if not isinstance(report, dict) or any(report.get(key) != value for key, value in {
+        'repository': repository, 'run_id': run_id, 'source_commit': source_commit,
+    }.items()):
+        raise UnconfirmedResult('Report does not match the requested repository, run or code version')
+    if report.get('export_errors') != []:
+        raise UnconfirmedResult('GitHub export is incomplete; inspect export_errors in GitHub')
+    job = report.get('job')
+    if not isinstance(job, dict) or job.get('state') not in {'completed', 'failed', 'cancelled', 'interrupted'}:
+        raise UnconfirmedResult('Report has no terminal execution state')
+    if job['state'] == 'completed' and (type(job.get('exit_code')) is not int or job['exit_code'] != 0):
+        raise UnconfirmedResult('Completed report has an invalid exit code')
+    files = report.get('files')
+    if not isinstance(files, dict) or 'output.log' not in files or len(files) > 512:
+        raise UnconfirmedResult('Report has no exported log')
+    if report.get('report_profile') != 'medium-v1':
+        raise UnconfirmedResult('Unknown report profile')
+    if job['state'] == 'completed' and not {
+        'files/README.md', 'files/metrics.json', 'files/data_manifest.json'
+    } <= files.keys():
+        raise UnconfirmedResult('Successful execution lacks the required detailed report')
+    artifacts = {}
+    total = 0
+    for name, expected in files.items():
+        if not _relative(name) or (name != 'output.log' and not name.startswith('files/')):
+            raise UnconfirmedResult('Artifact path escapes the result directory')
+        if not isinstance(expected, dict) or type(expected.get('bytes')) is not int or not 0 <= expected['bytes'] <= 8 * 1024**2:
+            raise UnconfirmedResult('Invalid artifact metadata')
+        total += expected['bytes']
+        if total > 32 * 1024**2:
+            raise UnconfirmedResult('Artifact set exceeds the supported export size')
+        data = get(prefix + name)
+        if len(data) != expected['bytes'] or hashlib.sha256(data).hexdigest() != expected.get('sha256'):
+            raise UnconfirmedResult('GitHub artifact size/hash mismatch: ' + name)
+        artifacts[name] = data
+    return {
+        'result_source': 'github', 'repository': repository, 'result_commit': result_commit,
+        'source_commit': source_commit, 'run_id': run_id, 'report': report,
+        'execution_succeeded': job['state'] == 'completed' and job['exit_code'] == 0,
+        'artifacts': artifacts,
+    }
+
+
+===== FILE experiments/e002e_reset/vm_entry.py =====
+"""Dedicated immutable launch snapshot; main's original run.py stays unchanged."""
+import json,os,re,resource,sys
+from pathlib import Path
+
+
+def bind(config,source):
+    if not re.fullmatch('[0-9a-f]{40}',source or ''):raise ValueError('Invalid launch source')
+    if config.get('source_commit') not in ('FROM_VERIFIED_VM_LAUNCHER',source):raise ValueError('Launch source mismatch')
+    return dict(config,source_commit=source)
+
+
+def main(audit=False):
+    for name in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS'):os.environ[name]='1'
+    root=Path(__file__).resolve().parent
+    if Path(os.environ.get('VM_SOURCE_DIR','/nonexistent')).resolve()!=root:raise ValueError('Launch directory mismatch')
+    outer=json.loads((root/'config.json').read_text());ceiling=outer['address_space_limit_bytes']
+    if type(ceiling) is not int or ceiling<=0:raise ValueError('Invalid memory ceiling')
+    _,hard=resource.getrlimit(resource.RLIMIT_AS)
+    if hard!=resource.RLIM_INFINITY and ceiling>hard:raise ValueError('Cannot raise memory ceiling')
+    resource.setrlimit(resource.RLIMIT_AS,(ceiling,ceiling))
+    payload=root/'reset_payload';sys.path.insert(0,str(payload))
+    from e002e_exp.runtime import ROOT,kernel_hash
+    from e002e_reset_exp.plan import implementation_hash,protocol_hash
+    config=bind(outer['worker_config'],os.environ.get('VM_SOURCE_COMMIT'))
+    if ROOT.resolve()!=payload.resolve():raise ValueError('Modules loaded outside payload')
+    if (kernel_hash()!=outer['kernel_sha256'] or implementation_hash()!=config['implementation_sha256']
+            or protocol_hash()!=config['protocol_sha256']):raise ValueError('Payload identity mismatch')
+    if audit:
+        print(json.dumps(dict(status='PAYLOAD_IDENTITY_VERIFIED',numerical_work=0,source_commit=config['source_commit'])))
+        return
+    from e002e_reset_exp.task import run
+    run(config,Path.cwd())
+
+
+if __name__=='__main__':main(audit=sys.argv[1:]==['--audit'])
+
+
+===== FILE experiments/e002e_reset/build_launch.py =====
+"""Assemble a small immutable GitHub launch tree; no calculations or submission."""
+import argparse,hashlib,json,shutil,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
+from e002e_reset_exp.plan import implementation_manifest,implementation_hash,protocol_hash,workload
+from e002e_exp.runtime import kernel_hash
+
+
+def pin(path):
+    return dict(path=path,sha256=hashlib.sha256((ROOT/path).read_bytes()).hexdigest())
+
+
+def build(mode,destination):
+    destination=Path(destination)
+    if destination.exists():raise FileExistsError(destination)
+    prefix='experiments/e002e_reset/'
+    review=json.loads((ROOT/(prefix+'technical_review.json')).read_text())
+    if review['status']!='REVIEWED_AND_CHECKED' or review['implementation_sha256']!=implementation_hash():
+        raise ValueError('Unreviewed implementation')
+    names=['science_freeze.json','evidence.json','technical_review.json']
+    evidence=json.loads((ROOT/(prefix+'evidence.json')).read_text())
+    files={e['path'] for e in implementation_manifest()}|{prefix+n for n in names}
+    files|={item[k]['path'] for item in evidence['cases'] for k in ('baseline','corr')}
+    config=dict(mode=mode,source_commit='FROM_VERIFIED_VM_LAUNCHER',protocol_sha256=protocol_hash(),
+        implementation_sha256=implementation_hash(),**{n:pin(prefix+n+'.json') for n in ('science_freeze','evidence','technical_review')})
+    if mode=='calibration':
+        plan=json.loads((ROOT/(prefix+'CALIBRATION_PLAN_v001.json')).read_text())
+        config.update(forecast=plan['forecast'],memory_budget=plan['memory_budget'])
+    else:
+        path=prefix+'calibration_reviewed.json';cal=json.loads((ROOT/path).read_text())
+        if cal['status']!='CALIBRATION_REVIEWED':raise ValueError('Calibration not reviewed')
+        files.add(path);config.update(calibration=pin(path),forecast=cal['production_forecast'],memory_budget=cal['memory_budget'])
+    destination.mkdir(parents=True)
+    for name in sorted(files):
+        target=destination/'reset_payload'/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/name,target)
+    shutil.copyfile(ROOT/(prefix+'vm_entry.py'),destination/'run.py')
+    outer=dict(address_space_limit_bytes=8589934592,kernel_sha256=kernel_hash(),worker_config=config)
+    (destination/'config.json').write_text(json.dumps(outer,indent=2)+'\n')
+    manifest=[]
+    for p in sorted(destination.rglob('*')):
+        if p.is_file():
+            data=p.read_bytes();manifest.append(dict(path=str(p.relative_to(destination)),size=len(data),
+                sha256=hashlib.sha256(data).hexdigest(),git_blob=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()))
+    return dict(mode=mode,counts=workload(mode),files=manifest,implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash())
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=['calibration','production']);p.add_argument('destination');a=p.parse_args()
+    print(json.dumps(build(a.mode,a.destination),indent=2))
+
+
+===== FILE experiments/e002e_reset/CALIBRATION_PLAN_v001.json =====
+{
+  "run_id": "E002e_RESET_CAL_v001_r001",
+  "state": "PLAN_NOT_SUBMITTED",
+  "forecast": {"expected_seconds": 25.0, "lower_seconds": 8.0, "upper_seconds": 75.0,
+    "basis": "First bounded RESET calibration. Same-VM CORR known QS LU+GMRES2.022s and RR0.078s; three gamma factor pairs proxy6.3s plus extraILU1s. New low-rank setup5s, condition estimation4s, random solves2s, assembly/certificates2s, verification3s, I/O0.7s, startup0.25s and baseline/operator checks0.75s are explicit uncalibrated estimates. This does not certify production budget."},
+  "expected_status": "NOT_EVALUABLE_FIRST_BOUNDED_CALIBRATION",
+  "counts": {"NESS":4,"response":0,"random_rhs":13,"factorizations":13,"condition_estimates":6},
+  "wall_limit_seconds":180,
+  "address_space_limit_bytes":8589934592,
+  "memory_budget": {"peak_additional_bytes":1073741824,"reserve_bytes":1073741824,
+    "measured_peak_rss_bytes":362213376,"measured_peak_vm_bytes":532467712,"simultaneous_factor_storage_bytes":135901172},
+  "memory_basis":"Prior same-dimension VM measurements, explicit 1GiB allocation budget plus1GiB reserve; 20 complex dense columns require4.7MB per active factor; new full RSS and factor storage measured before production.",
+  "reference_run":"E002e_CORR_CAL_v001_r002",
+  "reference_source_commit":"da5496388a2a809e504182995ebcb7b4637e2e8f",
+  "environment":"AMD EPYC-Genoa, Python3.12.3, NumPy1.26.4, SciPy1.11.4; pinned unmanaged BLAS library hashes and one process thread; exact identity recaptured by worker",
+  "limits":["Known baseline NESS only. No physical RESET response or new finite-gamma NESS.","Random RHS timing is a proxy; first run must be reviewed against enclosing service duration.","Only one additional predeclared ILU tolerance case; no adaptive retries or enlarged physical volume."]
+}
+
+
+===== FILE tests/test_e002e_reset.py =====
+"""Independent small-system truth plus failures that must block scientific output."""
+import json,tempfile,unittest
+from pathlib import Path
+from unittest.mock import patch
+import numpy as np
+from scipy import sparse as sp
+from scipy.linalg import expm
+from e002_exp.model import build_liouvillian,maxabs
+from e002e_exp.space import Space
+from e002e_reset_exp.core import Reset,analyze,sign_decision,relative_decision,target_check,entropy
+from e002e_reset_exp.numerics import Solver
+from e002e_reset_exp.task import solve_model,random_rhs,measure_raw,run
+from e002e_reset_exp.verify import verify_case,verify_report
+from e002e_reset_exp.plan import workload,PROTOCOL,implementation_hash,protocol_hash
+
+
+def toy(name='QS'):
+    lower=np.array([[0.,1.],[0.,0.]]);n=lower.T@lower;I=np.eye(2)
+    H=.4*(np.kron(lower.T,lower)+np.kron(lower,lower.T))+.2*np.kron(n,I)
+    jumps=[('down_N',sp.csr_matrix(np.sqrt(.7)*np.kron(lower,I))),
+           ('up_N',sp.csr_matrix(np.sqrt(.25)*np.kron(lower.T,I))),
+           ('down_E',sp.csr_matrix(np.sqrt(.5)*np.kron(I,lower))),
+           ('up_E',sp.csr_matrix(np.sqrt(.35)*np.kron(I,lower.T)))]
+    H=sp.csr_matrix(H);L=build_liouvillian(H,jumps);space=Space(np.zeros(4,int))
+    # space.pack uses the single all-operator block with standard Fortran vec.
+    F=sp.csr_matrix(np.kron(n,I));obs=dict(F=F,J_h=F,source=F,h6=.1*F,P_m6_N2=.2*sp.eye(4),inventory=sp.eye(4))
+    model=dict(H=H,L=L,jumps=jumps,space=space,observables=obs,dimensions=(2,2),case=dict(model=name,id='toy_'+name))
+    A=L.toarray().copy();b=np.zeros(16,complex);A[-1]=space.trace_row.toarray();b[-1]=1
+    rho=np.linalg.solve(A,b);raw=measure_raw(model,rho)
+    evidence=dict(baseline=dict(raw=raw),corr=dict(result=dict(signed_area=.02,area_uncertainty=1e-7)))
+    return model,rho,evidence
+
+
+class ResetAlgebra(unittest.TestCase):
+    def test_coherent_target_against_kraus_and_dense_superoperator(self):
+        model,_,_=toy();tau=np.array([[.6,.12j],[-.12j,.4]]);R=Reset(model['space'],tau,(2,2))
+        rng=np.random.default_rng(813);x=rng.normal(size=16)+1j*rng.normal(size=16);rho=model['space'].unpack(x)
+        vals,vecs=np.linalg.eigh(tau);out=np.zeros((4,4),complex);complete=np.zeros((4,4),complex)
+        for a in range(2):
+            for b in range(2):
+                K=np.kron(np.eye(2),np.sqrt(vals[a])*np.outer(vecs[:,a],vecs[:,b].conj()))
+                out+=K@rho@K.conj().T;complete+=K.conj().T@K
+        np.testing.assert_allclose(R.apply(x),model['space'].pack(out),atol=1e-13)
+        np.testing.assert_allclose(complete,np.eye(4),atol=1e-13)
+        np.testing.assert_allclose(R.apply(2*x+1j*x),2*R.apply(x)+1j*R.apply(x),atol=1e-13)
+        self.assertEqual(R.rank,4);R.certify_action(x)
+
+    def test_nontrivial_node_charge_rank_and_no_projection(self):
+        s=Space(np.repeat([0,1,1,2],2));R=Reset(s,np.array([[.5,.2],[.2,.5]]),(4,2))
+        self.assertEqual(R.rank,6)
+        x=random_rhs(s,17);R.certify_action(x)
+        rho=s.unpack(x);rho[0,7]=.01
+        with self.assertRaises(ValueError):s.pack(rho)
+
+    def test_invalid_target(self):
+        for a in (np.eye(2),np.array([[1.2,0],[0,-.2]]),np.array([[.5,1],[0,.5]]),np.array([[np.nan]])):
+            with self.assertRaises((ValueError,ArithmeticError)):target_check(a)
+
+    def test_target_is_immutable(self):
+        m,_,_=toy();tau=np.eye(2)/2;R=Reset(m['space'],tau,(2,2));tau[0,0]=0
+        self.assertEqual(R.tau[0,0],.5)
+        with self.assertRaises(ValueError):R.tau[0,0]=0
+
+    def test_poisson_finite_rate_exact_series(self):
+        # Pure reset generator is exactly an average over Poisson event counts.
+        m,_,_=toy();R=Reset(m['space'],np.diag([.7,.3]),(2,2));x=random_rhs(m['space'],9)
+        gamma=.4;t=.8;mat=(R.U@R.V).toarray();power=np.eye(16,dtype=complex);poisson=np.zeros((16,16),complex)
+        weight=np.exp(-gamma*t)
+        for n in range(24):
+            poisson+=weight*power;power=mat@power;weight*=gamma*t/(n+1)
+        np.testing.assert_allclose(poisson@x,expm(gamma*t*(mat-np.eye(16)))@x,atol=1e-13)
+
+
+class ResetSolvers(unittest.TestCase):
+    def test_woodbury_and_adjoint_match_dense(self):
+        m,rho,_=toy();R=Reset(m['space'],np.array([[.6,.1j],[-.1j,.4]]),(2,2));rhs=random_rhs(m['space'],66)
+        for method in ('lu','gmres_ilu'):
+            s=Solver(m['L'],m['space'],.2,R,method=method)
+            x,eq=s.solve(rhs);dense=s.base.toarray()+.2*(s.U@s.V).toarray()
+            truth=np.linalg.solve(dense,np.r_[rhs,0.])[:-1]
+            np.testing.assert_allclose(x,truth,atol=1e-10)
+            if method=='lu':
+                b=np.r_[rhs,0.];np.testing.assert_allclose(s.inverse(b,True),np.linalg.solve(dense.conj().T,b),atol=1e-12)
+                self.assertGreater(s.condition_estimate()['value'],0)
+            self.assertGreaterEqual(s.counts['factor_rhs_columns'],R.rank+1)
+            self.assertLess(eq['absolute_inf'],1e-10)
+
+    def test_response_sign_integral_and_finite_difference(self):
+        from e002e_corr_exp.core import marginals
+        m,rho,_=toy();s=Solver(m['L'],m['space']);R=Reset(m['space'],marginals(m['space'].unpack(rho),(2,2))[1],(2,2))
+        q=R.apply(rho)-rho;X,_=s.solve(-q)
+        # Exact augmented exponential integral, independent of inverse formula.
+        A=np.zeros((17,17),complex);A[:16,:16]=m['L'].toarray();A[:16,16]=q
+        integral=expm(A*100)[:16,16]
+        np.testing.assert_allclose(X,integral,atol=1e-11)
+        eps=1e-5;shifted=Solver(m['L'],m['space'],eps,R);new,_=shifted.solve(trace=1.)
+        np.testing.assert_allclose((new-rho)/eps,X,rtol=1e-4,atol=1e-6)
+
+    def test_zero_response_full_reset_control(self):
+        m,rho,_=toy();q=rho*m['space'].trace(rho)-rho
+        X,eq=Solver(m['L'],m['space']).solve(-q)
+        self.assertLess(maxabs(X),1e-12)
+        _,eq=Solver(m['L'],m['space']).solve(np.zeros(16))
+        self.assertIsNone(eq['relative_true'])
+
+    def test_traceful_rhs_rejected(self):
+        m,rho,_=toy()
+        with self.assertRaises(ValueError):Solver(m['L'],m['space']).solve(rho)
+
+    def test_gmres_failure_not_pass(self):
+        m,_,_=toy()
+        with patch('e002e_reset_exp.numerics.gmres',return_value=(np.zeros(17),7)):
+            with self.assertRaises(ArithmeticError):Solver(m['L'],m['space'],method='gmres_ilu').solve(trace=1.)
+
+
+class Decisions(unittest.TestCase):
+    def test_sign_boundaries(self):
+        for s,u,expected in [(1,0,'SUPPORTED'),(-1,0,'REFUTED'),(1,1,'UNRESOLVED'),(0,0,'UNRESOLVED')]:
+            self.assertEqual(sign_decision(s,u)['status'],expected)
+
+    def test_relative_intervals_and_guard(self):
+        self.assertEqual(relative_decision(1.01,.001,1,.001,1,.001,.1)['status'],'SUPPORTED')
+        self.assertEqual(relative_decision(1.2,.001,1,.001,1,.001,.1)['status'],'REFUTED')
+        self.assertEqual(relative_decision(1.1,.02,1,.02,1,.02,.1)['status'],'UNRESOLVED')
+        self.assertEqual(relative_decision(0,0,0,0,0,0,.1)['status'],'NOT_ASSESSED_SMALL_SIGNAL')
+
+    def test_small_S_does_not_disable_window_or_sign(self):
+        a=dict(S=5e-7,flux={'0.0':.1,'0.001':.1000000005,'0.002':.100000001})
+        r=analyze(a,a,.05,1e-6)
+        self.assertEqual(r['sign']['status'],'SUPPORTED')
+        self.assertEqual(r['linearity_status'],'NOT_ASSESSED_SMALL_SIGNAL')
+        self.assertEqual(r['window']['status'],'REFUTED')
+
+    def test_caps_and_nonfinite_block(self):
+        a=dict(S=.05,flux={'0.0':.1,'0.001':.10005,'0.002':.1001})
+        with self.assertRaises(ArithmeticError):analyze(a,dict(a,S=.051),.05,1e-6)
+        b=dict(a,flux=dict(a['flux'],**{'0.001':.10006}))
+        with self.assertRaises(ArithmeticError):analyze(a,b,.05,1e-6)
+        with self.assertRaises(ValueError):sign_decision(float('nan'),0)
+
+
+class Workflow(unittest.TestCase):
+    def test_final_calibration_budget_verified_and_immutable(self):
+        from contextlib import ExitStack
+        from e002e_exp.export import write_manifest
+        from e002e_reset_exp.task import snapshot
+        models={n:toy(n) for n in ('QS','RR_QS')};cs=[m[0]['case'] for m in models.values()]
+        cfg=dict(mode='calibration',source_commit='a'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+            forecast=dict(expected_seconds=1.,lower_seconds=.1,upper_seconds=5.),memory_budget=dict(peak_additional_bytes=2**30,reserve_bytes=2**30))
+        gate=dict(evidence={m[0]['case']['id']:m[2] for m in models.values()},counts=workload('calibration'),environment=dict(comparable=False))
+        def env():
+            value=snapshot();value['address_space_rlimit']=[2**33]*2;return value
+        with tempfile.TemporaryDirectory() as d,ExitStack() as stack:
+            for module in ('task','verify'):
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.cases',return_value=cs))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.make_full',side_effect=lambda c:models[c['model']][0]))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.uniqueness',return_value={'status':'TEST_FIXTURE'}))
+            stack.enter_context(patch('e002e_reset_exp.task.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.plan.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.task.snapshot',side_effect=env))
+            run(cfg,Path(d));folder=Path(d)/'report'
+            hashes={p.name:p.read_bytes() for p in folder.iterdir()}
+            self.assertEqual(verify_report(folder)['status'],'VERIFIED')
+            self.assertEqual(hashes,{p.name:p.read_bytes() for p in folder.iterdir()})
+            p=folder/'calibration.json';v=json.loads(p.read_text());v['production_forecast']['expected_seconds']+=1;p.write_text(json.dumps(v));write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'budget'):verify_report(folder)
+
+    def test_complete_worker_and_manifest_tamper(self):
+        from contextlib import ExitStack
+        from e002e_exp.export import write_manifest
+        models={n:toy(n) for n in ('QS','RR_QS')};cs=[m[0]['case'] for m in models.values()]
+        cfg=dict(mode='production',source_commit='a'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+            forecast=dict(expected_seconds=1.,lower_seconds=.1,upper_seconds=5.))
+        gate=dict(evidence={m[0]['case']['id']:m[2] for m in models.values()},counts=workload('production'),environment=dict(comparable=True))
+        with tempfile.TemporaryDirectory() as d,ExitStack() as stack:
+            for module in ('task','verify'):
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.cases',return_value=cs))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.make_full',side_effect=lambda c:models[c['model']][0]))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.uniqueness',return_value={'status':'TEST_FIXTURE'}))
+            stack.enter_context(patch('e002e_reset_exp.task.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.plan.preflight',return_value=gate))
+            run(cfg,Path(d));folder=Path(d)/'report'
+            self.assertEqual(verify_report(folder)['status'],'VERIFIED')
+            self.assertTrue((folder/'README.md').exists());self.assertTrue((folder/'data_manifest.json').exists())
+            p=folder/'QS_uniqueness_scope_v1.json';p.write_text('{}');write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'Uniqueness'):verify_report(folder)
+
+    def test_calibration_seed_tamper(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder=Path(d);m,_,e=toy();r=solve_model(m,e,'calibration',folder,dict.fromkeys(workload('calibration'),0))
+            np.savez_compressed(folder/r['rows'][0]['random_rhs_file'],vector=random_rhs(m['space'],100))
+            with self.assertRaisesRegex(ValueError,'seed'):verify_case(folder,r,m,'calibration')
+
+    def test_production_complete_small_cycle_and_tamper(self):
+        with tempfile.TemporaryDirectory() as d:
+            counts=dict.fromkeys(workload('production'),0)
+            for name in ('QS','RR_QS'):
+                m,_,e=toy(name);rec=solve_model(m,e,'production',Path(d),counts)
+                verify_case(Path(d),rec,m,'production')
+                original=rec['result']['sign']['value'];rec['result']['sign']['value']+=.1
+                with self.assertRaises(ValueError):verify_case(Path(d),rec,m,'production')
+                rec['result']['sign']['value']=original
+            self.assertEqual(counts,workload('production'))
+
+    def test_calibration_no_response_or_finite_NESS(self):
+        with tempfile.TemporaryDirectory() as d:
+            counts=dict.fromkeys(workload('calibration'),0)
+            for name in ('QS','RR_QS'):
+                m,_,e=toy(name);rec=solve_model(m,e,'calibration',Path(d),counts)
+                verify_case(Path(d),rec,m,'calibration')
+                self.assertNotIn('S',rec['branches']['lu'])
+                self.assertEqual(list(rec['branches']['lu']['flux']),['0.0'])
+            self.assertEqual(counts,workload('calibration'))
+
+    def test_published_baseline_mismatch_blocks(self):
+        m,_,e=toy();e['baseline']['raw']['F']+=.01
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(ArithmeticError):solve_model(m,e,'production',Path(d),dict.fromkeys(workload('production'),0))
+
+    def test_worker_saves_failure(self):
+        with tempfile.TemporaryDirectory() as d,patch('e002e_reset_exp.task.preflight',side_effect=ValueError('bad provenance')):
+            with self.assertRaises(ValueError):run({},Path(d))
+            self.assertEqual(json.loads((Path(d)/'report/status.json').read_text())['status'],'FAILED')
+            self.assertTrue((Path(d)/'report/failure.json').exists())
+
+
+if __name__=='__main__':unittest.main()
