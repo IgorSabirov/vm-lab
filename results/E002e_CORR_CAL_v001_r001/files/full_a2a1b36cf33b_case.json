@@ -1,0 +1,1590 @@
+{
+  "id": "full_a2a1b36cf33b",
+  "case": {
+    "model": "IC1_QS",
+    "phi_over_pi": 0.5,
+    "epsilon": 0.0,
+    "node_noise": 0.05,
+    "m6_v_over_J": 1.0,
+    "block": "R",
+    "tasks": [
+      "NESS"
+    ],
+    "id": "full_a2a1b36cf33b"
+  },
+  "baseline": [
+    {
+      "F": 0.09346312752654715,
+      "J_h": 0.09346312752654713,
+      "source": 0.09346312752654712,
+      "inventory": 2.7529707585053567,
+      "h6": 0.0050563262109083705,
+      "P_m6_N2": 0.01506697921213284,
+      "K": -0.05016567314070495,
+      "C_S2a": {
+        "re": -1.331277730703482e-21,
+        "im": -0.006121577466830422
+      },
+      "C_S2b": {
+        "re": 0.013408240516946559,
+        "im": -1.488166581459317e-18
+      },
+      "C_S1a": {
+        "re": 6.14686095271872e-22,
+        "im": -0.00047057050358518377
+      },
+      "C_S1b": {
+        "re": 0.013408245838490207,
+        "im": -1.48816717206883e-18
+      },
+      "C_M2a": {
+        "re": -3.426822643828075e-21,
+        "im": -0.00043968824824005545
+      },
+      "C_M2b": {
+        "re": 0.0020884748572141303,
+        "im": -2.301999236356848e-19
+      },
+      "C_M1a": {
+        "re": 1.5283441260627496e-21,
+        "im": 0.00046249419705998317
+      },
+      "C_M1b": {
+        "re": 0.002170210585189996,
+        "im": -2.3870960474843164e-19
+      },
+      "node_0": 0.8130737449469059,
+      "node_1": 0.49999992401537036,
+      "node_2": 0.1869262550530943,
+      "current_0": 0.021648727192921092,
+      "current_1": 0.02164872719292109,
+      "current_2": 0.07181440033362603,
+      "edge_L_0": 0.1765204602781817,
+      "edge_L_1": 0.1765204894561432,
+      "edge_L_2": 0.26453215400228636,
+      "mask_0": 0.49737762283123305,
+      "mask_1": 0.10413193692473072,
+      "mask_2": 0.10413195510311724,
+      "mask_3": 0.0298263311386328,
+      "mask_4": 0.187058706856752,
+      "mask_5": 0.034911243931141256,
+      "mask_6": 0.0349112549307162,
+      "mask_7": 0.007650948283676896
+    },
+    {
+      "F": 0.0934631275265471,
+      "J_h": 0.0934631275265534,
+      "source": 0.09346312752652497,
+      "inventory": 2.7529707585052874,
+      "h6": 0.005056326210908245,
+      "P_m6_N2": 0.01506697921213262,
+      "K": -0.05016567314070373,
+      "C_S2a": {
+        "re": -1.3312777306755591e-21,
+        "im": -0.006121577466831078
+      },
+      "C_S2b": {
+        "re": 0.013408240516946814,
+        "im": -1.4881665814592728e-18
+      },
+      "C_S1a": {
+        "re": 6.146860952826158e-22,
+        "im": -0.0004705705035860165
+      },
+      "C_S1b": {
+        "re": 0.013408245838490832,
+        "im": -1.4881671720688494e-18
+      },
+      "C_M2a": {
+        "re": -3.4268226438243926e-21,
+        "im": -0.0004396882482399857
+      },
+      "C_M2b": {
+        "re": 0.0020884748572141355,
+        "im": -2.3019992363568925e-19
+      },
+      "C_M1a": {
+        "re": 1.5283441260689758e-21,
+        "im": 0.00046249419706007
+      },
+      "C_M1b": {
+        "re": 0.002170210585190161,
+        "im": -2.387096047484454e-19
+      },
+      "node_0": 0.8130737449469083,
+      "node_1": 0.4999999240153832,
+      "node_2": 0.1869262550530942,
+      "current_0": 0.021648727192921373,
+      "current_1": 0.021648727192924842,
+      "current_2": 0.07181440033362856,
+      "edge_L_0": 0.17652046027817386,
+      "edge_L_1": 0.17652048945613305,
+      "edge_L_2": 0.26453215400228414,
+      "mask_0": 0.4973776228312127,
+      "mask_1": 0.10413193692472156,
+      "mask_2": 0.10413195510310702,
+      "mask_3": 0.029826331138632867,
+      "mask_4": 0.18705870685674855,
+      "mask_5": 0.03491124393114242,
+      "mask_6": 0.03491125493071617,
+      "mask_7": 0.007650948283677047
+    }
+  ],
+  "numerical": {
+    "checks": [
+      {
+        "equation": {
+          "absolute_inf": 3.469446951953614e-18,
+          "relative_2": 8.63043011504865e-18,
+          "trace_error": 2.220446049250313e-16,
+          "border_multiplier": 4.605741650695289e-18,
+          "iterations": 0
+        },
+        "quality": {
+          "trace_error": 2.220446049250313e-16,
+          "hermiticity": 4.336808689942018e-18,
+          "minimum_eigenvalue": 1.4757714819524815e-05,
+          "Lrho_inf": 3.469446951953614e-18,
+          "Lrho_2": 8.63043011504865e-18,
+          "pass": true
+        }
+      },
+      {
+        "equation": {
+          "absolute_inf": 2.9095649500820997e-15,
+          "relative_2": 1.1109708797627509e-14,
+          "trace_error": 4.1744385725905886e-14,
+          "border_multiplier": 1.5944603769366995e-15,
+          "iterations": 3
+        },
+        "quality": {
+          "trace_error": 4.1744385725905886e-14,
+          "hermiticity": 6.987683001669076e-17,
+          "minimum_eigenvalue": 1.4757714819571349e-05,
+          "Lrho_inf": 2.9095649500820997e-15,
+          "Lrho_2": 1.1109708797627509e-14,
+          "pass": true
+        }
+      }
+    ],
+    "comparison": {
+      "pass_gate": true,
+      "vector_difference_inf": 5.330805241676728e-15,
+      "observable_differences": {
+        "F": 4.163336342344337e-17,
+        "J_h": 6.2727600891321345e-15,
+        "source": 2.2148949341271873e-14,
+        "inventory": 6.927791673660977e-14,
+        "h6": 1.2576745200831851e-16,
+        "P_m6_N2": 2.203098814490545e-16,
+        "K": 1.2212453270876722e-15,
+        "C_S2a": 6.557254739192331e-16,
+        "C_S2b": 2.5500435096859064e-16,
+        "C_S1a": 8.327214785774917e-16,
+        "C_S1b": 6.245004513516506e-16,
+        "C_M2a": 6.976840979944221e-17,
+        "C_M2b": 5.204170427930421e-18,
+        "C_M1a": 8.68445940160889e-17,
+        "C_M1b": 1.6523241108679088e-16,
+        "node_0": 2.4424906541753444e-15,
+        "node_1": 1.2823075934420558e-14,
+        "node_2": 8.326672684688674e-17,
+        "current_0": 2.8102520310824275e-16,
+        "current_1": 3.7539416020138106e-15,
+        "current_2": 2.525757381022231e-15,
+        "edge_L_0": 7.827072323607354e-15,
+        "edge_L_1": 1.0158540675320182e-14,
+        "edge_L_2": 2.220446049250313e-15,
+        "mask_0": 2.0372592501871623e-14,
+        "mask_1": 9.159339953157541e-15,
+        "mask_2": 1.021405182655144e-14,
+        "mask_3": 6.591949208711867e-17,
+        "mask_4": 3.4416913763379853e-15,
+        "mask_5": 1.1657341758564144e-15,
+        "mask_6": 3.469446951953614e-17,
+        "mask_7": 1.5178830414797062e-16
+      },
+      "failed_observables": [],
+      "limits": {
+        "vector_inf": 1e-09,
+        "observable_absolute": 1e-09,
+        "observable_relative": 1e-07
+      },
+      "status": "PASS"
+    },
+    "solvers": [
+      {
+        "method": "lu",
+        "matrix_nnz": 57780,
+        "factor_nnz": 177586,
+        "factor_storage_bytes": 3668376,
+        "factor_seconds": 0.02035368501674384,
+        "solves": 1,
+        "solve_seconds": 0.0019874100107699633,
+        "iterations": 0
+      },
+      {
+        "method": "gmres_ilu",
+        "matrix_nnz": 57780,
+        "factor_nnz": 155856,
+        "factor_storage_bytes": 3233776,
+        "factor_seconds": 0.021560558991041034,
+        "solves": 1,
+        "solve_seconds": 0.007501897984184325,
+        "iterations": 3
+      }
+    ],
+    "seconds": 0.06673904100898653
+  },
+  "result": {
+    "area_absolute": 0.0,
+    "area_uncertainty": 2.0000000000000003e-10,
+    "signed_area": 0.0,
+    "peak_relative": 0.0,
+    "time_peak": 0.0,
+    "final_delta_flux": 0.0,
+    "sham_drift": 0.0,
+    "reference_sham_drift": 1.4155343563970746e-15,
+    "coarse_sham_drift": 0.0,
+    "refinement": {
+      "dt": {
+        "max_abs": 1.2037062152420224e-35,
+        "max_scaled": 3.657885447159497e-28,
+        "passed": true
+      },
+      "initial_condition_and_solver_sensitivity": {
+        "max_abs": 8.615330671091215e-14,
+        "max_scaled": 5.6625743311652394e-08,
+        "passed": true
+      }
+    },
+    "uncertainty_kind": "ENGINEERING_DT_AND_INITIAL_CONDITION_SOLVER_SENSITIVITY_NOT_RIGOROUS_TOTAL_BOUND",
+    "tail_status": "FINITE_WINDOW_ONLY",
+    "conditional": [
+      {
+        "time": 0.0,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390744613278e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390744613278e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.02,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390396872608e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390396872608e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.04,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390049131939e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864390049131939e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.06,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389990006015e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389990006015e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.08,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389758178902e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389758178902e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.1,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389296862965e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864389296862965e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.12,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864388949122295e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864388949122295e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.14,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86438866050755e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86438866050755e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.16,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864388255979247e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864388255979247e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.18,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387851450944e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387851450944e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.2,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387562836198e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387562836198e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.22,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387331009086e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387331009086e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.24,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387099181971e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864387099181971e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.26,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386867354857e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386867354857e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.28,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386751441304e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386751441304e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.3,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386519614188e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386519614188e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.32,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386287787075e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386287787075e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.34,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386055959963e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864386055959963e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.36,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385767345217e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385767345217e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.38,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385362816914e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385362816914e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.4,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385130989802e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385130989802e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.42,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385015076243e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864385015076243e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.44,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86438478324913e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86438478324913e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.46,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864384494634386e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864384494634386e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.48,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383974192525e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383974192525e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.5,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383974192525e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383974192525e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.52,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383569664222e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383569664222e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.54,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383626451855e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864383626451855e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.56,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864382760607618e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864382760607618e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.58,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864382701481694e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864382701481694e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.6,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864381892425089e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864381892425089e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.62,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864381142494407e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864381142494407e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.64,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864380449351359e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864380449351359e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.66,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864379526719487e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864379526719487e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.68,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864378949489995e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864378949489995e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.7000000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864378026858125e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864378026858125e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.72,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864376988312696e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864376988312696e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.74,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864376065680826e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864376065680826e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.76,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864375143048954e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864375143048954e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.78,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864374220417083e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864374220417083e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.8,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864373529612326e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864373529612326e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.8200000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864372434279265e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864372434279265e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.84,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864371916175697e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864371916175697e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.86,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86437122537094e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86437122537094e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.88,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864370534566182e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864370534566182e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.9,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864370016462613e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864370016462613e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.92,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368748428364e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368748428364e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.9400000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368230324794e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368230324794e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.96,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367712221227e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367712221227e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 0.98,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367021416469e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367021416469e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.0,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366330611711e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366330611711e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.02,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365639806954e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365639806954e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.04,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364889876272e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364889876272e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.06,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364199071514e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364199071514e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.08,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363508266756e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363508266756e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.1,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363162864377e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363162864377e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.12,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436247205962e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436247205962e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.1400000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436154942775e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436154942775e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.16,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361031324182e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361031324182e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.18,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360340519424e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360340519424e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.2,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359649714666e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359649714666e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.22,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359131611097e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359131611097e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.24,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435844080634e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435844080634e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.26,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435809540396e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435809540396e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.28,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357577300393e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357577300393e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.3,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356886495635e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356886495635e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.32,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356195690877e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356195690877e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.34,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356022989687e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356022989687e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.36,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356368392066e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356368392066e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.3800000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356886495635e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864356886495635e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.4000000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357404599203e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357404599203e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.42,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357922702772e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864357922702772e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.44,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435844080634e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86435844080634e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.46,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864358554381606e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864358554381606e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.48,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359072485173e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359072485173e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.5,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359590588742e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359590588742e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.52,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359935991121e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864359935991121e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.54,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360454094689e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360454094689e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.56,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360799497068e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864360799497068e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.58,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361144899446e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361144899446e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.6,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.8643614311759e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.8643614311759e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.62,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361776578279e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864361776578279e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.6400000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864362294681848e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864362294681848e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.6600000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864362640084227e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864362640084227e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.68,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363158187794e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363158187794e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.7,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363503590173e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864363503590173e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.72,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364021693742e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364021693742e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.74,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364367096121e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364367096121e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.76,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364885199689e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864364885199689e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.78,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365230602068e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365230602068e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.8,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365576004447e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365576004447e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.82,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365921406825e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864365921406825e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.84,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366207683282e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366207683282e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.86,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436638038447e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436638038447e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.8800000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436672578685e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.86436672578685e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.9000000000000001,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366898488038e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864366898488038e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.92,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367243890417e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367243890417e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.94,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367589292796e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367589292796e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.96,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367761993986e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864367761993986e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 1.98,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368107396365e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368107396365e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      },
+      {
+        "time": 2.0,
+        "sham": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368452798744e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        },
+        "cut": {
+          "value": 0.33558991087189605,
+          "uncertainty": 8.864368452798744e-09,
+          "status": "PROPAGATED_ESTIMATE"
+        }
+      }
+    ],
+    "scientific_status": "NO_INTERVENTION_VERDICT_DURING_CALIBRATION",
+    "preparation": {
+      "status": "KNOWN_BASELINE_SHAM_ONLY_NO_NEW_INTERVENTION"
+    },
+    "reference_preparation": {
+      "status": "KNOWN_BASELINE_SHAM_ONLY_NO_NEW_INTERVENTION"
+    },
+    "preparation_seconds": 0.022208652982953936
+  },
+  "hilbert_dimension": 216,
+  "liouville_dimension": 14580,
+  "role": "COMPARATIVE_CONTROL"
+}

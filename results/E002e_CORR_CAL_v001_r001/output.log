@@ -1,0 +1,26 @@
+START full_7c1820e764ee
+DONE full_7c1820e764ee
+START full_5222212ebc04
+DONE full_5222212ebc04
+START full_a2a1b36cf33b
+DONE full_a2a1b36cf33b
+Traceback (most recent call last):
+  File "/var/lib/vm-lab/work/jobs/E002e_CORR_CAL_v001_r001/main.py", line 13, in <module>
+    runpy.run_path(sys.argv[0], run_name="__main__")
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002e_CORR_CAL_v001_r001/run.py", line 56, in <module>
+    main(audit=sys.argv[1:]==['--audit'])
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002e_CORR_CAL_v001_r001/run.py", line 52, in main
+    run(config,Path.cwd())
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002e_CORR_CAL_v001_r001/corr_payload/e002e_corr_exp/task.py", line 298, in run
+    return _run(config, output)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002e_CORR_CAL_v001_r001/corr_payload/e002e_corr_exp/task.py", line 233, in _run
+    rt = runtime_gate(config['forecast'], time.perf_counter()-started, gate['counts'], actual,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lib/vm-lab/work/data/vm_lab_sources/E002e_CORR_CAL_v001_r001/corr_payload/e002e_exp/runtime.py", line 135, in runtime_gate
+    return dict(**forecast, actual_seconds=elapsed, actual_over_expected=elapsed/forecast['expected_seconds'],
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'calibrated'
