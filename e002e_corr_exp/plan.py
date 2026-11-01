@@ -44,6 +44,8 @@ def implementation_manifest():
     # package initializers explicitly; publish this dependency inventory.
     files = set(kernel_files()) | set((ROOT/'e002e_corr_exp').glob('*.py'))
     files.add(ROOT/'experiments/e002e_corr/input_integrity.json')
+    files.add(ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json')
+    files.add(ROOT/'experiments/e002e_corr/vm_entry.py')
     files |= {ROOT/pkg/'__init__.py' for pkg in ('e002_exp','e002c_exp','e002d_exp')}
     return [dict(path=p.relative_to(ROOT).as_posix(), sha256=hashlib.sha256(p.read_bytes()).hexdigest())
             for p in sorted(files)]
@@ -58,9 +60,20 @@ def thread_preflight(current):
     if any(requested.get(k) != '1' for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS')):
         raise ValueError('Exactly one requested BLAS/OpenMP thread is required')
     pools = current.get('threadpools')
-    if not pools or any(p.get('num_threads') != 1 for p in pools):
+    if pools:
+        if any(p.get('num_threads') != 1 for p in pools):
+            raise ValueError('Measured BLAS/OpenMP thread count must be one')
+        mode='MANAGED_THREADPOOL_API'
+    elif pools == []:
+        reference=json.loads((ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json').read_text())
+        if (current.get('blas_library_identity') != reference['libraries']
+                or current.get('process_threads') != 1 or reference['observed_process_threads'] != 1):
+            raise ValueError('Unmanaged BLAS needs exact pinned binaries and one observed process thread')
+        mode='PINNED_UNMANAGED_LIBRARIES_AND_OBSERVED_PROCESS_THREAD'
+    else:
         raise ValueError('Measured BLAS/OpenMP thread count must be one')
-    return dict(status='PASS', requested=requested, measured=pools)
+    return dict(status='PASS', requested=requested, measured=pools, evidence_mode=mode,
+                process_threads=current.get('process_threads'))
 
 
 def storage_preflight(destination):

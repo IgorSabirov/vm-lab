@@ -1,0 +1,34 @@
+{
+  "schema": "E002e_CORR_unmanaged_blas_reference_v1",
+  "source_report_commit": "4f24e9ccf9ed54ed2c64b95595131f426b7fb538",
+  "source_run_id": "E002e_CORR_ENV_v001_r001",
+  "prior_verified_report": "a1ee51059f3b2b91c2fb1e67dd6f45a6698f65cb",
+  "libraries": [
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+    },
+    {
+      "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+      "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+      "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+    }
+  ],
+  "observed_process_threads": 1,
+  "scope": "Exact previously calibrated unmanaged BLAS binaries plus explicit process-thread observations; not a universal inference from empty threadpoolctl."
+}

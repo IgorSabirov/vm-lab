@@ -13,7 +13,8 @@ from e002c_exp.model import operators
 from e002e_exp.model import make_full
 from e002e_exp.numerics import Bordered, state_checks, values, refinement_check
 from e002e_exp.export import serial, real_values, write_manifest
-from e002e_exp.runtime import environment, runtime_gate, kernel_hash
+from e002e_exp.runtime import runtime_gate, kernel_hash
+from .environment import environment
 from .core import prepare, propagate, analyze
 from .plan import (PROTOCOL, SOLVERS, LIMITS, preflight, implementation_hash, protocol_hash,
                    implementation_manifest, storage_preflight, workload)
