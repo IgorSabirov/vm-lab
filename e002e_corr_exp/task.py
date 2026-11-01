@@ -18,6 +18,7 @@ from .core import prepare, propagate, analyze
 from .plan import (PROTOCOL, SOLVERS, LIMITS, preflight, implementation_hash, protocol_hash,
                    implementation_manifest, storage_preflight, workload)
 from .reporting import render_result
+from .budget import forecast_components
 
 
 def save(path, value):
@@ -236,31 +237,35 @@ def _run(config, output):
                    full_manifest_hashing_seconds=hashing_seconds,
                    science='FINITE_WINDOW_INTERVENTION_ONLY_NO_AUTOMATIC_ACCEPTANCE')
     def publish_summary():
+        tick = time.perf_counter()
         save(report/'metrics.json',metrics)
         text = render_result(config,metrics,records)
         (report/'RESULT.md').write_text(text); (report/'README.md').write_text(text)
         write_manifest(report)
-    publish_summary()
+        return time.perf_counter()-tick
+    publication_1 = publish_summary()
     export_seconds = time.perf_counter()-export_started
     from .verify import verify_report
     verify_started = time.perf_counter()
-    verify_report(report)
+    verify_report(report, finalized=False)
     verification_seconds = time.perf_counter()-verify_started
     metrics.update(report_export_seconds=export_seconds, verification_seconds=verification_seconds,
                    timing_scope='THROUGH_FIRST_VERIFICATION; final summary/manifest rewrite and second verification require enclosing service time')
     metrics['runtime_gate'] = runtime_gate(config['forecast'], time.perf_counter()-started, gate['counts'], actual,
                                            gate['environment']['comparable'], config['mode'] == 'production')
+    publication_2 = publish_summary()
+    verify_started = time.perf_counter()
+    verify_report(report, finalized=False)
+    verification_2 = time.perf_counter()-verify_started
+    completion = dict(summary_publications_seconds=[publication_1,publication_2],
+                      core_verifications_seconds=[verification_seconds,verification_2],
+                      first_report_export_seconds=export_seconds,
+                      final_metadata_cost='EXPLICIT_RESERVE; ENCLOSING_PROCESS_TIME_REQUIRED')
+    save(report/'completion_timing.json',completion)
     if config['mode'] == 'calibration':
         # Compute and I/O scale by their own work counts; verification and
         # report export are measured, not omitted. Calibration is sham only.
-        step_scale = PROTOCOL['horizon']/gate['horizon']
-        io_scale = workload()['checkpoint_writes']/actual['checkpoint_writes']
-        components = dict(setup_and_solvers=sum(p['assembly']+p['baseline'] for p in phases),
-             propagation_compute=step_scale*sum(max(0.,p['propagation']-p['checkpoint_io_seconds']) for p in phases),
-             checkpoint_io=io_scale*sum(p['checkpoint_io_seconds'] for p in phases),
-             case_export_and_diagnostics=step_scale*sum(max(0.,p['total']-p['assembly']-p['baseline']-p['propagation']) for p in phases),
-             report_export=step_scale*export_seconds, verification=2*step_scale*verification_seconds,
-             preparation_reserve=8.)
+        components = forecast_components(phases,completion,actual,gate['horizon'])
         predicted = sum(components.values())
         memory = dict(config['memory_budget'])
         memory.update(measured_peak_rss_bytes=after['max_rss_kib']*1024,
@@ -273,9 +278,13 @@ def _run(config, output):
              checkpoint_measurement=dict(writes=actual['checkpoint_writes'],
                  bytes_written=sum(p['checkpoint_bytes_written'] for p in phases),retained_full_bytes=sum(e['size'] for e in entries)),
              production_forecast=dict(expected_seconds=predicted,lower_seconds=.5*predicted,upper_seconds=2.*predicted,
-                 basis='Measured matching setup/solves, step-scaled compute, count-scaled checkpoint I/O, export, two verifications, explicit 8s preparation reserve; full process review remains mandatory')))
-    publish_summary()
-    verify_report(report)
+                 basis='Measured setup/solves, step-scaled compute, count-scaled I/O, BOTH measured summary writes and BOTH core verifications, 8s preparation and explicit final-metadata reserves; enclosing full process review required')))
+    # Only completion/calibration metadata is added after the two core audits.
+    # Its validation and final manifest write have an explicit forecast reserve;
+    # their measured complete process duration belongs to the enclosing service.
+    from .verify import verify_completion
+    verify_completion(report,config,metrics)
+    write_manifest(report)
     return metrics
 
 

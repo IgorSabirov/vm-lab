@@ -16,6 +16,8 @@ from e002e_corr_exp.core import marginals, replacement, prepare, propagate, anal
 from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash, implementation_hash, thread_preflight
 from e002e_corr_exp.task import run, solve_baseline, select_observables, run_case, output_balance, atomic_npz
 from e002e_corr_exp.verify import verify_report
+from e002e_corr_exp.reporting import render_result
+from e002e_corr_exp.budget import forecast_components
 
 
 def classical_model():
@@ -199,6 +201,13 @@ class IntegrationTests(unittest.TestCase):
                 human.write_text(original);write_manifest(report)
                 full_files=list((Path(d)/'full').rglob('*.npz'));self.assertEqual(len(full_files),12)
                 self.assertFalse(list(Path(d).rglob('*.tmp.npz')))
+                series=report/(cases()[0]['id']+'_series.npz');original_bytes=series.read_bytes()
+                with np.load(series,allow_pickle=False) as data:arrays={k:data[k].copy() for k in data.files}
+                fi=list(arrays['names']).index('F')
+                for label in ('fine','coarse','reference'):arrays[label+'_raw'][:,fi,:]+=.001
+                np.savez_compressed(series,**arrays);write_manifest(report)
+                with self.assertRaisesRegex(ValueError,'Raw F'):verify_report(report)
+                series.write_bytes(original_bytes);write_manifest(report)
                 p=report/(cases()[0]['id']+'_case.json');r=json.loads(p.read_text());r['result']['primary']['status']='FALSE_SUCCESS';p.write_text(json.dumps(r));write_manifest(report)
                 with self.assertRaisesRegex(ValueError,'verdict'):verify_report(report)
 
@@ -209,6 +218,13 @@ class IntegrationTests(unittest.TestCase):
                 run(cfg,d);verify_report(Path(d)/'report')
                 result=json.loads((Path(d)/'report'/(cases()[0]['id']+'_case.json')).read_text())['result']
                 self.assertNotIn('primary',result)
+                report=Path(d)/'report';m=json.loads((report/'metrics.json').read_text())
+                m['runtime_gate']['status']='PASS';(report/'metrics.json').write_text(json.dumps(m))
+                records=[json.loads(p.read_text()) for p in report.glob('*_case.json')]
+                text=render_result(cfg,m,records)
+                for name in ('RESULT.md','README.md'):(report/name).write_text(text)
+                write_manifest(report)
+                with self.assertRaisesRegex(ValueError,'Runtime gate'):verify_report(report)
 
     def test_preflight_requires_reviewed_calibration_and_fixed_science(self):
         from e002e_exp.runtime import ROOT
@@ -275,6 +291,14 @@ class IntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.os.replace',side_effect=OSError('disk failure')):
             with self.assertRaises(OSError):atomic_npz(Path(d)/'checkpoint.npz',state=np.eye(2))
             self.assertEqual(list(Path(d).iterdir()),[])
+
+    def test_forecast_counts_both_publications_and_verifications(self):
+        phases=[dict(assembly=0.,baseline=0.,propagation=0.,checkpoint_io_seconds=0.,total=0.)]
+        timing=dict(summary_publications_seconds=[.2,.8],core_verifications_seconds=[.3,.7],first_report_export_seconds=.6)
+        c=forecast_components(phases,timing,workload(2.),2.)
+        self.assertEqual([c[k] for k in ('first_summary_publication','second_summary_publication','first_verification','second_verification')],[2.,8.,3.,7.])
+        self.assertAlmostEqual(c['report_non_summary_export'],4.)
+        with self.assertRaises(ValueError):forecast_components(phases,dict(timing,core_verifications_seconds=[.3]),workload(2.),2.)
 
 
 if __name__=='__main__':unittest.main()

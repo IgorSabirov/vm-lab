@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 158.215,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "**Readiness:** The sham-only calibration execution path appears consistent with the supplied code and does not construct the product-state intervention. I would not treat its report or runtime forecast as verified for production until the following gaps are fixed. This is a technical-readiness assessment, not scientific acceptance.\n\n| Priority | Finding | Concrete failure and minimal fix |\n|---|---|---|\n| **Blocker for trusting the calibration forecast** | `e002e_corr_exp/task.py::_run` omits the second summary publication from the forecast. `export_seconds` stops after the first `publish_summary()`, but the worker publishes the summary again after updating metrics. The calibration components count one scaled report export and two verifications, not both summary/manifest writes. | Measure the second publication separately and include its projected cost in `production_forecast`. Add a focused test asserting the forecast accounts for both publications and both verifications. |\n| **Blocker for report verification** | `e002e_corr_exp/verify.py::verify_report` does not cross-check sampled `raw` values for `F` against the separately exported `flux`. | In a completed report, add the same constant to the `F` column of all three runs’ `raw` arrays, leave `flux` unchanged, and regenerate the report manifest. The refinement differences and conditional metrics are unchanged, so verification can accept this inconsistent report. Check `raw[:, names.index('F'), :]` against `flux[sample_index, :]`; add a tamper-and-rehash test. |\n| **Blocker for trusting displayed runtime status** | `verify_report` checks workload counts but does not recompute or validate `metrics['runtime_gate']`; `render_result` then displays that unchecked status. | Change a calibration report’s gate status to `PASS` (and its displayed fields), regenerate the prose and manifest: the verifier can accept it even though calibration is marked non-comparable/not calibrated. Recompute the gate from the pinned forecast, counts, mode, and preflight environment, then test this tampering case. |\n\nThe supplied content is sufficient to identify these issues, but I did not run code or tests. The worker can be used to execute a bounded technical calibration, but its forecast and self-verification should remain provisional until these fixes are addressed.",
+  "error": "",
+  "prompt_sha256": "d69d4eb7213bd19781968bb69f050c77c7a794d55d7d1b2f777a493829d7c8b2",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-11-01T03:28:18.296357+00:00"
+}

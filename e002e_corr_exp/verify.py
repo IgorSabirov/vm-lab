@@ -6,6 +6,8 @@ import numpy as np
 from .core import analyze, prepare
 from .plan import PROTOCOL, workload, protocol_hash, implementation_hash, implementation_manifest, cases
 from .reporting import render_result
+from .budget import forecast_components
+from e002e_exp.runtime import runtime_gate
 
 
 def numeric_equal(a,b,atol=1e-13,rtol=1e-12):
@@ -38,7 +40,24 @@ def verify_full_files(report,full):
         raise ValueError('Full archive byte total mismatch')
 
 
-def verify_report(report, full=None, model_factory=None):
+def verify_completion(report,cfg,metrics):
+    timing = json.loads((report/'completion_timing.json').read_text())
+    if (len(timing['summary_publications_seconds'])!=2 or len(timing['core_verifications_seconds'])!=2
+            or not np.isfinite(timing['summary_publications_seconds']+timing['core_verifications_seconds']).all()
+            or min(timing['summary_publications_seconds']+timing['core_verifications_seconds'])<0):
+        raise ValueError('Incomplete publication/verification timing')
+    if cfg['mode']=='calibration':
+        cal=json.loads((report/'calibration.json').read_text())
+        components=forecast_components(metrics['phases'],timing,metrics['actual_counts'],PROTOCOL['calibration_horizon'])
+        expected=sum(components.values());f=cal['production_forecast']
+        if (not numeric_equal(cal['forecast_components_seconds'],components)
+                or not numeric_equal([f['expected_seconds'],f['lower_seconds'],f['upper_seconds']],[expected,.5*expected,2*expected])
+                or cal['runtime_review_status']!='PENDING' or cal['report_commit'] is not None
+                or cal['counts']!=metrics['actual_counts']):
+            raise ValueError('Calibration budget/acceptance metadata mismatch')
+
+
+def verify_report(report, full=None, model_factory=None, finalized=True):
     report = Path(report)
     if json.loads((report/'status.json').read_text()).get('status') != 'COMPLETED_NOT_ACCEPTED':
         raise ValueError('Failed/incomplete run cannot be verified')
@@ -69,6 +88,14 @@ def verify_report(report, full=None, model_factory=None):
         raise ValueError('Report source/protocol/implementation mismatch')
     if metrics['actual_counts'] != workload(horizon):
         raise ValueError('Workload mismatch')
+    preflight=json.loads((report/'preflight.json').read_text())
+    rt=metrics['runtime_gate']
+    if not isinstance(rt.get('actual_seconds'),(int,float)) or not np.isfinite(rt['actual_seconds']) or rt['actual_seconds']<0:
+        raise ValueError('Invalid measured runtime')
+    expected_runtime=runtime_gate(cfg['forecast'],rt['actual_seconds'],workload(horizon),metrics['actual_counts'],
+                                 preflight['environment']['comparable'],mode=='production')
+    if not numeric_equal(rt,expected_runtime):
+        raise ValueError('Runtime gate differs from recomputed forecast/count/environment decision')
     records = list(report.glob('*_case.json'))
     if len(records) != 3:
         raise ValueError('Missing case')
@@ -116,6 +143,12 @@ def verify_report(report, full=None, model_factory=None):
                 sample_expected = expected[::round(PROTOCOL['sample_interval']/dt)]
                 if run['sample_time'].shape != sample_expected.shape or not np.allclose(run['sample_time'],sample_expected,rtol=0.,atol=1e-12):
                     raise ValueError('Missing or altered observable samples')
+                if (run['flux'].shape!=(len(indices),2)
+                        or run['raw'].shape!=(len(sample_indices),len(run['names']),2)
+                        or len(set(run['names']))!=len(run['names']) or 'F' not in run['names']):
+                    raise ValueError('Exported trajectory dimensions/names mismatch')
+                if not np.allclose(run['raw'][:,run['names'].index('F'),:],run['flux'][sample_indices,:],rtol=0.,atol=1e-12):
+                    raise ValueError('Raw F and all-step flux exports disagree')
                 checks = json.loads((report/(r['id']+'_'+label+'_physicality.json')).read_text())
                 expected_check_time = expected[::round(PROTOCOL['physicality_interval']/dt)].tolist()
                 if len(checks)!=len(expected_check_time) or not np.allclose([c['time'] for c in checks],expected_check_time,rtol=0.,atol=1e-12):
@@ -176,6 +209,8 @@ def verify_report(report, full=None, model_factory=None):
     expected_text = render_result(cfg,metrics,parsed)
     if any((report/name).read_text()!=expected_text for name in ('RESULT.md','README.md')):
         raise ValueError('Human report differs from numerical records')
+    if finalized:
+        verify_completion(report,cfg,metrics)
     return dict(status='REPORT_HASHES_METRICS_CONDITIONALS_AND_VERDICTS_VERIFIED', models=sorted(models),
                 full_states='INITIAL_PREPARATION_RECONSTRUCTED' if full is not None and mode=='production' else 'NOT_READ',
                 runtime='ENCLOSING_SERVICE_RUN_JSON_REQUIRES_SEPARATE_REVIEW')
