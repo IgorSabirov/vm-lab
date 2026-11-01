@@ -1,0 +1,38 @@
+{
+  "run_id": "E002e_RESET_v001_r001",
+  "source_commit": "8bf153b67f527f0f7409163fa7f528b053a0a332",
+  "launch_branch": "run/e002e-reset-v001-r001",
+  "state": "READY_NOT_SUBMITTED",
+  "implementation_sha256": "37e7e77ac98559957c4f6b2ee23c9ff0b9922fc6b05e67bacbfe051b358649f0",
+  "protocol_sha256": "824216f31702e703162b078ba6ca33a73e5e7e0c93d7e15bcba89e1780cfa9c4",
+  "counts": {
+    "NESS": 12,
+    "response": 4,
+    "random_rhs": 0,
+    "factorizations": 12,
+    "condition_estimates": 6
+  },
+  "forecast": {
+    "expected_seconds": 16.74080067075556,
+    "lower_seconds": 8.37040033537778,
+    "upper_seconds": 33.48160134151112,
+    "basis": "Original measured forecast components plus measured unclassified model orchestration after subtracting ALL recorded I/O to avoid duplication. 12 factors/low-rank setups,2x random/known solve proxy,3x density diagnostics/first verification, measured preflight and2xI/O; startup from priorVM. Final immutable verification covered by verification allowance. Random RHS is a proxy, not prediction of physical values."
+  },
+  "memory_budget": {
+    "peak_additional_bytes": 343848960,
+    "reserve_bytes": 1073741824,
+    "measured_peak_rss_bytes": 217845760,
+    "measured_peak_vm_bytes": 275079168,
+    "simultaneous_factor_storage_bytes": 72831196,
+    "calibration_configured_peak_additional_bytes": 1073741824,
+    "forecast_rule": "1.25 times measured VmPeak; full process peak is conservative additional-allocation proxy; reserve separate",
+    "memory_high_water_source": "/proc/self/status VmHWM and VmPeak",
+    "address_space_headroom_at_peak_bytes": 8314855424
+  },
+  "calibration_report_commit": "63b77f329617d9236271aafa8e07054e3e1ff083",
+  "calibration_source_commit": "9b0eb82eefaa3e91c3a6f6144599f9efa9478c1a",
+  "queue_path": "data/vm_lab_queue/E002e_RESET_v001_r001.json",
+  "payload_files": 45,
+  "user_authorization": "Build full run; production submission separate",
+  "scientific_acceptance": false
+}
