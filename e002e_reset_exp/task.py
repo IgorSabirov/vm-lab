@@ -13,13 +13,21 @@ from .numerics import Solver
 from .certificates import uniqueness,state_record
 from .plan import PROTOCOL,workload,cases,preflight,implementation_hash,implementation_manifest,protocol_hash,storage_preflight
 
+IO_SECONDS=0.
+
 
 def save(path,value):
+    global IO_SECONDS
+    tick=time.perf_counter()
     Path(path).write_text(json.dumps(serial(value),ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+    IO_SECONDS+=time.perf_counter()-tick
 
 
 def save_vector(folder,name,x):
+    global IO_SECONDS
+    tick=time.perf_counter()
     path=folder/(name+'.npz');np.savez_compressed(path,vector=x)
+    IO_SECONDS+=time.perf_counter()-tick
     if path.stat().st_size>900000:raise ValueError('Published vector exceeds per-file size cap')
     return path.name
 
@@ -100,7 +108,7 @@ def solve_model(model,evidence,mode,report,counts):
             rows.append(record);phases.append(dict(model=name,method=method,gamma=gamma,**record['solver']['timing']))
             if gamma==0:del baseline_solver
             del solver;gc.collect()
-        branch['baseline_and_target_seconds']=time.perf_counter()-start
+        branch['branch_seconds']=time.perf_counter()-start
     if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ArithmeticError('Independent targets differ')
     for key in states['lu']:
         if maxabs(states['lu'][key]-states['gmres_ilu'][key])>1e-9:raise ArithmeticError('NESS solver discrepancy')
@@ -146,9 +154,12 @@ def run(config,output):
 
 
 def _run(config,report,started):
+    global IO_SECONDS
+    IO_SECONDS=0.
     before=environment();save(report/'config.json',config);save(report/'environment_before.json',before)
     gate=preflight(config,before);gate['storage']=storage_preflight(report.parent)
     save(report/'preflight.json',{k:v for k,v in gate.items() if k!='evidence'})
+    preflight_seconds=time.perf_counter()-started
     if config['mode']=='calibration':
         def alarm(*_):raise TimeoutError('Predeclared bounded calibration wall limit')
         signal.signal(signal.SIGALRM,alarm);signal.setitimer(signal.ITIMER_REAL,PROTOCOL['calibration_wall_limit_seconds'])
@@ -166,19 +177,26 @@ def _run(config,report,started):
     if counts!=workload(config['mode']):raise ArithmeticError('Workload mismatch')
     save(report/'protocol.json',PROTOCOL);save(report/'dependencies.json',implementation_manifest())
     save(report/'status.json',dict(status='COMPLETED_NOT_ACCEPTED',mode=config['mode']))
+    entries=[dict(path=p.name,size=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(report.glob('*.npz'))]
+    save(report/'data_manifest.json',dict(full_files=entries,full_total_bytes=sum(e['size'] for e in entries),
+         published_count=len(entries),selection='All solution, target and RHS arrays; no unpublished arrays',coverage=1.))
     metrics=dict(counts=counts,phases=phases,environment_after=environment(),
+        preflight_seconds=preflight_seconds,io_seconds=IO_SECONDS,
         implementation_sha256=implementation_hash(),kernel_sha256=kernel_hash(),protocol_sha256=protocol_hash(),
         source_commit=config['source_commit'],mode=config['mode'],
         runtime_gate=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production'))
     save(report/'metrics.json',metrics)
     from .reporting import render
-    (report/'RESULT.md').write_text(render(config,metrics,records));write_manifest(report)
+    text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text);write_manifest(report)
     from .verify import verify_report
     tick=time.perf_counter();verify_report(report);verification=time.perf_counter()-tick
     metrics.update(verification_seconds=verification,complete_body_seconds=time.perf_counter()-started,
                    timing_scope='Through independent report verification; final metadata requires enclosing service duration')
     metrics['runtime_gate']=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production')
-    save(report/'metrics.json',metrics);(report/'RESULT.md').write_text(render(config,metrics,records))
+    metrics['environment_after']=environment()
+    save(report/'metrics.json',metrics);text=render(config,metrics,records)
+    (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text)
     if config['mode']=='calibration':
         from .budget import forecast
         save(report/'calibration.json',forecast(config,metrics,records,before))

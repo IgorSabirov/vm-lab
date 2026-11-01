@@ -10,8 +10,8 @@ from e002e_exp.space import Space
 from e002e_reset_exp.core import Reset,analyze,sign_decision,relative_decision,target_check,entropy
 from e002e_reset_exp.numerics import Solver
 from e002e_reset_exp.task import solve_model,random_rhs,measure_raw,run
-from e002e_reset_exp.verify import verify_case
-from e002e_reset_exp.plan import workload,PROTOCOL,implementation_hash
+from e002e_reset_exp.verify import verify_case,verify_report
+from e002e_reset_exp.plan import workload,PROTOCOL,implementation_hash,protocol_hash
 
 
 def toy(name='QS'):
@@ -64,7 +64,7 @@ class ResetAlgebra(unittest.TestCase):
     def test_poisson_finite_rate_exact_series(self):
         # Pure reset generator is exactly an average over Poisson event counts.
         m,_,_=toy();R=Reset(m['space'],np.diag([.7,.3]),(2,2));x=random_rhs(m['space'],9)
-        gamma=.4;t=.8;mat=(R.U@R.V).toarray();power=np.eye(16);poisson=np.zeros((16,16))
+        gamma=.4;t=.8;mat=(R.U@R.V).toarray();power=np.eye(16,dtype=complex);poisson=np.zeros((16,16),complex)
         weight=np.exp(-gamma*t)
         for n in range(24):
             poisson+=weight*power;power=mat@power;weight*=gamma*t/(n+1)
@@ -140,6 +140,32 @@ class Decisions(unittest.TestCase):
 
 
 class Workflow(unittest.TestCase):
+    def test_complete_worker_and_manifest_tamper(self):
+        from contextlib import ExitStack
+        from e002e_exp.export import write_manifest
+        models={n:toy(n) for n in ('QS','RR_QS')};cs=[m[0]['case'] for m in models.values()]
+        cfg=dict(mode='production',source_commit='a'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+            forecast=dict(expected_seconds=1.,lower_seconds=.1,upper_seconds=5.))
+        gate=dict(evidence={m[0]['case']['id']:m[2] for m in models.values()},counts=workload('production'),environment=dict(comparable=True))
+        with tempfile.TemporaryDirectory() as d,ExitStack() as stack:
+            for module in ('task','verify'):
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.cases',return_value=cs))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.make_full',side_effect=lambda c:models[c['model']][0]))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.uniqueness',return_value={'status':'TEST_FIXTURE'}))
+            stack.enter_context(patch('e002e_reset_exp.task.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.plan.preflight',return_value=gate))
+            run(cfg,Path(d));folder=Path(d)/'report'
+            self.assertEqual(verify_report(folder)['status'],'VERIFIED')
+            self.assertTrue((folder/'README.md').exists());self.assertTrue((folder/'data_manifest.json').exists())
+            p=folder/'QS_uniqueness_scope_v1.json';p.write_text('{}');write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'Uniqueness'):verify_report(folder)
+
+    def test_calibration_seed_tamper(self):
+        with tempfile.TemporaryDirectory() as d:
+            folder=Path(d);m,_,e=toy();r=solve_model(m,e,'calibration',folder,dict.fromkeys(workload('calibration'),0))
+            np.savez_compressed(folder/r['rows'][0]['random_rhs_file'],vector=random_rhs(m['space'],100))
+            with self.assertRaisesRegex(ValueError,'seed'):verify_case(folder,r,m,'calibration')
+
     def test_production_complete_small_cycle_and_tamper(self):
         with tempfile.TemporaryDirectory() as d:
             counts=dict.fromkeys(workload('production'),0)

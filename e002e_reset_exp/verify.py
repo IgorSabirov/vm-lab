@@ -8,7 +8,7 @@ from e002e_exp.export import conditional_values
 from e002e_exp.runtime import compare_environment,runtime_gate
 from e002e_corr_exp.core import array_hash,physicality,marginals
 from .core import Reset,analyze
-from .certificates import state_record
+from .certificates import state_record,uniqueness
 from .plan import cases,workload,PROTOCOL,protocol_hash,implementation_hash,implementation_manifest,thread_preflight
 
 
@@ -30,7 +30,7 @@ def vector(report,name):
 
 
 def verify_case(report,rec,model,mode):
-    space=model['space'];production=mode=='production';rows=rec['rows'];branches={}
+    space=model['space'];production=mode=='production';rows=rec['rows'];branches={};targets={};states={};responses={}
     expected={(m,g) for m in ('lu','gmres_ilu') for g in PROTOCOL['gammas']}
     actual=[(r['method'],r['gamma']) for r in rows if r['method']!='gmres_ilu_tight']
     if len(actual)!=len(expected) or set(actual)!=expected:raise ValueError('Case coverage mismatch')
@@ -40,15 +40,21 @@ def verify_case(report,rec,model,mode):
         branch=rec['branches'][method];rho0=vector(report,next(r['state_file'] for r in rows if r['method']==method and r['gamma']==0))
         dims=(8,27) if space.d==216 else model['dimensions']
         tau=marginals(space.unpack(rho0),dims)[1];reset=Reset(space,tau,dims)
+        targets[method]=tau;states[method]={}
+        if maxabs(vector(report,rec['model']+'_'+method+'_target.npz')-tau)>1e-13:raise ValueError('Exported target differs')
         if array_hash(rho0)!=branch['rho0_sha256'] or array_hash(tau)!=branch['tau_sha256']:raise ValueError('Branch target identity mismatch')
         if not equal(reset.target,branch['target']):raise ValueError('Target physicality differs')
         values=dict(flux={})
         for row in (r for r in rows if r['method']==method):
             gamma=row['gamma']
             if not equal(row['reset'],reset.certificate):raise ValueError('Reset certificate mismatch')
+            nsolves=int(gamma==0 or production)+int(not production or gamma==0)
+            if row['solver']['counts']['task_solves']!=nsolves:raise ValueError('Internal solve count differs')
+            if 'condition' in row and (not np.isfinite(row['condition']['value']) or row['condition']['value']<1):raise ValueError('Invalid condition estimate')
             def equation(x):return model['L']@x+gamma*(reset.apply(x)-x)
             if gamma==0 or production:
                 x=vector(report,row['state_file'])
+                states[method][gamma]=x
                 if x.shape!=(space.size,) or maxabs(equation(x))>1e-9:raise ValueError('NESS equation failed')
                 check=state_record(model,x,reset,gamma)
                 if not equal(check,row['diagnostics']) or not equal(check['raw'],row['raw']):raise ValueError('State observables/certificates differ')
@@ -61,10 +67,13 @@ def verify_case(report,rec,model,mode):
             if not production:
                 if row.get('physical_reset_rhs_solved') is not False:raise ValueError('Calibration has physical reset solve')
                 x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
+                from .task import random_rhs
+                if maxabs(b-random_rhs(space,PROTOCOL['calibration_seeds'][rec['model']]))>1e-13:raise ValueError('Random RHS seed/distribution differs')
                 if maxabs(equation(x)-b)>1e-9 or abs(space.trace(x))>1e-9 or abs(space.trace(b))>1e-11:
                     raise ValueError('Random calibration equation failed')
             elif gamma==0:
                 q=reset.apply(rho0)-rho0;X=vector(report,branch['response_file'])
+                responses[method]=X
                 if (array_hash(q)!=branch['q_sha256'] or array_hash(X)!=branch['X_sha256']
                         or maxabs(vector(report,branch['q_file'])-q)>1e-13):raise ValueError('Response identity mismatch')
                 if maxabs(model['L']@X+q)>1e-9 or abs(space.trace(X))>1e-9:raise ValueError('Response equation failed')
@@ -74,17 +83,22 @@ def verify_case(report,rec,model,mode):
         if not equal(values['flux'],branch['flux']) or (production and not equal(values['S'],branch['S'])):
             raise ValueError('Branch values mismatch')
         branches[method]=values
+    if maxabs(targets['lu']-targets['gmres_ilu'])>1e-9:raise ValueError('Target discrepancy')
+    if any(maxabs(states['lu'][g]-states['gmres_ilu'][g])>1e-9 for g in states['lu']):raise ValueError('State discrepancy')
     if production:
+        if maxabs(responses['lu']-responses['gmres_ilu'])>1e-9:raise ValueError('Response discrepancy')
         result=analyze(branches['lu'],branches['gmres_ilu'],rec['area_reference'],rec['u_area'])
         if not equal(result,rec['result']):raise ValueError('Scientific verdict differs')
     else:
-        if 'S' in rec['branches']['lu'] or rec['result']['status']!='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS':raise ValueError('Calibration leaks new physics')
+        if any('S' in b for b in rec['branches'].values()) or any('state_file' in r and r['gamma']!=0 for r in rows) or rec['result']['status']!='CALIBRATION_ONLY_NO_NEW_PHYSICAL_RESET_RHS':raise ValueError('Calibration leaks new physics')
         if rec['model']=='QS':
             row=next(r for r in rows if r['method']=='gmres_ilu_tight')
             rho0=vector(report,next(r['state_file'] for r in rows if r['method']=='lu' and r['gamma']==0))
             reset=Reset(space,marginals(space.unpack(rho0),dims)[1],dims)
             x=vector(report,row['random_solution_file']);b=vector(report,row['random_rhs_file'])
-            if maxabs(model['L']@x+row['gamma']*(reset.apply(x)-x)-b)>1e-9:raise ValueError('Tight random solve failed')
+            ref=next(r for r in rows if r['method']=='lu' and r['gamma']==row['gamma'])
+            if (maxabs(model['L']@x+row['gamma']*(reset.apply(x)-x)-b)>1e-9 or abs(space.trace(x))>1e-9
+                or maxabs(x-vector(report,ref['random_solution_file']))>1e-8):raise ValueError('Tight random solve failed')
     return dict(status='VECTORS_OPERATORS_AND_DECISIONS_VERIFIED',model=rec['model'])
 
 
@@ -117,7 +131,12 @@ def verify_report(report):
         if rec['case']!=case:raise ValueError('Case changed')
         original=gate['evidence'][case['id']]['corr']['result']
         if rec['area_reference']!=original['signed_area'] or rec['u_area']!=original['area_uncertainty']:raise ValueError('Area evidence changed')
-        out.append(verify_case(report,rec,make_full(case),mode))
+        model=make_full(case)
+        if not equal(uniqueness(model),load(case['model']+'_uniqueness_scope_v1.json')):raise ValueError('Uniqueness premises differ')
+        baseline=gate['evidence'][case['id']]['baseline']['raw']
+        for row in (r for r in rec['rows'] if r['gamma']==0):
+            if any(abs(row['raw'][k]-baseline[k])>1e-8 for k in ('F','J_h','source','h6','P_m6_N2','inventory')):raise ValueError('Published baseline differs')
+        out.append(verify_case(report,rec,model,mode))
         for row in rec['rows']:
             count['factorizations']+=1;count['NESS']+=int('state_file' in row)
             count['response']+=int('response' in row);count['random_rhs']+=int('random_solution_file' in row)

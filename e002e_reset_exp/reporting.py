@@ -34,6 +34,6 @@ def render(config,metrics,records):
         'Δ_tail — площадь, не время релаксации или спектральная ширина. P_reset не равен полной цене внешнего устройства.',
         'Фано, квантовая специфичность, объяснение всего преимущества QS и автопоэзис не устанавливаются. Ширина/фон остаются UNRESOLVED.',
         'Все научные точки и диагностические векторы опубликованы; непубликованный архив для этой проверки не нужен. Результат требует приёмки пользователем.']
-    result='\n\n'.join(lines)+'\n'
+    result='\n'.join(line if line.startswith('|') or not line else line+'\n' for line in lines)+'\n'
     if len(result.encode())>24576:raise ValueError('Portable report too large')
     return result

@@ -11,7 +11,9 @@ def forecast(config,metrics,records,before):
         condition_estimates=sum(r['solver']['timing']['condition_seconds'] for r in main),
         density_diagnostics=3*sum(r.get('diagnostic_seconds',0.) for r in main),
         report_verification=3*metrics['verification_seconds'],
-        preparation_io_startup_and_metadata_reserve=3.)
+        measured_preflight=metrics['preflight_seconds'],
+        vector_and_metadata_io=2*metrics['io_seconds'],
+        startup_proxy=.25055742263793945)
     expected=sum(components.values());memory=dict(config['memory_budget']);after=metrics['environment_after']
     memory.update(measured_peak_rss_bytes=after['max_rss_kib']*1024,measured_peak_vm_bytes=after['process_vm_size_bytes'],
         simultaneous_factor_storage_bytes=max(r['solver']['factor_storage_bytes']+r['solver']['low_rank_dense_bytes'] for r in main))
@@ -20,7 +22,7 @@ def forecast(config,metrics,records,before):
         implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash(),environment=before,memory_budget=memory,
         forecast_components_seconds=components,
         production_forecast=dict(expected_seconds=expected,lower_seconds=.5*expected,upper_seconds=2*expected,
-            basis='12 measured factor/low-rank setups; 2x random+known solve proxy; 3x known density diagnostics and independent vector verification; explicit 3s startup/preflight/I-O/finalization reserve. Extra calibration sweep excluded.'),
+            basis='12 measured factor/low-rank setups; 2x random+known solve proxy; 3x known density diagnostics and independent vector verification; measured preflight and 2x vector/metadata I-O; .250557s prior VM process startup proxy. Review enclosing time before accepting forecast. Extra calibration sweep excluded.'),
         limits=['No physical finite-gamma RHS was solved in calibration.','Random RHS timing is a proxy, not a guarantee.',
                 'Factor-application timing overlaps setup/solve/condition and is not added again.',
                 'Enclosing process time and memory must be reviewed from GitHub before production.'])

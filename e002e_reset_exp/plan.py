@@ -28,6 +28,7 @@ def implementation_manifest():
     files|={ROOT/'e002e_corr_exp'/name for name in ('__init__.py','core.py','environment.py','plan.py')}
     files|={ROOT/pkg/'__init__.py' for pkg in ('e002_exp','e002c_exp','e002d_exp')}
     files.add(ROOT/'experiments/e002e_reset/vm_entry.py')
+    files.add(ROOT/'experiments/e002e_corr/unmanaged_blas_reference.json')
     return [dict(path=p.relative_to(ROOT).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(files)]
 
 
