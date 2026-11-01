@@ -1,81 +1,36 @@
 {
-  "experiment": "E002e",
-  "mode": "production",
-  "stage": "F2",
+  "experiment": "E002e_CALIBRATION",
+  "run_id": "E002e_CORR_ENV_v001_r001",
+  "calibration_phase": "environment",
   "source_commit": "FROM_VERIFIED_VM_LAUNCHER",
-  "source_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
   "address_space_limit_bytes": 8589934592,
-  "copilot_review": {
-    "path": "experiments/e002e/implementation_review_exportfix.json",
-    "sha256": "aee4c3697b6b3a9a4ddb06f7ee400b29872e41a170878689c09fda542033dc05"
-  },
-  "calibration_verification": {
-    "path": "experiments/e002e/calibration_verification_exportfix.json",
-    "sha256": "589709c066ac48b5ac74d51e07e0a0a0a63926a024993d7f3483dab0d2598f82"
-  },
   "forecast": {
-    "expected_seconds": 34.0,
-    "lower_seconds": 15.3,
-    "upper_seconds": 90.0
+    "expected_seconds": 0.3,
+    "lower_seconds": 0.15,
+    "upper_seconds": 1.5,
+    "basis": "Two previous same-stack environment jobs each0.2506s; no matrices/solves, full process timing excludes queue/publication"
   },
-  "expected_workload": {
-    "small_NESS": 0,
-    "full_NESS": 20,
-    "static_responses": 0,
-    "frequency_responses": 0,
-    "correlation_inputs": 0,
-    "refinement_NESS": 20,
-    "refinement_static_responses": 0,
-    "refinement_frequency_responses": 0
-  },
-  "numerics": {
-    "solver": {
-      "method": "lu",
-      "rtol": 1e-12,
-      "atol": 1e-14
-    },
-    "refinement_solver": {
-      "method": "gmres_ilu",
-      "rtol": 1e-12,
-      "atol": 1e-14,
-      "maxiter": 400,
-      "restart": 100,
-      "ilu_drop_tol": 1e-05,
-      "ilu_fill_factor": 10
-    },
-    "state_tolerance": 1e-10,
-    "estimate_condition": true,
-    "error_envelope": {
-      "absolute_floor": 1e-10,
-      "difference_multiplier": 10
-    },
-    "refinement_limits": {
-      "vector_inf": 1e-09,
-      "observable_absolute": 1e-09,
-      "observable_relative": 1e-07
-    },
-    "qrt": {
-      "horizon": 100,
-      "dt_fine": 0.005,
-      "dt_coarse": 0.01,
-      "sample_interval": 0.1,
-      "checkpoint_stride_steps": 2000,
-      "absolute_tolerance": 1e-08,
-      "relative_tolerance": 1e-05
-    }
-  },
-  "submitted_at_utc": "2026-10-31T16:14:54.551082Z",
-  "baseline_report": {
-    "path": "analysis/E002e_F2_v001/baseline_bundle.json",
-    "sha256": "6d5615793bb4d9edc2f46dbde95ff06d18e3509b65348bdd95a54dbeb27bf053"
-  },
-  "predictions": {
-    "path": "analysis/E002e_F2_v001/f2_prereg_predictions.json",
-    "sha256": "852121879615d0da3c157271a44a8a77786e94e94e334bf8f071af40070daace",
-    "commit": "11fa1009090d58dd30fa0a285ff4ed83c60c6f79"
-  },
-  "prediction_verification": {
-    "path": "analysis/E002e_F2_v001/prediction_verification.json",
-    "sha256": "d6a3d348acf7734e8da47d9480ec6a05ca96d10325b1665bb986fe4f40aa579b"
+  "pinned_source_files": {
+    "e002_exp/__init__.py": "43bfd434bfe8076b8f9d0d6287a1712d4b21740592629dc6a85586b125737be4",
+    "e002_exp/model.py": "9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2",
+    "e002c_exp/__init__.py": "cc0a2000d1e005783887efdde6c2988538559184d5d0b2506e97cf62aa97488f",
+    "e002c_exp/model.py": "fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491",
+    "e002d_exp/__init__.py": "b3322362bcecd23a1ce0058e7d1a3e43f74ffbb469e7819f5864c57df3eb656c",
+    "e002d_exp/plan.py": "d1cf1ebfb02d8b97defaa6a420314b6306dcb9d3d800c4a40154ecb50987fd97",
+    "e002e_exp/__init__.py": "9b51b2012190c8775fba184b2289f0c43b9d186ef6d730206fea3c6446ed87ed",
+    "e002e_exp/analysis.py": "ab8de8f80ebeb6504a93dc9359f801a714b38297b68dc527223cab465377d4a8",
+    "e002e_exp/compat.py": "125889cda3937d1aaa54547491ded04a0b6340079cf00754c1c1e4f630c53fac",
+    "e002e_exp/export.py": "d4ac645dcc7d622cdde3ecc3242cd5876cee42b6d94ccb139fa7f6f47db4b818",
+    "e002e_exp/model.py": "1b10dba2734b5f76b7767350e207e6969ef59e5b36b8920b0bee05509d6cb7fd",
+    "e002e_exp/numerics.py": "052239b0c481dbde1d54dec51f7dc8143c8b24927254a9458acd0792a636fba2",
+    "e002e_exp/observations.py": "6c432c605efa32e9572b395803049c56c802a97913db08ff0375e1685402a8ca",
+    "e002e_exp/plan.py": "4431921b635dbe03692ac8ae28b978d3934522c8da967d891b1207be49468370",
+    "e002e_exp/runtime.py": "8207c7855f6c5f74c38768d01339105dd2aeb4a6c73d76084dbd3f651e685586",
+    "e002e_exp/space.py": "e909e3fc72fceb649891ebd6d7d2d0f9459936ebef8d5eb703533b40bf442ab1",
+    "e002e_exp/task.py": "cf18726ea7481ad494efb104944233b1ea2698c42852421bbb71f3cc179d6a6e",
+    "e002e_exp/vendor_threadpoolctl.py": "12fb9526b6a74d2e686b7ec148dc165c3587999b14fa86984aa180e10802400b",
+    "experiments/e002e/calibration.py": "6ab005065f7eee929700e42da4469b6f02dbc4d00ebd42c53b3486499de17816",
+    "experiments/e002e/case_inventory_v003.json": "32409313c6c8fe62f9d6d9754a83567919d9eadbbf16e8ae7e7b699ebb9bd2f4",
+    "run.py": "3dc1f22e6f78092605f5842326d60701262b47348fecc6685c0e87cc9e01f5cd"
   }
 }

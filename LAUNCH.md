@@ -1,0 +1,1 @@
+CORR environment probe. User instruction: Дай команду на ВМ на запуск. Exact old kernel files, no matrices, NESS or new physical trajectories. Forecast0.3s [0.15;1.5] from previous same-VM environment jobs; review full process time and source through GitHub. Main working tree not changed.
