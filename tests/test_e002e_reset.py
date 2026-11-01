@@ -164,6 +164,10 @@ class Workflow(unittest.TestCase):
             self.assertEqual(hashes,{p.name:p.read_bytes() for p in folder.iterdir()})
             p=folder/'calibration.json';v=json.loads(p.read_text());v['production_forecast']['expected_seconds']+=1;p.write_text(json.dumps(v));write_manifest(folder)
             with self.assertRaisesRegex(ValueError,'budget'):verify_report(folder)
+            p.write_bytes(hashes[p.name]);np.savez_compressed(folder/'physical_response.npz',vector=np.zeros(16));write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'artifact set'):verify_report(folder)
+            (folder/'physical_response.npz').unlink();p=folder/'QS_case.json';v=json.loads(p.read_text());v['extra']={'nested':{'S':1.}};p.write_text(json.dumps(v));write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'Forbidden'):verify_report(folder)
 
     def test_complete_worker_and_manifest_tamper(self):
         from contextlib import ExitStack

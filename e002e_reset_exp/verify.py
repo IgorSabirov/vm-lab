@@ -29,6 +29,15 @@ def vector(report,name):
     return x
 
 
+def no_physical_fields(value):
+    forbidden={'S','q_file','q_sha256','response','response_file','response_equation','response_sector','X_sha256'}
+    if isinstance(value,dict):
+        if forbidden & set(value):raise ValueError('Forbidden physical calibration fields')
+        for item in value.values():no_physical_fields(item)
+    elif isinstance(value,list):
+        for item in value:no_physical_fields(item)
+
+
 def verify_case(report,rec,model,mode):
     space=model['space'];production=mode=='production';rows=rec['rows'];branches={};targets={};states={};responses={}
     expected={(m,g) for m in ('lu','gmres_ilu') for g in PROTOCOL['gammas']}
@@ -37,9 +46,7 @@ def verify_case(report,rec,model,mode):
     if sum(r['method']=='gmres_ilu_tight' for r in rows)!=(1 if not production and rec['model']=='QS' else 0):
         raise ValueError('Calibration extra-factor coverage mismatch')
     if not production:
-        forbidden={'S','q_file','q_sha256','response','response_file','response_equation','response_sector','X_sha256'}
-        if any(forbidden & set(b) for b in rec['branches'].values()) or any(forbidden & set(r) for r in rows):
-            raise ValueError('Forbidden physical calibration fields')
+        no_physical_fields(rec)
         allowed={rec['model']+'_'+m+'_target.npz' for m in ('lu','gmres_ilu')}
         allowed|={r[k] for r in rows for k in ('state_file','random_rhs_file','random_solution_file') if k in r}
         if {p.name for p in report.glob(rec['model']+'_*.npz')}!=allowed:raise ValueError('Unexpected calibration arrays')
@@ -119,6 +126,16 @@ def verify_report(report,finalized=True):
         data=(report/e['path']).read_bytes()
         if len(data)!=e['size'] or hashlib.sha256(data).hexdigest()!=e['sha256']:raise ValueError('Checksum mismatch')
     cfg=load('config.json');metrics=load('metrics.json');mode=cfg['mode']
+    if mode=='calibration':
+        allowed={'config.json','environment_before.json','preflight.json','progress.json','protocol.json','dependencies.json',
+                 'status.json','data_manifest.json','metrics.json','RESULT.md','README.md'}
+        if finalized:allowed.add('calibration.json')
+        for c in cases():
+            name=c['model'];allowed|={name+'_case.json',name+'_uniqueness_scope_v1.json'}
+            record=load(name+'_case.json');no_physical_fields(record)
+            allowed|={name+'_'+method+'_target.npz' for method in ('lu','gmres_ilu')}
+            allowed|={r[k] for r in record['rows'] for k in ('state_file','random_rhs_file','random_solution_file') if k in r}
+        if set(paths)!=allowed:raise ValueError('Unexpected calibration artifact set')
     if load('status.json')['status']!='COMPLETED_NOT_ACCEPTED':raise ValueError('Failed/incomplete report')
     if (load('protocol.json')!=PROTOCOL or cfg['protocol_sha256']!=protocol_hash()
             or cfg['implementation_sha256']!=implementation_hash() or load('dependencies.json')!=implementation_manifest()):
