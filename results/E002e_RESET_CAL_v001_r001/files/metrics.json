@@ -1,0 +1,141 @@
+{
+  "counts": {
+    "NESS": 4,
+    "response": 0,
+    "random_rhs": 13,
+    "factorizations": 13,
+    "condition_estimates": 6
+  },
+  "phases": [
+    {
+      "model": "QS",
+      "assembly_seconds": 0.3853217759751715,
+      "certificate_seconds": 0.26363350899191573,
+      "total_seconds": 8.822099077980965
+    },
+    {
+      "model": "RR_QS",
+      "assembly_seconds": 0.398779843992088,
+      "certificate_seconds": 0.28164034796645865,
+      "total_seconds": 1.283364992996212
+    }
+  ],
+  "environment_after": {
+    "observed_at_utc": "2026-11-01T05:38:39Z",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-6.8.0-110-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "logical_cpus": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_quota": null,
+    "memory_limit": null,
+    "memory_current": null,
+    "memory_available": "   15537064 kB",
+    "memory_total": "       16374620 kB",
+    "load_average": [
+      0.15380859375,
+      0.03515625,
+      0.0107421875
+    ],
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "threadpools": [],
+    "requested_threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "optimize": 0,
+    "cache_state": "OS_CACHE_NOT_CONTROLLED",
+    "infrastructure_unknowns": [
+      "physical host contention",
+      "CPU frequency history",
+      "storage contention"
+    ],
+    "max_rss_kib": 212740,
+    "address_space_rlimit": [
+      8589934592,
+      8589934592
+    ],
+    "process_vm_size_bytes": 149131264,
+    "blas_library_identity": [
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_fblas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "c994b9cd9866d91df5310039f4a6fbc607da4ea1dbb03d4e814108117becf0ea"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/_flapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "98d3ef8719897701c81c7cf301f48bb1a1134c3ce85eadf4b62b43aabbc21517"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_blas.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "6736c8f6fe9886e498d55b819f914cfaeb9d913603b4c3f1c4444177e5cd7ecb"
+      },
+      {
+        "path": "/usr/lib/python3/dist-packages/scipy/linalg/cython_lapack.cpython-312-x86_64-linux-gnu.so",
+        "sha256": "a0720408be448dfdf503c8ca428abd544a99fb5bf0cdbd703a8a31f8cff6a8c7"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+      }
+    ],
+    "cgroup_membership": "0::/system.slice/vm-lab-worker.service",
+    "cgroup_visibility": "NOT_MOUNTED_IN_JOB_NAMESPACE",
+    "process_threads": 1,
+    "process_peak_vm_bytes": 275079168,
+    "process_peak_rss_bytes": 217845760
+  },
+  "preflight_seconds": 0.044168547028675675,
+  "io_seconds": 0.1054223240353167,
+  "implementation_sha256": "37e7e77ac98559957c4f6b2ee23c9ff0b9922fc6b05e67bacbfe051b358649f0",
+  "kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "protocol_sha256": "824216f31702e703162b078ba6ca33a73e5e7e0c93d7e15bcba89e1780cfa9c4",
+  "source_commit": "9b0eb82eefaa3e91c3a6f6144599f9efa9478c1a",
+  "mode": "calibration",
+  "runtime_gate": {
+    "expected_seconds": 25.0,
+    "lower_seconds": 8.0,
+    "upper_seconds": 75.0,
+    "basis": "First bounded RESET calibration. Same-VM CORR known QS LU+GMRES2.022s and RR0.078s; three gamma factor pairs proxy6.3s plus extraILU1s. New low-rank setup5s, condition estimation4s, random solves2s, assembly/certificates2s, verification3s, I/O0.7s, startup0.25s and baseline/operator checks0.75s are explicit uncalibrated estimates. This does not certify production budget.",
+    "actual_seconds": 11.902384290006012,
+    "actual_over_expected": 0.47609537160024046,
+    "deviation_seconds": -13.097615709993988,
+    "status": "NOT_EVALUABLE",
+    "expected_counts": {
+      "NESS": 4,
+      "response": 0,
+      "random_rhs": 13,
+      "factorizations": 13,
+      "condition_estimates": 6
+    },
+    "actual_counts": {
+      "NESS": 4,
+      "response": 0,
+      "random_rhs": 13,
+      "factorizations": 13,
+      "condition_estimates": 6
+    },
+    "environment_comparable": false,
+    "calibrated": false,
+    "scope": "Worker internal measured interval; enclosing process duration must be checked separately"
+  },
+  "verification_seconds": 1.7126434139790945,
+  "complete_body_seconds": 11.90238164603943,
+  "timing_scope": "Through first independent verification; final metadata and final immutable verification are covered by enclosing service duration"
+}

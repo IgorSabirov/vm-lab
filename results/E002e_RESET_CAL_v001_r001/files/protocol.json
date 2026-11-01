@@ -1,0 +1,61 @@
+{
+  "version": "E002e_RESET_v001",
+  "concept": "E002e_RESET_v002",
+  "models": [
+    "QS",
+    "RR_QS"
+  ],
+  "gammas": [
+    0.0,
+    0.001,
+    0.002
+  ],
+  "primary": "S_F_QS_POSITIVE",
+  "primary_branch": "LU_WITH_OWN_FIXED_BASELINE_TARGET",
+  "dimensions": [
+    8,
+    27
+  ],
+  "q0_dimension": 14580,
+  "reset_rank": 20,
+  "epsilon": 0.0,
+  "phi_over_pi": 0.5,
+  "m6_v_over_J": 1.0,
+  "node_noise": 0.05,
+  "state_tolerance": 1e-09,
+  "operator_tolerance": 1e-10,
+  "small_signal_floor_S": 1e-06,
+  "small_signal_floor_A": 1e-06,
+  "guard_safety": 10.0,
+  "window_fraction": 0.2,
+  "linearity_fraction": 0.1,
+  "uncertainty_safety": 3.0,
+  "uncertainty_floor": 1e-10,
+  "maximum_u_S": 1e-06,
+  "maximum_u_delta_F": 1e-08,
+  "conditional_floor": 1e-06,
+  "calibration_seeds": {
+    "QS": 192601,
+    "RR_QS": 192602
+  },
+  "calibration_rhs_per_factor": 1,
+  "calibration_wall_limit_seconds": 180.0,
+  "calibration_extra_factor_cases": [
+    {
+      "model": "QS",
+      "gamma": 0.002,
+      "method": "gmres_ilu",
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "ilu_drop_tol": 1e-06,
+      "ilu_fill_factor": 15.0
+    }
+  ],
+  "excluded": [
+    "IC",
+    "new_epsilon",
+    "spectral_scan",
+    "tau_fit",
+    "physical_reset_rhs_in_calibration"
+  ]
+}
