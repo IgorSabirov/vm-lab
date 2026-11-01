@@ -1,0 +1,17 @@
+{
+  "expected_seconds": 0.8,
+  "lower_seconds": 0.3,
+  "upper_seconds": 1.8,
+  "actual_seconds": 0.20038043100066716,
+  "returncode": 0,
+  "stdout": "{\"status\": \"PAYLOAD_IDENTITY_VERIFIED\", \"numerical_work\": 0, \"source_commit\": \"62dba6f4f7574ec48200884f6f7cc1ed50e0911a\"}\n",
+  "stderr": "",
+  "status": "REVIEW_REQUIRED",
+  "numerical_work": 0,
+  "deviation_review": {
+    "status": "CLOSED_WITH_ORIGINAL_FORECAST_PRESERVED",
+    "reason": "Complete44-file payload assembled and identity-only --audit returned success. Forecast used full unittest import overhead but builder/audit do not import solver, certificates, task or tests. No numerical work omitted because planned numerical workload was zero. Process is .20038s vs .8s; do not transfer this local import time to VM scientific budget.",
+    "files": 44,
+    "original_status": "REVIEW_REQUIRED"
+  }
+}
