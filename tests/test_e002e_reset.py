@@ -140,6 +140,31 @@ class Decisions(unittest.TestCase):
 
 
 class Workflow(unittest.TestCase):
+    def test_final_calibration_budget_verified_and_immutable(self):
+        from contextlib import ExitStack
+        from e002e_exp.export import write_manifest
+        from e002e_reset_exp.task import snapshot
+        models={n:toy(n) for n in ('QS','RR_QS')};cs=[m[0]['case'] for m in models.values()]
+        cfg=dict(mode='calibration',source_commit='a'*40,protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
+            forecast=dict(expected_seconds=1.,lower_seconds=.1,upper_seconds=5.),memory_budget=dict(peak_additional_bytes=2**30,reserve_bytes=2**30))
+        gate=dict(evidence={m[0]['case']['id']:m[2] for m in models.values()},counts=workload('calibration'),environment=dict(comparable=False))
+        def env():
+            value=snapshot();value['address_space_rlimit']=[2**33]*2;return value
+        with tempfile.TemporaryDirectory() as d,ExitStack() as stack:
+            for module in ('task','verify'):
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.cases',return_value=cs))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.make_full',side_effect=lambda c:models[c['model']][0]))
+                stack.enter_context(patch('e002e_reset_exp.'+module+'.uniqueness',return_value={'status':'TEST_FIXTURE'}))
+            stack.enter_context(patch('e002e_reset_exp.task.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.plan.preflight',return_value=gate))
+            stack.enter_context(patch('e002e_reset_exp.task.snapshot',side_effect=env))
+            run(cfg,Path(d));folder=Path(d)/'report'
+            hashes={p.name:p.read_bytes() for p in folder.iterdir()}
+            self.assertEqual(verify_report(folder)['status'],'VERIFIED')
+            self.assertEqual(hashes,{p.name:p.read_bytes() for p in folder.iterdir()})
+            p=folder/'calibration.json';v=json.loads(p.read_text());v['production_forecast']['expected_seconds']+=1;p.write_text(json.dumps(v));write_manifest(folder)
+            with self.assertRaisesRegex(ValueError,'budget'):verify_report(folder)
+
     def test_complete_worker_and_manifest_tamper(self):
         from contextlib import ExitStack
         from e002e_exp.export import write_manifest

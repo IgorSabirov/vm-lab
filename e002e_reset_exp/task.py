@@ -16,6 +16,16 @@ from .plan import PROTOCOL,workload,cases,preflight,implementation_hash,implemen
 IO_SECONDS=0.
 
 
+def snapshot():
+    out=environment()
+    status=Path('/proc/self/status').read_text().splitlines()
+    for key,name in (('VmPeak:','process_peak_vm_bytes'),('VmHWM:','process_peak_rss_bytes')):
+        rows=[line for line in status if line.startswith(key)]
+        if len(rows)!=1:raise ValueError('Memory high-water measurement unavailable')
+        out[name]=int(rows[0].split()[1])*1024
+    return out
+
+
 def save(path,value):
     global IO_SECONDS
     tick=time.perf_counter()
@@ -156,7 +166,7 @@ def run(config,output):
 def _run(config,report,started):
     global IO_SECONDS
     IO_SECONDS=0.
-    before=environment();save(report/'config.json',config);save(report/'environment_before.json',before)
+    before=snapshot();save(report/'config.json',config);save(report/'environment_before.json',before)
     gate=preflight(config,before);gate['storage']=storage_preflight(report.parent)
     save(report/'preflight.json',{k:v for k,v in gate.items() if k!='evidence'})
     preflight_seconds=time.perf_counter()-started
@@ -180,7 +190,7 @@ def _run(config,report,started):
     entries=[dict(path=p.name,size=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(report.glob('*.npz'))]
     save(report/'data_manifest.json',dict(full_files=entries,full_total_bytes=sum(e['size'] for e in entries),
          published_count=len(entries),selection='All solution, target and RHS arrays; no unpublished arrays',coverage=1.))
-    metrics=dict(counts=counts,phases=phases,environment_after=environment(),
+    metrics=dict(counts=counts,phases=phases,environment_after=snapshot(),
         preflight_seconds=preflight_seconds,io_seconds=IO_SECONDS,
         implementation_sha256=implementation_hash(),kernel_sha256=kernel_hash(),protocol_sha256=protocol_hash(),
         source_commit=config['source_commit'],mode=config['mode'],
@@ -190,15 +200,17 @@ def _run(config,report,started):
     text=render(config,metrics,records)
     (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text);write_manifest(report)
     from .verify import verify_report
-    tick=time.perf_counter();verify_report(report);verification=time.perf_counter()-tick
+    tick=time.perf_counter();verify_report(report,finalized=False);verification=time.perf_counter()-tick
     metrics.update(verification_seconds=verification,complete_body_seconds=time.perf_counter()-started,
-                   timing_scope='Through independent report verification; final metadata requires enclosing service duration')
+                   timing_scope='Through first independent verification; final metadata and final immutable verification are covered by enclosing service duration')
     metrics['runtime_gate']=runtime_gate(config['forecast'],time.perf_counter()-started,gate['counts'],counts,gate['environment']['comparable'],config['mode']=='production')
-    metrics['environment_after']=environment()
+    metrics['environment_after']=snapshot()
     save(report/'metrics.json',metrics);text=render(config,metrics,records)
     (report/'RESULT.md').write_text(text);(report/'README.md').write_text(text)
     if config['mode']=='calibration':
         from .budget import forecast
         save(report/'calibration.json',forecast(config,metrics,records,before))
     write_manifest(report)
+    verify_report(report,finalized=True)
+    print('FINAL_REPORT_VERIFIED_NO_SUBSEQUENT_REPORT_WRITES',flush=True)
     return metrics

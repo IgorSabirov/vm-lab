@@ -36,6 +36,13 @@ def verify_case(report,rec,model,mode):
     if len(actual)!=len(expected) or set(actual)!=expected:raise ValueError('Case coverage mismatch')
     if sum(r['method']=='gmres_ilu_tight' for r in rows)!=(1 if not production and rec['model']=='QS' else 0):
         raise ValueError('Calibration extra-factor coverage mismatch')
+    if not production:
+        forbidden={'S','q_file','q_sha256','response','response_file','response_equation','response_sector','X_sha256'}
+        if any(forbidden & set(b) for b in rec['branches'].values()) or any(forbidden & set(r) for r in rows):
+            raise ValueError('Forbidden physical calibration fields')
+        allowed={rec['model']+'_'+m+'_target.npz' for m in ('lu','gmres_ilu')}
+        allowed|={r[k] for r in rows for k in ('state_file','random_rhs_file','random_solution_file') if k in r}
+        if {p.name for p in report.glob(rec['model']+'_*.npz')}!=allowed:raise ValueError('Unexpected calibration arrays')
     for method in ('lu','gmres_ilu'):
         branch=rec['branches'][method];rho0=vector(report,next(r['state_file'] for r in rows if r['method']==method and r['gamma']==0))
         dims=(8,27) if space.d==216 else model['dimensions']
@@ -102,7 +109,7 @@ def verify_case(report,rec,model,mode):
     return dict(status='VECTORS_OPERATORS_AND_DECISIONS_VERIFIED',model=rec['model'])
 
 
-def verify_report(report):
+def verify_report(report,finalized=True):
     report=Path(report);load=lambda p:json.loads((report/p).read_text())
     manifest=load('manifest.json');paths=[e['path'] for e in manifest['files']]
     if len(paths)!=len(set(paths)) or set(paths)!={p.name for p in report.iterdir() if p.is_file() and p.name!='manifest.json'}:
@@ -125,9 +132,10 @@ def verify_report(report):
     if not equal(gate['environment'],load('preflight.json')['environment']):raise ValueError('Stored environment verdict differs')
     rt=metrics['runtime_gate'];expected=runtime_gate(cfg['forecast'],rt['actual_seconds'],workload(mode),metrics['counts'],gate['environment']['comparable'],mode=='production')
     if not equal(rt,expected):raise ValueError('Stored time verdict differs')
-    out=[];count=dict.fromkeys(workload(mode),0)
+    out=[];records=[];count=dict.fromkeys(workload(mode),0)
     for case in cases():
         rec=load(case['model']+'_case.json')
+        records.append(rec)
         if rec['case']!=case:raise ValueError('Case changed')
         original=gate['evidence'][case['id']]['corr']['result']
         if rec['area_reference']!=original['signed_area'] or rec['u_area']!=original['area_uncertainty']:raise ValueError('Area evidence changed')
@@ -142,4 +150,9 @@ def verify_report(report):
             count['response']+=int('response' in row);count['random_rhs']+=int('random_solution_file' in row)
             count['condition_estimates']+=int('condition' in row)
     if count!=workload(mode):raise ValueError('Actual exported workload differs')
+    if finalized and mode=='calibration':
+        from .budget import forecast
+        if not equal(load('calibration.json'),forecast(cfg,metrics,records,before)):raise ValueError('Calibration budget differs')
+        peak=after['process_peak_vm_bytes'];rss=after['process_peak_rss_bytes']
+        if peak<after['process_vm_size_bytes'] or rss<=0 or peak>=after['address_space_rlimit'][0]:raise ValueError('Invalid memory high-water record')
     return dict(status='VERIFIED',cases=out,counts=count,full_archive_access=False)

@@ -3,7 +3,7 @@
 Every factor application is counted, including columns, residual corrections,
 preconditioner applications and inverse-norm estimation. No eigenspectrum repair.
 """
-import time
+import time,warnings
 import numpy as np
 from scipy import sparse as sp
 from scipy import linalg
@@ -34,8 +34,11 @@ class Solver:
             self.V=sp.hstack([reset.V,sp.csr_matrix((reset.rank,1))],format='csr')
             self.W=self.factor_apply(self.U.toarray())
             self.small=np.eye(reset.rank)+gamma*(self.V@self.W)
-            self.small_factor=linalg.lu_factor(self.small)
             if not np.isfinite(self.small).all():raise ArithmeticError('Invalid Woodbury core')
+            with warnings.catch_warnings():
+                warnings.simplefilter('error',linalg.LinAlgWarning)
+                self.small_factor=linalg.lu_factor(self.small)
+            if not np.isfinite(self.small_factor[0]).all():raise ArithmeticError('Invalid Woodbury factor')
         self.times['low_rank_setup_seconds']=time.perf_counter()-tick
         self.operator=LinearOperator(self.base.shape,matvec=self.apply,matmat=self.apply,dtype=complex)
         self.preconditioner=LinearOperator(self.base.shape,matvec=self.precondition,dtype=complex)
@@ -56,6 +59,7 @@ class Solver:
             else:
                 c=linalg.lu_solve(self.small_factor,self.V@z)
                 z-=self.gamma*(self.W@c)
+        if not np.isfinite(z).all():raise ArithmeticError('Nonfinite inverse application')
         return z
 
     def precondition(self,rhs):

@@ -15,9 +15,13 @@ def forecast(config,metrics,records,before):
         vector_and_metadata_io=2*metrics['io_seconds'],
         startup_proxy=.25055742263793945)
     expected=sum(components.values());memory=dict(config['memory_budget']);after=metrics['environment_after']
-    memory.update(measured_peak_rss_bytes=after['max_rss_kib']*1024,measured_peak_vm_bytes=after['process_vm_size_bytes'],
+    memory.update(measured_peak_rss_bytes=after['process_peak_rss_bytes'],measured_peak_vm_bytes=after['process_peak_vm_bytes'],
         simultaneous_factor_storage_bytes=max(r['solver']['factor_storage_bytes']+r['solver']['low_rank_dense_bytes'] for r in main))
-    memory['peak_additional_bytes']=max(memory['peak_additional_bytes'],memory['measured_peak_rss_bytes'],memory['measured_peak_vm_bytes'])
+    memory['calibration_configured_peak_additional_bytes']=config['memory_budget']['peak_additional_bytes']
+    memory['peak_additional_bytes']=int(1.25*memory['measured_peak_vm_bytes'])
+    memory['forecast_rule']='1.25 times measured VmPeak; full process peak is conservative additional-allocation proxy; reserve separate'
+    memory['memory_high_water_source']='/proc/self/status VmHWM and VmPeak'
+    memory['address_space_headroom_at_peak_bytes']=after['address_space_rlimit'][0]-memory['measured_peak_vm_bytes']
     return dict(status='CALIBRATION_COMPLETE_REVIEW_PENDING',counts=metrics['counts'],report_commit=None,
         implementation_sha256=implementation_hash(),protocol_sha256=protocol_hash(),environment=before,memory_budget=memory,
         forecast_components_seconds=components,
