@@ -43,9 +43,10 @@ with (DEST/('development_attempt_'+attempt+'.log')).open('w') as log, contextlib
         traceback.print_exc(file=log); failure = type(exc).__name__+': '+str(exc)
 elapsed = time.perf_counter()-START
 within = forecast['lower_seconds'] <= elapsed <= forecast['upper_seconds']
+expected_count_matches = not test_result or forecast.get('expected_tests',test_result.testsRun)==test_result.testsRun
 runtime_status = ('NOT_EVALUABLE_FIRST_SUITE_CALIBRATION' if not forecast['calibrated'] else
                   'NOT_EVALUABLE_ENVIRONMENT_CHANGED' if not environment_match else
-                  'PASS' if within and test_result and test_result.wasSuccessful() else 'REVIEW_REQUIRED')
+                  'PASS' if within and test_result and test_result.wasSuccessful() and expected_count_matches else 'REVIEW_REQUIRED')
 out = dict(attempt=attempt, source_commit=os.environ.get('DEVELOPMENT_SOURCE_COMMIT'),
            forecast=forecast, internal_elapsed_seconds=elapsed,
            deviation_seconds=elapsed-forecast['expected_seconds'], runtime_status=runtime_status,
@@ -54,7 +55,8 @@ out = dict(attempt=attempt, source_commit=os.environ.get('DEVELOPMENT_SOURCE_COM
            failures=len(test_result.failures) if test_result else None,
            errors=len(test_result.errors) if test_result else None,
            skipped=len(test_result.skipped) if test_result else None,
-           tests_passed=bool(test_result and test_result.wasSuccessful()), failure=failure,
+           tests_passed=bool(test_result and test_result.wasSuccessful() and expected_count_matches), failure=failure,
+           expected_count_matches=expected_count_matches,
            old_kernel_sha256=kernel_hash(), implementation_sha256=implementation_hash(), protocol_sha256=protocol_hash(),
            new_full_NESS=0, new_full_time_propagations=0,
            timing_scope='Python body including imports/environment/evidence/tests; interpreter startup excluded')

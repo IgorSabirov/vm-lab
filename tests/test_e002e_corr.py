@@ -12,9 +12,9 @@ from e002e_exp.space import Space, liouvillian
 from e002e_exp.model import make_full
 from e002e_exp.export import write_manifest
 from e002e_exp.runtime import kernel_hash
-from e002e_corr_exp.core import marginals, replacement, prepare, propagate, analyze, threshold_decision
-from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash, implementation_hash
-from e002e_corr_exp.task import run, solve_baseline, select_observables, run_case
+from e002e_corr_exp.core import marginals, replacement, prepare, propagate, analyze, threshold_decision, physicality
+from e002e_corr_exp.plan import PROTOCOL, workload, cases, preflight, protocol_hash, implementation_hash, thread_preflight
+from e002e_corr_exp.task import run, solve_baseline, select_observables, run_case, output_balance, atomic_npz
 from e002e_corr_exp.verify import verify_report
 
 
@@ -73,6 +73,26 @@ class PreparationTests(unittest.TestCase):
         self.assertGreater(record['trace_distance'],.1)
         np.testing.assert_allclose(marginals(np.diag([.1,.2,.3,.4]),(2,2))[0],np.diag([.3,.7]))
 
+    def test_full_charge_algebra_product_needs_no_projection(self):
+        charges=np.repeat([k.bit_count() for k in range(8)],27); space=Space(charges)
+        rng=np.random.default_rng(43);rho=np.zeros((216,216),complex)
+        for g in space.groups:
+            a=rng.normal(size=(len(g),3))+1j*rng.normal(size=(len(g),3))
+            rho[np.ix_(g,g)]=a@a.conj().T
+        rho/=np.trace(rho);x=space.pack(rho)
+        pair,p=prepare(dict(space=space,H=sp.eye(216)),x)
+        self.assertLess(max(p['sector_errors'].values()),1e-12)
+        self.assertEqual(space.size,14580); self.assertFalse(p['universal_cptp_channel'])
+        a,b=marginals(rho,(8,27))
+        np.testing.assert_allclose(space.unpack(pair[:,1]),np.kron(a,b),atol=1e-15)
+        bad=rho.copy();bad[0,27]=bad[27,0]=.001
+        with self.assertRaisesRegex(ValueError,'outside'):space.pack(bad)
+
+    def test_full_psd_does_not_trust_incomplete_groups(self):
+        space=Space(np.zeros(4,int)); space.groups=[np.array([0,1])]
+        x=space.pack(np.diag([.5,.5,.1,-.1]))
+        with self.assertRaises(ArithmeticError):physicality(space,x,1e-9)
+
 
 class PropagationTests(unittest.TestCase):
     def setUp(self):
@@ -120,6 +140,34 @@ class PropagationTests(unittest.TestCase):
         self.assertEqual(threshold_decision(.002,.001,.001)['status'],'UNRESOLVED')
         self.assertEqual(threshold_decision(0.,1e-9,.001)['status'],'MARGINAL_SUFFICIENCY_NOT_REJECTED_IN_WINDOW')
 
+    def test_reference_common_mode_drift_is_not_hidden_by_delta(self):
+        runs=trajectories(self.model,self.states)
+        runs[2]['flux'][-1,:]+=2*PROTOCOL['maximum_sham_drift']
+        with self.assertRaisesRegex(ArithmeticError,'drift'):
+            analyze(*runs,baseline_flux=self.raw[0]['F'],reference_flux=self.raw[1]['F'],policy=PROTOCOL)
+
+    def test_reference_preparation_checks_its_own_flux(self):
+        raw=copy.deepcopy(self.raw);raw[1]['F']+=1e-4
+        with self.assertRaisesRegex(ArithmeticError,'initial flux'):
+            run_case(self.model,self.states,raw,mode='production',horizon=1.,dimensions=(2,2))
+
+    def test_analytic_amplitude_damping_and_checkpoint_cadence(self):
+        space=Space(np.zeros(2,int)); C=sp.csr_matrix([[0,1],[0,0]],dtype=complex)
+        H=sp.csr_matrix((2,2),dtype=complex); excited=sp.diags([0.,1.])
+        model=dict(space=space,L=liouvillian(H,[('decay',C)],space),observables={'F':excited})
+        x=space.pack(np.diag([0.,1.])); calls=[]
+        r=propagate(model,np.column_stack((x,x)),horizon=1.,dt=.005,sample_interval=.02,
+                    physicality_interval=.5,checkpoint=lambda step,t,y:calls.append(step))
+        self.assertLess(np.max(abs(r['flux'][:,0]-np.exp(-r['time']))),PROTOCOL['maximum_sham_drift'])
+        self.assertEqual(calls,[0,100,200]);self.assertEqual(r['checkpoint_calls'],3)
+
+    def test_tiny_grid_roundoff_tolerated_but_shift_rejected(self):
+        runs=trajectories(self.model,self.states);runs[1]['sample_time']+=1e-15
+        analyze(*runs,baseline_flux=self.raw[0]['F'],reference_flux=self.raw[1]['F'],policy=PROTOCOL)
+        runs[1]['sample_time']+=1e-8
+        with self.assertRaisesRegex(ValueError,'grids'):
+            analyze(*runs,baseline_flux=self.raw[0]['F'],reference_flux=self.raw[1]['F'],policy=PROTOCOL)
+
 
 class IntegrationTests(unittest.TestCase):
     def test_failure_is_saved_before_any_assembly_and_not_overwritten(self):
@@ -145,7 +193,12 @@ class IntegrationTests(unittest.TestCase):
             model,gate,cfg=self._worker('production')
             with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.preflight',return_value=gate),patch('e002e_corr_exp.task.make_full',return_value=model):
                 result=run(cfg,d);self.assertEqual(result['actual_counts'],workload(1.))
-                report=Path(d)/'report';verify_report(report)
+                report=Path(d)/'report';verify_report(report,Path(d)/'full',lambda case:model)
+                human=report/'RESULT.md';original=human.read_text();human.write_text(original+'false acceptance\n');write_manifest(report)
+                with self.assertRaisesRegex(ValueError,'Human report'):verify_report(report)
+                human.write_text(original);write_manifest(report)
+                full_files=list((Path(d)/'full').rglob('*.npz'));self.assertEqual(len(full_files),12)
+                self.assertFalse(list(Path(d).rglob('*.tmp.npz')))
                 p=report/(cases()[0]['id']+'_case.json');r=json.loads(p.read_text());r['result']['primary']['status']='FALSE_SUCCESS';p.write_text(json.dumps(r));write_manifest(report)
                 with self.assertRaisesRegex(ValueError,'verdict'):verify_report(report)
 
@@ -170,11 +223,12 @@ class IntegrationTests(unittest.TestCase):
         cfg=dict(mode='production',protocol_sha256=protocol_hash(),implementation_sha256=implementation_hash(),
                  source_commit='0'*40,technical_review={'path':'review'},evidence={'path':'evidence'},
                  calibration={'path':'cal'},forecast=forecast,memory_budget={})
+        current=dict(requested_threads={k:'1' for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS')},threadpools=[{'num_threads':1}])
         with patch.dict('os.environ',{'VM_SOURCE_COMMIT':'0'*40}),patch('e002e_corr_exp.plan.pinned_file',side_effect=lambda x:items[x['path']]),patch('e002e_corr_exp.plan.compare_environment',return_value={'comparable':True}),patch('e002e_corr_exp.plan.memory_preflight',return_value={'status':'PASS'}):
-            with self.assertRaisesRegex(ValueError,'Calibration'):preflight(cfg,{})
-            cal['runtime_review_status']='REVIEWED';self.assertEqual(preflight(cfg,{})['counts'],workload())
-            with self.assertRaisesRegex(ValueError,'override'):preflight(dict(cfg,primary_threshold=10),{})
-            with self.assertRaises(ValueError):preflight(dict(cfg,forecast=dict(forecast,expected_seconds=20)),{})
+            with self.assertRaisesRegex(ValueError,'Calibration'):preflight(cfg,current)
+            cal['runtime_review_status']='REVIEWED';self.assertEqual(preflight(cfg,current)['counts'],workload())
+            with self.assertRaisesRegex(ValueError,'override'):preflight(dict(cfg,primary_threshold=10),current)
+            with self.assertRaises(ValueError):preflight(dict(cfg,forecast=dict(forecast,expected_seconds=20)),current)
 
     def test_bad_report_physics_is_rejected_after_rehash(self):
         with patch.dict(PROTOCOL,dict(horizon=1.,dimensions=[2,2])):
@@ -190,7 +244,37 @@ class IntegrationTests(unittest.TestCase):
             m=select_observables(make_full(c,assemble=False))
             self.assertNotIn('L',m);self.assertEqual(m['space'].size,14580)
             self.assertEqual(m['observables']['F'].shape,(216,216))
-        self.assertEqual(workload(),dict(NESS=3,refinement_NESS=3,propagations=9,block_steps=30000,block_rhs_calls=120000,scalar_rhs_equivalents=240000))
+            balance=output_balance(m);self.assertEqual(balance['status'],'OPERATOR_IDENTITY_VERIFIED')
+            self.assertAlmostEqual(balance['kappa_out'],.5)
+        self.assertEqual(workload(),dict(NESS=3,refinement_NESS=3,propagations=9,block_steps=30000,checkpoint_writes=189,block_rhs_calls=120000,scalar_rhs_equivalents=240000))
+
+    def test_dependency_hash_covers_numerics(self):
+        before=implementation_hash();original=Path.read_bytes
+        def altered(p):
+            data=original(p)
+            return data+b'\n# changed dependency\n' if p.name=='numerics.py' else data
+        with patch.object(Path,'read_bytes',altered):self.assertNotEqual(before,implementation_hash())
+        self.assertEqual(before,implementation_hash())
+
+    def test_source_bytes_must_match_frozen_commit(self):
+        from e002e_exp.runtime import ROOT
+        from e002e_corr_exp.evidence import build
+        pins=json.loads((ROOT/'experiments/e002e_corr/input_integrity.json').read_text())
+        pins['checks'][0]['sha256']='0'*64
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/'pins.json';p.write_text(json.dumps(pins))
+            with self.assertRaisesRegex(ValueError,'differs'):build(Path(d)/'output',p)
+
+    def test_thread_contract_requires_requested_and_observed_one(self):
+        good=dict(requested_threads={k:'1' for k in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS')},threadpools=[{'num_threads':1}])
+        self.assertEqual(thread_preflight(good)['status'],'PASS')
+        for bad in ({},dict(good,threadpools=[]),dict(good,threadpools=[{'num_threads':2}])):
+            with self.assertRaises(ValueError):thread_preflight(bad)
+
+    def test_failed_atomic_checkpoint_cleans_own_temporary_file(self):
+        with tempfile.TemporaryDirectory() as d,patch('e002e_corr_exp.task.os.replace',side_effect=OSError('disk failure')):
+            with self.assertRaises(OSError):atomic_npz(Path(d)/'checkpoint.npz',state=np.eye(2))
+            self.assertEqual(list(Path(d).iterdir()),[])
 
 
 if __name__=='__main__':unittest.main()

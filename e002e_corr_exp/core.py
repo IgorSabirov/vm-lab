@@ -3,6 +3,7 @@
 No projection, clipping, renormalization, inferred infinite tail or Fano label.
 The replacement channel has a fixed prepared edge state for each baseline.
 """
+import hashlib
 import time
 import numpy as np
 from e002_exp.model import maxabs
@@ -20,7 +21,11 @@ def marginals(rho, dimensions):
 
 
 def replacement(rho, edge_reference, dimensions):
-    """Linear CPTP map X -> Tr_edges(X) tensor fixed edge_reference."""
+    """Linear CPTP only for a FIXED edge_reference.
+
+    prepare chooses a target from its known baseline; the overall map from an
+    arbitrary unknown baseline to its two marginals is not a universal channel.
+    """
     nodes, _ = marginals(rho, dimensions)
     b = dimensions[1]
     edge_reference = np.asarray(edge_reference, complex)
@@ -33,16 +38,42 @@ def replacement(rho, edge_reference, dimensions):
 
 
 def physicality(space, state, tolerance):
+    if not np.isfinite(state).all():
+        raise ArithmeticError('Density matrix is nonfinite')
     rho = space.unpack(state)
     herm = maxabs(rho-rho.conj().T)
-    minimum = min(float(np.linalg.eigvalsh((rho[np.ix_(g, g)]+rho[np.ix_(g, g)].conj().T)/2).min())
-                  for g in space.groups)
+    minimum = float(np.linalg.eigvalsh((rho+rho.conj().T)/2).min())
     check = dict(trace_error=float(abs(space.trace(state)-1)), hermiticity=herm,
-                 minimum_eigenvalue=minimum)
+                 minimum_eigenvalue=minimum, psd_mode='FULL_HILBERT')
     if (not np.isfinite(state).all() or check['trace_error'] > tolerance
             or herm > tolerance or minimum < -tolerance):
         raise ArithmeticError('Density matrix physicality failed: '+str(check))
     return check
+
+
+def array_hash(a):
+    a = np.ascontiguousarray(a, dtype='<c16')
+    return hashlib.sha256(str(a.shape).encode()+b'\0'+a.tobytes()).hexdigest()
+
+
+def sector_check(space, rho, product, tolerance):
+    """Certify this builder's complete q=0 block algebra, with no projection.
+
+    The 216-state model has Q=N_nodes tensor I_edges. For [rho,Q]=0,
+    [Tr_edges(rho),N_nodes]=0, hence [rho_nodes tensor rho_edges,Q]=0.
+    No per-edge superselection rule from an older 512-state model is assumed.
+    """
+    joined = np.concatenate(space.groups)
+    if not np.array_equal(np.sort(joined), np.arange(space.d)):
+        raise ValueError('Charge groups do not partition full Hilbert space')
+    outside = space.charges[:, None] != space.charges[None, :]
+    errors = dict(input_off_sector=maxabs(np.where(outside, rho, 0)),
+                  product_off_sector=maxabs(np.where(outside, product, 0)),
+                  input_roundtrip=maxabs(space.unpack(space.pack(rho))-rho),
+                  product_roundtrip=maxabs(space.unpack(space.pack(product))-product))
+    if max(errors.values()) > tolerance:
+        raise ArithmeticError('Preparation violates q=0 sector/roundtrip')
+    return errors
 
 
 def prepare(model, state, dimensions=(8, 27), tolerance=1e-10):
@@ -50,15 +81,24 @@ def prepare(model, state, dimensions=(8, 27), tolerance=1e-10):
     before = physicality(space, state, tolerance)
     nodes, edges = marginals(rho, dimensions)
     product = replacement(rho, edges, dimensions)
+    sector = sector_check(space, rho, product, tolerance)
     cut = space.pack(product)
     after = physicality(space, cut, tolerance)
-    new_nodes, new_edges = marginals(product, dimensions)
+    # Verify the actual packed/unpacked state, not just the formal kron target.
+    new_nodes, new_edges = marginals(space.unpack(cut), dimensions)
     errors = dict(nodes=maxabs(nodes-new_nodes), edges=maxabs(edges-new_edges))
     if max(errors.values()) > tolerance:
         raise ArithmeticError('Preparation changed a marginal')
-    delta = cut-state; change = product-rho
+    change = space.unpack(cut)-rho
     distance = .5*float(np.abs(np.linalg.eigvalsh((change+change.conj().T)/2)).sum())
-    record = dict(marginal_errors=errors, sham_physicality=before, cut_physicality=after,
+    record = dict(marginal_errors=errors, sector_errors=sector,
+                  sector_contract='COMPLETE_Q0_CHARGE_BLOCKS_NO_PROJECTION',
+                  preparation_type='PRODUCT_OF_KNOWN_BASELINE_MARGINALS_FIXED_TARGET',
+                  universal_cptp_channel=False,
+                  hashes={n:array_hash(a) for n,a in (('state',state),('cut',cut),('nodes',nodes),('edges',edges))},
+                  marginal_spectra=dict(nodes=np.linalg.eigvalsh((nodes+nodes.conj().T)/2).tolist(),
+                                        edges=np.linalg.eigvalsh((edges+edges.conj().T)/2).tolist()),
+                  sham_physicality=before, cut_physicality=after,
                   trace_distance=distance, frobenius_distance=float(np.linalg.norm(change)),
                   delta_energy=float(np.trace(model['H']@change).real),
                   external_preparation_cost='NOT_ASSUMED_ZERO_NOT_MEASURED',
@@ -111,7 +151,9 @@ def propagate(model, initial, *, horizon, dt, sample_interval, physicality_inter
             if checkpoint:
                 checkpoint(step, float(times[step]), y)
     return dict(time=times, flux=flux, sample_time=times[::stride], raw=np.asarray(output), names=names,
-                final=y, checks=checks, steps=steps, block_rhs_calls=4*steps,
+                time_index=np.arange(steps+1), sample_index=np.arange(steps+1)[::stride], dt=float(dt),
+                final=y, checks=checks, steps=steps, checkpoint_calls=steps//check_stride+1,
+                block_rhs_calls=4*steps,
                 scalar_rhs_equivalents=8*steps, elapsed_seconds=time.perf_counter()-start)
 
 
@@ -129,8 +171,11 @@ def analyze(fine, coarse, reference, *, baseline_flux, reference_flux, policy):
     for run in (fine, coarse, reference):
         if not np.isfinite(run['flux']).all():
             raise ValueError('Nonfinite trajectory')
-    if (not np.array_equal(fine['time'], reference['time'])
-            or not np.array_equal(fine['sample_time'], coarse['sample_time'])
+    def same_grid(a,b):
+        return a.shape == b.shape and np.allclose(a,b,rtol=0.,atol=1e-12)
+    if (not same_grid(fine['time'], reference['time'])
+            or not same_grid(fine['sample_time'], coarse['sample_time'])
+            or not same_grid(fine['sample_time'], reference['sample_time'])
             or fine['names'] != coarse['names'] or fine['names'] != reference['names']):
         raise ValueError('Comparison grids or observables differ')
     if abs(fine['time'][-1]-coarse['time'][-1]) > 1e-12:
@@ -139,7 +184,7 @@ def analyze(fine, coarse, reference, *, baseline_flux, reference_flux, policy):
         raise ValueError('Unresolved normalization flux')
     # Fixed numerical caps are independent of the scientific threshold.
     comparisons = {}
-    for name, other in (('dt', coarse), ('solver', reference)):
+    for name, other in (('dt', coarse), ('initial_condition_and_solver_sensitivity', reference)):
         err = abs(fine['raw']-other['raw'])
         scale = policy['raw_absolute_tolerance']+policy['raw_relative_tolerance']*np.maximum(abs(fine['raw']), abs(other['raw']))
         comparisons[name] = dict(max_abs=float(err.max()), max_scaled=float((err/scale).max()), passed=bool(np.all(err <= scale)))
@@ -167,10 +212,14 @@ def analyze(fine, coarse, reference, *, baseline_flux, reference_flux, policy):
         conditional.append(dict(time=float(ti), sham=row[0], cut=row[1]))
     peak = int(np.argmax(abs(delta)))
     sham_drift = float(np.max(abs(fine['flux'][:, 0]-baseline_flux)))
-    if sham_drift > policy['maximum_sham_drift']:
+    reference_sham_drift = float(np.max(abs(reference['flux'][:,0]-reference_flux)))
+    coarse_sham_drift = float(np.max(abs(coarse['flux'][:,0]-baseline_flux)))
+    if max(sham_drift, reference_sham_drift, coarse_sham_drift) > policy['maximum_sham_drift']:
         raise ArithmeticError('Sham stationary drift exceeds fixed cap')
     return dict(primary=verdict, area_absolute=area, area_uncertainty=u_area,
                 signed_area=float(trapezoid(delta, t)), peak_relative=float(abs(delta[peak])/baseline_flux),
                 time_peak=float(t[peak]), final_delta_flux=float(delta[-1]), sham_drift=sham_drift,
-                refinement=comparisons, uncertainty_kind='ENGINEERING_ADDITIVE_DT_AND_SOLVER_ENVELOPE_NOT_RIGOROUS_TOTAL_BOUND',
+                reference_sham_drift=reference_sham_drift, coarse_sham_drift=coarse_sham_drift,
+                refinement=comparisons,
+                uncertainty_kind='ENGINEERING_DT_AND_INITIAL_CONDITION_SOLVER_SENSITIVITY_NOT_RIGOROUS_TOTAL_BOUND',
                 tail_status='FINITE_WINDOW_ONLY', conditional=conditional, raw_uncertainty=raw_error)
