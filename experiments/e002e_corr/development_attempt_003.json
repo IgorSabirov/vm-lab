@@ -1,0 +1,32 @@
+{
+  "attempt": "003",
+  "source_commit": "aca76eb202323d10302f548dc41f6f101828b114",
+  "forecast": {
+    "expected_seconds": 10.0,
+    "lower_seconds": 6.0,
+    "upper_seconds": 18.0,
+    "calibrated": true,
+    "environment_reference": "environment_local_002.json",
+    "calibration_reference": "development_attempt_002.json: 6.840024698 seconds, 60/60 tests",
+    "expected_tests": 70,
+    "basis": "Same local Python/NumPy/SciPy stack, one BLAS thread. Prior 6.840s plus 10 small regression tests, full 216-state PSD algebra without a full Liouvillian/NESS, dependency hashing, repeated report verification and operator balance checks. Budget adds 3.16s; declared range covers setup/storage variation. No new full-network physical trajectories."
+  },
+  "internal_elapsed_seconds": 4.895604446999982,
+  "deviation_seconds": -5.104395553000018,
+  "runtime_status": "NOT_EVALUABLE_ENVIRONMENT_CHANGED",
+  "forecast_range_contains_time": false,
+  "environment_match": false,
+  "tests_run": 70,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "tests_passed": true,
+  "failure": null,
+  "expected_count_matches": true,
+  "old_kernel_sha256": "1efb3a9e9bb911df13f19f2adab775c736882ba17c191e9b2dde4e5e067e808e",
+  "implementation_sha256": "53c023f7601f51d4e35275fd0d7859f5d1493230946a54b61472b5a13eda8fce",
+  "protocol_sha256": "167fba7ef98bf91716904cbbb2c623a2e26c7173d943bb425235dc32f11883da",
+  "new_full_NESS": 0,
+  "new_full_time_propagations": 0,
+  "timing_scope": "Python body including imports/environment/evidence/tests; interpreter startup excluded"
+}
