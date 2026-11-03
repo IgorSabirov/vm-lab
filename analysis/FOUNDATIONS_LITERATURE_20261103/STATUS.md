@@ -1,3 +1,10 @@
+> Исторический срез первого обзора (5414333459c7e77e14007e38f63b2546c5d6eb7d).
+> Последующее продолжение: [RESULT](../FOUNDATIONS_DEEPENING_20261103/RESULT.md)
+> и [RECOVERY](../FOUNDATIONS_DEEPENING_20261103/RECOVERY.md).
+> Нынешние PREMISES_CURRENT и LITERATURE в этой папке обновлены до 66+9 и 71 работы.
+> Прежний DOCUMENT_CHECKS относится к прежним версиям файлов; текущая проверка
+> находится в FOUNDATIONS_DEEPENING_20261103.
+
 # Состояние обзора основания — 3 ноября 2026
 
 **COMPLETE_ANALYTIC_REVIEW — порученный аналитический этап завершён.**
