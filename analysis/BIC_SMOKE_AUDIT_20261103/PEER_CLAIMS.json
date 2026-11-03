@@ -1,0 +1,84 @@
+{
+  "source": "user-pasted peer review",
+  "request_id": "07d0f200-7b8c-4f9a-ab89-621d1abfd401",
+  "record_type": "structured extraction of material claims and reported tables; not a verbatim archive of the whole message",
+  "verification_status": "reported_by_peer_not_reproduced",
+  "reported_geometry": {
+    "node_labels": ["V", "1", "2"],
+    "continuum_attached_node": "2",
+    "t1": 0.5,
+    "E_V_expression_rounded": "0.72 + epsilon",
+    "reported_z_BIC": -0.03333333,
+    "E1_E2_t2_gamma_d": "not explicitly supplied as a complete parameter set",
+    "band": [-2, 2],
+    "initial_state": "fixed tuned dark state psi0, padded by continuum zeros",
+    "final_g0": 0.2,
+    "final_nE": 900,
+    "reported_d": 0.00444,
+    "reported_density": 225,
+    "actual_gj_normalization": "code absent"
+  },
+  "initial_residence_table": {
+    "columns": ["epsilon", "1_minus_P_mean", "ratio_to_epsilon_squared"],
+    "rows": [[0.005,0.000330,13.2],[0.010,0.00142,14.2],[0.020,0.00468,11.7],[0.040,0.0279,17.4],[0.070,0.0921,18.8],[0.100,0.167,16.7],[-0.010,0.00156,15.6],[-0.020,0.00463,11.6],[-0.050,0.0264,10.6]],
+    "peer_interpretation_later_withdrawn": "continuum parabola with boundary abs(epsilon) <= 0.07",
+    "reported_log_log_slope": "2.1 +/- 0.4; error definition absent",
+    "generic_state_loss": "approximately 0.87"
+  },
+  "packet_test": {"sigma":0.06,"max_N_residence":0.006,"typical_N_residence":0.0002,"claimed_peak_at_BIC":false},
+  "trimer_table": {
+    "columns": ["epsilon", "dark_branch_lambda", "psi0_weight_on_branch", "c2_squared"],
+    "rows": [[-0.30,-0.128,0.972,0.028],[-0.10,-0.065,0.997,0.003],[0,-0.033,1,0],[0.10,-0.003,0.998,0.002],[0.30,0.053,0.984,0.014]]
+  },
+  "continuum_size_test": {
+    "epsilon":0.15,
+    "columns":["nE","P_mean"],
+    "rows":[[700,0.865],[800,0.741],[900,0.514],[1000,0.791],[1100,0.778]],
+    "whether_J_was_fixed":"not documented"
+  },
+  "fine_detuning_test": {"step":0.005,"reported_P_mean_range":[0.51,0.90],"reported_period":0.015,"reported_lambda_derivative":0.28,"predicted_grid_period_rounded":0.016},
+  "superseded_width_claims": {
+    "one_sided_kappa_minus":0.30,
+    "one_sided_kappa_plus":0.17,
+    "old_Gamma0":56.5,
+    "correction_factor_claimed":225,
+    "old_formula":"Gamma = 2*pi*g0^2*rho*kappa*epsilon^2",
+    "stated_reason_for_removing_rho":"kappa already contains the discrete trimer",
+    "status":"explicitly superseded by peer; explanation of normalization disputed in audit"
+  },
+  "final_width_table": {
+    "columns":["epsilon","pole_width","trace_width"],
+    "rows":[[0.15,0.001039,0.0011],[0.40,0.005592,0.0058],[-0.15,0.001450,0.00144],[-0.40,0.013091,0.01328]]
+  },
+  "final_fit_claims": {
+    "Gamma0":0.251,
+    "kappa":0.209,
+    "R_squared_approx":0.999,
+    "residual_bound_claimed":0.000001,
+    "cubic_positive_side_as_written_outside_Gamma0":-0.0405,
+    "cubic_negative_side_for_abs_epsilon_cubed_as_written_outside_Gamma0":0.0759,
+    "later_formula_places_cubic_inside_Gamma0":true,
+    "full_fit_grid_weights_window_uncertainties":"not supplied",
+    "small_detuning_claim":"for all abs(epsilon)<=0.1, P_N does not fall below 0.95 by t=100",
+    "time_windows_mentioned":[80,100],
+    "peer_final_status":"linear stage closed; parabola confirmed by three independent methods"
+  },
+  "next_protocol_claims": {
+    "drive":"A*cos(omega_d*t)|V><2| + h.c.",
+    "purpose":"load protected sector while keeping leakage channel closed",
+    "criteria":["P_dark^steady > 0 for gamma_d != 0","P_dark^steady approximately 0 for gamma_d = 0"],
+    "later_step":"replace external pumping by internal nonlinearity",
+    "audit_status":"criteria and physical controls require revision; no run authorized"
+  },
+  "strong_claims_audited": [
+    "no capture in BIC implies transparency of the whole N sector",
+    "passive geometry is a one-way barrier",
+    "Cesaro mean is not a stable observable in a finite closed system",
+    "information leaks from N to E irreversibly after gamma_d ablation",
+    "the derivative of the width produces restoring drift",
+    "cubic asymmetry produces a ratchet and direction of selection",
+    "the missing ingredient is selection rather than energy",
+    "nonlinearity is necessary for directed loading",
+    "structural quantum information protection has been measured through cubic order"
+  ]
+}
