@@ -1,0 +1,43 @@
+{
+  "request_id": "1c5eb970-f3ea-43dc-a2ba-27e3197a5dae",
+  "request": "Изучи мнение соседей. Нас интересует устранение невыводимого ранее определенного анализом, и перевод этих позиций в категорию выведенное.",
+  "date": "2026-11-03",
+  "source_filename": "Вставленный текст(20261103-145042).txt",
+  "source_sha256": "b9d2e0f5ffa920f1da520c4db82b894f7de0f8bf68a7205a4a7d86193c8661f2",
+  "source_bytes": 37081,
+  "source_lf_count": 797,
+  "read_scope": "Entire supplied text, including final claimed validator correction",
+  "repository_base_commit": "6310ec89f74dae878f8183f8bc185ef5db90d856",
+  "mode": "Exact analytic derivations; no numerical simulation, self-test or Adm search executed",
+  "peer_code_available": false,
+  "peer_runtime_gate": "NOT_EVALUABLE",
+  "vm_accessed": false,
+  "protocol_accepted": false,
+  "conditional_branch": {
+    "system": "S tensor M tensor R, three qubits",
+    "hamiltonian": "H=g P1_S tensor (X_M tensor I_R + I_M tensor X_R), hbar=1, g>0",
+    "loading_window": "Full continuous rotation period; not the three-reading grid",
+    "off_definition": "Off(W sigma W_dagger), sum over ordered distinct clock-energy blocks",
+    "reset": "Replacement by eta with Tr(eta X)=0",
+    "intervention_time": "pi/(6g)",
+    "memory_window_end": "pi/(3g)",
+    "thresholds": "0<delta_load<1; 0<delta_off<1/4+sqrt(6)/2; 0<delta_mem<(sqrt(3)*pi-3)/(48g), for full metric; not chosen or preregistered here"
+  },
+  "new_analytic_results": [
+    "g_mem_full=2*g_mem_coh and population version identically zero",
+    "g_load depends only on diagonal S blocks of rho_SM",
+    "Closed-form reset response and positive exact integral",
+    "Explicit same-marginals beta pair",
+    "Conditional nonemptiness, non-cylindricity, and real dimension 63 of Adm_1",
+    "Single-reset internal SWAP realization with explicitly added preparation/control inputs",
+    "GV-06 correction rejected: ordered Off=1 and unordered Off=1/2"
+  ],
+  "foundational_premises_eliminated": false,
+  "literature": [
+    {
+      "url": "https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/quantum-channels/representations-of-channels",
+      "read": "Stinespring representation setup and Qubit reset channel via SWAP",
+      "scope": "Unitary channel realization only, not autonomous closure"
+    }
+  ]
+}
