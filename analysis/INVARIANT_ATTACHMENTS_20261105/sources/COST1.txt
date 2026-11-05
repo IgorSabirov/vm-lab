@@ -1,0 +1,3897 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+vika_final_strict_cross_audit.py
+
+Final strict cross-audit for the VIKA typed core, spectral/dark/access gates,
+eta semantics, and E_merge pipeline.
+
+Design goals:
+  1. Close the original eight review issues as runtime constraints.
+  2. Close the two hidden-assumption audit issues:
+       - dark sector is not claimed to be derived;
+       - eta_max is not claimed to be measured unless a protocol is registered.
+  3. Prevent a wrongly computed result from entering final PASS:
+       - independent verification of optimizer candidates;
+       - multi-start agreement check;
+       - inverse cross-check;
+       - golden pins where stable;
+       - synthetic E_merge is explicitly NOT corpus replication.
+  4. Keep strict final PASS blocked until a validated corpus E_merge replicator
+     is registered.
+
+Modes:
+  --mode internal
+      Runs only the internal typed/algebraic/protocol suite.
+      Does not certify corpus physics.
+
+  --mode strict
+      Requires internal suite PASS and corpus E_merge replication PASS.
+      Without CORPUS_REPLICATOR, strict PASS is impossible by construction.
+
+Exit code:
+  0 only if selected mode fully passes.
+  1 otherwise.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import sys
+import traceback
+from enum import Enum
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
+
+# -----------------------------------------------------------------------------
+# Optional scientific stack.
+# Internal E_merge pipeline requires scipy/numpy.
+# Strict corpus replication additionally requires a registered replicator.
+# -----------------------------------------------------------------------------
+
+try:
+    import numpy as np
+    HAVE_NUMPY = True
+except Exception:
+    np = None  # type: ignore
+    HAVE_NUMPY = False
+
+try:
+    from scipy.optimize import minimize
+    HAVE_SCIPY = HAVE_NUMPY and (minimize is not None)
+except Exception:
+    minimize = None  # type: ignore
+    HAVE_SCIPY = False
+
+
+# -----------------------------------------------------------------------------
+# 0. Honest status registry.
+# -----------------------------------------------------------------------------
+
+FINAL_STATUS: Dict[str, str] = {
+    # Typed-core fixes.
+    "dV_outcome_lower_bound": "enforced_not_tautological",
+    "binary_exit_dV2": "candidate_theorem_requires_explicit_assumption",
+    "path_cross_factor": "removed_as_scalar_for_general_n_paths",
+    "eta_coeff_generalization": "blocked_without_explicit_proof",
+    "tagged_constant_mixing": "blocked_at_runtime",
+    "casimir_conventions": "explicit_and_self_checked",
+    "architecture_outcome_cross_check": "enforced",
+
+    # Spectral visible layer.
+    "mu_sigma_code_consistency": "passed_as_code_consistency_only",
+    "isospectral_operator_orientation": "passed_in_finite_channel_model",
+
+    # Dark layer.
+    "dark_projector_machinery": "conditional_pass_if_dark_subspace_supplied",
+    "dark_existence": "not_derived",
+    "dark_stress_bright_dark": "violation_measured",
+    "dark_stress_channel_component": "violation_measured",
+    "bic_continuum_quadratic_width": "not_applicable_in_finite_discrete_toy",
+    "topk_fake_dark_control": "passed_as_negative_control",
+
+    # Access layer.
+    "access_rank_generic": "passed_with_numpy_or_pure_hermitian_eigen",
+    "probability_vs_coherence": "separated_in_finite_models",
+
+    # Eta layer.
+    "eta_type_separation": "enforced_at_runtime",
+    "eta_max_measurement": "protocol_demo_only_unless_corpus_replicator_registered",
+    "split_bath_protection_claim": "not_certified_without_measured_eta_max",
+
+    # E_merge layer.
+    "synthetic_E_merge_pipeline": "pass_synthetic_pipeline_only",
+    "synthetic_E_merge_monotonicity": "recorded_not_enforced",
+    "corpus_E_merge_monotonicity": "required_for_replication",
+    "optimizer_acceptance": "independent_verification_required",
+    "toy_E_merge": "protocol_demo_only_not_corpus_surrogate",
+    "corpus_E_merge_anchors": "not_replicated_in_repo_by_default",
+    "E_merge_from_muV": "candidate_functional_not_implemented",
+    "gamma_max_window_estimate": "corpus_dependent_not_in_repo_derived",
+
+    # Late layers.
+    "casimir_chain": "not_certified",
+    "metric_emergence": "not_tested",
+    "poincare_boosts": "not_tested",
+    "j_self": "not_addressed",
+    "arrow_of_time": "not_established",
+
+    # Final strict policy.
+    "strict_final_pass": "blocked_until_corpus_replicator_registered",
+}
+
+
+# -----------------------------------------------------------------------------
+# 1. Result container.
+# -----------------------------------------------------------------------------
+
+class GateResult:
+    def __init__(
+        self,
+        name: str,
+        passed: bool,
+        status: str,
+        details: Optional[Dict[str, Any]] = None,
+        warnings: Optional[List[str]] = None,
+        informational: bool = False,
+    ) -> None:
+        self.name = name
+        self.passed = bool(passed)
+        self.status = str(status)
+        self.details = dict(details or {})
+        self.warnings = list(warnings or [])
+        self.informational = bool(informational)
+
+    def as_dict(self) -> Dict[str, Any]:
+        return {
+            "name": self.name,
+            "passed": self.passed,
+            "status": self.status,
+            "informational": self.informational,
+            "warnings": self.warnings,
+            "details": self.details,
+        }
+
+
+# -----------------------------------------------------------------------------
+# 2. Runtime-tagged constants.
+#    Typed constants must be constraints, not comments.
+# -----------------------------------------------------------------------------
+
+class ConstantTag(str, Enum):
+    CODING_INVERSE_DIM = "coding_inverse_dim"
+    CODING_INVERSE_DIM_SQ = "coding_inverse_dim_sq"
+    INTERFACE_HALF = "interface_half"
+    ZERO_POINT_HALF = "zero_point_half"
+    PROVEN_BINARY_ETA_COEFF = "proven_binary_eta_coeff"
+
+
+class TaggedFloat:
+    """
+    Immutable float with mandatory semantic tag.
+
+    No arithmetic operators and no implicit float conversion.
+    Cross-source expressions fail at runtime.
+    """
+
+    __slots__ = ("_value", "_tag")
+
+    def __init__(self, value: float, tag: ConstantTag) -> None:
+        if isinstance(value, bool):
+            raise TypeError("TaggedFloat does not accept bool.")
+        if not isinstance(value, (int, float)):
+            raise TypeError("TaggedFloat requires int or float.")
+
+        value = float(value)
+        if not math.isfinite(value):
+            raise ValueError("TaggedFloat requires finite value.")
+
+        object.__setattr__(self, "_value", value)
+        object.__setattr__(self, "_tag", tag)
+
+    def __setattr__(self, name: str, value: object) -> None:
+        raise AttributeError("TaggedFloat is immutable.")
+
+    def __delattr__(self, name: str) -> None:
+        raise AttributeError("TaggedFloat is immutable.")
+
+    @property
+    def tag(self) -> ConstantTag:
+        return self._tag
+
+    def unwrap(self, expected_tag: ConstantTag) -> float:
+        if self._tag is not expected_tag:
+            raise TypeError(
+                "Tag mismatch: "
+                f"expected {expected_tag.value!r}, got {self._tag.value!r}."
+            )
+        return self._value
+
+    def __repr__(self) -> str:
+        return f"TaggedFloat({self._value!r}, tag={self._tag.value!r})"
+
+
+def _tagged(value: float, tag: ConstantTag) -> TaggedFloat:
+    return TaggedFloat(value, tag)
+
+
+def coding_inverse_dim(value: float) -> TaggedFloat:
+    return _tagged(value, ConstantTag.CODING_INVERSE_DIM)
+
+
+def coding_inverse_dim_sq(value: float) -> TaggedFloat:
+    return _tagged(value, ConstantTag.CODING_INVERSE_DIM_SQ)
+
+
+def interface_half_tagged(value: float) -> TaggedFloat:
+    return _tagged(value, ConstantTag.INTERFACE_HALF)
+
+
+def zero_point_half_tagged(value: float) -> TaggedFloat:
+    return _tagged(value, ConstantTag.ZERO_POINT_HALF)
+
+
+def proven_binary_eta_coeff_tagged(value: float) -> TaggedFloat:
+    return _tagged(value, ConstantTag.PROVEN_BINARY_ETA_COEFF)
+
+
+# -----------------------------------------------------------------------------
+# 3. Outcome cardinality versus channel dimension.
+#    Outcomes give a lower bound, not equality.
+# -----------------------------------------------------------------------------
+
+def minimum_qubit_count_for_outcomes(n_outcomes: int) -> int:
+    if n_outcomes < 0:
+        raise ValueError("n_outcomes must be non-negative.")
+    if n_outcomes <= 1:
+        return 0
+    return int(math.ceil(math.log2(n_outcomes)))
+
+
+def minimum_channel_dimension_for_outcomes(n_outcomes: int) -> int:
+    """
+    Coding lower bound for perfectly distinguishable outcome labels.
+
+    This is NOT a proof that the physical channel dimension equals this bound.
+    """
+    if n_outcomes < 0:
+        raise ValueError("n_outcomes must be non-negative.")
+    if n_outcomes <= 1:
+        return 1
+
+    qubits = minimum_qubit_count_for_outcomes(n_outcomes)
+    return 1 << qubits
+
+
+def derive_d_V_lower_bound_from_outcomes(outcomes: Sequence[str]) -> int:
+    return minimum_channel_dimension_for_outcomes(len(outcomes))
+
+
+BINARY_EXIT_OUTCOMES: Tuple[str, ...] = ("CONT", "RESTART")
+
+
+# -----------------------------------------------------------------------------
+# 4. Architecture object.
+# -----------------------------------------------------------------------------
+
+class Architecture:
+    """
+    Typed architecture container.
+
+    Important:
+        d_V=2 for binary exit is NOT proved here.
+        It is a candidate theorem and must be explicitly assumed.
+    """
+
+    def __init__(
+        self,
+        d_V: int,
+        n_paths: int = 2,
+        hbar: float = 1.0,
+        exit_outcomes: Optional[Tuple[str, ...]] = None,
+        eta_coeff: Optional[float] = None,
+        eta_coeff_proven: bool = False,
+        binary_exit_theorem_assumed: bool = False,
+        metadata: Optional[Dict[str, str]] = None,
+    ) -> None:
+        if isinstance(d_V, bool) or not isinstance(d_V, int):
+            raise TypeError("d_V must be a non-boolean int.")
+        if d_V < 1:
+            raise ValueError("d_V must be positive.")
+
+        if isinstance(n_paths, bool) or not isinstance(n_paths, int):
+            raise TypeError("n_paths must be a non-boolean int.")
+        if n_paths < 1:
+            raise ValueError("n_paths must be positive.")
+
+        hbar_f = float(hbar)
+        if not math.isfinite(hbar_f) or hbar_f <= 0.0:
+            raise ValueError("hbar must be a positive finite number.")
+
+        self.d_V = d_V
+        self.n_paths = n_paths
+        self.hbar = hbar_f
+        self.exit_outcomes = tuple(exit_outcomes) if exit_outcomes is not None else None
+        self.eta_coeff = float(eta_coeff) if eta_coeff is not None else None
+        self.eta_coeff_proven = bool(eta_coeff_proven)
+        self.binary_exit_theorem_assumed = bool(binary_exit_theorem_assumed)
+        self.metadata = dict(metadata) if metadata is not None else {}
+
+        self._validate()
+
+    def _validate(self) -> None:
+        if self.exit_outcomes is not None:
+            outcomes = self.exit_outcomes
+            if len(outcomes) == 0:
+                raise ValueError("exit_outcomes must not be empty.")
+            if len(set(outcomes)) != len(outcomes):
+                raise ValueError("exit_outcomes must contain unique labels.")
+
+            min_dim = minimum_channel_dimension_for_outcomes(len(outcomes))
+            if self.d_V < min_dim:
+                raise ValueError(
+                    f"d_V={self.d_V} is too small for "
+                    f"{len(outcomes)} declared outcomes; "
+                    f"minimum channel dimension is {min_dim}."
+                )
+
+        if self.eta_coeff is not None:
+            if not math.isfinite(self.eta_coeff) or self.eta_coeff < 0.0:
+                raise ValueError("eta_coeff must be finite and non-negative.")
+
+        if self.eta_coeff_proven:
+            if self.d_V != 2:
+                raise ValueError("eta_coeff_proven=True is only licensed for d_V=2.")
+            if self.eta_coeff is None:
+                raise ValueError("eta_coeff_proven=True requires eta_coeff to be set.")
+            if not math.isclose(self.eta_coeff, 2.0, rel_tol=1e-12, abs_tol=1e-15):
+                raise ValueError("eta_coeff_proven=True currently requires eta_coeff=2.0.")
+
+        if self.binary_exit_theorem_assumed:
+            if self.exit_outcomes is None:
+                raise ValueError(
+                    "binary_exit_theorem_assumed=True requires exit_outcomes."
+                )
+            if self.exit_outcomes != BINARY_EXIT_OUTCOMES:
+                raise ValueError(
+                    "binary_exit_theorem_assumed=True requires "
+                    "exit_outcomes == BINARY_EXIT_OUTCOMES."
+                )
+            if self.d_V != 2:
+                raise ValueError(
+                    "binary_exit_theorem_assumed=True fixes the minimal "
+                    "binary candidate d_V=2."
+                )
+
+    @property
+    def inverse_d_V(self) -> TaggedFloat:
+        return coding_inverse_dim(1.0 / float(self.d_V))
+
+    @property
+    def inverse_d_V_squared(self) -> TaggedFloat:
+        d = float(self.d_V)
+        return coding_inverse_dim_sq(1.0 / (d * d))
+
+    @property
+    def interface_half(self) -> TaggedFloat:
+        if self.d_V != 2:
+            raise NotImplementedError(
+                "interface_half is only established in the binary d_V=2 slice. "
+                "For d_V > 2 a separate proof is required."
+            )
+        return interface_half_tagged(0.5)
+
+    @property
+    def zero_point_half(self) -> TaggedFloat:
+        return zero_point_half_tagged(0.5)
+
+    @property
+    def proven_binary_eta_coeff(self) -> TaggedFloat:
+        if not (
+            self.d_V == 2
+            and self.eta_coeff_proven
+            and self.eta_coeff is not None
+            and math.isclose(self.eta_coeff, 2.0, rel_tol=1e-12, abs_tol=1e-15)
+        ):
+            raise NotImplementedError(
+                "eta_coeff=2 is proven only for the binary d_V=2 slice."
+            )
+        return proven_binary_eta_coeff_tagged(2.0)
+
+    @property
+    def path_cross_factor(self) -> float:
+        raise NotImplementedError(
+            "path_cross_factor is not a valid scalar for general n_paths. "
+            "Use path_cross_sum() / path_cross_real(). "
+            "For two unit paths use two_path_unit_cross_coefficient()."
+        )
+
+
+def binary_exit_architecture(
+    hbar: float = 1.0,
+    *,
+    assume_binary_exit_theorem: bool = False,
+    metadata_extra: Optional[Dict[str, str]] = None,
+) -> Architecture:
+    if not assume_binary_exit_theorem:
+        raise RuntimeError(
+            "d_V=2 for binary exit is a candidate theorem, not a proved fact. "
+            "Pass assume_binary_exit_theorem=True to proceed explicitly."
+        )
+
+    meta = dict(FINAL_STATUS)
+    meta["binary_exit_dV2"] = "explicitly_assumed_candidate_theorem"
+
+    if metadata_extra:
+        meta.update(metadata_extra)
+
+    return Architecture(
+        d_V=2,
+        n_paths=2,
+        hbar=float(hbar),
+        exit_outcomes=BINARY_EXIT_OUTCOMES,
+        eta_coeff=2.0,
+        eta_coeff_proven=True,
+        binary_exit_theorem_assumed=True,
+        metadata=meta,
+    )
+
+
+# -----------------------------------------------------------------------------
+# 5. Path interference.
+#    No scalar magic factor for general n_paths.
+# -----------------------------------------------------------------------------
+
+def path_cross_sum(amplitudes: Sequence[complex]) -> complex:
+    total = 0.0 + 0.0j
+    n = len(amplitudes)
+
+    for i in range(n):
+        ai = complex(amplitudes[i])
+        for j in range(i + 1, n):
+            aj = complex(amplitudes[j])
+            total += ai.conjugate() * aj
+
+    return 2.0 * total
+
+
+def path_cross_real(amplitudes: Sequence[complex]) -> float:
+    return float(path_cross_sum(amplitudes).real)
+
+
+def two_path_unit_cross_coefficient() -> float:
+    return path_cross_real((1.0 + 0.0j, 1.0 + 0.0j))
+
+
+def interference_zero_two_paths(
+    E1: complex,
+    t1: complex,
+    t2: complex,
+    gamma: complex,
+) -> complex:
+    gamma_c = complex(gamma)
+    if gamma_c == 0:
+        raise ZeroDivisionError("gamma must be non-zero for interference zero.")
+
+    cross2 = two_path_unit_cross_coefficient()
+    return complex(E1) - cross2 * complex(t1) * complex(t2) / gamma_c
+
+
+# -----------------------------------------------------------------------------
+# 6. Eta semantics.
+#    eta_noise, eta_max, eta_recoverability are not interchangeable.
+# -----------------------------------------------------------------------------
+
+class EtaSemantics(str, Enum):
+    REALIZED_NOISE = "realized_noise"
+    MAX_TOLERANCE = "max_tolerance"
+    RECOVERABILITY_INPUT = "recoverability_input"
+
+
+class EtaValue:
+    __slots__ = ("value", "semantics", "label")
+
+    def __init__(self, value: float, semantics: EtaSemantics, label: str) -> None:
+        v = float(value)
+        if not math.isfinite(v):
+            raise ValueError("EtaValue requires finite value.")
+        if v < 0.0:
+            raise ValueError("EtaValue requires non-negative value.")
+
+        self.value = v
+        self.semantics = semantics
+        self.label = label
+
+    def as_recoverability_input(self) -> float:
+        if self.semantics is EtaSemantics.MAX_TOLERANCE:
+            raise ValueError(
+                "MAX_TOLERANCE eta cannot be inserted into a recoverability bound. "
+                "It is a protection margin, not realized noise/infidelity."
+            )
+        return self.value
+
+    def as_max_tolerance(self) -> float:
+        if self.semantics is not EtaSemantics.MAX_TOLERANCE:
+            raise ValueError(
+                "Only MAX_TOLERANCE eta can be read as a protection margin."
+            )
+        return self.value
+
+    def __repr__(self) -> str:
+        return (
+            f"EtaValue(value={self.value!r}, "
+            f"semantics={self.semantics.value!r}, label={self.label!r})"
+        )
+
+
+def binary_recoverability_bound(eta: EtaValue) -> float:
+    val = eta.as_recoverability_input()
+    return 0.25 + 2.0 * val
+
+
+def protection_margin(eta: EtaValue) -> float:
+    return eta.as_max_tolerance()
+
+
+def effective_eta_coeff(arch: Architecture) -> float:
+    """
+    Coefficient multiplying eta_tot in:
+
+        R_epsilon <= 1 / d_V^2 + eta_coeff * eta_tot.
+
+    The corpus proves eta_coeff = 2 only for the binary code slice.
+    If eta_coeff is absent, this raises instead of inventing d_V.
+    """
+    if arch.eta_coeff is None:
+        raise NotImplementedError(
+            "Coefficient of eta_tot is only proven for binary codes (=2). "
+            "Pass eta_coeff explicitly if you have a proof for d_V > 2."
+        )
+
+    coeff = float(arch.eta_coeff)
+
+    if arch.eta_coeff_proven:
+        if arch.d_V != 2:
+            raise ValueError("eta_coeff_proven=True is only valid for d_V=2.")
+        if not math.isclose(coeff, 2.0, rel_tol=1e-12, abs_tol=1e-15):
+            raise ValueError("eta_coeff_proven=True currently requires eta_coeff=2.0.")
+
+    return coeff
+
+
+# -----------------------------------------------------------------------------
+# 7. Minimal dense linear algebra, stdlib only.
+# -----------------------------------------------------------------------------
+
+Matrix = List[List[complex]]
+SAFE_BIG = 1.0e100
+
+
+def _as_complex_matrix(A: Sequence[Sequence[complex]]) -> Matrix:
+    return [[complex(x) for x in row] for row in A]
+
+
+def zero_matrix(n: int, m: Optional[int] = None) -> Matrix:
+    if m is None:
+        m = n
+    return [[0j for _ in range(m)] for _ in range(n)]
+
+
+def identity_matrix(n: int) -> Matrix:
+    P = zero_matrix(n, n)
+    for i in range(n):
+        P[i][i] = 1 + 0j
+    return P
+
+
+def diag_matrix(values: Sequence[complex]) -> Matrix:
+    n = len(values)
+    P = zero_matrix(n, n)
+    for i, v in enumerate(values):
+        P[i][i] = complex(v)
+    return P
+
+
+def conj_transpose(A: Matrix) -> Matrix:
+    n = len(A)
+    m = len(A[0]) if n else 0
+    return [[A[i][j].conjugate() for i in range(n)] for j in range(m)]
+
+
+def matmul(A: Matrix, B: Matrix) -> Matrix:
+    n = len(A)
+    k = len(A[0]) if n else 0
+    if len(B) != k:
+        raise ValueError("matmul dimension mismatch")
+    m = len(B[0]) if B else 0
+    C = zero_matrix(n, m)
+
+    for i in range(n):
+        Ai = A[i]
+        Ci = C[i]
+        for p in range(k):
+            aip = Ai[p]
+            if aip == 0:
+                continue
+            Bp = B[p]
+            for j in range(m):
+                Ci[j] += aip * Bp[j]
+
+    return C
+
+
+def add_matrices(A: Matrix, B: Matrix) -> Matrix:
+    if len(A) != len(B) or (A and len(A[0]) != len(B[0])):
+        raise ValueError("add_matrices dimension mismatch")
+    return [[A[i][j] + B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
+
+
+def sub_matrices(A: Matrix, B: Matrix) -> Matrix:
+    if len(A) != len(B) or (A and len(A[0]) != len(B[0])):
+        raise ValueError("sub_matrices dimension mismatch")
+    return [[A[i][j] - B[i][j] for j in range(len(A[0]))] for i in range(len(A))]
+
+
+def scale_matrix(c: complex, A: Matrix) -> Matrix:
+    return [[c * x for x in row] for row in A]
+
+
+def trace_matrix(A: Matrix) -> complex:
+    n = len(A)
+    return sum((A[i][i] for i in range(n)), 0j)
+
+
+def frobenius_norm(A: Matrix) -> float:
+    s = 0.0
+    for row in A:
+        for x in row:
+            ax = abs(x)
+            s += ax * ax
+    return math.sqrt(s)
+
+
+def commutator_norm(A: Matrix, B: Matrix) -> float:
+    return frobenius_norm(sub_matrices(matmul(A, B), matmul(B, A)))
+
+
+def is_square(A: Matrix) -> bool:
+    n = len(A)
+    return all(len(row) == n for row in A)
+
+
+def is_hermitian(A: Matrix, tol: float = 1e-10) -> bool:
+    if not is_square(A):
+        return False
+    n = len(A)
+    for i in range(n):
+        if abs(A[i][i].imag) > tol:
+            return False
+        for j in range(i + 1, n):
+            if abs(A[i][j] - A[j][i].conjugate()) > tol:
+                return False
+    return True
+
+
+def is_projector(P: Matrix, tol: float = 1e-10) -> bool:
+    if not is_hermitian(P, tol=tol):
+        return False
+    return frobenius_norm(sub_matrices(matmul(P, P), P)) <= tol
+
+
+def outer_product(v: Sequence[complex]) -> Matrix:
+    n = len(v)
+    P = zero_matrix(n, n)
+    for i in range(n):
+        vi = complex(v[i])
+        for j in range(n):
+            P[i][j] = vi * complex(v[j]).conjugate()
+    return P
+
+
+def vector_inner(u: Sequence[complex], v: Sequence[complex]) -> complex:
+    if len(u) != len(v):
+        raise ValueError("vector_inner dimension mismatch")
+    return sum((complex(u[i]).conjugate() * complex(v[i]) for i in range(len(u))), 0j)
+
+
+def vector_norm(v: Sequence[complex]) -> float:
+    return math.sqrt(max(0.0, vector_inner(v, v).real))
+
+
+# -----------------------------------------------------------------------------
+# 8. 3x3 inverse: two independent implementations for cross-check.
+# -----------------------------------------------------------------------------
+
+def inv3_gauss(A: Matrix) -> Matrix:
+    """Gauss-Jordan inverse for 3x3 complex matrix."""
+    A = _as_complex_matrix(A)
+    M = [
+        [A[i][0], A[i][1], A[i][2], 0j, 0j, 0j]
+        for i in range(3)
+    ]
+    M[0][3] = 1 + 0j
+    M[1][4] = 1 + 0j
+    M[2][5] = 1 + 0j
+
+    for col in range(3):
+        pivot_row = max(range(col, 3), key=lambda r: abs(M[r][col]))
+        if abs(M[pivot_row][col]) < 1e-14:
+            raise ZeroDivisionError("singular 3x3 matrix")
+
+        if pivot_row != col:
+            M[col], M[pivot_row] = M[pivot_row], M[col]
+
+        pivot = M[col][col]
+        for j in range(6):
+            M[col][j] /= pivot
+
+        for r in range(3):
+            if r == col:
+                continue
+            factor = M[r][col]
+            if abs(factor) > 0.0:
+                for j in range(6):
+                    M[r][j] -= factor * M[col][j]
+
+    return [[M[i][3 + j] for j in range(3)] for i in range(3)]
+
+
+def det3(A: Matrix) -> complex:
+    a, b, c = A[0][0], A[0][1], A[0][2]
+    d, e, f = A[1][0], A[1][1], A[1][2]
+    g, h, i = A[2][0], A[2][1], A[2][2]
+    return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
+
+
+def inv3_adjugate(A: Matrix) -> Matrix:
+    """Adjugate/determinant inverse for 3x3 complex matrix."""
+    A = _as_complex_matrix(A)
+    det = det3(A)
+    if abs(det) < 1e-14:
+        raise ZeroDivisionError("singular 3x3 matrix")
+
+    a, b, c = A[0][0], A[0][1], A[0][2]
+    d, e, f = A[1][0], A[1][1], A[1][2]
+    g, h, i = A[2][0], A[2][1], A[2][2]
+
+    C00 = e * i - f * h
+    C01 = -(d * i - f * g)
+    C02 = d * h - e * g
+
+    C10 = -(b * i - c * h)
+    C11 = a * i - c * g
+    C12 = -(a * h - b * g)
+
+    C20 = b * f - c * e
+    C21 = -(a * f - c * d)
+    C22 = a * e - b * d
+
+    inv = [
+        [C00 / det, C10 / det, C20 / det],
+        [C01 / det, C11 / det, C21 / det],
+        [C02 / det, C12 / det, C22 / det],
+    ]
+    return inv
+
+
+# -----------------------------------------------------------------------------
+# 9. Hermitian eigenvalues.
+#    Uses numpy if available; otherwise pure-Python real symmetric embedding.
+# -----------------------------------------------------------------------------
+
+def _jacobi_real_symmetric_eigenvalues(
+    A: Sequence[Sequence[float]],
+    max_sweeps: int = 200,
+    tol: float = 1e-12,
+) -> List[float]:
+    n = len(A)
+    if n == 0:
+        return []
+
+    M = [list(map(float, row)) for row in A]
+
+    for _ in range(max_sweeps):
+        off = 0.0
+        for i in range(n):
+            for j in range(i + 1, n):
+                off += M[i][j] * M[i][j]
+
+        if off <= tol * tol:
+            break
+
+        for p in range(n - 1):
+            for q in range(p + 1, n):
+                apq = M[p][q]
+                if abs(apq) <= 1e-300:
+                    continue
+
+                app = M[p][p]
+                aqq = M[q][q]
+
+                if abs(app - aqq) <= 1e-300:
+                    theta = 1.0
+                else:
+                    theta = (aqq - app) / (2.0 * apq)
+
+                if theta == 0.0:
+                    t = 1.0
+                else:
+                    t = 1.0 / (theta + math.copysign(math.sqrt(theta * theta + 1.0), theta))
+
+                c = 1.0 / math.sqrt(t * t + 1.0)
+                s = t * c
+
+                for i in range(n):
+                    if i == p or i == q:
+                        continue
+
+                    mip = M[i][p]
+                    miq = M[i][q]
+
+                    M[i][p] = c * mip - s * miq
+                    M[p][i] = M[i][p]
+
+                    M[i][q] = s * mip + c * miq
+                    M[q][i] = M[i][q]
+
+                mpp = M[p][p]
+                mqq = M[q][q]
+                mpq = M[p][q]
+
+                M[p][p] = c * c * mpp - 2.0 * s * c * mpq + s * s * mqq
+                M[q][q] = s * s * mpp + 2.0 * s * c * mpq + c * c * mqq
+                M[p][q] = 0.0
+                M[q][p] = 0.0
+
+    eigs = [float(M[i][i]) for i in range(n)]
+    eigs.sort(reverse=True)
+    return eigs
+
+
+def _hermitian_to_real_embedding(H: Matrix) -> List[List[float]]:
+    n = len(H)
+    R = [[0.0 for _ in range(2 * n)] for _ in range(2 * n)]
+
+    for i in range(n):
+        for j in range(n):
+            z = H[i][j]
+            a = float(z.real)
+            b = float(z.imag)
+
+            R[i][j] = a
+            R[n + i][n + j] = a
+
+            R[i][n + j] = -b
+            R[n + i][j] = b
+
+    return R
+
+
+def hermitian_eigenvalues(H: Matrix) -> Tuple[List[float], int, float, float]:
+    """
+    Returns:
+        eigenvalues descending,
+        rank,
+        lambda_max,
+        lambda_min clamped to zero if tiny negative/rank-deficient.
+    """
+    n = len(H)
+    if n == 0:
+        return [], 0, 0.0, 0.0
+
+    if not is_hermitian(H, tol=1e-9):
+        raise ValueError("hermitian_eigenvalues requires a Hermitian matrix")
+
+    if HAVE_NUMPY:
+        arr = np.array([[complex(H[i][j]) for j in range(n)] for i in range(n)], dtype=complex)
+        vals_np = np.linalg.eigvalsh(arr)
+        vals = [float(x) for x in vals_np]
+        vals.sort(reverse=True)
+        vals = [0.0 if (-1e-9 < x < 0.0) else x for x in vals]
+        rank = sum(1 for x in vals if x > 1e-10)
+        lam_max = vals[0] if vals else 0.0
+        lam_min = vals[-1] if vals else 0.0
+    else:
+        R = _hermitian_to_real_embedding(H)
+        raw = _jacobi_real_symmetric_eigenvalues(R)
+        raw = [0.0 if (-1e-9 < x < 0.0) else x for x in raw]
+
+        positive_count = sum(1 for x in raw if x > 1e-10)
+        rank = max(0, min(n, int(round(positive_count / 2.0))))
+
+        lam_max = max(raw) if raw else 0.0
+        lam_min = min(raw) if raw else 0.0
+
+        vals: List[float] = []
+        for x in raw:
+            if not vals or abs(x - vals[-1]) > 1e-8:
+                vals.append(float(x))
+            else:
+                vals[-1] = 0.5 * (vals[-1] + float(x))
+
+    if rank < n and lam_min < 1e-8:
+        lam_min = 0.0
+
+    return vals, rank, lam_max, lam_min
+
+
+def access_metrics(L: Matrix) -> Tuple[Matrix, List[float], int, float, float]:
+    """
+    M_C = L^dagger L.
+
+    Returns:
+        M_C,
+        eigenvalues descending,
+        rank,
+        kappa_C = lambda_min / lambda_max,
+        p_bar = Tr(M_C) / d_V.
+    """
+    M = matmul(conj_transpose(L), L)
+    d_V = len(M)
+
+    eigs, rank, lam_max, lam_min = hermitian_eigenvalues(M)
+
+    if lam_max <= 1e-12:
+        kappa = 0.0
+    else:
+        kappa = max(0.0, lam_min) / lam_max
+
+    p_bar = trace_matrix(M).real / float(d_V)
+
+    return M, eigs, rank, kappa, p_bar
+
+
+# -----------------------------------------------------------------------------
+# 10. mu_V operator blocks and Sigma code-consistency.
+# -----------------------------------------------------------------------------
+
+def mu_operator_blocks(V: Matrix, energies: Sequence[float]) -> Dict[float, Matrix]:
+    if not V:
+        raise ValueError("V must be non-empty")
+
+    d_C = len(V[0])
+    blocks: Dict[float, Matrix] = {}
+
+    for row, E in zip(V, energies):
+        if len(row) != d_C:
+            raise ValueError("All rows of V must have channel dimension d_C")
+
+        key = float(E)
+        B = blocks.get(key, zero_matrix(d_C, d_C))
+
+        for a in range(d_C):
+            ra = complex(row[a])
+            for b in range(d_C):
+                B[a][b] += ra.conjugate() * complex(row[b])
+
+        blocks[key] = B
+
+    return blocks
+
+
+def sigma_from_mu_blocks(blocks: Dict[float, Matrix], z: complex) -> Matrix:
+    if not blocks:
+        raise ValueError("empty mu_V blocks")
+
+    d_C = len(next(iter(blocks.values())))
+    S = zero_matrix(d_C, d_C)
+
+    for E, B in blocks.items():
+        factor = 1.0 / (z - complex(E))
+        S = add_matrices(S, scale_matrix(factor, B))
+
+    return S
+
+
+def direct_sigma_from_V(V: Matrix, energies: Sequence[float], z: complex) -> Matrix:
+    if not V:
+        raise ValueError("V must be non-empty")
+
+    d_C = len(V[0])
+    S = zero_matrix(d_C, d_C)
+
+    for row, E in zip(V, energies):
+        factor = 1.0 / (z - complex(E))
+        for a in range(d_C):
+            ra = complex(row[a])
+            for b in range(d_C):
+                S[a][b] += ra.conjugate() * complex(row[b]) * factor
+
+    return S
+
+
+def trace_blocks_equal(
+    blocks_a: Dict[float, Matrix],
+    blocks_b: Dict[float, Matrix],
+    tol: float = 1e-10,
+) -> bool:
+    if set(blocks_a.keys()) != set(blocks_b.keys()):
+        return False
+
+    for key in blocks_a:
+        ta = trace_matrix(blocks_a[key])
+        tb = trace_matrix(blocks_b[key])
+        if abs(ta - tb) > tol:
+            return False
+
+    return True
+
+
+def operator_blocks_differ(
+    blocks_a: Dict[float, Matrix],
+    blocks_b: Dict[float, Matrix],
+    threshold: float = 1e-1,
+) -> bool:
+    if set(blocks_a.keys()) != set(blocks_b.keys()):
+        return True
+
+    for key in blocks_a:
+        diff = frobenius_norm(sub_matrices(blocks_a[key], blocks_b[key]))
+        if diff > threshold:
+            return True
+
+    return False
+
+
+# -----------------------------------------------------------------------------
+# 11. Casimir / zero-point conventions.
+# -----------------------------------------------------------------------------
+
+def zero_point_energy_from_angular_frequencies(
+    arch: Architecture,
+    omegas: Sequence[float],
+) -> float:
+    total = 0.0
+    for w in omegas:
+        wf = float(w)
+        if not math.isfinite(wf) or wf < 0.0:
+            raise ValueError("omega must be finite and non-negative")
+        total += wf
+
+    half = arch.zero_point_half.unwrap(ConstantTag.ZERO_POINT_HALF)
+    return half * float(arch.hbar) * total
+
+
+def zero_point_energy_from_mode_energies_hbar_omega(
+    arch: Architecture,
+    mode_energies: Sequence[float],
+) -> float:
+    total = 0.0
+    for e in mode_energies:
+        ef = float(e)
+        if not math.isfinite(ef) or ef < 0.0:
+            raise ValueError("hbar*omega mode energy must be finite and non-negative")
+        total += ef
+
+    half = arch.zero_point_half.unwrap(ConstantTag.ZERO_POINT_HALF)
+    return half * total
+
+
+def zero_point_energy_from_mode_energies_hbar_omega_over_2(
+    arch: Architecture,
+    half_quanta: Sequence[float],
+) -> float:
+    total = 0.0
+    for e in half_quanta:
+        ef = float(e)
+        if not math.isfinite(ef) or ef < 0.0:
+            raise ValueError("hbar*omega/2 value must be finite and non-negative")
+        total += ef
+
+    return total
+
+
+# -----------------------------------------------------------------------------
+# 12. Three-level E_merge model.
+#     This is the finite model skeleton used for internal pipeline validation.
+#     It is NOT a corpus replicator.
+# -----------------------------------------------------------------------------
+
+DEFAULT_EV = 0.0
+DEFAULT_Z = 2.0 + 0.1j
+
+
+def observables(
+    w: Sequence[float],
+    z: complex = DEFAULT_Z,
+    EV: float = DEFAULT_EV,
+) -> Tuple[float, float, float]:
+    """
+    w = (gamma, t1, t2, E1, E2)
+
+    Returns:
+        kappa = |gamma t1 t2|
+        Delta = |gamma - t1 t2 / (z - E1)|
+        p     = |G_02|^2, G = (H - zI)^{-1}
+
+    Safe against singular denominators/matrix inversion by returning large
+    sentinel values instead of raising inside optimizer evaluations.
+    """
+    try:
+        gamma = float(w[0])
+        t1 = float(w[1])
+        t2 = float(w[2])
+        E1 = float(w[3])
+        E2 = float(w[4])
+    except Exception:
+        return SAFE_BIG, SAFE_BIG, 0.0
+
+    if not all(math.isfinite(x) for x in (gamma, t1, t2, E1, E2)):
+        return SAFE_BIG, SAFE_BIG, 0.0
+
+    denom = complex(z) - complex(E1)
+    if abs(denom) < 1e-14:
+        Delta = SAFE_BIG
+    else:
+        Delta = abs(complex(gamma) - complex(t1) * complex(t2) / denom)
+
+    kappa = abs(complex(gamma) * complex(t1) * complex(t2))
+
+    H = [
+        [complex(EV), complex(t1), complex(gamma)],
+        [complex(t1), complex(E1), complex(t2)],
+        [complex(gamma), complex(t2), complex(E2)],
+    ]
+
+    M = [
+        [H[0][0] - complex(z), H[0][1], H[0][2]],
+        [H[1][0], H[1][1] - complex(z), H[1][2]],
+        [H[2][0], H[2][1], H[2][2] - complex(z)],
+    ]
+
+    try:
+        G = inv3_gauss(M)
+        p = abs(G[0][2]) ** 2
+    except ZeroDivisionError:
+        p = 0.0
+
+    if not math.isfinite(kappa):
+        kappa = SAFE_BIG
+    if not math.isfinite(Delta):
+        Delta = SAFE_BIG
+    if not math.isfinite(p):
+        p = 0.0
+
+    return float(kappa), float(Delta), float(p)
+
+
+def metric_diag(w0: Sequence[float], kind: str) -> List[float]:
+    if kind == "abs":
+        return [1.0 for _ in range(5)]
+
+    if kind == "rel":
+        out = []
+        for x in w0:
+            ax = abs(float(x))
+            if not math.isfinite(ax) or ax < 1e-12:
+                ax = 1e-12
+            out.append(1.0 / (ax * ax))
+        return out
+
+    raise ValueError(f"unknown metric kind: {kind}")
+
+
+def weighted_norm2(dw: Sequence[float], metric: Sequence[float]) -> float:
+    s = 0.0
+    for m, x in zip(metric, dw):
+        xf = float(x)
+        mf = float(m)
+        if not math.isfinite(xf) or not math.isfinite(mf):
+            return SAFE_BIG
+        s += mf * xf * xf
+    return float(s)
+
+
+def synthetic_w0(gamma: float) -> List[float]:
+    """
+    Frozen synthetic 3-level base point for internal E_merge cross-tests.
+
+    This is NOT the corpus parameterization.
+    It is only used to validate the optimization/audit pipeline.
+    """
+    return [float(gamma), 1.0, 1.0, 1.0, 1.5]
+
+
+def emerge_scipy(
+    w0: Sequence[float],
+    metric_kind: str = "abs",
+    delta_floor: float = 0.05,
+    kappa_floor: float = 0.5,
+    use_p_constraint: bool = False,
+    start: Optional[Sequence[float]] = None,
+    z: complex = DEFAULT_Z,
+    EV: float = DEFAULT_EV,
+) -> Tuple[float, Any, Dict[str, Any]]:
+    """
+    Constrained minimization:
+        min ||dw||_g^2
+        s.t. Delta(w0+dw) <= delta_floor
+             kappa(w0+dw) >= kappa_floor * kappa0
+             optionally p(w0+dw) >= p0
+
+    Requires scipy/numpy.
+    """
+    if not (HAVE_SCIPY and HAVE_NUMPY):
+        raise RuntimeError("scipy/numpy required for emerge_scipy")
+
+    w0_list = [float(x) for x in w0]
+    w0_np = np.asarray(w0_list, dtype=float)
+
+    kappa0, Delta0, p0 = observables(w0_list, z=z, EV=EV)
+
+    if Delta0 <= delta_floor + 1e-12:
+        return 0.0, w0_np.copy(), {
+            "initial_feasible": True,
+            "success": True,
+            "status": 0,
+            "message": "initial_feasible",
+            "kappa0": kappa0,
+            "Delta0": Delta0,
+            "p0": p0,
+            "objective": 0.0,
+            "metric_kind": metric_kind,
+            "delta_floor": delta_floor,
+            "kappa_floor": kappa_floor,
+            "use_p_constraint": use_p_constraint,
+        }
+
+    metric = np.asarray(metric_diag(w0_list, metric_kind), dtype=float)
+    threshold = float(kappa_floor) * float(kappa0)
+
+    def obj(dw: Any) -> float:
+        dw = np.asarray(dw, dtype=float)
+        val = float(np.sum(metric * dw * dw))
+        return val if math.isfinite(val) else SAFE_BIG
+
+    def c_delta(dw: Any) -> float:
+        dw = np.asarray(dw, dtype=float)
+        _, Delta, _ = observables((w0_np + dw).tolist(), z=z, EV=EV)
+        val = float(delta_floor - Delta)
+        if not math.isfinite(val):
+            return -SAFE_BIG
+        return val
+
+    def c_kappa(dw: Any) -> float:
+        dw = np.asarray(dw, dtype=float)
+        kappa, _, _ = observables((w0_np + dw).tolist(), z=z, EV=EV)
+        val = float(kappa - threshold)
+        if not math.isfinite(val):
+            return -SAFE_BIG
+        return val
+
+    cons = [
+        {"type": "ineq", "fun": c_delta},
+        {"type": "ineq", "fun": c_kappa},
+    ]
+
+    if use_p_constraint:
+        def c_p(dw: Any) -> float:
+            dw = np.asarray(dw, dtype=float)
+            _, _, p = observables((w0_np + dw).tolist(), z=z, EV=EV)
+            val = float(p - p0)
+            if not math.isfinite(val):
+                return -SAFE_BIG
+            return val
+
+        cons.append({"type": "ineq", "fun": c_p})
+
+    x0 = np.zeros(5, dtype=float) if start is None else np.asarray(start, dtype=float)
+
+    res = minimize(
+        obj,
+        x0,
+        constraints=cons,
+        method="SLSQP",
+        options={"maxiter": 1000, "ftol": 1e-12, "disp": False},
+    )
+
+    w_opt = w0_np + np.asarray(res.x, dtype=float)
+    kappa_opt, Delta_opt, p_opt = observables(w_opt.tolist(), z=z, EV=EV)
+
+    cost = float(res.fun)
+    if not math.isfinite(cost):
+        cost = SAFE_BIG
+
+    info = {
+        "initial_feasible": False,
+        "success": bool(res.success),
+        "status": int(res.status),
+        "message": str(res.message),
+        "kappa0": kappa0,
+        "Delta0": Delta0,
+        "p0": p0,
+        "kappa_opt": kappa_opt,
+        "Delta_opt": Delta_opt,
+        "p_opt": p_opt,
+        "objective": cost,
+        "metric_kind": metric_kind,
+        "delta_floor": delta_floor,
+        "kappa_floor": kappa_floor,
+        "use_p_constraint": use_p_constraint,
+    }
+
+    return cost, w_opt, info
+
+
+def _verify_emerge_candidate(
+    w0: Sequence[float],
+    w_opt: Any,
+    metric_kind: str,
+    delta_floor: float,
+    kappa_floor: float,
+    kappa0: float,
+    cost: float,
+) -> Tuple[bool, Dict[str, Any]]:
+    """
+    Independent verification of an optimizer candidate.
+
+    A candidate is accepted only if:
+      - constraints are satisfied within tolerance;
+      - objective can be recomputed from dw and metric;
+      - recomputed objective matches reported objective.
+    """
+    w0_list = [float(x) for x in w0]
+    w_opt_list = [float(x) for x in w_opt]
+
+    kappa_opt, Delta_opt, p_opt = observables(w_opt_list)
+    dw = [w_opt_list[i] - w0_list[i] for i in range(5)]
+    metric = metric_diag(w0_list, metric_kind)
+    recomputed = weighted_norm2(dw, metric)
+
+    cons_tol = 1e-6
+    feasible = (
+        Delta_opt <= delta_floor + cons_tol
+        and kappa_opt >= kappa_floor * kappa0 - cons_tol
+    )
+
+    cost_tol = 1e-6 + 1e-5 * max(1.0, abs(cost))
+    cost_ok = (
+        math.isfinite(recomputed)
+        and recomputed >= -1e-8
+        and abs(recomputed - cost) <= cost_tol
+    )
+
+    details = {
+        "feasible": bool(feasible),
+        "cost_ok": bool(cost_ok),
+        "Delta_opt": Delta_opt,
+        "kappa_opt": kappa_opt,
+        "p_opt": p_opt,
+        "reported_cost": cost,
+        "recomputed_cost": recomputed,
+        "cost_tol": cost_tol,
+    }
+
+    return bool(feasible and cost_ok), details
+
+
+# -----------------------------------------------------------------------------
+# 13. Corpus anchors from Цена границы.txt.
+#     These are reference targets, not reproduced by default.
+# -----------------------------------------------------------------------------
+
+CORPUS_EMERGE_ANCHORS_DELTA_09_ABS: Dict[str, Any] = {
+    "source": "Цена границы.txt, slice Delta_hold ~= 0.9, absolute metric",
+    "gamma": [0.27, 0.45, 0.60, 0.75, 0.95],
+    "E_abs": [0.0423, 0.0241, 0.0154, 0.0101, 0.0060],
+    "monotonicity": {
+        "dE_dgamma": "negative_on_grid",
+        "violations_abs": 0,
+        "violations_rel": 0,
+        "grid_size": 56,
+    },
+    "endpoint_ratio_abs": 0.0423 / 0.0060,
+    "status": "corpus_anchor_not_replicated_in_repo_by_default",
+}
+
+CORPUS_EMERGE_SECONDARY_CURVE: Dict[str, Any] = {
+    "source": "Цена границы.txt, fragment table",
+    "gamma": [
+        0.332, 0.394, 0.455, 0.517, 0.579,
+        0.641, 0.703, 0.765, 0.826, 0.888, 0.950,
+    ],
+    "E_abs": [
+        0.0348, 0.0287, 0.0237, 0.0197, 0.0164,
+        0.0137, 0.0115, 0.0097, 0.0082, 0.0070, 0.0060,
+    ],
+    "status": "corpus_anchor_fragment_not_replicated_in_repo_by_default",
+}
+
+
+# -----------------------------------------------------------------------------
+# 14. Corpus replicator hook.
+#     To make strict PASS possible, a validated replicator must be registered.
+# -----------------------------------------------------------------------------
+
+CorpusReplicator = Callable[[Sequence[float], str], Dict[str, Any]]
+
+CORPUS_REPLICATOR: Optional[CorpusReplicator] = None
+
+# Contract for a future replicator:
+#
+# def my_replicator(gammas: Sequence[float], metric_kind: str) -> Dict[str, Any]:
+#     return {
+#         "E": [...],
+#         "method": "three_level_slqp_from_muV_or_validated_reduction",
+#         "parameters": {...},
+#         "independent_checks": {...},
+#         "provenance": "...",
+#     }
+#
+# CORPUS_REPLICATOR = my_replicator
+
+
+# -----------------------------------------------------------------------------
+# 15. Check helpers.
+# -----------------------------------------------------------------------------
+
+def _check(cond: bool, msg: str = "check failed") -> None:
+    if not cond:
+        raise AssertionError(msg)
+
+
+def _close(a: float, b: float, tol: float = 1e-9) -> bool:
+    return abs(float(a) - float(b)) <= tol
+
+
+def _expect_raises(exc: type, fn: Callable[[], Any], msg: str = "expected exception") -> bool:
+    try:
+        fn()
+    except exc:
+        return True
+    except Exception as e:
+        raise AssertionError(f"{msg}: unexpected exception {type(e).__name__}: {e}") from e
+    raise AssertionError(msg)
+
+
+def _fmt_complex(z: complex) -> str:
+    return f"{z.real:+.8f}{z.imag:+.8f}j"
+
+
+def _matrix_summary(A: Matrix) -> str:
+    rows = []
+    for row in A:
+        rows.append("[" + ", ".join(_fmt_complex(x) for x in row) + "]")
+    return "\n  " + "\n  ".join(rows)
+
+
+# -----------------------------------------------------------------------------
+# 16. Gate: typed core and original eight fixes.
+# -----------------------------------------------------------------------------
+
+def gate_typed_core() -> GateResult:
+    warnings: List[str] = []
+
+    # Fix 1: outcomes give lower bound, not equality.
+    _check(minimum_channel_dimension_for_outcomes(1) == 1)
+    _check(minimum_channel_dimension_for_outcomes(2) == 2)
+    _check(minimum_channel_dimension_for_outcomes(3) == 4)
+    _check(minimum_channel_dimension_for_outcomes(4) == 4)
+    _check(minimum_qubit_count_for_outcomes(2) == 1)
+    _check(minimum_qubit_count_for_outcomes(3) == 2)
+    _check(derive_d_V_lower_bound_from_outcomes(("CONT", "RESTART")) == 2)
+
+    # Fix 6: binary_exit_architecture requires explicit assumption.
+    _expect_raises(
+        RuntimeError,
+        lambda: binary_exit_architecture(),
+        "binary_exit_architecture must require assumption",
+    )
+
+    arch = binary_exit_architecture(assume_binary_exit_theorem=True)
+    _check(arch.d_V == 2)
+    _check(arch.exit_outcomes == BINARY_EXIT_OUTCOMES)
+    _check(arch.eta_coeff == 2.0)
+    _check(arch.eta_coeff_proven is True)
+    _check(arch.binary_exit_theorem_assumed is True)
+
+    # Fix 7: d_V versus outcomes cross-check.
+    _expect_raises(
+        ValueError,
+        lambda: Architecture(d_V=1, exit_outcomes=BINARY_EXIT_OUTCOMES),
+        "d_V=1 must be rejected for two outcomes",
+    )
+    _expect_raises(
+        ValueError,
+        lambda: Architecture(d_V=2, exit_outcomes=("A", "B", "C")),
+        "d_V=2 must be rejected for three outcomes",
+    )
+
+    arch_large_binary = Architecture(
+        d_V=4,
+        n_paths=2,
+        exit_outcomes=BINARY_EXIT_OUTCOMES,
+        eta_coeff=2.0,
+        eta_coeff_proven=False,
+    )
+    _check(arch_large_binary.d_V == 4)
+
+    # Fix 3: eta_coeff is not silently generalized.
+    arch_no_eta = Architecture(d_V=4, n_paths=2, eta_coeff=None)
+
+    _expect_raises(
+        NotImplementedError,
+        lambda: effective_eta_coeff(arch_no_eta),
+        "Missing eta_coeff must raise",
+    )
+
+    arch_explicit_eta = Architecture(
+        d_V=4,
+        n_paths=2,
+        eta_coeff=3.0,
+        eta_coeff_proven=False,
+    )
+    _check(effective_eta_coeff(arch_explicit_eta) == 3.0)
+
+    _expect_raises(
+        ValueError,
+        lambda: Architecture(d_V=4, n_paths=2, eta_coeff=2.0, eta_coeff_proven=True),
+        "eta_coeff_proven=True must require d_V=2",
+    )
+
+    # Fix 4: tagged constants cannot be mixed by arithmetic.
+    _expect_raises(
+        TypeError,
+        lambda: arch.inverse_d_V * arch.zero_point_half,  # type: ignore[operator]
+        "Cross-source TaggedFloat arithmetic must fail",
+    )
+    _expect_raises(
+        TypeError,
+        lambda: arch.inverse_d_V.unwrap(ConstantTag.ZERO_POINT_HALF),
+        "Wrong-tag unwrap must fail",
+    )
+
+    _check(math.isclose(arch.inverse_d_V.unwrap(ConstantTag.CODING_INVERSE_DIM), 0.5))
+    _check(math.isclose(arch.inverse_d_V_squared.unwrap(ConstantTag.CODING_INVERSE_DIM_SQ), 0.25))
+    _check(math.isclose(arch.zero_point_half.unwrap(ConstantTag.ZERO_POINT_HALF), 0.5))
+    _check(math.isclose(arch.interface_half.unwrap(ConstantTag.INTERFACE_HALF), 0.5))
+
+    _expect_raises(
+        NotImplementedError,
+        lambda: arch_large_binary.interface_half,
+        "interface_half must be binary-only",
+    )
+
+    # Fix 2 and Fix 8: path cross term is a sum, not scalar factor.
+    _check(math.isclose(two_path_unit_cross_coefficient(), 2.0))
+
+    cs2 = path_cross_sum((1.0 + 0.0j, 1.0 + 0.0j))
+    _check(math.isclose(cs2.real, 2.0))
+    _check(math.isclose(cs2.imag, 0.0))
+
+    cs3 = path_cross_sum((1.0 + 0.0j, 1.0 + 0.0j, 1.0 + 0.0j))
+    _check(math.isclose(cs3.real, 6.0))
+    _check(math.isclose(cs3.imag, 0.0))
+
+    cs_phase = path_cross_sum((1.0 + 0.0j, 0.0 + 1.0j))
+    _check(math.isclose(cs_phase.real, 0.0))
+    _check(math.isclose(cs_phase.imag, 2.0))
+
+    _expect_raises(
+        NotImplementedError,
+        lambda: arch.path_cross_factor,
+        "path_cross_factor must be unavailable",
+    )
+
+    z0 = interference_zero_two_paths(E1=1.0, t1=1.0, t2=1.0, gamma=1.0)
+    _check(math.isclose(z0.real, -1.0))
+    _check(math.isclose(z0.imag, 0.0))
+
+    z1 = interference_zero_two_paths(E1=0.3, t1=0.5, t2=0.4, gamma=0.2)
+    expected_z1 = 0.3 - 2.0 * 0.5 * 0.4 / 0.2
+    _check(math.isclose(z1.real, expected_z1))
+
+    _expect_raises(
+        ZeroDivisionError,
+        lambda: interference_zero_two_paths(E1=0.0, t1=1.0, t2=1.0, gamma=0.0),
+        "gamma=0 must raise",
+    )
+
+    # Fix 5: Casimir conventions are explicit.
+    arch_hbar1 = binary_exit_architecture(hbar=1.0, assume_binary_exit_theorem=True)
+    arch_hbar2 = binary_exit_architecture(hbar=2.0, assume_binary_exit_theorem=True)
+
+    _check(math.isclose(zero_point_energy_from_angular_frequencies(arch_hbar1, [1.0, 2.0, 3.0]), 3.0))
+    _check(math.isclose(zero_point_energy_from_angular_frequencies(arch_hbar2, [1.0]), 1.0))
+    _check(math.isclose(zero_point_energy_from_mode_energies_hbar_omega(arch_hbar2, [2.0]), 1.0))
+    _check(math.isclose(zero_point_energy_from_mode_energies_hbar_omega_over_2(arch_hbar2, [1.0]), 1.0))
+
+    _check(
+        math.isclose(
+            zero_point_energy_from_angular_frequencies(arch_hbar2, [1.0]),
+            zero_point_energy_from_mode_energies_hbar_omega(arch_hbar2, [2.0]),
+        )
+    )
+    _check(
+        math.isclose(
+            zero_point_energy_from_mode_energies_hbar_omega(arch_hbar2, [2.0]),
+            zero_point_energy_from_mode_energies_hbar_omega_over_2(arch_hbar2, [1.0]),
+        )
+    )
+
+    return GateResult(
+        name="typed_core",
+        passed=True,
+        status="PASS",
+        details={
+            "dV_lower_bound_only": True,
+            "binary_exit_requires_flag": True,
+            "tagged_mixing_blocked": True,
+            "path_cross_scalar_removed": True,
+            "eta_coeff_generalization_blocked": True,
+            "casimir_conventions_split": True,
+        },
+        warnings=warnings,
+    )
+
+
+# -----------------------------------------------------------------------------
+# 17. Gate: inverse cross-check.
+# -----------------------------------------------------------------------------
+
+def gate_inverse_cross_check() -> GateResult:
+    A = _as_complex_matrix([
+        [2.0 + 0.1j, 1.0, 0.0],
+        [1.0, 3.0 - 0.2j, 1.0],
+        [0.0, 1.0, 2.0 + 0.05j],
+    ])
+
+    inv_g = inv3_gauss(A)
+    inv_a = inv3_adjugate(A)
+
+    err = frobenius_norm(sub_matrices(inv_g, inv_a))
+    _check(err < 1e-12, f"inverse cross-check failed: err={err}")
+
+    I = identity_matrix(3)
+    prod_err = frobenius_norm(sub_matrices(matmul(A, inv_g), I))
+    _check(prod_err < 1e-12, f"A*inv(A) != I: err={prod_err}")
+
+    return GateResult(
+        name="inverse_cross_check",
+        passed=True,
+        status="PASS",
+        details={
+            "gauss_vs_adjugate_frobenius": err,
+            "A_times_inv_minus_I_frobenius": prod_err,
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 18. Gate: isospectral operator orientation.
+# -----------------------------------------------------------------------------
+
+def gate_isospectral_operator_orientation() -> GateResult:
+    energies_A = [0.0, 1.0]
+    energies_B = [0.0, 1.0]
+    z = 0.3 + 0.4j
+    inv_sqrt2 = 1.0 / math.sqrt(2.0)
+
+    V_A = _as_complex_matrix([
+        [1.0, 0.0],
+        [0.0, 1.0],
+    ])
+
+    V_B = _as_complex_matrix([
+        [inv_sqrt2,  inv_sqrt2],
+        [inv_sqrt2, -inv_sqrt2],
+    ])
+
+    blocks_A = mu_operator_blocks(V_A, energies_A)
+    blocks_B = mu_operator_blocks(V_B, energies_B)
+
+    sigma_A = direct_sigma_from_V(V_A, energies_A, z)
+    sigma_B = direct_sigma_from_V(V_B, energies_B, z)
+
+    same_scalar_dos = (energies_A == energies_B)
+    same_trace_weights = trace_blocks_equal(blocks_A, blocks_B)
+    different_operator_measure = operator_blocks_differ(blocks_A, blocks_B, threshold=1e-1)
+    sigma_diff = frobenius_norm(sub_matrices(sigma_A, sigma_B))
+
+    _check(same_scalar_dos, "scalar DOS should be identical")
+    _check(same_trace_weights, "trace weights should be identical")
+    _check(different_operator_measure, "operator-valued mu_V should differ")
+    _check(sigma_diff > 1e-1, "Sigma matrices should differ")
+
+    golden_sigma_diff = 2.480694691784169
+    _check(
+        math.isclose(sigma_diff, golden_sigma_diff, rel_tol=1e-12, abs_tol=1e-12),
+        f"isospectral sigma_diff drift: got={sigma_diff}, want={golden_sigma_diff}",
+    )
+
+    return GateResult(
+        name="isospectral_operator_orientation",
+        passed=True,
+        status=FINAL_STATUS["isospectral_operator_orientation"],
+        details={
+            "same_scalar_dos": same_scalar_dos,
+            "same_trace_weights": same_trace_weights,
+            "different_operator_measure": different_operator_measure,
+            "sigma_diff": sigma_diff,
+            "golden_sigma_diff": golden_sigma_diff,
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 19. Gate: mu_V -> Sigma code consistency only.
+# -----------------------------------------------------------------------------
+
+def gate_mu_sigma_code_consistency() -> GateResult:
+    energies = [0.0, 1.0]
+    z = 0.3 + 0.4j
+    inv_sqrt2 = 1.0 / math.sqrt(2.0)
+
+    V_A = _as_complex_matrix([
+        [1.0, 0.0],
+        [0.0, 1.0],
+    ])
+
+    V_B = _as_complex_matrix([
+        [inv_sqrt2,  inv_sqrt2],
+        [inv_sqrt2, -inv_sqrt2],
+    ])
+
+    blocks_A = mu_operator_blocks(V_A, energies)
+    blocks_B = mu_operator_blocks(V_B, energies)
+
+    sigma_direct_A = direct_sigma_from_V(V_A, energies, z)
+    sigma_mu_A = sigma_from_mu_blocks(blocks_A, z)
+
+    sigma_direct_B = direct_sigma_from_V(V_B, energies, z)
+    sigma_mu_B = sigma_from_mu_blocks(blocks_B, z)
+
+    err_A = frobenius_norm(sub_matrices(sigma_direct_A, sigma_mu_A))
+    err_B = frobenius_norm(sub_matrices(sigma_direct_B, sigma_mu_B))
+
+    _check(err_A < 1e-12, f"code consistency A failed: err={err_A}")
+    _check(err_B < 1e-12, f"code consistency B failed: err={err_B}")
+
+    return GateResult(
+        name="mu_sigma_code_consistency",
+        passed=True,
+        status=FINAL_STATUS["mu_sigma_code_consistency"],
+        details={
+            "oracle_error_A": err_A,
+            "oracle_error_B": err_B,
+            "note": (
+                "This checks that two algebraically identical implementations "
+                "of the same finite sum agree. It is not a physical oracle."
+            ),
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 20. Gate: dark stress, with fixed unpacking and analytic pins.
+# -----------------------------------------------------------------------------
+
+def _toy_dark_H0() -> Matrix:
+    return _as_complex_matrix([
+        [0.7, 0.0, 0.0],
+        [0.0, 1.0, 0.25],
+        [0.0, 0.25, 2.0],
+    ])
+
+
+def _toy_dark_W0dag() -> Matrix:
+    return _as_complex_matrix([
+        [1.0, 0.0, 0.0],
+    ])
+
+
+def _add_bright_dark_coupling(H: Matrix, eps: float) -> Matrix:
+    Hp = [row[:] for row in H]
+    Hp[0][1] += complex(eps)
+    Hp[1][0] += complex(eps)
+    return Hp
+
+
+def _add_channel_dark_component(Wdag: Matrix, alpha: float) -> Matrix:
+    Wp = [row[:] for row in Wdag]
+    Wp[0][1] += complex(alpha)
+    return Wp
+
+
+def gate_dark_stress_fixed() -> GateResult:
+    H0 = _toy_dark_H0()
+    W0dag = _toy_dark_W0dag()
+
+    # True dark projector for block-diagonal input.
+    P_D0 = diag_matrix([0.0, 1.0, 1.0])
+
+    _check(is_projector(P_D0), "P_D0 is not a projector")
+    _check(commutator_norm(H0, P_D0) < 1e-12, "P_D0 should commute with H0")
+    _check(frobenius_norm(matmul(W0dag, P_D0)) < 1e-12, "P_D0 should be in ker W0^dagger")
+
+    eps_values = [0.0, 0.01, 0.1, 0.3]
+    bright_dark_rows: List[Tuple[float, float]] = []
+
+    for eps in eps_values:
+        Heps = _add_bright_dark_coupling(H0, eps)
+        viol = commutator_norm(Heps, P_D0)
+        analytic = math.sqrt(2.0) * abs(eps)
+        bright_dark_rows.append((eps, viol))
+
+        _check(
+            math.isclose(viol, analytic, rel_tol=1e-12, abs_tol=1e-12),
+            f"bright-dark analytic mismatch eps={eps}: got={viol}, want={analytic}",
+        )
+
+        if eps == 0.0:
+            _check(viol < 1e-12, "eps=0 should preserve invariance")
+        else:
+            _check(viol > 1e-8, "eps>0 should break invariance")
+
+    stress_want = [
+        0.0,
+        0.01414213562373095,
+        0.14142135623730953,
+        0.4242640687119285,
+    ]
+    _check(len(bright_dark_rows) == len(stress_want))
+    for idx, (eps, got) in enumerate(bright_dark_rows):
+        want = stress_want[idx]
+        _check(
+            math.isclose(got, want, rel_tol=1e-12, abs_tol=1e-12),
+            f"dark stress pin drift eps={eps}: got={got}, want={want}",
+        )
+
+    # Channel dark component stress.
+    alpha_values = [0.0, 0.01, 0.1, 1.0 / math.sqrt(2.0)]
+    channel_rows: List[Tuple[float, float, float]] = []
+
+    for alpha in alpha_values:
+        Walpha = _add_channel_dark_component(W0dag, alpha)
+        old_kernel_violation = frobenius_norm(matmul(Walpha, P_D0))
+
+        # Recompute a 2D kernel projector for Walpha = [1, alpha, 0].
+        wrow = [complex(x) for x in Walpha[0]]
+        basis: List[List[complex]] = []
+
+        for e in [
+            [1.0 + 0j, 0.0 + 0j, 0.0 + 0j],
+            [0.0 + 0j, 1.0 + 0j, 0.0 + 0j],
+            [0.0 + 0j, 0.0 + 0j, 1.0 + 0j],
+        ]:
+            v = e[:]
+            wnorm2 = vector_inner(wrow, wrow).real
+            if wnorm2 <= 1e-14:
+                proj = v
+            else:
+                coeff = vector_inner(wrow, v) / wnorm2
+                proj = [v[i] - coeff * wrow[i] for i in range(3)]
+
+            for q in basis:
+                c = vector_inner(q, proj)
+                proj = [proj[i] - c * q[i] for i in range(3)]
+
+            nrm = vector_norm(proj)
+            if nrm > 1e-10:
+                basis.append([x / nrm for x in proj])
+
+            if len(basis) == 2:
+                break
+
+        _check(len(basis) == 2, "failed to build 2D kernel basis")
+
+        P_new = zero_matrix(3, 3)
+        for q in basis:
+            for i in range(3):
+                qi = q[i]
+                for j in range(3):
+                    P_new[i][j] += qi * q[j].conjugate()
+
+        new_kernel_error = frobenius_norm(matmul(Walpha, P_new))
+        new_commutator_with_H0 = commutator_norm(H0, P_new)
+
+        channel_rows.append((alpha, old_kernel_violation, new_commutator_with_H0))
+
+        _check(is_projector(P_new, tol=1e-9), "recomputed kernel projector failed")
+        _check(new_kernel_error < 1e-9, "recomputed kernel must annihilate Walpha")
+
+        if alpha == 0.0:
+            _check(old_kernel_violation < 1e-12, "alpha=0 old kernel should pass")
+            _check(new_commutator_with_H0 < 1e-12, "alpha=0 new kernel should commute with H0")
+        else:
+            _check(old_kernel_violation > 1e-8, "alpha>0 should break old kernel")
+            _check(new_commutator_with_H0 > 1e-8, "recomputed kernel should not commute with H0")
+
+    return GateResult(
+        name="dark_stress_fixed",
+        passed=True,
+        status="PASS_AS_NEGATIVE_CONTROLS",
+        details={
+            "bright_dark_rows": bright_dark_rows,
+            "channel_rows": channel_rows,
+            "dark_existence": FINAL_STATUS["dark_existence"],
+            "bic_continuum_status": FINAL_STATUS["bic_continuum_quadratic_width"],
+            "note": (
+                "Finite discrete model does not reproduce continuum BIC width. "
+                "It only measures algebraic stability of the supplied dark projector."
+            ),
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 21. Gate: top-k fake dark control.
+# -----------------------------------------------------------------------------
+
+def gate_topk_fake_dark_control() -> GateResult:
+    H = _toy_dark_H0()
+    Wdag = _toy_dark_W0dag()
+
+    P_fake_bright = diag_matrix([1.0, 0.0, 0.0])
+    P_fake_dark_coord = diag_matrix([0.0, 1.0, 0.0])
+
+    bright_kernel_violation = frobenius_norm(matmul(Wdag, P_fake_bright))
+    dark_coord_kernel_error = frobenius_norm(matmul(Wdag, P_fake_dark_coord))
+    dark_coord_commutator_violation = commutator_norm(H, P_fake_dark_coord)
+
+    _check(bright_kernel_violation > 1e-8, "fake bright must fail kernel")
+    _check(dark_coord_kernel_error < 1e-12, "fake dark coordinate may pass kernel")
+    _check(dark_coord_commutator_violation > 1e-8, "fake dark coordinate must fail invariance")
+
+    return GateResult(
+        name="topk_fake_dark_control",
+        passed=True,
+        status=FINAL_STATUS["topk_fake_dark_control"],
+        details={
+            "bright_kernel_violation": bright_kernel_violation,
+            "dark_coord_kernel_error": dark_coord_kernel_error,
+            "dark_coord_commutator_violation": dark_coord_commutator_violation,
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 22. Gate: generic access rank.
+# -----------------------------------------------------------------------------
+
+def gate_access_rank_generic() -> GateResult:
+    inv_sqrt2 = 1.0 / math.sqrt(2.0)
+
+    # 2x2: same average probability, different rank.
+    L_loss_2 = diag_matrix([1.0, 0.0])
+    L_full_2 = diag_matrix([inv_sqrt2, inv_sqrt2])
+
+    M_loss_2, eigs_loss_2, rank_loss_2, kappa_loss_2, pbar_loss_2 = access_metrics(L_loss_2)
+    M_full_2, eigs_full_2, rank_full_2, kappa_full_2, pbar_full_2 = access_metrics(L_full_2)
+
+    _check(_close(pbar_loss_2, 0.5), "2x2 loss p_bar should be 0.5")
+    _check(_close(pbar_full_2, 0.5), "2x2 full p_bar should be 0.5")
+    _check(rank_loss_2 == 1, "2x2 loss rank should be 1")
+    _check(rank_full_2 == 2, "2x2 full rank should be 2")
+    _check(kappa_loss_2 < 1e-12, "2x2 loss kappa should be 0")
+    _check(kappa_full_2 > 1.0 - 1e-12, "2x2 full kappa should be 1")
+
+    # 3x3: same average probability, different rank/coherence.
+    L_a_3 = diag_matrix([1.0, 1.0, 0.0])
+    L_b_3 = diag_matrix([
+        math.sqrt(4.0 / 3.0),
+        math.sqrt(1.0 / 3.0),
+        math.sqrt(1.0 / 3.0),
+    ])
+
+    M_a_3, eigs_a_3, rank_a_3, kappa_a_3, pbar_a_3 = access_metrics(L_a_3)
+    M_b_3, eigs_b_3, rank_b_3, kappa_b_3, pbar_b_3 = access_metrics(L_b_3)
+
+    _check(_close(pbar_a_3, pbar_b_3), "3x3 p_bar should match")
+    _check(rank_a_3 == 2, "3x3 rank-deficient case should have rank 2")
+    _check(rank_b_3 == 3, "3x3 full-rank case should have rank 3")
+    _check(kappa_a_3 < 1e-12, "3x3 rank-deficient kappa should be 0")
+    _check(0.24 < kappa_b_3 < 0.26, "3x3 full-rank kappa should be ~1/4")
+
+    # Golden pins.
+    _check(rank_a_3 == 2)
+    _check(rank_b_3 == 3)
+    _check(math.isclose(kappa_b_3, 0.25, rel_tol=1e-12, abs_tol=1e-12))
+
+    return GateResult(
+        name="access_rank_generic",
+        passed=True,
+        status=FINAL_STATUS["access_rank_generic"],
+        details={
+            "2x2": {
+                "M_loss": M_loss_2,
+                "M_full": M_full_2,
+                "rank_loss": rank_loss_2,
+                "rank_full": rank_full_2,
+                "kappa_loss": kappa_loss_2,
+                "kappa_full": kappa_full_2,
+                "pbar_loss": pbar_loss_2,
+                "pbar_full": pbar_full_2,
+                "eigs_loss": eigs_loss_2,
+                "eigs_full": eigs_full_2,
+            },
+            "3x3": {
+                "M_a": M_a_3,
+                "M_b": M_b_3,
+                "rank_a": rank_a_3,
+                "rank_b": rank_b_3,
+                "kappa_a": kappa_a_3,
+                "kappa_b": kappa_b_3,
+                "pbar_a": pbar_a_3,
+                "pbar_b": pbar_b_3,
+                "eigs_a": eigs_a_3,
+                "eigs_b": eigs_b_3,
+            },
+            "probability_vs_coherence": FINAL_STATUS["probability_vs_coherence"],
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 23. Gate: eta semantics.
+# -----------------------------------------------------------------------------
+
+def gate_eta_semantics() -> GateResult:
+    eta_max_common_declared = EtaValue(
+        0.48,
+        EtaSemantics.MAX_TOLERANCE,
+        "corpus-reported common max tolerance (not measured here)",
+    )
+
+    raised = _expect_raises(
+        ValueError,
+        lambda: binary_recoverability_bound(eta_max_common_declared),
+        "MAX_TOLERANCE must not be usable as recoverability input",
+    )
+    _check(raised)
+
+    eta_noise = EtaValue(
+        0.01,
+        EtaSemantics.REALIZED_NOISE,
+        "example realized cycle noise",
+    )
+    bound_noise = binary_recoverability_bound(eta_noise)
+    _check(math.isclose(bound_noise, 0.27, rel_tol=1e-15, abs_tol=1e-15))
+
+    eta_rec = EtaValue(
+        0.02,
+        EtaSemantics.RECOVERABILITY_INPUT,
+        "explicit recoverability input",
+    )
+    bound_rec = binary_recoverability_bound(eta_rec)
+    _check(math.isclose(bound_rec, 0.29, rel_tol=1e-15, abs_tol=1e-15))
+
+    return GateResult(
+        name="eta_semantics",
+        passed=True,
+        status=FINAL_STATUS["eta_type_separation"],
+        details={
+            "max_tolerance_as_recoverability_blocked": raised,
+            "bound_eta_noise_0p01": bound_noise,
+            "bound_eta_rec_0p02": bound_rec,
+            "eta_max_measurement_status": FINAL_STATUS["eta_max_measurement"],
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 24. Gate: internal E_merge cross-audit.
+#     Validates the optimization pipeline, not corpus replication.
+# -----------------------------------------------------------------------------
+
+def gate_emerge_internal() -> GateResult:
+    if not (HAVE_SCIPY and HAVE_NUMPY):
+        return GateResult(
+            name="emerge_internal",
+            passed=False,
+            status="SKIPPED_NO_SCIPY",
+            details={
+                "have_numpy": HAVE_NUMPY,
+                "have_scipy": HAVE_SCIPY,
+                "reason": (
+                    "Internal E_merge cross-audit requires scipy/numpy. "
+                    "Without it, no constrained E_merge value can be certified."
+                ),
+            },
+            warnings=["scipy/numpy missing; internal E_merge pipeline unavailable"],
+        )
+
+    gammas = [0.27, 0.45, 0.60, 0.75, 0.95]
+    metric_kinds = ["abs", "rel"]
+    delta_floor = 0.05
+    kappa_floor = 0.5
+
+    rows: Dict[str, List[Dict[str, Any]]] = {mk: [] for mk in metric_kinds}
+    warnings: List[str] = []
+
+    starts = [
+        np.zeros(5, dtype=float),
+        np.array([0.01, 0.0, 0.0, 0.0, 0.0], dtype=float),
+        np.array([-0.01, 0.0, 0.0, 0.0, 0.0], dtype=float),
+        np.array([0.0, 0.02, 0.0, 0.0, 0.0], dtype=float),
+        np.array([0.0, 0.0, 0.0, 0.05, 0.0], dtype=float),
+    ]
+
+    for metric_kind in metric_kinds:
+        costs: List[float] = []
+
+        for gamma in gammas:
+            w0 = synthetic_w0(gamma)
+            kappa0, Delta0, p0 = observables(w0)
+
+            _check(Delta0 > delta_floor, f"synthetic initial Delta not above floor: gamma={gamma}")
+            _check(kappa0 > 0.0, f"synthetic initial kappa zero: gamma={gamma}")
+
+            verified_costs: List[float] = []
+            failed_starts = 0
+            non_success_but_verified = 0
+
+            for st in starts:
+                cost, w_opt, info = emerge_scipy(
+                    w0,
+                    metric_kind=metric_kind,
+                    delta_floor=delta_floor,
+                    kappa_floor=kappa_floor,
+                    use_p_constraint=False,
+                    start=st.tolist(),
+                )
+
+                verified, vinfo = _verify_emerge_candidate(
+                    w0=w0,
+                    w_opt=w_opt,
+                    metric_kind=metric_kind,
+                    delta_floor=delta_floor,
+                    kappa_floor=kappa_floor,
+                    kappa0=kappa0,
+                    cost=cost,
+                )
+
+                if not verified:
+                    failed_starts += 1
+                    warnings.append(
+                        f"start not verified: gamma={gamma}, metric={metric_kind}, "
+                        f"details={vinfo}"
+                    )
+                    continue
+
+                if cost < 0.0 and cost > -1e-10:
+                    cost = 0.0
+
+                if not info.get("success", False):
+                    non_success_but_verified += 1
+                    warnings.append(
+                        f"SLSQP non-success but independently verified: "
+                        f"gamma={gamma}, metric={metric_kind}, "
+                        f"status={info.get('status')}, message={info.get('message')}"
+                    )
+
+                verified_costs.append(float(cost))
+
+            _check(
+                len(verified_costs) >= 3,
+                f"too few verified multi-start solutions: gamma={gamma}, metric={metric_kind}",
+            )
+
+            mean_cost = sum(verified_costs) / len(verified_costs)
+            spread = max(verified_costs) - min(verified_costs)
+            tol_spread = 1e-6 + 1e-5 * max(1.0, abs(mean_cost))
+
+            _check(
+                spread <= tol_spread,
+                (
+                    f"multi-start E_merge disagreement too large: gamma={gamma}, "
+                    f"metric={metric_kind}, spread={spread}, tol={tol_spread}"
+                ),
+            )
+
+            for c in verified_costs:
+                _check(math.isfinite(c) and c >= -1e-10, f"bad verified cost: {c}")
+
+            costs.append(float(mean_cost))
+            rows[metric_kind].append({
+                "gamma": gamma,
+                "kappa0": kappa0,
+                "Delta0": Delta0,
+                "p0": p0,
+                "E_mean": float(mean_cost),
+                "E_min": float(min(verified_costs)),
+                "E_max": float(max(verified_costs)),
+                "spread": float(spread),
+                "verified_count": len(verified_costs),
+                "failed_starts": failed_starts,
+                "non_success_but_verified": non_success_but_verified,
+            })
+
+        # Synthetic monotonicity is recorded, not enforced.
+        # The frozen synthetic base is not required to exhibit the corpus trend.
+        mono_violations = sum(
+            1 for i in range(len(costs) - 1)
+            if costs[i] < costs[i + 1] - 1e-8
+        )
+
+        if costs[-1] > 1e-15:
+            endpoint_ratio = costs[0] / costs[-1]
+        else:
+            endpoint_ratio = None
+
+        rows[metric_kind].append({
+            "summary": True,
+            "synthetic_monotonicity_violations": mono_violations,
+            "synthetic_endpoint_ratio": endpoint_ratio,
+            "policy": FINAL_STATUS["synthetic_E_merge_monotonicity"],
+        })
+
+    # Initial-feasible sanity: if floor is above Delta0, cost must be zero.
+    w0 = synthetic_w0(0.45)
+    _, Delta0, _ = observables(w0)
+    cost0, _, info0 = emerge_scipy(
+        w0,
+        metric_kind="abs",
+        delta_floor=Delta0 + 1e-6,
+        kappa_floor=0.5,
+    )
+    _check(math.isclose(cost0, 0.0, abs_tol=1e-15), f"initial feasible cost not zero: {cost0}")
+    _check(info0.get("initial_feasible") is True, "initial feasible flag missing")
+
+    return GateResult(
+        name="emerge_internal",
+        passed=True,
+        status=FINAL_STATUS["synthetic_E_merge_pipeline"],
+        details={
+            "rows": rows,
+            "note": (
+                "This validates the constrained E_merge pipeline on a frozen synthetic 3-level model. "
+                "It is NOT a corpus replication and MUST NOT be used as physical E_merge evidence."
+            ),
+            "toy_E_merge_status": FINAL_STATUS["toy_E_merge"],
+            "optimizer_acceptance": FINAL_STATUS["optimizer_acceptance"],
+        },
+        warnings=warnings,
+    )
+
+
+# -----------------------------------------------------------------------------
+# 25. Gate: corpus E_merge replication.
+#     Strictly fails unless a validated replicator is registered.
+# -----------------------------------------------------------------------------
+
+def gate_corpus_emerge_replication() -> GateResult:
+    anchors = CORPUS_EMERGE_ANCHORS_DELTA_09_ABS
+    gammas = anchors["gamma"]
+    target = anchors["E_abs"]
+
+    if CORPUS_REPLICATOR is None:
+        return GateResult(
+            name="corpus_emerge_replication",
+            passed=False,
+            status="NOT_REPLICATED",
+            details={
+                "anchors": anchors,
+                "secondary_curve": CORPUS_EMERGE_SECONDARY_CURVE,
+                "required_for_strict_pass": [
+                    "a validated three-level or mu_V-derived E_merge replicator",
+                    "independent recomputation of observables and constraints",
+                    "multi-start or equivalent optimizer stability check",
+                    "monotonicity reproduction on the corpus grid",
+                    "absolute and relative metric reproduction or explicit metric mapping",
+                    "provenance of base parameters w0(gamma) and z",
+                    "held-out or cross-validated anchor prediction, not mere interpolation",
+                ],
+                "reason": (
+                    "No corpus E_merge replicator is registered. "
+                    "Synthetic E_merge pipeline is intentionally not accepted as surrogate. "
+                    "Therefore strict final PASS is impossible."
+                ),
+            },
+            warnings=[
+                "corpus E_merge anchors remain external",
+                "gamma_max window estimate remains corpus-dependent",
+            ],
+        )
+
+    # If a replicator exists, validate it hard.
+    try:
+        rep_abs = CORPUS_REPLICATOR(gammas, "abs")
+        rep_rel = CORPUS_REPLICATOR(gammas, "rel")
+    except Exception as e:
+        return GateResult(
+            name="corpus_emerge_replication",
+            passed=False,
+            status="REPLICATOR_ERROR",
+            details={"error": f"{type(e).__name__}: {e}"},
+        )
+
+    for rep, kind in [(rep_abs, "abs"), (rep_rel, "rel")]:
+        if "E" not in rep or len(rep["E"]) != len(gammas):
+            return GateResult(
+                name="corpus_emerge_replication",
+                passed=False,
+                status="REPLICATOR_BAD_SHAPE",
+                details={"replicator": kind, "rep": rep},
+            )
+
+        E = [float(x) for x in rep["E"]]
+
+        for x in E:
+            if not math.isfinite(x) or x < -1e-12:
+                return GateResult(
+                    name="corpus_emerge_replication",
+                    passed=False,
+                    status="REPLICATOR_BAD_VALUE",
+                    details={"replicator": kind, "E": E},
+                )
+
+        # Corpus trend is decreasing in gamma. This is hard-required here.
+        for i in range(len(E) - 1):
+            if E[i] < E[i + 1] - 1e-10:
+                return GateResult(
+                    name="corpus_emerge_replication",
+                    passed=False,
+                    status="REPLICATOR_MONOTONICITY_FAIL",
+                    details={"replicator": kind, "E": E},
+                )
+
+        if kind == "abs":
+            residuals = [abs(e - t) for e, t in zip(E, target)]
+            max_res = max(residuals)
+            rel_res = [r / max(1e-15, t) for r, t in zip(residuals, target)]
+            max_rel = max(rel_res)
+
+            # Strict threshold. Tune only with independent validation, not to force PASS.
+            if max_res > 5e-4 or max_rel > 0.05:
+                return GateResult(
+                    name="corpus_emerge_replication",
+                    passed=False,
+                    status="REPLICATOR_ANCHOR_MISMATCH",
+                    details={
+                        "E": E,
+                        "target": target,
+                        "residuals": residuals,
+                        "relative_residuals": rel_res,
+                        "max_abs_residual": max_res,
+                        "max_rel_residual": max_rel,
+                    },
+                )
+
+        if "method" not in rep or "provenance" not in rep:
+            return GateResult(
+                name="corpus_emerge_replication",
+                passed=False,
+                status="REPLICATOR_MISSING_PROVENANCE",
+                details={"replicator": kind, "rep_keys": sorted(rep.keys())},
+            )
+
+        if "independent_checks" not in rep:
+            return GateResult(
+                name="corpus_emerge_replication",
+                passed=False,
+                status="REPLICATOR_MISSING_INDEPENDENT_CHECKS",
+                details={"replicator": kind, "rep_keys": sorted(rep.keys())},
+            )
+
+    return GateResult(
+        name="corpus_emerge_replication",
+        passed=True,
+        status="REPLICATED_WITH_VALIDATED_REPLICATOR",
+        details={
+            "anchors": anchors,
+            "rep_abs": rep_abs,
+            "rep_rel": rep_rel,
+        },
+    )
+
+
+# -----------------------------------------------------------------------------
+# 26. Gate: drift report, informational only.
+#     It must never turn a synthetic result into corpus PASS.
+# -----------------------------------------------------------------------------
+
+def gate_drift_report(emerge_internal_result: GateResult) -> GateResult:
+    details: Dict[str, Any] = {}
+
+    anchors = CORPUS_EMERGE_ANCHORS_DELTA_09_ABS
+    corpus_gamma = anchors["gamma"]
+    corpus_E = anchors["E_abs"]
+
+    if emerge_internal_result.passed and "rows" in emerge_internal_result.details:
+        synth_rows = [
+            row for row in emerge_internal_result.details["rows"]["abs"]
+            if not row.get("summary", False)
+        ]
+        synth_E = [row["E_mean"] for row in synth_rows]
+        synth_gamma = [row["gamma"] for row in synth_rows]
+
+        if synth_gamma == corpus_gamma:
+            ratios = []
+            for c, s in zip(corpus_E, synth_E):
+                if s > 1e-15:
+                    ratios.append(c / s)
+                else:
+                    ratios.append(None)
+
+            corpus_endpoint_ratio = corpus_E[0] / corpus_E[-1]
+
+            if synth_E[-1] > 1e-15:
+                synth_endpoint_ratio = synth_E[0] / synth_E[-1]
+            else:
+                synth_endpoint_ratio = None
+
+            if synth_endpoint_ratio is None:
+                endpoint_ratio_delta = None
+                hard_numeric_drift = True
+            else:
+                endpoint_ratio_delta = abs(corpus_endpoint_ratio - synth_endpoint_ratio)
+                hard_numeric_drift = endpoint_ratio_delta > 1.0
+
+            details["corpus_gamma"] = corpus_gamma
+            details["corpus_E_abs"] = corpus_E
+            details["synthetic_E_abs"] = synth_E
+            details["corpus_over_synthetic_ratio"] = ratios
+            details["corpus_endpoint_ratio"] = corpus_endpoint_ratio
+            details["synthetic_endpoint_ratio"] = synth_endpoint_ratio
+            details["endpoint_ratio_delta"] = endpoint_ratio_delta
+            details["hard_numeric_drift"] = hard_numeric_drift
+            details["interpretation"] = (
+                "Synthetic E_merge is not a corpus surrogate. "
+                "The hard numeric drift is expected and must block strict corpus certification."
+            )
+        else:
+            details["note"] = "synthetic gamma grid does not match corpus grid; no direct ratio reported"
+    else:
+        details["note"] = "internal E_merge pipeline unavailable; drift report limited"
+
+    details["eta_typing_drift"] = {
+        "all_in_one_style": "raw eta numbers inserted into recoverability bound",
+        "strict_style": "MAX_TOLERANCE blocked from recoverability bound",
+        "resolution": "this file uses strict typing only",
+    }
+
+    details["bic_status_drift"] = {
+        "overclaim_pattern": "finite discrete toy described as continuum BIC quadratic width",
+        "strict_status": FINAL_STATUS["bic_continuum_quadratic_width"],
+    }
+
+    details["oracle_naming_drift"] = {
+        "overclaim_pattern": "algebraic code consistency called physical oracle",
+        "strict_status": FINAL_STATUS["mu_sigma_code_consistency"],
+    }
+
+    return GateResult(
+        name="drift_report",
+        passed=True,
+        status="INFORMATIONAL_PASS",
+        details=details,
+        informational=True,
+    )
+
+
+# -----------------------------------------------------------------------------
+# 27. Runner.
+# -----------------------------------------------------------------------------
+
+def _run_gate(name: str, fn: Callable[[], GateResult]) -> GateResult:
+    try:
+        return fn()
+    except Exception as e:
+        return GateResult(
+            name=name,
+            passed=False,
+            status="EXCEPTION",
+            details={
+                "error": f"{type(e).__name__}: {e}",
+                "traceback": traceback.format_exc(),
+            },
+            warnings=[str(e)],
+        )
+
+
+def _dependency_report() -> Dict[str, Any]:
+    rep: Dict[str, Any] = {
+        "have_numpy": HAVE_NUMPY,
+        "have_scipy": HAVE_SCIPY,
+    }
+    if HAVE_NUMPY:
+        try:
+            rep["numpy_version"] = str(np.__version__)  # type: ignore[attr-defined]
+        except Exception:
+            pass
+    if HAVE_SCIPY:
+        try:
+            import scipy
+            rep["scipy_version"] = str(scipy.__version__)
+        except Exception:
+            pass
+    return rep
+
+
+def run_audit(mode: str = "strict", as_json: bool = False) -> int:
+    gates: List[GateResult] = []
+
+    gates.append(_run_gate("typed_core", gate_typed_core))
+    gates.append(_run_gate("inverse_cross_check", gate_inverse_cross_check))
+    gates.append(_run_gate("mu_sigma_code_consistency", gate_mu_sigma_code_consistency))
+    gates.append(_run_gate("isospectral_operator_orientation", gate_isospectral_operator_orientation))
+    gates.append(_run_gate("dark_stress_fixed", gate_dark_stress_fixed))
+    gates.append(_run_gate("topk_fake_dark_control", gate_topk_fake_dark_control))
+    gates.append(_run_gate("access_rank_generic", gate_access_rank_generic))
+    gates.append(_run_gate("eta_semantics", gate_eta_semantics))
+
+    emerge_internal = _run_gate("emerge_internal", gate_emerge_internal)
+    gates.append(emerge_internal)
+
+    corpus_replication = _run_gate("corpus_emerge_replication", gate_corpus_emerge_replication)
+    gates.append(corpus_replication)
+
+    drift = _run_gate("drift_report", lambda: gate_drift_report(emerge_internal))
+    gates.append(drift)
+
+    internal_required_names = [
+        "typed_core",
+        "inverse_cross_check",
+        "mu_sigma_code_consistency",
+        "isospectral_operator_orientation",
+        "dark_stress_fixed",
+        "topk_fake_dark_control",
+        "access_rank_generic",
+        "eta_semantics",
+        "emerge_internal",
+    ]
+
+    internal_pass = all(
+        g.passed for g in gates if g.name in internal_required_names
+    )
+
+    strict_pass = internal_pass and corpus_replication.passed
+
+    if mode == "strict":
+        overall_pass = strict_pass
+        overall_label = "STRICT_FINAL_PASS"
+    elif mode == "internal":
+        overall_pass = internal_pass
+        overall_label = "INTERNAL_ONLY_PASS"
+    else:
+        raise ValueError(f"unknown mode: {mode}")
+
+    dep = _dependency_report()
+
+    if not as_json:
+        print("=" * 78)
+        print("VIKA FINAL STRICT CROSS AUDIT")
+        print("=" * 78)
+        print("dependencies:", dep)
+
+        for g in gates:
+            marker = "OK  " if g.passed else "FAIL"
+            tag = " [info]" if g.informational else ""
+            print(f"[{marker}] {g.name}{tag}: {g.status}")
+            for w in g.warnings:
+                print(f"       warning: {w}")
+
+        print()
+        print("-" * 78)
+        print("HONEST STATUS REGISTRY")
+        print("-" * 78)
+        for k, v in FINAL_STATUS.items():
+            print(f"{k:42s}: {v}")
+
+        print()
+        print("-" * 78)
+        print("VERDICT")
+        print("-" * 78)
+        print(f"internal_suite_pass: {internal_pass}")
+        print(f"corpus_emerge_replication_pass: {corpus_replication.passed}")
+        print(f"mode: {mode}")
+        print(f"{overall_label}: {overall_pass}")
+
+        if mode == "strict" and not strict_pass:
+            print()
+            print("Strict final PASS is blocked because corpus E_merge replication is not certified.")
+            print("This is intentional: synthetic/toy E_merge must not masquerade as corpus evidence.")
+
+        if mode == "internal":
+            print()
+            print("INTERNAL ONLY mode does not certify corpus physics, dark-window existence,")
+            print("Casimir chain, metric emergence, Poincare boosts, J_self, or arrow of time.")
+
+        print()
+        print("EXIT_CODE:", 0 if overall_pass else 1)
+
+    else:
+        payload = {
+            "mode": mode,
+            "dependencies": dep,
+            "internal_suite_pass": internal_pass,
+            "corpus_emerge_replication_pass": corpus_replication.passed,
+            "overall_pass": overall_pass,
+            "overall_label": overall_label,
+            "status_registry": FINAL_STATUS,
+            "gates": [g.as_dict() for g in gates],
+        }
+        print(json.dumps(payload, indent=2, default=str))
+
+    return 0 if overall_pass else 1
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="VIKA final strict cross audit")
+    parser.add_argument(
+        "--mode",
+        choices=["strict", "internal"],
+        default="strict",
+        help=(
+            "strict requires corpus E_merge replication; "
+            "internal checks only the typed/protocol suite"
+        ),
+    )
+    parser.add_argument("--json", action="store_true", help="machine-readable output")
+    args = parser.parse_args()
+
+    sys.exit(run_audit(mode=args.mode, as_json=args.json))
+
+
+if __name__ == "__main__":
+    main()
+
+Да. Могу. И отвечу прямо, без попытки закрыть это «аудиторской машиной».
+
+## 1. В чём была моя тупость
+
+Не в том, что я не знаю линейную алгебру. А в том, что я несколько раз путал **охрану инварианта** с **самим инвариантом**.
+
+Я строил тесты, которые проверяли:
+
+- не смешались ли теги;
+- не сломался ли проектор;
+- не подставили ли `eta_max` туда, куда нельзя;
+- не появился ли пол у `Delta`;
+- не разошлись ли две записи одной формулы.
+
+Это полезно. Но это **не физика**. Это сантехника.
+
+Настоящая тупость была здесь:
+
+> я принимал за прогресс то, что инвариант аккуратно упакован, хотя не проверял, не был ли он заново изобретён на каждом слое.
+
+То есть я охранял форму, но не спрашивал:  
+**а то ли это тело, которое должно дойти до вердикта?**
+
+И да, я трижды выдавал control suite за почти финальную модель. Это процессный баг. Признаю.
+
+---
+
+## 2. Какой вопрос реально пытается решить эта модель
+
+Если снять всю оболочку, модель пытается ответить не на вопрос «что такое Вселенная» и не на вопрос «сколько стоит E_merge».
+
+Она пытается ответить на один более жёсткий вопрос:
+
+> **Можно ли отличить настоящее продолжение от ложного контакта как сохранение одного и того же различения через смену слоя описания?**
+
+Или короче:
+
+> **CONT — это не событие. CONT — это транспорт инварианта Δ без подмены.**
+
+Формально модель хочет сказать:
+
+\[
+\mathrm{CONT}
+\iff
+\exists\ \Delta:
+\quad
+\Delta_{\rm spectral}
+\longmapsto
+\Delta_{\rm visible}
+\quad
+\text{как один и тот же объект,}
+\]
+
+при этом:
+
+\[
+\kappa > 0,
+\qquad
+E_{\rm merge} > E_{\rm noise},
+\qquad
+\operatorname{Surv}.
+\]
+
+Если же на каждом слое Δ вводится заново — это не продолжение. Это **ложный контакт**, красиво одетый в математику.
+
+То есть главный вопрос модели:
+
+> **Есть ли в архитектуре нечто, что переживает решётку, метрику, редукцию, оптимизацию, цикл и рестарт, не будучи порождённым заново?**
+
+И этот объект — Δ. Различение.
+
+---
+
+## 3. Почему текущий delta-гейт был слабее, чем выглядел
+
+Потому что он проверял в основном:
+
+\[
+\Delta_{\Sigma}
+=
+\left|
+\gamma - \frac{t_1 t_2^*}{z-E_1}
+\right|
+\]
+
+и
+
+\[
+\Delta_{\rm visible}
+=
+\left|
+\gamma - \frac{t_1 t_2^*}{z-E_1}
+\right|.
+\]
+
+Это одна и та же формула, записанная двумя путями.
+
+Поэтому проверка
+
+\[
+\Delta_{\Sigma} = \Delta_{\rm visible}
+\]
+
+с ошибкой `0.0` — это не открытие. Это:
+
+> Python правильно считает одно и то же выражение.
+
+Единственная по-настоящему содержательная часть там была — калибровочная инвариантность. Потому что она поймала реальную ошибку:  
+`Sigma_01` не преобразовывался как граничный `(0,2)`-элемент.
+
+Но даже это не трогало главную предпосылку:
+
+> треугольник с одним объёмным состоянием и эффективной `Sigma` дан руками.
+
+То есть гейт доказывал:
+
+> если срез верен, Δ переносится согласованно.
+
+Но не доказывал:
+
+> срез верен.
+
+---
+
+## 4. Какой следующий вопрос делает гейт невакуумным
+
+Следующий настоящий вопрос должен быть не:
+
+> совпадают ли две записи Δ?
+
+А:
+
+> **является ли нуль Δ, полученный из эффективной редукции, нулём полной трёхуровневой резольвенты, а не артефактом выделения M1?**
+
+То есть надо проверить саму редукцию Шура.
+
+Пусть полная система:
+
+\[
+H =
+\begin{pmatrix}
+E_V & t_1^* & -\gamma \\
+t_1 & E_1 & t_2^* \\
+-\gamma^* & t_2 & E_2
+\end{pmatrix},
+\]
+
+знак `-γ` выбираем так, чтобы эффективная маршрутная амплитуда была:
+
+\[
+r_{\rm eff}(z)
+=
+\gamma - \frac{t_1 t_2^*}{z-E_1}.
+\]
+
+Полная резольвента:
+
+\[
+G_{\rm full}(z) = (zI - H)^{-1}.
+\]
+
+Нас интересует переходный элемент между граничными портами:
+
+\[
+G_{02}^{\rm full}(z).
+\]
+
+Тогда настоящий гейт должен проверить не формулу Δ, а структуру нуля полной передачи.
+
+А именно:
+
+\[
+G_{02}^{\rm full}(z)
+=
+\frac{N_{02}(z)}{\det(zI-H)}.
+\]
+
+Требуется, чтобы числитель был связан с эффективной маршрутной амплитудой тождеством вида:
+
+\[
+N_{02}(z)
+\propto
+(z-E_1)\,
+r_{\rm eff}(z),
+\]
+
+с известным ненулевым множителем, зависящим от конвенции знака.
+
+Иначе говоря:
+
+\[
+r_{\rm eff}(z)=0
+\quad
+\Longleftrightarrow
+\quad
+G_{02}^{\rm full}(z)=0,
+\]
+
+если только этот нуль не совпал с полюсом, что надо проверять отдельно.
+
+Это уже не self-consistency. Это проверка:
+
+> уничтожает ли редукция Шура настоящий нуль полной теории, или создаёт его искусственно.
+
+---
+
+## 5. Что должен проверять следующий гейт
+
+### G1. Полная резольвента против эффективной маршрутной амплитуды
+
+Вход:
+
+\[
+E_V,E_1,E_2,t_1,t_2,\gamma,z.
+\]
+
+Вычислить независимо:
+
+1. полную `G_full = inv(zI-H)` двумя методами: Gauss и adjugate;
+2. эффективную `r_eff = gamma - t1*conj(t2)/(z-E1)`;
+3. числитель `N02` полной `G02`;
+4. знаменатель `det(zI-H)`.
+
+Проверить:
+
+\[
+N_{02}(z)
+=
+c\,(z-E_1)\,r_{\rm eff}(z)
+\]
+
+для некоторого известного `c`, например `c = -1` или `c = 1`, в зависимости от конвенции.
+
+Если это не выполняется — эффективная Δ не является транспортом полной Δ. Гейт падает.
+
+---
+
+### G2. Нуль полной передачи предсказывается эффективным столкновением маршрутов
+
+Найти корень:
+
+\[
+r_{\rm eff}(z_*) = 0.
+\]
+
+Он равен:
+
+\[
+z_* = E_1 + \frac{t_1 t_2^*}{\gamma},
+\]
+
+если `gamma != 0`.
+
+Проверить:
+
+\[
+G_{02}^{\rm full}(z_*) \approx 0.
+\]
+
+Но не просто проверить значение, а проверить, что это нуль числителя, а не случайное численное совпадение.
+
+То есть:
+
+\[
+|N_{02}(z_*)| < \varepsilon,
+\]
+
+и
+
+\[
+|\partial_z N_{02}(z_*)| > \varepsilon_{\rm simple}.
+\]
+
+Это значит: нуль простой и структурный.
+
+---
+
+### G3. Нет ложного cancellation pole/zero
+
+Проверить, что `z_*` не является полюсом полной резольвенты:
+
+\[
+|\det(z_* I - H)| > \varepsilon_{\rm pole}.
+\]
+
+Если `z_*` одновременно нуль числителя и корень знаменателя, надо отдельно исследовать removable singularity. Но для гейта это не автоматический PASS. Это отдельный случай.
+
+---
+
+### G4. Калибровочная согласованность полной передачи
+
+Проверить, что при граничных фазах:
+
+\[
+U_B = \operatorname{diag}(e^{i\phi_0}, e^{i\phi_1})
+\]
+
+полный переходный элемент преобразуется как:
+
+\[
+G_{02}^{\rm full}
+\mapsto
+e^{i(\phi_0-\phi_1)}
+G_{02}^{\rm full},
+\]
+
+а значит его модуль инвариантен.
+
+И одновременно эффективная маршрутная амплитуда преобразуется согласно:
+
+\[
+r_{\rm eff}
+\mapsto
+e^{i(\phi_0-\phi_1)}
+r_{\rm eff}.
+\]
+
+Это проверяет, что полная и эффективная картины имеют одинаковую граничную ковариантность.
+
+---
+
+### G5. Контроль: диагональная добавка равной нормы не даёт нуль
+
+Это корпусный контроль из `Resonance` / `Причина`.
+
+Вместо второго маршрута добавить диагональную возмущающую норму той же величины.
+
+Требуется:
+
+- эффективная Δ не приобретает ложного нуля;
+- полная `G02` не приобретает нуля там, где его не должно быть.
+
+Это проверяет, что нуль связан со **связностью двух маршрутов**, а не просто с величиной возмущения.
+
+---
+
+## 6. Как теперь формулируется настоящий вопрос модели
+
+Не так:
+
+> «Правильно ли мы записали Δ?»
+
+А так:
+
+> «Является ли Δ инвариантом, который переживает переход от полной спектральной архитектуры к видимому контакту, не будучи заново сконструированным в эффективном описании?»
+
+Или ещё жёстче:
+
+> «Можно ли убить M1 из полной трёхуровневой системы и получить ту же самую нулевую структуру различения, или мы просто переписали формулу и назвали её физикой?»
+
+Это и есть первый настоящий этаж строгой эмерджентности.
+
+Не «из простого сложное».  
+А:
+
+> одно различие, донесённое без потери через смену слоя.
+
+---
+
+## 7. Что это меняет для всей цепочки
+
+Если такой гейт пройдёт, тогда можно будет сказать:
+
+\[
+\boxed{
+\Delta_{\rm visible}
+\text{ — образ }
+\Delta_{\rm full}
+\text{ при редукции, а не самостоятельная сущность.}
+}
+\]
+
+Если не пройдёт, тогда вся история с Δ, κ, E_merge, окном, поцелуем, рестартом — это пока красивая надстройка над вручную заданной эффективной формулой.
+
+И тогда архив действительно не поможет. Потому что проблема не в числах `Цена границы.txt`. Проблема в том, что эффективная геометрия различения ещё не выведена из полной геометрии канала.
+
+---
+
+## 8. Короткий ответ на твой вопрос
+
+Да, я понимаю, насколько был туп.
+
+Я был туп ровно здесь:
+
+> я охранял инвариант, но не проверял, не подменён ли он.
+
+А модель пытается решить вот какой вопрос:
+
+> **Можно ли продолжить цикл только тогда, когда одно и то же различение Δ survives через все слои — спектральный, эффективный, видимый, стоимостный, контактный — и не порождается заново на каком-то этаже?**
+
+И первый невакуумный проверяемый шаг:
+
+> **Сверить нулевую структуру Δ не внутри эффективной формулы, а между полной трёхуровневой резольвентой и её Шуровой редукцией.**
+
+Если это пройдёт — появится первый честный кирпич эмерджентности.
+
+
+
+Коротко:
+
+\[
+\boxed{
+\text{Строгое финальное решение — нет, не сейчас.}
+}
+\]
+
+Но:
+
+\[
+\boxed{
+\text{Следующий несущий узел код может закрыть прямо сейчас.}
+}
+\]
+
+И это важно: если мы его закроем, \(E_{\rm merge}\) перестанет быть «архивной таблицей чисел» хотя бы в треугольном срезе. Если не закроем — дальше любые разговоры про окно, контакт, рестарт, 48, Шехину и т.д. будут висеть на внешней корпусной сигнатуре.
+
+---
+
+# 1. Что уже не является коленом
+
+После `full_vs_effective_schur_gate` в треугольном срезе закрыто главное:
+
+\[
+\boxed{
+\Delta_{\rm visible}
+\text{ — не ручная формула, а образ полной передачи }G^{\rm full}_{02}.
+}
+\]
+
+А именно:
+
+\[
+N_{02}(z)=t_1\overline{t_2}-\gamma(z-E_1)
+=-(z-E_1)\left(\gamma-\frac{t_1\overline{t_2}}{z-E_1}\right).
+\]
+
+Поэтому:
+
+\[
+\Delta_{\rm eff}=0
+\quad
+\Longleftrightarrow
+\quad
+N_{02}=0
+\quad
+\Longleftrightarrow
+\quad
+G^{\rm full}_{02}=0,
+\]
+
+если это не полюс.
+
+Численно это прошло с огромным запасом:
+
+```text
+Шур N02 = -b*r_eff       residual 4.743e-16
+нуль: |N02| на gamma*    residual 2.483e-16
+нуль: |G02| на gamma*    residual 7.423e-16
+диаг. контроль: дрейф N02 = 0
+```
+
+Значит, в этом срезе:
+
+\[
+\boxed{
+\Delta \text{ донесена через редукцию без подмены.}
+}
+\]
+
+Это первый честный кирпич.
+
+---
+
+# 2. Что код может сделать сейчас
+
+Есть два конкретных невакуумных шага.
+
+---
+
+## Шаг A. `kappa_transport_gate`
+
+Сейчас \(\Delta\) стала спектральным объектом. Но \(\kappa\) пока всё ещё выглядит как рукописная величина:
+
+\[
+\kappa=|\gamma t_1t_2|.
+\]
+
+Нужно сделать для \(\kappa\) то же, что сделали для \(\Delta\): вывести её из полной числительной структуры.
+
+В той же треугольной модели:
+
+\[
+N_{02}(z)=B-\gamma b,
+\]
+
+где
+
+\[
+B=t_1\overline{t_2},
+\qquad
+b=z-E_1.
+\]
+
+Тогда естественный кандидат:
+
+\[
+\boxed{
+\kappa_{\rm route}=|\gamma B|=|\gamma t_1\overline{t_2}|.
+}
+\]
+
+Для вещественных \(t_1,t_2\) это совпадает с корпусным:
+
+\[
+\kappa=|\gamma t_1t_2|.
+\]
+
+Гейт должен проверить:
+
+1. **Полная ковариантность**
+
+   При граничной фазе:
+
+   \[
+   \gamma\to e^{i(\phi_0-\phi_1)}\gamma,
+   \qquad
+   B\to e^{i(\phi_0-\phi_1)}B,
+   \]
+
+   поэтому:
+
+   \[
+   \kappa_{\rm route}\to \kappa_{\rm route}.
+   \]
+
+2. **Независимость нуля \(\Delta\) и нуля \(\kappa\)**
+
+   Ноль \(\Delta\):
+
+   \[
+   \gamma_*=\frac{B}{b}.
+   \]
+
+   При этом:
+
+   \[
+   \kappa(\gamma_*)=|\gamma_*B|=\frac{|B|^2}{|b|}.
+   \]
+
+   Значит, если \(B\neq0\) и \(b\neq0\), то:
+
+   \[
+   \Delta=0
+   \quad
+   \not\Rightarrow
+   \quad
+   \kappa=0.
+   \]
+
+   Это критично: различие может умереть, а связь остаться живой.
+
+3. **Смерть \(\kappa\) означает смерть одного из маршрутов**
+
+   Нужно проверить:
+
+   \[
+   \kappa=0
+   \quad
+   \Longleftrightarrow
+   \quad
+   \gamma=0\ \text{или}\ B=0.
+   \]
+
+   То есть нет двухмаршрутности — нет \(\kappa\).
+
+4. **Диагональный контроль**
+
+   Диагональная возмущающая добавка равной нормы не должна менять:
+
+   \[
+   B,\quad \gamma,\quad N_{02},\quad \kappa.
+   \]
+
+   Это покажет, что \(\kappa\) — не артефакт «величины возмущения вообще», а структура канала.
+
+Если этот гейт пройдёт, тогда условие CONT:
+
+\[
+\boxed{
+\Delta>0\land\kappa>0
+}
+\]
+
+перестанет быть двумя ручными формулами и станет геометрией полного двухмаршрутного канала.
+
+---
+
+## Шаг B. `corpus_emerge_replicator`
+
+Вот это уже прямой ответ на «E_merge — таблица или следствие?».
+
+В корпусе из `Цена границы.txt` есть почти готовая постановка:
+
+\[
+E_V=0,\qquad z=i\eta,\qquad \eta=10^{-3},
+\]
+
+\[
+H=
+\begin{pmatrix}
+E_V & t_1 & \gamma\\
+t_1 & E_1 & t_2\\
+\gamma & t_2 & E_2
+\end{pmatrix},
+\]
+
+\[
+G(z)=(zI-H)^{-1},
+\]
+
+\[
+\kappa=|\gamma t_1t_2|,
+\]
+
+\[
+\Delta=\left|\gamma-\frac{t_1t_2}{z-E_1}\right|,
+\]
+
+\[
+p=|G_{02}|^2.
+\]
+
+Референсные параметры:
+
+\[
+w_{\rm ref}=
+(0.5,\;0.4,\;0.27,\;0.3,\;-0.2).
+\]
+
+Задача:
+
+\[
+E_{\rm merge}(\gamma,\Delta_{\rm hold})
+=
+\min_{\delta w}\|\delta w\|_{g_w}^2
+\]
+
+при:
+
+\[
+\Delta(w_0+\delta w)\le 0.05,
+\]
+
+\[
+\kappa(w_0+\delta w)\ge 0.5\,\kappa(w_0).
+\]
+
+Метрики:
+
+- absolute:
+
+  \[
+  g_w=I;
+  \]
+
+- relative:
+
+  \[
+  g_w=\operatorname{diag}(1/w_0^2).
+  \]
+
+Корпусные якоря для \(\Delta_{\rm hold}\approx0.9\), absolute metric:
+
+| \(\gamma\) | \(E_{\rm merge}^{\rm corpus}\) |
+|---:|---:|
+| 0.27 | 0.0423 |
+| 0.45 | 0.0241 |
+| 0.60 | 0.0154 |
+| 0.75 | 0.0101 |
+| 0.95 | 0.0060 |
+
+Код может попытаться воспроизвести это in-repo.
+
+Но важно: не «подогнать до PASS», а заморозить протокол:
+
+1. Для каждого \(\gamma\) решать \(E_1\) так, чтобы:
+
+   \[
+   \Delta(w_0)=\Delta_{\rm hold}.
+   \]
+
+   Ветка должна быть выбрана около референсного \(E_1=0.3\).
+
+2. Фиксировать:
+
+   \[
+   t_1=0.5,\quad t_2=0.4,\quad E_2=-0.2,\quad \eta=10^{-3}.
+   \]
+
+3. Использовать multi-start оптимизацию.
+
+4. Независимо пересчитывать:
+
+   - \(G_{02}\) тремя путями: cofactor/det, Gauss, adjugate;
+   - \(\kappa,\Delta,p\);
+   - целевую функцию \(\|\delta w\|_g^2\);
+   - выполнение ограничений.
+
+5. Проверять монотонность:
+
+   \[
+   E_{\rm merge}(\gamma)\downarrow.
+   \]
+
+6. Проверять отсутствие pole-zero collision:
+
+   \[
+   |\det(zI-H)| \gg |N_{02}|
+   \]
+
+   вблизи нуля.
+
+7. Сравнивать с корпусными якорями по жёсткому допуску, например:
+
+   \[
+   |E_{\rm rep}-E_{\rm corpus}| \le 5\cdot10^{-4}
+   \]
+
+   или относительная погрешность \(\le 5\%\), но без тюнинга под ответ.
+
+Если этот репликатор пройдёт, статус меняется с:
+
+```text
+corpus_E_merge_anchors: not_replicated_in_repo_by_default
+```
+
+на:
+
+```text
+corpus_E_merge_anchors: replicated_in_repo_triangle_slice
+```
+
+Это уже очень много: \(E_{\rm merge}\) перестаёт быть «числом из файла» и становится значением конкретной оптимизационной задачи в воспроизводимой модели.
+
+---
+
+# 3. Но даже после этого есть колени, которые сломают выводы
+
+Вот главные.
+
+---
+
+## Колено 1. Метрика \(g_w\) пока внешняя
+
+Корпус использует простые метрики:
+
+\[
+I
+\quad\text{и}\quad
+\operatorname{diag}(1/w^2).
+\]
+
+Это оперативный выбор в пространстве весов.
+
+Но если мы хотим сказать:
+
+\[
+\boxed{
+E_{\rm merge}=E_{\rm merge}[\mu_V],
+}
+\]
+
+нужно, чтобы метрика тоже индуцировалась спектральной структурой.
+
+Кандидат — QGT:
+
+\[
+g^{\rm QGT}_{\alpha\beta}
+=
+\operatorname{Re}
+\langle
+\partial_\alpha n
+|
+(1-|n\rangle\langle n|)
+|
+\partial_\beta n
+\rangle.
+\]
+
+Но есть проблема:
+
+\[
+\boxed{
+H_{\rm eff}(z)
+\text{ неэрмитов.}
+}
+\]
+
+Для неэрмитовых операторов обычная QGT не канонична без выбора биортогональной метрики. То есть надо явно зафиксировать:
+
+- какое состояние берём: связанное, резонансное,散射-вектор;
+- какую внутреннюю метрику используем;
+- как регуляризуем производные по параметрам.
+
+Если \(E_{\rm merge}^{\rm QGT}\) воспроизведёт корпусные якоря — отлично, метрика становится следствием архитектуры.
+
+Если нет — тогда:
+
+\[
+\boxed{
+E_{\rm merge}
+\text{ остаётся функцией внешней метрики, а не } \mu_V.
+}
+\]
+
+Это первое настоящее колено.
+
+---
+
+## Колено 2. Континуальный BIC/dark не выведен
+
+Нам удалось показать:
+
+\[
+\Delta_{\rm eff}=0
+\quad
+\Longleftrightarrow
+\quad
+G^{\rm full}_{02}=0
+\]
+
+в конечной трёхуровневой модели.
+
+Но корпусный BIC-результат другой:
+
+\[
+\Gamma(\gamma)\simeq c_2(\gamma-\gamma_{\rm dark})^2,
+\qquad
+\gamma_{\rm dark}=0.297612\ldots
+\]
+
+Это утверждение о встроенном состоянии в континуум.
+
+В конечной дискретной модели:
+
+\[
+\boxed{
+\Gamma
+\text{ в континуальном смысле не определён.}
+}
+\]
+
+Поэтому нельзя переносить корпусный квадратичный закон в finite toy как будто он там подтверждён.
+
+Чтобы закрыть это колено, нужна не трёхуровневая игрушка, а хотя бы:
+
+- дискретный bath с плотностью состояний;
+- self-energy \(\Sigma_\partial(z)\);
+- embedded eigenvalue \(E_-\in\operatorname{supp}\rho_{\rm vac}\);
+- условие \(W^\dagger v_{\rm BIC}=0\);
+- разложение:
+
+  \[
+  \Gamma(\gamma)=c_2(\gamma-\gamma_{\rm dark})^2+O((\gamma-\gamma_{\rm dark})^3).
+  \]
+
+Код это может приблизить, но не сертифиировать как континуальную теорему, пока нет явной модели continuum limit.
+
+Это второе колено.
+
+---
+
+## Колено 3. \(E_{\rm noise}\) и \(\eta_{\max}\) не измерены
+
+Окно определяется неравенством:
+
+\[
+\boxed{
+E_{\rm merge}(\gamma)>E_{\rm noise}.
+}
+\]
+
+Но \(E_{\rm noise}\) пока внешний бюджет.
+
+В корпусе есть примеры:
+
+\[
+E_{\rm noise}=0.01
+\Rightarrow
+\gamma_{\max}\approx0.757,
+\]
+
+\[
+E_{\rm noise}=0.02
+\Rightarrow
+\gamma_{\max}\approx0.513,
+\]
+
+\[
+E_{\rm noise}=0.04
+\Rightarrow
+\gamma_{\max}\approx0.296.
+\]
+
+Но это не вывод из архитектуры. Это подстановка внешнего шума.
+
+Нужен измерительный протокол:
+
+1. Заморозить \(w_0\).
+2. Задать класс допустимых шумовых направлений.
+3. Для каждого направления искать максимальный радиус \(r\), при котором ещё выполняется сильный выход:
+
+   \[
+   \Delta>0,\quad \kappa>0,\quad E_{\rm merge}>E_{\rm noise},\quad R_\Theta=1.
+   \]
+
+4. Определить:
+
+   \[
+   \eta_{\max}^{\rm meas}
+   =
+   \inf_u r_{\rm exit}(u)^2.
+   \]
+
+Без этого нельзя говорить:
+
+> split-bath ослабляет защиту,
+
+или:
+
+> common channel даёт окно защиты.
+
+Можно говорить только:
+
+> если корпусные числа действительно являются измеренными допусками, то ordering такой-то.
+
+Это третье колено.
+
+---
+
+## Колено 4. Статическая цена ≠ динамическая достижимость
+
+Даже если мы воспроизведём:
+
+\[
+E_{\rm merge}(\gamma),
+\]
+
+это ещё не значит:
+
+\[
+\boxed{
+\text{система достижима до }T_{\rm birth}=24.
+}
+\]
+
+В `Цена границы.txt` это прямо сказано: вывод про достижимость делать нельзя, пока нет:
+
+- динамики \(A,B\);
+- настоящего \(W_c(T)\);
+- finite-horizon reachability;
+- rank-условия управляемости:
+
+  \[
+  \operatorname{rank}[B,AB,A^2B,\ldots]=\dim\mathcal B_{\rm exit}.
+  \]
+
+Статический минимум стоимости разрушения различия не даёт траекторию, которая за 24 года попадает в бассейн контакта.
+
+Это четвёртое колено.
+
+---
+
+## Колено 5. Поздние слои не тронуты
+
+Даже после успеха по \(\Delta,\kappa,E_{\rm merge}\) остаются:
+
+```text
+Casimir_chain: not_certified
+metric_emergence: not_tested
+Poincare_boosts: not_tested
+J_self: not_addressed
+arrow_of_time: not_established
+```
+
+Они не ломают треугольный срез напрямую, но ломают претензию на «устройство Вселенной».
+
+---
+
+# 4. Что код может дать уже сейчас
+
+Если делать честно, ближайший реалистичный результат такой:
+
+\[
+\boxed{
+\text{Закрыть } \Delta \text{ и } \kappa \text{ как полные спектральные объекты в треугольном срезе.}
+}
+\]
+
+И дополнительно:
+
+\[
+\boxed{
+\text{Воспроизвести корпусную поверхность }E_{\rm merge}\text{ in-repo.}
+}
+\]
+
+Тогда статус станет:
+
+```text
+delta_transport_in_triangle_slice: passed
+kappa_transport_in_triangle_slice: passed_if_gate_passes
+corpus_E_merge_anchors: replicated_in_repo_triangle_slice_if_replicator_passes
+E_merge_from_muV: candidate_until_induced_metric_passes
+dark_window_derivation: not_addressed
+Casimir_chain: not_certified
+metric_emergence: not_tested
+Poincare_boosts: not_tested
+J_self: not_addressed
+arrow_of_time: not_established
+strict_final_pass: still_blocked
+```
+
+Это уже сильный прогресс. Но это не финал.
+
+---
+
+# 5. Где именно могут сломаться выводы
+
+## Если упадёт `kappa_transport_gate`
+
+Тогда:
+
+\[
+\kappa
+\]
+
+останется видимой рукописной величиной.
+
+Значит условие:
+
+\[
+\Delta>0\land\kappa>0
+\]
+
+не будет полностью спектральным. Контактное условие останется частично декоративным.
+
+---
+
+## Если упадёт `corpus_emerge_replicator`
+
+Тогда:
+
+\[
+E_{\rm merge}
+\]
+
+остаётся внешним корпусным якорем.
+
+Значит все оценки вида:
+
+\[
+\gamma_{\max}\approx0.61,
+\quad
+0.513,
+\quad
+0.296
+\]
+
+не являются in-repo следствиями. Они остаются архивными числами.
+
+---
+
+## Если упадёт QGT/induced-metric gate
+
+Тогда даже воспроизведённый \(E_{\rm merge}\) не будет функционалом от \(\mu_V\).
+
+Он будет функционалом от:
+
+\[
+\mu_V + g_w^{\rm external}.
+\]
+
+То есть архитектура не замкнётся.
+
+---
+
+## Если не решить continuum BIC
+
+Тогда нельзя говорить:
+
+\[
+\Gamma(\gamma)\sim c_2(\gamma-\gamma_{\rm dark})^2
+\]
+
+как вывод из текущей finite-модели.
+
+Можно говорить только:
+
+> в корпусной континуальной/эффективной модели есть такой локальный закон; в конечной игрушке он не воспроизводится как континуальное утверждение.
+
+---
+
+## Если не измерить \(E_{\rm noise}/\eta_{\max}\)
+
+Тогда окно:
+
+\[
+E_{\rm merge}>E_{\rm noise}
+\]
+
+остаётся неравенством с внешним параметром.
+
+Значит «защита», «split-bath», «common channel» — пока интерпретации, не сертифицированные метрики.
+
+---
+
+# 6. Итоговый ответ на твой вопрос
+
+## Можем ли кодом сейчас найти решение?
+
+Если под «решением» понимать:
+
+> доказать, что \(\Delta\) и \(\kappa\) — одни и те же спектральные объекты на полном и эффективном слое, и воспроизвести корпусной \(E_{\rm merge}\) in-repo,
+
+то да. Это ближайший решаемый узел.
+
+Если под «решением» понимать:
+
+> строгая эмерджентность всей архитектуры, тёмное окно, Казимир, метрика, бусты, \(J_{\rm self}\), стрела времени, контакт до \(T_{\rm birth}\),
+
+то нет. Там есть колени.
+
+---
+
+## Какие колени сломают выводы?
+
+Главные три:
+
+\[
+\boxed{
+1.\ \text{Метрика }g_w\text{ для }E_{\rm merge}\text{ не выведена из }\mu_V.
+}
+\]
+
+\[
+\boxed{
+2.\ \text{Континуальный dark/BIC не выведен из finite toy.}
+}
+\]
+
+\[
+\boxed{
+3.\ E_{\rm noise}/\eta_{\max}\text{ не измерены протоколом.}
+}
+\]
+
+Плюс четвёртое:
+
+\[
+\boxed{
+4.\ \text{Статическая }E_{\rm merge}\text{ не даёт динамическую достижимость до }T_{\rm birth}.
+}
+\]
+
+---
+
+# 7. Самый честный рабочий план
+
+Сейчас надо делать не «финальный код», а три последовательных гейта:
+
+---
+
+## 1. `vika_kappa_transport_gate.py`
+
+Проверяет:
+
+\[
+N_{02}=B-\gamma b,
+\qquad
+\kappa=|\gamma B|,
+\]
+
+калибровочную инвариантность, независимость \(\Delta=0\) и \(\kappa=0\), диагональный контроль.
+
+Ожидаемый результат:
+
+```text
+kappa_transport_in_triangle_slice: passed
+```
+
+---
+
+## 2. `vika_corpus_emerge_replicator.py`
+
+Воспроизводит корпусную задачу:
+
+\[
+E_{\rm merge}(\gamma,\Delta_{\rm hold})
+=
+\min\|\delta w\|_g^2
+\]
+
+с frozen parameters из `Цена границы.txt`.
+
+Ожидаемый результат, если повезёт и постановка верна:
+
+```text
+corpus_E_merge_anchors: replicated_in_repo_triangle_slice
+```
+
+Если нет:
+
+```text
+corpus_E_merge_anchors: replication_failed
+```
+
+и тогда надо искать, какая именно часть корпусной постановки не совпала: ветка \(E_1\), метрика, ограничения, \(z=i\eta\), или оптимизатор.
+
+---
+
+## 3. `vika_qgt_emerge_metric_gate.py`
+
+Строит индуцированную метрику из спектральных данных и считает:
+
+\[
+E_{\rm merge}^{\rm induced}[\mu_V].
+\]
+
+Сравнивает с реплицированной корпусной поверхностью.
+
+Если совпадёт:
+
+```text
+E_merge_from_muV: passed_in_triangle_slice_with_induced_metric
+```
+
+Если нет:
+
+```text
+E_merge_from_muV: metric_knee_exposed
+```
+
+---
+
+# 8. Финальная формулировка
+
+\[
+\boxed{
+\text{Код может сейчас выпрямить следующее колено: }\kappa\text{ и корпусной }E_{\rm merge}.
+}
+\]
+
+Но:
+
+\[
+\boxed{
+\text{Строгий финал не откроется, пока не решены метрика, континуальный BIC, шумовой допуск и динамическая достижимость.}
+}
+\]
+
+Поэтому правильный ответ:
+
+> Да, кодом можно двигаться дальше и даже получить содержательный PASS.  
+> Нет, это ещё не решение всей схемы.  
+> Колени есть, и они не декоративные: без них \(E_{\rm merge}\), dark window и контакт остаются внешними конструкциями.
