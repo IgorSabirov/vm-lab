@@ -5,6 +5,8 @@ User instruction (Russian): «С токенами, рангами и цикла�
 
 Repository: IgorSabirov/vm-lab (private; user explicitly authorizes this review).
 Source commit: 0b536c51dbef17f0fd0c92f7aae3ab679ad6279c.
+Revision 2 incorporates the user's new peer attachment of 5 November 2026
+(uploaded filename Вставленный текст(20261105-155743).txt) before actual sending.
 The relevant definitions and claims are included below. Do not assume access
 to the repository, conversation, external files, or a running VM.
 
@@ -124,6 +126,33 @@ Does a Petri-net/coverability implementation need separate preconditions
 even when update vectors coincide? State what must be encoded, without
 certifying an unavailable implementation of Karp--Miller.
 
+NEW GENERALIZATION FROM THE FOLLOW-UP (please prioritize this): define the
+reserve of separate access tokens q=c-e_x. Under B, the guard is q_a>=1,
+and because the output pointer is always r, q'=q+e_a. Therefore supp(q')=
+supp(q) for ANY initial reserve, not just a homogeneous seed, and for any
+partial/total table of any cardinality. Under A a previously absent reserve
+type can appear only by a=x with q_x=0: q'=q+e_x. Thus role aliasing enables
+reserve diversification, but is NOT necessary for positive growth of already
+present reserve types. Check this stronger invariant and its exact scope.
+
+The neighbors' final prose suggests that avoiding this obstruction requires
+either aliasing or copying the result into another access token. Is that
+list exhaustive? As a diagnostic counterexample, NOT an adopted model,
+keep two distinct participants, the same guard and population update, but
+designate a surviving a-token as the NEW POINTER instead: x'=a, not r.
+Then q'=q+e_r and a new result type can enter the reserve without a second
+copy of r. This changes the role-assignment rule; it does not follow from B.
+For f=x+a-1 mod 3 and start x=0,c=(2,0,0), check this proposed path:
+  access 0, r=2, new pointer 0, c=(2,0,1);
+  access 2, r=1, new pointer 2, c=(1,1,2);
+  access 1, r=2, new pointer 1, c=(1,2,2);
+  access 0, r=0, new pointer 0, c=(3,1,2).
+Each event should have two distinct available participants, all labels are
+used, and the pointer returns. Does this show that the obstruction depends
+on where the result is assigned, not merely on having two distinct roles?
+Explicitly state the additional role reassignment assumption and do not
+promote this example to a derived physical mechanism.
+
 Explicit A witness 1, X={0,1,2}, rows x, columns a, '-' undefined:
   [ 1, -, - ]
   [ -, 2, 0 ]
@@ -205,6 +234,19 @@ or is an output/record relation genuinely missing? Name the exact missing
 specification, if any. Distinguish 'two histories can be told apart by us'
 from 'the modeled system has a process producing different internal records'.
 Do not conclude that a static law prevents endogenous regulation or records.
+
+FOLLOW-UP CLARIFICATION: repertoire growth is NOT required for temporal
+observability. One fixed map T_a and one fixed noninjective readout O may
+have an injective history J_a(x)=(O(x),O(T_a x),O(T_a^2 x),...). In the group
+example choose a=2, so T_a(x)=x+1 mod 3. If O(x)=1 for x=0 and 0 otherwise,
+the three initial states give histories (1,0,0), (0,0,1), (0,1,0). This is
+an explicit conditional analogy with Q1; the binary readout O has been
+ADDED and its internal realization is not supplied by the group table.
+Check this analogy and separate it from the constant-readiness counterexample.
+In the peer equation intersection_{k=1}^3 ker(O_kh)={0} for the full quantum
+state, each O_kh must mean the full vector of all filter outcomes (including
+success information), not one scalar observation: is that qualification
+essential? Do not interpret the numeral 3 as a common universal minimum.
 
 ## Q5. Which remaining question is worth checking, and how narrowly?
 
