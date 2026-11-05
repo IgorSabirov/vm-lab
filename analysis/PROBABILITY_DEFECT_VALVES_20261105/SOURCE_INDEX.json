@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-05",
+  "request": "Исследуй мнение соседей.",
+  "parent_commit": "f7bb1d13e6f4a8002c43b802a3dbbd3914acdc04",
+  "status": "Neighbor proposal reviewed; no scientific acceptance, model adoption or numerical run.",
+  "sources": [
+    {
+      "file": "SOURCE_PROPOSAL.txt",
+      "origin": "Quoted neighbor proposal in current user message; final sentence is the user request.",
+      "fidelity": "Transcription from visible message; whitespace normalized, not a byte-exact export.",
+      "sha256": "4908d137e51e29c1cb058fdfa00d5612f2a4a417c1a2d78b55775e046a89a621"
+    },
+    {
+      "file": "SOURCE_ATTACHMENT.txt",
+      "origin": "Вставленный текст(20261105-074016).txt",
+      "library_file_id": "libfile_0f749eae11ac81919e71f89d0ca22a45",
+      "fidelity": "Byte-exact copy of attached local file.",
+      "sha256": "af1d0cf0ea93d5efb5ca1d5772c0e3800b491994c36e4e9aa7922c28313d2fa8"
+    }
+  ],
+  "checked_primary_sources": [
+    {
+      "url": "https://preskill.caltech.edu/pubs/preskill-2001-causal.pdf",
+      "scope": "Definition of semicausality; Section VII, Theorem 7 and proof. Finite-dimensional bipartite unitary, unrestricted operational access as defined by authors."
+    },
+    {
+      "url": "https://arxiv.org/html/quant-ph/9703042v1",
+      "scope": "Two-spin controller example; preparation, conditional pulses, intermediate correlation, final state transfer."
+    }
+  ],
+  "analytical_checks": [
+    "CNOT with Z-only versus X access",
+    "Retained distinction versus operationally detectable influence",
+    "Graph cycle insufficient for readiness",
+    "Counting versus refinement consistency",
+    "Final product state versus record and thermodynamic entropy production"
+  ],
+  "numerical_runs": 0
+}
