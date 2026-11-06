@@ -1,0 +1,53 @@
+{
+  "title": "G8-derived 1D finite-enzyme Painter subcase",
+  "not_exact_reproduction_of_Fig7D": true,
+  "reason": "Figure 7D uses a polymer-derived 3D contact matrix (Supplementary Fig S9A); this run uses the explicitly declared Pc=1/|i-j|^gamma subcase.",
+  "parameters": {
+    "N_nucleosomes": 201,
+    "core_nucleosomes": 9,
+    "center_index_zero_based": 100,
+    "k0": 1.0,
+    "k_over_k0": 2.0,
+    "epsilon": 0.9,
+    "gamma": 1.0,
+    "Ne_total_initial": 9,
+    "kb_over_ku": 1.0,
+    "T_cycle_in_1_over_k0": 55.0,
+    "cycles": 6,
+    "partial_loss_keep_probability": 0.5,
+    "trajectory_count_per_condition": 100,
+    "primary_domain_threshold_M_of_9": 5,
+    "apparatus_extension": {
+      "enzyme_pool_initial_and_cap": 9,
+      "enzyme_half_life_in_1_over_k0": 55.0,
+      "enzyme_synthesis_rate_max_per_1_over_k0": 0.2,
+      "precursor_tokens_initial": 45,
+      "synthesis_requires_core_mark": true,
+      "synthesis_apparatus_A_preloaded_and_fixed": true,
+      "A_is_not_reproduced_by_model": true,
+      "interpretation": "one-level enzyme renewal with explicit external synthesis apparatus; not closed autopoiesis"
+    }
+  },
+  "scenario_codes": {
+    "S1": 0,
+    "S2": 1,
+    "S3": 2,
+    "S4": 3,
+    "S5": "dynamic enzyme pool extension"
+  },
+  "seed_base": 20261106,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "numba": "0.65.1",
+  "script_sha256": "5d4ac451b989f8a6029220d4ac44e0e38f4bd6ff0a6bee9fb9f29d0838b92340",
+  "generated_utc": null,
+  "notes": [
+    "rho_s=0 for all simulated post-initiation times.",
+    "S2 sets reader-dependent recruitment Delta_eff=0; marks only undergo turnover and replicative dilution.",
+    "S3 randomly erases 50% of the initial 9-site core marks before continuation.",
+    "q_n uses pre-division snapshots to allow the full post-dilution generation for restoration.",
+    "S4 removes all initial marks; with rho_s=0 and no marks, all-U is absorbing.",
+    "S5 explicitly adds HME synthesis/degradation and enzyme dilution; it assumes a fixed preloaded synthesis apparatus A and finite precursor tokens.",
+    "No quantum model, protein-folding model, transcription/translation kinetics, or physical energy accounting is included."
+  ]
+}

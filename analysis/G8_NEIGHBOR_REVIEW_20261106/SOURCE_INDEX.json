@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-06",
+  "base_commit": "abf75db06eed3788e8bc4ac4753864efcf3988bb",
+  "execution_commit": "9ed67d8e341feb58d9acc2d2e27083c8856010ed",
+  "user_request": "Изучи мнение соседей.",
+  "inputs": [
+    {
+      "path": "inputs/G8_SUBCASE_SUMMARY.csv",
+      "library_file_id": "libfile_50a5f4c1a4ac8191ac7fe553c9cc305d",
+      "sha256": "76edb67b6e346db4924b0148b4b2d609a85cb159905d857353a0758499dfb553"
+    },
+    {
+      "path": "inputs/G8_RUN_REPORT.md",
+      "library_file_id": "libfile_773c6a030f8c8191ba06447e1096fe64",
+      "sha256": "b0d071c9dc2a32e0713c8c31dd2b6631016df530f707779ff6e888857cd4cb73"
+    },
+    {
+      "path": "inputs/g8_compacted_toy.py",
+      "library_file_id": "libfile_8cada84e51e081919694c66a2750ae51",
+      "sha256": "be3c9c2c8d366f61554deefca7139589d83233356c2389d411bffd73799a041f"
+    },
+    {
+      "path": "inputs/g8_subcase.py",
+      "library_file_id": "libfile_bc24013f0828819199609aee0ac94385",
+      "sha256": "5d4ac451b989f8a6029220d4ac44e0e38f4bd6ff0a6bee9fb9f29d0838b92340"
+    },
+    {
+      "path": "inputs/G8_LINE_CUMULATIVE.csv",
+      "library_file_id": "libfile_bed5e3e6ee308191bb703d4f19cbf09a",
+      "sha256": "2a6b38b827dfa9eaf4fd2385813ccf85cd2c197e8e0bd76a6c0ea49c3c0b6ba0"
+    },
+    {
+      "path": "inputs/G8_COMPACTED_TOY_SUMMARY.csv",
+      "library_file_id": "libfile_d1dcf577a7288191b3a53fba0561ea8f",
+      "sha256": "19341542c5724e57b5946739168b39ca38ef4bb6c2b5e53fee1d0a5698d3a0a6"
+    }
+  ],
+  "primary_literature": {
+    "doi": "10.1093/nar/gkac702",
+    "url": "https://academic.oup.com/nar/article/50/16/9083/6677333",
+    "checked": "rate law (Eq.1), enzyme limitation, replication convention, contact matrix role; not a new full literature survey"
+  },
+  "public_source": {
+    "repository": "physical-biology-of-chromatin/Painter-Model",
+    "commit": "ff6a60db7cf74b2253fcb788549bea4abea07989",
+    "path": "Painter_Model.py",
+    "blob_sha": "b587b98069693971262d32d2f10d170a39398203",
+    "checked": "default parameters and commented delta=ps line; source viewed but not executed"
+  },
+  "parent_results": [
+    "R064",
+    "R066",
+    "R079",
+    "R119",
+    "R120",
+    "R121"
+  ],
+  "constructs": [
+    "C021",
+    "C023",
+    "C024",
+    "C041"
+  ],
+  "new_record": "R122",
+  "new_physical_model_accepted": false,
+  "provided_results_replicated": true,
+  "post_hoc_diagnostics": "LOCAL_ERASURE_DIAGNOSTICS.json, CONDITIONAL_CHECKPOINTS.csv, LOCALIZATION_DENSITY.csv; same raw arrays"
+}
