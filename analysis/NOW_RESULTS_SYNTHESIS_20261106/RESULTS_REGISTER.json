@@ -3600,5 +3600,74 @@
     "scientific_runs": 0,
     "prior_entries_unchanged": true,
     "note": "Незавершённая сборка восстановлена по опубликованным материалам и прочитанным фрагментам; прежний неопубликованный файл не найден. Нумерация C/L в этой ревизии — новая навигация, не заявленное побайтовое восстановление потерянного черновика."
+  },
+  "work_policy": {
+    "source": "RESEARCH_LINEAGE.md",
+    "adopted_date": "2026-11-06",
+    "basis": "Прямое указание пользователя в текущей сессии: заранее определённая генеалогия, проверка готовых решений, оценка вклада и КПД.",
+    "applies_to": [
+      "new_experiments",
+      "new_substantive_analysis",
+      "resumed_research_tasks"
+    ],
+    "before_work": [
+      "registry_commit",
+      "task_and_plan_version",
+      "parent_construct_ids",
+      "parent_result_ids",
+      "open_link_ids_if_applicable",
+      "unresolved_question",
+      "planned_lineage_change",
+      "outcome_decision_map",
+      "prior_work_and_literature_applicability",
+      "minimal_sufficient_method",
+      "total_resource_budget",
+      "stop_conditions"
+    ],
+    "literature_statuses": [
+      "answered_applicable",
+      "partly_answered_or_different_conditions",
+      "not_found_within_bounded_search",
+      "applicability_unresolved_or_source_unavailable"
+    ],
+    "after_work": [
+      "original_plan_reference",
+      "runtime_and_scope_check",
+      "before_plan_obtained_after_table",
+      "evidence_and_conditions",
+      "child_result_ids_and_reverse_links",
+      "remaining_and_new_premises",
+      "primary_question_resolution",
+      "planned_questions_resolved_k_of_n_if_applicable",
+      "resource_plan_actual_and_deviation",
+      "next_decision"
+    ],
+    "roles": [
+      "established_support_or_constraint",
+      "applied_literature_answer",
+      "own_conditional_derivation",
+      "computed_result",
+      "technical_validation",
+      "hypothesis",
+      "open_question"
+    ],
+    "not_kpi": [
+      "novelty",
+      "number_of_runs",
+      "number_of_registry_records",
+      "number_of_pages"
+    ],
+    "negative_answer_can_fulfil_plan": true,
+    "applicable_literature_answer_can_fulfil_plan": true,
+    "technical_pass_is_not_scientific_progress": true,
+    "retrospective_preregistration_forbidden": true,
+    "no_unrequested_full_historical_audit": true,
+    "implemented_as": "mandatory_workflow_documentation; queue enforcement code unchanged"
+  },
+  "record_role_annotations": {
+    "R002": {
+      "role": "established_support_or_constraint",
+      "note": "Известное свойство U(I/d)U†=I/d; само тождество не требует научного прогона и не объявляется открытием проекта. Проверка кода на нём относится к technical_validation."
+    }
   }
 }
