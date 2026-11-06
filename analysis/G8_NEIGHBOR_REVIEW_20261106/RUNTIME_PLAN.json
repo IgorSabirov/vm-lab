@@ -1,0 +1,17 @@
+{
+  "expected_seconds": 13.017,
+  "lower_seconds": 8,
+  "upper_seconds": 25,
+  "full_process_expected_seconds": 14.017,
+  "full_process_lower_seconds": 9,
+  "full_process_upper_seconds": 27,
+  "hard_timeout_seconds": 240,
+  "formula": "cold JIT+trajectory + 100 * sum(9 warm scenario costs) + 0.6 seconds audit/I/O; full process adds 1 second startup",
+  "sample": "one per scenario; trajectory durations vary stochastically, especially near extinction",
+  "bounds_reason": "Explicit bounds allow stochastic ensemble cost variation and JIT/I/O; 8-second lower bound detects major omitted workload",
+  "trajectory_count": 900,
+  "checkpoint_rows": 6300,
+  "calibration": "CALIBRATION.json",
+  "calibration_note": "First attempt completed 10 calls but failed serializing environment because a __pycache__ directory was treated as a file; fixed only file filtering and repeated. Successful internal time 1.921 s versus uncalibrated 3\u201330 s guide: compilation faster than guide; all 10 calls completed. No scientific dynamics changed.",
+  "environment_limits": "Container CPU quota and memory cgroup paths unavailable; single-thread kernels, allocation N=201 and 900*7 integer snapshots; same runtime and affinity as calibration."
+}

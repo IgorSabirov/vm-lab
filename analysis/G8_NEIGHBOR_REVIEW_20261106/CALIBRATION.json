@@ -1,0 +1,76 @@
+{
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "numba": "0.65.1",
+    "llvmlite": "0.47.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_quota": null,
+    "memory_limit": null,
+    "numba_threads": 9,
+    "algorithm": "single-thread njit Gillespie; no parallel=True",
+    "input_sha256": {
+      "G8_COMPACTED_TOY_SUMMARY.csv": "19341542c5724e57b5946739168b39ca38ef4bb6c2b5e53fee1d0a5698d3a0a6",
+      "G8_LINE_CUMULATIVE.csv": "2a6b38b827dfa9eaf4fd2385813ccf85cd2c197e8e0bd76a6c0ea49c3c0b6ba0",
+      "G8_RUN_REPORT.md": "b0d071c9dc2a32e0713c8c31dd2b6631016df530f707779ff6e888857cd4cb73",
+      "G8_SUBCASE_SUMMARY.csv": "76edb67b6e346db4924b0148b4b2d609a85cb159905d857353a0758499dfb553",
+      "g8_compacted_toy.py": "be3c9c2c8d366f61554deefca7139589d83233356c2389d411bffd73799a041f",
+      "g8_subcase.py": "5d4ac451b989f8a6029220d4ac44e0e38f4bd6ff0a6bee9fb9f29d0838b92340"
+    }
+  },
+  "cold_first_trajectory_seconds": 1.8057361159999346,
+  "warm_scenarios": [
+    {
+      "scenario": "S1_initiator_off_RW_on",
+      "seconds": 0.02994084300007671
+    },
+    {
+      "scenario": "S2_reader_writer_off",
+      "seconds": 0.00042790699990291614
+    },
+    {
+      "scenario": "S3_partial_50pct_mark_loss",
+      "seconds": 0.03701547800028493
+    },
+    {
+      "scenario": "S4_full_mark_loss",
+      "seconds": 0.0003954579997298424
+    },
+    {
+      "scenario": "S5_apparatus_renewal_A_preloaded",
+      "seconds": 0.007546489000560541
+    },
+    {
+      "scenario": "S5_control_apparatus_source_off",
+      "seconds": 0.007555922999927134
+    },
+    {
+      "scenario": "C1_compact_core_RW_on",
+      "seconds": 0.008784189999460068
+    },
+    {
+      "scenario": "C5_compact_core_apparatus_A_on",
+      "seconds": 0.00868175399955362
+    },
+    {
+      "scenario": "C5_control_compact_core_A_off",
+      "seconds": 0.005763823000052071
+    }
+  ],
+  "trajectory_calls": 10,
+  "wall_seconds": 1.9205741429996124,
+  "scope": "one cold first trajectory plus 9 warm scenario trajectories; Python imports excluded"
+}
