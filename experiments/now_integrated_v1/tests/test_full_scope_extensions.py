@@ -83,6 +83,15 @@ class FullScopeExtensions(unittest.TestCase):
         for capacity in (0,1):
             with self.assertRaises(ValueError):self.cfg(prepared_records=True,record_slots=capacity).validate()
 
+    def test_partial_calibration_does_not_fabricate_scope_evidence(self):
+        from nowexp.scope_evidence import collect,returns
+        contrasts={'missing':dict(status='NOT_EVALUABLE',reason='not in this calibration')}
+        result=collect(dict(comparisons=[dict(id='X01',contrasts=['missing'])]),contrasts,{},'a'*40,'b')
+        self.assertFalse(result['comparisons']['X01'][0]['complete'])
+        self.assertIsNone(result['comparisons']['X01'][0]['mean'])
+        report=returns(dict(promises=[dict(evidence='missing')]),contrasts,{})
+        self.assertEqual(report['promises'][0]['result_status'],'NOT_EXECUTED')
+
     def test_repair_template_uses_ports_after_component_replacement(self):
         e=Engine(self.cfg(repair_rounds=2,donor_fuel=160,donor_precursor=80),0);e.run()
         c=e.cells['N0']

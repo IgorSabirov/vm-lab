@@ -7,7 +7,7 @@ def collect(mapping,contrasts,controls,commit,config_digest):
             value=contrasts.get(name)
             observations.append(dict(kind='contrast',id=name,complete=bool(value and value['status']!='NOT_EVALUABLE'),
                 source_commit=commit,config_digest=config_digest,artifact='METRICS.json',
-                mean=None if value is None else value['mean'],
+                mean=None if value is None else value.get('mean'),
                 interpretation='Finite candidate comparison, not independent confirmation of its ancestors.'))
         for name in item.get('controls',[]):
             value=controls.get(name)
@@ -22,7 +22,7 @@ def returns(contracts,contrasts,controls):
     for promise in contracts['promises']:
         name=promise['evidence'];record=dict(promise)
         control=controls.get(name);contrast=contrasts.get(name)
-        if control is None and contrast is None:
+        if control is None and (contrast is None or contrast.get('status')=='NOT_EVALUABLE'):
             record.update(result_status='NOT_EXECUTED',actual=None)
         elif control is not None:
             record.update(result_status='EXECUTED_WITH_BOUNDARIES',actual=control['values'],
