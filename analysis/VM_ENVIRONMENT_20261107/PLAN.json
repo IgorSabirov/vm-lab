@@ -1,0 +1,33 @@
+{
+  "kind": "engineering_environment_probe",
+  "authorization": "2026-11-07: user explicitly stopped experiment planning and requested target VM environment tests first",
+  "question": "What job-visible CPU, quota, memory, disk, numerical libraries and checkpoint costs constrain the integrated experiment?",
+  "not_executed_here": ["scientific model", "model smoke", "main ensemble"],
+  "runtime": {
+    "forecast": null,
+    "forecast_status": "NOT_EVALUABLE: first measurement of this exact environment",
+    "global_wall_cap_s": 120,
+    "child_wall_cap_s": 40,
+    "child_cpu_soft_hard_s": [35, 36],
+    "child_address_space_limit_bytes": 2147483648,
+    "worker_processes_simultaneous": 1,
+    "thread_variants": [1, 7],
+    "temporary_disk_bytes_upper": 41943040,
+    "no_package_installation": true
+  },
+  "measurements": {
+    "environment": ["CPU model", "affinity", "visible cgroup quota", "memory and RLIMIT", "free disk", "Python/packages", "requested and actual BLAS threads", "host load snapshot"],
+    "kernels": {"dtype": "complex128", "matrix_dimensions": [69, 133], "eigh_repeats": 5, "evolve_plus_psd_repeats": 10, "warmup": "one per operation"},
+    "memory": "64 MiB warm NumPy copy, five repetitions; not a DRAM bandwidth claim",
+    "io": "32 MiB write+fsync+SHA256 and warm read+SHA256; 100 atomic 32 KiB checkpoints with file and directory fsync",
+    "checkpoint_semantics": "uncommitted replacement preserves the previous complete file; no power-loss or full runner recovery claim"
+  },
+  "lineage": {
+    "engineering_parents": ["RUNTIME_GATE.md", "experiments/now_integrated_v1/nowexp/memory.py", "experiments/now_integrated_v1/nowexp/runner.py"],
+    "expected_return": "measured resource envelope and thread choice before fixing experiment scale; disk and serialization observations inform checkpoint implementation",
+    "scientific_R_C_L_status_change": "none",
+    "pass": "all declared observations saved, numerical/checksum checks pass; exact experiment throughput remains for later kernel calibration",
+    "fail": "preserve partial environment and specific error; dependent planning paused",
+    "unresolved": "unreadable job quota or library metadata stays explicitly unknown"
+  }
+}
