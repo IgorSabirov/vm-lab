@@ -50,24 +50,41 @@ def write(bit, mode, proper_time, modes, coupling, detuning):
             "energy_accounting": "memory_H_only; actuator and fuel not a closed Hamiltonian"}
 
 
-def evolved(data, proper_time):
+@lru_cache(maxsize=128)
+def propagator(modes, coupling, detuning, dt):
+    _, values, vectors = spectrum(modes, coupling, detuning)
+    u = (vectors * np.exp(-1j * values * dt)) @ vectors.conj().T
+    u.flags.writeable = False
+    return u
+
+
+def evolved(data, proper_time, tolerance=None):
     h, values, vectors = spectrum(data["modes"], data["coupling"], data["detuning"])
     dt = proper_time - data["written"]
-    if dt < -1e-10:
+    if tolerance is None:
+        from .state import scientific_thresholds
+        tolerance = scientific_thresholds()["causal_interval_tolerance"]
+    if dt < -tolerance:
         raise ValueError("reading before writing")
-    u = (vectors * np.exp(-1j * values * max(dt, 0))) @ vectors.conj().T
+    u = propagator(data["modes"], data["coupling"], data["detuning"], max(dt, 0))
     rho = u @ unpack(data["rho"]) @ u.conj().T
     return h, rho
 
 
-def read(data, proper_time, draw, survival=1.0, tolerance=1e-10):
+def outcomes(data, proper_time, survival=1.0, tolerance=None, psd_tolerance=None):
+    if tolerance is None:
+        from .state import scientific_thresholds
+        tolerance = scientific_thresholds()["density_trace_tolerance"]
+    if psd_tolerance is None:
+        from .state import scientific_thresholds
+        psd_tolerance = scientific_thresholds()["psd_negative_tolerance"]
     if data["mode"] == "classical":
-        bit = data["bit"] if draw < survival else None
-        return bit, dict(readable_probability=survival, backend="classical"), data
-    h, rho = evolved(data, proper_time)
+        quality = dict(readable_probability=survival, backend="classical", probability_correction_l1=0.)
+        return [(data["bit"], survival, quality, data), (None, 1-survival, quality, data)]
+    h, rho = evolved(data, proper_time, tolerance)
     trace_error = float(abs(np.trace(rho)-1))
     min_eigenvalue = float(np.linalg.eigvalsh(rho).min())
-    if trace_error > tolerance or min_eigenvalue < -tolerance or not np.all(np.isfinite(rho)):
+    if trace_error > tolerance or min_eigenvalue < -psd_tolerance or not np.all(np.isfinite(rho)):
         raise ArithmeticError("invalid density matrix")
     width = data["modes"] + 2
     groups = [[1, 2], [1+width, 2+width]]
@@ -75,20 +92,37 @@ def read(data, proper_time, draw, survival=1.0, tolerance=1e-10):
     probabilities = [float(np.trace(rho[np.ix_(g, g)]).real) for g in groups]
     if min(probabilities) < -tolerance or abs(sum(probabilities)-1) > tolerance:
         raise ArithmeticError("invalid quantum instrument probabilities")
-    probabilities = np.clip(probabilities, 0, 1)
+    raw_probabilities = np.array(probabilities)
+    probabilities = np.clip(raw_probabilities, 0, 1)
     probabilities /= probabilities.sum()
-    outcome = min(int(np.searchsorted(np.cumsum(probabilities), draw, side="right")), 2)
-    g = groups[outcome]
-    post = np.zeros_like(rho)
-    post[np.ix_(g, g)] = rho[np.ix_(g, g)] / probabilities[outcome]
-    quality = dict(readable_probability=float(probabilities[0]+probabilities[1]),
-                   probabilities=probabilities.tolist(), trace_error=trace_error,
-                   min_eigenvalue=min_eigenvalue,
-                   energy_before_read=float(np.trace(h@rho).real),
-                   energy_after_selected_read=float(np.trace(h@post).real),
-                   backend="finite_unitary_projective")
-    updated = dict(data, rho=pack(post), written=proper_time)
-    return (outcome if outcome < 2 else None), quality, updated
+    result = []
+    for outcome, g in enumerate(groups):
+        if probabilities[outcome] == 0:
+            continue
+        # Normalize by the actual positive trace, not the rounded selection mass.
+        post = np.zeros_like(rho)
+        post[np.ix_(g, g)] = rho[np.ix_(g, g)] / raw_probabilities[outcome]
+        quality = dict(readable_probability=float(probabilities[0]+probabilities[1]),
+            probabilities=probabilities.tolist(), trace_error=trace_error,
+            min_eigenvalue=min_eigenvalue,
+            probability_correction_l1=float(np.abs(probabilities-raw_probabilities).sum()),
+            energy_before_read=float(np.trace(h@rho).real),
+            energy_after_selected_read=float(np.trace(h@post).real),
+            backend="finite_unitary_projective")
+        result.append((outcome if outcome < 2 else None, float(probabilities[outcome]), quality,
+                       dict(data, rho=pack(post), written=proper_time)))
+    return result
+
+
+def read(data, proper_time, draw, survival=1.0, tolerance=None):
+    options = [x for x in outcomes(data, proper_time, survival, tolerance) if x[1] > 0]
+    cumulative = 0.
+    for value, probability, quality, post in options:
+        cumulative += probability
+        if draw < cumulative:
+            return value, quality, post
+    value, _, quality, post = options[-1]
+    return value, quality, post
 
 
 def response(modes, coupling, detuning, tolerance=1e-10):

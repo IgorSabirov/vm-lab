@@ -1,17 +1,16 @@
 {
   "schema": 1,
   "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
-  "implementation": "candidate-0.1-review",
-  "freeze_state": "DRAFT_FOR_NEIGHBOR_REVIEW",
+  "implementation": "candidate-0.2-reviewed",
+  "freeze_state": "FROZEN_AFTER_REVIEW",
   "registry_commit": "0cf0f11394f4f9881b8a0a48f8a39201e2a0ea9b",
   "question": "Какие заданные средства продолжения этот кандидат заменяет работающими локальными продуктами, а какие остаются импортами?",
   "user_stage_order": [
-    "assemble_code",
-    "neighbor_review",
-    "corrections",
+    "target_vm_environment",
+    "reviewed_corrections",
     "author_smoke",
-    "target_vm_calibration",
-    "main_vm"
+    "target_vm_executor_calibration",
+    "main_vm_after_current_user_decision"
   ],
   "executed": false,
   "checkpoint_event_interval": 16,
@@ -38,20 +37,67 @@
     },
     "smoke": {
       "cases": [
+        "base",
         "forced11",
+        "forced10",
+        "forced01",
+        "forced00",
         "no_seed",
         "no_production",
         "no_contact",
         "neither",
+        "no_seed_no_production",
         "no_reader",
         "no_record",
+        "no_corrector",
+        "no_precursor",
+        "no_address",
         "no_transferred_apparatus",
         "scrambled_child",
         "late_resource",
+        "late_record",
+        "one_slot",
+        "weak_donor",
+        "retained_apparatus",
+        "given_contact",
+        "reverse_schedule",
+        "moving_child",
+        "repeating_source",
+        "independent",
+        "base_no_production",
+        "base_no_contact",
+        "base_neither",
+        "base_no_corrector",
+        "finite_dark_16",
         "finite_dark_32",
-        "finite_static_32"
+        "finite_dark_64",
+        "finite_static_16",
+        "finite_static_32",
+        "finite_static_64",
+        "detune_0.02",
+        "detune_0.07",
+        "detune_0.15",
+        "bath_4",
+        "bath_16",
+        "bath_32",
+        "wave_no_transfer",
+        "wave_no_reader",
+        "wave_moving",
+        "no_contact_address",
+        "no_successor_address",
+        "mutant_product",
+        "product_cannot_read",
+        "product_cannot_write",
+        "product_cannot_repair",
+        "no_inbox",
+        "one_record_slot",
+        "short_inbox",
+        "no_apparatus_scrambled",
+        "natural_no_corrector",
+        "natural_no_production",
+        "natural_no_contact"
       ],
-      "seeds": 4,
+      "seeds": 2,
       "hard_wall_seconds": 600,
       "memory_limit_mib": 2048,
       "disk_limit_mib": 256
@@ -78,16 +124,16 @@
       "disk_limit_mib": 1024
     }
   },
-  "proposed_main_tasks": 10777,
+  "proposed_main_tasks": 251,
   "budget": {
-    "author_scientific_execution_this_stage": 0,
-    "vm_jobs_this_stage": 0,
+    "author_scientific_execution_this_stage": "bounded smoke and engineering tests authorized",
+    "vm_jobs_this_stage": "environment probes already executed; main not submitted",
     "proposed_main_cpu_processes": 1,
     "proposed_main_wall_cap_seconds": 3600,
     "prediction_seconds": null,
-    "forecast_status": "Awaiting post-review target calibration",
+    "forecast_status": "Environment measured; corrected executor calibration pending",
     "monetary_cost": null,
-    "cost_reason": "No billing tariff queried and no VM job submitted; limits are caps, not measured forecasts",
+    "cost_reason": "Billing counters unavailable; actual environment probe time is archived",
     "enlargement": "Revised workload/forecast and user decision before exceeding this envelope"
   },
   "seeds": {
@@ -122,9 +168,36 @@
       "load_cycle_32"
     ],
     "descriptive_all": true,
-    "confidence": "Nominal 95% bounded Hoeffding interval under independent seed sampling assumption",
+    "confidence": "For sampled diagnostic contrasts only: range(metric)*sum(abs(weights))*sqrt(log(40)/(2*n)); two-sided 95% under independent seed model. Not familywise.",
     "multiple_testing": "No family-wide discovery claims; remaining comparisons exploratory",
-    "exact_preparation_probability": "5/16 correlated, 1/4 independent for content 11; exact input law, not measured continuation"
+    "exact_preparation_probability": "5/16 correlated, 1/4 independent for content 11; exact input law, not measured continuation",
+    "primary_method": "Exact classical input enumeration; all positive numerical Born branches for finite quantum memory. Monte Carlo only designated validation.",
+    "finite_sum": "No sampling error for enumeration; numerical matrix/probability error remains. No probability pruning."
   },
-  "main_readiness": "Requires final reviewed digest, smoke, measured VM calibration and workload forecast; draft cannot launch main"
+  "main_readiness": "Thresholds fixed before smoke; source receipt, full smoke suite, executor VM calibration, forecast and current main authorization still required.",
+  "max_enumeration_nodes": 4096,
+  "checkpoint_branch_interval": 16,
+  "monte_carlo_validation": {
+    "cases": [
+      "base",
+      "finite_static_32",
+      "detune_0.15"
+    ],
+    "seeds": 64,
+    "role": "diagnostic check against finite enumeration, not primary inference"
+  },
+  "proposed_main_tasks_interpretation": "case-level finite enumerations plus 192 diagnostic MC trajectories; branch count bounded separately, exact throughput still uncalibrated",
+  "numerical_probability_policy": {
+    "clip_and_renormalize": "only after raw normalization/negativity checks; report L1 correction",
+    "post_state": "normalize by raw positive outcome trace",
+    "zero_probability": "skip exactly zero outcomes only"
+  },
+  "memory_banks": {
+    "decode_slots": "working_slots; capacity of decoded values only",
+    "inbox": "two typed addresses; explicit capacity and finite proper-time TTL",
+    "stored_records": "separate finite bank, max two modules; prepared substrate imported",
+    "bank_regeneration": "not implemented"
+  },
+  "schedule_semantics": "Imported single-attempt deadlines. Content gates execution success; it does not synthesize the operation schedule. No automatic retry.",
+  "environment_reference": "analysis/VM_ENVIRONMENT_20261107/ENVIRONMENT_CONSTRAINTS.json at 38ab01f0a531c3ecbb43173967c434538303fcf9"
 }

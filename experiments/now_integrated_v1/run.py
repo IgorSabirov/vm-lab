@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 
 for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
-    os.environ.setdefault(name, "1")
+    os.environ[name] = "1"  # measured VM baseline; parallel trajectories are a separate calibration
 
 if __name__ == "__main__":
     from nowexp.runner import run_cli

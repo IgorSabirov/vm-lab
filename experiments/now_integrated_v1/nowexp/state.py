@@ -1,5 +1,12 @@
 from dataclasses import dataclass, field, asdict
 import math
+import json
+from pathlib import Path
+
+
+def scientific_thresholds():
+    """The preregistration is the only source of numerical acceptance defaults."""
+    return json.loads((Path(__file__).parents[1]/"preregistration"/"PROTOCOL.json").read_text())["acceptance"]
 
 
 @dataclass
@@ -40,6 +47,12 @@ class Cell:
     costs: dict = field(default_factory=dict)
     failures: list = field(default_factory=list)
     last_read_quality: dict = field(default_factory=dict)
+    memory_origins: dict = field(default_factory=dict)
+    pending_origins: dict = field(default_factory=dict)
+    pending_at: dict = field(default_factory=dict)
+    last_event: str | None = None
+    capability_uses: list = field(default_factory=list)
+    delivery_times: list = field(default_factory=list)
 
     def pay(self, n, purpose):
         if n < 0:
@@ -94,9 +107,22 @@ class Config:
     scheduler_reverse: bool = False
     working_slots: int = 2
     max_events: int = 1000
+    contact_address_enabled: bool = True
+    successor_address_enabled: bool = True
+    inbox_slots: int = 2
+    record_slots: int = 2
+    inbox_lifetime: float = 256.0
+    produced_template: int = 1
+    produced_disabled_roles: tuple = ()
+    disabled_resource_policy: str = "matched"
+    thresholds: dict = field(default_factory=scientific_thresholds)
+
+    @property
+    def required_content(self):
+        return dict(zip(("A", "B"), self.thresholds["required_decoded_content"]))
 
     def validate(self):
-        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events"):
+        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template"):
             if type(getattr(self, name)) is not int:
                 raise ValueError("integer resource/count required: " + name)
         for name in ("detuning", "bath_coupling", "classical_survival", "supply_delay", "record_delay", "receiver_velocity", "read_wait"):
@@ -120,4 +146,17 @@ class Config:
             raise ValueError("negative stock or delay")
         if self.working_slots < 0 or self.read_wait < 1 or self.max_events < 1:
             raise ValueError("invalid finite budget")
+        if not 0 <= self.inbox_slots <= 2 or not 0 <= self.record_slots <= 2:
+            raise ValueError("two-address finite memory bank required")
+        if not math.isfinite(self.inbox_lifetime) or self.inbox_lifetime < 0:
+            raise ValueError("invalid inbox lifetime")
+        if self.disabled_resource_policy not in ("matched", "natural"):
+            raise ValueError("unknown disabled-resource policy")
+        if not 0 < self.thresholds["function_health_at_least"] <= 10:
+            raise ValueError("function threshold outside health range")
+        if len(self.thresholds["required_decoded_content"]) != 2 or any(x not in (0,1) for x in self.thresholds["required_decoded_content"]):
+            raise ValueError("required content must be two bits")
+        for key in ("causal_interval_tolerance", "density_trace_tolerance", "psd_negative_tolerance", "profile_equivalence_tv"):
+            if not math.isfinite(self.thresholds[key]) or self.thresholds[key] <= 0:
+                raise ValueError("invalid numerical threshold: " + key)
         return self

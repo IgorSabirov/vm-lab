@@ -28,18 +28,21 @@ class Worldline:
         return t + self.gamma * proper_delay
 
 
-def reception(sender, receiver, sent_at, speed=1.0, receiver_delay=0.0):
+def reception(sender, receiver, sent_at, speed=1.0, receiver_delay=0.0, tolerance=None):
     """Earliest intersection with either carrier ray, then receiver-local delay."""
     if not 0 < speed <= 1 or receiver_delay < 0:
         raise ValueError("invalid carrier")
+    if tolerance is None:
+        from .state import scientific_thresholds
+        tolerance = scientific_thresholds()["causal_interval_tolerance"]
     xs = sender.x(sent_at)
     candidates = []
     for direction in (-1, 1):
         velocity = direction * speed
-        if abs(velocity - receiver.v) < 1e-14:
+        if abs(velocity - receiver.v) < tolerance:
             continue
         t = (receiver.x0 - xs + velocity * sent_at) / (velocity - receiver.v)
-        if t >= sent_at - 1e-12:
+        if t >= sent_at - tolerance:
             candidates.append(max(t, sent_at))
     if not candidates:
         raise ValueError("carrier cannot intercept receiver")

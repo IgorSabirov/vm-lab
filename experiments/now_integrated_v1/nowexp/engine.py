@@ -15,13 +15,20 @@ from .state import Cell, Config, Apparatus
 from .kinematics import Worldline, reception
 from .randomness import uniform, input_bits
 from . import memory
-from .local_instruments import produce, retire_inherited, can_repair, correct, withhold
+from .local_instruments import produce, retire_inherited, can_repair, correct, withhold, capable, use
+
+
+class BranchRequired(Exception):
+    def __init__(self, address, options):
+        self.address, self.options = address, options
 
 
 class Engine:
-    def __init__(self, config, seed):
+    def __init__(self, config, seed, decisions=None):
         self.config = config.validate()
         self.seed = int(seed)
+        self.decisions = decisions
+        self.input_content = input_bits(seed, config.forced_content, config.preparation)
         self.now = 0.0
         self.queue = []
         self.events_seen = set()
@@ -41,7 +48,7 @@ class Engine:
             self.lines[name] = Worldline(2*g, config.receiver_velocity if g else 0)
             self.cells[name] = Cell(name, g,
                 fuel=4 if g == 0 else 0,
-                address=f"N{g+1}" if g+1 < config.generations and config.address_enabled else None,
+                address=f"N{g+1}" if g+1 < config.generations and config.address_enabled and config.successor_address_enabled else None,
                 contact=config.imported_contacts,
                 contact_origin="imported" if config.imported_contacts else "absent",
                 contact_material=int(config.imported_contacts),
@@ -52,7 +59,7 @@ class Engine:
             self.cells["N0"].unavailable_material += 1
         self.initial_totals = self.totals()
         self.schedule(0, "N0", "boot", {}, "boot:N0")
-        for side, bit in zip(("A", "B"), input_bits(seed, config.forced_content, config.preparation)):
+        for side, bit in zip(("A", "B"), self.input_content):
             owner = "M" + side
             self.schedule(0, owner, "source_emit", {"side": side, "bit": bit}, owner+":emit")
             if config.source_repeat:
@@ -60,7 +67,7 @@ class Engine:
             self.schedule(5 if config.source_repeat else .1, owner, "source_off", {}, owner+":off")
 
     def schedule(self, t, owner, kind, data, identity, phase=0, parents=()):
-        if not math.isfinite(t) or t < self.now - 1e-10:
+        if not math.isfinite(t) or t < self.now - self.config.thresholds["causal_interval_tolerance"]:
             raise ValueError("event in past/nonfinite time")
         if identity in self.events_seen or any(e["id"] == identity for e in self.queue):
             raise ValueError("duplicate event ID")
@@ -68,10 +75,11 @@ class Engine:
                                id=identity, phase=phase, parents=list(parents)))
 
     def send(self, src, dst, kind, payload, identity, speed=1.0, delay=0.0, parent=None):
-        arrival = reception(self.lines[src], self.lines[dst], self.now, speed, delay)
+        arrival = reception(self.lines[src], self.lines[dst], self.now, speed, delay,
+                            self.config.thresholds["causal_interval_tolerance"])
         x0, x1 = self.lines[src].x(self.now), self.lines[dst].x(arrival)
-        if arrival-self.now+1e-10 < abs(x1-x0):
-            raise ArithmeticError("superluminal delivery")
+        if speed*(arrival-self.now)+self.config.thresholds["causal_interval_tolerance"] < abs(x1-x0):
+            raise ArithmeticError("delivery exceeds its declared carrier speed")
         self.log.append(dict(kind="channel", id=identity, src=src, dst=dst,
                              sent=self.now, received=arrival, x0=x0, x1=x1, speed=speed))
         self.schedule(arrival, dst, kind, payload, identity, parents=(() if parent is None else (parent,)))
@@ -100,6 +108,8 @@ class Engine:
                 raise ArithmeticError("receiver capacity exceeded")
             if len(c.decoded) > self.config.working_slots:
                 raise ArithmeticError("working memory exceeded")
+            if len(c.pending) > self.config.inbox_slots or len(c.memories) > self.config.record_slots:
+                raise ArithmeticError("physical inbox/record bank exceeded")
 
     def request_supply(self, cell, event):
         # Reserve receiver capacity before issuing a real message. No instant donor read.
@@ -111,18 +121,44 @@ class Engine:
                   dict(target=cell.identity, fuel=fuel, precursor=precursor),
                   event["id"]+":request", parent=event["id"])
 
-    def maybe_write(self, cell):
-        if not cell.apparatus:
+    def receive_record(self, cell, side, bit, event):
+        if side in cell.pending or side in cell.memories:
+            return
+        if len(cell.pending) >= self.config.inbox_slots:
+            cell.failures.append("inbox_capacity:"+side)
+            return
+        cell.pending[side] = bit
+        cell.pending_origins[side] = event["id"]
+        cell.pending_at[side] = self.now/self.lines[cell.identity].gamma
+        self.schedule(self.lines[cell.identity].after(self.now, self.config.inbox_lifetime),
+                      cell.identity, "pending_expire", {"side": side},
+                      event["id"]+":expire:"+side, parents=(event["id"],))
+
+    def maybe_write(self, cell, event):
+        if not capable(cell, "write"):
             return
         proper = self.now / self.lines[cell.identity].gamma
         for side in ("A", "B"):
             if side not in cell.pending or side in cell.memories:
+                continue
+            if proper-cell.pending_at[side] > self.config.inbox_lifetime:
+                cell.pending.pop(side)
+                cell.failures.append("inbox_expired:"+side)
+                continue
+            if len(cell.memories) >= self.config.record_slots:
+                cell.failures.append("record_capacity:"+side)
                 continue
             # Classical orthogonal input; spent credit pays loading, not a thermodynamic theorem.
             cost = 2 if self.config.memory == "finite_dark" else 1
             if not cell.pay(cost, "record_load"):
                 continue
             bit = cell.pending.pop(side)
+            use(cell, "write")
+            identity = event["id"]+":write:"+side
+            cell.memory_origins[side] = identity
+            self.log.append(dict(kind="instrument", id=identity, owner=cell.identity,
+                t=self.now, operation="write", parents=sorted(set([event["id"], cell.pending_origins[side]])),
+                cost=cost, output="memory:"+side))
             cell.memories[side] = memory.write(bit, self.config.memory, proper,
                 self.config.bath_modes, self.config.bath_coupling, self.config.detuning)
 
@@ -165,52 +201,82 @@ class Engine:
         cell = self.cells[owner]
         if kind == "boot":
             self.boot(cell, e)
+        elif kind == "pending_expire":
+            if data["side"] in cell.pending:
+                cell.pending.pop(data["side"])
+                cell.failures.append("inbox_expired:"+data["side"])
         elif kind == "supply_arrive":
             packet = self.in_transit.pop(data["packet"])
             cell.reserved_fuel -= data["reserved"]["fuel"]
             cell.reserved_precursor -= data["reserved"]["precursor"]
             cell.fuel += packet["fuel"]
             cell.precursor += packet["precursor"]
-            self.maybe_write(cell)
+            cell.delivery_times.append(dict(kind=kind, coordinate=self.now,
+                                           proper=self.now/self.lines[owner].gamma))
+            self.maybe_write(cell, e)
         elif kind == "record_arrive":
             # A repeat cannot silently erase/replace an existing physical record.
-            if data["side"] not in cell.memories and data["side"] not in cell.pending:
-                cell.pending[data["side"]] = data["bit"]
-            self.maybe_write(cell)
+            self.receive_record(cell, data["side"], data["bit"], e)
+            cell.delivery_times.append(dict(kind=kind, side=data["side"], coordinate=self.now,
+                                           proper=self.now/self.lines[owner].gamma))
+            self.maybe_write(cell, e)
         elif kind == "offspring_arrive":
             packet = self.in_transit.pop(data["packet"])
             cell.apparatus.extend(packet["apparatus"])
-            cell.pending.update(packet["records"])
+            for side, bit in packet["records"].items():
+                self.receive_record(cell, side, bit, e)
             self.boot(cell, e)
-            self.maybe_write(cell)
+            cell.delivery_times.append(dict(kind=kind, coordinate=self.now,
+                                           proper=self.now/self.lines[owner].gamma))
+            self.maybe_write(cell, e)
         elif kind == "read":
             if cfg.erase_record:
                 self.environment_records.extend(copy.deepcopy(list(cell.memories.values())))
                 cell.memories.clear()
                 cell.pending.clear()
-            if cfg.reader_enabled and cell.apparatus:
+            if cfg.reader_enabled and capable(cell, "read"):
                 proper = self.now / self.lines[owner].gamma
                 for side in ("A", "B"):
                     if side not in cell.memories or len(cell.decoded) >= cfg.working_slots:
                         continue
-                    if not cell.pay(1, "record_read"):
+                    if cell.fuel < 1:
+                        cell.failures.append("fuel:record_read")
                         continue
-                    value, quality, post = memory.read(cell.memories[side], proper,
-                        uniform(self.seed, cell.generation, side, "read"), cfg.classical_survival)
+                    options = [x for x in memory.outcomes(cell.memories[side], proper,
+                        cfg.classical_survival, cfg.thresholds["density_trace_tolerance"],
+                        cfg.thresholds["psd_negative_tolerance"]) if x[1] > 0]
+                    address = f"{cell.generation}:{side}:read"
+                    if self.decisions is not None:
+                        if len(options) > 1 and address not in self.decisions:
+                            raise BranchRequired(address, [(i, x[1]) for i,x in enumerate(options)])
+                        chosen = self.decisions.get(address, 0)
+                    else:
+                        draw, total, chosen = uniform(self.seed, cell.generation, side, "read"), 0., len(options)-1
+                        for i, option in enumerate(options):
+                            total += option[1]
+                            if draw < total:
+                                chosen = i
+                                break
+                    value, _, quality, post = options[chosen]
+                    cell.pay(1, "record_read")
+                    use(cell, "read")
+                    e["parents"] = sorted(set(e["parents"]+[cell.memory_origins[side]]))
                     cell.memories[side] = post
                     cell.last_read_quality[side] = quality
                     if value is not None:
                         cell.decoded[side] = value
         elif kind == "produce":
-            produce(cell, cfg.production)
+            produce(cell, cfg.production, cfg)
         elif kind == "retire":
             if cfg.retire_inherited:
                 retire_inherited(cell)
         elif kind == "repair":
             if not cfg.repair_contacts:
-                withhold(cell, 1, 1)
-            elif (not cell.contact and cfg.address_enabled and cell.precursor >= 1
-                  and can_repair(cell, True) and cell.pay(1, "contact_repair")):
+                if cfg.disabled_resource_policy == "matched":
+                    withhold(cell, 1, 1)
+            elif (not cell.contact and cfg.address_enabled and cfg.contact_address_enabled and cell.precursor >= 1
+                  and can_repair(cell, True, cfg) and cell.pay(1, "contact_repair")):
+                use(cell, "repair")
                 cell.precursor -= 1
                 cell.contact_material += 1
                 self.schedule(self.lines[owner].after(self.now, .5), owner, "contact_ready", {},
@@ -219,11 +285,11 @@ class Engine:
             cell.contact = True
             cell.contact_origin = "local_paid_rule_from_record"
         elif kind == "correct":
-            correct(cell, cfg.corrector)
+            correct(cell, cfg.corrector, cfg)
         elif kind == "transfer":
-            if cell.address is None or cell.health < 8 or not cell.contact:
+            if cell.address is None or cell.health < cfg.thresholds["function_health_at_least"] or not cell.contact:
                 return
-            if cell.decoded != {"A":1,"B":1} or not cell.pay(1, "transfer"):
+            if cell.decoded != cfg.required_content or not cell.pay(1, "transfer"):
                 return
             moved = []
             if cfg.transfer_apparatus and len(cell.apparatus) >= 2:
@@ -254,13 +320,18 @@ class Engine:
             raise RuntimeError("declared event limit reached")
         e = self.pop_event()
         self.now = e["t"]
+        cell = self.cells.get(e["owner"])
+        before = None if cell is None else cell.local_view()
+        if cell is not None and cell.last_event is not None:
+            e["parents"] = sorted(set(e["parents"]+[cell.last_event]))
         self.events_seen.add(e["id"])
         self.dispatch(e)
         self.processed += 1
         self.audit()
-        cell = self.cells.get(e["owner"])
+        if cell is not None:
+            cell.last_event = e["id"]
         self.log.append(dict(kind="event", event=copy.deepcopy(e),
-            local=None if cell is None else cell.local_view(), totals=self.totals()))
+            before=before, local=None if cell is None else cell.local_view(), totals=self.totals()))
 
     def run(self, stop_after=None):
         while self.queue and (stop_after is None or self.processed < stop_after):
@@ -269,7 +340,7 @@ class Engine:
 
     def result(self):
         cells = [self.cells[f"N{i}"] for i in range(self.config.generations)]
-        profiles = [dict(node=c.identity, active=c.active, function=int(c.health>=8),
+        profiles = [dict(node=c.identity, active=c.active, function=int(c.health>=self.config.thresholds["function_health_at_least"]),
              health=c.health, transmitted=c.transmitted, decoded=dict(c.decoded),
              own_apparatus=sum(a["made_by"] == c.identity for a in c.apparatus),
              inherited_apparatus=sum(a["made_by"] != c.identity for a in c.apparatus),
@@ -277,13 +348,23 @@ class Engine:
              spent_fuel=c.spent_fuel, remaining_fuel=c.fuel, precursor=c.precursor,
              unavailable_fuel=c.unavailable_fuel, unavailable_material=c.unavailable_material,
              material_waste=c.material_waste, costs=dict(c.costs),
-             read_quality=copy.deepcopy(c.last_read_quality), failures=list(c.failures)) for c in cells]
+             read_quality=copy.deepcopy(c.last_read_quality), failures=list(c.failures),
+             delivery_times=copy.deepcopy(c.delivery_times), capability_uses=copy.deepcopy(c.capability_uses),
+             decode_slots=self.config.working_slots, inbox_slots=self.config.inbox_slots,
+             record_slots=self.config.record_slots, pending_records=len(c.pending), stored_records=len(c.memories)) for c in cells]
         prefix = 0
         for p in profiles:
             if not p["function"]:
                 break
             prefix += 1
-        return dict(profile=profiles, parent_function=profiles[0]["function"],
+        child = cells[1] if len(cells)>1 else None
+        child_lateness = 0.
+        if child is not None and child.started_at is not None:
+            arrivals = [d["proper"] for d in child.delivery_times if d["kind"] == "supply_arrive"]
+            if arrivals:
+                child_lateness = max(0., max(arrivals)-child.started_at/self.lines[child.identity].gamma-self.config.read_wait)
+        return dict(profile=profiles, input_content=self.input_content, child_supply_lateness=child_lateness,
+                    parent_function=profiles[0]["function"],
                     child_function=profiles[1]["function"] if len(profiles)>1 else None,
                     final_function=profiles[-1]["function"],
                     consecutive_functional=prefix,
@@ -298,7 +379,8 @@ class Engine:
                     closure_verdict="FINITE_TRAJECTORY_ONLY")
 
     def snapshot(self):
-        return dict(schema=1, config=asdict(self.config), seed=self.seed, now=self.now,
+        return dict(schema=2, config=asdict(self.config), seed=self.seed, now=self.now,
+            decisions=self.decisions, input_content=self.input_content,
             queue=copy.deepcopy(self.queue), events_seen=sorted(self.events_seen),
             sequence=self.sequence, processed=self.processed,
             cells={k:v.to_dict() for k,v in self.cells.items()},
@@ -310,11 +392,11 @@ class Engine:
 
     @classmethod
     def restore(cls, data):
-        if data["schema"] != 1:
+        if data["schema"] != 2:
             raise ValueError("unsupported checkpoint")
         obj = cls.__new__(cls)
         obj.config = Config(**data["config"]).validate()
-        for k in ("seed","now","sequence","processed","queue","donor","in_transit", "log",
+        for k in ("seed","now","sequence","processed","queue","donor","in_transit", "log", "decisions", "input_content",
                   "environment_records","source_alive","initial_totals"):
             setattr(obj, k, copy.deepcopy(data[k]))
         obj.cells = {k:Cell(**v) for k,v in data["cells"].items()}
