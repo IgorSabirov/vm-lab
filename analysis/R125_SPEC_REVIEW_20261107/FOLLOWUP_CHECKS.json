@@ -1,0 +1,74 @@
+{
+  "cost": {
+    "ledger": [
+      {
+        "event": "initial",
+        "stock": "1",
+        "transit": "0",
+        "consumed": "0",
+        "returned": "0"
+      },
+      {
+        "event": "local_operation_cost",
+        "stock": "9/10",
+        "transit": "0",
+        "consumed": "1/10",
+        "returned": "0"
+      },
+      {
+        "event": "commit",
+        "stock": "2/5",
+        "transit": "1/2",
+        "consumed": "1/10",
+        "returned": "0"
+      },
+      {
+        "event": "return_arrives",
+        "stock": "9/10",
+        "transit": "0",
+        "consumed": "1/10",
+        "returned": "1/2"
+      }
+    ],
+    "source_cost_formula": "-2/5",
+    "net_depletion": "1/10",
+    "irreversible_cost": "1/10",
+    "net_cash_outflow": "1/10"
+  },
+  "spacelike_cancel_race": [
+    {
+      "order": [
+        "remote_loss",
+        "receiver_request"
+      ],
+      "literal": {
+        "old_reservation": "0",
+        "new_grant": "1/2",
+        "carrier_lost": true
+      },
+      "causal": {
+        "old_reservation": "1/2",
+        "new_grant": "0",
+        "carrier_lost": true
+      }
+    },
+    {
+      "order": [
+        "receiver_request",
+        "remote_loss"
+      ],
+      "literal": {
+        "old_reservation": "0",
+        "new_grant": "0",
+        "carrier_lost": true
+      },
+      "causal": {
+        "old_reservation": "1/2",
+        "new_grant": "0",
+        "carrier_lost": true
+      }
+    }
+  ],
+  "note": "The remote loss and receiver request are spacelike in SPEC.md; only the loss notice is allowed to change receiver state",
+  "elapsed_seconds": 0.0031373430000485314
+}

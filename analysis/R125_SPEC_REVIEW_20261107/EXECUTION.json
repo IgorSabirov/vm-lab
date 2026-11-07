@@ -1,0 +1,25 @@
+{
+  "base_commit": "9a46537707abd93f71ef107b931f061a3ac77678",
+  "preregistered_commit": "5b07b1020141aca731b11aaa3ddd68323aecb95c",
+  "main_command": "timeout 15s python check_spec.py",
+  "main_runs": 1,
+  "calibration_runs": 3,
+  "main_seconds": 0.25729737099999284,
+  "predicted_seconds": 0.4155644829998475,
+  "upper_seconds": 2.0,
+  "hard_limit_seconds": 15,
+  "main_within_upper": true,
+  "vm_runs": 0,
+  "main_comparison": "7/8 matched; eighth used a different tail definition; raw failure retained",
+  "adaptive_followup": {
+    "script": "followup_checks.py",
+    "preregistered": false,
+    "reason": "tail convention mismatch and explicit execution of identified lifecycle/cost counterexamples",
+    "seconds": 0.0031373430000485314,
+    "tail_claim_reconciled": true
+  },
+  "full_neighbor_suite_reproduced": false,
+  "full_R125_engine_executed": false,
+  "copilot_review": "not performed; CLI unavailable",
+  "money_credits": "not measured"
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-07",
+  "registry_base": "9a46537707abd93f71ef107b931f061a3ac77678",
+  "source": {
+    "path": "NEIGHBOR_SOURCE.txt",
+    "library_id": "libfile_987405eff9248191a84d8a33b3c595cf",
+    "provided_by": "user",
+    "sha256": "8e749a1cb49be28031d1a8995c9af0992bd0e758b24895c579030d4f5e714495",
+    "bytes": 96083,
+    "coverage": "entire attachment read: R124 audit, R125-v2 specification, final preflight report; dispositions in RESULT.md"
+  },
+  "literature": [
+    {
+      "title": "Chandy–Lamport, Distributed Snapshots (1985)",
+      "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/Determining-Global-States-of-a-Distributed-System.pdf",
+      "read": "primary PDF sections 2–3, channel states, conservation-token example, consistency and termination assumptions",
+      "status": "partly_answered_or_different_conditions",
+      "use": "local states plus channel states; reliable FIFO assumptions not copied to lossy model"
+    },
+    {
+      "title": "Gray–Lamport, Consensus on Transaction Commit",
+      "url": "https://arxiv.org/pdf/cs/0408036",
+      "read": "primary PDF abstract and section 2 safety/liveness/nontriviality definitions",
+      "status": "partly_answered_or_different_conditions",
+      "use": "distinguish cleanup/abort termination from successful service under timeliness hypotheses"
+    },
+    {
+      "title": "U.S. Census Bureau, Methods of Apportionment",
+      "url": "https://www.census.gov/about/history/historical-censuses-and-surveys/census-programs-surveys/decennial-census/methods.html",
+      "read": "official Hamilton/Jefferson method description",
+      "status": "answered_applicable",
+      "use": "allocation schemes are established; finite sweep checks implementation"
+    },
+    {
+      "title": "Gavassino, PRL 137, 022302 (2026)",
+      "url": "https://journals.aps.org/prl/pdf/10.1103/rkz9-xps2",
+      "read": "primary PDF microscopic causality section and footnote 51; not full theorem proof audit",
+      "status": "partly_answered_or_different_conditions",
+      "use": "confirms nonlocal microscopic initial data in selected diffusion sector; no justification for controllable remote cancellation"
+    }
+  ],
+  "no_new_literature_theorem_claimed": true,
+  "full_event_engine": "not implemented or executed"
+}

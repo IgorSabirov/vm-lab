@@ -1,0 +1,582 @@
+{
+  "enumeration": {
+    "demand_vectors": 124,
+    "permutation_comparisons": 7440,
+    "index_tie_failures": 507,
+    "id_tie_failures": 0,
+    "stock_transitions": 1116,
+    "hamilton_decreases": 5,
+    "dhondt_decreases": 0,
+    "seconds": 0.23489453600001298
+  },
+  "statistics": {
+    "z": 0.47193990372426947,
+    "clopper_pearson_95": [
+      0.2908460206079764,
+      0.34886861867129104
+    ],
+    "p_two_sided_probability_order": 0.6370539011495673,
+    "p_double_smaller_inclusive_tail": 0.6587759369024294,
+    "exact_p_definition": "sum exact PMF weights <= weight at k",
+    "interpretation": "arithmetic for iid Binomial(n,p); no coverage claim for fixed SHA256 labels"
+  },
+  "controls": {
+    "divisible_table": [
+      {
+        "stock": "1",
+        "demand": [
+          1,
+          1
+        ],
+        "allocation": {
+          "0": "1/2",
+          "1": "1/2"
+        },
+        "matches": true
+      },
+      {
+        "stock": "1",
+        "demand": [
+          2,
+          1
+        ],
+        "allocation": {
+          "0": "2/3",
+          "1": "1/3"
+        },
+        "matches": true
+      },
+      {
+        "stock": "1/4",
+        "demand": [
+          "1/5",
+          "2/5",
+          "3/5"
+        ],
+        "allocation": {
+          "0": "1/24",
+          "1": "1/12",
+          "2": "1/8"
+        },
+        "matches": true
+      },
+      {
+        "stock": "0",
+        "demand": [
+          1,
+          1
+        ],
+        "allocation": {
+          "0": "0",
+          "1": "0"
+        },
+        "matches": true
+      },
+      {
+        "stock": "1",
+        "demand": [
+          0,
+          0,
+          0
+        ],
+        "allocation": {
+          "0": "0",
+          "1": "0",
+          "2": "0"
+        },
+        "matches": true
+      },
+      {
+        "stock": "1",
+        "demand": [
+          "1/5",
+          "2/5"
+        ],
+        "allocation": {
+          "0": "1/5",
+          "1": "2/5"
+        },
+        "matches": true
+      }
+    ],
+    "receiver": {
+      "0": "3/10",
+      "1": "1/5"
+    },
+    "remote_loss": {
+      "loss_event": [
+        1,
+        0
+      ],
+      "receiver_read": [
+        "3/2",
+        1
+      ],
+      "interval": "3/4",
+      "earliest_notice": 2,
+      "literal_grants": [
+        "0",
+        "1/2"
+      ],
+      "causal_grants_before_notice": [
+        "0",
+        "0"
+      ],
+      "causal_grants_after_notice": [
+        "0",
+        "1/2"
+      ]
+    },
+    "dual_role_capacity": {
+      "cap": "1",
+      "free_stock": "1/2",
+      "outgoing_escrow": "1/2",
+      "incoming_reservation": "1/2",
+      "source_occupancy_formula": "1",
+      "physical_occupancy_or_obligations": "3/2",
+      "assumption": "free stock and outgoing escrow share the same storage; dual-role node"
+    },
+    "return_cost": {
+      "initial": "1",
+      "committed_and_returned": "1/2",
+      "consumed": "1/10",
+      "loss": "0",
+      "commits": 1,
+      "final_resource": "9/10",
+      "source_formula": "-2/5",
+      "irreversible_cost": "1/10"
+    },
+    "resource_horizon": {
+      "global_resource": 10,
+      "cost_per_action": 1,
+      "formula_horizon": 10,
+      "resource_reachable_before_deadline": 0,
+      "observed_successful_cycles": 0
+    },
+    "lifecycle": {
+      "success": {
+        "rows": [
+          {
+            "event": "initial",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "allocate",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "reserve_capacity",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "commit_send",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "1/2",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "arrive",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "1/2",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          }
+        ],
+        "open_obligations": 0,
+        "successful_delivery": 1
+      },
+      "loss": {
+        "rows": [
+          {
+            "event": "initial",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "allocate",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "reserve_capacity",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "commit_send",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "1/2",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "loss_at_carrier_reservation_unchanged",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "1/2",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "later_loss_notice_at_receiver",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "1/2",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          }
+        ],
+        "open_obligations": 0,
+        "successful_delivery": 0
+      },
+      "expired_return": {
+        "rows": [
+          {
+            "event": "initial",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "allocate",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "reserve_capacity",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "commit_send",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "1/2",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "receiver_local_expiry",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "1/2",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "late_arrival_redirected",
+            "sender": "1/2",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "1/2",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "return_arrives",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          }
+        ],
+        "open_obligations": 0,
+        "successful_delivery": 0
+      },
+      "ack_lost_expiry": {
+        "rows": [
+          {
+            "event": "initial",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "allocate",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "reserve_capacity",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "ack_lost",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "sender_expiry",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "receiver_local_expiry",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "stale_ack_rejected",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          }
+        ],
+        "open_obligations": 0,
+        "successful_delivery": 0
+      },
+      "ack_lost_no_expiry": {
+        "rows": [
+          {
+            "event": "initial",
+            "sender": "1",
+            "escrow": "0",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "allocate",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "0",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "reserve_capacity",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          },
+          {
+            "event": "ack_lost",
+            "sender": "1/2",
+            "escrow": "1/2",
+            "transit": "0",
+            "returning": "0",
+            "receiver": "0",
+            "loss": "0",
+            "consumed": "0",
+            "reserved": "1/2",
+            "total_with_losses_and_consumption": "1"
+          }
+        ],
+        "open_obligations": 2,
+        "successful_delivery": 0
+      }
+    },
+    "liveness": {
+      "repeated_expired_requests": 5,
+      "expired_each_within_deadline": true,
+      "outstanding_after_each_expiry": 0,
+      "successful_services": 0
+    },
+    "ulp": {
+      "residual": 2.842170943040401e-14,
+      "machine_epsilon": 2.220446049250313e-16,
+      "units_at_1": 128.0,
+      "units_at_16": 8.0
+    }
+  },
+  "comparison_checks": {
+    "index_count_matches": true,
+    "id_count_matches": true,
+    "hamilton_count_matches": true,
+    "dhondt_count_matches": true,
+    "counts_match": true,
+    "cp_matches": true,
+    "p_order_matches": true,
+    "p_tail_matches": false
+  },
+  "all_reported_counts_match": false,
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_model": "AMD EPYC 7763 64-Core Processor",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_max": null,
+    "memory_max": null,
+    "workload": "single process stdlib; Fraction combinatorics, integer PMF weights, float CP inversion",
+    "code_sha256": "73ec2219a5f23280b44a08c39cf43a39e992aa1df9f0817c325dea9e3a9a9823"
+  },
+  "scope": "specified allocator subset and explicit small witnesses; not all 23 neighbor tests or full R125",
+  "runtime_seconds": 0.25729737099999284
+}
