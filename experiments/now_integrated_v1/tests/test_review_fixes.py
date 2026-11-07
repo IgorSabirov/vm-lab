@@ -129,10 +129,13 @@ class ReviewFixes(unittest.TestCase):
         contract={k:k for k in ('id','ancestor','before','promised_delta','prediction','evidence_refs',
                   'positive_return','negative_return','unresolved_return','relation')}
         contract['evaluation']=dict(kind='contrast',id='x',lower=.95,upper=1)
+        contract['evidence_refs']=['TRAJECTORIES.json','METRICS.json']
         value=dict(status='EXECUTED_DESCRIPTIVE',mean=1,nominal_bounded_95_halfwidth=.5)
         report=ancestor_report([contract],[],{}, {'x':value})[0]
         self.assertEqual(report['status'],'INCONCLUSIVE')
         self.assertEqual(report['realized_return'],'unresolved_return')
+        self.assertEqual(report['evidence_refs'],['ROWS_INDEX.json','METRICS.json'])
+        self.assertEqual(report['preregistered_evidence_refs'],contract['evidence_refs'])
 
     def test_stochastic_health_bound_has_range_factor(self):
         self.assertEqual(metric_range('mean_health',[]),10)

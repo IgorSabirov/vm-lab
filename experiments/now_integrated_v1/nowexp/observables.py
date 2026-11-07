@@ -126,6 +126,9 @@ def ancestor_report(contracts, rows, summaries, contrasts):
     for contract in contracts:
         item = {k:contract[k] for k in ("id", "ancestor", "before", "promised_delta", "prediction",
                 "evidence_refs", "positive_return", "negative_return", "unresolved_return", "relation")}
+        item["preregistered_evidence_refs"] = item["evidence_refs"]
+        item["evidence_refs"] = ["ROWS_INDEX.json" if ref == "TRAJECTORIES.json" else ref
+                                 for ref in item["evidence_refs"]]
         item.update(original_question_resolved=False, scientific_status_promoted=False)
         rule = contract["evaluation"]
         if rule["kind"] == "scope_only":
