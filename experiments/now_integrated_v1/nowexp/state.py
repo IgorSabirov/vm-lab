@@ -53,6 +53,12 @@ class Cell:
     last_event: str | None = None
     capability_uses: list = field(default_factory=list)
     delivery_times: list = field(default_factory=list)
+    fragments: dict = field(default_factory=dict)
+    peer_beacons: dict = field(default_factory=dict)
+    route_template: list = field(default_factory=list)
+    contact_peers: list = field(default_factory=list)
+    reactor_state: int = 1
+    transmitted_to: list = field(default_factory=list)
 
     def pay(self, n, purpose):
         if n < 0:
@@ -116,6 +122,23 @@ class Config:
     produced_disabled_roles: tuple = ()
     disabled_resource_policy: str = "matched"
     thresholds: dict = field(default_factory=scientific_thresholds)
+    separate_apparatus: bool = False
+    seed_writer: bool = True
+    seed_reader: bool = True
+    damage_writer: bool = False
+    damage_reader: bool = False
+    inherited_routes: bool = False
+    transmit_route: bool = True
+    damage_route: bool = False
+    fragmented_records: bool = False
+    drop_fragment: bool = False
+    duplicate_fragment: bool = False
+    fragment_slots: int = 4
+    completion_mode: str = 'isolate'
+    erase_environment_record: bool = False
+    branching: bool = False
+    prepared_records: bool = False
+    production_semantics: str = 'pair_rule'
 
     @property
     def required_content(self):
@@ -136,7 +159,7 @@ class Config:
             raise ValueError("generations outside reviewed envelope")
         if self.memory not in ("classical", "finite_dark", "finite_static"):
             raise ValueError("unknown memory backend")
-        if self.preparation not in ("correlated", "independent"):
+        if self.preparation not in ("correlated", "independent",'bell_x','dephased_x','bell_z','dephased_z'):
             raise ValueError("unknown preparation law")
         if not 2 <= self.bath_modes <= 64:
             raise ValueError("bath size outside envelope")
@@ -154,6 +177,16 @@ class Config:
             raise ValueError("unknown disabled-resource policy")
         if not 0 < self.thresholds["function_health_at_least"] <= 10:
             raise ValueError("function threshold outside health range")
+        if self.fragment_slots not in range(5):
+            raise ValueError('fragment capacity outside four-slot envelope')
+        if self.completion_mode not in ('isolate','trace','erase','transfer','decay'):
+            raise ValueError('unknown completion instrument')
+        if self.branching and (self.generations!=3 or not self.separate_apparatus):
+            raise ValueError('reviewed branching envelope: parent and two children, separate W/R')
+        if self.production_semantics not in ('pair_rule','V1','V2','A'):
+            raise ValueError('unknown production semantics')
+        if self.production_semantics!='pair_rule' and not self.separate_apparatus:
+            raise ValueError('typed production requires distinct functional apparatus')
         if len(self.thresholds["required_decoded_content"]) != 2 or any(x not in (0,1) for x in self.thresholds["required_decoded_content"]):
             raise ValueError("required content must be two bits")
         for key in ("causal_interval_tolerance", "density_trace_tolerance", "psd_negative_tolerance", "profile_equivalence_tv"):

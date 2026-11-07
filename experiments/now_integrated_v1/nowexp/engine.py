@@ -41,6 +41,8 @@ class Engine:
         self.log = []
         self.environment_records = []
         self.source_alive = {"MA": True, "MB": True}
+        self.source_registers = dict(zip(('MA','MB'),self.input_content))
+        self.completion_events = []
         self.supply_requests = set()
         for g in range(config.generations):
             name = f"N{g}"
@@ -57,7 +59,35 @@ class Engine:
             self.cells["N0"].apparatus.append(Apparatus("seed:A", "preparation", -1, 1).__dict__)
         else:
             self.cells["N0"].unavailable_material += 1
+        if config.separate_apparatus:
+            root=self.cells['N0'];root.apparatus=[]
+            for label,enabled,roles in (
+                ('W',config.initial_seed and config.seed_writer,['write','catalyze']),
+                ('R',config.initial_seed and config.seed_reader,['read','catalyze','repair','correct'])):
+                if enabled:
+                    apparatus=Apparatus('seed:'+label,'preparation',-1,1).__dict__
+                    apparatus.update(roles=roles,functional_type='writer' if label=='W' else 'reader')
+                    root.apparatus.append(apparatus)
+                else:root.unavailable_material+=1
+            if not config.initial_seed:root.unavailable_material-=1
+            for cell in self.cells.values():cell.precursor_capacity=16
+        if config.inherited_routes:
+            for cell in self.cells.values():cell.address=None
+            self.cells['N0'].route_template=[0,1]
+            # Local ports are delivered by physical signals on the given substrate.
+            radius=4.01 if config.branching else 2.01
+            for src in self.cells:
+                for dst in self.cells:
+                    dx=self.lines[src].x(0)-self.lines[dst].x(0)
+                    if src!=dst and 0<dx<=radius:
+                        self.schedule(0,src,'beacon_emit',dict(target=dst),src+':beacon:'+dst)
         self.initial_totals = self.totals()
+        if config.prepared_records:
+            root=self.cells['N0']
+            for side,bit in zip(('A','B'),self.input_content):
+                root.pay(1,'prepared_record_cost')
+                root.memories[side]=memory.write(bit,config.memory,0.,config.bath_modes,config.bath_coupling,config.detuning)
+                root.memory_origins[side]='prepared:'+side
         self.schedule(0, "N0", "boot", {}, "boot:N0")
         for side, bit in zip(("A", "B"), self.input_content):
             owner = "M" + side
@@ -110,11 +140,14 @@ class Engine:
                 raise ArithmeticError("working memory exceeded")
             if len(c.pending) > self.config.inbox_slots or len(c.memories) > self.config.record_slots:
                 raise ArithmeticError("physical inbox/record bank exceeded")
+            if sum(len(v) for v in c.fragments.values())>self.config.fragment_slots:
+                raise ArithmeticError('fragment bank exceeded')
 
     def request_supply(self, cell, event):
         # Reserve receiver capacity before issuing a real message. No instant donor read.
         fuel = min(14, cell.fuel_capacity-cell.fuel-cell.reserved_fuel-cell.unavailable_fuel)
-        precursor = min(4, cell.precursor_capacity-cell.precursor-cell.reserved_precursor-cell.unavailable_material)
+        precursor = min(10 if self.config.separate_apparatus else 4,
+                        cell.precursor_capacity-cell.precursor-cell.reserved_precursor-cell.unavailable_material)
         cell.reserved_fuel += fuel
         cell.reserved_precursor += precursor
         self.send(cell.identity, "donor", "supply_request",
@@ -177,12 +210,35 @@ class Engine:
         kind, owner, data = e["kind"], e["owner"], e["data"]
         cfg = self.config
         if kind == "source_off":
-            self.source_alive[owner] = False
+            mode=cfg.completion_mode;before=self.source_registers[owner]
+            if mode!='trace':self.source_alive[owner]=False
+            if mode in ('erase','transfer','decay'):
+                self.environment_records.append(dict(mode='classical_completion',operation=mode,
+                    owner=owner,bit=before,accessible=mode=='transfer'))
+                self.source_registers[owner]=0 if mode=='erase' else None
+            self.completion_events.append(dict(owner=owner,operation=mode,t=self.now,
+                interaction_stopped=not self.source_alive[owner],before=before,
+                after=self.source_registers[owner],record_in_full_environment=mode in ('erase','transfer','decay')))
+            return
+        if kind=='beacon_emit':
+            self.send(owner,data['target'],'beacon_arrive',dict(peer=owner),e['id']+':arrive',parent=e['id'])
             return
         if kind == "source_emit":
             if self.source_alive[owner]:
-                self.send(owner, "N0", "record_arrive", data, e["id"]+":delivery",
-                          delay=cfg.record_delay, parent=e["id"])
+                if cfg.fragmented_records:
+                    # Two shares are required; neither incomplete message enters the decoder.
+                    mask=int(uniform(self.seed,0,data['side'],'fragment')>=.5)
+                    for index,value in enumerate((mask,mask^data['bit'])):
+                        if cfg.drop_fragment and index==1:continue
+                        fragment=dict(side=data['side'],message=e['id'],index=index,value=value)
+                        self.send(owner,'N0','fragment_arrive',fragment,e['id']+':fragment:'+str(index),
+                                  delay=cfg.record_delay+index*.25,parent=e['id'])
+                        if cfg.duplicate_fragment:
+                            self.send(owner,'N0','fragment_arrive',fragment,e['id']+':duplicate:'+str(index),
+                                      delay=cfg.record_delay+index*.25+.1,parent=e['id'])
+                else:
+                    self.send(owner, "N0", "record_arrive", data, e["id"]+":delivery",
+                              delay=cfg.record_delay, parent=e["id"])
             return
         if kind == "supply_request":
             if e["id"] in self.supply_requests:
@@ -199,7 +255,23 @@ class Engine:
                       packet_id, speed=.5, delay=cfg.supply_delay, parent=e["id"])
             return
         cell = self.cells[owner]
-        if kind == "boot":
+        if kind=='beacon_arrive':
+            cell.peer_beacons[data['peer']]=dict(received=self.now,event=e['id'])
+        elif kind=='fragment_arrive':
+            side=data['side']
+            if side in cell.pending or side in cell.memories:return
+            fragments=cell.fragments.setdefault(data['message'],{})
+            index=str(data['index'])
+            if index in fragments:
+                if fragments[index]!=data['value']:cell.failures.append('conflicting_fragment')
+                return
+            if sum(len(v) for v in cell.fragments.values())>=cfg.fragment_slots:
+                cell.failures.append('fragment_capacity');return
+            fragments[index]=data['value']
+            if set(fragments)=={'0','1'}:
+                bit=fragments['0']^fragments['1'];cell.fragments.pop(data['message'])
+                self.receive_record(cell,side,bit,e);self.maybe_write(cell,e)
+        elif kind == "boot":
             self.boot(cell, e)
         elif kind == "pending_expire":
             if data["side"] in cell.pending:
@@ -223,6 +295,7 @@ class Engine:
         elif kind == "offspring_arrive":
             packet = self.in_transit.pop(data["packet"])
             cell.apparatus.extend(packet["apparatus"])
+            if cfg.inherited_routes:cell.route_template=list(packet.get('route_template',[]))
             for side, bit in packet["records"].items():
                 self.receive_record(cell, side, bit, e)
             self.boot(cell, e)
@@ -230,6 +303,12 @@ class Engine:
                                            proper=self.now/self.lines[owner].gamma))
             self.maybe_write(cell, e)
         elif kind == "read":
+            if cfg.damage_writer or cfg.damage_reader:
+                damaged=[a for a in cell.apparatus if
+                    (cfg.damage_writer and a.get('functional_type')=='writer') or
+                    (cfg.damage_reader and a.get('functional_type')=='reader')]
+                cell.apparatus=[a for a in cell.apparatus if a not in damaged]
+                cell.material_waste+=sum(a['material_units'] for a in damaged)
             if cfg.erase_record:
                 self.environment_records.extend(copy.deepcopy(list(cell.memories.values())))
                 cell.memories.clear()
@@ -274,6 +353,21 @@ class Engine:
             if not cfg.repair_contacts:
                 if cfg.disabled_resource_policy == "matched":
                     withhold(cell, 1, 1)
+            elif cfg.inherited_routes:
+                if cfg.damage_route:cell.route_template=[]
+                if cell.contact:return
+                available=cell.apparatus
+                if len(cell.route_template)!=2 or any(type(i)!=int or i<0 or i>=len(available) for i in cell.route_template):
+                    cell.failures.append('missing_contact_template');return
+                writer,reader=[available[i] for i in cell.route_template]
+                if writer not in capable(cell,'write') or reader not in capable(cell,'read'):
+                    cell.failures.append('template_ports_incompatible');return
+                if cell.precursor<1 or not can_repair(cell,True,cfg) or not cell.pay(1,'contact_repair'):return
+                use(cell,'repair');cell.precursor-=1;cell.contact_material+=1
+                cell.contact_peers=[writer['identity'],reader['identity']]
+                peers=sorted(cell.peer_beacons)
+                if peers and not (cfg.branching and cell.generation>0):cell.address=peers[0]
+                self.schedule(self.lines[owner].after(self.now,.5),owner,'contact_ready',{},e['id']+':done',parents=(e['id'],))
             elif (not cell.contact and cfg.address_enabled and cfg.contact_address_enabled and cell.precursor >= 1
                   and can_repair(cell, True, cfg) and cell.pay(1, "contact_repair")):
                 use(cell, "repair")
@@ -289,19 +383,23 @@ class Engine:
         elif kind == "transfer":
             if cell.address is None or cell.health < cfg.thresholds["function_health_at_least"] or not cell.contact:
                 return
-            if cell.decoded != cfg.required_content or not cell.pay(1, "transfer"):
+            if cell.decoded != cfg.required_content:
                 return
-            moved = []
-            if cfg.transfer_apparatus and len(cell.apparatus) >= 2:
-                moved.append(cell.apparatus.pop())
-            records = dict(cell.decoded)
-            if cfg.scramble_child:
-                records["B"] ^= 1
-            packet_id = e["id"]+":packet"
-            self.in_transit[packet_id] = dict(fuel=0, precursor=0, apparatus=moved, records=records)
-            self.send(owner, cell.address, "offspring_arrive", dict(packet=packet_id),
-                      packet_id, speed=.5, parent=e["id"])
-            cell.transmitted = True
+            targets=sorted(cell.peer_beacons)[:2] if cfg.branching and cell.generation==0 else [cell.address]
+            for target in targets:
+                if not cell.pay(1,'transfer'):break
+                moved=[]
+                count=2 if cfg.separate_apparatus else 1
+                if cfg.transfer_apparatus and len(cell.apparatus)>=2*count:
+                    moved=cell.apparatus[-count:];del cell.apparatus[-count:]
+                records=dict(cell.decoded)
+                if cfg.scramble_child:records['B']^=1
+                packet_id=e['id']+':packet'+(':'+target if cfg.branching else '')
+                self.in_transit[packet_id]=dict(fuel=0,precursor=0,apparatus=moved,records=records,
+                    route_template=list(cell.route_template) if cfg.transmit_route else [])
+                self.send(owner,target,'offspring_arrive',dict(packet=packet_id),packet_id,speed=.5,parent=e['id'])
+                cell.transmitted=True
+                cell.transmitted_to.append(target)
         else:
             raise ValueError("unknown local instrument: "+kind)
 
@@ -352,6 +450,13 @@ class Engine:
              delivery_times=copy.deepcopy(c.delivery_times), capability_uses=copy.deepcopy(c.capability_uses),
              decode_slots=self.config.working_slots, inbox_slots=self.config.inbox_slots,
              record_slots=self.config.record_slots, pending_records=len(c.pending), stored_records=len(c.memories)) for c in cells]
+        for c,p in zip(cells,profiles):
+            p.update(apparatus_types=[a.get('functional_type','shared') for a in c.apparatus],
+                     route_template=list(c.route_template),contact_endpoints=list(c.contact_peers),
+                     delivered_peers=sorted(c.peer_beacons),fragment_slots_used=sum(len(v) for v in c.fragments.values()),
+                     transmitted_to=list(c.transmitted_to),
+                     potential_children=([f'N{i}' for i in (1,2)] if c.generation==0 else []) if self.config.branching
+                         else ([f'N{c.generation+1}'] if c.generation+1<self.config.generations else []))
         prefix = 0
         for p in profiles:
             if not p["function"]:
@@ -375,6 +480,8 @@ class Engine:
                     material_and_credit_balance=self.totals(), initial_totals=self.initial_totals,
                     events=self.processed, model_time=self.now,
                     external_injections=0, geometric_substrate="given",
+                    mediator_completion=copy.deepcopy(self.completion_events),
+                    source_registers=copy.deepcopy(self.source_registers),
                     energy_balance_status="NOT_IMPLEMENTED: credits are not joules",
                     closure_verdict="FINITE_TRAJECTORY_ONLY")
 
@@ -387,6 +494,7 @@ class Engine:
             lines={k:asdict(v) for k,v in self.lines.items()}, donor=dict(self.donor),
             in_transit=copy.deepcopy(self.in_transit), log=copy.deepcopy(self.log),
             environment_records=copy.deepcopy(self.environment_records),
+            source_registers=copy.deepcopy(self.source_registers),completion_events=copy.deepcopy(self.completion_events),
             source_alive=dict(self.source_alive), supply_requests=sorted(self.supply_requests),
             initial_totals=dict(self.initial_totals))
 
@@ -397,7 +505,7 @@ class Engine:
         obj = cls.__new__(cls)
         obj.config = Config(**data["config"]).validate()
         for k in ("seed","now","sequence","processed","queue","donor","in_transit", "log", "decisions", "input_content",
-                  "environment_records","source_alive","initial_totals"):
+                  "environment_records","source_alive","initial_totals","source_registers","completion_events"):
             setattr(obj, k, copy.deepcopy(data[k]))
         obj.cells = {k:Cell(**v) for k,v in data["cells"].items()}
         obj.lines = {k:Worldline(**v) for k,v in data["lines"].items()}

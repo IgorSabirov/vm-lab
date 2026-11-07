@@ -6,7 +6,8 @@ import math
 PROFILE_FIELDS = ("function", "health", "transmitted", "decoded", "own_apparatus",
     "inherited_apparatus", "contact", "contact_origin", "spent_fuel", "remaining_fuel",
     "precursor", "unavailable_fuel", "unavailable_material", "material_waste", "costs",
-    "failures", "pending_records", "stored_records", "decode_slots", "inbox_slots", "record_slots")
+    "failures", "pending_records", "stored_records", "decode_slots", "inbox_slots", "record_slots",
+    "apparatus_types", "route_template", "contact_endpoints", "delivered_peers", "fragment_slots_used", "transmitted_to")
 
 
 def distribution(group):
@@ -45,12 +46,20 @@ def summarize(rows):
             qf = sum(w*r["profile"][i]["function"] for w,r in weighted)
             qt = sum(w*bool(r["profile"][i]["transmitted"]) for w,r in weighted)
             qs = sum(w*r["profile"][i]["function"]*bool(r["profile"][i]["transmitted"]) for w,r in weighted)
-            generations.append(dict(generation=i, p_function=qf, p_transport=qt,
-                p_transfer_given_function=None if qf == 0 or i == count-1 else qs/qf,
-                conditional_status="terminal_no_successor" if i == count-1 else ("zero_conditioning_mass" if qf == 0 else "defined"),
-                p_line_success=None if i == count-1 else qs,
-                p_child_function_given_transfer=None if qt == 0 or i == count-1 else
-                    sum(w*bool(r["profile"][i]["transmitted"])*r["profile"][i+1]["function"] for w,r in weighted)/qt))
+            children=weighted[0][1]['profile'][i].get('potential_children',
+                [weighted[0][1]['profile'][i+1]['node']] if i+1<count else [])
+            targets={}
+            for child in children:
+                denominator=sum(w*int(child in r['profile'][i].get('transmitted_to',children if r['profile'][i]['transmitted'] else [])) for w,r in weighted)
+                numerator=sum(w*int(child in r['profile'][i].get('transmitted_to',children if r['profile'][i]['transmitted'] else []))*
+                    next(p['function'] for p in r['profile'] if p['node']==child) for w,r in weighted)
+                targets[child]=dict(p_transmitted=denominator,p_function_given_transmission=None if denominator==0 else numerator/denominator)
+            generations.append(dict(generation=i,carrier=weighted[0][1]['profile'][i]['node'],p_function=qf,p_transport=qt,
+                p_transfer_given_function=None if qf==0 or not children else qs/qf,
+                conditional_status='terminal_no_successor' if not children else ('zero_conditioning_mass' if qf==0 else 'defined'),
+                p_line_success=qs if children else None,
+                p_child_function_given_transfer=next(iter(targets.values()))['p_function_given_transmission'] if len(targets)==1 else None,
+                per_successor=targets,carrier_index_is_not_genealogical_depth=True))
         summaries[name] = dict(n_tasks=len(group), n_outcomes=len(weighted),
             q_parent=expected(group, "parent_function"), q_final=expected(group, "final_function"),
             q_child=None if count < 2 else expected(group, "child_function"),

@@ -16,6 +16,14 @@ def input_bits(seed, forced=None, preparation="correlated"):
         return list(forced)
     if preparation == "independent":
         return [int(uniform(seed, "prepare", "independent", side) < .5) for side in ("A", "B")]
+    if preparation.startswith(('bell_','dephased_')):
+        from .joint_preparation import instrument_distribution
+        outcomes=instrument_distribution(preparation)['outcomes']
+        draw=uniform(seed,'joint_prepare');total=0.
+        for outcome in outcomes:
+            total+=outcome['probability']
+            if draw<total:return outcome['bits']
+        return outcomes[-1]['bits']
     common = int(uniform(seed, "prepare", "common") < 0.5)
     return [common ^ int(uniform(seed, "prepare", side) < 0.25)
             for side in ("A", "B")]

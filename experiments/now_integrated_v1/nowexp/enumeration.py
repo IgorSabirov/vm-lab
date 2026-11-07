@@ -11,6 +11,9 @@ def input_distribution(config):
         return [(list(config.forced_content), Fraction(1))]
     if config.preparation == "independent":
         return [(list(pair), Fraction(1,4)) for pair in product((0,1), repeat=2)]
+    if config.preparation.startswith(('bell_','dephased_')):
+        from .joint_preparation import instrument_distribution
+        return [(x['bits'],Fraction(x['probability'])) for x in instrument_distribution(config.preparation)['outcomes']]
     weights = {}
     for _, pair, weight in exact_histories():
         key = tuple(pair)
