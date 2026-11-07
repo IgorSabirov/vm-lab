@@ -1,0 +1,488 @@
+{
+  "schema": 1,
+  "kind": "ENVIRONMENT_PROBE_NOT_SCIENTIFIC_RUN",
+  "source_commit": "7d443254eebb78e9ca7d2701a07c118959e511af",
+  "source_sha256": "5b2d5fbf5a701d6e7b3578af5104416dda29a85d61a6d6dd5e86d090eef2322a",
+  "environment_before": {
+    "utc": "2026-11-07T11:07:58Z",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "cpu_count": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "load_average": [
+      0.2666015625,
+      0.06396484375,
+      0.0205078125
+    ],
+    "visible_memory": {
+      "MemTotal": "16374616 kB",
+      "MemAvailable": "15771288 kB",
+      "SwapTotal": "0 kB",
+      "SwapFree": "0 kB"
+    },
+    "cgroups": {
+      "/sys/fs/cgroup": {
+        "cpu.max": {
+          "unavailable": "FileNotFoundError"
+        },
+        "cpu.stat": "usage_usec 77256408\nuser_usec 40247574\nsystem_usec 37008833\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "cpuset.cpus.effective": "0-7",
+        "memory.max": {
+          "unavailable": "FileNotFoundError"
+        },
+        "memory.current": {
+          "unavailable": "FileNotFoundError"
+        },
+        "pids.max": {
+          "unavailable": "FileNotFoundError"
+        }
+      },
+      "/sys/fs/cgroup/system.slice/vm-compute-worker.service": {
+        "cpu.max": "700000 100000",
+        "cpu.stat": "usage_usec 12514087\nuser_usec 8095241\nsystem_usec 4418845\ncore_sched.force_idle_usec 0\nnr_periods 18854\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "cpuset.cpus.effective": {
+          "unavailable": "FileNotFoundError"
+        },
+        "memory.max": "13413384192",
+        "memory.current": "20619264",
+        "pids.max": "1024"
+      }
+    },
+    "inherited_rlimits": {
+      "RLIMIT_AS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_CPU": [
+        -1,
+        -1
+      ],
+      "RLIMIT_FSIZE": [
+        2147483648,
+        2147483648
+      ],
+      "RLIMIT_NOFILE": [
+        1024,
+        524288
+      ]
+    },
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3",
+      "threadpoolctl": null
+    },
+    "thread_environment": {
+      "OMP_NUM_THREADS": "7",
+      "OPENBLAS_NUM_THREADS": "7",
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null,
+      "VECLIB_MAXIMUM_THREADS": null,
+      "BLIS_NUM_THREADS": null
+    },
+    "disk": {
+      "total_bytes": 20103004160,
+      "used_bytes": 15424589824,
+      "free_bytes": 4661637120
+    }
+  },
+  "workers": {
+    "1": {
+      "numpy_import_s": 0.45433255699936126,
+      "requested_threads": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1"
+      },
+      "numpy_version": "1.26.4",
+      "kernels": {
+        "69": {
+          "dtype": "complex128",
+          "eigh": {
+            "samples_s": [
+              0.0013051980004092911,
+              0.0012334990005911095,
+              0.0011588540000957437,
+              0.0011881890004588058,
+              0.0011545779998414218
+            ],
+            "median_s": 0.0011881890004588058
+          },
+          "evolution_plus_psd_check": {
+            "samples_s": [
+              0.0016981099997792626,
+              0.001652318998822011,
+              0.0016793810009403387,
+              0.0016647789998387452,
+              0.0016626750002615154,
+              0.0016595199995208532,
+              0.0016641780002828455,
+              0.0016640179983369308,
+              0.0016629359997750726,
+              0.001679371000136598
+            ],
+            "median_s": 0.0016640979993098881
+          },
+          "relative_eigen_residual": 1.7573586137851655e-15,
+          "trace_error": 4.441048484581618e-16,
+          "minimum_eigenvalue": -3.531386782979405e-16
+        },
+        "133": {
+          "dtype": "complex128",
+          "eigh": {
+            "samples_s": [
+              0.007266986000104225,
+              0.006882637000671821,
+              0.006790687000830076,
+              0.0073488210000505205,
+              0.006801362998885452
+            ],
+            "median_s": 0.006882637000671821
+          },
+          "evolution_plus_psd_check": {
+            "samples_s": [
+              0.011281611999947927,
+              0.011209602000235463,
+              0.01116629600073793,
+              0.011209531001441064,
+              0.011199626998859458,
+              0.011218695999559714,
+              0.011188319000211777,
+              0.011213517998839961,
+              0.011213498000870459,
+              0.011207850000573671
+            ],
+            "median_s": 0.011209566500838264
+          },
+          "relative_eigen_residual": 2.141338594860599e-15,
+          "trace_error": 4.441323913589211e-16,
+          "minimum_eigenvalue": -6.606082824166922e-16
+        }
+      },
+      "threadpools": {
+        "unavailable": "threadpoolctl not installed",
+        "numpy_build_config": "Build Dependencies:\n  blas:\n    detection method: system\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: blas\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: unknown\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep140228583157936\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: cc\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  c++:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: c++\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /usr/bin/python3.12\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\n"
+      },
+      "warm_copy_64_mib": {
+        "samples_s": [
+          0.00401845200030948,
+          0.004063691998453578,
+          0.003972742000769358,
+          0.003980134000812541,
+          0.003933100999347516
+        ],
+        "median_s": 0.003980134000812541,
+        "useful_gib_per_s": 15.702988891138007,
+        "interpretation": "warm NumPy copy, not a physical DRAM bandwidth claim"
+      },
+      "matrix_json": {
+        "dimension": 133,
+        "bytes": 778458,
+        "encode": {
+          "samples_s": [
+            0.014624589999584714,
+            0.014699073999508983,
+            0.014437613999689347,
+            0.01391586499994446,
+            0.01384336499904748,
+            0.013895885000238195,
+            0.013851216999682947,
+            0.013828151000780053,
+            0.013879318999897805,
+            0.013831615999151836
+          ],
+          "median_s": 0.013887602000068
+        },
+        "decode": {
+          "samples_s": [
+            0.012516172999312403,
+            0.012293101000977913,
+            0.011420055001508445,
+            0.011340983999616583,
+            0.011289124000541051,
+            0.011312509999697795,
+            0.011302375000013853,
+            0.011296164999293978,
+            0.011245517000133987,
+            0.011312700000416953
+          ],
+          "median_s": 0.011312605000057374
+        }
+      },
+      "process_status": {
+        "VmHWM": "180384 kB",
+        "VmRSS": "177876 kB",
+        "Threads": "1",
+        "Cpus_allowed_list": "0-7"
+      },
+      "peak_rss_kib": 180384,
+      "total_s": 1.0953859539986297,
+      "startup_inclusive_wall_s": 1.1752864930003852
+    },
+    "7": {
+      "numpy_import_s": 0.04287299799943867,
+      "requested_threads": {
+        "OMP_NUM_THREADS": "7",
+        "OPENBLAS_NUM_THREADS": "7",
+        "MKL_NUM_THREADS": "7",
+        "NUMEXPR_NUM_THREADS": "7",
+        "VECLIB_MAXIMUM_THREADS": "7",
+        "BLIS_NUM_THREADS": "7"
+      },
+      "numpy_version": "1.26.4",
+      "kernels": {
+        "69": {
+          "dtype": "complex128",
+          "eigh": {
+            "samples_s": [
+              0.0012527079998108093,
+              0.001241259999005706,
+              0.0012040740002703387,
+              0.0011611580011958722,
+              0.0011541679996298626
+            ],
+            "median_s": 0.0012040740002703387
+          },
+          "evolution_plus_psd_check": {
+            "samples_s": [
+              0.0016771970003901515,
+              0.0016885749992070487,
+              0.0016678930005582515,
+              0.0016660299988870975,
+              0.0016693950001354096,
+              0.001663487000769237,
+              0.001661562999288435,
+              0.0016619140005786903,
+              0.0016749440001149196,
+              0.001647802999286796
+            ],
+            "median_s": 0.0016669614997226745
+          },
+          "relative_eigen_residual": 1.7573586137851655e-15,
+          "trace_error": 4.441048484581618e-16,
+          "minimum_eigenvalue": -3.531386782979405e-16
+        },
+        "133": {
+          "dtype": "complex128",
+          "eigh": {
+            "samples_s": [
+              0.0072692289995757164,
+              0.00692619400069816,
+              0.006751196000550408,
+              0.00735578199964948,
+              0.0068262709992268356
+            ],
+            "median_s": 0.00692619400069816
+          },
+          "evolution_plus_psd_check": {
+            "samples_s": [
+              0.011219447000257787,
+              0.01119695200031856,
+              0.011184564000359387,
+              0.01122331300030055,
+              0.011173135999342776,
+              0.011201870000149938,
+              0.01119116399968334,
+              0.01121533100013039,
+              0.011214800000743708,
+              0.011180788000274333
+            ],
+            "median_s": 0.01119941100023425
+          },
+          "relative_eigen_residual": 2.141338594860599e-15,
+          "trace_error": 4.441323913589211e-16,
+          "minimum_eigenvalue": -6.606082824166922e-16
+        }
+      },
+      "threadpools": {
+        "unavailable": "threadpoolctl not installed",
+        "numpy_build_config": "Build Dependencies:\n  blas:\n    detection method: system\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: blas\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: unknown\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep140228583157936\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: cc\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  c++:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: c++\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /usr/bin/python3.12\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\n"
+      },
+      "warm_copy_64_mib": {
+        "samples_s": [
+          0.004081408000274678,
+          0.004001164999863249,
+          0.003952011000365019,
+          0.00390553899887891,
+          0.0038817940003355034
+        ],
+        "median_s": 0.003952011000365019,
+        "useful_gib_per_s": 15.81473330773303,
+        "interpretation": "warm NumPy copy, not a physical DRAM bandwidth claim"
+      },
+      "matrix_json": {
+        "dimension": 133,
+        "bytes": 778458,
+        "encode": {
+          "samples_s": [
+            0.014634215000114636,
+            0.01462789499964856,
+            0.01447030400049698,
+            0.0138944319987786,
+            0.013816643000609474,
+            0.013870556000256329,
+            0.013860891000149422,
+            0.01384014899849717,
+            0.013889604999349103,
+            0.013834921001034672
+          ],
+          "median_s": 0.013880080499802716
+        },
+        "decode": {
+          "samples_s": [
+            0.012575834000017494,
+            0.012283956999453949,
+            0.011421657000028063,
+            0.011350548000336858,
+            0.011335854998833383,
+            0.011486044999401201,
+            0.011316385000100126,
+            0.011312470000120811,
+            0.011299259000224993,
+            0.01131631499993091
+          ],
+          "median_s": 0.01134320149958512
+        }
+      },
+      "process_status": {
+        "VmHWM": "180464 kB",
+        "VmRSS": "177940 kB",
+        "Threads": "1",
+        "Cpus_allowed_list": "0-7"
+      },
+      "peak_rss_kib": 180464,
+      "total_s": 0.5873245269995095,
+      "startup_inclusive_wall_s": 0.6658014160002494
+    }
+  },
+  "status": "COMPLETED",
+  "event_hash_100000_s": 0.04201701799865987,
+  "io": {
+    "bytes": 33554432,
+    "write_fsync_sha256_s": 1.206490771000972,
+    "write_mib_per_s": 26.523203300967662,
+    "warm_read_sha256_s": 0.024522023999452358,
+    "warm_read_mib_per_s": 1304.9493794115301,
+    "checksum_ok": true,
+    "atomic_checkpoint_32k_100_replacements": {
+      "median_s": 0.010080663000735512,
+      "max_s": 0.04518763300075079,
+      "total_s": 1.215189721007846
+    },
+    "uncommitted_snapshot_preserves_previous": true,
+    "power_loss_durability": "not tested",
+    "total_s": 2.449627756001064
+  },
+  "environment_after": {
+    "utc": "2026-11-07T11:08:02Z",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "cpu_count": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "load_average": [
+      0.2666015625,
+      0.06396484375,
+      0.0205078125
+    ],
+    "visible_memory": {
+      "MemTotal": "16374616 kB",
+      "MemAvailable": "15689460 kB",
+      "SwapTotal": "0 kB",
+      "SwapFree": "0 kB"
+    },
+    "cgroups": {
+      "/sys/fs/cgroup": {
+        "cpu.max": {
+          "unavailable": "FileNotFoundError"
+        },
+        "cpu.stat": "usage_usec 78874395\nuser_usec 41531561\nsystem_usec 37342833\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "cpuset.cpus.effective": "0-7",
+        "memory.max": {
+          "unavailable": "FileNotFoundError"
+        },
+        "memory.current": {
+          "unavailable": "FileNotFoundError"
+        },
+        "pids.max": {
+          "unavailable": "FileNotFoundError"
+        }
+      },
+      "/sys/fs/cgroup/system.slice/vm-compute-worker.service": {
+        "cpu.max": "700000 100000",
+        "cpu.stat": "usage_usec 14078880\nuser_usec 9374726\nsystem_usec 4704153\ncore_sched.force_idle_usec 0\nnr_periods 18891\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+        "cpuset.cpus.effective": {
+          "unavailable": "FileNotFoundError"
+        },
+        "memory.max": "13413384192",
+        "memory.current": "35385344",
+        "pids.max": "1024"
+      }
+    },
+    "inherited_rlimits": {
+      "RLIMIT_AS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_CPU": [
+        -1,
+        -1
+      ],
+      "RLIMIT_FSIZE": [
+        2147483648,
+        2147483648
+      ],
+      "RLIMIT_NOFILE": [
+        1024,
+        524288
+      ]
+    },
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3",
+      "threadpoolctl": null
+    },
+    "thread_environment": {
+      "OMP_NUM_THREADS": "7",
+      "OPENBLAS_NUM_THREADS": "7",
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null,
+      "VECLIB_MAXIMUM_THREADS": null,
+      "BLIS_NUM_THREADS": null
+    },
+    "disk": {
+      "total_bytes": 20103004160,
+      "used_bytes": 15424610304,
+      "free_bytes": 4661616640
+    }
+  },
+  "wall_s": 4.4061241850013175,
+  "parent_peak_rss_kib": 25984
+}
