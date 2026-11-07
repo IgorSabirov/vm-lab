@@ -1,0 +1,37 @@
+{
+  "preregistered_commit": "78021575d7a39c44ae59bb48630cdd117723c047",
+  "runs": [
+    {
+      "wall_seconds": 0.07636537600001247,
+      "base_seconds": 0.002568685999904119,
+      "supplemental_seconds": 0.00104948099988178,
+      "predicted_seconds": 0.09948354999914955,
+      "events": 140,
+      "code_sha256": "ed4d1f05331f677546a9820d6561fae1e8960a6deefedf3941c71dafacaf1469"
+    },
+    {
+      "wall_seconds": 0.07875984900010735,
+      "base_seconds": 0.00241560800031948,
+      "supplemental_seconds": 0.0013037690000601287,
+      "predicted_seconds": 0.10050032100298267,
+      "events": 140,
+      "code_sha256": "ed4d1f05331f677546a9820d6561fae1e8960a6deefedf3941c71dafacaf1469"
+    },
+    {
+      "wall_seconds": 0.06784887499998149,
+      "base_seconds": 0.004107887000373012,
+      "supplemental_seconds": 0.001135032000092906,
+      "predicted_seconds": 0.1048198580033386,
+      "events": 140,
+      "code_sha256": "ed4d1f05331f677546a9820d6561fae1e8960a6deefedf3941c71dafacaf1469"
+    }
+  ],
+  "predicted_seconds": 0.10050032100298267,
+  "lower_seconds": 0.05025016050149134,
+  "upper_seconds": 1,
+  "hard_limit_seconds": 30,
+  "formula": "median(wall_24 - grid_24 + 10*grid_24); fixed supplemental cases and startup retained",
+  "range_reason": "subsecond process startup/JSON and shared CPU variation; lower bound guards grossly incomplete run; counts audited separately",
+  "planned_main_trajectories": 240,
+  "vm_threshold_seconds": 600
+}
