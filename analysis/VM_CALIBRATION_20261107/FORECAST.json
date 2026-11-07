@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "complete": true,
+  "measured_on_target_vm": true,
+  "source_commit": "e8f3eb296f9bdb4491aedcd8a5ca36b5cb781fee",
+  "source_digest": "34e21424ecccdae7d0f326754be13f954fd9a3706ccb56951c78b10660c10faf",
+  "config_digest": "b10d800bf2bce93296e4041ef710ad26c35953d128c911783f0d160efd3a078b",
+  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+  "task_count": 251,
+  "expected_seconds": 11,
+  "lower_seconds": 5,
+  "upper_seconds": 30,
+  "hard_wall_seconds": 120,
+  "memory_limit_mib": 1024,
+  "disk_limit_mib": 128,
+  "processes": 1,
+  "blas_threads": 1,
+  "components": {
+    "compute_seconds": 2.1736609440558823,
+    "io_and_finalization_seconds": 8.248628724999435,
+    "startup_seconds": 0.4050945130002219,
+    "unrounded_total_seconds": 10.827384182055539
+  },
+  "range_interpretation": "Engineering planning interval, not a statistical confidence interval; includes proxy-case and filesystem variation.",
+  "assumptions": [
+    "Same pinned source/configuration/VM and one process/BLAS thread.",
+    "Unmeasured cases use calibrated same-backend/size-family proxies; no large new branch expansion.",
+    "I/O probe copies calibrated payloads; scientific outcomes were not computed by that probe.",
+    "Task count, dimensions, hardware, code or output policy changes invalidate this forecast."
+  ],
+  "observed_calibration_peak_rss_mib": 43.99609375,
+  "projected_output_bytes": 6511352,
+  "main_submitted": false,
+  "scientific_confirmation": false
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/var/lib/vm-compute/work/jobs/integrated_io_e8f3eb2_20261107/main.py", line 30, in <module>
+    trace=read_json(origin/'calibration_0/traces'/(row['task_id']+'.json'))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lib/vm-compute/work/results/integrated_cal_e8f3eb2_20261107/input/vm-lab/experiments/now_integrated_v1/nowexp/provenance.py", line 103, in read_json
+    return json.loads(Path(path).read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/lib/vm-compute/work/results/integrated_cal_e8f3eb2_20261107/calibration_0/traces/8c5147766f3c69e88c8cdb31.json'
