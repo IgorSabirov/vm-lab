@@ -63,17 +63,19 @@ def make_tasks(plan, cases, phase):
             mode, seeds = "deterministic", [0]
         elif cfg.memory == "classical" and cfg.classical_survival == 1:
             mode, seeds = "finite_enumeration", [0]
-        elif phase == "main":
+        elif phase in ("main", "calibrate"):
             mode, seeds = "finite_enumeration", [0]
         else:
             mode, seeds = "seed_ensemble", range(limits["seeds"])
         for seed in seeds:
             tasks.append(dict(case_id=case["id"], config=asdict(cfg), sampling_mode=mode, seed=seed))
-    if phase == "main":
+    if phase in ("main", "calibrate"):
         for name in plan["monte_carlo_validation"]["cases"]:
-            case = next(c for c in selected if c["id"] == name)
+            case = next((c for c in selected if c["id"] == name), None)
+            if case is None:
+                continue
             cfg = Config(**case["config"], thresholds=plan["acceptance"]).validate()
-            for seed in range(plan["monte_carlo_validation"]["seeds"]):
+            for seed in range(plan["monte_carlo_validation"]["seeds"] if phase == "main" else limits["seeds"]):
                 tasks.append(dict(case_id="mc::"+name, config=asdict(cfg), sampling_mode="seed_ensemble", seed=seed))
     return selected, tasks
 
@@ -259,7 +261,7 @@ def worker(root, args):
             save()
             fault("after_checkpoint")
         summaries = summarize(rows)
-        contrasts = paired_contrasts(rows, cases["contrasts"])
+        contrasts = paired_contrasts(rows, cases["contrasts"], plan["acceptance"]["profile_equivalence_tv"])
         if args.phase in ("smoke", "main") and any(v["status"] == "NOT_EVALUABLE" for v in contrasts.values()):
             raise ValueError("complete phase left a declared contrast unevaluable")
         from .memory import response
@@ -273,6 +275,16 @@ def worker(root, args):
                         atoms=response(cfg.bath_modes,cfg.bath_coupling,cfg.detuning))
         atomic_json(output/"RESPONSE.json", responses)
         atomic_json(output/"METRICS.json", dict(summary=summaries, contrasts=contrasts))
+        validation = {}
+        for name in plan["monte_carlo_validation"]["cases"]:
+            if name in summaries and "mc::"+name in summaries:
+                exact, sample = summaries[name], summaries["mc::"+name]
+                half = math.sqrt(math.log(40)/(2*sample["n_tasks"]))
+                difference = sample["q_final"]-exact["q_final"]
+                validation[name] = dict(exact_q=exact["q_final"], sampled_q=sample["q_final"],
+                    difference=difference, nominal_95_halfwidth=half, within_bound=abs(difference)<=half,
+                    interpretation="Diagnostic seed-model comparison; not an independence proof")
+        atomic_json(output/"MONTE_CARLO_VALIDATION.json", dict(status="EXECUTED" if validation else "NOT_SCHEDULED_IN_THIS_PHASE", comparisons=validation))
         contracts = read_json(root/"preregistration/ANCESTOR_CONTRACTS.json")["contracts"]
         atomic_json(output/"ANCESTOR_RETURN.json", ancestor_report(contracts, rows, summaries, contrasts))
         atomic_json(output/"ROWS_INDEX.json", dict(row_hashes=row_hashes,

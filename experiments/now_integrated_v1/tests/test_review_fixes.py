@@ -168,3 +168,7 @@ class ReviewFixes(unittest.TestCase):
         names={case['id'] for case in selected}
         for contrast in cases['contrasts']:
             self.assertTrue(set(contrast['cases'])<=names)
+        _, calibration=make_tasks(plan,cases,'calibrate')
+        quantum_exact=[t for t in calibration if t['config']['memory']!='classical' and t['sampling_mode']=='finite_enumeration']
+        self.assertTrue(quantum_exact)
+        self.assertTrue(any(t['case_id'].startswith('mc::') for t in calibration))

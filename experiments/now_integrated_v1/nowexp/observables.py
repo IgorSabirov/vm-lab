@@ -72,7 +72,10 @@ def metric_range(metric, groups):
     raise ValueError("no preregistered stochastic range for " + metric)
 
 
-def paired_contrasts(rows, definitions):
+def paired_contrasts(rows, definitions, profile_tolerance=None):
+    if profile_tolerance is None:
+        from .state import scientific_thresholds
+        profile_tolerance = scientific_thresholds()["profile_equivalence_tv"]
     grouped = defaultdict(list)
     for row in rows:
         grouped[row["case_id"]].append(row)
@@ -110,6 +113,8 @@ def paired_contrasts(rows, definitions):
             sampling_mode="finite_enumeration" if exact else "seed_ensemble",
             n=[len(group) for group in groups], raw_paired_values=values,
             joint_profile_tv=tv, profile_fields=PROFILE_FIELDS,
+            profile_comparison_tolerance=profile_tolerance,
+            profile_within_tolerance=None if tv is None or not exact else tv <= profile_tolerance,
             profile_tv_status="exact_on_declared_finite_observables" if exact else "empirical_only_no_population_TV_claim",
             uncertainty_assumption="Finite sums have numerical error but no sampling error; sampled bounds assume independent master seeds",
             inference="No scientific confirmation from smoke; no family-wide discovery claim")
