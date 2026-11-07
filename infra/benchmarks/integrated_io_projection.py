@@ -13,7 +13,7 @@ verify_source(root,'e8f3eb296f9bdb4491aedcd8a5ca36b5cb781fee',receipt)
 plan=read_json(root/'preregistration/PROTOCOL.json');cases=read_json(root/'preregistration/CASES.json')
 _,tasks=make_tasks(plan,cases,'main')
 rows=[read_json(p) for p in (origin/'calibration_0/rows').glob('*.json')]
-lookup={r['case_id']:r for r in rows}
+lookup={r['case_id']:r for r in rows if r['seed']==0}
 measurements=[]
 for repeat in range(2):
  output=Path.cwd()/('io_'+str(repeat));output.mkdir()
