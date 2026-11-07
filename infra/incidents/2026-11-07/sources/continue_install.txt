@@ -1,0 +1,35 @@
+{
+vm_history=$(mktemp) &&
+fc -ln "sudo /usr/bin/python3 -I - <<'VM_FRESH'" "sudo /usr/bin/python3 -I - <<'VM_FRESH'" > "$vm_history" &&
+sudo /usr/bin/python3 -I - "$vm_history" <<'VM_CONTINUE'
+import base64, hashlib, io, json, pathlib, pwd, sys, zlib
+history = pathlib.Path(sys.argv[1]).read_text()
+begin = 'base64.b64decode("""'
+if begin not in history:
+    raise SystemExit('Полный установщик не найден в истории. Ничего не изменено.')
+encoded = history.split(begin, 1)[1].split('"""', 1)[0]
+raw = zlib.decompress(base64.b64decode(encoded))
+if hashlib.sha256(raw).hexdigest() != '25e8f2f5dd354be0c0206fb60990b16ffd44af978deae9198271771bfdb04216':
+    raise SystemExit('Это другой или неполный установщик. Ничего не изменено.')
+if not pathlib.Path('/opt/vm-lab/certbot/bin/certbot').is_file():
+    raise SystemExit('Ранее установленный Certbot не найден. Ничего не изменено.')
+p = json.loads(raw)
+s = p['setup_source']
+needle = '    certbot = install/"certbot/bin/certbot"\n'
+assert s.count(needle) == 1
+s = s.replace(needle, '    (install/"certbot").symlink_to("/opt/vm-lab/certbot", target_is_directory=True)\n' + needle)
+s = ''.join(line for line in s.splitlines(True)
+            if '"-m","pip","install"' not in line and '["apt-get","update"' not in line)
+p['setup_source'] = s
+p['uid'] = pwd.getpwnam('yc-user').pw_uid
+for name, source in p.items():
+    if name.endswith('_source'):
+        compile(source, name, 'exec')
+print('Повтор полной установки с уже установленным Certbot.', flush=True)
+sys.stdin = io.StringIO(json.dumps(p))
+exec(compile(s, 'fresh_vm_compute.py', 'exec'), {'__name__': '__main__'})
+VM_CONTINUE
+vm_status=$?
+rm -f "$vm_history"
+[ "$vm_status" -eq 0 ]
+}

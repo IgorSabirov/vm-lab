@@ -1,0 +1,73 @@
+sudo /usr/bin/python3 -I - <<'VM_FINISH'
+import http.client, json, os, pathlib, socket, ssl, subprocess, tempfile, time
+
+ip = '158.160.159.114'
+host = 'vm-' + ip.replace('.', '-') + '.sslip.io'
+root = pathlib.Path('/etc/vm-compute')
+config_path = root / 'server.json'
+cfg = json.loads(config_path.read_text())
+
+def run(*args, timeout=30):
+    subprocess.run(args, check=True, timeout=timeout)
+
+run('systemctl', 'stop', 'vm-compute-cert-renew.timer')
+print('Одна попытка выпуска сертификата для ' + host, flush=True)
+run('/opt/vm-lab/certbot/bin/certbot', 'certonly',
+    '--non-interactive', '--agree-tos', '--register-unsafely-without-email',
+    '--no-eff-email', '--standalone', '--http-01-address', '0.0.0.0',
+    '--preferred-challenges', 'http', '--preferred-profile', 'shortlived',
+    '--cert-name', 'vm-compute', '--keep-until-expiring',
+    '--ip-address', ip, '-d', host,
+    '--config-dir', '/etc/vm-compute/acme',
+    '--work-dir', '/var/lib/vm-compute/acme',
+    '--logs-dir', '/var/log/vm-compute-acme',
+    '--deploy-hook', '/usr/bin/python3 /opt/vm-compute/deploy_cert.py',
+    timeout=240)
+run('/usr/bin/python3', '/opt/vm-compute/deploy_cert.py')
+
+cfg.update(public_ip=ip, bind='0.0.0.0', port=443,
+    tls_cert=str(root / 'fullchain.pem'), tls_key=str(root / 'privkey.pem'))
+info = config_path.stat()
+fd, temporary = tempfile.mkstemp(prefix='.server-', dir=root)
+with os.fdopen(fd, 'w') as output:
+    json.dump(cfg, output)
+    os.fchown(output.fileno(), info.st_uid, info.st_gid)
+    os.fchmod(output.fileno(), info.st_mode & 0o777)
+    output.flush()
+    os.fsync(output.fileno())
+os.replace(temporary, config_path)
+run('systemctl', 'restart', 'vm-compute-worker.service', 'vm-compute-api.service')
+
+def rpc(method, params=None):
+    connection = http.client.HTTPSConnection(host, timeout=8)
+    try:
+        connection.sock = ssl.create_default_context().wrap_socket(
+            socket.create_connection(('127.0.0.1', 443), timeout=8), server_hostname=host)
+        connection.request('POST', '/' + cfg['token'] + '/mcp',
+            json.dumps({'jsonrpc': '2.0', 'id': 1, 'method': method, 'params': params or {}}),
+            {'Content-Type': 'application/json', 'Accept': 'application/json'})
+        response = connection.getresponse()
+        if response.status != 200:
+            raise RuntimeError('MCP HTTP ' + str(response.status))
+        return json.loads(response.read())['result']
+    finally:
+        connection.close()
+
+for attempt in range(15):
+    try:
+        names = {item['name'] for item in rpc('tools/list')['tools']}
+        break
+    except OSError:
+        if attempt == 14:
+            raise
+        time.sleep(1)
+if not {'write_work_file', 'start_python_job', 'job_status'} <= names:
+    raise RuntimeError('Проверка инструментов MCP не пройдена')
+status = rpc('tools/call', {'name': 'work_status', 'arguments': {}})
+if not json.loads(status['content'][0]['text'])['worker']['responsive']:
+    raise RuntimeError('Worker ещё не отвечает')
+run('systemctl', 'enable', '--now', 'vm-compute-worker.service',
+    'vm-compute-api.service', 'vm-compute-cert-renew.timer')
+print('ГОТОВО: HTTPS, MCP и worker проверены локально на ВМ.')
+print('URL ДЛЯ ПЛАГИНА: https://' + host + '/' + cfg['token'] + '/mcp')
+VM_FINISH

@@ -1,3 +1,13 @@
+# Историческая инструкция — не запускать как текущий маршрут
+
+Обновление 7 ноября 2026: подключение восстановлено на новом IP `158.160.159.114`
+через существующий Certbot HTTP-01. Текущая установка называется `vm-compute`.
+**Начинать с [VM_CONNECTION_RUNBOOK.md](VM_CONNECTION_RUNBOOK.md)** и
+`reconnect_vm.py`. Ниже сохранено состояние до успешного завершения;
+его рекомендация перейти к TLS/lego устарела. [Полная история](incidents/2026-11-07/README.md).
+
+---
+
 # VM Compute: восстановление HTTPS после смены IP
 
 Статус 2026-11-07: HTTP-версия исполнена на ВМ и не восстановила сертификат.
@@ -101,3 +111,4 @@ python3 -m unittest -v infra/test_recover_vm_bridge.py
 - https://letsencrypt.org/docs/challenge-types/#tls-alpn-01
 - https://go-acme.github.io/lego/references/ref-flags/
 - https://github.com/go-acme/lego/releases/tag/v5.6.0
+
