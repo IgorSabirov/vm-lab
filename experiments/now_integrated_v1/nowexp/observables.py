@@ -7,7 +7,8 @@ PROFILE_FIELDS = ("function", "health", "transmitted", "decoded", "own_apparatus
     "inherited_apparatus", "contact", "contact_origin", "spent_fuel", "remaining_fuel",
     "precursor", "unavailable_fuel", "unavailable_material", "material_waste", "costs",
     "failures", "pending_records", "stored_records", "decode_slots", "inbox_slots", "record_slots",
-    "apparatus_types", "route_template", "contact_endpoints", "delivered_peers", "fragment_slots_used", "transmitted_to")
+    "apparatus_types", "route_template", "contact_endpoints", "delivered_peers", "fragment_slots_used", "transmitted_to",
+    "repair_history", "transport_repaired", "transport_material")
 
 
 def distribution(group):

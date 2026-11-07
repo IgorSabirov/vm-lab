@@ -59,6 +59,12 @@ class Cell:
     contact_peers: list = field(default_factory=list)
     reactor_state: int = 1
     transmitted_to: list = field(default_factory=list)
+    production_round: int = 0
+    repair_history: list = field(default_factory=list)
+    fragment_headers: dict = field(default_factory=dict)
+    last_completed_fragment: dict = field(default_factory=dict)
+    transport_repaired: bool = False
+    transport_material: int = 0
 
     def pay(self, n, purpose):
         if n < 0:
@@ -135,17 +141,25 @@ class Config:
     duplicate_fragment: bool = False
     fragment_slots: int = 4
     completion_mode: str = 'isolate'
-    erase_environment_record: bool = False
+    completion_probe: bool = False
     branching: bool = False
     prepared_records: bool = False
     production_semantics: str = 'pair_rule'
+    repair_rounds: int = 0
+    cycle_damage_role: str = 'writer'
+    remove_parent_template_after_transfer: bool = False
+    initiator_enabled: bool = True
+    template_slots: int = 2
+    damage_transport: bool = False
+    repair_transport: bool = True
+    transport_support: bool = False
 
     @property
     def required_content(self):
         return dict(zip(("A", "B"), self.thresholds["required_decoded_content"]))
 
     def validate(self):
-        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template"):
+        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template", "fragment_slots", "repair_rounds", "template_slots"):
             if type(getattr(self, name)) is not int:
                 raise ValueError("integer resource/count required: " + name)
         for name in ("detuning", "bath_coupling", "classical_survival", "supply_delay", "record_delay", "receiver_velocity", "read_wait"):
@@ -187,6 +201,9 @@ class Config:
             raise ValueError('unknown production semantics')
         if self.production_semantics!='pair_rule' and not self.separate_apparatus:
             raise ValueError('typed production requires distinct functional apparatus')
+        if self.repair_rounds not in range(4) or self.cycle_damage_role not in ('writer','reader'):
+            raise ValueError('bounded repair-cycle envelope violated')
+        if self.template_slots not in range(3):raise ValueError('template bank envelope violated')
         if len(self.thresholds["required_decoded_content"]) != 2 or any(x not in (0,1) for x in self.thresholds["required_decoded_content"]):
             raise ValueError("required content must be two bits")
         for key in ("causal_interval_tolerance", "density_trace_tolerance", "psd_negative_tolerance", "profile_equivalence_tv"):

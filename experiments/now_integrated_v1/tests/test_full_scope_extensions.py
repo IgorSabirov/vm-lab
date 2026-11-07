@@ -55,6 +55,30 @@ class FullScopeExtensions(unittest.TestCase):
         qb={tuple(x['bits']):x['probability'] for x in b['outcomes']}
         self.assertAlmostEqual(qa[(1,1)],.5);self.assertAlmostEqual(qb[(1,1)],.25)
 
+    def test_A_uses_current_state_without_external_access(self):
+        first=reaction(1,{1:1},'A',1)
+        second=reaction(first['state_type'],first['access'],'A',first['state_type'])
+        self.assertIsNotNone(second)
+        e=Engine(self.cfg(seed_writer=False,prepared_records=True,production_semantics='A'),0)
+        r=e.run()
+        self.assertEqual(r['initial_totals'],r['material_and_credit_balance'])
+
+    def test_incomplete_fragments_expire_without_decoding(self):
+        e=Engine(self.cfg(fragmented_records=True,drop_fragment=True),0);e.run()
+        self.assertEqual(e.cells['N0'].fragments,{})
+        self.assertFalse(e.cells['N0'].decoded)
+
+    def test_imported_contact_keeps_delivered_address(self):
+        e=Engine(self.cfg(imported_contacts=True),0);r=e.run()
+        self.assertIn('N1',r['profile'][0]['transmitted_to'])
+
+    def test_repeat_and_transport_balance(self):
+        for delta in (dict(repair_rounds=2,donor_fuel=160,donor_precursor=80),
+                      dict(transport_support=True,damage_transport=True,read_wait=64,donor_fuel=100,donor_precursor=60)):
+            r=Engine(self.cfg(**delta),0).run()
+            self.assertEqual(r['initial_totals'],r['material_and_credit_balance'])
+            self.assertTrue(r['finished'])
+
     def test_completion_trace_is_not_interaction_shutdown(self):
         for mode in ('erase','trace','isolate','transfer','decay'):
             e=Engine(self.cfg(completion_mode=mode),0);e.run()

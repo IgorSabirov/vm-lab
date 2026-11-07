@@ -28,13 +28,12 @@ def produce(cell, enabled, cfg):
     if cell.precursor < count or cell.fuel < count:
         cell.failures.append("production_budget")
         return []
-    cell.pay(count, "apparatus_production")
-    use(cell, "catalyze")
-    cell.precursor -= count
-    made = [Apparatus(f"{cell.identity}:new:{j}", cell.identity,
+    next_reactor_state=cell.reactor_state
+    made = [Apparatus(f"{cell.identity}:new:{cell.production_round}:{j}", cell.identity,
                       cell.generation, cfg.produced_template).__dict__ for j in range(count)]
     for apparatus in made:
         apparatus["disabled_roles"] = list(cfg.produced_disabled_roles)
+        apparatus['production_round']=cell.production_round
     if cfg.separate_apparatus:
         for j,apparatus in enumerate(made):
             apparatus['roles']=['write','catalyze'] if j%2==0 else ['read','catalyze','repair','correct']
@@ -44,20 +43,23 @@ def produce(cell, enabled, cfg):
             from collections import Counter
             q=Counter(1 if a.get('functional_type')=='reader' else 2 if a.get('functional_type')=='writer' else 0 for a in cell.apparatus)
             for apparatus in made:
-                chosen=cell.reactor_state if cfg.production_semantics=='A' or q[cell.reactor_state]>0 else min(k for k,n in q.items() if n>0)
-                step=reaction(cell.reactor_state,q,cfg.production_semantics,chosen)
+                chosen=next_reactor_state if cfg.production_semantics=='A' or q[next_reactor_state]>0 else min(k for k,n in q.items() if n>0)
+                step=reaction(next_reactor_state,q,cfg.production_semantics,chosen)
                 if step is None:raise ArithmeticError('paid typed production has no input access')
-                cell.reactor_state=step['state_type'];q=Counter(step['access'])
+                next_reactor_state=step['state_type'];q=Counter(step['access'])
                 kind=step['added_type']
                 apparatus['functional_type']={0:'inert',1:'reader',2:'writer'}[kind]
                 apparatus['roles']={0:[],1:['read','catalyze','repair','correct'],2:['write','catalyze']}[kind]
-    cell.apparatus.extend(made)
+    cell.pay(count,'apparatus_production');use(cell,'catalyze');cell.precursor-=count
+    cell.reactor_state=next_reactor_state;cell.apparatus.extend(made)
+    cell.production_round+=1
     return made
 
 
 def retire_inherited(cell):
-    old = [a for a in cell.apparatus if a["generation"] < cell.generation]
-    cell.apparatus = [a for a in cell.apparatus if a["generation"] >= cell.generation]
+    old = [a for a in cell.apparatus if a["generation"] < cell.generation
+           or a.get('production_round',-1)<cell.production_round-1]
+    cell.apparatus = [a for a in cell.apparatus if a not in old]
     cell.material_waste += sum(a["material_units"] for a in old)
     return [a["identity"] for a in old]
 
