@@ -91,13 +91,99 @@
       "status": "IMPLEMENTED_NOT_EXECUTED",
       "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
       "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D03_WRITER",
+      "reference": "full_base",
+      "case": "full_writer_damage",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_READER",
+      "reference": "full_base",
+      "case": "full_reader_damage",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_RECORD",
+      "reference": "full_base",
+      "case": "full_no_record",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_APPARATUS",
+      "reference": "full_base",
+      "case": "full_no_production",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_CONTACT",
+      "reference": "full_base",
+      "case": "full_no_contact",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_TEMPLATE",
+      "reference": "full_base",
+      "case": "full_route_damage",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_DELIVERY",
+      "reference": "full_base",
+      "case": "full_late_resource",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_TRANSFER",
+      "reference": "full_base",
+      "case": "full_no_apparatus",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_CONTENT",
+      "reference": "full_base",
+      "case": "full_scramble",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "same intervention at each active parent/child carrier",
+      "observable": "joint profile including material products, contact ports and cost",
+      "horizon": "same complete finite event queue"
+    },
+    {
+      "id": "D03_TRANSPORT",
+      "reference": "full_transport_intact",
+      "case": "full_transport_patch",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "scope": "damaged delivery to both successors; local paid repair vs full_transport_unrepaired",
+      "observable": "joint profile, unavailable cargo, transport material",
+      "horizon": "read_wait=64 proper time"
     }
   ],
   "not_admissible": [
-    {
-      "object": "writer-only physical damage",
-      "reason": "A is shared reader/writer catalyst; independent Aw/Ar chemistry not implemented"
-    },
     {
       "object": "PW quantum clock",
       "reason": "no H,T,sigma constraint system supplied"
@@ -110,5 +196,6 @@
       "object": "contact topology genesis",
       "reason": "locations, address and local repair rule are imported"
     }
-  ]
+  ],
+  "candidate03_limit": "Separate W/R are material candidate instruments with given functional laws; not derived chemistry."
 }

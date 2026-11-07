@@ -73,7 +73,7 @@ class Engine:
             for cell in self.cells.values():cell.precursor_capacity=16
         if config.inherited_routes:
             for cell in self.cells.values():cell.address=None
-            self.cells['N0'].route_template=[0,1] if config.template_slots>=2 else []
+            self.cells['N0'].route_template=['write','read'] if config.template_slots>=2 else []
             # Local ports are delivered by physical signals on the given substrate.
             radius=4.01 if config.branching else 2.01
             for src in self.cells:
@@ -400,12 +400,14 @@ class Engine:
                 peers=sorted(cell.peer_beacons)
                 if peers and not (cfg.branching and cell.generation>0):cell.address=peers[0]
                 if cell.contact:return
-                available=cell.apparatus
-                if len(cell.route_template)!=2 or any(type(i)!=int or i<0 or i>=len(available) for i in cell.route_template):
+                # The inherited local port pattern survives replacement of individual parts.
+                # Missing/corrupted template never falls back to a global adjacency table.
+                if cell.route_template!=['write','read']:
                     cell.failures.append('missing_contact_template');return
-                writer,reader=[available[i] for i in cell.route_template]
-                if writer not in capable(cell,'write') or reader not in capable(cell,'read'):
+                ports=[capable(cell,role) for role in cell.route_template]
+                if not all(ports):
                     cell.failures.append('template_ports_incompatible');return
+                writer,reader=[choices[0] for choices in ports]
                 if cell.precursor<1 or not can_repair(cell,True,cfg) or not cell.pay(1,'contact_repair'):return
                 use(cell,'repair');cell.precursor-=1;cell.contact_material+=1
                 cell.contact_peers=[writer['identity'],reader['identity']]

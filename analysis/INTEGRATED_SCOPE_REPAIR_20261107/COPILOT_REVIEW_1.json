@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 170.14,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "**Review findings (static; not executed):**\n\n| Severity | File | Mechanism | Fix |\n|---|---|---|---|\n| **High** | `nowexp/local_instruments.py` — `produce` | With `production_semantics='A'` and the default reader seed, the first reaction changes `reactor_state` to 2; the next reaction requests unavailable type 2 and raises `ArithmeticError`. The batch fuel and precursor have already been debited, but no apparatus are appended, breaking conservation if the failure is handled. | Validate the whole batch’s reaction sequence before debiting, or make unavailable access a defined, atomic production failure. |\n| **Medium** | `nowexp/engine.py` — `fragment_arrive` | After a pair completes, its assembly entry is removed. A delayed duplicate of the final fragment then recreates that entry and occupies a slot indefinitely; incomplete assemblies also have no expiry. Repeated or tight-capacity cases can exhaust the fragment bank despite duplicate delivery. | Track completed message IDs for deduplication and expire incomplete assemblies under a declared lifetime. |\n| **Medium** | `nowexp/engine.py` — `repair` (`inherited_routes`) | If `imported_contacts=True`, the early `if cell.contact: return` skips address selection from already received beacons. In inherited-route mode addresses start as `None`, so the root cannot transfer despite having peers and a contact. | Process beacon-based address selection before the existing-contact return; skip only the paid contact-repair work. |\n| **Low** | `nowexp/enumeration.py` — `FiniteEnumeration` | Exact rational input weights are converted to `float` when branches are created, and Born weights remain floating-point through all splits. The result therefore does not expose exact branch weights, despite retaining an unused `input_weight` string. | Preserve `Fraction` weights for rational paths; mark genuinely non-rational Born weights as numerical. |",
+  "error": "",
+  "prompt_sha256": "c365b32fbda6bc7cd7f8339d8f3febde5ee02880992a69d317131542e73014e1",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-11-07T12:47:46.584760+00:00"
+}

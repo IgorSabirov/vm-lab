@@ -79,6 +79,18 @@ class FullScopeExtensions(unittest.TestCase):
             self.assertEqual(r['initial_totals'],r['material_and_credit_balance'])
             self.assertTrue(r['finished'])
 
+    def test_prepared_slice_respects_declared_capacity(self):
+        for capacity in (0,1):
+            with self.assertRaises(ValueError):self.cfg(prepared_records=True,record_slots=capacity).validate()
+
+    def test_repair_template_uses_ports_after_component_replacement(self):
+        e=Engine(self.cfg(repair_rounds=2,donor_fuel=160,donor_precursor=80),0);e.run()
+        c=e.cells['N0']
+        self.assertEqual(c.route_template,['write','read'])
+        self.assertEqual(len(c.repair_history),3)
+        if c.contact:
+            self.assertTrue(set(c.contact_peers)<={a['identity'] for a in c.apparatus})
+
     def test_completion_trace_is_not_interaction_shutdown(self):
         for mode in ('erase','trace','isolate','transfer','decay'):
             e=Engine(self.cfg(completion_mode=mode),0);e.run()

@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 105.617,
+  "status": "OK",
+  "cli_version": "1.0.105",
+  "answer": "**Static review findings (not executed):**\n\n| Severity | File | Mechanism | Fix |\n|---|---|---|---|\n| **MEDIUM** | `nowexp/engine.py` — `cycle_damage`, `repair` | Damage removes apparatus from the list, shifting its indices, but leaves `route_template` unchanged. The subsequent repair checks those old indices against the changed list; after writer damage they can select reader/reader, and after reader damage writer/writer. The repair then records `template_ports_incompatible` and leaves contact unrestored. | Bind route templates to stable apparatus identities and rebind after damage, or choose compatible writer/reader endpoints during repair. |\n| **LOW** | `nowexp/engine.py` — prepared-record initialization; `nowexp/state.py` — `Config.validate` | `prepared_records=True` always installs two memories, even when `record_slots` is 0 or 1. Those configurations pass validation, then `audit()` raises `physical inbox/record bank exceeded` on the first event. | Reject this configuration during validation or make prepared-record initialization honor the configured capacity. |\n\nThe earlier A-unavailable, fragment-lifetime/sequence, and inherited-address findings do not apply to the supplied revision: self-access is permitted under A, fragments have expiry and sequence handling, and inherited repair selects the address before returning for an existing contact. The documented finite-trajectory scope is appropriately bounded.",
+  "error": "",
+  "prompt_sha256": "1da23c3e72375966d31972cdfd38e9c34232b4888510499237b87fce9bef6f2c",
+  "schema": "vm-lab/copilot-bridge/v1",
+  "operation": "ask",
+  "timestamp_utc": "2026-11-07T13:05:29.924778+00:00"
+}

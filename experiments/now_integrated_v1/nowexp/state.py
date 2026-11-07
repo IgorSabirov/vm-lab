@@ -185,6 +185,8 @@ class Config:
             raise ValueError("invalid finite budget")
         if not 0 <= self.inbox_slots <= 2 or not 0 <= self.record_slots <= 2:
             raise ValueError("two-address finite memory bank required")
+        if self.prepared_records and self.record_slots<2:
+            raise ValueError('prepared two-record slice exceeds record capacity')
         if not math.isfinite(self.inbox_lifetime) or self.inbox_lifetime < 0:
             raise ValueError("invalid inbox lifetime")
         if self.disabled_resource_policy not in ("matched", "natural"):
