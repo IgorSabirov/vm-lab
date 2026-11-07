@@ -6,19 +6,24 @@ Run with sudo on the VM. No arguments installs automatic maintenance.
 """
 import argparse
 import fcntl
+import hashlib
 import http.client
 import http.server
 import ipaddress
+import io
 import json
 import os
+import platform
 from pathlib import Path
 import re
 import shutil
+import signal
 import socket
 import ssl
 import stat
 import subprocess
 import sys
+import tarfile
 import tempfile
 import threading
 import time
@@ -34,7 +39,13 @@ SERVICE = Path('/etc/systemd/system/vm-lab-bridge-maintain.service')
 TIMER = Path('/etc/systemd/system/vm-lab-bridge-maintain.timer')
 OLD_TIMER = 'vm-lab-cert-renew.timer'
 WEBROOT = Path('/var/lib/vm-lab/acme/bridge-webroot')
-REPORT = Path('/var/log/vm-lab-acme/bridge-recovery.log')
+REPORT = Path('/var/lib/vm-lab/acme/bridge-recovery.log')
+LEGO = Path('/opt/vm-lab/lego-5.6.0')
+LEGO_STATE = Path('/etc/vm-lab/lego')
+LEGO_SHA256 = {
+    'x86_64': ('amd64', 'f02fc11b6f56b97e387fa7caa0268f86f5a336953b22458e6430e4651fea439a'),
+    'aarch64': ('arm64', '34d87a6552d69390c4a4560237045c47713a8e148d899e16db0e97040894ed1f'),
+}
 SECRETS = []
 EVENTS = []
 
@@ -151,8 +162,8 @@ def token_from(config):
     return candidates.pop()
 
 
-def usable_certificate(host):
-    cert = ACME / 'live/vm-lab/fullchain.pem'
+def usable_certificate(host, cert=None):
+    cert = cert or ACME / 'live/vm-lab/fullchain.pem'
     if not cert.exists():
         return False
     try:
@@ -162,6 +173,73 @@ def usable_certificate(host):
     return (('DNS', host) in names and
             run(['openssl', 'x509', '-in', str(cert), '-noout', '-checkend', '172800'],
                 check=False).returncode == 0)
+
+
+def install_lego():
+    trusted_directory(LEGO.parent)
+    if LEGO.exists() or LEGO.is_symlink():
+        info = LEGO.lstat()
+        if not stat.S_ISREG(info.st_mode) or info.st_uid != 0 or info.st_mode & 0o022:
+            raise RuntimeError('Untrusted lego executable')
+    else:
+        arch, expected = LEGO_SHA256[platform.machine()]
+        url = 'https://github.com/go-acme/lego/releases/download/v5.6.0/lego_v5.6.0_linux_' + arch + '.tar.gz'
+        say('Downloading pinned lego 5.6.0; checking SHA-256 before execution.')
+        # Bound total download time as well as connection time, before stopping the API.
+        with tempfile.TemporaryDirectory(prefix='vm-lego-download-') as directory:
+            archive = Path(directory) / 'lego.tar.gz'
+            run(['curl', '--fail', '--silent', '--show-error', '--location',
+                 '--proto', '=https', '--proto-redir', '=https',
+                 '--connect-timeout', '10', '--max-time', '90',
+                 '--output', str(archive), url], timeout=100)
+            data = archive.read_bytes()
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise RuntimeError('lego archive checksum mismatch')
+        with tarfile.open(fileobj=io.BytesIO(data), mode='r:gz') as archive:
+            entry = archive.getmember('lego')
+            if not entry.isfile() or entry.size > 200 * 1024 * 1024:
+                raise RuntimeError('Invalid lego archive entry')
+            atomic_write(LEGO, archive.extractfile(entry).read(), mode=0o755)
+    result = run([str(LEGO), '--version'])
+    if '5.6.0' not in result.stdout:
+        raise RuntimeError('Unexpected lego version')
+
+
+def tls_certificate_paths(host):
+    return (LEGO_STATE / 'certificates' / (host + '.crt'),
+            LEGO_STATE / 'certificates' / (host + '.key'))
+
+
+def issue_tls_certificate(ip, host):
+    install_lego()
+    LEGO_STATE.mkdir(mode=0o700, exist_ok=True)
+    trusted_directory(LEGO_STATE)
+    say('TLS-ALPN-01 on port 443: pausing API only; worker and SSH stay running.')
+    run(['systemctl', 'stop', 'vm-lab-api.service'])
+    try:
+        result = run([str(LEGO), 'run', '--accept-tos',
+                      '--account-id', 'vm-lab-bridge', '--path', str(LEGO_STATE),
+                      '--server', 'https://acme-v02.api.letsencrypt.org/directory',
+                      '--domains', host, '--domains', ip, '--cert.name', host,
+                      '--profile', 'shortlived', '--tls', '--tls.address', '0.0.0.0:443',
+                      '--ipv4only', '--http-timeout', '20', '--cert.timeout', '60',
+                      '--no-random-sleep', '--renew-force', '--force-cert-domains'],
+                     timeout=150, check=False)
+        say(result.stdout[-8000:])
+        if result.returncode:
+            raise RuntimeError('TLS-ALPN-01 certificate issuance failed (port 443).')
+    finally:
+        # This also runs on timeout or interruption, before the outer rollback.
+        run(['systemctl', 'start', 'vm-lab-api.service'])
+
+
+def deploy_tls_certificate(cert, key):
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain(str(cert), str(key))
+    for source, name in ((cert, 'fullchain.pem'), (key, 'privkey.pem')):
+        destination = CONFIG.parent / name
+        atomic_write(destination, source.read_bytes(), destination.stat())
+    run(['systemctl', 'restart', 'vm-lab-api.service'])
 
 
 class ChallengeServer(http.server.ThreadingHTTPServer):
@@ -278,7 +356,7 @@ def check_mcp(host, token):
     say('Verified TLS hostname + MCP initialize + tools/list: ' + str(len(names)) + ' tools')
 
 
-def install_maintenance(backup):
+def install_maintenance(backup, tls=False):
     for path in (PROGRAM, SERVICE, TIMER):
         backup.save(path)
     atomic_write(PROGRAM, Path(__file__).read_bytes(), mode=0o644)
@@ -292,10 +370,13 @@ Type=oneshot
 User=root
 UMask=0077
 ExecStart=/usr/bin/python3 -I /opt/vm-lab/recover_vm_bridge.py --renew
-TimeoutStartSec=300
+ExecStopPost=/usr/bin/systemctl start vm-lab-api.service
+TimeoutStartSec=420
 PrivateTmp=true
 NoNewPrivileges=true
 '''
+    if tls:
+        service = service.replace('recover_vm_bridge.py --renew', 'recover_vm_bridge.py --renew --tls')
     timer = '''[Unit]
 Description=Check VM Compute HTTPS after boot and every 12 hours
 
@@ -329,10 +410,15 @@ def diagnostics():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--renew', action='store_true')
+    parser.add_argument('--tls', action='store_true', help='Use TLS-ALPN-01 on port 443 instead of HTTP-01')
     args = parser.parse_args()
     if os.geteuid() != 0:
         raise SystemExit('Run with sudo on the VM.')
     os.umask(0o077)
+    def interrupted(signum, _frame):
+        raise RuntimeError('Interrupted by signal ' + str(signum))
+    signal.signal(signal.SIGTERM, interrupted)
+    signal.signal(signal.SIGHUP, interrupted)
     with open('/run/lock/vm-lab-bridge-recovery.lock', 'a') as lock:
         try:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -348,7 +434,7 @@ def execute(args):
     maintenance_attempted = False
     new_active = new_enabled = False
     try:
-        for path in (CONFIG, Path(CERTBOT), Path(HOOK)):
+        for path in ((CONFIG,) if args.tls else (CONFIG, Path(CERTBOT), Path(HOOK))):
             if not path.is_file():
                 raise RuntimeError('Existing installation missing: ' + str(path))
         trusted_directory(CONFIG.parent)
@@ -381,13 +467,21 @@ def execute(args):
             old_stopped = True
         if run(['systemctl', 'is-active', '--quiet', 'vm-lab-cert-renew.service'], check=False).returncode == 0:
             raise RuntimeError('Previous renewal still running; no changes applied')
-        if not usable_certificate(host):
-            issue_certificate(ip, host)
-        if not usable_certificate(host):
+        cert, key = tls_certificate_paths(host) if args.tls else (
+            ACME / 'live/vm-lab/fullchain.pem', ACME / 'live/vm-lab/privkey.pem')
+        if not usable_certificate(host, cert):
+            if args.tls:
+                issue_tls_certificate(ip, host)
+            else:
+                issue_certificate(ip, host)
+        if not usable_certificate(host, cert):
             raise RuntimeError('New certificate failed hostname or expiry verification')
         config['public_ip'] = ip
         atomic_write(CONFIG, (json.dumps(config, indent=2) + '\n').encode(), CONFIG.stat())
-        run(['/usr/bin/python3', '-I', HOOK])
+        if args.tls:
+            deploy_tls_certificate(cert, key)
+        else:
+            run(['/usr/bin/python3', '-I', HOOK])
         run(['systemctl', 'start', 'vm-lab-api.service'])
         for attempt in range(6):
             try:
@@ -399,7 +493,7 @@ def execute(args):
                 time.sleep(1)
         if not args.renew:
             maintenance_attempted = True
-            install_maintenance(backup)
+            install_maintenance(backup, tls=args.tls)
         run(['systemctl', 'is-active', '--quiet', 'vm-lab-api.service', 'vm-lab-worker.service'])
         say('BRIDGE_LOCAL_OK. External ChatGPT connectivity still requires a connection check.')
         say('Automatic HTTPS maintenance: ' + TIMER.name)

@@ -19,6 +19,29 @@ spec.loader.exec_module(recovery)
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_tls_issuance_restarts_api_on_ca_failure_and_timeout(self):
+        for failure in ('failed', 'timeout'):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as directory:
+                calls = []
+                def fake_run(argv, **kwargs):
+                    calls.append(argv)
+                    if argv[0] == str(recovery.LEGO):
+                        self.assertIn('--tls', argv)
+                        self.assertNotIn('--http', argv)
+                        if failure == 'timeout':
+                            raise subprocess.TimeoutExpired(argv, 150)
+                        return subprocess.CompletedProcess(argv, 1, 'CA validation failed')
+                    return subprocess.CompletedProcess(argv, 0, '')
+                with patch.object(recovery, 'install_lego'), \
+                     patch.object(recovery, 'trusted_directory'), \
+                     patch.object(recovery, 'LEGO_STATE', Path(directory)), \
+                     patch.object(recovery, 'run', side_effect=fake_run):
+                    with self.assertRaises((RuntimeError, subprocess.TimeoutExpired)):
+                        recovery.issue_tls_certificate('192.0.2.1', 'bridge.test')
+                self.assertEqual(calls[0], ['systemctl', 'stop', 'vm-lab-api.service'])
+                self.assertEqual(calls[-1], ['systemctl', 'start', 'vm-lab-api.service'])
+                self.assertFalse(any('vm-lab-worker.service' in call for call in calls))
+
     def test_preserve_existing_token_and_reject_ambiguous_config(self):
         token = 'ab' * 32
         config = {'public_ip': '192.0.2.1', 'token': token, 'other': {'threads': 7}}
