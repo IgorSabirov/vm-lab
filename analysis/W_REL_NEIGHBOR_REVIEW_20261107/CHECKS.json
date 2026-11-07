@@ -1,0 +1,470 @@
+{
+  "checks": {
+    "permutation": true,
+    "deadline": true,
+    "undefined_deadline_rejected": true,
+    "base_repair": true,
+    "K_off_fails": true,
+    "cut_A_fails": true,
+    "cut_A_causal_influence_zero": true,
+    "expired_buffer_fails": true,
+    "lost_record_fails": true,
+    "insufficient_C_fails": true,
+    "independent_transfer": true,
+    "failed_transfer_still_spends": true,
+    "exact_no_signalling": true,
+    "exact_controller_delta": true,
+    "ledger": true,
+    "corrupt_ledger_rejected": true,
+    "flux_speed_gate_refuted": true,
+    "flux_positivity_refuted": true,
+    "iid_path_law_distinction": true,
+    "packet_conservation": true,
+    "lorentz_kinematics": true
+  },
+  "delay": [
+    {
+      "delay": "0",
+      "tie": "arrival_first",
+      "F": 1,
+      "T": 1,
+      "S": 1,
+      "available": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "delay": "999/1000",
+      "tie": "arrival_first",
+      "F": 1,
+      "T": 1,
+      "S": 1,
+      "available": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "delay": "1",
+      "tie": "arrival_first",
+      "F": 1,
+      "T": 1,
+      "S": 1,
+      "available": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "delay": "1",
+      "tie": "read_first",
+      "F": 0,
+      "T": 0,
+      "S": 0,
+      "available": [
+        "B"
+      ]
+    },
+    {
+      "delay": "1001/1000",
+      "tie": "arrival_first",
+      "F": 0,
+      "T": 0,
+      "S": 0,
+      "available": [
+        "B"
+      ]
+    }
+  ],
+  "controls": {
+    "base": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 1,
+      "health": "9/10",
+      "F": 1,
+      "sent": true,
+      "payload": 1,
+      "received": 1,
+      "T": 1,
+      "S": 1,
+      "rC": "1/100",
+      "rY": "1/100",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "K_off": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 0,
+      "health": "7/10",
+      "F": 0,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "3/100",
+      "rY": "1/50",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "cut_A": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "B"
+      ],
+      "u": 0,
+      "health": "7/10",
+      "F": 0,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "3/100",
+      "rY": "1/50",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "buffer_expired": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [],
+      "u": 0,
+      "health": "7/10",
+      "F": 0,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "3/100",
+      "rY": "1/50",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "record_lost": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "B"
+      ],
+      "u": 0,
+      "health": "7/10",
+      "F": 0,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "3/100",
+      "rY": "1/50",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "resource_C_insufficient": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 0,
+      "health": "7/10",
+      "F": 0,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "1/100",
+      "rY": "1/50",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "cut_Y2": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 1,
+      "health": "9/10",
+      "F": 1,
+      "sent": true,
+      "payload": 1,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "1/100",
+      "rY": "1/100",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "Y2_unreadable": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 1,
+      "health": "9/10",
+      "F": 1,
+      "sent": true,
+      "payload": 1,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "1/100",
+      "rY": "1/100",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "Y2_loss": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 1,
+      "health": "9/10",
+      "F": 1,
+      "sent": true,
+      "payload": 1,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "1/100",
+      "rY": "1/100",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    },
+    "Y_cannot_send": {
+      "lambda": 1,
+      "A": 1,
+      "B": 1,
+      "available": [
+        "A",
+        "B"
+      ],
+      "u": 1,
+      "health": "9/10",
+      "F": 1,
+      "sent": false,
+      "payload": null,
+      "received": null,
+      "T": 0,
+      "S": 0,
+      "rC": "1/100",
+      "rY": "0",
+      "ledger_residual": {
+        "C": "0",
+        "Y": "0"
+      }
+    }
+  },
+  "exact_probabilities": {
+    "P_F": "5/16",
+    "P_T_given_F": "1",
+    "P_S": "5/16",
+    "delta_K": "5/16",
+    "P_S_cut_Y2": 0,
+    "P_B1_setting_A0": "1/2",
+    "P_B1_setting_A1": "1/2",
+    "no_signalling_TV": "0",
+    "P_B1_given_A1": "5/8",
+    "P_B1_given_A0": "3/8"
+  },
+  "global_iid_control": {
+    "path_mismatches": 2,
+    "paths": 4,
+    "output_TV": "0"
+  },
+  "allocator": {
+    "AB": {
+      "A": "1/50",
+      "B": "1/100"
+    },
+    "BA": {
+      "B": "1/50",
+      "A": "1/100"
+    },
+    "symmetric": {
+      "A": "3/200",
+      "B": "3/200"
+    }
+  },
+  "flux_counterexamples": {
+    "causality": {
+      "initial": [
+        "1/1000",
+        "0"
+      ],
+      "after": [
+        "9/10000",
+        "1/10000"
+      ],
+      "J": [
+        "1/10000"
+      ],
+      "dt": "1/10",
+      "dx": 1,
+      "c": 1,
+      "gate_left": "1/100000",
+      "gate_right": 1
+    },
+    "positivity": {
+      "initial": [
+        0,
+        1,
+        0
+      ],
+      "after": [
+        "1",
+        "-1",
+        "1"
+      ],
+      "J": [
+        "-1",
+        "1"
+      ],
+      "dt": 1,
+      "dx": 1,
+      "c": 1,
+      "total": "1"
+    }
+  },
+  "causal_packet_control": [
+    {
+      "t": "0",
+      "source": "0",
+      "in_transit": "1",
+      "destination": "0"
+    },
+    {
+      "t": "1",
+      "source": "0",
+      "in_transit": "1",
+      "destination": "0"
+    },
+    {
+      "t": "2",
+      "source": "0",
+      "in_transit": "0",
+      "destination": "1"
+    }
+  ],
+  "ledger_corruption_residual": "1/100",
+  "permutation": {
+    "pairs": 1024,
+    "event_executions": 16384,
+    "mismatches": 0,
+    "success_count": 327,
+    "seconds_including_csv": 0.1180485200000021
+  },
+  "lorentz": {
+    "rows": [
+      {
+        "beta": -0.9,
+        "t_A": -2.0647416048350564,
+        "t_B": 2.0647416048350564,
+        "target_proper_time": 2.9999999999999987
+      },
+      {
+        "beta": -0.5,
+        "t_A": -0.5773502691896258,
+        "t_B": 0.5773502691896258,
+        "target_proper_time": 3.0000000000000004
+      },
+      {
+        "beta": 0.0,
+        "t_A": 0.0,
+        "t_B": 0.0,
+        "target_proper_time": 3.0
+      },
+      {
+        "beta": 0.5,
+        "t_A": 0.5773502691896258,
+        "t_B": -0.5773502691896258,
+        "target_proper_time": 3.0000000000000004
+      },
+      {
+        "beta": 0.9,
+        "t_A": 2.0647416048350564,
+        "t_B": -2.0647416048350564,
+        "target_proper_time": 2.9999999999999987
+      }
+    ],
+    "max_absolute_interval_error": 2.842170943040401e-14,
+    "causal_relations_preserved": true,
+    "proper_time_preserved": true
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_max": null,
+    "memory_max": null,
+    "memory_current": null,
+    "workload": "single-process stdlib, exact Fractions; float64 scalar Lorentz diagnostics; no BLAS/GPU",
+    "host_load": "0.00 0.00 0.00 1/231 6",
+    "hidden_host_parameters": "not available",
+    "implementation_sha256": "688fb3598b62e833d7dd8bb4cb2a276bcbb4bb90c1c706a2978de34ac4381ddf"
+  },
+  "source_archive_reproduced": false,
+  "scope": "independent reconstruction of prose model and exact counterexamples; no full R125 field simulation",
+  "all_checks_pass": true,
+  "runtime_seconds": 0.1265241620000097
+}
