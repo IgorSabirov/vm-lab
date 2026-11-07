@@ -1,0 +1,2831 @@
+Техническая ревизия готового кандидата NOW_INTEGRATED_CONTINUATION_V1.
+Фиксированный source commit: 18aa9619feb214ba0571177afde37ee488e341ec.
+Пользователь поручил передать код и ТЗ Copilot на предзапусковую ревизию. Порядок: код -> внешняя ревизия -> исправления -> дымовые -> VM-калибровка -> основной прогон. Автор НЕ запускал эту реализацию и тесты. В этой консультации у тебя нет инструментов: работай статически и не заявляй об исполнении. Ссылки не заменяют вложенный исходник; нет неявного доступа к репозиторию.
+Научная цель/порог не меняются ради PASS. Модель намеренно ограничена: заданные реакционные правила/геометрия/адрес, конечные кредиты (не джоули), надёжный транспорт, конечная волновая память (не доказанный BIC континуума). Объявленную границу не представлять внезапно обнаруженным дефектом; проверять, не нарушает ли код даже своё ограниченное обещание.
+Верни по-русски: (1) блокирующие ошибки с file:function, конкретным контрпримером или ручной трассой и минимальной правкой; (2) существенные риски численного метода/статистики/воспроизводимости; (3) экономия без смены вопроса; (4) какие тесты должны поймать ошибку. Приоритет P0/P1/P2. Не выдумывай значения и факт тестирования. Отдели доказанный по коду дефект от подозрения, которое требует запуска. Ответ до 3500 слов; наиболее важное сначала. Научная приёмка остаётся у пользователя.
+Часть 2/2: план ансамблей, парные контрасты, полнота панели, statistical vs descriptive, гейты/возобновление и отдача предкам. Главный критерий пользователя: до запуска обещать каждому прямому предку конкретный вклад, после оценить то же обещание; число ссылок не результат. Все 25 прямых контрактов приложены без повторения исторической прозы. Остальные 100 помечены как контекст/границы без эмпирических обещаний. Проверь общую базу, достижимость прогнозов и тавтологию заданных правил. Покажи, где численный итог не способен выполнить обещание. Волновой H и CP-ядро, определения Config и полное ТЗ рассматриваются в части 1: тёмная память имеет два ортогональных входа, конечную bath, load pulse и read с обратным действием. Здесь повторены нужные исходники; общей памяти между процессами не предполагается.
+
+===== FILE experiments/now_integrated_v1/ANCESTOR_FORECAST.md =====
+# Возврат предкам: прогноз до запуска
+
+Статус: код для ревизии. Ни один прогноз ещё не проверен. Таблица ниже перечисляет прямые обещания кандидата. Все остальные записи имеют отдельную строку границ в ANCESTOR_CONTRACTS.json, с исходным утверждением и требуемым объектом. Количество строк не является научной отдачей.
+
+| Предок | Что обещает этот опыт | Сравнение | Прогноз средней разности |
+|---|---|---|---|
+| R005 | Измерить потерю продолжения при том же запасе и позднем доступе. | `causal_resource_access` | [0.95, 1] |
+| R018 | Проверить достаточность согласованных маргиналей в другом, явно классическом механизме; старый транспорт не пересчитывается. | `joint_information` | [0, 0.13] |
+| R034 | Сопоставить равные одноузловые распределения входа с различной совместной подготовкой и продолжением. | `joint_information` | [0, 0.13] |
+| R040 | Проверить интеграцию точно защищённого конечного подпространства с оплаченным чтением и передачей; гипотеза: преимущество финальной функции не менее 0.1. | `load_cycle_32` | [0.1, 1] |
+| R041 | Сравнить статическую запись в bright и объявленный импульс bright→dark в полном цикле; гипотеза выигрыша не менее 0.1, не статический захват BIC. | `load_cycle_32` | [0.1, 1] |
+| R043 | Проверить рабочую роль записи после source_off внутри одного исполнения. | `record_effect` | [0.95, 1] |
+| R057 | При одном H и входе V сравнить профили с передачей/без передачи аппарата; равенство Resp задаётся общими параметрами H,V. | `same_response_different_transfer` | [0.95, 1] |
+| R059 | Привязать различие продолжения к допустимому времени доставки при одинаковых ресурсах. | `causal_resource_access` | [0.95, 1] |
+| R060 | Проверить различие ремонта при общей функции и разных доступных производственных действиях. | `production_effect` | [0.95, 1] |
+| R062 | Выделить успех на сохранённом готовом A и успех после его замены. | `apparatus_retirement` | [0.95, 1] |
+| R063 | Отделить передачу рабочего доступа от сохранения требуемого содержания. | `transferred_content` | [0.95, 1] |
+| R064 | Измерить число конечных поддержанных поколений при истощении; замыкание V не обещается. | `donor_dose` | [0.95, 1] |
+| R074 | Показать что одинаковая родительская функция не задаёт профиль следующего носителя. | `transferred_apparatus` | [0.95, 1] |
+| R094 | Проверить независимость выбранного пути от повторного импульса инициатора после первой записи. | `initiator_repeat` | [0, 0] |
+| R098 | Считать четырёхветвевую разность для непрерывного health наряду с бинарным успехом; не возвращать отозванный линейный тест. | `joint_health` | [1.9, 2.1] |
+| R104 | Разделить смешанную разность четырёх ветвей и простое приращение второго механизма. | `joint_threshold` | [0.95, 1] |
+| R108 | Перенести вопрос достаточности маргиналей в классический контроль, не подтверждая прежнюю η или квантовость. | `joint_information` | [0, 0.13] |
+| R116 | Проверить изменение действия при физически представленном изменении содержимого; не тест личности/Я. | `content_effect` | [0.95, 1] |
+| R119 | Сопоставить завершённый источник, доступную запись и её причинное использование с удалением рабочей записи. | `record_effect` | [0.95, 1] |
+| R120 | Получить совместный конечный профиль функции, стоимости и средств следующего носителя на общей панели D. | `transferred_apparatus` | [0.95, 1] |
+| R121 | Разделить передачу содержания, передачу аппарата и собственную функцию потомка после замены аппарата. | `transferred_content` | [0.95, 1] |
+| R122 | Проверить совместимость производства A и оплаченного локального контакта; геометрия и адрес остаются заданными. | `joint_threshold` | [0.95, 1] |
+| R123 | Отделить физическое изменение мировых линий от перестановки независимых вычислений; ожидается срыв дедлайна снабжения потомка при v=0.2, общая ковариантность не обещается. | `physical_motion` | [0.95, 1] |
+| R124 | Проверить сохранение роли корректора после добавления аппарата, донора и передачи при той же подготовке 5/16. | `corrector_effect` | [0.25, 0.38] |
+| R125 | Проверить причинную доставку общего конечного донора в используемом надёжном подслучае; не объявлять исправленной всю lease/multi-token спецификацию. | `causal_resource_access` | [0.95, 1] |
+
+После исполнения ANCESTOR_RETURN.json возвращает то же contract_id, исходное утверждение, прогноз, измеренное значение, неопределённость, выполненное/не выполненное обещание и последствия для постановки. Описательное попадание в интервал не равно статистическому подтверждению. Отсутствующий тест остаётся NOT_EVALUABLE. Неожиданное открытие получает отдельный post_hoc комментарий и не переписывает прогноз.
+
+Прогнозы с почти единичным эффектом в форсированном 11 — проверки соединения заданных правил. Их научный смысл: обнаружить несовместимый стык или скрытую подготовку. Это не открытие закона воспроизводства. Для волновой памяти заранее обещана проверка полного цикла; величина выигрыша и сходимость ещё неизвестны.
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/preregistration/PROTOCOL.json =====
+{
+  "schema": 1,
+  "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
+  "implementation": "candidate-0.1-review",
+  "freeze_state": "DRAFT_FOR_NEIGHBOR_REVIEW",
+  "registry_commit": "0cf0f11394f4f9881b8a0a48f8a39201e2a0ea9b",
+  "question": "Какие заданные средства продолжения этот кандидат заменяет работающими локальными продуктами, а какие остаются импортами?",
+  "user_stage_order": [
+    "assemble_code",
+    "neighbor_review",
+    "corrections",
+    "author_smoke",
+    "target_vm_calibration",
+    "main_vm"
+  ],
+  "executed": false,
+  "checkpoint_event_interval": 16,
+  "phase_limits": {
+    "reviewer": {
+      "cases": [
+        "forced11",
+        "no_seed",
+        "no_production",
+        "no_contact",
+        "neither",
+        "no_reader",
+        "no_record",
+        "no_transferred_apparatus",
+        "scrambled_child",
+        "late_resource",
+        "finite_dark_32",
+        "finite_static_32"
+      ],
+      "seeds": 2,
+      "hard_wall_seconds": 600,
+      "memory_limit_mib": 2048,
+      "disk_limit_mib": 256
+    },
+    "smoke": {
+      "cases": [
+        "forced11",
+        "no_seed",
+        "no_production",
+        "no_contact",
+        "neither",
+        "no_reader",
+        "no_record",
+        "no_transferred_apparatus",
+        "scrambled_child",
+        "late_resource",
+        "finite_dark_32",
+        "finite_static_32"
+      ],
+      "seeds": 4,
+      "hard_wall_seconds": 600,
+      "memory_limit_mib": 2048,
+      "disk_limit_mib": 256
+    },
+    "calibrate": {
+      "cases": [
+        "forced11",
+        "base",
+        "finite_dark_32",
+        "finite_static_32",
+        "bath_32",
+        "detune_0.15",
+        "wave_moving"
+      ],
+      "seeds": 4,
+      "hard_wall_seconds": 600,
+      "memory_limit_mib": 4096,
+      "disk_limit_mib": 512
+    },
+    "main": {
+      "seeds": 512,
+      "hard_wall_seconds": 3600,
+      "memory_limit_mib": 4096,
+      "disk_limit_mib": 1024
+    }
+  },
+  "proposed_main_tasks": 10777,
+  "budget": {
+    "author_scientific_execution_this_stage": 0,
+    "vm_jobs_this_stage": 0,
+    "proposed_main_cpu_processes": 1,
+    "proposed_main_wall_cap_seconds": 3600,
+    "prediction_seconds": null,
+    "forecast_status": "Awaiting post-review target calibration",
+    "monetary_cost": null,
+    "cost_reason": "No billing tariff queried and no VM job submitted; limits are caps, not measured forecasts",
+    "enlargement": "Revised workload/forecast and user decision before exceeding this envelope"
+  },
+  "seeds": {
+    "master_integers": "0..N-1",
+    "address": "sha256(namespace,seed,generation,side,instrument)",
+    "invariance": "Stable event identity, not dispatcher order",
+    "common_random_numbers": true
+  },
+  "acceptance": {
+    "function_health_at_least": 8,
+    "required_decoded_content": [
+      1,
+      1
+    ],
+    "exact_credit_balance": true,
+    "exact_material_balance": true,
+    "causal_interval_tolerance": 1e-10,
+    "density_trace_tolerance": 1e-10,
+    "psd_negative_tolerance": 1e-10,
+    "profile_equivalence_tv": 0.05,
+    "profile_tolerance_status": "Comparison tolerance, not transitive equivalence",
+    "sigma_min": null,
+    "condition_number": null,
+    "reconstruction_status": "NOT_ADMISSIBLE: no inverse tomography map J in this candidate; read probabilities are not singular values"
+  },
+  "inference": {
+    "primary": [
+      "joint_threshold",
+      "joint_health",
+      "transferred_apparatus",
+      "causal_resource_access",
+      "load_cycle_32"
+    ],
+    "descriptive_all": true,
+    "confidence": "Nominal 95% bounded Hoeffding interval under independent seed sampling assumption",
+    "multiple_testing": "No family-wide discovery claims; remaining comparisons exploratory",
+    "exact_preparation_probability": "5/16 correlated, 1/4 independent for content 11; exact input law, not measured continuation"
+  },
+  "main_readiness": "Requires final reviewed digest, smoke, measured VM calibration and workload forecast; draft cannot launch main"
+}
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/preregistration/CASES.json =====
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "base",
+      "config": {},
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "forced11",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced10",
+      "config": {
+        "forced_content": [
+          1,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced01",
+      "config": {
+        "forced_content": [
+          0,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced00",
+      "config": {
+        "forced_content": [
+          0,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "neither",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed_no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false,
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_reader",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "reader_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "erase_record": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_corrector",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_precursor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 0
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "address_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_transferred_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "scrambled_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scramble_child": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_resource",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "supply_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "record_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "one_slot",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "working_slots": 1
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "weak_donor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_fuel": 12
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "retained_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "retire_inherited": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "given_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "imported_contacts": true,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "reverse_schedule",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scheduler_reverse": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "moving_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "receiver_velocity": 0.2
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "repeating_source",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "source_repeat": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "independent",
+      "config": {
+        "preparation": "independent"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_production",
+      "config": {
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_contact",
+      "config": {
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_neither",
+      "config": {
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_corrector",
+      "config": {
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_16",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_32",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_64",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_16",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_32",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_64",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.02",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.02,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.07",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.07,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.15",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.15,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_4",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 4,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_16",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_32",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_transfer",
+      "config": {
+        "memory": "finite_dark",
+        "transfer_apparatus": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_reader",
+      "config": {
+        "memory": "finite_dark",
+        "reader_enabled": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_moving",
+      "config": {
+        "memory": "finite_dark",
+        "receiver_velocity": 0.2,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    }
+  ],
+  "contrasts": [
+    {
+      "id": "seed_effect",
+      "cases": [
+        "forced11",
+        "no_seed"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Bootstrap after initial apparatus withheld",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "production_effect",
+      "cases": [
+        "forced11",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Function after inherited apparatus retired",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "seed_production",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_seed",
+        "no_seed_no_production"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "content_effect",
+      "cases": [
+        "forced11",
+        "forced10"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "reader_effect",
+      "cases": [
+        "forced11",
+        "no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "record_effect",
+      "cases": [
+        "forced11",
+        "no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "contact_effect",
+      "cases": [
+        "forced11",
+        "no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_threshold",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_health",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "mean_health",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_random",
+      "cases": [
+        "base",
+        "base_no_production",
+        "base_no_contact",
+        "base_neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_apparatus",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_content",
+      "cases": [
+        "forced11",
+        "scrambled_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_resource_access",
+      "cases": [
+        "forced11",
+        "late_resource"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_record_access",
+      "cases": [
+        "forced11",
+        "late_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "finite_working_memory",
+      "cases": [
+        "forced11",
+        "one_slot"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "donor_dose",
+      "cases": [
+        "forced11",
+        "weak_donor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": false,
+      "question": "Declared resource-dose intervention, not equal-budget synergy",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "precursor_dose",
+      "cases": [
+        "forced11",
+        "no_precursor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": false,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "apparatus_retirement",
+      "cases": [
+        "retained_apparatus",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "coordinate_schedule_control",
+      "cases": [
+        "forced11",
+        "reverse_schedule"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "physical_motion",
+      "cases": [
+        "forced11",
+        "moving_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "initiator_repeat",
+      "cases": [
+        "forced11",
+        "repeating_source"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_information",
+      "cases": [
+        "base",
+        "independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "corrector_effect",
+      "cases": [
+        "base",
+        "base_no_corrector"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_16",
+      "cases": [
+        "finite_dark_16",
+        "finite_static_16"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_32",
+      "cases": [
+        "finite_dark_32",
+        "finite_static_32"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_64",
+      "cases": [
+        "finite_dark_64",
+        "finite_static_64"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_reader",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "detuning_cost",
+      "cases": [
+        "finite_dark_32",
+        "detune_0.15"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "same_response_different_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    }
+  ],
+  "common_base": "Equal initial token/material totals for equal=True; each disabling intervention is explicit. Disabled production/contact allowances are retained as unavailable. Other disabled actions may leave unused stock: the full local ledger is retained.",
+  "source": "Review candidate, no results exist yet"
+}
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/preregistration/PANEL_D.json =====
+{
+  "schema": 1,
+  "scope": "Same Config intervention applies at every active carrier; parent/child profile retained separately",
+  "rows": [
+    {
+      "id": "D_FUNCTION",
+      "intervention": "functional state starts at health 7",
+      "reference": "forced11",
+      "case": "no_corrector",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_RECORD",
+      "intervention": "remove accessible stored record before read",
+      "reference": "forced11",
+      "case": "no_record",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_READER",
+      "intervention": "disable reader operation",
+      "reference": "forced11",
+      "case": "no_reader",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_APPARATUS",
+      "intervention": "retire inherited apparatus after production slot",
+      "reference": "forced11",
+      "case": "no_production",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_CONTACT",
+      "intervention": "initial contact absent; local repair disabled",
+      "reference": "forced11",
+      "case": "no_contact",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_ADDRESS",
+      "intervention": "withhold prepared address",
+      "reference": "forced11",
+      "case": "no_address",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_DELIVERY",
+      "intervention": "resource extra proper dwell 100",
+      "reference": "forced11",
+      "case": "late_resource",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_DONOR",
+      "intervention": "donor fuel 48 to 12; explicit unequal-dose intervention",
+      "reference": "forced11",
+      "case": "weak_donor",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_TRANSFER",
+      "intervention": "transfer record without apparatus",
+      "reference": "forced11",
+      "case": "no_transferred_apparatus",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_CONTENT",
+      "intervention": "change B after parental read before offspring transport",
+      "reference": "forced11",
+      "case": "scrambled_child",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    }
+  ],
+  "not_admissible": [
+    {
+      "object": "writer-only physical damage",
+      "reason": "A is shared reader/writer catalyst; independent Aw/Ar chemistry not implemented"
+    },
+    {
+      "object": "PW quantum clock",
+      "reason": "no H,T,sigma constraint system supplied"
+    },
+    {
+      "object": "R097 spin-hole-proton carrier",
+      "reason": "finite rail memory is a different specified Hamiltonian"
+    },
+    {
+      "object": "contact topology genesis",
+      "reason": "locations, address and local repair rule are imported"
+    }
+  ]
+}
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/preregistration/IMPORTED_ZERO_ROW.json =====
+{
+  "schema": 1,
+  "rows": [
+    {
+      "object": "law",
+      "given": "Candidate reaction and correction rules",
+      "where": "local_instruments.py",
+      "removal_or_replacement": "No; removing law makes model undefined",
+      "production_criterion": "Law cannot be counted as produced"
+    },
+    {
+      "object": "geometry",
+      "given": "1+1 Minkowski background, worldlines, substrate sites",
+      "where": "kinematics.py / Engine.__init__",
+      "removal_or_replacement": "Velocity can change; geometry cannot be derived here",
+      "production_criterion": "No genesis claim"
+    },
+    {
+      "object": "measure",
+      "given": "Correlated or independent two-bit preparation; labelled random draws",
+      "where": "randomness.py",
+      "removal_or_replacement": "Swap preparation ensemble",
+      "production_criterion": "Keep denominators, not probability of existence"
+    },
+    {
+      "object": "apparatus_seed",
+      "given": "One material apparatus at N0",
+      "where": "Engine.__init__",
+      "removal_or_replacement": "no_seed; retire inherited",
+      "production_criterion": "Function after retirement must use locally made apparatus"
+    },
+    {
+      "object": "production_template",
+      "given": "Generic synthesis rule plus local two-bit content",
+      "where": "produce",
+      "removal_or_replacement": "content/seed/production ablations",
+      "production_criterion": "Synthesis law stays given"
+    },
+    {
+      "object": "contact_address",
+      "given": "All substrate destinations fixed at preparation",
+      "where": "Cell.address",
+      "removal_or_replacement": "no_address / no_contact",
+      "production_criterion": "Paid local contact is not recovered adjacency matrix"
+    },
+    {
+      "object": "work_stock",
+      "given": "Finite donor credits plus four initial credits",
+      "where": "donor / Cell.fuel",
+      "removal_or_replacement": "weak_donor",
+      "production_criterion": "No if-success injection; credits not joules"
+    },
+    {
+      "object": "material",
+      "given": "Precursor, apparatus material, contact material, locked controls",
+      "where": "Engine.totals",
+      "removal_or_replacement": "no_precursor",
+      "production_criterion": "Conservation includes transit and waste"
+    },
+    {
+      "object": "memory",
+      "given": "Two rails per record with fresh initial finite bath",
+      "where": "memory.write",
+      "removal_or_replacement": "static/dark/detuning/modes",
+      "production_criterion": "Each record module given once; no repeated bath reset inside that record; preparation remains imported"
+    },
+    {
+      "object": "actuator",
+      "given": "Perfect bright-dark pulse and projective read instrument",
+      "where": "memory.write/read",
+      "removal_or_replacement": "finite_static",
+      "production_criterion": "Actuator not reproduced; credit cost is declared, not derived work"
+    },
+    {
+      "object": "clock_schedule",
+      "given": "Local proper-time appointments after activation",
+      "where": "Engine.boot",
+      "removal_or_replacement": "read_wait / moving_child",
+      "production_criterion": "Scheduler knowledge never passed to controller"
+    },
+    {
+      "object": "log",
+      "given": "Researcher full log and checkpoint",
+      "where": "Engine.log",
+      "removal_or_replacement": "Fake future marker test",
+      "production_criterion": "Audit log unavailable as a control input"
+    }
+  ]
+}
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/observables.py =====
+"""Descriptive profiles and paired contrasts; no universal invariant claim."""
+from collections import Counter, defaultdict
+import math
+
+
+def mean(values):
+    return sum(values)/len(values) if values else None
+
+
+def summarize(rows):
+    by_case = defaultdict(list)
+    for row in rows:
+        by_case[row["case_id"]].append(row)
+    summary = {}
+    for name, group in sorted(by_case.items()):
+        histogram = Counter(tuple(p["function"] for p in r["result"]["profile"]) for r in group)
+        summary[name] = dict(n=len(group),
+            q_parent=mean([r["result"]["parent_function"] for r in group]),
+            q_child=mean([r["result"]["child_function"] for r in group if r["result"]["child_function"] is not None]),
+            q_final=mean([r["result"]["final_function"] for r in group]),
+            mean_cycles=mean([r["result"]["consecutive_functional"] for r in group]),
+            mean_spent_fuel=mean([sum(p["spent_fuel"] for p in r["result"]["profile"]) for r in group]),
+            mean_health=mean([sum(p["health"] for p in r["result"]["profile"])/len(r["result"]["profile"]) for r in group]),
+            joint_function_profile={"".join(map(str,k)):v/len(group) for k,v in sorted(histogram.items())},
+            exact_weighted_probability=False,
+            descriptive_sample=True)
+    return summary
+
+
+def paired_contrasts(rows, definitions):
+    index = {(r["case_id"], r["seed"]):r for r in rows}
+    result = {}
+    for contrast in definitions:
+        cases = contrast["cases"]
+        if len(cases) != len(contrast["weights"]):
+            raise ValueError("contrast weights do not match branches")
+        seedsets = [{r["seed"] for r in rows if r["case_id"] == c} for c in cases]
+        if not seedsets or any(s != seedsets[0] for s in seedsets[1:]) or not seedsets[0]:
+            result[contrast["id"]] = dict(status="NOT_EVALUABLE", reason="incomplete paired cases")
+            continue
+        values = []
+        for seed in sorted(seedsets[0]):
+            rs = [index[(c,seed)]["result"] for c in cases]
+            totals = [r["initial_totals"] for r in rs]
+            if contrast.get("require_equal_initial_totals", True) and any(t != totals[0] for t in totals):
+                raise ValueError("different total budgets in " + contrast["id"])
+            metric = contrast.get("metric", "final_function")
+            value = sum(w*r[metric] for w,r in zip(contrast["weights"],rs))
+            values.append(value)
+        n = len(values)
+        deterministic = all(index[(c,seed)].get("sampling_mode")=="deterministic" for c in cases for seed in seedsets[0])
+        var = sum((x-mean(values))**2 for x in values)/(n-1) if n>1 else None
+        result[contrast["id"]] = dict(status="EXECUTED_DESCRIPTIVE", mean=mean(values), n=n,
+            nominal_bounded_95_halfwidth=0.0 if deterministic else sum(abs(w) for w in contrast["weights"])*math.sqrt(math.log(40)/(2*n)),
+            sampling_mode="deterministic_case" if deterministic else "seed_ensemble",
+            uncertainty_assumption="Independent master seeds are the sampling model; hash addressing is not an independence proof",
+            sample_standard_error=None if var is None else math.sqrt(var/n),
+            raw_paired_values=values, inference="No significance claim from smoke or uncalibrated sample")
+    return result
+
+
+def ancestor_report(contracts, rows, summaries, contrasts):
+    """Evaluate the preregistered promise separately from stage and scientific truth."""
+    reports = []
+    for contract in contracts:
+        item = dict(contract_id=contract["id"], ancestor=contract["ancestor"],
+                    before=contract["before"], promised_delta=contract["promised_delta"],
+                    prediction=contract["prediction"], evidence_refs=contract["evidence_refs"],
+                    positive_return=contract["positive_return"], negative_return=contract["negative_return"],
+                    unresolved_return=contract["unresolved_return"], relation=contract["relation"],
+                    original_question_resolved=False, scientific_status_promoted=False)
+        rule = contract["evaluation"]
+        if rule["kind"] == "scope_only":
+            item.update(status="NOT_EVALUABLE_IN_THIS_KERNEL", actual=rule["reason"],
+                        planning_verdict="Explicitly not promised as an experimental gain")
+        elif rule["kind"] == "contrast":
+            v = contrasts.get(rule["id"], {})
+            if v.get("status") != "EXECUTED_DESCRIPTIVE":
+                item.update(status="NOT_EVALUABLE", actual=v)
+            else:
+                value = v["mean"]
+                holds = rule["lower"] <= value <= rule["upper"]
+                half = v["nominal_bounded_95_halfwidth"]
+                item.update(status="PREDICTION_MET_DESCRIPTIVELY" if holds else "PREDICTION_MISSED_DESCRIPTIVELY",
+                            actual=value, uncertainty=v["sample_standard_error"],
+                            nominal_95_interval=[value-half,value+half],
+                            statistical_interpretation="UNRESOLVED" if value-half < rule["lower"] or value+half > rule["upper"] else "INTERVAL_INSIDE_PREDICTION_BAND",
+                            realized_return=contract["positive_return"] if holds else contract["negative_return"],
+                            planning_verdict="Descriptive alignment only; main inference needs declared uncertainty and implementation review")
+        elif rule["kind"] == "technical_all":
+            if not rows:
+                item.update(status="NOT_EVALUABLE", actual="no trajectories")
+            else:
+                ok = all(r["result"]["material_and_credit_balance"] == r["result"]["initial_totals"] for r in rows)
+                item.update(status="TECHNICAL_CHECK_MET" if ok else "TECHNICAL_CHECK_FAILED", actual=ok)
+        else:
+            raise ValueError("unknown ancestor evaluation")
+        reports.append(item)
+    return reports
+
+
+def finite_closure(viable, transitions):
+    """Universal closure and existence of a viable successor are DIFFERENT checks.
+
+    transitions must enumerate all positive-probability outcomes under every
+    allowed damage/action for this finite model. Completeness is a caller obligation.
+    """
+    v = set(viable)
+    if not v or any(z not in transitions or not transitions[z] for z in v):
+        return {"status":"NOT_EVALUABLE", "reason":"empty viability set or missing transitions"}
+    return dict(status="FINITE_ENUMERATED_CHECK", universal=all(set(transitions[z]) <= v for z in v),
+                exists_successor=all(bool(set(transitions[z]) & v) for z in v),
+                scope="Conditional on complete transition support and independently defined viability")
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/runner.py =====
+import argparse
+from dataclasses import asdict
+import json
+from pathlib import Path
+import resource
+import time
+
+from .engine import Engine, canonical_hash
+from .state import Config
+from .provenance import atomic_json, read_json, source_manifest, digest, environment, gate
+from .observables import summarize, paired_contrasts, ancestor_report
+
+
+def run_cli(root):
+    parser = argparse.ArgumentParser(description="Integrated candidate: review before smoke, VM calibration before main")
+    parser.add_argument("--phase", choices=("reviewer","smoke","calibrate","main"), required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--source-commit", required=True)
+    parser.add_argument("--acceptance")
+    parser.add_argument("--smoke-report")
+    parser.add_argument("--calibration")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--reviewer-name", default=None)
+    args = parser.parse_args()
+    if len(args.source_commit) != 40 or any(c not in "0123456789abcdef" for c in args.source_commit):
+        raise ValueError("exact GitHub source commit required")
+    if args.phase == "reviewer" and not args.reviewer_name:
+        raise ValueError("identify external review run")
+    files = source_manifest(root)
+    source_digest = digest(files)
+    plan = read_json(root/"preregistration"/"PROTOCOL.json")
+    cases = read_json(root/"preregistration"/"CASES.json")
+    config_digest = digest(cases)
+    admission = gate(root, args.phase, source_digest, config_digest,
+                     args.acceptance, args.smoke_report, args.calibration)
+    limits = plan["phase_limits"][args.phase]
+    selected = cases["cases"] if args.phase == "main" else [c for c in cases["cases"] if c["id"] in limits["cases"]]
+    seeds = list(range(limits["seeds"]))
+    tasks = [(c, seed) for c in selected for seed in ([0] if c.get("sampling_mode")=="deterministic" else seeds)]
+    if not tasks or len({c["id"] for c in cases["cases"]}) != len(cases["cases"]):
+        raise ValueError("empty workload or duplicate case IDs")
+    if args.phase != "main" and {c["id"] for c in selected} != set(limits["cases"]):
+        raise ValueError("unknown case in phase manifest")
+    forecast = admission.get("forecast")
+    if forecast and forecast["task_count"] != len(tasks):
+        raise ValueError("forecast workload does not match manifest")
+    env = environment()
+    env_id = digest(env)
+    fingerprint = digest(dict(source=source_digest, cases=config_digest, phase=args.phase,
+                              seeds=seeds, selected=[c["id"] for c in selected], environment=env_id))
+    output = args.output
+    checkpoint = output/"CHECKPOINT.json"
+    rows, cursor, active, elapsed_prior = [], 0, None, 0.0
+    if args.resume:
+        saved = read_json(checkpoint)
+        if saved.get("schema") != 2:
+            raise ValueError("unsupported runner checkpoint")
+        if saved["fingerprint"] != fingerprint:
+            raise ValueError("checkpoint belongs to a different experiment/environment")
+        cursor, active = saved["cursor"], saved["active"]
+        rows = [read_json(output/"rows"/(f"{i:06d}.json")) for i in range(cursor)]
+        elapsed_prior = saved["elapsed_seconds"]
+    elif output.exists() and any(output.iterdir()):
+        raise ValueError("refuse to mix artifacts: choose an empty output or --resume")
+    output.mkdir(parents=True, exist_ok=True)
+    atomic_json(output/"ENVIRONMENT.json", env)
+    atomic_json(output/"SOURCE.json", dict(source_commit=args.source_commit, source_digest=source_digest, files=files))
+    start = time.perf_counter()
+    hard_wall = forecast["hard_wall_seconds"] if forecast else limits["hard_wall_seconds"]
+    memory_cap = forecast["memory_limit_mib"] if forecast else limits["memory_limit_mib"]
+    disk_cap = forecast["disk_limit_mib"] if forecast else limits["disk_limit_mib"]
+
+    def elapsed():
+        return elapsed_prior + time.perf_counter()-start
+
+    def save_active(engine=None):
+        atomic_json(checkpoint, dict(schema=2, fingerprint=fingerprint, cursor=cursor,
+                    active=None if engine is None else engine.snapshot(), elapsed_seconds=elapsed()))
+
+    def enforce_limits():
+        if elapsed() > hard_wall:
+            raise RuntimeError("declared wall budget exhausted; checkpoint retained")
+        if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > memory_cap:
+            raise RuntimeError("declared RSS limit exceeded; checkpoint retained")
+        if sum(p.stat().st_size for p in output.rglob("*") if p.is_file()) > disk_cap*1024**2:
+            raise RuntimeError("declared output disk limit exceeded")
+
+    try:
+        while cursor < len(tasks):
+            case, seed = tasks[cursor]
+            task_started = time.perf_counter()
+            cfg = Config(**case["config"]).validate()
+            engine = Engine.restore(active) if active is not None else Engine(cfg, seed)
+            active = None
+            save_active(engine)
+            while engine.queue:
+                engine.step()
+                if engine.processed % plan["checkpoint_event_interval"] == 0:
+                    save_active(engine)
+                    enforce_limits()
+            result = engine.result()
+            task_id = canonical_hash([case["id"], seed, source_digest])[:24]
+            row = dict(task_id=task_id, case_id=case["id"], seed=seed, config=asdict(cfg),
+                       sampling_mode=case.get("sampling_mode","seed_ensemble"),
+                       result=result, result_hash=canonical_hash(result),
+                       task_compute_seconds=time.perf_counter()-task_started)
+            row["timing_scope"] = "remaining_segment_after_resume" if args.resume else "complete_task"
+            if seed == 0:
+                atomic_json(output/"traces"/(task_id+".json"), engine.snapshot())
+            atomic_json(output/"rows"/(f"{cursor:06d}.json"), row)
+            rows.append(row)
+            cursor += 1
+            save_active()
+            enforce_limits()
+        summary = summarize(rows)
+        contrasts = paired_contrasts(rows, cases["contrasts"])
+        from .memory import response
+        responses = {}
+        for case in selected:
+            cfg = Config(**case["config"]).validate()
+            if cfg.memory != "classical":
+                key = digest([cfg.bath_modes,cfg.bath_coupling,cfg.detuning])
+                if key not in responses:
+                    responses[key] = dict(parameters=[cfg.bath_modes,cfg.bath_coupling,cfg.detuning],
+                        atoms=response(cfg.bath_modes,cfg.bath_coupling,cfg.detuning),
+                        input_interface="two bright inputs", interpretation="finite spectral measure, not entire continuation profile")
+        atomic_json(output/"RESPONSE.json", responses)
+        contracts = read_json(root/"preregistration"/"ANCESTOR_CONTRACTS.json")["contracts"]
+        atomic_json(output/"TRAJECTORIES.json", rows)
+        atomic_json(output/"METRICS.json", dict(summary=summary, contrasts=contrasts))
+        atomic_json(output/"ANCESTOR_RETURN.json", ancestor_report(contracts, rows, summary, contrasts))
+        duration = elapsed()
+        in_range = None if not forecast else forecast["lower_seconds"] <= duration <= forecast["upper_seconds"]
+        report = dict(phase=args.phase, reviewer=args.reviewer_name, source_commit=args.source_commit,
+            source_digest=source_digest, config_digest=config_digest, environment_fingerprint=env_id,
+            complete=True, technical_pass=all(r["result"]["finished"] for r in rows),
+            scientific_confirmation=False, trajectories=len(rows), events=sum(r["result"]["events"] for r in rows),
+            runtime_seconds=duration, runtime_gate="UNCALIBRATED_BOUNDED_MEASUREMENT" if in_range is None else ("PASS" if in_range else "REVIEW_REQUIRED"),
+            expected_seconds=None if not forecast else forecast["expected_seconds"],
+            max_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
+            observed_limits=dict(wall=hard_wall,memory_mib=memory_cap,disk_mib=disk_cap),
+            readiness_note="calibration report alone is not a forecast; estimate each backend on VM before main")
+        atomic_json(output/"RUN.json", report)
+        print(json.dumps(report, ensure_ascii=False))
+    except Exception as exc:
+        atomic_json(output/"FAILED.json", dict(type=type(exc).__name__, message=str(exc),
+                    cursor=cursor, planned=len(tasks), source_digest=source_digest, elapsed_seconds=elapsed()))
+        raise
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/provenance.py =====
+import hashlib
+import math
+import json
+import os
+from pathlib import Path
+import platform
+import sys
+import time
+
+
+def digest(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",",":"), allow_nan=False).encode()).hexdigest()
+
+
+def source_manifest(root):
+    # Exclude reports/receipts: acceptance is tied to code + scientific configuration.
+    paths = sorted(list((root/"nowexp").glob("*.py")) + list((root/"preregistration").glob("*.json")) + list((root/"tests").glob("*.py")))
+    paths += [root/"run.py", root/"requirements.txt"]
+    return {str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+
+
+def environment():
+    import numpy as np
+    def optional(path):
+        try:
+            return Path(path).read_text().strip()
+        except OSError:
+            return None
+    cpuinfo = optional("/proc/cpuinfo") or ""
+    cpu_model = next((line.split(":",1)[1].strip() for line in cpuinfo.splitlines()
+                      if line.startswith("model name")), None)
+    return dict(python=sys.version, platform=platform.platform(), numpy=np.__version__,
+        cpu_count=os.cpu_count(), affinity=sorted(os.sched_getaffinity(0)) if hasattr(os,"sched_getaffinity") else None,
+        cpu_max=optional("/sys/fs/cgroup/cpu.max"), memory_max=optional("/sys/fs/cgroup/memory.max"),
+        threads={k:os.environ.get(k) for k in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS")},
+        cpu_model=cpu_model, blas=np.__config__.CONFIG if hasattr(np.__config__,"CONFIG") else None)
+
+
+def atomic_json(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix+".tmp")
+    with tmp.open("w") as stream:
+        json.dump(value, stream, ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(tmp, path)
+
+
+def read_json(path):
+    return json.loads(Path(path).read_text())
+
+
+def gate(root, phase, code_digest, config_digest, acceptance=None, smoke=None, calibration=None):
+    if phase == "reviewer":
+        return {"stage":"UNREVIEWED_REVIEWER_DIAGNOSTIC", "main_allowed":False}
+    if not acceptance:
+        raise ValueError("review acceptance required before author smoke/calibration/main")
+    receipt = read_json(acceptance)
+    if receipt.get("status") != "accepted" or receipt.get("source_digest") != code_digest:
+        raise ValueError("review acceptance does not match current source")
+    if not receipt.get("user_decision_reference") or not receipt.get("review_reference"):
+        raise ValueError("review source and user's decision must be recorded")
+    if phase == "smoke":
+        return {"stage":"REVIEWED_SMOKE", "main_allowed":False}
+    if not smoke:
+        raise ValueError("matching successful smoke report required")
+    s = read_json(smoke)
+    if not (s.get("source_digest") == code_digest and s.get("phase") == "smoke" and s.get("complete") and s.get("technical_pass")):
+        raise ValueError("invalid smoke evidence")
+    if phase == "calibrate":
+        return {"stage":"VM_CALIBRATION", "main_allowed":False}
+    protocol = read_json(root/"preregistration"/"PROTOCOL.json")
+    if protocol["freeze_state"] != "FROZEN_AFTER_REVIEW":
+        raise ValueError("scientific protocol is not frozen")
+    if not calibration:
+        raise ValueError("VM calibration/forecast required")
+    c = read_json(calibration)
+    if c.get("source_digest") != code_digest or c.get("config_digest") != config_digest:
+        raise ValueError("calibration fingerprint mismatch")
+    if c.get("environment_fingerprint") != digest(environment()):
+        raise ValueError("target environment changed")
+    if not c.get("measured_on_target_vm") or not c.get("complete"):
+        raise ValueError("unverified target calibration")
+    required = ("expected_seconds", "lower_seconds", "upper_seconds", "hard_wall_seconds",
+                "memory_limit_mib", "disk_limit_mib", "task_count")
+    if any(not isinstance(c.get(k),(int,float)) or not math.isfinite(c[k]) or c[k] <= 0 for k in required):
+        raise ValueError("incomplete numeric VM forecast")
+    if not c["lower_seconds"] <= c["expected_seconds"] <= c["upper_seconds"] <= c["hard_wall_seconds"]:
+        raise ValueError("invalid forecast interval")
+    envelope = protocol["phase_limits"]["main"]
+    for key in ("hard_wall_seconds", "memory_limit_mib", "disk_limit_mib"):
+        if c[key] > envelope[key]:
+            raise ValueError("forecast exceeds preregistered envelope: " + key)
+    return {"stage":"VM_MAIN", "main_allowed":True, "forecast":c}
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/engine.py =====
+"""Finite local-instrument engine. Candidate rules; not executed by its author yet.
+
+All controller functions operate on one Cell. The dispatcher routes physical
+messages and audits totals, but never supplies remote state to a controller.
+Transport is reliable and finite-speed in this first implementation. General
+leases/cancellation, arbitrary losses and fragmentation are outside its claims.
+"""
+from dataclasses import asdict
+import copy
+import hashlib
+import json
+import math
+
+from .state import Cell, Config, Apparatus
+from .kinematics import Worldline, reception
+from .randomness import uniform, input_bits
+from . import memory
+from .local_instruments import produce, retire_inherited, can_repair, correct, withhold
+
+
+class Engine:
+    def __init__(self, config, seed):
+        self.config = config.validate()
+        self.seed = int(seed)
+        self.now = 0.0
+        self.queue = []
+        self.events_seen = set()
+        self.sequence = 0
+        self.processed = 0
+        self.cells = {}
+        self.lines = {"donor": Worldline(-2), "MA": Worldline(-1), "MB": Worldline(1)}
+        self.donor = {"fuel": config.donor_fuel, "precursor": config.donor_precursor}
+        self.in_transit = {}
+        self.log = []
+        self.environment_records = []
+        self.source_alive = {"MA": True, "MB": True}
+        self.supply_requests = set()
+        for g in range(config.generations):
+            name = f"N{g}"
+            # Every potential substrate and its location are GIVEN, not generated.
+            self.lines[name] = Worldline(2*g, config.receiver_velocity if g else 0)
+            self.cells[name] = Cell(name, g,
+                fuel=4 if g == 0 else 0,
+                address=f"N{g+1}" if g+1 < config.generations and config.address_enabled else None,
+                contact=config.imported_contacts,
+                contact_origin="imported" if config.imported_contacts else "absent",
+                contact_material=int(config.imported_contacts),
+                unavailable_material=int(not config.imported_contacts))
+        if config.initial_seed:
+            self.cells["N0"].apparatus.append(Apparatus("seed:A", "preparation", -1, 1).__dict__)
+        else:
+            self.cells["N0"].unavailable_material += 1
+        self.initial_totals = self.totals()
+        self.schedule(0, "N0", "boot", {}, "boot:N0")
+        for side, bit in zip(("A", "B"), input_bits(seed, config.forced_content, config.preparation)):
+            owner = "M" + side
+            self.schedule(0, owner, "source_emit", {"side": side, "bit": bit}, owner+":emit")
+            if config.source_repeat:
+                self.schedule(4, owner, "source_emit", {"side": side, "bit": bit}, owner+":repeat")
+            self.schedule(5 if config.source_repeat else .1, owner, "source_off", {}, owner+":off")
+
+    def schedule(self, t, owner, kind, data, identity, phase=0, parents=()):
+        if not math.isfinite(t) or t < self.now - 1e-10:
+            raise ValueError("event in past/nonfinite time")
+        if identity in self.events_seen or any(e["id"] == identity for e in self.queue):
+            raise ValueError("duplicate event ID")
+        self.queue.append(dict(t=float(t), owner=owner, kind=kind, data=copy.deepcopy(data),
+                               id=identity, phase=phase, parents=list(parents)))
+
+    def send(self, src, dst, kind, payload, identity, speed=1.0, delay=0.0, parent=None):
+        arrival = reception(self.lines[src], self.lines[dst], self.now, speed, delay)
+        x0, x1 = self.lines[src].x(self.now), self.lines[dst].x(arrival)
+        if arrival-self.now+1e-10 < abs(x1-x0):
+            raise ArithmeticError("superluminal delivery")
+        self.log.append(dict(kind="channel", id=identity, src=src, dst=dst,
+                             sent=self.now, received=arrival, x0=x0, x1=x1, speed=speed))
+        self.schedule(arrival, dst, kind, payload, identity, parents=(() if parent is None else (parent,)))
+
+    def totals(self):
+        fuel = self.donor["fuel"]
+        material = self.donor["precursor"]
+        for c in self.cells.values():
+            fuel += c.fuel + c.spent_fuel + c.unavailable_fuel
+            material += c.precursor + c.material_waste + c.unavailable_material + c.contact_material
+            material += sum(a["material_units"] for a in c.apparatus)
+        for p in self.in_transit.values():
+            fuel += p.get("fuel", 0)
+            material += p.get("precursor", 0) + sum(a["material_units"] for a in p.get("apparatus", []))
+        return {"fuel_credits": fuel, "material_units": material}
+
+    def audit(self):
+        if self.totals() != self.initial_totals:
+            raise ArithmeticError("whole-system token/material imbalance")
+        if min(self.donor.values()) < 0:
+            raise ArithmeticError("negative donor")
+        for c in self.cells.values():
+            if min(c.fuel, c.precursor, c.reserved_fuel, c.reserved_precursor) < 0:
+                raise ArithmeticError("negative local stock")
+            if c.fuel+c.reserved_fuel+c.unavailable_fuel > c.fuel_capacity or c.precursor+c.reserved_precursor+c.unavailable_material > c.precursor_capacity:
+                raise ArithmeticError("receiver capacity exceeded")
+            if len(c.decoded) > self.config.working_slots:
+                raise ArithmeticError("working memory exceeded")
+
+    def request_supply(self, cell, event):
+        # Reserve receiver capacity before issuing a real message. No instant donor read.
+        fuel = min(14, cell.fuel_capacity-cell.fuel-cell.reserved_fuel-cell.unavailable_fuel)
+        precursor = min(4, cell.precursor_capacity-cell.precursor-cell.reserved_precursor-cell.unavailable_material)
+        cell.reserved_fuel += fuel
+        cell.reserved_precursor += precursor
+        self.send(cell.identity, "donor", "supply_request",
+                  dict(target=cell.identity, fuel=fuel, precursor=precursor),
+                  event["id"]+":request", parent=event["id"])
+
+    def maybe_write(self, cell):
+        if not cell.apparatus:
+            return
+        proper = self.now / self.lines[cell.identity].gamma
+        for side in ("A", "B"):
+            if side not in cell.pending or side in cell.memories:
+                continue
+            # Classical orthogonal input; spent credit pays loading, not a thermodynamic theorem.
+            cost = 2 if self.config.memory == "finite_dark" else 1
+            if not cell.pay(cost, "record_load"):
+                continue
+            bit = cell.pending.pop(side)
+            cell.memories[side] = memory.write(bit, self.config.memory, proper,
+                self.config.bath_modes, self.config.bath_coupling, self.config.detuning)
+
+    def boot(self, cell, event):
+        if cell.active:
+            return
+        cell.active, cell.started_at = True, self.now
+        self.request_supply(cell, event)
+        for offset, kind in [(0,"read"),(1,"produce"),(2,"retire"),
+                             (3,"repair"),(4,"correct"),(5,"transfer")]:
+            t = self.lines[cell.identity].after(self.now, self.config.read_wait+offset)
+            self.schedule(t, cell.identity, kind, {}, cell.identity+":"+kind, phase=1,
+                          parents=(event["id"],))
+
+    def dispatch(self, e):
+        kind, owner, data = e["kind"], e["owner"], e["data"]
+        cfg = self.config
+        if kind == "source_off":
+            self.source_alive[owner] = False
+            return
+        if kind == "source_emit":
+            if self.source_alive[owner]:
+                self.send(owner, "N0", "record_arrive", data, e["id"]+":delivery",
+                          delay=cfg.record_delay, parent=e["id"])
+            return
+        if kind == "supply_request":
+            if e["id"] in self.supply_requests:
+                raise ValueError("duplicate supply request")
+            self.supply_requests.add(e["id"])
+            # Same-recipient ties have a declared canonical local order in pop_event.
+            issued = {k: min(self.donor[k], data[k]) for k in ("fuel", "precursor")}
+            for k in issued:
+                self.donor[k] -= issued[k]
+            packet_id = e["id"]+":cargo"
+            self.in_transit[packet_id] = dict(issued, apparatus=[])
+            self.send("donor", data["target"], "supply_arrive",
+                      dict(packet=packet_id, reserved={k:data[k] for k in issued}),
+                      packet_id, speed=.5, delay=cfg.supply_delay, parent=e["id"])
+            return
+        cell = self.cells[owner]
+        if kind == "boot":
+            self.boot(cell, e)
+        elif kind == "supply_arrive":
+            packet = self.in_transit.pop(data["packet"])
+            cell.reserved_fuel -= data["reserved"]["fuel"]
+            cell.reserved_precursor -= data["reserved"]["precursor"]
+            cell.fuel += packet["fuel"]
+            cell.precursor += packet["precursor"]
+            self.maybe_write(cell)
+        elif kind == "record_arrive":
+            # A repeat cannot silently erase/replace an existing physical record.
+            if data["side"] not in cell.memories and data["side"] not in cell.pending:
+                cell.pending[data["side"]] = data["bit"]
+            self.maybe_write(cell)
+        elif kind == "offspring_arrive":
+            packet = self.in_transit.pop(data["packet"])
+            cell.apparatus.extend(packet["apparatus"])
+            cell.pending.update(packet["records"])
+            self.boot(cell, e)
+            self.maybe_write(cell)
+        elif kind == "read":
+            if cfg.erase_record:
+                self.environment_records.extend(copy.deepcopy(list(cell.memories.values())))
+                cell.memories.clear()
+                cell.pending.clear()
+            if cfg.reader_enabled and cell.apparatus:
+                proper = self.now / self.lines[owner].gamma
+                for side in ("A", "B"):
+                    if side not in cell.memories or len(cell.decoded) >= cfg.working_slots:
+                        continue
+                    if not cell.pay(1, "record_read"):
+                        continue
+                    value, quality, post = memory.read(cell.memories[side], proper,
+                        uniform(self.seed, cell.generation, side, "read"), cfg.classical_survival)
+                    cell.memories[side] = post
+                    cell.last_read_quality[side] = quality
+                    if value is not None:
+                        cell.decoded[side] = value
+        elif kind == "produce":
+            produce(cell, cfg.production)
+        elif kind == "retire":
+            if cfg.retire_inherited:
+                retire_inherited(cell)
+        elif kind == "repair":
+            if not cfg.repair_contacts:
+                withhold(cell, 1, 1)
+            elif (not cell.contact and cfg.address_enabled and cell.precursor >= 1
+                  and can_repair(cell, True) and cell.pay(1, "contact_repair")):
+                cell.precursor -= 1
+                cell.contact_material += 1
+                self.schedule(self.lines[owner].after(self.now, .5), owner, "contact_ready", {},
+                              e["id"]+":done", parents=(e["id"],))
+        elif kind == "contact_ready":
+            cell.contact = True
+            cell.contact_origin = "local_paid_rule_from_record"
+        elif kind == "correct":
+            correct(cell, cfg.corrector)
+        elif kind == "transfer":
+            if cell.address is None or cell.health < 8 or not cell.contact:
+                return
+            if cell.decoded != {"A":1,"B":1} or not cell.pay(1, "transfer"):
+                return
+            moved = []
+            if cfg.transfer_apparatus and len(cell.apparatus) >= 2:
+                moved.append(cell.apparatus.pop())
+            records = dict(cell.decoded)
+            if cfg.scramble_child:
+                records["B"] ^= 1
+            packet_id = e["id"]+":packet"
+            self.in_transit[packet_id] = dict(fuel=0, precursor=0, apparatus=moved, records=records)
+            self.send(owner, cell.address, "offspring_arrive", dict(packet=packet_id),
+                      packet_id, speed=.5, parent=e["id"])
+            cell.transmitted = True
+        else:
+            raise ValueError("unknown local instrument: "+kind)
+
+    def pop_event(self):
+        earliest = min(e["t"] for e in self.queue)
+        # Reverse only owners at exactly the same coordinate time. Local order is invariant.
+        owners = sorted({e["owner"] for e in self.queue if e["t"] == earliest},
+                        reverse=self.config.scheduler_reverse)
+        candidates = [e for e in self.queue if e["t"] == earliest and e["owner"] == owners[0]]
+        event = min(candidates, key=lambda e:(e["phase"], e["id"]))
+        self.queue.remove(event)
+        return event
+
+    def step(self):
+        if self.processed >= self.config.max_events:
+            raise RuntimeError("declared event limit reached")
+        e = self.pop_event()
+        self.now = e["t"]
+        self.events_seen.add(e["id"])
+        self.dispatch(e)
+        self.processed += 1
+        self.audit()
+        cell = self.cells.get(e["owner"])
+        self.log.append(dict(kind="event", event=copy.deepcopy(e),
+            local=None if cell is None else cell.local_view(), totals=self.totals()))
+
+    def run(self, stop_after=None):
+        while self.queue and (stop_after is None or self.processed < stop_after):
+            self.step()
+        return self.result()
+
+    def result(self):
+        cells = [self.cells[f"N{i}"] for i in range(self.config.generations)]
+        profiles = [dict(node=c.identity, active=c.active, function=int(c.health>=8),
+             health=c.health, transmitted=c.transmitted, decoded=dict(c.decoded),
+             own_apparatus=sum(a["made_by"] == c.identity for a in c.apparatus),
+             inherited_apparatus=sum(a["made_by"] != c.identity for a in c.apparatus),
+             contact=c.contact, contact_origin=c.contact_origin,
+             spent_fuel=c.spent_fuel, remaining_fuel=c.fuel, precursor=c.precursor,
+             unavailable_fuel=c.unavailable_fuel, unavailable_material=c.unavailable_material,
+             material_waste=c.material_waste, costs=dict(c.costs),
+             read_quality=copy.deepcopy(c.last_read_quality), failures=list(c.failures)) for c in cells]
+        prefix = 0
+        for p in profiles:
+            if not p["function"]:
+                break
+            prefix += 1
+        return dict(profile=profiles, parent_function=profiles[0]["function"],
+                    child_function=profiles[1]["function"] if len(profiles)>1 else None,
+                    final_function=profiles[-1]["function"],
+                    consecutive_functional=prefix,
+                    mean_health=sum(p["health"] for p in profiles)/len(profiles),
+                    total_spent_fuel=sum(p["spent_fuel"] for p in profiles),
+                    all_functional=all(p["function"] for p in profiles),
+                    finished=not self.queue, pending_events=len(self.queue),
+                    material_and_credit_balance=self.totals(), initial_totals=self.initial_totals,
+                    events=self.processed, model_time=self.now,
+                    external_injections=0, geometric_substrate="given",
+                    energy_balance_status="NOT_IMPLEMENTED: credits are not joules",
+                    closure_verdict="FINITE_TRAJECTORY_ONLY")
+
+    def snapshot(self):
+        return dict(schema=1, config=asdict(self.config), seed=self.seed, now=self.now,
+            queue=copy.deepcopy(self.queue), events_seen=sorted(self.events_seen),
+            sequence=self.sequence, processed=self.processed,
+            cells={k:v.to_dict() for k,v in self.cells.items()},
+            lines={k:asdict(v) for k,v in self.lines.items()}, donor=dict(self.donor),
+            in_transit=copy.deepcopy(self.in_transit), log=copy.deepcopy(self.log),
+            environment_records=copy.deepcopy(self.environment_records),
+            source_alive=dict(self.source_alive), supply_requests=sorted(self.supply_requests),
+            initial_totals=dict(self.initial_totals))
+
+    @classmethod
+    def restore(cls, data):
+        if data["schema"] != 1:
+            raise ValueError("unsupported checkpoint")
+        obj = cls.__new__(cls)
+        obj.config = Config(**data["config"]).validate()
+        for k in ("seed","now","sequence","processed","queue","donor","in_transit", "log",
+                  "environment_records","source_alive","initial_totals"):
+            setattr(obj, k, copy.deepcopy(data[k]))
+        obj.cells = {k:Cell(**v) for k,v in data["cells"].items()}
+        obj.lines = {k:Worldline(**v) for k,v in data["lines"].items()}
+        obj.events_seen = set(data["events_seen"])
+        obj.supply_requests = set(data["supply_requests"])
+        obj.audit()
+        return obj
+
+
+def canonical_hash(value):
+    raw = json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
+    return hashlib.sha256(raw.encode()).hexdigest()
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/local_instruments.py =====
+"""Candidate paid reaction rules. Rules themselves are imported, not derived."""
+from .state import Apparatus
+
+
+def produce(cell, enabled):
+    # Two precursors become two material apparatuses; catalyst survives this event.
+    if not enabled:
+        withhold(cell, 2, 2)
+        return []
+    if not cell.apparatus or cell.decoded != {"A": 1, "B": 1}:
+        return []
+    if cell.precursor < 2 or cell.fuel < 2:
+        cell.failures.append("production_budget")
+        return []
+    cell.pay(2, "apparatus_production")
+    cell.precursor -= 2
+    made = [Apparatus(f"{cell.identity}:new:{j}", cell.identity,
+                      cell.generation, cell.decoded["A"]).__dict__ for j in range(2)]
+    cell.apparatus.extend(made)
+    return made
+
+
+def retire_inherited(cell):
+    old = [a for a in cell.apparatus if a["generation"] < cell.generation]
+    cell.apparatus = [a for a in cell.apparatus if a["generation"] >= cell.generation]
+    cell.material_waste += sum(a["material_units"] for a in old)
+    return [a["identity"] for a in old]
+
+
+def can_repair(cell, enabled):
+    return (enabled and bool(cell.apparatus)
+            and cell.decoded.get("A") == 1 and cell.decoded.get("B") == 1)
+
+
+def withhold(cell, fuel, precursor):
+    """Disabled-mechanism credits are not reassigned to another mechanism."""
+    f, p = min(fuel, cell.fuel), min(precursor, cell.precursor)
+    cell.fuel -= f
+    cell.precursor -= p
+    cell.unavailable_fuel += f
+    cell.unavailable_material += p
+
+
+def correct(cell, enabled):
+    if (enabled and cell.apparatus and cell.contact
+            and cell.decoded == {"A": 1, "B": 1}
+            and cell.pay(2, "functional_correction")):
+        cell.health = min(10, cell.health + 2)
+        return True
+    return False
+
+===== END FILE =====
+
+===== FILE experiments/now_integrated_v1/nowexp/randomness.py =====
+"""Event-addressed coupling, not an implementation/certification of Random123."""
+import hashlib
+import json
+
+
+def uniform(seed, *address):
+    raw = json.dumps(["now-v1", int(seed), *address], separators=(",", ":"))
+    n = int.from_bytes(hashlib.sha256(raw.encode()).digest()[:8], "big")
+    return ((n >> 12) + 0.5) / 2**52  # representable midpoint, strictly between 0 and 1
+
+
+def input_bits(seed, forced=None, preparation="correlated"):
+    if forced is not None:
+        if len(forced) != 2 or any(x not in (0, 1) for x in forced):
+            raise ValueError("content must be two bits")
+        return list(forced)
+    if preparation == "independent":
+        return [int(uniform(seed, "prepare", "independent", side) < .5) for side in ("A", "B")]
+    common = int(uniform(seed, "prepare", "common") < 0.5)
+    return [common ^ int(uniform(seed, "prepare", side) < 0.25)
+            for side in ("A", "B")]
+
+
+def exact_histories():
+    """R124 preparation: exact weights; do not confuse with finite seed counts."""
+    from fractions import Fraction
+    from itertools import product
+    for common, a, b in product((0, 1), repeat=3):
+        weight = Fraction(1, 2) * Fraction(1 if a else 3, 4) * Fraction(1 if b else 3, 4)
+        yield (common, a, b), [common ^ a, common ^ b], weight
+
+===== END FILE =====
+
+===== ALL 25 DIRECT ANCESTOR CONTRACTS: EXECUTABLE FIELDS =====
+[
+  {
+    "id": "RETURN_R005",
+    "ancestor": "R005",
+    "title": "Односторонний клапан зависит от подготовки и доступа",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Измерить потерю продолжения при том же запасе и позднем доступе.",
+    "prediction": {
+      "contrast": "causal_resource_access",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "causal_resource_access",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Измерить потерю продолжения при том же запасе и позднем доступе.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R005 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R018",
+    "ancestor": "R018",
+    "title": "E002b: локально согласованные связи не определяют транспорт",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить достаточность согласованных маргиналей в другом, явно классическом механизме; старый транспорт не пересчитывается.",
+    "prediction": {
+      "contrast": "joint_information",
+      "mean_band": [
+        0,
+        0.13
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_information",
+      "lower": 0,
+      "upper": 0.13
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить достаточность согласованных маргиналей в другом, явно классическом механизме; старый транспорт не пересчитывается.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R018 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R034",
+    "ancestor": "R034",
+    "title": "CORR: локальные состояния не определяют дальнейший поток",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Сопоставить равные одноузловые распределения входа с различной совместной подготовкой и продолжением.",
+    "prediction": {
+      "contrast": "joint_information",
+      "mean_band": [
+        0,
+        0.13
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_information",
+      "lower": 0,
+      "upper": 0.13
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Сопоставить равные одноузловые распределения входа с различной совместной подготовкой и продолжением.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R034 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R040",
+    "ancestor": "R040",
+    "title": "BIC: точная защита существует при настройке",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить интеграцию точно защищённого конечного подпространства с оплаченным чтением и передачей; гипотеза: преимущество финальной функции не менее 0.1.",
+    "prediction": {
+      "contrast": "load_cycle_32",
+      "mean_band": [
+        0.1,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "load_cycle_32",
+      "lower": 0.1,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить интеграцию точно защищённого конечного подпространства с оплаченным чтением и передачей; гипотеза: преимущество финальной функции не менее 0.1.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R040 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R041",
+    "ancestor": "R041",
+    "title": "BIC: защита и загрузка конфликтуют в статическом протоколе",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Сравнить статическую запись в bright и объявленный импульс bright→dark в полном цикле; гипотеза выигрыша не менее 0.1, не статический захват BIC.",
+    "prediction": {
+      "contrast": "load_cycle_32",
+      "mean_band": [
+        0.1,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "load_cycle_32",
+      "lower": 0.1,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Сравнить статическую запись в bright и объявленный импульс bright→dark в полном цикле; гипотеза выигрыша не менее 0.1, не статический захват BIC.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R041 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R043",
+    "ancestor": "R043",
+    "title": "Исчезнувший посредник может оставить долговечное отношение",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить рабочую роль записи после source_off внутри одного исполнения.",
+    "prediction": {
+      "contrast": "record_effect",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "record_effect",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить рабочую роль записи после source_off внутри одного исполнения.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R043 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R057",
+    "ancestor": "R057",
+    "title": "Спектральный инвариант отклика",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "При одном H и входе V сравнить профили с передачей/без передачи аппарата; равенство Resp задаётся общими параметрами H,V.",
+    "prediction": {
+      "contrast": "same_response_different_transfer",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "same_response_different_transfer",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: При одном H и входе V сравнить профили с передачей/без передачи аппарата; равенство Resp задаётся общими параметрами H,V.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R057 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R059",
+    "ancestor": "R059",
+    "title": "Стоимость смены реализации зависит от допустимых повреждений",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Привязать различие продолжения к допустимому времени доставки при одинаковых ресурсах.",
+    "prediction": {
+      "contrast": "causal_resource_access",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "causal_resource_access",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Привязать различие продолжения к допустимому времени доставки при одинаковых ресурсах.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R059 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R060",
+    "ancestor": "R060",
+    "title": "Нейронная линейная игрушка: одинаковый отклик, разный ремонт",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить различие ремонта при общей функции и разных доступных производственных действиях.",
+    "prediction": {
+      "contrast": "production_effect",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "production_effect",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить различие ремонта при общей функции и разных доступных производственных действиях.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R060 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R062",
+    "ancestor": "R062",
+    "title": "M4: внутренний ремонт возможен с подготовленным запасом",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Выделить успех на сохранённом готовом A и успех после его замены.",
+    "prediction": {
+      "contrast": "apparatus_retirement",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "apparatus_retirement",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Выделить успех на сохранённом готовом A и успех после его замены.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R062 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R063",
+    "ancestor": "R063",
+    "title": "Ремонт доступа и восстановление старого содержания различны",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Отделить передачу рабочего доступа от сохранения требуемого содержания.",
+    "prediction": {
+      "contrast": "transferred_content",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "transferred_content",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Отделить передачу рабочего доступа от сохранения требуемого содержания.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R063 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R064",
+    "ancestor": "R064",
+    "title": "Цикл ремонта требует доказанного последнего звена",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Измерить число конечных поддержанных поколений при истощении; замыкание V не обещается.",
+    "prediction": {
+      "contrast": "donor_dose",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "donor_dose",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Измерить число конечных поддержанных поколений при истощении; замыкание V не обещается.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R064 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R074",
+    "ancestor": "R074",
+    "title": "Выходные истории различают больше, чем один профиль",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Показать что одинаковая родительская функция не задаёт профиль следующего носителя.",
+    "prediction": {
+      "contrast": "transferred_apparatus",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "transferred_apparatus",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Показать что одинаковая родительская функция не задаёт профиль следующего носителя.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R074 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R094",
+    "ancestor": "R094",
+    "title": "Завершение инициатора не тождественно прекращению организованного процесса",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить независимость выбранного пути от повторного импульса инициатора после первой записи.",
+    "prediction": {
+      "contrast": "initiator_repeat",
+      "mean_band": [
+        0,
+        0
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "initiator_repeat",
+      "lower": 0,
+      "upper": 0
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить независимость выбранного пути от повторного импульса инициатора после первой записи.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R094 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R098",
+    "ancestor": "R098",
+    "title": "Линейный тест неаддитивности отозван",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Считать четырёхветвевую разность для непрерывного health наряду с бинарным успехом; не возвращать отозванный линейный тест.",
+    "prediction": {
+      "contrast": "joint_health",
+      "mean_band": [
+        1.9,
+        2.1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_health",
+      "lower": 1.9,
+      "upper": 2.1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Считать четырёхветвевую разность для непрерывного health наряду с бинарным успехом; не возвращать отозванный линейный тест.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R098 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R104",
+    "ancestor": "R104",
+    "title": "Приращение второго пути и чистый смешанный вклад различаются",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Разделить смешанную разность четырёх ветвей и простое приращение второго механизма.",
+    "prediction": {
+      "contrast": "joint_threshold",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_threshold",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Разделить смешанную разность четырёх ветвей и простое приращение второго механизма.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R104 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R108",
+    "ancestor": "R108",
+    "title": "Шаг 14: одинаковых маргиналей недостаточно для η",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Перенести вопрос достаточности маргиналей в классический контроль, не подтверждая прежнюю η или квантовость.",
+    "prediction": {
+      "contrast": "joint_information",
+      "mean_band": [
+        0,
+        0.13
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_information",
+      "lower": 0,
+      "upper": 0.13
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Перенести вопрос достаточности маргиналей в классический контроль, не подтверждая прежнюю η или квантовость.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R108 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R116",
+    "ancestor": "R116",
+    "title": "Я / Мысль: взаимная определимость и причинная роль содержания",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить изменение действия при физически представленном изменении содержимого; не тест личности/Я.",
+    "prediction": {
+      "contrast": "content_effect",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "content_effect",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить изменение действия при физически представленном изменении содержимого; не тест личности/Я.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R116 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R119",
+    "ancestor": "R119",
+    "title": "Посредник: формирование отношений, запись и завершение взаимодействия",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Сопоставить завершённый источник, доступную запись и её причинное использование с удалением рабочей записи.",
+    "prediction": {
+      "contrast": "record_effect",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "record_effect",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Сопоставить завершённый источник, доступную запись и её причинное использование с удалением рабочей записи.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R119 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R120",
+    "ancestor": "R120",
+    "title": "Профиль продолжения: исправления эквивалентности, причинной проверки и передачи",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Получить совместный конечный профиль функции, стоимости и средств следующего носителя на общей панели D.",
+    "prediction": {
+      "contrast": "transferred_apparatus",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "transferred_apparatus",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Получить совместный конечный профиль функции, стоимости и средств следующего носителя на общей панели D.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R120 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R121",
+    "ancestor": "R121",
+    "title": "Наследуемая организация: последовательность, состояние, геометрия и аппарат воспроизведения",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Разделить передачу содержания, передачу аппарата и собственную функцию потомка после замены аппарата.",
+    "prediction": {
+      "contrast": "transferred_content",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "transferred_content",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Разделить передачу содержания, передачу аппарата и собственную функцию потомка после замены аппарата.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R121 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R122",
+    "ancestor": "R122",
+    "title": "G8: метки, пространственный шаблон и восполнение ферментов",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить совместимость производства A и оплаченного локального контакта; геометрия и адрес остаются заданными.",
+    "prediction": {
+      "contrast": "joint_threshold",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "joint_threshold",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить совместимость производства A и оплаченного локального контакта; геометрия и адрес остаются заданными.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R122 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R123",
+    "ancestor": "R123",
+    "title": "Релятивистская совместимость целого, двух границ и типа 2",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Отделить физическое изменение мировых линий от перестановки независимых вычислений; ожидается срыв дедлайна снабжения потомка при v=0.2, общая ковариантность не обещается.",
+    "prediction": {
+      "contrast": "physical_motion",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "physical_motion",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Отделить физическое изменение мировых линий от перестановки независимых вычислений; ожидается срыв дедлайна снабжения потомка при v=0.2, общая ковариантность не обещается.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R123 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R124",
+    "ancestor": "R124",
+    "title": "Независимая реконструкция W_rel и контрпримеры к распределённому потоку",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить сохранение роли корректора после добавления аппарата, донора и передачи при той же подготовке 5/16.",
+    "prediction": {
+      "contrast": "corrector_effect",
+      "mean_band": [
+        0.25,
+        0.38
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Candidate composition expectation; uncertain magnitude"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "corrector_effect",
+      "lower": 0.25,
+      "upper": 0.38
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить сохранение роли корректора после добавления аппарата, донора и передачи при той же подготовке 5/16.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R124 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  },
+  {
+    "id": "RETURN_R125",
+    "ancestor": "R125",
+    "title": "R125: предпрогон v2 и ограниченный событийный пилот v3",
+    "relation": "CANDIDATE_COMPOSITION_TEST",
+    "promised_delta": "Проверить причинную доставку общего конечного донора в используемом надёжном подслучае; не объявлять исправленной всю lease/multi-token спецификацию.",
+    "prediction": {
+      "contrast": "causal_resource_access",
+      "mean_band": [
+        0.95,
+        1
+      ],
+      "status": "PROSPECTIVE_BEFORE_EXECUTION",
+      "kind": "Analytic engineering expectation under imported rules"
+    },
+    "evaluation": {
+      "kind": "contrast",
+      "id": "causal_resource_access",
+      "lower": 0.95,
+      "upper": 1
+    },
+    "positive_return": "Установить лишь заявленную совместимость в данном кандидате: Проверить причинную доставку общего конечного донора в используемом надёжном подслучае; не объявлять исправленной всю lease/multi-token спецификацию.",
+    "negative_return": "Уточнить несовместимость/необходимое условие данного соединения; исходное утверждение R125 автоматически не опровергается.",
+    "unresolved_return": "Невыполненная ветвь, ошибка реализации или широкий допуск не дают ответа предку; сохранить долг с причиной."
+  }
+]
