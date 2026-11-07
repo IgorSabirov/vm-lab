@@ -1,0 +1,41 @@
+{
+  "runs": [
+    {
+      "name": "source",
+      "expected_seconds": 0.05689528166647051,
+      "lower_seconds": 0.024919421499987493,
+      "upper_seconds": 1,
+      "actual_seconds": 0.0634431980000727,
+      "actual_over_expected": 1.1150871591072726,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/4bd4eecc06cf/vm-lab/analysis/R125_MULTI_LINEAGE_REVIEW_20261107/neighbor_multi.py\", line 1110, in <module>\n    main()\n  File \"/workspace/scratch/4bd4eecc06cf/vm-lab/analysis/R125_MULTI_LINEAGE_REVIEW_20261107/neighbor_multi.py\", line 958, in main\n    assert stale[\"obligations_closed\"] is True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "runtime_status": "REVIEW_REQUIRED"
+    },
+    {
+      "name": "audit",
+      "expected_seconds": 0.05235899966658053,
+      "lower_seconds": 0.024919421499987493,
+      "upper_seconds": 1,
+      "actual_seconds": 0.06001557199999752,
+      "actual_over_expected": 1.1462322118866604,
+      "exit_code": 0,
+      "stdout": "{\"mode\": \"targeted audit\", \"scenarios\": 5}\n",
+      "stderr": "",
+      "runtime_status": "PASS"
+    }
+  ],
+  "environment_matches": true,
+  "calibration_commit": "5486343b79fe6bb3230d5727608d626be622ad5a",
+  "source_unmodified": true,
+  "vm_runs": 0,
+  "measurement": "full subprocess including startup and output JSON; excludes reading/programming/publishing",
+  "source_run_resolution": {
+    "status": "SOURCE_ASSERTION_FAILED",
+    "completed_scenarios_before_failure": 4,
+    "planned_scenarios": 14,
+    "reason": "stale return leaves receiver token state RETURNING; sender becomes RETURNED, receiver closure predicate rejects RETURNING",
+    "raw_failure_retained": true,
+    "not_promoted_to_pass": true
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "mode": "targeted audit",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu_count": 9,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "cgroup_cpu_max": null,
+    "cgroup_memory_max": null,
+    "cgroup_memory_current": null,
+    "libraries": "stdlib only; Fraction; no BLAS; no NumPy",
+    "code_sha256": "38972546aac1cd00dd66474b43703c93d00f22640004a677e6a0116e4efb6ee1"
+  },
+  "scenarios": 5,
+  "premature_request_use": {
+    "observed": true,
+    "allocation": {
+      "t": "1",
+      "kind": "allocate",
+      "payload": {},
+      "sender_states": {
+        "r1": "WAIT_ACK",
+        "r2": "WAIT_ACK"
+      },
+      "return_reserved": {
+        "r1": "0",
+        "r2": "0"
+      }
+    },
+    "first_request_arrival": "3",
+    "summary": {
+      "final": {
+        "V_stock": "0",
+        "V_escrow": "0",
+        "W1_stock": "3/8",
+        "W1_quarantine": "0",
+        "W2_stock": "3/8",
+        "W2_quarantine": "0",
+        "transit_out": "0",
+        "transit_return": "0",
+        "lost": "0",
+        "consumed": "0",
+        "injected": "0"
+      },
+      "classification": {
+        "r1": "VALID",
+        "r2": "VALID"
+      },
+      "probes": {},
+      "violations": [],
+      "obligations_closed": true,
+      "event_count": 15,
+      "sender_tokens": {
+        "r1": {
+          "dest": "W1",
+          "demand": "1/2",
+          "phi": "3/8",
+          "state": "DELIVERED",
+          "return_reserved": "0"
+        },
+        "r2": {
+          "dest": "W2",
+          "demand": "1/2",
+          "phi": "3/8",
+          "state": "DELIVERED",
+          "return_reserved": "0"
+        }
+      },
+      "receiver_tokens": {
+        "W1": {
+          "r1": {
+            "reserved": "0",
+            "deadline": "5",
+            "state": "ARRIVED_VALID"
+          }
+        },
+        "W2": {
+          "r2": {
+            "reserved": "0",
+            "deadline": "5",
+            "state": "ARRIVED_VALID"
+          }
+        }
+      }
+    }
+  },
+  "superluminal_notification": {
+    "observed": true,
+    "emit_t": "4",
+    "receive_t": "9/2",
+    "distance": "1",
+    "dt": "1/2",
+    "c": 1,
+    "probe_t": "19/4",
+    "reserved_with_source_delay": "0",
+    "reserved_with_causal_delay": "3/8",
+    "summary": {
+      "final": {
+        "V_stock": "0",
+        "V_escrow": "0",
+        "W1_stock": "3/8",
+        "W1_quarantine": "0",
+        "W2_stock": "3/8",
+        "W2_quarantine": "0",
+        "transit_out": "0",
+        "transit_return": "0",
+        "lost": "0",
+        "consumed": "0",
+        "injected": "0"
+      },
+      "classification": {
+        "r1": "VALID",
+        "r2": "VALID"
+      },
+      "probes": {
+        "V_return_reserved:r1": "0"
+      },
+      "violations": [],
+      "obligations_closed": true,
+      "event_count": 16,
+      "sender_tokens": {
+        "r1": {
+          "dest": "W1",
+          "demand": "1/2",
+          "phi": "3/8",
+          "state": "DELIVERED",
+          "return_reserved": "0"
+        },
+        "r2": {
+          "dest": "W2",
+          "demand": "1/2",
+          "phi": "3/8",
+          "state": "DELIVERED",
+          "return_reserved": "0"
+        }
+      },
+      "receiver_tokens": {
+        "W1": {
+          "r1": {
+            "reserved": "0",
+            "deadline": "5",
+            "state": "ARRIVED_VALID"
+          }
+        },
+        "W2": {
+          "r2": {
+            "reserved": "0",
+            "deadline": "5",
+            "state": "ARRIVED_VALID"
+          }
+        }
+      }
+    }
+  },
+  "same_receiver_contention": {
+    "classifications": [
+      {
+        "r2": "REJECTED_CAPACITY",
+        "r1": "VALID"
+      },
+      {
+        "r1": "REJECTED_CAPACITY",
+        "r2": "VALID"
+      }
+    ],
+    "order_sensitive": true,
+    "summaries": [
+      {
+        "final": {
+          "V_stock": "3/8",
+          "V_escrow": "0",
+          "W1_stock": "3/8",
+          "W1_quarantine": "0",
+          "W2_stock": "0",
+          "W2_quarantine": "0",
+          "transit_out": "0",
+          "transit_return": "0",
+          "lost": "0",
+          "consumed": "0",
+          "injected": "0"
+        },
+        "classification": {
+          "r2": "REJECTED_CAPACITY",
+          "r1": "VALID"
+        },
+        "probes": {},
+        "violations": [],
+        "obligations_closed": true,
+        "event_count": 12,
+        "sender_tokens": {
+          "r1": {
+            "dest": "W1",
+            "demand": "1/2",
+            "phi": "3/8",
+            "state": "DELIVERED",
+            "return_reserved": "0"
+          },
+          "r2": {
+            "dest": "W1",
+            "demand": "1/2",
+            "phi": "3/8",
+            "state": "REJECTED",
+            "return_reserved": "0"
+          }
+        },
+        "receiver_tokens": {
+          "W1": {
+            "r1": {
+              "reserved": "0",
+              "deadline": "5",
+              "state": "ARRIVED_VALID"
+            },
+            "r2": {
+              "reserved": "0",
+              "deadline": "0",
+              "state": "REJECTED"
+            }
+          },
+          "W2": {}
+        }
+      },
+      {
+        "final": {
+          "V_stock": "3/8",
+          "V_escrow": "0",
+          "W1_stock": "3/8",
+          "W1_quarantine": "0",
+          "W2_stock": "0",
+          "W2_quarantine": "0",
+          "transit_out": "0",
+          "transit_return": "0",
+          "lost": "0",
+          "consumed": "0",
+          "injected": "0"
+        },
+        "classification": {
+          "r1": "REJECTED_CAPACITY",
+          "r2": "VALID"
+        },
+        "probes": {},
+        "violations": [],
+        "obligations_closed": true,
+        "event_count": 12,
+        "sender_tokens": {
+          "r1": {
+            "dest": "W1",
+            "demand": "1/2",
+            "phi": "3/8",
+            "state": "REJECTED",
+            "return_reserved": "0"
+          },
+          "r2": {
+            "dest": "W1",
+            "demand": "1/2",
+            "phi": "3/8",
+            "state": "DELIVERED",
+            "return_reserved": "0"
+          }
+        },
+        "receiver_tokens": {
+          "W1": {
+            "r2": {
+              "reserved": "0",
+              "deadline": "5",
+              "state": "ARRIVED_VALID"
+            },
+            "r1": {
+              "reserved": "0",
+              "deadline": "0",
+              "state": "REJECTED"
+            }
+          },
+          "W2": {}
+        }
+      }
+    ],
+    "interpretation": "Not in original two-receiver fixture; a shared-receiver collision needs a declared local batch/tie rule, not an arbitrary scheduler order."
+  },
+  "scope": "No repair of supplied code; these checks do not accept a physical architecture.",
+  "compute_seconds": 0.00664258200004042
+}

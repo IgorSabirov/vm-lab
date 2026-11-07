@@ -1,0 +1,60 @@
+{
+  "adaptive": true,
+  "reason": "inspect first source assertion failure; one extra scenario, no code changes",
+  "seconds": 0.0020792779999965205,
+  "summary": {
+    "final": {
+      "V_stock": "3/4",
+      "V_escrow": "0",
+      "W1_stock": "0",
+      "W1_quarantine": "0",
+      "W2_stock": "0",
+      "W2_quarantine": "0",
+      "transit_out": "0",
+      "transit_return": "0",
+      "lost": "0",
+      "consumed": "0",
+      "injected": "0"
+    },
+    "classification": {
+      "r1": "STALE_AUTHORIZED",
+      "r2": "STALE_AUTHORIZED"
+    },
+    "probes": {},
+    "violations": [],
+    "obligations_closed": false,
+    "event_count": 17,
+    "sender_tokens": {
+      "r1": {
+        "dest": "W1",
+        "demand": "1/2",
+        "phi": "3/8",
+        "state": "RETURNED",
+        "return_reserved": "0"
+      },
+      "r2": {
+        "dest": "W2",
+        "demand": "1/2",
+        "phi": "3/8",
+        "state": "RETURNED",
+        "return_reserved": "0"
+      }
+    },
+    "receiver_tokens": {
+      "W1": {
+        "r1": {
+          "reserved": "0",
+          "deadline": "7/2",
+          "state": "RETURNING"
+        }
+      },
+      "W2": {
+        "r2": {
+          "reserved": "0",
+          "deadline": "7/2",
+          "state": "RETURNING"
+        }
+      }
+    }
+  }
+}
