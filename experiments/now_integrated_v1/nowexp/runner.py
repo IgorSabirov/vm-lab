@@ -201,7 +201,8 @@ def worker(root, args):
             raise ValueError("invalid committed row count")
         for i, expected_hash in enumerate(row_hashes):
             row = read_json(output/"rows"/f"{i:06d}.json")
-            if digest(row) != expected_hash or row["task_descriptor"] != tasks[i]:
+            # JSON normalizes tuples to lists; identity uses the same canonical form as the manifest.
+            if digest(row) != expected_hash or digest(row["task_descriptor"]) != digest(tasks[i]):
                 raise ValueError("committed row integrity mismatch")
             rows.append(row)
         if (output/"FAILED.json").exists():
