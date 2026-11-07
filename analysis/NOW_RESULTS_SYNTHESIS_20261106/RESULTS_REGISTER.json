@@ -5433,20 +5433,15 @@
     }
   ],
   "revision": {
-    "id": "r125_multi_lineage_20261107",
+    "id": "integrated_project_design_20261107",
     "date": "2026-11-07",
-    "base_commit": "5b4435bbb61b65b4a72e8c2a49b744fe6a697b5f",
-    "construct_count": 42,
+    "base_commit": "55a9e6915e851e9d2a54ed7b3b79986543a34476",
     "result_count": 125,
+    "construct_count": 42,
     "open_link_count": 10,
-    "legacy_row_count": 107,
     "new_records": [],
-    "updated_records": [
-      "R125"
-    ],
-    "planned_bindings": 14,
-    "linked_result_count": 34,
-    "note": "Historical genealogy preserved; prospective and retrospective context are explicitly typed; no open link closed."
+    "scientific_statuses_changed": [],
+    "note": "Unified experiment policy and full typed prospective coverage; no production run."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -5517,16 +5512,25 @@
     "compute_placement": {
       "adopted_date": "2026-11-07",
       "source": "RUNTIME_GATE.md",
-      "sandbox_max_upper_seconds": 600,
-      "vm_if_upper_exceeds_seconds": 600,
-      "other_vm_reasons": [
-        "memory",
-        "disk",
-        "persistent long-running job"
-      ],
-      "calibration_required": true,
-      "no_task_splitting_to_evade_threshold": true,
-      "permanent_vm_not_started": true
+      "smoke_and_debug": "sandbox",
+      "main_experiment": "vm",
+      "smoke_upper_guidance_seconds": 600,
+      "fixed_github_commit_required": true,
+      "target_environment_calibration_required": true,
+      "permanent_vm_not_started": true,
+      "supersedes": "600-second placement of main experiments"
+    },
+    "integrated_experiment_policy": {
+      "date": "2026-11-07",
+      "source": "RESEARCH_LINEAGE.md",
+      "origin_first": true,
+      "project_wide_registry_coverage": true,
+      "coverage_does_not_promote_evidence": true,
+      "cross_branch_tests_required": true,
+      "common_process_and_typed_interfaces": true,
+      "assumptions_reduction_and_genealogy_delta_required": true,
+      "no_code_volume_based_fragmentation": true,
+      "all_records_need_not_be_simulated": true
     }
   },
   "record_role_annotations": {
@@ -5809,6 +5813,22 @@
       "new_records": [],
       "full_R125_engine_executed": false,
       "note": "R001–R124, открытые связи и генеалогические рёбра сохранены; ограниченный пилот v3 и политика 600 секунд"
+    },
+    {
+      "id": "r125_multi_lineage_20261107",
+      "date": "2026-11-07",
+      "base_commit": "5b4435bbb61b65b4a72e8c2a49b744fe6a697b5f",
+      "construct_count": 42,
+      "result_count": 125,
+      "open_link_count": 10,
+      "legacy_row_count": 107,
+      "new_records": [],
+      "updated_records": [
+        "R125"
+      ],
+      "planned_bindings": 14,
+      "linked_result_count": 34,
+      "note": "Historical genealogy preserved; prospective and retrospective context are explicitly typed; no open link closed."
     }
   ],
   "lineage_edges": [
@@ -7205,7 +7225,202 @@
         "L10",
         "L05",
         "L09"
-      ]
+      ],
+      "broadened_by": "NOW_INTEGRATED_CONTINUATION_V1"
+    },
+    {
+      "id": "NOW_INTEGRATED_CONTINUATION_V1",
+      "status": "INTEGRATED_DESIGN_NOT_PRODUCTION_READY",
+      "source": "analysis/INTEGRATED_EXPERIMENT_20261107/EXPERIMENT_DESIGN.md",
+      "graph": "analysis/INTEGRATED_EXPERIMENT_20261107/EXPERIMENT_GRAPH.json",
+      "lineage_map": "analysis/INTEGRATED_EXPERIMENT_20261107/REGISTRY_COVERAGE.json",
+      "parent_result_ids": [
+        "R001",
+        "R002",
+        "R003",
+        "R004",
+        "R005",
+        "R006",
+        "R007",
+        "R008",
+        "R009",
+        "R010",
+        "R011",
+        "R012",
+        "R013",
+        "R014",
+        "R015",
+        "R016",
+        "R017",
+        "R018",
+        "R019",
+        "R020",
+        "R021",
+        "R022",
+        "R023",
+        "R024",
+        "R025",
+        "R026",
+        "R027",
+        "R028",
+        "R029",
+        "R030",
+        "R031",
+        "R032",
+        "R033",
+        "R034",
+        "R035",
+        "R036",
+        "R037",
+        "R038",
+        "R039",
+        "R040",
+        "R041",
+        "R042",
+        "R043",
+        "R044",
+        "R045",
+        "R046",
+        "R047",
+        "R048",
+        "R049",
+        "R050",
+        "R051",
+        "R052",
+        "R053",
+        "R054",
+        "R055",
+        "R056",
+        "R057",
+        "R058",
+        "R059",
+        "R060",
+        "R061",
+        "R062",
+        "R063",
+        "R064",
+        "R065",
+        "R066",
+        "R067",
+        "R068",
+        "R069",
+        "R070",
+        "R071",
+        "R072",
+        "R073",
+        "R074",
+        "R075",
+        "R076",
+        "R077",
+        "R078",
+        "R079",
+        "R080",
+        "R081",
+        "R082",
+        "R083",
+        "R084",
+        "R085",
+        "R086",
+        "R087",
+        "R088",
+        "R089",
+        "R090",
+        "R091",
+        "R092",
+        "R093",
+        "R094",
+        "R095",
+        "R096",
+        "R097",
+        "R098",
+        "R099",
+        "R100",
+        "R101",
+        "R102",
+        "R103",
+        "R104",
+        "R105",
+        "R106",
+        "R107",
+        "R108",
+        "R109",
+        "R110",
+        "R111",
+        "R112",
+        "R113",
+        "R114",
+        "R115",
+        "R116",
+        "R117",
+        "R118",
+        "R119",
+        "R120",
+        "R121",
+        "R122",
+        "R123",
+        "R124",
+        "R125"
+      ],
+      "construct_ids": [
+        "C001",
+        "C002",
+        "C003",
+        "C004",
+        "C005",
+        "C006",
+        "C007",
+        "C008",
+        "C009",
+        "C010",
+        "C011",
+        "C012",
+        "C013",
+        "C014",
+        "C015",
+        "C016",
+        "C017",
+        "C018",
+        "C019",
+        "C020",
+        "C021",
+        "C022",
+        "C023",
+        "C024",
+        "C025",
+        "C026",
+        "C027",
+        "C028",
+        "C029",
+        "C030",
+        "C031",
+        "C032",
+        "C033",
+        "C034",
+        "C035",
+        "C036",
+        "C037",
+        "C038",
+        "C039",
+        "C040",
+        "C041",
+        "C042"
+      ],
+      "open_link_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10"
+      ],
+      "blocks": 12,
+      "coupled_comparisons": 16,
+      "coverage_not_confirmation": true,
+      "main_executed": false
     }
   ],
   "planned_experiment_edges": [
@@ -7480,6 +7695,1226 @@
       "object": "causal_compatibility",
       "comparison": "all",
       "provenance": "retrospective context for old R125 pilots; prospective specification for next candidate"
+    },
+    {
+      "source": "R001",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R002",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "known_analytic_control",
+      "blocks": [
+        "B00"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R003",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R004",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R005",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01",
+        "B03"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R006",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B07",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R007",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R008",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R009",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R010",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R011",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R012",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R013",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R014",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R015",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R016",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R017",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R018",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R019",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R020",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R021",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R022",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R023",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R024",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R025",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R026",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R027",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R028",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R029",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R030",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R031",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R032",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R033",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R034",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R035",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R036",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_existing_result_not_rerun",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R037",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R038",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R039",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R040",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R041",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R042",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R043",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R044",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B05",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R045",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R046",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R047",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R048",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R049",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R050",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R051",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R052",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R053",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R054",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R055",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R056",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R057",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R058",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R059",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R060",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R061",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R062",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B05",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R063",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B04",
+        "B07",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R064",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B05",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R065",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B05",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R066",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B07",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R067",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "conditional_semantic_example",
+      "blocks": [
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R068",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R069",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R070",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "known_analytic_control",
+      "blocks": [
+        "B01",
+        "B05"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R071",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "candidate_rule_boundary",
+      "blocks": [
+        "B01",
+        "B05"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R072",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01",
+        "B05"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R073",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "interpretation_constraint",
+      "blocks": [
+        "B01",
+        "B05",
+        "B07",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R074",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01",
+        "B02",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R075",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R076",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R077",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R078",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R079",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B09",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R080",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R081",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R082",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R083",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B03",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R084",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B03",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R085",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B03",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R086",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "separate_formal_interface",
+      "blocks": [
+        "B03"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R087",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "separate_formal_interface",
+      "blocks": [
+        "B03"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R088",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B03"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R089",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B03"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R090",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B05",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R091",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R092",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "archival_not_adopted",
+      "blocks": [
+        "B00"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R093",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R094",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B05",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R095",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R096",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B00",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R097",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "unimplemented_physical_candidate",
+      "blocks": [
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R098",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "known_analytic_control",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R099",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "archival_limited_evidence",
+      "blocks": [
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R100",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B10",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R101",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B01",
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R102",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R103",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R104",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "known_analytic_control",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R105",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R106",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R107",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R108",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R109",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R110",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R111",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R112",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R113",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R114",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "negative_or_nonrobust_constraint",
+      "blocks": [
+        "B06",
+        "B09",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R115",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B06",
+        "B09"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R116",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R117",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B07",
+        "B10"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R118",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "foundational_open_question",
+      "blocks": [
+        "B00",
+        "B08",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R119",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B09",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R120",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B02",
+        "B07",
+        "B10",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R121",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B05",
+        "B07",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R122",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B04",
+        "B05",
+        "B07",
+        "B11"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R123",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "planned_parent_or_constraint",
+      "blocks": [
+        "B03",
+        "B08"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R124",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reused_finite_witness",
+      "blocks": [
+        "B02",
+        "B03",
+        "B07"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R125",
+      "target": "NOW_INTEGRATED_CONTINUATION_V1",
+      "relation": "reuse_with_blocking_defects",
+      "blocks": [
+        "B03",
+        "B04"
+      ],
+      "provenance": "prospective design; source status retained; no new experiment executed"
     }
   ]
 }
