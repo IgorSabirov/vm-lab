@@ -286,7 +286,7 @@ def worker(root, args):
                        task_compute_seconds=time.perf_counter()-begin,
                        timing_scope="resumed_branch_suffix" if was_resumed else "complete_task")
             row["scientific_hash"] = digest(payload)
-            if task["seed"] == 0:
+            if task["seed"] == 0 and (plan.get("trace_case_ids") is None or task["case_id"] in plan["trace_case_ids"]):
                 atomic_json(output/"traces"/(row["task_id"]+".json"), trace)
                 if task['sampling_mode'] != 'design_control':
                     from .geometry_diagnostics import diagnose
@@ -301,7 +301,8 @@ def worker(root, args):
         scientific_rows=[r for r in rows if r['sampling_mode']!='design_control']
         control_rows=[r for r in rows if r['sampling_mode']=='design_control']
         summaries = summarize(scientific_rows)
-        contrasts = paired_contrasts(scientific_rows, cases["contrasts"], plan["acceptance"]["profile_equivalence_tv"])
+        phase_contrasts = [c for c in cases["contrasts"] if args.phase in c.get("phases", ("reviewer", "smoke", "calibrate", "main"))]
+        contrasts = paired_contrasts(scientific_rows, phase_contrasts, plan["acceptance"]["profile_equivalence_tv"])
         if args.phase in ("smoke", "main") and any(v["status"] == "NOT_EVALUABLE" for v in contrasts.values()):
             raise ValueError("complete phase left a declared contrast unevaluable")
         from .memory import response
@@ -314,7 +315,15 @@ def worker(root, args):
                     responses[key] = dict(parameters=[cfg.bath_modes,cfg.bath_coupling,cfg.detuning],
                         atoms=response(cfg.bath_modes,cfg.bath_coupling,cfg.detuning))
         atomic_json(output/"RESPONSE.json", responses)
-        atomic_json(output/"METRICS.json", dict(summary=summaries, contrasts=contrasts))
+        # Full outcome rows remain authoritative; do not duplicate large profile strings.
+        exported_summaries = {}
+        for name, summary in summaries.items():
+            item = dict(summary)
+            if any(name.startswith(prefix) for prefix in plan.get("compact_profile_case_prefixes", [])):
+                item.pop("joint_profile", None)
+                item["joint_profile_storage"] = "Reconstruct exactly from normalized outcomes in rows/ and ROWS_INDEX.json"
+            exported_summaries[name] = item
+        atomic_json(output/"METRICS.json", dict(summary=exported_summaries, contrasts=contrasts))
         from .amendment_report import report as amendment_report
         atomic_json(output/'FOUR_CANDIDATE_RETURN.json', amendment_report(scientific_rows, contrasts))
         validation = {}
