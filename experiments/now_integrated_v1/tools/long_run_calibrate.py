@@ -31,8 +31,8 @@ for item in plan["calibration_cases"]:
         probability_mass=result["probability_mass"],
         serialized_result_bytes=len(json.dumps(result).encode()),
         max_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
-        science=dict(mean_task_success=sum(x["weight"]*x["result"]["mean_task_success"] for x in result["outcomes"]),
-          full_reserve_mass=sum(x["weight"]*sum(bool(t.get("full_reserve")) for t in x["result"]["task_results"])/cfg.generations for x in result["outcomes"])))
+        science=dict(mean_task_success=sum(x["weight"]*x["result"].get("mean_task_success",x["result"]["final_function"]) for x in result["outcomes"]),
+          full_reserve_mass=sum(x["weight"]*sum(bool(t.get("full_reserve")) for t in x["result"].get("task_results",[]))/cfg.generations for x in result["outcomes"])))
     records.append(record)
     out=dict(status="RUNNING",records=records,wall_seconds=time.perf_counter()-start,environment=environment(),source=plan["model_commit"])
     Path("CALIBRATION.json").write_text(json.dumps(out,indent=2)+"\n")
