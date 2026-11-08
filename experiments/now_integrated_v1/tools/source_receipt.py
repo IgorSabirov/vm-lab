@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parents[1]
 sys.path.insert(0, str(ROOT))
 from nowexp.provenance import source_manifest, digest
+from nowexp.runner import validate_workload
 
 
 def main():
@@ -22,6 +23,7 @@ def main():
         raise ValueError('exact commit SHA required')
     def git(*args):
         return subprocess.check_output(['git', '-C', str(REPO), *args])
+    validate_workload(*[json.loads((ROOT/"preregistration"/name).read_text()) for name in ("PROTOCOL.json", "CASES.json", "FOUR_CANDIDATE_AMENDMENT.json")])
     files = source_manifest(ROOT)
     blobs = {}
     for name in files:

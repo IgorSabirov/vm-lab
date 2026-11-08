@@ -58,7 +58,7 @@ def main():
     checks['provided_report_preserved'] = hashlib.sha256((root/supplied['path']).read_bytes()).hexdigest() == supplied['sha256']
     tests = ast.parse((root/E/'tests/test_four_candidate_patch.py').read_text())
     count = sum(isinstance(n, ast.FunctionDef) and n.name.startswith('test_') for n in ast.walk(tests))
-    checks['17_new_tests_written_not_run'] = count == 17
+    checks['18_patch_tests_present'] = count == 18
     checks['no_theorem_gate_for_NOW'] = load(root/'analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json')['add_operational_law']['author_theorem_study_required'] is False
     checks['no_equilibrium_samples_invented'] = not load(root/E/'preregistration/PREPARED_GEOMETRIES.json')['ensembles']
     out = dict(status='PASS' if all(checks.values()) else 'FAIL', checks=checks,

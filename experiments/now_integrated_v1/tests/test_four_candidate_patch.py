@@ -10,7 +10,7 @@ from nowexp.carrier import Carrier, full_step, fixture
 from nowexp.engine import Engine, canonical_hash
 from nowexp.enumeration import FiniteEnumeration, input_distribution
 from nowexp.state import Config
-from nowexp.runner import make_tasks
+from nowexp.runner import make_tasks, validate_workload, workload_inventory
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +41,18 @@ class PatchContracts(unittest.TestCase):
         self.assertEqual(len(selected), 123+len(amendment['new_cases']))
         self.assertEqual(len(tasks), amendment['main_task_count'])
         self.assertEqual(plan['freeze_state'], 'REVIEW_CANDIDATE_NOT_FROZEN')
+
+    def test_workload_drift_is_rejected_before_execution(self):
+        plan = json.loads((ROOT/'preregistration/PROTOCOL.json').read_text())
+        cases = json.loads((ROOT/'preregistration/CASES.json').read_text())
+        amendment = json.loads((ROOT/'preregistration/FOUR_CANDIDATE_AMENDMENT.json').read_text())
+        validate_workload(plan, cases, amendment)
+        for target in ('main', 'phase', 'amendment'):
+            p, a = copy.deepcopy(plan), copy.deepcopy(amendment)
+            if target == 'main': p['proposed_main_tasks'] = 326
+            elif target == 'phase': p['workload_inventory']['smoke']['tasks'] += 1
+            else: a['main_task_count'] = 326
+            with self.assertRaises(ValueError): validate_workload(p, cases, a)
 
     def test_input_mass_not_replaced_by_forced_11(self):
         inputs = input_distribution(config(forced_content=None))

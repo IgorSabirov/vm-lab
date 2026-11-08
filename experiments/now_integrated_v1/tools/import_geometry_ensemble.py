@@ -14,6 +14,7 @@ from fractions import Fraction
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from nowexp.carrier import Carrier
+from nowexp.runner import workload_inventory, validate_workload
 
 
 def main():
@@ -78,8 +79,12 @@ def main():
     info = plan['four_candidate_amendment']
     info.update(total_cases=len(cases['cases']), added_cases=len(cases['cases'])-123,
                 added_contrasts=len(cases['contrasts'])-84, review='PENDING_AFTER_IMPORT')
-    amendment.update(main_task_count=len(cases['cases'])+192+11, production_frozen=False,
+    inventory = workload_inventory(plan, cases)
+    plan['workload_inventory'] = inventory
+    plan['proposed_main_tasks'] = inventory['main']['tasks']
+    amendment.update(main_task_count=inventory['main']['tasks'], production_frozen=False,
                      status='IMPLEMENTED_PENDING_REVIEW_AFTER_IMPORT')
+    validate_workload(plan, cases, amendment)
     # All validation precedes writes; replacements are atomic per file.
     for name, value in zip(paths, (cases, plan, bank, amendment)):
         temp = paths[name].with_suffix('.json.tmp')

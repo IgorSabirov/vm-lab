@@ -87,10 +87,32 @@ def make_tasks(plan, cases, phase):
     return selected, tasks
 
 
+
+def workload_inventory(plan, cases):
+    """Describe actual generated tasks without executing a trajectory."""
+    from collections import Counter
+    return {phase: dict(tasks=len(tasks), modes=dict(Counter(t['sampling_mode'] for t in tasks)))
+            for phase in ('reviewer','smoke','calibrate','main')
+            for _, tasks in [make_tasks(plan, cases, phase)]}
+
+
+def validate_workload(plan, cases, amendment=None):
+    inventory = workload_inventory(plan, cases)
+    count = inventory['main']['tasks']
+    if plan.get('proposed_main_tasks') != count:
+        raise ValueError('declared main workload differs from make_tasks')
+    if plan.get('workload_inventory') != inventory:
+        raise ValueError('declared phase workload differs from make_tasks')
+    if amendment is not None and amendment.get('main_task_count') != count:
+        raise ValueError('amendment workload differs from normative protocol')
+    return inventory
+
+
 def context(root, args):
     files = verify_source(root, args.source_commit, args.source_manifest)
     plan = read_json(root/"preregistration/PROTOCOL.json")
     cases = read_json(root/"preregistration/CASES.json")
+    validate_workload(plan, cases, read_json(root/"preregistration/FOUR_CANDIDATE_AMENDMENT.json"))
     source_id, config_id = digest(files), digest(cases)
     admission = gate(root, args.phase, source_id, config_id, args.acceptance, args.smoke_report, args.calibration)
     selected, tasks = make_tasks(plan, cases, args.phase)
