@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "known_inertias": true,
+    "single_matrix": true,
+    "near_threshold_flag": true,
+    "strict_rejects_ambiguous": true,
+    "nonfinite_rejected": true,
+    "asymmetry_rejected": true,
+    "nonsquare_rejected": true,
+    "empty_rejected": true,
+    "4096_known_congruences": true,
+    "scale_-500": true,
+    "scale_500": true,
+    "numpy_agrees_on_well_conditioned_inputs": true
+  },
+  "matrices": 4096,
+  "dimension": 4,
+  "repetitions": 3,
+  "seed": 20261108,
+  "fixture_symmetry_adjustment": 4.440892098500626e-16,
+  "fixture_minimum_absolute_eigenvalue": 0.25,
+  "timings_seconds": {
+    "cpp_batch": [
+      0.00888015100008488,
+      0.009071268999832682,
+      0.007351494999966235
+    ],
+    "numpy_eigvalsh_batch": [
+      0.003987252000115404,
+      0.004087093000180175,
+      0.003877978000218718
+    ],
+    "numpy_eigvalsh_python_loop": [
+      0.0364382839998143,
+      0.036403030999736075,
+      0.03449701299996377
+    ]
+  },
+  "medians_seconds": {
+    "cpp_batch": 0.00888015100008488,
+    "numpy_eigvalsh_batch": 0.003987252000115404,
+    "numpy_eigvalsh_python_loop": 0.036403030999736075
+  },
+  "benchmark_scope": "Well-conditioned matrices; C++ performs extra reliability/threshold diagnostics; not equal work per matrix.",
+  "no_quantum_gravity_sampling": true,
+  "elapsed_seconds": 0.17964396800016402
+}

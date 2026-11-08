@@ -1,0 +1,646 @@
+{
+  "complete": false,
+  "stages": [
+    {
+      "name": "compile_numerical_kernel",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fPIC",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/src/symmetric_matrix_signature.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.6779510859996662,
+      "output": ""
+    },
+    {
+      "name": "build_python_bridge",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fPIC",
+        "-shared",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/4bd4eecc06cf/vm-lab/tools/piecewise_flat_qg/signature_bridge.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/libvm_signature.so"
+      ],
+      "returncode": 0,
+      "seconds": 0.18542713599981653,
+      "output": ""
+    },
+    {
+      "name": "build_basic_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/basic_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/basic_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.5185777650003729,
+      "output": ""
+    },
+    {
+      "name": "basic_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/basic_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.002173999000206095,
+      "output": "basic_test: PASS (26 checks)\n"
+    },
+    {
+      "name": "build_validation_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/validation_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/validation_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.9812726539998948,
+      "output": ""
+    },
+    {
+      "name": "validation_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/validation_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.0025966759999391797,
+      "output": "validation_test: PASS (120 checks)\n"
+    },
+    {
+      "name": "build_numerical_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/numerical_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/numerical_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.9634880590001558,
+      "output": ""
+    },
+    {
+      "name": "numerical_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/numerical_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.0028891869997096364,
+      "output": "numerical_test: PASS (359 checks)\n"
+    },
+    {
+      "name": "build_randomized_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/randomized_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/randomized_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.759243688999959,
+      "output": ""
+    },
+    {
+      "name": "randomized_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/randomized_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.09805333899976176,
+      "output": "randomized_test: PASS (33681 checks)\n"
+    },
+    {
+      "name": "build_structural_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/structural_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/structural_test"
+      ],
+      "returncode": 0,
+      "seconds": 1.0073104560001411,
+      "output": ""
+    },
+    {
+      "name": "structural_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/structural_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.10072417999981553,
+      "output": "structural_test: PASS (1892 checks)\n"
+    },
+    {
+      "name": "build_allocation_failure_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/allocation_failure_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/allocation_failure_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.433980161999898,
+      "output": ""
+    },
+    {
+      "name": "allocation_failure_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/allocation_failure_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.001981138000246574,
+      "output": "ERROR: calculate_matrix_signature(): Memory allocation failed.\nallocation_failure_test: PASS (12 checks)\n"
+    },
+    {
+      "name": "build_pivoting_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/pivoting_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/pivoting_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.8425424179999936,
+      "output": ""
+    },
+    {
+      "name": "pivoting_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/pivoting_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.035034038000048895,
+      "output": "pivoting_test: PASS (482 checks)\n"
+    },
+    {
+      "name": "build_inertia_properties_test",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/test/inertia_properties_test.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/inertia_properties_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.6941639649999161,
+      "output": ""
+    },
+    {
+      "name": "inertia_properties_test",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/inertia_properties_test"
+      ],
+      "returncode": 0,
+      "seconds": 0.1405226230003791,
+      "output": "inertia_properties_test: PASS (5014 checks)\n"
+    },
+    {
+      "name": "compile_mesh_color",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/color.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_color.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.759868835999896,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_drawing",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/drawing.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_drawing.o"
+      ],
+      "returncode": 0,
+      "seconds": 1.175858941000115,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_global_vars",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/global_vars.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_global_vars.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.30828739900016444,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_input_and_output",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/input_and_output.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_input_and_output.o"
+      ],
+      "returncode": 0,
+      "seconds": 1.4089289119997375,
+      "output": "In file included from /workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include/triangulator.hpp:24,\n                 from /workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/input_and_output.cpp:2:\nIn member function \u2018void rapidxml::xml_node<Ch>::append_node(rapidxml::xml_node<Ch>*) [with Ch = char]\u2019,\n    inlined from \u2018void save_complex_to_xml_file(SimpComp*, const std::string&)\u2019 at /workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/input_and_output.cpp:178:24:\n/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml/rapidxml.hpp:1102:41: warning: \u2018treeXml.rapidxml::xml_document<char>::<unnamed>.rapidxml::xml_node<>::m_last_node\u2019 may be used uninitialized [-Wmaybe-uninitialized]\n 1102 |                 child->m_prev_sibling = m_last_node;\n      |                                         ^~~~~~~~~~~\n/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/input_and_output.cpp: In function \u2018void save_complex_to_xml_file(SimpComp*, const std::string&)\u2019:\n/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/input_and_output.cpp:174:20: note: \u2018treeXml\u2019 declared here\n  174 |     xml_document<> treeXml;\n      |                    ^~~~~~~\n"
+    },
+    {
+      "name": "compile_mesh_ksimplex",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/ksimplex.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_ksimplex.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.706065044999832,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_math_functions",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/math_functions.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_math_functions.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.6699711029996251,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_pachner",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/pachner.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_pachner.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.5682886089998647,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_seed",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/seed.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_seed.o"
+      ],
+      "returncode": 0,
+      "seconds": 0.5435212380002667,
+      "output": ""
+    },
+    {
+      "name": "compile_mesh_simpcomp",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "-c",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/src/simpcomp.cpp",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_simpcomp.o"
+      ],
+      "returncode": 0,
+      "seconds": 1.1291048410002986,
+      "output": ""
+    },
+    {
+      "name": "build_simplex-generator",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/simplex-generator.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_color.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_drawing.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_global_vars.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_input_and_output.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_ksimplex.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_math_functions.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_pachner.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_seed.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_simpcomp.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/simplex-generator"
+      ],
+      "returncode": 0,
+      "seconds": 0.9745097980003266,
+      "output": ""
+    },
+    {
+      "name": "build_ball-generator",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/ball-generator.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_color.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_drawing.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_global_vars.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_input_and_output.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_ksimplex.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_math_functions.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_pachner.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_seed.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_simpcomp.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/ball-generator"
+      ],
+      "returncode": 0,
+      "seconds": 1.1186288519998016,
+      "output": ""
+    },
+    {
+      "name": "build_sphere-generator",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/sphere-generator.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_color.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_drawing.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_global_vars.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_input_and_output.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_ksimplex.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_math_functions.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_pachner.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_seed.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_simpcomp.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/signature.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/sphere-generator"
+      ],
+      "returncode": 0,
+      "seconds": 0.9943018160001884,
+      "output": ""
+    },
+    {
+      "name": "build_mesh_probe",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++11",
+        "-O2",
+        "-fno-fast-math",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/symmetric_matrix_signature/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/library/include",
+        "-I/workspace/scratch/e6746f72742b/serbian_cpp_build/source/cpp/triangulator/third_party_software/rapidxml",
+        "/workspace/scratch/4bd4eecc06cf/vm-lab/tools/piecewise_flat_qg/mesh_probe.cpp",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_color.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_drawing.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_global_vars.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_input_and_output.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_ksimplex.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_math_functions.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_pachner.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_seed.o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_simpcomp.o",
+        "-o",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_probe"
+      ],
+      "returncode": 0,
+      "seconds": 0.38017425700036256,
+      "output": ""
+    },
+    {
+      "name": "mesh_probe",
+      "command": [
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/mesh_probe"
+      ],
+      "returncode": 0,
+      "seconds": 0.0026512279996495636,
+      "output": "{\"passed\":true,\"pair_counts\":[6,14,16,9,2],\"shared_edge_objects\":6,\"sphere_counts\":[6,15,20,15,6]}\n"
+    },
+    {
+      "name": "check_python_adapter",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/4bd4eecc06cf/vm-lab/tools/piecewise_flat_qg/check_adapter.py",
+        "--library",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/libvm_signature.so",
+        "--output",
+        "/workspace/scratch/e6746f72742b/serbian_cpp_build/ADAPTER_CHECKS.json"
+      ],
+      "returncode": 1,
+      "seconds": 0.12494817800006786,
+      "output": "Traceback (most recent call last):\n  File \"/workspace/scratch/4bd4eecc06cf/vm-lab/tools/piecewise_flat_qg/check_adapter.py\", line 45, in <module>\n    checks['4096_known_congruences'] = np.array_equal(kernel.classify(matrices)['counts'], expected)\n                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/4bd4eecc06cf/vm-lab/tools/piecewise_flat_qg/signature_kernel.py\", line 42, in classify\n    raise ValueError(f\"Unreliable classifications at rows {indices[:16].tolist()}; \"\nValueError: Unreliable classifications at rows [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; use strict=False for diagnostics\n"
+    }
+  ]
+}

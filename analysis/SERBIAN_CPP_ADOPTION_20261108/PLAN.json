@@ -1,0 +1,32 @@
+{
+  "purpose": "Adopt and learn from the author's C++ engineering independently of accepting a new physical law",
+  "authorization": "User explicitly requested borrowing useful Serbian-model code and C++ experience on 2026-11-08",
+  "scope": [
+    "Preserve the official C++ source snapshot and licenses",
+    "Compile the numerical library and all three generators",
+    "Run the eight supplied numerical test suites",
+    "Use original triangulator API on a shared-face pair and a minimal 4-sphere; verify shared object identity and incidence counts",
+    "Check a thin Python-to-C++ batch adapter",
+    "Measure the adapter and NumPy on the same bounded matrix batch"
+  ],
+  "execution_environment": "local scratch; no VM jobs",
+  "scientific_generator_execution": false,
+  "integrated_experiment_changes": false,
+  "benchmark": {
+    "matrices": 4096,
+    "dimension": 4,
+    "repeats": 3,
+    "seed": 20261108
+  },
+  "timing_status": "First bounded engineering measurement; no prior calibrated build forecast available",
+  "whole_build_and_check_cap_seconds": 300,
+  "per_test_cap_seconds": 30,
+  "compiler": "g++ -std=c++11 -O2 -fno-fast-math",
+  "result_criteria": [
+    "Snapshot hashes match",
+    "All targets compile",
+    "All eight upstream suites pass",
+    "Adapter preserves reliable and ambiguous/error classifications",
+    "Timing and workload recorded; no assumed speed advantage"
+  ]
+}
