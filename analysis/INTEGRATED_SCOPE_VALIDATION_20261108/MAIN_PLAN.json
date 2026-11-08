@@ -1,0 +1,25 @@
+{
+  "source_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+  "source_digest": "7edbf252f069d621cc06f3e04ec91afafc14a50767eafb9c17027357a2de89ee",
+  "config_digest": "94d75633b13de4b1d43afb7d6257eba1c6b7fa3c7a0539d02b35bf0d9937dad8",
+  "phase": "main",
+  "submission_state": "NOT_SUBMITTED",
+  "prepared_workload": {
+    "cases": 123,
+    "contrasts": 84,
+    "design_controls": 11,
+    "monte_carlo_validation_trajectories": 192,
+    "total_tasks": 326
+  },
+  "forecast": "FORECAST.json",
+  "source_manifest": "SOURCE_MANIFEST.json",
+  "smoke_report": "SMOKE_SUITE.json",
+  "review_decisions": "../INTEGRATED_SCOPE_REPAIR_20261107/REVIEW_DECISIONS.md",
+  "current_receipt_authorized_phases": [
+    "smoke",
+    "calibrate"
+  ],
+  "runtime_gate": "Compare observed time, actual workload and environment against this fixed forecast before interpreting scientific results",
+  "next_command_template": "python run.py --phase main --output NEW_OUTPUT --source-commit ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8 --source-manifest SOURCE_MANIFEST.json --acceptance MAIN_ACCEPTANCE.json --smoke-report SMOKE_SUITE.json --calibration FORECAST.json",
+  "note": "MAIN_ACCEPTANCE.json is not created here. This continuation completes the requested assembly, checks and forecast."
+}
