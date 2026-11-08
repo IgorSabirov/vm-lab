@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "experiment_id": "NOW_INTEGRATED_CONTINUATION_V1",
+  "model_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
+  "model_git_blobs": {
+    "nowexp/__init__.py": "d6926bcee056ddce0515da40d905df705eea9a34",
+    "nowexp/amendment_report.py": "a3e597182b6e5d0a6dd7c680fa79dd8607afd273",
+    "nowexp/carrier.py": "6e44c12cd1f27aadc9e2c73c1f82222944cd2e7b",
+    "nowexp/design_controls.py": "44f5df899f8d280843e54643940c253da8d1634c",
+    "nowexp/engine.py": "0b4a5b05982bb26ada2383b09d538ba077fbb617",
+    "nowexp/enumeration.py": "8036eda6e471c4b1383471f65fed2928a0d2700b",
+    "nowexp/geometry_diagnostics.py": "abf1e51af9be1ef440ae993149c19344fedf0a9e",
+    "nowexp/history_controls.py": "6009f43280653cd4541e2f0e1366ac6c7a74fbc2",
+    "nowexp/joint_preparation.py": "53e43d50b9f7652162e682040aab26e2fd05d702",
+    "nowexp/kinematics.py": "f8adc117fac89feba52b72c5d661ae9db0b88f28",
+    "nowexp/local_instruments.py": "9a28df552ac514b71f5775166229320bf32bc544",
+    "nowexp/memory.py": "c879df6d3eb59e25afb014044e7c1f5c504aefea",
+    "nowexp/observables.py": "81ea3ac2e1bf57c37df77b6381f6596aae18bdc1",
+    "nowexp/provenance.py": "6d83b15a67a028b675b9475948e5360976ff98e5",
+    "nowexp/randomness.py": "d1d939ba23a0db88cd43540008f3fb8451fdccee",
+    "nowexp/readout_analysis.py": "cc6fadb4486b7ece56acf55c7286348c9a61295b",
+    "nowexp/runner.py": "d4b49b3fe41f1eae9be6a1166f75ee3cac4564cb",
+    "nowexp/scope_evidence.py": "17bd246e4d596bb8ffb4965f4cb1c629d75b9da2",
+    "nowexp/state.py": "b1ecfad686b023966f6010725d96b4b02b7c4be4",
+    "nowexp/task_probe.py": "6ae1d5b04782bbb0669038d14f9f8af707ec000a",
+    "nowexp/typed_reactions.py": "7aabb5a224ce23ce6e0bd27b9f750859ede8806c",
+    "preregistration/PROTOCOL.json": "2d118ac438fe664348ba9a2803369e97c3169e7c"
+  },
+  "question": "How do generation depth, finite donor stock and delivery latency change paid repair/task continuation across the existing five conditional carriers?",
+  "user_instruction": "2026-11-08: launch a run exceeding 10 minutes of machine time",
+  "minimum_main_machine_seconds": 600,
+  "empty_repetitions": false,
+  "calibration_hard_seconds": 240,
+  "calibration_cases": [
+    {
+      "id": "cost::flat::g3",
+      "family": "flat",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 3,
+        "supply_delay": 64
+      }
+    },
+    {
+      "id": "cost::ising_order::g3",
+      "family": "ising_order",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 3,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::cdt_strip::g3",
+      "family": "cdt_strip",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 3,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_quiet::g3",
+      "family": "add_quiet",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 3,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_growing::g3",
+      "family": "add_growing",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 3,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::flat::g5",
+      "family": "flat",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 5,
+        "supply_delay": 64
+      }
+    },
+    {
+      "id": "cost::ising_order::g5",
+      "family": "ising_order",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 5,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::cdt_strip::g5",
+      "family": "cdt_strip",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 5,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_quiet::g5",
+      "family": "add_quiet",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 5,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_growing::g5",
+      "family": "add_growing",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 5,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::flat::g8",
+      "family": "flat",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 8,
+        "supply_delay": 64
+      }
+    },
+    {
+      "id": "cost::ising_order::g8",
+      "family": "ising_order",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 8,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::cdt_strip::g8",
+      "family": "cdt_strip",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 8,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_quiet::g8",
+      "family": "add_quiet",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 8,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 2048
+        }
+      }
+    },
+    {
+      "id": "cost::add_growing::g8",
+      "family": "add_growing",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 384,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "generations": 8,
+        "supply_delay": 64,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 2048
+        }
+      }
+    }
+  ],
+  "candidate_grid": {
+    "families": [
+      "flat",
+      "ising_order",
+      "cdt_strip",
+      "add_quiet",
+      "add_growing"
+    ],
+    "generations": [
+      3,
+      5,
+      8
+    ],
+    "donor_fuel": [
+      96,
+      144,
+      192,
+      288,
+      384
+    ],
+    "supply_delay": [
+      0,
+      16,
+      64
+    ],
+    "task_damage": [
+      "writer",
+      "contact"
+    ],
+    "restoration_mode": [
+      "off",
+      "on",
+      "sham"
+    ]
+  },
+  "existing_cases_preserved": 210,
+  "existing_tasks_preserved": 413,
+  "main_wall_cap_seconds": 3600,
+  "scope": "Same Engine and finite input enumeration. Existing finite wave/quantum controls retained. No equilibrium-ensemble or emergence claim.",
+  "forecasts": {
+    "resource": "More initial stock may repair a stock deficit but need not repair inaccessible/late delivery.",
+    "repair": "ON versus OFF/SHAM is compared at identical generation, carrier, stock, and delay; record effects without a global branch rejection.",
+    "limits": "The 2/3 ADD observation is a cause question; do not assume resource shortage before per-carrier and per-generation evidence."
+  }
+}
