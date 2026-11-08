@@ -1,0 +1,64 @@
+{
+  "id": "R126_DICHOTOMY_AUDIT_20261108",
+  "authorized_by": "User: Можешь прогнать аудит дихотомии? Резы в хаб.",
+  "parent": "R126",
+  "base_commit": "107cca83c6369734c3d434e756a32377c249d89d",
+  "question": "Which explicit local law supports or falsifies the reported E0 quiet/expanding dichotomy and the breathing witness?",
+  "prior_claims": {
+    "literal_L4_E0": 36856,
+    "literal_L4_Q": 25890,
+    "bits_only_L3_C2_new_merges": 48,
+    "breathing_L": [
+      4,
+      4,
+      3,
+      3,
+      4
+    ]
+  },
+  "space": "oriented labelled rings; C1=4 states, C2=16 states; inherited I2 with explicit C1 restriction",
+  "transport_factorial": "reverse/preserve new edge orientation crossed with literal/swapped bit endpoints; same Name algebra and I2",
+  "primary_modes": [
+    "LITERAL_DEF4",
+    "FIG2A_BITS_ONLY",
+    "FIG2A_FULL",
+    "PRESERVE_EDGES_LITERAL_BITS"
+  ],
+  "alias_under_test": "BUGGY_UNIFORM = LITERAL_DEF4, not presumed a third distinct law",
+  "scope": {
+    "L": [
+      3,
+      4
+    ],
+    "channels": [
+      1,
+      2
+    ],
+    "orbit_domain": "all E0 initial states, rotational quotient with exact labelled multiplicities",
+    "horizon": 32,
+    "vertex_cap": 256
+  },
+  "classification": [
+    "QUIET_PERIODIC",
+    "BREATHING_PERIODIC",
+    "EXPANDING_WITHIN_HORIZON",
+    "MIXED_TRANSIENT",
+    "UNKNOWN_BUDGET_EXCEEDED"
+  ],
+  "cycle_definition": "exact oriented cyclic word recurrence; only quotient periodicity asserted unless names also recur; rotation equivariance and graph-to-word mapping checked",
+  "strong_dichotomy": "E0 either remains motif-free or splits on every step starting with the second update, with no merges",
+  "weaker_claim": "eventual unbounded growth or eternal quiet; finite transient does not refute this; a nonquiet exact quotient cycle does",
+  "forecast": "literal legacy counters expected to reproduce; bit-only swap expected to reproduce breathing; full Fig2a may differ because figure also fixes edge gluing",
+  "outcome_policy": "counterexample refutes only its explicit rule; no counterexample means finite support, never universal proof",
+  "budget": {
+    "calibration_cap_seconds": 30,
+    "main_cap_seconds": 180,
+    "first_stage": "bounded source/graph/tuple checks and one small cell; record actual cost before full enumeration"
+  },
+  "execution_environment": "local audit sandbox; no VM or NOW main experiment",
+  "no_author_contact": true,
+  "status": "STOPPED_BEFORE_EXECUTION",
+  "run_authorized_now": false,
+  "stop_instruction": "Стой.сохрани что получил из анализа и подожди. Стоп",
+  "models_executed": 0
+}
