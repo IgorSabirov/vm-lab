@@ -1,0 +1,650 @@
+{
+  "stage": "gates",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "source_sha256": "0159f4cda8a78428a06429104b5b61172f27871d65a27e17ddcce062fa04ef07",
+  "frozen_core_sha256": "a71cc741535aa57fd22a13291c31262fe69240093fe546321bc5612030e09945",
+  "gates": {
+    "projection_and_inverses_graphs": 336,
+    "four_modes": [
+      "LITERAL_DEF4",
+      "FIG2A_BITS_ONLY",
+      "FIG2A_FULL",
+      "PRESERVE_EDGES_LITERAL_BITS"
+    ],
+    "tau_port_worldlines": {
+      "LITERAL_DEF4": {
+        "cases": 16,
+        "exact_named_pass": 0,
+        "word_rotation_pass": 16,
+        "counterexample": {
+          "input": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "q_squared": {
+            "vertices": [
+              {
+                "name": "((1).l vee (3).r)",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((2).l vee (0).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((3).l vee (1).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((0).l vee (2).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "((1).l vee (3).r):b",
+                "((2).l vee (0).r):a"
+              ],
+              [
+                "((0).l vee (2).r):b",
+                "((1).l vee (3).r):a"
+              ],
+              [
+                "((3).l vee (1).r):b",
+                "((0).l vee (2).r):a"
+              ],
+              [
+                "((2).l vee (0).r):b",
+                "((3).l vee (1).r):a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "tau_port": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        },
+        "mixed_word_equals_tau": false,
+        "mixed_q_squared": [
+          0,
+          4,
+          9,
+          2
+        ]
+      },
+      "FIG2A_BITS_ONLY": {
+        "cases": 16,
+        "exact_named_pass": 0,
+        "word_rotation_pass": 16,
+        "counterexample": {
+          "input": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "q_squared": {
+            "vertices": [
+              {
+                "name": "((1).l vee (3).r)",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((2).l vee (0).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((3).l vee (1).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "((0).l vee (2).r)",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "((1).l vee (3).r):b",
+                "((2).l vee (0).r):a"
+              ],
+              [
+                "((0).l vee (2).r):b",
+                "((1).l vee (3).r):a"
+              ],
+              [
+                "((3).l vee (1).r):b",
+                "((0).l vee (2).r):a"
+              ],
+              [
+                "((2).l vee (0).r):b",
+                "((3).l vee (1).r):a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "tau_port": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        },
+        "mixed_word_equals_tau": false,
+        "mixed_q_squared": [
+          0,
+          4,
+          9,
+          2
+        ]
+      },
+      "FIG2A_FULL": {
+        "cases": 16,
+        "exact_named_pass": 16,
+        "word_rotation_pass": 16,
+        "counterexample": null,
+        "mixed_word_equals_tau": true,
+        "mixed_q_squared": [
+          0,
+          8,
+          6,
+          1
+        ]
+      },
+      "PRESERVE_EDGES_LITERAL_BITS": {
+        "cases": 16,
+        "exact_named_pass": 0,
+        "word_rotation_pass": 16,
+        "counterexample": {
+          "input": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "q_squared": {
+            "vertices": [
+              {
+                "name": "1",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "0",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ],
+              [
+                "0:b",
+                "1:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "tau_port": {
+            "vertices": [
+              {
+                "name": "0",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "1",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "2",
+                "bits": [
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "3",
+                "bits": [
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "edges": [
+              [
+                "0:b",
+                "1:a"
+              ],
+              [
+                "1:b",
+                "2:a"
+              ],
+              [
+                "2:b",
+                "3:a"
+              ],
+              [
+                "3:b",
+                "0:a"
+              ]
+            ],
+            "word": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        },
+        "mixed_word_equals_tau": true,
+        "mixed_q_squared": [
+          0,
+          8,
+          6,
+          1
+        ]
+      }
+    }
+  },
+  "wall_seconds": 0.3161600380008167
+}

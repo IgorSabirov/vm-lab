@@ -1,0 +1,1049 @@
+{
+  "assembly": {
+    "artifact": "ADD_FT10_MINIMAL",
+    "parent": "R126 / existing NOW_INTEGRATED_CONTINUATION_V1 prerequisite",
+    "base_commit": "107cca83c6369734c3d434e756a32377c249d89d",
+    "prepared_status": "ASSEMBLED_NOT_EXECUTED_NOT_ATTESTED",
+    "core_layout": [
+      "a1",
+      "b1",
+      "a2",
+      "b2"
+    ],
+    "C1_layout": [
+      "a1",
+      "b1"
+    ],
+    "C2_external_layout": [
+      "a1",
+      "a2",
+      "b1",
+      "b2"
+    ],
+    "scope": "two three-vertex C1 fixtures; one C2 transport fixture; finite name-law cases",
+    "mirror_equals_Def4": "NOT_PROVEN",
+    "ADD_source_conformance": "NOT_ATTESTED",
+    "NOW_integration": "BLOCKED",
+    "figure_2_named_fixture": "NOT_TRANSCRIBED_NOT_VERIFIED",
+    "limits": {
+      "max_vertices": 8,
+      "max_name_nodes": 1000,
+      "max_half_steps": 2
+    }
+  },
+  "executed": true,
+  "status": "FAIL",
+  "source_conformance": "NOT_ATTESTED",
+  "NOW_integration": "BLOCKED",
+  "tests": {
+    "FT10A_layouts": {
+      "status": "PASS"
+    },
+    "FT10B_name_algebra": {
+      "status": "PASS",
+      "finite_cases_only": true,
+      "laws": {
+        "merge_left_projection": true,
+        "merge_right_projection": true,
+        "empty_projection": true,
+        "child_merge_cancellation": true,
+        "ordered_merge": true,
+        "A1_negative_controls": true
+      }
+    },
+    "FT10C_C1_split_merge": {
+      "status": "PASS",
+      "checks": {
+        "left_child_state": true,
+        "right_child_state": true,
+        "internal_b_to_a_edge": true,
+        "I_squared_exact_names_edges_states": true,
+        "particle_counts": true,
+        "unrelated_name_merge": true,
+        "unrelated_name_merge_inverse": true
+      },
+      "trace_I_then_I": [
+        {
+          "states_a1_b1_a2_b2": {
+            "0": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(0).l": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "(0).r": [
+              0,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "(0).l",
+              "(0).r"
+            ],
+            [
+              "(0).r",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "(0).l"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "0": [
+              1,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "trace_unrelated_merge": [
+        {
+          "states_a1_b1_a2_b2": {
+            "0": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "1": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(0 vee 1)": [
+              1,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "(0 vee 1)",
+              "2"
+            ],
+            [
+              "2",
+              "(0 vee 1)"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "scope": "I2 restricted to C1, not full mirrored C2 table"
+    },
+    "FT10D_C1_on_initial": {
+      "status": "FAIL",
+      "checks": {
+        "first_equals_literal_Def4_reading": true,
+        "second_equals_literal_Def4_reading": true,
+        "sqrt_inverse_exact_names": true,
+        "bit_counts": true,
+        "two_halves_equal_port_tau_exact_names": false,
+        "tagged_worldlines_equal_port_tau": false
+      },
+      "trace": [
+        {
+          "states_a1_b1_a2_b2": {
+            "0": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "((0).r vee (1).l)": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "((1).r vee (2).l)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "((2).r vee (0).l)": [
+              0,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "((0).r vee (1).l)",
+              "((2).r vee (0).l)"
+            ],
+            [
+              "((1).r vee (2).l)",
+              "((0).r vee (1).l)"
+            ],
+            [
+              "((2).r vee (0).l)",
+              "((1).r vee (2).l)"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "((1).l vee (2).r)": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "((2).l vee (0).r)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "((0).l vee (1).r)": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "((0).l vee (1).r)",
+              "((1).l vee (2).r)"
+            ],
+            [
+              "((1).l vee (2).r)",
+              "((2).l vee (0).r)"
+            ],
+            [
+              "((2).l vee (0).r)",
+              "((0).l vee (1).r)"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "worldlines": [
+        {
+          "A": [
+            {
+              "name": "0",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "0",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "((0).r vee (1).l)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "((2).r vee (0).l)",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "((1).l vee (2).r)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "((1).l vee (2).r)",
+              "port": "b"
+            }
+          ]
+        }
+      ],
+      "independent_tau": {
+        "states_a1_b1_a2_b2": {
+          "0": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "2": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        "edges_b_to_a": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "0"
+          ]
+        ],
+        "particle_counts": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "independent_tau_tags": {
+        "A": [
+          {
+            "name": "2",
+            "port": "a"
+          }
+        ],
+        "B": [
+          {
+            "name": "1",
+            "port": "b"
+          }
+        ]
+      },
+      "scope": "literal Definition 4 reading and port tau are separate constraints"
+    },
+    "FT10D_C1_after_split": {
+      "status": "FAIL",
+      "checks": {
+        "first_equals_literal_Def4_reading": true,
+        "second_equals_literal_Def4_reading": true,
+        "sqrt_inverse_exact_names": true,
+        "bit_counts": true,
+        "two_halves_equal_port_tau_exact_names": false,
+        "tagged_worldlines_equal_port_tau": false
+      },
+      "trace": [
+        {
+          "states_a1_b1_a2_b2": {
+            "1": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(0).l": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "(0).r": [
+              0,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "(0).l",
+              "(0).r"
+            ],
+            [
+              "(0).r",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "(0).l"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "(((0).r).r vee (1).l)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "((1).r vee (2).l)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "((2).r vee ((0).l).l)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(((0).l).r vee ((0).r).l)": [
+              1,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "(((0).l).r vee ((0).r).l)",
+              "((2).r vee ((0).l).l)"
+            ],
+            [
+              "(((0).r).r vee (1).l)",
+              "(((0).l).r vee ((0).r).l)"
+            ],
+            [
+              "((1).r vee (2).l)",
+              "(((0).r).r vee (1).l)"
+            ],
+            [
+              "((2).r vee ((0).l).l)",
+              "((1).r vee (2).l)"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "((2).l vee ((0).r).r)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(((0).l).l vee (1).r)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "(((0).r).l vee (2).r)": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "((1).l vee ((0).l).r)": [
+              0,
+              1,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "(((0).l).l vee (1).r)",
+              "(((0).r).l vee (2).r)"
+            ],
+            [
+              "(((0).r).l vee (2).r)",
+              "((1).l vee ((0).l).r)"
+            ],
+            [
+              "((1).l vee ((0).l).r)",
+              "((2).l vee ((0).r).r)"
+            ],
+            [
+              "((2).l vee ((0).r).r)",
+              "(((0).l).l vee (1).r)"
+            ]
+          ],
+          "particle_counts": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "worldlines": [
+        {
+          "A": [
+            {
+              "name": "(0).l",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "(0).r",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "(((0).l).r vee ((0).r).l)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "(((0).l).r vee ((0).r).l)",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "(((0).r).l vee (2).r)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "((1).l vee ((0).l).r)",
+              "port": "b"
+            }
+          ]
+        }
+      ],
+      "independent_tau": {
+        "states_a1_b1_a2_b2": {
+          "1": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "2": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "(0).l": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "(0).r": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "edges_b_to_a": [
+          [
+            "(0).l",
+            "(0).r"
+          ],
+          [
+            "(0).r",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "(0).l"
+          ]
+        ],
+        "particle_counts": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "independent_tau_tags": {
+        "A": [
+          {
+            "name": "2",
+            "port": "a"
+          }
+        ],
+        "B": [
+          {
+            "name": "1",
+            "port": "b"
+          }
+        ]
+      },
+      "scope": "literal Definition 4 reading and port tau are separate constraints"
+    },
+    "FT10D_C2_transport": {
+      "status": "FAIL",
+      "checks": {
+        "first_equals_literal_Def4_reading": true,
+        "second_equals_literal_Def4_reading": true,
+        "sqrt_inverse_exact_names": true,
+        "bit_counts": true,
+        "two_halves_equal_port_tau_exact_names": false,
+        "tagged_worldlines_equal_port_tau": false
+      },
+      "trace": [
+        {
+          "states_a1_b1_a2_b2": {
+            "0": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "1": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "2": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "0",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ],
+            [
+              "2",
+              "0"
+            ]
+          ],
+          "particle_counts": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "((0).r vee (1).l)": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "((1).r vee (2).l)": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "((2).r vee (0).l)": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "((0).r vee (1).l)",
+              "((2).r vee (0).l)"
+            ],
+            [
+              "((1).r vee (2).l)",
+              "((0).r vee (1).l)"
+            ],
+            [
+              "((2).r vee (0).l)",
+              "((1).r vee (2).l)"
+            ]
+          ],
+          "particle_counts": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "states_a1_b1_a2_b2": {
+            "((1).l vee (2).r)": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "((2).l vee (0).r)": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "((0).l vee (1).r)": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "edges_b_to_a": [
+            [
+              "((0).l vee (1).r)",
+              "((1).l vee (2).r)"
+            ],
+            [
+              "((1).l vee (2).r)",
+              "((2).l vee (0).r)"
+            ],
+            [
+              "((2).l vee (0).r)",
+              "((0).l vee (1).r)"
+            ]
+          ],
+          "particle_counts": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "worldlines": [
+        {
+          "A": [
+            {
+              "name": "0",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "1",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "((0).r vee (1).l)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "((0).r vee (1).l)",
+              "port": "b"
+            }
+          ]
+        },
+        {
+          "A": [
+            {
+              "name": "((1).l vee (2).r)",
+              "port": "a"
+            }
+          ],
+          "B": [
+            {
+              "name": "((2).l vee (0).r)",
+              "port": "b"
+            }
+          ]
+        }
+      ],
+      "independent_tau": {
+        "states_a1_b1_a2_b2": {
+          "0": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        "edges_b_to_a": [
+          [
+            "0",
+            "1"
+          ],
+          [
+            "1",
+            "2"
+          ],
+          [
+            "2",
+            "0"
+          ]
+        ],
+        "particle_counts": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "independent_tau_tags": {
+        "A": [
+          {
+            "name": "2",
+            "port": "a"
+          }
+        ],
+        "B": [
+          {
+            "name": "2",
+            "port": "b"
+          }
+        ]
+      },
+      "scope": "literal Definition 4 reading and port tau are separate constraints"
+    }
+  },
+  "not_checked": [
+    "Fig.2 exact named fixture",
+    "full C2 I2 table",
+    "C3/D",
+    "mirror reading equivalence",
+    "general proof"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "date": "2026-11-08",
   "timezone": "Europe/Moscow",
-  "status": "STOPPED_BEFORE_EXECUTION",
-  "entrypoint": "README.md",
+  "status": "CONTINUATION_COMPLETED",
+  "entrypoint": "CONTINUATION_REPORT.md",
   "parent_result": "R126",
   "repository": "IgorSabirov/vm-lab",
   "destination_branch": "main",
@@ -10,12 +10,12 @@
   "previous_checkpoint_commit": "1cef487bd45c722923156866d615d234ccb58edd",
   "publication_authorization": "USER_AUTHORIZATION.md",
   "publication_scope": "complete research/source/input/checkpoint data in user repository, including main",
-  "run_authorized_now": false,
-  "models_executed_in_this_audit": 0,
+  "run_authorized_now": true,
+  "models_executed_in_this_audit": 4,
   "VM_jobs_started": 0,
   "author_messages_sent": 0,
-  "last_user_execution_instruction": "Стой.сохрани что получил из анализа и подожди. Стоп",
-  "current_task": "save full report and materials; do not resume execution",
+  "last_user_execution_instruction": "А теперь возьми наработки и продолжи",
+  "current_task": "Completed bounded four-mode audit, all-L proofs, archival publication to main",
   "known_key_issue": "edge gluing and bit endpoints must be separated; BUGGY_UNIFORM aliases the printed literal reading in the inherited source",
   "completed": [
     "context/source retrieval",
@@ -23,39 +23,49 @@
     "neighbour input preservation",
     "visual source inspection",
     "preliminary analytic derivation",
-    "bounded audit plan"
+    "bounded audit plan",
+    "independent four-mode named transport audit",
+    "independent E0 orbit replay and extension through L5",
+    "all-word local identities through L5 (1118480 labelled states)",
+    "arbitrary-L F4 identity proof for bits-only",
+    "arbitrary-L E0 quiet/growth proof for full-figure reconstruction",
+    "194-state exact spectrum and invariant quiet-class proof",
+    "minimal FT10 executed with transport FAIL preserved"
   ],
   "ready_code": [
     "source/ADD_FT10_MINIMAL.py",
     "source/add_backend_smoke_v1.py",
-    "source/ADD_ORIENTATION_CHECK.py"
+    "source/ADD_ORIENTATION_CHECK.py",
+    "CONTINUATION_AUDIT.py",
+    "RUN_CONTINUATION.py"
   ],
-  "missing_code": [
-    "four-mode named graph transport implementations and independent worldline oracles",
-    "validated graph-to-oriented-word projection",
-    "four-mode E0 orbit classifier and output writer"
-  ],
+  "missing_code": [],
   "pending_measurements": [
-    "breathing witness in every explicit mode",
-    "48/2660 and 6 simultaneous motifs",
-    "C1/C2 L3,L4 full E0 classification",
-    "runtime calibration"
+    "QB L12 four-vector coefficient remains uncomputed; not required for present theorem",
+    "general exact named-graph periods remain open",
+    "full C2 source conformance and temporal-symmetry contracts remain open"
   ],
   "do_not_repeat": [
     "retrieve already archived neighbour input",
     "rebuild the delivered FT10 file",
     "re-search known source paths or commit",
-    "infer new PASS results from neighbour prose"
+    "infer new PASS results from neighbour prose",
+    "general small-L bits-only growth search",
+    "full context retrieval already saved here"
   ],
   "resume_sequence": [
-    "read README.md and CHECKPOINT.json",
-    "obey current user instruction concerning resume",
-    "implement exact modes from REFERENCE_MODES.json",
-    "validate named/quotient equivalence and independent port transport",
-    "bounded first timing check",
-    "exhaustive cells only within measured budget",
-    "publish actual results and explicit limits"
+    "read CONTINUATION_REPORT.md and results/execution.json",
+    "do not repeat the bits-only unbounded-growth search: excluded by F4 theorem",
+    "validate full C2 source/port/name/time-symmetry contract before NOW integration"
   ],
-  "future_plan": "PLAN.json",
-  "scientific_statuses_changed": false
+  "future_plan": "CONTINUATION_REPORT.md section 9",
+  "scientific_statuses_changed": true,
+  "previous_stopped_checkpoint": {
+    "status": "STOPPED_BEFORE_EXECUTION",
+    "run_authorized_now": false,
+    "last_user_execution_instruction": "Стой.сохрани что получил из анализа и подожди. Стоп",
+    "current_task": "save full report and materials; do not resume execution"
+  },
+  "resume_base_commit": "d013933b7746d183277e9fb98244fa6ab2d79e81",
+  "execution_record": "results/execution.json"
 }

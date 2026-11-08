@@ -1,0 +1,149 @@
+{
+  "started_utc": "2026-11-08T09:03:01.111700+00:00",
+  "source_sha256": "0159f4cda8a78428a06429104b5b61172f27871d65a27e17ddcce062fa04ef07",
+  "job_timeout_seconds": 60,
+  "overall_timeout_seconds": 180,
+  "VM_jobs": 0,
+  "jobs": [
+    {
+      "name": "transport_gates",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 0.3766216730000451,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "gates",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/transport_gates.json"
+      ]
+    },
+    {
+      "name": "orbits_C2_L2_L3",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 0.08599811099975341,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "orbits",
+        "--lengths",
+        "2,3",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/orbits_C2_L2_L3.json"
+      ]
+    },
+    {
+      "name": "orbits_C2_L4_L5",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 4.173530462000599,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "orbits",
+        "--lengths",
+        "4,5",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/orbits_C2_L4_L5.json"
+      ]
+    },
+    {
+      "name": "orbits_other_modes_L2_L4",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 8.62405020999995,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "orbits",
+        "--lengths",
+        "2,3,4",
+        "--modes",
+        "LITERAL_DEF4,FIG2A_FULL,PRESERVE_EDGES_LITERAL_BITS",
+        "--horizon",
+        "32",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/orbits_other_modes_L2_L4.json"
+      ]
+    },
+    {
+      "name": "named_witnesses",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 0.09548716400058765,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "witnesses",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/named_witnesses.json"
+      ]
+    },
+    {
+      "name": "structural_all_words_L1_L5",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 7.449569348000296,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "structural",
+        "--lengths",
+        "5",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/structural_all_words_L1_L5.json"
+      ]
+    },
+    {
+      "name": "spectra",
+      "returncode": 0,
+      "expected_returncode": 0,
+      "seconds": 3.9312115439997797,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py",
+        "--stage",
+        "spectra",
+        "--out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/spectra.json"
+      ]
+    },
+    {
+      "name": "FT10_literal_diagnostics",
+      "returncode": 1,
+      "expected_returncode": 1,
+      "seconds": 0.09804962300040643,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/source/ADD_FT10_MINIMAL.py",
+        "--run-minimal",
+        "--json-out",
+        "/workspace/scratch/fc117a703b11/analysis/ADD_DICHOTOMY_AUDIT_20261108/results/FT10_literal_diagnostics.json"
+      ]
+    }
+  ],
+  "checks": {
+    "bits_only_all_E0_return_without_transient_L2_L5": true,
+    "bits_only_first_step_counts_match_received": true,
+    "all_word_coverage_includes_1118480_states": true,
+    "active_period2_counterexample_found": true,
+    "literal_named_square_fails_all_tagged_cases": true,
+    "bits_only_named_square_fails_all_tagged_cases": true,
+    "full_figure_named_square_passes_all_tagged_cases": true,
+    "FT10_transport_failure_preserved_not_converted_to_PASS": true,
+    "quiet_traces_match_independent_enumeration": true,
+    "pair_matrix_has_received_194_states_2424_edges": true,
+    "all_stage_reports_use_final_source_hash": true
+  },
+  "audit_validation": "PASS",
+  "source_conformance": "NOT_ATTESTED",
+  "NOW_integration": "BLOCKED",
+  "wall_seconds": 24.83735423500002
+}

@@ -1,5 +1,5 @@
 {
-  "status": "SPECIFIED_NOT_EXECUTED",
+  "status": "IMPLEMENTED_AND_AUDITED",
   "indices": "modulo current ring length; i is vertex index; apply bit rule separately to every channel",
   "state_layout": [
     "a1",
@@ -21,7 +21,7 @@
       "b_source": "u_(i+1)",
       "graph_edge_orientation": "reverse",
       "bit_assignment": "literal",
-      "computed_here": false,
+      "computed_here": true,
       "source_attestation": "NOT_ATTESTED"
     },
     {
@@ -32,7 +32,7 @@
       "b_source": "u_i",
       "graph_edge_orientation": "reverse",
       "bit_assignment": "swapped",
-      "computed_here": false,
+      "computed_here": true,
       "source_attestation": "NOT_ATTESTED"
     },
     {
@@ -43,7 +43,7 @@
       "b_source": "u_i",
       "graph_edge_orientation": "preserve",
       "bit_assignment": "swapped",
-      "computed_here": false,
+      "computed_here": true,
       "source_attestation": "NOT_ATTESTED"
     },
     {
@@ -54,7 +54,7 @@
       "b_source": "u_(i+1)",
       "graph_edge_orientation": "preserve",
       "bit_assignment": "literal",
-      "computed_here": false,
+      "computed_here": true,
       "source_attestation": "NOT_ATTESTED"
     }
   ],

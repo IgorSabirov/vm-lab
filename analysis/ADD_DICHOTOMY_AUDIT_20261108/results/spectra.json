@@ -1,0 +1,60 @@
+{
+  "stage": "spectra",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "source_sha256": "0159f4cda8a78428a06429104b5b61172f27871d65a27e17ddcce062fa04ef07",
+  "frozen_core_sha256": "a71cc741535aa57fd22a13291c31262fe69240093fe546321bc5612030e09945",
+  "spectra": {
+    "sympy": "1.14.0",
+    "matrices": {
+      "E0": {
+        "dimension": 16,
+        "transition_edges": 194,
+        "charpoly": "lambda**14*(lambda**2 - 14*lambda + 2)",
+        "matches_neighbor": true,
+        "traces_L1_L6": [
+          14,
+          192,
+          2660,
+          36856,
+          510664,
+          7075584
+        ],
+        "seconds": 0.005170658000679396
+      },
+      "Q_literal": {
+        "dimension": 16,
+        "transition_edges": 178,
+        "charpoly": "lambda**13*(lambda - 1)*(lambda**2 - 13*lambda + 4)",
+        "matches_neighbor": true,
+        "traces_L1_L6": [
+          14,
+          162,
+          2042,
+          25890,
+          328394,
+          4165554
+        ],
+        "seconds": 0.005266273000415822
+      },
+      "Q_bits_only": {
+        "dimension": 194,
+        "transition_edges": 2424,
+        "charpoly": "lambda**187*(lambda**3 - lambda**2 - 2*lambda - 1)*(lambda**4 - 13*lambda**3 + 6*lambda**2 + 7*lambda + 4)",
+        "matches_neighbor": true,
+        "traces_L1_L6": [
+          14,
+          162,
+          1952,
+          24218,
+          301804,
+          3763548
+        ],
+        "seconds": 3.5869787889996587
+      }
+    },
+    "quiet_invariant_all_L": true,
+    "proof_reference": "CONTINUATION_REPORT.md#quiet-class"
+  },
+  "wall_seconds": 3.810660416999781
+}

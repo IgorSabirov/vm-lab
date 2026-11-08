@@ -1,0 +1,2453 @@
+{
+  "artifact": "ADD_DICHOTOMY_EXTENDED_AUDIT",
+  "execution_status": "EXECUTED",
+  "overall_status": "PASS_FINITE_RECONSTRUCTION_AUDIT",
+  "scope": "four-bit C2 directed two-port ring backend; no author source code; no NOW integration",
+  "semantic_branches": {
+    "literal_Definition_4": "a_i(x)=a_i(u), b_i(x)=b_i(v)",
+    "Fig_2a_operational_reading": "a_i(x)=a_i(v), b_i(x)=b_i(u)",
+    "all_other_graph_name_and_edge_construction": "held fixed from add_backend_smoke_v1.py"
+  },
+  "source_file": "/mnt/data/add_backend_smoke_v1.py",
+  "source_sha256": "ee607902b61b28328affc9ca3474ee8881b610aac9b8ec1773081abe3d585e27",
+  "audit_script_sha256": "267ff3e06abaa0d8ae9299b1560b706d8477c9f3aa2589cf8473e207605e13ce",
+  "python": "3.13.5",
+  "sympy": "1.14.0",
+  "first_half_shift_classification_C2": {
+    "literal": [
+      {
+        "L": 2,
+        "E0_count": 192,
+        "categories_after_first_half_shift": {
+          "none": 162,
+          "split_only": 30,
+          "merge_only": 0,
+          "both": 0
+        },
+        "split_created": 30,
+        "merge_created": 0,
+        "no_rewrite_after_half_shift": 162,
+        "quiet_fraction_one_step": 0.84375
+      },
+      {
+        "L": 3,
+        "E0_count": 2660,
+        "categories_after_first_half_shift": {
+          "none": 2042,
+          "split_only": 618,
+          "merge_only": 0,
+          "both": 0
+        },
+        "split_created": 618,
+        "merge_created": 0,
+        "no_rewrite_after_half_shift": 2042,
+        "quiet_fraction_one_step": 0.7676691729323308
+      },
+      {
+        "L": 4,
+        "E0_count": 36856,
+        "categories_after_first_half_shift": {
+          "none": 25890,
+          "split_only": 10966,
+          "merge_only": 0,
+          "both": 0
+        },
+        "split_created": 10966,
+        "merge_created": 0,
+        "no_rewrite_after_half_shift": 25890,
+        "quiet_fraction_one_step": 0.7024636422834817
+      },
+      {
+        "L": 5,
+        "E0_count": 510664,
+        "categories_after_first_half_shift": {
+          "none": 328394,
+          "split_only": 182270,
+          "merge_only": 0,
+          "both": 0
+        },
+        "split_created": 182270,
+        "merge_created": 0,
+        "no_rewrite_after_half_shift": 328394,
+        "quiet_fraction_one_step": 0.6430725486817164
+      }
+    ],
+    "fig2a": [
+      {
+        "L": 2,
+        "E0_count": 192,
+        "categories_after_first_half_shift": {
+          "none": 162,
+          "split_only": 30,
+          "merge_only": 0,
+          "both": 0
+        },
+        "split_created": 30,
+        "merge_created": 0,
+        "no_rewrite_after_half_shift": 162,
+        "quiet_fraction_one_step": 0.84375
+      },
+      {
+        "L": 3,
+        "E0_count": 2660,
+        "categories_after_first_half_shift": {
+          "none": 1952,
+          "split_only": 660,
+          "merge_only": 42,
+          "both": 6
+        },
+        "split_created": 666,
+        "merge_created": 48,
+        "no_rewrite_after_half_shift": 1952,
+        "quiet_fraction_one_step": 0.7338345864661654
+      },
+      {
+        "L": 4,
+        "E0_count": 36856,
+        "categories_after_first_half_shift": {
+          "none": 24218,
+          "split_only": 11682,
+          "merge_only": 812,
+          "both": 144
+        },
+        "split_created": 11826,
+        "merge_created": 956,
+        "no_rewrite_after_half_shift": 24218,
+        "quiet_fraction_one_step": 0.6570978945083569
+      },
+      {
+        "L": 5,
+        "E0_count": 510664,
+        "categories_after_first_half_shift": {
+          "none": 301804,
+          "split_only": 192320,
+          "merge_only": 12920,
+          "both": 3620
+        },
+        "split_created": 195940,
+        "merge_created": 16540,
+        "no_rewrite_after_half_shift": 301804,
+        "quiet_fraction_one_step": 0.5910030861779957
+      }
+    ]
+  },
+  "graph_level_local_formula_crosschecks": [
+    {
+      "L": 2,
+      "mode": "literal",
+      "configurations_checked": 192,
+      "local_formula_categories": {
+        "none": 162,
+        "split_only": 30,
+        "merge_only": 0,
+        "both": 0
+      },
+      "graph_engine_categories": {
+        "none": 162,
+        "split_only": 30,
+        "merge_only": 0,
+        "both": 0
+      },
+      "exact_match": true
+    },
+    {
+      "L": 3,
+      "mode": "literal",
+      "configurations_checked": 2660,
+      "local_formula_categories": {
+        "none": 2042,
+        "split_only": 618,
+        "merge_only": 0,
+        "both": 0
+      },
+      "graph_engine_categories": {
+        "none": 2042,
+        "split_only": 618,
+        "merge_only": 0,
+        "both": 0
+      },
+      "exact_match": true
+    },
+    {
+      "L": 2,
+      "mode": "fig2a",
+      "configurations_checked": 192,
+      "local_formula_categories": {
+        "none": 162,
+        "split_only": 30,
+        "merge_only": 0,
+        "both": 0
+      },
+      "graph_engine_categories": {
+        "none": 162,
+        "split_only": 30,
+        "merge_only": 0,
+        "both": 0
+      },
+      "exact_match": true
+    },
+    {
+      "L": 3,
+      "mode": "fig2a",
+      "configurations_checked": 2660,
+      "local_formula_categories": {
+        "none": 1952,
+        "split_only": 660,
+        "merge_only": 42,
+        "both": 6
+      },
+      "graph_engine_categories": {
+        "none": 1952,
+        "split_only": 660,
+        "merge_only": 42,
+        "both": 6
+      },
+      "exact_match": true
+    }
+  ],
+  "fig2a_full_orbit_exhaustion": {
+    "fig2a_L2": {
+      "L": 2,
+      "E0_starts": 192,
+      "max_full_steps": 40,
+      "period_histogram_directed_state_word": {
+        "1": 86,
+        "2": 76,
+        "4": 30
+      },
+      "preperiod_histogram": {
+        "0": 192
+      },
+      "not_repeated_within_horizon": 0,
+      "starts_with_any_rewrite_seen": 30,
+      "transitions_checked": 358,
+      "size_increasing_transitions": 30,
+      "size_decreasing_transitions": 30,
+      "maximum_vertex_count_seen": 4,
+      "equivalence_note": "periodicity is modulo directed-cycle rotation and forgets exact Name terms; it is not exact named-graph periodicity"
+    },
+    "fig2a_L3": {
+      "L": 3,
+      "E0_starts": 2660,
+      "max_full_steps": 40,
+      "period_histogram_directed_state_word": {
+        "1": 500,
+        "2": 1452,
+        "4": 708
+      },
+      "preperiod_histogram": {
+        "0": 2660
+      },
+      "not_repeated_within_horizon": 0,
+      "starts_with_any_rewrite_seen": 708,
+      "transitions_checked": 6236,
+      "size_increasing_transitions": 702,
+      "size_decreasing_transitions": 702,
+      "maximum_vertex_count_seen": 5,
+      "equivalence_note": "periodicity is modulo directed-cycle rotation and forgets exact Name terms; it is not exact named-graph periodicity"
+    }
+  },
+  "spectral_transfer_audit": {
+    "dimensions": {
+      "E0": 16,
+      "Q_literal": 16,
+      "Q_fig2a": 194
+    },
+    "Q_fig2a_pair_states": 194,
+    "Q_fig2a_transition_edges": 2424,
+    "charpoly_factorizations": {
+      "E0": "lambda**14*(lambda**2 - 14*lambda + 2)",
+      "Q_literal": "lambda**13*(lambda - 1)*(lambda**2 - 13*lambda + 4)",
+      "Q_fig2a": "lambda**187*(lambda**3 - lambda**2 - 2*lambda - 1)*(lambda**4 - 13*lambda**3 + 6*lambda**2 + 7*lambda + 4)"
+    },
+    "roots": {
+      "E0": [
+        {
+          "real": 0.14434539959895587,
+          "imag": 0.0,
+          "abs": 0.14434539959895587,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": 13.855654600401044,
+          "imag": 0.0,
+          "abs": 13.855654600401044,
+          "multiplicity_factor": 1
+        }
+      ],
+      "Q_literal": [
+        {
+          "real": 1.0,
+          "imag": 0.0,
+          "abs": 1.0,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": 0.3153415615735092,
+          "imag": 0.0,
+          "abs": 0.3153415615735092,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": 12.68465843842649,
+          "imag": 0.0,
+          "abs": 12.68465843842649,
+          "multiplicity_factor": 1
+        }
+      ],
+      "Q_fig2a": [
+        {
+          "real": 2.1478990357047874,
+          "imag": 0.0,
+          "abs": 2.1478990357047874,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": -0.5739495178523937,
+          "imag": -0.3689894074818041,
+          "abs": 0.6823278038280193,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": -0.5739495178523937,
+          "imag": 0.3689894074818041,
+          "abs": 0.6823278038280193,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": 1.2227267046792922,
+          "imag": 0.0,
+          "abs": 1.2227267046792922,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": 12.471852347118805,
+          "imag": 0.0,
+          "abs": 12.471852347118805,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": -0.34728952589904843,
+          "imag": -0.3764183791123164,
+          "abs": 0.512153112782427,
+          "multiplicity_factor": 1
+        },
+        {
+          "real": -0.34728952589904843,
+          "imag": 0.3764183791123164,
+          "abs": 0.512153112782427,
+          "multiplicity_factor": 1
+        }
+      ]
+    },
+    "trace_counts_L2_to_L6": {
+      "E0": {
+        "2": 192,
+        "3": 2660,
+        "4": 36856,
+        "5": 510664,
+        "6": 7075584
+      },
+      "Q_literal": {
+        "2": 162,
+        "3": 2042,
+        "4": 25890,
+        "5": 328394,
+        "6": 4165554
+      },
+      "Q_fig2a": {
+        "2": 162,
+        "3": 1952,
+        "4": 24218,
+        "5": 301804,
+        "6": 3763548
+      }
+    },
+    "dominant_eigenvalues": {
+      "E0": 13.855654600401044,
+      "Q_literal": 12.68465843842649,
+      "Q_fig2a": 12.471852347118805
+    },
+    "asymptotic_quiet_fraction_bases": {
+      "literal": 0.9154860455354698,
+      "fig2a": 0.9001272553920199,
+      "interpretation": "Under the uniform labelled E0 ensemble, the quiet fraction decays exponentially; the absolute quiet count still grows because each quiet spectral radius exceeds 1."
+    },
+    "fig2a_quiet_count_definition": "E0 plus no split and no directed merge after the first Fig-2a half-shift; 194-state pair transfer tracks triples of old vertices."
+  },
+  "witnesses": {
+    "C1_E0_bounded_oscillator": {
+      "initial_states": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "initial_particle_vector": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "traces": {
+        "literal": [
+          {
+            "t": 0,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 1,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 2,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 3,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 4,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 5,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 6,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 7,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 8,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "fig2a": [
+          {
+            "t": 0,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 1,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 1,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 2,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 3,
+            "L": 3,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 4,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 5,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 1,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 6,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 7,
+            "L": 3,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 8,
+            "L": 4,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "repeat_tests": {
+        "literal": {
+          "directed_state_word_repeat": {
+            "preperiod": 0,
+            "period": 2
+          },
+          "exact_named_graph_repeat": {
+            "preperiod": 0,
+            "period": 8
+          }
+        },
+        "fig2a": {
+          "directed_state_word_repeat": {
+            "preperiod": 0,
+            "period": 4
+          },
+          "exact_named_graph_repeat": {
+            "preperiod": 0,
+            "period": 20
+          }
+        }
+      }
+    },
+    "C2_branch_discriminator": {
+      "initial_states": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ]
+      ],
+      "initial_particle_vector": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "traces": {
+        "literal": [
+          {
+            "t": 0,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 1,
+            "L": 3,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 2,
+            "L": 4,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 3,
+            "L": 5,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 4,
+            "L": 6,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 5,
+            "L": 7,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 6,
+            "L": 8,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 7,
+            "L": 9,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 8,
+            "L": 10,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 9,
+            "L": 11,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 10,
+            "L": 12,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 11,
+            "L": 13,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 12,
+            "L": 14,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ],
+        "fig2a": [
+          {
+            "t": 0,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 1,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 1,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 2,
+            "L": 2,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 3,
+            "L": 2,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 4,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 5,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 1,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 6,
+            "L": 2,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 7,
+            "L": 2,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 8,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 9,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 1,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 10,
+            "L": 2,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "t": 11,
+            "L": 2,
+            "split_count": 1,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "t": 12,
+            "L": 3,
+            "split_count": 0,
+            "merge_count": 0,
+            "particle_vector_a1_b1_a2_b2": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "canonical_directed_state_word": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "C1_first_step_classification_L2_to_L8": [
+    {
+      "L": 2,
+      "E0_C1": 7,
+      "categories": {
+        "none": 7,
+        "split_only": 0,
+        "merge_only": 0,
+        "both": 0
+      }
+    },
+    {
+      "L": 3,
+      "E0_C1": 18,
+      "categories": {
+        "none": 15,
+        "split_only": 3,
+        "merge_only": 0,
+        "both": 0
+      }
+    },
+    {
+      "L": 4,
+      "E0_C1": 47,
+      "categories": {
+        "none": 31,
+        "split_only": 12,
+        "merge_only": 4,
+        "both": 0
+      }
+    },
+    {
+      "L": 5,
+      "E0_C1": 123,
+      "categories": {
+        "none": 68,
+        "split_only": 40,
+        "merge_only": 15,
+        "both": 0
+      }
+    },
+    {
+      "L": 6,
+      "E0_C1": 322,
+      "categories": {
+        "none": 151,
+        "split_only": 123,
+        "merge_only": 48,
+        "both": 0
+      }
+    },
+    {
+      "L": 7,
+      "E0_C1": 843,
+      "categories": {
+        "none": 339,
+        "split_only": 357,
+        "merge_only": 140,
+        "both": 7
+      }
+    },
+    {
+      "L": 8,
+      "E0_C1": 2207,
+      "categories": {
+        "none": 767,
+        "split_only": 1004,
+        "merge_only": 388,
+        "both": 48
+      }
+    }
+  ],
+  "prior_sector_recalculation_Q_literal_only": {
+    "status": "SEPARATELY_RERUN_EXACT_INTEGER_DP",
+    "command": "python sector_statistics.py --L 12 --particles 4,6,7,7",
+    "length": 12,
+    "particle_vector_a1_b1_a2_b2": [
+      4,
+      6,
+      7,
+      7
+    ],
+    "E0_count": 33483953832,
+    "Q_literal_count": 7971639792,
+    "Q_literal_probability_given_E0": 0.23807343159043692,
+    "scope": "reconstructed four-bit oriented-cycle backend; Q_literal uses literal half-shift split exclusion"
+  },
+  "Q_fig2a_four_vector_L12": {
+    "status": "NOT_COMPUTED",
+    "reason": "The exploratory coefficient-DP implementation exceeded the 200-second execution cap; no partial value is reported."
+  },
+  "checks": {
+    "graph_level_vs_local_L2_L3": true,
+    "literal_no_new_merge_L2_L5": true,
+    "fig2a_new_merge_detected_at_L3_plus": true,
+    "fig2a_full_orbits_L2_L3_all_repeat": true,
+    "fig2a_L3_period_histogram_matches": true,
+    "fig2a_C1_counterexample_oscillates": true,
+    "fig2a_C2_branch_discriminator": true,
+    "E0_matrix_charpoly": true,
+    "Qliteral_matrix_charpoly": true,
+    "Qfig_matrix_charpoly_exact": true,
+    "trace_powers_match_exhaustive_counts_L2_L5": true,
+    "fig2a_L2_period_histogram_matches": true,
+    "sector_result_available": true
+  },
+  "interpretation": {
+    "literal_branch": "The earlier E0 dichotomy applies to this reconstructed literal half-shift: no merge is generated from E0; a newly generated split is persistent under the literal I2/half-shift rule, giving sustained growth, while no-rewrite starts are period-2 in the directed state-word quotient.",
+    "fig2a_branch": "The no-new-merge lemma fails. E0 starts can generate merges; the split/merge dichotomy is replaced by richer dynamics. Exhaustive L=2 and L=3 full-orbit checks found only state-word periods 1, 2 and 4, with active period-4 orbits and bounded L (max 4 and 5 respectively). This finite result is not a theorem for arbitrary L.",
+    "spectral": "E0 count is unchanged because the initial E0 predicate is unchanged. The quiet transfer operator changes: literal Q is 16-state, while Fig-2a strict quiet Q requires pair-state memory (194 states) to exclude both split and merge after the first half-shift."
+  },
+  "limitations": [
+    "Fig-2a bit assignment remains a conditional operational reconstruction, not an author-confirmed erratum.",
+    "No full-orbit enumeration for L>=4.",
+    "State-word periodicity forgets exact Name terms; C1 witness separately reports exact named-graph repeat.",
+    "No Q_fig2a exact count in the (4,6,7,7), L=12 sector.",
+    "No general proof for arbitrary ring length under the Fig-2a branch.",
+    "No arbitrary-graph or ADD-source conformance claim.",
+    "No NOW integration."
+  ],
+  "wall_seconds": 13.165091665999853,
+  "reproduce": [
+    "python -m pip install sympy",
+    "python ADD_DICHOTOMY_EXTENDED_AUDIT.py --backend add_backend_smoke_v1.py --json-out ADD_DICHOTOMY_EXTENDED_REPORT.json"
+  ]
+}
