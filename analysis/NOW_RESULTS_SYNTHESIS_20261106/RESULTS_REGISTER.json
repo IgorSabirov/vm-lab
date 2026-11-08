@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
   "date": "2026-11-08",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.",
   "results": [
     {
       "id": "R001",
@@ -2890,11 +2890,11 @@
       "id": "R127",
       "section": "24. Геометрические кандидаты и интеграция",
       "title": "Четыре кандидата: исполнимый патч прежнего NOW",
-      "status": "КОД НАПИСАН И СТАТИЧЕСКИ ПРОВЕРЕН; РЕВИЗИЯ И НОВОЕ ИСПОЛНЕНИЕ ОЖИДАЮТСЯ",
-      "result": "В прежний NOW на базе 0.3 внесены C2 FULL носитель и реальный транспорт полезной нагрузки, адаптер заданных причинных порядков/CDT, импорт и взвешивание ансамблей, платная XOR-проба без health-предрешения, ON/OFF/SHAM после повреждения, полное сохранение состояния, optional Serbian C++ диагностика. Сохранены 123 случая/84 контраста/11 контролей; добавлены 87 случаев/76 контрастов: 210/160, 413 задач основного состава.",
-      "inputs": "Код ea49ebc; main bda1e9d; собственный отчёт из другого аккаунта и сохранённый R126, без повторного большого перебора. Новые контрольные геометрии, закон размещения полезной нагрузки, единичные часы и конечные ресурсы заданы явно.",
-      "limit": "Новые unit/smoke/VM/main ещё не выполнены. Контрольные порядки/полоса не равновесные IsingCauset/CDT образцы; j* не выбран. C3-D, физический reverse, обратное воздействие организации на Q/I2 и происхождение метрики не реализованы. Авторское соответствие ADD не является блокировкой нашей операциональной модели. L01–L10 открыты.",
-      "framework_role": "Один прежний эксперимент NOW_INTEGRATED_CONTINUATION_V1 и один runner; N01–N08 дополняют X01–X16. Следующий этап — техническая ревизия написанного кода, затем дымовые и новая калибровка.",
+      "status": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН ЗАВЕРШЁН; НАУЧНЫЕ СТАТУСЫ НЕ ПОВЫШЕНЫ",
+      "result": "По закреплённому коду исполнены 413/413 задач и 891 физических строк исходов; runtime_gate PASS, технический PASS. Статус научного вывода — NO_PROMOTION_FROM_TECHNICAL_RUN. 76 интеграционных контрастов имеют статус EXECUTED_DESCRIPTIVE, а не подтверждение общей модели. Конечные фикстуры и их ограничения приведены в отчёте исполнения.",
+      "inputs": "Источник 7c55308ce85a1337cbd43d2ab046a344d6bde3cf; source digest 2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279; полное recovery-smoke; калибровка ВМ 89 задач; main 413 задач; прогноз и фактический RUN.",
+      "limit": "Прогон состоит из конечных условных фикстур, не равновесного ансамбля. C3_D NOT_IMPLEMENTED; Ising_j_star NOT_ESTIMATED; spontaneous_metric NOT_ESTABLISHED; physical_reverse NOT_IMPLEMENTED. Научное подтверждение и повышение реестровых статусов не заявлены; L01-L10 остаются открыты.",
+      "framework_role": "То же исполнение прежнего NOW_INTEGRATED_CONTINUATION_V1; технический запуск подтверждён без технического аудита по прямому решению пользователя. Полный временной/ресурсный гейт сохранён и пройден. Результат — описательный интеграционный прогон, а не закрытие модели.",
       "construct_ids": [
         "C001",
         "C002",
@@ -2963,7 +2963,7 @@
         "L09",
         "L10"
       ],
-      "evidence_level": "СОХРАНЁННЫЕ НАШИ ДАННЫЕ / ИСПОЛНИМЫЙ КОД / СТАТИЧЕСКАЯ ПРОВЕРКА; НЕ НОВЫЙ НАУЧНЫЙ РЕЗУЛЬТАТ",
+      "evidence_level": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН 413 ЗАДАЧ НА ВМ / RUNTIME_GATE PASS / БЕЗ НАУЧНОГО ПОВЫШЕНИЯ",
       "sources": [
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
@@ -2973,7 +2973,13 @@
         "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
         "experiments/now_integrated_v1/nowexp/carrier.py",
         "experiments/now_integrated_v1/nowexp/task_probe.py",
-        "experiments/now_integrated_v1/FOUR_CANDIDATE_REVIEW.md"
+        "experiments/now_integrated_v1/FOUR_CANDIDATE_REVIEW.md",
+        "analysis/INTEGRATED_EXPERIMENT_20261107/USER_WAIVER_SMOKE_7c55308.json",
+        "analysis/INTEGRATED_EXPERIMENT_20261107/VM_CALIBRATION_FORECAST_7c55308.json",
+        "results/NOW_INTEGRATED_7c55308_20261108/MAIN_RUN.json",
+        "results/NOW_INTEGRATED_7c55308_20261108/FOUR_CANDIDATE_RETURN.json",
+        "results/NOW_INTEGRATED_7c55308_20261108/METRICS.json",
+        "results/NOW_INTEGRATED_7c55308_20261108/ROWS_INDEX.json"
       ],
       "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений.",
       "revision_1_1": {
@@ -3008,6 +3014,20 @@
         "tests_added": 17,
         "main_tasks": 413,
         "old_forecast_applies": false
+      },
+      "revision_1_3": {
+        "date": "2026-11-08",
+        "source_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
+        "source_digest": "2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279",
+        "calibration_job": "now_waiver_cal_7c55308_20261108",
+        "main_job": "now_waiver_main_7c55308_20261108",
+        "tasks": 413,
+        "physical_outcome_rows": 891,
+        "runtime_gate": "PASS",
+        "technical_pass": true,
+        "scientific_status": "NO_PROMOTION_FROM_TECHNICAL_RUN",
+        "scientific_confirmation": false,
+        "registry_status_changes": false
       }
     }
   ],
@@ -5797,19 +5817,18 @@
     }
   ],
   "revision": {
-    "id": "four_candidate_amendment_20261108_v1_1",
+    "id": "four_candidate_vm_execution_20261108_v1_3",
     "date": "2026-11-08",
-    "base_commit": "8481ea2a35ad70cdd3747b41716fb70508e5d24b",
+    "base_commit": "3749a5ced5465e74aa2c3df7748e5acecf63f814",
     "result_count": 127,
     "construct_count": 42,
     "open_link_count": 10,
     "new_records": [],
     "updated_records": [
-      "R126",
       "R127"
     ],
     "scientific_statuses_changed": [],
-    "note": "Existing experiment amended; executable patch not implemented; old scientific outcomes preserved"
+    "note": "Исполнен ранее спроектированный NOW-патч; полный VM runtime gate PASS; научного повышения или закрытия открытых связей нет."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -6265,6 +6284,16 @@
         "R127"
       ],
       "change": "User-directed NOW patch implemented; no theorem study gate; scientific statuses R001-R125 and all C/L unchanged"
+    },
+    {
+      "date": "2026-11-08",
+      "revision": "four_candidate_vm_execution_1_3",
+      "records": [
+        "R127"
+      ],
+      "source_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
+      "run": "results/NOW_INTEGRATED_7c55308_20261108/MAIN_RUN.json",
+      "change": "413 задач исполнены, runtime gate PASS; научные статусы не повышены"
     }
   ],
   "lineage_edges": [

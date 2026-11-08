@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "status": "COMPLETED_TECHNICAL_PASS_NO_SCIENTIFIC_PROMOTION",
+  "source_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
+  "source_digest": "2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279",
+  "config_digest": "4187cff1a7d02afa7389de010c4957b807743beada5c6da9e60e9e8b8051622a",
+  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+  "smoke": {
+    "status": "PASSED",
+    "unit_tests": 73,
+    "wall_seconds": 48.97655517500061,
+    "hard_wall_seconds": 600,
+    "scientific_confirmation": false,
+    "artifact": "analysis/INTEGRATED_EXPERIMENT_20261107/USER_WAIVER_SMOKE_7c55308.json"
+  },
+  "calibration": {
+    "job_id": "now_waiver_cal_7c55308_20261108",
+    "tasks": 89,
+    "wall_seconds": 8.709293595005875,
+    "max_rss_mib": 55.15234375,
+    "output_bytes": 14149354,
+    "forecast_artifact": "analysis/INTEGRATED_EXPERIMENT_20261107/VM_CALIBRATION_FORECAST_7c55308.json"
+  },
+  "main": {
+    "job_id": "now_waiver_main_7c55308_20261108",
+    "tasks": 413,
+    "physical_outcome_rows": 891,
+    "events": 53294,
+    "contrasts_evaluated": 160,
+    "process_wall_seconds": 29.579702456991072,
+    "worker_seconds": 29.07041429799574,
+    "max_rss_mib": 65.69140625,
+    "output_bytes": 31842960,
+    "expected_seconds": 40.41503657008344,
+    "lower_seconds": 28.290525599058405,
+    "upper_seconds": 52.53954754110847,
+    "actual_over_expected": 0.7318984459087923,
+    "runtime_gate": "PASS",
+    "technical_pass": true,
+    "complete": true,
+    "scientific_confirmation": false,
+    "observed_limits": {
+      "disk_limit_mib": 1024,
+      "hard_wall_seconds": 3600,
+      "memory_limit_mib": 4096,
+      "seeds": 512
+    }
+  },
+  "scientific_summary": {
+    "scientific_status": "NO_PROMOTION_FROM_TECHNICAL_RUN",
+    "measure": "conditional finite fixtures; no pooling into an equilibrium ensemble",
+    "registry": "R127",
+    "case_count": 87,
+    "contrast_count": 76,
+    "contrast_statuses": {
+      "EXECUTED_DESCRIPTIVE": 76
+    },
+    "profile_within_tolerance": {
+      "outside": 72,
+      "within": 4
+    },
+    "baseline_p_task_success": {
+      "patch::flat::full_base": 1,
+      "patch::ising_order::full_base": 1,
+      "patch::cdt_strip::full_base": 1,
+      "patch::add_quiet::full_base": 1,
+      "patch::add_growing::full_base": 0.6666666666666667
+    },
+    "unimplemented": {
+      "C3_D": "NOT_IMPLEMENTED",
+      "Ising_j_star": "NOT_ESTIMATED",
+      "spontaneous_metric": "NOT_ESTABLISHED",
+      "physical_reverse": "NOT_IMPLEMENTED"
+    },
+    "metric_contrast_statuses": {
+      "EXECUTED_DESCRIPTIVE": 160
+    },
+    "monte_carlo_validation": "EXECUTED",
+    "scientific_registry_status_changes": false
+  },
+  "artifacts": {
+    "ROWS_INDEX.json": {
+      "sha256": "9e4eb1157e9b5755cb1d93033e07093ef35b2edd7981e9df5c57733894ba8566",
+      "size_bytes": 55454
+    },
+    "ANCESTOR_RETURN.json": {
+      "sha256": "46c371ba34f52397cb464582eb3b033025b75a61aba2aefc6bc5f0b021b24af4",
+      "size_bytes": 315201
+    },
+    "DESIGN_EVIDENCE.json": {
+      "sha256": "9c1e6f821224663d865faf69fe1d9bde71c5791430508a763268e3a4bf6a17b0",
+      "size_bytes": 16562
+    },
+    "SCOPE_ANCESTOR_RETURN.json": {
+      "sha256": "cd184d91743650cba79285db426a2b8f22add4f65127f05ae490c5355230287a",
+      "size_bytes": 19886
+    },
+    "MONTE_CARLO_VALIDATION.json": {
+      "sha256": "dfb54ab6fb29e097920e1bf638c466956a575f8250794c8dcc73508ba3bc32e8",
+      "size_bytes": 742
+    },
+    "ENVIRONMENT.json": {
+      "sha256": "de87d303dc176451703e55a2cfd5d27654315f32efc2aab693782aedac368327",
+      "size_bytes": 3273
+    }
+  },
+  "caveats": [
+    "Finite descriptive fixtures only; not pooled into an equilibrium ensemble.",
+    "Technical run completed; it does not establish an accepted model result.",
+    "Registry statuses and L01-L10 remain unchanged."
+  ]
+}
