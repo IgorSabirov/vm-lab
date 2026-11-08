@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "validation_date_utc": "2026-11-08",
+  "unit_tests": {
+    "count": 13,
+    "passed": 13,
+    "command": "python -m unittest discover -s infra -p test_launch_control.py -v"
+  },
+  "real_data_checks": {
+    "scientific_source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+    "source_files_verified_against_git_tree": 56,
+    "bundle_contents_identical_to_running_job": true,
+    "generated_upload_bytes": 603558,
+    "forecast_recomputed_seconds": 2368.7776741902367,
+    "forecast_matches_frozen_before_launch": true,
+    "tasks_derived_from_runner": 3083,
+    "calibrated_strata": 45,
+    "base_tasks_preserved": 413
+  },
+  "code_sha256": {
+    "infra/launch_control.py": "fc8f4332af637c89eee19355e68b9dacbe6137ea806b0f4eeb6bb9694f715c9d",
+    "infra/test_launch_control.py": "14abcc5328963d25bf25701c738c1b7a835fb30bfd490f8419b082e75c8339a8"
+  },
+  "scope": "Local helper and documentation verification. No new scientific VM job; running source and receipts unchanged. Connector submission remains an assistant operation, not an autonomous service."
+}

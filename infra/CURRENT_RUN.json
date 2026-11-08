@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "repository": "IgorSabirov/vm-lab",
+  "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
+  "job_id": "now_long_main_da72a3a_20261108",
+  "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+  "source_digest": "7d2e822a3d4fd2581d15d094e0b85abaaf0143b7b5e3deb372ded63b78527f4f",
+  "config_digest": "2cb00b6c257d0367cd3b067b32333c07690fda0aa16f0b8aa55017a8f4ea3ee1",
+  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+  "launcher_sha256": "c71abeca8bec9ae9efd57daf64c8834e81e9ffadcc7c76b26514e1ad9415611a",
+  "planned_tasks": 3083,
+  "planned_cases": 2880,
+  "planned_contrasts": 1720,
+  "expected_seconds": 2368.7776741902367,
+  "lower_seconds": 1421.266604514142,
+  "upper_seconds": 3316.288743866331,
+  "hard_wall_seconds": 3600,
+  "memory_limit_mib": 4096,
+  "disk_limit_mib": 1024,
+  "started_epoch": 1794146619.4502475,
+  "started_moscow": "2026-11-08 17:03:39 МСК",
+  "authorization": {
+    "date": "2026-11-08",
+    "user_instructions": [
+      "Запустить прогон 10+ минут по машинному времени.",
+      "Пользователь дал указание запустить без аудита но с полной проверкой гейта времени"
+    ],
+    "scope": "Согласованный NOW; исходные 413 задач и полезное расширение в пределах опубликованного протокола.",
+    "technical_audit_waived": true,
+    "runtime_gate_required": true,
+    "new_scientific_law_or_goal_authorized": false
+  },
+  "vm": {
+    "connector": "VM Compute 81",
+    "source_directory": "code/now_long_da72a3a",
+    "launcher": "code/now_long_launch_da72a3a.py",
+    "forecast": "data/now_long_forecast_da72a3a.json",
+    "result_directory": "results/now_long_main_da72a3a_20261108",
+    "checkpoint": "results/now_long_main_da72a3a_20261108/main_output/CHECKPOINT.json",
+    "process": "results/now_long_main_da72a3a_20261108/PROCESS.json",
+    "log": "results/now_long_main_da72a3a_20261108/process.log",
+    "job_log": "jobs/now_long_main_da72a3a_20261108/output.log",
+    "archive_manifest": "results/now_long_main_da72a3a_20261108/ARCHIVE.json",
+    "full_archive": "results/now_long_main_da72a3a_20261108/FULL_OUTPUT.zip"
+  },
+  "evidence": {
+    "launch_record": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/LAUNCH_STATUS.json",
+    "readiness": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/READINESS.md",
+    "forecast": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/FORECAST.json",
+    "forecast_commit": "08a87e2482a4f1061a892e7360e92b695e2786c1",
+    "smoke": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SMOKE_SUITE.json",
+    "calibration": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/CALIBRATION_PROCESS.json",
+    "calibration_job_id": "now_long_cal_da72a3a_20261108"
+  },
+  "continuation": {
+    "first_action": "Проверить этот job_id через VM Compute 81.job_status; затем CHECKPOINT. Не submit новый run.",
+    "on_running": "Наблюдать существующее задание; PROCESS ожидается после выхода.",
+    "on_completed": "Прочитать предусмотренный PROCESS и краткий отчёт; сверить время, объём и среду; следовать действующему каналу публикации.",
+    "on_connection_failure": "Восстановить доступ; не считать процесс остановленным, не создавать новый request_id.",
+    "publication": "Launcher сохраняет отчёт и архив на ВМ; встроенной автоматической публикации GitHub в нём нет. Старый bridge — отдельная служба; не приписывать ему работу без проверки.",
+    "runbook": "infra/LAUNCH_RUNBOOK.md"
+  },
+  "observation": {
+    "observed_at_utc": "2026-11-08T14:20:55.054Z",
+    "interpreted_at_utc": "2026-11-08T14:20:55.925320+00:00",
+    "job_id": "now_long_main_da72a3a_20261108",
+    "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+    "process_state": "running",
+    "completed_tasks": 1873,
+    "planned_tasks": 3083,
+    "progress_is_snapshot": true,
+    "scientific_confirmation": false,
+    "automatic_resubmit": false,
+    "checkpoint_sha256": "0f04c4b18011bfc2858fa0eb65dc653f12c53dab6186d22042386db689920865",
+    "next_action": "OBSERVE_EXISTING_JOB",
+    "execution_observed": true
+  }
+}
