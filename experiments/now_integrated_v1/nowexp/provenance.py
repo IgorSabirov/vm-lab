@@ -131,8 +131,15 @@ def gate(root, phase, code_digest, config_digest, acceptance=None, smoke=None, c
     if phase == "calibrate":
         return {"stage":"VM_CALIBRATION", "main_allowed":False}
     protocol = read_json(root/"preregistration"/"PROTOCOL.json")
-    if protocol["freeze_state"] != "FROZEN_AFTER_REVIEW":
-        raise ValueError("scientific protocol is not frozen")
+    frozen_by_review = protocol.get("freeze_state") == "FROZEN_AFTER_REVIEW"
+    authorization = protocol.get("execution_authorization", {})
+    frozen_by_user = (protocol.get("freeze_state") == "FROZEN_AFTER_USER_DIRECTIVE"
+        and authorization.get("technical_audit_waived") is True
+        and authorization.get("runtime_gate_required") is True
+        and receipt.get("audit_waived_by_user") is True
+        and receipt.get("user_decision_reference"))
+    if not (frozen_by_review or frozen_by_user):
+        raise ValueError("protocol needs technical review or an explicit user waiver with runtime gate")
     if not calibration:
         raise ValueError("VM calibration/forecast required")
     c = read_json(calibration)

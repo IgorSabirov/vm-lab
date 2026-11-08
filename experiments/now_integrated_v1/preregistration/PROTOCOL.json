@@ -2,7 +2,7 @@
   "schema": 1,
   "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
   "implementation": "candidate-0.3-reviewed",
-  "freeze_state": "REVIEW_CANDIDATE_NOT_FROZEN",
+  "freeze_state": "FROZEN_AFTER_USER_DIRECTIVE",
   "registry_commit": "0cf0f11394f4f9881b8a0a48f8a39201e2a0ea9b",
   "question": "Какие заданные средства продолжения этот кандидат заменяет работающими локальными продуктами, а какие остаются импортами?",
   "user_stage_order": [
@@ -789,7 +789,7 @@
       }
     }
   },
-  "protocol_revision": "1.3-workload-repair",
+  "protocol_revision": "1.4-user-waiver-runtime-gate",
   "revision_history": [
     {
       "revision": "1.3",
@@ -797,5 +797,13 @@
       "previous_main_tasks": 326,
       "main_tasks": 413
     }
-  ]
+  ],
+  "execution_authorization": {
+    "decision": "user directed run without audit, with full runtime gate",
+    "decision_date": "2026-11-08",
+    "technical_audit_waived": true,
+    "runtime_gate_required": true,
+    "limits_unchanged": true,
+    "scientific_claim": "authorization only; no scientific result implied"
+  }
 }

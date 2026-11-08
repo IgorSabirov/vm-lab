@@ -40,7 +40,7 @@ class PatchContracts(unittest.TestCase):
         amendment = json.loads((ROOT/'preregistration/FOUR_CANDIDATE_AMENDMENT.json').read_text())
         self.assertEqual(len(selected), 123+len(amendment['new_cases']))
         self.assertEqual(len(tasks), amendment['main_task_count'])
-        self.assertEqual(plan['freeze_state'], 'REVIEW_CANDIDATE_NOT_FROZEN')
+        self.assertEqual(plan['freeze_state'], 'FROZEN_AFTER_USER_DIRECTIVE')
 
     def test_workload_drift_is_rejected_before_execution(self):
         plan = json.loads((ROOT/'preregistration/PROTOCOL.json').read_text())
@@ -53,6 +53,12 @@ class PatchContracts(unittest.TestCase):
             elif target == 'phase': p['workload_inventory']['smoke']['tasks'] += 1
             else: a['main_task_count'] = 326
             with self.assertRaises(ValueError): validate_workload(p, cases, a)
+
+    def test_user_waiver_keeps_runtime_gate_mandatory(self):
+        plan = json.loads((ROOT/'preregistration/PROTOCOL.json').read_text())
+        self.assertEqual(plan['freeze_state'], 'FROZEN_AFTER_USER_DIRECTIVE')
+        self.assertTrue(plan['execution_authorization']['technical_audit_waived'])
+        self.assertTrue(plan['execution_authorization']['runtime_gate_required'])
 
     def test_input_mass_not_replaced_by_forced_11(self):
         inputs = input_distribution(config(forced_content=None))
