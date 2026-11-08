@@ -1,0 +1,110 @@
+{
+  "status": "SPECIFIED_NOT_EXECUTED",
+  "indices": "modulo current ring length; i is vertex index; apply bit rule separately to every channel",
+  "state_layout": [
+    "a1",
+    "b1",
+    "a2",
+    "b2"
+  ],
+  "operator_order": "I or inherited I2, then Q",
+  "aliases": {
+    "BUGGY_UNIFORM": "LITERAL_DEF4"
+  },
+  "alias_scope": "exact inherited source and explicit printed incidence reading; not an assertion about unseen neighbour code",
+  "modes": [
+    {
+      "id": "LITERAL_DEF4",
+      "new_names": "w_i = u_i.r vee u_(i+1).l",
+      "new_edges": "w_i:b -- w_(i-1):a",
+      "a_source": "u_i",
+      "b_source": "u_(i+1)",
+      "graph_edge_orientation": "reverse",
+      "bit_assignment": "literal",
+      "computed_here": false,
+      "source_attestation": "NOT_ATTESTED"
+    },
+    {
+      "id": "FIG2A_BITS_ONLY",
+      "new_names": "w_i = u_i.r vee u_(i+1).l",
+      "new_edges": "w_i:b -- w_(i-1):a",
+      "a_source": "u_(i+1)",
+      "b_source": "u_i",
+      "graph_edge_orientation": "reverse",
+      "bit_assignment": "swapped",
+      "computed_here": false,
+      "source_attestation": "NOT_ATTESTED"
+    },
+    {
+      "id": "FIG2A_FULL",
+      "new_names": "w_i = u_i.r vee u_(i+1).l",
+      "new_edges": "w_i:b -- w_(i+1):a",
+      "a_source": "u_(i+1)",
+      "b_source": "u_i",
+      "graph_edge_orientation": "preserve",
+      "bit_assignment": "swapped",
+      "computed_here": false,
+      "source_attestation": "NOT_ATTESTED"
+    },
+    {
+      "id": "PRESERVE_EDGES_LITERAL_BITS",
+      "new_names": "w_i = u_i.r vee u_(i+1).l",
+      "new_edges": "w_i:b -- w_(i+1):a",
+      "a_source": "u_i",
+      "b_source": "u_(i+1)",
+      "graph_edge_orientation": "preserve",
+      "bit_assignment": "literal",
+      "computed_here": false,
+      "source_attestation": "NOT_ATTESTED"
+    }
+  ],
+  "parity_dependent_mirror_rule": "separate operator requiring explicit parity state; not silently included",
+  "Fig2a_fixture": {
+    "old_order": [
+      "t",
+      "u",
+      "v",
+      "w"
+    ],
+    "old_bits": [
+      [
+        "x0",
+        "x1"
+      ],
+      [
+        "x2",
+        "x3"
+      ],
+      [
+        "x4",
+        "x5"
+      ],
+      [
+        "x6",
+        "x7"
+      ]
+    ],
+    "new_order": [
+      "t.r vee u.l",
+      "u.r vee v.l",
+      "v.r vee w.l"
+    ],
+    "new_bits": [
+      [
+        "x2",
+        "x1"
+      ],
+      [
+        "x4",
+        "x3"
+      ],
+      [
+        "x6",
+        "x5"
+      ]
+    ],
+    "new_edge_incidence": "b of each displayed new vertex connects to a of next displayed new vertex",
+    "visual_source": "arXiv:2306.07121v2 PDF page 3",
+    "closure": "local displayed segment; cyclic fixture closure must be declared by future test"
+  }
+}
