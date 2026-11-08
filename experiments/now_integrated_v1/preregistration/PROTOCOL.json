@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
-  "implementation": "candidate-0.2-reviewed",
-  "freeze_state": "FROZEN_AFTER_REVIEW",
+  "implementation": "candidate-0.3-reviewed",
+  "freeze_state": "REVIEW_CANDIDATE_NOT_FROZEN",
   "registry_commit": "0cf0f11394f4f9881b8a0a48f8a39201e2a0ea9b",
   "question": "Какие заданные средства продолжения этот кандидат заменяет работающими локальными продуктами, а какие остаются импортами?",
   "user_stage_order": [
@@ -28,7 +28,94 @@
         "scrambled_child",
         "late_resource",
         "finite_dark_32",
-        "finite_static_32"
+        "finite_static_32",
+        "patch::flat::full_base",
+        "patch::flat::full_no_record",
+        "patch::flat::full_no_reader",
+        "patch::flat::full_scramble",
+        "patch::flat::full_no_production",
+        "patch::flat::full_no_contact",
+        "patch::flat::full_neither",
+        "patch::flat::full_no_apparatus",
+        "patch::flat::independent",
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_record",
+        "patch::ising_order::full_no_reader",
+        "patch::ising_order::full_scramble",
+        "patch::ising_order::full_no_production",
+        "patch::ising_order::full_no_contact",
+        "patch::ising_order::full_neither",
+        "patch::ising_order::full_no_apparatus",
+        "patch::ising_order::independent",
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_record",
+        "patch::cdt_strip::full_no_reader",
+        "patch::cdt_strip::full_scramble",
+        "patch::cdt_strip::full_no_production",
+        "patch::cdt_strip::full_no_contact",
+        "patch::cdt_strip::full_neither",
+        "patch::cdt_strip::full_no_apparatus",
+        "patch::cdt_strip::independent",
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_record",
+        "patch::add_quiet::full_no_reader",
+        "patch::add_quiet::full_scramble",
+        "patch::add_quiet::full_no_production",
+        "patch::add_quiet::full_no_contact",
+        "patch::add_quiet::full_neither",
+        "patch::add_quiet::full_no_apparatus",
+        "patch::add_quiet::independent",
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_record",
+        "patch::add_growing::full_no_reader",
+        "patch::add_growing::full_scramble",
+        "patch::add_growing::full_no_production",
+        "patch::add_growing::full_no_contact",
+        "patch::add_growing::full_neither",
+        "patch::add_growing::full_no_apparatus",
+        "patch::add_growing::independent",
+        "patch::add_quiet::G0::none::off",
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::sham",
+        "patch::add_quiet::G0::contact::off",
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::sham",
+        "patch::add_quiet::G1::none::off",
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::sham",
+        "patch::add_quiet::G1::contact::off",
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::sham",
+        "patch::add_growing::G0::none::off",
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::sham",
+        "patch::add_growing::G0::contact::off",
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::sham",
+        "patch::add_growing::G1::none::off",
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::sham",
+        "patch::add_growing::G1::contact::off",
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::sham",
+        "patch::flat::writer::off",
+        "patch::flat::writer::on",
+        "patch::flat::writer::sham",
+        "patch::flat::reader::off",
+        "patch::flat::reader::on",
+        "patch::flat::reader::sham",
+        "patch::add_quiet::writer::off",
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::sham",
+        "patch::add_quiet::reader::off",
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::sham",
+        "patch::add_growing::writer::off",
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::sham",
+        "patch::add_growing::reader::off",
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::sham"
       ],
       "seeds": 2,
       "hard_wall_seconds": 600,
@@ -95,7 +182,158 @@
         "no_apparatus_scrambled",
         "natural_no_corrector",
         "natural_no_production",
-        "natural_no_contact"
+        "natural_no_contact",
+        "full_base",
+        "full_no_production",
+        "full_no_contact",
+        "full_neither",
+        "full_no_writer",
+        "full_no_reader",
+        "full_writer_damage",
+        "full_reader_damage",
+        "full_no_record",
+        "full_no_apparatus",
+        "full_scramble",
+        "full_scramble_no_apparatus",
+        "full_no_route",
+        "full_route_damage",
+        "full_no_template_bank",
+        "full_imported_contact",
+        "full_removed_parent_template",
+        "full_late_resource",
+        "full_late_record",
+        "full_moving",
+        "full_fragments",
+        "full_fragment_duplicate",
+        "full_fragment_lost",
+        "full_fragment_zero",
+        "full_fragment_expiry",
+        "full_branch",
+        "full_branch_weak",
+        "full_seed_00",
+        "full_seed_01",
+        "full_seed_10",
+        "full_seed_11",
+        "full_law_V1",
+        "full_law_V2",
+        "full_law_A",
+        "full_completion_erase",
+        "full_completion_trace",
+        "full_completion_isolate",
+        "full_completion_transfer",
+        "full_completion_decay",
+        "full_cycles_writer",
+        "full_cycles_reader",
+        "full_cycles_no_production",
+        "full_cycles_no_contact",
+        "full_transport_intact",
+        "full_transport_patch",
+        "full_transport_unrepaired",
+        "full_correlated",
+        "full_independent",
+        "full_bell_x",
+        "full_dephased_x",
+        "full_bell_z",
+        "full_dephased_z",
+        "full_finite_dark_16",
+        "full_finite_dark_32",
+        "full_finite_dark_64",
+        "full_finite_static_16",
+        "full_finite_static_32",
+        "full_finite_static_64",
+        "full_bath_4",
+        "full_bath_16",
+        "full_bath_32",
+        "full_wave_no_transfer",
+        "full_wave_delayed",
+        "full_wave_moving",
+        "patch::flat::full_base",
+        "patch::flat::full_no_record",
+        "patch::flat::full_no_reader",
+        "patch::flat::full_scramble",
+        "patch::flat::full_no_production",
+        "patch::flat::full_no_contact",
+        "patch::flat::full_neither",
+        "patch::flat::full_no_apparatus",
+        "patch::flat::independent",
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_record",
+        "patch::ising_order::full_no_reader",
+        "patch::ising_order::full_scramble",
+        "patch::ising_order::full_no_production",
+        "patch::ising_order::full_no_contact",
+        "patch::ising_order::full_neither",
+        "patch::ising_order::full_no_apparatus",
+        "patch::ising_order::independent",
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_record",
+        "patch::cdt_strip::full_no_reader",
+        "patch::cdt_strip::full_scramble",
+        "patch::cdt_strip::full_no_production",
+        "patch::cdt_strip::full_no_contact",
+        "patch::cdt_strip::full_neither",
+        "patch::cdt_strip::full_no_apparatus",
+        "patch::cdt_strip::independent",
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_record",
+        "patch::add_quiet::full_no_reader",
+        "patch::add_quiet::full_scramble",
+        "patch::add_quiet::full_no_production",
+        "patch::add_quiet::full_no_contact",
+        "patch::add_quiet::full_neither",
+        "patch::add_quiet::full_no_apparatus",
+        "patch::add_quiet::independent",
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_record",
+        "patch::add_growing::full_no_reader",
+        "patch::add_growing::full_scramble",
+        "patch::add_growing::full_no_production",
+        "patch::add_growing::full_no_contact",
+        "patch::add_growing::full_neither",
+        "patch::add_growing::full_no_apparatus",
+        "patch::add_growing::independent",
+        "patch::add_quiet::G0::none::off",
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::sham",
+        "patch::add_quiet::G0::contact::off",
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::sham",
+        "patch::add_quiet::G1::none::off",
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::sham",
+        "patch::add_quiet::G1::contact::off",
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::sham",
+        "patch::add_growing::G0::none::off",
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::sham",
+        "patch::add_growing::G0::contact::off",
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::sham",
+        "patch::add_growing::G1::none::off",
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::sham",
+        "patch::add_growing::G1::contact::off",
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::sham",
+        "patch::flat::writer::off",
+        "patch::flat::writer::on",
+        "patch::flat::writer::sham",
+        "patch::flat::reader::off",
+        "patch::flat::reader::on",
+        "patch::flat::reader::sham",
+        "patch::add_quiet::writer::off",
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::sham",
+        "patch::add_quiet::reader::off",
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::sham",
+        "patch::add_growing::writer::off",
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::sham",
+        "patch::add_growing::reader::off",
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::sham"
       ],
       "seeds": 2,
       "hard_wall_seconds": 600,
@@ -110,7 +348,66 @@
         "finite_static_32",
         "bath_32",
         "detune_0.15",
-        "wave_moving"
+        "wave_moving",
+        "full_base",
+        "full_cycles_writer",
+        "full_transport_patch",
+        "full_branch",
+        "full_bell_x",
+        "full_finite_dark_32",
+        "full_bath_32",
+        "patch::flat::full_base",
+        "patch::flat::independent",
+        "patch::ising_order::full_base",
+        "patch::ising_order::independent",
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::independent",
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::independent",
+        "patch::add_growing::full_base",
+        "patch::add_growing::independent",
+        "patch::add_quiet::G0::none::off",
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::sham",
+        "patch::add_quiet::G0::contact::off",
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::sham",
+        "patch::add_quiet::G1::none::off",
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::sham",
+        "patch::add_quiet::G1::contact::off",
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::sham",
+        "patch::add_growing::G0::none::off",
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::sham",
+        "patch::add_growing::G0::contact::off",
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::sham",
+        "patch::add_growing::G1::none::off",
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::sham",
+        "patch::add_growing::G1::contact::off",
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::sham",
+        "patch::flat::writer::off",
+        "patch::flat::writer::on",
+        "patch::flat::writer::sham",
+        "patch::flat::reader::off",
+        "patch::flat::reader::on",
+        "patch::flat::reader::sham",
+        "patch::add_quiet::writer::off",
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::sham",
+        "patch::add_quiet::reader::off",
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::sham",
+        "patch::add_growing::writer::off",
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::sham",
+        "patch::add_growing::reader::off",
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::sham"
       ],
       "seeds": 4,
       "hard_wall_seconds": 600,
@@ -124,14 +421,14 @@
       "disk_limit_mib": 1024
     }
   },
-  "proposed_main_tasks": 251,
+  "proposed_main_tasks": 326,
   "budget": {
     "author_scientific_execution_this_stage": "bounded smoke and engineering tests authorized",
     "vm_jobs_this_stage": "environment probes already executed; main not submitted",
     "proposed_main_cpu_processes": 1,
     "proposed_main_wall_cap_seconds": 3600,
     "prediction_seconds": null,
-    "forecast_status": "Environment measured; corrected executor calibration pending",
+    "forecast_status": "Old e8f3eb2 forecast not applicable to candidate-0.3",
     "monetary_cost": null,
     "cost_reason": "Billing counters unavailable; actual environment probe time is archived",
     "enlargement": "Revised workload/forecast and user decision before exceeding this envelope"
@@ -155,9 +452,11 @@
     "psd_negative_tolerance": 1e-10,
     "profile_equivalence_tv": 0.05,
     "profile_tolerance_status": "Comparison tolerance, not transitive equivalence",
-    "sigma_min": null,
-    "condition_number": null,
-    "reconstruction_status": "NOT_ADMISSIBLE: no inverse tomography map J in this candidate; read probabilities are not singular values"
+    "sigma_min": 0.017320508075688773,
+    "condition_number": 100,
+    "reconstruction_status": "Declared 3x2 outcome map for two orthogonal populations only; not complete quantum tomography",
+    "reconstruction_noise_per_outcome": 0.0001,
+    "reconstruction_error_allowance": 0.01
   },
   "inference": {
     "primary": [
@@ -199,5 +498,258 @@
     "bank_regeneration": "not implemented"
   },
   "schedule_semantics": "Imported single-attempt deadlines. Content gates execution success; it does not synthesize the operation schedule. No automatic retry.",
-  "environment_reference": "analysis/VM_ENVIRONMENT_20261107/ENVIRONMENT_CONSTRAINTS.json at 38ab01f0a531c3ecbb43173967c434538303fcf9"
+  "environment_reference": "analysis/VM_ENVIRONMENT_20261107/ENVIRONMENT_CONSTRAINTS.json at 38ab01f0a531c3ecbb43173967c434538303fcf9",
+  "design_controls": [
+    {
+      "id": "v1_support",
+      "kind": "v1_support",
+      "design_ids": [
+        "X02"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "joint_measurements",
+      "kind": "joint_instrument",
+      "design_ids": [
+        "X08"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "readout_classical",
+      "kind": "readout",
+      "design_ids": [
+        "X10"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "readout_wave",
+      "kind": "readout",
+      "design_ids": [
+        "X10"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static"
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "full_cut",
+      "kind": "internal_slice",
+      "design_ids": [
+        "X12"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "fragment_cut",
+      "kind": "internal_slice",
+      "design_ids": [
+        "X12"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "wave_cut",
+      "kind": "internal_slice",
+      "design_ids": [
+        "X12"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static"
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "selection",
+      "kind": "boundary_selection",
+      "design_ids": [
+        "X13"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "coordinate_order",
+      "kind": "foliation",
+      "design_ids": [
+        "X14"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "moving_coordinate_order",
+      "kind": "foliation",
+      "design_ids": [
+        "X14"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "receiver_velocity": 0.3
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    },
+    {
+      "id": "branch_coordinate_order",
+      "kind": "foliation",
+      "design_ids": [
+        "X15"
+      ],
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "branching": true,
+        "donor_fuel": 64
+      },
+      "phases": [
+        "smoke",
+        "calibrate",
+        "main"
+      ]
+    }
+  ],
+  "scope_evidence_required": true,
+  "implementation_version": "0.4.0-review",
+  "four_candidate_amendment": {
+    "id": "R127",
+    "implemented": true,
+    "review": "PENDING",
+    "main_production_ready": false,
+    "old_cases": 123,
+    "added_cases": 87,
+    "total_cases": 210,
+    "added_contrasts": 76,
+    "experiment_id": "NOW_INTEGRATED_CONTINUATION_V1",
+    "scope": "same runner, conditional geometry and paid task",
+    "execution": "NOT_RUN_BY_AUTHOR",
+    "C3_D": "not implemented; A=damage is not C3 D",
+    "old_19_second_forecast": "INVALID_FOR_THIS_PATCH"
+  }
 }

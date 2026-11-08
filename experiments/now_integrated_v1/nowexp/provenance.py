@@ -31,6 +31,7 @@ def source_manifest(root):
         "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
         "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
         "analysis/VM_ENVIRONMENT_20261107/ENVIRONMENT_CONSTRAINTS.json")]
+    paths += [repo/'tools/piecewise_flat_qg/signature_kernel.py']
     return {str(p.relative_to(repo)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
 
 

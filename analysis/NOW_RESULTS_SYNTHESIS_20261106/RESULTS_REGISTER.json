@@ -2823,8 +2823,8 @@
       "status": "ДОКАЗАНО ДЛЯ ЯВНЫХ ОПЕРАТОРОВ; АВТОРСКОЕ C2-СООТВЕТСТВИЕ НЕ АТТЕСТОВАНО",
       "result": "Для bits-only/reverse доказано F^4=id на всех направленных циклических словах, любое L, через J=QIQ и IJ=JI. Рост исключён; при L=5 есть 70 активных периодов 2. Для full-figure/preserve доказаны Q²=τ с именами и E0-дихотомия тишина/неограниченный рост. Оба reverse-оператора нарушают Q²=τ. Три спектра воспроизведены; 194-состоянийный тихий класс инвариантен при любом L для bits-only.",
       "inputs": "Четыре режима с раздельными рёбрами и битами; независимая word-динамика и 336 графов, 16 именованных мировых линий на режим; все E0 L2..5 для bits-only; 1118480 всех слов L1..5 для локальных тождеств. Финальный пакет: 11 проверок PASS, 24.84 с, Python3.12.14/SymPy1.14.0. ВМ не запускалась.",
-      "limit": "Теоремы относятся к сохранённому I2 и явно определённым Q, не автоматически к ADD статьи. F4=id на словах не означает равенства имён. FT10 literal transport FAIL сохранён. Сектор QB L12 не вычислен; полное C2-соответствие и NOW остаются заблокированы.",
-      "framework_role": "Сохранить различие внутренней периодичности и авторского транспорта; искать соответствие всей C2-динамики по full-figure, не продолжать невозможный рост bits-only. Не повышать статусы родительских результатов или NOW.",
+      "limit": "Теоремы относятся к сохранённому I2 и явно определённым Q, не автоматически к ADD статьи. F4=id на словах не означает равенства имён. FT10 literal transport FAIL сохранён. Сектор QB L12 не вычислен; авторское соответствие не аттестовано. По текущему указанию пользователя это не блокирует использование явно заданного FULL в NOW; новые полезная нагрузка и код требуют обычной технической ревизии.",
+      "framework_role": "Использовать сохранённые FULL-правила и тихий/растущий режимы для модели «сейчас». Не повторять исследование теоремы как условие интеграции. Результаты bits-only не переносить на FULL; исходные проверки и отрицательные результаты сохранены.",
       "construct_ids": [
         "C035",
         "C037",
@@ -2879,17 +2879,22 @@
         "full_figure_E0_dichotomy_all_L": "PROVED_FOR_SPECIFIED_I2",
         "ADD_source_conformance": "NOT_ATTESTED",
         "NOW_integration": "BLOCKED"
+      },
+      "current_NOW_integration": {
+        "status": "OPERATIONAL_C2_FULL_PATCH_WRITTEN_REVIEW_PENDING",
+        "decision": "current user instruction: build NOW, not study author theorem",
+        "report": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md"
       }
     },
     {
       "id": "R127",
       "section": "24. Геометрические кандидаты и интеграция",
-      "title": "Четыре кандидата: архитектурное дополнение к существующему опыту NOW",
-      "status": "ИНТЕГРАЦИОННАЯ СПЕЦИФИКАЦИЯ ЗАВЕРШЕНА; СОВМЕСТНЫЙ НАУЧНЫЙ ПРОГОН НЕ ИСПОЛНЕН",
-      "result": "Разработаны общее полное состояние, локальное причинное исполнение, конечный ресурс, единый Y_T, профиль I_Pi, capability-интерфейсы и восемь контрактов N01–N08. Serbian используется для метрической диагностики, IsingCauset — совместной меры, CDT — контрольных ансамблей, ADD — кандидата локального изменения носителя после устранения R126. Сохранены два маршрута возникновения и полная карта 42 конструкций с различением прямых, ограничивающих и отложенных связей.",
-      "inputs": "Реестр main 29dd0e9; NOW v0.3 ea49ebc и отчёт f5e2e47; сохранённые сербские технические проверки и анализы; предоставленные обсуждения и аудит ADD. Мера, закон, подготовка, аппарат, геометрия и обратный процесс перечислены как входы/обязательства.",
-      "limit": "Не получен один физический закон четырёх авторских моделей; их меры не перемножаются автоматически. IsingCauset/CDT у нас не собраны и не прошли дымовые. ADD v1 не допущен как реализация статьи. Новые научные панели и локальное взаимодействие организации с переписыванием не исполнены. Происхождение основания, геометрии, общего инварианта и субъекта остаётся открытым; L01–L10 не закрыты.",
-      "framework_role": "Доработать NOW_INTEGRATED_CONTINUATION_V1 на проверенной базе 0.3; N01–N08 дополняют X01–X16. Патч специфицирован, новый исполнитель не создаётся, расширенный состав ещё не исполнялся.",
+      "title": "Четыре кандидата: исполнимый патч прежнего NOW",
+      "status": "КОД НАПИСАН И СТАТИЧЕСКИ ПРОВЕРЕН; РЕВИЗИЯ И НОВОЕ ИСПОЛНЕНИЕ ОЖИДАЮТСЯ",
+      "result": "В прежний NOW на базе 0.3 внесены C2 FULL носитель и реальный транспорт полезной нагрузки, адаптер заданных причинных порядков/CDT, импорт и взвешивание ансамблей, платная XOR-проба без health-предрешения, ON/OFF/SHAM после повреждения, полное сохранение состояния, optional Serbian C++ диагностика. Сохранены 123 случая/84 контраста/11 контролей; добавлены 87 случаев/76 контрастов: 210/160, 413 задач основного состава.",
+      "inputs": "Код ea49ebc; main bda1e9d; собственный отчёт из другого аккаунта и сохранённый R126, без повторного большого перебора. Новые контрольные геометрии, закон размещения полезной нагрузки, единичные часы и конечные ресурсы заданы явно.",
+      "limit": "Новые unit/smoke/VM/main ещё не выполнены. Контрольные порядки/полоса не равновесные IsingCauset/CDT образцы; j* не выбран. C3-D, физический reverse, обратное воздействие организации на Q/I2 и происхождение метрики не реализованы. Авторское соответствие ADD не является блокировкой нашей операциональной модели. L01–L10 открыты.",
+      "framework_role": "Один прежний эксперимент NOW_INTEGRATED_CONTINUATION_V1 и один runner; N01–N08 дополняют X01–X16. Следующий этап — техническая ревизия написанного кода, затем дымовые и новая калибровка.",
       "construct_ids": [
         "C001",
         "C002",
@@ -2958,14 +2963,17 @@
         "L09",
         "L10"
       ],
-      "evidence_level": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ",
+      "evidence_level": "СОХРАНЁННЫЕ НАШИ ДАННЫЕ / ИСПОЛНИМЫЙ КОД / СТАТИЧЕСКАЯ ПРОВЕРКА; НЕ НОВЫЙ НАУЧНЫЙ РЕЗУЛЬТАТ",
       "sources": [
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json",
         "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
-        "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json"
+        "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
+        "experiments/now_integrated_v1/nowexp/carrier.py",
+        "experiments/now_integrated_v1/nowexp/task_probe.py",
+        "experiments/now_integrated_v1/FOUR_CANDIDATE_REVIEW.md"
       ],
       "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений.",
       "revision_1_1": {
@@ -2982,6 +2990,24 @@
         ],
         "executable_patch": "NOT_IMPLEMENTED",
         "scientific_execution": "NOT_EXECUTED"
+      },
+      "pre_executable_1_2": {
+        "title": "Четыре кандидата: архитектурное дополнение к существующему опыту NOW",
+        "status": "ИНТЕГРАЦИОННАЯ СПЕЦИФИКАЦИЯ ЗАВЕРШЕНА; СОВМЕСТНЫЙ НАУЧНЫЙ ПРОГОН НЕ ИСПОЛНЕН",
+        "result": "Разработаны общее полное состояние, локальное причинное исполнение, конечный ресурс, единый Y_T, профиль I_Pi, capability-интерфейсы и восемь контрактов N01–N08. Serbian используется для метрической диагностики, IsingCauset — совместной меры, CDT — контрольных ансамблей, ADD — кандидата локального изменения носителя после устранения R126. Сохранены два маршрута возникновения и полная карта 42 конструкций с различением прямых, ограничивающих и отложенных связей.",
+        "inputs": "Реестр main 29dd0e9; NOW v0.3 ea49ebc и отчёт f5e2e47; сохранённые сербские технические проверки и анализы; предоставленные обсуждения и аудит ADD. Мера, закон, подготовка, аппарат, геометрия и обратный процесс перечислены как входы/обязательства.",
+        "limit": "Не получен один физический закон четырёх авторских моделей; их меры не перемножаются автоматически. IsingCauset/CDT у нас не собраны и не прошли дымовые. ADD v1 не допущен как реализация статьи. Новые научные панели и локальное взаимодействие организации с переписыванием не исполнены. Происхождение основания, геометрии, общего инварианта и субъекта остаётся открытым; L01–L10 не закрыты.",
+        "framework_role": "Доработать NOW_INTEGRATED_CONTINUATION_V1 на проверенной базе 0.3; N01–N08 дополняют X01–X16. Патч специфицирован, новый исполнитель не создаётся, расширенный состав ещё не исполнялся.",
+        "evidence_level": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ"
+      },
+      "revision_1_2": {
+        "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+        "source": "experiments/now_integrated_v1/FOUR_CANDIDATE_REVIEW.md",
+        "executable_patch": "IMPLEMENTED",
+        "models_executed": false,
+        "tests_added": 17,
+        "main_tasks": 413,
+        "old_forecast_applies": false
       }
     }
   ],
@@ -6230,6 +6256,15 @@
       "result_count": 127,
       "construct_count": 42,
       "open_links_count": 10
+    },
+    {
+      "date": "2026-11-08",
+      "revision": "four_candidate_executable_1_2",
+      "records": [
+        "R126",
+        "R127"
+      ],
+      "change": "User-directed NOW patch implemented; no theorem study gate; scientific statuses R001-R125 and all C/L unchanged"
     }
   ],
   "lineage_edges": [
@@ -8114,12 +8149,15 @@
         "spec": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
         "document": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
         "source_base": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
-        "status": "PROPOSED_PATCH_SPECIFICATION_NOT_IMPLEMENTED"
+        "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+        "source": "experiments/now_integrated_v1",
+        "main_tasks": 413,
+        "author_tests_executed": false
       }
     },
     {
       "id": "NOW_GEOMETRY_CONTINUATION_V1",
-      "status": "AMENDMENT_DESIGN_COMPLETE_EXECUTABLE_PATCH_NOT_IMPLEMENTED",
+      "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
       "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
       "graph": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
       "lineage_map": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
@@ -8207,7 +8245,8 @@
       "engine_base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
       "amendment_of": "NOW_INTEGRATED_CONTINUATION_V1",
       "id_role": "architecture_alias_not_separate_experiment",
-      "patch": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json"
+      "patch": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
+      "architecture_only_alias": true
     }
   ],
   "planned_experiment_edges": [

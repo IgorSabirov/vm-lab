@@ -1,92 +1,74 @@
-"""Validate documentation/registry patch only; never import or run the model.
-
-Use --repo-root for proposed/current docs, --baseline-docs for 8481ea2 docs,
-and --source-root for an export/checkout of the declared ea49ebc code.
-"""
+"""Static source/document checks only. Never import or execute NOW models/tests."""
 import argparse
 import ast
 import hashlib
 import json
-import math
-import re
 from pathlib import Path
 
 
 def main():
-    p=argparse.ArgumentParser()
-    p.add_argument('--repo-root',type=Path,required=True)
-    p.add_argument('--baseline-docs',type=Path,required=True)
-    p.add_argument('--source-root',type=Path,required=True)
-    args=p.parse_args(); root=args.repo_root; old=args.baseline_docs; src=args.source_root
-    P='analysis/INTEGRATED_EXPERIMENT_20261107'
-    A='analysis/FOUR_CANDIDATE_INTEGRATION_20261108'
-    E='experiments/now_integrated_v1'
-    R='analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json'
-    load=lambda q:json.loads(q.read_text())
-    spec=load(root/E/'preregistration/FOUR_CANDIDATE_AMENDMENT.json')
-    fmap=load(root/P/'PATCH_FILE_MAP.json'); sources=load(root/P/'PATCH_SOURCE_INDEX.json')
-    reg=load(root/R); before=load(old/R)
-    cases=load(src/E/'preregistration/CASES.json'); prot=load(src/E/'preregistration/PROTOCOL.json')
-    model=load(root/A/'DESIGN.json')
-    ck={}
-    ck['same_experiment_id']=spec['experiment_id']==prot['experiment']=='NOW_INTEGRATED_CONTINUATION_V1'
-    ck['proposal_not_activated']=not spec['active'] and not spec['launch_authorized'] and spec['status']=='PROPOSED_PATCH_SPECIFICATION_NOT_IMPLEMENTED'
-    ck['correct_source_base']=spec['target']['source_commit']==sources['engine_base']=='ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8'
-    verified=[]
-    for f in sources['source_code_files']:
-        b=(src/f['path']).read_bytes()
-        verified.append(hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==f['git_blob'] and hashlib.sha256(b).hexdigest()==f['sha256'])
-    ck['all_35_pinned_source_blobs_verified']=len(verified)==35 and all(verified)
-    ck['base_inventory']=len(cases['cases'])==123 and len(cases['contrasts'])==84 and len(prot['design_controls'])==11
-    ck['base_task_count']=123+3*64+11==spec['preserved']['main_tasks']==326
-    nids={f'N{i:02d}' for i in range(1,9)};xids={f'X{i:02d}' for i in range(1,17)}
-    ck['eight_N_contracts_mapped']=set(x['id'] for x in spec['map_to_existing'])==nids
-    ck['existing_X_only']=all(set(x['existing_comparisons'])<=xids for x in spec['map_to_existing'])
-    cids={x['id'] for x in cases['cases']};kinds={x['id'] for x in cases['contrasts']};controls={x['id'] for x in prot['design_controls']}
-    ck['all_case_contrast_control_refs_exist']=all(set(x['base_cases'])<=cids and set(x['base_contrasts'])<=kinds and set(x.get('base_controls',[]))<=controls for x in spec['map_to_existing'])
-    ck['static_panel_8_valid_templates']=len(spec['static_panel']['case_ids'])==8 and set(spec['static_panel']['case_ids'])<=cids
-    dyn=spec['dynamic_panel']['cells']
-    ck['dynamic_panel_15_unique_cases']=len(dyn)==15==len({x['id'] for x in dyn}) and sum(x['intervention']=='factorial' for x in dyn)==8
-    ck['FT13_unique']=set(x['id'] for x in spec['add_conformance']['gates'])=={f'FT-{i}' for i in range(1,14)}
-    ck['FT9_count_exact']=sum(4**n-2*2**n+1 for n in (3,4,5))==1235==spec['add_conformance']['finite_search_total']
-    symbols_ok=True
-    for row in fmap['files']:
-        f=src/row['path']
-        if row['operation'].startswith('ADD'):continue
-        if not f.exists():symbols_ok=False;continue
-        if not row['symbols']:continue
-        tree=ast.parse(f.read_text()); found=set()
-        for node in tree.body:
-            if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):found.add(node.name)
-            if isinstance(node,ast.ClassDef):
-                found.add(node.name)
-                found.update(node.name+'.'+n.name for n in node.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)))
-        symbols_ok &= set(row['symbols'])<=found
-    ck['all_target_files_symbols_exist']=symbols_ok
-    ck['no_executable_implementation_claim']=all(not x['implemented_now'] for x in fmap['files']) and not fmap['executable_source_modified_this_revision']
-    ck['all_127_record_IDs_preserved']=[x['id'] for x in reg['results']]==[x['id'] for x in before['results']] and len(reg['results'])==127
-    ck['first_125_records_unchanged']=reg['results'][:125]==before['results'][:125]
-    ck['all_scientific_statuses_unchanged']=all(a['status']==b['status'] for a,b in zip(reg['results'],before['results']))
-    ck['all_42_constructs_unchanged']=reg['constructs']==before['constructs'] and len(reg['constructs'])==42
-    ck['all_10_open_links_unchanged']=reg['open_links']==before['open_links'] and len(reg['open_links'])==10
-    ck['existing_edges_unchanged']=all(reg[k]==before[k] for k in ('lineage_edges','planned_experiment_edges','result_children','result_to_constructs'))
-    ck['architecture_is_amendment']=model['amendment_of']==spec['experiment_id'] and next(x for x in reg['experiment_designs'] if x['id']==model['id'])['amendment_of']==spec['experiment_id']
-    ck['R126_R127_revision_present']=all('revision_1_1' in x for x in reg['results'][-2:])
-    md=(root/R).with_suffix('.md').read_text()
-    ck['registry_headings_and_changed_anchors_unique']=all(len(re.findall(r'^### '+x['id']+r'\.',md,re.M))==1 for x in reg['results']) and all(md.count('<a id="'+x['id'].lower()+'"></a>')==1 for x in reg['results'][-2:])
-    ck['source_attachment_hash']=hashlib.sha256((root/sources['neighbour']['path']).read_bytes()).hexdigest()==sources['neighbour']['sha256']
-    ck['ADD_original_bytes_preserved']=hashlib.sha256((root/A/'evidence/add_reconstruction/add_backend_smoke_v1.py').read_bytes()).hexdigest()=='ee607902b61b28328affc9ca3474ee8881b610aac9b8ec1773081abe3d585e27'
-    ck['denominator_formulas']=16**12==281474976710656 and math.comb(48,24)==32247603683100 and math.prod(math.comb(12,n) for n in (4,6,7,7))==286898008320
-    ck['new_forecast_not_inherited']=spec['budget']['new_runtime_seconds'] is None and not spec['budget']['old_forecast_applies']
-    current_py={str(f.relative_to(root/E)):f.read_bytes() for f in (root/E).rglob('*.py')}
-    baseline_py={str(f.relative_to(old/E)):f.read_bytes() for f in (old/E).rglob('*.py')}
-    ck['executable_python_unchanged_from_document_base']=current_py==baseline_py
-    ck['XOR_control_discriminates']=all((a^b)!=((1-a)^b) for a in (0,1) for b in (0,1)) and spec['static_panel']['scramble_template_override']['task_content_intervention']=='flip_A'
-    ck['mean_and_sum_distinct']=spec['accounting']['entropy_names']=={'S_r_article':'S_local_mean','bar_S_r_article':'S_local_sum'}
-    out=dict(status='PASS' if all(ck.values()) else 'FAIL',checks=ck,count=len(ck),scope='document/specification/static source integrity only; no model execution',new_scientific_runs=0,vm_runs=0)
-    (root/P/'PATCH_CHECKS.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
-    print(json.dumps(out,ensure_ascii=False,indent=2))
-    return 0 if all(ck.values()) else 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--repo-root', type=Path, required=True)
+    parser.add_argument('--baseline-docs', type=Path, required=True)
+    parser.add_argument('--source-root', type=Path, required=True)
+    a = parser.parse_args()
+    root, before, base = a.repo_root, a.baseline_docs, a.source_root
+    E = Path('experiments/now_integrated_v1')
+    P = Path('analysis/INTEGRATED_EXPERIMENT_20261107')
+    R = Path('analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json')
+    def load(p):
+        return json.loads(p.read_text())
+    spec = load(root/E/'preregistration/FOUR_CANDIDATE_AMENDMENT.json')
+    cases = load(root/E/'preregistration/CASES.json')
+    old = load(base/E/'preregistration/CASES.json')
+    plan = load(root/E/'preregistration/PROTOCOL.json')
+    oldplan = load(base/E/'preregistration/PROTOCOL.json')
+    reg, oldreg = load(root/R), load(before/R)
+    checks = {}
+    syntax = list((root/E).rglob('*.py'))
+    for f in syntax:
+        ast.parse(f.read_text(), filename=str(f))
+    checks['python_syntax_without_execution'] = True
+    for f in (root/E).rglob('*.json'):
+        load(f)
+    checks['json_parses'] = True
+    checks['same_experiment'] = spec['experiment_id'] == plan['experiment'] == 'NOW_INTEGRATED_CONTINUATION_V1'
+    checks['not_frozen_for_main'] = not spec['production_frozen'] and plan['freeze_state'] == 'REVIEW_CANDIDATE_NOT_FROZEN'
+    checks['all_123_legacy_cases_unchanged'] = cases['cases'][:123] == old['cases'] and len(old['cases']) == 123
+    checks['all_84_legacy_contrasts_unchanged'] = cases['contrasts'][:84] == old['contrasts'] and len(old['contrasts']) == 84
+    checks['legacy_11_controls_unchanged'] = plan['design_controls'] == oldplan['design_controls'] and len(plan['design_controls']) == 11
+    checks['correct_counts'] = len(cases['cases']) == 123+len(spec['new_cases']) and len(cases['contrasts']) == 84+len(spec['new_contrasts']) and spec['main_task_count'] == len(cases['cases'])+192+11
+    ids = {c['id'] for c in cases['cases']}
+    checks['unique_cases_and_resolved_contrasts'] = len(ids) == len(cases['cases']) and all(set(c['cases']) <= ids for c in cases['contrasts'])
+    checks['new_input_not_forced_11'] = all(c['config'].get('forced_content') is None for c in cases['cases'][123:])
+    checks['new_primary_metric_not_health'] = all(c['metric'] == 'mean_task_success' for c in cases['contrasts'][84:])
+    checks['all_eight_N_mapped_to_existing_X'] = set(spec['N_to_X']) == {f'N{i:02d}' for i in range(1, 9)} and all(set(v) <= {f'X{i:02d}' for i in range(1,17)} for v in spec['N_to_X'].values())
+    checks['all_registry_IDs_preserved'] = [v['id'] for v in reg['results']] == [v['id'] for v in oldreg['results']] and len(reg['results']) == 127
+    checks['first_125_results_unchanged'] = reg['results'][:125] == oldreg['results'][:125]
+    checks['all_42_constructs_unchanged'] = reg['constructs'] == oldreg['constructs'] and len(reg['constructs']) == 42
+    checks['all_10_links_unchanged'] = reg['open_links'] == oldreg['open_links'] and len(reg['open_links']) == 10
+    checks['existing_lineage_edges_unchanged'] = all(reg[k] == oldreg[k] for k in ('lineage_edges','planned_experiment_edges','result_children','result_to_constructs'))
+    source = load(root/P/'PATCH_SOURCE_INDEX.json')
+    verified = []
+    for v in source['source_code_files']:
+        b = (base/v['path']).read_bytes()
+        verified.append(hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest() == v['blob'])
+    checks['35_base_source_blobs_verified'] = len(verified) == 35 and all(verified)
+    supplied = source['cross_account_report']
+    checks['provided_report_preserved'] = hashlib.sha256((root/supplied['path']).read_bytes()).hexdigest() == supplied['sha256']
+    tests = ast.parse((root/E/'tests/test_four_candidate_patch.py').read_text())
+    count = sum(isinstance(n, ast.FunctionDef) and n.name.startswith('test_') for n in ast.walk(tests))
+    checks['17_new_tests_written_not_run'] = count == 17
+    checks['no_theorem_gate_for_NOW'] = load(root/'analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json')['add_operational_law']['author_theorem_study_required'] is False
+    checks['no_equilibrium_samples_invented'] = not load(root/E/'preregistration/PREPARED_GEOMETRIES.json')['ensembles']
+    out = dict(status='PASS' if all(checks.values()) else 'FAIL', checks=checks,
+               count=len(checks), python_files_parsed=len(syntax), models_executed=0,
+               unit_tests_executed=0, new_smoke_runs=0, vm_runs=0,
+               scope='static syntax/source/manifest/registry validation only; no numerical or model execution')
+    (root/P/'PATCH_CHECKS.json').write_text(json.dumps(out, ensure_ascii=False, indent=2)+'\n')
+    print(json.dumps(out, ensure_ascii=False, indent=2))
+    return 0 if all(checks.values()) else 1
 
 
-if __name__=='__main__':raise SystemExit(main())
+if __name__ == '__main__':
+    raise SystemExit(main())

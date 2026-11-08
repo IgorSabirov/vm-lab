@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--source-commit',required=True)
     parser.add_argument('--source-manifest',required=True)
     parser.add_argument('--acceptance',required=True)
+    parser.add_argument('--signature-library',type=Path)
     args=parser.parse_args()
     files=verify_source(ROOT,args.source_commit,args.source_manifest)
     output=args.output.resolve()
@@ -32,6 +33,9 @@ def main():
     atomic_json(output/'ENVIRONMENT.json',environment())
     base=[sys.executable,str(ROOT/'run.py'),'--phase','smoke','--source-commit',args.source_commit,
           '--source-manifest',str(Path(args.source_manifest).resolve()),'--acceptance',str(Path(args.acceptance).resolve())]
+
+    if args.signature_library is not None:
+        base += ['--signature-library', str(args.signature_library.resolve())]
 
     def invoke(name,command,expected=0):
         remaining=600-(time.monotonic()-start)

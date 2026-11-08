@@ -26,6 +26,7 @@ def arguments():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--source-manifest", required=True)
+    parser.add_argument("--signature-library", type=Path, help="optional already-built Serbian C++ kernel")
     parser.add_argument("--acceptance")
     parser.add_argument("--smoke-report")
     parser.add_argument("--calibration")
@@ -77,6 +78,12 @@ def make_tasks(plan, cases, phase):
             cfg = Config(**case["config"], thresholds=plan["acceptance"]).validate()
             for seed in range(plan["monte_carlo_validation"]["seeds"] if phase == "main" else limits["seeds"]):
                 tasks.append(dict(case_id="mc::"+name, config=asdict(cfg), sampling_mode="seed_ensemble", seed=seed))
+    if phase in ('smoke','main','calibrate'):
+        for control in plan.get('design_controls',[]):
+            if phase not in control['phases']:continue
+            cfg=Config(**control['config'],thresholds=plan['acceptance']).validate()
+            tasks.append(dict(case_id='control::'+control['id'],config=asdict(cfg),sampling_mode='design_control',seed=0,
+                              control_kind=control['kind'],design_ids=control['design_ids']))
     return selected, tasks
 
 
@@ -191,7 +198,8 @@ def worker(root, args):
     env, output = environment(), args.output
     configure_io_budget(output, limits["disk_limit_mib"]*1024**2, 2*1024**3)
     fingerprint = digest(dict(source=source_id, commit=args.source_commit, phase=args.phase,
-                              tasks=tasks, environment=digest(env)))
+                              tasks=tasks, environment=digest(env),
+                              signature_library=None if args.signature_library is None else __import__("hashlib").sha256(args.signature_library.read_bytes()).hexdigest()))
     checkpoint = output/"CHECKPOINT.json"
     cursor, active, row_hashes, rows = 0, None, [], []
     if args.resume:
@@ -234,7 +242,12 @@ def worker(root, args):
             cfg = Config(**task["config"]).validate()
             begin = time.perf_counter()
             was_resumed = active is not None
-            if task["sampling_mode"] == "finite_enumeration":
+            if task['sampling_mode']=='design_control':
+                from .design_controls import execute
+                control=execute(task['control_kind'],cfg,task['seed'])
+                if not control['technical_pass']:raise ArithmeticError('design control failed: '+task['case_id'])
+                payload,trace=dict(control_result=control),control
+            elif task["sampling_mode"] == "finite_enumeration":
                 job = FiniteEnumeration(cfg, saved=active, max_nodes=plan["max_enumeration_nodes"])
                 while job.pending:
                     job.advance()
@@ -253,6 +266,9 @@ def worker(root, args):
             row["scientific_hash"] = digest(payload)
             if task["seed"] == 0:
                 atomic_json(output/"traces"/(row["task_id"]+".json"), trace)
+                if task['sampling_mode'] != 'design_control':
+                    from .geometry_diagnostics import diagnose
+                    atomic_json(output/'geometry'/(row['task_id']+'.json'), diagnose(trace, args.signature_library))
             atomic_json(output/"rows"/f"{cursor:06d}.json", row)
             rows.append(row)
             cursor += 1
@@ -260,8 +276,10 @@ def worker(root, args):
             row_hashes.append(digest(row))
             save()
             fault("after_checkpoint")
-        summaries = summarize(rows)
-        contrasts = paired_contrasts(rows, cases["contrasts"], plan["acceptance"]["profile_equivalence_tv"])
+        scientific_rows=[r for r in rows if r['sampling_mode']!='design_control']
+        control_rows=[r for r in rows if r['sampling_mode']=='design_control']
+        summaries = summarize(scientific_rows)
+        contrasts = paired_contrasts(scientific_rows, cases["contrasts"], plan["acceptance"]["profile_equivalence_tv"])
         if args.phase in ("smoke", "main") and any(v["status"] == "NOT_EVALUABLE" for v in contrasts.values()):
             raise ValueError("complete phase left a declared contrast unevaluable")
         from .memory import response
@@ -275,6 +293,8 @@ def worker(root, args):
                         atoms=response(cfg.bath_modes,cfg.bath_coupling,cfg.detuning))
         atomic_json(output/"RESPONSE.json", responses)
         atomic_json(output/"METRICS.json", dict(summary=summaries, contrasts=contrasts))
+        from .amendment_report import report as amendment_report
+        atomic_json(output/'FOUR_CANDIDATE_RETURN.json', amendment_report(scientific_rows, contrasts))
         validation = {}
         for name in plan["monte_carlo_validation"]["cases"]:
             if name in summaries and "mc::"+name in summaries:
@@ -286,16 +306,28 @@ def worker(root, args):
                     interpretation="Diagnostic seed-model comparison; not an independence proof")
         atomic_json(output/"MONTE_CARLO_VALIDATION.json", dict(status="EXECUTED" if validation else "NOT_SCHEDULED_IN_THIS_PHASE", comparisons=validation))
         contracts = read_json(root/"preregistration/ANCESTOR_CONTRACTS.json")["contracts"]
-        atomic_json(output/"ANCESTOR_RETURN.json", ancestor_report(contracts, rows, summaries, contrasts))
+        atomic_json(output/"ANCESTOR_RETURN.json", ancestor_report(contracts, scientific_rows, summaries, contrasts))
+        controls={r['case_id']:r['control_result'] for r in control_rows}
+        atomic_json(output/'DESIGN_CONTROLS.json',controls)
+        from .scope_evidence import collect,returns
+        mapping=read_json(root/'preregistration/IMPLEMENTATION_MAP.json')
+        evidence=collect(mapping,contrasts,controls,args.source_commit,config_id)
+        atomic_json(output/'DESIGN_EVIDENCE.json',evidence)
+        prospective=read_json(root/'preregistration/SCOPE_RETURN_CONTRACTS.json')
+        atomic_json(output/'SCOPE_ANCESTOR_RETURN.json',returns(prospective,contrasts,controls))
+        if args.phase in ('smoke','main') and plan.get('scope_evidence_required'):
+            if any(not values or not all(x['complete'] for x in values) for values in evidence['comparisons'].values()):
+                raise ValueError('declared design comparison lacks completed executable evidence')
         atomic_json(output/"ROWS_INDEX.json", dict(row_hashes=row_hashes,
             scientific_hashes=[r["scientific_hash"] for r in rows],
             storage="canonical per-task rows; no duplicate full TRAJECTORIES dump"))
         fault("finalization")
         report = dict(phase=args.phase, source_commit=args.source_commit, source_digest=source_id,
             config_digest=config_id, environment_fingerprint=digest(env), complete=True,
-            technical_pass=all(r["finished"] for _,r in distribution(rows)),
+            technical_pass=all(r["finished"] for _,r in distribution(scientific_rows)) and all(r['control_result']['technical_pass'] for r in control_rows),
             scientific_confirmation=False, task_count=len(rows),
-            physical_outcome_rows=sum(len(r.get("outcomes", [None])) for r in rows),
+            physical_outcome_rows=sum(len(r.get("outcomes", [None])) for r in scientific_rows),
+            design_control_tasks=len(control_rows),
             events=sum(r.get("executed_events", r.get("result", {}).get("events", 0)) for r in rows),
             current_worker_seconds=time.perf_counter()-started,
             runtime_gate="UNCALIBRATED_BOUNDED_MEASUREMENT", expected_seconds=None,

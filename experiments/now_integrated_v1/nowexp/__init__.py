@@ -1,2 +1,2 @@
-"""Review candidate. No simulation is run on import."""
-__version__ = "0.1.0-review"
+"""Existing NOW experiment: four-candidate amendment, review candidate."""
+__version__ = "0.4.0-review"

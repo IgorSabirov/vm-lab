@@ -53,6 +53,20 @@ class Cell:
     last_event: str | None = None
     capability_uses: list = field(default_factory=list)
     delivery_times: list = field(default_factory=list)
+    fragments: dict = field(default_factory=dict)
+    peer_beacons: dict = field(default_factory=dict)
+    route_template: list = field(default_factory=list)
+    contact_peers: list = field(default_factory=list)
+    reactor_state: int = 1
+    transmitted_to: list = field(default_factory=list)
+    production_round: int = 0
+    repair_history: list = field(default_factory=list)
+    fragment_headers: dict = field(default_factory=dict)
+    last_completed_fragment: dict = field(default_factory=dict)
+    transport_repaired: bool = False
+    transport_material: int = 0
+
+    task_state: dict = field(default_factory=dict)
 
     def pay(self, n, purpose):
         if n < 0:
@@ -116,13 +130,52 @@ class Config:
     produced_disabled_roles: tuple = ()
     disabled_resource_policy: str = "matched"
     thresholds: dict = field(default_factory=scientific_thresholds)
+    separate_apparatus: bool = False
+    seed_writer: bool = True
+    seed_reader: bool = True
+    damage_writer: bool = False
+    damage_reader: bool = False
+    inherited_routes: bool = False
+    transmit_route: bool = True
+    damage_route: bool = False
+    fragmented_records: bool = False
+    drop_fragment: bool = False
+    duplicate_fragment: bool = False
+    fragment_slots: int = 4
+    completion_mode: str = 'isolate'
+    completion_probe: bool = False
+    branching: bool = False
+    prepared_records: bool = False
+    production_semantics: str = 'pair_rule'
+    repair_rounds: int = 0
+    cycle_damage_role: str = 'writer'
+    remove_parent_template_after_transfer: bool = False
+    initiator_enabled: bool = True
+    template_slots: int = 2
+    damage_transport: bool = False
+    repair_transport: bool = True
+    transport_support: bool = False
+
+    geometry: dict | None = None
+    task_probe: bool = False
+    task_damage: str = "none"
+    restoration_mode: str = "off"
+    task_content_intervention: str = "none"
 
     @property
     def required_content(self):
         return dict(zip(("A", "B"), self.thresholds["required_decoded_content"]))
 
     def validate(self):
-        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template"):
+        if self.geometry is not None and (not isinstance(self.geometry, dict) or self.receiver_velocity != 0):
+            raise ValueError("geometry adapter requires a manifest and supplied rest clocks")
+        if self.task_probe and (not self.separate_apparatus or self.branching or self.repair_rounds or self.memory != "classical" or self.damage_writer or self.damage_reader):
+            raise ValueError("task probe envelope: separate W/R, classical records, one challenge, no legacy role damage")
+        if self.task_damage not in ("none", "writer", "reader", "contact") or self.restoration_mode not in ("on", "off", "sham"):
+            raise ValueError("unknown challenge or restoration")
+        if self.task_content_intervention not in ("none", "flip_A"):
+            raise ValueError("XOR control must change exactly one input")
+        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template", "fragment_slots", "repair_rounds", "template_slots"):
             if type(getattr(self, name)) is not int:
                 raise ValueError("integer resource/count required: " + name)
         for name in ("detuning", "bath_coupling", "classical_survival", "supply_delay", "record_delay", "receiver_velocity", "read_wait"):
@@ -136,7 +189,7 @@ class Config:
             raise ValueError("generations outside reviewed envelope")
         if self.memory not in ("classical", "finite_dark", "finite_static"):
             raise ValueError("unknown memory backend")
-        if self.preparation not in ("correlated", "independent"):
+        if self.preparation not in ("correlated", "independent",'bell_x','dephased_x','bell_z','dephased_z'):
             raise ValueError("unknown preparation law")
         if not 2 <= self.bath_modes <= 64:
             raise ValueError("bath size outside envelope")
@@ -148,12 +201,27 @@ class Config:
             raise ValueError("invalid finite budget")
         if not 0 <= self.inbox_slots <= 2 or not 0 <= self.record_slots <= 2:
             raise ValueError("two-address finite memory bank required")
+        if self.prepared_records and self.record_slots<2:
+            raise ValueError('prepared two-record slice exceeds record capacity')
         if not math.isfinite(self.inbox_lifetime) or self.inbox_lifetime < 0:
             raise ValueError("invalid inbox lifetime")
         if self.disabled_resource_policy not in ("matched", "natural"):
             raise ValueError("unknown disabled-resource policy")
         if not 0 < self.thresholds["function_health_at_least"] <= 10:
             raise ValueError("function threshold outside health range")
+        if self.fragment_slots not in range(5):
+            raise ValueError('fragment capacity outside four-slot envelope')
+        if self.completion_mode not in ('isolate','trace','erase','transfer','decay'):
+            raise ValueError('unknown completion instrument')
+        if self.branching and (self.generations!=3 or not self.separate_apparatus):
+            raise ValueError('reviewed branching envelope: parent and two children, separate W/R')
+        if self.production_semantics not in ('pair_rule','V1','V2','A'):
+            raise ValueError('unknown production semantics')
+        if self.production_semantics!='pair_rule' and not self.separate_apparatus:
+            raise ValueError('typed production requires distinct functional apparatus')
+        if self.repair_rounds not in range(4) or self.cycle_damage_role not in ('writer','reader'):
+            raise ValueError('bounded repair-cycle envelope violated')
+        if self.template_slots not in range(3):raise ValueError('template bank envelope violated')
         if len(self.thresholds["required_decoded_content"]) != 2 or any(x not in (0,1) for x in self.thresholds["required_decoded_content"]):
             raise ValueError("required content must be two bits")
         for key in ("causal_interval_tolerance", "density_trace_tolerance", "psd_negative_tolerance", "profile_equivalence_tv"):

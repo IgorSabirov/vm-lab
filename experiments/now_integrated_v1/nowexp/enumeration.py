@@ -11,6 +11,9 @@ def input_distribution(config):
         return [(list(config.forced_content), Fraction(1))]
     if config.preparation == "independent":
         return [(list(pair), Fraction(1,4)) for pair in product((0,1), repeat=2)]
+    if config.preparation.startswith(('bell_','dephased_')):
+        from .joint_preparation import instrument_distribution
+        return [(x['bits'],Fraction(x['probability'])) for x in instrument_distribution(config.preparation)['outcomes']]
     weights = {}
     for _, pair, weight in exact_histories():
         key = tuple(pair)
@@ -24,6 +27,8 @@ class FiniteEnumeration:
         self.config, self.max_nodes = config, max_nodes
         self.pending = [dict(content=pair, input_weight=str(weight), weight=float(weight), decisions={})
                         for pair,weight in reversed(input_distribution(config))]
+        for branch in self.pending:
+            branch['rational_weight']=branch['input_weight'] if config.memory=='classical' and config.preparation in ('correlated','independent') else None
         self.leaves, self.nodes, self.executed_events = [], 0, 0
         self.trace = None
         if saved is not None:
@@ -42,9 +47,11 @@ class FiniteEnumeration:
         except BranchRequired as split:
             for choice, probability in reversed(split.options):
                 self.pending.append(dict(branch, weight=branch["weight"]*probability,
+                    rational_weight=None if branch.get('rational_weight') is None else str(Fraction(branch['rational_weight'])*Fraction(str(probability))),
                     decisions=dict(branch["decisions"], **{split.address:choice})))
         else:
             self.leaves.append(dict(weight=branch["weight"], input_weight=branch["input_weight"],
+                                    rational_weight=branch.get('rational_weight'),
                                     decisions=branch["decisions"], result=result))
             if self.trace is None or result["all_functional"]:
                 self.trace = engine.snapshot()
@@ -63,4 +70,5 @@ class FiniteEnumeration:
             raise ArithmeticError("enumeration probability mass not normalized")
         return dict(outcomes=self.leaves, probability_mass=mass,
                     enumeration_nodes=self.nodes, executed_events=self.executed_events,
-                    numerical_probabilities=self.config.memory != "classical")
+                    rational_arithmetic_complete=all(r['rational_weight'] is not None for r in self.leaves),
+                    numerical_probabilities=self.config.memory != "classical" or self.config.preparation.startswith(('bell_','dephased_')))
