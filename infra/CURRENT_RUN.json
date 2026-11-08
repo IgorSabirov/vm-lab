@@ -61,18 +61,66 @@
     "runbook": "infra/LAUNCH_RUNBOOK.md"
   },
   "observation": {
-    "observed_at_utc": "2026-11-08T14:20:55.054Z",
-    "interpreted_at_utc": "2026-11-08T14:20:55.925320+00:00",
+    "observed_at_utc": "2026-11-08T15:03:49.395Z",
+    "interpreted_at_utc": "2026-11-08T15:03:49.395Z",
     "job_id": "now_long_main_da72a3a_20261108",
     "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
-    "process_state": "running",
-    "completed_tasks": 1873,
+    "process_state": "completed",
+    "completed_tasks": 3083,
     "planned_tasks": 3083,
     "progress_is_snapshot": true,
     "scientific_confirmation": false,
     "automatic_resubmit": false,
-    "checkpoint_sha256": "0f04c4b18011bfc2858fa0eb65dc653f12c53dab6186d22042386db689920865",
-    "next_action": "OBSERVE_EXISTING_JOB",
-    "execution_observed": true
+    "checkpoint_sha256": "0e11d73988a15be56d83d8e2c218cd4832527c82073a8e5a7740acd7c3eb05d3",
+    "execution_observed": true,
+    "next_action": "REVIEW_RUNTIME_GATE_AND_READ_DECLARED_REPORT"
+  },
+  "result": {
+    "process_wall_seconds": 3352.798578846996,
+    "child_cpu_seconds": 3261.448793,
+    "task_count": 3083,
+    "contrasts_evaluated": 1720,
+    "physical_outcome_rows": 18897,
+    "events": 2297792,
+    "output_bytes": 220541576,
+    "max_rss_mib": 578.109375,
+    "technical_pass": true,
+    "runtime_gate": "REVIEW_REQUIRED",
+    "scientific_confirmation": false,
+    "forecast": {
+      "expected_seconds": 2368.7776741902367,
+      "lower_seconds": 1421.266604514142,
+      "upper_seconds": 3316.288743866331,
+      "hard_wall_seconds": 3600
+    }
+  },
+  "runtime_review": {
+    "status": "REVIEW_REQUIRED",
+    "actual_minus_expected_seconds": 984.0209046567593,
+    "actual_vs_expected_percent": 41.541294287702435,
+    "above_upper_seconds": 36.50983498066489,
+    "under_hard_cap_seconds": 247.2014211530048,
+    "task_timers": {
+      "observed_total": 3127.4113490689488,
+      "stratified_forecast_total": 2140.9252092870593,
+      "observed_classical": 572.2056072301784,
+      "forecast_classical": 438.4884718792455,
+      "observed_wave": 2548.578833617634,
+      "forecast_wave": 1702.4367374078138,
+      "wall_minus_task_timers": 225.38722977804719
+    },
+    "likely_explanation": "The per-stratum calibration was too sparse: each wave stratum used one representative at detuning 0.07 and read_wait 32, then scaled across 11 detunings and 4 waits. Main wave runtime rose especially for Ising/CDT, while the recorded environment fingerprint matched calibration and memory/disk remained below caps.",
+    "evidence": {
+      "main_process": "results/now_long_main_da72a3a_20261108/PROCESS.json",
+      "main_rows": "results/now_long_main_da72a3a_20261108/main_output/rows/",
+      "calibration_job": "now_long_cal_da72a3a_20261108",
+      "read_only_aggregation_job": "now_cost_diag_20261108",
+      "forecast": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/FORECAST.json",
+      "resource_max_rss_mib": 578.109375,
+      "disk_output_bytes": 220541576,
+      "memory_limit_mib": 4096,
+      "disk_limit_mib": 1024
+    },
+    "next_forecast_correction": "Calibrate across workload-defining dimensions (not just carrier, bath size and mode): sample detuning/read-wait tails or separate wave sub-strata; recompute uncertainty from within-stratum variation. Keep the same hard wall cap. Do not change this run's forecast retroactively."
   }
 }
