@@ -3032,6 +3032,32 @@
         "registry_status_changes": false,
         "full_output_archive_sha256": "ee0c9241f30be94e1c1550cf996620c3d9e16b90320a754a535b99ab89af27e2",
         "full_output_archive_bytes": 3018795
+      },
+      "open_question_ids": [
+        "U001",
+        "U002",
+        "U003",
+        "U004",
+        "U005",
+        "U006",
+        "U007"
+      ],
+      "descriptive_followup": {
+        "date": "2026-11-08",
+        "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
+        "source": "results/NOW_INTEGRATED_7c55308_20261108/FOUR_CANDIDATE_RETURN.json",
+        "observations": [
+          {
+            "question_id": "U001",
+            "observation": "ADD-growing: p_task_success=2/3, p_full_fixed_reserve=2/3, p_task_given_full_reserve=1; причина недостающей массы не установлена."
+          },
+          {
+            "question_id": "U002",
+            "observation": "Все пять новых measure-контрастов: разность p_task_success=0, joint_profile_tv=0.125; роль корреляций по этой вероятности не различается."
+          }
+        ],
+        "interpretation_note": "72 из 76 выходов за TV-допуск не являются автоматически провалами эксперимента: смысл зависит от вмешательства и вопроса контраста.",
+        "new_scientific_runs": 0
       }
     }
   ],
@@ -4561,6 +4587,9 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U003"
       ]
     },
     {
@@ -4607,6 +4636,9 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U001"
       ]
     },
     {
@@ -4676,6 +4708,10 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U001",
+        "U005"
       ]
     },
     {
@@ -4702,6 +4738,9 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U002"
       ]
     },
     {
@@ -4727,6 +4766,10 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U004",
+        "U007"
       ]
     },
     {
@@ -4754,6 +4797,14 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U001",
+        "U003",
+        "U004",
+        "U005",
+        "U006",
+        "U007"
       ]
     },
     {
@@ -4781,6 +4832,9 @@
           ],
           "scientific_status_promoted": false
         }
+      ],
+      "open_question_ids": [
+        "U002"
       ]
     }
   ],
@@ -5821,9 +5875,9 @@
     }
   ],
   "revision": {
-    "id": "four_candidate_vm_execution_20261108_v1_3",
+    "id": "open_questions_register_20261108_v1",
     "date": "2026-11-08",
-    "base_commit": "3749a5ced5465e74aa2c3df7748e5acecf63f814",
+    "base_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
     "result_count": 127,
     "construct_count": 42,
     "open_link_count": 10,
@@ -5832,7 +5886,7 @@
       "R127"
     ],
     "scientific_statuses_changed": [],
-    "note": "Исполнен ранее спроектированный NOW-патч; полный VM runtime gate PASS; научного повышения или закрытия открытых связей нет."
+    "note": "Документация вопросов U001–U007 и рабочего правила; R/C/L сохранены, запусков нет."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -5922,6 +5976,16 @@
       "assumptions_reduction_and_genealogy_delta_required": true,
       "no_code_volume_based_fragmentation": true,
       "all_records_need_not_be_simulated": true
+    },
+    "question_capture": {
+      "adopted_date": "2026-11-08",
+      "source": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
+      "at_point_of_origin": true,
+      "user_answer_required_immediately": false,
+      "no_silent_scientific_choice": true,
+      "continue_independent_authorized_work": true,
+      "smoke_role": "diagnosis_and_refinement",
+      "not_a_new_general_launch_gate": true
     }
   },
   "record_role_annotations": {
@@ -6298,6 +6362,25 @@
       "source_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
       "run": "results/NOW_INTEGRATED_7c55308_20261108/MAIN_RUN.json",
       "change": "413 задач исполнены, runtime gate PASS; научные статусы не повышены"
+    },
+    {
+      "date": "2026-11-08",
+      "revision": "open_questions_register_v1",
+      "records": [
+        "R127"
+      ],
+      "base_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
+      "questions_added": [
+        "U001",
+        "U002",
+        "U003",
+        "U004",
+        "U005",
+        "U006",
+        "U007"
+      ],
+      "change": "Вопросы и текущие ограничения сохранены с точками возникновения и обратными ссылками; закреплено назначение дымовых как уточнений.",
+      "scientific_runs": 0
     }
   ],
   "lineage_edges": [
@@ -10083,5 +10166,21 @@
       "contract_id": "N08",
       "provenance": "New design; no scientific execution and no status promotion"
     }
-  ]
+  ],
+  "open_questions_register": {
+    "markdown": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
+    "json": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
+    "version": 1,
+    "date": "2026-11-08",
+    "question_ids": [
+      "U001",
+      "U002",
+      "U003",
+      "U004",
+      "U005",
+      "U006",
+      "U007"
+    ],
+    "scope": "Начальная адресная версия: два вопроса текущего разбора R127, пять уже сохранённых границ R127, ссылки на все десять открытых L. Это не заявка на полный исторический аудит."
+  }
 }
