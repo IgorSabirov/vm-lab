@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
-  "date": "2026-11-06",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n",
+  "date": "2026-11-08",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен.",
   "results": [
     {
       "id": "R001",
@@ -2815,6 +2815,127 @@
           "retrospective_for_prior_pilots": true
         }
       ]
+    },
+    {
+      "id": "R126",
+      "section": "24. Геометрические кандидаты и интеграция",
+      "title": "ADD: внутренний PASS реконструкции и провал соответствия свободному переносу",
+      "status": "РЕКОНСТРУКЦИЯ ВОСПРОИЗВЕДЕНА; СООТВЕТСТВИЕ ПЕРЕНОСУ СТАТЬИ НЕ ПРОШЛО",
+      "result": "Код из двух архивов одинаков. Воспроизведены 64 C1, 4096 C2 и 18 620 переходов E0-орбит, характеристические многочлены и секторные числа. Однако квадрат sqrt_tau восстанавливает циклическое слово, а не объявленный перенос по портам; [a,0,b] остаётся при L=3 с обоими направлениями. Определённый только обменом битов R не коммутирует с присланным I2 на коротком примере. Неудача одного T0 не доказывает отсутствия любого обращения T.",
+      "inputs": "SHA256 ee607902b61b28328affc9ca3474ee8881b610aac9b8ec1773081abe3d585e27; ориентированный двухпортовый цикл, четыре бита, сравнение с сохранением меток портов. Полусдвиг сравнивался с независимо заданным полным переносом. Проверки выполнены в предыдущем шаге текущей сессии, здесь архивированы без повторного исполнения.",
+      "limit": "Это дефект соответствия реконструкции заявленной динамике, не опровержение авторской теоремы. Буквальную Definition 4 требуется согласовать с рисунком/описанием. Авторский код не получен; исправленный ADD не аттестован. Точные комбинаторные результаты остаются специфичными для данных правил. Ремонт был внешним интерфейсом без изменения состояния ADD.",
+      "framework_role": "Блокировать перенос теорем и временной интерпретации на этот исходник; сохранить воспроизводимую комбинаторику и добавить обязательный Q²=tau контроль перед интеграцией с организацией.",
+      "construct_ids": [
+        "C035",
+        "C037",
+        "C042"
+      ],
+      "parent_result_ids": [
+        "R077",
+        "R078",
+        "R085",
+        "R090"
+      ],
+      "open_link_ids": [
+        "L08",
+        "L09",
+        "L10"
+      ],
+      "evidence_level": "СОБСТВЕННЫЙ КОНЕЧНЫЙ АУДИТ И АЛГЕБРА ПО КОДУ; УСЛОВИЯ ИСТОЧНИКА СВЕРЕНЫ; НЕ АВТОРСКАЯ РЕПЛИКАЦИЯ",
+      "sources": [
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/REVIEW_20261108.txt",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/check_author_contract.py",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/author_contract_results.json",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_orientation.json",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_fixed_vector.json"
+      ],
+      "genealogy_note": "Ретроспективная регистрация аудита предыдущего шага; не выдаётся за его предрегистрацию."
+    },
+    {
+      "id": "R127",
+      "section": "24. Геометрические кандидаты и интеграция",
+      "title": "Четыре кандидата: единая схема геометрии и продолжения организации NOW",
+      "status": "ИНТЕГРАЦИОННАЯ СПЕЦИФИКАЦИЯ ЗАВЕРШЕНА; СОВМЕСТНЫЙ НАУЧНЫЙ ПРОГОН НЕ ИСПОЛНЕН",
+      "result": "Разработаны общее полное состояние, локальное причинное исполнение, конечный ресурс, единый Y_T, профиль I_Pi, capability-интерфейсы и восемь контрактов N01–N08. Serbian используется для метрической диагностики, IsingCauset — совместной меры, CDT — контрольных ансамблей, ADD — кандидата локального изменения носителя после устранения R126. Сохранены два маршрута возникновения и полная карта 42 конструкций с различением прямых, ограничивающих и отложенных связей.",
+      "inputs": "Реестр main 29dd0e9; NOW v0.3 ea49ebc и отчёт f5e2e47; сохранённые сербские технические проверки и анализы; предоставленные обсуждения и аудит ADD. Мера, закон, подготовка, аппарат, геометрия и обратный процесс перечислены как входы/обязательства.",
+      "limit": "Не получен один физический закон четырёх авторских моделей; их меры не перемножаются автоматически. IsingCauset/CDT у нас не собраны и не прошли дымовые. ADD v1 не допущен как реализация статьи. Новые научные панели и локальное взаимодействие организации с переписыванием не исполнены. Происхождение основания, геометрии, общего инварианта и субъекта остаётся открытым; L01–L10 не закрыты.",
+      "framework_role": "Конкретизировать следующий интегрированный эксперимент и возврат результата предкам; первым переносом выбрать фиксированные 2d orders при j=0 и общий процесс NOW. Исходные 326 задач v0.3 и их прогноз не изменены.",
+      "construct_ids": [
+        "C001",
+        "C002",
+        "C004",
+        "C005",
+        "C009",
+        "C010",
+        "C011",
+        "C023",
+        "C026",
+        "C028",
+        "C030",
+        "C032",
+        "C033",
+        "C034",
+        "C035",
+        "C036",
+        "C037",
+        "C038",
+        "C039",
+        "C041",
+        "C042"
+      ],
+      "parent_result_ids": [
+        "R003",
+        "R006",
+        "R018",
+        "R023",
+        "R034",
+        "R037",
+        "R038",
+        "R041",
+        "R058",
+        "R063",
+        "R064",
+        "R074",
+        "R075",
+        "R076",
+        "R077",
+        "R078",
+        "R083",
+        "R084",
+        "R085",
+        "R087",
+        "R090",
+        "R094",
+        "R096",
+        "R119",
+        "R120",
+        "R121",
+        "R122",
+        "R123",
+        "R124",
+        "R125",
+        "R126"
+      ],
+      "open_link_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10"
+      ],
+      "evidence_level": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ",
+      "sources": [
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json"
+      ],
+      "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений."
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
@@ -2828,7 +2949,8 @@
       "results": [
         "R001",
         "R002",
-        "R118"
+        "R118",
+        "R127"
       ],
       "sources": [
         "analysis/PROBABILITY_ORIGIN_20261103/NOTE.md",
@@ -2849,7 +2971,8 @@
         "R094",
         "R096",
         "R118",
-        "R123"
+        "R123",
+        "R127"
       ],
       "sources": [
         "analysis/OUTPUT_HISTORIES_REVIEW_20261105/RESULT.md",
@@ -2898,7 +3021,8 @@
       "results": [
         "R096",
         "R118",
-        "R123"
+        "R123",
+        "R127"
       ],
       "sources": [
         "analysis/NOW_FRAMEWORK_INVARIANT_20261106/BOLTZMANN_ORIGIN.md",
@@ -2923,7 +3047,8 @@
         "R119",
         "R120",
         "R121",
-        "R123"
+        "R123",
+        "R127"
       ],
       "sources": [
         "analysis/AFFECTIVE_ANALOGY_20261103/REVIEW.md",
@@ -3001,7 +3126,8 @@
       "results": [
         "R058",
         "R099",
-        "R121"
+        "R121",
+        "R127"
       ],
       "sources": [
         "analysis/INVARIANT_ATTACHMENTS_20261105/RESULT.md",
@@ -3024,7 +3150,8 @@
         "R116",
         "R117",
         "R118",
-        "R119"
+        "R119",
+        "R127"
       ],
       "sources": [
         "analysis/OUTPUT_HISTORIES_REVIEW_20261105/RESULT.md",
@@ -3050,7 +3177,8 @@
         "R003",
         "R037",
         "R038",
-        "R116"
+        "R116",
+        "R127"
       ],
       "sources": [
         "analysis/ENDOGENOUS_ACCESS_REVIEW_20261105/RESULT.md",
@@ -3310,7 +3438,8 @@
         "R119",
         "R120",
         "R121",
-        "R122"
+        "R122",
+        "R127"
       ],
       "sources": [
         "analysis/INTERNAL_OPENNESS_20261103/CONCEPT.md",
@@ -3386,7 +3515,8 @@
         "R053",
         "R054",
         "R055",
-        "R114"
+        "R114",
+        "R127"
       ],
       "sources": [
         "analysis/NOW_FUTURE_STRUCTURE_20261103/REVIEW.md",
@@ -3432,7 +3562,8 @@
         "R119",
         "R120",
         "R121",
-        "R123"
+        "R123",
+        "R127"
       ],
       "sources": [
         "analysis/INVARIANT_RECOVERY_20261105/RESULT.md",
@@ -3477,7 +3608,8 @@
         "R064",
         "R065",
         "R066",
-        "R117"
+        "R117",
+        "R127"
       ],
       "sources": [
         "analysis/ACCESS_REPAIR_REVIEW_20261104/RESULT.md",
@@ -3516,7 +3648,8 @@
         "R070",
         "R071",
         "R072",
-        "R073"
+        "R073",
+        "R127"
       ],
       "sources": [
         "analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md",
@@ -3535,7 +3668,8 @@
         "R116",
         "R119",
         "R120",
-        "R121"
+        "R121",
+        "R127"
       ],
       "sources": [
         "analysis/OUTPUT_HISTORIES_REVIEW_20261105/RESULT.md",
@@ -3559,7 +3693,8 @@
         "R118",
         "R123",
         "R124",
-        "R125"
+        "R125",
+        "R127"
       ],
       "sources": [
         "analysis/UNIVERSE_AGENCY_20261105/CORRECTION_ROLE.md",
@@ -3596,7 +3731,9 @@
         "R111",
         "R112",
         "R113",
-        "R118"
+        "R118",
+        "R126",
+        "R127"
       ],
       "sources": [
         "analysis/ARROW_COPILOT_20261101/RESULT.md",
@@ -3622,7 +3759,8 @@
       "limit": "Не готовая внешняя хронология; циклы и три времени пока не выводят этот порядок.",
       "results": [
         "R006",
-        "R118"
+        "R118",
+        "R127"
       ],
       "sources": [
         "analysis/GENETIC_ORDER_20261105/RESULT.md",
@@ -3641,7 +3779,9 @@
         "R083",
         "R084",
         "R085",
-        "R123"
+        "R123",
+        "R126",
+        "R127"
       ],
       "sources": [
         "analysis/INVARIANT_ATTACHMENTS_20261105/RESULT.md",
@@ -3662,7 +3802,8 @@
         "R086",
         "R087",
         "R088",
-        "R089"
+        "R089",
+        "R127"
       ],
       "sources": [
         "analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md",
@@ -3680,7 +3821,8 @@
         "R100",
         "R117",
         "R118",
-        "R120"
+        "R120",
+        "R127"
       ],
       "sources": [
         "analysis/NOW_FRAMEWORK_INVARIANT_20261106/RESULT.md",
@@ -3733,7 +3875,8 @@
         "R122",
         "R123",
         "R124",
-        "R125"
+        "R125",
+        "R127"
       ],
       "sources": [
         "analysis/GENETIC_INVARIANT_REVIEW_20261106/RESULT.md",
@@ -3764,7 +3907,9 @@
       "results": [
         "R123",
         "R124",
-        "R125"
+        "R125",
+        "R126",
+        "R127"
       ],
       "sources": [
         "analysis/RELATIVITY_FOUNDATION_20261107/RESULT.md",
@@ -4267,6 +4412,34 @@
       "C034",
       "C041",
       "C042"
+    ],
+    "R126": [
+      "C035",
+      "C037",
+      "C042"
+    ],
+    "R127": [
+      "C001",
+      "C002",
+      "C004",
+      "C005",
+      "C009",
+      "C010",
+      "C011",
+      "C023",
+      "C026",
+      "C028",
+      "C030",
+      "C032",
+      "C033",
+      "C034",
+      "C035",
+      "C036",
+      "C037",
+      "C038",
+      "C039",
+      "C041",
+      "C042"
     ]
   },
   "open_links": [
@@ -4279,7 +4452,19 @@
         "C012"
       ],
       "closure_condition": "Определить альтернативы, правило весов и происхождение самого основания; совместимость не заменяет непустоту и выбор меры.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N05",
+            "N08"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L02",
@@ -4291,7 +4476,18 @@
         "C011"
       ],
       "closure_condition": "Для обоих маршрутов отделить допустимость конфигурации, вероятность её реализации и способность дальнейшего продолжения.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N08"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L03",
@@ -4302,7 +4498,19 @@
         "C032"
       ],
       "closure_condition": "Получить последующий доступ физическим взаимодействием, раскрыв производство/копирование и расход носителей.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N03",
+            "N04"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L04",
@@ -4315,7 +4523,19 @@
         "C042"
       ],
       "closure_condition": "Предъявить один процесс с внутренним следом, обратным действием чтения и причинной ролью содержания. Физическое чтение и действие должны иметь указанные причинные каналы; пространственноподобная корреляция не является каналом управления.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N01",
+            "N03"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L05",
@@ -4326,7 +4546,16 @@
         "C022"
       ],
       "closure_condition": "Связать конкретные спины, дырки и протонный перенос с проверяемой запутанностью и сохранением после исчезновения посредника.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L06",
@@ -4338,7 +4567,19 @@
         "C032"
       ],
       "closure_condition": "Замкнуть полный цикл с судьбой инструментов, ошибок и ресурсов на заявленном горизонте.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N04",
+            "N06"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L07",
@@ -4352,7 +4593,19 @@
         "C042"
       ],
       "closure_condition": "Определить профиль продолжения и строгое отношение эквивалентности; предъявить сохраняемый переход организации между реализациями/уровнями. Для физического наследования дополнительно установить реальную причинную передачу профиля и её стоимость; ресурсное замыкание и производство условий — отдельные усиления. Не подменять довременный генетический порядок обязательными временными поколениями. Равенство отклика недостаточно. Для физического слоя дополнительно задать ковариантное соответствие протоколов, событий успеха, мер и причинной передачи; смену координат не путать со сменой аппарата.",
-      "status": "ОТКРЫТО; R120 уточняет постановку; C041 — кандидат; исполняемый физический протокол ещё не выбран"
+      "status": "ОТКРЫТО; R120 уточняет постановку; C041 — кандидат; исполняемый физический протокол ещё не выбран",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N04",
+            "N06"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L08",
@@ -4365,7 +4618,19 @@
         "C042"
       ],
       "closure_condition": "Установить роль коррекции относительно базового режима; отдельно проверить связь с направленностью и представленными целями. Коррекцию к граничным условиям отделить от постотбора; показать действие внутреннего механизма при релятивистски допустимых возмущениях.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N03",
+            "N07"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L09",
@@ -4379,7 +4644,20 @@
         "C042"
       ],
       "closure_condition": "Вывести причинную/метрическую структуру и масштаб, согласовать с СТО/ОТО без импорта готовой геометрии. R123/C042 фиксируют требования на заданном фоне; выбор физического настоящего и происхождение причинной/метрической структуры остаются открытыми.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N02",
+            "N05",
+            "N07"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     },
     {
       "id": "L10",
@@ -4393,7 +4671,20 @@
         "C039"
       ],
       "closure_condition": "Совместить условия в одной модели; совпадение слов и успехи отдельных игрушек не доказывают их совместимость.",
-      "status": "ОТКРЫТО; не назначенный запуск"
+      "status": "ОТКРЫТО; не назначенный запуск",
+      "related_reviews": [
+        {
+          "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+          "design": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+          "record": "R127",
+          "planned_panels": [
+            "N02",
+            "N06",
+            "N08"
+          ],
+          "scientific_status_promoted": false
+        }
+      ]
     }
   ],
   "legacy_crosswalk": [
@@ -5433,15 +5724,18 @@
     }
   ],
   "revision": {
-    "id": "integrated_project_design_20261107",
-    "date": "2026-11-07",
-    "base_commit": "55a9e6915e851e9d2a54ed7b3b79986543a34476",
-    "result_count": 125,
+    "id": "four_candidate_integration_20261108",
+    "date": "2026-11-08",
+    "base_commit": "29dd0e9e188e3cfc5bdfe9317e4823f543fb2ca2",
+    "result_count": 127,
     "construct_count": 42,
     "open_link_count": 10,
-    "new_records": [],
+    "new_records": [
+      "R126",
+      "R127"
+    ],
     "scientific_statuses_changed": [],
-    "note": "Unified experiment policy and full typed prospective coverage; no production run."
+    "note": "R126 preserves prior reconstruction audit; R127 is a typed integration design. Existing scientific statuses and all ten open links retained."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -5672,6 +5966,18 @@
       "full_R125_executed": false,
       "v3_status": "EXECUTED BOUNDED SINGLE-TOKEN PILOT; FULL V3 SUITE OPEN",
       "multi_status": "SOURCE SELF-TEST FAILED; TARGETED CAUSAL DEFECTS REPRODUCED; CONTINUATION COMPOSITION DESIGN ONLY"
+    },
+    "R126": {
+      "role": "СОБСТВЕННЫЙ КОНЕЧНЫЙ АУДИТ И АЛГЕБРА ПО КОДУ; УСЛОВИЯ ИСТОЧНИКА СВЕРЕНЫ; НЕ АВТОРСКАЯ РЕПЛИКАЦИЯ",
+      "not_new_project_discovery": true,
+      "scientific_main_executed": false,
+      "source_statuses_preserved": true
+    },
+    "R127": {
+      "role": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ",
+      "not_new_project_discovery": true,
+      "scientific_main_executed": false,
+      "source_statuses_preserved": true
     }
   },
   "revision_history": [
@@ -5829,6 +6135,31 @@
       "planned_bindings": 14,
       "linked_result_count": 34,
       "note": "Historical genealogy preserved; prospective and retrospective context are explicitly typed; no open link closed."
+    },
+    {
+      "id": "integrated_project_design_20261107",
+      "date": "2026-11-07",
+      "base_commit": "55a9e6915e851e9d2a54ed7b3b79986543a34476",
+      "result_count": 125,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "new_records": [],
+      "scientific_statuses_changed": [],
+      "note": "Unified experiment policy and full typed prospective coverage; no production run."
+    },
+    {
+      "id": "four_candidate_integration_20261108",
+      "date": "2026-11-08",
+      "base_commit": "29dd0e9e188e3cfc5bdfe9317e4823f543fb2ca2",
+      "result_count": 127,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "new_records": [
+        "R126",
+        "R127"
+      ],
+      "scientific_statuses_changed": [],
+      "note": "R126 preserves prior reconstruction audit; R127 is a typed integration design. Existing scientific statuses and all ten open links retained."
     }
   ],
   "lineage_edges": [
@@ -6605,6 +6936,216 @@
       "child": "R125",
       "relation": "distributed_resource_lifecycle_and_profile_cost_audit",
       "note": "Родители и бюджет закреплены PLAN.md до основного расчёта; дополнительная проверка определения хвостов явно отмечена как адаптивная после первоначального несовпадения."
+    },
+    {
+      "parent": "R077",
+      "child": "R126",
+      "relation": "retrospective_validation_constraint",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R078",
+      "child": "R126",
+      "relation": "retrospective_validation_constraint",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R085",
+      "child": "R126",
+      "relation": "retrospective_validation_constraint",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R090",
+      "child": "R126",
+      "relation": "retrospective_validation_constraint",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R003",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R006",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R018",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R023",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R034",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R041",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R058",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R063",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R064",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R074",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R075",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R076",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R077",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R078",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R083",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R084",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R085",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R087",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R090",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R094",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R096",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R119",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R120",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R121",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R122",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R123",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R124",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R125",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R126",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Scientific status of parent unchanged; prospective panels are not executed results."
+    },
+    {
+      "parent": "R037",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Explicit N05 parent; no status promotion."
+    },
+    {
+      "parent": "R038",
+      "child": "R127",
+      "relation": "integration_design_inherits_condition",
+      "note": "Explicit N05 parent; no status promotion."
     }
   ],
   "historical_chains": [
@@ -6636,7 +7177,9 @@
     "R090": [
       "R101",
       "R116",
-      "R118"
+      "R118",
+      "R126",
+      "R127"
     ],
     "R098": [
       "R101",
@@ -6671,13 +7214,15 @@
     ],
     "R041": [
       "R105",
-      "R115"
+      "R115",
+      "R127"
     ],
     "R106": [
       "R107"
     ],
     "R023": [
-      "R108"
+      "R108",
+      "R127"
     ],
     "R107": [
       "R108"
@@ -6690,18 +7235,23 @@
       "R116",
       "R118",
       "R123",
-      "R124"
+      "R124",
+      "R127"
     ],
     "R105": [
       "R110"
     ],
     "R077": [
       "R111",
-      "R118"
+      "R118",
+      "R126",
+      "R127"
     ],
     "R078": [
       "R111",
-      "R118"
+      "R118",
+      "R126",
+      "R127"
     ],
     "R110": [
       "R111"
@@ -6720,20 +7270,24 @@
     ],
     "R003": [
       "R116",
-      "R118"
+      "R118",
+      "R127"
     ],
     "R006": [
       "R116",
-      "R118"
+      "R118",
+      "R127"
     ],
     "R037": [
-      "R116"
+      "R116",
+      "R127"
     ],
     "R075": [
       "R116",
       "R119",
       "R120",
-      "R121"
+      "R121",
+      "R127"
     ],
     "R080": [
       "R116",
@@ -6758,13 +7312,15 @@
       "R117"
     ],
     "R063": [
-      "R117"
+      "R117",
+      "R127"
     ],
     "R064": [
       "R117",
       "R120",
       "R121",
-      "R122"
+      "R122",
+      "R127"
     ],
     "R066": [
       "R117",
@@ -6781,7 +7337,8 @@
     ],
     "R096": [
       "R118",
-      "R123"
+      "R123",
+      "R127"
     ],
     "R116": [
       "R118"
@@ -6813,7 +7370,8 @@
       "R119",
       "R120",
       "R121",
-      "R123"
+      "R123",
+      "R127"
     ],
     "R097": [
       "R119",
@@ -6840,29 +7398,36 @@
       "R122",
       "R123",
       "R124",
-      "R125"
+      "R125",
+      "R127"
     ],
     "R120": [
       "R121",
       "R122",
       "R123",
       "R124",
-      "R125"
+      "R125",
+      "R127"
     ],
     "R121": [
       "R122",
       "R124",
-      "R125"
+      "R125",
+      "R127"
     ],
     "R083": [
       "R123",
-      "R124"
+      "R124",
+      "R127"
     ],
     "R084": [
-      "R123"
+      "R123",
+      "R127"
     ],
     "R085": [
-      "R123"
+      "R123",
+      "R126",
+      "R127"
     ],
     "R095": [
       "R123"
@@ -6870,14 +7435,41 @@
     "R122": [
       "R123",
       "R124",
-      "R125"
+      "R125",
+      "R127"
     ],
     "R123": [
       "R124",
-      "R125"
+      "R125",
+      "R127"
     ],
     "R124": [
-      "R125"
+      "R125",
+      "R127"
+    ],
+    "R018": [
+      "R127"
+    ],
+    "R034": [
+      "R127"
+    ],
+    "R058": [
+      "R127"
+    ],
+    "R074": [
+      "R127"
+    ],
+    "R087": [
+      "R127"
+    ],
+    "R125": [
+      "R127"
+    ],
+    "R126": [
+      "R127"
+    ],
+    "R038": [
+      "R127"
     ]
   },
   "attachment_coverage": {
@@ -7437,7 +8029,106 @@
           "VM_calibration",
           "VM_main"
         ]
+      },
+      "latest_engine_evidence": {
+        "commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+        "report_commit": "f5e2e47baea7225626a530a8c123e9457a79d263",
+        "report_path": "analysis/INTEGRATED_SCOPE_VALIDATION_20261108/RESULT.md",
+        "status": "READY_FOR_MAIN_DECISION",
+        "unit_tests": 54,
+        "execution_checks": 18,
+        "scientific_main_executed": false,
+        "note": "Newer than the historical candidate-code implementation_review; new geometry extension is not included."
       }
+    },
+    {
+      "id": "NOW_GEOMETRY_CONTINUATION_V1",
+      "status": "DESIGN_COMPLETE_NOT_INTEGRATED_EXECUTION",
+      "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+      "graph": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
+      "lineage_map": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
+      "record": "R127",
+      "parent_result_ids": [
+        "R003",
+        "R006",
+        "R018",
+        "R023",
+        "R034",
+        "R037",
+        "R038",
+        "R041",
+        "R058",
+        "R063",
+        "R064",
+        "R074",
+        "R075",
+        "R076",
+        "R077",
+        "R078",
+        "R083",
+        "R084",
+        "R085",
+        "R087",
+        "R090",
+        "R094",
+        "R096",
+        "R119",
+        "R120",
+        "R121",
+        "R122",
+        "R123",
+        "R124",
+        "R125",
+        "R126"
+      ],
+      "construct_ids": [
+        "C001",
+        "C002",
+        "C004",
+        "C005",
+        "C009",
+        "C010",
+        "C011",
+        "C023",
+        "C026",
+        "C028",
+        "C030",
+        "C032",
+        "C033",
+        "C034",
+        "C035",
+        "C036",
+        "C037",
+        "C038",
+        "C039",
+        "C041",
+        "C042"
+      ],
+      "open_link_ids": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10"
+      ],
+      "panel_ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08"
+      ],
+      "main_executed": false,
+      "coverage_not_confirmation": true,
+      "engine_base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8"
     }
   ],
   "planned_experiment_edges": [
@@ -8932,6 +9623,314 @@
         "B04"
       ],
       "provenance": "prospective design; source status retained; no new experiment executed"
+    },
+    {
+      "source": "R074",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N01",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R075",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N01",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R119",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N01",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R018",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N02",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R023",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N02",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R034",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N02",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R058",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N02",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R063",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R076",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R083",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R123",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R124",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R125",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N03",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R064",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R094",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R120",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R121",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R122",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R124",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R125",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N04",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R003",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N05",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R037",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N05",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R038",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N05",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R085",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N05",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R087",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N05",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R041",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R064",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R077",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R078",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R120",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R125",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R126",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N06",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R076",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R077",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R078",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R083",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R084",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R123",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R126",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N07",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R003",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N08",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R090",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N08",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R094",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N08",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R096",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N08",
+      "provenance": "New design; no scientific execution and no status promotion"
+    },
+    {
+      "source": "R119",
+      "target": "NOW_GEOMETRY_CONTINUATION_V1",
+      "relation": "prospective_contract",
+      "contract_id": "N08",
+      "provenance": "New design; no scientific execution and no status promotion"
     }
   ]
 }

@@ -1,0 +1,155 @@
+{
+  "status": "PASS",
+  "scope": "reconstructed C2 rules on one oriented two-port cycle; not author source code",
+  "counterexample": {
+    "initial_states": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ]
+    ],
+    "I2_is_identity": true,
+    "L_after_sqrt_tau": 3,
+    "initial_split_merge_counts": [
+      0,
+      0
+    ],
+    "after_half_shift_split_merge_counts": [
+      0,
+      0
+    ],
+    "new_directed_edges_by_index": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "orientation": "w_i -> w_(i-1)"
+  },
+  "E0_exhaustive": [
+    {
+      "L": 2,
+      "E0_count": 192,
+      "active_after_half_shift": 30,
+      "quiet_after_half_shift": 162,
+      "merge_after_half_shift_violations": 0,
+      "pass": true
+    },
+    {
+      "L": 3,
+      "E0_count": 2660,
+      "active_after_half_shift": 618,
+      "quiet_after_half_shift": 2042,
+      "merge_after_half_shift_violations": 0,
+      "pass": true
+    },
+    {
+      "L": 4,
+      "E0_count": 36856,
+      "active_after_half_shift": 10966,
+      "quiet_after_half_shift": 25890,
+      "merge_after_half_shift_violations": 0,
+      "pass": true
+    }
+  ],
+  "E0_no_merge_through_four_f2_steps_at_L3": {
+    "violations": 0,
+    "pass": true
+  },
+  "E0_full_orbit_checks_at_L3": {
+    "transitions_checked": 18620,
+    "quiet_initial_states": 2042,
+    "merge_violations": 0,
+    "split_persistence_violations": 0,
+    "size_increment_not_equal_split_count": 0,
+    "quiet_period2_isomorphism_violations": 0,
+    "pass": true
+  },
+  "non_E0_counterexample": {
+    "initial_states": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "trace": [
+      {
+        "t": 0,
+        "L": 3,
+        "motifs": [
+          0,
+          1
+        ]
+      },
+      {
+        "t": 1,
+        "L": 2,
+        "motifs": [
+          0,
+          1
+        ]
+      },
+      {
+        "t": 2,
+        "L": 1,
+        "motifs": [
+          1,
+          0
+        ]
+      },
+      {
+        "t": 3,
+        "L": 2,
+        "motifs": [
+          1,
+          0
+        ]
+      },
+      {
+        "t": 4,
+        "L": 3,
+        "motifs": [
+          1,
+          0
+        ]
+      }
+    ],
+    "meaning": "outside E0, a merge motif may persist and further alter L; no global monotonicity follows"
+  }
+}

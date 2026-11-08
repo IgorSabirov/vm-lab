@@ -1,0 +1,96 @@
+{
+  "artifact": "ADD_BACKEND_SMOKE_V1",
+  "implementation_status": "INDEPENDENT_RECONSTRUCTION_FROM_PAPER_TEXT_AND_FIGURE_7",
+  "not_author_code": true,
+  "not_NOW_integration": true,
+  "tests": {
+    "C1_reversibility_and_conservation": {
+      "status": "PASS",
+      "states": 64,
+      "ring_vertices": 3
+    },
+    "C2_full_exhaustive_symmetry": {
+      "status": "PASS",
+      "states": 4096,
+      "ring_vertices": 3,
+      "checks": [
+        "I2^2=Id",
+        "R^2=Id",
+        "I2R=RI2",
+        "sqrt(tau)^-1 sqrt(tau)=Id",
+        "R sqrt(tau) R=sqrt(tau)^-1",
+        "T^2=Id",
+        "T f_sym T=f_sym^-1",
+        "four bit-counts conserved"
+      ]
+    },
+    "main_C1_not_time_symmetric": {
+      "status": "PASS",
+      "counterexample_found": true,
+      "initial_states": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "meaning": "finite witness that this C1 implementation is not time-symmetric"
+    },
+    "repair_reverse_resource_contract": {
+      "status": "PASS",
+      "repair_overlay": {
+        "event_id": "repair-1",
+        "initiator": "Name(tag='base', x=0, y=None)",
+        "endpoints": [
+          "Name(tag='base', x=0, y=None)",
+          "Name(tag='base', x=1, y=None)"
+        ],
+        "parent_event_ids": [
+          "damage-0"
+        ],
+        "start_tick": 4,
+        "completion_tick": 6,
+        "cost": 3.0,
+        "local_resource_before": 5.0,
+        "local_resource_after": 2.0,
+        "mutates_ADD_state": false,
+        "status": "SCHEDULED_LOCAL_OVERLAY_EVENT"
+      },
+      "negative_controls": {
+        "remote_initiator": true,
+        "zero_delay": true,
+        "insufficient_local_resource": true,
+        "nonadjacent_endpoints": true,
+        "zero_cost": true
+      },
+      "reverse_protocol_undefined": "A_UNDEFINED (None), not infinity",
+      "matched_forward_reverse_probability": "A=0",
+      "valid_zero_reverse_support": "infinity only when reverse ensemble is defined",
+      "waste_to_carrier": "BLOCKED without explicit recycling mechanism"
+    }
+  },
+  "growth_demo": null,
+  "important_scope_limits": [
+    "the spatial ring graph alone does not define a causal event order or delivery event",
+    "the repair object is an external organizational overlay, not an ADD rule",
+    "no thermodynamic energy/heat balance is defined",
+    "organizational viability is not computed: no record-reader-writer apparatus is embedded",
+    "no global topology rewrite operation is exposed",
+    "waste recycling and carrier creation are not implemented",
+    "C2 entropy is an explicit coarse-graining choice, not a unique thermodynamic entropy",
+    "no asymptotic theorem is inferred from the finite sample trajectory"
+  ]
+}

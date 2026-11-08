@@ -1,0 +1,86 @@
+{
+  "id": "NOW_FOUR_CANDIDATES_V1",
+  "date": "2026-11-08",
+  "stage": "integration_design_and_registry_update",
+  "registry_base_commit": "29dd0e9e188e3cfc5bdfe9317e4823f543fb2ca2",
+  "existing_engine_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+  "existing_engine_report_commit": "f5e2e47baea7225626a530a8c123e9457a79d263",
+  "question": "Как связать четыре различающихся инструмента с одним процессом записи, чтения, коррекции и воспроизводства условий продолжения, сохранив исходную задачу происхождения «сейчас»?",
+  "parents": [
+    "R003",
+    "R006",
+    "R018",
+    "R023",
+    "R034",
+    "R041",
+    "R058",
+    "R063",
+    "R064",
+    "R074",
+    "R075",
+    "R076",
+    "R077",
+    "R078",
+    "R083",
+    "R084",
+    "R085",
+    "R087",
+    "R090",
+    "R094",
+    "R096",
+    "R119",
+    "R120",
+    "R121",
+    "R122",
+    "R123",
+    "R124",
+    "R125"
+  ],
+  "open_links": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "L06",
+    "L07",
+    "L08",
+    "L09",
+    "L10"
+  ],
+  "method": "Сверка сохранённых источников, формальная спецификация общего состояния и интерфейсов, таблица доказательств, обязательства родителям и согласованное обновление JSON/Markdown реестра.",
+  "planned_deliverables": [
+    "RESULT.md",
+    "DESIGN.json",
+    "REGISTRY_MAP.json",
+    "SOURCE_INDEX.json",
+    "REGISTRY_CHECKS.json",
+    "append R126 audit and R127 integration design"
+  ],
+  "acceptance": [
+    "У каждого кандидата указаны входы, выходы, роль и фактическая глубина проверки",
+    "Определён одинаковый исход продолжения и причинные вмешательства",
+    "Мера выборки отделена от физического закона",
+    "Все 42 конструкции отражены типизированно; ссылки не выдаются за экспериментальный вклад",
+    "Предыдущие научные статусы сохранены",
+    "ADD v1 исключён из роли аттестованной реализации статьи"
+  ],
+  "resource_scope": {
+    "new_scientific_runs": 0,
+    "vm_runs": 0,
+    "repeat_existing_smoke": false,
+    "validation": "bounded document, evidence hash and cross-reference checks only"
+  },
+  "stop_conditions": [
+    "missing scientific rule is marked as a required parameter or blocked adapter, never filled by invented results",
+    "no inference of all-candidate readiness from separate PASS results"
+  ],
+  "provenance": "Prepared after source retrieval and before writing the integration deliverables. Earlier smoke/audit results remain retrospective evidence; this is not their preregistration.",
+  "parent_link_amendment": {
+    "added": [
+      "R037",
+      "R038"
+    ],
+    "reason": "Explicit direct N05 links already used in the design; no scientific change or retrospective preregistration."
+  }
+}
