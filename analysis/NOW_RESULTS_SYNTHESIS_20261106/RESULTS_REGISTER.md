@@ -3034,6 +3034,9 @@
 
 **Источники:** [отчёт main](../../results/NOW_INTEGRATED_7c55308_20261108/MAIN_RUN.json), [возврат четырёх кандидатов](../../results/NOW_INTEGRATED_7c55308_20261108/FOUR_CANDIDATE_RETURN.json), [метрики](../../results/NOW_INTEGRATED_7c55308_20261108/METRICS.json), [индекс строк и хешей](../../results/NOW_INTEGRATED_7c55308_20261108/ROWS_INDEX.json), [калибровка](../INTEGRATED_EXPERIMENT_20261107/VM_CALIBRATION_FORECAST_7c55308.json), [recovery smoke](../INTEGRATED_EXPERIMENT_20261107/USER_WAIVER_SMOKE_7c55308.json).
 
+
+**Полный архив task/trace:** [FULL_MAIN_OUTPUT_7c55308.zip](../../results/NOW_INTEGRATED_7c55308_20261108/FULL_MAIN_OUTPUT_7c55308.zip); SHA-256 `ee0c9241f30be94e1c1550cf996620c3d9e16b90320a754a535b99ab89af27e2`, 3,018,795 bytes.
+
 <a id="legacy"></a>
 
 **Уточнение профиля и границ передачи:** [R120](#r120).
