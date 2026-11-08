@@ -1,0 +1,183 @@
+{
+  "base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+  "experiment_id": "NOW_INTEGRATED_CONTINUATION_V1",
+  "files": [
+    {
+      "path": "experiments/now_integrated_v1/nowexp/state.py",
+      "symbols": [
+        "Config",
+        "Cell"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "extend optional backend configuration and material placement; old defaults preserved",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/kinematics.py",
+      "symbols": [
+        "Worldline",
+        "reception"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "wrap existing flat geometry without changing default semantics",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/engine.py",
+      "symbols": [
+        "Engine.__init__",
+        "Engine.send",
+        "Engine.dispatch",
+        "Engine.pop_event",
+        "Engine.totals",
+        "Engine.audit",
+        "Engine.snapshot",
+        "Engine.restore",
+        "Engine.result"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "route all geometry/time accesses; material placement; versioned complete snapshot",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/local_instruments.py",
+      "symbols": [
+        "produce",
+        "correct",
+        "withhold",
+        "capable",
+        "use"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "reuse paid instruments; proposed task write and equal-cost sham",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/observables.py",
+      "symbols": [
+        "summarize",
+        "paired_contrasts",
+        "ancestor_report"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "additional task outcome and within-fixture contrasts, explicit external ensemble uncertainty",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/history_controls.py",
+      "symbols": [
+        "compare_foliations",
+        "compare_internal_slice",
+        "correction_and_selection"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "carry geometry in cut; separate reverse and coordinate control",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/design_controls.py",
+      "symbols": [
+        "execute"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "dispatch additional capability/conformance controls without second runner",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/scope_evidence.py",
+      "symbols": [
+        "collect",
+        "returns"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "map N contracts to X evidence and registry ancestry",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/runner.py",
+      "symbols": [
+        "make_tasks",
+        "context",
+        "worker"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "compose one manifest and retain blocked reasons in coverage",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/provenance.py",
+      "symbols": [
+        "source_manifest",
+        "verify_source",
+        "gate"
+      ],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "hash new source/config/fixtures; new admission receipt after review",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/preregistration/PROTOCOL.json",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "freeze added parameters/budget later; old thresholds preserved",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/preregistration/CASES.json",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "retain 123 cases/84 contrasts and add selected fixture variants",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/preregistration/IMPLEMENTATION_MAP.json",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "preserve 16 X IDs; distinguish optional backend coverage from old finite implementation",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/preregistration/SCOPE_RETURN_CONTRACTS.json",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "add N contributions and predeclared interpretations to existing X",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/README.md",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "reconcile stale 0.2 text with 0.3 and future amendment",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/tools/smoke_suite.py",
+      "symbols": [],
+      "operation": "MODIFY_DURING_IMPLEMENTATION",
+      "reason": "addressed regression, FT, backend failures, snapshot late resume",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/geometry.py",
+      "symbols": [],
+      "operation": "ADD_DURING_IMPLEMENTATION",
+      "reason": "typed flat/order/triangulation interface",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/geometry_ensembles.py",
+      "symbols": [],
+      "operation": "ADD_DURING_IMPLEMENTATION",
+      "reason": "cached preparation with sampler provenance",
+      "implemented_now": false
+    },
+    {
+      "path": "experiments/now_integrated_v1/nowexp/add_carrier.py",
+      "symbols": [],
+      "operation": "ADD_DURING_IMPLEMENTATION",
+      "reason": "attested local rewrite and explicit payload mapping",
+      "implemented_now": false
+    }
+  ],
+  "executable_source_modified_this_revision": false
+}

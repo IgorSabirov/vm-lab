@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
   "date": "2026-11-08",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен.",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.",
   "results": [
     {
       "id": "R001",
@@ -2847,19 +2847,30 @@
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/check_author_contract.py",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/author_contract_results.json",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_orientation.json",
-        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_fixed_vector.json"
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_fixed_vector.json",
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/NEIGHBOR_REVISION.md"
       ],
-      "genealogy_note": "Ретроспективная регистрация аудита предыдущего шага; не выдаётся за его предрегистрацию."
+      "genealogy_note": "Ретроспективная регистрация аудита предыдущего шага; не выдаётся за его предрегистрацию.",
+      "revision_1_1": {
+        "date": "2026-11-08",
+        "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/NEIGHBOR_REVISION.md",
+        "C1": "FAIL_CURRENT_RECONSTRUCTION",
+        "C2": "BLOCKED_NOT_ATTESTED",
+        "C3_D": "NOT_IMPLEMENTED_NOT_ATTESTED",
+        "clarification": "Bit coordinates regroup without proven information loss; E0 static count vs Q dynamic classification; ordered names; exact conditional denominators",
+        "old_sample_25_of_30": "NOT_AUDITABLE",
+        "source_conformance_tests": "FT-1..13; finite horizon not asymptotic proof"
+      }
     },
     {
       "id": "R127",
       "section": "24. Геометрические кандидаты и интеграция",
-      "title": "Четыре кандидата: единая схема геометрии и продолжения организации NOW",
+      "title": "Четыре кандидата: архитектурное дополнение к существующему опыту NOW",
       "status": "ИНТЕГРАЦИОННАЯ СПЕЦИФИКАЦИЯ ЗАВЕРШЕНА; СОВМЕСТНЫЙ НАУЧНЫЙ ПРОГОН НЕ ИСПОЛНЕН",
       "result": "Разработаны общее полное состояние, локальное причинное исполнение, конечный ресурс, единый Y_T, профиль I_Pi, capability-интерфейсы и восемь контрактов N01–N08. Serbian используется для метрической диагностики, IsingCauset — совместной меры, CDT — контрольных ансамблей, ADD — кандидата локального изменения носителя после устранения R126. Сохранены два маршрута возникновения и полная карта 42 конструкций с различением прямых, ограничивающих и отложенных связей.",
       "inputs": "Реестр main 29dd0e9; NOW v0.3 ea49ebc и отчёт f5e2e47; сохранённые сербские технические проверки и анализы; предоставленные обсуждения и аудит ADD. Мера, закон, подготовка, аппарат, геометрия и обратный процесс перечислены как входы/обязательства.",
       "limit": "Не получен один физический закон четырёх авторских моделей; их меры не перемножаются автоматически. IsingCauset/CDT у нас не собраны и не прошли дымовые. ADD v1 не допущен как реализация статьи. Новые научные панели и локальное взаимодействие организации с переписыванием не исполнены. Происхождение основания, геометрии, общего инварианта и субъекта остаётся открытым; L01–L10 не закрыты.",
-      "framework_role": "Конкретизировать следующий интегрированный эксперимент и возврат результата предкам; первым переносом выбрать фиксированные 2d orders при j=0 и общий процесс NOW. Исходные 326 задач v0.3 и их прогноз не изменены.",
+      "framework_role": "Доработать NOW_INTEGRATED_CONTINUATION_V1 на проверенной базе 0.3; N01–N08 дополняют X01–X16. Патч специфицирован, новый исполнитель не создаётся, расширенный состав ещё не исполнялся.",
       "construct_ids": [
         "C001",
         "C002",
@@ -2933,9 +2944,26 @@
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
-        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json"
+        "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json",
+        "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
+        "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json"
       ],
-      "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений."
+      "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений.",
+      "revision_1_1": {
+        "date": "2026-11-08",
+        "source": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
+        "spec": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
+        "amendment_of": "NOW_INTEGRATED_CONTINUATION_V1",
+        "additions": [
+          "FT source contract",
+          "C3 D comparator within X07/X09",
+          "independent Y_task alongside health",
+          "N-to-X and code map",
+          "ensemble provenance and denominator accounting"
+        ],
+        "executable_patch": "NOT_IMPLEMENTED",
+        "scientific_execution": "NOT_EXECUTED"
+      }
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
@@ -5724,18 +5752,19 @@
     }
   ],
   "revision": {
-    "id": "four_candidate_integration_20261108",
+    "id": "four_candidate_amendment_20261108_v1_1",
     "date": "2026-11-08",
-    "base_commit": "29dd0e9e188e3cfc5bdfe9317e4823f543fb2ca2",
+    "base_commit": "8481ea2a35ad70cdd3747b41716fb70508e5d24b",
     "result_count": 127,
     "construct_count": 42,
     "open_link_count": 10,
-    "new_records": [
+    "new_records": [],
+    "updated_records": [
       "R126",
       "R127"
     ],
     "scientific_statuses_changed": [],
-    "note": "R126 preserves prior reconstruction audit; R127 is a typed integration design. Existing scientific statuses and all ten open links retained."
+    "note": "Existing experiment amended; executable patch not implemented; old scientific outcomes preserved"
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -6146,6 +6175,20 @@
       "new_records": [],
       "scientific_statuses_changed": [],
       "note": "Unified experiment policy and full typed prospective coverage; no production run."
+    },
+    {
+      "id": "four_candidate_integration_20261108",
+      "date": "2026-11-08",
+      "base_commit": "29dd0e9e188e3cfc5bdfe9317e4823f543fb2ca2",
+      "result_count": 127,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "new_records": [
+        "R126",
+        "R127"
+      ],
+      "scientific_statuses_changed": [],
+      "note": "R126 preserves prior reconstruction audit; R127 is a typed integration design. Existing scientific statuses and all ten open links retained."
     },
     {
       "id": "four_candidate_integration_20261108",
@@ -8039,11 +8082,17 @@
         "execution_checks": 18,
         "scientific_main_executed": false,
         "note": "Newer than the historical candidate-code implementation_review; new geometry extension is not included."
+      },
+      "current_amendment": {
+        "spec": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
+        "document": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
+        "source_base": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+        "status": "PROPOSED_PATCH_SPECIFICATION_NOT_IMPLEMENTED"
       }
     },
     {
       "id": "NOW_GEOMETRY_CONTINUATION_V1",
-      "status": "DESIGN_COMPLETE_NOT_INTEGRATED_EXECUTION",
+      "status": "AMENDMENT_DESIGN_COMPLETE_EXECUTABLE_PATCH_NOT_IMPLEMENTED",
       "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
       "graph": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
       "lineage_map": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
@@ -8128,7 +8177,10 @@
       ],
       "main_executed": false,
       "coverage_not_confirmation": true,
-      "engine_base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8"
+      "engine_base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+      "amendment_of": "NOW_INTEGRATED_CONTINUATION_V1",
+      "id_role": "architecture_alias_not_separate_experiment",
+      "patch": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json"
     }
   ],
   "planned_experiment_edges": [

@@ -955,8 +955,8 @@
         "L10"
       ],
       "inherited_claim": "Защита/ремонт имеют цену; рост носителя не равен жизнеспособности; текущий ADD v1 не соответствует переносу статьи.",
-      "comparison": "static/off, static/on, dynamic/off, dynamic/on; initial sector and budget paired; QI2/Q labeled whole-operator contrast",
-      "observable": "четыре P(Y_T), delta_int, device-local density, physical delivery, repair cost and failure time",
+      "comparison": "Existing G×K amended with common C3 G×D×K, matched fixed-cost sham and causal content controls; whole I3 effect",
+      "observable": "Y_task, old final_function, local/global density, S_local_mean/S_local_sum, delivery, repair cost; no post-treatment matching",
       "prediction": "Проверяем существование конечной области, где коррекция компенсирует часть потери продолжения от изменения носителя; универсального знака нет.",
       "positive_changes_parent": "Получено ограниченное совместное поддержание при объявленном локальном законе.",
       "negative_changes_parent": "Выбранный механизм не компенсирует изменения в проверенной области; отрицательный вывод не расширяется на любую организацию.",
@@ -964,7 +964,13 @@
       "evidence": "PROSPECTIVE_NOT_EXECUTED",
       "scientific_tolerance": null,
       "sample_size": null,
-      "launch_requirement": "Численные допуски, мера, состав и бюджет фиксируются до научного запуска; эта схема их не выдумывает."
+      "launch_requirement": "Численные допуски, мера, состав и бюджет фиксируются до научного запуска; эта схема их не выдумывает.",
+      "existing_X_ids": [
+        "X05",
+        "X07",
+        "X09",
+        "X15"
+      ]
     },
     {
       "id": "N07",
@@ -1152,6 +1158,204 @@
     ],
     "new_constructs": [],
     "closed_links": [],
-    "old_scientific_statuses_changed": []
-  }
+    "old_scientific_statuses_changed": [],
+    "this_revision": {
+      "new_records": [],
+      "updated_records": [
+        "R126",
+        "R127"
+      ],
+      "new_constructs": [],
+      "closed_links": []
+    }
+  },
+  "revision": "1.1",
+  "amendment_of": "NOW_INTEGRATED_CONTINUATION_V1",
+  "mapping_to_existing": [
+    {
+      "id": "N01",
+      "existing_comparisons": [
+        "X03",
+        "X04"
+      ],
+      "blocks": [
+        "B02",
+        "B07"
+      ],
+      "base_cases": [
+        "full_base",
+        "full_no_record",
+        "full_no_reader",
+        "full_scramble"
+      ],
+      "base_contrasts": [
+        "full_record_apparatus"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N02",
+      "existing_comparisons": [
+        "X05",
+        "X06",
+        "X08",
+        "X14"
+      ],
+      "blocks": [
+        "B03",
+        "B06"
+      ],
+      "base_cases": [
+        "full_base",
+        "full_late_resource",
+        "full_no_route",
+        "full_independent"
+      ],
+      "base_contrasts": [
+        "full_resource_delivery",
+        "full_route_inheritance",
+        "full_classical_joint"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N03",
+      "existing_comparisons": [
+        "X07",
+        "X09",
+        "X13"
+      ],
+      "blocks": [
+        "B04",
+        "B05",
+        "B08"
+      ],
+      "base_cases": [
+        "full_transport_patch",
+        "full_transport_unrepaired"
+      ],
+      "base_contrasts": [
+        "full_transport_repair",
+        "full_interaction_health"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "selection"
+      ]
+    },
+    {
+      "id": "N04",
+      "existing_comparisons": [
+        "X04",
+        "X07",
+        "X16"
+      ],
+      "blocks": [
+        "B01",
+        "B05",
+        "B07",
+        "B11"
+      ],
+      "base_cases": [
+        "full_no_apparatus",
+        "full_cycles_writer",
+        "full_removed_parent_template"
+      ],
+      "base_contrasts": [
+        "full_parent_template_removed"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N05",
+      "existing_comparisons": [
+        "X08"
+      ],
+      "blocks": [
+        "B00",
+        "B06"
+      ],
+      "base_cases": [
+        "full_correlated",
+        "full_independent"
+      ],
+      "base_contrasts": [
+        "full_classical_joint"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N06",
+      "existing_comparisons": [
+        "X05",
+        "X07",
+        "X09",
+        "X15"
+      ],
+      "blocks": [
+        "B03",
+        "B04",
+        "B05",
+        "B11"
+      ],
+      "base_cases": [
+        "full_transport_patch",
+        "full_transport_unrepaired",
+        "full_cycles_writer",
+        "full_cycles_reader"
+      ],
+      "base_contrasts": [
+        "full_transport_repair",
+        "full_interaction_threshold"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N07",
+      "existing_comparisons": [
+        "X13",
+        "X14"
+      ],
+      "blocks": [
+        "B08",
+        "B11"
+      ],
+      "base_cases": [
+        "reverse_schedule",
+        "full_moving"
+      ],
+      "base_contrasts": [
+        "full_physical_motion"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "selection",
+        "coordinate_order",
+        "moving_coordinate_order"
+      ]
+    },
+    {
+      "id": "N08",
+      "existing_comparisons": [
+        "X12",
+        "X16"
+      ],
+      "blocks": [
+        "B00",
+        "B07"
+      ],
+      "base_cases": [
+        "full_removed_parent_template"
+      ],
+      "base_contrasts": [
+        "full_parent_template_removed"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "full_cut",
+        "fragment_cut",
+        "wave_cut"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,562 @@
+{
+  "schema": 1,
+  "experiment_id": "NOW_INTEGRATED_CONTINUATION_V1",
+  "amendment_id": "FOUR_CANDIDATE_AMENDMENT_20261108_V1_1",
+  "status": "PROPOSED_PATCH_SPECIFICATION_NOT_IMPLEMENTED",
+  "active": false,
+  "launch_authorized": false,
+  "target": {
+    "source_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+    "report_commit": "f5e2e47baea7225626a530a8c123e9457a79d263",
+    "branch": "integrated/full-scope-repair-20261107",
+    "main_document_commit": "8481ea2a35ad70cdd3747b41716fb70508e5d24b",
+    "warning": "main contains older engine; apply implementation changes to verified 0.3, not current main engine"
+  },
+  "preserved": {
+    "cases": 123,
+    "contrasts": 84,
+    "controls": 11,
+    "main_tasks": 326,
+    "experiment_identity": true,
+    "old_metrics": true,
+    "old_thresholds": true,
+    "scientific_statuses": true
+  },
+  "legacy_architecture_id": {
+    "id": "NOW_GEOMETRY_CONTINUATION_V1",
+    "role": "architecture_amendment_alias_not_separate_experiment"
+  },
+  "map_to_existing": [
+    {
+      "id": "N01",
+      "existing_comparisons": [
+        "X03",
+        "X04"
+      ],
+      "blocks": [
+        "B02",
+        "B07"
+      ],
+      "base_cases": [
+        "full_base",
+        "full_no_record",
+        "full_no_reader",
+        "full_scramble"
+      ],
+      "base_contrasts": [
+        "full_record_apparatus"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N02",
+      "existing_comparisons": [
+        "X05",
+        "X06",
+        "X08",
+        "X14"
+      ],
+      "blocks": [
+        "B03",
+        "B06"
+      ],
+      "base_cases": [
+        "full_base",
+        "full_late_resource",
+        "full_no_route",
+        "full_independent"
+      ],
+      "base_contrasts": [
+        "full_resource_delivery",
+        "full_route_inheritance",
+        "full_classical_joint"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N03",
+      "existing_comparisons": [
+        "X07",
+        "X09",
+        "X13"
+      ],
+      "blocks": [
+        "B04",
+        "B05",
+        "B08"
+      ],
+      "base_cases": [
+        "full_transport_patch",
+        "full_transport_unrepaired"
+      ],
+      "base_contrasts": [
+        "full_transport_repair",
+        "full_interaction_health"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "selection"
+      ]
+    },
+    {
+      "id": "N04",
+      "existing_comparisons": [
+        "X04",
+        "X07",
+        "X16"
+      ],
+      "blocks": [
+        "B01",
+        "B05",
+        "B07",
+        "B11"
+      ],
+      "base_cases": [
+        "full_no_apparatus",
+        "full_cycles_writer",
+        "full_removed_parent_template"
+      ],
+      "base_contrasts": [
+        "full_parent_template_removed"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N05",
+      "existing_comparisons": [
+        "X08"
+      ],
+      "blocks": [
+        "B00",
+        "B06"
+      ],
+      "base_cases": [
+        "full_correlated",
+        "full_independent"
+      ],
+      "base_contrasts": [
+        "full_classical_joint"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N06",
+      "existing_comparisons": [
+        "X05",
+        "X07",
+        "X09",
+        "X15"
+      ],
+      "blocks": [
+        "B03",
+        "B04",
+        "B05",
+        "B11"
+      ],
+      "base_cases": [
+        "full_transport_patch",
+        "full_transport_unrepaired",
+        "full_cycles_writer",
+        "full_cycles_reader"
+      ],
+      "base_contrasts": [
+        "full_transport_repair",
+        "full_interaction_threshold"
+      ],
+      "execution_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "N07",
+      "existing_comparisons": [
+        "X13",
+        "X14"
+      ],
+      "blocks": [
+        "B08",
+        "B11"
+      ],
+      "base_cases": [
+        "reverse_schedule",
+        "full_moving"
+      ],
+      "base_contrasts": [
+        "full_physical_motion"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "selection",
+        "coordinate_order",
+        "moving_coordinate_order"
+      ]
+    },
+    {
+      "id": "N08",
+      "existing_comparisons": [
+        "X12",
+        "X16"
+      ],
+      "blocks": [
+        "B00",
+        "B07"
+      ],
+      "base_cases": [
+        "full_removed_parent_template"
+      ],
+      "base_contrasts": [
+        "full_parent_template_removed"
+      ],
+      "execution_status": "NOT_EXECUTED",
+      "base_controls": [
+        "full_cut",
+        "fragment_cut",
+        "wave_cut"
+      ]
+    }
+  ],
+  "candidate_roles": {
+    "serbian": "cached metric diagnostic where intervals exist",
+    "isingcauset": "joint preparation measure and fixed-order causal routing",
+    "cdt": "independent finite causal geometry family",
+    "add": "local rewrite and D control after source conformance"
+  },
+  "capabilities": {
+    "flat_1p1": [
+      "causal_order",
+      "proper_time",
+      "metric"
+    ],
+    "isingcauset": [
+      "causal_order",
+      "ensemble"
+    ],
+    "cdt": [
+      "causal_order_after_unwrap",
+      "metric_after_lorentzian_reconstruction",
+      "ensemble"
+    ],
+    "add": [
+      "local_rewrite_after_conformance",
+      "operational_clock",
+      "no_automatic_metric"
+    ]
+  },
+  "additional_outcome": {
+    "name": "Y_task",
+    "candidate_task": "paid XOR answer write into explicitly reused local record slot",
+    "inputs": "local decoded A/B only",
+    "content_space": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "repair_flag_in_success": false,
+    "old_final_function_unchanged": true,
+    "off_undamaged_must_allow_success": true,
+    "clock": "adapter-declared local deadline",
+    "status": "proposed instrument; overwriting/backaction/resource rule must be frozen before execution",
+    "content_control": "flip only A relative to fixed original target; exchanging A/B or complementing both is not discriminating for XOR"
+  },
+  "static_panel": {
+    "case_ids": [
+      "full_base",
+      "full_no_record",
+      "full_no_reader",
+      "full_scramble",
+      "full_no_production",
+      "full_no_contact",
+      "full_neither",
+      "full_no_apparatus"
+    ],
+    "per_fixture_enumerations": 8,
+    "ensemble_cells": [
+      "Ising j=0",
+      "Ising j=jstar",
+      "CDT"
+    ],
+    "geometry_reused_for_paired_interventions": true,
+    "case_role": "templates for new derived geometry task cases, not mutated legacy IDs",
+    "common_overrides": {
+      "geometry_fixture": "declared fixture ID",
+      "task_probe": true,
+      "forced_content": null
+    },
+    "scramble_template_override": {
+      "scramble_child": false,
+      "task_content_intervention": "flip_A"
+    }
+  },
+  "dynamic_panel": {
+    "state_space": "common C3 preparation plus explicitly coupled NOW payload",
+    "cells": [
+      {
+        "id": "G0D0K0",
+        "G": 0,
+        "D": 0,
+        "K": 0,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G0D0K1",
+        "G": 0,
+        "D": 0,
+        "K": 1,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G0D1K0",
+        "G": 0,
+        "D": 1,
+        "K": 0,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G0D1K1",
+        "G": 0,
+        "D": 1,
+        "K": 1,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G1D0K0",
+        "G": 1,
+        "D": 0,
+        "K": 0,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G1D0K1",
+        "G": 1,
+        "D": 0,
+        "K": 1,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G1D1K0",
+        "G": 1,
+        "D": 1,
+        "K": 0,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G1D1K1",
+        "G": 1,
+        "D": 1,
+        "K": 1,
+        "intervention": "factorial"
+      },
+      {
+        "id": "G0D0SHAM",
+        "G": 0,
+        "D": 0,
+        "K": 0,
+        "intervention": "equal_fixed_cost_sham"
+      },
+      {
+        "id": "G0D1SHAM",
+        "G": 0,
+        "D": 1,
+        "K": 0,
+        "intervention": "equal_fixed_cost_sham"
+      },
+      {
+        "id": "G1D0SHAM",
+        "G": 1,
+        "D": 0,
+        "K": 0,
+        "intervention": "equal_fixed_cost_sham"
+      },
+      {
+        "id": "G1D1SHAM",
+        "G": 1,
+        "D": 1,
+        "K": 0,
+        "intervention": "equal_fixed_cost_sham"
+      },
+      {
+        "id": "G1D1K1_record_destroyed",
+        "G": 1,
+        "D": 1,
+        "K": 1,
+        "intervention": "record_destroyed"
+      },
+      {
+        "id": "G1D1K1_reader_disabled",
+        "G": 1,
+        "D": 1,
+        "K": 1,
+        "intervention": "reader_disabled"
+      },
+      {
+        "id": "G1D1K1_content_permuted",
+        "G": 1,
+        "D": 1,
+        "K": 1,
+        "intervention": "content_permuted"
+      }
+    ],
+    "per_fixture_enumerations": 15,
+    "G0": "Q with I3 off",
+    "G1": "Q I3, full composition Q I3 D when D on",
+    "K": "restoration of writer/reader/contact; task execution remains available when off",
+    "interpret_G": "effect of entire I3 operation, not pure volume effect",
+    "compare": [
+      "K effect at D0",
+      "K effect at D1",
+      "D effect at K0",
+      "D by K interaction",
+      "G by K at each D"
+    ],
+    "conserve": "declare variant-specific invariants; no fixed C2 four-vector claim under C3 D",
+    "status": "BLOCKED_PENDING_SOURCE_AND_PAYLOAD_CONFORMANCE",
+    "K_implementation": "Gate only post-damage restorative production/contact/transport events; keep initial assembly, task and reader identical. Global production=False is not this intervention."
+  },
+  "add_conformance": {
+    "C1_MAIN_TRANSPORT": "FAIL_CURRENT_RECONSTRUCTION",
+    "C2_SYMMETRIC": "BLOCKED_NOT_ATTESTED",
+    "C3_D": "NOT_IMPLEMENTED_NOT_ATTESTED",
+    "gates": [
+      {
+        "id": "FT-1",
+        "requirement": "single a-bit port path",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-2",
+        "requirement": "single b-bit port path",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-3",
+        "requirement": "two tagged particle paths",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-4",
+        "requirement": "two half-shifts equal independent full transport under declared name map",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-5",
+        "requirement": "particle orientation",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-6",
+        "requirement": "variant-specific particle counts",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-7",
+        "requirement": "Figure 2a named mapping",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-8",
+        "requirement": "Figure 2b I table",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-9",
+        "requirement": "C1 admissible L3..L5 counterexample search",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-10",
+        "requirement": "named inverse, C1 and C2 separately",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-11",
+        "requirement": "dual-ring edge orientation",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-12",
+        "requirement": "independent particle/port worldline audit",
+        "executed_this_revision": false
+      },
+      {
+        "id": "FT-13",
+        "requirement": "independent tau reference, no call/shared transport table from sqrt_tau",
+        "executed_this_revision": false
+      }
+    ],
+    "c1_initial_conditions": {
+      "3": 49,
+      "4": 225,
+      "5": 961
+    },
+    "finite_search_total": 1235,
+    "cycle_requirement": "exact named cycle or autonomous quotient cycle; finite plateau is insufficient",
+    "name_algebra": "ordered terms with checked projections, not unordered set union",
+    "horizon": null,
+    "vertex_cap": null,
+    "name_term_cap": null,
+    "independent_variant_checks": [
+      "R/T/I2 and source convention",
+      "Dl/Dr tables, I3 neighbourhood guard, E invariant domain"
+    ]
+  },
+  "accounting": {
+    "entropy_names": {
+      "S_r_article": "S_local_mean",
+      "bar_S_r_article": "S_local_sum"
+    },
+    "E_is_joules": false,
+    "measure_denominators": [
+      "full labelled configuration space",
+      "declared invariant sector",
+      "E0 conditional subset",
+      "quiet subset"
+    ],
+    "old_sample_25_of_30": "NOT_AUDITABLE",
+    "kappa_quiet": "counting spectral-radius ratio, not time relaxation",
+    "snapshot": "geometry, ports, payload placement, in-flight cargo, commitments, clocks, apparatus, resources, reverse registers"
+  },
+  "statistics": {
+    "unit": "prepared geometry/initial environment",
+    "paired_within_fixture": true,
+    "within_fixture": "existing finite exact/numerical branch sum",
+    "between_fixtures": "sampling uncertainty and MC autocorrelation remain",
+    "postselection_does_not_change_unconditional_measure": true,
+    "no_success_weighted_preparation": true
+  },
+  "budget": {
+    "additional_enumerations": "8*(F0+Fj+Fc)+15*Fa; deduplicate complete task identities",
+    "extra_controls": "Cextra separately enumerated before freeze",
+    "sampler_and_FT_cost_separate": true,
+    "old_forecast_applies": false,
+    "new_runtime_seconds": null,
+    "old_runtime_seconds": 19.44567,
+    "old_range_seconds": [
+      9.72,
+      58.34
+    ],
+    "old_cap_seconds": 120,
+    "F0": null,
+    "Fj": null,
+    "Fc": null,
+    "Fa": null,
+    "jstar": null,
+    "geometry_parameters": null,
+    "damage_protocol": null,
+    "status": "PROPOSAL_REQUIRES_IMPLEMENTATION_AND_MEASURED_COST",
+    "new_vm_runs": 0
+  },
+  "code_plan": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_FILE_MAP.json",
+  "review": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
+  "model_review": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/NEIGHBOR_REVISION.md"
+}
