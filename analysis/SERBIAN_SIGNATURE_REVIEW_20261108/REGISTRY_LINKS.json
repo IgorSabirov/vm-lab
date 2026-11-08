@@ -1,0 +1,45 @@
+{
+  "status": "Analytical review and candidate interface; no scientific status promotion",
+  "parent_results": [
+    "R058",
+    "R085",
+    "R123"
+  ],
+  "constructs": [
+    "C037",
+    "C042"
+  ],
+  "open_links": [
+    "L09"
+  ],
+  "analytical_additions": [
+    {
+      "id": "A",
+      "claim": "Mean local signature frequency is exactly topology-independent under identical independent global-edge sampling on an ordinary fixed simplicial complex.",
+      "conditions": [
+        "The triangulation is fixed, or sampled independently of edge intervals.",
+        "The observable weights simplices uniformly.",
+        "There are no global constraints or action-dependent weights on the edge measure."
+      ]
+    },
+    {
+      "id": "B",
+      "claim": "Adjacent same-signature covariance equals Var(conditional signature probability given their common face).",
+      "conditions": [
+        "Two distinct 4-simplices share exactly one tetrahedral face.",
+        "All global edges are iid; the eight nonshared edges are conditionally independent."
+      ]
+    },
+    {
+      "id": "C",
+      "claim": "Mixed-domain positive Euclidean probability equals 2^-10 times the positive-edge Euclidean probability.",
+      "conditions": [
+        "Ten independent fair sign choices, independent of the iid magnitudes.",
+        "Nondegenerate positive definite signature."
+      ]
+    }
+  ],
+  "registry_status_changes": [],
+  "next_scientific_decision": "Specify physically justified q_ij and their induced joint measure before importing this candidate into the project.",
+  "integration_experiment_changed": false
+}
