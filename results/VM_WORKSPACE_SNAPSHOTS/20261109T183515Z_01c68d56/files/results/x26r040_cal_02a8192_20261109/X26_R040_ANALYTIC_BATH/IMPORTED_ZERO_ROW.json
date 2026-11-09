@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "experiment": "X26_R040_ANALYTIC_BATH",
+  "epistemic_status": "DESIGN_CONTRACT_ONLY",
+  "rows": [
+    {
+      "object": "ADD_carrier_and_Ki",
+      "source": "ADD_DERIVED",
+      "evidence": "carrier.py blob 6e44c12cd1f27aadc9e2c73c1f82222944cd2e7b and ADD dichotomy analysis",
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "removes ADD provenance context; does not change conditional R040 equations"
+    },
+    {
+      "object": "R040_three_mode_Hamiltonian",
+      "source": "MODEL_ASSUMPTION_INHERITED_CONDITIONAL_MODEL",
+      "evidence": "analysis/BIC_SMOKE_AUDIT_20261103/DERIVATIONS.md at main source snapshot 8040dfa36d57d67a38bf79fb9f7fd2a6a9ef9dd3",
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "spectral problem ceases to be the R040 trimer"
+    },
+    {
+      "object": "1D_tight_binding_bath",
+      "source": "IMPORTED_MODEL_ASSUMPTION",
+      "evidence": "analytic nearest-neighbour chain Green function; no ADD derivation",
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "bath measure and self-energy change"
+    },
+    {
+      "object": "bath_contact_only_at_node_2",
+      "source": "IMPORTED_MODEL_ASSUMPTION_INHERITED_FROM_R040",
+      "evidence": "R040 conditional Hamiltonian in DERIVATIONS.md",
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "dark vector may couple to omitted/open channels; BIC verdict changes"
+    },
+    {
+      "object": "local_ADD_motif_to_site_energy_or_hopping",
+      "source": "NOT_AVAILABLE",
+      "evidence": null,
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "no ADD-derived H_d, V, or W can be claimed"
+    },
+    {
+      "object": "loading_actuator_and_resource_model",
+      "source": "NOT_AVAILABLE",
+      "evidence": null,
+      "used_to_derive_R040_parameters": false,
+      "removal_effect": "loading/total resource benefit remains NOT_EVALUABLE"
+    }
+  ]
+}

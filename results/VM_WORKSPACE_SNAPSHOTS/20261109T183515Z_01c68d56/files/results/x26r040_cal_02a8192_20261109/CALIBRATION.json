@@ -1,0 +1,36 @@
+{
+  "mode": "EXACT_WORKLOAD_TARGET_VM_CALIBRATION",
+  "setup_seconds": 0.18430016399361193,
+  "workload_wall_seconds": [
+    0.12555480701848865,
+    0.039380759990308434
+  ],
+  "full_process_wall_seconds": 0.3497165660082828,
+  "cpu_seconds": 0.270159401,
+  "environment_fingerprint": "35846121a123f1c0f3d70733f3a937c625bbe741b7e142314564cfe0dc5ae849",
+  "workload": {
+    "status": "FROZEN_MANIFEST_OPERATION_COUNT",
+    "formula": "models*ring_sizes*resolvent_points + models*root_seeds + models*feshbach_points + models*density_points + static_no_load_time_points + one_adaptive_matrix_measure_integral",
+    "counts": {
+      "models": 1,
+      "ring_sizes": 5,
+      "complex_resolvent_points_per_ring": 3,
+      "second_sheet_root_seeds_per_model": 1,
+      "feshbach_identity_points_per_model": 3,
+      "effective_density_energy_points_per_model": 201,
+      "ring_green_evaluations": 15,
+      "second_sheet_root_solves": 1,
+      "feshbach_identity_pairs": 3,
+      "effective_density_evaluations": 201,
+      "static_no_load_exponential_actions": 4,
+      "static_no_load_hilbert_dimension": 35,
+      "loading_trajectories": 0,
+      "adaptive_spectral_measure_integrals": 1,
+      "total_declared_scalar_work_items": 225
+    },
+    "runtime_seconds": null,
+    "runtime_status": "NOT_EVALUABLE_UNTIL_TARGET_VM_CALIBRATION"
+  },
+  "source_archive_sha256": "96aec2703f921d280e0fe5bc5915bc04b03cc8af31df9d4b0183d3c647807d0b",
+  "peak_rss_kib": 64640
+}
