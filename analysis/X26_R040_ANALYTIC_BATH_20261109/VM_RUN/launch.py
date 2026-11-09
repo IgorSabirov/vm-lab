@@ -16,7 +16,14 @@ import numpy as np,scipy
 from x26r040.runner import run_spectral
 from x26r040.provenance import preflight
 from x26r040.workload import workload_inventory
-from threadpoolctl import threadpool_info
+try:
+    from threadpoolctl import threadpool_info
+except ImportError:
+    def threadpool_info():
+        import contextlib
+        stream=io.StringIO()
+        with contextlib.redirect_stdout(stream): np.show_config()
+        return {'numpy_build_config':stream.getvalue(),'actual_thread_count':None,'reason':'threadpoolctl unavailable on target VM; requested BLAS/OMP threads are 1 via environment before numpy import'}
 
 def read_optional(p):
     try:return pathlib.Path(p).read_text().strip()
