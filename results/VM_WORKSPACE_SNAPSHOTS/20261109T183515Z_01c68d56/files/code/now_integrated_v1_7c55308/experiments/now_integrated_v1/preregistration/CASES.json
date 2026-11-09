@@ -1,0 +1,5948 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "base",
+      "config": {},
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "forced11",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced10",
+      "config": {
+        "forced_content": [
+          1,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced01",
+      "config": {
+        "forced_content": [
+          0,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced00",
+      "config": {
+        "forced_content": [
+          0,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "neither",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed_no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false,
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_reader",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "reader_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "erase_record": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_corrector",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_precursor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 0
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "address_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_transferred_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "scrambled_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scramble_child": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_resource",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "supply_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "record_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "one_slot",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "working_slots": 1
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "weak_donor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_fuel": 12
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "retained_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "retire_inherited": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "given_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "imported_contacts": true,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "reverse_schedule",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scheduler_reverse": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "moving_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "receiver_velocity": 0.2
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "repeating_source",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "source_repeat": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "independent",
+      "config": {
+        "preparation": "independent"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_production",
+      "config": {
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_contact",
+      "config": {
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_neither",
+      "config": {
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_corrector",
+      "config": {
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_16",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_32",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_64",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_16",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_32",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_64",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.02",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.02,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.07",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.07,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.15",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.15,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_4",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 4,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_16",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_32",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_transfer",
+      "config": {
+        "memory": "finite_dark",
+        "transfer_apparatus": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_reader",
+      "config": {
+        "memory": "finite_dark",
+        "reader_enabled": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_moving",
+      "config": {
+        "memory": "finite_dark",
+        "receiver_velocity": 0.2,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "no_contact_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "contact_address_enabled": false
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_successor_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "successor_address_enabled": false
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "mutant_product",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_template": 0
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_read",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "read"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_write",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "write"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_repair",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "repair"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_inbox",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "inbox_slots": 0
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "one_record_slot",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "record_slots": 1
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "short_inbox",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false,
+        "inbox_lifetime": 1
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_apparatus_scrambled",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "transfer_apparatus": false,
+        "scramble_child": true
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_corrector",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "corrector": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "repair_contacts": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_writer",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "seed_writer": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "seed_reader": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_writer_damage",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "damage_writer": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_reader_damage",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "damage_reader": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "erase_record": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "scramble_child": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_scramble_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "scramble_child": true,
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_route",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "transmit_route": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_route_damage",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "damage_route": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_no_template_bank",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "template_slots": 0
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_imported_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "imported_contacts": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_removed_parent_template",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "remove_parent_template_after_transfer": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_late_resource",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "supply_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_late_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "record_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_moving",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "receiver_velocity": 0.3
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_fragments",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_fragment_duplicate",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true,
+        "duplicate_fragment": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_fragment_lost",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true,
+        "drop_fragment": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_fragment_zero",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true,
+        "fragment_slots": 0
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_fragment_expiry",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "fragmented_records": true,
+        "inbox_lifetime": 0.1
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_branch",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "branching": true,
+        "donor_fuel": 64
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_branch_weak",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "branching": true,
+        "donor_fuel": 20
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_seed_00",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "initiator_enabled": false,
+        "initial_seed": false,
+        "prepared_records": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_seed_01",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "initiator_enabled": false,
+        "initial_seed": false,
+        "prepared_records": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_seed_10",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "initiator_enabled": false,
+        "initial_seed": true,
+        "prepared_records": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_seed_11",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "initiator_enabled": false,
+        "initial_seed": true,
+        "prepared_records": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_law_V1",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "seed_writer": false,
+        "prepared_records": true,
+        "production_semantics": "V1"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_law_V2",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "seed_writer": false,
+        "prepared_records": true,
+        "production_semantics": "V2"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_law_A",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "seed_writer": false,
+        "prepared_records": true,
+        "production_semantics": "A"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_completion_erase",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "completion_mode": "erase",
+        "completion_probe": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_completion_trace",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "completion_mode": "trace",
+        "completion_probe": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_completion_isolate",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "completion_mode": "isolate",
+        "completion_probe": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_completion_transfer",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "completion_mode": "transfer",
+        "completion_probe": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_completion_decay",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "completion_mode": "decay",
+        "completion_probe": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_cycles_writer",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 80,
+        "donor_fuel": 160,
+        "repair_rounds": 2,
+        "cycle_damage_role": "writer"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_cycles_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 80,
+        "donor_fuel": 160,
+        "repair_rounds": 2,
+        "cycle_damage_role": "reader"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_cycles_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 80,
+        "donor_fuel": 160,
+        "repair_rounds": 2,
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_cycles_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 80,
+        "donor_fuel": 160,
+        "repair_rounds": 2,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_transport_intact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 60,
+        "donor_fuel": 100,
+        "read_wait": 64,
+        "transport_support": true,
+        "damage_transport": false,
+        "repair_transport": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_transport_patch",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 60,
+        "donor_fuel": 100,
+        "read_wait": 64,
+        "transport_support": true,
+        "damage_transport": true,
+        "repair_transport": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_transport_unrepaired",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 60,
+        "donor_fuel": 100,
+        "read_wait": 64,
+        "transport_support": true,
+        "damage_transport": true,
+        "repair_transport": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "full_correlated",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "correlated"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "independent"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_bell_x",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "bell_x"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_dephased_x",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "dephased_x"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_bell_z",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "bell_z"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_dephased_z",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 30,
+        "preparation": "dephased_z"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_dark_16",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_dark",
+        "read_wait": 16
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_dark_32",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_dark",
+        "read_wait": 32
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_dark_64",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_dark",
+        "read_wait": 64
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_static_16",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "read_wait": 16
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_static_32",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "read_wait": 32
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_finite_static_64",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "read_wait": 64
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_bath_4",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "bath_modes": 4
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_bath_16",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "bath_modes": 16
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_bath_32",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "bath_modes": 32
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_wave_no_transfer",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_dark",
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_wave_delayed",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "record_delay": 16
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "full_wave_moving",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 30,
+        "memory": "finite_static",
+        "receiver_velocity": 0.3
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "patch::flat::full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "erase_record": true,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_record",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "seed_reader": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_reader",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "scramble_child": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "task_content_intervention": "flip_A"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_scramble",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_production",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_contact",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_neither",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "transfer_apparatus": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_apparatus",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "preparation": "independent"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "erase_record": true,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_record",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "seed_reader": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_reader",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "scramble_child": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        },
+        "task_content_intervention": "flip_A"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_scramble",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_production",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_contact",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_neither",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "transfer_apparatus": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_apparatus",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::ising_order::independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "ising_order",
+          "horizon": 512
+        },
+        "preparation": "independent"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "erase_record": true,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_record",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "seed_reader": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_reader",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "scramble_child": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        },
+        "task_content_intervention": "flip_A"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_scramble",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_production",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_contact",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_neither",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "transfer_apparatus": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_apparatus",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::cdt_strip::independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "cdt_strip",
+          "horizon": 512
+        },
+        "preparation": "independent"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "erase_record": true,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_record",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "seed_reader": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_reader",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "scramble_child": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        },
+        "task_content_intervention": "flip_A"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_scramble",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_production",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_contact",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_neither",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "transfer_apparatus": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_apparatus",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        },
+        "preparation": "independent"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_base",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_no_record",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "erase_record": true,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_record",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_no_reader",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "seed_reader": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_reader",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_scramble",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "scramble_child": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        },
+        "task_content_intervention": "flip_A"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_scramble",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_no_production",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_production",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_no_contact",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_contact",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_neither",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "production": false,
+        "repair_contacts": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_neither",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::full_no_apparatus",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "transfer_apparatus": false,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_no_apparatus",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::independent",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        },
+        "preparation": "independent"
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::none::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::none::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::none::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::contact::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::contact::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G0::contact::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::none::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::none::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::none::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::contact::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::contact::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::G1::contact::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::none::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::none::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::none::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::contact::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::contact::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G0::contact::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": false
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::none::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::none::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::none::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "none",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::contact::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::contact::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::G1::contact::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "contact",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512,
+          "interaction": true
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::writer::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "writer",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::writer::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "writer",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::writer::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "writer",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::reader::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "reader",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::reader::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "reader",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::flat::reader::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "reader",
+        "max_events": 12000
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::writer::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::writer::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::writer::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::reader::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::reader::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_quiet::reader::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_quiet",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::writer::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::writer::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::writer::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "writer",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::reader::off",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "off",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::reader::on",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "on",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    },
+    {
+      "id": "patch::add_growing::reader::sham",
+      "config": {
+        "separate_apparatus": true,
+        "inherited_routes": true,
+        "forced_content": null,
+        "donor_precursor": 96,
+        "task_probe": true,
+        "donor_fuel": 144,
+        "restoration_mode": "sham",
+        "task_damage": "reader",
+        "max_events": 12000,
+        "geometry": {
+          "fixture": "add_growing",
+          "horizon": 512
+        }
+      },
+      "sampling_mode": "finite_enumeration",
+      "stage": "IMPLEMENTED_PENDING_REVIEW",
+      "amendment": "R127",
+      "parent_case": "full_base",
+      "geometry_scope": "conditional_fixture"
+    }
+  ],
+  "contrasts": [
+    {
+      "id": "seed_effect",
+      "cases": [
+        "forced11",
+        "no_seed"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Bootstrap after initial apparatus withheld",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "production_effect",
+      "cases": [
+        "forced11",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Function after inherited apparatus retired",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "seed_production",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_seed",
+        "no_seed_no_production"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "content_effect",
+      "cases": [
+        "forced11",
+        "forced10"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "reader_effect",
+      "cases": [
+        "forced11",
+        "no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "record_effect",
+      "cases": [
+        "forced11",
+        "no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "contact_effect",
+      "cases": [
+        "forced11",
+        "no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_threshold",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_health",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "mean_health",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_random",
+      "cases": [
+        "base",
+        "base_no_production",
+        "base_no_contact",
+        "base_neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_apparatus",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_content",
+      "cases": [
+        "forced11",
+        "scrambled_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_resource_access",
+      "cases": [
+        "forced11",
+        "late_resource"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_record_access",
+      "cases": [
+        "forced11",
+        "late_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "finite_working_memory",
+      "cases": [
+        "forced11",
+        "one_slot"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "donor_dose",
+      "cases": [
+        "forced11",
+        "weak_donor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "consecutive_functional",
+      "require_equal_initial_totals": false,
+      "question": "Declared resource-dose intervention, not equal-budget synergy",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "precursor_dose",
+      "cases": [
+        "forced11",
+        "no_precursor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": false,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "apparatus_retirement",
+      "cases": [
+        "retained_apparatus",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "coordinate_schedule_control",
+      "cases": [
+        "forced11",
+        "reverse_schedule"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "physical_motion",
+      "cases": [
+        "forced11",
+        "moving_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "initiator_repeat",
+      "cases": [
+        "forced11",
+        "repeating_source"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_information",
+      "cases": [
+        "base",
+        "independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "corrector_effect",
+      "cases": [
+        "base",
+        "base_no_corrector"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_16",
+      "cases": [
+        "finite_dark_16",
+        "finite_static_16"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_32",
+      "cases": [
+        "finite_dark_32",
+        "finite_static_32"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_64",
+      "cases": [
+        "finite_dark_64",
+        "finite_static_64"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_reader",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "detuning_cost",
+      "cases": [
+        "finite_dark_32",
+        "detune_0.15"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "same_response_different_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "same_parent_different_child",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "inheritance_interaction",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus",
+        "scrambled_child",
+        "no_apparatus_scrambled"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "contact_address",
+      "cases": [
+        "forced11",
+        "no_contact_address"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "successor_address",
+      "cases": [
+        "forced11",
+        "no_successor_address"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "mutant_competence",
+      "cases": [
+        "forced11",
+        "mutant_product"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_reader_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_read"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_writer_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_write"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_repair_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_repair"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "inbox_capacity",
+      "cases": [
+        "forced11",
+        "no_inbox"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "record_capacity",
+      "cases": [
+        "forced11",
+        "one_record_slot"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "corrector_resource_policy",
+      "cases": [
+        "natural_no_corrector",
+        "no_corrector"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "production_resource_policy",
+      "cases": [
+        "natural_no_production",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "contact_resource_policy",
+      "cases": [
+        "natural_no_contact",
+        "no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "motion_delivery_lateness",
+      "cases": [
+        "moving_child",
+        "forced11"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_supply_lateness",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "full_seed_mark",
+      "cases": [
+        "full_seed_11",
+        "full_seed_10",
+        "full_seed_01",
+        "full_seed_00"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X01",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_V2_V1",
+      "cases": [
+        "full_law_V2",
+        "full_law_V1"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true,
+      "question": "X02",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_A_V1",
+      "cases": [
+        "full_law_A",
+        "full_law_V1"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true,
+      "question": "X02",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_completion_erase",
+      "cases": [
+        "full_completion_erase",
+        "full_completion_isolate"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X03",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_completion_trace",
+      "cases": [
+        "full_completion_trace",
+        "full_completion_isolate"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X03",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_completion_transfer",
+      "cases": [
+        "full_completion_transfer",
+        "full_completion_isolate"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X03",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_completion_decay",
+      "cases": [
+        "full_completion_decay",
+        "full_completion_isolate"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X03",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_erased_record",
+      "cases": [
+        "full_base",
+        "full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X03",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_record_apparatus",
+      "cases": [
+        "full_base",
+        "full_scramble",
+        "full_no_apparatus",
+        "full_scramble_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X04",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_resource_delivery",
+      "cases": [
+        "full_base",
+        "full_late_resource"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X05",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_route_inheritance",
+      "cases": [
+        "full_base",
+        "full_no_route"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X06",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_route_damage",
+      "cases": [
+        "full_base",
+        "full_route_damage"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X06",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_template_bank",
+      "cases": [
+        "full_base",
+        "full_no_template_bank"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X06",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_imported_contacts",
+      "cases": [
+        "full_imported_contact",
+        "full_base"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X06",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_writer_replacement",
+      "cases": [
+        "full_base",
+        "full_writer_damage"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_reader_absent",
+      "cases": [
+        "full_base",
+        "full_reader_damage"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_repeat_writer",
+      "cases": [
+        "full_cycles_writer",
+        "full_cycles_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_repeat_reader",
+      "cases": [
+        "full_cycles_reader",
+        "full_cycles_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_transport_repair",
+      "cases": [
+        "full_transport_patch",
+        "full_transport_unrepaired"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_transport_damage",
+      "cases": [
+        "full_transport_intact",
+        "full_transport_patch"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true,
+      "question": "X07",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_classical_joint",
+      "cases": [
+        "full_correlated",
+        "full_independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X08",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_quantum_XX",
+      "cases": [
+        "full_bell_x",
+        "full_dephased_x"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X08",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_quantum_ZZ",
+      "cases": [
+        "full_bell_z",
+        "full_dephased_z"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X08",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_interaction_threshold",
+      "cases": [
+        "full_base",
+        "full_no_production",
+        "full_no_contact",
+        "full_neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X09",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_interaction_health",
+      "cases": [
+        "full_base",
+        "full_no_production",
+        "full_no_contact",
+        "full_neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "mean_health",
+      "require_equal_initial_totals": true,
+      "question": "X09",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_load_cycle_16",
+      "cases": [
+        "full_finite_dark_16",
+        "full_finite_static_16"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_load_cycle_32",
+      "cases": [
+        "full_finite_dark_32",
+        "full_finite_static_32"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_load_cycle_64",
+      "cases": [
+        "full_finite_dark_64",
+        "full_finite_static_64"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_grid_16_32",
+      "cases": [
+        "full_bath_16",
+        "full_bath_32"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_grid_4_16",
+      "cases": [
+        "full_bath_4",
+        "full_bath_16"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_delay_memory",
+      "cases": [
+        "full_finite_static_32",
+        "full_wave_delayed"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X10",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_same_response",
+      "cases": [
+        "full_finite_dark_32",
+        "full_wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X11",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_physical_motion",
+      "cases": [
+        "full_base",
+        "full_moving"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X14",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_wave_motion",
+      "cases": [
+        "full_finite_static_32",
+        "full_wave_moving"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X14",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_branch_budget",
+      "cases": [
+        "full_branch",
+        "full_branch_weak"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": false,
+      "question": "X15",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_fragment_replay",
+      "cases": [
+        "full_fragments",
+        "full_fragment_duplicate"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X15",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_fragment_loss",
+      "cases": [
+        "full_fragments",
+        "full_fragment_lost"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X15",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_fragment_capacity",
+      "cases": [
+        "full_fragments",
+        "full_fragment_zero"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X15",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_fragment_ttl",
+      "cases": [
+        "full_fragments",
+        "full_fragment_expiry"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "X15",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "full_parent_template_removed",
+      "cases": [
+        "full_base",
+        "full_removed_parent_template"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true,
+      "question": "X16",
+      "interpretation": "Prospective bounded common-engine comparison; outcome is not a physical realization or closure theorem."
+    },
+    {
+      "id": "patch::flat::full_no_record",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_no_reader",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_scramble",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_scramble"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_no_production",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_no_contact",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_neither",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_neither"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::full_no_apparatus",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::full_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::flat::measure",
+      "cases": [
+        "patch::flat::full_base",
+        "patch::flat::independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::ising_order::full_no_record",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_no_reader",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_scramble",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_scramble"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_no_production",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_no_contact",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_neither",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_neither"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::full_no_apparatus",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::full_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::ising_order::measure",
+      "cases": [
+        "patch::ising_order::full_base",
+        "patch::ising_order::independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::cdt_strip::full_no_record",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_no_reader",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_scramble",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_scramble"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_no_production",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_no_contact",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_neither",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_neither"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::full_no_apparatus",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::full_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::cdt_strip::measure",
+      "cases": [
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::full_no_record",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_no_reader",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_scramble",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_scramble"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_no_production",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_no_contact",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_neither",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_neither"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::full_no_apparatus",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::full_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_quiet::measure",
+      "cases": [
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::full_no_record",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_no_reader",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_scramble",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_scramble"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_no_production",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_no_contact",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_neither",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_neither"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::full_no_apparatus",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::full_no_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "patch::add_growing::measure",
+      "cases": [
+        "patch::add_growing::full_base",
+        "patch::add_growing::independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G0::none::on-off",
+      "cases": [
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G0::none::on-sham",
+      "cases": [
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G0::contact::on-off",
+      "cases": [
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G0::contact::on-sham",
+      "cases": [
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G1::none::on-off",
+      "cases": [
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G1::none::on-sham",
+      "cases": [
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G1::contact::on-off",
+      "cases": [
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::G1::contact::on-sham",
+      "cases": [
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::none::off::G",
+      "cases": [
+        "patch::add_quiet::G1::none::off",
+        "patch::add_quiet::G0::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::none::on::G",
+      "cases": [
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G0::none::on"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::contact::off::G",
+      "cases": [
+        "patch::add_quiet::G1::contact::off",
+        "patch::add_quiet::G0::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::contact::on::G",
+      "cases": [
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G0::contact::on"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G0::none::on-off",
+      "cases": [
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G0::none::on-sham",
+      "cases": [
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G0::contact::on-off",
+      "cases": [
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G0::contact::on-sham",
+      "cases": [
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G1::none::on-off",
+      "cases": [
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G1::none::on-sham",
+      "cases": [
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G1::contact::on-off",
+      "cases": [
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::G1::contact::on-sham",
+      "cases": [
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::none::off::G",
+      "cases": [
+        "patch::add_growing::G1::none::off",
+        "patch::add_growing::G0::none::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::none::on::G",
+      "cases": [
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G0::none::on"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::contact::off::G",
+      "cases": [
+        "patch::add_growing::G1::contact::off",
+        "patch::add_growing::G0::contact::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::contact::on::G",
+      "cases": [
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G0::contact::on"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::flat::writer::on-off",
+      "cases": [
+        "patch::flat::writer::on",
+        "patch::flat::writer::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::flat::writer::on-sham",
+      "cases": [
+        "patch::flat::writer::on",
+        "patch::flat::writer::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::flat::reader::on-off",
+      "cases": [
+        "patch::flat::reader::on",
+        "patch::flat::reader::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::flat::reader::on-sham",
+      "cases": [
+        "patch::flat::reader::on",
+        "patch::flat::reader::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::writer::on-off",
+      "cases": [
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::writer::on-sham",
+      "cases": [
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::reader::on-off",
+      "cases": [
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_quiet::reader::on-sham",
+      "cases": [
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::writer::on-off",
+      "cases": [
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::writer::on-sham",
+      "cases": [
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::reader::on-off",
+      "cases": [
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::off"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    },
+    {
+      "id": "patch::add_growing::reader::on-sham",
+      "cases": [
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::sham"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "mean_task_success"
+    }
+  ],
+  "common_base": "Equal initial credits/material for matched comparisons. Disabled production, repair and corrector allowances are unavailable in matched mode; natural controls retain unused local stock. No budget is reassigned across carriers.",
+  "source": "Revision after supplied neighbor reviews and Copilot; scientific outcomes not viewed."
+}

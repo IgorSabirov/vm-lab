@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "scope": "Same Config intervention applies at every active carrier; parent/child profile retained separately",
+  "rows": [
+    {
+      "id": "D_FUNCTION",
+      "intervention": "functional state starts at health 7",
+      "reference": "forced11",
+      "case": "no_corrector",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_RECORD",
+      "intervention": "remove accessible stored record before read",
+      "reference": "forced11",
+      "case": "no_record",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_READER",
+      "intervention": "disable reader operation",
+      "reference": "forced11",
+      "case": "no_reader",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_APPARATUS",
+      "intervention": "retire inherited apparatus after production slot",
+      "reference": "forced11",
+      "case": "no_production",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_CONTACT",
+      "intervention": "initial contact absent; local repair disabled",
+      "reference": "forced11",
+      "case": "no_contact",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_ADDRESS",
+      "intervention": "withhold prepared address",
+      "reference": "forced11",
+      "case": "no_address",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_DELIVERY",
+      "intervention": "resource extra proper dwell 100",
+      "reference": "forced11",
+      "case": "late_resource",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_DONOR",
+      "intervention": "donor fuel 48 to 12; explicit unequal-dose intervention",
+      "reference": "forced11",
+      "case": "weak_donor",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_TRANSFER",
+      "intervention": "transfer record without apparatus",
+      "reference": "forced11",
+      "case": "no_transferred_apparatus",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    },
+    {
+      "id": "D_CONTENT",
+      "intervention": "change B after parental read before offspring transport",
+      "reference": "forced11",
+      "case": "scrambled_child",
+      "status": "IMPLEMENTED_NOT_EXECUTED",
+      "horizon": "read_wait+5 proper time after activation plus delivery; finite event queue",
+      "observable": "full profile, costs, read_quality, apparatus origin, contact origin"
+    }
+  ],
+  "not_admissible": [
+    {
+      "object": "writer-only physical damage",
+      "reason": "A is shared reader/writer catalyst; independent Aw/Ar chemistry not implemented"
+    },
+    {
+      "object": "PW quantum clock",
+      "reason": "no H,T,sigma constraint system supplied"
+    },
+    {
+      "object": "R097 spin-hole-proton carrier",
+      "reason": "finite rail memory is a different specified Hamiltonian"
+    },
+    {
+      "object": "contact topology genesis",
+      "reason": "locations, address and local repair rule are imported"
+    }
+  ]
+}

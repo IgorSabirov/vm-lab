@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "rows": [
+    {
+      "object": "law",
+      "given": "Candidate reaction and correction rules",
+      "where": "local_instruments.py",
+      "removal_or_replacement": "No; removing law makes model undefined",
+      "production_criterion": "Law cannot be counted as produced"
+    },
+    {
+      "object": "geometry",
+      "given": "1+1 Minkowski background, worldlines, substrate sites",
+      "where": "kinematics.py / Engine.__init__",
+      "removal_or_replacement": "Velocity can change; geometry cannot be derived here",
+      "production_criterion": "No genesis claim"
+    },
+    {
+      "object": "measure",
+      "given": "Correlated or independent two-bit preparation; labelled random draws",
+      "where": "randomness.py",
+      "removal_or_replacement": "Swap preparation ensemble",
+      "production_criterion": "Keep denominators, not probability of existence"
+    },
+    {
+      "object": "apparatus_seed",
+      "given": "One material apparatus at N0",
+      "where": "Engine.__init__",
+      "removal_or_replacement": "no_seed; retire inherited",
+      "production_criterion": "Function after retirement must use locally made apparatus"
+    },
+    {
+      "object": "production_template",
+      "given": "Generic synthesis rule plus local two-bit content",
+      "where": "produce",
+      "removal_or_replacement": "content/seed/production ablations",
+      "production_criterion": "Synthesis law stays given"
+    },
+    {
+      "object": "contact_address",
+      "given": "All substrate destinations fixed at preparation",
+      "where": "Cell.address",
+      "removal_or_replacement": "no_address / no_contact",
+      "production_criterion": "Paid local contact is not recovered adjacency matrix"
+    },
+    {
+      "object": "work_stock",
+      "given": "Finite donor credits plus four initial credits",
+      "where": "donor / Cell.fuel",
+      "removal_or_replacement": "weak_donor",
+      "production_criterion": "No if-success injection; credits not joules"
+    },
+    {
+      "object": "material",
+      "given": "Precursor, apparatus material, contact material, locked controls",
+      "where": "Engine.totals",
+      "removal_or_replacement": "no_precursor",
+      "production_criterion": "Conservation includes transit and waste"
+    },
+    {
+      "object": "memory",
+      "given": "Two rails per record with fresh initial finite bath",
+      "where": "memory.write",
+      "removal_or_replacement": "static/dark/detuning/modes",
+      "production_criterion": "Each record module given once; no repeated bath reset inside that record; preparation remains imported"
+    },
+    {
+      "object": "actuator",
+      "given": "Perfect bright-dark pulse and projective read instrument",
+      "where": "memory.write/read",
+      "removal_or_replacement": "finite_static",
+      "production_criterion": "Actuator not reproduced; credit cost is declared, not derived work"
+    },
+    {
+      "object": "clock_schedule",
+      "given": "Local proper-time appointments after activation",
+      "where": "Engine.boot",
+      "removal_or_replacement": "read_wait / moving_child",
+      "production_criterion": "Scheduler knowledge never passed to controller"
+    },
+    {
+      "object": "log",
+      "given": "Researcher full log and checkpoint",
+      "where": "Engine.log",
+      "removal_or_replacement": "Fake future marker test",
+      "production_criterion": "Audit log unavailable as a control input"
+    }
+  ],
+  "candidate_03_imports": {
+    "typed_reaction_table": "given Z3 composition, not chemistry derived from payment",
+    "writer_reader_roles": "given operational laws; products tested by their operations",
+    "geometry": "given worldlines and local beacon reach, not generated spacetime",
+    "template": "root two-port template given; descendants receive physical packet",
+    "quantum_preparation": "given Bell/dephased 4D states and CP measurement instrument",
+    "thermodynamics": "credits/material only; no new energy/entropy equality",
+    "finite_scope": "bounded repairs, finite fragments, finite memory; not unlimited autopoiesis"
+  }
+}

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/var/lib/vm-compute/work/results/integrated_scope_cal_6656475_20261107/input/vm-lab/experiments/now_integrated_v1/run.py", line 11, in <module>
+    run_cli(Path(__file__).resolve().parent)
+  File "/var/lib/vm-compute/work/results/integrated_scope_cal_6656475_20261107/input/vm-lab/experiments/now_integrated_v1/nowexp/runner.py", line 341, in run_cli
+    worker(root, args)
+  File "/var/lib/vm-compute/work/results/integrated_scope_cal_6656475_20261107/input/vm-lab/experiments/now_integrated_v1/nowexp/runner.py", line 307, in worker
+    evidence=collect(mapping,contrasts,controls,args.source_commit,config_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lib/vm-compute/work/results/integrated_scope_cal_6656475_20261107/input/vm-lab/experiments/now_integrated_v1/nowexp/scope_evidence.py", line 10, in collect
+    mean=None if value is None else value['mean'],
+                                    ~~~~~^^^^^^^^
+KeyError: 'mean'

@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "MEASURED_ENVIRONMENT_NOT_MAIN_RUN_READINESS",
+  "environment_source_commit": "7d443254eebb78e9ca7d2701a07c118959e511af",
+  "identity_source_commit": "e45ce5991f8fbf8eb3bc8ded147d38f8822a8587",
+  "identity": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "architecture": "x86_64",
+    "loaded_libraries": [
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "resolved": "/usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0",
+        "bytes": 677880,
+        "sha256": "e748efcae5753fe4a652877fccdb5895ac6f7605668a2db878b19c914e78e3a8"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "resolved": "/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0",
+        "bytes": 7268368,
+        "sha256": "851bb1fc5833ede9ed704b4417a251a899976d5e0915de40452615187a65278f"
+      }
+    ]
+  },
+  "measured_envelope": {
+    "visible_logical_cpus": 8,
+    "cpu_quota_equivalents": 7,
+    "worker_cgroup_memory_limit_bytes": 13413384192,
+    "free_disk_bytes": 4661575680,
+    "swap_bytes": 0,
+    "default_single_file_cap_bytes": 2147483648
+  },
+  "execution_policy": {
+    "blas_threads_per_process": 1,
+    "baseline_processes": 1,
+    "parallel_calibration_candidates": [
+      1,
+      2,
+      4,
+      7
+    ],
+    "parallelism_chosen": false,
+    "concurrent_queue_jobs": 1,
+    "reason": "Actual loaded BLAS/LAPACK runs with one observed numerical thread; changing OPENBLAS_NUM_THREADS from 1 to 7 did not accelerate these kernels."
+  },
+  "disk_policy": {
+    "leave_free_bytes": 2147483648,
+    "max_job_output_bytes_provisional": 1073741824,
+    "check_before_submission": true,
+    "check_during_execution": true,
+    "reason": "4.34 GiB currently free; enforce a bounded output budget including snapshots, partial writes, failed attempts and final reports, not only result rows."
+  },
+  "checkpoint_policy": {
+    "measured_32k_fsync_median_s": 0.010080663000735512,
+    "measured_32k_fsync_max_s": 0.04518763300075079,
+    "require_bounded_state_and_logs": true,
+    "avoid_full_history_every_event": true,
+    "require_late_resume_and_finalization_smoke": true,
+    "require_directory_fsync": true
+  },
+  "remaining_before_main_forecast": [
+    "fix reviewed runner defects",
+    "measure representative complete trajectories and full snapshots",
+    "measure parallel throughput and aggregate peak RSS on target VM",
+    "account for initialization, output, checkpoint, resume, aggregation and finalization",
+    "freeze precision, task count and runtime forecast using those measurements"
+  ],
+  "scientific_scope_change": "none",
+  "existing_draft_task_count_status": "not validated by environment-only measurements"
+}

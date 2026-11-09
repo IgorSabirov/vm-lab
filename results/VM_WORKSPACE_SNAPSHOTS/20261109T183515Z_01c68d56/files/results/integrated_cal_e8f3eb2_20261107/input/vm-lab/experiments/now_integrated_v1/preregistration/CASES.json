@@ -1,0 +1,1370 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "base",
+      "config": {},
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "forced11",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced10",
+      "config": {
+        "forced_content": [
+          1,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced01",
+      "config": {
+        "forced_content": [
+          0,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "forced00",
+      "config": {
+        "forced_content": [
+          0,
+          0
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "neither",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_seed_no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false,
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_reader",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "reader_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "erase_record": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_corrector",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_precursor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_precursor": 0
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "address_enabled": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_transferred_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "transfer_apparatus": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "scrambled_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scramble_child": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_resource",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "supply_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "late_record",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "record_delay": 100
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "one_slot",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "working_slots": 1
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "weak_donor",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "donor_fuel": 12
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "retained_apparatus",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "retire_inherited": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "given_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "imported_contacts": true,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "reverse_schedule",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "scheduler_reverse": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "moving_child",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "receiver_velocity": 0.2
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "repeating_source",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "source_repeat": true
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "independent",
+      "config": {
+        "preparation": "independent"
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_production",
+      "config": {
+        "production": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_contact",
+      "config": {
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_neither",
+      "config": {
+        "production": false,
+        "repair_contacts": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "base_no_corrector",
+      "config": {
+        "corrector": false
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_16",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_32",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_dark_64",
+      "config": {
+        "memory": "finite_dark",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_16",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_32",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "finite_static_64",
+      "config": {
+        "memory": "finite_static",
+        "read_wait": 64,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.02",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.02,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.07",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.07,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "detune_0.15",
+      "config": {
+        "memory": "finite_dark",
+        "detuning": 0.15,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_4",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 4,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_16",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 16,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "bath_32",
+      "config": {
+        "memory": "finite_static",
+        "bath_modes": 32,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_transfer",
+      "config": {
+        "memory": "finite_dark",
+        "transfer_apparatus": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_no_reader",
+      "config": {
+        "memory": "finite_dark",
+        "reader_enabled": false,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "wave_moving",
+      "config": {
+        "memory": "finite_dark",
+        "receiver_velocity": 0.2,
+        "forced_content": [
+          1,
+          1
+        ]
+      },
+      "stage": "IMPLEMENTED_NOT_EXECUTED",
+      "sampling_mode": "seed_ensemble"
+    },
+    {
+      "id": "no_contact_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "contact_address_enabled": false
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_successor_address",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "successor_address_enabled": false
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "mutant_product",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_template": 0
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_read",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "read"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_write",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "write"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "product_cannot_repair",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "produced_disabled_roles": [
+          "repair"
+        ]
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_inbox",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "inbox_slots": 0
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "one_record_slot",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "record_slots": 1
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "short_inbox",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "initial_seed": false,
+        "inbox_lifetime": 1
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "no_apparatus_scrambled",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "transfer_apparatus": false,
+        "scramble_child": true
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_corrector",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "corrector": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_production",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "production": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    },
+    {
+      "id": "natural_no_contact",
+      "config": {
+        "forced_content": [
+          1,
+          1
+        ],
+        "repair_contacts": false,
+        "disabled_resource_policy": "natural"
+      },
+      "stage": "REVISED_BEFORE_AUTHOR_EXECUTION",
+      "sampling_mode": "deterministic"
+    }
+  ],
+  "contrasts": [
+    {
+      "id": "seed_effect",
+      "cases": [
+        "forced11",
+        "no_seed"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Bootstrap after initial apparatus withheld",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "production_effect",
+      "cases": [
+        "forced11",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "Function after inherited apparatus retired",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "seed_production",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_seed",
+        "no_seed_no_production"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "content_effect",
+      "cases": [
+        "forced11",
+        "forced10"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "reader_effect",
+      "cases": [
+        "forced11",
+        "no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "record_effect",
+      "cases": [
+        "forced11",
+        "no_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "contact_effect",
+      "cases": [
+        "forced11",
+        "no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_threshold",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_health",
+      "cases": [
+        "forced11",
+        "no_production",
+        "no_contact",
+        "neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "mean_health",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_random",
+      "cases": [
+        "base",
+        "base_no_production",
+        "base_no_contact",
+        "base_neither"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_apparatus",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "transferred_content",
+      "cases": [
+        "forced11",
+        "scrambled_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_resource_access",
+      "cases": [
+        "forced11",
+        "late_resource"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "causal_record_access",
+      "cases": [
+        "forced11",
+        "late_record"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "finite_working_memory",
+      "cases": [
+        "forced11",
+        "one_slot"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "donor_dose",
+      "cases": [
+        "forced11",
+        "weak_donor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "consecutive_functional",
+      "require_equal_initial_totals": false,
+      "question": "Declared resource-dose intervention, not equal-budget synergy",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "precursor_dose",
+      "cases": [
+        "forced11",
+        "no_precursor"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": false,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "apparatus_retirement",
+      "cases": [
+        "retained_apparatus",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "coordinate_schedule_control",
+      "cases": [
+        "forced11",
+        "reverse_schedule"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "physical_motion",
+      "cases": [
+        "forced11",
+        "moving_child"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "initiator_repeat",
+      "cases": [
+        "forced11",
+        "repeating_source"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "joint_information",
+      "cases": [
+        "base",
+        "independent"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "corrector_effect",
+      "cases": [
+        "base",
+        "base_no_corrector"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_16",
+      "cases": [
+        "finite_dark_16",
+        "finite_static_16"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_32",
+      "cases": [
+        "finite_dark_32",
+        "finite_static_32"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "load_cycle_64",
+      "cases": [
+        "finite_dark_64",
+        "finite_static_64"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "wave_reader",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_reader"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "detuning_cost",
+      "cases": [
+        "finite_dark_32",
+        "detune_0.15"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "same_response_different_transfer",
+      "cases": [
+        "finite_dark_32",
+        "wave_no_transfer"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true,
+      "question": "",
+      "interpretation": "Candidate-law contrast; no claim of quantum specificity or physical origin"
+    },
+    {
+      "id": "same_parent_different_child",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "parent_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "inheritance_interaction",
+      "cases": [
+        "forced11",
+        "no_transferred_apparatus",
+        "scrambled_child",
+        "no_apparatus_scrambled"
+      ],
+      "weights": [
+        1,
+        -1,
+        -1,
+        1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "contact_address",
+      "cases": [
+        "forced11",
+        "no_contact_address"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "successor_address",
+      "cases": [
+        "forced11",
+        "no_successor_address"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "mutant_competence",
+      "cases": [
+        "forced11",
+        "mutant_product"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_reader_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_read"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_writer_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_write"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "new_repair_competence",
+      "cases": [
+        "forced11",
+        "product_cannot_repair"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "inbox_capacity",
+      "cases": [
+        "forced11",
+        "no_inbox"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "record_capacity",
+      "cases": [
+        "forced11",
+        "one_record_slot"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "corrector_resource_policy",
+      "cases": [
+        "natural_no_corrector",
+        "no_corrector"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "production_resource_policy",
+      "cases": [
+        "natural_no_production",
+        "no_production"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "contact_resource_policy",
+      "cases": [
+        "natural_no_contact",
+        "no_contact"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "final_function",
+      "require_equal_initial_totals": true
+    },
+    {
+      "id": "motion_delivery_lateness",
+      "cases": [
+        "moving_child",
+        "forced11"
+      ],
+      "weights": [
+        1,
+        -1
+      ],
+      "metric": "child_supply_lateness",
+      "require_equal_initial_totals": true
+    }
+  ],
+  "common_base": "Equal initial credits/material for matched comparisons. Disabled production, repair and corrector allowances are unavailable in matched mode; natural controls retain unused local stock. No budget is reassigned across carriers.",
+  "source": "Revision after supplied neighbor reviews and Copilot; scientific outcomes not viewed."
+}

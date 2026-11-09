@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "PASSED",
+  "phase": "calibration_forecast",
+  "source_commit": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf",
+  "source_digest": "2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279",
+  "config_digest": "4187cff1a7d02afa7389de010c4957b807743beada5c6da9e60e9e8b8051622a",
+  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+  "measured_on_target_vm": true,
+  "complete": true,
+  "calibration_reference": {
+    "job_id": "now_waiver_cal_7c55308_20261108",
+    "wall_seconds": 8.709293595005875,
+    "runner_worker_seconds": 8.254045505003887,
+    "task_count": 89,
+    "task_count_main": 413,
+    "max_rss_mib": 55.15234375,
+    "output_bytes": 14149354,
+    "run_path": "results/now_waiver_cal_7c55308_20261108/calibrate_output/RUN.json"
+  },
+  "forecast_method": {
+    "expected_seconds": "calibration wrapper wall_seconds * main_task_count / calibration_task_count; calibration wall includes subprocess startup, execution, I/O and report",
+    "interval": "custom symmetric relative +/-30%; selected because default max(30%,60s) would give an uninformative zero lower bound for this short run; engineering range, not statistical CI",
+    "projected_memory": "2 * observed calibration max_rss_mib, rounded up",
+    "projected_disk": "2 * calibration output_bytes * main_task_count / calibration_task_count, rounded up to MiB"
+  },
+  "expected_seconds": 40.41503657008344,
+  "lower_seconds": 28.290525599058405,
+  "upper_seconds": 52.53954754110847,
+  "hard_wall_seconds": 3600,
+  "memory_limit_mib": 4096,
+  "disk_limit_mib": 1024,
+  "projected_memory_mib": 111,
+  "projected_disk_mib": 126,
+  "task_count": 413,
+  "scientific_confirmation": false
+}

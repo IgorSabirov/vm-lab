@@ -1,0 +1,230 @@
+from dataclasses import dataclass, field, asdict
+import math
+import json
+from pathlib import Path
+
+
+def scientific_thresholds():
+    """The preregistration is the only source of numerical acceptance defaults."""
+    return json.loads((Path(__file__).parents[1]/"preregistration"/"PROTOCOL.json").read_text())["acceptance"]
+
+
+@dataclass
+class Apparatus:
+    identity: str
+    made_by: str
+    generation: int
+    template: int
+    material_units: int = 1
+
+
+@dataclass
+class Cell:
+    identity: str
+    generation: int
+    fuel: int = 0
+    precursor: int = 0
+    fuel_capacity: int = 16
+    precursor_capacity: int = 8
+    reserved_fuel: int = 0
+    reserved_precursor: int = 0
+    apparatus: list = field(default_factory=list)
+    pending: dict = field(default_factory=dict)
+    memories: dict = field(default_factory=dict)
+    decoded: dict = field(default_factory=dict)
+    contact: bool = False
+    contact_origin: str = "absent"
+    address: str | None = None
+    active: bool = False
+    started_at: float | None = None
+    health: int = 7
+    transmitted: bool = False
+    material_waste: int = 0
+    spent_fuel: int = 0
+    unavailable_fuel: int = 0
+    unavailable_material: int = 0
+    contact_material: int = 0
+    costs: dict = field(default_factory=dict)
+    failures: list = field(default_factory=list)
+    last_read_quality: dict = field(default_factory=dict)
+    memory_origins: dict = field(default_factory=dict)
+    pending_origins: dict = field(default_factory=dict)
+    pending_at: dict = field(default_factory=dict)
+    last_event: str | None = None
+    capability_uses: list = field(default_factory=list)
+    delivery_times: list = field(default_factory=list)
+    fragments: dict = field(default_factory=dict)
+    peer_beacons: dict = field(default_factory=dict)
+    route_template: list = field(default_factory=list)
+    contact_peers: list = field(default_factory=list)
+    reactor_state: int = 1
+    transmitted_to: list = field(default_factory=list)
+    production_round: int = 0
+    repair_history: list = field(default_factory=list)
+    fragment_headers: dict = field(default_factory=dict)
+    last_completed_fragment: dict = field(default_factory=dict)
+    transport_repaired: bool = False
+    transport_material: int = 0
+
+    task_state: dict = field(default_factory=dict)
+
+    def pay(self, n, purpose):
+        if n < 0:
+            raise ValueError("negative debit")
+        if self.fuel < n:
+            self.failures.append("fuel:" + purpose)
+            return False
+        self.fuel -= n
+        self.spent_fuel += n
+        self.costs[purpose] = self.costs.get(purpose, 0) + n
+        return True
+
+    def local_view(self):
+        """Controller receives this local state, not other cells or global log."""
+        return dict(identity=self.identity, generation=self.generation,
+                    fuel=self.fuel, precursor=self.precursor,
+                    decoded=dict(self.decoded), apparatus=list(self.apparatus),
+                    contact=self.contact, address=self.address, health=self.health)
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class Config:
+    generations: int = 3
+    production: bool = True
+    repair_contacts: bool = True
+    corrector: bool = True
+    initial_seed: bool = True
+    retire_inherited: bool = True
+    transfer_apparatus: bool = True
+    reader_enabled: bool = True
+    address_enabled: bool = True
+    imported_contacts: bool = False
+    erase_record: bool = False
+    source_repeat: bool = False
+    memory: str = "classical"
+    detuning: float = 0.0
+    bath_modes: int = 8
+    bath_coupling: float = 0.35
+    classical_survival: float = 1.0
+    supply_delay: float = 0.0
+    record_delay: float = 0.0
+    donor_fuel: int = 48
+    donor_precursor: int = 16
+    receiver_velocity: float = 0.0
+    read_wait: float = 32.0
+    forced_content: tuple | None = None
+    preparation: str = "correlated"
+    scramble_child: bool = False
+    scheduler_reverse: bool = False
+    working_slots: int = 2
+    max_events: int = 1000
+    contact_address_enabled: bool = True
+    successor_address_enabled: bool = True
+    inbox_slots: int = 2
+    record_slots: int = 2
+    inbox_lifetime: float = 256.0
+    produced_template: int = 1
+    produced_disabled_roles: tuple = ()
+    disabled_resource_policy: str = "matched"
+    thresholds: dict = field(default_factory=scientific_thresholds)
+    separate_apparatus: bool = False
+    seed_writer: bool = True
+    seed_reader: bool = True
+    damage_writer: bool = False
+    damage_reader: bool = False
+    inherited_routes: bool = False
+    transmit_route: bool = True
+    damage_route: bool = False
+    fragmented_records: bool = False
+    drop_fragment: bool = False
+    duplicate_fragment: bool = False
+    fragment_slots: int = 4
+    completion_mode: str = 'isolate'
+    completion_probe: bool = False
+    branching: bool = False
+    prepared_records: bool = False
+    production_semantics: str = 'pair_rule'
+    repair_rounds: int = 0
+    cycle_damage_role: str = 'writer'
+    remove_parent_template_after_transfer: bool = False
+    initiator_enabled: bool = True
+    template_slots: int = 2
+    damage_transport: bool = False
+    repair_transport: bool = True
+    transport_support: bool = False
+
+    geometry: dict | None = None
+    task_probe: bool = False
+    task_damage: str = "none"
+    restoration_mode: str = "off"
+    task_content_intervention: str = "none"
+
+    @property
+    def required_content(self):
+        return dict(zip(("A", "B"), self.thresholds["required_decoded_content"]))
+
+    def validate(self):
+        if self.geometry is not None and (not isinstance(self.geometry, dict) or self.receiver_velocity != 0):
+            raise ValueError("geometry adapter requires a manifest and supplied rest clocks")
+        if self.task_probe and (not self.separate_apparatus or self.branching or self.repair_rounds or self.memory != "classical" or self.damage_writer or self.damage_reader):
+            raise ValueError("task probe envelope: separate W/R, classical records, one challenge, no legacy role damage")
+        if self.task_damage not in ("none", "writer", "reader", "contact") or self.restoration_mode not in ("on", "off", "sham"):
+            raise ValueError("unknown challenge or restoration")
+        if self.task_content_intervention not in ("none", "flip_A"):
+            raise ValueError("XOR control must change exactly one input")
+        for name in ("generations", "bath_modes", "donor_fuel", "donor_precursor", "working_slots", "max_events", "inbox_slots", "record_slots", "produced_template", "fragment_slots", "repair_rounds", "template_slots"):
+            if type(getattr(self, name)) is not int:
+                raise ValueError("integer resource/count required: " + name)
+        for name in ("detuning", "bath_coupling", "classical_survival", "supply_delay", "record_delay", "receiver_velocity", "read_wait"):
+            if not math.isfinite(getattr(self, name)):
+                raise ValueError("nonfinite parameter: " + name)
+        if self.bath_coupling < 0:
+            raise ValueError("negative coupling")
+        if self.forced_content is not None and (len(self.forced_content) != 2 or any(x not in (0,1) for x in self.forced_content)):
+            raise ValueError("content requires two classical bits")
+        if not 1 <= self.generations <= 8:
+            raise ValueError("generations outside reviewed envelope")
+        if self.memory not in ("classical", "finite_dark", "finite_static"):
+            raise ValueError("unknown memory backend")
+        if self.preparation not in ("correlated", "independent",'bell_x','dephased_x','bell_z','dephased_z'):
+            raise ValueError("unknown preparation law")
+        if not 2 <= self.bath_modes <= 64:
+            raise ValueError("bath size outside envelope")
+        if not 0 <= self.classical_survival <= 1 or abs(self.receiver_velocity) >= 0.5:
+            raise ValueError("invalid probability or material carrier cannot catch worldline")
+        if min(self.donor_fuel, self.donor_precursor, self.supply_delay, self.record_delay) < 0:
+            raise ValueError("negative stock or delay")
+        if self.working_slots < 0 or self.read_wait < 1 or self.max_events < 1:
+            raise ValueError("invalid finite budget")
+        if not 0 <= self.inbox_slots <= 2 or not 0 <= self.record_slots <= 2:
+            raise ValueError("two-address finite memory bank required")
+        if self.prepared_records and self.record_slots<2:
+            raise ValueError('prepared two-record slice exceeds record capacity')
+        if not math.isfinite(self.inbox_lifetime) or self.inbox_lifetime < 0:
+            raise ValueError("invalid inbox lifetime")
+        if self.disabled_resource_policy not in ("matched", "natural"):
+            raise ValueError("unknown disabled-resource policy")
+        if not 0 < self.thresholds["function_health_at_least"] <= 10:
+            raise ValueError("function threshold outside health range")
+        if self.fragment_slots not in range(5):
+            raise ValueError('fragment capacity outside four-slot envelope')
+        if self.completion_mode not in ('isolate','trace','erase','transfer','decay'):
+            raise ValueError('unknown completion instrument')
+        if self.branching and (self.generations!=3 or not self.separate_apparatus):
+            raise ValueError('reviewed branching envelope: parent and two children, separate W/R')
+        if self.production_semantics not in ('pair_rule','V1','V2','A'):
+            raise ValueError('unknown production semantics')
+        if self.production_semantics!='pair_rule' and not self.separate_apparatus:
+            raise ValueError('typed production requires distinct functional apparatus')
+        if self.repair_rounds not in range(4) or self.cycle_damage_role not in ('writer','reader'):
+            raise ValueError('bounded repair-cycle envelope violated')
+        if self.template_slots not in range(3):raise ValueError('template bank envelope violated')
+        if len(self.thresholds["required_decoded_content"]) != 2 or any(x not in (0,1) for x in self.thresholds["required_decoded_content"]):
+            raise ValueError("required content must be two bits")
+        for key in ("causal_interval_tolerance", "density_trace_tolerance", "psd_negative_tolerance", "profile_equivalence_tv"):
+            if not math.isfinite(self.thresholds[key]) or self.thresholds[key] <= 0:
+                raise ValueError("invalid numerical threshold: " + key)
+        return self
