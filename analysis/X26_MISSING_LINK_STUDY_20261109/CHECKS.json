@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "assumptions": "R040 real-coupling trimer + explicitly assumed flat energy-normalized bath; no ADD-derived claim",
+  "parameters": {
+    "E1": 0.2,
+    "E2": 0.4,
+    "t1": 0.1,
+    "t2": 0.3,
+    "gamma": 0.2,
+    "g": 0.12,
+    "band": [
+      -1.0,
+      1.0
+    ],
+    "EV_tuned": 0.11666666666666672,
+    "ED": 0.05000000000000002
+  },
+  "determinant_identity_max_error": 4.220764384040162e-17,
+  "projected_resolvent_max_error": 2.7064176995603496e-15,
+  "effective_density_max_error": 9.614813431917819e-17,
+  "selfconsistent_second_sheet_poles": [
+    {
+      "delta": -0.01,
+      "pole3": [
+        0.0432171997352267,
+        -4.6136343800737553e-05
+      ],
+      "pole2": [
+        0.043217199735226676,
+        -4.613634380073916e-05
+      ],
+      "Gamma": 9.227268760147511e-05
+    },
+    {
+      "delta": 0.005,
+      "pole3": [
+        0.05349332824402444,
+        -9.941759186715665e-06
+      ],
+      "pole2": [
+        0.053493328244024405,
+        -9.941759186718887e-06
+      ],
+      "Gamma": 1.988351837343133e-05
+    },
+    {
+      "delta": 0.01,
+      "pole3": [
+        0.057046129624611565,
+        -3.7817385820608617e-05
+      ],
+      "pole2": [
+        0.05704612962461158,
+        -3.7817385820580387e-05
+      ],
+      "Gamma": 7.563477164121723e-05
+    }
+  ],
+  "same_W_non_eigen_dark_vector_residual": 0.13846153846153847,
+  "exchange_symmetry_trimer_error": 0.0,
+  "conditional_cycle_hopping_resolvent": [
+    {
+      "N": 32,
+      "max_local_resolvent_error": 0.0805161855475021
+    },
+    {
+      "N": 64,
+      "max_local_resolvent_error": 0.002241879418070275
+    },
+    {
+      "N": 128,
+      "max_local_resolvent_error": 1.8252013376210998e-06
+    },
+    {
+      "N": 256,
+      "max_local_resolvent_error": 1.2104324870054606e-12
+    }
+  ]
+}
