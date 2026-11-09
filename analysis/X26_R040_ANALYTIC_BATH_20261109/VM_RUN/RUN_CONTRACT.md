@@ -1,0 +1,13 @@
+# X26 R040 conditional VM spectral run
+
+User authorization: «Запусти прогон на ВМ» for PR #2. Archive SHA-256 verified against the fixed GitHub package d85bc8d1422b1186bd570cff276abbeeb8b5c0c6.
+
+Run the package's spectral executor without changes to its scientific code. Use a declared dimensionless benchmark in the accepted conditional model class: kappa=1, bath onsite=0, E_V=E_1=0.2, E_2=0.1, t_1=0.15, t_2=gamma_d=0.3, g=0.22. These values are model assumptions and coincide with the package's symmetric integration example. This is a conditional numerical example, not a physical calibration or an ADD-derived manifest. Expected embedded dark energy is 0.05 inside [-2,2].
+
+Question: do the exact projected spectral measure, direct embedded eigenstate, second-sheet pole and finite-ring convergence remain mutually consistent under these assumptions? Static orthogonal-input no-loading is a separate negative control. No dynamic loading, actuator, transport solver or ADD mapping is introduced. No result register is promoted automatically.
+
+Frozen workload: one model; N=32,64,128,256,512; three upper-half-plane resolvent points; three Schur identity points; one lower-half-plane root seed; 201 density samples; four static evolution time points at dimension 35; one adaptive matrix spectral measure integral. Additional ring scans for converged pole resolution are returned by the original runner. Report them separately from the runner's scalar-work inventory. Adaptive quadrature/root iterations depend on convergence.
+
+Calibration: two complete evaluations of this exact workload on target VM, explicitly calibration repetitions; retain separate first/warm timings and full environment. Main is one independent fresh process with the unchanged workload, formal preflight and verified calibration/forecast/freeze references. Forecast total process from exact-workload timing plus measured startup; engineering range allows process startup variation for a sub-second numerical kernel. Hard cap 120s for calibration and main, RAM 2048 MiB, output 64 MiB. No artificial waiting, no minimum-duration padding. Source archive hash and manifest are verified on VM before calculation.
+
+Delivery uses the existing queued standalone-Python VM route. The small adapter only extracts the verified archive, runs calibration or the package main, records process/resource information and outputs. It does not implement another scientific model or an external scheduler. Source/configuration and forecast must be committed before main submit. Each job has a unique idempotent request ID; do not resubmit completed work after conversation interruption.
