@@ -22,6 +22,7 @@ REPOSITORY = "IgorSabirov/vm-lab"
 RUN = "x26_v3_main_54f8e7d_20261109"
 SOURCE_COMMIT = "54f8e7d6974b2059b150214021dc74a5ce6e2583"
 SOURCE_REF = "cb8780fc8857fa036e456b63718030dbb37a4130"
+SOURCE_BRANCH = "refs/heads/x26-r040-analytic-bath-v001"
 SOURCE_RECEIPT = (
     "analysis/X26_R040_ANALYTIC_BATH_20261109/PHYSICAL_V3_20261109/"
     "INTEGRITY_REVIEW/MAIN_FINAL_ARTIFACT_MANIFEST.json"
@@ -200,7 +201,7 @@ class Git:
 
 
 def fetch_pinned_receipt(git):
-    git("fetch", "--no-tags", "--depth=1", "origin", SOURCE_REF)
+    git("fetch", "--no-tags", "--depth=1", "origin", SOURCE_BRANCH)
     actual = git("rev-parse", "FETCH_HEAD").decode().strip()
     if actual != SOURCE_REF:
         raise ValueError("Pinned X26 source ref mismatch")
