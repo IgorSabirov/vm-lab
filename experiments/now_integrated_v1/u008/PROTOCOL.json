@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "experiment": "NOW_U008_CAUSAL_CHANNEL_V1",
+  "date": "2026-11-09",
+  "source_base": "da72a3a89176b77ceca75779923029534fd26b99",
+  "status": "FROZEN_BEFORE_VM_CALIBRATION_AND_MAIN",
+  "parents": {
+    "R": [
+      "R064",
+      "R121",
+      "R122",
+      "R127"
+    ],
+    "C": [
+      "C005",
+      "C021",
+      "C023",
+      "C024",
+      "C028",
+      "C033",
+      "C041"
+    ],
+    "L": [
+      "L06",
+      "L07"
+    ],
+    "question": "U008"
+  },
+  "question": "When does paid contact restoration support delivered valid content and functional child continuation in a finite prepared class?",
+  "authorization": "User 2026-11-09 requested build on GitHub and launch next complete scientific run with minimum extra work and remaining VM/model budget. No artificial 600-second minimum inherited from prior run.",
+  "workload": {
+    "tasks": 592,
+    "panels": {
+      "primary": 540,
+      "bypass": 12,
+      "tie_at_probe": 8,
+      "after": 8,
+      "no_child_apparatus": 4,
+      "no_child_fuel": 4,
+      "tamper": 4,
+      "wrong_ack": 4,
+      "stale_repair": 4,
+      "sham_repair": 4
+    },
+    "primary_resource_time_states": 27,
+    "primary_paired_states_with_bits": 108,
+    "primary_arms": 5,
+    "case_digest": "be90dafd4ded1ebec2af3947f047505d9fe821ae8beca3f2296d5b926aefec89"
+  },
+  "measure": {
+    "kind": "exact finite uniform design",
+    "bits": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "resource_levels": {
+      "parent_fuel_after_preprobe": [
+        9,
+        10,
+        11
+      ],
+      "parent_material": [
+        4,
+        5,
+        6
+      ]
+    },
+    "repair_completion_times": [
+      8,
+      13,
+      14
+    ],
+    "all_failures_retained": true,
+    "bootstrap_or_ci": false
+  },
+  "costs": {
+    "legacy_production": [
+      4,
+      4
+    ],
+    "connector_repair": [
+      1,
+      1
+    ],
+    "each_probe_packet_fuel": 1,
+    "target_send_fuel": 1,
+    "child_gift_fuel": 3,
+    "child_function_fuel": 2,
+    "child_forward_fuel": 1,
+    "disabled_budget": "reserved then retained as unavailable; no deletion"
+  },
+  "schedule": {
+    "pre_query": 0,
+    "pre_ack_received": 2,
+    "damage": 4,
+    "production": 5,
+    "repair_reserve": 6,
+    "repair_start": 6.1,
+    "post_query": 9,
+    "post_ack_received": 11,
+    "target_send": 13,
+    "target_arrival": 14,
+    "child_function": 15,
+    "child_forward": 16,
+    "next_arrival": 17,
+    "horizon": 30,
+    "delivery_duration": 1,
+    "after_damage": 16,
+    "after_repair_start": 17,
+    "after_ready": 19
+  },
+  "ties": {
+    "primary": "damage first; probe before repair_done at equality",
+    "control": "repair_done before probe at t=9; separate panel",
+    "note": "t_ready=t_target cannot restore the already missed earlier handshake; this is explicitly measured, not hidden by event ordering"
+  },
+  "outcomes": [
+    "Y_R",
+    "Y_H",
+    "Y_T",
+    "Y_V",
+    "Y_F",
+    "Y_T2",
+    "Y_star"
+  ],
+  "primary": "Y_star=Y_H and Y_T and Y_V and Y_F; primary contrast A1-A2",
+  "predictions": {
+    "predicted_A1_success_condition": "fuel>=10 and material>=5 and ready=8 in primary class",
+    "predicted_primary_repair_delta": 0.14814814814814814,
+    "A2_H_single": "0 for all included states; otherwise inspect broken single-channel/ablation contract, do not erase the case",
+    "A2_minus_A3_single": "0 structurally masked by broken single channel; production effect addressed only by bounded bypass control",
+    "bypass_A2": "positive at sufficient stock; rules out universal repair necessity",
+    "R_does_not_imply_H": "late repair completes after missed probe",
+    "valid_delivery_does_not_imply_function": "no apparatus / no child fuel controls",
+    "decision_if_deviation": "retain full traces and denominators; distinguish implementation error from counterexample; no adaptive grid extension"
+  },
+  "six_tables": [
+    "initial",
+    "interventions",
+    "channel",
+    "transfer",
+    "continuation",
+    "balance"
+  ],
+  "gates": {
+    "G0": "pinned base hashes verified",
+    "G1": "only reply delivery writes Y_H; repair_done writes only connector/Y_R; target uses received reply and independent packet delivery",
+    "G2": "separate produce and repair; damage does not schedule supplies",
+    "G3": "17 targeted tests passed locally before source freeze; not scientific observations",
+    "G4": "full exact enumerated primary plus bounded specified controls",
+    "G5": "no stochastic extension or large extra grids"
+  },
+  "limits": {
+    "wall_seconds": 120,
+    "memory_mib": 1024,
+    "max_tasks": 592,
+    "no_new_vm_job_if_existing_job_running": true,
+    "checkpoint": "atomic completed trajectory rows; resume verifies source and case; in-flight trajectory recomputed",
+    "disk_expected": "calibration based before submit; bounded finite logs"
+  },
+  "limitations": [
+    "Imported flat rest clocks and finite channel route law; no emergent geometry.",
+    "Initial parent working apparatus, typed production law, endpoint communication ports, finite stocks and connector law remain supplied.",
+    "Child ports can reply to probes but cannot do XOR without delivered working apparatus and bits.",
+    "Independent message delivery observable is not an independent empirical physical experiment.",
+    "Y_T2 validates one further message transfer, not indefinite self-reproduction.",
+    "No natural wear model, no quantum memory/Ising/CDT/ADD extension; prior scientific runs untouched.",
+    "Strict zero OFF follows declared single-route topology; main contribution is finite conditions and separated failure mechanisms, not origin of organization."
+  ]
+}
