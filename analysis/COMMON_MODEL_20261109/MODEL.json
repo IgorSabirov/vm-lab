@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "status": "WORKING_SYNTHESIS_NOT_UNIFIED_PHYSICAL_IMPLEMENTATION",
   "source_commit": "e8f7aa30bcb57e432d414c282f1c3e9d19fbf9a7",
   "report": "analysis/COMMON_MODEL_20261109/MODEL.md",
@@ -24,7 +24,11 @@
     "R124",
     "R125",
     "R126",
-    "R127"
+    "R127",
+    "R066",
+    "R079",
+    "R094",
+    "R119"
   ],
   "links": [
     "L01",
@@ -39,7 +43,7 @@
   "transition": "K_u(dz'|z); common physical K not implemented",
   "continuation_profile": "laws of observable histories under declared interventions",
   "closure": "C(V) subset V, or declared finite-horizon stochastic failure criteria",
-  "next_deliverable": "one causal cycle contract linking content to reproduction of next-step apparatus",
+  "next_deliverable": "Resolve U010 executable protocol parameters: H1/H2, memory adapter, transport, apparatus count, C/D resource budget, boot/retire timing and content control",
   "new_runs": 0,
   "new_law_selected": false,
   "scientific_status_promoted": false,
@@ -47,5 +51,87 @@
     "previous_U009_overlay": "OPEN_AUTHOR_SEMANTICS_NOT_ATTESTED",
     "U009": "OPEN_SSB_NOT_ESTABLISHED",
     "U001": "historical links retained, removed from active open_question_ids"
+  },
+  "date": "2026-11-10",
+  "timezone": "Europe/Moscow",
+  "previous_version": {
+    "version": "0.1",
+    "at_commit": "a20817b60ce70b79517f5f618d9d0d1f3893c7df"
+  },
+  "integration_base_commit": "a20817b60ce70b79517f5f618d9d0d1f3893c7df",
+  "genealogy_contract": {
+    "version": "0.1",
+    "status": "MODEL_SPECIFICATION_NOT_EXECUTED",
+    "review": "analysis/COMMON_MODEL_20261109/NEIGHBOR_GENEALOGY_REVIEW_20261110.txt",
+    "graph": "typed object-version/event graph; observer history is not free controller memory",
+    "types": [
+      "carrier",
+      "apparatus",
+      "record",
+      "resource_batch",
+      "channel",
+      "event"
+    ],
+    "origin_invariants": [
+      "identity",
+      "creator_node",
+      "creator_generation",
+      "creator_round",
+      "birth_event"
+    ],
+    "mutable": [
+      "holder",
+      "physical_status"
+    ],
+    "event_relations": [
+      "create",
+      "catalytic_use",
+      "consume",
+      "write",
+      "read",
+      "transform",
+      "transfer",
+      "retire"
+    ],
+    "root_policy": "declare initial/imported roots; unknown origin remains unknown",
+    "state_consistency": "same full Markov state and K implies same continuation law; historical differences affect dynamics only via present physical state",
+    "bookkeeping": "no double counting internal transfers; apparatus counts include newly created and imported objects",
+    "capability_evidence": "actual used apparatus IDs plus event input/output and interventions"
+  },
+  "u010": {
+    "status": "OPEN_PROTOCOL_CANDIDATE",
+    "H1": "D uses externally prepared apparatus",
+    "H2": "D uses apparatus produced by C and transferred with record",
+    "H3": "future stronger candidate: D produces means for E",
+    "resource_equivalence_H1_H2": false,
+    "R_a": {
+      "status": "CANDIDATE_EXTERNAL_ROOT_NOT_SELECTED",
+      "production_only": {
+        "fuel": 4,
+        "precursor": 4
+      },
+      "other_operation_budgets": null
+    },
+    "packet_count": "UNRESOLVED_PAIR_VS_FOUR",
+    "semantic_control": "change one XOR input bit with valid recomputed checksum; both branches correct relative to their own record; output changes",
+    "readiness": "separate function before retirement and readiness after full declared horizon",
+    "unresolved": [
+      "memory format/adapter",
+      "transport executor",
+      "packet size",
+      "complete C/D budget and source",
+      "retirement semantics across creators",
+      "boot events and horizon"
+    ],
+    "new_implementation": false
+  },
+  "source_checks": {
+    "base_engine_ref": "da72a3a89176b77ceca75779923029534fd26b99",
+    "paths": [
+      "experiments/now_integrated_v1/nowexp/engine.py",
+      "experiments/now_integrated_v1/nowexp/local_instruments.py"
+    ],
+    "kind": "targeted source reading, no rerun",
+    "u008_prior_checked_ref": "b919e64ad89a5afe2c395a0218895c856088c57d"
   }
 }
