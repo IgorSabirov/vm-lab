@@ -16,7 +16,14 @@
     "date": "2026-11-09",
     "user_instruction": "Изучи мнение соседей и сформируй код следующего полного научного прогона на гитхабе; минимум лишних движений; давай запустим этот прогон.",
     "scope": "Complete declared U008 finite enumeration and bounded controls; no stochastic/large-grid extension; GitHub publication authorized",
-    "artificial_minimum_duration": false
+    "artificial_minimum_duration": false,
+    "publication_reconfirmed": {
+      "date": "2026-11-09",
+      "destination": "IgorSabirov/vm-lab",
+      "visibility": "private",
+      "user_instruction": "Я требую ТРЕБУЮ ПУБЛИКОВАТЬ ВСЕ ЧТО ТЫ ПРОДУЦИРУЕШЬ НА ГИТХАБЕ!!",
+      "scope": "All produced project materials, including full U008 results and existing OPEN_QUESTIONS/RESULTS_REGISTER MD/JSON. Explicit direction after notice of the previous automatic-review rejection."
+    }
   },
   "vm": {
     "connector": "VM Compute 81",
@@ -28,11 +35,20 @@
     "process": "results/u008_main_c6c2359_20261109/output/PROCESS.json"
   },
   "observation": {
-    "state": "PREPARED_NOT_YET_SUBMITTED"
+    "state": "COMPLETED_VERIFIED",
+    "process_state": "completed",
+    "exit_code": 0,
+    "completed_tasks": 592,
+    "planned_tasks": 592,
+    "progress_is_snapshot": true,
+    "source": "Fresh VM work_status during session recovery; JOB/PROCESS plus offline archive verification",
+    "automatic_resubmit": false,
+    "scientific_confirmation": false
   },
   "continuation": {
-    "first_action": "Check exactly job_id with VM Compute 81 job_status; never create a second run on submit timeout.",
-    "on_completed": "Read PROCESS and SUMMARY, save full archive off VM, publish result and update U008 lineage. No new scientific run without distinct question."
+    "first_action": "Read result.report on result_branch; U008 is completed. Do not resubmit this job.",
+    "on_completed": "U008 result, full archive and synchronized OPEN_QUESTIONS/RESULTS_REGISTER MD/JSON are included in this publication. Do not rerun. L06/L07 remain open; no new scientific run is assigned.",
+    "automatic_resubmit": false
   },
   "previous_run": {
     "job_id": "now_long_main_da72a3a_20261108",
@@ -40,5 +56,25 @@
     "record_commit": "da12c1d1608b405f2d8e8f5d6141ca0d20e38d15",
     "record_path": "infra/CURRENT_RUN.json",
     "raw_archive_library_id": "libfile_4b14fd904880819183e51c05453ff9f6"
+  },
+  "result": {
+    "status": "ANSWERED_WITHIN_DECLARED_CLASS",
+    "report": "analysis/U008_CAUSAL_20261109/RESULT.md",
+    "result_branch": "run/u008-causal-20261109",
+    "source_commit": "c6c235904dc8ad7ae5ed63ab0938eebb87f639ab",
+    "archive_path": "analysis/U008_CAUSAL_20261109/FULL_OUTPUT.zip",
+    "archive_sha256": "34efd60e0aa9cc0985381c224db10dde06205a05824a2dca999807558d91e821",
+    "archive_bytes": 2512447,
+    "runtime_gate": "PASS",
+    "body_seconds": 3.858440181997139,
+    "worker_seconds": 4.0040154457092285,
+    "tasks": 592,
+    "mean_repair": 0.14814814814814814,
+    "scientific_confirmation": false,
+    "registry_publication": "INCLUDED_IN_RESULT_COMMIT",
+    "archive_storage": "raw_parts",
+    "archive_parts_manifest": "analysis/U008_CAUSAL_20261109/ARCHIVE_PARTS.json",
+    "archive_restore": "python analysis/U008_CAUSAL_20261109/restore_archive.py",
+    "archive_publication": "PENDING: 10/39 parts accepted; use next completion commit"
   }
 }
