@@ -1,0 +1,130 @@
+{
+  "full_archive": {
+    "sha256": "5ec1a9755a8e29d755c3e5df175b1889324301d253df6e0241bc47dccfa37564",
+    "checksum_count": 43,
+    "all_checksums_match": true
+  },
+  "K_counterexample": [
+    {
+      "word": [
+        5,
+        10
+      ],
+      "patch_K": [
+        1,
+        1
+      ],
+      "pure_half_K": [
+        0,
+        0
+      ],
+      "lengths_first_8": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "word": [
+        9,
+        6
+      ],
+      "patch_K": [
+        1,
+        1
+      ],
+      "pure_half_K": [
+        1,
+        1
+      ],
+      "lengths_first_8": [
+        2,
+        2,
+        4,
+        4,
+        4,
+        6,
+        6,
+        6
+      ]
+    }
+  ],
+  "false_ready_preflight": {
+    "status": "READY_FOR_INTEGRATED_LOCAL_RUN",
+    "blockers": [],
+    "blocker_count": 0,
+    "submit_allowed": true,
+    "scientific_status": "CONDITIONAL_MAPPING_AND_LOADING_POSTULATES_NOT_ADD_DERIVED",
+    "still_missing": [
+      "phi.radius",
+      "phi coefficients",
+      "initial state",
+      "time grid",
+      "resource conversions",
+      "nested spectral freeze/runtime"
+    ]
+  },
+  "template_loading_field_path": {
+    "exception": "KeyError",
+    "message": "'initial_state_real_imag'"
+  },
+  "thermal_json": {
+    "exception": "TypeError",
+    "message": "Object of type complex is not JSON serializable",
+    "location": "bohr_transition vectors contain Python complex values"
+  },
+  "thermal_algebra_checks": {
+    "max_trace_error": 2.703109073031746e-16,
+    "minimum_eigenvalue": -2.354564446855292e-16,
+    "first_law_residual": -1.1102230246251565e-16,
+    "minimum_entropy_production": 0.0
+  },
+  "reset_bound_used_for_feasibility": {
+    "status": "CONDITIONAL_RESOURCE_FEASIBLE_UNDER_DECLARED_MODEL",
+    "fuel_required": 0.6931471805599453,
+    "note": "Only Landauer lower bound supplied; actual finite-time reset work not provided"
+  },
+  "infinite_tolerance_status": "MOVING_PROTECTED_SUBSPACE_TRANSPORT_PASS",
+  "projector_constructor_idempotence_error": 1.0000125000519944e-05,
+  "integrated_json_complex_paths": [
+    "/spectral_only/feshbach/spectral_measure_sum_rule/continuous_mass/0/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/continuous_mass/0/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/continuous_mass/1/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/continuous_mass/1/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/point_mass/0/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/point_mass/0/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/point_mass/1/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/point_mass/1/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/total_mass/0/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/total_mass/0/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/total_mass/1/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/total_mass/1/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/expected_vv_dagger/0/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/expected_vv_dagger/0/1",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/expected_vv_dagger/1/0",
+    "/spectral_only/feshbach/spectral_measure_sum_rule/expected_vv_dagger/1/1",
+    "/spectral_only/feshbach/discrete_measure_atoms/0/residue/0/0",
+    "/spectral_only/feshbach/discrete_measure_atoms/0/residue/0/1",
+    "/spectral_only/feshbach/discrete_measure_atoms/0/residue/1/0",
+    "/spectral_only/feshbach/discrete_measure_atoms/0/residue/1/1",
+    "/spectral_only/feshbach/discrete_measure_atoms/1/residue/0/0",
+    "/spectral_only/feshbach/discrete_measure_atoms/1/residue/0/1",
+    "/spectral_only/feshbach/discrete_measure_atoms/1/residue/1/0",
+    "/spectral_only/feshbach/discrete_measure_atoms/1/residue/1/1"
+  ],
+  "integrated_json_status": "Object of type complex is not JSON serializable",
+  "integrated_synthetic_execution": {
+    "executed": true,
+    "loading_status": "DRIVEN_LOADING_SIMULATED_CONDITIONAL_MODEL",
+    "has_permutation_control": false,
+    "spectral_before_only": true,
+    "post_transfer_loaded_density_present": false,
+    "technical_status_aggregate_present": false,
+    "transfer_status": "NOT_EVALUABLE_BIC_SUBSPACE_NOT_PRESENT_AT_BOTH_STEPS"
+  }
+}
