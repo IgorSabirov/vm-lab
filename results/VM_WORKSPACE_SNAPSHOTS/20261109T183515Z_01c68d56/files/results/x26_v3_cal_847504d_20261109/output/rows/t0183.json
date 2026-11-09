@@ -1,0 +1,617 @@
+{
+  "task": {
+    "kind": "spectral",
+    "case": "permuted_word",
+    "snapshot": 0,
+    "id": "t0183",
+    "stratum": "spectral/permuted_word/s0"
+  },
+  "technical_pass": true,
+  "physical_status": "SPECTRAL_CLASSIFIED",
+  "report": {
+    "schema": 1,
+    "experiment": "X26_R040_ANALYTIC_BATH",
+    "epistemic_class": "CONDITIONAL_MODEL_RUN_NOT_ADD_DERIVED",
+    "input_model": {
+      "E_V": 0.3,
+      "E_1": 0.2,
+      "E_2": 0.4,
+      "t_1": 0.20791218602593245,
+      "t_2": 0.1759938658530095,
+      "gamma_d": 0.20791218602593245,
+      "kappa": 1.0,
+      "g": 0.25,
+      "bath_onsite": 0.0
+    },
+    "direct_bic": {
+      "verdict": "DARK_VECTOR_NOT_EIGENSTATE",
+      "energy": 0.024006134146990515,
+      "continuum_interval": [
+        -2.0,
+        2.0
+      ],
+      "energy_inside_continuum": true,
+      "normalized_internal_vector": true,
+      "port_amplitude_norm": 0.0,
+      "eigen_equation_residual": 0.01962469247358746,
+      "continuum_component_norm": 0.0,
+      "normalizable_continuum_component": true,
+      "all_open_channels_checked": true,
+      "mechanism_class": "NO_BIC_MECHANISM_ASSIGNED",
+      "z2_symmetry": {
+        "status": "Z2_SYMMETRY_NOT_PRESENT",
+        "hamiltonian_commutator_residual": 0.15516158239282327,
+        "dark_state_odd_parity_residual": 0.16571018995702977,
+        "conditions": {
+          "E_V_equals_E_1": false,
+          "gamma_d_equals_t_2": false
+        },
+        "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+      },
+      "model_scope": "conditional R040: bath contacts only trimer node 2"
+    },
+    "feshbach": {
+      "max_determinant_identity_relative_residual": 3.672872459461936e-16,
+      "max_projected_resolvent_relative_residual": 2.0848215409818202e-16,
+      "spectral_measure_sum_rule": {
+        "continuous_mass": [
+          [
+            {
+              "__complex__": [
+                0.043200788366504234,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.036568677853112866,
+                0.0
+              ]
+            }
+          ],
+          [
+            {
+              "__complex__": [
+                0.036568677853112866,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.03095471750607217,
+                0.0
+              ]
+            }
+          ]
+        ],
+        "point_mass": [
+          [
+            {
+              "__complex__": [
+                2.668873163799324e-05,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                2.259152359207122e-05,
+                0.0
+              ]
+            }
+          ],
+          [
+            {
+              "__complex__": [
+                2.259152359207122e-05,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                1.9123311858123445e-05,
+                0.0
+              ]
+            }
+          ]
+        ],
+        "total_mass": [
+          [
+            {
+              "__complex__": [
+                0.043227477098142224,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.036591269376704934,
+                0.0
+              ]
+            }
+          ],
+          [
+            {
+              "__complex__": [
+                0.036591269376704934,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.030973840817930292,
+                0.0
+              ]
+            }
+          ]
+        ],
+        "expected_vv_dagger": [
+          [
+            {
+              "__complex__": [
+                0.04322747709808194,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.03659126937665391,
+                0.0
+              ]
+            }
+          ],
+          [
+            {
+              "__complex__": [
+                0.03659126937665391,
+                0.0
+              ]
+            },
+            {
+              "__complex__": [
+                0.0309738408178871,
+                0.0
+              ]
+            }
+          ]
+        ],
+        "quadrature_error_estimate": 1.0890527621474795e-10,
+        "absolute_residual": 1.034707427005511e-13,
+        "scaled_residual": 1.034707427005511e-13,
+        "continuous_plus_point_sum_rule_pass": true
+      },
+      "discrete_measure_atoms": [
+        {
+          "energy": -2.0001695109703674,
+          "residue": [
+            [
+              {
+                "__complex__": [
+                  6.104724090659165e-06,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  5.1675373782424555e-06,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  5.1675373782424555e-06,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  4.374225953371394e-06,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "energy": 2.0003812516583555,
+          "residue": [
+            [
+              {
+                "__complex__": [
+                  2.0584007547334077e-05,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  1.7423986213828764e-05,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  1.7423986213828764e-05,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  1.474908590475205e-05,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        }
+      ],
+      "continuous_density_samples": [
+        {
+          "energy": -1.9,
+          "matrix": [
+            [
+              {
+                "__complex__": [
+                  0.00025982476773870906,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.00021993691756476557,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  0.00021993691756476557,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.0001861725813473475,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "energy": -1.0,
+          "matrix": [
+            [
+              {
+                "__complex__": [
+                  0.00025315407175671283,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.00021429029532370455,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  0.00021429029532370455,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.00018139281881292849,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "energy": 0.0,
+          "matrix": [
+            [
+              {
+                "__complex__": [
+                  0.0026711445406654463,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.0022610750382146337,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  0.0022610750382146337,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.001913958698455034,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "energy": 1.0,
+          "matrix": [
+            [
+              {
+                "__complex__": [
+                  0.0013742284676578546,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.001163259283696806,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  0.001163259283696806,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.0009846777249586922,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "energy": 1.9,
+          "matrix": [
+            [
+              {
+                "__complex__": [
+                  0.000609321092085189,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.0005157791690405034,
+                  0.0
+                ]
+              }
+            ],
+            [
+              {
+                "__complex__": [
+                  0.0005157791690405034,
+                  0.0
+                ]
+              },
+              {
+                "__complex__": [
+                  0.0004365976406720529,
+                  0.0
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "continuum_limit": {
+      "ring_scan": [
+        {
+          "N": 32,
+          "green_abs_errors_by_test_point": [
+            1.2979956350220565e-05,
+            0.0008758394637125814,
+            4.1652542818804385e-06
+          ],
+          "max_abs_green_error_off_real_axis": 0.0008758394637125814,
+          "delta_N_local_from_infinite_DOS": 0.1963353959453805,
+          "band_span_over_N": 0.125,
+          "Gamma_N_finite_ring": null,
+          "Gamma_infinite_chain_reference": null,
+          "Gamma_infinite_over_delta_N": null,
+          "interpretation": "finite closed ring; no irreversible width at finite N"
+        },
+        {
+          "N": 64,
+          "green_abs_errors_by_test_point": [
+            1.779710108015834e-10,
+            7.624705735704997e-07,
+            1.5096942882822103e-11
+          ],
+          "max_abs_green_error_off_real_axis": 7.624705735704997e-07,
+          "delta_N_local_from_infinite_DOS": 0.09816769797269025,
+          "band_span_over_N": 0.0625,
+          "Gamma_N_finite_ring": null,
+          "Gamma_infinite_chain_reference": null,
+          "Gamma_infinite_over_delta_N": null,
+          "interpretation": "finite closed ring; no irreversible width at finite N"
+        },
+        {
+          "N": 128,
+          "green_abs_errors_by_test_point": [
+            6.059128614320848e-17,
+            5.776043052531567e-13,
+            1.2412670766236366e-16
+          ],
+          "max_abs_green_error_off_real_axis": 5.776043052531567e-13,
+          "delta_N_local_from_infinite_DOS": 0.04908384898634512,
+          "band_span_over_N": 0.03125,
+          "Gamma_N_finite_ring": null,
+          "Gamma_infinite_chain_reference": null,
+          "Gamma_infinite_over_delta_N": null,
+          "interpretation": "finite closed ring; no irreversible width at finite N"
+        },
+        {
+          "N": 256,
+          "green_abs_errors_by_test_point": [
+            7.152448122690996e-17,
+            2.0816681711721685e-17,
+            1.2412670766236366e-16
+          ],
+          "max_abs_green_error_off_real_axis": 1.2412670766236366e-16,
+          "delta_N_local_from_infinite_DOS": 0.02454192449317256,
+          "band_span_over_N": 0.015625,
+          "Gamma_N_finite_ring": null,
+          "Gamma_infinite_chain_reference": null,
+          "Gamma_infinite_over_delta_N": null,
+          "interpretation": "finite closed ring; no irreversible width at finite N"
+        }
+      ],
+      "off_axis_green_convergence_pass": true,
+      "ring_resolution_by_infinite_chain_pole": [
+        {
+          "pole_index": 0,
+          "pole_z": [
+            0.035695878394399354,
+            -7.563401286641959e-05
+          ],
+          "ring_scan": [
+            {
+              "N": 32,
+              "green_abs_errors_by_test_point": [
+                1.2979956350220565e-05,
+                0.0008758394637125814,
+                4.1652542818804385e-06
+              ],
+              "max_abs_green_error_off_real_axis": 0.0008758394637125814,
+              "delta_N_local_from_infinite_DOS": 0.19631826489000884,
+              "band_span_over_N": 0.125,
+              "Gamma_N_finite_ring": null,
+              "Gamma_infinite_chain_reference": 0.00015126802573283917,
+              "Gamma_infinite_over_delta_N": 0.0007705244635163725,
+              "interpretation": "finite closed ring; no irreversible width at finite N"
+            },
+            {
+              "N": 64,
+              "green_abs_errors_by_test_point": [
+                1.779710108015834e-10,
+                7.624705735704997e-07,
+                1.5096942882822103e-11
+              ],
+              "max_abs_green_error_off_real_axis": 7.624705735704997e-07,
+              "delta_N_local_from_infinite_DOS": 0.09815913244500442,
+              "band_span_over_N": 0.0625,
+              "Gamma_N_finite_ring": null,
+              "Gamma_infinite_chain_reference": 0.00015126802573283917,
+              "Gamma_infinite_over_delta_N": 0.001541048927032745,
+              "interpretation": "finite closed ring; no irreversible width at finite N"
+            },
+            {
+              "N": 128,
+              "green_abs_errors_by_test_point": [
+                6.059128614320848e-17,
+                5.776043052531567e-13,
+                1.2412670766236366e-16
+              ],
+              "max_abs_green_error_off_real_axis": 5.776043052531567e-13,
+              "delta_N_local_from_infinite_DOS": 0.04907956622250221,
+              "band_span_over_N": 0.03125,
+              "Gamma_N_finite_ring": null,
+              "Gamma_infinite_chain_reference": 0.00015126802573283917,
+              "Gamma_infinite_over_delta_N": 0.00308209785406549,
+              "interpretation": "finite closed ring; no irreversible width at finite N"
+            },
+            {
+              "N": 256,
+              "green_abs_errors_by_test_point": [
+                7.152448122690996e-17,
+                2.0816681711721685e-17,
+                1.2412670766236366e-16
+              ],
+              "max_abs_green_error_off_real_axis": 1.2412670766236366e-16,
+              "delta_N_local_from_infinite_DOS": 0.024539783111251105,
+              "band_span_over_N": 0.015625,
+              "Gamma_N_finite_ring": null,
+              "Gamma_infinite_chain_reference": 0.00015126802573283917,
+              "Gamma_infinite_over_delta_N": 0.00616419570813098,
+              "interpretation": "finite closed ring; no irreversible width at finite N"
+            }
+          ]
+        }
+      ],
+      "moment_checks_at_largest_N": {
+        "finite_ring_moments_0_2": [
+          1.0,
+          -9.367506770274758e-17,
+          2.0
+        ],
+        "infinite_chain_moments_0_2": [
+          1.0,
+          0.0,
+          2.0
+        ],
+        "absolute_errors": [
+          0.0,
+          9.367506770274758e-17,
+          0.0
+        ]
+      },
+      "warning": "finite rings are closed; Gamma_N is null; no finite-ring irreversible width is inferred"
+    },
+    "second_sheet_poles": [
+      {
+        "status": "SECOND_SHEET_RESONANCE",
+        "z": [
+          0.035695878394399354,
+          -7.563401286641959e-05
+        ],
+        "width": 0.00015126802573283917,
+        "determinant_residual": 1.4839909708142836e-18,
+        "scaled_residual": 1.4839909708142836e-18,
+        "solver_success": true,
+        "solver_message": "The solution converged.",
+        "sheet": "II",
+        "seed": [
+          -0.3,
+          -0.03
+        ]
+      }
+    ],
+    "loading": {
+      "status": "DYNAMIC_LOADING_NOT_RUN_SEPARATE_PROTOCOL_REQUIRED",
+      "static_no_loading_control_status": "NOT_APPLICABLE",
+      "static_no_loading_control": {
+        "status": "NOT_APPLICABLE_NO_DIRECT_BIC",
+        "reason": "the candidate dark vector is not a direct embedded eigenstate for these inputs; do not test its projector as a protected sector",
+        "bath_ring_sites": 32,
+        "finite_bath_is_closed": true
+      },
+      "static_no_load_theorem": "for constant H, the exact dark spectral projector has constant population",
+      "actuator_and_resource_cost": "NOT_EVALUABLE_UNTIL_CONTROL_AND_RESOURCE_MODEL_ARE_SPECIFIED"
+    },
+    "technical_checks": {
+      "feshbach_identities_pass": true,
+      "spectral_measure_sum_rule_pass": true,
+      "off_axis_green_convergence_pass": true,
+      "all_requested_pole_roots_converged": true,
+      "static_no_loading_control_pass": null,
+      "static_no_loading_control_applicable": false,
+      "overall_technical_pass": true
+    },
+    "status": "TECHNICAL_CHECKS_PASS_CONDITIONAL_R040_MODEL"
+  },
+  "derived_manifest_digest": "e35e70806ec09c42f422a5dfcdaf6746545d788701ac5c9f5f9788affea49f42",
+  "manifest_digest": "ae6e6028c3ceec3ca743fc5b38418a5537f48d6d1ab69dbfd3b448535420ecd1",
+  "source_digest": "3d0ac76fc02816869e227a39d4d55fe2f0ab190a8c6bc4998c9765cdfaaaab09"
+}

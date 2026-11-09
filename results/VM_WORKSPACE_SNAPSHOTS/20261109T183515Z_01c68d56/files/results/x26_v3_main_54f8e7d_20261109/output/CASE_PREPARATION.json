@@ -1,0 +1,2855 @@
+[
+  {
+    "id": "active_word",
+    "invariants": {
+      "counts": {
+        "a1": 2,
+        "b1": 2,
+        "a2": 2,
+        "b2": 2
+      },
+      "pure_half_counts": {
+        "A1": 2,
+        "A2": 2,
+        "A12": 0,
+        "B1": 2,
+        "B2": 2,
+        "B12": 0
+      },
+      "K1": 4,
+      "K2": 4,
+      "K": 8,
+      "bit_products": {
+        "1": 4,
+        "2": 4
+      },
+      "E0": true,
+      "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+      "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+    },
+    "phi": [
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.3666666666666667,
+          "12": 0.3666666666666667
+        },
+        "parameters": {
+          "E_V": 0.3,
+          "E_1": 0.3,
+          "E_2": 0.26666666666666666,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.20791218602593245,
+          "gamma_d": 0.20791218602593245,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              0,
+              9,
+              6
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              0,
+              9,
+              6
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              6,
+              0,
+              0
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 1,
+              "b2": 0
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.3333333333333333,
+          "1": 0.3333333333333333,
+          "2": 0.16666666666666666
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.3666666666666667,
+          "12": 0.3666666666666667
+        },
+        "parameters": {
+          "E_V": 0.3,
+          "E_1": 0.3,
+          "E_2": 0.26666666666666666,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.20791218602593245,
+          "gamma_d": 0.20791218602593245,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              1,
+              12,
+              2
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              1,
+              12,
+              2
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              2,
+              0,
+              1
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 0,
+              "b2": 0
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.0,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.3333333333333333,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.3333333333333333,
+          "1": 0.3333333333333333,
+          "2": 0.16666666666666666
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.2833333333333333,
+          "12": 0.2833333333333333
+        },
+        "parameters": {
+          "E_V": 0.2,
+          "E_1": 0.2,
+          "E_2": 0.30000000000000004,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.22598059693639702,
+          "gamma_d": 0.22598059693639702,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 1,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              0,
+              1,
+              2
+            ],
+            "states": [
+              0,
+              8,
+              2
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 1
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 6,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              5,
+              6,
+              7
+            ],
+            "states": [
+              0,
+              8,
+              2
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 1
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 3,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              2,
+              3,
+              4
+            ],
+            "states": [
+              2,
+              1,
+              4
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 0
+            },
+            "occupancy": 0.25,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.25,
+              0.3333333333333333,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.16666666666666666,
+          "1": 0.16666666666666666,
+          "2": 0.25
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      }
+    ],
+    "steps": [
+      {
+        "word_before": [
+          9,
+          6,
+          0,
+          0,
+          9,
+          6,
+          0,
+          0
+        ],
+        "word_after": [
+          12,
+          2,
+          0,
+          1,
+          12,
+          2,
+          0,
+          1
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "payload_map": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": false,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 8,
+        "length_change": 0,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      },
+      {
+        "word_before": [
+          12,
+          2,
+          0,
+          1,
+          12,
+          2,
+          0,
+          1
+        ],
+        "word_after": [
+          0,
+          8,
+          2,
+          1,
+          4,
+          0,
+          8,
+          2,
+          1,
+          4
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 1,
+          "1": 6,
+          "2": 3
+        },
+        "payload_map": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 6,
+          "5": 7,
+          "6": 8,
+          "7": 9
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": false,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 10,
+        "length_change": 2,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      }
+    ],
+    "activity": {
+      "feature_matrix_before": [
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      ],
+      "feature_matrix_after": [
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.16666666666666666,
+          0.3333333333333333,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "local_feature_delta": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.0,
+          0.16666666666666666,
+          -0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      ],
+      "local_activity_l1": 0.9999999999999999,
+      "activity_scale": 1.0,
+      "activity_score": 0.9999999999999999,
+      "future_history_used": false,
+      "status": "LOCAL_TRANSITION_FEATURE_EVALUATED_MODEL_ASSUMPTION"
+    },
+    "bic": [
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": 0.054380774076605465,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.0,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": 0.054380774076605465,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.0,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": -0.04561922592339451,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 1.962615573354719e-17,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      }
+    ],
+    "anchor_collisions": [
+      false,
+      false
+    ]
+  },
+  {
+    "id": "permuted_word",
+    "invariants": {
+      "counts": {
+        "a1": 2,
+        "b1": 2,
+        "a2": 2,
+        "b2": 2
+      },
+      "pure_half_counts": {
+        "A1": 2,
+        "A2": 2,
+        "A12": 0,
+        "B1": 2,
+        "B2": 2,
+        "B12": 0
+      },
+      "K1": 4,
+      "K2": 4,
+      "K": 8,
+      "bit_products": {
+        "1": 4,
+        "2": 4
+      },
+      "E0": true,
+      "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+      "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+    },
+    "phi": [
+      {
+        "effective_barriers": {
+          "V1": 0.3666666666666667,
+          "V2": 0.3666666666666667,
+          "12": 0.5333333333333334
+        },
+        "parameters": {
+          "E_V": 0.3,
+          "E_1": 0.2,
+          "E_2": 0.4,
+          "t_1": 0.20791218602593245,
+          "t_2": 0.1759938658530095,
+          "gamma_d": 0.20791218602593245,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              0,
+              9,
+              9
+            ],
+            "bit_counts": {
+              "a1": 2,
+              "b1": 0,
+              "a2": 0,
+              "b2": 2
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              6,
+              0,
+              0
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 1,
+              "b2": 0
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              9,
+              6,
+              6
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 2,
+              "a2": 2,
+              "b2": 1
+            },
+            "occupancy": 0.5,
+            "species_1_density": 0.5,
+            "species_2_density": 0.5,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.5,
+              0.5,
+              0.5,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.3333333333333333,
+          "1": 0.16666666666666666,
+          "2": 0.5
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": false,
+          "E_V_equals_E_1": false,
+          "gamma_d_equals_t_2": false,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.5333333333333334,
+          "V2": 0.2,
+          "12": 0.5333333333333334
+        },
+        "parameters": {
+          "E_V": 0.35,
+          "E_1": 0.15,
+          "E_2": 0.3666666666666667,
+          "t_1": 0.1759938658530095,
+          "t_2": 0.1759938658530095,
+          "gamma_d": 0.24561922592339452,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              1,
+              9,
+              12
+            ],
+            "bit_counts": {
+              "a1": 2,
+              "b1": 0,
+              "a2": 1,
+              "b2": 2
+            },
+            "occupancy": 0.4166666666666667,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.5,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.4166666666666667,
+              0.3333333333333333,
+              0.5,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              2,
+              0,
+              0
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 0
+            },
+            "occupancy": 0.08333333333333333,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.0,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.08333333333333333,
+              0.16666666666666666,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              12,
+              6,
+              2
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 2,
+              "a2": 2,
+              "b2": 1
+            },
+            "occupancy": 0.4166666666666667,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.5,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.4166666666666667,
+              0.3333333333333333,
+              0.5,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.4166666666666667,
+          "1": 0.08333333333333333,
+          "2": 0.4166666666666667
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": false,
+          "E_V_equals_E_1": false,
+          "gamma_d_equals_t_2": false,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.3666666666666667,
+          "V2": 0.2833333333333333,
+          "12": 0.45
+        },
+        "parameters": {
+          "E_V": 0.25,
+          "E_1": 0.15,
+          "E_2": 0.33333333333333337,
+          "t_1": 0.20791218602593245,
+          "t_2": 0.19128844548653198,
+          "gamma_d": 0.22598059693639702,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              8,
+              0,
+              1
+            ],
+            "states": [
+              1,
+              12,
+              0
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 0,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.25,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.25,
+              0.16666666666666666,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 5,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              4,
+              5,
+              6
+            ],
+            "states": [
+              2,
+              0,
+              0
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 0
+            },
+            "occupancy": 0.08333333333333333,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.0,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.08333333333333333,
+              0.16666666666666666,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 3,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              2,
+              3,
+              4
+            ],
+            "states": [
+              12,
+              2,
+              2
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 2,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.3333333333333333,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.25,
+          "1": 0.08333333333333333,
+          "2": 0.3333333333333333
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": false,
+          "E_V_equals_E_1": false,
+          "gamma_d_equals_t_2": false,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      }
+    ],
+    "steps": [
+      {
+        "word_before": [
+          9,
+          9,
+          6,
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        "word_after": [
+          9,
+          12,
+          6,
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "payload_map": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": false,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 8,
+        "length_change": 0,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      },
+      {
+        "word_before": [
+          9,
+          12,
+          6,
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "word_after": [
+          12,
+          0,
+          12,
+          2,
+          2,
+          0,
+          0,
+          1,
+          1
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 0,
+          "1": 5,
+          "2": 3
+        },
+        "payload_map": {
+          "0": 0,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 5,
+          "5": 6,
+          "6": 7,
+          "7": 8
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": false,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 2,
+            "A2": 2,
+            "A12": 0,
+            "B1": 2,
+            "B2": 2,
+            "B12": 0
+          },
+          "K1": 4,
+          "K2": 4,
+          "K": 8,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": false,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 9,
+        "length_change": 1,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      }
+    ],
+    "activity": {
+      "feature_matrix_before": [
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
+      ],
+      "feature_matrix_after": [
+        [
+          0.4166666666666667,
+          0.3333333333333333,
+          0.5,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          0.08333333333333333,
+          0.16666666666666666,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.4166666666666667,
+          0.3333333333333333,
+          0.5,
+          0.3333333333333333,
+          0.0
+        ]
+      ],
+      "local_feature_delta": [
+        [
+          0.08333333333333337,
+          0.0,
+          0.16666666666666669,
+          0.3333333333333333,
+          0.0
+        ],
+        [
+          -0.08333333333333333,
+          0.0,
+          -0.16666666666666666,
+          0.0,
+          0.0
+        ],
+        [
+          -0.08333333333333331,
+          -0.16666666666666669,
+          0.0,
+          0.3333333333333333,
+          0.0
+        ]
+      ],
+      "local_activity_l1": 1.4166666666666667,
+      "activity_scale": 1.0,
+      "activity_score": 1.0,
+      "future_history_used": false,
+      "status": "LOCAL_TRANSITION_FEATURE_EVALUATED_MODEL_ASSUMPTION"
+    },
+    "bic": [
+      {
+        "verdict": "DARK_VECTOR_NOT_EIGENSTATE",
+        "energy": 0.024006134146990515,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.01962469247358746,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "NO_BIC_MECHANISM_ASSIGNED",
+        "z2_symmetry": {
+          "status": "Z2_SYMMETRY_NOT_PRESENT",
+          "hamiltonian_commutator_residual": 0.15516158239282327,
+          "dark_state_odd_parity_residual": 0.16571018995702977,
+          "conditions": {
+            "E_V_equals_E_1": false,
+            "gamma_d_equals_t_2": false
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "DARK_VECTOR_NOT_EIGENSTATE",
+        "energy": 0.023894884647395448,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.046878704275251225,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "NO_BIC_MECHANISM_ASSIGNED",
+        "z2_symmetry": {
+          "status": "Z2_SYMMETRY_NOT_PRESENT",
+          "hamiltonian_commutator_residual": 0.3152630061705989,
+          "dark_state_odd_parity_residual": 0.3258672927327998,
+          "conditions": {
+            "E_V_equals_E_1": false,
+            "gamma_d_equals_t_2": false
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "DARK_VECTOR_NOT_EIGENSTATE",
+        "energy": -0.025993865853009557,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.019624692473587536,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "NO_BIC_MECHANISM_ASSIGNED",
+        "z2_symmetry": {
+          "status": "Z2_SYMMETRY_NOT_PRESENT",
+          "hamiltonian_commutator_residual": 0.15752517731741011,
+          "dark_state_odd_parity_residual": 0.16571018995702946,
+          "conditions": {
+            "E_V_equals_E_1": false,
+            "gamma_d_equals_t_2": false
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      }
+    ],
+    "anchor_collisions": [
+      false,
+      false
+    ]
+  },
+  {
+    "id": "quiet_word",
+    "invariants": {
+      "counts": {
+        "a1": 2,
+        "b1": 2,
+        "a2": 2,
+        "b2": 2
+      },
+      "pure_half_counts": {
+        "A1": 0,
+        "A2": 0,
+        "A12": 2,
+        "B1": 0,
+        "B2": 0,
+        "B12": 2
+      },
+      "K1": 0,
+      "K2": 0,
+      "K": 0,
+      "bit_products": {
+        "1": 4,
+        "2": 4
+      },
+      "E0": true,
+      "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+      "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+    },
+    "phi": [
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.3666666666666667,
+          "12": 0.3666666666666667
+        },
+        "parameters": {
+          "E_V": 0.3,
+          "E_1": 0.3,
+          "E_2": 0.26666666666666666,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.20791218602593245,
+          "gamma_d": 0.20791218602593245,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              0,
+              5,
+              10
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              0,
+              5,
+              10
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              10,
+              0,
+              0
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 1
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.3333333333333333,
+          "1": 0.3333333333333333,
+          "2": 0.16666666666666666
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.2,
+          "12": 0.2
+        },
+        "parameters": {
+          "E_V": 0.3,
+          "E_1": 0.3,
+          "E_2": 0.33333333333333337,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.24561922592339452,
+          "gamma_d": 0.24561922592339452,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              5,
+              0,
+              10
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              5,
+              0,
+              10
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              10,
+              0,
+              5
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.3333333333333333,
+          "1": 0.3333333333333333,
+          "2": 0.3333333333333333
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      },
+      {
+        "effective_barriers": {
+          "V1": 0.2,
+          "V2": 0.3666666666666667,
+          "12": 0.3666666666666667
+        },
+        "parameters": {
+          "E_V": 0.2,
+          "E_1": 0.2,
+          "E_2": 0.33333333333333337,
+          "t_1": 0.24561922592339452,
+          "t_2": 0.20791218602593245,
+          "gamma_d": 0.20791218602593245,
+          "kappa": 1.0,
+          "g": 0.25,
+          "bath_onsite": 0.0
+        },
+        "local_features": {
+          "V": {
+            "vertex": 0,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              7,
+              0,
+              1
+            ],
+            "states": [
+              0,
+              0,
+              10
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 1
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "1": {
+            "vertex": 4,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              3,
+              4,
+              5
+            ],
+            "states": [
+              0,
+              0,
+              10
+            ],
+            "bit_counts": {
+              "a1": 0,
+              "b1": 1,
+              "a2": 0,
+              "b2": 1
+            },
+            "occupancy": 0.16666666666666666,
+            "species_1_density": 0.16666666666666666,
+            "species_2_density": 0.16666666666666666,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.16666666666666666,
+              0.16666666666666666,
+              0.16666666666666666,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          },
+          "2": {
+            "vertex": 2,
+            "radius": 1,
+            "offsets": [
+              -1,
+              0,
+              1
+            ],
+            "indices": [
+              1,
+              2,
+              3
+            ],
+            "states": [
+              10,
+              5,
+              0
+            ],
+            "bit_counts": {
+              "a1": 1,
+              "b1": 1,
+              "a2": 1,
+              "b2": 1
+            },
+            "occupancy": 0.3333333333333333,
+            "species_1_density": 0.3333333333333333,
+            "species_2_density": 0.3333333333333333,
+            "split_motif_fraction": 0.0,
+            "oriented_merge_motifs": 0,
+            "feature_vector": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.0,
+              0.0
+            ],
+            "orientation": "ordered offsets -r..+r on the directed cyclic carrier"
+          }
+        },
+        "local_density": {
+          "V": 0.16666666666666666,
+          "1": 0.16666666666666666,
+          "2": 0.3333333333333333
+        },
+        "local_Z2_condition": {
+          "V_and_1_equal_local_density": true,
+          "E_V_equals_E_1": true,
+          "gamma_d_equals_t_2": true,
+          "interpretation": "local motif equivalence implies a Z2-symmetric parameter subfamily under this postulate"
+        },
+        "provenance": {
+          "E_V": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "E_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_1": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "t_2": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "gamma_d": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "kappa": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "g": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          },
+          "bath_onsite": {
+            "source": "MODEL_ASSUMPTION",
+            "assumption": "Derived by the accepted local Phi law: Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+          }
+        },
+        "mapping_status": "MODEL_ASSUMPTION_EVALUATED_NOT_ADD_DERIVED",
+        "global_K_used_as_mapping_input": false,
+        "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes."
+      }
+    ],
+    "steps": [
+      {
+        "word_before": [
+          5,
+          10,
+          0,
+          0,
+          5,
+          10,
+          0,
+          0
+        ],
+        "word_after": [
+          0,
+          10,
+          0,
+          5,
+          0,
+          10,
+          0,
+          5
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "payload_map": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 0,
+            "A2": 0,
+            "A12": 2,
+            "B1": 0,
+            "B2": 0,
+            "B12": 2
+          },
+          "K1": 0,
+          "K2": 0,
+          "K": 0,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 0,
+            "A2": 0,
+            "A12": 2,
+            "B1": 0,
+            "B2": 0,
+            "B12": 2
+          },
+          "K1": 0,
+          "K2": 0,
+          "K": 0,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 8,
+        "length_change": 0,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      },
+      {
+        "word_before": [
+          0,
+          10,
+          0,
+          5,
+          0,
+          10,
+          0,
+          5
+        ],
+        "word_after": [
+          0,
+          10,
+          5,
+          0,
+          0,
+          10,
+          5,
+          0
+        ],
+        "anchors_before": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "anchors_after": {
+          "V": 0,
+          "1": 4,
+          "2": 2
+        },
+        "payload_map": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3,
+          "4": 4,
+          "5": 5,
+          "6": 6,
+          "7": 7
+        },
+        "invariants_before": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 0,
+            "A2": 0,
+            "A12": 2,
+            "B1": 0,
+            "B2": 0,
+            "B12": 2
+          },
+          "K1": 0,
+          "K2": 0,
+          "K": 0,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "invariants_after": {
+          "counts": {
+            "a1": 2,
+            "b1": 2,
+            "a2": 2,
+            "b2": 2
+          },
+          "pure_half_counts": {
+            "A1": 0,
+            "A2": 0,
+            "A12": 2,
+            "B1": 0,
+            "B2": 0,
+            "B12": 2
+          },
+          "K1": 0,
+          "K2": 0,
+          "K": 0,
+          "bit_products": {
+            "1": 4,
+            "2": 4
+          },
+          "E0": true,
+          "definition": "Kc = pure_Ac * pure_Bc; bit products are different invariants",
+          "status": "COMBINATORIAL_ONLY_NOT_QUANTUM_SUPERSELECTION"
+        },
+        "length_before": 8,
+        "length_after": 8,
+        "length_change": 0,
+        "status": "ONE_PINNED_ADD_STEP_EXECUTED"
+      }
+    ],
+    "activity": {
+      "feature_matrix_before": [
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      ],
+      "feature_matrix_after": [
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.0
+        ]
+      ],
+      "local_feature_delta": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          0.0
+        ]
+      ],
+      "local_activity_l1": 0.5,
+      "activity_scale": 1.0,
+      "activity_score": 0.5,
+      "future_history_used": false,
+      "status": "LOCAL_TRANSITION_FEATURE_EVALUATED_MODEL_ASSUMPTION"
+    },
+    "bic": [
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": 0.054380774076605465,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.0,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": 0.054380774076605465,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 0.0,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      },
+      {
+        "verdict": "BIC_IN_CONDITIONAL_R040_TIGHT_BINDING_MODEL",
+        "energy": -0.04561922592339451,
+        "continuum_interval": [
+          -2.0,
+          2.0
+        ],
+        "energy_inside_continuum": true,
+        "normalized_internal_vector": true,
+        "port_amplitude_norm": 0.0,
+        "eigen_equation_residual": 2.943923360032078e-17,
+        "continuum_component_norm": 0.0,
+        "normalizable_continuum_component": true,
+        "all_open_channels_checked": true,
+        "mechanism_class": "Z2_SYMMETRY_PROTECTED_BIC",
+        "z2_symmetry": {
+          "status": "EXACT_Z2_EXCHANGE_SYMMETRY",
+          "hamiltonian_commutator_residual": 0.0,
+          "dark_state_odd_parity_residual": 0.0,
+          "conditions": {
+            "E_V_equals_E_1": true,
+            "gamma_d_equals_t_2": true
+          },
+          "scope": "trimer exchange V<->1; bath port on node 2 remains invariant"
+        },
+        "model_scope": "conditional R040: bath contacts only trimer node 2"
+      }
+    ],
+    "anchor_collisions": [
+      false,
+      false
+    ]
+  }
+]
