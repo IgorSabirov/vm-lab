@@ -1,7 +1,7 @@
 To: Pablo Arrighi <pablo.arrighi@inria.fr>
 Cc: Amélia Durbec <amelia.durbec@junia.com>
 Subject: Clarification of Definition 4 versus Fig. 2(a), arXiv:2306.07121v2
-Status: PREPARED_NOT_SENT — no email account connected
+Status: SENT — Gmail message 1a1befd6f7763131
 
 Dear Professor Arrighi and Dr Durbec,
 
