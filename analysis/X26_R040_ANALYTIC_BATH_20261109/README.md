@@ -28,3 +28,8 @@ The patch archive contains `APPLY_PATCH.md` with the full procedure and status l
 ## Scope and non-claims
 
 The integrated v0.2.0 layer makes the Phi/Psi assumptions explicit and executable for sandbox studies. It implements motif-to-parameter mapping, a motif-permutation control preserving the declared combinatorial invariants, coherent and thermal loading alternatives, explicit work/heat/entropy accounting, and a one-step moving dark-projector transport diagnostic. Missing physical coefficients and resource conversions remain marked as assumptions or `NOT_EVALUABLE`; the default full-run template remains fail-closed. No VM run, physical calibration, registry promotion, NOW change, or merge to main is implied by this patch.
+
+
+## X26 v0.3 — завершённый физический протокол, 9 ноября 2026
+
+[Итог основного прогона и проверка нового отзыва](PHYSICAL_V3_20261109/RESULT.md): 249/249, runtime PASS, 16.017 с при прогнозе 16.813 с. Условные физические постулаты сохранены; NOW-статусы не повышены. Отдельно документированы исправление поиска резонансов и историческая ошибка калибровочного списка хешей. Повтор основного расчёта ради отчётности не выполнялся.
