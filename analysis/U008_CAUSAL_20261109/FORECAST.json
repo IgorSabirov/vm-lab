@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "source_commit": "c6c235904dc8ad7ae5ed63ab0938eebb87f639ab",
+  "script_sha256": "e409e31f8b547744292ee90437a8de0f7e1bd367c38872722ae61887d0f2fc66",
+  "calibration_job_id": "u008_cal_c6c2359_20261109",
+  "calibration_source_commit": "c6c235904dc8ad7ae5ed63ab0938eebb87f639ab",
+  "calibration_tasks": 28,
+  "planned_tasks": 592,
+  "strata": [
+    {
+      "panel": "primary",
+      "n": 540,
+      "calibration_n": 15,
+      "mean_task_seconds": 0.005648898736884196,
+      "min": 0.004398337012389675,
+      "max": 0.007183356006862596
+    },
+    {
+      "panel": "bypass",
+      "n": 12,
+      "calibration_n": 3,
+      "mean_task_seconds": 0.0062694583320990205,
+      "min": 0.005470906995469704,
+      "max": 0.006857647997094318
+    },
+    {
+      "panel": "tie_at_probe",
+      "n": 8,
+      "calibration_n": 2,
+      "mean_task_seconds": 0.006010051991324872,
+      "min": 0.005201054998906329,
+      "max": 0.006819048983743414
+    },
+    {
+      "panel": "after",
+      "n": 8,
+      "calibration_n": 2,
+      "mean_task_seconds": 0.006676240504020825,
+      "min": 0.006455071998061612,
+      "max": 0.006897409009980038
+    },
+    {
+      "panel": "no_child_apparatus",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.006408640998415649,
+      "min": 0.006408640998415649,
+      "max": 0.006408640998415649
+    },
+    {
+      "panel": "no_child_fuel",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.006358904996886849,
+      "min": 0.006358904996886849,
+      "max": 0.006358904996886849
+    },
+    {
+      "panel": "tamper",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.006355680990964174,
+      "min": 0.006355680990964174,
+      "max": 0.006355680990964174
+    },
+    {
+      "panel": "wrong_ack",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.005844637984409928,
+      "min": 0.005844637984409928,
+      "max": 0.005844637984409928
+    },
+    {
+      "panel": "stale_repair",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.006021299021085724,
+      "min": 0.006021299021085724,
+      "max": 0.006021299021085724
+    },
+    {
+      "panel": "sham_repair",
+      "n": 4,
+      "calibration_n": 1,
+      "mean_task_seconds": 0.004808675003005192,
+      "min": 0.004808675003005192,
+      "max": 0.004808675003005192
+    }
+  ],
+  "expected_body_seconds": 6.109232425473497,
+  "expected_seconds": 6.316125238360005,
+  "lower_seconds": 1.5273081063683742,
+  "upper_seconds": 20.32769727642049,
+  "hard_wall_seconds": 120,
+  "environment_digest": "18b2d50d15c5d6ab0cd975321611872e71e3a447321784bb99047ad398192bdb",
+  "environment": {
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_count": 8,
+    "cpu_quota": null,
+    "cpuinfo": [
+      "processor\t: 0",
+      "vendor_id\t: AuthenticAMD",
+      "cpu family\t: 25",
+      "model\t\t: 17",
+      "model name\t: AMD EPYC-Genoa Processor",
+      "stepping\t: 0",
+      "microcode\t: 0x1000065",
+      "cpu MHz\t\t: 2396.398"
+    ],
+    "machine": "x86_64",
+    "memory_limit": null,
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3",
+    "scientific_dependencies": "Python standard library plus pinned pure-Python NOW modules; no BLAS calls",
+    "thread_env": {
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": "7",
+      "OPENBLAS_NUM_THREADS": "7"
+    }
+  },
+  "method": "Sum panel mean task wall including row/checkpoint I/O; remaining measured report/archive/setup wall scaled by N/28 conservatively. Worker startup residual added once to full expected duration.",
+  "range_reason": "Short pure-Python job; primary calibration includes all arms and all time relations at boundary F=10 M=5. Lesser stocks execute shorter paths. 0.25x to 3x+2s reflects fixed setup scaling and small-job I/O variance; not a statistical CI.",
+  "lower_bound_note": "Positive lower bound; exact task count/source checks remain mandatory.",
+  "timer_scope": "In-process gate compares main() through ZIP to body bounds. Full worker duration checked separately with startup allowance.",
+  "projected_cpu_seconds": 6.9944799999999985,
+  "projected_output_bytes": 20794614,
+  "disk_allowance_bytes": 41589227,
+  "memory_estimate_mib": 256,
+  "memory_hard_limit_mib": 1024,
+  "environment_missing": {
+    "cpu_quota": "cgroup v2 cpu.max not exposed to job; worker reports eight CPUs and seven configured threads; computation itself is single-thread pure Python",
+    "memory_cgroup": "memory.max not exposed; worker reports 12792 MiB; process enforces RLIMIT_AS 1024 MiB"
+  },
+  "freeze_before_main": true,
+  "no_empty_repeats": true
+}

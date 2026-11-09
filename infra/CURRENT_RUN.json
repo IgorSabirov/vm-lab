@@ -1,192 +1,44 @@
 {
-  "schema": 1,
+  "schema": 2,
   "repository": "IgorSabirov/vm-lab",
-  "experiment": "NOW_INTEGRATED_CONTINUATION_V1",
-  "job_id": "now_long_main_da72a3a_20261108",
-  "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
-  "source_digest": "7d2e822a3d4fd2581d15d094e0b85abaaf0143b7b5e3deb372ded63b78527f4f",
-  "config_digest": "2cb00b6c257d0367cd3b067b32333c07690fda0aa16f0b8aa55017a8f4ea3ee1",
-  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
-  "launcher_sha256": "c71abeca8bec9ae9efd57daf64c8834e81e9ffadcc7c76b26514e1ad9415611a",
-  "planned_tasks": 3083,
-  "planned_cases": 2880,
-  "planned_contrasts": 1720,
-  "expected_seconds": 2368.7776741902367,
-  "lower_seconds": 1421.266604514142,
-  "upper_seconds": 3316.288743866331,
-  "hard_wall_seconds": 3600,
-  "memory_limit_mib": 4096,
-  "disk_limit_mib": 1024,
-  "started_epoch": 1794146619.4502475,
-  "started_moscow": "2026-11-08 17:03:39 МСК",
+  "experiment": "NOW_U008_CAUSAL_CHANNEL_V1",
+  "job_id": "u008_main_c6c2359_20261109",
+  "source_commit": "c6c235904dc8ad7ae5ed63ab0938eebb87f639ab",
+  "branch": "run/u008-causal-20261109",
+  "script_sha256": "e409e31f8b547744292ee90437a8de0f7e1bd367c38872722ae61887d0f2fc66",
+  "planned_tasks": 592,
+  "expected_seconds": 6.316125238360005,
+  "expected_body_seconds": 6.109232425473497,
+  "lower_seconds": 1.5273081063683742,
+  "upper_seconds": 20.32769727642049,
+  "hard_wall_seconds": 120,
   "authorization": {
-    "date": "2026-11-08",
-    "user_instructions": [
-      "Запустить прогон 10+ минут по машинному времени.",
-      "Пользователь дал указание запустить без аудита но с полной проверкой гейта времени"
-    ],
-    "scope": "Согласованный NOW; исходные 413 задач и полезное расширение в пределах опубликованного протокола.",
-    "technical_audit_waived": true,
-    "runtime_gate_required": true,
-    "new_scientific_law_or_goal_authorized": false
+    "date": "2026-11-09",
+    "user_instruction": "Изучи мнение соседей и сформируй код следующего полного научного прогона на гитхабе; минимум лишних движений; давай запустим этот прогон.",
+    "scope": "Complete declared U008 finite enumeration and bounded controls; no stochastic/large-grid extension; GitHub publication authorized",
+    "artificial_minimum_duration": false
   },
   "vm": {
     "connector": "VM Compute 81",
-    "source_directory": "code/now_long_da72a3a",
-    "launcher": "code/now_long_launch_da72a3a.py",
-    "forecast": "data/now_long_forecast_da72a3a.json",
-    "result_directory": "results/now_long_main_da72a3a_20261108",
-    "checkpoint": "results/now_long_main_da72a3a_20261108/main_output/CHECKPOINT.json",
-    "process": "results/now_long_main_da72a3a_20261108/PROCESS.json",
-    "log": "results/now_long_main_da72a3a_20261108/process.log",
-    "job_log": "jobs/now_long_main_da72a3a_20261108/output.log",
-    "archive_manifest": "results/now_long_main_da72a3a_20261108/ARCHIVE.json",
-    "full_archive": "results/now_long_main_da72a3a_20261108/FULL_OUTPUT.zip"
-  },
-  "evidence": {
-    "launch_record": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/LAUNCH_STATUS.json",
-    "readiness": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/READINESS.md",
-    "forecast": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/FORECAST.json",
-    "forecast_commit": "08a87e2482a4f1061a892e7360e92b695e2786c1",
-    "smoke": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SMOKE_SUITE.json",
-    "calibration": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/CALIBRATION_PROCESS.json",
-    "calibration_job_id": "now_long_cal_da72a3a_20261108"
-  },
-  "continuation": {
-    "first_action": "Проверить этот job_id через VM Compute 81.job_status; затем CHECKPOINT. Не submit новый run.",
-    "on_running": "Наблюдать существующее задание; PROCESS ожидается после выхода.",
-    "on_completed": "Прочитать предусмотренный PROCESS и краткий отчёт; сверить время, объём и среду; следовать действующему каналу публикации.",
-    "on_connection_failure": "Восстановить доступ; не считать процесс остановленным, не создавать новый request_id.",
-    "publication": "Launcher сохраняет отчёт и архив на ВМ; встроенной автоматической публикации GitHub в нём нет. Старый bridge — отдельная служба; не приписывать ему работу без проверки.",
-    "runbook": "infra/LAUNCH_RUNBOOK.md"
+    "script": "code/u008_c6c2359.py",
+    "base": "code/now_long_da72a3a/experiments/now_integrated_v1",
+    "forecast": "data/u008_forecast_c6c2359.json",
+    "result_directory": "results/u008_main_c6c2359_20261109/output",
+    "checkpoint": "results/u008_main_c6c2359_20261109/output/CHECKPOINT.json",
+    "process": "results/u008_main_c6c2359_20261109/output/PROCESS.json"
   },
   "observation": {
-    "observed_at_utc": "2026-11-08T15:03:49.395Z",
-    "interpreted_at_utc": "2026-11-08T15:03:49.395Z",
+    "state": "PREPARED_NOT_YET_SUBMITTED"
+  },
+  "continuation": {
+    "first_action": "Check exactly job_id with VM Compute 81 job_status; never create a second run on submit timeout.",
+    "on_completed": "Read PROCESS and SUMMARY, save full archive off VM, publish result and update U008 lineage. No new scientific run without distinct question."
+  },
+  "previous_run": {
     "job_id": "now_long_main_da72a3a_20261108",
-    "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
-    "process_state": "completed",
-    "completed_tasks": 3083,
-    "planned_tasks": 3083,
-    "progress_is_snapshot": true,
-    "scientific_confirmation": false,
-    "automatic_resubmit": false,
-    "checkpoint_sha256": "0e11d73988a15be56d83d8e2c218cd4832527c82073a8e5a7740acd7c3eb05d3",
-    "execution_observed": true,
-    "next_action": "READ_COMPLETED_SCIENCE_REVIEW_NO_AUTOMATIC_RESUBMIT"
-  },
-  "result": {
-    "process_wall_seconds": 3352.798578846996,
-    "child_cpu_seconds": 3261.448793,
-    "task_count": 3083,
-    "contrasts_evaluated": 1720,
-    "physical_outcome_rows": 18897,
-    "events": 2297792,
-    "output_bytes": 220541576,
-    "max_rss_mib": 578.109375,
-    "technical_pass": true,
-    "runtime_gate": "REVIEW_REQUIRED",
-    "scientific_confirmation": false,
-    "forecast": {
-      "expected_seconds": 2368.7776741902367,
-      "lower_seconds": 1421.266604514142,
-      "upper_seconds": 3316.288743866331,
-      "hard_wall_seconds": 3600
-    }
-  },
-  "runtime_review": {
-    "status": "REVIEW_REQUIRED",
-    "actual_minus_expected_seconds": 984.0209046567593,
-    "actual_vs_expected_percent": 41.541294287702435,
-    "above_upper_seconds": 36.50983498066489,
-    "under_hard_cap_seconds": 247.2014211530048,
-    "task_timers": {
-      "observed_total": 3127.4113490689488,
-      "stratified_forecast_total": 2140.9252092870593,
-      "observed_classical": 572.2056072301784,
-      "forecast_classical": 438.4884718792455,
-      "observed_wave": 2548.578833617634,
-      "forecast_wave": 1702.4367374078138,
-      "wall_minus_task_timers": 225.38722977804719
-    },
-    "likely_explanation": "The per-stratum calibration was too sparse: each wave stratum used one representative at detuning 0.07 and read_wait 32, then scaled across 11 detunings and 4 waits. Main wave runtime rose especially for Ising/CDT, while the recorded environment fingerprint matched calibration and memory/disk remained below caps.",
-    "evidence": {
-      "main_process": "results/now_long_main_da72a3a_20261108/PROCESS.json",
-      "main_rows": "results/now_long_main_da72a3a_20261108/main_output/rows/",
-      "calibration_job": "now_long_cal_da72a3a_20261108",
-      "read_only_aggregation_job": "now_cost_diag_20261108",
-      "forecast": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/FORECAST.json",
-      "resource_max_rss_mib": 578.109375,
-      "disk_output_bytes": 220541576,
-      "memory_limit_mib": 4096,
-      "disk_limit_mib": 1024
-    },
-    "next_forecast_correction": "Calibrate across workload-defining dimensions (not just carrier, bath size and mode): sample detuning/read-wait tails or separate wave sub-strata; recompute uncertainty from within-stratum variation. Keep the same hard wall cap. Do not change this run's forecast retroactively."
-  },
-  "science_review": {
-    "date": "2026-11-09",
-    "status": "FULL_ARCHIVE_ANALYZED",
-    "report": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/REPORT.md",
-    "artifact": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/ANALYSIS_BUNDLE.zip",
-    "new_scientific_runs": 0,
-    "checks": {
-      "task_files": 3083,
-      "modes": {
-        "finite_enumeration": 2796,
-        "deterministic": 84,
-        "seed_ensemble": 192,
-        "design_control": 11
-      },
-      "outcomes": 18897,
-      "cases": 2883,
-      "contrasts": 1720,
-      "hash_errors": [],
-      "max_probability_mass_error": 4.440892098500626e-16,
-      "balance_failures": 0,
-      "unfinished_outcomes": 0,
-      "max_summary_difference": 1.4210854715202004e-14,
-      "max_patch_report_difference": 2.220446049250313e-16,
-      "max_contrast_difference": 0.0,
-      "max_profile_tv_difference": 0.0,
-      "max_density_trace_error": 4.107825191113079e-15,
-      "min_density_eigenvalue": -8.709700694526455e-16,
-      "max_probability_correction": 3.986394547794703e-15
-    },
-    "raw_archive": {
-      "file_name": "NOW_LONG_FULL_OUTPUT_da72a3a.zip",
-      "size_bytes": 17100123,
-      "sha256": "1d3f9e7743f9509e2886f096a2d6d116e0ec817a0b60484f50673bca4ff6a1c9",
-      "library_file_id": "libfile_4b14fd904880819183e51c05453ff9f6",
-      "url": "https://chatgpt.com/library?file_id=libfile_4b14fd904880819183e51c05453ff9f6&account_id=4e86626d-1801-4b65-a128-068fb3ff2156",
-      "verified_against_VM_ARCHIVE_json": true
-    },
-    "main_finding": "Repair helps local XOR but not measured continuation in all 450 matched conditions; transmission occurs before damage."
-  },
-  "efficiency_review": {
-    "date": "2026-11-09",
-    "report": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/EFFICIENCY_REVIEW.md",
-    "status": "POSTHOC_REPORT_COMPLETE; EXTENSION_RETURN_PLAN_INCOMPLETE",
-    "original_160_contrasts_unchanged": true,
-    "original_ancestor_return_byte_identical": true,
-    "new_original_contract_returns": 0,
-    "incremental_value": "Conditional operating bounds for repair and wave memory; no result on origin of organization",
-    "rerun_authorized_by_report": false
-  },
-  "neighbor_review": {
-    "date": "2026-11-09",
-    "report": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/NEIGHBOR_REVIEW_R128_v1.md",
-    "proposal": "R128_REPAIR_TRANSMISSION_PROTOCOL_v1.md",
-    "proposal_sha256": "4404304b50580817fb8d20bd1b90ce73f0d47c621723303c44c5e05e0598ccca",
-    "status": "REVIEWED_DRAFT_REQUIRES_SUBSTANTIVE_CORRECTIONS",
-    "related_open_question": "U008",
-    "scientific_design_accepted": false,
-    "new_run_authorized": false
-  },
-  "publication_authorization": {
-    "date": "2026-11-09",
-    "user_statement": "Разрешаю публикацию в гитхаб любых материалов из нашей работы.",
-    "destination": "IgorSabirov/vm-lab",
-    "visibility_verified": "private",
-    "scope": "Project materials; no access secrets; publishing does not approve a new scientific law or a VM run."
+    "state": "COMPLETED_ANALYZED",
+    "record_commit": "da12c1d1608b405f2d8e8f5d6141ca0d20e38d15",
+    "record_path": "infra/CURRENT_RUN.json",
+    "raw_archive_library_id": "libfile_4b14fd904880819183e51c05453ff9f6"
   }
 }
