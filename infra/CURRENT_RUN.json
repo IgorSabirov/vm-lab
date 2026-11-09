@@ -7,7 +7,7 @@
   "manifest_digest": "ae6e6028c3ceec3ca743fc5b38418a5537f48d6d1ab69dbfd3b448535420ecd1",
   "workload_digest": "3081a51a1676b4b9734ba3f20e5ac08c536aee0b7b193b9cfaf9d6a3a37f0f18",
   "planned_tasks": 249,
-  "state": "READY_TO_SUBMIT",
+  "state": "COMPLETED",
   "authorization": {
     "instruction": "Изучи мнение соседей и замораживай физику, запускай прогон на ВМ.",
     "date_moscow": "2026-11-09"
@@ -35,5 +35,48 @@
     "environment_fingerprint": "ac3e8f320f354c6dbdfbc75853d0e27c5998350a240727456791286a3a40d5ae"
   },
   "continuation": "Check this same job ID; do not duplicate. Source, manifest and gates frozen. Raw NPZ stay on VM; publish concise results and row index to this private branch.",
-  "previous_run_record": "https://github.com/IgorSabirov/vm-lab/blob/9c936ffebd508d07fb96323b51754ca88aed33da/infra/CURRENT_RUN.json"
+  "previous_run_record": "https://github.com/IgorSabirov/vm-lab/blob/9c936ffebd508d07fb96323b51754ca88aed33da/infra/CURRENT_RUN.json",
+  "process": {
+    "mode": "main",
+    "source_digest": "af59c4175e6ea99c95b4e9958a2bf032925132715b1779b92533ad961c12c57f",
+    "manifest_digest": "ae6e6028c3ceec3ca743fc5b38418a5537f48d6d1ab69dbfd3b448535420ecd1",
+    "environment_fingerprint": "ac3e8f320f354c6dbdfbc75853d0e27c5998350a240727456791286a3a40d5ae",
+    "wall_seconds": 15.823643645999255,
+    "cpu_seconds": 15.193081338,
+    "setup_seconds": 0.032427252997877076,
+    "task_seconds": 14.44404568959726,
+    "finish_seconds": 0.08745930300210603,
+    "max_rss_mib": 80.46484375,
+    "output_bytes": 50867880,
+    "completed": 249,
+    "planned": 249,
+    "resumed": 0,
+    "technical_pass": true,
+    "runtime_gate": "PASS",
+    "full_launcher_wall_seconds": 16.01744629899622,
+    "launcher_cpu_seconds": 15.382135057000001,
+    "launcher_overhead_seconds": 0.18757910301792435,
+    "exit_code": 0,
+    "measurement_boundary": "bootstrap, import, preflight, all tasks, reports and output hash manifest; final timing write excluded"
+  },
+  "job_observation": {
+    "state": "completed",
+    "created": 1794229233.7792761,
+    "source_sha256": "02dc0f1b3bb447bc9c4037df90368a7a0938e96d4d0a29a805e552fcbc642c01",
+    "started": 1794229233.9315012,
+    "pid": 25263,
+    "output_directory": "/var/lib/vm-compute/work/results/x26_v3_main_54f8e7d_20261109",
+    "exit_code": 0,
+    "finished": 1794229250.1977916,
+    "reason": null,
+    "job_id": "x26_v3_main_54f8e7d_20261109",
+    "log_path": "jobs/x26_v3_main_54f8e7d_20261109/output.log",
+    "results_path": "results/x26_v3_main_54f8e7d_20261109"
+  },
+  "runtime_gate_commit": "b4167cce85a624a4004ea37a19ce423fa05082e1",
+  "result_links": {
+    "results": "analysis/X26_R040_ANALYTIC_BATH_20261109/PHYSICAL_V3_20261109/results/RESULTS.json",
+    "rows": "analysis/X26_R040_ANALYTIC_BATH_20261109/PHYSICAL_V3_20261109/results/ROW_INDEX.json",
+    "output_manifest": "analysis/X26_R040_ANALYTIC_BATH_20261109/PHYSICAL_V3_20261109/results/OUTPUT_MANIFEST.json"
+  }
 }
