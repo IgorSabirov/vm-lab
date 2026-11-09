@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "experiment": "X26_R040_ANALYTIC_BATH_v0_1",
+  "status": "SOURCE_TRANSFER_BLOCKED",
+  "source_commit": "d85bc8d1422b1186bd570cff276abbeeb8b5c0c6",
+  "branch": "x26-r040-analytic-bath-20261109",
+  "archive_path": "analysis/X26_R040_ANALYTIC_BATH_20261109/X26_R040_ANALYTIC_BATH_v0_1.tar.xz",
+  "archive_git_blob": "2cc59eac82c352594965545f84303191f2437b90",
+  "archive_expected_sha256": "96aec2703f921d280e0fe5bc5915bc04b03cc8af31df9d4b0183d3c647807d0b",
+  "authorization": "User: Запусти прогон на ВМ",
+  "scientific_scope": "Conditional R040 trimer and imported homogeneous 1D tight-binding bath; NOT_ADD_DERIVED",
+  "vm": {
+    "connector": "VM Compute 81",
+    "worker_responsive": true,
+    "active_job": null,
+    "cpu_count": 8,
+    "memory_limit_mib": 12792,
+    "free_disk_bytes": 4130217984
+  },
+  "execution": {
+    "calibration_submitted": false,
+    "main_submitted": false,
+    "job_id": null
+  },
+  "blocker": {
+    "kind": "CONNECTOR_BINARY_READ_UNSUPPORTED",
+    "evidence": [
+      "github_fetch: HTTPError 400 GitHub Fetch only accepts UTF-8 text; binary downloads are not supported by the documented tool",
+      "github_fetch_blob: UnicodeDecodeError at first archive byte 0xfd",
+      "No matching R040 archive found in available Library metadata or local files",
+      "Cloud browser GitHub page is signed out and returns private-repository 404; existing plugin access remains valid"
+    ],
+    "not_an_approval_rejection": true
+  },
+  "continuation": [
+    "Obtain the exact TAR.XZ as an attached file, or make its unpacked source files available as UTF-8 repository files on the same branch",
+    "Verify archive SHA-256 or per-file source receipt against the pinned package",
+    "Read X26_MODEL_CONTRACT.md, VM_INTEGRATION.md and supplied manifest before choosing run inputs; preserve the conditional model scope",
+    "Validate declared workload, publish fixed source/configuration, calibrate representative workload on target VM and freeze runtime forecast",
+    "Submit main once with an idempotent request_id and record returned job_id; no repeated authorization needed"
+  ],
+  "do_not": [
+    "Do not substitute older X26 v0.2 ZIP for this R040 package",
+    "Do not claim VM run started or runtime gate passed",
+    "Do not invent missing ADD provenance",
+    "Do not repeat the failed binary retrieval routes without a changed capability"
+  ]
+}
