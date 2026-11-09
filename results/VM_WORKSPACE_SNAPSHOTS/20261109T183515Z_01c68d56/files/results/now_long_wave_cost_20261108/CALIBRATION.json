@@ -1,0 +1,227 @@
+{
+  "status": "COMPLETED",
+  "records": [
+    {
+      "id": "wavecost::flat::finite_dark",
+      "family": "flat",
+      "generations": 3,
+      "wall_seconds": 1.675024427997414,
+      "cpu_seconds": 1.674937231,
+      "nodes": 19,
+      "events": 550,
+      "outcomes": 10,
+      "probability_mass": 1.0000000000000002,
+      "serialized_result_bytes": 68218,
+      "max_rss_mib": 58.796875,
+      "science": {
+        "mean_task_success": 0.0018342163391551125,
+        "full_reserve_mass": 0.0
+      }
+    },
+    {
+      "id": "wavecost::flat::finite_static",
+      "family": "flat",
+      "generations": 3,
+      "wall_seconds": 1.6556802060076734,
+      "cpu_seconds": 1.6555834959999998,
+      "nodes": 19,
+      "events": 550,
+      "outcomes": 10,
+      "probability_mass": 1.0,
+      "serialized_result_bytes": 67836,
+      "max_rss_mib": 59.31640625,
+      "science": {
+        "mean_task_success": 4.811925128283801e-05,
+        "full_reserve_mass": 0.0
+      }
+    },
+    {
+      "id": "wavecost::ising_order::finite_dark",
+      "family": "ising_order",
+      "generations": 3,
+      "wall_seconds": 2.614642547996482,
+      "cpu_seconds": 2.614500881,
+      "nodes": 19,
+      "events": 1232,
+      "outcomes": 10,
+      "probability_mass": 1.0,
+      "serialized_result_bytes": 72175,
+      "max_rss_mib": 82.55859375,
+      "science": {
+        "mean_task_success": 0.0010187659954051078,
+        "full_reserve_mass": 0.0
+      }
+    },
+    {
+      "id": "wavecost::ising_order::finite_static",
+      "family": "ising_order",
+      "generations": 3,
+      "wall_seconds": 2.6428826679912163,
+      "cpu_seconds": 2.6427006729999993,
+      "nodes": 19,
+      "events": 1232,
+      "outcomes": 10,
+      "probability_mass": 1.0,
+      "serialized_result_bytes": 71758,
+      "max_rss_mib": 84.0,
+      "science": {
+        "mean_task_success": 4.962424422257356e-05,
+        "full_reserve_mass": 0.0
+      }
+    },
+    {
+      "id": "wavecost::add_growing::finite_dark",
+      "family": "add_growing",
+      "generations": 3,
+      "wall_seconds": 1.7397649439953966,
+      "cpu_seconds": 1.7396482310000003,
+      "nodes": 19,
+      "events": 1243,
+      "outcomes": 10,
+      "probability_mass": 1.0,
+      "serialized_result_bytes": 72207,
+      "max_rss_mib": 84.0,
+      "science": {
+        "mean_task_success": 0.013856995649792269,
+        "full_reserve_mass": 0.0
+      }
+    },
+    {
+      "id": "wavecost::add_growing::finite_static",
+      "family": "add_growing",
+      "generations": 3,
+      "wall_seconds": 1.7235645769978873,
+      "cpu_seconds": 1.7234535869999998,
+      "nodes": 19,
+      "events": 1243,
+      "outcomes": 10,
+      "probability_mass": 1.0,
+      "serialized_result_bytes": 71823,
+      "max_rss_mib": 84.0,
+      "science": {
+        "mean_task_success": 0.0006103144655303283,
+        "full_reserve_mass": 0.0
+      }
+    }
+  ],
+  "wall_seconds": 12.065090764997876,
+  "environment": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "numpy": "1.26.4",
+    "cpu_count": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_max": "700000 100000",
+    "memory_max": "13413384192",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "blas": {
+      "Compilers": {
+        "c": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "13.2.0",
+          "commands": "cc",
+          "args": "-g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "linker args": "-Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro, -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3"
+        },
+        "cython": {
+          "name": "cython",
+          "linker": "cython",
+          "version": "3.0.8",
+          "commands": "cython"
+        },
+        "c++": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "13.2.0",
+          "commands": "c++",
+          "args": "-g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "linker args": "-Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro, -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3"
+        }
+      },
+      "Machine Information": {
+        "host": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        },
+        "build": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        }
+      },
+      "Build Dependencies": {
+        "blas": {
+          "name": "blas",
+          "found": true,
+          "version": "unknown",
+          "detection method": "system",
+          "include directory": "unknown",
+          "lib directory": "unknown",
+          "openblas configuration": "unknown",
+          "pc file directory": "unknown"
+        },
+        "lapack": {
+          "name": "dep140228583157936",
+          "found": true,
+          "version": "1.26.4",
+          "detection method": "internal",
+          "include directory": "unknown",
+          "lib directory": "unknown",
+          "openblas configuration": "unknown",
+          "pc file directory": "unknown"
+        }
+      },
+      "Python Information": {
+        "path": "/usr/bin/python3.12",
+        "version": "3.12"
+      },
+      "SIMD Extensions": {
+        "baseline": [
+          "SSE",
+          "SSE2",
+          "SSE3"
+        ],
+        "found": [
+          "SSSE3",
+          "SSE41",
+          "POPCNT",
+          "SSE42",
+          "AVX",
+          "F16C",
+          "FMA3",
+          "AVX2",
+          "AVX512F",
+          "AVX512CD",
+          "AVX512_SKX",
+          "AVX512_CLX",
+          "AVX512_CNL",
+          "AVX512_ICL"
+        ],
+        "not found": [
+          "AVX512_KNL",
+          "AVX512_KNM",
+          "AVX512_SPR"
+        ]
+      }
+    }
+  },
+  "source": "7c55308ce85a1337cbd43d2ab046a344d6bde3cf"
+}
