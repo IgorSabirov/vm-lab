@@ -15,5 +15,5 @@ dump(Path('x26_freeze/SOURCE_RECEIPT.json'),{'source_digest':bundle['source_dige
  'manifest_digest':w['manifest_digest'],'task_digest':w['task_digest'],
  'bundle_sha256':hashlib.sha256(Path('x26_freeze/BUNDLE.b64').read_bytes()).hexdigest(),
  'launcher_sha256':hashlib.sha256(Path('x26_freeze/LAUNCH.py').read_bytes()).hexdigest(),
- 'test_count':36,'tests':'PASS','main_tasks':len(w['tasks']),'calibration_tasks':len(calibration_tasks(w['tasks']))})
+ 'test_count':37,'tests':'PASS','main_tasks':len(w['tasks']),'calibration_tasks':len(calibration_tasks(w['tasks']))})
 print('files',len(files),'bundle_bytes',Path('x26_freeze/BUNDLE.b64').stat().st_size,'source',bundle['source_digest'])

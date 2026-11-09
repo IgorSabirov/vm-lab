@@ -42,6 +42,16 @@ class V3(unittest.TestCase):
         a=np.array([[1+2j,3],[4,5-6j]])
         b=decode(json.loads(json.dumps(encode({'a':a,'b':[1j]}))))
         np.testing.assert_array_equal(a,b['a']);self.assertEqual(b['b'][0],1j)
+    def test_known_BIC_is_deflated_from_resonance_search(self):
+        from x26r040.poles import solve_second_sheet_pole
+        # New numerical regression: the seed previously landed on real ED.
+        p=prepare_cases(self.m)[0]['parameters'][0]
+        r=solve_second_sheet_pole(p,complex(-.3,-.03))
+        self.assertEqual(r['root_equation'],'EXACT_DARK_FACTOR_DEFLATED_BRIGHT_BLOCK')
+        self.assertEqual(r['status'],'SECOND_SHEET_RESONANCE')
+        self.assertGreater(r['width'],0.)
+        self.assertLess(r['full_determinant_residual'],1e-8)
+        self.assertGreater(abs(complex(*r['z'])-p.dark_energy),1e-6)
     def test_workload_unique(self):
         ts=tasks(self.m)
         self.assertEqual(len(ts),249);self.assertEqual(len({x['id'] for x in ts}),249)

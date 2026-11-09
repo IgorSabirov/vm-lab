@@ -30,16 +30,28 @@ def solve_second_sheet_pole(p: R040Parameters, seed: complex,
                             maxfev: int = 4000) -> dict:
     """Solve det[z-H3-s_II(z)|2><2|]=0 from one explicit complex seed."""
     seed = complex(seed)
+    # An exact decoupled dark eigenvalue is a root on both analytic sheets.
+    # Searching the full determinant can converge to that known real root and
+    # misclassify a correct BIC as a failed resonance search. Remove only the
+    # independently verified exact dark factor via its invariant orthogonal
+    # block; do not move a root or alter any physical parameter.
+    d = p.dark_vector
+    deflate = bool(np.linalg.norm(p.H3 @ d - p.dark_energy*d) <= 1e-12)
+    u = np.column_stack((p.bright_vector, np.array([0.,0.,1.])))
+
+    def equation(z):
+        matrix = full_effective_matrix(z, p, sheet="II")
+        return complex(np.linalg.det(u.conj().T @ matrix @ u)) if deflate else complex(np.linalg.det(matrix))
 
     def fun(xy: np.ndarray) -> np.ndarray:
         z = complex(float(xy[0]), float(xy[1]))
-        value = pole_equation(z, p, sheet="II")
+        value = equation(z)
         return np.array([value.real, value.imag], dtype=float)
 
     result = root(fun, np.array([seed.real, seed.imag]), method="hybr",
                   options={"maxfev": int(maxfev), "xtol": 1e-11})
     z = complex(result.x[0], result.x[1])
-    residual = abs(pole_equation(z, p, sheet="II"))
+    residual = abs(equation(z))
     scale = max(1.0, np.linalg.norm(z * np.eye(3) - p.H3, ord="fro") ** 3)
     converged = bool(result.success and np.isfinite(residual)
                      and residual / scale <= residual_tol)
@@ -60,4 +72,6 @@ def solve_second_sheet_pole(p: R040Parameters, seed: complex,
         "solver_message": str(result.message),
         "sheet": "II",
         "seed": [seed.real, seed.imag],
+        "root_equation": "EXACT_DARK_FACTOR_DEFLATED_BRIGHT_BLOCK" if deflate else "FULL_3_BY_3",
+        "full_determinant_residual": float(abs(pole_equation(z,p,sheet="II"))),
     }
