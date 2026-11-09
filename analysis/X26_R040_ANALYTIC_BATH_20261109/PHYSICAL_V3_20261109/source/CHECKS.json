@@ -1,0 +1,47 @@
+{
+  "artifact": "X26_R040_ANALYTIC_BATH",
+  "version": "0.1.0",
+  "validation_scope": "LOCAL_TECHNICAL_TESTS_ONLY_NOT_PHYSICAL_RESULT",
+  "tests": {
+    "command": "PYTHONPATH=. python -m unittest discover -s tests -v",
+    "count": 24,
+    "passed": 24,
+    "failed": 0,
+    "exit_code": 0,
+    "timing": {
+      "WALL_SECONDS": 2.38,
+      "USER_SECONDS": 2.52,
+      "SYS_SECONDS": 0.58,
+      "MAX_RSS_KB": 125708.0
+    }
+  },
+  "compileall": {
+    "command": "python -m compileall -q x26r040 tests",
+    "exit_code": 0
+  },
+  "template_preflight": {
+    "command": "./run_vm.sh configs/R040_SPECTRAL_INPUT.template.json /tmp/x26_preflight --preflight-only",
+    "exit_code": 2,
+    "expected_blocking_exit_code": 2,
+    "status": "BLOCKED_MISSING_OR_UNACCEPTED_INPUTS",
+    "submit_allowed": false
+  },
+  "runtime": {
+    "target_vm_calibrated": false,
+    "forecast": "NOT_EVALUABLE",
+    "vm_submit_performed": false
+  },
+  "scientific": {
+    "conditional_model_only": true,
+    "add_derived": false,
+    "physical_bic_found": false,
+    "registry_statuses_promoted": false
+  },
+  "environment": {
+    "python": "3.13.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "recorded_at": "2026-11-09"
+}
