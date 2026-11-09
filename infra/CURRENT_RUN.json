@@ -73,7 +73,7 @@
     "automatic_resubmit": false,
     "checkpoint_sha256": "0e11d73988a15be56d83d8e2c218cd4832527c82073a8e5a7740acd7c3eb05d3",
     "execution_observed": true,
-    "next_action": "REVIEW_RUNTIME_GATE_AND_READ_DECLARED_REPORT"
+    "next_action": "READ_COMPLETED_SCIENCE_REVIEW_NO_AUTOMATIC_RESUBMIT"
   },
   "result": {
     "process_wall_seconds": 3352.798578846996,
@@ -122,5 +122,44 @@
       "disk_limit_mib": 1024
     },
     "next_forecast_correction": "Calibrate across workload-defining dimensions (not just carrier, bath size and mode): sample detuning/read-wait tails or separate wave sub-strata; recompute uncertainty from within-stratum variation. Keep the same hard wall cap. Do not change this run's forecast retroactively."
+  },
+  "science_review": {
+    "date": "2026-11-09",
+    "status": "FULL_ARCHIVE_ANALYZED",
+    "report": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/REPORT.md",
+    "artifact": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/ANALYSIS_BUNDLE.zip",
+    "new_scientific_runs": 0,
+    "checks": {
+      "task_files": 3083,
+      "modes": {
+        "finite_enumeration": 2796,
+        "deterministic": 84,
+        "seed_ensemble": 192,
+        "design_control": 11
+      },
+      "outcomes": 18897,
+      "cases": 2883,
+      "contrasts": 1720,
+      "hash_errors": [],
+      "max_probability_mass_error": 4.440892098500626e-16,
+      "balance_failures": 0,
+      "unfinished_outcomes": 0,
+      "max_summary_difference": 1.4210854715202004e-14,
+      "max_patch_report_difference": 2.220446049250313e-16,
+      "max_contrast_difference": 0.0,
+      "max_profile_tv_difference": 0.0,
+      "max_density_trace_error": 4.107825191113079e-15,
+      "min_density_eigenvalue": -8.709700694526455e-16,
+      "max_probability_correction": 3.986394547794703e-15
+    },
+    "raw_archive": {
+      "file_name": "NOW_LONG_FULL_OUTPUT_da72a3a.zip",
+      "size_bytes": 17100123,
+      "sha256": "1d3f9e7743f9509e2886f096a2d6d116e0ec817a0b60484f50673bca4ff6a1c9",
+      "library_file_id": "libfile_4b14fd904880819183e51c05453ff9f6",
+      "url": "https://chatgpt.com/library?file_id=libfile_4b14fd904880819183e51c05453ff9f6&account_id=4e86626d-1801-4b65-a128-068fb3ff2156",
+      "verified_against_VM_ARCHIVE_json": true
+    },
+    "main_finding": "Repair helps local XOR but not measured continuation in all 450 matched conditions; transmission occurs before damage."
   }
 }

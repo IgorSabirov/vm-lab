@@ -1,6 +1,6 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.",
   "results": [
     {
@@ -2890,11 +2890,11 @@
       "id": "R127",
       "section": "24. Геометрические кандидаты и интеграция",
       "title": "Четыре кандидата: исполнимый патч прежнего NOW",
-      "status": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН ЗАВЕРШЁН; НАУЧНЫЕ СТАТУСЫ НЕ ПОВЫШЕНЫ",
-      "result": "По закреплённому коду исполнены 413/413 задач и 891 физических строк исходов; runtime_gate PASS, технический PASS. Статус научного вывода — NO_PROMOTION_FROM_TECHNICAL_RUN. 76 интеграционных контрастов имеют статус EXECUTED_DESCRIPTIVE, а не подтверждение общей модели. Конечные фикстуры и их ограничения приведены в отчёте исполнения.",
-      "inputs": "Источник 7c55308ce85a1337cbd43d2ab046a344d6bde3cf; source digest 2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279; полное recovery-smoke; калибровка ВМ 89 задач; main 413 задач; прогноз и фактический RUN.",
-      "limit": "Прогон состоит из конечных условных фикстур, не равновесного ансамбля. C3_D NOT_IMPLEMENTED; Ising_j_star NOT_ESTIMATED; spontaneous_metric NOT_ESTABLISHED; physical_reverse NOT_IMPLEMENTED. Научное подтверждение и повышение реестровых статусов не заявлены; L01-L10 остаются открыты.",
-      "framework_role": "То же исполнение прежнего NOW_INTEGRATED_CONTINUATION_V1; технический запуск подтверждён без технического аудита по прямому решению пользователя. Полный временной/ресурсный гейт сохранён и пройден. Результат — описательный интеграционный прогон, а не закрытие модели.",
+      "status": "ПОЛНЫЙ ПРОГОН 3083 ЗАДАЧ РАЗОБРАН; УСЛОВНЫЕ ЭФФЕКТЫ И ОГРАНИЧЕНИЯ УСТАНОВЛЕНЫ",
+      "result": "Пересчитаны все 1720 контрастов из 18897 исходов: совпадение. Волновая сетка: 448 положительных, 90 численно нулевых, 122 отрицательных dark-static из 660. Ремонт улучшает локальный XOR в 270/450 условий, но во всех 450 не меняет final_function, функциональный префикс и health: передача назначена до повреждения. Конечный XOR успешен в 118/450; для 8 носителей — 0/150. U001: у N2 снабжение t=152 опаздывает к чтению t=150 и записи t=151 после резервирования всех 3 кредитов в t=148.",
+      "inputs": "Источник da72a3a89176b77ceca75779923029534fd26b99; полный архив 17100123 байта, SHA256 1d3f9e7743f9509e2886f096a2d6d116e0ec817a0b60484f50673bca4ff6a1c9; 3083 задачи; полный офлайн-разбор 2026-11-09 без новых научных запусков.",
+      "limit": "Конечные заданные носители и меры. Ремонт не проверяет причинную необходимость для передачи; наблюдаемая XOR не различает входные корреляции. C3-D и физическое обращение не реализованы; равновесные ансамбли/j* и происхождение метрики не получены. L01–L10 остаются открыты. runtime_gate=REVIEW_REQUIRED сохранён.",
+      "framework_role": "Карта проверенных ограничений R127 и частичное причинное объяснение U001. Нет подтверждения происхождения организации или замыкания восстановления и наследования. Следующий опыт требует содержательного различающего сравнения, повтор прежней сетки не назначен.",
       "construct_ids": [
         "C001",
         "C002",
@@ -2963,7 +2963,7 @@
         "L09",
         "L10"
       ],
-      "evidence_level": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН 413 ЗАДАЧ НА ВМ / RUNTIME_GATE PASS / БЕЗ НАУЧНОГО ПОВЫШЕНИЯ",
+      "evidence_level": "ОФЛАЙН-ПЕРЕСЧЁТ ПОЛНОГО АРХИВА И АНАЛИЗ ЗАКРЕПЛЁННОГО КОДА; НЕ НОВЫЙ ПРОГОН И НЕ НЕЗАВИСИМАЯ ФИЗИЧЕСКАЯ РЕПЛИКАЦИЯ",
       "sources": [
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
@@ -2981,7 +2981,9 @@
         "results/NOW_INTEGRATED_7c55308_20261108/METRICS.json",
         "results/NOW_INTEGRATED_7c55308_20261108/ROWS_INDEX.json",
         "results/NOW_INTEGRATED_7c55308_20261108/FULL_MAIN_OUTPUT_7c55308.zip",
-        "results/NOW_INTEGRATED_7c55308_20261108/FULL_OUTPUT_ARCHIVE.json"
+        "results/NOW_INTEGRATED_7c55308_20261108/FULL_OUTPUT_ARCHIVE.json",
+        "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/REPORT.md",
+        "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/ANALYSIS_BUNDLE.zip"
       ],
       "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений.",
       "revision_1_1": {
@@ -3040,7 +3042,8 @@
         "U004",
         "U005",
         "U006",
-        "U007"
+        "U007",
+        "U008"
       ],
       "descriptive_followup": {
         "date": "2026-11-08",
@@ -3058,6 +3061,273 @@
         ],
         "interpretation_note": "72 из 76 выходов за TV-допуск не являются автоматически провалами эксперимента: смысл зависит от вмешательства и вопроса контраста.",
         "new_scientific_runs": 0
+      },
+      "pre_science_review_20261109": {
+        "status": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН ЗАВЕРШЁН; НАУЧНЫЕ СТАТУСЫ НЕ ПОВЫШЕНЫ",
+        "result": "По закреплённому коду исполнены 413/413 задач и 891 физических строк исходов; runtime_gate PASS, технический PASS. Статус научного вывода — NO_PROMOTION_FROM_TECHNICAL_RUN. 76 интеграционных контрастов имеют статус EXECUTED_DESCRIPTIVE, а не подтверждение общей модели. Конечные фикстуры и их ограничения приведены в отчёте исполнения.",
+        "inputs": "Источник 7c55308ce85a1337cbd43d2ab046a344d6bde3cf; source digest 2cdf1962c6051558f8701a7a5ccfa09c574252381d163371c4d75b135737f279; полное recovery-smoke; калибровка ВМ 89 задач; main 413 задач; прогноз и фактический RUN.",
+        "limit": "Прогон состоит из конечных условных фикстур, не равновесного ансамбля. C3_D NOT_IMPLEMENTED; Ising_j_star NOT_ESTIMATED; spontaneous_metric NOT_ESTABLISHED; physical_reverse NOT_IMPLEMENTED. Научное подтверждение и повышение реестровых статусов не заявлены; L01-L10 остаются открыты.",
+        "framework_role": "То же исполнение прежнего NOW_INTEGRATED_CONTINUATION_V1; технический запуск подтверждён без технического аудита по прямому решению пользователя. Полный временной/ресурсный гейт сохранён и пройден. Результат — описательный интеграционный прогон, а не закрытие модели.",
+        "evidence_level": "ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН 413 ЗАДАЧ НА ВМ / RUNTIME_GATE PASS / БЕЗ НАУЧНОГО ПОВЫШЕНИЯ"
+      },
+      "science_review_20261109": {
+        "report": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/REPORT.md",
+        "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+        "summary": {
+          "wave": {
+            "n": 660,
+            "positive": 448,
+            "zero": 90,
+            "negative": 122,
+            "minimum": -0.05508755512357813,
+            "maximum": 1.0,
+            "median": 0.008557740161267178
+          },
+          "repair": {
+            "n": 450,
+            "positive": 270,
+            "zero": 180,
+            "negative": 0,
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "median": 0.4
+          },
+          "wave_families": {
+            "add_growing": {
+              "n": 132,
+              "positive": 87,
+              "zero": 33,
+              "negative": 12,
+              "minimum": -0.0016982711956432125,
+              "maximum": 1.0,
+              "median": 0.0006813697971413178
+            },
+            "add_quiet": {
+              "n": 132,
+              "positive": 100,
+              "zero": 6,
+              "negative": 26,
+              "minimum": -0.007372579065795148,
+              "maximum": 1.0,
+              "median": 0.07021282708271312
+            },
+            "cdt_strip": {
+              "n": 132,
+              "positive": 100,
+              "zero": 6,
+              "negative": 26,
+              "minimum": -0.007372579065795148,
+              "maximum": 1.0,
+              "median": 0.07021282708271312
+            },
+            "flat": {
+              "n": 132,
+              "positive": 65,
+              "zero": 39,
+              "negative": 28,
+              "minimum": -0.002609908632007305,
+              "maximum": 1.0,
+              "median": 2.1820891082133253e-14
+            },
+            "ising_order": {
+              "n": 132,
+              "positive": 96,
+              "zero": 6,
+              "negative": 30,
+              "minimum": -0.05508755512357813,
+              "maximum": 1.0,
+              "median": 0.03228722973208693
+            }
+          },
+          "repair_families": {
+            "add_growing": {
+              "n": 90,
+              "positive": 30,
+              "zero": 60,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 0.6666666666666666,
+              "median": 0.0,
+              "positive_final_task": 0,
+              "max_final_task": 0.0
+            },
+            "add_quiet": {
+              "n": 90,
+              "positive": 60,
+              "zero": 30,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.625,
+              "positive_final_task": 36,
+              "max_final_task": 1.0
+            },
+            "cdt_strip": {
+              "n": 90,
+              "positive": 60,
+              "zero": 30,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.6,
+              "positive_final_task": 36,
+              "max_final_task": 1.0
+            },
+            "flat": {
+              "n": 90,
+              "positive": 60,
+              "zero": 30,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.4,
+              "positive_final_task": 18,
+              "max_final_task": 1.0
+            },
+            "ising_order": {
+              "n": 90,
+              "positive": 60,
+              "zero": 30,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.6,
+              "positive_final_task": 28,
+              "max_final_task": 1.0
+            }
+          },
+          "wave_by_modes": {
+            "16": {
+              "n": 220,
+              "positive": 168,
+              "zero": 22,
+              "negative": 30,
+              "minimum": -0.05508755512357813,
+              "maximum": 0.9999999991874824,
+              "median": 0.04645176565135919
+            },
+            "32": {
+              "n": 220,
+              "positive": 138,
+              "zero": 22,
+              "negative": 60,
+              "minimum": -0.0055206098307423,
+              "maximum": 1.0,
+              "median": 0.0005621518726850335
+            },
+            "64": {
+              "n": 220,
+              "positive": 142,
+              "zero": 46,
+              "negative": 32,
+              "minimum": -3.311158228074947e-05,
+              "maximum": 1.0,
+              "median": 0.00030955637885190655
+            }
+          },
+          "repair_by_delay": {
+            "0": {
+              "n": 150,
+              "positive": 150,
+              "zero": 0,
+              "negative": 0,
+              "minimum": 0.25,
+              "maximum": 1.0,
+              "median": 0.75
+            },
+            "16": {
+              "n": 150,
+              "positive": 120,
+              "zero": 30,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.6
+            },
+            "64": {
+              "n": 150,
+              "positive": 0,
+              "zero": 150,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 0.0,
+              "median": 0.0
+            }
+          },
+          "repair_by_damage": {
+            "writer": {
+              "n": 225,
+              "positive": 135,
+              "zero": 90,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.4
+            },
+            "contact": {
+              "n": 225,
+              "positive": 135,
+              "zero": 90,
+              "negative": 0,
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "median": 0.4
+            }
+          },
+          "ancestors": {
+            "NOT_EVALUABLE_IN_THIS_KERNEL": 100,
+            "SUPPORTED": 25
+          }
+        },
+        "checks": {
+          "task_files": 3083,
+          "modes": {
+            "finite_enumeration": 2796,
+            "deterministic": 84,
+            "seed_ensemble": 192,
+            "design_control": 11
+          },
+          "outcomes": 18897,
+          "cases": 2883,
+          "contrasts": 1720,
+          "hash_errors": [],
+          "max_probability_mass_error": 4.440892098500626e-16,
+          "balance_failures": 0,
+          "unfinished_outcomes": 0,
+          "max_summary_difference": 1.4210854715202004e-14,
+          "max_patch_report_difference": 2.220446049250313e-16,
+          "max_contrast_difference": 0.0,
+          "max_profile_tv_difference": 0.0,
+          "max_density_trace_error": 4.107825191113079e-15,
+          "min_density_eigenvalue": -8.709700694526455e-16,
+          "max_probability_correction": 3.986394547794703e-15
+        },
+        "continuation": {
+          "final_function": {
+            "nonzero": 0,
+            "max_abs": 0.0
+          },
+          "consecutive_functional": {
+            "nonzero": 0,
+            "max_abs": 0.0
+          },
+          "mean_health": {
+            "nonzero": 0,
+            "max_abs": 0.0
+          },
+          "compared_conditions": 450,
+          "identical_function_per_carrier": 450
+        },
+        "archive": {
+          "file_name": "NOW_LONG_FULL_OUTPUT_da72a3a.zip",
+          "size_bytes": 17100123,
+          "sha256": "1d3f9e7743f9509e2886f096a2d6d116e0ec817a0b60484f50673bca4ff6a1c9",
+          "library_file_id": "libfile_4b14fd904880819183e51c05453ff9f6",
+          "url": "https://chatgpt.com/library?file_id=libfile_4b14fd904880819183e51c05453ff9f6&account_id=4e86626d-1801-4b65-a128-068fb3ff2156",
+          "verified_against_VM_ARCHIVE_json": true
+        },
+        "new_scientific_runs": 0,
+        "post_hoc": true
       }
     }
   ],
@@ -6381,6 +6651,16 @@
       ],
       "change": "Вопросы и текущие ограничения сохранены с точками возникновения и обратными ссылками; закреплено назначение дымовых как уточнений.",
       "scientific_runs": 0
+    },
+    {
+      "id": "science_review_20261109",
+      "date": "2026-11-09",
+      "base_commit": "8040dfa36d57d67a38bf79fb9f7fd2a6a9ef9dd3",
+      "result_count": 127,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "scientific_runs": 0,
+      "note": "R127: полный разбор da72a3a; U001 объяснён, U002 уточнён, U008 зарегистрирован; общие гипотезы не повышены."
     }
   ],
   "lineage_edges": [
@@ -10170,8 +10450,8 @@
   "open_questions_register": {
     "markdown": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
     "json": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
-    "version": 1,
-    "date": "2026-11-08",
+    "version": 2,
+    "date": "2026-11-09",
     "question_ids": [
       "U001",
       "U002",
@@ -10179,7 +10459,8 @@
       "U004",
       "U005",
       "U006",
-      "U007"
+      "U007",
+      "U008"
     ],
     "scope": "Начальная адресная версия: два вопроса текущего разбора R127, пять уже сохранённых границ R127, ссылки на все десять открытых L. Это не заявка на полный исторический аудит."
   }
