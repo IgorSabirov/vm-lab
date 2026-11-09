@@ -1,6 +1,6 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
-  "date": "2026-11-08",
+  "date": "2026-11-10",
   "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.",
   "results": [
     {
@@ -1160,6 +1160,10 @@
           "правило retire между производителями",
           "boot/retire и горизонт"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -1256,6 +1260,10 @@
           "правило retire между производителями",
           "boot/retire и горизонт"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -1437,6 +1445,10 @@
           "правило retire между производителями",
           "boot/retire и горизонт"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -1584,6 +1596,10 @@
           "правило retire между производителями",
           "boot/retire и горизонт"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -1900,6 +1916,10 @@
           "правило retire между производителями",
           "boot/retire и горизонт"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -2802,6 +2822,10 @@
           "C028",
           "C033"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -2946,6 +2970,10 @@
           "C039",
           "C041"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -3153,6 +3181,10 @@
           "C033",
           "C041"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -3352,6 +3384,10 @@
           "C024",
           "C041"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     },
     {
@@ -4092,6 +4128,10 @@
           "C041",
           "C042"
         ]
+      },
+      "u010_planning": {
+        "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+        "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
       }
     }
   ],
@@ -7733,6 +7773,14 @@
       ],
       "change": "Вопросы и текущие ограничения сохранены с точками возникновения и обратными ссылками; закреплено назначение дымовых как уточнений.",
       "scientific_runs": 0
+    },
+    {
+      "date": "2026-11-10",
+      "action": "U010_CARD_SYNC_AND_EXPERIMENT_PLANNING",
+      "source_commit": "8c175ef085a19ca72d4ec1842d4a7b6e254d497d",
+      "plan": "analysis/U010_PLANNING_20261110/PLAN.md",
+      "new_runs": 0,
+      "status_changes": false
     }
   ],
   "lineage_edges": [
@@ -11610,7 +11658,7 @@
     "transition": "K_u(dz'|z); common physical K not implemented",
     "continuation_profile": "laws of observable histories under declared interventions",
     "closure": "C(V) subset V, or declared finite-horizon stochastic failure criteria",
-    "next_deliverable": "one causal cycle contract linking content to reproduction of next-step apparatus",
+    "next_deliverable": "Resolve U010 executable protocol parameters: H1/H2, memory adapter, transport, apparatus count, C/D resource budget, boot/retire timing and content control",
     "new_runs": 0,
     "new_law_selected": false,
     "scientific_status_promoted": false,
@@ -11638,7 +11686,10 @@
       "полный бюджет C/D и источник",
       "правило retire между производителями",
       "boot/retire и горизонт"
-    ]
+    ],
+    "basis_commit": "e8f7aa30bcb57e432d414c282f1c3e9d19fbf9a7",
+    "model_artifact_commit": "e8fd800a95c41cc76539e5d1dc92c33e36d25e7d",
+    "source_commit_role": "model_v0.2_publication_commit"
   },
   "u008_neighbor_reconciliation_20261109": {
     "date": "2026-11-09",
@@ -11748,5 +11799,103 @@
       "правило retire между производителями",
       "boot/retire и горизонт"
     ]
+  },
+  "u010_experiment_planning": {
+    "version": "0.1",
+    "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION",
+    "date": "2026-11-10",
+    "question": "U010",
+    "basis_commit": "8c175ef085a19ca72d4ec1842d4a7b6e254d497d",
+    "model_content_commit": "e8fd800a95c41cc76539e5d1dc92c33e36d25e7d",
+    "parents": [
+      "R064",
+      "R121",
+      "R122",
+      "R127",
+      "R066",
+      "R075",
+      "R079",
+      "R094",
+      "R119",
+      "R120"
+    ],
+    "links": [
+      "L04",
+      "L06",
+      "L07",
+      "L10"
+    ],
+    "new_runs": 0,
+    "scientific_status_promoted": false,
+    "scientific_goal": "Причинно прослеженный функциональный переход C→D с измерением готовности после полного горизонта",
+    "arms": {
+      "H1": "контроль с подготовленным аппаратом D",
+      "H2": "кандидат основной ветви: D реально использует аппараты производства C",
+      "H3": "будущая отдельная задача: D производит средства E"
+    },
+    "decisions": [
+      {
+        "id": "D1",
+        "topic": "Память",
+        "recommendation": "Оплачиваемый локальный путь pending→memories→read→decoded, адаптер received с ID происхождения",
+        "status": "PROPOSED"
+      },
+      {
+        "id": "D2",
+        "topic": "Транспорт",
+        "recommendation": "Явно выбрать U008-send или Engine; сопоставить порты, contact, задержки, ошибки и транзит",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "D3",
+        "topic": "Комплект",
+        "recommendation": "Пара W/R как минимальный кандидат; четыре аппарата — явно иной сценарий",
+        "status": "PROPOSED"
+      },
+      {
+        "id": "D4",
+        "topic": "Бюджет",
+        "recommendation": "Отдельно оплатить производство, чтение C, отправку, запись/чтение/функцию D; объявить источник каждой партии",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "D5",
+        "topic": "Списание",
+        "recommendation": "Сохранить ID/creator/generation; задать правило выбытия без смешения локальных раундов производителей",
+        "status": "UNRESOLVED"
+      },
+      {
+        "id": "D6",
+        "topic": "Горизонт",
+        "recommendation": "Явное расписание boot/retire; функция до и готовность после списания, без скрытых событий",
+        "status": "UNRESOLVED"
+      }
+    ],
+    "controls": [
+      "один изменённый XOR-бит и согласованная checksum; оба правильных ответа различаются",
+      "повреждённая checksum — отдельная целостность",
+      "после доставки нарушить локальную запись или путь чтения при сохранении payload, проверить отсутствие обхода памяти",
+      "выключить использование переданного аппарата при сопоставимых исходных ресурсах",
+      "отдельные отказы записи/чтения/снабжения с локализацией причины"
+    ],
+    "artifacts": [
+      "граф событий и версий объектов",
+      "ID произведённых/перемещённых/реально использованных аппаратов",
+      "локальный путь содержимого",
+      "парные ответы",
+      "балансы на событиях",
+      "первый отказ",
+      "готовность после горизонта"
+    ],
+    "outcomes": [
+      "FUNCTIONAL_TRANSFER_CONFIRMED",
+      "CONTENT_PATH_NOT_ESTABLISHED",
+      "FUNCTION_WITHOUT_POST_CYCLE_READINESS",
+      "POST_CYCLE_READINESS_WITH_DECLARED_SUPPORT",
+      "GENEALOGY_OR_LEDGER_INVALID"
+    ],
+    "readiness": "V_ready задаётся до расчёта для конкретной следующей задачи и границы; запас готовности не равен его воспроизводству",
+    "runtime": "forecast/calibration before any authorized main run; task count and budget not yet set",
+    "launch_authorized": false
   }
 }
