@@ -1,5 +1,3 @@
-> Publication checkpoint: report and registries saved; full archive upload is still pending (10/39 parts). Do not treat this checkpoint as complete archival publication.
-
 # U008 — завершённый причинный тест ремонта и передачи
 
 9 ноября 2026. Статус: **ANSWERED_WITHIN_DECLARED_CLASS**. Выполнено 592/592 траекторий, гейт времени PASS. Восстановлены итоги оборванной сессии; нового прогона и расширения сетки при восстановлении не было. Настоящий пакет содержит полный результат U008 и согласованные обновления OPEN_QUESTIONS / RESULTS_REGISTER (Markdown и JSON). После прежнего отказа автоматической проверки пользователь 9 ноября прямо потребовал публикацию всех материалов проекта в своём частном IgorSabirov/vm-lab; это подтверждение записано в infra/CURRENT_RUN.json.
