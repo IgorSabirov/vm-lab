@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "status": "PASSED",
+  "phase": "calibration_forecast",
+  "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+  "source_digest": "7d2e822a3d4fd2581d15d094e0b85abaaf0143b7b5e3deb372ded63b78527f4f",
+  "config_digest": "2cb00b6c257d0367cd3b067b32333c07690fda0aa16f0b8aa55017a8f4ea3ee1",
+  "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+  "measured_on_target_vm": true,
+  "complete": true,
+  "extension_compute_seconds": 2140.9252092870593,
+  "cal_compute_seconds": 46.899018394964514,
+  "cal_noncompute_seconds": 8.617758731037611,
+  "expected_seconds": 2368.7776741902367,
+  "lower_seconds": 1421.266604514142,
+  "upper_seconds": 3316.288743866331,
+  "compute_lower_seconds": 1284.5551255722355,
+  "task_count": 3083,
+  "hard_wall_seconds": 3600,
+  "memory_limit_mib": 4096,
+  "disk_limit_mib": 1024,
+  "calibration_reference": {
+    "job_id": "now_long_cal_da72a3a_20261108",
+    "process_wall_seconds": 55.516777126002125,
+    "child_cpu_seconds": 49.023063,
+    "tasks": 134,
+    "source_commit": "da72a3a89176b77ceca75779923029534fd26b99"
+  },
+  "forecast_method": {
+    "stratified_task_time": "Sum 15 measured classical strata * 90 cases each and 30 measured wave strata * 44 cases each. These task timers include internal branch checkpoint cost, not CPU-only timing.",
+    "existing_block": "29.579702456991072 s from completed original 413-task run; original cases/dynamics preserved",
+    "residual": "(calibration process wall - sum all calibration task timers) * 3083/134. Conservative allowance for fixed setup, per-row export and final reports.",
+    "range": "engineering +/-40%; parameter variations change branching and late resource access. Not a statistical confidence interval or guaranteed duration.",
+    "cpu_estimate": "Expected wall multiplied by measured child CPU/process wall ratio; heuristic only, actual child CPU exported by launcher."
+  },
+  "projected_child_cpu_seconds": 2091.705303628525,
+  "projected_disk": {
+    "additional_outcome_rows_bytes": 175357878,
+    "calibration_total_bytes": 47376178,
+    "estimate_bytes": 509154032,
+    "rationale": "Twofold row/report allowance plus fixed representative snapshots and original block. Outcomes retained, joint-profile duplication omitted for extended rows."
+  },
+  "projected_memory_mib": 1024,
+  "scientific_confirmation": false,
+  "minimum_requested_machine_seconds": 600,
+  "empty_repeats": false,
+  "calibrated_strata": [
+    {
+      "case_id": "patch::long::flat::g3::f384::d0::contact::on",
+      "stratum": "classical::flat::g3",
+      "task_compute_seconds": 0.01704520799103193,
+      "events": 268,
+      "bytes": 41512
+    },
+    {
+      "case_id": "patch::long::flat::g5::f384::d0::contact::on",
+      "stratum": "classical::flat::g5",
+      "task_compute_seconds": 0.028529061004519463,
+      "events": 436,
+      "bytes": 62989
+    },
+    {
+      "case_id": "patch::long::flat::g8::f384::d0::contact::on",
+      "stratum": "classical::flat::g8",
+      "task_compute_seconds": 0.02599803100747522,
+      "events": 528,
+      "bytes": 75456
+    },
+    {
+      "case_id": "patch::long::ising_order::g3::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g3",
+      "task_compute_seconds": 0.6334515159978764,
+      "events": 632,
+      "bytes": 43093
+    },
+    {
+      "case_id": "patch::long::ising_order::g5::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g5",
+      "task_compute_seconds": 1.0011290029942757,
+      "events": 1160,
+      "bytes": 64566
+    },
+    {
+      "case_id": "patch::long::ising_order::g8::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g8",
+      "task_compute_seconds": 0.9800403700064635,
+      "events": 1792,
+      "bytes": 85902
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g3::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g3",
+      "task_compute_seconds": 0.5737585119932191,
+      "events": 616,
+      "bytes": 43077
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g5::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g5",
+      "task_compute_seconds": 0.7113460159889655,
+      "events": 1176,
+      "bytes": 64558
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g8::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g8",
+      "task_compute_seconds": 0.5448438710009214,
+      "events": 1988,
+      "bytes": 85894
+    },
+    {
+      "case_id": "patch::long::add_quiet::g3::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g3",
+      "task_compute_seconds": 0.05511099500290584,
+      "events": 432,
+      "bytes": 43070
+    },
+    {
+      "case_id": "patch::long::add_quiet::g5::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g5",
+      "task_compute_seconds": 0.057159857999067754,
+      "events": 764,
+      "bytes": 64551
+    },
+    {
+      "case_id": "patch::long::add_quiet::g8::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g8",
+      "task_compute_seconds": 0.07477586099412292,
+      "events": 1176,
+      "bytes": 85891
+    },
+    {
+      "case_id": "patch::long::add_growing::g3::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g3",
+      "task_compute_seconds": 0.04933235701173544,
+      "events": 680,
+      "bytes": 41774
+    },
+    {
+      "case_id": "patch::long::add_growing::g5::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g5",
+      "task_compute_seconds": 0.05641551000007894,
+      "events": 932,
+      "bytes": 52078
+    },
+    {
+      "case_id": "patch::long::add_growing::g8::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g8",
+      "task_compute_seconds": 0.06315796299895737,
+      "events": 952,
+      "bytes": 62050
+    },
+    {
+      "case_id": "wavegrid::flat::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m16::finite_dark",
+      "task_compute_seconds": 0.11306192399933934,
+      "events": 550,
+      "bytes": 66941
+    },
+    {
+      "case_id": "wavegrid::flat::m16::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m16::finite_static",
+      "task_compute_seconds": 0.11311701800150331,
+      "events": 550,
+      "bytes": 67439
+    },
+    {
+      "case_id": "wavegrid::flat::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m32::finite_dark",
+      "task_compute_seconds": 0.3924845770088723,
+      "events": 550,
+      "bytes": 67362
+    },
+    {
+      "case_id": "wavegrid::flat::m32::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m32::finite_static",
+      "task_compute_seconds": 0.37175438199483324,
+      "events": 550,
+      "bytes": 67532
+    },
+    {
+      "case_id": "wavegrid::flat::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m64::finite_dark",
+      "task_compute_seconds": 1.7549004030006472,
+      "events": 550,
+      "bytes": 67497
+    },
+    {
+      "case_id": "wavegrid::flat::m64::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m64::finite_static",
+      "task_compute_seconds": 1.7478069150092779,
+      "events": 550,
+      "bytes": 67123
+    },
+    {
+      "case_id": "wavegrid::ising_order::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m16::finite_dark",
+      "task_compute_seconds": 1.4333925969986012,
+      "events": 1232,
+      "bytes": 70577
+    },
+    {
+      "case_id": "wavegrid::ising_order::m16::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m16::finite_static",
+      "task_compute_seconds": 1.5740008110005874,
+      "events": 1232,
+      "bytes": 71227
+    },
+    {
+      "case_id": "wavegrid::ising_order::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m32::finite_dark",
+      "task_compute_seconds": 1.9300796089955838,
+      "events": 1232,
+      "bytes": 71324
+    },
+    {
+      "case_id": "wavegrid::ising_order::m32::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m32::finite_static",
+      "task_compute_seconds": 2.0216928699956043,
+      "events": 1232,
+      "bytes": 70815
+    },
+    {
+      "case_id": "wavegrid::ising_order::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m64::finite_dark",
+      "task_compute_seconds": 3.301754776999587,
+      "events": 1232,
+      "bytes": 71309
+    },
+    {
+      "case_id": "wavegrid::ising_order::m64::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m64::finite_static",
+      "task_compute_seconds": 3.4160007529862924,
+      "events": 1232,
+      "bytes": 70901
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m16::finite_dark",
+      "task_compute_seconds": 1.2492157420056174,
+      "events": 1330,
+      "bytes": 71207
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m16::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m16::finite_static",
+      "task_compute_seconds": 1.1647315939917462,
+      "events": 1330,
+      "bytes": 71201
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m32::finite_dark",
+      "task_compute_seconds": 1.4015968300082022,
+      "events": 1330,
+      "bytes": 71282
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m32::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m32::finite_static",
+      "task_compute_seconds": 1.4756934919860214,
+      "events": 1330,
+      "bytes": 71030
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m64::finite_dark",
+      "task_compute_seconds": 2.868374055993627,
+      "events": 1330,
+      "bytes": 71209
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m64::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m64::finite_static",
+      "task_compute_seconds": 2.8739322460023686,
+      "events": 1330,
+      "bytes": 70885
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m16::finite_dark",
+      "task_compute_seconds": 0.15834013199491892,
+      "events": 909,
+      "bytes": 71186
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m16::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m16::finite_static",
+      "task_compute_seconds": 0.145969832999981,
+      "events": 909,
+      "bytes": 71178
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m32::finite_dark",
+      "task_compute_seconds": 0.400337668004795,
+      "events": 909,
+      "bytes": 71259
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m32::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m32::finite_static",
+      "task_compute_seconds": 0.37961972200719174,
+      "events": 909,
+      "bytes": 71009
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m64::finite_dark",
+      "task_compute_seconds": 1.7726494689995889,
+      "events": 909,
+      "bytes": 71188
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m64::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m64::finite_static",
+      "task_compute_seconds": 1.781563393000397,
+      "events": 909,
+      "bytes": 70862
+    },
+    {
+      "case_id": "wavegrid::add_growing::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m16::finite_dark",
+      "task_compute_seconds": 0.17596941300143953,
+      "events": 1243,
+      "bytes": 71282
+    },
+    {
+      "case_id": "wavegrid::add_growing::m16::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m16::finite_static",
+      "task_compute_seconds": 0.18970303700189106,
+      "events": 1243,
+      "bytes": 71272
+    },
+    {
+      "case_id": "wavegrid::add_growing::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m32::finite_dark",
+      "task_compute_seconds": 0.4089678559976164,
+      "events": 1243,
+      "bytes": 71320
+    },
+    {
+      "case_id": "wavegrid::add_growing::m32::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m32::finite_static",
+      "task_compute_seconds": 0.4043997400003718,
+      "events": 1243,
+      "bytes": 71163
+    },
+    {
+      "case_id": "wavegrid::add_growing::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m64::finite_dark",
+      "task_compute_seconds": 1.840507761007757,
+      "events": 1243,
+      "bytes": 71311
+    },
+    {
+      "case_id": "wavegrid::add_growing::m64::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m64::finite_static",
+      "task_compute_seconds": 1.8301254120015074,
+      "events": 1243,
+      "bytes": 70936
+    }
+  ]
+}

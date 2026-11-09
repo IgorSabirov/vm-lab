@@ -1,0 +1,1208 @@
+{
+  "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+  "phase": "calibrate",
+  "exit_code": 0,
+  "process_wall_seconds": 55.516777126002125,
+  "child_cpu_seconds": 49.023063,
+  "run": {
+    "attempt_count": 1,
+    "complete": true,
+    "config_digest": "2cb00b6c257d0367cd3b067b32333c07690fda0aa16f0b8aa55017a8f4ea3ee1",
+    "contrasts_evaluated": 160,
+    "cumulative_attempt_seconds": 55.16274574099225,
+    "current_worker_seconds": 54.782400830998085,
+    "design_control_tasks": 11,
+    "environment_fingerprint": "3ecaa469927c53a5bc15f40fa45315d5b37b7e90017d9d9372b7a2ec05a0c0d8",
+    "events": 73821,
+    "expected_seconds": null,
+    "max_rss_mib": 122.94921875,
+    "observed_limits": {
+      "cases": [
+        "forced11",
+        "base",
+        "finite_dark_32",
+        "finite_static_32",
+        "bath_32",
+        "detune_0.15",
+        "wave_moving",
+        "full_base",
+        "full_cycles_writer",
+        "full_transport_patch",
+        "full_branch",
+        "full_bell_x",
+        "full_finite_dark_32",
+        "full_bath_32",
+        "patch::flat::full_base",
+        "patch::flat::independent",
+        "patch::ising_order::full_base",
+        "patch::ising_order::independent",
+        "patch::cdt_strip::full_base",
+        "patch::cdt_strip::independent",
+        "patch::add_quiet::full_base",
+        "patch::add_quiet::independent",
+        "patch::add_growing::full_base",
+        "patch::add_growing::independent",
+        "patch::add_quiet::G0::none::off",
+        "patch::add_quiet::G0::none::on",
+        "patch::add_quiet::G0::none::sham",
+        "patch::add_quiet::G0::contact::off",
+        "patch::add_quiet::G0::contact::on",
+        "patch::add_quiet::G0::contact::sham",
+        "patch::add_quiet::G1::none::off",
+        "patch::add_quiet::G1::none::on",
+        "patch::add_quiet::G1::none::sham",
+        "patch::add_quiet::G1::contact::off",
+        "patch::add_quiet::G1::contact::on",
+        "patch::add_quiet::G1::contact::sham",
+        "patch::add_growing::G0::none::off",
+        "patch::add_growing::G0::none::on",
+        "patch::add_growing::G0::none::sham",
+        "patch::add_growing::G0::contact::off",
+        "patch::add_growing::G0::contact::on",
+        "patch::add_growing::G0::contact::sham",
+        "patch::add_growing::G1::none::off",
+        "patch::add_growing::G1::none::on",
+        "patch::add_growing::G1::none::sham",
+        "patch::add_growing::G1::contact::off",
+        "patch::add_growing::G1::contact::on",
+        "patch::add_growing::G1::contact::sham",
+        "patch::flat::writer::off",
+        "patch::flat::writer::on",
+        "patch::flat::writer::sham",
+        "patch::flat::reader::off",
+        "patch::flat::reader::on",
+        "patch::flat::reader::sham",
+        "patch::add_quiet::writer::off",
+        "patch::add_quiet::writer::on",
+        "patch::add_quiet::writer::sham",
+        "patch::add_quiet::reader::off",
+        "patch::add_quiet::reader::on",
+        "patch::add_quiet::reader::sham",
+        "patch::add_growing::writer::off",
+        "patch::add_growing::writer::on",
+        "patch::add_growing::writer::sham",
+        "patch::add_growing::reader::off",
+        "patch::add_growing::reader::on",
+        "patch::add_growing::reader::sham",
+        "patch::long::flat::g3::f384::d0::contact::on",
+        "patch::long::flat::g5::f384::d0::contact::on",
+        "patch::long::flat::g8::f384::d0::contact::on",
+        "patch::long::ising_order::g3::f384::d0::contact::on",
+        "patch::long::ising_order::g5::f384::d0::contact::on",
+        "patch::long::ising_order::g8::f384::d0::contact::on",
+        "patch::long::cdt_strip::g3::f384::d0::contact::on",
+        "patch::long::cdt_strip::g5::f384::d0::contact::on",
+        "patch::long::cdt_strip::g8::f384::d0::contact::on",
+        "patch::long::add_quiet::g3::f384::d0::contact::on",
+        "patch::long::add_quiet::g5::f384::d0::contact::on",
+        "patch::long::add_quiet::g8::f384::d0::contact::on",
+        "patch::long::add_growing::g3::f384::d0::contact::on",
+        "patch::long::add_growing::g5::f384::d0::contact::on",
+        "patch::long::add_growing::g8::f384::d0::contact::on",
+        "wavegrid::flat::m16::e0.07::w32::finite_dark",
+        "wavegrid::flat::m16::e0.07::w32::finite_static",
+        "wavegrid::flat::m32::e0.07::w32::finite_dark",
+        "wavegrid::flat::m32::e0.07::w32::finite_static",
+        "wavegrid::flat::m64::e0.07::w32::finite_dark",
+        "wavegrid::flat::m64::e0.07::w32::finite_static",
+        "wavegrid::ising_order::m16::e0.07::w32::finite_dark",
+        "wavegrid::ising_order::m16::e0.07::w32::finite_static",
+        "wavegrid::ising_order::m32::e0.07::w32::finite_dark",
+        "wavegrid::ising_order::m32::e0.07::w32::finite_static",
+        "wavegrid::ising_order::m64::e0.07::w32::finite_dark",
+        "wavegrid::ising_order::m64::e0.07::w32::finite_static",
+        "wavegrid::cdt_strip::m16::e0.07::w32::finite_dark",
+        "wavegrid::cdt_strip::m16::e0.07::w32::finite_static",
+        "wavegrid::cdt_strip::m32::e0.07::w32::finite_dark",
+        "wavegrid::cdt_strip::m32::e0.07::w32::finite_static",
+        "wavegrid::cdt_strip::m64::e0.07::w32::finite_dark",
+        "wavegrid::cdt_strip::m64::e0.07::w32::finite_static",
+        "wavegrid::add_quiet::m16::e0.07::w32::finite_dark",
+        "wavegrid::add_quiet::m16::e0.07::w32::finite_static",
+        "wavegrid::add_quiet::m32::e0.07::w32::finite_dark",
+        "wavegrid::add_quiet::m32::e0.07::w32::finite_static",
+        "wavegrid::add_quiet::m64::e0.07::w32::finite_dark",
+        "wavegrid::add_quiet::m64::e0.07::w32::finite_static",
+        "wavegrid::add_growing::m16::e0.07::w32::finite_dark",
+        "wavegrid::add_growing::m16::e0.07::w32::finite_static",
+        "wavegrid::add_growing::m32::e0.07::w32::finite_dark",
+        "wavegrid::add_growing::m32::e0.07::w32::finite_static",
+        "wavegrid::add_growing::m64::e0.07::w32::finite_dark",
+        "wavegrid::add_growing::m64::e0.07::w32::finite_static"
+      ],
+      "disk_limit_mib": 512,
+      "hard_wall_seconds": 600,
+      "memory_limit_mib": 4096,
+      "seeds": 4
+    },
+    "output_bytes": 47376178,
+    "phase": "calibrate",
+    "physical_outcome_rows": 655,
+    "runtime_gate": "UNCALIBRATED_BOUNDED_MEASUREMENT",
+    "scientific_confirmation": false,
+    "source_commit": "da72a3a89176b77ceca75779923029534fd26b99",
+    "source_digest": "7d2e822a3d4fd2581d15d094e0b85abaaf0143b7b5e3deb372ded63b78527f4f",
+    "supervisor_exit_code": 0,
+    "supervisor_reason": null,
+    "task_count": 134,
+    "technical_pass": true
+  },
+  "rows": [
+    {
+      "case_id": "base",
+      "stratum": null,
+      "task_compute_seconds": 0.004935588003718294,
+      "events": 93,
+      "bytes": 22100
+    },
+    {
+      "case_id": "forced11",
+      "stratum": null,
+      "task_compute_seconds": 0.0025735160015756264,
+      "events": 42,
+      "bytes": 10588
+    },
+    {
+      "case_id": "finite_dark_32",
+      "stratum": null,
+      "task_compute_seconds": 0.05588217500189785,
+      "events": 474,
+      "bytes": 64373
+    },
+    {
+      "case_id": "finite_static_32",
+      "stratum": null,
+      "task_compute_seconds": 0.05715053500898648,
+      "events": 474,
+      "bytes": 64976
+    },
+    {
+      "case_id": "detune_0.15",
+      "stratum": null,
+      "task_compute_seconds": 0.053670832989155315,
+      "events": 474,
+      "bytes": 65926
+    },
+    {
+      "case_id": "bath_32",
+      "stratum": null,
+      "task_compute_seconds": 0.3514448710047873,
+      "events": 474,
+      "bytes": 64918
+    },
+    {
+      "case_id": "wave_moving",
+      "stratum": null,
+      "task_compute_seconds": 0.010088408991578035,
+      "events": 107,
+      "bytes": 22624
+    },
+    {
+      "case_id": "full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.002873835008358583,
+      "events": 46,
+      "bytes": 10828
+    },
+    {
+      "case_id": "full_branch",
+      "stratum": null,
+      "task_compute_seconds": 0.0030448059987975284,
+      "events": 48,
+      "bytes": 10867
+    },
+    {
+      "case_id": "full_cycles_writer",
+      "stratum": null,
+      "task_compute_seconds": 0.003818960001808591,
+      "events": 64,
+      "bytes": 11582
+    },
+    {
+      "case_id": "full_transport_patch",
+      "stratum": null,
+      "task_compute_seconds": 0.0032398750045103952,
+      "events": 52,
+      "bytes": 11215
+    },
+    {
+      "case_id": "full_bell_x",
+      "stratum": null,
+      "task_compute_seconds": 0.005080729999463074,
+      "events": 67,
+      "bytes": 14861
+    },
+    {
+      "case_id": "full_finite_dark_32",
+      "stratum": null,
+      "task_compute_seconds": 0.06498179199115839,
+      "events": 550,
+      "bytes": 65758
+    },
+    {
+      "case_id": "full_bath_32",
+      "stratum": null,
+      "task_compute_seconds": 0.3406664880021708,
+      "events": 550,
+      "bytes": 66316
+    },
+    {
+      "case_id": "patch::flat::full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.017346590000670403,
+      "events": 256,
+      "bytes": 40711
+    },
+    {
+      "case_id": "patch::flat::independent",
+      "stratum": null,
+      "task_compute_seconds": 0.015516961007961072,
+      "events": 256,
+      "bytes": 40701
+    },
+    {
+      "case_id": "patch::ising_order::full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.1553563580091577,
+      "events": 620,
+      "bytes": 42285
+    },
+    {
+      "case_id": "patch::ising_order::independent",
+      "stratum": null,
+      "task_compute_seconds": 0.14838306400633883,
+      "events": 620,
+      "bytes": 42276
+    },
+    {
+      "case_id": "patch::cdt_strip::full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.11837101299897768,
+      "events": 604,
+      "bytes": 42270
+    },
+    {
+      "case_id": "patch::cdt_strip::independent",
+      "stratum": null,
+      "task_compute_seconds": 0.117551330011338,
+      "events": 604,
+      "bytes": 42258
+    },
+    {
+      "case_id": "patch::add_quiet::full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.03141881099145394,
+      "events": 420,
+      "bytes": 42266
+    },
+    {
+      "case_id": "patch::add_quiet::independent",
+      "stratum": null,
+      "task_compute_seconds": 0.030670255990116857,
+      "events": 420,
+      "bytes": 42257
+    },
+    {
+      "case_id": "patch::add_growing::full_base",
+      "stratum": null,
+      "task_compute_seconds": 0.04704204498557374,
+      "events": 668,
+      "bytes": 40970
+    },
+    {
+      "case_id": "patch::add_growing::independent",
+      "stratum": null,
+      "task_compute_seconds": 0.05466937000164762,
+      "events": 668,
+      "bytes": 40960
+    },
+    {
+      "case_id": "patch::add_quiet::G0::none::off",
+      "stratum": null,
+      "task_compute_seconds": 0.028831805000663735,
+      "events": 420,
+      "bytes": 41201
+    },
+    {
+      "case_id": "patch::add_quiet::G0::none::on",
+      "stratum": null,
+      "task_compute_seconds": 0.029881690003094263,
+      "events": 420,
+      "bytes": 42313
+    },
+    {
+      "case_id": "patch::add_quiet::G0::none::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.02894048098823987,
+      "events": 420,
+      "bytes": 41396
+    },
+    {
+      "case_id": "patch::add_quiet::G0::contact::off",
+      "stratum": null,
+      "task_compute_seconds": 0.028474147999077104,
+      "events": 420,
+      "bytes": 38657
+    },
+    {
+      "case_id": "patch::add_quiet::G0::contact::on",
+      "stratum": null,
+      "task_compute_seconds": 0.030643776000943035,
+      "events": 432,
+      "bytes": 43081
+    },
+    {
+      "case_id": "patch::add_quiet::G0::contact::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.0289480320061557,
+      "events": 420,
+      "bytes": 38851
+    },
+    {
+      "case_id": "patch::add_quiet::G1::none::off",
+      "stratum": null,
+      "task_compute_seconds": 0.03018391301156953,
+      "events": 420,
+      "bytes": 41198
+    },
+    {
+      "case_id": "patch::add_quiet::G1::none::on",
+      "stratum": null,
+      "task_compute_seconds": 0.03117204300360754,
+      "events": 420,
+      "bytes": 42310
+    },
+    {
+      "case_id": "patch::add_quiet::G1::none::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.030282993990113027,
+      "events": 420,
+      "bytes": 41395
+    },
+    {
+      "case_id": "patch::add_quiet::G1::contact::off",
+      "stratum": null,
+      "task_compute_seconds": 0.039467149996198714,
+      "events": 420,
+      "bytes": 38655
+    },
+    {
+      "case_id": "patch::add_quiet::G1::contact::on",
+      "stratum": null,
+      "task_compute_seconds": 0.0318693599983817,
+      "events": 432,
+      "bytes": 43077
+    },
+    {
+      "case_id": "patch::add_quiet::G1::contact::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.030111252010101452,
+      "events": 420,
+      "bytes": 38851
+    },
+    {
+      "case_id": "patch::add_growing::G0::none::off",
+      "stratum": null,
+      "task_compute_seconds": 0.02889280799718108,
+      "events": 420,
+      "bytes": 41216
+    },
+    {
+      "case_id": "patch::add_growing::G0::none::on",
+      "stratum": null,
+      "task_compute_seconds": 0.030092983011854813,
+      "events": 420,
+      "bytes": 42329
+    },
+    {
+      "case_id": "patch::add_growing::G0::none::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.028847247987869196,
+      "events": 420,
+      "bytes": 41413
+    },
+    {
+      "case_id": "patch::add_growing::G0::contact::off",
+      "stratum": null,
+      "task_compute_seconds": 0.028524163994006813,
+      "events": 420,
+      "bytes": 38673
+    },
+    {
+      "case_id": "patch::add_growing::G0::contact::on",
+      "stratum": null,
+      "task_compute_seconds": 0.030973600994911976,
+      "events": 432,
+      "bytes": 43097
+    },
+    {
+      "case_id": "patch::add_growing::G0::contact::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.02943959399999585,
+      "events": 420,
+      "bytes": 38868
+    },
+    {
+      "case_id": "patch::add_growing::G1::none::off",
+      "stratum": null,
+      "task_compute_seconds": 0.04721428800257854,
+      "events": 668,
+      "bytes": 40202
+    },
+    {
+      "case_id": "patch::add_growing::G1::none::on",
+      "stratum": null,
+      "task_compute_seconds": 0.0482000159972813,
+      "events": 668,
+      "bytes": 41013
+    },
+    {
+      "case_id": "patch::add_growing::G1::none::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.05732542200712487,
+      "events": 668,
+      "bytes": 40398
+    },
+    {
+      "case_id": "patch::add_growing::G1::contact::off",
+      "stratum": null,
+      "task_compute_seconds": 0.047148376994300634,
+      "events": 668,
+      "bytes": 38379
+    },
+    {
+      "case_id": "patch::add_growing::G1::contact::on",
+      "stratum": null,
+      "task_compute_seconds": 0.05000662899692543,
+      "events": 680,
+      "bytes": 41782
+    },
+    {
+      "case_id": "patch::add_growing::G1::contact::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.04739218100439757,
+      "events": 668,
+      "bytes": 38574
+    },
+    {
+      "case_id": "patch::flat::writer::off",
+      "stratum": null,
+      "task_compute_seconds": 0.015117219998501241,
+      "events": 256,
+      "bytes": 37169
+    },
+    {
+      "case_id": "patch::flat::writer::on",
+      "stratum": null,
+      "task_compute_seconds": 0.016430217991000973,
+      "events": 256,
+      "bytes": 40621
+    },
+    {
+      "case_id": "patch::flat::writer::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.015123949997359887,
+      "events": 256,
+      "bytes": 37365
+    },
+    {
+      "case_id": "patch::flat::reader::off",
+      "stratum": null,
+      "task_compute_seconds": 0.015034352996735834,
+      "events": 256,
+      "bytes": 35729
+    },
+    {
+      "case_id": "patch::flat::reader::on",
+      "stratum": null,
+      "task_compute_seconds": 0.016110148004372604,
+      "events": 256,
+      "bytes": 40621
+    },
+    {
+      "case_id": "patch::flat::reader::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.014952937999623828,
+      "events": 256,
+      "bytes": 35925
+    },
+    {
+      "case_id": "patch::add_quiet::writer::off",
+      "stratum": null,
+      "task_compute_seconds": 0.030296023993287235,
+      "events": 420,
+      "bytes": 38725
+    },
+    {
+      "case_id": "patch::add_quiet::writer::on",
+      "stratum": null,
+      "task_compute_seconds": 0.04110541600675788,
+      "events": 420,
+      "bytes": 42176
+    },
+    {
+      "case_id": "patch::add_quiet::writer::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.031291225997847505,
+      "events": 420,
+      "bytes": 38921
+    },
+    {
+      "case_id": "patch::add_quiet::reader::off",
+      "stratum": null,
+      "task_compute_seconds": 0.030602322003687732,
+      "events": 420,
+      "bytes": 37285
+    },
+    {
+      "case_id": "patch::add_quiet::reader::on",
+      "stratum": null,
+      "task_compute_seconds": 0.031493174989009276,
+      "events": 420,
+      "bytes": 42177
+    },
+    {
+      "case_id": "patch::add_quiet::reader::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.03005805000429973,
+      "events": 420,
+      "bytes": 37480
+    },
+    {
+      "case_id": "patch::add_growing::writer::off",
+      "stratum": null,
+      "task_compute_seconds": 0.046714654003153555,
+      "events": 668,
+      "bytes": 38449
+    },
+    {
+      "case_id": "patch::add_growing::writer::on",
+      "stratum": null,
+      "task_compute_seconds": 0.04789068299578503,
+      "events": 668,
+      "bytes": 40880
+    },
+    {
+      "case_id": "patch::add_growing::writer::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.047749746998306364,
+      "events": 668,
+      "bytes": 38645
+    },
+    {
+      "case_id": "patch::add_growing::reader::off",
+      "stratum": null,
+      "task_compute_seconds": 0.046890202997019514,
+      "events": 668,
+      "bytes": 37337
+    },
+    {
+      "case_id": "patch::add_growing::reader::on",
+      "stratum": null,
+      "task_compute_seconds": 0.048113154000020586,
+      "events": 668,
+      "bytes": 40729
+    },
+    {
+      "case_id": "patch::add_growing::reader::sham",
+      "stratum": null,
+      "task_compute_seconds": 0.05862457898911089,
+      "events": 668,
+      "bytes": 37532
+    },
+    {
+      "case_id": "patch::long::flat::g3::f384::d0::contact::on",
+      "stratum": "classical::flat::g3",
+      "task_compute_seconds": 0.01704520799103193,
+      "events": 268,
+      "bytes": 41512
+    },
+    {
+      "case_id": "patch::long::flat::g5::f384::d0::contact::on",
+      "stratum": "classical::flat::g5",
+      "task_compute_seconds": 0.028529061004519463,
+      "events": 436,
+      "bytes": 62989
+    },
+    {
+      "case_id": "patch::long::flat::g8::f384::d0::contact::on",
+      "stratum": "classical::flat::g8",
+      "task_compute_seconds": 0.02599803100747522,
+      "events": 528,
+      "bytes": 75456
+    },
+    {
+      "case_id": "patch::long::ising_order::g3::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g3",
+      "task_compute_seconds": 0.6334515159978764,
+      "events": 632,
+      "bytes": 43093
+    },
+    {
+      "case_id": "patch::long::ising_order::g5::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g5",
+      "task_compute_seconds": 1.0011290029942757,
+      "events": 1160,
+      "bytes": 64566
+    },
+    {
+      "case_id": "patch::long::ising_order::g8::f384::d0::contact::on",
+      "stratum": "classical::ising_order::g8",
+      "task_compute_seconds": 0.9800403700064635,
+      "events": 1792,
+      "bytes": 85902
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g3::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g3",
+      "task_compute_seconds": 0.5737585119932191,
+      "events": 616,
+      "bytes": 43077
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g5::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g5",
+      "task_compute_seconds": 0.7113460159889655,
+      "events": 1176,
+      "bytes": 64558
+    },
+    {
+      "case_id": "patch::long::cdt_strip::g8::f384::d0::contact::on",
+      "stratum": "classical::cdt_strip::g8",
+      "task_compute_seconds": 0.5448438710009214,
+      "events": 1988,
+      "bytes": 85894
+    },
+    {
+      "case_id": "patch::long::add_quiet::g3::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g3",
+      "task_compute_seconds": 0.05511099500290584,
+      "events": 432,
+      "bytes": 43070
+    },
+    {
+      "case_id": "patch::long::add_quiet::g5::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g5",
+      "task_compute_seconds": 0.057159857999067754,
+      "events": 764,
+      "bytes": 64551
+    },
+    {
+      "case_id": "patch::long::add_quiet::g8::f384::d0::contact::on",
+      "stratum": "classical::add_quiet::g8",
+      "task_compute_seconds": 0.07477586099412292,
+      "events": 1176,
+      "bytes": 85891
+    },
+    {
+      "case_id": "patch::long::add_growing::g3::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g3",
+      "task_compute_seconds": 0.04933235701173544,
+      "events": 680,
+      "bytes": 41774
+    },
+    {
+      "case_id": "patch::long::add_growing::g5::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g5",
+      "task_compute_seconds": 0.05641551000007894,
+      "events": 932,
+      "bytes": 52078
+    },
+    {
+      "case_id": "patch::long::add_growing::g8::f384::d0::contact::on",
+      "stratum": "classical::add_growing::g8",
+      "task_compute_seconds": 0.06315796299895737,
+      "events": 952,
+      "bytes": 62050
+    },
+    {
+      "case_id": "wavegrid::flat::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m16::finite_dark",
+      "task_compute_seconds": 0.11306192399933934,
+      "events": 550,
+      "bytes": 66941
+    },
+    {
+      "case_id": "wavegrid::flat::m16::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m16::finite_static",
+      "task_compute_seconds": 0.11311701800150331,
+      "events": 550,
+      "bytes": 67439
+    },
+    {
+      "case_id": "wavegrid::flat::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m32::finite_dark",
+      "task_compute_seconds": 0.3924845770088723,
+      "events": 550,
+      "bytes": 67362
+    },
+    {
+      "case_id": "wavegrid::flat::m32::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m32::finite_static",
+      "task_compute_seconds": 0.37175438199483324,
+      "events": 550,
+      "bytes": 67532
+    },
+    {
+      "case_id": "wavegrid::flat::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::flat::m64::finite_dark",
+      "task_compute_seconds": 1.7549004030006472,
+      "events": 550,
+      "bytes": 67497
+    },
+    {
+      "case_id": "wavegrid::flat::m64::e0.07::w32::finite_static",
+      "stratum": "wave::flat::m64::finite_static",
+      "task_compute_seconds": 1.7478069150092779,
+      "events": 550,
+      "bytes": 67123
+    },
+    {
+      "case_id": "wavegrid::ising_order::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m16::finite_dark",
+      "task_compute_seconds": 1.4333925969986012,
+      "events": 1232,
+      "bytes": 70577
+    },
+    {
+      "case_id": "wavegrid::ising_order::m16::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m16::finite_static",
+      "task_compute_seconds": 1.5740008110005874,
+      "events": 1232,
+      "bytes": 71227
+    },
+    {
+      "case_id": "wavegrid::ising_order::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m32::finite_dark",
+      "task_compute_seconds": 1.9300796089955838,
+      "events": 1232,
+      "bytes": 71324
+    },
+    {
+      "case_id": "wavegrid::ising_order::m32::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m32::finite_static",
+      "task_compute_seconds": 2.0216928699956043,
+      "events": 1232,
+      "bytes": 70815
+    },
+    {
+      "case_id": "wavegrid::ising_order::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::ising_order::m64::finite_dark",
+      "task_compute_seconds": 3.301754776999587,
+      "events": 1232,
+      "bytes": 71309
+    },
+    {
+      "case_id": "wavegrid::ising_order::m64::e0.07::w32::finite_static",
+      "stratum": "wave::ising_order::m64::finite_static",
+      "task_compute_seconds": 3.4160007529862924,
+      "events": 1232,
+      "bytes": 70901
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m16::finite_dark",
+      "task_compute_seconds": 1.2492157420056174,
+      "events": 1330,
+      "bytes": 71207
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m16::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m16::finite_static",
+      "task_compute_seconds": 1.1647315939917462,
+      "events": 1330,
+      "bytes": 71201
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m32::finite_dark",
+      "task_compute_seconds": 1.4015968300082022,
+      "events": 1330,
+      "bytes": 71282
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m32::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m32::finite_static",
+      "task_compute_seconds": 1.4756934919860214,
+      "events": 1330,
+      "bytes": 71030
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::cdt_strip::m64::finite_dark",
+      "task_compute_seconds": 2.868374055993627,
+      "events": 1330,
+      "bytes": 71209
+    },
+    {
+      "case_id": "wavegrid::cdt_strip::m64::e0.07::w32::finite_static",
+      "stratum": "wave::cdt_strip::m64::finite_static",
+      "task_compute_seconds": 2.8739322460023686,
+      "events": 1330,
+      "bytes": 70885
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m16::finite_dark",
+      "task_compute_seconds": 0.15834013199491892,
+      "events": 909,
+      "bytes": 71186
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m16::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m16::finite_static",
+      "task_compute_seconds": 0.145969832999981,
+      "events": 909,
+      "bytes": 71178
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m32::finite_dark",
+      "task_compute_seconds": 0.400337668004795,
+      "events": 909,
+      "bytes": 71259
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m32::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m32::finite_static",
+      "task_compute_seconds": 0.37961972200719174,
+      "events": 909,
+      "bytes": 71009
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::add_quiet::m64::finite_dark",
+      "task_compute_seconds": 1.7726494689995889,
+      "events": 909,
+      "bytes": 71188
+    },
+    {
+      "case_id": "wavegrid::add_quiet::m64::e0.07::w32::finite_static",
+      "stratum": "wave::add_quiet::m64::finite_static",
+      "task_compute_seconds": 1.781563393000397,
+      "events": 909,
+      "bytes": 70862
+    },
+    {
+      "case_id": "wavegrid::add_growing::m16::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m16::finite_dark",
+      "task_compute_seconds": 0.17596941300143953,
+      "events": 1243,
+      "bytes": 71282
+    },
+    {
+      "case_id": "wavegrid::add_growing::m16::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m16::finite_static",
+      "task_compute_seconds": 0.18970303700189106,
+      "events": 1243,
+      "bytes": 71272
+    },
+    {
+      "case_id": "wavegrid::add_growing::m32::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m32::finite_dark",
+      "task_compute_seconds": 0.4089678559976164,
+      "events": 1243,
+      "bytes": 71320
+    },
+    {
+      "case_id": "wavegrid::add_growing::m32::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m32::finite_static",
+      "task_compute_seconds": 0.4043997400003718,
+      "events": 1243,
+      "bytes": 71163
+    },
+    {
+      "case_id": "wavegrid::add_growing::m64::e0.07::w32::finite_dark",
+      "stratum": "wave::add_growing::m64::finite_dark",
+      "task_compute_seconds": 1.840507761007757,
+      "events": 1243,
+      "bytes": 71311
+    },
+    {
+      "case_id": "wavegrid::add_growing::m64::e0.07::w32::finite_static",
+      "stratum": "wave::add_growing::m64::finite_static",
+      "task_compute_seconds": 1.8301254120015074,
+      "events": 1243,
+      "bytes": 70936
+    },
+    {
+      "case_id": "mc::base",
+      "stratum": null,
+      "task_compute_seconds": 0.0013274100056150928,
+      "events": 17,
+      "bytes": 8328
+    },
+    {
+      "case_id": "mc::base",
+      "stratum": null,
+      "task_compute_seconds": 0.0026297110016457736,
+      "events": 42,
+      "bytes": 10586
+    },
+    {
+      "case_id": "mc::base",
+      "stratum": null,
+      "task_compute_seconds": 0.0025844530027825385,
+      "events": 42,
+      "bytes": 10586
+    },
+    {
+      "case_id": "mc::base",
+      "stratum": null,
+      "task_compute_seconds": 0.0012225599930388853,
+      "events": 17,
+      "bytes": 8328
+    },
+    {
+      "case_id": "mc::finite_static_32",
+      "stratum": null,
+      "task_compute_seconds": 0.002282109999214299,
+      "events": 17,
+      "bytes": 8901
+    },
+    {
+      "case_id": "mc::finite_static_32",
+      "stratum": null,
+      "task_compute_seconds": 0.0053887810063315555,
+      "events": 41,
+      "bytes": 11849
+    },
+    {
+      "case_id": "mc::finite_static_32",
+      "stratum": null,
+      "task_compute_seconds": 0.0022742680012015626,
+      "events": 17,
+      "bytes": 8902
+    },
+    {
+      "case_id": "mc::finite_static_32",
+      "stratum": null,
+      "task_compute_seconds": 0.003766069989069365,
+      "events": 29,
+      "bytes": 10350
+    },
+    {
+      "case_id": "mc::detune_0.15",
+      "stratum": null,
+      "task_compute_seconds": 0.005475735000800341,
+      "events": 41,
+      "bytes": 11992
+    },
+    {
+      "case_id": "mc::detune_0.15",
+      "stratum": null,
+      "task_compute_seconds": 0.005789083996205591,
+      "events": 41,
+      "bytes": 11998
+    },
+    {
+      "case_id": "mc::detune_0.15",
+      "stratum": null,
+      "task_compute_seconds": 0.0054636760032735765,
+      "events": 41,
+      "bytes": 11999
+    },
+    {
+      "case_id": "mc::detune_0.15",
+      "stratum": null,
+      "task_compute_seconds": 0.0039201460022013634,
+      "events": 29,
+      "bytes": 10456
+    },
+    {
+      "case_id": "control::v1_support",
+      "stratum": null,
+      "task_compute_seconds": 0.0032444220123579726,
+      "events": 0,
+      "bytes": 7383
+    },
+    {
+      "case_id": "control::joint_measurements",
+      "stratum": null,
+      "task_compute_seconds": 0.000490008998895064,
+      "events": 0,
+      "bytes": 10439
+    },
+    {
+      "case_id": "control::readout_classical",
+      "stratum": null,
+      "task_compute_seconds": 0.0011376589973224327,
+      "events": 0,
+      "bytes": 5338
+    },
+    {
+      "case_id": "control::readout_wave",
+      "stratum": null,
+      "task_compute_seconds": 0.0021187599922996014,
+      "events": 0,
+      "bytes": 5457
+    },
+    {
+      "case_id": "control::full_cut",
+      "stratum": null,
+      "task_compute_seconds": 0.04141843499382958,
+      "events": 0,
+      "bytes": 6494
+    },
+    {
+      "case_id": "control::fragment_cut",
+      "stratum": null,
+      "task_compute_seconds": 0.04350812100165058,
+      "events": 0,
+      "bytes": 6500
+    },
+    {
+      "case_id": "control::wave_cut",
+      "stratum": null,
+      "task_compute_seconds": 0.030405301993596368,
+      "events": 0,
+      "bytes": 6503
+    },
+    {
+      "case_id": "control::selection",
+      "stratum": null,
+      "task_compute_seconds": 0.00902235800458584,
+      "events": 0,
+      "bytes": 5635
+    },
+    {
+      "case_id": "control::coordinate_order",
+      "stratum": null,
+      "task_compute_seconds": 0.014786633997573517,
+      "events": 0,
+      "bytes": 9892
+    },
+    {
+      "case_id": "control::moving_coordinate_order",
+      "stratum": null,
+      "task_compute_seconds": 0.008820219009066932,
+      "events": 0,
+      "bytes": 8641
+    },
+    {
+      "case_id": "control::branch_coordinate_order",
+      "stratum": null,
+      "task_compute_seconds": 0.015864082000916824,
+      "events": 0,
+      "bytes": 10239
+    }
+  ],
+  "environment": {
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "blas": {
+      "Build Dependencies": {
+        "blas": {
+          "detection method": "system",
+          "found": true,
+          "include directory": "unknown",
+          "lib directory": "unknown",
+          "name": "blas",
+          "openblas configuration": "unknown",
+          "pc file directory": "unknown",
+          "version": "unknown"
+        },
+        "lapack": {
+          "detection method": "internal",
+          "found": true,
+          "include directory": "unknown",
+          "lib directory": "unknown",
+          "name": "dep140228583157936",
+          "openblas configuration": "unknown",
+          "pc file directory": "unknown",
+          "version": "1.26.4"
+        }
+      },
+      "Compilers": {
+        "c": {
+          "args": "-g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "commands": "cc",
+          "linker": "ld.bfd",
+          "linker args": "-Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro, -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "name": "gcc",
+          "version": "13.2.0"
+        },
+        "c++": {
+          "args": "-g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "commands": "c++",
+          "linker": "ld.bfd",
+          "linker args": "-Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro, -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=., -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection, -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1, -Wdate-time, -D_FORTIFY_SOURCE=3",
+          "name": "gcc",
+          "version": "13.2.0"
+        },
+        "cython": {
+          "commands": "cython",
+          "linker": "cython",
+          "name": "cython",
+          "version": "3.0.8"
+        }
+      },
+      "Machine Information": {
+        "build": {
+          "cpu": "x86_64",
+          "endian": "little",
+          "family": "x86_64",
+          "system": "linux"
+        },
+        "host": {
+          "cpu": "x86_64",
+          "endian": "little",
+          "family": "x86_64",
+          "system": "linux"
+        }
+      },
+      "Python Information": {
+        "path": "/usr/bin/python3.12",
+        "version": "3.12"
+      },
+      "SIMD Extensions": {
+        "baseline": [
+          "SSE",
+          "SSE2",
+          "SSE3"
+        ],
+        "found": [
+          "SSSE3",
+          "SSE41",
+          "POPCNT",
+          "SSE42",
+          "AVX",
+          "F16C",
+          "FMA3",
+          "AVX2",
+          "AVX512F",
+          "AVX512CD",
+          "AVX512_SKX",
+          "AVX512_CLX",
+          "AVX512_CNL",
+          "AVX512_ICL"
+        ],
+        "not found": [
+          "AVX512_KNL",
+          "AVX512_KNM",
+          "AVX512_SPR"
+        ]
+      }
+    },
+    "cpu_count": 8,
+    "cpu_max": "700000 100000",
+    "cpu_model": "AMD EPYC-Genoa Processor",
+    "memory_max": "13413384192",
+    "numpy": "1.26.4",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "threads": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  }
+}
