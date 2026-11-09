@@ -1,0 +1,39 @@
+{
+  "all_package_checksums_match": true,
+  "checked_files": [
+    "README.md",
+    "RUN_REPORT.md",
+    "CONTRACT.json",
+    "requirements.txt",
+    "x26_core.py",
+    "add_adapter.py",
+    "run_x26.py",
+    "test_x26.py",
+    "x26_report.json"
+  ],
+  "exact_json_replay_match": true,
+  "runs": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "-v",
+        "test_x26.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.8015707480000174
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "run_x26.py",
+        "--out",
+        "/workspace/scratch/7079ef952468/research_workspace/analysis/X26_NEIGHBOR_REVIEW_20261109/REPLAY_REPORT.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.5882471460000716
+    }
+  ],
+  "python": "3.12.14"
+}

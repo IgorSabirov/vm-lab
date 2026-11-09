@@ -1,0 +1,447 @@
+{
+  "X26_A": {
+    "run_id": "X26_A_Friedrich_Wintgen_control",
+    "scope": "analytic/numerical two-mode toy control; not ADD-derived",
+    "units": "hbar=1; continuum energy-normalized; W in sqrt(energy)",
+    "model": {
+      "label": "FW_two_modes_one_common_continuum",
+      "Hd": [
+        [
+          {
+            "re": 0.20718339100346023,
+            "im": 1.5360898676740677e-34
+          },
+          {
+            "re": 0.14187453346146156,
+            "im": 0.05178824740420602
+          }
+        ],
+        [
+          {
+            "re": 0.14187453346146156,
+            "im": -0.05178824740420602
+          },
+          {
+            "re": 0.31281660899653985,
+            "im": 5.58148701332284e-19
+          }
+        ]
+      ],
+      "W0": [
+        [
+          {
+            "re": 0.22,
+            "im": 0.0
+          },
+          {
+            "re": 0.29120554098268747,
+            "im": 0.10629832031118991
+          }
+        ]
+      ],
+      "continuum_band": [
+        -1.0,
+        1.0
+      ],
+      "continuum_channels": [
+        "shared_continuum"
+      ],
+      "Gamma": [
+        [
+          {
+            "re": 0.304106168867492,
+            "im": 0.0
+          },
+          {
+            "re": 0.4025336428237751,
+            "im": 0.14693624975857034
+          }
+        ],
+        [
+          {
+            "re": 0.4025336428237751,
+            "im": -0.14693624975857034
+          },
+          {
+            "re": 0.6038141080199583,
+            "im": 0.0
+          }
+        ]
+      ],
+      "delta_at_E_dark": [
+        [
+          {
+            "re": 0.00971246166036812,
+            "im": 0.0
+          },
+          {
+            "re": 0.012856012054914136,
+            "im": 0.004692810729927099
+          }
+        ],
+        [
+          {
+            "re": 0.012856012054914136,
+            "im": -0.004692810729927099
+          },
+          {
+            "re": 0.019284453833912734,
+            "im": 0.0
+          }
+        ]
+      ]
+    },
+    "T1_rank_and_dark_kernel": {
+      "status": "PASS_ALGEBRAIC_SANITY_CHECK",
+      "note": "For a 1x2 W, rank<2 is guaranteed by dimensionality; this is not evidence that ADD generates a common continuum.",
+      "details": {
+        "model": "FW_two_modes_one_common_continuum",
+        "energy": 0.1,
+        "inside_continuum": true,
+        "rank_W": 1,
+        "internal_column_coupling_norms": [
+          0.22,
+          0.31
+        ],
+        "both_internal_modes_couple_to_at_least_one_open_channel": true,
+        "singular_values_W": [
+          0.3801315561749643
+        ],
+        "has_nontrivial_dark_kernel": true,
+        "dark_vector": [
+          {
+            "re": 0.8155071447352175,
+            "im": 9.994595225587969e-17
+          },
+          {
+            "re": -0.54365914502321,
+            "im": 0.19845107940861773
+          }
+        ],
+        "dark_amplitude_norm": 1.5515838457795457e-17,
+        "dark_eigen_residual": 5.05010048983543e-17,
+        "dark_width": 0.0,
+        "continuum_norm_finite": true,
+        "BIC_candidate": true,
+        "failure_reasons": []
+      }
+    },
+    "T2_internal_eigenstate_alignment": {
+      "status": "PASS_TOY_MODEL",
+      "details": {
+        "dark_eigen_residual": 5.05010048983543e-17,
+        "dark_width": 0.0
+      }
+    },
+    "T3_embedded_normalizable_state": {
+      "status": "PASS_TOY_MODEL",
+      "details": {
+        "model": "FW_two_modes_one_common_continuum",
+        "energy": 0.1,
+        "inside_continuum": true,
+        "rank_W": 1,
+        "internal_column_coupling_norms": [
+          0.22,
+          0.31
+        ],
+        "both_internal_modes_couple_to_at_least_one_open_channel": true,
+        "singular_values_W": [
+          0.3801315561749643
+        ],
+        "has_nontrivial_dark_kernel": true,
+        "dark_vector": [
+          {
+            "re": 0.8155071447352175,
+            "im": 9.994595225587969e-17
+          },
+          {
+            "re": -0.54365914502321,
+            "im": 0.19845107940861773
+          }
+        ],
+        "dark_amplitude_norm": 1.5515838457795457e-17,
+        "dark_eigen_residual": 5.05010048983543e-17,
+        "dark_width": 0.0,
+        "continuum_norm_finite": true,
+        "BIC_candidate": true,
+        "failure_reasons": []
+      },
+      "scope_note": "For this flat-band factorized toy, W(E')d=0 throughout the band, so the continuum component vanishes and the state is normalizable. General energy-dependent ADD-derived form factors are not covered."
+    },
+    "T4_perturbation_diagnostics": {
+      "interpretation": "Perturbative scaling diagnostic only; no physical symmetry/protection has been specified.",
+      "families": {
+        "rank_preserving_common_rescale": {
+          "epsilon": [
+            0.01,
+            0.005,
+            0.002,
+            0.001,
+            0.0005,
+            0.0002
+          ],
+          "narrowest_effective_width": [
+            0.0,
+            5.551115123125783e-17,
+            2.7755575615628914e-17,
+            0.0,
+            5.551115123125783e-17,
+            0.0
+          ],
+          "rank_W": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "log_log_slope": -0.040403028048150956
+        },
+        "internal_detuning": {
+          "epsilon": [
+            0.01,
+            0.005,
+            0.002,
+            0.001,
+            0.0005,
+            0.0002
+          ],
+          "narrowest_effective_width": [
+            0.0002501855441124079,
+            6.211576941464458e-05,
+            9.897044289386425e-06,
+            2.4707982392568884e-06,
+            6.172664016035334e-07,
+            9.872102532670901e-08
+          ],
+          "rank_W": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "log_log_slope": 2.0032423197524385
+        },
+        "which_path_extra_channel": {
+          "epsilon": [
+            0.01,
+            0.005,
+            0.002,
+            0.001,
+            0.0005,
+            0.0002
+          ],
+          "narrowest_effective_width": [
+            0.0009367088610937879,
+            0.0002341807320174194,
+            3.74690746120232e-05,
+            9.367274277027882e-06,
+            2.34181892075358e-06,
+            3.7469104308129886e-07
+          ],
+          "rank_W": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "log_log_slope": 1.9999957715981034
+        }
+      },
+      "protection_classification": "NOT_CLASSIFIED_NO_DECLARED_SYMMETRY"
+    },
+    "T5_loading": {
+      "status": "PARTIAL_STATIC_NO_LOADING",
+      "result": "An exact dark state in ker(W) is decoupled from the same stationary continuum; an incoming continuum state cannot populate it under this time-independent Hamiltonian.",
+      "preparation": "INITIAL_PREPARATION_ONLY unless a time-dependent loading protocol is separately provided",
+      "time_dependent_loading_protocol": "NOT_IMPLEMENTED"
+    },
+    "N1_independent_continua": {
+      "status": "PASS_NEGATIVE_CONTROL",
+      "details": {
+        "model": "independent_continua_rank_two",
+        "energy": 0.1,
+        "inside_continuum": true,
+        "rank_W": 2,
+        "internal_column_coupling_norms": [
+          0.22,
+          0.31
+        ],
+        "both_internal_modes_couple_to_at_least_one_open_channel": true,
+        "singular_values_W": [
+          0.31,
+          0.22
+        ],
+        "has_nontrivial_dark_kernel": false,
+        "dark_vector": null,
+        "dark_amplitude_norm": null,
+        "dark_eigen_residual": null,
+        "dark_width": null,
+        "continuum_norm_finite": false,
+        "BIC_candidate": false,
+        "failure_reasons": [
+          "rank_W_is_two_no_dark_kernel"
+        ]
+      }
+    },
+    "N2_single_channel_mapping": {
+      "status": "MAPPING_SPECIFIC_CONTROL_ONLY",
+      "one_resonance_case": {
+        "control": "one_resonance_one_ADD_channel_mapping",
+        "active_ADD_channel": 1,
+        "K_sector_example": {
+          "K1": 1,
+          "K2": 0
+        },
+        "internal_resonance_count": 1,
+        "coupling_amplitude": 0.25,
+        "resonance_energy": 0.1,
+        "two_resonance_interference_available": false,
+        "scope": "mapping-specific only; not a general theorem about BIC"
+      },
+      "counterexample_two_modes_same_channel": {
+        "control": "two_resonances_same_ADD_channel",
+        "K_sector_metadata": {
+          "K1": 1,
+          "K2": 0
+        },
+        "both_modes_mapped_to_ADD_channel": 1,
+        "BIC_control_result": {
+          "model": "two_modes_same_ADD_channel_K2_zero",
+          "energy": 0.1,
+          "inside_continuum": true,
+          "rank_W": 1,
+          "internal_column_coupling_norms": [
+            0.22,
+            0.31
+          ],
+          "both_internal_modes_couple_to_at_least_one_open_channel": true,
+          "singular_values_W": [
+            0.3801315561749643
+          ],
+          "has_nontrivial_dark_kernel": true,
+          "dark_vector": [
+            {
+              "re": 0.8155071447352176,
+              "im": 9.987082144817815e-17
+            },
+            {
+              "re": -0.5787470059411222,
+              "im": -7.087606683419094e-17
+            }
+          ],
+          "dark_amplitude_norm": 1.092737676801931e-17,
+          "dark_eigen_residual": 7.473417450352271e-17,
+          "dark_width": 5.476178279221927e-17,
+          "continuum_norm_finite": true,
+          "BIC_candidate": true,
+          "failure_reasons": []
+        },
+        "interpretation": "A BIC can occur with K2=0 if two distinct resonances are supplied by the same ADD channel; K1>0,K2>0 is mapping-specific, not universal."
+      }
+    },
+    "N3_fano_zero_without_BIC": {
+      "status": "PASS_NEGATIVE_CONTROL",
+      "details": {
+        "control": "Fano_scattering_zero_not_BIC",
+        "q": 0.7,
+        "resonance_energy": 0.15,
+        "finite_resonance_width": 0.12,
+        "zero_energy": 0.108,
+        "amplitude_at_zero": {
+          "re": 0.0,
+          "im": -0.0
+        },
+        "amplitude_is_zero": true,
+        "BIC": false,
+        "reason": "scattering numerator vanishes but resonance width remains finite; no embedded normalizable eigenstate is asserted"
+      }
+    },
+    "N4_different_K_sectors": {
+      "sector_1": [
+        1,
+        0
+      ],
+      "sector_2": [
+        0,
+        1
+      ],
+      "same_joint_K_sector": false,
+      "coherent_superposition_under_isolated_K_conserving_dynamics": "NOT_GENERATED_BY_ISOLATED_K_CONSERVING_DYNAMICS",
+      "quantum_superselection": "NOT_ESTABLISHED; requires allowed-observable algebra / reference-frame specification"
+    },
+    "N5_old_ADD_transport": {
+      "status": "BLOCKED_NOT_RUN",
+      "reason": "The exact carrier.py source and its transport implementation are not part of this package; only a blob hash was supplied in the research note."
+    },
+    "ADD_derived_claims": "NONE",
+    "overall": "X26_A_CONTROL_MODEL_EXECUTED; ADD_FANO_BIC_BRIDGE_NOT_ESTABLISHED"
+  },
+  "X26_B": {
+    "run_id": "X26_B_ADD_DERIVED_SPECTRAL_LIFT",
+    "status": "BLOCKED_NO_PHYSICAL_ADD_SPECTRAL_INPUTS",
+    "items": [
+      {
+        "name": "exact_ADD_source",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "carrier.py exact bytes + blob verification",
+        "required_output": "validated FIG2A_FULL transition function"
+      },
+      {
+        "name": "ADD_patch_enumeration",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "state-word parser and exact I/Q transition semantics",
+        "required_output": "patch with exact K1/K2 and compatible-pair witnesses"
+      },
+      {
+        "name": "quantum_lift",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "Hilbert-space construction and map X -> |psi_X>",
+        "required_output": "linear generator consistent with ADD transition"
+      },
+      {
+        "name": "two_internal_modes",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "physical mode-identification rule",
+        "required_output": "two independent modes in one common (K1,K2) sector"
+      },
+      {
+        "name": "internal_Hamiltonian",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "microscopic dynamics or independently calibrated energies",
+        "required_output": "Hermitian Hd and energy reference"
+      },
+      {
+        "name": "continuum",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "environment, open channels, density of states, thresholds",
+        "required_output": "normalized continuum Hilbert space"
+      },
+      {
+        "name": "coupling_matrix_W",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "interaction V and all open-channel matrix elements",
+        "required_output": "full W_mu,c(E) including which-path channels"
+      },
+      {
+        "name": "symmetry_protection",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "symmetry representation and perturbation classes",
+        "required_output": "protected-vs-accidental classification"
+      },
+      {
+        "name": "BIC_loading",
+        "status": "BLOCKED_MISSING",
+        "missing_input": "physical input and preparation protocol",
+        "required_output": "preparability test separated from BIC existence"
+      }
+    ],
+    "available_conditional_helper": "validate_finite_closed_orbit_lift",
+    "warning": "Do not replace any BLOCKED item with arbitrary fitted matrices and then call the result ADD-derived."
+  }
+}

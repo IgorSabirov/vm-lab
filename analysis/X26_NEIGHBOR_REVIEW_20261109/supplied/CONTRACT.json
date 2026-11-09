@@ -1,0 +1,40 @@
+{
+  "run_id": "X26_FANO_BIC_LOCAL_PATCH",
+  "date": "2026-11-09",
+  "status": "IMPLEMENTED_TOY_CONTROL_WITH_EXPLICIT_ADD_STUBS",
+  "scope": {
+    "X26_A": "Executable Friedrich-Wintgen two-mode flat-band control model; manually specified Hd and W0.",
+    "X26_B": "ADD-derived spectral lift adapter; blocked until physical source and mapping inputs are provided."
+  },
+  "conventions": {
+    "W_mu_c": "<E,mu|V|d_c>",
+    "amplitude": "A_mu(E)=sum_c W_mu_c(E)d_c",
+    "Gamma": "2*pi*W^dagger W",
+    "H_eff": "Hd+Delta-i*Gamma/2",
+    "continuum": "energy-normalized, flat finite band in X26-A"
+  },
+  "gates": [
+    {"id": "T1", "name": "rank_and_kernel", "note": "For one continuum channel and two internal modes rank<2 is automatic by dimension; only algebraic sanity check."},
+    {"id": "T2", "name": "dark_eigenstate_alignment"},
+    {"id": "T3", "name": "embedded_normalizable_eigenstate"},
+    {"id": "T4", "name": "perturbation_class_diagnostics", "note": "No protected/accidental classification without a declared physical symmetry and perturbation classes."},
+    {"id": "T5", "name": "loading", "note": "Static loading result separated from existence; time-dependent protocol is stubbed."}
+  ],
+  "negative_controls": [
+    "independent_continua_rank_two",
+    "single_resonance_one_ADD_channel_mapping_only",
+    "two_resonances_same_ADD_channel_counterexample",
+    "Fano_zero_with_finite_width_not_BIC",
+    "different_K_sector_labels",
+    "old_ADD_transport_blocked_not_run"
+  ],
+  "forbidden_inferences": [
+    "K1_or_K2_are_not_complex_coupling_amplitudes",
+    "K1_minus_K2_is_not_Fano_detuning",
+    "quadratic_width_scaling_is_not_proof_of_protection",
+    "classical_K_conservation_is_not_automatically_quantum_superselection",
+    "X26_A_success_is_not_ADD_derived_evidence",
+    "Fano_scattering_zero_is_not_BIC",
+    "BIC_existence_does_not_imply_loadability"
+  ]
+}
