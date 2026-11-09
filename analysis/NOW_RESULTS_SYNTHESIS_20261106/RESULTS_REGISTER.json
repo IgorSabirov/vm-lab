@@ -2886,7 +2886,8 @@
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/replayed_fixed_vector.json",
         "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/NEIGHBOR_REVISION.md",
         "analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_REPORT.md",
-        "analysis/ADD_DICHOTOMY_AUDIT_20261108/results/execution.json"
+        "analysis/ADD_DICHOTOMY_AUDIT_20261108/results/execution.json",
+        "analysis/ADD_DICHOTOMY_SYMMETRY_20261109/RESULT.md"
       ],
       "genealogy_note": "Ретроспективная регистрация аудита предыдущего шага; не выдаётся за его предрегистрацию.",
       "revision_1_1": {
@@ -2920,6 +2921,27 @@
         "status": "OPERATIONAL_C2_FULL_PATCH_WRITTEN_REVIEW_PENDING",
         "decision": "current user instruction: build NOW, not study author theorem",
         "report": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md"
+      },
+      "dichotomy_symmetry_20261109": {
+        "summary": "Для текущего carrier FIG2A_FULL доказано сохранение шести чисел ненулевых полусостояний и K=nA1*nB1+nA2*nB2. Из E0: K=0 — вечная тишина, K>0 — неограниченный рост; первый рост t_s+1<=L, тихий период слова делит L. Nquiet(L)=2*9^L+2*8^L-4*6^L+4^L. Все 69904 слова L1..4 и 39722 E0 проверены на закреплённом carrier; PASS, 2.59 с. SSB не установлено: режимы принадлежат разным сохраняемым секторам. Авторский R не коммутирует с текущим I; отказ конкретного T не исключает всех возможных T.",
+        "report": "analysis/ADD_DICHOTOMY_SYMMETRY_20261109/RESULT.md",
+        "check_data": "analysis/ADD_DICHOTOMY_SYMMETRY_20261109/CHECKS.json",
+        "K_invariant": "PROVED_FOR_CURRENT_CARRIER",
+        "quiet_count_all_L": "PROVED",
+        "SSB": "NOT_ESTABLISHED",
+        "author_time_reversal": "FAIL_FOR_CURRENT_I_AND_SPECIFIED_R",
+        "same_particle_count_witness": [
+          [
+            5,
+            10
+          ],
+          [
+            9,
+            6
+          ]
+        ],
+        "new_VM_run": false,
+        "open_question": "U009"
       }
     },
     {
@@ -6738,6 +6760,12 @@
       "date": "2026-11-09",
       "change": "U008 answered within declared finite class; result followups for R064/R121/R122/R127; L06/L07 remain open; no new R/C IDs.",
       "source": "analysis/U008_CAUSAL_20261109/RESULT.md"
+    },
+    {
+      "id": "dichotomy_symmetry_20261109",
+      "date": "2026-11-09",
+      "source": "analysis/ADD_DICHOTOMY_SYMMETRY_20261109/RESULT.md",
+      "scope": "R126 explicit new user-requested research; U005/U009; no new R identifier or scientific executor change"
     }
   ],
   "lineage_edges": [
