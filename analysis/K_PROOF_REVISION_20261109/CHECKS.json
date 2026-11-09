@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "checks": {
+    "elementary_split_merge_conservation_channels": 2,
+    "Q_merge_preimage_triples": 4096,
+    "I_removes_all_splits_without_merges": true,
+    "independent_half_pair_enumeration": [
+      {
+        "L": 1,
+        "all_words": 16,
+        "quiet": 14
+      },
+      {
+        "L": 2,
+        "all_words": 256,
+        "quiet": 162
+      },
+      {
+        "L": 3,
+        "all_words": 4096,
+        "quiet": 1682
+      }
+    ],
+    "single_active_channel_K2_witness": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "hitting_time_bound_arithmetic": true
+  },
+  "scope": "Independent finite checks of local proof lemmas; arbitrary-L conclusions are in PROOF_REVIEW.md, not inferred from samples."
+}
