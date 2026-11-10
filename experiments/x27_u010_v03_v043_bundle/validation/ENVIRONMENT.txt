@@ -1,0 +1,12 @@
+Python: 3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]
+Platform: Linux-6.18.57-x86_64-with-glibc2.41
+Runtime dependencies: Python standard library only
+Unit tests: 41/41 passed
+Unit test command: PYTHONPATH=src python -m unittest discover -s tests -v
+Smoke command: PYTHONPATH=src python -m x27.cli smoke --output validation/smoke_report.json
+G0: X27-A 132 PASS; X27-B-LITE 6752 PASS
+E2: 6/6 PASS
+Positive controls: 9/9 PASS
+Negative controls: 14/14 PASS
+H-Q: historical scope-only reproductions; B-LITE context is legacy R2-like and not transferable to R1
+Classification: SOFTWARE_REGRESSION_VALIDATION_ONLY / DESIGN_DRAFT / NOT_FROZEN / MAIN_RUN_NOT_EXECUTED

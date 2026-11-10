@@ -1,0 +1,90 @@
+{
+  "E2": {
+    "checks": {
+      "E2_1_definedness": "PASS",
+      "E2_2_support_identifiability": "PASS",
+      "E2_3_null_control": "PASS",
+      "E2_4_positive_control": "PASS",
+      "E2_5_resolution_control": "PASS_EXACT_UNBINNED",
+      "E2_6_independent_implementation": "PASS"
+    },
+    "passed": 6,
+    "status": "PASS",
+    "total": 6
+  },
+  "G0": {
+    "X27-A": {
+      "closure_digest_sha256": "9fd554bb6b4cd073675d035bad13a2db668ad2fe87130305b59462944d4c8224",
+      "limit": 350000,
+      "reachable_physical_states": 132,
+      "status": "PASS"
+    },
+    "X27-B-LITE": {
+      "closure_digest_sha256": "d6a1dd18b8689d6c6bdfe7f9cc658336b6cd8e5e5a27f5c65779d4bfd03e20a0",
+      "limit": 350000,
+      "reachable_physical_states": 6752,
+      "status": "PASS"
+    }
+  },
+  "G7": "NOT_AUTHORIZED",
+  "H_Q": {
+    "X27-A": {
+      "R1_context_included": null,
+      "R2_like_context_included": null,
+      "context_label": "A_MODULE_NO_M_PROD",
+      "decision_nodes": 128,
+      "predictive_classes": 11,
+      "publishable_as_frozen_HQ_result": false,
+      "result_status": "SCOPED_DECISION_OUTPUT_EQUIVALENCE"
+    },
+    "X27-B-LITE": {
+      "R1_context_included": false,
+      "R2_like_context_included": true,
+      "context_label": "LEGACY_R2_LIKE_CAUSAL_M_PROD_READ",
+      "decision_nodes": 832,
+      "predictive_classes": 79,
+      "publishable_as_frozen_HQ_result": false,
+      "result_status": "LEGACY_REPRODUCTION_ONLY_NOT_TRANSFERABLE"
+    }
+  },
+  "controls": {
+    "all_pass": true,
+    "negative_passed": 14,
+    "negative_total": 14,
+    "positive_passed": 9,
+    "positive_total": 9
+  },
+  "date": "2026-11-10",
+  "design_freeze": "NOT_FROZEN",
+  "experiment": "X27_U010_V03_CAUSAL_CONTINUITY",
+  "implementation": "0.4.3-regression-repair-candidate",
+  "legacy_R2_profile": {
+    "TV_estimator_matches_independent_sum": true,
+    "TV_full_joint_profile": "1",
+    "TV_independent_direct_sum": "1",
+    "differing_profile_fields": ["R_final"],
+    "differing_resource_components": ["U"],
+    "functional_outcome_difference_detected": false,
+    "profile_fields": ["Y_function_T1", "Y_status_T1", "Y_function_T2", "Y_status_T2", "T_finish", "R_final", "apparatus_final", "readiness"]
+  },
+  "physical_main_run": "NOT_EXECUTED",
+  "reproducibility": {
+    "kernel_sha256": "dff727799a5b514df237383c14a88fd807090cbe1312e3e75234810d3358c673",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "smoke_command": "PYTHONPATH=src python -m x27.cli smoke --output validation/smoke_report.json",
+    "source_file_sha256": {
+      "src/x27/__init__.py": "cfca1fb1bab590ba5fecfc587ddf6c5f3746900879b0bf3afd4fe4b3d0108900",
+      "src/x27/analysis.py": "63c80467779c478d39eb6276c4c5cb84667ee9654f17da06a3a4e05c666322d7",
+      "src/x27/cli.py": "f3b7adac88d70d7e104c936653381301af6ba9e934297337c33bf8841e096818",
+      "src/x27/controls.py": "1613b6dd307346d68c40ff00a634a9348f6d2edf19e721e78b4ae9996ddb5657",
+      "src/x27/engine.py": "f197949caf0f8772a730ad603a695a05f420b3f5ca539d3245b14b198ef5203f",
+      "src/x27/model.py": "3c29f5750635214f8a0739e75956b121b42fabde0d91dc4b54a2b2c12e1b4657"
+    },
+    "spec_manifest_sha256": "1eba9594bf5a6e8ee3a3614dd4515fc280d77994b3c5b61861f20dfd9258ed25",
+    "test_command": "PYTHONPATH=src python -m unittest discover -s tests -v"
+  },
+  "scientific_boundary": "software regression validation of a finite deterministic reference model; no physical mechanism established",
+  "status": "SOFTWARE_REGRESSION_VALIDATION_ONLY / DESIGN_DRAFT / NOT_FROZEN / MAIN_RUN_NOT_EXECUTED",
+  "unit_tests": {"passed": 41, "status": "PASS", "total": 41}
+}
