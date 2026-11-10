@@ -1,0 +1,365 @@
+{
+  "github_head": "b5d61e5708e7a155ac21ad13bf49184284b0a58c",
+  "commit_count": 349,
+  "commit_window_utc": {
+    "first": "2026-10-28T09:54:13Z",
+    "last": "2026-11-10T11:33:50Z"
+  },
+  "cross_source_checks": [
+    {
+      "github_path": "results/NOW_LONG_da72a3a_20261108_RAW/PROCESS.json",
+      "github_ref": "b5d61e5708e7a155ac21ad13bf49184284b0a58c",
+      "vm_path": "results/now_long_main_da72a3a_20261108/PROCESS.json",
+      "vm_sha256": "16a62cf5b54ec6870d40168334f1e1747d8013c199e94f720bbc318ec5102d27",
+      "exact_text_equal": true
+    },
+    {
+      "github_path": "results/NOW_LONG_da72a3a_20261108_RAW/main_output/SCOPE_ANCESTOR_RETURN.json",
+      "github_ref": "b5d61e5708e7a155ac21ad13bf49184284b0a58c",
+      "vm_path": "results/now_long_main_da72a3a_20261108/main_output/SCOPE_ANCESTOR_RETURN.json",
+      "vm_sha256": "cd184d91743650cba79285db426a2b8f22add4f65127f05ae490c5355230287a",
+      "exact_text_equal": true
+    },
+    {
+      "github_path": "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/output/RESULTS.json",
+      "github_ref": "b5d61e5708e7a155ac21ad13bf49184284b0a58c",
+      "vm_path": "results/x26_v3_main_54f8e7d_20261109/output/RESULTS.json",
+      "vm_sha256": "d6cce58fdfabdda6844bf68190df473686ebca409010078ed53bf05f81d21848",
+      "exact_text_equal": true
+    }
+  ],
+  "vm_evidence": [
+    {
+      "path": "results/now_long_main_da72a3a_20261108/PROCESS.json",
+      "sha256": "16a62cf5b54ec6870d40168334f1e1747d8013c199e94f720bbc318ec5102d27",
+      "bytes": 1265
+    },
+    {
+      "path": "results/now_long_main_da72a3a_20261108/main_output/SCOPE_ANCESTOR_RETURN.json",
+      "sha256": "cd184d91743650cba79285db426a2b8f22add4f65127f05ae490c5355230287a",
+      "bytes": 19886
+    },
+    {
+      "path": "results/x26_v3_main_54f8e7d_20261109/output/RESULTS.json",
+      "sha256": "d6cce58fdfabdda6844bf68190df473686ebca409010078ed53bf05f81d21848",
+      "bytes": 8214
+    },
+    {
+      "path": "results/x26_v3_main_54f8e7d_20261109/output/LAUNCH_PROCESS.json",
+      "sha256": "0ac363da9e6190bdb2fd56b2531237cdd3a2880774fd076ce2a473f5aed7fca1",
+      "bytes": 945
+    },
+    {
+      "path": "results/u008_main_c6c2359_20261109/output/SUMMARY.json",
+      "sha256": "601c44c04d40ddbf296133d44b61d17d7078adbbfeba9fee71bc8cd963b4f8f4",
+      "bytes": 13846
+    },
+    {
+      "path": "results/u008_main_c6c2359_20261109/output/PROCESS.json",
+      "sha256": "729c2f6acd283a4a71f4877b0f8767b84d5037a1090cb4c4e553e15ddf4154d6",
+      "bytes": 5496
+    }
+  ],
+  "analysis_execution": {
+    "location": "AI sandbox",
+    "new_vm_jobs": 0,
+    "physical_reruns": 0,
+    "aggregation_wall_seconds": 0.016857517000062217
+  },
+  "registry": {
+    "results": 127,
+    "constructs": 42,
+    "open_links": 10,
+    "questions": {
+      "U001": "RESOLVED",
+      "U002": "OPEN",
+      "U003": "OPEN",
+      "U004": "OPEN",
+      "U005": "OPEN",
+      "U006": "OPEN",
+      "U007": "OPEN",
+      "U008": "ANSWERED_WITHIN_DECLARED_CLASS",
+      "U009": "OPEN",
+      "U010": "OPEN"
+    },
+    "note": "All ten L-links remain open. This is not a count of failed experiments."
+  },
+  "x27": {
+    "command_seconds": 12.33627589297248,
+    "commands": [
+      {
+        "package": "v043",
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 5.978788441978395,
+        "exit_code": 0
+      },
+      {
+        "package": "v043",
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "x27.cli",
+          "smoke",
+          "--output",
+          "/var/lib/vm-lab-x27/20261110T113303Z_c0e66507/v043_output/smoke_report.json"
+        ],
+        "elapsed_seconds": 5.927159473998472,
+        "exit_code": 0
+      },
+      {
+        "package": "v051",
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 0.21502378798322752,
+        "exit_code": 0
+      },
+      {
+        "package": "v051",
+        "command": [
+          "/usr/bin/python3",
+          "-m",
+          "x27v051.cli",
+          "smoke",
+          "--output",
+          "/var/lib/vm-lab-x27/20261110T113303Z_c0e66507/v051_output/validation"
+        ],
+        "elapsed_seconds": 0.2153041890123859,
+        "exit_code": 0
+      }
+    ],
+    "scientific_runtime_gate": "NOT_EVALUATED",
+    "status": "DESIGN_DRAFT / NOT_FROZEN / MAIN_RUN_NOT_EXECUTED",
+    "software_smoke_pass": true,
+    "hq": "NOT_EVALUATED_ADAPTER_PENDING",
+    "g0": "NOT_EVALUATED_FOR_V0_5_1_FULL_INTERVENTION_KERNEL",
+    "r1": {
+      "r0_health_gain": 0,
+      "R0_vs_Rint_nominal_same_task_success": true,
+      "R0_vs_Rint_robust": {
+        "R0": true,
+        "R_int_r0": false
+      }
+    },
+    "policies": {
+      "pi_M": {
+        "accuracy_over_scored_cells": "4/8",
+        "cells": 8,
+        "correct_cells": 4,
+        "read_sources": [
+          "M_task"
+        ],
+        "scored_cells": 8,
+        "source_alignment_accuracy": {
+          "aligned_accuracy": "4/4",
+          "aligned_correct": 4,
+          "aligned_total": 4,
+          "alignment_field": "M_matches_oracle",
+          "misaligned_accuracy": "0/4",
+          "misaligned_correct": 0,
+          "misaligned_total": 4
+        }
+      },
+      "pi_P": {
+        "accuracy_over_scored_cells": "4/8",
+        "cells": 8,
+        "correct_cells": 4,
+        "read_sources": [
+          "P_res"
+        ],
+        "scored_cells": 8,
+        "source_alignment_accuracy": {
+          "aligned_accuracy": "4/4",
+          "aligned_correct": 4,
+          "aligned_total": 4,
+          "alignment_field": "P_matches_oracle",
+          "misaligned_accuracy": "0/4",
+          "misaligned_correct": 0,
+          "misaligned_total": 4
+        }
+      },
+      "pi_fixed": {
+        "accuracy_over_scored_cells": "4/8",
+        "cells": 8,
+        "correct_cells": 4,
+        "read_sources": [],
+        "scored_cells": 8
+      },
+      "pi_input": {
+        "accuracy_over_scored_cells": "4/8",
+        "cells": 8,
+        "correct_cells": 4,
+        "read_sources": [],
+        "scored_cells": 8
+      },
+      "pi_none": {
+        "accuracy_over_scored_cells": null,
+        "cells": 8,
+        "correct_cells": 0,
+        "read_sources": [],
+        "scored_cells": 0
+      }
+    }
+  },
+  "u008": {
+    "tasks": 592,
+    "paired_states": 108,
+    "success_count": 16,
+    "contrast_fraction": "4/27",
+    "panels": {
+      "bypass:A2": {
+        "means": {
+          "Y_F": 1.0,
+          "Y_H": 1.0,
+          "Y_R": 0.0,
+          "Y_T": 1.0,
+          "Y_T2": 1.0,
+          "Y_V": 1.0,
+          "Y_star": 1.0
+        },
+        "n": 4
+      },
+      "no_child_apparatus:A1": {
+        "means": {
+          "Y_F": 0.0,
+          "Y_H": 1.0,
+          "Y_R": 1.0,
+          "Y_T": 1.0,
+          "Y_T2": 0.0,
+          "Y_V": 1.0,
+          "Y_star": 0.0
+        },
+        "n": 4
+      },
+      "no_child_fuel:A1": {
+        "means": {
+          "Y_F": 0.0,
+          "Y_H": 1.0,
+          "Y_R": 1.0,
+          "Y_T": 1.0,
+          "Y_T2": 0.0,
+          "Y_V": 1.0,
+          "Y_star": 0.0
+        },
+        "n": 4
+      },
+      "primary:A1": {
+        "means": {
+          "Y_F": 0.14814814814814814,
+          "Y_H": 0.2222222222222222,
+          "Y_R": 0.6666666666666666,
+          "Y_T": 0.14814814814814814,
+          "Y_T2": 0.14814814814814814,
+          "Y_V": 0.14814814814814814,
+          "Y_star": 0.14814814814814814
+        },
+        "n": 108
+      },
+      "primary:A2": {
+        "means": {
+          "Y_F": 0.0,
+          "Y_H": 0.0,
+          "Y_R": 0.0,
+          "Y_T": 0.0,
+          "Y_T2": 0.0,
+          "Y_V": 0.0,
+          "Y_star": 0.0
+        },
+        "n": 108
+      }
+    },
+    "process_seconds": 3.858440181997139,
+    "runtime_gate": "PASS",
+    "scope": "Exact declared finite class; no inference about origin of laws/organization; no statistical CI"
+  },
+  "now": {
+    "process_seconds": 3352.798578846996,
+    "tasks": 3083,
+    "contrasts": 1720,
+    "runtime_gate": "REVIEW_REQUIRED",
+    "scope_promises": {
+      "TECHNICAL_CONDITION_MET": 6,
+      "SUPPORTED": 3,
+      "DESCRIPTIVE_NO_DIRECTIONAL_PREDICTION": 3
+    },
+    "scope_note": "12 promises in SCOPE_ANCESTOR_RETURN only, not all NOW contrasts."
+  },
+  "x26": {
+    "tasks": 249,
+    "outcome_counts": {
+      "CRITERION_MET_CONDITIONAL_MODEL": 24,
+      "CRITERION_NOT_MET": 72,
+      "DIAGNOSTIC_ONLY": 60,
+      "NOT_EVALUABLE_NO_INITIAL_BIC": 60,
+      "RESOURCE_BLOCKED_BEFORE_PREPARATION": 24,
+      "SPECTRAL_CLASSIFIED": 9
+    },
+    "causal_comparisons": [
+      {
+        "case": "active_word",
+        "route": "coherent",
+        "evaluable": true,
+        "minimum_p_final_contrast": 0.10021325824772438,
+        "physical_status": "CRITERION_MET"
+      },
+      {
+        "case": "active_word",
+        "route": "thermal",
+        "evaluable": true,
+        "minimum_p_final_contrast": 0.8264881347314115,
+        "physical_status": "CRITERION_MET"
+      },
+      {
+        "case": "permuted_word",
+        "route": "coherent",
+        "evaluable": false,
+        "minimum_p_final_contrast": null,
+        "physical_status": "NOT_EVALUABLE_NO_INITIAL_BIC"
+      },
+      {
+        "case": "permuted_word",
+        "route": "thermal",
+        "evaluable": false,
+        "minimum_p_final_contrast": null,
+        "physical_status": "NOT_EVALUABLE_NO_INITIAL_BIC"
+      },
+      {
+        "case": "quiet_word",
+        "route": "coherent",
+        "evaluable": true,
+        "minimum_p_final_contrast": 0.14066878967367105,
+        "physical_status": "CRITERION_MET"
+      },
+      {
+        "case": "quiet_word",
+        "route": "thermal",
+        "evaluable": true,
+        "minimum_p_final_contrast": 0.6190748629398777,
+        "physical_status": "CRITERION_MET"
+      }
+    ],
+    "process_seconds": 16.01744629899622,
+    "runtime_gate": "PASS"
+  },
+  "verification": {
+    "all_three_github_vm_texts_equal": true,
+    "u008_success_count_matches_mean": true,
+    "x26_outcomes_sum_matches_task_count": true,
+    "x27_r1_zero_health_gain": true,
+    "x27_r1_robustness_loss": true
+  }
+}
