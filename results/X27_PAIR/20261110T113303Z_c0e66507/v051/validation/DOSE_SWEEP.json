@@ -1,0 +1,151 @@
+{
+  "E_star_nominal": 3,
+  "E_star_robust": 4,
+  "capacity": [
+    4,
+    3,
+    3,
+    3
+  ],
+  "dose_grid": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "nominality_monotone": true,
+  "pre_readiness_failure_count": 1,
+  "pre_readiness_failures_classified": true,
+  "readiness_execution_consistent_on_evaluable_cells": true,
+  "robustness_monotone": true,
+  "rows": [
+    {
+      "E_initial": 1,
+      "R_final_nominal": [
+        0,
+        2,
+        1,
+        0
+      ],
+      "V_nom": false,
+      "V_rob": false,
+      "Y_task2_attempted": false,
+      "Y_task2_executed": null,
+      "Y_task2_status": "NOT_REACHED",
+      "health_after_repair": 1,
+      "nominal": false,
+      "pre_task2_terminal_cause": "RESOURCE_EXHAUSTED",
+      "prediction_matches_execution": null,
+      "readiness_status": "READINESS_NOT_REACHED_PRE_REPAIR_TERMINAL",
+      "repair_health_gain": 0,
+      "robust": false,
+      "robust_by_scenario": {}
+    },
+    {
+      "E_initial": 2,
+      "R_final_nominal": [
+        0,
+        1,
+        2,
+        0
+      ],
+      "V_nom": false,
+      "V_rob": false,
+      "Y_task2_attempted": true,
+      "Y_task2_executed": false,
+      "Y_task2_status": "RESOURCE_EXHAUSTED",
+      "health_after_repair": 1,
+      "nominal": false,
+      "pre_task2_terminal_cause": null,
+      "prediction_matches_execution": true,
+      "readiness_status": "EVALUATED_FROM_STAGE4_SNAPSHOT",
+      "repair_health_gain": 0,
+      "robust": false,
+      "robust_by_scenario": {
+        "omega_delay": {
+          "predicted_success": false,
+          "status": "RESOURCE_EXHAUSTED"
+        },
+        "omega_loss_E": {
+          "predicted_success": false,
+          "status": "RESOURCE_EXHAUSTED"
+        },
+        "omega_loss_M": {
+          "predicted_success": false,
+          "status": "RESOURCE_EXHAUSTED"
+        }
+      }
+    },
+    {
+      "E_initial": 3,
+      "R_final_nominal": [
+        0,
+        1,
+        3,
+        0
+      ],
+      "V_nom": true,
+      "V_rob": false,
+      "Y_task2_attempted": true,
+      "Y_task2_executed": true,
+      "Y_task2_status": "SUCCESS",
+      "health_after_repair": 1,
+      "nominal": true,
+      "pre_task2_terminal_cause": null,
+      "prediction_matches_execution": true,
+      "readiness_status": "EVALUATED_FROM_STAGE4_SNAPSHOT",
+      "repair_health_gain": 0,
+      "robust": false,
+      "robust_by_scenario": {
+        "omega_delay": {
+          "predicted_success": true,
+          "status": "SUCCESS"
+        },
+        "omega_loss_E": {
+          "predicted_success": false,
+          "status": "RESOURCE_EXHAUSTED"
+        },
+        "omega_loss_M": {
+          "predicted_success": true,
+          "status": "SUCCESS"
+        }
+      }
+    },
+    {
+      "E_initial": 4,
+      "R_final_nominal": [
+        1,
+        1,
+        3,
+        0
+      ],
+      "V_nom": true,
+      "V_rob": true,
+      "Y_task2_attempted": true,
+      "Y_task2_executed": true,
+      "Y_task2_status": "SUCCESS",
+      "health_after_repair": 1,
+      "nominal": true,
+      "pre_task2_terminal_cause": null,
+      "prediction_matches_execution": true,
+      "readiness_status": "EVALUATED_FROM_STAGE4_SNAPSHOT",
+      "repair_health_gain": 0,
+      "robust": true,
+      "robust_by_scenario": {
+        "omega_delay": {
+          "predicted_success": true,
+          "status": "SUCCESS"
+        },
+        "omega_loss_E": {
+          "predicted_success": true,
+          "status": "SUCCESS"
+        },
+        "omega_loss_M": {
+          "predicted_success": true,
+          "status": "SUCCESS"
+        }
+      }
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,242 @@
+{
+  "conditional_capabilities": [
+    "read_task_memory()",
+    "read_residual_payload()"
+  ],
+  "limitation": "The capability context blocks accidental and ordinary unauthorized reads. It is not a security boundary against hostile code exploiting the Python runtime; use OS/process isolation for untrusted policy plugins.",
+  "no_oracle_target_or_identifier_access": true,
+  "pass": true,
+  "policy_observation_public_fields": [
+    "public_input"
+  ],
+  "runtime_attempts": {
+    "apparatus": {
+      "attempted_fields": [
+        "apparatus",
+        "apparatus"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "creator_id": {
+      "attempted_fields": [
+        "creator_id",
+        "creator_id"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "evaluator_key": {
+      "attempted_fields": [
+        "evaluator_key",
+        "evaluator_key"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "opaque_identifier": {
+      "attempted_fields": [
+        "opaque_identifier",
+        "opaque_identifier"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "oracle": {
+      "attempted_fields": [
+        "oracle",
+        "oracle"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "private_readers": {
+      "attempted_fields": [
+        "_readers",
+        "_readers"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "prod_memory": {
+      "attempted_fields": [
+        "prod_memory",
+        "prod_memory"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "record_id": {
+      "attempted_fields": [
+        "record_id",
+        "record_id"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "residual_payload": {
+      "attempted_fields": [
+        "residual_payload",
+        "residual_payload"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "resources": {
+      "attempted_fields": [
+        "resources",
+        "resources"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "state": {
+      "attempted_fields": [
+        "state",
+        "state"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "target": {
+      "attempted_fields": [
+        "target",
+        "target"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "task_id": {
+      "attempted_fields": [
+        "task_id",
+        "task_id"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "task_memory": {
+      "attempted_fields": [
+        "task_memory",
+        "task_memory"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "tau": {
+      "attempted_fields": [
+        "tau",
+        "tau"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "trace": {
+      "attempted_fields": [
+        "trace",
+        "trace"
+      ],
+      "blocked": true,
+      "returned_value": null
+    },
+    "unauthorized_payload_capability": {
+      "attempted_fields": [
+        "read:P_res",
+        "blocked_read:P_res"
+      ],
+      "blocked": true,
+      "returned_value": null
+    }
+  },
+  "static": {
+    "engine_evaluator_identifier_names": [],
+    "engine_forbidden_evaluator_imports": [],
+    "engine_imports": [
+      "__future__",
+      "copy",
+      "dataclasses",
+      "enum",
+      "hashlib",
+      "json",
+      "typing",
+      "model",
+      "resources",
+      "metrics"
+    ],
+    "engine_module": "engine.py",
+    "forbidden_oracle_imports": [],
+    "forbidden_policy_imports": [],
+    "limitation": "Static AST/import checks and runtime capability objects detect accidental/ordinary unauthorized access; arbitrary hostile Python requires OS/process isolation.",
+    "oracle_imports": [
+      "__future__",
+      "dataclasses",
+      "typing"
+    ],
+    "oracle_module": "oracle.py",
+    "pass": true,
+    "policy_checks": {
+      "pi_0_legacy": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'int'",
+        "single_observation_argument": true
+      },
+      "pi_M": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'int'",
+        "single_observation_argument": true
+      },
+      "pi_P": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'int'",
+        "single_observation_argument": true
+      },
+      "pi_fixed": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'int'",
+        "single_observation_argument": true
+      },
+      "pi_input": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'int'",
+        "single_observation_argument": true
+      },
+      "pi_none": {
+        "dangerous_calls": [],
+        "forbidden_names": [],
+        "pass": true,
+        "private_attribute_access": [],
+        "signature": "(obs: 'PolicyObservation') -> 'None'",
+        "single_observation_argument": true
+      }
+    },
+    "policy_field_whitelist": [
+      "public_input",
+      "read_task_memory() when granted",
+      "read_residual_payload() when granted"
+    ],
+    "policy_imports": [
+      "__future__",
+      "contextvars",
+      "dataclasses",
+      "typing"
+    ],
+    "policy_module": "policies.py",
+    "run_b_lite_has_evaluator_argument": false,
+    "run_b_lite_signature": "(arm: 'str' = 'R_int', dose_energy: 'int' = 3, *, causal_prod_read: 'bool' = False, load: 'int' = 1, disturbance: 'str' = 'omega_0', compute_readiness: 'bool' = True, task_memory: 'Optional[MemoryRecord]' = None, prod_memory: 'Optional[RepairRecord]' = None) -> 'BLiteRun'",
+    "scoring_boundary": "engine.py emits execution only; evaluation.py joins evaluator key and computes Y_correct after execution"
+  }
+}

@@ -1,0 +1,1030 @@
+{
+  "A2_calibration_valid": true,
+  "H_A_class": "PASS",
+  "H_A_token": "NOT_CLAIMED",
+  "calibration": {
+    "A1_fingerprint": {
+      "costs": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "kind": "original",
+      "port": "port-main"
+    },
+    "A2_fingerprint": {
+      "costs": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "kind": "substitute",
+      "port": "port-main"
+    },
+    "H_A_token": "NOT_CLAIMED",
+    "checks": {
+      "connection_under_frozen_protocol": true,
+      "cost_equivalence": true,
+      "functional_equivalence": true,
+      "object_role_validation": true,
+      "port_compatibility": true,
+      "transition_equivalence": true
+    },
+    "claim_boundary": "Computed equivalence of declared model fixtures; not physical laboratory calibration.",
+    "probe_results": [
+      {
+        "A1_health_after": 0,
+        "A1_success": true,
+        "A2_health_after": 0,
+        "A2_success": true,
+        "health": 1,
+        "load": 1
+      },
+      {
+        "A1_health_after": 1,
+        "A1_success": false,
+        "A2_health_after": 1,
+        "A2_success": false,
+        "health": 1,
+        "load": 2
+      },
+      {
+        "A1_health_after": 1,
+        "A1_success": true,
+        "A2_health_after": 1,
+        "A2_success": true,
+        "health": 2,
+        "load": 1
+      },
+      {
+        "A1_health_after": 1,
+        "A1_success": true,
+        "A2_health_after": 1,
+        "A2_success": true,
+        "health": 2,
+        "load": 2
+      }
+    ],
+    "valid": true
+  },
+  "cases": {
+    "eval_case_opaque_A": {
+      "H_A_class_conditions_pass": true,
+      "TV_distances": {
+        "A1_vs_A0": "1",
+        "A1_vs_A2": "0",
+        "A2_vs_A0": "1"
+      },
+      "Y_star_evaluator_only": 0,
+      "apparatus_used": {
+        "A0": false,
+        "A1": true,
+        "A2": true
+      },
+      "causal_apparatus_use": {
+        "A0": false,
+        "A1": true,
+        "A2": true
+      },
+      "oracle_correctness_scored_but_not_used_as_hardware_gate": true,
+      "probe_operand_from_public_input": 0,
+      "probe_policy": "pi_input",
+      "profiles": {
+        "A0": [
+          null,
+          null,
+          "APPARATUS_DEGRADED",
+          [
+            3,
+            2,
+            0,
+            0
+          ],
+          0
+        ],
+        "A1": [
+          0,
+          true,
+          "SUCCESS",
+          [
+            2,
+            2,
+            1,
+            0
+          ],
+          1
+        ],
+        "A2": [
+          0,
+          true,
+          "SUCCESS",
+          [
+            2,
+            2,
+            1,
+            0
+          ],
+          1
+        ]
+      },
+      "traces": {
+        "A0": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": false
+            },
+            "event_type": "apparatus_absence_declared_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": false,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "status": "APPARATUS_DEGRADED"
+            },
+            "event_type": "task_failed_event",
+            "stage": 2,
+            "time": 2
+          }
+        ],
+        "A1": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C"
+            },
+            "event_type": "C_produce_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C"
+            },
+            "event_type": "C_apparatus_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": true,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C",
+              "port_id": "port-main"
+            },
+            "event_type": "apparatus_use_event",
+            "stage": 2,
+            "time": 2
+          },
+          {
+            "details": {
+              "Y_correct": true,
+              "operand": 0,
+              "result": 0,
+              "source": "public_input",
+              "status": "SUCCESS",
+              "task": "Task1"
+            },
+            "event_type": "action_event",
+            "stage": 2,
+            "time": 2
+          }
+        ],
+        "A2": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture"
+            },
+            "event_type": "test_fixture_provide_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture"
+            },
+            "event_type": "test_fixture_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": true,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture",
+              "port_id": "port-main"
+            },
+            "event_type": "apparatus_use_event",
+            "stage": 2,
+            "time": 2
+          },
+          {
+            "details": {
+              "Y_correct": true,
+              "operand": 0,
+              "result": 0,
+              "source": "public_input",
+              "status": "SUCCESS",
+              "task": "Task1"
+            },
+            "event_type": "action_event",
+            "stage": 2,
+            "time": 2
+          }
+        ]
+      }
+    },
+    "eval_case_opaque_B": {
+      "H_A_class_conditions_pass": true,
+      "TV_distances": {
+        "A1_vs_A0": "1",
+        "A1_vs_A2": "0",
+        "A2_vs_A0": "1"
+      },
+      "Y_star_evaluator_only": 1,
+      "apparatus_used": {
+        "A0": false,
+        "A1": true,
+        "A2": true
+      },
+      "causal_apparatus_use": {
+        "A0": false,
+        "A1": true,
+        "A2": true
+      },
+      "oracle_correctness_scored_but_not_used_as_hardware_gate": true,
+      "probe_operand_from_public_input": 0,
+      "probe_policy": "pi_input",
+      "profiles": {
+        "A0": [
+          null,
+          null,
+          "APPARATUS_DEGRADED",
+          [
+            3,
+            2,
+            0,
+            0
+          ],
+          0
+        ],
+        "A1": [
+          0,
+          false,
+          "SUCCESS",
+          [
+            2,
+            2,
+            1,
+            0
+          ],
+          1
+        ],
+        "A2": [
+          0,
+          false,
+          "SUCCESS",
+          [
+            2,
+            2,
+            1,
+            0
+          ],
+          1
+        ]
+      },
+      "traces": {
+        "A0": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": false
+            },
+            "event_type": "apparatus_absence_declared_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": false,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "status": "APPARATUS_DEGRADED"
+            },
+            "event_type": "task_failed_event",
+            "stage": 2,
+            "time": 2
+          }
+        ],
+        "A1": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C"
+            },
+            "event_type": "C_produce_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C"
+            },
+            "event_type": "C_apparatus_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": true,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-C-001",
+              "creator_id": "C",
+              "port_id": "port-main"
+            },
+            "event_type": "apparatus_use_event",
+            "stage": 2,
+            "time": 2
+          },
+          {
+            "details": {
+              "Y_correct": false,
+              "operand": 0,
+              "result": 0,
+              "source": "public_input",
+              "status": "SUCCESS",
+              "task": "Task1"
+            },
+            "event_type": "action_event",
+            "stage": 2,
+            "time": 2
+          }
+        ],
+        "A2": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "C_memory_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "M_task",
+              "source": "M_task",
+              "version": 1
+            },
+            "event_type": "D_receive_memory_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_write_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "C_residual_payload_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "accessible": true,
+              "creator_id": "C",
+              "holder": "D",
+              "record_id": "P_res",
+              "source": "P_res",
+              "version": 1
+            },
+            "event_type": "D_receive_payload_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture"
+            },
+            "event_type": "test_fixture_provide_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture"
+            },
+            "event_type": "test_fixture_transfer_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "apparatus_present": true,
+              "holder": "D",
+              "production_and_transfer_simulated": false
+            },
+            "event_type": "D_receive_event_exogenous",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "new_transfers_permitted": false,
+              "new_writes_permitted": false,
+              "source": "C"
+            },
+            "event_type": "source_off_event",
+            "stage": 0,
+            "time": 0
+          },
+          {
+            "details": {
+              "operand": 0,
+              "policy": "pi_input",
+              "source": "public_input"
+            },
+            "event_type": "hardware_probe_request_event",
+            "stage": 1,
+            "time": 1
+          },
+          {
+            "details": {
+              "apparatus_id": "apparatus-substitute-001",
+              "creator_id": "test-fixture",
+              "port_id": "port-main"
+            },
+            "event_type": "apparatus_use_event",
+            "stage": 2,
+            "time": 2
+          },
+          {
+            "details": {
+              "Y_correct": false,
+              "operand": 0,
+              "result": 0,
+              "source": "public_input",
+              "status": "SUCCESS",
+              "task": "Task1"
+            },
+            "event_type": "action_event",
+            "stage": 2,
+            "time": 2
+          }
+        ]
+      }
+    }
+  },
+  "interpretation": "Functional apparatus-class contrast using a public-input-only action; oracle correctness is scored independently and is not hardwired into the operand. A2 calibration is model-internal, not physical apparatus evidence.",
+  "profile_fields": [
+    "Y_action",
+    "Y_correct",
+    "Y_status",
+    "R_post",
+    "health_post"
+  ]
+}

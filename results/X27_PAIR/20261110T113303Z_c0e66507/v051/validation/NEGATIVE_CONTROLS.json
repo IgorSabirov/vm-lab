@@ -1,0 +1,1330 @@
+{
+  "checks": {
+    "NC13_estimator_purity_nested_fields": true,
+    "NC14_integrity_error_distinct": true,
+    "NC15_opaque_identifier_channel": true,
+    "NC16_oracle_and_service_field_whitelist": true
+  },
+  "details": {
+    "NC13": {
+      "all_nested_mutations_detected": true,
+      "estimator_digest_after": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+      "estimator_digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+      "estimator_pure": true,
+      "nested_provenance_mutations": {
+        "apparatus.apparatus_id": {
+          "digest_after": "29bee5644d29808802e21c9dae860732356f7ee562e63c29918053ca5591cb12",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        },
+        "apparatus.creator_id": {
+          "digest_after": "2fcf442b547de7ce02aae21ce2e4f4510b55ae2080cafd76e390797aebd66937",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        },
+        "apparatus.token_signature": {
+          "digest_after": "62e36e842a6c6e5a7e8d6c27529319552232f0e94eaa15ed439b6ec9798dc059",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        },
+        "prod_memory.creator_id": {
+          "digest_after": "8b35c35d4c7cfa06bfadfa8550855432a63617f2978ef1a58a2f871ab08aaae8",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        },
+        "task_memory.creator_id": {
+          "digest_after": "3be9b96fb181deee29bac547ec0829ef03b36eb5ff548e747b360b9753416ea0",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        },
+        "task_memory.record_id": {
+          "digest_after": "26232e185f5d7f96db06f773683eb4053c3554a000661663d40a89dc10e7530b",
+          "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+          "digest_changed": true
+        }
+      },
+      "pass": true,
+      "scope": "Digest comparison is immediately before/after one estimator call; malicious mutations are applied only to separate disposable deep copies."
+    },
+    "NC14": {
+      "integrity_event": true,
+      "mprod_does_not_substitute": true,
+      "pass": true,
+      "pre_task2_terminal_cause": "INTEGRITY_ERROR",
+      "task2_reached": false,
+      "task_read_event": false
+    },
+    "NC15": {
+      "accuracy": "100/200",
+      "accuracy_exactly_one_half": true,
+      "correct": 100,
+      "id_rng_seed": 51015,
+      "identifier_fields_absent_from_public_input": true,
+      "identifier_not_in_policy_signature": true,
+      "identifier_relabel_invariant": true,
+      "independent_rng_streams": true,
+      "limitation": "Exact 0.5 is a deterministic balanced-design check, not a statistical estimate of generalization error.",
+      "pass": true,
+      "policy": "pi_input",
+      "presentations": 200,
+      "public_input_keys": [
+        "command",
+        "public_hint"
+      ],
+      "rows": [
+        {
+          "action": 0,
+          "opaque_id": "id-62b56dfa4b9cdba5",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b5008fdbcb26ca8d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-f6ac70755e7580d3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-daf20e1e8455cccb",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4630225b2085b69d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-d2861e89e6c7173c",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-7a9b8777a6251292",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e2df2b3f1e89bcd3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b10f3f046d9600ab",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-5db3a6e59668fcca",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-98455e2fdf4d10ef",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-792fcf9a8b895e09",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-94312d306ab4dc16",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-317a7acdf5baa25e",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-71ef12718d77b2c2",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6dea089663415a8d",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e252259c1fd2d52c",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c58d2f627d6d882a",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-7cb8a94d2b74204f",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6884064f9f84063c",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-7704884bd1891ab5",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6ea8dcf67fde6b46",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-113a3ca822fecf89",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9078a6eae505b9c8",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-04b9d6ea9cb70d6d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c805ee1d0a44ba0e",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e3261f55ee2b3700",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-5e7ce5382a59748c",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2e40bfdeb2d7ea4b",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-25d215e089535581",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a4e496ae72cecd09",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ea5c9c48875468b0",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-95bc0d9d1e49ee78",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6102df7567933149",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-daf55131f47eb0cf",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b443b8a8c5517eb3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-cbb53ac47726d5ae",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9a2770e1b34b3590",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-eff3c95cbd20cd08",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1886cc4f37da4d14",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ddb94519e8ab378c",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e64d9182f255d09c",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-59c5348040bf9366",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-3480d2a9ba7715cb",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b2702e774ccf7744",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c3ad8c24a35278e0",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-f48b038bf3edd4a2",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-affdd55f727b3bf9",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-380383f1377b31ef",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c2ee91ab7d6cfd54",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-bce576df1cf47abd",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-316ac5d2559af0c4",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-7d1463498752cd41",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-bc8cbb55618b2334",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-cb2ce01fa84582bb",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6591a1aa52d54e53",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2a37b550f282c18d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-131acaa68ad0c97b",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-19d4c0909c5ac951",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6e1c93ece4f3e04a",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-70886df88160a923",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b7367702c31d4c55",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-d5ac522a7e58fc27",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1c406e32628a2b8c",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a40aa560c7743251",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9c35593b75463cc9",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-51d1cc960f8030c1",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-69082376edc37546",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-eaafd705c5b97872",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a3218be2f69c056e",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4813232ac1f3530a",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4812570ec8dfb852",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-16f28f76df98c566",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-eec7cc888e35d182",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-09bb79fd25cf37a3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ff82f1c55d09cabb",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-11c0438388b2e544",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4a7c65fd3ca38137",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-5fbd22c723df03c4",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-97e8640363f11578",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b2ffa7bc80c3524d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b811910154a741cc",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e50a4fddbd50b16b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1fd6d7292b00d198",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-851711390d467521",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0047120a4c64b252",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-67be9d1fe89f1ab9",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-19bba712a21b42df",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-bda14a3111298803",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0d0a9d89c8e15d6e",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c671836dd27a8772",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1bbc331afbc388ba",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-8e7f4d99ec3b4d9f",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-93e19245676c22e8",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-fb5cf003017f18b9",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b8d9fdc48520ebb9",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-43e3f81e82c8dab0",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4c34364d18bdc68b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0608013e27ff060a",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e449959d3cd875a1",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-52cf681e4188d13f",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-44578ef32666ded7",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e9beb5de3da52187",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-43e71cb8c9a3636d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-5843c27cd3d857ce",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-5603c24b26915105",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-92f90d9aab1685b3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1a45e226417b6aad",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c29e2cf4d869df5e",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-98e00092c51d64fa",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e0a96cbfe6ad1c00",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2a19dd47cb170f84",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b8078a00e6e12dc5",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-45d18d693bc343ae",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-73a264581e5c2ce3",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-8dcf6c7813f17b62",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c015304d66a2d6e2",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9079915f3cbe6c4b",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-573b650ffe3cad1f",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1866048da392fb15",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ed4a5ca8c0f55411",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0da6834af1f309e0",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2a789dd3b2c63376",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0ab0392b94df9d5c",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2c2c16adb7b6a2e0",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-605f6a97a3798669",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1df38a1662dadee6",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c41af00e390ff333",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-f7fa8615c1697983",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-7f2abade1f39cc20",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-01364e024c5cf0ba",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-97f4f22658c36efc",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4c21ca60468a42ee",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1cbbd34f63afa129",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-23091a30709e9982",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-dacd76b7260cceb3",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-3f85e24d5f2fea4b",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9a604c120539c910",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-700869da1966af15",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-f4e7dda44b573aac",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-8e92749240b26b1c",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1f83df6352cee62e",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ee69e832f55d8e27",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-922f29fe07c43d27",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a5a7cfe2c3a3e3c0",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9d1bca388d8af1b5",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1b95d190139683d0",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-52a8b4404dac2719",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-493b822587b4f6d1",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0a36e5c2e5b95c16",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-3cb3f59d2c9191d6",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-40ddd1580d2cc613",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2e68268fa676f6a7",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-0486cde5f826b816",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-235f378e570e707c",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-83da5e3e7d347c6d",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-366fff19885e2360",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9a0a865545e1b706",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-eb90d78c4fcb120e",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c0ef9bb7297f4aab",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a5bfa0be6bf302b2",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-ebd6263370dcbbff",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-fad2e9fa54f8efff",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-37375a7cf509d1d0",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-1a3cdc5c2d2a39c7",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-d8fbf2a94a267a4d",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-3585eee1fee6a6da",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-27134073a6439b2a",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-13186ef2274caedd",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9779e6b339e97452",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-fd2fbfc65918898b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-32bce5c054c3d11e",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-3f3132ceff111f77",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b4eabeae5097c823",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-035fc32cae86e79e",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-50c5d93c7cabff1b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-cf4c2d0b2a004f35",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6460459543932ab3",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-9111dcc0f0b386d6",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-8467b182393d6e8b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-44b82d7c4e506215",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-78cb26940c882dc4",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-4ae21f95ad98396a",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-06c8dcdae8a64f67",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-baa35ce989e61c66",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-443061b08140c30f",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-01c91cf1b12bf742",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-8531b7ff857f7548",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-20db9d6f90f93bf8",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-c56952ce6a4ef6ea",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-2c418f9775362c56",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-b4c68b4c7516933a",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-e2012faef0f23478",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-87d9d69bc6111ae7",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6edf0a0de63cfedc",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-59e3b6e5f0a5dc94",
+          "oracle_target": 1
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-a53b11abdd84591b",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-00c71ec7aad028a7",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6db06222b71f0645",
+          "oracle_target": 0
+        },
+        {
+          "action": 0,
+          "opaque_id": "id-6e6b89463ac29fd8",
+          "oracle_target": 0
+        }
+      ],
+      "seed": 51015,
+      "target_counts": {
+        "0": 100,
+        "1": 100
+      },
+      "target_rng_seed": 44465248082,
+      "unique_opaque_ids": 200
+    },
+    "NC16": {
+      "conditional_capabilities": [
+        "read_task_memory()",
+        "read_residual_payload()"
+      ],
+      "limitation": "The capability context blocks accidental and ordinary unauthorized reads. It is not a security boundary against hostile code exploiting the Python runtime; use OS/process isolation for untrusted policy plugins.",
+      "no_oracle_target_or_identifier_access": true,
+      "pass": true,
+      "policy_observation_public_fields": [
+        "public_input"
+      ],
+      "runtime_attempts": {
+        "apparatus": {
+          "attempted_fields": [
+            "apparatus",
+            "apparatus"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "creator_id": {
+          "attempted_fields": [
+            "creator_id",
+            "creator_id"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "evaluator_key": {
+          "attempted_fields": [
+            "evaluator_key",
+            "evaluator_key"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "opaque_identifier": {
+          "attempted_fields": [
+            "opaque_identifier",
+            "opaque_identifier"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "oracle": {
+          "attempted_fields": [
+            "oracle",
+            "oracle"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "private_readers": {
+          "attempted_fields": [
+            "_readers",
+            "_readers"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "prod_memory": {
+          "attempted_fields": [
+            "prod_memory",
+            "prod_memory"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "record_id": {
+          "attempted_fields": [
+            "record_id",
+            "record_id"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "residual_payload": {
+          "attempted_fields": [
+            "residual_payload",
+            "residual_payload"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "resources": {
+          "attempted_fields": [
+            "resources",
+            "resources"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "state": {
+          "attempted_fields": [
+            "state",
+            "state"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "target": {
+          "attempted_fields": [
+            "target",
+            "target"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "task_id": {
+          "attempted_fields": [
+            "task_id",
+            "task_id"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "task_memory": {
+          "attempted_fields": [
+            "task_memory",
+            "task_memory"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "tau": {
+          "attempted_fields": [
+            "tau",
+            "tau"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "trace": {
+          "attempted_fields": [
+            "trace",
+            "trace"
+          ],
+          "blocked": true,
+          "returned_value": null
+        },
+        "unauthorized_payload_capability": {
+          "attempted_fields": [
+            "read:P_res",
+            "blocked_read:P_res"
+          ],
+          "blocked": true,
+          "returned_value": null
+        }
+      },
+      "static": {
+        "engine_evaluator_identifier_names": [],
+        "engine_forbidden_evaluator_imports": [],
+        "engine_imports": [
+          "__future__",
+          "copy",
+          "dataclasses",
+          "enum",
+          "hashlib",
+          "json",
+          "typing",
+          "model",
+          "resources",
+          "metrics"
+        ],
+        "engine_module": "engine.py",
+        "forbidden_oracle_imports": [],
+        "forbidden_policy_imports": [],
+        "limitation": "Static AST/import checks and runtime capability objects detect accidental/ordinary unauthorized access; arbitrary hostile Python requires OS/process isolation.",
+        "oracle_imports": [
+          "__future__",
+          "dataclasses",
+          "typing"
+        ],
+        "oracle_module": "oracle.py",
+        "pass": true,
+        "policy_checks": {
+          "pi_0_legacy": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'int'",
+            "single_observation_argument": true
+          },
+          "pi_M": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'int'",
+            "single_observation_argument": true
+          },
+          "pi_P": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'int'",
+            "single_observation_argument": true
+          },
+          "pi_fixed": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'int'",
+            "single_observation_argument": true
+          },
+          "pi_input": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'int'",
+            "single_observation_argument": true
+          },
+          "pi_none": {
+            "dangerous_calls": [],
+            "forbidden_names": [],
+            "pass": true,
+            "private_attribute_access": [],
+            "signature": "(obs: 'PolicyObservation') -> 'None'",
+            "single_observation_argument": true
+          }
+        },
+        "policy_field_whitelist": [
+          "public_input",
+          "read_task_memory() when granted",
+          "read_residual_payload() when granted"
+        ],
+        "policy_imports": [
+          "__future__",
+          "contextvars",
+          "dataclasses",
+          "typing"
+        ],
+        "policy_module": "policies.py",
+        "run_b_lite_has_evaluator_argument": false,
+        "run_b_lite_signature": "(arm: 'str' = 'R_int', dose_energy: 'int' = 3, *, causal_prod_read: 'bool' = False, load: 'int' = 1, disturbance: 'str' = 'omega_0', compute_readiness: 'bool' = True, task_memory: 'Optional[MemoryRecord]' = None, prod_memory: 'Optional[RepairRecord]' = None) -> 'BLiteRun'",
+        "scoring_boundary": "engine.py emits execution only; evaluation.py joins evaluator key and computes Y_correct after execution"
+      }
+    }
+  },
+  "pass": true,
+  "pass_count": 4,
+  "total": 4
+}

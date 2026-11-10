@@ -1,0 +1,44 @@
+{
+  "J_trace": [
+    "read events",
+    "action events",
+    "repair events",
+    "resource ledger",
+    "apparatus provenance",
+    "donor events"
+  ],
+  "J_trace_role": "diagnostic only unless a field is explicitly promoted into O_D or O_eval in a later frozen delta",
+  "O_D": [
+    "public_input",
+    "only explicitly granted read capability calls"
+  ],
+  "O_eval": [
+    "Y_action",
+    "Y_correct",
+    "Y_status",
+    "T_finish",
+    "R_final",
+    "health_final",
+    "V_nom",
+    "V_rob"
+  ],
+  "control_domain_additional_stages": [
+    0,
+    3
+  ],
+  "decision_domain": [
+    1,
+    2,
+    5,
+    6
+  ],
+  "equivalences": [
+    "H-Q-task",
+    "H-Q-control",
+    "H-Q-R1",
+    "H-Q-R2"
+  ],
+  "interpretation": "future-output equivalence for frozen observations and finite intervention family; not full causal-trace equivalence",
+  "status": "SPECIFIED_ALGORITHM_AND_SEQUENCE_FAMILY_AVAILABLE_FULL_KERNEL_ADAPTER_PENDING",
+  "terminal_states": "output leaves, never partition members"
+}

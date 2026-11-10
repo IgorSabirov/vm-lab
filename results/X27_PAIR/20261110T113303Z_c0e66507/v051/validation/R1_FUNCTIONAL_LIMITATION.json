@@ -1,0 +1,3282 @@
+{
+  "R0_no_repair": {
+    "R_at_terminal_before_task2": null,
+    "R_post2": [
+      1,
+      2,
+      2,
+      0
+    ],
+    "T_finish2": 7,
+    "V_nom": true,
+    "V_rob": true,
+    "Y_status2": "SUCCESS",
+    "Y_task1_action": 0,
+    "Y_task1_correct": true,
+    "Y_task1_target": 0,
+    "Y_task2": true,
+    "Y_task2_action": 0,
+    "Y_task2_correct": true,
+    "Y_task2_target": 0,
+    "arm": "R0",
+    "causal_prod_read": false,
+    "dose_energy": 3,
+    "evaluator_key": "eval_case_opaque_A",
+    "events": [
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_memory_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "D_receive_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "D_receive_prod_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_produce_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_apparatus_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_present": true,
+          "apparatus_provenance": "C_PRODUCED_AND_TRANSFERRED",
+          "holder": "D",
+          "production_and_transfer_simulated": false,
+          "source_off": true
+        },
+        "event_type": "D_receive_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "new_transfers_permitted": false,
+          "new_writes_permitted": false,
+          "source": "C"
+        },
+        "event_type": "source_off_event",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task1",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 1,
+        "time": 1
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task1"
+        },
+        "event_type": "action_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {},
+        "event_type": "restore_disabled_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task2",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 5,
+        "time": 5
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task2"
+        },
+        "event_type": "action_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "status": "SUCCESS"
+        },
+        "event_type": "terminal_event",
+        "stage": 7,
+        "time": 7
+      }
+    ],
+    "health_after_repair": 1,
+    "ledger": [
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "after_cost": [
+            2,
+            2,
+            0,
+            0
+          ],
+          "after_inflow": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "before": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task1",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 2,
+          "M": 2,
+          "U": 0,
+          "W": 1
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            1,
+            2,
+            2,
+            0
+          ],
+          "after_cost": [
+            1,
+            2,
+            1,
+            0
+          ],
+          "after_inflow": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "before": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task2",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 1,
+          "M": 2,
+          "U": 0,
+          "W": 2
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "load": 1,
+    "oracle_scoring_layer": "evaluation.py; outside executor state and transition kernel",
+    "pre_task2_terminal_cause": null,
+    "readiness": {
+      "V_nom": true,
+      "V_rob": true,
+      "digest_after": "78c2b9d92064e93d44ad4e10afde914ba52f78c35a8de2bc5d2041de5018767f",
+      "digest_before": "78c2b9d92064e93d44ad4e10afde914ba52f78c35a8de2bc5d2041de5018767f",
+      "nominal": {
+        "Y_action": 0,
+        "disturbance": "omega_0",
+        "events": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "returned_value": 0,
+              "source": "M_task",
+              "task": "Task2",
+              "version": 1
+            },
+            "event_type": "read_event",
+            "stage": 5,
+            "time": 5
+          },
+          {
+            "details": {
+              "operand": 0,
+              "read_source": "M_task",
+              "result": 0,
+              "source_record_creator_id": "C",
+              "source_record_id": "M_task",
+              "source_record_version": 1,
+              "status": "SUCCESS",
+              "task": "Task2"
+            },
+            "event_type": "action_event",
+            "stage": 6,
+            "time": 6
+          },
+          {
+            "details": {
+              "status": "SUCCESS"
+            },
+            "event_type": "terminal_event",
+            "stage": 7,
+            "time": 7
+          }
+        ],
+        "finish_time": 7,
+        "gates": {
+          "G_health": true,
+          "G_memory": true,
+          "G_resource": true,
+          "G_time": true
+        },
+        "health_after": 0,
+        "health_before": 1,
+        "ledger": [
+          {
+            "exhausted": false,
+            "ledger": {
+              "after": [
+                1,
+                2,
+                2,
+                0
+              ],
+              "after_cost": [
+                1,
+                2,
+                1,
+                0
+              ],
+              "after_inflow": [
+                2,
+                2,
+                1,
+                0
+              ],
+              "before": [
+                2,
+                2,
+                1,
+                0
+              ],
+              "byproduct": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "cost": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "cost_deducted": true,
+              "inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "name": "Task2",
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "status": "APPLIED"
+            },
+            "resources": {
+              "E": 1,
+              "M": 2,
+              "U": 0,
+              "W": 2
+            },
+            "spill_byproduct": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "spill_inflow": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "load": 1,
+        "resources_final": [
+          1,
+          2,
+          2,
+          0
+        ],
+        "status": "SUCCESS",
+        "success": true
+      },
+      "order_independent": true,
+      "purity_pass": true,
+      "required_stress": [
+        "omega_delay",
+        "omega_loss_E",
+        "omega_loss_M"
+      ],
+      "stress": [
+        {
+          "Y_action": 0,
+          "disturbance": "omega_delay",
+          "events": [
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_start_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_end_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 8
+            }
+          ],
+          "finish_time": 8,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  1,
+                  2,
+                  2,
+                  0
+                ],
+                "after_cost": [
+                  1,
+                  2,
+                  1,
+                  0
+                ],
+                "after_inflow": [
+                  2,
+                  2,
+                  1,
+                  0
+                ],
+                "before": [
+                  2,
+                  2,
+                  1,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 1,
+                "M": 2,
+                "U": 0,
+                "W": 2
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            1,
+            2,
+            2,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "Y_action": 0,
+          "disturbance": "omega_loss_E",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  1,
+                  2,
+                  1,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  2,
+                  2,
+                  1,
+                  0
+                ],
+                "component": "E",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  0,
+                  2,
+                  2,
+                  0
+                ],
+                "after_cost": [
+                  0,
+                  2,
+                  1,
+                  0
+                ],
+                "after_inflow": [
+                  1,
+                  2,
+                  1,
+                  0
+                ],
+                "before": [
+                  1,
+                  2,
+                  1,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 0,
+                "M": 2,
+                "U": 0,
+                "W": 2
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            0,
+            2,
+            2,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "Y_action": 0,
+          "disturbance": "omega_loss_M",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  2,
+                  1,
+                  1,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  2,
+                  2,
+                  1,
+                  0
+                ],
+                "component": "M",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "after_cost": [
+                  1,
+                  1,
+                  1,
+                  0
+                ],
+                "after_inflow": [
+                  2,
+                  1,
+                  1,
+                  0
+                ],
+                "before": [
+                  2,
+                  1,
+                  1,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 1,
+                "M": 1,
+                "U": 0,
+                "W": 2
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        }
+      ]
+    },
+    "repair_health_gain": 0,
+    "repair_instruction": null,
+    "task2_reached": true
+  },
+  "R0_vs_Rint_nominal_same_task_success": true,
+  "R0_vs_Rint_robust": {
+    "R0": true,
+    "R_int_r0": false
+  },
+  "R_ext": {
+    "R_at_terminal_before_task2": null,
+    "R_post2": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "T_finish2": 7,
+    "V_nom": true,
+    "V_rob": true,
+    "Y_status2": "SUCCESS",
+    "Y_task1_action": 0,
+    "Y_task1_correct": true,
+    "Y_task1_target": 0,
+    "Y_task2": true,
+    "Y_task2_action": 0,
+    "Y_task2_correct": true,
+    "Y_task2_target": 0,
+    "arm": "R_ext",
+    "causal_prod_read": false,
+    "dose_energy": 3,
+    "evaluator_key": "eval_case_opaque_A",
+    "events": [
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_memory_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "D_receive_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "D_receive_prod_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_produce_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_apparatus_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_present": true,
+          "apparatus_provenance": "C_PRODUCED_AND_TRANSFERRED",
+          "holder": "D",
+          "production_and_transfer_simulated": false,
+          "source_off": true
+        },
+        "event_type": "D_receive_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "new_transfers_permitted": false,
+          "new_writes_permitted": false,
+          "source": "C"
+        },
+        "event_type": "source_off_event",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task1",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 1,
+        "time": 1
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task1"
+        },
+        "event_type": "action_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {
+          "inflow": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "spill": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "event_type": "external_injection_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "health_after": 1,
+          "health_before": 1,
+          "instruction": "r0",
+          "read_source": null,
+          "resource_cost": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "source_record_creator_id": null,
+          "source_record_id": null,
+          "source_record_version": null,
+          "task": "repair"
+        },
+        "event_type": "repair_action_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task2",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 5,
+        "time": 5
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task2"
+        },
+        "event_type": "action_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "status": "SUCCESS"
+        },
+        "event_type": "terminal_event",
+        "stage": 7,
+        "time": 7
+      }
+    ],
+    "health_after_repair": 1,
+    "ledger": [
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "after_cost": [
+            2,
+            2,
+            0,
+            0
+          ],
+          "after_inflow": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "before": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task1",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 2,
+          "M": 2,
+          "U": 0,
+          "W": 1
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            3,
+            3,
+            1,
+            0
+          ],
+          "after_cost": [
+            3,
+            3,
+            1,
+            0
+          ],
+          "after_inflow": [
+            3,
+            3,
+            1,
+            0
+          ],
+          "before": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cost": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "name": "external_injection",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 3,
+          "M": 3,
+          "U": 0,
+          "W": 1
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            2,
+            2,
+            2,
+            0
+          ],
+          "after_cost": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "after_inflow": [
+            3,
+            3,
+            1,
+            0
+          ],
+          "before": [
+            3,
+            3,
+            1,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Repair_r0",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 2,
+          "M": 2,
+          "U": 0,
+          "W": 2
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            1,
+            2,
+            3,
+            0
+          ],
+          "after_cost": [
+            1,
+            2,
+            2,
+            0
+          ],
+          "after_inflow": [
+            2,
+            2,
+            2,
+            0
+          ],
+          "before": [
+            2,
+            2,
+            2,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task2",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 1,
+          "M": 2,
+          "U": 0,
+          "W": 3
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "load": 1,
+    "oracle_scoring_layer": "evaluation.py; outside executor state and transition kernel",
+    "pre_task2_terminal_cause": null,
+    "readiness": {
+      "V_nom": true,
+      "V_rob": true,
+      "digest_after": "68f737e14eda4cafadcc01744f4b6b5278aa5102faab0ccab399411441b81631",
+      "digest_before": "68f737e14eda4cafadcc01744f4b6b5278aa5102faab0ccab399411441b81631",
+      "nominal": {
+        "Y_action": 0,
+        "disturbance": "omega_0",
+        "events": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "returned_value": 0,
+              "source": "M_task",
+              "task": "Task2",
+              "version": 1
+            },
+            "event_type": "read_event",
+            "stage": 5,
+            "time": 5
+          },
+          {
+            "details": {
+              "operand": 0,
+              "read_source": "M_task",
+              "result": 0,
+              "source_record_creator_id": "C",
+              "source_record_id": "M_task",
+              "source_record_version": 1,
+              "status": "SUCCESS",
+              "task": "Task2"
+            },
+            "event_type": "action_event",
+            "stage": 6,
+            "time": 6
+          },
+          {
+            "details": {
+              "status": "SUCCESS"
+            },
+            "event_type": "terminal_event",
+            "stage": 7,
+            "time": 7
+          }
+        ],
+        "finish_time": 7,
+        "gates": {
+          "G_health": true,
+          "G_memory": true,
+          "G_resource": true,
+          "G_time": true
+        },
+        "health_after": 0,
+        "health_before": 1,
+        "ledger": [
+          {
+            "exhausted": false,
+            "ledger": {
+              "after": [
+                1,
+                2,
+                3,
+                0
+              ],
+              "after_cost": [
+                1,
+                2,
+                2,
+                0
+              ],
+              "after_inflow": [
+                2,
+                2,
+                2,
+                0
+              ],
+              "before": [
+                2,
+                2,
+                2,
+                0
+              ],
+              "byproduct": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "cost": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "cost_deducted": true,
+              "inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "name": "Task2",
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "status": "APPLIED"
+            },
+            "resources": {
+              "E": 1,
+              "M": 2,
+              "U": 0,
+              "W": 3
+            },
+            "spill_byproduct": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "spill_inflow": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "load": 1,
+        "resources_final": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "status": "SUCCESS",
+        "success": true
+      },
+      "order_independent": true,
+      "purity_pass": true,
+      "required_stress": [
+        "omega_delay",
+        "omega_loss_E",
+        "omega_loss_M"
+      ],
+      "stress": [
+        {
+          "Y_action": 0,
+          "disturbance": "omega_delay",
+          "events": [
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_start_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_end_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 8
+            }
+          ],
+          "finish_time": 8,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  1,
+                  2,
+                  3,
+                  0
+                ],
+                "after_cost": [
+                  1,
+                  2,
+                  2,
+                  0
+                ],
+                "after_inflow": [
+                  2,
+                  2,
+                  2,
+                  0
+                ],
+                "before": [
+                  2,
+                  2,
+                  2,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 1,
+                "M": 2,
+                "U": 0,
+                "W": 3
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            1,
+            2,
+            3,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "Y_action": 0,
+          "disturbance": "omega_loss_E",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  1,
+                  2,
+                  2,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  2,
+                  2,
+                  2,
+                  0
+                ],
+                "component": "E",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  0,
+                  2,
+                  3,
+                  0
+                ],
+                "after_cost": [
+                  0,
+                  2,
+                  2,
+                  0
+                ],
+                "after_inflow": [
+                  1,
+                  2,
+                  2,
+                  0
+                ],
+                "before": [
+                  1,
+                  2,
+                  2,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 0,
+                "M": 2,
+                "U": 0,
+                "W": 3
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            0,
+            2,
+            3,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "Y_action": 0,
+          "disturbance": "omega_loss_M",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  2,
+                  1,
+                  2,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  2,
+                  2,
+                  2,
+                  0
+                ],
+                "component": "M",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  1,
+                  1,
+                  3,
+                  0
+                ],
+                "after_cost": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "after_inflow": [
+                  2,
+                  1,
+                  2,
+                  0
+                ],
+                "before": [
+                  2,
+                  1,
+                  2,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 1,
+                "M": 1,
+                "U": 0,
+                "W": 3
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            1,
+            1,
+            3,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        }
+      ]
+    },
+    "repair_health_gain": 0,
+    "repair_instruction": "r0",
+    "task2_reached": true
+  },
+  "R_int_fixed_r0": {
+    "R_at_terminal_before_task2": null,
+    "R_post2": [
+      0,
+      1,
+      3,
+      0
+    ],
+    "T_finish2": 7,
+    "V_nom": true,
+    "V_rob": false,
+    "Y_status2": "SUCCESS",
+    "Y_task1_action": 0,
+    "Y_task1_correct": true,
+    "Y_task1_target": 0,
+    "Y_task2": true,
+    "Y_task2_action": 0,
+    "Y_task2_correct": true,
+    "Y_task2_target": 0,
+    "arm": "R_int",
+    "causal_prod_read": false,
+    "dose_energy": 3,
+    "evaluator_key": "eval_case_opaque_A",
+    "events": [
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "C_memory_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_task",
+          "source": "M_task",
+          "version": 1
+        },
+        "event_type": "D_receive_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_write_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "C_prod_instruction_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "accessible": true,
+          "creator_id": "C",
+          "holder": "D",
+          "record_id": "M_prod",
+          "source": "M_prod",
+          "version": 1
+        },
+        "event_type": "D_receive_prod_memory_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_produce_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_apparatus_transfer_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "apparatus_present": true,
+          "apparatus_provenance": "C_PRODUCED_AND_TRANSFERRED",
+          "holder": "D",
+          "production_and_transfer_simulated": false,
+          "source_off": true
+        },
+        "event_type": "D_receive_event_exogenous",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "new_transfers_permitted": false,
+          "new_writes_permitted": false,
+          "source": "C"
+        },
+        "event_type": "source_off_event",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task1",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 1,
+        "time": 1
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task1"
+        },
+        "event_type": "action_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {
+          "health_after": 1,
+          "health_before": 1,
+          "instruction": "r0",
+          "read_source": null,
+          "resource_cost": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "source_record_creator_id": null,
+          "source_record_id": null,
+          "source_record_version": null,
+          "task": "repair"
+        },
+        "event_type": "repair_action_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": "Task2",
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 5,
+        "time": 5
+      },
+      {
+        "details": {
+          "operand": 0,
+          "read_source": "M_task",
+          "result": 0,
+          "source_record_creator_id": "C",
+          "source_record_id": "M_task",
+          "source_record_version": 1,
+          "status": "SUCCESS",
+          "task": "Task2"
+        },
+        "event_type": "action_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "status": "SUCCESS"
+        },
+        "event_type": "terminal_event",
+        "stage": 7,
+        "time": 7
+      }
+    ],
+    "health_after_repair": 1,
+    "ledger": [
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "after_cost": [
+            2,
+            2,
+            0,
+            0
+          ],
+          "after_inflow": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "before": [
+            3,
+            2,
+            0,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task1",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 2,
+          "M": 2,
+          "U": 0,
+          "W": 1
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "after_cost": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "after_inflow": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "before": [
+            2,
+            2,
+            1,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Repair_r0",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 1,
+          "M": 1,
+          "U": 0,
+          "W": 2
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "exhausted": false,
+        "ledger": {
+          "after": [
+            0,
+            1,
+            3,
+            0
+          ],
+          "after_cost": [
+            0,
+            1,
+            2,
+            0
+          ],
+          "after_inflow": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "before": [
+            1,
+            1,
+            2,
+            0
+          ],
+          "byproduct": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "cost": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "cost_deducted": true,
+          "inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Task2",
+          "spill_byproduct": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "spill_inflow": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": "APPLIED"
+        },
+        "resources": {
+          "E": 0,
+          "M": 1,
+          "U": 0,
+          "W": 3
+        },
+        "spill_byproduct": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "spill_inflow": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "load": 1,
+    "oracle_scoring_layer": "evaluation.py; outside executor state and transition kernel",
+    "pre_task2_terminal_cause": null,
+    "readiness": {
+      "V_nom": true,
+      "V_rob": false,
+      "digest_after": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+      "digest_before": "6de94870f66988aa3229c03373f798f76f01ed4a59cf76ace3714086a08e4fc6",
+      "nominal": {
+        "Y_action": 0,
+        "disturbance": "omega_0",
+        "events": [
+          {
+            "details": {
+              "creator_id": "C",
+              "record_id": "M_task",
+              "returned_value": 0,
+              "source": "M_task",
+              "task": "Task2",
+              "version": 1
+            },
+            "event_type": "read_event",
+            "stage": 5,
+            "time": 5
+          },
+          {
+            "details": {
+              "operand": 0,
+              "read_source": "M_task",
+              "result": 0,
+              "source_record_creator_id": "C",
+              "source_record_id": "M_task",
+              "source_record_version": 1,
+              "status": "SUCCESS",
+              "task": "Task2"
+            },
+            "event_type": "action_event",
+            "stage": 6,
+            "time": 6
+          },
+          {
+            "details": {
+              "status": "SUCCESS"
+            },
+            "event_type": "terminal_event",
+            "stage": 7,
+            "time": 7
+          }
+        ],
+        "finish_time": 7,
+        "gates": {
+          "G_health": true,
+          "G_memory": true,
+          "G_resource": true,
+          "G_time": true
+        },
+        "health_after": 0,
+        "health_before": 1,
+        "ledger": [
+          {
+            "exhausted": false,
+            "ledger": {
+              "after": [
+                0,
+                1,
+                3,
+                0
+              ],
+              "after_cost": [
+                0,
+                1,
+                2,
+                0
+              ],
+              "after_inflow": [
+                1,
+                1,
+                2,
+                0
+              ],
+              "before": [
+                1,
+                1,
+                2,
+                0
+              ],
+              "byproduct": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "cost": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "cost_deducted": true,
+              "inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "name": "Task2",
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "status": "APPLIED"
+            },
+            "resources": {
+              "E": 0,
+              "M": 1,
+              "U": 0,
+              "W": 3
+            },
+            "spill_byproduct": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "spill_inflow": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "load": 1,
+        "resources_final": [
+          0,
+          1,
+          3,
+          0
+        ],
+        "status": "SUCCESS",
+        "success": true
+      },
+      "order_independent": true,
+      "purity_pass": true,
+      "required_stress": [
+        "omega_delay",
+        "omega_loss_E",
+        "omega_loss_M"
+      ],
+      "stress": [
+        {
+          "Y_action": 0,
+          "disturbance": "omega_delay",
+          "events": [
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_start_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "steps": 1
+              },
+              "event_type": "delay_end_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 8
+            }
+          ],
+          "finish_time": 8,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  0,
+                  1,
+                  3,
+                  0
+                ],
+                "after_cost": [
+                  0,
+                  1,
+                  2,
+                  0
+                ],
+                "after_inflow": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "before": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 0,
+                "M": 1,
+                "U": 0,
+                "W": 3
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            0,
+            1,
+            3,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "Y_action": null,
+          "disturbance": "omega_loss_E",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  0,
+                  1,
+                  2,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "component": "E",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "gates": [
+                  [
+                    "G_memory",
+                    true
+                  ],
+                  [
+                    "G_health",
+                    true
+                  ],
+                  [
+                    "G_resource",
+                    false
+                  ],
+                  [
+                    "G_time",
+                    true
+                  ]
+                ],
+                "status": "RESOURCE_EXHAUSTED"
+              },
+              "event_type": "task2_failed_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "RESOURCE_EXHAUSTED"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": false,
+            "G_time": true
+          },
+          "health_after": 1,
+          "health_before": 1,
+          "ledger": [],
+          "load": 1,
+          "resources_final": [
+            0,
+            1,
+            2,
+            0
+          ],
+          "status": "RESOURCE_EXHAUSTED",
+          "success": false
+        },
+        {
+          "Y_action": 0,
+          "disturbance": "omega_loss_M",
+          "events": [
+            {
+              "details": {
+                "after": [
+                  1,
+                  0,
+                  2,
+                  0
+                ],
+                "applicable": true,
+                "before": [
+                  1,
+                  1,
+                  2,
+                  0
+                ],
+                "component": "M",
+                "status": "LOSS_APPLIED"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "creator_id": "C",
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": "Task2",
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "read_source": "M_task",
+                "result": 0,
+                "source_record_creator_id": "C",
+                "source_record_id": "M_task",
+                "source_record_version": 1,
+                "status": "SUCCESS",
+                "task": "Task2"
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "gates": {
+            "G_health": true,
+            "G_memory": true,
+            "G_resource": true,
+            "G_time": true
+          },
+          "health_after": 0,
+          "health_before": 1,
+          "ledger": [
+            {
+              "exhausted": false,
+              "ledger": {
+                "after": [
+                  0,
+                  0,
+                  3,
+                  0
+                ],
+                "after_cost": [
+                  0,
+                  0,
+                  2,
+                  0
+                ],
+                "after_inflow": [
+                  1,
+                  0,
+                  2,
+                  0
+                ],
+                "before": [
+                  1,
+                  0,
+                  2,
+                  0
+                ],
+                "byproduct": [
+                  0,
+                  0,
+                  1,
+                  0
+                ],
+                "cost": [
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                "cost_deducted": true,
+                "inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "name": "Task2",
+                "spill_byproduct": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "spill_inflow": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "status": "APPLIED"
+              },
+              "resources": {
+                "E": 0,
+                "M": 0,
+                "U": 0,
+                "W": 3
+              },
+              "spill_byproduct": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "spill_inflow": [
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "load": 1,
+          "resources_final": [
+            0,
+            0,
+            3,
+            0
+          ],
+          "status": "SUCCESS",
+          "success": true
+        }
+      ]
+    },
+    "repair_health_gain": 0,
+    "repair_instruction": "r0",
+    "task2_reached": true
+  },
+  "interpretation": "Because Task1 changes h:2->1 and r0 sets h'=1, r0 has zero health gain. At load=1, R0 without repair also succeeds. The model therefore does not show that r0 repair is functionally necessary; this is a design limitation, not a PASS.",
+  "r0_health_gain": 0
+}

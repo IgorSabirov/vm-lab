@@ -1,0 +1,83 @@
+{
+  "A1_fingerprint": {
+    "costs": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "kind": "original",
+    "port": "port-main"
+  },
+  "A2_fingerprint": {
+    "costs": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "kind": "substitute",
+    "port": "port-main"
+  },
+  "H_A_token": "NOT_CLAIMED",
+  "checks": {
+    "connection_under_frozen_protocol": true,
+    "cost_equivalence": true,
+    "functional_equivalence": true,
+    "object_role_validation": true,
+    "port_compatibility": true,
+    "transition_equivalence": true
+  },
+  "claim_boundary": "Computed equivalence of declared model fixtures; not physical laboratory calibration.",
+  "probe_results": [
+    {
+      "A1_health_after": 0,
+      "A1_success": true,
+      "A2_health_after": 0,
+      "A2_success": true,
+      "health": 1,
+      "load": 1
+    },
+    {
+      "A1_health_after": 1,
+      "A1_success": false,
+      "A2_health_after": 1,
+      "A2_success": false,
+      "health": 1,
+      "load": 2
+    },
+    {
+      "A1_health_after": 1,
+      "A1_success": true,
+      "A2_health_after": 1,
+      "A2_success": true,
+      "health": 2,
+      "load": 1
+    },
+    {
+      "A1_health_after": 1,
+      "A1_success": true,
+      "A2_health_after": 1,
+      "A2_success": true,
+      "health": 2,
+      "load": 2
+    }
+  ],
+  "valid": true
+}

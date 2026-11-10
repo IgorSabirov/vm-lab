@@ -1,7 +1,7 @@
 {
   "source_commit": "4b17eddd06db0cf8b8c0296c63b64e95ed45b90a",
   "run_id": "20261110T113303Z_c0e66507",
-  "status": "FIRST_COMPLETE",
+  "status": "COMPLETE",
   "scope": "SOFTWARE_VALIDATION_ONLY_NOT_FROZEN_MAIN_RUN_NOT_EXECUTED",
   "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
   "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
@@ -34,10 +34,40 @@
       "log": "v043_output/diagnostics.log",
       "exit_code": 0,
       "elapsed_seconds": 5.927159473998472
+    },
+    {
+      "package": "v051",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "log": "v051_output/unit_tests.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.21502378798322752
+    },
+    {
+      "package": "v051",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "x27v051.cli",
+        "smoke",
+        "--output",
+        "/var/lib/vm-lab-x27/20261110T113303Z_c0e66507/v051_output/validation"
+      ],
+      "log": "v051_output/diagnostics.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.2153041890123859
     }
   ],
   "watchdog_seconds": 7200,
   "scientific_runtime_gate": "NOT_EVALUATED",
-  "second_package": "NOT_STARTED",
-  "v043": "SOFTWARE_CHECKS_PASS"
+  "second_package": "COMPLETE",
+  "v043": "SOFTWARE_CHECKS_PASS",
+  "v051": "SOFTWARE_CHECKS_PASS"
 }

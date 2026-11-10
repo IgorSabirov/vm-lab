@@ -1,0 +1,92 @@
+{
+  "engine_evaluator_identifier_names": [],
+  "engine_forbidden_evaluator_imports": [],
+  "engine_imports": [
+    "__future__",
+    "copy",
+    "dataclasses",
+    "enum",
+    "hashlib",
+    "json",
+    "typing",
+    "model",
+    "resources",
+    "metrics"
+  ],
+  "engine_module": "engine.py",
+  "forbidden_oracle_imports": [],
+  "forbidden_policy_imports": [],
+  "limitation": "Static AST/import checks and runtime capability objects detect accidental/ordinary unauthorized access; arbitrary hostile Python requires OS/process isolation.",
+  "oracle_imports": [
+    "__future__",
+    "dataclasses",
+    "typing"
+  ],
+  "oracle_module": "oracle.py",
+  "pass": true,
+  "policy_checks": {
+    "pi_0_legacy": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'int'",
+      "single_observation_argument": true
+    },
+    "pi_M": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'int'",
+      "single_observation_argument": true
+    },
+    "pi_P": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'int'",
+      "single_observation_argument": true
+    },
+    "pi_fixed": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'int'",
+      "single_observation_argument": true
+    },
+    "pi_input": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'int'",
+      "single_observation_argument": true
+    },
+    "pi_none": {
+      "dangerous_calls": [],
+      "forbidden_names": [],
+      "pass": true,
+      "private_attribute_access": [],
+      "signature": "(obs: 'PolicyObservation') -> 'None'",
+      "single_observation_argument": true
+    }
+  },
+  "policy_field_whitelist": [
+    "public_input",
+    "read_task_memory() when granted",
+    "read_residual_payload() when granted"
+  ],
+  "policy_imports": [
+    "__future__",
+    "contextvars",
+    "dataclasses",
+    "typing"
+  ],
+  "policy_module": "policies.py",
+  "run_b_lite_has_evaluator_argument": false,
+  "run_b_lite_signature": "(arm: 'str' = 'R_int', dose_energy: 'int' = 3, *, causal_prod_read: 'bool' = False, load: 'int' = 1, disturbance: 'str' = 'omega_0', compute_readiness: 'bool' = True, task_memory: 'Optional[MemoryRecord]' = None, prod_memory: 'Optional[RepairRecord]' = None) -> 'BLiteRun'",
+  "scoring_boundary": "engine.py emits execution only; evaluation.py joins evaluator key and computes Y_correct after execution"
+}
