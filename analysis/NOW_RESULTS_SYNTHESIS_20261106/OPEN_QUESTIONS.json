@@ -407,7 +407,8 @@
         "R079",
         "R094",
         "R119",
-        "R120"
+        "R120",
+        "R128"
       ],
       "construct_ids": [
         "C005",
@@ -539,6 +540,41 @@
               "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION"
             }
           }
+        },
+        {
+          "date": "2026-11-10",
+          "reason": "Разработать R128 по полному отзыву; уточнение постановки без выполнения плана",
+          "snapshot": {
+            "records": [
+              "R064",
+              "R121",
+              "R122",
+              "R127",
+              "R066",
+              "R075",
+              "R079",
+              "R094",
+              "R119",
+              "R120"
+            ],
+            "planning": {
+              "path": "analysis/U010_PLANNING_20261110/PLAN.json",
+              "status": "DESIGN_PLAN_NOT_EXECUTABLE_PREREGISTRATION",
+              "origin_review": {
+                "path": "analysis/U010_PLANNING_20261110/START_PLAN_FROM_NOTHING.md",
+                "machine": "analysis/U010_PLANNING_20261110/START_PLAN_FROM_NOTHING.json",
+                "status": "PLAN_FOR_JOINT_REVIEW_NOT_EXECUTABLE",
+                "basis_commit": "b5d61e5708e7a155ac21ad13bf49184284b0a58c",
+                "execute_plan_authorized": false,
+                "origin_links": [
+                  "L01",
+                  "L02",
+                  "L09"
+                ],
+                "closure_not_claimed": true
+              }
+            }
+          }
         }
       ],
       "planning": {
@@ -556,6 +592,15 @@
             "L09"
           ],
           "closure_not_claimed": true
+        },
+        "r128_followup": {
+          "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
+          "machine": "analysis/R128_RHO_GENESIS_20261110/R128.json",
+          "status": "ANALYTICAL_CORRECTIONS_COUNTEREXAMPLES_AND_CANDIDATE_SPECIFICATION",
+          "focus": "P04/P05: формирование соответствия след→действие",
+          "next_joint_decision": "Выбрать физическую динамику Θ и основание K_O либо обосновать другой шаг по происхождению; новый запуск не назначен.",
+          "mechanism_accepted": false,
+          "execute_authorized": false
         }
       }
     }
@@ -678,6 +723,15 @@
       "action": "Published starting-plan review from nothing; no scientific execution",
       "question": "U010",
       "report": "analysis/U010_PLANNING_20261110/START_PLAN_FROM_NOTHING.md",
+      "new_runs": 0,
+      "scientific_status_promoted": false
+    },
+    {
+      "date": "2026-11-10",
+      "action": "R128_RHO_GENESIS_ANALYTICAL_REFINEMENT",
+      "question": "U010",
+      "record": "R128",
+      "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
       "new_runs": 0,
       "scientific_status_promoted": false
     }
@@ -1099,3 +1153,4 @@
     ]
   }
 }
+

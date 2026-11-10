@@ -1,0 +1,905 @@
+{
+  "id": "R128",
+  "version": "1.0",
+  "date": "2026-11-10",
+  "timezone": "Europe/Moscow",
+  "base_commit": "e0563290209423f3b20bf243c5565996f477c8fb",
+  "status": "ANALYTICAL_CORRECTIONS_COUNTEREXAMPLES_AND_CANDIDATE_SPECIFICATION",
+  "title": "Генезис ρ и организационное замыкание: предпосылки, причинные контроли и границы",
+  "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
+  "parent_result_ids": [
+    "R001",
+    "R044",
+    "R064",
+    "R075",
+    "R094",
+    "R096",
+    "R119",
+    "R120",
+    "R121",
+    "R122",
+    "R127"
+  ],
+  "construct_ids": [
+    "C001",
+    "C002",
+    "C005",
+    "C022",
+    "C030",
+    "C032",
+    "C033",
+    "C041"
+  ],
+  "open_link_ids": [
+    "L01",
+    "L02",
+    "L04",
+    "L06",
+    "L07",
+    "L09",
+    "L10"
+  ],
+  "open_question_ids": [
+    "U010"
+  ],
+  "boundary_reference_ids": [
+    "R066",
+    "R124",
+    "R125",
+    "R126"
+  ],
+  "authority": {
+    "task": "Изучи мнение соседей и разработай R128",
+    "publish_authorized": true,
+    "publication_confirmation": "Я подтверждаю разрешение на публикацию любых материалов из наших обсуждений в репозитории гитхаб.",
+    "execute_start_plan_authorized": false,
+    "new_mechanism_accepted": false
+  },
+  "result_scope": {
+    "analytical_arguments_provided": [
+      "K1_support_without_atrophy",
+      "K2_redundancy_masks_single_deletion",
+      "K3_finite_persistence_without_repair",
+      "K4_zero_flux_COT_false_positive",
+      "indistinguishable_histories_binary_bound"
+    ],
+    "novelty_claim": false,
+    "genesis_demonstrated": false,
+    "physical_closure_demonstrated": false,
+    "absolute_origin_demonstrated": false
+  },
+  "tracks": [
+    {
+      "id": "A",
+      "question": "Formation/use/maintenance/reproduction of rho_map",
+      "status": "CANDIDATE_SPECIFICATION"
+    },
+    {
+      "id": "B",
+      "question": "Origin of basis, distinctions, law, measure and now",
+      "status": "OPEN"
+    }
+  ],
+  "review": [
+    {
+      "id": "REV01",
+      "claim": "ρ2→ρ3 is the only A/B contact",
+      "decision": "REJECTED",
+      "basis": "Fundamental premises enter already at rho0; no statistical independence claim."
+    },
+    {
+      "id": "REV02",
+      "claim": "Physical rho cannot be a Python dictionary",
+      "decision": "REJECTED",
+      "basis": "Separate mathematical representation from physically interpreted, causally evolved state."
+    },
+    {
+      "id": "REV03",
+      "claim": "Sensitivity derivative requires memory and non-equilibrium",
+      "decision": "NARROWED",
+      "basis": "Discrete channels and direct sensitivity allowed; persistence required only for delayed-read claim."
+    },
+    {
+      "id": "REV04",
+      "claim": "Positive Delta V establishes selection",
+      "decision": "REJECTED",
+      "basis": "Functional contribution, formation and consequence-driven selection are independent claims."
+    },
+    {
+      "id": "REV05",
+      "claim": "Free support necessarily causes atrophy",
+      "decision": "REFUTED_BY_COUNTEREXAMPLE",
+      "basis": "K1"
+    },
+    {
+      "id": "REV06",
+      "claim": "No single-deletion effect implies no function",
+      "decision": "REFUTED_BY_COUNTEREXAMPLE",
+      "basis": "K2"
+    },
+    {
+      "id": "REV07",
+      "claim": "No repair plus persistence means nonphysical carrier",
+      "decision": "REFUTED_BY_COUNTEREXAMPLE",
+      "basis": "K3"
+    },
+    {
+      "id": "REV08",
+      "claim": "Nonnegative COT flux is sufficient",
+      "decision": "CORRECTED",
+      "basis": "K4; positive flux on enabled reactions."
+    },
+    {
+      "id": "REV09",
+      "claim": "Random mapping must lose",
+      "decision": "REJECTED",
+      "basis": "Functional equivalence, finite context and null contrasts remain possible."
+    },
+    {
+      "id": "REV10",
+      "claim": "Zero-cost read violates thermodynamics",
+      "decision": "REJECTED_AS_UNIVERSAL",
+      "basis": "S4; operation cost differs from full-cycle accounting."
+    },
+    {
+      "id": "REV11",
+      "claim": "U008 A0=0/108",
+      "decision": "CORRECTED_AGAINST_FIXED_REPOSITORY",
+      "basis": "A0=72; A1=16; A2=A3=0; A4=72 out of108."
+    },
+    {
+      "id": "REV12",
+      "claim": "A1-A7 are universal necessary requirements of any function",
+      "decision": "REJECTED",
+      "basis": "Match evidence to use, genesis, maintenance, repair or reproduction claim."
+    },
+    {
+      "id": "REV13",
+      "claim": "CC has a single notion of irreducibility",
+      "decision": "CLARIFIED",
+      "basis": "Overall and strict closure separately; timescale and physical dependence precede graph classification."
+    },
+    {
+      "id": "REV14",
+      "claim": "Generated and derived are alternatives for the same object",
+      "decision": "CLARIFIED",
+      "basis": "Physical provenance of entities and logical evidence of propositions tracked on separate axes."
+    },
+    {
+      "id": "REV15",
+      "claim": "Endogenous viability means criterion itself was generated",
+      "decision": "REJECTED",
+      "basis": "Evaluator may be external; it must not control the nominal dynamics. K origin remains explicit."
+    },
+    {
+      "id": "REV16",
+      "claim": "Causal contribution is universal necessity",
+      "decision": "NARROWED",
+      "basis": "Specify contexts, intervention class, threshold, redundancy and uncertainty."
+    },
+    {
+      "id": "REV17",
+      "claim": "Always require inheritance for rho genesis",
+      "decision": "REJECTED",
+      "basis": "Inheritance control applies to inherited capability, not every within-system genesis claim."
+    },
+    {
+      "id": "REV18",
+      "claim": "All proposed parents and all ten L must become direct lineage",
+      "decision": "NARROWED",
+      "basis": "Use actual dependency; boundary references remain references without status promotion."
+    }
+  ],
+  "model_rows": [
+    {
+      "id": "P00",
+      "component": "Пространство различий, закон L, время и мера",
+      "boundary": "world_model",
+      "origin": "GIVEN_IN_CONDITIONAL_MODELS",
+      "maintenance": "NOT_APPLICABLE",
+      "repair": "NOT_APPLICABLE",
+      "reproduction": "UNRESOLVED",
+      "evidence_domain": "DESIGN_ONLY",
+      "evidence_status": "OPEN_ORIGIN_QUESTION",
+      "claim": "Ни абсолютное ничто, ни происхождение основания не представлены исполнимой моделью.",
+      "debt": [
+        "state_space",
+        "law",
+        "measure",
+        "causal_order"
+      ],
+      "refs": [
+        "R001",
+        "R096",
+        "C001",
+        "C002",
+        "L01",
+        "L02",
+        "L09"
+      ],
+      "source": {
+        "path": "analysis/U010_PLANNING_20261110/START_PLAN_FROM_NOTHING.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "sections 1–4"
+      }
+    },
+    {
+      "id": "X01",
+      "component": "M: сохранённое содержание X27",
+      "boundary": "D_after_source_off",
+      "origin": "GIVEN_BY_TRUSTED_PREHISTORY",
+      "maintenance": "ACTIVE_MAINTENANCE_NOT_MODELED",
+      "repair": "NOT_ESTABLISHED",
+      "reproduction": "NEW_RECORD_GENERATION_OUT_OF_SCOPE",
+      "evidence_domain": "SOFTWARE_VALIDATION",
+      "evidence_status": "PREVIOUS_VALIDATION_ONLY",
+      "claim": "Чтение и provenance реализованы в модели; генерация C и физическое производство памяти не показаны.",
+      "debt": [
+        "C_preparation",
+        "carrier",
+        "reader"
+      ],
+      "refs": [
+        "R075",
+        "R119",
+        "R127",
+        "U010",
+        "L04"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/src/x27v051/engine.py",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "trusted_prehistory_events; run_b_lite"
+      }
+    },
+    {
+      "id": "X02",
+      "component": "Θ / rho_map: связывание чтения и команды",
+      "boundary": "D_executor",
+      "origin": "GIVEN_IN_ENGINE",
+      "maintenance": "NOT_MODELED",
+      "repair": "NOT_MODELED",
+      "reproduction": "NOT_MODELED",
+      "evidence_domain": "SOFTWARE_VALIDATION",
+      "evidence_status": "GENESIS_NOT_EVALUATED",
+      "claim": "chosen=instruction и target_health задают применение готового соответствия, не его формирование.",
+      "debt": [
+        "mapping_genesis",
+        "physical_transduction",
+        "adaptation_mechanism"
+      ],
+      "refs": [
+        "R075",
+        "R120",
+        "R127",
+        "U010",
+        "L04",
+        "L07"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/src/x27v051/engine.py",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "run_b_lite: chosen, target_health"
+      }
+    },
+    {
+      "id": "X03",
+      "component": "Аппарат, r0/r1 и health",
+      "boundary": "D_B_lite",
+      "origin": "GIVEN_REPAIR_MAP",
+      "maintenance": "FINITE_HEALTH_ACCOUNTING",
+      "repair": "STIPULATED_INTERNAL_OPERATION",
+      "reproduction": "PRODUCER_NOT_SIMULATED",
+      "evidence_domain": "SOFTWARE_VALIDATION",
+      "evidence_status": "MODEL_CONTRAST_ONLY",
+      "claim": "r0 даёт нулевой прирост здоровья; r1 различает high-load при заданных правилах. Материальное самопроизводство не установлено.",
+      "debt": [
+        "apparatus_origin",
+        "repair_physics"
+      ],
+      "refs": [
+        "R064",
+        "R121",
+        "R127",
+        "C030",
+        "C032",
+        "L06",
+        "U010"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/SCOPE_LIMITATIONS_v051.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "sections 3,4,8"
+      }
+    },
+    {
+      "id": "X04",
+      "component": "Настоящее отсутствие инструкции",
+      "boundary": "D_initial_state",
+      "origin": "DEFAULT_r0_SUBSTITUTED",
+      "maintenance": "NOT_APPLICABLE",
+      "repair": "NOT_APPLICABLE",
+      "reproduction": "NOT_APPLICABLE",
+      "evidence_domain": "SOFTWARE_VALIDATION",
+      "evidence_status": "SOURCE_INSPECTED_NOT_RUN",
+      "claim": "prod_memory=None подставляет r0; BState требует RepairRecord. ABSENT требует будущего изменения состояния/чтения.",
+      "debt": [
+        "absent_state",
+        "fallback_definition"
+      ],
+      "refs": [
+        "R127",
+        "U010",
+        "L04"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/src/x27v051/engine.py",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "_initial_b_state; corroboration model.py:BState"
+      }
+    },
+    {
+      "id": "X05",
+      "component": "Ресурсы и нулевая статья read",
+      "boundary": "D_after_source_off_vs_C_plus_D",
+      "origin": "GIVEN_COSTS_AND_STOCKS",
+      "maintenance": "REPLENISHMENT_NOT_MODELED",
+      "repair": "COSTED_MODEL_OPERATION",
+      "reproduction": "B_FULL_OUT_OF_SCOPE",
+      "evidence_domain": "SOFTWARE_VALIDATION",
+      "evidence_status": "DECLARED_ARITHMETIC",
+      "claim": "Пороги 3/4 условны; полная цена C неизвестна. Ноль в цене read не доказывает физическое нарушение или замыкание.",
+      "debt": [
+        "C_cost",
+        "thermodynamic_embedding",
+        "resource_source"
+      ],
+      "refs": [
+        "R064",
+        "R066",
+        "R125",
+        "R127",
+        "L06",
+        "L10"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/SCOPE_LIMITATIONS_v051.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "sections 5,8"
+      }
+    },
+    {
+      "id": "X06",
+      "component": "G0/H-Q и основной X27",
+      "boundary": "X27_v051_complete_kernel",
+      "origin": "PARTIAL_SPECIFICATION",
+      "maintenance": "NOT_APPLICABLE",
+      "repair": "NOT_APPLICABLE",
+      "reproduction": "NOT_APPLICABLE",
+      "evidence_domain": "DESIGN_ONLY",
+      "evidence_status": "NOT_EVALUATED",
+      "claim": "Полный адаптер и разбиения не вычислены; software validation не становится main run или CC.",
+      "debt": [
+        "complete_transition_adapter",
+        "question_specific_proof"
+      ],
+      "refs": [
+        "R127",
+        "U010",
+        "L10"
+      ],
+      "source": {
+        "path": "experiments/X27_PACKAGES_20261110/v051/SCOPE_LIMITATIONS_v051.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "sections 7,8"
+      }
+    },
+    {
+      "id": "U01",
+      "component": "Ремонт перед передачей U008",
+      "boundary": "declared_finite_fixture",
+      "origin": "GIVEN_CHANNEL_LAW_AND_INITIAL_ORGANIZATION",
+      "maintenance": "FINITE_TASK_ONLY",
+      "repair": "CAUSAL_EFFECT_WITHIN_DECLARED_CLASS",
+      "reproduction": "FULL_SUCCESSOR_CYCLE_NOT_ESTABLISHED",
+      "evidence_domain": "SIMULATION",
+      "evidence_status": "PREVIOUS_RESULT_NOT_RERUN",
+      "claim": "A0=72/108, A1=16/108, A2=A3=0/108, A4=72/108; 4/27 относится к A1−A2, не A1−A0.",
+      "debt": [
+        "initial_organization",
+        "measure",
+        "full_D_cycle"
+      ],
+      "refs": [
+        "R064",
+        "R121",
+        "R122",
+        "R127",
+        "U008",
+        "U010",
+        "L06",
+        "L07"
+      ],
+      "source": {
+        "path": "analysis/U008_NEIGHBOR_RECONCILIATION_20261109/REPORT.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "primary panels and interpretation"
+      }
+    },
+    {
+      "id": "U02",
+      "component": "D: запись, аппарат и настройка после forward U008",
+      "boundary": "D_successor",
+      "origin": "PREPARED_PORT_AND_PROGRAMMED_TRANSFER",
+      "maintenance": "NOT_ESTABLISHED",
+      "repair": "NOT_ESTABLISHED",
+      "reproduction": "NOT_IMPLEMENTED_FOR_FULL_D_CYCLE",
+      "evidence_domain": "SIMULATION",
+      "evidence_status": "PREVIOUS_CODE_REVIEW",
+      "claim": "Передача значения в World не формирует аппарат чтения/записи D; готовый порт не равен переданному или произведённому.",
+      "debt": [
+        "local_read",
+        "reader_origin",
+        "successor_production"
+      ],
+      "refs": [
+        "R075",
+        "R119",
+        "R121",
+        "R127",
+        "U010",
+        "L04",
+        "L06",
+        "L07"
+      ],
+      "source": {
+        "path": "analysis/U008_NEIGHBOR_RECONCILIATION_20261109/REPORT.md",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "decoded, forward, port D"
+      }
+    },
+    {
+      "id": "N01",
+      "component": "NOW: локальный ремонт и расписание",
+      "boundary": "NOW_LONG_da72a3a",
+      "origin": "GIVEN_ENGINE_AND_PREPARATION",
+      "maintenance": "FINITE_DECLARED_RUN",
+      "repair": "LOCAL_XOR_CHANGE",
+      "reproduction": "CONDITIONS_NOT_CLOSED",
+      "evidence_domain": "SIMULATION",
+      "evidence_status": "REGISTRY_RESULT_NOT_RERUN",
+      "claim": "3083 задачи; в 270/450 локальный XOR менялся без изменения продолжения: передача уже состоялась.",
+      "debt": [
+        "causal_timing",
+        "common_physical_kernel",
+        "initial_organization"
+      ],
+      "refs": [
+        "R127",
+        "L04",
+        "L06",
+        "L10"
+      ],
+      "source": {
+        "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "R127.result"
+      }
+    },
+    {
+      "id": "N02",
+      "component": "X26: загрузка и удержание",
+      "boundary": "X26_v03_declared_model",
+      "origin": "GIVEN_LAW_GEOMETRY_PREPARATION",
+      "maintenance": "CONDITIONAL_RETENTION",
+      "repair": "NOT_CLAIMED_HERE",
+      "reproduction": "NOT_ESTABLISHED",
+      "evidence_domain": "SIMULATION",
+      "evidence_status": "REGISTRY_RESULT_NOT_RERUN",
+      "claim": "249 задач относятся к отдельной условной модели; единого K с U008/NOW не получено.",
+      "debt": [
+        "source",
+        "apparatus",
+        "law",
+        "common_K"
+      ],
+      "refs": [
+        "R127",
+        "L01",
+        "L02",
+        "L06",
+        "L09",
+        "L10"
+      ],
+      "source": {
+        "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "R127.result and publication_followup_20261109"
+      }
+    },
+    {
+      "id": "A01",
+      "component": "ADD: явные операторы, K-сектора и геометрия",
+      "boundary": "declared_ADD_carrier",
+      "origin": "GIVEN_OPERATORS_AND_INITIAL_SECTOR",
+      "maintenance": "INVARIANTS_WITHIN_DECLARED_OPERATOR",
+      "repair": "NOT_CLAIMED",
+      "reproduction": "ORGANIZATIONAL_REPRODUCTION_NOT_ESTABLISHED",
+      "evidence_domain": "FORMAL",
+      "evidence_status": "REGISTRY_THEOREMS_NOT_REPROVED",
+      "claim": "Точные утверждения R126 о выбранных операторах сохраняются; рост, SSB, метрика и авторское соответствие не отождествляются.",
+      "debt": [
+        "physical_symmetry",
+        "metric",
+        "author_mapping"
+      ],
+      "refs": [
+        "R126",
+        "R127",
+        "U009",
+        "L08",
+        "L09",
+        "L10"
+      ],
+      "source": {
+        "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "R126, current_NOW_integration; OPEN_QUESTIONS.json:U009"
+      }
+    },
+    {
+      "id": "G01",
+      "component": "G8: метки, аппарат и геометрия",
+      "boundary": "G8_subcase",
+      "origin": "GIVEN_CONTACT_GEOMETRY_AND_A",
+      "maintenance": "MARK_STATE_WITHIN_MODEL",
+      "repair": "MARK_RESTORATION_WITHIN_MODEL",
+      "reproduction": "MARK_TRANSMISSION_NOT_FULL_APPARATUS",
+      "evidence_domain": "SIMULATION",
+      "evidence_status": "PRIOR_REPLICATION_NOT_REPEATED",
+      "claim": "R122 воспроизвёл заданный пилот; геометрия и A не воспроизводятся. Наличие следа не доказывает происхождение читателя.",
+      "debt": [
+        "geometry",
+        "A",
+        "complete_resource_balance"
+      ],
+      "refs": [
+        "R121",
+        "R122",
+        "C041",
+        "L04",
+        "L06",
+        "L07"
+      ],
+      "source": {
+        "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
+        "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
+        "locator": "R122.result and limit"
+      }
+    }
+  ],
+  "registry_crosswalk": {
+    "results": [
+      {
+        "id": "R001",
+        "title": "Граница первичной флуктуации",
+        "status": "ОТКРЫТО"
+      },
+      {
+        "id": "R044",
+        "title": "Замыкание ограничений — физическая задача, а не имя δL",
+        "status": "ПОСТАНОВКА С ОГРАНИЧЕНИЯМИ"
+      },
+      {
+        "id": "R064",
+        "title": "Цикл ремонта требует доказанного последнего звена",
+        "status": "АНАЛИТИКА"
+      },
+      {
+        "id": "R075",
+        "title": "Запись теми же взаимодействиями, что исполнение",
+        "status": "ОТКРЫТЫЙ МОСТ"
+      },
+      {
+        "id": "R094",
+        "title": "Завершение инициатора не тождественно прекращению организованного процесса",
+        "status": "СИНТЕЗ ПРЕЖНИХ ОПОР"
+      },
+      {
+        "id": "R096",
+        "title": "Возникновение на допустимой внутренней стадии с самосогласованным причинным прошлым",
+        "status": "РАБОЧАЯ ГИПОТЕЗА ПО ПРЯМОМУ УКАЗАНИЮ ПОЛЬЗОВАТЕЛЯ"
+      },
+      {
+        "id": "R119",
+        "title": "Посредник: формирование отношений, запись и завершение взаимодействия",
+        "status": "ВОССТАНОВЛЕННАЯ СВЯЗЬ ВЕТОК / ОГРАНИЧЕНИЯ ПОСТАНОВКИ"
+      },
+      {
+        "id": "R120",
+        "title": "Профиль продолжения: исправления эквивалентности, причинной проверки и передачи",
+        "status": "АНАЛИТИЧЕСКИЙ АУДИТ / КАНДИДАТ СПЕЦИФИКАЦИИ"
+      },
+      {
+        "id": "R121",
+        "title": "Наследуемая организация: последовательность, состояние, геометрия и аппарат воспроизведения",
+        "status": "ПРИМЕНЁННЫЕ ЛИТЕРАТУРНЫЕ РЕЗУЛЬТАТЫ / УТОЧНЕНИЕ НАШЕЙ ЗАДАЧИ"
+      },
+      {
+        "id": "R122",
+        "title": "G8: метки, пространственный шаблон и восполнение ферментов",
+        "status": "ПРЕДОСТАВЛЕННЫЙ ПИЛОТ ВОСПРОИЗВЕДЁН / ГРАНИЦЫ ИНТЕРПРЕТАЦИИ УТОЧНЕНЫ"
+      },
+      {
+        "id": "R127",
+        "title": "Четыре кандидата: исполнимый патч прежнего NOW",
+        "status": "ПОЛНЫЙ NOW И ПОСЛЕДУЮЩИЕ U001/U008/X26 ОПУБЛИКОВАНЫ; УСЛОВНЫЕ РЕЗУЛЬТАТЫ БЕЗ ЗАМЫКАНИЯ L01–L10"
+      }
+    ],
+    "constructs": [
+      {
+        "id": "C001",
+        "title": "Абсолютное «ничего» и вероятностное основание",
+        "status": "Исходная цель"
+      },
+      {
+        "id": "C002",
+        "title": "«Причинность 2»: целое «сейчас»",
+        "status": "Рабочая рамка"
+      },
+      {
+        "id": "C005",
+        "title": "Пуск → организация → продолжение",
+        "status": "Частично подкреплённый сценарий"
+      },
+      {
+        "id": "C022",
+        "title": "Биология и замыкание поддерживающих ограничений",
+        "status": "Опорная структура"
+      },
+      {
+        "id": "C030",
+        "title": "M4, ремонт доступа, перезарядка и ресурс повторения",
+        "status": "Условные внутренние механизмы"
+      },
+      {
+        "id": "C032",
+        "title": "Токены, V1/V2/A и семенные циклы",
+        "status": "Условные семантики исполнения"
+      },
+      {
+        "id": "C033",
+        "title": "Выходные истории и запись действием",
+        "status": "Аналитика и незакрытый механизм"
+      },
+      {
+        "id": "C041",
+        "title": "Профиль продолжения и физическая передача организации",
+        "status": "Кандидат спецификации после критического аудита; не принятая физическая архитектура"
+      }
+    ],
+    "open_links": [
+      {
+        "id": "L01",
+        "title": "Основание → различие и мера",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L02",
+        "title": "Возникновение → организованное «сейчас»",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L03",
+        "title": "Возможная операция → наличный носитель",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "context_only"
+      },
+      {
+        "id": "L04",
+        "title": "Исполнение → запись → дальнейшее действие",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L05",
+        "title": "Посредник → многочастичная организация",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "context_only"
+      },
+      {
+        "id": "L06",
+        "title": "Возврат функции → воспроизводство условий",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L07",
+        "title": "Инвариант отклика → сохраняемая способность продолжения и генетическая преемственность",
+        "status": "ОТКРЫТО; R120 уточняет постановку; C041 — кандидат; исполняемый физический протокол ещё не выбран",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L08",
+        "title": "Корректирующая роль → направленность и самопрезентация",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "context_only"
+      },
+      {
+        "id": "L09",
+        "title": "Организация → физическое пространство-время",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      },
+      {
+        "id": "L10",
+        "title": "Локальные результаты → одна сквозная реализация",
+        "status": "ОТКРЫТО; не назначенный запуск",
+        "role": "direct_R128_question"
+      }
+    ],
+    "questions": [
+      {
+        "id": "U001",
+        "title": "Почему растущий ADD теряет треть безусловного успеха?",
+        "status": "RESOLVED"
+      },
+      {
+        "id": "U002",
+        "title": "Какая способность продолжения различает роль входных корреляций?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U003",
+        "title": "Как перейти от подготовленных геометрий к обоснованной совместной мере?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U004",
+        "title": "Как именно C3-D действует на наш носитель и полезную нагрузку?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U005",
+        "title": "Как организация влияет обратно на изменение носителя?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U006",
+        "title": "Откуда берутся причинная и метрическая структуры?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U007",
+        "title": "Как физически обратить весь процесс вместе с аппаратом и средой?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U008",
+        "title": "Обеспечивает ли восстановление следующую передачу?",
+        "status": "ANSWERED_WITHIN_DECLARED_CLASS"
+      },
+      {
+        "id": "U009",
+        "title": "Является ли пробуждение ADD спонтанным нарушением симметрии?",
+        "status": "OPEN"
+      },
+      {
+        "id": "U010",
+        "title": "Как передать следующему носителю способность воспроизводить условия дальнейшего действия?",
+        "status": "OPEN"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "analysis/R128_RHO_GENESIS_20261110/sources/NEIGHBOR_DISCUSSION.txt",
+      "uploaded_name": "Вставленный текст(20261110-172634).txt",
+      "sha256": "61d9c4eedd708d6c5c1a05c552a6ede401a5c4aedeb22c61744052c815e9ceac",
+      "bytes": 26976,
+      "lines": 175,
+      "logical_splitlines": 211
+    },
+    {
+      "path": "analysis/R128_RHO_GENESIS_20261110/sources/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.original.md",
+      "uploaded_name": "RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
+      "sha256": "160707a16de82ecf00287a31cbf59e3af4e35c4d655aa5269fc7cb8686b61d13",
+      "bytes": 16807,
+      "lines": 156,
+      "logical_splitlines": 156
+    },
+    {
+      "path": "analysis/R128_RHO_GENESIS_20261110/sources/PREREQUISITE_MATRIX.original.md",
+      "uploaded_name": "PREREQUISITE_MATRIX.md",
+      "sha256": "404aa1430d89d3ba263e1b1cc93b01e102ccf7bef716d296117ab0c49733d2b9",
+      "bytes": 57725,
+      "lines": 478,
+      "logical_splitlines": 478
+    }
+  ],
+  "external_sources": [
+    {
+      "id": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4428007/",
+      "read_scope": "Background definitions CRS, RAF, food set",
+      "purpose": "RAF distinct from COT/CC"
+    },
+    {
+      "id": "S2",
+      "url": "https://users.fmi.uni-jena.de/~dittrich/p/DS2007.pdf",
+      "additional_primary_url": "https://academic.oup.com/bioinformatics/article/25/15/1915/212126",
+      "read_scope": "closed/self-maintaining definitions; explicit positive enabled flux in second primary paper §2.1",
+      "purpose": "exclude vacuous v=0"
+    },
+    {
+      "id": "S3",
+      "url": "https://montevil.org/publications/articles/2015-mm-organisation-closure-constraints/",
+      "read_scope": "abstract and Definition4",
+      "purpose": "overall vs strict closure and temporal scale"
+    },
+    {
+      "id": "S4",
+      "url": "https://cat.phys.s.u-tokyo.ac.jp/~ueda/SagawaPRL102.pdf",
+      "read_scope": "setup, inequalities2–4 and zero-work measurement discussion",
+      "purpose": "operation-vs-cycle accounting; no universal positive read cost"
+    },
+    {
+      "id": "S5",
+      "url": "https://artemyk.github.io/assets/pdf/papers/Kolchinsky_Wolpert_2018_Semantic%20information,%20autonomous%20agency%20and%20non-equilibrium%20statistical%20physics.pdf",
+      "read_scope": "section4 and opening section5",
+      "purpose": "viability choice and information intervention; not origin proof"
+    }
+  ],
+  "proposal": {
+    "focus": "P04/P05: formation of trace-action alignment",
+    "substrate": null,
+    "law": null,
+    "measure": null,
+    "viability_set": null,
+    "case_count": null,
+    "forecast_seconds": null,
+    "launcher": null,
+    "comparisons": [
+      "record_use",
+      "mapping_formation_active_vs_frozen",
+      "maintenance_path_ablation_with_rescue"
+    ],
+    "fixed_positive_results_required": false,
+    "preconditions": [
+      "physically_distinguishable_contexts",
+      "independent_correctness",
+      "explicit_initial_organization",
+      "admissible_interventions"
+    ]
+  },
+  "execution": {
+    "new_scientific_runs": 0,
+    "vm_jobs": 0,
+    "scientific_code_changes": false,
+    "scientific_tests": false,
+    "calibration": false,
+    "empirical_replication": false,
+    "documentation_validation": true
+  },
+  "status_preservation": {
+    "old_result_scientific_fields_unchanged": true,
+    "old_construct_statuses_unchanged": true,
+    "all_L_statuses_unchanged": true,
+    "U001": "RESOLVED",
+    "U008": "ANSWERED_WITHIN_DECLARED_CLASS",
+    "U010": "OPEN"
+  },
+  "validation": {
+    "input_ids_checked": true,
+    "exception_mentions": [
+      {
+        "id": "C043",
+        "reason": "Only explicitly mentioned as NOT created; not a registered reference"
+      }
+    ],
+    "source_verification": "Pinned files and registry entries, not a re-audit of every historic raw outcome",
+    "zero_new_runtime_claim": true
+  }
+}
