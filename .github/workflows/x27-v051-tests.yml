@@ -1,0 +1,40 @@
+name: X27 v0.5.1 reference-model checks
+
+on:
+  push:
+    paths:
+      - 'experiments/x27_u010_v03_v051/**'
+      - '.github/workflows/x27-v051-tests.yml'
+  pull_request:
+    paths:
+      - 'experiments/x27_u010_v03_v051/**'
+      - '.github/workflows/x27-v051-tests.yml'
+
+jobs:
+  v051-reference-model:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: experiments/x27_u010_v03_v051
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile source and tests
+        run: python -m compileall -q src tests
+      - name: Run tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Run exact software smoke
+        env:
+          PYTHONPATH: src
+        run: python -m x27v051.cli smoke --output validation-ci
+      - name: Upload generated diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: x27-v051-validation-${{ github.run_id }}
+          path: experiments/x27_u010_v03_v051/validation-ci/
+          if-no-files-found: ignore
