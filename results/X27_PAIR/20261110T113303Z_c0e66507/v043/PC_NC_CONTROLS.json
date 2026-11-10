@@ -1,0 +1,1000 @@
+{
+  "H_Q_synthetic": {
+    "PC8_classes": 4,
+    "PC8_nonaggregability_detected": true,
+    "PC9_aggregability_confirmed": true,
+    "PC9_classes": 2
+  },
+  "NC13_nested_mutations": {
+    "apparatus.apparatus_id": true,
+    "apparatus.creator_id": true,
+    "prod_memory.creator_id": true,
+    "prod_memory.record_id": true,
+    "prod_memory.version": true,
+    "residual_payload.creator_id": true,
+    "residual_payload.record_id": true,
+    "residual_payload.version": true,
+    "task_memory.creator_id": true,
+    "task_memory.record_id": true,
+    "task_memory.version": true
+  },
+  "negative_controls": {
+    "NC10_readiness_side_channel_detected": "PASS",
+    "NC11_order_independence": "PASS",
+    "NC12_all_stress_scenarios_executed": "PASS",
+    "NC13_nested_state_mutations_detected": "PASS",
+    "NC14_task_memory_integrity_error_distinct_from_missing_read": "PASS",
+    "NC1_missing_main_memory_read": "PASS",
+    "NC2_inventory_without_use": "PASS",
+    "NC3_hidden_payload_copy_absent": "PASS",
+    "NC4_degenerate_estimator_not_evaluable": "PASS",
+    "NC5_shared_cells_not_independent_replicates": "PASS",
+    "NC6_full_profile_detects_scalar_alias": "PASS",
+    "NC7_corrupt_checksum_rejected": "PASS",
+    "NC8_uncalibrated_substitute_not_evaluable": "PASS",
+    "NC9_external_donor_not_internal_restore": "PASS"
+  },
+  "positive_controls": {
+    "PC1_main_memory_causality_and_no_payload_bypass": "PASS",
+    "PC2_payload_bypass_detected": "PASS",
+    "PC3_apparatus_class_necessity": "PASS",
+    "PC4_token_specificity_positive_control": "PASS",
+    "PC5_memory_apparatus_interaction": "PASS",
+    "PC6_internal_restore_without_M_prod_causality": "PASS",
+    "PC7_causal_production_memory_restore": "PASS",
+    "PC8_nonaggregability_detected": "PASS",
+    "PC9_aggregability_confirmed": "PASS"
+  },
+  "r1_control": {
+    "R_post2": {
+      "E": 0,
+      "M": 1,
+      "U": 0,
+      "W": 3
+    },
+    "T_finish2": 7,
+    "V_nom": true,
+    "V_rob": false,
+    "Y_status2": "SUCCESS",
+    "Y_task2": true,
+    "applied_disturbance": "omega_0",
+    "arm": "R_int",
+    "events": [
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task"
+        },
+        "event_type": "C_write_event_exogenous",
+        "stage": -5,
+        "time": -5
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task"
+        },
+        "event_type": "C_memory_transfer_event_exogenous",
+        "stage": -2,
+        "time": -2
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task"
+        },
+        "event_type": "C_payload_write_event_exogenous",
+        "stage": -4,
+        "time": -4
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_task"
+        },
+        "event_type": "C_payload_transfer_event_exogenous",
+        "stage": -2,
+        "time": -2
+      },
+      {
+        "details": {
+          "creator_id": "C",
+          "record_id": "M_prod"
+        },
+        "event_type": "C_prod_instruction_write_event_exogenous",
+        "stage": -4,
+        "time": -4
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_produce_event_exogenous",
+        "stage": -4,
+        "time": -4
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C"
+        },
+        "event_type": "C_apparatus_transfer_event_exogenous",
+        "stage": -2,
+        "time": -2
+      },
+      {
+        "details": {
+          "apparatus_present": true,
+          "apparatus_provenance": "C_PRODUCED_AND_TRANSFERRED",
+          "holder": "D",
+          "production_and_transfer_simulated": false
+        },
+        "event_type": "D_receive_event_exogenous",
+        "stage": -1,
+        "time": -1
+      },
+      {
+        "details": {
+          "boundary": "D_autonomous_start",
+          "source": "C",
+          "source_off": true
+        },
+        "event_type": "source_off_event",
+        "stage": 0,
+        "time": 0
+      },
+      {
+        "details": {
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": 1,
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 1,
+        "time": 1
+      },
+      {
+        "details": {
+          "operand": 0,
+          "task": 1
+        },
+        "event_type": "action_operand_bound",
+        "stage": 1,
+        "time": 1
+      },
+      {
+        "details": {
+          "after_E": 2,
+          "after_M": 2,
+          "after_U": 0,
+          "after_W": 1,
+          "before_E": 3,
+          "before_M": 2,
+          "before_U": 0,
+          "before_W": 0,
+          "byproduct_E": 0,
+          "byproduct_M": 0,
+          "byproduct_U": 0,
+          "byproduct_W": 1,
+          "cost_E": 1,
+          "cost_M": 0,
+          "cost_U": 0,
+          "cost_W": 0,
+          "inflow_E": 0,
+          "inflow_M": 0,
+          "inflow_U": 0,
+          "inflow_W": 0,
+          "operation": "TASK_1",
+          "operation_status": "APPLIED",
+          "spill_byproduct_E": 0,
+          "spill_byproduct_M": 0,
+          "spill_byproduct_U": 0,
+          "spill_byproduct_W": 0,
+          "spill_inflow_E": 0,
+          "spill_inflow_M": 0,
+          "spill_inflow_U": 0,
+          "spill_inflow_W": 0
+        },
+        "event_type": "resource_operation_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {
+          "action_operand": 0,
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C",
+          "generation": 1,
+          "port_id": "port-main",
+          "resource_batch": "batch-C-001",
+          "task": 1
+        },
+        "event_type": "apparatus_use_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {
+          "action_operand": 0,
+          "task": 1
+        },
+        "event_type": "action_event",
+        "stage": 2,
+        "time": 2
+      },
+      {
+        "details": {
+          "after_E": 1,
+          "after_M": 1,
+          "after_U": 0,
+          "after_W": 2,
+          "before_E": 2,
+          "before_M": 2,
+          "before_U": 0,
+          "before_W": 1,
+          "byproduct_E": 0,
+          "byproduct_M": 0,
+          "byproduct_U": 0,
+          "byproduct_W": 1,
+          "cost_E": 1,
+          "cost_M": 1,
+          "cost_U": 0,
+          "cost_W": 0,
+          "inflow_E": 0,
+          "inflow_M": 0,
+          "inflow_U": 0,
+          "inflow_W": 0,
+          "operation": "REPAIR_r0",
+          "operation_status": "APPLIED",
+          "spill_byproduct_E": 0,
+          "spill_byproduct_M": 0,
+          "spill_byproduct_U": 0,
+          "spill_byproduct_W": 0,
+          "spill_inflow_E": 0,
+          "spill_inflow_M": 0,
+          "spill_inflow_U": 0,
+          "spill_inflow_W": 0
+        },
+        "event_type": "resource_operation_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "instruction": "r0",
+          "read_source": "frozen_protocol"
+        },
+        "event_type": "repair_action",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "apparatus_id": "apparatus-C-001",
+          "instruction": "r0",
+          "port_id": "port-main"
+        },
+        "event_type": "apparatus_repaired_event",
+        "stage": 3,
+        "time": 3
+      },
+      {
+        "details": {
+          "time_before_task2": 4
+        },
+        "event_type": "readiness_checkpoint",
+        "stage": 4,
+        "time": 4
+      },
+      {
+        "details": {
+          "record_id": "M_task",
+          "returned_value": 0,
+          "source": "M_task",
+          "task": 2,
+          "version": 1
+        },
+        "event_type": "read_event",
+        "stage": 5,
+        "time": 5
+      },
+      {
+        "details": {
+          "operand": 0,
+          "task": 2
+        },
+        "event_type": "action_operand_bound",
+        "stage": 5,
+        "time": 5
+      },
+      {
+        "details": {
+          "after_E": 0,
+          "after_M": 1,
+          "after_U": 0,
+          "after_W": 3,
+          "before_E": 1,
+          "before_M": 1,
+          "before_U": 0,
+          "before_W": 2,
+          "byproduct_E": 0,
+          "byproduct_M": 0,
+          "byproduct_U": 0,
+          "byproduct_W": 1,
+          "cost_E": 1,
+          "cost_M": 0,
+          "cost_U": 0,
+          "cost_W": 0,
+          "inflow_E": 0,
+          "inflow_M": 0,
+          "inflow_U": 0,
+          "inflow_W": 0,
+          "operation": "TASK_2",
+          "operation_status": "APPLIED",
+          "spill_byproduct_E": 0,
+          "spill_byproduct_M": 0,
+          "spill_byproduct_U": 0,
+          "spill_byproduct_W": 0,
+          "spill_inflow_E": 0,
+          "spill_inflow_M": 0,
+          "spill_inflow_U": 0,
+          "spill_inflow_W": 0
+        },
+        "event_type": "resource_operation_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "action_operand": 0,
+          "apparatus_id": "apparatus-C-001",
+          "creator_id": "C",
+          "generation": 1,
+          "port_id": "port-main",
+          "resource_batch": "batch-C-001",
+          "task": 2
+        },
+        "event_type": "apparatus_use_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "action_operand": 0,
+          "task": 2
+        },
+        "event_type": "action_event",
+        "stage": 6,
+        "time": 6
+      },
+      {
+        "details": {
+          "status": "SUCCESS"
+        },
+        "event_type": "task2_terminal_event",
+        "stage": 7,
+        "time": 7
+      }
+    ],
+    "external_donor_used": false,
+    "internal_restore_used": true,
+    "readiness": {
+      "V_nom": true,
+      "V_rob": false,
+      "order_independent": true,
+      "purity_pass": true,
+      "scenario_results": [
+        {
+          "disturbance": "omega_0",
+          "events": [
+            {
+              "details": {
+                "time_before_task2": 4
+              },
+              "event_type": "readiness_checkpoint",
+              "stage": 4,
+              "time": 4
+            },
+            {
+              "details": {
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": 2,
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "task": 2
+              },
+              "event_type": "action_operand_bound",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "after_E": 0,
+                "after_M": 1,
+                "after_U": 0,
+                "after_W": 3,
+                "before_E": 1,
+                "before_M": 1,
+                "before_U": 0,
+                "before_W": 2,
+                "byproduct_E": 0,
+                "byproduct_M": 0,
+                "byproduct_U": 0,
+                "byproduct_W": 1,
+                "cost_E": 1,
+                "cost_M": 0,
+                "cost_U": 0,
+                "cost_W": 0,
+                "inflow_E": 0,
+                "inflow_M": 0,
+                "inflow_U": 0,
+                "inflow_W": 0,
+                "operation": "TASK_2",
+                "operation_status": "APPLIED",
+                "spill_byproduct_E": 0,
+                "spill_byproduct_M": 0,
+                "spill_byproduct_U": 0,
+                "spill_byproduct_W": 0,
+                "spill_inflow_E": 0,
+                "spill_inflow_M": 0,
+                "spill_inflow_U": 0,
+                "spill_inflow_W": 0
+              },
+              "event_type": "resource_operation_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "apparatus_id": "apparatus-C-001",
+                "creator_id": "C",
+                "generation": 1,
+                "port_id": "port-main",
+                "resource_batch": "batch-C-001",
+                "task": 2
+              },
+              "event_type": "apparatus_use_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "task": 2
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "task2_terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "resources_final": {
+            "E": 0,
+            "M": 1,
+            "U": 0,
+            "W": 3
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "disturbance": "omega_delay",
+          "events": [
+            {
+              "details": {
+                "time_before_task2": 4
+              },
+              "event_type": "readiness_checkpoint",
+              "stage": 4,
+              "time": 4
+            },
+            {
+              "details": {
+                "delay_steps": 1,
+                "disturbance": "omega_delay"
+              },
+              "event_type": "disturbance_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "delay_steps": 1
+              },
+              "event_type": "delay_start_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "delay_steps": 1
+              },
+              "event_type": "delay_end_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": 2,
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "operand": 0,
+                "task": 2
+              },
+              "event_type": "action_operand_bound",
+              "stage": 5,
+              "time": 6
+            },
+            {
+              "details": {
+                "after_E": 0,
+                "after_M": 1,
+                "after_U": 0,
+                "after_W": 3,
+                "before_E": 1,
+                "before_M": 1,
+                "before_U": 0,
+                "before_W": 2,
+                "byproduct_E": 0,
+                "byproduct_M": 0,
+                "byproduct_U": 0,
+                "byproduct_W": 1,
+                "cost_E": 1,
+                "cost_M": 0,
+                "cost_U": 0,
+                "cost_W": 0,
+                "inflow_E": 0,
+                "inflow_M": 0,
+                "inflow_U": 0,
+                "inflow_W": 0,
+                "operation": "TASK_2",
+                "operation_status": "APPLIED",
+                "spill_byproduct_E": 0,
+                "spill_byproduct_M": 0,
+                "spill_byproduct_U": 0,
+                "spill_byproduct_W": 0,
+                "spill_inflow_E": 0,
+                "spill_inflow_M": 0,
+                "spill_inflow_U": 0,
+                "spill_inflow_W": 0
+              },
+              "event_type": "resource_operation_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "apparatus_id": "apparatus-C-001",
+                "creator_id": "C",
+                "generation": 1,
+                "port_id": "port-main",
+                "resource_batch": "batch-C-001",
+                "task": 2
+              },
+              "event_type": "apparatus_use_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "task": 2
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 7
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "task2_terminal_event",
+              "stage": 7,
+              "time": 8
+            }
+          ],
+          "finish_time": 8,
+          "resources_final": {
+            "E": 0,
+            "M": 1,
+            "U": 0,
+            "W": 3
+          },
+          "status": "SUCCESS",
+          "success": true
+        },
+        {
+          "disturbance": "omega_loss_E",
+          "events": [
+            {
+              "details": {
+                "time_before_task2": 4
+              },
+              "event_type": "readiness_checkpoint",
+              "stage": 4,
+              "time": 4
+            },
+            {
+              "details": {
+                "applied": true,
+                "component": "E",
+                "disturbance": "omega_loss_E"
+              },
+              "event_type": "disturbance_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "after_E": 0,
+                "after_M": 1,
+                "after_U": 0,
+                "after_W": 2,
+                "amount": 1,
+                "applied": true,
+                "before_E": 1,
+                "before_M": 1,
+                "before_U": 0,
+                "before_W": 2,
+                "component": "E"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": 2,
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "task": 2
+              },
+              "event_type": "action_operand_bound",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "after_E": 0,
+                "after_M": 1,
+                "after_U": 0,
+                "after_W": 2,
+                "before_E": 0,
+                "before_M": 1,
+                "before_U": 0,
+                "before_W": 2,
+                "byproduct_E": 0,
+                "byproduct_M": 0,
+                "byproduct_U": 0,
+                "byproduct_W": 1,
+                "cost_E": 1,
+                "cost_M": 0,
+                "cost_U": 0,
+                "cost_W": 0,
+                "inflow_E": 0,
+                "inflow_M": 0,
+                "inflow_U": 0,
+                "inflow_W": 0,
+                "operation": "TASK_2",
+                "operation_status": "RESOURCE_EXHAUSTED",
+                "spill_byproduct_E": 0,
+                "spill_byproduct_M": 0,
+                "spill_byproduct_U": 0,
+                "spill_byproduct_W": 0,
+                "spill_inflow_E": 0,
+                "spill_inflow_M": 0,
+                "spill_inflow_U": 0,
+                "spill_inflow_W": 0
+              },
+              "event_type": "resource_operation_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "RESOURCE_EXHAUSTED",
+                "task": 2
+              },
+              "event_type": "task_action_rejected",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "RESOURCE_EXHAUSTED"
+              },
+              "event_type": "task2_terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "resources_final": {
+            "E": 0,
+            "M": 1,
+            "U": 0,
+            "W": 2
+          },
+          "status": "RESOURCE_EXHAUSTED",
+          "success": false
+        },
+        {
+          "disturbance": "omega_loss_M",
+          "events": [
+            {
+              "details": {
+                "time_before_task2": 4
+              },
+              "event_type": "readiness_checkpoint",
+              "stage": 4,
+              "time": 4
+            },
+            {
+              "details": {
+                "applied": true,
+                "component": "M",
+                "disturbance": "omega_loss_M"
+              },
+              "event_type": "disturbance_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "after_E": 1,
+                "after_M": 0,
+                "after_U": 0,
+                "after_W": 2,
+                "amount": 1,
+                "applied": true,
+                "before_E": 1,
+                "before_M": 1,
+                "before_U": 0,
+                "before_W": 2,
+                "component": "M"
+              },
+              "event_type": "resource_loss_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "record_id": "M_task",
+                "returned_value": 0,
+                "source": "M_task",
+                "task": 2,
+                "version": 1
+              },
+              "event_type": "read_event",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "operand": 0,
+                "task": 2
+              },
+              "event_type": "action_operand_bound",
+              "stage": 5,
+              "time": 5
+            },
+            {
+              "details": {
+                "after_E": 0,
+                "after_M": 0,
+                "after_U": 0,
+                "after_W": 3,
+                "before_E": 1,
+                "before_M": 0,
+                "before_U": 0,
+                "before_W": 2,
+                "byproduct_E": 0,
+                "byproduct_M": 0,
+                "byproduct_U": 0,
+                "byproduct_W": 1,
+                "cost_E": 1,
+                "cost_M": 0,
+                "cost_U": 0,
+                "cost_W": 0,
+                "inflow_E": 0,
+                "inflow_M": 0,
+                "inflow_U": 0,
+                "inflow_W": 0,
+                "operation": "TASK_2",
+                "operation_status": "APPLIED",
+                "spill_byproduct_E": 0,
+                "spill_byproduct_M": 0,
+                "spill_byproduct_U": 0,
+                "spill_byproduct_W": 0,
+                "spill_inflow_E": 0,
+                "spill_inflow_M": 0,
+                "spill_inflow_U": 0,
+                "spill_inflow_W": 0
+              },
+              "event_type": "resource_operation_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "apparatus_id": "apparatus-C-001",
+                "creator_id": "C",
+                "generation": 1,
+                "port_id": "port-main",
+                "resource_batch": "batch-C-001",
+                "task": 2
+              },
+              "event_type": "apparatus_use_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "action_operand": 0,
+                "task": 2
+              },
+              "event_type": "action_event",
+              "stage": 6,
+              "time": 6
+            },
+            {
+              "details": {
+                "status": "SUCCESS"
+              },
+              "event_type": "task2_terminal_event",
+              "stage": 7,
+              "time": 7
+            }
+          ],
+          "finish_time": 7,
+          "resources_final": {
+            "E": 0,
+            "M": 0,
+            "U": 0,
+            "W": 3
+          },
+          "status": "SUCCESS",
+          "success": true
+        }
+      ],
+      "state_hash_after": "39bf163dd6fa53435acbfb56369236e69b82fd43154bc32439057d6bd92afd73",
+      "state_hash_before": "39bf163dd6fa53435acbfb56369236e69b82fd43154bc32439057d6bd92afd73"
+    }
+  },
+  "r2_contrast": {
+    "M_prod_read_trace": true,
+    "TV_estimator_matches_independent_sum": true,
+    "TV_full_joint_profile": "1",
+    "TV_independent_direct_sum": "1",
+    "delta_U": 1,
+    "differing_profile_fields": [
+      "R_final"
+    ],
+    "differing_resource_components": [
+      "U"
+    ],
+    "functional_outcome_difference_detected": false,
+    "profile_fields": [
+      "Y_function_T1",
+      "Y_status_T1",
+      "Y_function_T2",
+      "Y_status_T2",
+      "T_finish",
+      "R_final",
+      "apparatus_final",
+      "readiness"
+    ],
+    "profile_r0": [
+      0,
+      "SUCCESS",
+      0,
+      "SUCCESS",
+      7,
+      [
+        0,
+        1,
+        3,
+        0
+      ],
+      [
+        "original",
+        "working",
+        true
+      ],
+      [
+        true,
+        false
+      ]
+    ],
+    "profile_r1": [
+      0,
+      "SUCCESS",
+      0,
+      "SUCCESS",
+      7,
+      [
+        0,
+        1,
+        3,
+        1
+      ],
+      [
+        "original",
+        "working",
+        true
+      ],
+      [
+        true,
+        false
+      ]
+    ],
+    "r0_final_resources": {
+      "E": 0,
+      "M": 1,
+      "U": 0,
+      "W": 3
+    },
+    "r0_task2_success": true,
+    "r1_final_resources": {
+      "E": 0,
+      "M": 1,
+      "U": 1,
+      "W": 3
+    },
+    "r1_task2_success": true
+  },
+  "readiness_purity_guard": {
+    "after": "ab9c234b993fb5e017b5eb8a8e7ccf159a6a1bfde884c1de76bdc31c7c437625",
+    "before": "44f167cb48737fd8d4be3099d88b44ad6db99e5192bb299b9981c464cc4ed88e",
+    "status": "RUN_INVALID_SIDE_CHANNEL_LEAK"
+  },
+  "summary": {
+    "all_pass": true,
+    "nc_pass": 14,
+    "nc_total": 14,
+    "pc_pass": 9,
+    "pc_total": 9
+  }
+}
