@@ -1,0 +1,26 @@
+{
+  "artifact": "X27_ENERGY_DOSE_GRID",
+  "version": "0.5.1-draft",
+  "resource_order": ["E", "M", "W", "U"],
+  "component_capacity": [4, 3, 3, 3],
+  "initial_stock_function": "R_D^(0)(E)=(E,2,0,0)",
+  "energy_dose_grid": [1, 2, 3, 4],
+  "stress_scenarios": ["omega_delay", "omega_loss_E", "omega_loss_M"],
+  "nominal_scenario": "omega_0",
+  "operation_costs_and_byproducts": {
+    "read_task1": {"cost": [0,0,0,0], "byproduct": [0,0,0,0]},
+    "read_task2": {"cost": [0,0,0,0], "byproduct": [0,0,0,0]},
+    "task1": {"cost": [1,0,0,0], "byproduct": [0,0,1,0]},
+    "task2": {"cost": [1,0,0,0], "byproduct": [0,0,1,0]},
+    "repair_r0": {"cost": [1,1,0,0], "byproduct": [0,0,1,0]},
+    "repair_r1": {"cost": [1,1,0,0], "byproduct": [0,0,1,0]},
+    "external_injection": {"inflow": [1,1,0,0]}
+  },
+  "resource_operation_order": ["inflow", "component_cap_and_spill", "atomic_cost_check", "deduct_cost", "byproduct", "component_cap_and_spill", "commit"],
+  "task2_read_cost_zero_is_D_constant": true,
+  "expected_thresholds_from_exact_enumeration": {"E_star_nominal": 3, "E_star_robust": 4},
+  "thresholds_are_computed_not_hardcoded": true,
+  "R1_scope": "R_int with fixed r0, ordinary load ell=1",
+  "material_control_note": "omega_loss_M is applicable after repair (M=1 -> 0); Task2 has zero material cost and therefore remains feasible.",
+  "spill_control": "E=4 plus inflow (1,1,0,0) retains (4,3,...) and records energy spill 1."
+}

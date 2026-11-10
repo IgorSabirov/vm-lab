@@ -1,0 +1,27 @@
+{
+  "artifact": "X27_REPAIR_HEALTH_DYNAMICS",
+  "version": "0.5.1-draft",
+  "health_domain": [0, 1, 2],
+  "health_labels": {"0": "non-operational", "1": "minimally operational", "2": "reserve health"},
+  "initial_health": 2,
+  "task1_success_transition": "h := h - 1 (2 -> 1)",
+  "repair_protocols": {
+    "r0": {"health_after": 1, "resource_cost_same_as_r1": true, "byproduct_same_as_r1": true},
+    "r1": {"health_after": 2, "resource_cost_same_as_r0": true, "byproduct_same_as_r0": true}
+  },
+  "task2": {
+    "load_domain": [1, 2],
+    "success_health_condition": "h >= ell",
+    "success_transition": "h := h - 1",
+    "ordinary_load": 1,
+    "primary_R2_functional_load": 2,
+    "other_gates": ["G_memory", "G_resource", "G_time"],
+    "G_memory": "valid M_task checksum AND task-specific M_task read event; oracle correctness is scored separately",
+  "Y_task2": "execution success = G_memory AND G_health AND G_resource AND G_time",
+  "Y_correct": "independent evaluator indicator [Y_action == Y*]; not folded into mechanical execution status",
+  "V_nom_and_V_rob": "predict Task2 execution-gate success, not oracle correctness"
+  },
+  "R1_fixed_protocol": "r0; no M_prod read",
+  "R2_causal_protocol": "read valid M_prod and apply the returned r0/r1 instruction",
+  "known_design_limitation": "After Task1 h=1, r0 sets h'=1 and has zero health gain. At ell=1, R0 without repair also succeeds. Therefore r0 repair necessity/functional benefit is NOT demonstrated under these rules; do not claim it."
+}

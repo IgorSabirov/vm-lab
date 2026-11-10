@@ -1,0 +1,72 @@
+{
+  "artifact": "X27_POLICY_LIBRARY",
+  "version": "0.5.1-draft",
+  "status": "DESIGN_DRAFT / NOT_FROZEN",
+  "context_whitelist": [
+    "public_input.command",
+    "public_input.public_hint",
+    "read_task_memory() when granted",
+    "read_residual_payload() when granted"
+  ],
+  "public_input_schema": {"command": "emit_the_supplied_binary_content", "public_hint": "integer 0 or 1"},
+  "runtime_validation": "unknown and evaluator-only public input keys are rejected before policy invocation",
+  "candidate_policies": [
+    {
+      "name": "pi_M",
+      "source": "M_task",
+      "reads": true,
+      "output": "returned M_task semantic bit"
+    },
+    {
+      "name": "pi_P",
+      "source": "P_res",
+      "reads": true,
+      "output": "returned P_res semantic bit"
+    },
+    {
+      "name": "pi_fixed",
+      "source": "none",
+      "reads": false,
+      "output": "constant 0"
+    },
+    {
+      "name": "pi_none",
+      "source": "none",
+      "reads": false,
+      "output": "abstain / null"
+    },
+    {
+      "name": "pi_input",
+      "source": "public_input only",
+      "reads": false,
+      "output": "public_hint"
+    }
+  ],
+  "compatibility_baseline": {
+    "name": "pi_0_legacy",
+    "source": "M_task",
+    "separate_from_candidate_library": true,
+    "purpose": "preserve v0.4.x fixed readout baseline"
+  },
+  "forbidden_policy_fields": [
+    "oracle",
+    "target",
+    "Y_star",
+    "tau",
+    "evaluator_key",
+    "task_id",
+    "opaque_id",
+    "state",
+    "resources",
+    "apparatus",
+    "task_memory_record",
+    "payload_record",
+    "prod_memory",
+    "trace",
+    "_readers",
+    "_allowed_sources",
+    "_read"
+  ],
+  "sandbox_limit": "This is a narrow accidental-access guard and static audit, not an OS sandbox for arbitrary hostile Python.",
+  "policy_read_semantics": "Values are returned only by explicit source capability calls; they are not passed as a generic source_value field."
+}

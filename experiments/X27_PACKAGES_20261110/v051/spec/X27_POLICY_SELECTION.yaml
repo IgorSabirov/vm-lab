@@ -1,0 +1,20 @@
+{
+  "artifact": "X27_POLICY_SELECTION",
+  "version": "0.5.1-draft",
+  "mode": "CAPABILITY_ONLY",
+  "selector_enabled": false,
+  "capability_design": {
+    "evaluator_task_cases": 2,
+    "candidate_policies": 5,
+    "memory_payload_cells": 4,
+    "expected_rows": 40,
+    "apparatus": "A1 fixed in this 40-cell capability matrix; apparatus factorial is a separate module"
+  },
+  "validation_split": "NOT_APPLICABLE_CAPABILITY_ONLY",
+  "held_out_test_split": "NOT_APPLICABLE_CAPABILITY_ONLY",
+  "policy_selection_claim": "NOT_CLAIMED",
+  "pi_0_legacy": "reported separately, not counted as one of the five candidates",
+  "no_posthoc_selection": true,
+  "documented_policy_redundancy": "In this frozen challenge public_hint is constant 0, so pi_fixed and pi_input are behaviorally identical. No claim of different capabilities is made for these two candidates; varied public inputs would be required for that comparison.",
+  "b_lite_controller": "A separate fixed M_task-readout controller is used for the B-LITE repair/readiness arm. The five-policy library/capability matrix does not select the B-LITE controller."
+}

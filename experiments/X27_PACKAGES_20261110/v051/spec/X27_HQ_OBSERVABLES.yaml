@@ -1,0 +1,63 @@
+{
+  "artifact": "X27_HQ_OBSERVABLES",
+  "version": "0.5.1-draft",
+  "observer_layers": {
+    "O_D": [
+      "public_input",
+      "only explicitly granted read capability calls"
+    ],
+    "O_eval": [
+      "Y_action",
+      "Y_correct",
+      "Y_status",
+      "T_finish",
+      "R_final",
+      "health_final",
+      "V_nom",
+      "V_rob"
+    ],
+    "J_trace": [
+      "read events",
+      "action events",
+      "repair events",
+      "resource ledger",
+      "apparatus provenance",
+      "donor events"
+    ]
+  },
+  "J_trace_default_role": "diagnostic only; not part of predictive equivalence unless explicitly promoted to O_D or O_eval",
+  "equivalence_results": [
+    "H-Q-task",
+    "H-Q-control",
+    "H-Q-R1",
+    "H-Q-R2"
+  ],
+  "H_Q_task_decision_domain": [
+    1,
+    2,
+    5,
+    6
+  ],
+  "H_Q_control_additional_intervention_stages": [
+    0,
+    3
+  ],
+  "terminal_states": "output leaves, not partition members",
+  "interpretation": "Exact future-output equivalence for frozen observables and finite intervention family; not full causal-trace equivalence.",
+  "implementation_status": "finite sequence generator and generic exact refinement implemented; full model adapter and four model partitions pending independent review",
+  "sequence_semantics": {
+    "complete_horizon_stages": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "continue": "one explicit no-op progression at every stage 0..6",
+    "max_interventions": 2,
+    "queued_commands": false,
+    "same_stage_conflict_rule": "at most one intervention per controlled variable per stage; distinct variables may co-occur"
+  }
+}

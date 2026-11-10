@@ -1,0 +1,24 @@
+{
+  "artifact": "X27_HQ_INTERVENTION_SEQUENCES",
+  "version": "0.5.1-draft",
+  "max_intervention_depth": 2,
+  "continue_stages": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "continue_semantics": "explicit no-op state progression; one token per stage in every complete schedule",
+  "queued_commands": false,
+  "same_stage_conflicts": "one action per controlled variable per stage; distinct variables may co-occur",
+  "terminal_stage": 7,
+  "sequence_counts": {
+    "A": 96,
+    "B_LITE": 126
+  },
+  "generator": "src/x27v051/hq.py:generate_intervention_sequences",
+  "full_transition_adapter": "PENDING_INDEPENDENT_REVIEW"
+}

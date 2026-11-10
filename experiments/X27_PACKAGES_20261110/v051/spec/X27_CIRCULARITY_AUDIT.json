@@ -1,0 +1,112 @@
+{
+  "artifact": "X27_CIRCULARITY_AUDIT",
+  "version": "0.5.1-draft",
+  "direct_output_circularity_target": 0,
+  "NC13": {
+    "name": "estimator purity at call boundary",
+    "digest_points": [
+      "immediately before estimator call",
+      "immediately after estimator call"
+    ],
+    "includes_nested_provenance": true,
+    "expected": "digest unchanged; deliberate nested creator_id mutation changes digest",
+    "mutation_probes": [
+      "task_memory.creator_id",
+      "task_memory.record_id",
+      "prod_memory.creator_id",
+      "apparatus.creator_id",
+      "apparatus.apparatus_id",
+      "apparatus.token_signature"
+    ],
+    "mutation_objects": "separate disposable deep copies; estimator digest comparison immediately before/after call"
+  },
+  "NC15": {
+    "name": "opaque identifier channel",
+    "presentations": 200,
+    "rng_seed": 51015,
+    "target_balance": {
+      "0": 100,
+      "1": 100
+    },
+    "policy": "pi_input",
+    "criterion": "exact 100/200=0.5 correctness, no evaluator-only identifier fields in public_input, and action invariance under an independent opaque-ID relabeling",
+    "not_a_generalization_claim": true,
+    "additional_static_criteria": [
+      "I_D is only the public_input object",
+      "policy callable signature is exactly (obs)",
+      "opaque identifier does not occur in public-input keys"
+    ]
+  },
+  "NC16": {
+    "name": "oracle and service-field access",
+    "static": "AST import and forbidden-name audit of production policy functions",
+    "runtime_fields": [
+      "oracle",
+      "task_id",
+      "opaque_identifier",
+      "evaluator_key",
+      "tau",
+      "target",
+      "state",
+      "resources",
+      "trace",
+      "prod_memory",
+      "_readers",
+      "ungranted read_residual_payload()"
+    ],
+    "expected": "all unauthorized reads blocked and logged",
+    "sandbox_limitation": "Not a security boundary against arbitrary hostile Python; use OS/process isolation for adversarial third-party code.",
+    "source_capability_probe": "memory-only context must block payload read and log the attempt",
+    "additional_runtime_fields": [
+      "opaque_identifier",
+      "creator_id",
+      "apparatus",
+      "task_memory",
+      "residual_payload",
+      "record_id"
+    ],
+    "engine_boundary_checks": [
+      "engine does not import oracle/evaluation",
+      "run_b_lite has no evaluator-key parameter",
+      "engine source has no tau/Y_star/oracle_target/evaluator_key AST identifiers"
+    ]
+  },
+  "result_boundary": "All PASS results describe this finite software implementation, not a physical mechanism.",
+  "policy_interface": {
+    "data_fields": [
+      "public_input"
+    ],
+    "capabilities": [
+      "read_task_memory()",
+      "read_residual_payload()"
+    ],
+    "source_value_field": "REMOVED"
+  },
+  "NC14": {
+    "name": "task-memory integrity failure distinct from absent read",
+    "cases": [
+      "Task1 checksum corruption",
+      "Task2 checksum corruption",
+      "M_prod repair read cannot satisfy M_task read requirement"
+    ],
+    "expected": "INTEGRITY_ERROR for checksum corruption; MISSING_READ_EVENT only for absent task-specific read event"
+  },
+  "executor_kernel_boundary": {
+    "module": "src/x27v051/engine.py",
+    "forbidden_imports": [
+      "x27v051.oracle",
+      "x27v051.evaluation"
+    ],
+    "forbidden_identifiers": [
+      "evaluator_key",
+      "oracle_target",
+      "Y_star",
+      "tau"
+    ],
+    "run_b_lite_evaluator_arguments": [],
+    "oracle_score_in_state_or_transition_kernel": false,
+    "score_after_execution_in": "src/x27v051/evaluation.py",
+    "static_test": "static_policy_audit() checks import graph, AST identifiers and run_b_lite signature",
+    "claim_boundary": "Software architecture check only; not an OS sandbox or proof against hostile in-process Python."
+  }
+}

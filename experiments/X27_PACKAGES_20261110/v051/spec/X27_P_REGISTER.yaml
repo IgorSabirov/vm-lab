@@ -1,0 +1,16 @@
+{
+  "artifact": "X27_P_REGISTER",
+  "version": "0.5.1-draft",
+  "classes": {
+    "K": {"meaning": "finite computational substrate and transition semantics", "treatment": "declare; cannot be removed from a finite model"},
+    "D": {"meaning": "design constants including costs, capacity, health transitions, tasks and horizons", "treatment": "freeze before run and sensitivity-test declared variations"},
+    "O": {"meaning": "observer profiles, output maps, H-Q observables and partition domains", "treatment": "freeze before analysis; no post-hoc projection changes"},
+    "C": {"meaning": "directly outcome-stipulating or conclusion-equivalent assumptions", "treatment": "remove from headline outcome definition or downgrade claim"}
+  },
+  "operational_target": {"C_direct_output": 0, "rule": "No action is labelled successful merely because a read or action event occurred; task correctness is computed by separate oracle."},
+  "K_assumptions": ["discrete finite state", "deterministic transition rules", "immutable state transitions", "event ledger is append-only diagnostic output"],
+  "D_constants": ["checksum h(s)=1-s", "read cost zero", "Task1 and Task2 energy cost one", "repair energy/material cost one each", "capacity (4,3,3,3)", "E dose grid 1..4", "health transitions", "time horizon 9"],
+  "O_choices": ["joint profile Y_action/Y_correct/status/time/resources/health", "H-Q O_D/O_eval/J_trace separation", "decision domain stages 1,2,5,6"],
+  "C_removed_from_headline": ["action success is not defined by memory read", "correctness is scored by independent oracle", "repair PASS cannot be based on residual U bookkeeping alone"],
+  "claim_tags": ["MODEL_REALIZATION", "CONTROLLED_POLICY_COMPARISON", "PHYSICAL_MECHANISM_NOT_ESTABLISHED"]
+}

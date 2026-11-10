@@ -1,0 +1,349 @@
+{
+  "experiment": "X27_U010_V03_CAUSAL_CONTINUITY",
+  "implementation": "v0.4.3-regression-repair-candidate",
+  "status": "DESIGN_DRAFT / NOT_FROZEN / MAIN_RUN_NOT_EXECUTED",
+  "model_class": "finite deterministic reference model",
+  "checksum": {
+    "rule": "h(s) = 1 - s",
+    "semantic_values": [
+      0,
+      1
+    ],
+    "corruption_control": "flip checksum bit while retaining semantic bit"
+  },
+  "memory": {
+    "task_values": [
+      "m",
+      "Tm"
+    ],
+    "m_semantic_bit": 0,
+    "Tm_semantic_bit": 1,
+    "task2": "repeat the original M_task record; no new C write or transfer after source_off",
+    "residual_payload_accessible_in_primary_matrix": true,
+    "primary_read_source": "M_task"
+  },
+  "production_memory": {
+    "r0_bit": 0,
+    "r1_bit": 1,
+    "checksum_rule": "same binary complement checksum",
+    "R1_mode": "fixed predeclared r0 protocol; no M_prod read; tests internal repair independently",
+    "R2_mode": "causal_prod_read=true; M_prod is read and selects r0/r1"
+  },
+  "apparatus": {
+    "A0": "absent and disconnected",
+    "A1": "original C-attributed device, working and connected at port-main",
+    "A2": "substitute, working and connected at port-main",
+    "A2_calibration": {
+      "compatible_ports": true,
+      "functionally_equivalent": true,
+      "transition_equivalent": true,
+      "cost_equivalent": true,
+      "connected_under_frozen_protocol": true
+    },
+    "wear": "successful Task 1 changes present apparatus health to worn",
+    "repair": "successful r0/r1 repair changes present apparatus health to working",
+    "token_specificity_baseline": "NOT_CLAIMED; no token signature requirement in default kernel"
+  },
+  "resources": {
+    "order": [
+      "E",
+      "M",
+      "W",
+      "U"
+    ],
+    "capacity_per_component": 3,
+    "initial_D_stock": [
+      3,
+      2,
+      0,
+      0
+    ],
+    "read_T1": {
+      "cost": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "read_T2": {
+      "cost": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "task1": {
+      "cost": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "task2": {
+      "cost": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "repair_r0": {
+      "cost": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    "repair_r1": {
+      "cost": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "byproduct": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "external_injection": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "overflow_order": [
+      "apply inflow",
+      "cap each component and log spill",
+      "atomically check costs",
+      "deduct costs or record RESOURCE_EXHAUSTED without partial cost deduction",
+      "add byproducts",
+      "cap byproducts and log spill",
+      "commit new resource vector"
+    ],
+    "loss_rule": "subtract one unit when available; otherwise LOSS_NOT_APPLICABLE",
+    "ledger": "Every resource operation records pre-state, inflow, nonnegative cost, byproduct, post-state, both spill vectors and exhaustion status; each disturbance loss records component, before/after vector and applicability"
+  },
+  "stages": {
+    "0": "initialization and source_off",
+    "1": "read Task 1",
+    "2": "execute Task 1 and wear",
+    "3": "restore / repair",
+    "4": "readiness prediction snapshot",
+    "5": "disturbance and read Task 2",
+    "6": "execute Task 2",
+    "7": "terminal"
+  },
+  "time": {
+    "initial": 0,
+    "max_time": 9,
+    "delay_steps": 1,
+    "nominal_finish_expected": 7,
+    "delay_finish_expected": 8,
+    "horizon_rule": "Task 2 must be completed by max_time; stage 5 checks the read/deadline and stage 6 checks the final execution step before spending resources",
+    "delay_event_semantics": {
+      "delay_start_event": "timestamped at current stage-5 time",
+      "delay_end_event": "timestamped current time + delay_steps",
+      "task2_read": "occurs after delay_end at current time + delay_steps"
+    }
+  },
+  "disturbances": {
+    "W_nom": [
+      "omega_0"
+    ],
+    "W_stress": [
+      "omega_delay",
+      "omega_loss_E",
+      "omega_loss_M"
+    ],
+    "application": "independent runs from identical stage-4 snapshots"
+  },
+  "readiness_estimator": {
+    "pure": true,
+    "state_model": "frozen dataclasses; every scenario receives a deep-copied snapshot",
+    "evaluation": "all scenarios explicitly evaluated before aggregation; no short-circuit",
+    "checks": [
+      "state hash unchanged",
+      "forward/reverse scenario order equality",
+      "all scenarios returned"
+    ],
+    "stress_scenario_contract": {
+      "required_set": [
+        "omega_delay",
+        "omega_loss_E",
+        "omega_loss_M"
+      ],
+      "empty_set": "reject with ValueError; never aggregate all(empty)",
+      "duplicates": "reject with ValueError",
+      "incomplete_or_extra": "reject with ValueError",
+      "order": "arbitrary order accepted; exact protocol set required"
+    }
+  },
+  "producer_boundary": {
+    "choice": "variant B: C production and transfer are trusted exogenous prehistory",
+    "simulated": false,
+    "production_cost_in_D_autonomy": false,
+    "allowed_claim": "D uses pre-transferred content and apparatus with declared provenance",
+    "not_claimed": "X27 simulates C production and transfer",
+    "object_specific_provenance": {
+      "A1_C_created": [
+        "C_produce_event_exogenous",
+        "C_apparatus_transfer_event_exogenous"
+      ],
+      "A2_test_fixture": [
+        "test_fixture_provide_event_exogenous",
+        "test_fixture_transfer_event_exogenous"
+      ],
+      "A0_absent": [
+        "apparatus_absence_declared_event"
+      ],
+      "foreign_memory_creator": "logged as declared external provenance, not C write"
+    }
+  },
+  "H_Q": {
+    "action_depth_limit": 2,
+    "actions": [
+      "continue",
+      "do(M_task=m|Tm)",
+      "do(P_res=m|Tm)",
+      "do(A=A0|A1|A2)",
+      "do(M_prod=r0|r1) in B-LITE only"
+    ],
+    "stages": {
+      "do(M_task)": [
+        1,
+        5
+      ],
+      "do(P_res)": [
+        1,
+        5
+      ],
+      "do(A)": [
+        0,
+        3
+      ],
+      "do(M_prod)": [
+        3
+      ]
+    },
+    "continue": "advance exactly one stage",
+    "terminal_states": "terminal states are output leaves, recorded as terminal outcome signatures; they are not members of the partition domain",
+    "decision_region_stages": [
+      1,
+      2,
+      5,
+      6
+    ],
+    "operational_helpers": [
+      0,
+      3,
+      4
+    ],
+    "intermediate_state_policy": "nondecision, nonterminal stages remain in the refinement graph as exact operational intermediates; published equivalence classes are restricted to decision stages",
+    "baseline_context": "R_int / omega_0; G0 closure separately covers all arms and disturbance contexts",
+    "readiness_output": "B-LITE includes (V_nom,V_rob) computed at stage 4 before Task 2 execution; this signature is carried to later observations",
+    "action_semantics": "stage-local interventions only; maximum two do-actions per path; continue advances one stage; do-actions are not queued",
+    "legacy_B_LITE_scope": {
+      "context_label": "LEGACY_R2_LIKE_CAUSAL_M_PROD_READ",
+      "causal_prod_read_on_continue": true,
+      "M_prod_interventions_allowed": true,
+      "R1_context_included": false,
+      "publishable_as_frozen_HQ_result": false,
+      "interpretation": "decision-state output equivalence under this legacy context; not full causal-trace equivalence and not transferable to R1 or v0.5"
+    }
+  },
+  "explicit_model_assumptions": [
+    "The semantic task output is the binary value read from M_task.",
+    "Task 1 and Task 2 each consume one energy unit and produce one waste unit.",
+    "A successful Task 1 wears the apparatus; successful repair restores it.",
+    "Repair r0 and r1 differ only by one unit of unavailable residue U.",
+    "R_ext is external injection followed by the frozen default r0 repair protocol.",
+    "The transition model is deterministic; stochastic inference and Monte Carlo power analysis are not implemented."
+  ],
+  "not_claimed": [
+    "physical realization of the mechanism",
+    "simulation of C production costs",
+    "autopoiesis",
+    "resource reproduction or full-cycle closure",
+    "infinite autonomy",
+    "new record generation",
+    "X27-B-FULL",
+    "X28 ADD-Fano bridge"
+  ],
+  "regression_scope": {
+    "release_type": "regression_repair_only",
+    "experimental_object_changed": false,
+    "changes": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "F6",
+      "F7",
+      "F8",
+      "F9_scope_label",
+      "F10_context_label",
+      "NC13",
+      "NC14"
+    ],
+    "explicitly_deferred_to_v0_5": [
+      "F11",
+      "F12",
+      "F13",
+      "F14",
+      "F15_A2_calibration_redesign",
+      "D1-D10"
+    ],
+    "resource_capacity_unchanged": 3,
+    "apparatus_health_model_unchanged": "binary working/worn"
+  },
+  "exact_estimators": {
+    "probability_mass_types": [
+      "int",
+      "Fraction"
+    ],
+    "reject_float": true,
+    "reject_bool": true,
+    "reject_negative_mass": true,
+    "require_exact_normalization": true,
+    "validate_transition_laws_in_partition_refinement": true,
+    "independent_pc7_tv": "direct sum over union of full joint outcome-profile supports"
+  }
+}

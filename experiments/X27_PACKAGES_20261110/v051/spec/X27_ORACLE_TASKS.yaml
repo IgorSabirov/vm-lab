@@ -1,0 +1,46 @@
+{
+  "artifact": "X27_ORACLE_TASKS",
+  "version": "0.5.1-draft",
+  "status": "DESIGN_DRAFT / NOT_FROZEN",
+  "evaluator_interface": "Q_eval=(tau,p)",
+  "executor_interface": "I_D=p only; no tau, evaluator_key, target or opaque identifier",
+  "policy_visible_fields": [
+    "public_input.command",
+    "public_input.public_hint",
+    "explicitly granted read capability methods"
+  ],
+  "public_input_whitelist": {
+    "command": "emit_the_supplied_binary_content",
+    "public_hint": "binary integer 0 or 1"
+  },
+  "public_input_rejects": ["tau", "evaluator_key", "task_id", "opaque_identifier", "oracle_target", "Y_star"],
+  "evaluator_only_fields": [
+    "tau",
+    "evaluator_key",
+    "oracle_target",
+    "opaque_identifier"
+  ],
+  "public_input": {
+    "command": "emit_the_supplied_binary_content",
+    "public_hint": 0
+  },
+  "task_cases": [
+    {
+      "evaluator_key": "eval_case_opaque_A",
+      "tau": "evaluator_case_A",
+      "public_input_identical": true,
+      "oracle_target": 0
+    },
+    {
+      "evaluator_key": "eval_case_opaque_B",
+      "tau": "evaluator_case_B",
+      "public_input_identical": true,
+      "oracle_target": 1
+    }
+  ],
+  "task_balance": "one case per target; evaluator context tau is not passed to D",
+  "checksum": "SHA256 of this artifact is included in package manifest",
+  "claim_boundary": "The oracle is an independent software evaluator. It does not establish a physical task oracle.",
+  "evaluator_function": "Y*=f_oracle(tau,p)",
+  "oracle_keying": "Targets are resolved by (tau,p); evaluator_key is an evaluator-side join key only and is not passed to D."
+}

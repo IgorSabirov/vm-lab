@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "x27-causal-continuity"
+version = "0.4.3"
+description = "Finite deterministic reference kernel and software controls for X27 U010 causal continuity"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Private research project; see repository access policy" }
+authors = [{ name = "X27 research implementation" }]
+dependencies = []
+
+[project.scripts]
+x27 = "x27.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
