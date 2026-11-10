@@ -17,7 +17,7 @@ This folder records the v0.5.1 design closure and local software validation. It 
 The complete package is provided as `X27_U010_V03_v0.5.1_reference_package.zip` in the conversation. Its SHA-256 is:
 
 ```
-53a3fcc7dbcfaa8eb594a3a61d47c0a9f687109bd3fa807c9a85bf5c286f3b53
+502dc3faf3e336f830fd236be3daf70335c083b083105937b586c80d67267c22
 ```
 
 The source-only archive inside the local package has SHA-256:
