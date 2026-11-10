@@ -27,6 +27,8 @@ jobs:
           cat source_bundle/parts/part-*.b64 | base64 -d > X27_U010_V03_v0.5.1_source_bundle.tar.gz
           sha256sum -c source_bundle/SOURCE_BUNDLE_SHA256.txt
           tar -xzf X27_U010_V03_v0.5.1_source_bundle.tar.gz
+      - name: Verify source manifest
+        run: sha256sum -c SHA256SUMS_SOURCE.txt
       - name: Compile source and tests
         run: python -m compileall -q src tests
       - name: Run tests
@@ -37,10 +39,26 @@ jobs:
         env:
           PYTHONPATH: src
         run: python -m x27v051.cli smoke --output validation-ci
+      - name: Build full distributable ZIP
+        working-directory: experiments/x27_u010_v03_v051
+        run: |
+          mv x27_v051/validation-ci x27_v051/validation
+          cd x27_v051
+          sha256sum -c SHA256SUMS_SOURCE.txt
+          find . -type f ! -name SHA256SUMS_FULL.txt ! -path './.git/*' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS_FULL.txt
+          cd ..
+          zip -qr X27_U010_V03_v0.5.1_full.zip x27_v051
+          sha256sum X27_U010_V03_v0.5.1_full.zip > X27_U010_V03_v0.5.1_full.zip.sha256
+      - name: Upload complete package
+        uses: actions/upload-artifact@v4
+        with:
+          name: x27-v051-full-package-${{ github.run_id }}
+          path: experiments/x27_u010_v03_v051/X27_U010_V03_v0.5.1_full.zip*
+          if-no-files-found: error
       - name: Upload generated diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: x27-v051-validation-${{ github.run_id }}
-          path: experiments/x27_u010_v03_v051/x27_v051/validation-ci/
+          path: experiments/x27_u010_v03_v051/x27_v051/validation/
           if-no-files-found: ignore
