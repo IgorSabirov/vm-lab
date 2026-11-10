@@ -28,7 +28,11 @@ jobs:
           sha256sum -c source_bundle/SOURCE_BUNDLE_SHA256.txt
           tar -xzf X27_U010_V03_v0.5.1_source_bundle.tar.gz
       - name: Verify source manifest
-        run: sha256sum -c SHA256SUMS_SOURCE.txt
+        working-directory: experiments/x27_u010_v03_v051/x27_v051
+        run: |
+          pwd
+          test -f SHA256SUMS_SOURCE.txt
+          sha256sum -c SHA256SUMS_SOURCE.txt
       - name: Compile source and tests
         run: python -m compileall -q src tests
       - name: Run tests
