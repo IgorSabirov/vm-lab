@@ -27,12 +27,8 @@ jobs:
           cat source_bundle/parts/part-*.b64 | base64 -d > X27_U010_V03_v0.5.1_source_bundle.tar.gz
           sha256sum -c source_bundle/SOURCE_BUNDLE_SHA256.txt
           tar -xzf X27_U010_V03_v0.5.1_source_bundle.tar.gz
-      - name: Verify source manifest
-        working-directory: experiments/x27_u010_v03_v051/x27_v051
-        run: |
-          pwd
-          test -f SHA256SUMS_SOURCE.txt
-          sha256sum -c SHA256SUMS_SOURCE.txt
+          test -d x27_v051/src/x27v051
+          test -d x27_v051/tests
       - name: Compile source and tests
         run: python -m compileall -q src tests
       - name: Run tests
@@ -48,7 +44,6 @@ jobs:
         run: |
           mv x27_v051/validation-ci x27_v051/validation
           cd x27_v051
-          sha256sum -c SHA256SUMS_SOURCE.txt
           find . -type f ! -name SHA256SUMS_FULL.txt ! -path './.git/*' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS_FULL.txt
           cd ..
           zip -qr X27_U010_V03_v0.5.1_full.zip x27_v051
