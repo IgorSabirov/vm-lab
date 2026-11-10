@@ -5,7 +5,7 @@ This branch contains the v0.5.1 design closure and local validation record. It d
 The complete tested executable package is provided separately in the conversation attachment:
 
 - `X27_U010_V03_v0.5.1_reference_package.zip`
-- ZIP SHA-256: `53a3fcc7dbcfaa8eb594a3a61d47c0a9f687109bd3fa807c9a85bf5c286f3b53`
+- ZIP SHA-256: `502dc3faf3e336f830fd236be3daf70335c083b083105937b586c80d67267c22`
 - Source-only archive SHA-256: `1516caaa4cc27d4e0eafba97614a1b98da2f94ae9c40bd2c11cdf00930083595`
 
 The hash values identify the locally built artifacts. They are not claims that the source archive is already committed to this branch.
