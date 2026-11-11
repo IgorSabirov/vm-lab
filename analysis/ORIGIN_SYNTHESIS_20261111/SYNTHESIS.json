@@ -1,0 +1,303 @@
+{
+  "id": "ORIGIN_SYNTHESIS_20261111",
+  "date": "2026-11-11",
+  "timezone": "Europe/Moscow",
+  "base_commit": "350f60a5a6ba7186863bb1e32b908fe89539aa2a",
+  "status": "SCIENTIFIC_SYNTHESIS_AND_PROPOSAL_NOT_EXECUTABLE",
+  "report": "analysis/ORIGIN_SYNTHESIS_20261111/REPORT.md",
+  "scope": "Latest executed tests, design work, and their relation to the origin of assumptions and now",
+  "rows": [
+    {
+      "key": "E002_IC_CORR_RESET",
+      "records": [
+        "R023",
+        "R025",
+        "R034",
+        "R035",
+        "R036"
+      ],
+      "status": "PUBLISHED_NUMERICAL_RESULTS_WITH_LIMITS",
+      "obtained": "Согласование шести структурных мишеней не воспроизводит поток IC/QS; удаление корреляций при сохранении локальных состояний меняет последующий выход. RESET проверяет заданное вмешательство.",
+      "given": "Закон, разбиение, насосы/стоки, подготовка, канал сброса.",
+      "origin_role": "Отношения между частями нельзя заменить перечнем локальных свойств; происхождение нужных отношений остаётся задачей.",
+      "sources": [
+        "results/E002c_IC_RETRY_v001_r001/files/RESULT.md",
+        "experiments/e002e_corr/PRODUCTION_RESULT.md",
+        "experiments/e002e_reset/PRODUCTION_RESULT.md"
+      ]
+    },
+    {
+      "key": "R013_INTERNAL_OPENNESS",
+      "records": [
+        "R013",
+        "R045"
+      ],
+      "status": "CONDITIONAL_ANALYTICS_WITH_SMALL_MATRIX_VERIFICATION",
+      "obtained": "Внутренняя открытость совместима с замкнутым целым; найдено условное семейство разбиений и точный редуцированный канал.",
+      "given": "Пространство состояний, H, доступ, подготовка и время наблюдения.",
+      "origin_role": "Подсистемы и доступ тоже требуют обоснования; неунитарность редукции не выводит само целое.",
+      "sources": [
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
+      ]
+    },
+    {
+      "key": "NOW_LONG",
+      "records": [
+        "R127"
+      ],
+      "questions": [
+        "U001",
+        "U002",
+        "U003",
+        "U004",
+        "U005",
+        "U006",
+        "U007"
+      ],
+      "status": "EXECUTED_CONDITIONAL_FINITE_MODELS",
+      "obtained": "3083 задачи; различены контроли ресурсов, передачи, корреляций, координатного порядка. В старом расписании передача предшествовала повреждению. XOR не различает новые меры при изменении полного профиля.",
+      "given": "Исполнитель, аппараты, расписание, геометрические заготовки, ансамбль.",
+      "origin_role": "Проверяет согласованность частных механизмов, не совместный генезис. Ошибка причинного порядка мотивировала U008.",
+      "sources": [
+        "results/NOW_LONG_da72a3a_20261108_RAW/main_output/SCOPE_ANCESTOR_RETURN.json",
+        "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json"
+      ]
+    },
+    {
+      "key": "U008",
+      "records": [
+        "R064",
+        "R121",
+        "R122",
+        "R127"
+      ],
+      "questions": [
+        "U008",
+        "U010"
+      ],
+      "status": "ANSWERED_WITHIN_DECLARED_CLASS",
+      "obtained": "A0: 72/108 функций; A1: 72/108 ремонтов и 16/108 функций; A2: 0/108 функций. Обход A2 4/4; без аппарата/топлива потомка функция 0/4 при валидной доставке.",
+      "given": "Канал, начальные аппараты, производство, ресурсы, часы, функция XOR и доступ к payload.",
+      "origin_role": "Восстановление компонента, доставка, функция и воспроизводство её условий различаются.",
+      "sources": [
+        "analysis/U008_CAUSAL_20261109/RESULT.md"
+      ],
+      "source_ref": "b919e64ad89a5afe2c395a0218895c856088c57d"
+    },
+    {
+      "key": "G8_H3K9",
+      "records": [
+        "R121",
+        "R122"
+      ],
+      "status": "LITERATURE_EVIDENCE_AND_REPLICATED_FINITE_SUBMODEL",
+      "obtained": "Поддержание следа после инициатора; в G8 локальное ядро восстанавливается из отмеченного окружения, а часть ферментов синтезируется.",
+      "given": "Механизм чтения/записи, контактная матрица, адрес синтеза, A и ресурсная подготовка.",
+      "origin_role": "Запись может быть распределённой; поддержание меток не доказывает производство всех условий поддержания. G8 и литературная ветвь не независимые тесты общего запрета.",
+      "sources": [
+        "analysis/GENETICS_FOR_INVARIANT_20261106/RESULT.md",
+        "analysis/G8_NEIGHBOR_REVIEW_20261106/RESULT.md"
+      ]
+    },
+    {
+      "key": "X26",
+      "records": [
+        "R040",
+        "R041",
+        "R042",
+        "R126",
+        "R127"
+      ],
+      "status": "EXECUTED_CONDITIONAL_LOADING_AND_RETENTION",
+      "obtained": "Четыре оцениваемые пары носитель/загрузчик проходят критерии. Тихий носитель тоже загружается; универсальный степенной закон утечки не установлен.",
+      "given": "Phi/Psi, H, входной пакет, управление или тепловой канал, резервуар.",
+      "origin_role": "Существование защищённого состояния, его загрузка и образование загрузчика — разные утверждения. Статический запрет R041 не опровергнут.",
+      "sources": [
+        "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/output/RESULTS.json",
+        "analysis/X26_PUBLICATION_PARENT_LINKS_20261109/REPORT.md"
+      ]
+    },
+    {
+      "key": "ADD",
+      "records": [
+        "R126",
+        "R127"
+      ],
+      "questions": [
+        "U009"
+      ],
+      "status": "CONDITIONAL_ANALYTICS_AND_FINITE_ENUMERATION",
+      "obtained": "Для указанного carrier рост и тишина разделены сохраняемыми секторами K; SSB не установлено.",
+      "given": "Операторы, начальное слово, сектор и трактовка транспорта.",
+      "origin_role": "Растущий носитель не является автоматически возникновением геометрии, меры или организации.",
+      "sources": [
+        "analysis/ADD_DICHOTOMY_SYMMETRY_20261109/RESULT.md"
+      ]
+    },
+    {
+      "key": "X27",
+      "records": [
+        "R127",
+        "R128"
+      ],
+      "questions": [
+        "U010"
+      ],
+      "status": "SOFTWARE_VALIDATION_ONLY",
+      "obtained": "Реализованы и проверены отдельные программные причинные контроли; основной научный опыт не выполнен.",
+      "given": "Trusted prehistory, готовое соответствие чтения/команды и ремонтная карта.",
+      "origin_role": "Исполнитель может обслуживать будущую проверку; образование соответствия пока не продемонстрировано.",
+      "sources": [
+        "results/X27_PAIR/20261110T113303Z_c0e66507/v051/validation/SMOKE_REPORT.json",
+        "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json"
+      ]
+    },
+    {
+      "key": "U010_COMMON_MODEL",
+      "records": [
+        "R064",
+        "R075",
+        "R119",
+        "R120",
+        "R121",
+        "R122",
+        "R127"
+      ],
+      "questions": [
+        "U010"
+      ],
+      "status": "DESIGN_NOT_EXECUTED",
+      "obtained": "Разделены подготовленный аппарат D, использование D аппаратов C и дальнейшее производство средств для E; описаны контроли локального чтения и готовности.",
+      "given": "Не выбраны полный физический механизм, ресурсы и архитектура.",
+      "origin_role": "Тестировать использование и восстановление условий следующего действия; функциональный переход не равен происхождению всей организации.",
+      "sources": [
+        "analysis/COMMON_MODEL_20261109/MODEL.md",
+        "analysis/U010_PLANNING_20261110/PLAN.json"
+      ]
+    },
+    {
+      "key": "R128_R128_1",
+      "records": [
+        "R128"
+      ],
+      "questions": [
+        "U010"
+      ],
+      "status": "ANALYTICAL_SPECIFICATION_NOT_EXECUTED",
+      "obtained": "Различены след M, настройка Theta, аппарат A, закон L; использование, образование, отбор и поддержание соответствия. Предложены физический селектор и независимая проверка.",
+      "given": "Субстрат, закон, мера, механизм изменения Theta и область жизнеспособности не выбраны.",
+      "origin_role": "Ближайшая адресная предпосылка для вывода — согласование следа с действием (П04/П05); его образование ещё не снимает П01/П02/П10.",
+      "sources": [
+        "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
+        "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md"
+      ]
+    },
+    {
+      "key": "FW_ZERO",
+      "records": [
+        "R112",
+        "R113"
+      ],
+      "questions": [
+        "U012"
+      ],
+      "status": "PROPOSED_TEST_NOT_EXECUTED",
+      "obtained": "Предложено проверить слежение нуля отклика за FW-точкой; опубликованного результата теста нет.",
+      "given": "Спектральная модель, настройка, вход/выход и физический смысл отклика.",
+      "origin_role": "Может различить механизм формирования/защиты отношений в выбранной физике; сам по себе не исследует происхождение закона.",
+      "sources": [
+        "analysis/NONADDITIVITY_REVIEW_20261106/RESULT.md"
+      ]
+    },
+    {
+      "key": "READ_D1_D2",
+      "records": [
+        "R066",
+        "R075",
+        "R128"
+      ],
+      "status": "DISCUSSION_ALGEBRA_NOT_ADOPTED_ARCHITECTURE",
+      "obtained": "D1: (a,r)->(r,a xor r) обратим. Заявленный сохраняемый режим не делает D2 унитарным при перезаписи любого a в r с сохранением r.",
+      "given": "Факторы, область входов, фиксированная U и семантика чтения.",
+      "origin_role": "Не обосновано универсальное минимальное устройство 4/8. Уточнять физические операции, а не принимать число битов за происхождение аппарата.",
+      "sources": [
+        "CURRENT_DISCUSSION_2026_11_11"
+      ]
+    },
+    {
+      "key": "FOUNDATION_TRACK",
+      "records": [
+        "R001",
+        "R003",
+        "R007",
+        "R010",
+        "R037",
+        "R038",
+        "R077",
+        "R085",
+        "R094",
+        "R096",
+        "R099",
+        "R116"
+      ],
+      "status": "MIXED_CONDITIONAL_RESULTS_AND_OPEN_HYPOTHESES",
+      "obtained": "Самосогласованность, устойчивость, внутреннее время, квантовое представление и возникновение различены. Единственное основание не выведено; сохранены два маршрута возникновения.",
+      "given": "Правила допустимости, отношения, ядро/мера, закон и/или особая подготовка.",
+      "origin_role": "Исследовать, какие предпосылки выводятся совместно и что исключает пустые/неразличимые/неорганизованные альтернативы, без объявления абсолютного ничто готовым состоянием.",
+      "sources": [
+        "RESEARCH_SCOPE.md",
+        "analysis/U010_PLANNING_20261110/START_PLAN_FROM_NOTHING.md",
+        "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json"
+      ]
+    }
+  ],
+  "question_levels": [
+    "organization_formation_within_declared_basis",
+    "origin_of_basis_itself"
+  ],
+  "candidate_focus": {
+    "records": [
+      "R128"
+    ],
+    "questions": [
+      "U010"
+    ],
+    "premises": [
+      "П04",
+      "П05",
+      "П06",
+      "П12"
+    ],
+    "scientific_question": "Как физически образуются соответствие следа действию и необходимые условия его использования?",
+    "accepted_mechanism": false,
+    "execution_authorized": false
+  },
+  "foundation_route": {
+    "records": [
+      "R001",
+      "R003",
+      "R007",
+      "R010",
+      "R096"
+    ],
+    "question": "Какие условия обосновывают нетривиальную согласованную структуру, её различимость и меру, не назначая готовую организацию?",
+    "status": "OPEN"
+  },
+  "routes_preserved": [
+    "formation_in_internal_dynamics",
+    "self_consistent_whole_R096"
+  ],
+  "scientific_status_promoted": false,
+  "new_records": [],
+  "new_simulations": 0,
+  "new_vm_jobs": 0,
+  "corrections": [
+    "U008_two_distinct_counts_72",
+    "G8_47_intervals_in_41_trajectories",
+    "G8_partial_enzyme_production",
+    "R041_not_refuted",
+    "READ_D2_mode_bit_not_sufficient_for_all_input_reset",
+    "numerical_tolerance_not_exact_rank",
+    "runtime_cost_not_physical_distinguishability"
+  ]
+}
