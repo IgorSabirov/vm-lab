@@ -38,10 +38,15 @@ def ensure_main_anchors(text: str, ids: set[str]) -> str:
     present = {m.group(1).lower() for m in re.finditer(r'<a id="([RCL]\d+)"></a>', text, re.I)}
     out = []
     for line in lines:
-        m = re.match(r"^(#{2,4})\s+(R\d{3}|C\d{3}|L\d{2})\b", line)
+        m = re.match(r"^(#{2,4})\s+(R\d{3}|C\d{3})\b", line)
         if m and m.group(2) in ids and m.group(2).lower() not in present:
             out.append(f'<a id="{m.group(2).lower()}"></a>')
             present.add(m.group(2).lower())
+        row = re.match(r"^\| (L\d{2}) \|", line)
+        if row and row.group(1) in ids and row.group(1).lower() not in present:
+            ident = row.group(1)
+            line = line.replace(f"| {ident} |", f'| <a id="{ident.lower()}"></a>{ident} |', 1)
+            present.add(ident.lower())
         out.append(line)
     return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
