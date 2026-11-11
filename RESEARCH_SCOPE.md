@@ -1,5 +1,9 @@
 **11 ноября: R129 и связанные реестры.** [Условный результат о контактной ёмкости](analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md) · [129 результатов](analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 исходных условий](analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [карта связей](analysis/REGISTRY_LINKS/INDEX.md). [Автоматическая проверка связей](infra/REGISTRY_MAINTENANCE.md) отделена от научных статусов.
 
+## Работа через GitHub — операционная карта
+
+[Граф атомов GitHub, рабочий контур агента и границы автоматизации](infra/GITHUB_OPERATING_MODEL.md). Эта инфраструктура организует задачи и свидетельства; научные статусы остаются в реестре.
+
 ## Последние тесты и происхождение предпосылок — синтез 11 ноября 2026
 
 [Общая научная карта](analysis/ORIGIN_SYNTHESIS_20261111/REPORT.md) связывает
