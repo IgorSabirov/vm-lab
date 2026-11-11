@@ -4,6 +4,8 @@
 
 **Действующая директива:** [наука отдельно от инфраструктуры](SCIENCE_INFRASTRUCTURE_SEPARATION.md).
 
+**Работа через GitHub:** [операционная карта](infra/GITHUB_OPERATING_MODEL.md) · [обслуживание типизированного реестра](infra/REGISTRY_MAINTENANCE.md) · [Project V2: схема рабочей доски](infra/GITHUB_PROJECT_SETUP.md) · [Issue Form](.github/ISSUE_TEMPLATE/research-task.yml) · [PR template](.github/pull_request_template.md).
+
 **Запуск/продолжение:** [действующая инструкция](infra/LAUNCH_RUNBOOK.md) ·
 [текущее задание и точка продолжения](infra/CURRENT_RUN.json) ·
 [рабочие правила](AGENTS.md) · [гейт времени](RUNTIME_GATE.md).
