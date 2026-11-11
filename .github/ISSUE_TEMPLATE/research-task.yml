@@ -1,0 +1,84 @@
+name: Научная задача или разбор
+description: Новая гипотеза, вывод, аудит данных, дизайн или проверка научного результата.
+title: "[SCI] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Научная постановка отделяется от достоверности её проверки и от инфраструктуры исполнения.
+        Закрытие Issue или PR само по себе не меняет научный статус R/C/L/U.
+  - type: dropdown
+    id: task_kind
+    attributes:
+      label: Тип научной работы
+      options:
+        - Аудит существующего результата
+        - Математический вывод
+        - Анализ данных или воспроизведение
+        - Дизайн различающего эксперимента
+        - Литературная проверка
+        - Новая гипотеза или модель
+    validations:
+      required: true
+  - type: textarea
+    id: registry_refs
+    attributes:
+      label: Связанные записи
+      description: Укажите существующие R/C/L/U/N и точные файлы/коммиты; неизвестное так и обозначьте.
+      placeholder: "R122, R128, U010; analysis/.../REPORT.md; commit SHA"
+    validations:
+      required: true
+  - type: textarea
+    id: scientific_question
+    attributes:
+      label: Научный вопрос
+      description: Одно содержательное утверждение или различие, которое требуется установить.
+    validations:
+      required: true
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Объявленные предпосылки
+      description: Носитель, закон, мера, подготовка, границы, ресурсы и что остаётся заданным.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы и различающие контроли
+      description: Какие конкурирующие объяснения совместимы с тем же исходом? Что именно их разделит?
+    validations:
+      required: true
+  - type: textarea
+    id: expected_change
+    attributes:
+      label: Что должно измениться в проекте
+      description: Новое знание, исправление интерпретации, статус, код или только навигация.
+    validations:
+      required: true
+  - type: dropdown
+    id: permitted_scope
+    attributes:
+      label: Разрешённый объём этой задачи
+      options:
+        - Только чтение и анализ
+        - Документация и реестр, без расчётов
+        - Локальный расчёт в пределах действующего лимита
+        - Подготовить план ВМ, но не запускать
+        - Исполнение ВМ — только в пределах отдельного явно указанного разрешения
+    validations:
+      required: true
+  - type: textarea
+    id: authorization
+    attributes:
+      label: Разрешение и ограничения
+      description: Укажите, какие действия разрешены сейчас; отсутствие указания не считать согласием на запуск.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерий завершения
+      description: Что будет считаться полученным ответом, а что останется открытым?
+    validations:
+      required: true
