@@ -1,0 +1,68 @@
+name: Инфраструктура и исследовательский процесс
+description: Реестры, GitHub Actions, воспроизводимость, происхождение файлов, шаблоны задач и обслуживание.
+title: "[INFRA] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Инфраструктурная задача не изменяет научную архитектуру и не повышает научный статус автоматически.
+        Технический PASS подтверждает только явно проверенные технические свойства.
+  - type: dropdown
+    id: infra_kind
+    attributes:
+      label: Тип инфраструктурной задачи
+      options:
+        - Реестр и типизированный граф
+        - Происхождение и целостность источников
+        - GitHub Actions / CI
+        - Issue Forms / PR / Projects
+        - Сборка и упаковка артефактов
+        - Документация и навигация
+        - Другое
+    validations:
+      required: true
+  - type: textarea
+    id: affected_paths
+    attributes:
+      label: Затронутые пути, ветки и коммиты
+      description: Укажите точные пути и SHA; не объединяйте main с экспериментальной веткой без основания.
+    validations:
+      required: true
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Текущее поведение и дефект
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Ожидаемое поведение
+    validations:
+      required: true
+  - type: dropdown
+    id: permission_scope
+    attributes:
+      label: Разрешённый объём
+      options:
+        - Только аудит
+        - Изменить документацию/шаблоны
+        - Изменить код и тесты в отдельной ветке
+        - Изменить workflow, без запуска научных задач
+        - Подготовить отдельный PR для экспериментальной ветки
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Ограничения безопасности и приёмки
+      description: Секреты, permissions, автоматические записи, merge, научные статусы и требования к ручной проверке.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Проверка завершения
+      description: Тесты, ожидаемые статусы CI, артефакты и что остаётся вне проверки.
+    validations:
+      required: true
