@@ -91,7 +91,6 @@
 | [N08](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n08) | Нет прямой аттестации |
 | [N09](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n09) | Нет прямой аттестации |
 
-
 ## Вопрос → связанные результаты и открытые границы
 
 | Вопрос | Связанные результаты | Открытые границы |
