@@ -711,16 +711,16 @@
 
 | ID | Переход | Связанные конструкции | Что должно быть получено |
 |---|---|---|---|
-| L01 | Основание → различие и мера | [C001](#c001), [C003](#c003), [C012](#c012) | Определить альтернативы, правило весов и происхождение самого основания; совместимость не заменяет непустоту и выбор меры. |
-| L02 | Возникновение → организованное «сейчас» | [C002](#c002), [C004](#c004), [C005](#c005), [C011](#c011) | Для обоих маршрутов отделить допустимость конфигурации, вероятность её реализации и способность дальнейшего продолжения. |
-| L03 | Возможная операция → наличный носитель | [C006](#c006), [C031](#c031), [C032](#c032) | Получить последующий доступ физическим взаимодействием, раскрыв производство/копирование и расход носителей. |
-| L04 | Исполнение → запись → дальнейшее действие | [C010](#c010), [C023](#c023), [C026](#c026), [C033](#c033), [C042](#c042) | Предъявить один процесс с внутренним следом, обратным действием чтения и причинной ролью содержания. Физическое чтение и действие должны иметь указанные причинные каналы; пространственноподобная корреляция не является каналом управления. **Открыто.** |
-| L05 | Посредник → многочастичная организация | [C020](#c020), [C021](#c021), [C022](#c022) | Связать конкретные спины, дырки и протонный перенос с проверяемой запутанностью и сохранением после исчезновения посредника. |
-| L06 | Возврат функции → воспроизводство условий | [C005](#c005), [C022](#c022), [C030](#c030), [C032](#c032) | Замкнуть полный цикл с судьбой инструментов, ошибок и ресурсов на заявленном горизонте. |
-| L07 | Инвариант отклика → сохраняемая способность продолжения и генетическая преемственность | [C009](#c009), [C028](#c028), [C029](#c029), [C039](#c039), [C041](#c041), [C042](#c042) | Определить профиль продолжения и строгое отношение эквивалентности; предъявить сохраняемый переход организации между реализациями/уровнями. Для физического наследования дополнительно установить реальную причинную передачу профиля и её стоимость; ресурсное замыкание и производство условий — отдельные усиления. Не подменять довременный генетический порядок обязательными временными поколениями. Равенство отклика недостаточно. Для физического слоя дополнительно задать ковариантное соответствие протоколов, событий успеха, мер и причинной передачи; смену координат не путать со сменой аппарата. **Открыто.** |
-| L08 | Корректирующая роль → направленность и самопрезентация | [C010](#c010), [C034](#c034), [C035](#c035), [C036](#c036), [C042](#c042) | Установить роль коррекции относительно базового режима; отдельно проверить связь с направленностью и представленными целями. Коррекцию к граничным условиям отделить от постотбора; показать действие внутреннего механизма при релятивистски допустимых возмущениях. **Открыто.** |
-| L09 | Организация → физическое пространство-время | [C008](#c008), [C009](#c009), [C024](#c024), [C037](#c037), [C038](#c038), [C042](#c042) | Вывести причинную/метрическую структуру и масштаб, согласовать с СТО/ОТО без импорта готовой геометрии. R123/C042 фиксируют требования на заданном фоне; выбор физического настоящего и происхождение причинной/метрической структуры остаются открытыми. **Открыто.** |
-| L10 | Локальные результаты → одна сквозная реализация | [C002](#c002), [C015](#c015), [C019](#c019), [C026](#c026), [C033](#c033), [C039](#c039) | Совместить условия в одной модели; совпадение слов и успехи отдельных игрушек не доказывают их совместимость. |
+| <a id="l01"></a>L01 | Основание → различие и мера | [C001](#c001), [C003](#c003), [C012](#c012) | Определить альтернативы, правило весов и происхождение самого основания; совместимость не заменяет непустоту и выбор меры. |
+| <a id="l02"></a>L02 | Возникновение → организованное «сейчас» | [C002](#c002), [C004](#c004), [C005](#c005), [C011](#c011) | Для обоих маршрутов отделить допустимость конфигурации, вероятность её реализации и способность дальнейшего продолжения. |
+| <a id="l03"></a>L03 | Возможная операция → наличный носитель | [C006](#c006), [C031](#c031), [C032](#c032) | Получить последующий доступ физическим взаимодействием, раскрыв производство/копирование и расход носителей. |
+| <a id="l04"></a>L04 | Исполнение → запись → дальнейшее действие | [C010](#c010), [C023](#c023), [C026](#c026), [C033](#c033), [C042](#c042) | Предъявить один процесс с внутренним следом, обратным действием чтения и причинной ролью содержания. Физическое чтение и действие должны иметь указанные причинные каналы; пространственноподобная корреляция не является каналом управления. **Открыто.** |
+| <a id="l05"></a>L05 | Посредник → многочастичная организация | [C020](#c020), [C021](#c021), [C022](#c022) | Связать конкретные спины, дырки и протонный перенос с проверяемой запутанностью и сохранением после исчезновения посредника. |
+| <a id="l06"></a>L06 | Возврат функции → воспроизводство условий | [C005](#c005), [C022](#c022), [C030](#c030), [C032](#c032) | Замкнуть полный цикл с судьбой инструментов, ошибок и ресурсов на заявленном горизонте. |
+| <a id="l07"></a>L07 | Инвариант отклика → сохраняемая способность продолжения и генетическая преемственность | [C009](#c009), [C028](#c028), [C029](#c029), [C039](#c039), [C041](#c041), [C042](#c042) | Определить профиль продолжения и строгое отношение эквивалентности; предъявить сохраняемый переход организации между реализациями/уровнями. Для физического наследования дополнительно установить реальную причинную передачу профиля и её стоимость; ресурсное замыкание и производство условий — отдельные усиления. Не подменять довременный генетический порядок обязательными временными поколениями. Равенство отклика недостаточно. Для физического слоя дополнительно задать ковариантное соответствие протоколов, событий успеха, мер и причинной передачи; смену координат не путать со сменой аппарата. **Открыто.** |
+| <a id="l08"></a>L08 | Корректирующая роль → направленность и самопрезентация | [C010](#c010), [C034](#c034), [C035](#c035), [C036](#c036), [C042](#c042) | Установить роль коррекции относительно базового режима; отдельно проверить связь с направленностью и представленными целями. Коррекцию к граничным условиям отделить от постотбора; показать действие внутреннего механизма при релятивистски допустимых возмущениях. **Открыто.** |
+| <a id="l09"></a>L09 | Организация → физическое пространство-время | [C008](#c008), [C009](#c009), [C024](#c024), [C037](#c037), [C038](#c038), [C042](#c042) | Вывести причинную/метрическую структуру и масштаб, согласовать с СТО/ОТО без импорта готовой геометрии. R123/C042 фиксируют требования на заданном фоне; выбор физического настоящего и происхождение причинной/метрической структуры остаются открытыми. **Открыто.** |
+| <a id="l10"></a>L10 | Локальные результаты → одна сквозная реализация | [C002](#c002), [C015](#c015), [C019](#c019), [C026](#c026), [C033](#c033), [C039](#c039) | Совместить условия в одной модели; совпадение слов и успехи отдельных игрушек не доказывают их совместимость. |
 
 <a id="results"></a>
 ## Подробные результаты и ограничения
@@ -730,6 +730,7 @@
 ## 1. Основание, различие и вероятностный дефект
 
 
+<a id="r001"></a>
 ### R001. Граница первичной флуктуации
 
 **Статус:** ОТКРЫТО.
@@ -745,6 +746,7 @@
 **Источники:** [analysis/PROBABILITY_ORIGIN_20261103/NOTE.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PROBABILITY_ORIGIN_20261103/NOTE.md); [analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md); [analysis/GENETIC_ORDER_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/GENETIC_ORDER_20261105/RESULT.md).
 
 
+<a id="r002"></a>
 ### R002. Максимально смешанное начало не самоорганизуется унитарно
 
 **Статус:** АНАЛИТИКА.
@@ -760,6 +762,7 @@
 **Источники:** [analysis/PROBABILITY_ORIGIN_20261103/NOTE.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PROBABILITY_ORIGIN_20261103/NOTE.md).
 
 
+<a id="r003"></a>
 ### R003. Самосогласованность не обеспечивает непустоту
 
 **Статус:** АНАЛИТИКА.
@@ -775,6 +778,7 @@
 **Источники:** [analysis/ENDOGENOUS_ACCESS_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/ENDOGENOUS_ACCESS_REVIEW_20261105/RESULT.md); [analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md).
 
 
+<a id="r004"></a>
 ### R004. Характеризация отсутствия композиционных различий
 
 **Статус:** АНАЛИТИКА.
@@ -790,6 +794,7 @@
 **Источники:** [analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md).
 
 
+<a id="r005"></a>
 ### R005. Односторонний клапан зависит от подготовки и доступа
 
 **Статус:** АНАЛИТИКА.
@@ -805,6 +810,7 @@
 **Источники:** [analysis/PROBABILITY_DEFECT_VALVES_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PROBABILITY_DEFECT_VALVES_20261105/RESULT.md).
 
 
+<a id="r006"></a>
 ### R006. Генетический порядок до времени
 
 **Статус:** ПОСТАНОВКА.
@@ -823,6 +829,7 @@
 ## 2. Мера, квантовое представление и подсистемы
 
 
+<a id="r007"></a>
 ### R007. Гильбертово представление положительного ядра
 
 **Статус:** АНАЛИТИКА.
@@ -838,6 +845,7 @@
 **Источники:** [analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md); [analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md).
 
 
+<a id="r008"></a>
 ### R008. Положительность событий слабее сильной положительности
 
 **Статус:** КОНТРПРИМЕР.
@@ -853,6 +861,7 @@
 **Источники:** [analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md).
 
 
+<a id="r009"></a>
 ### R009. Композиционная проверка сильной положительности
 
 **Статус:** АНАЛИТИКА.
@@ -868,6 +877,7 @@
 **Источники:** [analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md); [analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md).
 
 
+<a id="r010"></a>
 ### R010. Веса событий не фиксируют фазы и размерность
 
 **Статус:** КОНТРПРИМЕР.
@@ -883,6 +893,7 @@
 **Источники:** [analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md); [analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md).
 
 
+<a id="r011"></a>
 ### R011. Тензорное произведение и декогерентные альтернативы
 
 **Статус:** АНАЛИТИКА.
@@ -898,6 +909,7 @@
 **Источники:** [analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/KERNELS.md); [analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md).
 
 
+<a id="r012"></a>
 ### R012. Будущая граница и условный процесс
 
 **Статус:** АНАЛИТИКА.
@@ -913,6 +925,7 @@
 **Источники:** [analysis/FOUNDATIONS_DEEPENING_20261103/FUTURE.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/FUTURE.md); [analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/STATUS_TRANSITIONS.md).
 
 
+<a id="r013"></a>
 ### R013. Факторизация: неожиданный положительный результат
 
 **Статус:** АНАЛИТИКА.
@@ -931,6 +944,7 @@
 ## 3. Транспортная серия E001–E002: организация при заданной физике
 
 
+<a id="r014"></a>
 ### R014. Продолжение E001X: стационарный транспорт
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -946,6 +960,7 @@
 **Источники:** [infra/reviews/E001X_CONT_GH_v001_r001/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/infra/reviews/E001X_CONT_GH_v001_r001/RESULT.md).
 
 
+<a id="r015"></a>
 ### R015. SQRT: одинаковые популяционные ставки не равны одному каналу
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -961,6 +976,7 @@
 **Источники:** [results/E001X_SQRT_GH_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E001X_SQRT_GH_v001_r001/files/RESULT.md).
 
 
+<a id="r016"></a>
 ### R016. J0: перенос без hopping зависит от остальных каналов
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -976,6 +992,7 @@
 **Источники:** [results/E001X_J0_GH_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E001X_J0_GH_v001_r001/files/RESULT.md).
 
 
+<a id="r017"></a>
 ### R017. E002: восстановление есть, заявленное преимущество не прошло
 
 **Статус:** ОТРИЦАТЕЛЬНЫЙ ТЕСТ.
@@ -991,6 +1008,7 @@
 **Источники:** [analysis/E002_GH_v001_r001/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002_GH_v001_r001/REVIEW.md).
 
 
+<a id="r018"></a>
 ### R018. E002b: локально согласованные связи не определяют транспорт
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1006,6 +1024,7 @@
 **Источники:** [analysis/E002b_FEAS_GH_v001_r001/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002b_FEAS_GH_v001_r001/REVIEW.md).
 
 
+<a id="r019"></a>
 ### R019. E002c: исправление отчёта не новый физический результат
 
 **Статус:** ИСПРАВЛЕНИЕ.
@@ -1021,6 +1040,7 @@
 **Источники:** [results/E002c_REPAIR_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_REPAIR_v001_r001/files/RESULT.md).
 
 
+<a id="r020"></a>
 ### R020. E002c: корреляционные свидетельства не равны механизму
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1036,6 +1056,7 @@
 **Источники:** [results/E002c_REPAIR_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_REPAIR_v001_r001/files/RESULT.md).
 
 
+<a id="r021"></a>
 ### R021. Тёмный вес и время освобождения — разные наблюдаемые
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1051,6 +1072,7 @@
 **Источники:** [results/E002c_IC_RETRY_CAL_v002_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_IC_RETRY_CAL_v002_r001/files/RESULT.md); [results/E002c_WINDOW_EXPORT_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_WINDOW_EXPORT_v001_r001/files/RESULT.md).
 
 
+<a id="r022"></a>
 ### R022. Свидетель запутанности и оборот каналов: исправленные критерии
 
 **Статус:** АНАЛИТИЧЕСКИЕ КОНТРОЛИ.
@@ -1066,6 +1088,7 @@
 **Источники:** [analysis/E002c_literature_review_20261029/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002c_literature_review_20261029/REVIEW.md).
 
 
+<a id="r023"></a>
 ### R023. IC_RETRY: структурное согласование не переносится на отложенный поток
 
 **Статус:** ОТРИЦАТЕЛЬНЫЙ ТЕСТ.
@@ -1081,6 +1104,7 @@
 **Источники:** [results/E002c_IC_RETRY_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_IC_RETRY_v001_r001/files/RESULT.md).
 
 
+<a id="r024"></a>
 ### R024. Масочное разложение транспортного зазора
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1096,6 +1120,7 @@
 **Источники:** [results/E002c_WINDOW_EXPORT_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002c_WINDOW_EXPORT_v001_r001/files/RESULT.md); [analysis/DTL_MODEL_REVIEW_20261031/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/DTL_MODEL_REVIEW_20261031/REVIEW.md).
 
 
+<a id="r025"></a>
 ### R025. E002d: слабый ответ не ограничивает роль всей когерентности
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1111,6 +1136,7 @@
 **Источники:** [analysis/E002d_PROD_v003_r001/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002d_PROD_v003_r001/RESULT.md).
 
 
+<a id="r026"></a>
 ### R026. E002d: симметрия, нелинейность и локальный контраст
 
 **Статус:** ЧИСЛЕННО + АНАЛИТИКА.
@@ -1126,6 +1152,7 @@
 **Источники:** [analysis/E002d_PROD_v003_r001/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002d_PROD_v003_r001/RESULT.md).
 
 
+<a id="r027"></a>
 ### R027. DTL и память: гипотеза не подтверждение режима
 
 **Статус:** ИСПРАВЛЕНИЕ И ГИПОТЕЗА.
@@ -1144,6 +1171,7 @@
 ## 4. Спектры, F2, CORR и RESET: какие отношения причинно работают
 
 
+<a id="r028"></a>
 ### R028. Спектральный ответ требует входа и выхода
 
 **Статус:** АНАЛИТИКА.
@@ -1159,6 +1187,7 @@
 **Источники:** [analysis/E002e_SPECTRAL_REVIEW_20261031/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_SPECTRAL_REVIEW_20261031/REVIEW.md).
 
 
+<a id="r029"></a>
 ### R029. E002e baseline: полный расчёт, ограниченный хвост
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1174,6 +1203,7 @@
 **Источники:** [results/E002e_BASELINE_v001_r001/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002e_BASELINE_v001_r001/files/RESULT.md); [experiments/e002e/BASELINE_STATUS_v001.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/experiments/e002e/BASELINE_STATUS_v001.md).
 
 
+<a id="r030"></a>
 ### R030. G: малая модель как условная лаборатория
 
 **Статус:** ЧИСЛЕННО + АНАЛИТИКА.
@@ -1189,6 +1219,7 @@
 **Источники:** [results/E002e_G_v001_r002/files/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/results/E002e_G_v001_r002/files/RESULT.md); [analysis/E002e_SMOKE_REVIEW_v001/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_SMOKE_REVIEW_v001/RESULT.md).
 
 
+<a id="r031"></a>
 ### R031. F2: количественный перенос G1 опровергнут
 
 **Статус:** ОТРИЦАТЕЛЬНЫЙ ТЕСТ.
@@ -1204,6 +1235,7 @@
 **Источники:** [analysis/E002e_F2_v001/F2_RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_F2_v001/F2_RESULT.md).
 
 
+<a id="r032"></a>
 ### R032. После F2: исключён конкретный лоренцев профиль
 
 **Статус:** КОНТРПРИМЕР.
@@ -1219,6 +1251,7 @@
 **Источники:** [analysis/E002e_NEIGHBOR_REVIEW_20261101/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_NEIGHBOR_REVIEW_20261101/RESULT.md).
 
 
+<a id="r033"></a>
 ### R033. Уникальность полной NESS при v=0
 
 **Статус:** АНАЛИТИКА.
@@ -1234,6 +1267,7 @@
 **Источники:** [analysis/E002e_NEIGHBOR_REVIEW_20261101/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_NEIGHBOR_REVIEW_20261101/RESULT.md).
 
 
+<a id="r034"></a>
 ### R034. CORR: локальные состояния не определяют дальнейший поток
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1249,6 +1283,7 @@
 **Источники:** [experiments/e002e_corr/PRODUCTION_RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/experiments/e002e_corr/PRODUCTION_RESULT.md).
 
 
+<a id="r035"></a>
 ### R035. CORR: знак и секторный механизм
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1264,6 +1299,7 @@
 **Источники:** [analysis/E002e_CORR_MECHANISM_v001/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/E002e_CORR_MECHANISM_v001/RESULT.md).
 
 
+<a id="r036"></a>
 ### R036. RESET: предсказание малого непрерывного сброса поддержано
 
 **Статус:** ЧИСЛЕННО: АРХИВ.
@@ -1282,6 +1318,7 @@
 ## 5. Устойчивость, защита и внутреннее поддержание
 
 
+<a id="r037"></a>
 ### R037. Неподвижная точка не равна происхождению и устойчивости
 
 **Статус:** АНАЛИТИКА.
@@ -1297,6 +1334,7 @@
 **Источники:** [analysis/FIXPOINT_REVIEW_20261102/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FIXPOINT_REVIEW_20261102/REVIEW.md).
 
 
+<a id="r038"></a>
 ### R038. Обратная связь x↔q допускает устойчивое ненулевое состояние
 
 **Статус:** АНАЛИТИКА.
@@ -1312,6 +1350,7 @@
 **Источники:** [analysis/AFFECTIVE_ANALOGY_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/AFFECTIVE_ANALOGY_20261103/REVIEW.md); [analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md).
 
 
+<a id="r039"></a>
 ### R039. Шум и нарушение симметрии не создают организацию по определению
 
 **Статус:** АНАЛИТИКА.
@@ -1327,6 +1366,7 @@
 **Источники:** [analysis/AFFECTIVE_ANALOGY_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/AFFECTIVE_ANALOGY_20261103/REVIEW.md); [analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PRIMORDIAL_FLUCTUATION_BALANCE_20261104/RESULT.md).
 
 
+<a id="r040"></a>
 ### R040. BIC: точная защита существует при настройке
 
 **Статус:** АНАЛИТИКА.
@@ -1342,6 +1382,7 @@
 **Источники:** [analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md).
 
 
+<a id="r041"></a>
 ### R041. BIC: защита и загрузка конфликтуют в статическом протоколе
 
 **Статус:** АНАЛИТИКА.
@@ -1357,6 +1398,7 @@
 **Источники:** [analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md).
 
 
+<a id="r042"></a>
 ### R042. BIC: предел численных заявлений соседей
 
 **Статус:** НЕ ВЕРИФИЦИРОВАНО.
@@ -1372,6 +1414,7 @@
 **Источники:** [analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/BIC_SMOKE_AUDIT_20261103/REVIEW.md).
 
 
+<a id="r043"></a>
 ### R043. Исчезнувший посредник может оставить долговечное отношение
 
 **Статус:** АНАЛИТИЧЕСКАЯ ГРАНИЦА.
@@ -1395,6 +1438,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r044"></a>
 ### R044. Замыкание ограничений — физическая задача, а не имя δL
 
 **Продолжение 11 ноября:** [R129 — динамические контакты и ёмкость](../G3_CONTACT_CAPACITY_20261111/REPORT.md). Условное уточнение; статус этой исходной карточки не повышен.
@@ -1415,6 +1459,7 @@
 ## 6. Замкнутое целое, внутреннее время и прогноз «сейчас»
 
 
+<a id="r045"></a>
 ### R045. Внутренняя открытость в трёхкубитном целом
 
 **Статус:** АНАЛИТИКА.
@@ -1436,6 +1481,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r046"></a>
 ### R046. Термодинамическая бухгалтерия внутренней открытости
 
 **Статус:** АНАЛИТИКА.
@@ -1455,6 +1501,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r047"></a>
 ### R047. PW: условная динамика внутри стационарного целого
 
 **Статус:** АНАЛИТИКА.
@@ -1476,6 +1523,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r048"></a>
 ### R048. SWAP-возврат оказался эхо, не притяжением
 
 **Статус:** КОНТРПРИМЕР.
@@ -1491,6 +1539,7 @@
 **Источники:** [analysis/NOW_FUTURE_STRUCTURE_20261103/REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/NOW_FUTURE_STRUCTURE_20261103/REVIEW.md).
 
 
+<a id="r049"></a>
 ### R049. 23 координаты достаточны для свободного будущего H₀
 
 **Статус:** АНАЛИТИКА.
@@ -1508,6 +1557,7 @@
 **Связующая запись о посреднике:** [R119](#r119).
 
 
+<a id="r050"></a>
 ### R050. FAMILY1: отдельные критерии различают разные свойства
 
 **Статус:** АНАЛИТИКА.
@@ -1523,6 +1573,7 @@
 **Источники:** [analysis/FAMILY1_DERIVABILITY_20261103/STATUS_TRANSITIONS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FAMILY1_DERIVABILITY_20261103/STATUS_TRANSITIONS.md).
 
 
+<a id="r051"></a>
 ### R051. 31 координата для вмешательств при H₀
 
 **Статус:** АНАЛИТИКА.
@@ -1538,6 +1589,7 @@
 **Источники:** [analysis/FOUNDATIONS_DEEPENING_20261103/PROCESS.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/FOUNDATIONS_DEEPENING_20261103/PROCESS.md); [analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md).
 
 
+<a id="r052"></a>
 ### R052. Реконнекция открывает ранее скрытые различия
 
 **Статус:** АНАЛИТИКА.
@@ -1553,6 +1605,7 @@
 **Источники:** [analysis/RECONNECTION_PROBABILITY_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/RECONNECTION_PROBABILITY_20261104/RESULT.md); [analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md).
 
 
+<a id="r053"></a>
 ### R053. Лестница рангов: 15, 23, 31, 39, 63
 
 **Статус:** АНАЛИТИКА.
@@ -1568,6 +1621,7 @@
 **Источники:** [analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md).
 
 
+<a id="r054"></a>
 ### R054. Три малых ненулевых времени дают полный ранг D_FIXED
 
 **Статус:** АНАЛИТИКА.
@@ -1583,6 +1637,7 @@
 **Источники:** [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md); [analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/PREDICTIVE_FRAME_AUDIT_20261104/RESULT.md).
 
 
+<a id="r055"></a>
 ### R055. Полный ранг не гарантирует устойчивой реконструкции
 
 **Статус:** АНАЛИТИКА.
@@ -1602,6 +1657,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r056"></a>
 ### R056. Бильярд: заданная трассировка и восстановимость начала
 
 **Статус:** АРХИВ + АНАЛИТИКА.
@@ -1620,6 +1676,7 @@
 ## 7. Инвариант, ремонт и ресурс повторения
 
 
+<a id="r057"></a>
 ### R057. Спектральный инвариант отклика
 
 **Статус:** АНАЛИТИКА.
@@ -1641,6 +1698,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r058"></a>
 ### R058. Геометрия откликов не лоренцева геометрия
 
 **Статус:** АНАЛИТИКА.
@@ -1656,6 +1714,7 @@
 **Источники:** [analysis/INVARIANT_ATTACHMENTS_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/INVARIANT_ATTACHMENTS_20261105/RESULT.md); [analysis/NOW_FRAMEWORK_INVARIANT_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/NOW_FRAMEWORK_INVARIANT_20261106/RESULT.md).
 
 
+<a id="r059"></a>
 ### R059. Стоимость смены реализации зависит от допустимых повреждений
 
 **Статус:** АНАЛИТИЧЕСКАЯ ГРАНИЦА.
@@ -1673,6 +1732,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r060"></a>
 ### R060. Нейронная линейная игрушка: одинаковый отклик, разный ремонт
 
 **Статус:** АНАЛИТИКА С ИСПРАВЛЕНИЯМИ.
@@ -1690,6 +1750,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r061"></a>
 ### R061. Нелинейный «постоянный шрам» не доказан для полного обучения
 
 **Статус:** ИСПРАВЛЕНИЕ.
@@ -1705,6 +1766,7 @@
 **Источники:** [analysis/INVARIANT_NEURAL_PEERS_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/INVARIANT_NEURAL_PEERS_20261105/RESULT.md); [analysis/UNIVERSE_AGENCY_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/UNIVERSE_AGENCY_20261105/RESULT.md).
 
 
+<a id="r062"></a>
 ### R062. M4: внутренний ремонт возможен с подготовленным запасом
 
 **Статус:** АНАЛИТИКА.
@@ -1722,6 +1784,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r063"></a>
 ### R063. Ремонт доступа и восстановление старого содержания различны
 
 **Статус:** АНАЛИТИКА.
@@ -1739,6 +1802,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r064"></a>
 ### R064. Цикл ремонта требует доказанного последнего звена
 
 **Продолжение 11 ноября:** [R129 — динамические контакты и ёмкость](../G3_CONTACT_CAPACITY_20261111/REPORT.md). Условное уточнение; статус этой исходной карточки не повышен.
@@ -1764,6 +1828,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r065"></a>
 ### R065. Внутренняя перезарядка не запрещена сохранением энергии
 
 **Статус:** АНАЛИТИКА.
@@ -1783,6 +1848,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r066"></a>
 ### R066. Информационная ёмкость точного исправления
 
 **Статус:** АНАЛИТИКА.
@@ -1809,6 +1875,7 @@
 ## 8. Композиционные свидетели, токены и исполняемая запись
 
 
+<a id="r067"></a>
 ### R067. Трёхэлементный свидетель: что действительно возвращается
 
 **Статус:** АНАЛИТИКА.
@@ -1824,6 +1891,7 @@
 **Источники:** [analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md).
 
 
+<a id="r068"></a>
 ### R068. Шестнадцатиморфизмовый свидетель: строгий цикл готовности
 
 **Статус:** АНАЛИТИКА.
@@ -1839,6 +1907,7 @@
 **Источники:** [analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COMPOSITION_CYCLES_REVIEW_20261105/RESULT.md).
 
 
+<a id="r069"></a>
 ### R069. Перепись и семантики: статусы чисел различаются
 
 **Статус:** АРХИВ / ВНЕШНИЙ ОТЧЁТ.
@@ -1854,6 +1923,7 @@
 **Источники:** [analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md); [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md).
 
 
+<a id="r070"></a>
 ### R070. V1: инвариант репертуара
 
 **Статус:** АНАЛИТИКА.
@@ -1869,6 +1939,7 @@
 **Источники:** [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md); [analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md).
 
 
+<a id="r071"></a>
 ### R071. V2 и A: расширение репертуара оплачено правилом исполнения
 
 **Статус:** АНАЛИТИКА.
@@ -1884,6 +1955,7 @@
 **Источники:** [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md); [analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md).
 
 
+<a id="r072"></a>
 ### R072. Конечная BFS-абстракция точна только для её правил
 
 **Статус:** АНАЛИТИКА.
@@ -1899,6 +1971,7 @@
 **Источники:** [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md).
 
 
+<a id="r073"></a>
 ### R073. Групповой семенной цикл не означает полноты наблюдения
 
 **Статус:** АНАЛИТИКА.
@@ -1914,6 +1987,7 @@
 **Источники:** [analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/COPILOT_ACCESS_RANK_20261105/RESULT.md); [analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/ACCESS_SEED_RANK_REVIEW_20261105/RESULT.md).
 
 
+<a id="r074"></a>
 ### R074. Выходные истории различают больше, чем один профиль
 
 **Статус:** АНАЛИТИКА.
@@ -1929,6 +2003,7 @@
 **Источники:** [analysis/OUTPUT_HISTORIES_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/OUTPUT_HISTORIES_REVIEW_20261105/RESULT.md).
 
 
+<a id="r075"></a>
 ### R075. Запись теми же взаимодействиями, что исполнение
 
 **Статус:** ОТКРЫТЫЙ МОСТ.
@@ -1955,6 +2030,7 @@
 ## 9. Тип 1/тип 2, стрела и субъектные ограничения
 
 
+<a id="r076"></a>
 ### R076. Классификация проекта определяется корректирующей ролью
 
 **Статус:** ПРАВИЛО ПОСТАНОВКИ.
@@ -1976,6 +2052,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r077"></a>
 ### R077. Конечное унитарное целое не имеет нетривиального вечного монотонного функционала указанного типа
 
 **Статус:** АНАЛИТИКА.
@@ -1993,6 +2070,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r078"></a>
 ### R078. Симметрия ансамбля не запрещает направленные истории
 
 **Статус:** АНАЛИТИКА.
@@ -2010,6 +2088,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r079"></a>
 ### R079. Редуцированный канал не готовый бесконечный резервуар
 
 **Статус:** АНАЛИТИКА.
@@ -2033,6 +2112,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r080"></a>
 ### R080. Обучение и саморепрезентация не тождественны сильному выбору
 
 **Статус:** ОГРАНИЧЕНИЕ ИНТЕРПРЕТАЦИИ.
@@ -2050,6 +2130,7 @@
 **Релятивистское уточнение:** [R123](#r123), [C042](#c042).
 
 
+<a id="r081"></a>
 ### R081. Ванчурин и родственные программы — внешние условные опоры
 
 **Статус:** ЛИТЕРАТУРНЫЙ РАЗБОР.
@@ -2065,6 +2146,7 @@
 **Источники:** [analysis/VANCHURIN_REVIEW_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/VANCHURIN_REVIEW_20261105/RESULT.md); [analysis/VANCHURIN_REVIEW_20261105/REGIMES_CLARIFICATION.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/VANCHURIN_REVIEW_20261105/REGIMES_CLARIFICATION.md); [analysis/UNIVERSE_AGENCY_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/UNIVERSE_AGENCY_20261105/RESULT.md).
 
 
+<a id="r082"></a>
 ### R082. Фильтры T-CORE/Adm_T не выделили субъекта
 
 **Статус:** АНАЛИТИЧЕСКИЕ КОНТРОЛИ.
@@ -2083,6 +2165,7 @@
 ## 10. Причинная геометрия, истории и граница рамки
 
 
+<a id="r083"></a>
 ### R083. Миньковский, TSVF и полнота истории различаются
 
 **Статус:** АНАЛИТИЧЕСКОЕ УТОЧНЕНИЕ.
@@ -2104,6 +2187,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r084"></a>
 ### R084. Презентизм и релятивистское «сейчас» требуют интерфейса
 
 **Статус:** АНАЛИТИЧЕСКОЕ УТОЧНЕНИЕ.
@@ -2123,6 +2207,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r085"></a>
 ### R085. Готовая геометрия и модульное время сохраняют исходные входы
 
 **Статус:** АНАЛИТИЧЕСКАЯ ГРАНИЦА.
@@ -2142,6 +2227,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r086"></a>
 ### R086. CSG/TP: вероятность будущего отмеченного события
 
 **Статус:** АНАЛИТИКА.
@@ -2157,6 +2243,7 @@
 **Источники:** [analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md).
 
 
+<a id="r087"></a>
 ### R087. CSG/TP: автономность полного отмеченного будущего
 
 **Статус:** АНАЛИТИКА.
@@ -2172,6 +2259,7 @@
 **Источники:** [analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md).
 
 
+<a id="r088"></a>
 ### R088. CSG: фронт, предел и смена правил не взаимозаменяемы
 
 **Статус:** АНАЛИТИКА / ЛИТЕРАТУРНЫЕ ГРАНИЦЫ.
@@ -2187,6 +2275,7 @@
 **Источники:** [analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md).
 
 
+<a id="r089"></a>
 ### R089. Дополнительные CSG-поправки сохранены в исходной рамке
 
 **Статус:** ИСПРАВЛЕНИЯ.
@@ -2202,6 +2291,7 @@
 **Источники:** [analysis/NOW_FRAMEWORK_INVARIANT_20261106/PEER_REVIEW.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/NOW_FRAMEWORK_INVARIANT_20261106/PEER_REVIEW.md); [analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/dcf21d06831547982ea4835b86420f949b35bcd0/analysis/CSG_MARKED_FUTURE_REVIEW_20261106/RESULT.md).
 
 
+<a id="r090"></a>
 ### R090. Единого сквозного исполнения пока нет
 
 **Статус:** ОТКРЫТО.
@@ -2221,6 +2311,7 @@
 
 ## 11. Восстановленная ветка: пуск, самоорганизация и продолжение
 
+<a id="r091"></a>
 ### R091. Клеточный автомат: коллективная организация возникает в ходе эволюции
 
 **Статус:** ВНЕШНЯЯ НАУЧНАЯ ОПОРА.
@@ -2235,6 +2326,7 @@
 
 **Источники:** [analysis/NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md](../NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md); [analysis/NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md](../NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md); [https://pmc.ncbi.nlm.nih.gov/articles/PMC13658131/](https://pmc.ncbi.nlm.nih.gov/articles/PMC13658131/).
 
+<a id="r092"></a>
 ### R092. ФП-A / v0.2-G / v0.2-K: восстановлены спецификации, не принятые результаты
 
 **Статус:** АРХИВ ПОСТАНОВОК.
@@ -2249,6 +2341,7 @@
 
 **Источники:** [analysis/NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md](../NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md); [analysis/NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md](../NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md).
 
+<a id="r093"></a>
 ### R093. H-B-2A: архивная полевая эволюция после завершения изменения потенциала
 
 **Статус:** ЧИСЛЕННО: ИСТОРИЧЕСКИЙ ОТЧЁТ ПРОЧИТАН.
@@ -2263,6 +2356,7 @@
 
 **Источники:** [analysis/NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md](../NOW_FRAMEWORK_INVARIANT_20261106/EARLY_SOURCE_EXCERPTS.md); [analysis/NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md](../NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md).
 
+<a id="r094"></a>
 ### R094. Завершение инициатора не тождественно прекращению организованного процесса
 
 **Статус:** СИНТЕЗ ПРЕЖНИХ ОПОР.
@@ -2288,6 +2382,7 @@
 **Связь с планируемым составным опытом R125:** [объекты, вмешательства и границы](../R125_MULTI_LINEAGE_REVIEW_20261107/EXPERIMENT_DESIGN.md). Плановая/контекстная связь; научный статус этой записи не повышен.
 
 
+<a id="r095"></a>
 ### R095. Волновой монизм не закрывает генезис организации; PW остаётся условным мостом
 
 **Статус:** РАЗБОР И ОГРАНИЧЕНИЯ.
@@ -2309,6 +2404,7 @@
 
 ## 12. Больцмановская флуктуация целого
 
+<a id="r096"></a>
 ### R096. Возникновение на допустимой внутренней стадии с самосогласованным причинным прошлым
 
 **Статус:** РАБОЧАЯ ГИПОТЕЗА ПО ПРЯМОМУ УКАЗАНИЮ ПОЛЬЗОВАТЕЛЯ.
@@ -2330,6 +2426,7 @@
 
 ## 13. Физический кандидат многочастичной организации
 
+<a id="r097"></a>
 ### R097. Ядерные спины, электронные дырки и протонные дефекты/туннелирование
 
 **Статус:** ВОССТАНОВЛЕННАЯ ГИПОТЕЗА-КАНДИДАТ.
@@ -2355,6 +2452,7 @@
 
 ## 14. Восстановленные ограничения и ранняя GLORIA
 
+<a id="r098"></a>
 ### R098. Линейный тест неаддитивности отозван
 
 **Статус:** ИСПРАВЛЕНИЕ / УСЛОВНАЯ АНАЛИТИКА.
@@ -2369,6 +2467,7 @@
 
 **Источники:** [analysis/E_SESSION_20261101/UNPUBLISHED_MODEL_NOTES.md](https://github.com/IgorSabirov/vm-lab/blob/bf0a601ffe37df483a9d08eb08579ebbd6c9e403/analysis/E_SESSION_20261101/UNPUBLISHED_MODEL_NOTES.md); [analysis/E_SESSION_20261101/REGISTER.md](https://github.com/IgorSabirov/vm-lab/blob/bf0a601ffe37df483a9d08eb08579ebbd6c9e403/analysis/E_SESSION_20261101/REGISTER.md).
 
+<a id="r099"></a>
 ### R099. GLORIA: восстановленная ветвь и предел статуса старых заявлений
 
 **Статус:** АРХИВНАЯ ВЕТВЬ / ПРОТИВОРЕЧИЯ ИСТОЧНИКА СОХРАНЕНЫ.
@@ -2383,6 +2482,7 @@
 
 **Источники:** [Восстановленные фрагменты](RECOVERED_SOURCE_EXCERPTS.md); [analysis/INVARIANT_RECOVERY_20261105/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/bf0a601ffe37df483a9d08eb08579ebbd6c9e403/analysis/INVARIANT_RECOVERY_20261105/RESULT.md); [analysis/NOW_FRAMEWORK_INVARIANT_20261106/RESULT.md](https://github.com/IgorSabirov/vm-lab/blob/bf0a601ffe37df483a9d08eb08579ebbd6c9e403/analysis/NOW_FRAMEWORK_INVARIANT_20261106/RESULT.md).
 
+<a id="r100"></a>
 ### R100. Сохранение, индексация и полнота описания — разные задачи
 
 **Статус:** ВОССТАНОВЛЕННОЕ АНАЛИТИЧЕСКОЕ РАЗЛИЧЕНИЕ.
@@ -3336,6 +3436,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 [План и разбор отзывов](../U010_PLANNING_20261110/PLAN.md). Синхронизирована основная карточка U010, исправлен next_deliverable, обновлены журналы. Проверка физического пути памяти выделена отдельно от зависимости XOR от payload; готовность отделена от её воспроизводства, ресурсный учёт — от замыкания источников. Родители R064, R121, R122, R127, R066, R075, R079, R094, R119, R120; L04, L06, L07, L10 открыты. Прогонов: 0.
 
 
+<a id="r128"></a>
 ## R128 — Генезис ρ и организационное замыкание: предпосылки, причинные контроли и границы
 
 **Продолжение 11 ноября:** [R129 — динамические контакты и ёмкость](../G3_CONTACT_CAPACITY_20261111/REPORT.md). Условное уточнение; статус этой исходной карточки не повышен.
@@ -3448,9 +3549,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Место в рамке.** Условный мост к происхождению контактного компонента аппарата и его роли в восстановлении, П06/П12. Фиксированная рабочая матрица заменена динамическими контактами при явно сохранённых основаниях. Роль конкуренции установлена в заданном классе, физическое замыкание не установлено.
 
-**Родители:** R044, R064, R122, R128. **Конструкции:** C022, C030, C041. **Вопросы:** U010.
+**Родители:** R044, R064, R122, R128. **Конструкции:** C022, C030, C041. **Вопросы:** U010. **N-долги:** N02, N06.
 
 **Источники:** [REPORT.md](../../analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md); [RESULTS.json](../../analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json); [compute.py](../../analysis/G3_CONTACT_CAPACITY_20261111/compute.py); [SOURCE_MANIFEST.json](../../analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json).
 
-**Предпосылки:** B03, B04, B05, B06, C09, D04, D05, E01, E03, E04, E05, E07, F02, F11, G01, G02, G03, G04, G06, G07, G08; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+**Предпосылки:** B03, B04, B05, B06, C09, D04, D05, E01, E03, E04, E05, E07, F02, F11, G01, G02, G03, G04, G06, G07, G08; [реестр 66 условий и N-долгов](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R129 -->
