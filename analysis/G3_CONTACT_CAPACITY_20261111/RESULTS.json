@@ -1,0 +1,746 @@
+{
+  "schema": "g3-contact-capacity-v1",
+  "base_commit": "22c08c86853e8b7ecb7b02cb888a00161d86185f",
+  "status": "EXPLORATORY_CLASS_LEVEL_COMPUTED",
+  "parameters": {
+    "n": 3,
+    "lambda_A": 1.0,
+    "mu_A": 0.3,
+    "lambda_l": 1.0,
+    "initial_marks": [
+      1,
+      0,
+      0
+    ],
+    "initial_edges": [],
+    "allowed_pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "divisions": false,
+    "capacity_rule": "Block edge births when number of extant edges equals capacity; no eviction.",
+    "budget_rule": "Successful edge birth consumes one unit; no replenishment; independent of capacity experiments."
+  },
+  "capacity_rows": [
+    {
+      "nu": 0.2,
+      "capacity": 1,
+      "M": {
+        "time": 15.587978948074156,
+        "edge_time": 13.597935034025005,
+        "productive_time": 4.670979853172875,
+        "births": 4.856692702222518,
+        "deaths": 4.079380510207502,
+        "gains": 4.670979853172875,
+        "losses": 5.670979853172874,
+        "expected_final_edges": 0.7773121920150178,
+        "residuals": {
+          "absorption_mass": 2.220446049250313e-16,
+          "edge_balance": 1.2212453270876722e-15,
+          "mark_balance": 8.881784197001252e-16,
+          "productive_identity": 0.0,
+          "linear_residual": 1.0658141036401503e-14
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 11.587768135104007,
+        "edge_time": 9.737141721379295,
+        "productive_time": 2.8857159523238542,
+        "births": 3.7012528274494283,
+        "deaths": 2.921142516413788,
+        "gains": 2.8857159523238542,
+        "losses": 3.8857159523238547,
+        "expected_final_edges": 0.7801103110356402,
+        "residuals": {
+          "absorption_mass": 2.220446049250313e-16,
+          "edge_balance": 2.220446049250313e-16,
+          "mark_balance": 4.440892098500626e-16,
+          "productive_identity": 0.0,
+          "linear_residual": 7.771561172376096e-15
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 12.325416888930118,
+        "edge_time": 10.948581765892802,
+        "productive_time": 3.231671962335041,
+        "births": 4.13050536911195,
+        "deaths": 3.2845745297678404,
+        "gains": 3.231671962335041,
+        "losses": 4.231671962335042,
+        "expected_final_edges": 0.8459308393441101,
+        "residuals": {
+          "absorption_mass": 1.1102230246251565e-16,
+          "edge_balance": 2.220446049250313e-16,
+          "mark_balance": 1.3322676295501878e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 1.4210854715202004e-14
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 1.2647019641237658
+    },
+    {
+      "nu": 0.2,
+      "capacity": 2,
+      "M": {
+        "time": 37.25138678093223,
+        "edge_time": 62.62321092378414,
+        "productive_time": 16.85625467889502,
+        "births": 20.140637792383078,
+        "deaths": 18.786963277135246,
+        "gains": 16.85625467889502,
+        "losses": 17.85625467889502,
+        "expected_final_edges": 1.3536745152478353,
+        "residuals": {
+          "absorption_mass": 1.3322676295501878e-15,
+          "edge_balance": 3.552713678800501e-15,
+          "mark_balance": 0.0,
+          "productive_identity": 0.0,
+          "linear_residual": 8.526512829121202e-14
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 30.043398542476357,
+        "edge_time": 47.518026920043575,
+        "productive_time": 12.976429453130695,
+        "births": 15.575982422233977,
+        "deaths": 14.255408076013069,
+        "gains": 12.976429453130695,
+        "losses": 13.976429453130699,
+        "expected_final_edges": 1.320574346220911,
+        "residuals": {
+          "absorption_mass": 8.881784197001252e-16,
+          "edge_balance": 2.4424906541753444e-15,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 5.684341886080802e-14
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 36.085414542680695,
+        "edge_time": 61.6063353323087,
+        "productive_time": 16.273087231712125,
+        "births": 19.997922272358952,
+        "deaths": 18.481900599692615,
+        "gains": 16.273087231712125,
+        "losses": 17.27308723171213,
+        "expected_final_edges": 1.5160216726663416,
+        "residuals": {
+          "absorption_mass": 6.661338147750939e-16,
+          "edge_balance": 4.440892098500626e-15,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 7.105427357601002e-14
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 1.0323114547256331,
+      "lambda0_equal_mean_time": 1.0911733130141852,
+      "C2_equal_time": {
+        "time": 37.25138678093254,
+        "edge_time": 64.42706064155666,
+        "productive_time": 16.911893122017094,
+        "births": 20.88016533172507,
+        "deaths": 19.328118192467006,
+        "gains": 16.911893122017094,
+        "losses": 17.911893122017098,
+        "expected_final_edges": 1.5520471392580728,
+        "residuals": {
+          "absorption_mass": 1.1102230246251565e-15,
+          "edge_balance": 8.215650382226158e-15,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 7.993605777301127e-14
+        },
+        "states": 49,
+        "budget_levels": 1
+      }
+    },
+    {
+      "nu": 0.2,
+      "capacity": 3,
+      "M": {
+        "time": 54.24146237773491,
+        "edge_time": 121.73946468224517,
+        "productive_time": 26.524869658232465,
+        "births": 38.1660725273063,
+        "deaths": 36.52183940467354,
+        "gains": 26.524869658232465,
+        "losses": 27.52486965823246,
+        "expected_final_edges": 1.6442331226327451,
+        "residuals": {
+          "absorption_mass": 1.7763568394002505e-15,
+          "edge_balance": 1.021405182655144e-14,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 1.7053025658242404e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 41.465684939998184,
+        "edge_time": 84.19508391160353,
+        "productive_time": 19.421785604197304,
+        "births": 26.801313938927365,
+        "deaths": 25.258525173481054,
+        "gains": 19.421785604197304,
+        "losses": 20.42178560419731,
+        "expected_final_edges": 1.5427887654463137,
+        "residuals": {
+          "absorption_mass": 1.3322676295501878e-15,
+          "edge_balance": 3.1086244689504383e-15,
+          "mark_balance": 7.105427357601002e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 1.1368683772161603e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 55.56353021179875,
+        "edge_time": 126.77889742134056,
+        "productive_time": 27.29712054875385,
+        "births": 39.91169321405566,
+        "deaths": 38.03366922640217,
+        "gains": 27.29712054875385,
+        "losses": 28.29712054875386,
+        "expected_final_edges": 1.8780239876535072,
+        "residuals": {
+          "absorption_mass": 3.1086244689504383e-15,
+          "edge_balance": 1.509903313490213e-14,
+          "mark_balance": 1.0658141036401503e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 1.7053025658242404e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 0.9762061944404119,
+      "lambda0_equal_mean_time": 0.9633109063620029,
+      "C2_equal_time": {
+        "time": 54.24146237773489,
+        "edge_time": 122.61894831786961,
+        "productive_time": 26.555807455177856,
+        "births": 38.63400661524622,
+        "deaths": 36.785684495360876,
+        "gains": 26.555807455177856,
+        "losses": 27.555807455177852,
+        "expected_final_edges": 1.8483221198853377,
+        "residuals": {
+          "absorption_mass": 1.5543122344752192e-15,
+          "edge_balance": 7.993605777301127e-15,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 2.6590953470072277e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      }
+    },
+    {
+      "nu": 0.1,
+      "capacity": 1,
+      "M": {
+        "time": 64.13625304136241,
+        "edge_time": 57.481751824817415,
+        "productive_time": 13.017031630170298,
+        "births": 18.053527980535254,
+        "deaths": 17.24452554744523,
+        "gains": 13.017031630170298,
+        "losses": 14.017031630170294,
+        "expected_final_edges": 0.8090024330900233,
+        "residuals": {
+          "absorption_mass": 1.3322676295501878e-15,
+          "edge_balance": 1.2212453270876722e-15,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 2.842170943040401e-14
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 42.80983686389082,
+        "edge_time": 36.873021670318884,
+        "productive_time": 7.8280983686388925,
+        "births": 11.873630387143876,
+        "deaths": 11.061906501095667,
+        "gains": 7.8280983686388925,
+        "losses": 8.828098368638889,
+        "expected_final_edges": 0.811723886048209,
+        "residuals": {
+          "absorption_mass": 1.5543122344752192e-15,
+          "edge_balance": 6.661338147750939e-16,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 2.1316282072803006e-14
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 46.64059283655823,
+        "edge_time": 42.13668176204197,
+        "productive_time": 8.810209962947711,
+        "births": 13.511733223548775,
+        "deaths": 12.641004528612592,
+        "gains": 8.810209962947711,
+        "losses": 9.810209962947713,
+        "expected_final_edges": 0.8707286949361874,
+        "residuals": {
+          "absorption_mass": 4.440892098500626e-16,
+          "edge_balance": 4.440892098500626e-15,
+          "mark_balance": 1.7763568394002505e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 4.973799150320701e-14
+        },
+        "states": 28,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 1.3751165913802577
+    },
+    {
+      "nu": 0.1,
+      "capacity": 2,
+      "M": {
+        "time": 228.5553868159232,
+        "edge_time": 392.62390275357325,
+        "productive_time": 60.42342281880022,
+        "births": 119.22395770483939,
+        "deaths": 117.78717082607196,
+        "gains": 60.42342281880022,
+        "losses": 61.42342281880027,
+        "expected_final_edges": 1.436786878767488,
+        "residuals": {
+          "absorption_mass": 1.021405182655144e-14,
+          "edge_balance": 5.262457136723242e-14,
+          "mark_balance": 4.973799150320701e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 5.115907697472721e-13
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 177.00669641711542,
+        "edge_time": 284.7408140274078,
+        "productive_time": 45.8396945905259,
+        "births": 86.81017767974126,
+        "deaths": 85.42224420822232,
+        "gains": 45.8396945905259,
+        "losses": 46.83969459052588,
+        "expected_final_edges": 1.3879334715189353,
+        "residuals": {
+          "absorption_mass": 1.5765166949677223e-14,
+          "edge_balance": 8.881784197001252e-16,
+          "mark_balance": 2.1316282072803006e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 2.9665159217984183e-13
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 220.2082788933037,
+        "edge_time": 379.98219216316664,
+        "productive_time": 58.14772227441014,
+        "births": 115.57393605738262,
+        "deaths": 113.99465764895001,
+        "gains": 58.14772227441014,
+        "losses": 59.14772227441016,
+        "expected_final_edges": 1.579278408432638,
+        "residuals": {
+          "absorption_mass": 1.9984014443252818e-15,
+          "edge_balance": 2.353672812205332e-14,
+          "mark_balance": 1.4210854715202004e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 3.410605131648481e-13
+        },
+        "states": 49,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 1.0379055136553874,
+      "lambda0_equal_mean_time": 1.0933781988987168,
+      "C2_equal_time": {
+        "time": 228.5553868159235,
+        "edge_time": 399.2426062671095,
+        "productive_time": 60.53274162546552,
+        "births": 121.38689376906434,
+        "deaths": 119.77278188013284,
+        "gains": 60.53274162546552,
+        "losses": 61.53274162546558,
+        "expected_final_edges": 1.6141118889315267,
+        "residuals": {
+          "absorption_mass": 1.3100631690576847e-14,
+          "edge_balance": 2.2870594307278225e-14,
+          "mark_balance": 6.394884621840902e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 5.115907697472721e-13
+        },
+        "states": 49,
+        "budget_levels": 1
+      }
+    },
+    {
+      "nu": 0.1,
+      "capacity": 3,
+      "M": {
+        "time": 362.85275036031254,
+        "edge_time": 832.0942246843188,
+        "productive_time": 99.52100134542472,
+        "births": 251.38758835351953,
+        "deaths": 249.62826740529565,
+        "gains": 99.52100134542472,
+        "losses": 100.52100134542465,
+        "expected_final_edges": 1.759320948223869,
+        "residuals": {
+          "absorption_mass": 3.0753177782116836e-14,
+          "edge_balance": 1.865174681370263e-14,
+          "mark_balance": 7.105427357601002e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 9.094947017729282e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "C2_low": {
+        "time": 261.3995554008706,
+        "edge_time": 539.1487347587289,
+        "productive_time": 70.27705659377685,
+        "births": 163.36662096258848,
+        "deaths": 161.7446204276187,
+        "gains": 70.27705659377685,
+        "losses": 71.27705659377673,
+        "expected_final_edges": 1.6220005349697029,
+        "residuals": {
+          "absorption_mass": 4.3298697960381105e-14,
+          "edge_balance": 6.861178292183467e-14,
+          "mark_balance": 1.1368683772161603e-13,
+          "productive_identity": 0.0,
+          "linear_residual": 5.684341886080801e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "C2_high": {
+        "time": 367.85744602749594,
+        "edge_time": 847.38979090448,
+        "productive_time": 101.00163536121545,
+        "births": 256.1825471780078,
+        "deaths": 254.21693727134394,
+        "gains": 101.00163536121545,
+        "losses": 102.00163536121529,
+        "expected_final_edges": 1.9656099066637105,
+        "residuals": {
+          "absorption_mass": 5.617728504603292e-14,
+          "edge_balance": 1.3278267374516872e-13,
+          "mark_balance": 1.5631940186722204e-13,
+          "productive_identity": 0.0,
+          "linear_residual": 6.821210263296962e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      },
+      "ratio_M_C2_high": 0.9863950132823753,
+      "lambda0_equal_mean_time": 0.9813363088760518,
+      "C2_equal_time": {
+        "time": 362.8527503603287,
+        "edge_time": 832.1712055146404,
+        "productive_time": 99.5535640325891,
+        "births": 251.60191693971422,
+        "deaths": 249.65136165439202,
+        "gains": 99.5535640325891,
+        "losses": 100.55356403258898,
+        "expected_final_edges": 1.950555285322137,
+        "residuals": {
+          "absorption_mass": 3.0753177782116836e-14,
+          "edge_balance": 5.861977570020827e-14,
+          "mark_balance": 1.1368683772161603e-13,
+          "productive_identity": 0.0,
+          "linear_residual": 6.821210263296962e-13
+        },
+        "states": 56,
+        "budget_levels": 1
+      }
+    }
+  ],
+  "exact_control_functions": [
+    {
+      "nu": "1/5",
+      "capacity": 1,
+      "orbits": 8,
+      "T_C2_exact": "5*(189600*x**3 + 106420*x**2 + 21372*x + 1469)/(66600*x**3 + 47820*x**2 + 13462*x + 1469)",
+      "limit_exact": "1580/111",
+      "limit": 14.234234234234235,
+      "limit_minus_T": "25*(659700*x**2 + 376340*x + 60229)/(111*(66600*x**3 + 47820*x**2 + 13462*x + 1469))",
+      "derivative": "50*(197910000*x**4 + 225804000*x**3 + 95267800*x**2 + 17216680*x + 1161979)/(66600*x**3 + 47820*x**2 + 13462*x + 1469)**2",
+      "positive_coefficients_prove_strict_increase_and_upper_bound": true,
+      "T_M_exact": "465005/29831",
+      "M_minus_C2_supremum_exact": "4482575/3311241",
+      "no_positive_lambda0_root": true,
+      "M_over_C2_supremum": 1.0951048501495135
+    },
+    {
+      "nu": "1/5",
+      "capacity": 2,
+      "orbits": 13,
+      "T_C2_exact": "5*(6428370000*x**8 + 20601373000*x**7 + 25915253500*x**6 + 16878133500*x**5 + 6500110994*x**4 + 1579834188*x**3 + 245181950*x**2 + 22877463*x + 1004796)/(3*(203490000*x**8 + 723501000*x**7 + 1073147500*x**6 + 898352100*x**5 + 485908358*x**4 + 177483796*x**3 + 42474100*x**2 + 5822341*x + 334932))",
+      "limit_exact": "1071395/20349",
+      "limit": 52.65099022064966,
+      "limit_minus_T": "50*(1529195772000*x**7 + 5416980866200*x**6 + 7801361010540*x**5 + 6002970417158*x**4 + 2731503502588*x**3 + 743823850705*x**2 + 109242757561*x + 6495336276)/(20349*(203490000*x**8 + 723501000*x**7 + 1073147500*x**6 + 898352100*x**5 + 485908358*x**4 + 177483796*x**3 + 42474100*x**2 + 5822341*x + 334932))",
+      "derivative": "50*(45875873160000000*x**14 + 325018851972000000*x**13 + 1037982501850000000*x**12 + 1979544496468920000*x**11 + 2518817845556472000*x**10 + 2262619682807815600*x**9 + 1479185188758332360*x**8 + 713910528801302240*x**7 + 255077553954050992*x**6 + 67038305849535140*x**5 + 12752658094174420*x**4 + 1703133438363888*x**3 + 150823931664545*x**2 + 7888295018760*x + 181212949008)/(3*(203490000*x**8 + 723501000*x**7 + 1073147500*x**6 + 898352100*x**5 + 485908358*x**4 + 177483796*x**3 + 42474100*x**2 + 5822341*x + 334932)**2)",
+      "positive_coefficients_prove_strict_increase_and_upper_bound": true,
+      "T_M_exact": "21633547415/580744753",
+      "unique_positive_root": 1.0911733130141852
+    },
+    {
+      "nu": "1/10",
+      "capacity": 1,
+      "orbits": 8,
+      "T_C2_exact": "10*(32850*x**3 + 10975*x**2 + 1421*x + 70)/(5850*x**3 + 3075*x**2 + 721*x + 70)",
+      "limit_exact": "730/13",
+      "limit": 56.15384615384615,
+      "limit_minus_T": "400*(2045*x**2 + 854*x + 105)/(13*(5850*x**3 + 3075*x**2 + 721*x + 70))",
+      "derivative": "2000*(184050*x**4 + 153720*x**3 + 46067*x**2 + 5530*x + 245)/(5850*x**3 + 3075*x**2 + 721*x + 70)**2",
+      "positive_coefficients_prove_strict_increase_and_upper_bound": true,
+      "T_M_exact": "26360/411",
+      "M_minus_C2_supremum_exact": "42650/5343",
+      "no_positive_lambda0_root": true,
+      "M_over_C2_supremum": 1.1421524514215224
+    },
+    {
+      "nu": "1/10",
+      "capacity": 2,
+      "orbits": 13,
+      "T_C2_exact": "10*(886720500000*x**8 + 2270639850000*x**7 + 2218737111250*x**6 + 1084869256750*x**5 + 307060735850*x**4 + 53890698555*x**3 + 5974558544*x**2 + 401539133*x + 13237210)/(26950500000*x**8 + 78159600000*x**7 + 94798198750*x**6 + 66332651750*x**5 + 31166385350*x**4 + 10182860205*x**3 + 2211449294*x**2 + 269167033*x + 13237210)",
+      "limit_exact": "1970490/5989",
+      "limit": 329.0182000333946,
+      "limit_minus_T": "100*(180240895875000*x**7 + 539187370621250*x**6 + 657350071601000*x**5 + 430231831982650*x**4 + 168377102688915*x**3 + 39998224081339*x**2 + 5063427681808*x + 252910134260)/(5989*(26950500000*x**8 + 78159600000*x**7 + 94798198750*x**6 + 66332651750*x**5 + 31166385350*x**4 + 10182860205*x**3 + 2211449294*x**2 + 269167033*x + 13237210))",
+      "derivative": "500*(162216806287500000000*x**14 + 970537267118250000000*x**13 + 2611584446712993750000*x**12 + 4181819205531337500000*x**11 + 4450391792209509312500*x**10 + 3330401473458404700000*x**9 + 1805270103165604017500*x**8 + 717510763467446113500*x**7 + 209090762712186488300*x**6 + 44317627879440800580*x**5 + 6723193581998329463*x**4 + 708837019557401802*x**3 + 49117605384841367*x**2 + 1992522695807700*x + 35044745716820)/(26950500000*x**8 + 78159600000*x**7 + 94798198750*x**6 + 66332651750*x**5 + 31166385350*x**4 + 10182860205*x**3 + 2211449294*x**2 + 269167033*x + 13237210)**2",
+      "positive_coefficients_prove_strict_increase_and_upper_bound": true,
+      "T_M_exact": "348108639545/1523082192",
+      "unique_positive_root": 1.0933781988987168
+    }
+  ],
+  "budget_rows": [
+    {
+      "nu": 0.2,
+      "birth_budget": 10,
+      "M": {
+        "time": 16.363252448542344,
+        "edge_time": 22.733350010609286,
+        "productive_time": 5.831950638786723,
+        "births": 7.316389111921091,
+        "deaths": 6.820005003182785,
+        "gains": 5.831950638786723,
+        "losses": 6.831950638786721,
+        "expected_final_edges": 0.4963841087383075,
+        "residuals": {
+          "absorption_mass": 0.0,
+          "edge_balance": 1.2212453270876722e-15,
+          "mark_balance": 1.7763568394002505e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 2.1316282072803006e-14
+        },
+        "states": 56,
+        "budget_levels": 11
+      },
+      "C2_low": {
+        "time": 15.663812030655931,
+        "edge_time": 21.055178759843972,
+        "productive_time": 5.450410060875409,
+        "births": 6.921926180377276,
+        "deaths": 6.316553627953193,
+        "gains": 5.450410060875409,
+        "losses": 6.450410060875412,
+        "expected_final_edges": 0.6053725524240837,
+        "residuals": {
+          "absorption_mass": 6.661338147750939e-16,
+          "edge_balance": 1.2212453270876722e-15,
+          "mark_balance": 2.6645352591003757e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 2.1316282072803006e-14
+        },
+        "states": 56,
+        "budget_levels": 11
+      },
+      "C2_high": {
+        "time": 16.21797675452548,
+        "edge_time": 23.18843397412436,
+        "productive_time": 5.777523818265118,
+        "births": 7.555592339276926,
+        "deaths": 6.9565301922373095,
+        "gains": 5.777523818265118,
+        "losses": 6.77752381826512,
+        "expected_final_edges": 0.5990621470396174,
+        "residuals": {
+          "absorption_mass": 2.220446049250313e-16,
+          "edge_balance": 4.440892098500626e-16,
+          "mark_balance": 1.7763568394002505e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 3.552713678800501e-14
+        },
+        "states": 56,
+        "budget_levels": 11
+      },
+      "ratio_low": 1.0446532693649238,
+      "ratio_high": 1.0089576952918202
+    },
+    {
+      "nu": 0.2,
+      "birth_budget": 40,
+      "M": {
+        "time": 33.89618970739943,
+        "edge_time": 68.56092034604606,
+        "productive_time": 15.410218828666935,
+        "births": 21.595972455275252,
+        "deaths": 20.56827610381383,
+        "gains": 15.410218828666935,
+        "losses": 16.41021882866693,
+        "expected_final_edges": 1.027696351461433,
+        "residuals": {
+          "absorption_mass": 4.440892098500626e-16,
+          "edge_balance": 1.0658141036401503e-14,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 1.1368683772161603e-13
+        },
+        "states": 56,
+        "budget_levels": 41
+      },
+      "C2_low": {
+        "time": 30.56780583356357,
+        "edge_time": 57.52676660257926,
+        "productive_time": 13.520726340507474,
+        "births": 18.404884219846355,
+        "deaths": 17.25802998077378,
+        "gains": 13.520726340507474,
+        "losses": 14.520726340507478,
+        "expected_final_edges": 1.1468542390725969,
+        "residuals": {
+          "absorption_mass": 1.9984014443252818e-15,
+          "edge_balance": 2.2426505097428162e-14,
+          "mark_balance": 3.552713678800501e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 8.526512829121202e-14
+        },
+        "states": 56,
+        "budget_levels": 41
+      },
+      "C2_high": {
+        "time": 34.11216979688871,
+        "edge_time": 70.30081978560234,
+        "productive_time": 15.564545000487142,
+        "births": 22.27097419442607,
+        "deaths": 21.09024593568072,
+        "gains": 15.564545000487142,
+        "losses": 16.564545000487144,
+        "expected_final_edges": 1.180728258745358,
+        "residuals": {
+          "absorption_mass": 5.551115123125783e-16,
+          "edge_balance": 7.327471962526033e-15,
+          "mark_balance": 1.7763568394002505e-15,
+          "productive_identity": 0.0,
+          "linear_residual": 1.1368683772161603e-13
+        },
+        "states": 56,
+        "budget_levels": 41
+      },
+      "ratio_low": 1.108885272693707,
+      "ratio_high": 0.9936685326446465
+    },
+    {
+      "nu": 0.1,
+      "birth_budget": 100,
+      "M": {
+        "time": 118.39830992781907,
+        "edge_time": 244.29776817224032,
+        "productive_time": 30.27934916820449,
+        "births": 73.8888304822772,
+        "deaths": 73.28933045167216,
+        "gains": 30.27934916820449,
+        "losses": 31.2793491682044,
+        "expected_final_edges": 0.599500030605017,
+        "residuals": {
+          "absorption_mass": 2.2426505097428162e-14,
+          "edge_balance": 2.5868196473766147e-14,
+          "mark_balance": 8.881784197001252e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 3.410605131648481e-13
+        },
+        "states": 56,
+        "budget_levels": 101
+      },
+      "C2_low": {
+        "time": 115.56263940092774,
+        "edge_time": 218.88950580909648,
+        "productive_time": 29.284942909699446,
+        "births": 66.42437709691282,
+        "deaths": 65.66685174272892,
+        "gains": 29.284942909699446,
+        "losses": 30.284942909699403,
+        "expected_final_edges": 0.757525354183927,
+        "residuals": {
+          "absorption_mass": 1.5987211554602254e-14,
+          "edge_balance": 2.942091015256665e-14,
+          "mark_balance": 4.263256414560601e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 2.8421709430404007e-13
+        },
+        "states": 56,
+        "budget_levels": 101
+      },
+      "C2_high": {
+        "time": 118.44194668570766,
+        "edge_time": 245.94819326100023,
+        "productive_time": 30.320552792302454,
+        "births": 74.47426035665065,
+        "deaths": 73.7844579783001,
+        "gains": 30.320552792302454,
+        "losses": 31.320552792302376,
+        "expected_final_edges": 0.6898023783504551,
+        "residuals": {
+          "absorption_mass": 1.7763568394002505e-14,
+          "edge_balance": 9.425793479067579e-14,
+          "mark_balance": 7.815970093361102e-14,
+          "productive_identity": 0.0,
+          "linear_residual": 3.410605131648481e-13
+        },
+        "states": 56,
+        "budget_levels": 101
+      },
+      "ratio_low": 1.024537952244699,
+      "ratio_high": 0.9996315768263723
+    }
+  ],
+  "scope": "Finite declared class only; capacity was selected exploratorily; no physical origin of capacity established.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "compute_wall_seconds": 1.2295727539999461
+}
