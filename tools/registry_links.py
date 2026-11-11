@@ -343,6 +343,26 @@ def build(root: Path):
 
     lines += [
         "",
+        "## Вопрос → связанные результаты и открытые границы",
+        "",
+        "| Вопрос | Связанные результаты | Открытые границы |",
+        "|---|---|---|",
+    ]
+    for question_id in groups["question"]:
+        qkey = "question:" + question_id
+        related_results = sorted(
+            a for a, b, rel in edges if b == qkey and rel == "informs_not_closes"
+        )
+        open_links = sorted(
+            b for a, b, rel in edges if a == qkey and rel == "related_open_link"
+        )
+        lines.append(
+            f'| {mdlink(qkey)} | {", ".join(mdlink(x) for x in related_results) or "—"} | '
+            f'{", ".join(mdlink(x) for x in open_links) or "—"} |'
+        )
+
+    lines += [
+        "",
         "## Результат → свидетельства",
         "",
         "| Результат | Управляемые источники и снимки |",
