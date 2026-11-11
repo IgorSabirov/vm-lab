@@ -1,0 +1,144 @@
+{
+  "scope": "Independent 4x4 checks of supplied R013 claims and arithmetic on published summary values; no production E002e solve, no VM job",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "forecast": {
+    "location": "AI_SANDBOX",
+    "expected_seconds": 2,
+    "upper_budget_seconds": 30,
+    "basis": "432 reduced-state checks on 4x4 matrices; no trajectories or high-dimensional solvers"
+  },
+  "cases": 432,
+  "max_errors": {
+    "access": 2.220446049250313e-16,
+    "hamiltonian": 3.3422138886441676e-16,
+    "interaction_norm": 2.220446049250313e-16,
+    "purity": 2.6645352591003757e-15,
+    "choi_spectrum": 1.1102230246251565e-15,
+    "full_channel": 1.4146922331922455e-15
+  },
+  "rank_Df": 6,
+  "tangent_dimension": 3,
+  "tangent_singular_values": [
+    1.9999999999986668,
+    1.9999999999986664,
+    1.9999999999986664
+  ],
+  "reproduction": [
+    {
+      "s": 0,
+      "interaction_norm": 0.0,
+      "purity_deficit": 0.0
+    },
+    {
+      "s": 0.0025,
+      "interaction_norm": 0.004999979166692708,
+      "purity_deficit": 8.85084397101776e-06
+    },
+    {
+      "s": 0.005,
+      "interaction_norm": 0.009999833334166664,
+      "purity_deficit": 3.540249080704962e-05
+    },
+    {
+      "s": 0.01,
+      "interaction_norm": 0.01999866669333308,
+      "purity_deficit": 0.0001415958027039026
+    },
+    {
+      "s": 0.02,
+      "interaction_norm": 0.03998933418663416,
+      "purity_deficit": 0.0005661566877367777
+    },
+    {
+      "s": 0.04,
+      "interaction_norm": 0.0799146939691727,
+      "purity_deficit": 0.0022610052802148743
+    }
+  ],
+  "unitary_predicate_counterexamples": [
+    {
+      "t": 0.5,
+      "pure_Z_input_deficit": 0.0005661566877367777,
+      "choi_rank": 2,
+      "choi_eigenvalues": [
+        -1.5514760824423458e-16,
+        -8.783760235796166e-18,
+        0.0003675620594605898,
+        0.9996324379405395
+      ]
+    },
+    {
+      "t": 1.5707963267948966,
+      "pure_Z_input_deficit": 1.199168065118085e-35,
+      "choi_rank": 2,
+      "choi_eigenvalues": [
+        -9.942633642119992e-49,
+        1.0260738614094928e-47,
+        0.0015991468486903572,
+        0.9984008531513093
+      ]
+    },
+    {
+      "t": 3.141592653589793,
+      "pure_Z_input_deficit": 4.79667226047234e-35,
+      "choi_rank": 1,
+      "choi_eigenvalues": [
+        -1.7030466703500452e-35,
+        0.0,
+        4.458634067403757e-35,
+        1.0
+      ]
+    }
+  ],
+  "ZZ_preparation_counterexample": [
+    {
+      "environment": "Z_eigenstate",
+      "purity_deficit": 0.0
+    },
+    {
+      "environment": "X_eigenstate",
+      "purity_deficit": 0.48555558516716446
+    }
+  ],
+  "CORR_summary_arithmetic": {
+    "QS": {
+      "H": 20,
+      "F_ss": 0.110926546776,
+      "R": 0.0232643505,
+      "absolute_from_published_R_H_F": 0.05161268127903018,
+      "signed": 0.04645129616455532,
+      "temporal_sign_cancellation": 0.10000226662457645
+    },
+    "RR": {
+      "H": 20,
+      "F_ss": 0.085234330506,
+      "R": 0.0403535151,
+      "absolute_from_published_R_H_F": 0.06879009686224523,
+      "signed": 0.06793340061233791,
+      "temporal_sign_cancellation": 0.012453772984545863
+    },
+    "IC": {
+      "H": 20,
+      "F_ss": 0.093463128,
+      "R": 0.0293867334,
+      "absolute_from_published_R_H_F": 0.05493152050532151,
+      "signed": 0.04589579900412754,
+      "temporal_sign_cancellation": 0.16449064977763783
+    }
+  },
+  "runtime_comparison": {
+    "fit_from_rounded_points": {
+      "intercept": 2.977191358024693,
+      "slope": 0.06441358024691357,
+      "prediction_3083": 201.56425925925925
+    },
+    "published_3083_process_seconds": 3352.798578846996,
+    "transfer_validated": false
+  },
+  "pass": true,
+  "elapsed_seconds": 0.14414338600005294
+}

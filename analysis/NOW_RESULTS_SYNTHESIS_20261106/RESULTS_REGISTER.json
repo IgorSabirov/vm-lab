@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
   "date": "2026-11-11",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.\n\nАктуализация 11 ноября: R128.1 включена как спецификация в R128; X27 — только программная валидация. Исправлены устаревшие текущие поля исполнения NOW и правило 600 секунд. U011/U012 адресуют старые долги; R=128, C=42, L=10. Новых научных прогонов и повышения статусов нет.",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.\n\nАктуализация 11 ноября: R128.1 включена как спецификация в R128; X27 — только программная валидация. Исправлены устаревшие текущие поля исполнения NOW и правило 600 секунд. U011/U012 адресуют старые долги; R=128, C=42, L=10. Новых научных прогонов и повышения статусов нет.\n\nРазбор отзыва 11 ноября: R013 дополнена точной условной зависимостью взаимодействия и критерием неунитарности; нормировки R034/R035 и область тождества R036 раскрыты. Две короткие локальные проверки, новых производственных прогонов нет. Основные статусы R/C/L/U сохранены; R129 не создавалась.",
   "results": [
     {
       "id": "R001",
@@ -178,13 +178,57 @@
       "section": "2. Мера, квантовое представление и подсистемы",
       "title": "Факторизация: неожиданный положительный результат",
       "status": "АНАЛИТИКА",
-      "result": "Для H=JX⊗X, J≠0, и доступа span{I,Z⊗I} допустимые TPS образуют трёхмерное вещественное семейство; добавление строгого H_int=0 оставляет один класс. Первый фактор порождён Z⊗I и X⊗X.",
+      "result": "Для H=JX⊗X, J≠0, и доступа span{I,Z⊗I} допустимые TPS образуют трёхмерное вещественное семейство; добавление строгого H_int=0 оставляет один класс. Первый фактор порождён Z⊗I и X⊗X. Уточнение 11 ноября в W=exp(is Z⊗n·σ)CNOT: ||H_int||=|J sin(2s)|, касательные сингулярные числа 2|J|. Для произведённых приготовлений получен явный редуцированный канал; условие его неунитарности зависит от τ_B и t, а не только от допуска ε.",
       "inputs": "Два фактора 2×2, фиксированные операторы доступа и H, точное равенство нулю взаимодействия.",
-      "limit": "Полная исходная локальная алгебра вместе с C1 даёт пустой класс. Найденная уникальная TPS делает редуцированную эволюцию унитарной: нужной открытости из взаимодействия нет. Положительный допуск на H_int меняет задачу.",
+      "limit": "Полная исходная локальная алгебра вместе с C1 даёт пустой класс. Найденная уникальная TPS делает редуцированную эволюцию унитарной: нужной открытости из взаимодействия нет. Положительный допуск на H_int меняет задачу. Линейность 2|J|s и объём π ε³/(6|J|³) — локальные асимптотики в объявленных координатах/мере; единственный пробный вход не определяет унитарность канала. Это не происхождение TPS или замыкание L04.",
       "framework_role": "Подсистемы могут условно определяться данными, но уникальность разбиения и открытое поведение — разные цели.",
       "sources": [
-        "analysis/FACTORIZATION_IDENTIFIABILITY_REVIEW_20261104/RESULT.md"
-      ]
+        "analysis/FACTORIZATION_IDENTIFIABILITY_REVIEW_20261104/RESULT.md",
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
+      ],
+      "pre_neighbor_review_20261111": {
+        "result": "Для H=JX⊗X, J≠0, и доступа span{I,Z⊗I} допустимые TPS образуют трёхмерное вещественное семейство; добавление строгого H_int=0 оставляет один класс. Первый фактор порождён Z⊗I и X⊗X.",
+        "inputs": "Два фактора 2×2, фиксированные операторы доступа и H, точное равенство нулю взаимодействия.",
+        "limit": "Полная исходная локальная алгебра вместе с C1 даёт пустой класс. Найденная уникальная TPS делает редуцированную эволюцию унитарной: нужной открытости из взаимодействия нет. Положительный допуск на H_int меняет задачу.",
+        "status": "АНАЛИТИКА"
+      },
+      "neighbor_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+        "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+        "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+        "new_production_runs": 0,
+        "new_physical_model_accepted": false,
+        "status": "CONDITIONAL_ANALYTIC_EXTENSION_WITH_LOCAL_NUMERICAL_VERIFICATION",
+        "parent_record": "R013",
+        "boundary_constructs": [
+          "C014",
+          "C023"
+        ],
+        "code": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/check.py",
+        "checks": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/check.json",
+        "local_verification_executions": 2,
+        "final_verification_cases": 432,
+        "final_script_seconds": 0.14414338600005294,
+        "max_matrix_error": 2.6645352591003757e-15,
+        "exact_formulas": {
+          "access_preserving_frame": "W(s,n)=exp(i s Z⊗(n·sigma)) CNOT; |n|=1",
+          "Hamiltonian": "H_s=J[cos(2s) X⊗I-sin(2s) Y⊗(n·sigma)]",
+          "interaction_coefficient_norm": "|J sin(2s)|",
+          "coordinate_volume": "pi/6 * arcsin(epsilon/|J|)^3; 0<=s<pi/4, 0<=epsilon<|J|, measure d^3k",
+          "preparation": "rho_A ⊗ tau_B; m=Tr(tau_B n·sigma)",
+          "q": "sin(J*t)^2 * sin(2*s)^2",
+          "channel_nonunitary_iff": "|m|<1 and 0<q<1",
+          "choi_eigenvalues": "{0,0,(1-sqrt(1-4*(1-m^2)*q*(1-q)))/2,(1+sqrt(1-4*(1-m^2)*q*(1-q)))/2}",
+          "pure_Z_probe_deficit": "(1-m^2)/2 * sin(2*s)^2 * sin(2*J*t)^2"
+        },
+        "limits": [
+          "Coordinate volume is not a derived probability measure",
+          "Fixed H and access remain supplied",
+          "No subsystem selection or physical origin mechanism established",
+          "L04 remains open"
+        ]
+      }
     },
     {
       "id": "R014",
@@ -461,14 +505,15 @@
       "section": "4. Спектры, F2, CORR и RESET: какие отношения причинно работают",
       "title": "CORR: локальные состояния не определяют дальнейший поток",
       "status": "ЧИСЛЕННО: АРХИВ",
-      "result": "Замена ρ_ss на ρ_N⊗ρ_E сохраняет обе полные локальные маргинали и L, но меняет будущий выход. Нормированный абсолютный эффект на H=20: QS≈0.02326435, RR≈0.04035352, IC≈0.02938673; все выше заранее заданного 0.001.",
+      "result": "Замена ρ_ss на ρ_N⊗ρ_E сохраняет обе полные локальные маргинали и L, но меняет будущий выход. Безразмерный R_F=[1/(H F_ss)]∫₀ᴴ|F_cut−F_sham|dt на H=20: QS≈0.02326435, RR≈0.04035352, IC≈0.02938673; все выше заранее заданного 0.001.",
       "inputs": "Конкретная декорреляционная подготовка, общий закон и горизонт.",
       "limit": "Удаляются и классические, и квантовые межсистемные корреляции. Расстояния вмешательства неодинаковы; результат не устанавливает преимущество QS или происхождение корреляций.",
       "framework_role": "Один из центральных результатов: отношения внутри целого причинно существенны сверх локального снимка.",
       "sources": [
         "experiments/e002e_corr/PRODUCTION_RESULT.md",
         "analysis/X26_PUBLICATION_PARENT_LINKS_20261109/REPORT.md",
-        "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/PUBLICATION_MANIFEST.json"
+        "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/PUBLICATION_MANIFEST.json",
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
       ],
       "publication_followup_20261109": {
         "parent": "R034",
@@ -480,6 +525,44 @@
         "report": "analysis/X26_PUBLICATION_PARENT_LINKS_20261109/REPORT.md",
         "raw": "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/PUBLICATION_MANIFEST.json",
         "scientific_status_promoted": false
+      },
+      "pre_neighbor_review_20261111": {
+        "result": "Замена ρ_ss на ρ_N⊗ρ_E сохраняет обе полные локальные маргинали и L, но меняет будущий выход. Нормированный абсолютный эффект на H=20: QS≈0.02326435, RR≈0.04035352, IC≈0.02938673; все выше заранее заданного 0.001.",
+        "inputs": "Конкретная декорреляционная подготовка, общий закон и горизонт.",
+        "limit": "Удаляются и классические, и квантовые межсистемные корреляции. Расстояния вмешательства неодинаковы; результат не устанавливает преимущество QS или происхождение корреляций.",
+        "status": "ЧИСЛЕННО: АРХИВ"
+      },
+      "observable_definition": {
+        "F": "kappa_out * <n2>",
+        "kappa_out": 0.5,
+        "delta_F": "F_cut-F_sham",
+        "H": 20,
+        "main_dt": 0.005,
+        "F_units": "excitations / model_time",
+        "absolute_area_units": "excitations",
+        "R_F_units": "dimensionless",
+        "absolute_placement": "absolute value of the total scalar delta_F before time integration; NOT sum of absolute sector contributions",
+        "normalizer": "H times each control's own CORR stationary F_ss",
+        "baseline_F_ss": {
+          "QS": 0.110926546776,
+          "RR_QS": 0.085234330506,
+          "IC1_QS": 0.093463128
+        },
+        "source": "experiments/e002e_corr/PRODUCTION_RESULT.md",
+        "code": "e002e_corr_exp/core.py",
+        "baseline_source": "analysis/E002e_CORR_MECHANISM_v001/RESULT.md"
+      },
+      "neighbor_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+        "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+        "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+        "new_production_runs": 0,
+        "new_physical_model_accepted": false,
+        "status": "PRIMARY_DEFINITION_CLARIFIED_NO_NEW_TRAJECTORIES",
+        "normalization_conflict": "NOT_PRESENT_IN_PRIMARY_REPORT_OR_CODE",
+        "comparison_boundary": "Earlier E002c hop values are not CORR's own baseline. Same-generator stationary F=J_h is checked in RESET.",
+        "arithmetic_source": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/check.json"
       }
     },
     {
@@ -487,13 +570,41 @@
       "section": "4. Спектры, F2, CORR и RESET: какие отношения причинно работают",
       "title": "CORR: знак и секторный механизм",
       "status": "ЧИСЛЕННО: АРХИВ",
-      "result": "После удаления корреляций выход сначала падает, затем превышает базовый. Знаковые площади на H=20 примерно 0.0464513/0.0679334/0.0458958 для QS/RR/IC. Сектор m6,N2 объясняет лишь часть площади, около 21% у QS.",
+      "result": "После удаления корреляций выход сначала падает, затем превышает базовый. Ненормированные знаковые площади A20=∫₀²⁰(F_cut−F_sham)dt на H=20 примерно 0.0464513/0.0679334/0.0458958 для QS/RR/IC. Сектор m6,N2 объясняет лишь часть площади, около 21% у QS.",
       "inputs": "Конечный горизонт, знаковое разложение и уравнение баланса выходного узла.",
       "limit": "Площади со знаком не равны интегралу модуля; «удаление корреляций ухудшает всё» неверно. Дефазирование, F2 и CORR — разные интервенции.",
       "framework_role": "Уточняет, какую работу выполняют отношения, без объявления их всегда полезными.",
       "sources": [
-        "analysis/E002e_CORR_MECHANISM_v001/RESULT.md"
-      ]
+        "analysis/E002e_CORR_MECHANISM_v001/RESULT.md",
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
+      ],
+      "pre_neighbor_review_20261111": {
+        "result": "После удаления корреляций выход сначала падает, затем превышает базовый. Знаковые площади на H=20 примерно 0.0464513/0.0679334/0.0458958 для QS/RR/IC. Сектор m6,N2 объясняет лишь часть площади, около 21% у QS.",
+        "inputs": "Конечный горизонт, знаковое разложение и уравнение баланса выходного узла.",
+        "limit": "Площади со знаком не равны интегралу модуля; «удаление корреляций ухудшает всё» неверно. Дефазирование, F2 и CORR — разные интервенции.",
+        "status": "ЧИСЛЕННО: АРХИВ"
+      },
+      "neighbor_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+        "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+        "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+        "new_production_runs": 0,
+        "new_physical_model_accepted": false,
+        "status": "SIGNED_VERSUS_ABSOLUTE_AREA_CLARIFIED",
+        "H": 20,
+        "signed_area_units": "excitations",
+        "signed_area_divisor": 1,
+        "absolute_area_relation": "A_abs=H*F_ss*R_F; A_abs-A_signed=2*integral max(-delta_F,0) dt",
+        "temporal_sign_cancellation_from_published_summaries": {
+          "QS": 0.10000226662457645,
+          "RR_QS": 0.012453772984545863,
+          "IC1_QS": 0.16449064977763783
+        },
+        "not_a_measure_of": "Intersector cancellation or monotonicity; it measures sign cancellation of the total temporal response",
+        "m6_fraction_scope": "Existing 21.04% is a separate signed filtered-current attribution, preserved",
+        "numerical_role": "ARITHMETIC_FROM_PUBLISHED_SUMMARIES_NOT_TRAJECTORY_REINTEGRATION"
+      }
     },
     {
       "id": "R036",
@@ -502,11 +613,41 @@
       "status": "ЧИСЛЕННО: АРХИВ",
       "result": "Для L_γ=L+γ(R−I), R(X)=Tr_E X⊗τ_E, получены положительные производные потока: QS≈0.04658544, RR≈0.06792292. Конечные γ=0.001/0.002 поддержали локальную линейность; при 0.002 рост ≈0.08358%/0.15904%.",
       "inputs": "τ_E фиксирована по собственной базовой маргинали каждого контроля; сброс задан как дополнительный канал.",
-      "limit": "Это не чистая изоляция одного вида корреляций при конечном γ; канал также удерживает маргиналь. Сброс требует физической реализации и ресурса, не демонстрирует внутреннее самопроизводство.",
+      "limit": "Это не чистая изоляция одного вида корреляций при конечном γ; канал также удерживает маргиналь. Сброс требует физической реализации и ресурса, не демонстрирует внутреннее самопроизводство. Линейная производная равна бесконечной знаковой площади CORR при том же L,F,τ_E и релаксации; это известная дизайну связь, не независимое подтверждение нового механизма. A20 конечна; остаток не задаёт скорость релаксации.",
       "framework_role": "Связывает импульсную пробу CORR с проверяемым постоянным воздействием; предел причинной интерпретации обозначен.",
       "sources": [
-        "experiments/e002e_reset/PRODUCTION_RESULT.md"
-      ]
+        "experiments/e002e_reset/PRODUCTION_RESULT.md",
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
+      ],
+      "pre_neighbor_review_20261111": {
+        "result": "Для L_γ=L+γ(R−I), R(X)=Tr_E X⊗τ_E, получены положительные производные потока: QS≈0.04658544, RR≈0.06792292. Конечные γ=0.001/0.002 поддержали локальную линейность; при 0.002 рост ≈0.08358%/0.15904%.",
+        "inputs": "τ_E фиксирована по собственной базовой маргинали каждого контроля; сброс задан как дополнительный канал.",
+        "limit": "Это не чистая изоляция одного вида корреляций при конечном γ; канал также удерживает маргиналь. Сброс требует физической реализации и ресурса, не демонстрирует внутреннее самопроизводство.",
+        "status": "ЧИСЛЕННО: АРХИВ"
+      },
+      "neighbor_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+        "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+        "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+        "new_production_runs": 0,
+        "new_physical_model_accepted": false,
+        "status": "EXISTING_LINEAR_RESPONSE_IDENTITY_AND_FINITE_GAMMA_SCOPE_CLARIFIED",
+        "linear_identity": "integral_0^infty delta_F(t)dt = -Tr[F L_0^{-1}(R-I)rho_ss] = dF_ss/dgamma at zero",
+        "assumptions": [
+          "same L and F",
+          "tau_E fixed to the control's own stationary marginal",
+          "relaxation on the relevant traceless subspace",
+          "invertibility of L_0 on that subspace"
+        ],
+        "finite_gamma_expansion": "rho_gamma = rho_ss-gamma L_0^{-1}(R-I)rho_ss+O(gamma^2)",
+        "already_in_design": "analysis/E002e_CORR_MECHANISM_v001/RESULT.md",
+        "actual_v": 1,
+        "certificate_code": "e002e_reset_exp/certificates.py",
+        "certificate_scope": "Published operator-premise verification v0->v1; not rerun here",
+        "numerical_gap": "NOT_MEASURED",
+        "finite_gamma_evidence_preserved": true
+      }
     },
     {
       "id": "R037",
@@ -1996,7 +2137,8 @@
         "analysis/NOW_FRAMEWORK_INVARIANT_20261106/BOLTZMANN_ORIGIN.md",
         "analysis/NOW_FRAMEWORK_INVARIANT_20261106/FLUCTUATION_CONTINUATION.md",
         "https://arxiv.org/abs/1702.00850",
-        "https://arxiv.org/abs/hep-th/0208013"
+        "https://arxiv.org/abs/hep-th/0208013",
+        "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md"
       ],
       "related_reviews": [
         {
@@ -2013,6 +2155,27 @@
         "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
         "relation": "Сохранён маршрут согласованного целого; представленное прошлое не равно пройденному.",
         "parent_scientific_status_unchanged": true
+      },
+      "pre_neighbor_review_20261111": {
+        "result": "В рамку включён сценарий: флуктуация вероятности реализует Вселенную как целое «сейчас» на любой допустимой внутренней стадии истории, с полностью самосогласованным причинным прошлым и механикой развития в будущее. Возникновение целого не обязано совпадать с первым моментом внутренней истории.",
+        "inputs": "Предстоит определить допустимость целого, способ согласования прошлого с настоящим, механизм продолжения и меру возникновения. Внешние часы, тепловой резервуар и больцмановские веса не вводятся автоматически.",
+        "limit": "Это не доказательство физической реализации или равных вероятностей всех эпох. Согласованность причинного прошлого не доказывает его фактического прохождения. Не выведены происхождение закона, первичной меры и стрелы; сценарий не сводится к флуктуации локального наблюдателя.",
+        "status": "РАБОЧАЯ ГИПОТЕЗА ПО ПРЯМОМУ УКАЗАНИЮ ПОЛЬЗОВАТЕЛЯ"
+      },
+      "neighbor_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+        "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+        "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+        "new_production_runs": 0,
+        "new_physical_model_accepted": false,
+        "status": "OPERATIONAL_BOUNDARY_CLARIFIED_HYPOTHESIS_PRESERVED",
+        "stage_measure": "NOT_DEFINED",
+        "admissible_stage_selection": "NOT_DEFINED",
+        "probabilistic_predictions": "NOT_SPECIFIED",
+        "observational_equivalence_to_start_route": "NOT_ASSESSED",
+        "requirement_for_future_comparison": "Specify admissible stages, measure and compared observable before outcomes; do not select admissibility post hoc",
+        "not_a_claim": "No impossibility, equivalence, or physical realization inferred"
       }
     },
     {
@@ -7536,42 +7699,26 @@
     }
   ],
   "revision": {
-    "id": "REGISTRY_LATEST_DEVELOPMENTS_20261111_v1",
+    "id": "NEIGHBOR_R013_CORR_REVIEW_20261111_v1",
     "date": "2026-11-11",
-    "base_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+    "base_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
     "result_count": 128,
     "construct_count": 42,
     "open_link_count": 10,
     "question_count": 12,
     "new_records": [],
     "updated_records": [
-      "R023",
-      "R025",
-      "R112",
-      "R113",
-      "R127",
-      "R128"
-    ],
-    "new_questions": [
-      "U011",
-      "U012"
-    ],
-    "updated_questions": [
-      "U002",
-      "U003",
-      "U005",
-      "U006",
-      "U010"
+      "R013",
+      "R034",
+      "R035",
+      "R036",
+      "R096"
     ],
     "scientific_statuses_changed": [],
-    "scientific_runs": 0,
-    "report": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
-    "execution_metadata_corrected": [
-      "R127 role annotation",
-      "NOW integrated designs",
-      "600-second placement rule"
-    ],
-    "note": "Синхронизация опубликованных наработок и открытых долгов; R128.1 остаётся спецификацией, X27 — программной валидацией. История сохранена."
+    "new_production_runs": 0,
+    "local_verification_executions": 2,
+    "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+    "note": "Условное количественное уточнение R013; определения CORR/RESET и границы R096 раскрыты по источникам. Численная проверка матриц 4x4 в песочнице; L/U не закрыты."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -8173,6 +8320,28 @@
         "600-second placement rule"
       ],
       "note": "Синхронизация опубликованных наработок и открытых долгов; R128.1 остаётся спецификацией, X27 — программной валидацией. История сохранена."
+    },
+    {
+      "id": "NEIGHBOR_R013_CORR_REVIEW_20261111_v1",
+      "date": "2026-11-11",
+      "base_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+      "result_count": 128,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "question_count": 12,
+      "new_records": [],
+      "updated_records": [
+        "R013",
+        "R034",
+        "R035",
+        "R036",
+        "R096"
+      ],
+      "scientific_statuses_changed": [],
+      "new_production_runs": 0,
+      "local_verification_executions": 2,
+      "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+      "note": "Условное количественное уточнение R013; определения CORR/RESET и границы R096 раскрыты по источникам. Численная проверка матриц 4x4 в песочнице; L/U не закрыты."
     }
   ],
   "lineage_edges": [
@@ -12629,5 +12798,36 @@
       "U008"
     ],
     "note": "Важность для цели и готовность к проверке различены; новые сроки/бюджеты не оценивались."
+  },
+  "neighbor_review_20261111": {
+    "date": "2026-11-11",
+    "source_commit": "cc373bcfc733e33ae087c60ced45c012eaa05aca",
+    "report": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md",
+    "source_review": "analysis/NEIGHBOR_R013_CORR_REVIEW_20261111/SOURCE_REVIEW.txt",
+    "new_production_runs": 0,
+    "new_physical_model_accepted": false,
+    "updated_records": [
+      "R013",
+      "R034",
+      "R035",
+      "R036",
+      "R096"
+    ],
+    "new_R_records": [],
+    "R129": "NOT_PRESENT_IN_REPOSITORY_AT_SOURCE_COMMIT",
+    "local_verification_executions": 2,
+    "final_verification_seconds": 0.14414338600005294,
+    "production_E002e_rerun": false,
+    "runtime_extrapolation": {
+      "two_point_fit": {
+        "intercept": 2.977191358024693,
+        "slope": 0.06441358024691357,
+        "prediction_3083": 201.56425925925925
+      },
+      "published_3083_seconds": 3352.798578846996,
+      "transfer_validated": false,
+      "source": "results/NOW_LONG_da72a3a_20261108_RAW/PROCESS.json"
+    },
+    "scientific_queue_changed": false
   }
 }
