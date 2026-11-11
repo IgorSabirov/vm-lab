@@ -332,6 +332,10 @@ def build(root):
         for construct in item.get("constructs", []):
             add("premise", item["id"], "construct", construct, "historical_navigation_not_proof")
 
+    r122 = groups["result"]["R122"]
+    if r122.get("managed_boundary") and r122["limit"] not in main_md:
+        raise ValueError("R122 Markdown boundary diverges from JSON")
+
     source_entries = verify_pins(root, main, pins)
     provenance = {
         "schema": "vm-lab-source-provenance-v1",
