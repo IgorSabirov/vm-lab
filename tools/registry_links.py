@@ -21,11 +21,11 @@ def unique(items, label):
 
 
 def blob_sha(data):
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
 def parse_premises(text):
-    pat = re.compile(r'^\\| (?:<a id="premise-([A-G]\\d{2})"></a>)?([A-G]\\d{2}) \\| (.*?) \\| (.*?) \\|\\s*$')
+    pat = re.compile(r'^\| (?:<a id="premise-([A-G]\d{2})"></a>)?([A-G]\d{2}) \| (.*?) \| (.*?) \|\s*$')
     rows = []
     for line in text.splitlines():
         m = pat.match(line)
@@ -43,14 +43,14 @@ def parse_premises(text):
 
 def ensure_premise_anchors(text):
     out = []
-    pat = re.compile(r"^(\\| )([A-G]\\d{2})( \\|.*)$")
+    pat = re.compile(r"^(\| )([A-G]\d{2})( \|.*)$")
     for line in text.splitlines():
         m = pat.match(line)
         if m:
             ident = m.group(2)
             line = f'| <a id="premise-{ident.lower()}"></a>{ident} |' + m.group(3)[3:]
         out.append(line)
-    return "\\n".join(out) + ("\\n" if text.endswith("\\n") else "")
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
 
 def parse_obligations(text):
@@ -59,16 +59,16 @@ def parse_obligations(text):
                   if x.strip() == "## Новые явные долги, которые нельзя потерять между строками"), None)
     if start is None:
         raise ValueError("Missing N-debts section")
-    header = re.compile(r"^- \\*\\*(N\\d{2}) — (.*?)\\.\\*\\*\\s*(.*)$")
+    header = re.compile(r"^- \*\*(N\d{2}) — (.*?)\.\*\*\s*(.*)$")
     rows, current, body = [], None, []
 
     def flush():
         nonlocal current, body
         if current is None:
             return
-        source_text = "\\n".join(body).strip()
-        combined = current["title"] + "\\n" + source_text
-        refs = re.findall(r"\\[(R\\d{3})\\]\\(([^)]+)\\)", combined)
+        source_text = "\n".join(body).strip()
+        combined = current["title"] + "\n" + source_text
+        refs = re.findall(r"\[(R\d{3})\]\(([^)]+)\)", combined)
         rows.append({
             "id": current["id"], "title": current["title"],
             "status": "CONDITIONALLY_RESOLVED" if re.search("условно решено", combined, re.I) else "OPEN",
@@ -101,7 +101,7 @@ def parse_obligations(text):
 
 
 def ensure_obligation_anchors(text):
-    out, pat = [], re.compile(r"^- \\*\\*(N\\d{2}) — ")
+    out, pat = [], re.compile(r"^- \*\*(N\d{2}) — ")
     for line in text.splitlines():
         m = pat.match(line)
         if m:
@@ -109,12 +109,12 @@ def ensure_obligation_anchors(text):
             if not out or out[-1].strip() != anchor:
                 out.append(anchor)
         out.append(line)
-    return "\\n".join(out) + ("\\n" if text.endswith("\\n") else "")
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
 
 def ensure_heading_anchors(markdown, groups):
     lines, out, found = markdown.splitlines(), [], set()
-    pat = re.compile(r"^#{2,4}\\s+(R\\d{3}|C\\d{3}|L\\d{2})(?:\\s|[.:—-]|$)")
+    pat = re.compile(r"^#{2,4}\s+(R\d{3}|C\d{3}|L\d{2})(?:\s|[.:—-]|$)")
     lookup = {
         "result": {x["id"] for x in groups.get("result", [])},
         "construct": {x["id"] for x in groups.get("construct", [])},
@@ -135,13 +135,13 @@ def ensure_heading_anchors(markdown, groups):
                for x in groups.get(kind, []) if (kind, x["id"]) not in found]
     if missing:
         raise ValueError(f"Missing Markdown headings for records: {missing[:12]}")
-    return "\\n".join(out) + ("\\n" if markdown.endswith("\\n") else ""), found
+    return "\n".join(out) + ("\n" if markdown.endswith("\n") else ""), found
 
 
 def ensure_question_anchors(markdown, questions):
     lines, out, found = markdown.splitlines(), [], set()
     wanted = {x["id"] for x in questions}
-    pat = re.compile(r"^#{2,4}\\s+(U\\d{3})(?:\\s|$)")
+    pat = re.compile(r"^#{2,4}\s+(U\d{3})(?:\s|$)")
     for line in lines:
         m = pat.match(line)
         if m and m.group(1) in wanted:
@@ -153,7 +153,7 @@ def ensure_question_anchors(markdown, questions):
         out.append(line)
     if found != wanted:
         raise ValueError(f"Missing U headings: {sorted(wanted-found)}")
-    return "\\n".join(out) + ("\\n" if markdown.endswith("\\n") else "")
+    return "\n".join(out) + ("\n" if markdown.endswith("\n") else "")
 
 
 def managed_sources(main):
@@ -214,28 +214,28 @@ def verify_pins(root, main, doc):
 
 def render_card(r):
     return (
-        f'<a id="{r["id"].lower()}"></a><a id="result-{r["id"].lower()}"></a>\\n\\n'
-        f'### {r["id"]}. {r["title"]}\\n\\n'
-        f'**Статус:** {r["status"]}\\n\\n**Результат.** {r["result"]}\\n\\n'
-        f'**Условия.** {r["inputs"]}\\n\\n**Граница.** {r["limit"]}\\n\\n'
-        f'**Место в рамке.** {r["framework_role"]}\\n\\n'
+        f'<a id="{r["id"].lower()}"></a><a id="result-{r["id"].lower()}"></a>\n\n'
+        f'### {r["id"]}. {r["title"]}\n\n'
+        f'**Статус:** {r["status"]}\n\n**Результат.** {r["result"]}\n\n'
+        f'**Условия.** {r["inputs"]}\n\n**Граница.** {r["limit"]}\n\n'
+        f'**Место в рамке.** {r["framework_role"]}\n\n'
         f'**Родители:** {", ".join(r.get("parent_result_ids", []))}. '
         f'**Конструкции:** {", ".join(r.get("construct_ids", []))}. '
-        f'**Вопросы:** {", ".join(r.get("open_question_ids", []))}.\\n\\n'
-        "**Источники:** " + "; ".join(f"[{Path(p).name}](../../{p})" for p in r["sources"]) + ".\\n\\n"
+        f'**Вопросы:** {", ".join(r.get("open_question_ids", []))}.\n\n'
+        "**Источники:** " + "; ".join(f"[{Path(p).name}](../../{p})" for p in r["sources"]) + ".\n\n"
         "**Предпосылки:** " + ", ".join(r.get("premise_ids", [])) +
-        "; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).\\n"
+        "; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).\n"
     )
 
 
 def replace_block(text, key, body):
     begin, end = f"<!-- generated:{key} -->", f"<!-- /generated:{key} -->"
     pattern = re.escape(begin) + r".*?" + re.escape(end)
-    replacement = begin + "\\n" + body.rstrip() + "\\n" + end
+    replacement = begin + "\n" + body.rstrip() + "\n" + end
     matches = re.findall(pattern, text, re.S)
     if len(matches) > 1:
         raise ValueError(f"Duplicate generated block {key}")
-    return re.sub(pattern, lambda _: replacement, text, flags=re.S) if matches else text.rstrip() + "\\n\\n" + replacement + "\\n"
+    return re.sub(pattern, lambda _: replacement, text, flags=re.S) if matches else text.rstrip() + "\n\n" + replacement + "\n"
 
 
 def rel_target(path, anchor):
@@ -413,11 +413,11 @@ def build(root):
     main_md, _ = ensure_heading_anchors(main_md, groups)
 
     outputs = {
-        OUT + "/INDEX.json": json.dumps(graph, ensure_ascii=False, indent=2) + "\\n",
-        OUT + "/INDEX.md": "\\n".join(lines) + "\\n",
-        OUT + "/SOURCE_PROVENANCE.json": json.dumps(provenance, ensure_ascii=False, indent=2) + "\\n",
-        PREMISES.replace(".md", ".json"): json.dumps(premises_json, ensure_ascii=False, indent=2) + "\\n",
-        "analysis/FOUNDATIONS_LITERATURE_20261103/N_DEBTS.json": json.dumps(obligations_json, ensure_ascii=False, indent=2) + "\\n",
+        OUT + "/INDEX.json": json.dumps(graph, ensure_ascii=False, indent=2) + "\n",
+        OUT + "/INDEX.md": "\n".join(lines) + "\n",
+        OUT + "/SOURCE_PROVENANCE.json": json.dumps(provenance, ensure_ascii=False, indent=2) + "\n",
+        PREMISES.replace(".md", ".json"): json.dumps(premises_json, ensure_ascii=False, indent=2) + "\n",
+        "analysis/FOUNDATIONS_LITERATURE_20261103/N_DEBTS.json": json.dumps(obligations_json, ensure_ascii=False, indent=2) + "\n",
         MAIN_MD: main_md, QUESTIONS_MD: questions_md, PREMISES: obligations_md
     }
     return outputs, graph, provenance
@@ -429,7 +429,7 @@ def refresh_source_pins(root):
     previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     doc = make_pins(root, main, previous)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return doc
 
 
@@ -469,7 +469,7 @@ def main():
     print(rendered)
     if args.summary:
         with args.summary.open("a", encoding="utf-8") as stream:
-            stream.write("Registry consistency summary (JSON):\\n" + rendered + "\\n")
+            stream.write("Registry consistency summary (JSON):\n" + rendered + "\n")
     if stale and not args.write:
         raise SystemExit(1)
 
