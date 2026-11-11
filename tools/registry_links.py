@@ -48,7 +48,7 @@ def ensure_premise_anchors(text):
         m = pat.match(line)
         if m:
             ident = m.group(2)
-            line = f'| <a id="premise-{ident.lower()}"></a>{ident} | ' + m.group(3)[3:]
+            line = f'| <a id="premise-{ident.lower()}"></a>{ident} | ' + m.group(3)[2:]
         out.append(line)
     return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
