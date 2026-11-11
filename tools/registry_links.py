@@ -81,7 +81,7 @@ def parse_premises(text: str):
     rows = []
     for line_number, line in enumerate(text.splitlines(), start=1):
         m = re.match(
-            r'^\| (?:<a id="premise-([A-G]\d{2})"></a>)?([A-G]\d{2}) \| (.*?) \| (.*?) \|\s*$',
+            r'^\| (?:<a id="premise-([a-gA-G]\d{2})"></a>)?([A-G]\d{2}) \| (.*?) \| (.*?) \|\s*$',
             line,
         )
         if m:
