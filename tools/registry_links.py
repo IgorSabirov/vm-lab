@@ -88,8 +88,11 @@ def parse_obligations(text):
         m = header.match(line)
         if m:
             flush()
-            current = {"id": m.group(1), "title": m.group(2)}
-            body = [m.group(3)] if m.group(3) else []
+            anchor_id, ident, title, first_body = m.groups()
+            if anchor_id and anchor_id != ident:
+                raise ValueError(f"Obligation anchor mismatch: {anchor_id} != {ident}")
+            current = {"id": ident, "title": title}
+            body = [first_body] if first_body else []
         elif current is not None:
             body.append(line)
     flush()
@@ -409,7 +412,11 @@ def build(root):
     for record in groups["result"].values():
         if record.get("managed_card"):
             main_md = replace_block(main_md, record["id"], render_card(record))
-    main_md, _ = ensure_heading_anchors(main_md, groups)
+    main_md, _ = ensure_heading_anchors(main_md, {
+        "result": list(groups["result"].values()),
+        "construct": list(groups["construct"].values()),
+        "link": list(groups["link"].values()),
+    })
 
     outputs = {
         OUT + "/INDEX.json": json.dumps(graph, ensure_ascii=False, indent=2) + "\n",
