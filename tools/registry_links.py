@@ -216,7 +216,7 @@ def verify_pins(root, main, doc):
 
 def render_card(r):
     return (
-        f'<a id="{r["id"].lower()}"></a><a id="result-{r["id"].lower()}"></a>\n\n'
+        f'<a id="{r["id"].lower()}"></a>\n\n'
         f'### {r["id"]}. {r["title"]}\n\n'
         f'**Статус:** {r["status"]}\n\n**Результат.** {r["result"]}\n\n'
         f'**Условия.** {r["inputs"]}\n\n**Граница.** {r["limit"]}\n\n'
