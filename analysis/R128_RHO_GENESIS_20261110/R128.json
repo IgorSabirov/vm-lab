@@ -1,7 +1,7 @@
 {
   "id": "R128",
-  "version": "1.0",
-  "date": "2026-11-10",
+  "version": "1.1",
+  "date": "2026-11-11",
   "timezone": "Europe/Moscow",
   "base_commit": "e0563290209423f3b20bf243c5565996f477c8fb",
   "status": "ANALYTICAL_CORRECTIONS_COUNTEREXAMPLES_AND_CANDIDATE_SPECIFICATION",
@@ -228,7 +228,6 @@
       "component": "M: сохранённое содержание X27",
       "boundary": "D_after_source_off",
       "origin": "GIVEN_BY_TRUSTED_PREHISTORY",
-      "maintenance": "ACTIVE_MAINTENANCE_NOT_MODELED",
       "repair": "NOT_ESTABLISHED",
       "reproduction": "NEW_RECORD_GENERATION_OUT_OF_SCOPE",
       "evidence_domain": "SOFTWARE_VALIDATION",
@@ -250,7 +249,19 @@
         "path": "experiments/X27_PACKAGES_20261110/v051/src/x27v051/engine.py",
         "ref": "e0563290209423f3b20bf243c5565996f477c8fb",
         "locator": "trusted_prehistory_events; run_b_lite"
-      }
+      },
+      "maintenance_status": "NOT_ESTABLISHED",
+      "maintenance_modeling_status": "NOT_MODELED",
+      "field_history": [
+        {
+          "date": "2026-11-11",
+          "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+          "previous": {
+            "maintenance": "ACTIVE_MAINTENANCE_NOT_MODELED"
+          },
+          "reason": "R128.1 §12.5: разделены физическая установленность и статус моделирования поддержания."
+        }
+      ]
     },
     {
       "id": "X02",
@@ -901,5 +912,25 @@
     ],
     "source_verification": "Pinned files and registry entries, not a re-audit of every historic raw outcome",
     "zero_new_runtime_claim": true
-  }
+  },
+  "specification_addendum": {
+    "artifact_id": "R128.1",
+    "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+    "machine": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.json",
+    "status": "ANALYTICAL_SPECIFICATION_ADDENDUM_NOT_EXECUTABLE_NOT_PREREGISTERED"
+  },
+  "revision_history": [
+    {
+      "date": "2026-11-11",
+      "version": "1.1",
+      "base_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+      "previous_version": "1.0",
+      "changed_fields": [
+        "model_rows[X01].maintenance"
+      ],
+      "scientific_status_promoted": false,
+      "new_scientific_runs": 0,
+      "note": "Только устранение неоднозначного поля по R128.1 §12.5; исходные выводы, прямые родители и статусы сохранены."
+    }
+  ]
 }

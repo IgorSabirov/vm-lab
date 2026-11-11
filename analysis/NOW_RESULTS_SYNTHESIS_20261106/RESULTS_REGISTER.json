@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
-  "date": "2026-11-10",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.",
+  "date": "2026-11-11",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.\n\nАктуализация 11 ноября: R128.1 включена как спецификация в R128; X27 — только программная валидация. Исправлены устаревшие текущие поля исполнения NOW и правило 600 секунд. U011/U012 адресуют старые долги; R=128, C=42, L=10. Новых научных прогонов и повышения статусов нет.",
   "results": [
     {
       "id": "R001",
@@ -315,6 +315,9 @@
       "framework_role": "Показывает, какие описательные входы не замыкают дальнейшее поведение.",
       "sources": [
         "results/E002c_IC_RETRY_v001_r001/files/RESULT.md"
+      ],
+      "open_question_ids": [
+        "U011"
       ]
     },
     {
@@ -342,6 +345,9 @@
       "framework_role": "Контрфактический тест должен проверять фактическую силу вмешательства.",
       "sources": [
         "analysis/E002d_PROD_v003_r001/RESULT.md"
+      ],
+      "open_question_ids": [
+        "U011"
       ]
     },
     {
@@ -2503,7 +2509,10 @@
         "I.15"
       ],
       "evidence_level": "Прочитан отчёт23, включая незамыкание разложения и отрицательную специфичность.",
-      "genealogy_note": "Связи с прежними R — содержательное включение в нынешний реестр, не утверждение исторической пререгистрации. Порядок старых шагов подтверждён там, где прочитан журнал."
+      "genealogy_note": "Связи с прежними R — содержательное включение в нынешний реестр, не утверждение исторической пререгистрации. Порядок старых шагов подтверждён там, где прочитан журнал.",
+      "open_question_ids": [
+        "U012"
+      ]
     },
     {
       "id": "R113",
@@ -2531,7 +2540,10 @@
         "I.12"
       ],
       "evidence_level": "Предложение в обсуждении после отчётов20–23.",
-      "genealogy_note": "Связи с прежними R — содержательное включение в нынешний реестр, не утверждение исторической пререгистрации. Порядок старых шагов подтверждён там, где прочитан журнал."
+      "genealogy_note": "Связи с прежними R — содержательное включение в нынешний реестр, не утверждение исторической пререгистрации. Порядок старых шагов подтверждён там, где прочитан журнал.",
+      "open_question_ids": [
+        "U012"
+      ]
     },
     {
       "id": "R114",
@@ -3907,7 +3919,10 @@
         "results/NOW_INTEGRATED_7c55308_20261108/FULL_OUTPUT_ARCHIVE.json",
         "analysis/X26_PUBLICATION_PARENT_LINKS_20261109/REPORT.md",
         "results/X26_V3_MAIN_54f8e7d6_20261109_RAW/PUBLICATION_MANIFEST.json",
-        "analysis/COMMON_MODEL_20261109/MODEL.md"
+        "analysis/COMMON_MODEL_20261109/MODEL.md",
+        "results/X27_PAIR/20261110T113303Z_c0e66507/PROCESS.json",
+        "results/X27_PAIR/20261110T113303Z_c0e66507/v051/validation/SMOKE_REPORT.json",
+        "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json"
       ],
       "genealogy_note": "Новые N01–N08 — перспективные обязательства; прежние дымовые не выдаются за исполнение этих сравнений.",
       "revision_1_1": {
@@ -4187,6 +4202,26 @@
         "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
         "relation": "Текущие ветви NOW/U008/X26 и X27 дают исходные ограничения, не единый выведенный K.",
         "parent_scientific_status_unchanged": true
+      },
+      "x27_validation_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "source_code_commit": "4b17eddd06db0cf8b8c0296c63b64e95ed45b90a",
+        "run_id": "20261110T113303Z_c0e66507",
+        "process": "results/X27_PAIR/20261110T113303Z_c0e66507/PROCESS.json",
+        "report": "results/X27_PAIR/20261110T113303Z_c0e66507/v051/validation/SMOKE_REPORT.json",
+        "review": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json",
+        "status": "SOFTWARE_VALIDATION_ONLY_NOT_FROZEN_MAIN_RUN_NOT_EXECUTED",
+        "software_smoke_pass": true,
+        "scientific_main_executed": false,
+        "scientific_runtime_gate": "NOT_EVALUATED",
+        "command_seconds": 12.33627589297248,
+        "HQ": "NOT_EVALUATED_ADAPTER_PENDING",
+        "G0": "NOT_EVALUATED_FOR_V0_5_1_FULL_INTERVENTION_KERNEL",
+        "R1_functional_benefit": "NOT_DEMONSTRATED_FOR_r0_UNDER_D3_RULES",
+        "scope": "В v0.5.1 реализованы отдельные программные причинные контроли; происхождение памяти/аппарата C задано trusted prehistory, физический механизм не установлен. Это не исполнение U010 и не генезис R128.",
+        "new_scientific_runs_this_update": 0,
+        "scientific_status_promoted": false
       }
     },
     {
@@ -4240,13 +4275,108 @@
         "analysis/R128_RHO_GENESIS_20261110/R128.json",
         "analysis/R128_RHO_GENESIS_20261110/sources/NEIGHBOR_DISCUSSION.txt",
         "analysis/R128_RHO_GENESIS_20261110/sources/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.original.md",
-        "analysis/R128_RHO_GENESIS_20261110/sources/PREREQUISITE_MATRIX.original.md"
+        "analysis/R128_RHO_GENESIS_20261110/sources/PREREQUISITE_MATRIX.original.md",
+        "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.json"
       ],
       "genealogy_note": "Прямые родители выбраны по реально используемым ограничениям; R066/R124/R125/R126 — адресные сравнительные ссылки, без автоматического повышения статуса.",
       "new_scientific_runs": 0,
       "new_physical_model_accepted": false,
       "new_measure_accepted": false,
-      "scientific_status_promoted": false
+      "scientific_status_promoted": false,
+      "specification_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "artifact_id": "R128.1",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "machine": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.json",
+        "status": "ANALYTICAL_SPECIFICATION_ADDENDUM_NOT_EXECUTABLE_NOT_PREREGISTERED",
+        "scope": [
+          "time_dynamics_and_path_measure_consistency",
+          "state_sufficiency_and_markov_scope",
+          "physical_state_typing_and_no_double_counting",
+          "operational_theta_measurement_and_response_kernel",
+          "endogenous_selector_Q_origin",
+          "theta0_alternative_set_provenance",
+          "separate_theta_genesis_mechanisms",
+          "E1_E2_E3_and_tooling_boundary_classification",
+          "typed_resource_flux_accounting",
+          "external_evaluator_vs_internal_norm",
+          "total_variation_discrimination_bound",
+          "physical_and_information_genealogies",
+          "Montevil_Mossio_and_COT_physical_closure_requirements",
+          "registry_boundary_and_neighbor_crosswalk",
+          "X01_maintenance_field_correction_specification"
+        ],
+        "unresolved": [
+          "physical_substrate",
+          "transition_law_L",
+          "initial_measure_mu_or_weighted_case_set",
+          "viability_region_K_O",
+          "physical_theta_observable",
+          "time_step_or_generator",
+          "resource_budget_and_flux_sources",
+          "experimental_architecture_and_sample_size",
+          "U010_decisions_D1_to_D6"
+        ],
+        "registry_crosswalk": {
+          "direct_R128_parents_unchanged": [
+            "R001",
+            "R044",
+            "R064",
+            "R075",
+            "R094",
+            "R096",
+            "R119",
+            "R120",
+            "R121",
+            "R122",
+            "R127"
+          ],
+          "proposed_boundary_references": [
+            "R066",
+            "R079",
+            "R124",
+            "R125",
+            "R126"
+          ],
+          "proposed_boundary_constructs": [
+            "C023"
+          ],
+          "conditional_boundary_constructs": [
+            "C024",
+            "C028",
+            "C039",
+            "C042"
+          ],
+          "related_open_questions": [
+            "U002",
+            "U003",
+            "U005",
+            "U006"
+          ],
+          "primary_open_question_unchanged": [
+            "U010"
+          ],
+          "boundary_links": [
+            "L03"
+          ],
+          "conditional_context_links": [
+            "L05",
+            "L08"
+          ]
+        },
+        "new_scientific_runs": 0,
+        "scientific_status_promoted": false,
+        "physical_mechanism_accepted": false,
+        "note": "Спецификация включена в существующую R128; новые прямые родители, R/C/L и новый физический закон не введены. Граничные ссылки остаются предложениями."
+      },
+      "machine_card_revision": {
+        "version": "1.1",
+        "date": "2026-11-11",
+        "path": "analysis/R128_RHO_GENESIS_20261110/R128.json",
+        "scope": "X01 maintenance split only; no new scientific result"
+      }
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
@@ -7406,32 +7536,42 @@
     }
   ],
   "revision": {
-    "id": "R128_RHO_GENESIS_20261110_v1",
-    "date": "2026-11-10",
-    "base_commit": "e0563290209423f3b20bf243c5565996f477c8fb",
+    "id": "REGISTRY_LATEST_DEVELOPMENTS_20261111_v1",
+    "date": "2026-11-11",
+    "base_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
     "result_count": 128,
     "construct_count": 42,
     "open_link_count": 10,
-    "new_records": [
+    "question_count": 12,
+    "new_records": [],
+    "updated_records": [
+      "R023",
+      "R025",
+      "R112",
+      "R113",
+      "R127",
       "R128"
     ],
-    "updated_records": [
-      "R001",
-      "R044",
-      "R064",
-      "R075",
-      "R094",
-      "R096",
-      "R119",
-      "R120",
-      "R121",
-      "R122",
-      "R127"
+    "new_questions": [
+      "U011",
+      "U012"
+    ],
+    "updated_questions": [
+      "U002",
+      "U003",
+      "U005",
+      "U006",
+      "U010"
     ],
     "scientific_statuses_changed": [],
     "scientific_runs": 0,
-    "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
-    "note": "Добавлены аналитическая R128 и обратные ссылки; научные поля прежних результатов и статусы C/L/U сохранены."
+    "report": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+    "execution_metadata_corrected": [
+      "R127 role annotation",
+      "NOW integrated designs",
+      "600-second placement rule"
+    ],
+    "note": "Синхронизация опубликованных наработок и открытых долгов; R128.1 остаётся спецификацией, X27 — программной валидацией. История сохранена."
   },
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
@@ -7500,15 +7640,32 @@
       "rule": "Принимать результаты пользователя без его оговорок как предоставленные результаты; отсутствие скрипта не основание понижать статус. При конкретном сомнении самостоятельно выполнить соразмерную проверку, а не возвращать бремя пользователю. Не приписывать себе невыполненную репликацию."
     },
     "compute_placement": {
-      "adopted_date": "2026-11-07",
+      "adopted_date": "2026-11-10",
       "source": "RUNTIME_GATE.md",
-      "smoke_and_debug": "sandbox",
-      "main_experiment": "vm",
-      "smoke_upper_guidance_seconds": 600,
-      "fixed_github_commit_required": true,
-      "target_environment_calibration_required": true,
-      "permanent_vm_not_started": true,
-      "supersedes": "600-second placement of main experiments"
+      "instruction_source": "AGENTS.md",
+      "rule": "До 600 секунд включительно — песочница ИИ; более 600 секунд — ВМ пользователя, по обоснованному прогнозу до запуска независимо от main/smoke.",
+      "threshold_seconds": 600,
+      "sandbox_max_inclusive_seconds": 600,
+      "vm_min_exclusive_seconds": 600,
+      "applies_to": [
+        "main",
+        "smoke",
+        "validation"
+      ],
+      "fixed_github_commit_required_for_vm": true,
+      "target_environment_forecast_required": true,
+      "do_not_split_or_repeat_to_cross_threshold": true,
+      "previous_rule_20261107": {
+        "adopted_date": "2026-11-07",
+        "source": "RUNTIME_GATE.md",
+        "smoke_and_debug": "sandbox",
+        "main_experiment": "vm",
+        "smoke_upper_guidance_seconds": 600,
+        "fixed_github_commit_required": true,
+        "target_environment_calibration_required": true,
+        "permanent_vm_not_started": true,
+        "supersedes": "600-second placement of main experiments"
+      }
     },
     "integrated_experiment_policy": {
       "date": "2026-11-07",
@@ -7682,15 +7839,24 @@
     "R127": {
       "role": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ",
       "not_new_project_discovery": true,
-      "scientific_main_executed": false,
-      "source_statuses_preserved": true
+      "scientific_main_executed": true,
+      "source_statuses_preserved": true,
+      "pre_sync_20261111": {
+        "role": "СИНТЕЗ СОХРАНЁННЫХ СВИДЕТЕЛЬСТВ / СОБСТВЕННАЯ СПЕЦИФИКАЦИЯ / ПРОВЕРКА СВЯЗЕЙ ДОКУМЕНТОВ",
+        "not_new_project_discovery": true,
+        "scientific_main_executed": false,
+        "source_statuses_preserved": true
+      },
+      "execution_scope": "Опубликованный полный NOW: 3083 задачи. Это исправление устаревшего поля по R127, не новый запуск; X27 отдельно остаётся software validation only.",
+      "execution_evidence": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json"
     },
     "R128": {
       "role": "АНАЛИТИЧЕСКИЕ ПОПРАВКИ / ТОЧНЫЕ КОНТРПРИМЕРЫ / КАНДИДАТ СПЕЦИФИКАЦИИ",
       "basis": "Полный отзыв, адресная проверка реестра/кода/первичных источников; аналитические аргументы без научного запуска.",
       "not_new_project_discovery": true,
       "scientific_run": false,
-      "new_physical_model_accepted": false
+      "new_physical_model_accepted": false,
+      "specification_addendum": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md"
     }
   },
   "revision_history": [
@@ -7969,6 +8135,44 @@
       "scientific_runs": 0,
       "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
       "note": "Добавлены аналитическая R128 и обратные ссылки; научные поля прежних результатов и статусы C/L/U сохранены."
+    },
+    {
+      "id": "REGISTRY_LATEST_DEVELOPMENTS_20261111_v1",
+      "date": "2026-11-11",
+      "base_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+      "result_count": 128,
+      "construct_count": 42,
+      "open_link_count": 10,
+      "question_count": 12,
+      "new_records": [],
+      "updated_records": [
+        "R023",
+        "R025",
+        "R112",
+        "R113",
+        "R127",
+        "R128"
+      ],
+      "new_questions": [
+        "U011",
+        "U012"
+      ],
+      "updated_questions": [
+        "U002",
+        "U003",
+        "U005",
+        "U006",
+        "U010"
+      ],
+      "scientific_statuses_changed": [],
+      "scientific_runs": 0,
+      "report": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "execution_metadata_corrected": [
+        "R127 role annotation",
+        "NOW integrated designs",
+        "600-second placement rule"
+      ],
+      "note": "Синхронизация опубликованных наработок и открытых долгов; R128.1 остаётся спецификацией, X27 — программной валидацией. История сохранена."
     }
   ],
   "lineage_edges": [
@@ -9713,7 +9917,7 @@
     },
     {
       "id": "NOW_INTEGRATED_CONTINUATION_V1",
-      "status": "INTEGRATED_DESIGN_NOT_PRODUCTION_READY",
+      "status": "MAIN_EXECUTED_WITH_AMENDMENTS_CONDITIONAL_RESULTS_PUBLISHED",
       "source": "analysis/INTEGRATED_EXPERIMENT_20261107/EXPERIMENT_DESIGN.md",
       "graph": "analysis/INTEGRATED_EXPERIMENT_20261107/EXPERIMENT_GRAPH.json",
       "lineage_map": "analysis/INTEGRATED_EXPERIMENT_20261107/REGISTRY_COVERAGE.json",
@@ -9903,7 +10107,7 @@
       "blocks": 12,
       "coupled_comparisons": 16,
       "coverage_not_confirmation": true,
-      "main_executed": false,
+      "main_executed": true,
       "implementation_review": {
         "source": "experiments/now_integrated_v1/README.md",
         "status": "CANDIDATE_CODE_FOR_NEIGHBOR_REVIEW_NOT_EXECUTED",
@@ -9922,28 +10126,54 @@
         ]
       },
       "latest_engine_evidence": {
-        "commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
-        "report_commit": "f5e2e47baea7225626a530a8c123e9457a79d263",
-        "report_path": "analysis/INTEGRATED_SCOPE_VALIDATION_20261108/RESULT.md",
-        "status": "READY_FOR_MAIN_DECISION",
-        "unit_tests": 54,
-        "execution_checks": 18,
-        "scientific_main_executed": false,
-        "note": "Newer than the historical candidate-code implementation_review; new geometry extension is not included."
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report_path": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json",
+        "record": "R127",
+        "main_tasks": 3083,
+        "scientific_main_executed": true,
+        "scientific_status_promoted": false,
+        "runtime_gate": "REVIEW_REQUIRED",
+        "runtime_gate_scope": "Полный NOW 3083; не смешивать с PASS прежнего пакета 413."
       },
       "current_amendment": {
         "spec": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
         "document": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
         "source_base": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
-        "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+        "status": "MAIN_EXECUTED_413_TASKS_PUBLISHED",
         "source": "experiments/now_integrated_v1",
         "main_tasks": 413,
-        "author_tests_executed": false
-      }
+        "author_tests_executed": false,
+        "main_executed": true,
+        "result": "results/NOW_INTEGRATED_7c55308_20261108/MAIN_RUN.json"
+      },
+      "pre_sync_20261111": {
+        "status": "INTEGRATED_DESIGN_NOT_PRODUCTION_READY",
+        "main_executed": false,
+        "latest_engine_evidence": {
+          "commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+          "report_commit": "f5e2e47baea7225626a530a8c123e9457a79d263",
+          "report_path": "analysis/INTEGRATED_SCOPE_VALIDATION_20261108/RESULT.md",
+          "status": "READY_FOR_MAIN_DECISION",
+          "unit_tests": 54,
+          "execution_checks": 18,
+          "scientific_main_executed": false,
+          "note": "Newer than the historical candidate-code implementation_review; new geometry extension is not included."
+        },
+        "current_amendment": {
+          "spec": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
+          "document": "analysis/INTEGRATED_EXPERIMENT_20261107/PATCH_20261108.md",
+          "source_base": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
+          "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+          "source": "experiments/now_integrated_v1",
+          "main_tasks": 413,
+          "author_tests_executed": false
+        }
+      },
+      "execution_scope": "Исполнены опубликованные версии NOW с интеграционными поправками (413 задач, затем полный NOW 3083 задачи); это не запуск последующих U010/X27/R128 и не замыкание L01–L10."
     },
     {
       "id": "NOW_GEOMETRY_CONTINUATION_V1",
-      "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+      "status": "MAIN_EXECUTED_WITH_AMENDMENTS_CONDITIONAL_RESULTS_PUBLISHED",
       "source": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
       "graph": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/DESIGN.json",
       "lineage_map": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/REGISTRY_MAP.json",
@@ -10026,13 +10256,28 @@
         "N07",
         "N08"
       ],
-      "main_executed": false,
+      "main_executed": true,
       "coverage_not_confirmation": true,
       "engine_base_commit": "ea49ebce07495aa3a8dff6ed2c8cfa4ebfa0b2e8",
       "amendment_of": "NOW_INTEGRATED_CONTINUATION_V1",
       "id_role": "architecture_alias_not_separate_experiment",
       "patch": "experiments/now_integrated_v1/preregistration/FOUR_CANDIDATE_AMENDMENT.json",
-      "architecture_only_alias": true
+      "architecture_only_alias": true,
+      "pre_sync_20261111": {
+        "status": "EXECUTABLE_PATCH_WRITTEN_STATIC_CHECKED_REVIEW_PENDING",
+        "main_executed": false
+      },
+      "execution_scope": "Исполнены опубликованные версии NOW с интеграционными поправками (413 задач, затем полный NOW 3083 задачи); это не запуск последующих U010/X27/R128 и не замыкание L01–L10.",
+      "latest_engine_evidence": {
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report_path": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json",
+        "record": "R127",
+        "main_tasks": 3083,
+        "scientific_main_executed": true,
+        "scientific_status_promoted": false,
+        "runtime_gate": "REVIEW_REQUIRED",
+        "runtime_gate_scope": "Полный NOW 3083; не смешивать с PASS прежнего пакета 413."
+      }
     }
   ],
   "planned_experiment_edges": [
@@ -11840,8 +12085,8 @@
   "open_questions_register": {
     "markdown": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
     "json": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
-    "version": 2,
-    "date": "2026-11-09",
+    "version": 3,
+    "date": "2026-11-11",
     "question_ids": [
       "U001",
       "U002",
@@ -11852,9 +12097,11 @@
       "U007",
       "U008",
       "U009",
-      "U010"
+      "U010",
+      "U011",
+      "U012"
     ],
-    "scope": "U001–U009: объединены закреплённые карточки ветвей; U009 — вопрос SSB, авторское соответствие ADD — отдельная граница R126.",
+    "scope": "U001–U012. U011/U012 адресуют прежние открытые механизмы R023/R025 и R112/R113; это не новые экспериментальные результаты. U001 и U008 сохраняют ответы, U010 открыт.",
     "u010": {
       "id": "U010",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
@@ -12173,7 +12420,214 @@
       "focus": "P04/P05: formation of mapping",
       "status": "CANDIDATE_SPECIFICATION",
       "execute_authorized": false
+    },
+    "r128_1_followup": {
+      "date": "2026-11-11",
+      "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+      "artifact_id": "R128.1",
+      "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+      "machine": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.json",
+      "status": "ANALYTICAL_SPECIFICATION_ADDENDUM_NOT_EXECUTABLE_NOT_PREREGISTERED",
+      "scope": [
+        "time_dynamics_and_path_measure_consistency",
+        "state_sufficiency_and_markov_scope",
+        "physical_state_typing_and_no_double_counting",
+        "operational_theta_measurement_and_response_kernel",
+        "endogenous_selector_Q_origin",
+        "theta0_alternative_set_provenance",
+        "separate_theta_genesis_mechanisms",
+        "E1_E2_E3_and_tooling_boundary_classification",
+        "typed_resource_flux_accounting",
+        "external_evaluator_vs_internal_norm",
+        "total_variation_discrimination_bound",
+        "physical_and_information_genealogies",
+        "Montevil_Mossio_and_COT_physical_closure_requirements",
+        "registry_boundary_and_neighbor_crosswalk",
+        "X01_maintenance_field_correction_specification"
+      ],
+      "unresolved": [
+        "physical_substrate",
+        "transition_law_L",
+        "initial_measure_mu_or_weighted_case_set",
+        "viability_region_K_O",
+        "physical_theta_observable",
+        "time_step_or_generator",
+        "resource_budget_and_flux_sources",
+        "experimental_architecture_and_sample_size",
+        "U010_decisions_D1_to_D6"
+      ],
+      "registry_crosswalk": {
+        "direct_R128_parents_unchanged": [
+          "R001",
+          "R044",
+          "R064",
+          "R075",
+          "R094",
+          "R096",
+          "R119",
+          "R120",
+          "R121",
+          "R122",
+          "R127"
+        ],
+        "proposed_boundary_references": [
+          "R066",
+          "R079",
+          "R124",
+          "R125",
+          "R126"
+        ],
+        "proposed_boundary_constructs": [
+          "C023"
+        ],
+        "conditional_boundary_constructs": [
+          "C024",
+          "C028",
+          "C039",
+          "C042"
+        ],
+        "related_open_questions": [
+          "U002",
+          "U003",
+          "U005",
+          "U006"
+        ],
+        "primary_open_question_unchanged": [
+          "U010"
+        ],
+        "boundary_links": [
+          "L03"
+        ],
+        "conditional_context_links": [
+          "L05",
+          "L08"
+        ]
+      },
+      "new_scientific_runs": 0,
+      "scientific_status_promoted": false,
+      "physical_mechanism_accepted": false,
+      "note": "Спецификация включена в существующую R128; новые прямые родители, R/C/L и новый физический закон не введены. Граничные ссылки остаются предложениями."
     }
+  },
+  "x27_validation_followup_20261111": {
+    "date": "2026-11-11",
+    "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+    "source_code_commit": "4b17eddd06db0cf8b8c0296c63b64e95ed45b90a",
+    "run_id": "20261110T113303Z_c0e66507",
+    "process": "results/X27_PAIR/20261110T113303Z_c0e66507/PROCESS.json",
+    "report": "results/X27_PAIR/20261110T113303Z_c0e66507/v051/validation/SMOKE_REPORT.json",
+    "review": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json",
+    "status": "SOFTWARE_VALIDATION_ONLY_NOT_FROZEN_MAIN_RUN_NOT_EXECUTED",
+    "software_smoke_pass": true,
+    "scientific_main_executed": false,
+    "scientific_runtime_gate": "NOT_EVALUATED",
+    "command_seconds": 12.33627589297248,
+    "HQ": "NOT_EVALUATED_ADAPTER_PENDING",
+    "G0": "NOT_EVALUATED_FOR_V0_5_1_FULL_INTERVENTION_KERNEL",
+    "R1_functional_benefit": "NOT_DEMONSTRATED_FOR_r0_UNDER_D3_RULES",
+    "scope": "В v0.5.1 реализованы отдельные программные причинные контроли; происхождение памяти/аппарата C задано trusted prehistory, физический механизм не установлен. Это не исполнение U010 и не генезис R128.",
+    "new_scientific_runs_this_update": 0,
+    "scientific_status_promoted": false
+  },
+  "research_debts_20261111": {
+    "date": "2026-11-11",
+    "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+    "status": "ASSISTANT_ASSESSMENT_NOT_APPROVED_EXECUTION_ORDER",
+    "basis": "Обзор долгов в текущем обсуждении и источники карточек R/U.",
+    "items": [
+      {
+        "key": "R128_GENESIS",
+        "question_ids": [
+          "U010"
+        ],
+        "result_ids": [
+          "R128"
+        ],
+        "priority_role": "MAIN_GOAL",
+        "title": "Происхождение соответствия след→действие",
+        "readiness": "PHYSICAL_MECHANISM_AND_CRITERION_UNSELECTED",
+        "next": "Выбрать проверяемый механизм образования Θ и независимый критерий жизнеспособности, различив перестройку, отбор, копирование и нешаблонное образование."
+      },
+      {
+        "key": "U010_REPRODUCTION",
+        "question_ids": [
+          "U010"
+        ],
+        "result_ids": [
+          "R064",
+          "R119",
+          "R121",
+          "R127",
+          "R128"
+        ],
+        "priority_role": "CAUSAL_CONTINUATION",
+        "title": "Воспроизводство условий следующего действия",
+        "readiness": "DESIGN_NOT_EXECUTED_D1_D6_OPEN",
+        "next": "Определить физическую цепь локального чтения, использования аппарата и восстановления готовности; различающие содержательные и ресурсные контроли."
+      },
+      {
+        "key": "E002_TRANSPORT",
+        "question_ids": [
+          "U011"
+        ],
+        "result_ids": [
+          "R023",
+          "R025"
+        ],
+        "priority_role": "UNEXPLAINED_MEASURED_EFFECT",
+        "title": "Остаточный транспортный разрыв QS/IC",
+        "readiness": "PUBLISHED_DATA_FIRST_INTERVENTION_NOT_SELECTED",
+        "next": "Использовать секторные результаты; проверить силу и побочные эффекты различающего вмешательства."
+      },
+      {
+        "key": "FW_ZERO_TRACKING",
+        "question_ids": [
+          "U012"
+        ],
+        "result_ids": [
+          "R112",
+          "R113"
+        ],
+        "priority_role": "SHARP_FALSIFIABLE_PHYSICS_TEST",
+        "title": "Слежение нуля отклика за точкой FW",
+        "readiness": "PROPOSAL_DEFINITIONS_AND_DATA_CHECK_REQUIRED",
+        "next": "Восстановить определения и данные, затем зафиксировать минимальный тест совместного смещения."
+      },
+      {
+        "key": "U002_CORRELATIONS",
+        "question_ids": [
+          "U002"
+        ],
+        "result_ids": [
+          "R108",
+          "R127"
+        ],
+        "priority_role": "FUNCTIONAL_OBSERVABLE",
+        "title": "Роль корреляций в способности продолжения",
+        "readiness": "XOR_INSENSITIVITY_EXPLAINED_CONTINUATION_OBSERVABLE_UNSELECTED",
+        "next": "Обосновать показатель из цели до сравнения; не подбирать его ради ненулевого эффекта."
+      },
+      {
+        "key": "U005_BACKREACTION",
+        "question_ids": [
+          "U005"
+        ],
+        "result_ids": [
+          "R127"
+        ],
+        "priority_role": "ORGANIZATION_CARRIER_COUPLING",
+        "title": "Обратное действие организации на носитель",
+        "readiness": "MECHANISM_NOT_IMPLEMENTED",
+        "next": "Явно задать внутренний механизм и контроль против односторонней связи."
+      }
+    ],
+    "not_new_experiments": true,
+    "launch_authorized": false,
+    "fundamental_open_question": "U006",
+    "already_answered": [
+      "U001",
+      "U008"
+    ],
+    "note": "Важность для цели и готовность к проверке различены; новые сроки/бюджеты не оценивались."
   }
 }
-

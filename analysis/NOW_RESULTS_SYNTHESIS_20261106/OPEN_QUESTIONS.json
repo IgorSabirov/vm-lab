@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 2,
-  "date": "2026-11-10",
+  "version": 3,
+  "date": "2026-11-11",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
   "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
-  "coverage": "U001–U010. U010 — продолжение U008; статус U008 сохранён. U009 — SSB; авторское соответствие ADD отдельно.",
+  "coverage": "U001–U012. U011/U012 адресуют прежние открытые механизмы R023/R025 и R112/R113; это не новые экспериментальные результаты. U001 и U008 сохраняют ответы, U010 открыт.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
   "workflow": [
     "Сразу записывать вопрос и точное место возникновения: результат/поле/вмешательство, коммит и источник; рядом с исходным наблюдением ставить ссылку на U-ID.",
@@ -25,7 +25,8 @@
     "NOT_IMPLEMENTED": "Явная часть механизма или сравнения ещё не реализована.",
     "NOT_DERIVED": "Требуемый переход/происхождение не выведен.",
     "RESOLVED": "Ответ получен с источником и условиями.",
-    "PROVEN_IMPOSSIBLE_UNDER_ASSUMPTIONS": "Невозможность доказана лишь при явно названных предпосылках; без доказательства статус запрещён."
+    "PROVEN_IMPOSSIBLE_UNDER_ASSUMPTIONS": "Невозможность доказана лишь при явно названных предпосылках; без доказательства статус запрещён.",
+    "ANSWERED_WITHIN_DECLARED_CLASS": "Ответ получен только для явно заданного конечного класса; более широкое происхождение или воспроизводство не установлено."
   },
   "questions": [
     {
@@ -84,9 +85,9 @@
         "path": "results/NOW_INTEGRATED_7c55308_20261108/FOUR_CANDIDATE_RETURN.json",
         "locator": "contrasts.patch::{flat,ising_order,cdt_strip,add_quiet,add_growing}::measure"
       },
-      "known": "Во всех пяти новых сравнениях замена совместной входной меры независимой даёт нулевую разность p_task_success при TV полного профиля 0.125. Эти числа относятся к новой XOR-задаче; прежние контрасты X08 имеют собственные наблюдаемые и не отменены.",
+      "known": "Во всех пяти новых сравнениях замена совместной входной меры независимой даёт нулевую разность p_task_success при TV полного профиля 0.125. Эти числа относятся к новой XOR-задаче; прежние контрасты X08 имеют собственные наблюдаемые и не отменены. Нечувствительность XOR объяснена в разборе 9 ноября: при доступных ресурсах все допустимые входы правильно обрабатываются. Это закрывает вопрос о данном скаляре, но не о способности продолжения.",
       "unknown": "Какую роль корреляции играют в способности продолжения, которую не различает текущая скалярная вероятность правильного XOR. Отличие полного профиля само по себе не устанавливает функциональную пользу.",
-      "next_step": "Разобрать аналитически причину нечувствительности XOR-success и состав различающихся профилей. Сопоставить с уже имеющимися X08 и профилем продолжения; сформулировать проверяемую наблюдаемую только при содержательной связи с целью.",
+      "next_step": "Использовать уже объяснённую нечувствительность XOR; разобрать различающиеся компоненты полного профиля и сопоставить с X08. Выбрать наблюдаемую способности продолжения только из связи с целью и до нового сравнения, либо обосновать отсутствие роли корреляций в объявленном классе.",
       "closure": "Объяснена нечувствительность имеющейся величины; для выбранной способности предъявлены условия и сравнение, различающее роль меры, либо обосновано отсутствие различия в заявленной области.",
       "decision": "Новая наблюдаемая пока не выбрана и не внесена в замороженный опыт. Вопрос сохранён без требования немедленного ответа пользователя.",
       "registered_date": "2026-11-08",
@@ -98,7 +99,22 @@
         "source": "analysis/INTEGRATED_EXPERIMENT_20261107/LONG_RUN_20261108/SCIENCE_REVIEW_20261109/REPORT.md",
         "observation": "Нечувствительность XOR объяснена: все входы допустимы и правильно обрабатываются при доступных ресурсах. Пять measure-разностей вновь равны нулю. Новая наблюдаемая продолжения не выбрана; вопрос остаётся открытым."
       },
-      "imported_from_fixed_ref": "da12c1d1608b405f2d8e8f5d6141ca0d20e38d15"
+      "imported_from_fixed_ref": "da12c1d1608b405f2d8e8f5d6141ca0d20e38d15",
+      "history": [
+        {
+          "date": "2026-11-11",
+          "reason": "Нечувствительность XOR уже объяснена в followup_20261109; обновлена активная карточка без закрытия функционального вопроса.",
+          "known": "Во всех пяти новых сравнениях замена совместной входной меры независимой даёт нулевую разность p_task_success при TV полного профиля 0.125. Эти числа относятся к новой XOR-задаче; прежние контрасты X08 имеют собственные наблюдаемые и не отменены.",
+          "next_step": "Разобрать аналитически причину нечувствительности XOR-success и состав различающихся профилей. Сопоставить с уже имеющимися X08 и профилем продолжения; сформулировать проверяемую наблюдаемую только при содержательной связи с целью."
+        }
+      ],
+      "r128_1_boundary_reference": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
+        "status_changed": false
+      }
     },
     {
       "id": "U003",
@@ -126,7 +142,14 @@
       "status": "OPEN",
       "answer": null,
       "resolution_source": null,
-      "user_answer_required_now": false
+      "user_answer_required_now": false,
+      "r128_1_boundary_reference": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
+        "status_changed": false
+      }
     },
     {
       "id": "U004",
@@ -183,7 +206,14 @@
       "status": "OPEN",
       "answer": null,
       "resolution_source": null,
-      "user_answer_required_now": false
+      "user_answer_required_now": false,
+      "r128_1_boundary_reference": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
+        "status_changed": false
+      }
     },
     {
       "id": "U006",
@@ -211,7 +241,14 @@
       "status": "OPEN",
       "answer": null,
       "resolution_source": null,
-      "user_answer_required_now": false
+      "user_answer_required_now": false,
+      "r128_1_boundary_reference": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
+        "status_changed": false
+      }
     },
     {
       "id": "U007",
@@ -602,7 +639,191 @@
           "mechanism_accepted": false,
           "execute_authorized": false
         }
+      },
+      "specification_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "artifact_id": "R128.1",
+        "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
+        "machine": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.json",
+        "status": "ANALYTICAL_SPECIFICATION_ADDENDUM_NOT_EXECUTABLE_NOT_PREREGISTERED",
+        "scope": [
+          "time_dynamics_and_path_measure_consistency",
+          "state_sufficiency_and_markov_scope",
+          "physical_state_typing_and_no_double_counting",
+          "operational_theta_measurement_and_response_kernel",
+          "endogenous_selector_Q_origin",
+          "theta0_alternative_set_provenance",
+          "separate_theta_genesis_mechanisms",
+          "E1_E2_E3_and_tooling_boundary_classification",
+          "typed_resource_flux_accounting",
+          "external_evaluator_vs_internal_norm",
+          "total_variation_discrimination_bound",
+          "physical_and_information_genealogies",
+          "Montevil_Mossio_and_COT_physical_closure_requirements",
+          "registry_boundary_and_neighbor_crosswalk",
+          "X01_maintenance_field_correction_specification"
+        ],
+        "unresolved": [
+          "physical_substrate",
+          "transition_law_L",
+          "initial_measure_mu_or_weighted_case_set",
+          "viability_region_K_O",
+          "physical_theta_observable",
+          "time_step_or_generator",
+          "resource_budget_and_flux_sources",
+          "experimental_architecture_and_sample_size",
+          "U010_decisions_D1_to_D6"
+        ],
+        "registry_crosswalk": {
+          "direct_R128_parents_unchanged": [
+            "R001",
+            "R044",
+            "R064",
+            "R075",
+            "R094",
+            "R096",
+            "R119",
+            "R120",
+            "R121",
+            "R122",
+            "R127"
+          ],
+          "proposed_boundary_references": [
+            "R066",
+            "R079",
+            "R124",
+            "R125",
+            "R126"
+          ],
+          "proposed_boundary_constructs": [
+            "C023"
+          ],
+          "conditional_boundary_constructs": [
+            "C024",
+            "C028",
+            "C039",
+            "C042"
+          ],
+          "related_open_questions": [
+            "U002",
+            "U003",
+            "U005",
+            "U006"
+          ],
+          "primary_open_question_unchanged": [
+            "U010"
+          ],
+          "boundary_links": [
+            "L03"
+          ],
+          "conditional_context_links": [
+            "L05",
+            "L08"
+          ]
+        },
+        "new_scientific_runs": 0,
+        "scientific_status_promoted": false,
+        "physical_mechanism_accepted": false,
+        "note": "Спецификация включена в существующую R128; новые прямые родители, R/C/L и новый физический закон не введены. Граничные ссылки остаются предложениями."
+      },
+      "x27_validation_followup_20261111": {
+        "date": "2026-11-11",
+        "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "source_code_commit": "4b17eddd06db0cf8b8c0296c63b64e95ed45b90a",
+        "run_id": "20261110T113303Z_c0e66507",
+        "process": "results/X27_PAIR/20261110T113303Z_c0e66507/PROCESS.json",
+        "report": "results/X27_PAIR/20261110T113303Z_c0e66507/v051/validation/SMOKE_REPORT.json",
+        "review": "analysis/RESEARCH_EVOLUTION_20261110/EVIDENCE.json",
+        "status": "SOFTWARE_VALIDATION_ONLY_NOT_FROZEN_MAIN_RUN_NOT_EXECUTED",
+        "software_smoke_pass": true,
+        "scientific_main_executed": false,
+        "scientific_runtime_gate": "NOT_EVALUATED",
+        "command_seconds": 12.33627589297248,
+        "HQ": "NOT_EVALUATED_ADAPTER_PENDING",
+        "G0": "NOT_EVALUATED_FOR_V0_5_1_FULL_INTERVENTION_KERNEL",
+        "R1_functional_benefit": "NOT_DEMONSTRATED_FOR_r0_UNDER_D3_RULES",
+        "scope": "В v0.5.1 реализованы отдельные программные причинные контроли; происхождение памяти/аппарата C задано trusted prehistory, физический механизм не установлен. Это не исполнение U010 и не генезис R128.",
+        "new_scientific_runs_this_update": 0,
+        "scientific_status_promoted": false
       }
+    },
+    {
+      "id": "U011",
+      "title": "Какой механизм объясняет транспортный разрыв после структурного согласования IC?",
+      "kind": "OPEN_CAUSE",
+      "status": "OPEN",
+      "origin_kind": "retrospective_from_saved_boundary",
+      "records": [
+        "R023",
+        "R025"
+      ],
+      "construct_ids": [
+        "C016",
+        "C017"
+      ],
+      "open_links": [
+        "L10"
+      ],
+      "origin": {
+        "commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
+        "locator": "R023; R025; обсуждение экспериментальных долгов 11 ноября 2026"
+      },
+      "evidence_sources": [
+        "results/E002c_IC_RETRY_v001_r001/files/RESULT.md",
+        "analysis/E002d_PROD_v003_r001/RESULT.md"
+      ],
+      "known": "Шесть структурных мишеней IC согласованы с ошибкой не более 0.187573%; hop QS=0.1098400932 и IC=0.0932830140 различается на 15.0738% относительно QS. В E002d эффект S2 около −1.292385% базового зазора при γ=0.1 сопровождался подавлением целевого объекта лишь примерно на 1–4%.",
+      "unknown": "Какой механизм необходим для объяснения остаточного транспортного разрыва; слабое воздействие E002d не устанавливает малость вклада всей когерентности.",
+      "next_step": "Сначала использовать опубликованные секторные разложения и проверенные вмешательства. Для оставшегося вопроса определить различающий контроль с измерением фактического подавления цели и побочных изменений; новый опыт не назначен.",
+      "closure": "На фиксированном классе моделей механизм различён контролями с подтверждённой силой вмешательства и сопоставимыми условиями, либо получена явно ограниченная оценка/невозможность различения. Совпадение шести мишеней само по себе не закрывает вопрос.",
+      "decision": "Зарегистрирован прежний открытый механизм, не новая гипотеза о доказанной квантовой исключительности и не разрешение запуска.",
+      "registered_date": "2026-11-11",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Ретроспективная адресация к R023/R025; L10 — связь с общей реализацией, не утверждение, что этот локальный тест закрывает L10."
+    },
+    {
+      "id": "U012",
+      "title": "Следует ли нуль отклика χ_A за сдвигом точки FW?",
+      "kind": "NOT_IMPLEMENTED",
+      "status": "OPEN",
+      "origin_kind": "retrospective_from_saved_boundary",
+      "records": [
+        "R112",
+        "R113"
+      ],
+      "construct_ids": [
+        "C008",
+        "C020",
+        "C035",
+        "C040"
+      ],
+      "open_links": [
+        "L08",
+        "L10"
+      ],
+      "origin": {
+        "commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+        "path": "analysis/NONADDITIVITY_REVIEW_20261106/RESULT.md",
+        "locator": "§5.4, Блок24 — R113; исходное наблюдение R112"
+      },
+      "evidence_sources": [
+        "analysis/NONADDITIVITY_REVIEW_20261106/RESULT.md",
+        "analysis/NONADDITIVITY_REVIEW_20261106/SOURCE_TEXT.txt"
+      ],
+      "known": "В архивном блоке 23 ΔA_FW=+0.0175 [0.0139,0.0222], ΔA_off=−0.0071 [−0.0089,−0.0052]. Предложен χ_A=∂A/∂ΔQ12 и тест слежения его нуля за FW-точкой. Результат блока 24 в изученных источниках отсутствует.",
+      "unknown": "Связана ли локальная смена знака с интерференционной структурой. Конечная разность не доказывает существование нуля производной или его перемещение; смена знака отклика не означает обращения времени.",
+      "next_step": "Уточнить A, вмешательство, порт, параметр сдвига FW, существование производной и конкурирующие объяснения; проверить сохранённые данные и применимую литературу. Затем определить минимальное различающее сравнение без автоматического запуска.",
+      "closure": "На объявленной области и точности проверено совместное смещение FW и нуля χ_A либо показано отсутствие/неразличимость такой привязки; ограничения численной производной и альтернативы явно указаны.",
+      "decision": "Сохранено предложение R113; первичная наблюдаемая и запуск не утверждены.",
+      "registered_date": "2026-11-11",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Ретроспективная адресация прежнего предложения, не новая пререгистрация; связи L08/L10 не закрываются одним локальным тестом."
     }
   ],
   "existing_open_links": [
@@ -734,6 +955,25 @@
       "report": "analysis/R128_RHO_GENESIS_20261110/RHO_GENESIS_AND_ORGANIZATIONAL_CLOSURE.md",
       "new_runs": 0,
       "scientific_status_promoted": false
+    },
+    {
+      "date": "2026-11-11",
+      "action": "REGISTRY_LATEST_DEVELOPMENTS_SYNC",
+      "source_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f",
+      "updated_questions": [
+        "U002",
+        "U003",
+        "U005",
+        "U006",
+        "U010"
+      ],
+      "new_questions": [
+        "U011",
+        "U012"
+      ],
+      "new_scientific_runs": 0,
+      "scientific_status_promoted": false,
+      "note": "R128.1 и границы X27 связаны с открытыми вопросами; причина нечувствительности XOR уже объяснена; два старых механистических долга получили U-ID."
     }
   ],
   "pre_parent_link_completion_20261109": {
@@ -1151,6 +1391,6 @@
       "правило retire между производителями",
       "boot/retire и горизонт"
     ]
-  }
+  },
+  "last_evidence_review_commit": "4686b359f137a4596fbae8e673d4163c95a72b1f"
 }
-
