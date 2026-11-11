@@ -165,6 +165,9 @@ def build(root: Path):
     question_group = unique(questions["questions"], QUESTIONS)
     all_main_ids = set(results) | set(constructs) | set(links)
     main_md = ensure_main_anchors(raw[MAIN_MD], all_main_ids)
+    for result in results.values():
+        if result.get("managed_card"):
+            main_md = replace_block(main_md, result["id"], render_card(result))
     questions_md = ensure_question_anchors(raw[QUESTIONS_MD], set(question_group))
     premises_md = ensure_premise_anchors(raw[PREMISES])
     raw[MAIN_MD], raw[QUESTIONS_MD], raw[PREMISES] = main_md, questions_md, premises_md
