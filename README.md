@@ -1,5 +1,7 @@
 **11 ноября: R129 и связанные реестры.** [Условный результат о контактной ёмкости](analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md) · [129 результатов](analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 исходных условий](analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [карта связей](analysis/REGISTRY_LINKS/INDEX.md). [Автоматическая проверка связей](infra/REGISTRY_MAINTENANCE.md) отделена от научных статусов.
 
+**Рабочий поток GitHub:** [схема Project-доски](infra/WORKBOARD.md) · [поддержание реестров и provenance](infra/REGISTRY_MAINTENANCE.md) · [Issue Forms](.github/ISSUE_TEMPLATE/) · [PR-шаблон](.github/pull_request_template.md) · [Dependabot](.github/dependabot.yml).
+
 # vm-lab: начать здесь
 
 **Действующая директива:** [наука отдельно от инфраструктуры](SCIENCE_INFRASTRUCTURE_SEPARATION.md).
