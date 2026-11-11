@@ -59,7 +59,7 @@ def parse_obligations(text):
                   if x.strip() == "## Новые явные долги, которые нельзя потерять между строками"), None)
     if start is None:
         raise ValueError("Missing N-debts section")
-    header = re.compile(r"^- \*\*(N\d{2}) — (.*?)\.\*\*\s*(.*)$")
+    header = re.compile(r'^- (?:<a id="obligation-(N\d{2})"></a> )?\*\*(N\d{2}) — (.*?)\.\*\*\s*(.*)$')
     rows, current, body = [], None, []
 
     def flush():
@@ -101,17 +101,16 @@ def parse_obligations(text):
 
 
 def ensure_obligation_anchors(text):
-    out, pat = [], re.compile(r"^- \*\*(N\d{2}) — ")
+    out = []
+    pat = re.compile(r"^- \*\*(N\d{2}) — ")
     for line in text.splitlines():
         m = pat.match(line)
         if m:
             anchor = f'<a id="obligation-{m.group(1).lower()}"></a>'
-            if not out or out[-1].strip() != anchor:
-                out.append(anchor)
+            if anchor not in line:
+                line = "- " + anchor + " " + line[2:]
         out.append(line)
     return "\n".join(out) + ("\n" if text.endswith("\n") else "")
-
-
 def ensure_heading_anchors(markdown, groups):
     lines, out, found = markdown.splitlines(), [], set()
     pat = re.compile(r"^#{2,4}\s+(R\d{3}|C\d{3}|L\d{2})(?:\s|[.:—-]|$)")
