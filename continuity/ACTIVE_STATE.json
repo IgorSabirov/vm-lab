@@ -34,5 +34,19 @@
     "receipt": "infra/PROJECTS_STATUS.json",
     "workflow": ".github/workflows/projects-sync.yml",
     "scientific_status_modified": false
+  },
+  "copilot": {
+    "issue": 14,
+    "role": "registry_and_external_model_operator",
+    "workflow": ".github/workflows/copilot-operator.md",
+    "runbook": "infra/copilot/README.md",
+    "plan_reported_by_owner": "Free",
+    "upgrade_target": "Pro+",
+    "activation": "CHECK_LATEST_PREFLIGHT_AND_LIVE_RUN",
+    "scientific_acceptance_delegated": false
+  },
+  "compute_preference": {
+    "primary": "GitHub Actions for bounded authorized tasks",
+    "vm": "paused/reserve per owner; not queried or changed in this task"
   }
 }

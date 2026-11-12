@@ -1,0 +1,46 @@
+name: Copilot integration preflight
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/copilot-*', '.github/agents/**', 'tools/copilot_context.py', 'tools/compile_copilot_workflow.py', 'infra/copilot/**']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: python -m pip install --disable-pip-version-check PyYAML==6.0.3
+      - run: python -m unittest discover -s tests -p 'test_copilot*.py'
+      - name: Verify registries and exact context
+        run: |
+          python tools/registry_links.py
+          python tools/external_sources.py validate
+          python tools/compile_copilot_workflow.py
+          mkdir -p copilot-evidence
+          python tools/copilot_context.py summary > copilot-evidence/context.json
+      - name: Report credential availability without model request
+        env:
+          COPILOT_AUTH_PRESENT: ${{ secrets.COPILOT_GITHUB_TOKEN != '' }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          present = os.environ['COPILOT_AUTH_PRESENT'] == 'true'
+          d = {'status': 'AUTH_CONFIGURED_NOT_VERIFIED' if present else 'AUTH_REQUIRED',
+               'source_sha': os.environ['GITHUB_SHA'], 'model_called': False,
+               'scientific_status_changed': False,
+               'note': 'Secret presence does not prove plan entitlement, quota or successful inference.'}
+          pathlib.Path('copilot-evidence/preflight.json').write_text(json.dumps(d, indent=2)+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('Copilot: **'+d['status']+'**. No AI credits consumed by this preflight.\n')
+          PY
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: copilot-preflight
+          path: copilot-evidence/
+          retention-days: 7

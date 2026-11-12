@@ -15,6 +15,8 @@ def call(args,pythonpath=None):
 def main(s):
     if s=='integrity':
         call(['tools/registry_links.py'])
+        call(['tools/compile_copilot_workflow.py'])
+        call(['-m','unittest','discover','-s','tests','-p','test_copilot*.py'])
         call(['tools/workflow_policy.py'])
         call(['tools/external_sources.py','validate'])
         call(['-m','unittest','discover','-s','tests','-p','test_project*.py'])
