@@ -77,9 +77,24 @@ class WorkingBoard(unittest.TestCase):
             if q.startswith('mutation AddWork'):
                 return {'addProjectV2ItemById':{'item':{'id':'new'}}}
             return {}
-        with patch.object(p,'ensure_project',return_value={'id':'board'}), patch.object(p,'ensure_fields',return_value=fields), patch.object(p,'project_items',return_value=[]), patch.object(p,'open_issues',return_value=[{'number':1,'node_id':'issue','state':'open'}]):
+        with patch.object(p.time,'sleep'), patch.object(p,'ensure_project',return_value={'id':'board'}), patch.object(p,'ensure_fields',return_value=fields), patch.object(p,'project_items',return_value=[]), patch.object(p,'open_issues',return_value=[{'number':1,'node_id':'issue','state':'open'}]):
             with self.assertRaisesRegex(RuntimeError,'readback'):
                 p.setup_and_sync({'fields':{'Status':['Inbox']}},request=lambda _: {'node_id':'repo'},graphql=api)
+
+    def test_delayed_api_readback_is_retried_without_repeating_mutations(self):
+        fields={'Status':{'id':'status','dataType':'SINGLE_SELECT','options':[{'name':'Inbox','id':'inbox'}]}}
+        mutations=[]
+        def api(q,v):
+            mutations.append(q.split('(')[0])
+            if q.startswith('mutation AddWork'):
+                return {'addProjectV2ItemById':{'item':{'id':'new'}}}
+            return {}
+        with patch.object(p.time,'sleep') as sleep, patch.object(p,'ensure_project',return_value={'id':'board'}), patch.object(p,'ensure_fields',return_value=fields), patch.object(p,'project_items',side_effect=[[],[],[{'id':'new','values':{'Status':'Inbox'}}]]), patch.object(p,'open_issues',return_value=[{'number':1,'node_id':'issue','state':'open'}]), patch.object(p.subprocess,'check_output',return_value='sha'):
+            result=p.setup_and_sync({'fields':{'Status':['Inbox']}},request=lambda _: {'node_id':'repo'},graphql=api)
+        self.assertTrue(result['verified'])
+        self.assertEqual(mutations.count('mutation AddWork'),1)
+        self.assertEqual(mutations.count('mutation UpdateWork'),1)
+        sleep.assert_called_once_with(1)
 
     def test_workflow_never_checks_out_pr_code_with_project_secret(self):
         import yaml

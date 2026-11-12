@@ -6,10 +6,12 @@ execution authority. The credential remains in the Actions step environment.
 """
 import argparse
 import datetime
+import hashlib
 import json
 import os
 import re
 import subprocess
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -185,12 +187,24 @@ def setup_and_sync(plan, *, request, graphql):
             graphql('mutation UpdateWork($input:UpdateProjectV2ItemFieldValueInput!){updateProjectV2ItemFieldValue(input:$input){projectV2Item{id}}}', {'input':{'projectId':pid,'itemId':item['id'],'fieldId':field['id'],'value':encoded}})
             updates.append({'number':number,'field':name})
         expected[item['id']] = {'Status':work_status(issue,item['values'].get('Status')),**values}
-    actual = {i['id']:i for i in project_items(pid,graphql)}
-    for iid, values in expected.items():
-        if iid not in actual or any(actual[iid]['values'].get(k) != v for k,v in values.items()):
-            raise RuntimeError('Project item readback failed')
+    # Projects may expose new items/field values after the mutation response.
+    mismatches = []
+    for delay in (0, 1, 2, 4, 8, 16):
+        if delay:
+            time.sleep(delay)
+        actual = {i['id']:i for i in project_items(pid,graphql)}
+        mismatches = [{'item_id':iid,'field':k,'expected':v,'observed':actual.get(iid,{}).get('values',{}).get(k)}
+                      for iid, values in expected.items() for k,v in values.items()
+                      if actual.get(iid,{}).get('values',{}).get(k) != v]
+        if not mismatches:
+            break
+    if mismatches:
+        safe = [{**m, **({} if m['field']=='Status' else {k:hashlib.sha256(str(m[k]).encode()).hexdigest() for k in ('expected','observed')})} for m in mismatches]
+        details = {'project_url':project.get('url'),'mismatches':safe}
+        raise RuntimeError('Project item readback failed: '+json.dumps(details,ensure_ascii=False))
     return {'schema':'vm-lab-project-sync-v1','project':project,'repository':REPO,
             'fields_verified':sorted(plan['fields']),'items_verified':len(expected),'added':added,'field_updates':updates,
+            'items':[{'number':(actual[i].get('content') or {}).get('number'),'status':actual[i]['values'].get('Status')} for i in expected],
             'verified':True,'scientific_status_modified':False,'permissions_are_descriptive_not_authorization':True,
             'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat()}
 
