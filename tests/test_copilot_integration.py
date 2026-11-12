@@ -66,7 +66,9 @@ class DelegationTests(unittest.TestCase):
                 compiler.check(root)
 
     def test_budget_and_no_blind_whole_session_retry(self):
-        self.assertEqual(self.source['engine']['model'], 'auto')
+        self.assertEqual(self.source['engine']['model'], 'gpt-5.6-luna-free-auto')
+        self.assertEqual(self.source['safe-outputs']['threat-detection']['engine']['model'],
+                         self.source['engine']['model'])
         self.assertEqual(self.source['engine']['harness']['max-retries'], 0)
         self.assertEqual(self.source['max-ai-credits'], 30)
         self.assertEqual(self.source['max-daily-ai-credits'], 60)
