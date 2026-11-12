@@ -1,10 +1,10 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "a7abbb6c883e88ccf8c3d84ec537e89324d09a493931196bf455d6cc7ee37078",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "4ede139a920807fba6f84ed6c778141661c69f78d5d17dfc3ab387c027c51b40",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
-    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "f3e0cebb9d971e1c9da28cddd6aa5bf1bb0b93ec0a45b6a7e92927dd417f087d",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "a96a37c2ea62871a27c6867a1dfbec11b979a7a57cd989b937935539ca9a240d",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
     "infra/external/contracts/CDT2D.json": "8b97b48d06bb3d672a060add80cda7be4e00869a9cb346c568c1bee497aad40d",
     "infra/external/contracts/HAGEDORN_QSC.json": "7b4202e5b8c813769b7da89483afd4de6dfd5fc7ae7f7616808147faf3902fe2",
@@ -13,6 +13,8 @@
     "infra/external/contracts/GORDION.json": "b0ce877105224af40e3e4e93ffaf173904fbc86a6c4648de8b8883d9f3f8502f",
     "infra/external/contracts/LARGEN_YM.json": "1331f9e07014209323df0956bfe3f11e38b529c80d704d1045cf97cc9f19dd9d",
     "infra/external/contracts/SERBIAN_CPP.json": "58baccfa1a1d0d2f1f79ea13dc0490c9b6610d62ef26c8328bbe287979e7b26d",
+    "infra/external/contracts/ANTHROPIC_HP.json": "96935d576139f10497e46affa865f12204cb0f09e780eae6b196541565a43b8e",
+    "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json": "0f6b6efd77f65f73ee683bce662217e9a7eba5a2fca88ce25787432193c6e336",
     "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
     "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d"
   },
@@ -27,7 +29,13 @@
     "infra/reviews/EXTERNAL_20261112/REPORT.md": "55ac76ce84d39a5a0c3fb5349625cb16ffeeefe3cbab40b374c45c5ed4887194",
     "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt": "18f2000211b1a3167a4cac24057218539d9cfac4b4f6f8cb20a26a82d0661fec",
     "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt": "fda3de0f4e2ecd7c690b4249b54c66b1c8c17756e2c48209a7a907264bd6414c",
-    "infra/external/README.md": "56c90cd89cab12f8631cf44e1cb83b1921bef4ef86b3301c5f5113017bd52346"
+    "infra/external/README.md": "65479c33fd1d1a87b391a4887d46dcb5e779b9114ea2ad26e83963149e869223",
+    "analysis/ANTHROPIC_BH_20261112/REPORT.md": "cde173a37df6ec20bb567a6bf18d4a73ba9c3143ea31ba9303775a8314e2d8c8",
+    "analysis/ANTHROPIC_BH_20261112/adapter.py": "f2af50d95560a4ff4996ba6f7e3159946aa0182e74d99e3561ee55a11c75f05d",
+    "analysis/ANTHROPIC_BH_20261112/PLAN.json": "fa3f6506914915da6c7ab6e8abf851e69431300e334bd3d8e73a5d595f7cc914",
+    "analysis/ANTHROPIC_BH_20261112/CHECKS.json": "bc62d59266960a5caa9ef831446de8f5c58db0d193c7ff0397457e9bcdf72e33",
+    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json": "d003d79b76e6359e5d04d14eae502fa6a234ca2f6f4084791c1358b49ecf44f1",
+    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json": "ae7590571590ba6af72821f6ce144a639ef8c2da72cf5732e90b8f420c6276d0"
   },
   "counts": {
     "result": 129,
@@ -36,10 +44,10 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 3,
-    "external": 8,
+    "review": 4,
+    "external": 10,
     "decision": 2,
-    "source": 15
+    "source": 21
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -437,6 +445,24 @@
       "title": "Внешние источники и публичная инфраструктура без автоматического научного принятия",
       "status": "RATIFIED",
       "path": "decisions/D002.md",
+      "fragment": ""
+    },
+    {
+      "key": "external:ANTHROPIC_BOOTSTRAP",
+      "id": "ANTHROPIC_BOOTSTRAP",
+      "kind": "external",
+      "title": "The spinless modular bootstrap at large central charge",
+      "status": "ABSTRACT_AND_CONSTANT_CHECK_ONLY",
+      "path": "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:ANTHROPIC_HP",
+      "id": "ANTHROPIC_HP",
+      "kind": "external",
+      "title": "The Hawking-Page transition at weak coupling",
+      "status": "REDUCED_FORMULA_CHECKS_ONLY",
+      "path": "infra/external/contracts/ANTHROPIC_HP.json",
       "fragment": ""
     },
     {
@@ -2546,6 +2572,15 @@
       "fragment": "r129"
     },
     {
+      "key": "review:ANTHROPIC_BH_20261112",
+      "id": "ANTHROPIC_BH_20261112",
+      "kind": "review",
+      "title": "Anthropic: эффективный модуль Хокинга—Пейджа, проверки и баланс предпосылок",
+      "status": "REDUCED_MODEL_IMPLEMENTED_FULL_REPLICATION_OPEN",
+      "path": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "review:CCC_TL_20261112",
       "id": "CCC_TL_20261112",
       "kind": "review",
@@ -2571,6 +2606,78 @@
       "status": "REVIEW_ANALYZED_NO_NEW_EXPERIMENT",
       "path": "infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md",
       "fragment": ""
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "id": "analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "fragment": "",
+      "sha256": "bc62d59266960a5caa9ef831446de8f5c58db0d193c7ff0397457e9bcdf72e33",
+      "git_blob_sha": "14f0abd499961e67a2830119ca5f20689dfb65ba",
+      "size_bytes": 2397
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/PLAN.json",
+      "id": "analysis/ANTHROPIC_BH_20261112/PLAN.json",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/PLAN.json",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/PLAN.json",
+      "fragment": "",
+      "sha256": "fa3f6506914915da6c7ab6e8abf851e69431300e334bd3d8e73a5d595f7cc914",
+      "git_blob_sha": "e019d7b7b0ae61f2c3b5bac03b61682b7f6ed6f7",
+      "size_bytes": 2262
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "id": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "fragment": "",
+      "sha256": "cde173a37df6ec20bb567a6bf18d4a73ba9c3143ea31ba9303775a8314e2d8c8",
+      "git_blob_sha": "131c8df144feeaeef73da5f12047524af49a4d92",
+      "size_bytes": 10083
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "id": "analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "fragment": "",
+      "sha256": "f2af50d95560a4ff4996ba6f7e3159946aa0182e74d99e3561ee55a11c75f05d",
+      "git_blob_sha": "2bf444d32beb54fa395200325fa039a3370c9f42",
+      "size_bytes": 5921
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+      "id": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+      "fragment": "",
+      "sha256": "ae7590571590ba6af72821f6ce144a639ef8c2da72cf5732e90b8f420c6276d0",
+      "git_blob_sha": "de51a0deaad01ec3830a3f65b1137f079f489cc4",
+      "size_bytes": 761
+    },
+    {
+      "key": "source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+      "id": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+      "kind": "source",
+      "title": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+      "status": null,
+      "path": "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+      "fragment": "",
+      "sha256": "d003d79b76e6359e5d04d14eae502fa6a234ca2f6f4084791c1358b49ecf44f1",
+      "git_blob_sha": "4fe5473afbdf0df9ad945e7f427fd56f1476c6eb",
+      "size_bytes": 1448
     },
     {
       "key": "source:analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json",
@@ -2688,9 +2795,9 @@
       "status": null,
       "path": "infra/external/README.md",
       "fragment": "",
-      "sha256": "56c90cd89cab12f8631cf44e1cb83b1921bef4ef86b3301c5f5113017bd52346",
-      "git_blob_sha": "0ed0bd0bd9d2acb3120099fc940cc0cf8c2b89c5",
-      "size_bytes": 10221
+      "sha256": "65479c33fd1d1a87b391a4887d46dcb5e779b9114ea2ad26e83963149e869223",
+      "git_blob_sha": "7bb9ee7d193ee1206297f34fdead48caa142731d",
+      "size_bytes": 10841
     },
     {
       "key": "source:infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
@@ -2808,6 +2915,56 @@
       "source": "decision:D002",
       "target": "result:R127",
       "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_BOOTSTRAP",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_BOOTSTRAP",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_BOOTSTRAP",
+      "target": "premise:F05",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_BOOTSTRAP",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_BOOTSTRAP",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_HP",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_HP",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_HP",
+      "target": "premise:F05",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_HP",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ANTHROPIC_HP",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
     },
     {
       "source": "external:BFSS_BMN",
@@ -6460,6 +6617,124 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "external:ANTHROPIC_BOOTSTRAP",
+      "relation": "scope_boundary",
+      "rationale": "Второй препринт зарегистрирован отдельно; проверена арифметика константы, не доказательство.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#sources",
+      "claim": "Второй препринт зарегистрирован отдельно; проверена арифметика константы, не доказательство."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "external:ANTHROPIC_HP",
+      "relation": "joint_model_requirement",
+      "rationale": "Эффективный потенциал интегрирован отдельно; общий переход NOW↔SYM ещё не определён.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#module",
+      "claim": "Эффективный потенциал интегрирован отдельно; общий переход NOW↔SYM ещё не определён."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "external:HAGEDORN_QSC",
+      "relation": "scope_boundary",
+      "rationale": "Температура Хагедорна не определяет коэффициент b и температуру сосуществования.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#module",
+      "claim": "Температура Хагедорна не определяет коэффициент b и температуру сосуществования."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "obligation:N02",
+      "relation": "scope_boundary",
+      "rationale": "Заданные входы и полученные эффективные свойства перечислены раздельно.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Заданные входы и полученные эффективные свойства перечислены раздельно."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "obligation:N06",
+      "relation": "scope_boundary",
+      "rationale": "Равновесный минимум не устанавливает замыкание условий продолжения.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Равновесный минимум не устанавливает замыкание условий продолжения."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "premise:F02",
+      "relation": "premise_context_not_evidence",
+      "rationale": "S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "premise:F05",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Ограниченный модуль фазовой организации не закрывает происхождение условий.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Ограниченный модуль фазовой организации не закрывает происхождение условий."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "result:R127",
+      "relation": "joint_model_requirement",
+      "rationale": "Программный адаптер не задаёт автоматически общий физический закон ветвей.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Программный адаптер не задаёт автоматически общий физический закон ветвей."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "result:R128",
+      "relation": "scope_boundary",
+      "rationale": "Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "result:R129",
+      "relation": "scope_boundary",
+      "rationale": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax.",
+      "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+      "claim": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/PLAN.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
       "source": "review:CCC_TL_20261112",
       "target": "construct:C001",
       "relation": "scope_boundary",
@@ -6949,6 +7224,12 @@
       "target": "question:U005",
       "decision": "OUT_OF_SCOPE",
       "rationale": "Скалярно-гравитационная обратная связь сама не реализует обратное действие нашей организации на носитель."
+    },
+    {
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "link:L10",
+      "rationale": "Происхождение основания целого не выведено; препринт не является свидетельством закрытия L10.",
+      "decision": "NOT_EVIDENCE_FOR_CLOSURE"
     }
   ]
 }

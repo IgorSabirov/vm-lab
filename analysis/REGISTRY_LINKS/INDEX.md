@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=3, external=8, decision=2, source=15.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=10, decision=2, source=21.
 
 ## Предпосылка → результаты
 
@@ -487,6 +487,24 @@ CSG / TP и отмеченное будущее — [исходная карто
 **Входящие:** нет.
 **Исходящие:** [D001](#decision-d001) `decision_reopens`; [N02](#obligation-n02) `decision_scope_not_scientific_evidence`; [N06](#obligation-n06) `decision_scope_not_scientific_evidence`; [F02](#premise-f02) `decision_scope_not_scientific_evidence`; [F05](#premise-f05) `decision_scope_not_scientific_evidence`; [R125](#result-r125) `decision_scope_not_scientific_evidence`; [R127](#result-r127) `decision_scope_not_scientific_evidence`.
 
+<a id="external-anthropic_bootstrap"></a>
+
+### external:ANTHROPIC_BOOTSTRAP
+
+The spinless modular bootstrap at large central charge — [исходная карточка](../../infra/external/contracts/ANTHROPIC_BOOTSTRAP.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`.
+**Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [F05](#premise-f05) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
+
+<a id="external-anthropic_hp"></a>
+
+### external:ANTHROPIC_HP
+
+The Hawking-Page transition at weak coupling — [исходная карточка](../../infra/external/contracts/ANTHROPIC_HP.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`.
+**Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [F05](#premise-f05) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
+
 <a id="external-bfss_bmn"></a>
 
 ### external:BFSS_BMN
@@ -520,7 +538,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 Температура Хагедорна; не коэффициент b — [исходная карточка](../../infra/external/contracts/HAGEDORN_QSC.json).
 
-**Входящие:** нет.
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
 <a id="external-isingcauset"></a>
@@ -664,7 +682,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 цена реконструкции — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n02).
 
-**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `updates_not_closes`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n03"></a>
@@ -700,7 +718,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 автономное удержание — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n06).
 
-**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `updates_not_closes`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n07"></a>
@@ -1150,7 +1168,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 **Открыто.** Порядок, соседство и композиция должны быть определены. CSG и внутренние причинные принципы уже предполагают частичный порядок/правило роста; снятие меток не выводит их происхождение **11.11:** В R129 возникают существующие контакты внутри заданного полного графа; сами возможные отношения не выведены. — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#premise-f02).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
 **Исходящие:** [C031](#construct-c031) `historical_navigation_not_proof`; [C036](#construct-c036) `historical_navigation_not_proof`; [C038](#construct-c038) `historical_navigation_not_proof`.
 
 <a id="premise-f03"></a>
@@ -1177,7 +1195,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 **Открыто.** Конкретное D, веса, границы не выбраны. Симметрия и согласованность всех конечных продолжений оставляют разные меры; MaxEnt/MaxCal используют prior и ограничения — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#premise-f05).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
 **Исходящие:** [C012](#construct-c012) `historical_navigation_not_proof`.
 
 <a id="premise-f06"></a>
@@ -1411,7 +1429,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 Как передать следующему носителю способность воспроизводить условия дальнейшего действия? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u010).
 
-**Входящие:** [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [L04](#link-l04) `related_open_link`; [L06](#link-l06) `related_open_link`; [L07](#link-l07) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u011"></a>
@@ -2572,7 +2590,7 @@ ADD: четыре семантики транспорта, периодично�
 
 Четыре кандидата: исполнимый патч прежнего NOW — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r127).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R003](#result-r003) `parent`; [R006](#result-r006) `parent`; [R018](#result-r018) `parent`; [R023](#result-r023) `parent`; [R034](#result-r034) `parent`; [R037](#result-r037) `parent`; [R038](#result-r038) `parent`; [R041](#result-r041) `parent`; [R058](#result-r058) `parent`; [R063](#result-r063) `parent`; [R064](#result-r064) `parent`; [R074](#result-r074) `parent`; [R075](#result-r075) `parent`; [R076](#result-r076) `parent`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R087](#result-r087) `parent`; [R090](#result-r090) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R126](#result-r126) `parent`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R003](#result-r003) `parent`; [R006](#result-r006) `parent`; [R018](#result-r018) `parent`; [R023](#result-r023) `parent`; [R034](#result-r034) `parent`; [R037](#result-r037) `parent`; [R038](#result-r038) `parent`; [R041](#result-r041) `parent`; [R058](#result-r058) `parent`; [R063](#result-r063) `parent`; [R064](#result-r064) `parent`; [R074](#result-r074) `parent`; [R075](#result-r075) `parent`; [R076](#result-r076) `parent`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R087](#result-r087) `parent`; [R090](#result-r090) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R126](#result-r126) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
 **Исходящие:** [C001](#construct-c001) `addresses`; [C002](#construct-c002) `addresses`; [C004](#construct-c004) `addresses`; [C005](#construct-c005) `addresses`; [C009](#construct-c009) `addresses`; [C010](#construct-c010) `addresses`; [C011](#construct-c011) `addresses`; [C023](#construct-c023) `addresses`; [C026](#construct-c026) `addresses`; [C028](#construct-c028) `addresses`; [C030](#construct-c030) `addresses`; [C032](#construct-c032) `addresses`; [C033](#construct-c033) `addresses`; [C034](#construct-c034) `addresses`; [C035](#construct-c035) `addresses`; [C036](#construct-c036) `addresses`; [C037](#construct-c037) `addresses`; [C038](#construct-c038) `addresses`; [C039](#construct-c039) `addresses`; [C041](#construct-c041) `addresses`; [C042](#construct-c042) `addresses`; [L01](#link-l01) `boundary_open`; [L02](#link-l02) `boundary_open`; [L03](#link-l03) `boundary_open`; [L04](#link-l04) `boundary_open`; [L05](#link-l05) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U001](#question-u001) `informs_not_closes`; [U002](#question-u002) `informs_not_closes`; [U003](#question-u003) `informs_not_closes`; [U004](#question-u004) `informs_not_closes`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U008](#question-u008) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R128](#result-r128) `parent`.
 
 <a id="result-r128"></a>
@@ -2581,7 +2599,7 @@ ADD: четыре семантики транспорта, периодично�
 
 Генезис ρ и организационное замыкание: предпосылки, причинные контроли и границы — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r128).
 
-**Входящие:** [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R001](#result-r001) `parent`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R127](#result-r127) `parent`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R001](#result-r001) `parent`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R127](#result-r127) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C001](#construct-c001) `addresses`; [C002](#construct-c002) `addresses`; [C005](#construct-c005) `addresses`; [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C032](#construct-c032) `addresses`; [C033](#construct-c033) `addresses`; [C041](#construct-c041) `addresses`; [L01](#link-l01) `boundary_open`; [L02](#link-l02) `boundary_open`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R129](#result-r129) `parent`.
 
 <a id="result-r129"></a>
@@ -2590,8 +2608,34 @@ ADD: четыре семантики транспорта, периодично�
 
 Контактная организация: доминирование без конкуренции и преимущество при ограниченной ёмкости — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r129).
 
-**Входящие:** [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`.
+
+<a id="review-anthropic_bh_20261112"></a>
+
+### review:ANTHROPIC_BH_20261112
+
+Anthropic: эффективный модуль Хокинга—Пейджа, проверки и баланс предпосылок — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `scope_boundary`; [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement`; [HAGEDORN_QSC](#external-hagedorn_qsc) `scope_boundary`; [N02](#obligation-n02) `scope_boundary`; [N06](#obligation-n06) `scope_boundary`; [F02](#premise-f02) `premise_context_not_evidence`; [F05](#premise-f05) `premise_context_not_evidence`; [U010](#question-u010) `scope_boundary`; [R127](#result-r127) `joint_model_requirement`; [R128](#result-r128) `scope_boundary`; [R129](#result-r129) `scope_boundary`; [analysis/ANTHROPIC_BH_20261112/CHECKS.json](#source-analysis-anthropic_bh_20261112-checks-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/PLAN.json](#source-analysis-anthropic_bh_20261112-plan-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/REPORT.md](#source-analysis-anthropic_bh_20261112-report-md) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/adapter.py](#source-analysis-anthropic_bh_20261112-adapter-py) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_bootstrap-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_hp-json) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `scope_boundary` | Второй препринт зарегистрирован отдельно; проверена арифметика константы, не доказательство. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#sources) |
+| [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement` | Эффективный потенциал интегрирован отдельно; общий переход NOW↔SYM ещё не определён. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#module) |
+| [HAGEDORN_QSC](#external-hagedorn_qsc) `scope_boundary` | Температура Хагедорна не определяет коэффициент b и температуру сосуществования. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#module) |
+| [N02](#obligation-n02) `scope_boundary` | Заданные входы и полученные эффективные свойства перечислены раздельно. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [N06](#obligation-n06) `scope_boundary` | Равновесный минимум не устанавливает замыкание условий продолжения. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [F02](#premise-f02) `premise_context_not_evidence` | S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [F05](#premise-f05) `premise_context_not_evidence` | Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [U010](#question-u010) `scope_boundary` | Ограниченный модуль фазовой организации не закрывает происхождение условий. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [R127](#result-r127) `joint_model_requirement` | Программный адаптер не задаёт автоматически общий физический закон ветвей. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [R128](#result-r128) `scope_boundary` | Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+| [R129](#result-r129) `scope_boundary` | Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax. | [разбор](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin) |
+
+**Не включены в положительные связи:**
+- [L10](#link-l10): `NOT_EVIDENCE_FOR_CLOSURE` — Происхождение основания целого не выведено; препринт не является свидетельством закрытия L10.
 
 <a id="review-ccc_tl_20261112"></a>
 
@@ -2690,6 +2734,60 @@ CCC+TL/CBST: геометрия, часы и границы общего зак�
 | [R129](#result-r129) `scope_boundary` | Условный результат о ёмкости не закрывает происхождение условий. Научный статус не изменяется. | [разбор](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#capacity) |
 
 **Не включены в положительные связи:**
+
+<a id="source-analysis-anthropic_bh_20261112-checks-json"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/CHECKS.json
+
+analysis/ANTHROPIC_BH_20261112/CHECKS.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/CHECKS.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-anthropic_bh_20261112-plan-json"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/PLAN.json
+
+analysis/ANTHROPIC_BH_20261112/PLAN.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/PLAN.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-anthropic_bh_20261112-report-md"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/REPORT.md
+
+analysis/ANTHROPIC_BH_20261112/REPORT.md — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/REPORT.md).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-anthropic_bh_20261112-adapter-py"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/adapter.py
+
+analysis/ANTHROPIC_BH_20261112/adapter.py — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/adapter.py).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-anthropic_bh_20261112-sources-anthropic_bootstrap-json"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json
+
+analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-anthropic_bh_20261112-sources-anthropic_hp-json"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json
+
+analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
 
 <a id="source-analysis-ccc_tl_review_20261112-algebra_check-json"></a>
 

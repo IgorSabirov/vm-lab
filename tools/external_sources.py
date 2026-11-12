@@ -14,6 +14,7 @@ from pathlib import Path
 import re
 import urllib.error
 import urllib.request
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = 'analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json'
@@ -89,6 +90,8 @@ def validate(root=ROOT):
             raw = local(root, s['source_archive']).read_bytes()
             if hashlib.sha256(raw).hexdigest() != s['source_archive_sha256']:
                 raise ValueError('Archive hash mismatch')
+        elif s['kind'] == 'publication':
+            validate_publication(s, root)
         else:
             raise ValueError('Unknown source kind')
         if s['last_verified_sha'] is not None and not s.get('verification_evidence'):
@@ -100,6 +103,26 @@ def validate(root=ROOT):
             raise ValueError('Contract/source mismatch')
         validate_contract(c)
     return rows
+
+
+def validate_publication(s, root):
+    """Pin publication metadata without inventing an upstream Git commit/archive."""
+    url = urlsplit(s['paper'])
+    version = s.get('publication_version')
+    if (url.scheme != 'https' or not url.hostname or url.username or url.password
+            or not version or version not in url.path):
+        raise ValueError('Publication needs an explicit versioned HTTPS URL')
+    if any(s.get(k) is not None for k in ('source_sha', 'source_tree_sha', 'source_archive', 'source_archive_sha256', 'last_verified_sha')):
+        raise ValueError('Publication record is not an upstream Git commit or archive')
+    if s.get('monitor_enabled') is not False:
+        raise ValueError('GitHub upstream monitor cannot monitor publication versions')
+    raw = local(root, s['source_record']).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != s['source_record_sha256']:
+        raise ValueError('Publication source record hash mismatch')
+    record = json.loads(raw)
+    if (record.get('source_id') != s['id'] or record.get('version') != version
+            or record.get('url') != s['paper']):
+        raise ValueError('Publication identity differs from its source record')
 
 
 def github_get(path):

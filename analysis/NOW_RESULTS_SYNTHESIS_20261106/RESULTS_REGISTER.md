@@ -3281,6 +3281,8 @@
 
 
 <!-- generated:review-card-result-r127 -->
+**Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `joint_model_requirement`. Программный адаптер не задаёт автоматически общий физический закон ветвей. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
+
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
 <!-- /generated:review-card-result-r127 -->
 
@@ -3575,6 +3577,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 
 <!-- generated:review-card-result-r128 -->
+**Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
+
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
 
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#profile); `scope_boundary`. Различимость не доказывает происхождение соответствия. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
@@ -3684,6 +3688,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 
 <!-- generated:review-card-result-r129 -->
+**Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
+
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling); `time_scale_analogy`. Общий постоянный множитель всех интенсивностей обеих рук меняет шкалу времени; ёмкость меняет разрешённые переходы. Это формальная аналогия, не космологическое свидетельство. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
@@ -3716,6 +3722,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `joint_model_requirement` | Программный адаптер не задаёт автоматически общий физический закон ветвей. |
+| [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано. |
+| [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax. |
 | [construct:C001](../REGISTRY_LINKS/INDEX.md#construct-c001) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `scope_boundary` | Действие, пространство состояний, потенциал и начальные условия остаются входами; это не происхождение основания из абсолютного ничего. |
 | [construct:C024](../REGISTRY_LINKS/INDEX.md#construct-c024) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `clock_comparison` | Сопоставление разных условных конструкций часов. Координатная замена и скалярное поле не тождественны PW-условлению и не строят внутреннего читателя. |
 | [construct:C037](../REGISTRY_LINKS/INDEX.md#construct-c037) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `operational_requirement` | Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее. |
