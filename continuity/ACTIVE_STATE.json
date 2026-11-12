@@ -1,6 +1,6 @@
 {
   "schema": "vm-lab-active-state-v1",
-  "observed_date": "2026-11-12",
+  "observed_date": "2026-11-13",
   "base_commit": "e8d65443f1a148f449f0b67954a10d75839f5f99",
   "integration_pr": 8,
   "active_decisions": [
@@ -47,13 +47,34 @@
     "active_workflow": ".github/workflows/copilot-review.yml",
     "context_spec": "infra/COPILOT_RESEARCH_CONTEXT_SPEC.md",
     "context_profile": "infra/copilot/tasks/six-models-v2.json",
-    "context_status": "BUILD_TESTED_NEW_MODEL_ANALYSIS_NOT_RUN",
-    "last_published_report_pr": 33,
-    "last_generation_run": 43247986127,
-    "last_publication_run": 43250221094,
-    "last_proposal_validation_run": 43250349172,
+    "context_status": "FULL_CONTEXT_REVIEW_RECOVERED_PROPOSED_FOR_REVIEW",
+    "last_published_report_pr": 35,
+    "last_generation_run": 43296750512,
+    "last_publication_run": null,
+    "last_proposal_validation_run": null,
     "scientific_acceptance": "NOT_GRANTED",
-    "legacy_operator_status": "Not the verified native review route; see runbook"
+    "legacy_operator_status": "Not the verified native review route; see runbook",
+    "v1_history": {
+      "last_published_report_pr": 33,
+      "last_generation_run": 43247986127,
+      "last_publication_run": 43250221094,
+      "last_proposal_validation_run": 43250349172
+    },
+    "v2_recovery": {
+      "source_sha": "327a8019772622ef460cb7dea27af5f36afbf19c",
+      "generation_run": 43296750512,
+      "generation_returncode": 0,
+      "original_failure": "Evidence must reference supplied paths",
+      "artifact_id": 13979631976,
+      "report_pr": 35,
+      "report_commit": "6411ffada6de8f5693b34c966d126236cfb17592",
+      "local_recovery": "PASS",
+      "publisher_validation": "PASS",
+      "new_model_invocations": 0,
+      "publication_method": "GitHub connector; no Actions recovery run",
+      "incident": "infra/incidents/COPILOT_V2_20261113/REPORT.md",
+      "scientific_acceptance": "NOT_GRANTED"
+    }
   },
   "compute_preference": {
     "primary": "GitHub Actions for bounded authorized tasks",

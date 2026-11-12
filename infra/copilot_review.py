@@ -158,6 +158,18 @@ def evidence_ledger(package):
     scope.update({f['path']: 'SUPPLIED_EXCERPT' if f.get('partial') else 'SUPPLIED_CONTENT' for f in package['files']})
     indirect = {n['path'] for n in package['nodes'] if 'path' in n}
     indirect |= {p for r in package['result_cards'] for p in r.get('sources', [])}
+    # The v2 resolver supplies complete typed cards, including managed sources
+    # and verification receipts. Their paths are pointers, not supplied files.
+    metadata = [*package.get('sources', []),
+                *(c['data'] for c in package.get('context_contract', {}).get('cards', []))]
+    for card in metadata:
+        for field in ('sources', 'managed_sources'):
+            values = card.get(field, [])
+            if isinstance(values, list):
+                indirect.update(p for p in values if isinstance(p, str))
+        value = card.get('verification_evidence')
+        if isinstance(value, str):
+            indirect.add(value)
     # Only literal repository paths in declared metadata, never arbitrary prose/URLs.
     indirect = {p for p in indirect if isinstance(p, str) and not Path(p).is_absolute()
                 and '..' not in Path(p).parts and p.startswith(('analysis/', 'infra/'))}
@@ -171,8 +183,11 @@ def validate_analysis(d, package):
         if not isinstance(value, str) or not value.strip() or len(value) > 3000:
             raise ValueError('Expected bounded nonempty text')
     def evidence(items):
-        if not isinstance(items, list) or not items or len(items) > 6 or any(x not in paths for x in items):
-            raise ValueError('Evidence must reference supplied paths')
+        if not isinstance(items, list) or not items or len(items) > 6 or any(not isinstance(x, str) for x in items):
+            raise ValueError('Expected 1..6 evidence paths')
+        unknown = [x for x in items if x not in paths]
+        if unknown:
+            raise ValueError('Evidence must reference supplied paths: ' + repr(unknown))
     paths = evidence_ledger(package)
     text(d['summary'])
     ids = {x['id'] for x in package['profile']['models']}
@@ -267,8 +282,14 @@ EVIDENCE_JSON:\n''' + json.dumps(package, ensure_ascii=False, separators=(',', '
 
 
 def finish(output, raw, package, receipt, stdout):
+    # invoke_native has already redacted credentials. Preserve the whole
+    # response before validation; a preview must never be the recovery source.
+    response = stdout.encode('utf-8')
+    (output / 'RAW_RESPONSE.txt').write_bytes(response)
+    receipt.update(response_sha256=sha(response), response_bytes=len(response))
+    failure_path = output / ('RECOVERY_FAILURE.json' if 'recovery' in receipt else 'FAILURE.json')
     if receipt['returncode'] or receipt['timed_out']:
-        dump(output / 'FAILURE.json', {**receipt, 'stdout': stdout[:3000]})
+        dump(failure_path, {**receipt, 'stdout': stdout})
         raise SystemExit('Native review failed; saved receipt, do not repeat blindly')
     try:
         text = stdout.strip()
@@ -276,8 +297,8 @@ def finish(output, raw, package, receipt, stdout):
             text = text[7:-3].strip()
         d = validate_analysis(json.loads(text), package)
     except (ValueError, TypeError, KeyError) as error:
-        dump(output / 'FAILURE.json', {**receipt, 'error': str(error), 'stdout': stdout[:30000]})
-        raise SystemExit('Invalid review output; retained without a new model call') from error
+        dump(failure_path, {**receipt, 'error': str(error), 'stdout': stdout})
+        raise SystemExit('Invalid review output; full response retained: ' + str(error)) from error
     report = markdown(d, package)
     dump(output / 'ANALYSIS.json', d)
     receipt.update(status='NATIVE_REPORT_GENERATED', source_sha=package['source_sha'],
@@ -299,15 +320,19 @@ def finish(output, raw, package, receipt, stdout):
                       'connections_proposed': len(d['connections']), 'tests_proposed': len(d['next_tests'])}))
 
 
-def recover(output):
+def recover(output, task='six-models-v1'):
     """Validate and publish the pinned original response without any inference."""
-    manifest = json.loads(read('infra/copilot/tasks/six-models-v1-recovery.json'))
+    if task not in ('six-models-v1', 'six-models-v2'):
+        raise ValueError('Unknown recovery task')
+    manifest = json.loads(read('infra/copilot/tasks/' + task + '-recovery.json'))
     raw = (output / 'CONTEXT.json').read_bytes()
     failure_raw = (output / 'FAILURE.json').read_bytes()
     if sha(raw) != manifest['context_sha256'] or sha(failure_raw) != manifest['failure_sha256']:
         raise ValueError('Saved review digest mismatch')
     package, failure = json.loads(raw), json.loads(failure_raw)
-    if (package['source_sha'] != manifest['source_sha'] or
+    if (package['profile']['id'] != task or
+        package['source_sha'] != manifest['source_sha'] or
+        failure.get('source_sha') != manifest['source_sha'] or
         str(failure['run_id']) != str(manifest['run_id']) or
         failure['returncode'] != 0 or failure['timed_out']):
         raise ValueError('Saved review identity or execution mismatch')
@@ -316,7 +341,7 @@ def recover(output):
         'original_error': failure['error'], 'new_model_invocations': 0,
         'original_response_sha256': sha(failure['stdout'].encode()),
         'failure_sha256': manifest['failure_sha256'],
-        'change': 'Accept registry pointers as explicitly uninspected references; model content unchanged.'}
+        'change': 'Accept typed registry pointers as explicitly uninspected references; model content unchanged.'}
     finish(output, raw, package, receipt, failure['stdout'])
     if os.environ.get('GITHUB_OUTPUT'):
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
@@ -335,4 +360,5 @@ if __name__ == '__main__':
         dump(args.output / 'CONTEXT.json', package)
         print(json.dumps({'task': args.task, 'bytes': (args.output / 'CONTEXT.json').stat().st_size,
                           'nodes': len(package['nodes']), 'model_calls': 0}))
-    else: {'generate': generate, 'recover': recover}[args.command](args.output)
+    elif args.command == 'recover': recover(args.output, args.task)
+    else: generate(args.output)
