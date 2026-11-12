@@ -30,7 +30,7 @@ def strip_block(text, key):
 
 
 def anchor(key):
-    return key.lower().replace(':', '-')
+    return re.sub(r'[^a-z0-9_-]+','-',key.lower())
 
 
 def neighborhood(graph, key):
@@ -41,6 +41,79 @@ def neighborhood(graph, key):
             'outgoing': [e for e in graph['edges'] if e['source'] == key]}
 
 
+def git_blob_sha(raw: bytes) -> str:
+    """Git's content-addressed SHA for exact file bytes."""
+    return hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
+
+def ensure_main_anchors(text: str, ids: set[str]) -> str:
+    lines = text.splitlines()
+    present = {m.group(1).lower() for m in re.finditer(r'<a id="([RCL]\d+)"></a>', text, re.I)}
+    out = []
+    for line in lines:
+        m = re.match(r"^(#{2,4})\s+(R\d{3}|C\d{3})\b", line)
+        if m and m.group(2) in ids and m.group(2).lower() not in present:
+            out.append(f'<a id="{m.group(2).lower()}"></a>')
+            present.add(m.group(2).lower())
+        row = re.match(r"^\| (L\d{2}) \|", line)
+        if row and row.group(1) in ids and row.group(1).lower() not in present:
+            ident = row.group(1)
+            line = line.replace(f"| {ident} |", f'| <a id="{ident.lower()}"></a>{ident} |', 1)
+            present.add(ident.lower())
+        out.append(line)
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
+
+def ensure_question_anchors(text: str, ids: set[str]) -> str:
+    lines = text.splitlines()
+    present = {m.group(1).lower() for m in re.finditer(r'<a id="(U\d+)"></a>', text, re.I)}
+    out = []
+    for line in lines:
+        m = re.match(r"^#{2,4}\s+(U\d{3})\b", line)
+        if m and m.group(1) in ids and m.group(1).lower() not in present:
+            out.append(f'<a id="{m.group(1).lower()}"></a>')
+            present.add(m.group(1).lower())
+        out.append(line)
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
+
+def ensure_premise_anchors(text: str) -> str:
+    lines = []
+    for line in text.splitlines():
+        m = re.match(r"^\| ([A-G]\d{2}) \|", line)
+        if m and f'<a id="premise-{m.group(1).lower()}"></a>' not in line:
+            line = line.replace(f"| {m.group(1)} |", f'| <a id="premise-{m.group(1).lower()}"></a>{m.group(1)} |', 1)
+        m = re.match(r"^- \*\*(N\d{2}) —", line)
+        if m and f'<a id="obligation-{m.group(1).lower()}"></a>' not in line:
+            line = line.replace(f"- **{m.group(1)} —", f'- <a id="obligation-{m.group(1).lower()}"></a> **{m.group(1)} —', 1)
+        lines.append(line)
+    return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+
+def parse_obligations(text: str):
+    marker = "## Новые явные долги, которые нельзя потерять между строками"
+    if marker not in text:
+        raise ValueError("Missing N-obligations section in PREMISES_CURRENT.md")
+    block = text.split(marker, 1)[1].split("\n\nНет общего вывода", 1)[0]
+    pattern = re.compile(
+        r'(?ms)^- (?:<a id="obligation-(n\d{2})"></a> )?\*\*(N\d{2}) — (.*?)\.\*\*(.*?)(?=^- (?:<a id="obligation-n\d{2}"></a> )?\*\*N\d{2} — |\Z)'
+    )
+    rows = []
+    base_line = text[: text.index(marker)].count("\n") + marker.count("\n") + 1
+    for match in pattern.finditer(block):
+        ident = match.group(2)
+        rows.append({
+            "id": ident,
+            "title": match.group(3).strip(),
+            "description": match.group(4).strip(),
+            "path": PREMISES,
+            "fragment": "obligation-" + ident.lower(),
+            "line": base_line + block[: match.start()].count("\n") + 1,
+            "status_is_not_inferred": True,
+        })
+    unique(rows, "obligations")
+    expected = {f"N{i:02d}" for i in range(1, 10)}
+    if {x["id"] for x in rows} != expected:
+        raise ValueError(f"Expected N01-N09, got {[x['id'] for x in rows]}")
+    return rows
+
+
 def unique(items, label):
     ids = [x["id"] for x in items]
     if len(ids) != len(set(ids)):
@@ -49,6 +122,7 @@ def unique(items, label):
 
 
 def parse_premises(text):
+    text = re.sub(r'<a id="premise-[a-g]\d{2}"></a>', "", text)
     rows = []
     for line in text.splitlines():
         m = re.match(r"^\| ([A-G]\d{2}) \| (.*?) \| (.*?) \|\s*$", line)
@@ -86,26 +160,62 @@ def replace_block(text, key, body):
 def build(root):
     raw = {p: (root / p).read_text() for p in (MAIN, QUESTIONS, PREMISES)}
     # Generated premise navigation is not a fourth semantic source (or a hash cycle).
-    raw[PREMISES] = strip_block(raw[PREMISES], 'external-review-links')
+    raw[PREMISES] = ensure_premise_anchors(strip_block(raw[PREMISES], 'external-review-links'))
     main, questions = json.loads(raw[MAIN]), json.loads(raw[QUESTIONS])
     groups = {"result": unique(main['results'], MAIN), "construct": unique(main['constructs'], MAIN),
               "link": unique(main['open_links'], MAIN), "question": unique(questions['questions'], QUESTIONS)}
     premise_rows = parse_premises(raw[PREMISES])
     groups['premise'] = unique(premise_rows, PREMISES)
+    groups['obligation'] = unique(parse_obligations(raw[PREMISES]), 'obligations')
     groups['review'] = unique(main.get('external_reviews', []), 'external reviews')
+    decision_files=sorted((root/'decisions').glob('D[0-9]*.json'))
+    decisions=[json.loads(p.read_text()) for p in decision_files]
+    groups['decision']=unique(decisions,'decisions')
+    for p in decision_files: raw[str(p.relative_to(root))]=p.read_text()
+    source_rows={}
+    for item in list(groups['result'].values())+list(groups['review'].values()):
+        for path in item.get('managed_sources',[]):
+            if not (root/path).is_file(): raise ValueError(f'Missing managed source {path}')
+            data=(root/path).read_bytes()
+            source_rows[path]={'id':path,'path':path,'title':path,'sha256':hashlib.sha256(data).hexdigest(),'git_blob_sha':git_blob_sha(data),'size_bytes':len(data)}
+    groups['source']=source_rows
     nodes = []
     for kind, group in groups.items():
         for ident, item in group.items():
             path = PREMISES if kind == 'premise' else QUESTIONS.replace('.json','.md') if kind == 'question' else MAIN_MD
             if kind == 'review': path = item['report']
+            if kind == 'obligation': path = PREMISES
+            if kind == 'source': path = item['path']
+            if kind == 'decision': path = 'decisions/'+ident+'.md'
             nodes.append({"key": f"{kind}:{ident}", "id": ident, "kind": kind, "title": item.get('title',item.get('current_statement','')),
-                          "status": item.get('status'), "path": path})
+                          "status": item.get('status'), "path": path,
+                          "fragment": ('premise-'+ident.lower() if kind=='premise' else 'obligation-'+ident.lower() if kind=='obligation' else ident.lower() if kind in {'result','construct','link','question'} else ''), **({k:item[k] for k in ('sha256','git_blob_sha','size_bytes')} if kind=='source' else {})})
     edges = set()
     def add(ka, a, kb, b, relation):
         if a not in groups[ka] or b not in groups[kb]:
             raise ValueError(f"Dangling typed reference: {ka}:{a} -> {kb}:{b}")
         edges.add((f"{ka}:{a}",f"{kb}:{b}",relation))
+    for kind in ('result','review'):
+        for ident,item in groups[kind].items():
+            for path in item.get('managed_sources',[]):add(kind,ident,'source',path,'managed_evidence_source' if kind=='result' else 'review_source_not_attestation')
+    for ident,decision in groups['decision'].items():
+        if decision.get('status') not in {'PROPOSED','RATIFIED','SUPERSEDED','REOPENED'}:raise ValueError('Invalid decision status')
+        if decision.get('domain') not in {'science','infrastructure'}:raise ValueError('Invalid decision domain')
+        ratification=decision.get('ratification',{})
+        if decision['status']=='RATIFIED':
+            ref=ratification.get('reference','')
+            if ratification.get('authority')!='user' or not ref or not (root/ref).is_file():raise ValueError('Ratified decision needs explicit user evidence')
+            if decision['domain']=='science' and ratification.get('scientific_acceptance') is not True:raise ValueError('Infrastructure permission cannot ratify science')
+        for target in decision.get('scope',[]):
+            kind,key=target.split(':',1)
+            if kind not in groups:raise ValueError('Unknown decision target kind')
+            add('decision',ident,kind,key,'decision_scope_not_scientific_evidence')
+        for rel,targets in decision.get('consequences',{}).items():
+            if rel not in {'constrains','enables','supersedes','reopens'}:raise ValueError('Unknown decision consequence')
+            for target in targets:
+                kind,key=target.split(':',1);add('decision',ident,kind,key,'decision_'+rel)
     for ident, r in groups['result'].items():
+        for o in r.get('obligation_ids',[]): add('result',ident,'obligation',o,'updates_not_closes')
         for p in r.get('parent_result_ids',[]): add('result',p,'result',ident,'parent')
         for c in r.get('construct_ids',[]): add('result',ident,'construct',c,'addresses')
         for p in r.get('premise_ids',[]): add('result',ident,'premise',p,'direct_conditional_evidence')
@@ -172,7 +282,7 @@ def build(root):
             rev = groups['review'].get(ref['review_id'])
             if not rev or ref['report'] != rev['report'] or not any(x['target']=='question:'+ident for x in rev['links']):
                 raise ValueError(f'Dangling question review reference {ident}')
-    graph = {"schema":"vm-lab-registry-links-v2", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
+    graph = {"schema":"vm-lab-registry-links-v3", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
              "managed_review_sources": evidence_hashes,
              "counts": {k:len(v) for k,v in groups.items()},
              "semantics":"Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
@@ -205,19 +315,20 @@ def build(root):
     for n in graph['nodes']:
         key = n['key']; adjacent = neighborhood(graph,key)
         lines += ['', f'<a id="{anchor(key)}"></a>', '', f"### {key}", '',
-                  f"{n['title']} — [исходная карточка](../../{n['path']}).", '']
+                  f"{n['title']} — [исходная карточка](../../{n['path']}{('#'+n['fragment']) if n.get('fragment') else ''}).", '']
         for label,direction,other in [('Входящие','incoming','source'),('Исходящие','outgoing','target')]:
             entries=adjacent[direction]
             lines.append(f"**{label}:** "+('; '.join(f"{mdlink(e[other])} `{e['relation']}`" for e in entries) or 'нет')+'.')
         if n['kind']=='review':
             lines += ['', '| Связь | Смысл и граница | Основание |', '|---|---|---|']
             for e in adjacent['outgoing']:
+                if 'rationale' not in e: continue
                 lines.append(f"| {mdlink(e['target'])} `{e['relation']}` | {e['rationale']} | [разбор](../../{e['evidence']}) |")
             lines += ['', '**Не включены в положительные связи:**']
             for e in exclusions:
                 if e['source']==key:lines.append(f"- {mdlink(e['target'])}: `{e['decision']}` — {e['rationale']}")
-    premise_json={"schema":"premises-current-mirror-v1","source":PREMISES,"main_registry":MAIN,
-                  "note":"Generated exact-text mirror; preserves 66 historical IDs. The nine N-debts remain in source Markdown. Navigation is not new proof.","entries":premise_rows}
+    premise_json={"schema":"premises-current-mirror-v2","source":PREMISES,"main_registry":MAIN,
+                  "note":"Generated exact-text mirror; preserves 66 historical IDs. Nine N-obligations are mirrored separately from the 66 premises. Navigation is not new proof.","entries":premise_rows,"obligations":list(groups['obligation'].values())}
     outputs={OUT+'/INDEX.json':json.dumps(graph,ensure_ascii=False,indent=2)+'\n',
              OUT+'/INDEX.md':'\n'.join(lines)+'\n',
              PREMISES.replace('.md','.json'):json.dumps(premise_json,ensure_ascii=False,indent=2)+'\n'}
@@ -230,7 +341,7 @@ def build(root):
         rows=['## Внешние разборы: контекст и границы', '', 'Ссылки не меняют научный статус карточек. [Полная карта](../REGISTRY_LINKS/INDEX.md).', '',
               '| Карточка | Разбор | Тип связи | Смысл |', '|---|---|---|---|']
         for e in graph['edges']:
-            if e['source'].startswith('review:') and e['target'].split(':')[0] in kinds:
+            if 'rationale' in e and e['source'].startswith('review:') and e['target'].split(':')[0] in kinds:
                 rows.append(f"| [{e['target']}](../REGISTRY_LINKS/INDEX.md#{anchor(e['target'])}) | [{e['source'].split(':')[1]}](../../{bykey[e['source']]['path']}) | `{e['relation']}` | {e['rationale']} |")
         return '\n'.join(rows)
     def card_backlinks(text, kinds):
@@ -245,9 +356,10 @@ def build(root):
             text,count=re.subn(pattern,lambda m:m[1]+'\n'+block+'\n',text,count=1,flags=re.M)
             if count!=1:raise ValueError(f"Missing review target Markdown entry {n['id']}")
         return text
+    md=ensure_main_anchors(md, set(groups['result']) | set(groups['construct']) | set(groups['link']))
     md=card_backlinks(md,{'result','construct'})
     md=replace_block(md,'external-review-links',review_table({'result','construct','link'}))
-    qmd=card_backlinks((root/QUESTIONS_MD).read_text(),{'question'})
+    qmd=card_backlinks(ensure_question_anchors((root/QUESTIONS_MD).read_text(), set(groups['question'])),{'question'})
     qmd=replace_block(qmd,'external-review-links',review_table({'question'}))
     outputs[QUESTIONS_MD]=qmd
     outputs[PREMISES]=replace_block(raw[PREMISES],'external-review-links',review_table({'premise'}))
@@ -260,6 +372,11 @@ def build(root):
     if r122.get('managed_boundary') and r122['limit'] not in md:
         raise ValueError('R122 Markdown boundary diverges from JSON')
     outputs[MAIN_MD]=md
+    for d in decisions:
+        body=[f"# {d['id']}: {d['title']}",'',f"Область: {d['domain']}. Статус: {d['status']}.",'',d['question'],'','[Все связи решения](../analysis/REGISTRY_LINKS/INDEX.md#decision-'+d['id'].lower()+')','','## Альтернативы','']
+        body += [f"- {a['id']} — {a['disposition']}: {a['rationale']}" for a in d['alternatives']]
+        body += ['',f"[Источник принятия](../{d['ratification']['reference']})",'', '## Пересмотр',''] + ['- '+x for x in d['revisit_conditions']]
+        outputs['decisions/'+d['id']+'.md']='\n'.join(body)+'\n'
     return outputs,graph
 
 

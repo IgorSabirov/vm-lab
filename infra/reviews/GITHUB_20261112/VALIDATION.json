@@ -1,0 +1,61 @@
+{
+  "schema": "vm-lab-technical-validation-v1",
+  "date": "2026-11-12",
+  "base_commit": "71b45a2a016ada23aabda6cea8d8cd47ffbb6d60",
+  "scope": "Local technical suites; no new scientific/VM run",
+  "forecast_seconds_max": 300,
+  "executor": "assistant_sandbox",
+  "scientific_confirmation": false,
+  "suites": [
+    {
+      "suite": "integrity",
+      "tests": 22,
+      "seconds": 4.646999999999999,
+      "status": "PASS",
+      "log_sha256": "e6d5cddc8f55a5f41701972e3c1bb2d4caa20ca1fd8fe8af8455e67fd6eebebd"
+    },
+    {
+      "suite": "infra",
+      "tests": 69,
+      "seconds": 12.503,
+      "status": "PASS",
+      "log_sha256": "dcd51dbeae487a7d5b3df2d9dec0ecc8493fb551d8fc594fee608459cbbde041"
+    },
+    {
+      "suite": "e002",
+      "tests": 109,
+      "seconds": 52.395,
+      "status": "PASS",
+      "log_sha256": "187a74929bfd94cb228cd9a03376441c7cf78bab9eaa224695aec77b3ace1e2b"
+    },
+    {
+      "suite": "now",
+      "tests": 73,
+      "seconds": 1.648,
+      "status": "PASS",
+      "log_sha256": "0b2594a57b193cbed549b94f85a9df343d23ba63b92346c08dbebc52560317e5"
+    },
+    {
+      "suite": "x27_043",
+      "tests": 41,
+      "seconds": 5.825,
+      "status": "PASS",
+      "log_sha256": "f29ff94075935f225007662cadfbb43dc24c877d09388e38ad8da7ce2ab082f3"
+    },
+    {
+      "suite": "x27_051",
+      "tests": 42,
+      "seconds": 0.088,
+      "status": "PASS",
+      "log_sha256": "7c685c2d426bb0355e4a0a5c01a1618b3931b9fc482deae64cb8bba861c81494"
+    }
+  ],
+  "total_tests": 356,
+  "suite_seconds": 77.10600000000001,
+  "limitations": [
+    "Initial partial-checkout missing fixtures were fetched from fixed main SHA",
+    "E002 environment guard required an enforced child RLIMIT_AS; guard unchanged",
+    "GitHub CI separately verifies integrated head",
+    "Project V2 and VM deployment are not completed"
+  ]
+}

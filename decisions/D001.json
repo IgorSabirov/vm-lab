@@ -1,0 +1,23 @@
+{
+  "id": "D001",
+  "title": "Интегрировать GitHub-процесс при раздельной научной и технической приёмке",
+  "domain": "infrastructure",
+  "status": "RATIFIED",
+  "question": "Как сохранять происхождение разработок, решений и результатов без дублирования научного реестра?",
+  "scope": ["obligation:N02", "obligation:N06", "premise:G07", "premise:G08"],
+  "alternatives": [
+    {"id": "A", "disposition": "SELECTED", "rationale": "Сохранить PR #3, объединить с main, использовать типизированный граф, адресные проверки и PR результатов."},
+    {"id": "B", "disposition": "REJECTED", "rationale": "Публичный репозиторий ради бесплатной защиты не соответствует частной публикации проекта."},
+    {"id": "C", "disposition": "DEFERRED", "rationale": "Автономные LLM workflows требуют отдельной настройки учётных данных и бюджета; сначала детерминированные помощники."}
+  ],
+  "proposal": {"author": "assistant", "source": "infra/reviews/GITHUB_20261112/REPORT.md"},
+  "ratification": {
+    "authority": "user",
+    "status": "EXPLICIT_INFRASTRUCTURE_AUTHORIZATION",
+    "date": "2026-11-12",
+    "reference": "infra/reviews/GITHUB_20261112/AUTHORIZATION.md",
+    "scientific_acceptance": false
+  },
+  "consequences": {"constrains": [], "enables": [], "supersedes": [], "reopens": []},
+  "revisit_conditions": ["Доступен тариф с защитой приватного main", "Подтверждён работающий VM-исполнитель с ограничениями ресурсов", "Настроены Projects API и отдельный бюджет агентных workflow"]
+}

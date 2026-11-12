@@ -1,0 +1,25 @@
+name: Result intake PR
+on:
+  push:
+    branches: ['results/**']
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  propose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const {owner,repo}=context.repo;
+            const branch=context.ref.replace(/^refs\/heads\//,'');
+            if (!/^results\/[A-Za-z0-9_-]{12,64}$/.test(branch)) throw new Error('Invalid run branch');
+            const base=context.payload.repository.default_branch;
+            const comparison=await github.rest.repos.compareCommitsWithBasehead({owner,repo,basehead:`${base}...${context.sha}`});
+            const files=comparison.data.files||[];
+            if(!files.length || files.length>=300 || files.some(f=>!f.filename.startsWith(branch+'/')||f.status==='removed'||f.previous_filename)) throw new Error('Result branch is not an additive bounded receipt');
+            const existing=await github.rest.pulls.list({owner,repo,head:`${owner}:${branch}`,state:'all'});
+            if(existing.data.length) {core.info('Existing PR retained');return;}
+            await github.rest.pulls.create({owner,repo,head:branch,base,draft:true,title:`Results: ${branch.slice(8)}`,body:`Receipt at ${context.sha}.\n\nTechnical execution and scientific acceptance must be reviewed separately. No automatic merge.\n\nDevelopment checks run on the result-branch push, because PRs opened with GITHUB_TOKEN do not retrigger ordinary PR workflows.`});
