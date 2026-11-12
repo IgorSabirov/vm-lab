@@ -1,5 +1,7 @@
 import copy
 import json
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -56,6 +58,37 @@ class SixModelReviewTests(unittest.TestCase):
     def test_paths_cannot_escape_repository(self):
         for path in ('../private', '/etc/passwd'):
             with self.assertRaises(ValueError): review.read(path)
+
+    def test_metadata_pointer_is_not_claimed_as_supplied_content(self):
+        d = self.valid()
+        pointer = self.context['result_cards'][-1]['sources'][0]
+        self.assertEqual(review.evidence_ledger(self.context)[pointer], 'REGISTRY_POINTER_ONLY')
+        d['models'][0]['evidence'] = [pointer]
+        review.validate_analysis(d, self.context)
+        self.assertIn('текст модели не передавался', review.markdown(d, {**self.context, 'executed_checks': []}))
+        d['models'][0]['evidence'] = ['analysis/UNSEEN_FILE.md']
+        with self.assertRaises(ValueError): review.validate_analysis(d, self.context)
+
+    def test_recovery_preserves_response_and_rejects_tampering_without_inference(self):
+        c = {**self.context, 'executed_checks': []}
+        d = self.valid()
+        f = {'run_id': '123', 'source_sha': c['source_sha'], 'returncode': 0,
+             'timed_out': False, 'elapsed_seconds': 1, 'error': 'old citation check',
+             'stdout': json.dumps(d)}
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            review.dump(output / 'CONTEXT.json', c); review.dump(output / 'FAILURE.json', f)
+            m = {'run_id': 123, 'source_sha': c['source_sha'],
+                 'context_sha256': review.sha((output / 'CONTEXT.json').read_bytes()),
+                 'failure_sha256': review.sha((output / 'FAILURE.json').read_bytes())}
+            with patch.object(review, 'read', return_value=json.dumps(m).encode()), patch.object(
+                    review, 'invoke_native', side_effect=AssertionError('No repeated inference')):
+                review.recover(output)
+                proposal = json.loads((output / 'native-proposal.json').read_text())
+                self.assertEqual(proposal['analysis'], d)
+                self.assertEqual(proposal['receipt']['recovery']['new_model_invocations'], 0)
+                (output / 'FAILURE.json').write_text('{}')
+                with self.assertRaisesRegex(ValueError, 'digest mismatch'): review.recover(output)
 
 
 if __name__ == '__main__':

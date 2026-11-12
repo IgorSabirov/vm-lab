@@ -57,8 +57,39 @@ jobs:
           name: six-model-review
           path: review-output/
           retention-days: 30
+  recover:
+    if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-review-recover six-models-v1 43247986127'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      base_sha: ${{ steps.recover.outputs.base_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Download the original saved response
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          artifact-ids: '13957606835'
+          run-id: '43247986127'
+          github-token: ${{ github.token }}
+          path: review-output
+          merge-multiple: true
+      - name: Verify digests and recover without a model call
+        id: recover
+        run: python infra/copilot_review.py recover
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: six-model-review
+          path: review-output/
+          retention-days: 30
   publish:
-    needs: review
+    needs: [review, recover]
+    if: always() && (needs.review.result == 'success' || needs.recover.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     permissions:
@@ -76,7 +107,7 @@ jobs:
       - name: Publish fixed review files without executing model output
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         env:
-          EXPECTED_SHA: ${{ needs.review.outputs.base_sha }}
+          EXPECTED_SHA: ${{ needs.review.outputs.base_sha || needs.recover.outputs.base_sha }}
         with:
           script: |
             await require('./infra/copilot_publish.cjs').main({github,context,core,mode:'review'});
