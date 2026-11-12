@@ -1,6 +1,7 @@
 name: Development checks
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main, 'results/**']
   workflow_dispatch:
