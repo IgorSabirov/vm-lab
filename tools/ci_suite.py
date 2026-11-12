@@ -17,6 +17,7 @@ def main(s):
         call(['tools/registry_links.py'])
         call(['tools/workflow_policy.py'])
         call(['tools/external_sources.py','validate'])
+        call(['-m','unittest','discover','-s','tests','-p','test_dependency_evidence.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_external*.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_registry_links.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_ci_policy.py'])
