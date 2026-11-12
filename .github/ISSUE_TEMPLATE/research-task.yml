@@ -1,0 +1,86 @@
+name: Исследовательская или инженерная задача
+description: Зафиксировать вопрос, генеалогию, источники, полномочия и критерий завершения
+title: "[work] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Форма фиксирует рабочую задачу, а не автоматически принимает новую физическую модель.
+        Закрытие Issue или слияние PR не меняет научный статус R/C/L/U/N.
+  - type: dropdown
+    id: work_kind
+    attributes:
+      label: Тип работы
+      options:
+        - Научный вопрос или гипотеза
+        - Аналитический вывод или аудит доказательства
+        - Код, тест или воспроизведение
+        - Инфраструктура GitHub/ВМ/публикация
+        - Документация и синхронизация реестра
+    validations:
+      required: true
+  - type: textarea
+    id: primary_question
+    attributes:
+      label: Главный вопрос
+      description: Один конкретный вопрос, на который должна ответить задача.
+      placeholder: Что именно требуется установить, различить или исправить?
+    validations:
+      required: true
+  - type: input
+    id: lineage
+    attributes:
+      label: Генеалогия
+      description: Родительские R/C/L/U/N и конкретные коммиты, если известны.
+      placeholder: result:R122, result:R128, question:U010, obligation:N02
+    validations:
+      required: false
+  - type: textarea
+    id: sources
+    attributes:
+      label: Уже имеющиеся источники
+      description: Пути, SHA коммитов, отчёты, данные, код и готовые результаты, которые надо переиспользовать.
+    validations:
+      required: false
+  - type: textarea
+    id: intended_change
+    attributes:
+      label: Что должно измениться в знании или репозитории
+      description: Укажи ожидаемое приращение и что не должно измениться.
+    validations:
+      required: true
+  - type: dropdown
+    id: allowed_scope
+    attributes:
+      label: Разрешённый объём действий
+      options:
+        - Только чтение и аудит
+        - Редактирование документации/реестра
+        - Изменение кода и тестов
+        - Локальный расчёт в пределах действующего лимита
+        - Запуск на ВМ — только в пределах уже выданного разрешения
+    validations:
+      required: true
+  - type: textarea
+    id: budget
+    attributes:
+      label: Бюджет и ограничения
+      description: Укажи известный лимит времени, вычислений, данных, памяти и запреты. Неизвестное так и обозначь.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерий завершения
+      description: Что должно быть предъявлено для содержательной или технической приёмки?
+    validations:
+      required: true
+  - type: checkboxes
+    id: safeguards
+    attributes:
+      label: Границы научной приёмки
+      options:
+        - label: Понимаю, что закрытие Issue/PR не меняет научный статус автоматически.
+          required: true
+        - label: Новые закон, носитель, мера или физическая архитектура не принимаются молча.
+          required: true

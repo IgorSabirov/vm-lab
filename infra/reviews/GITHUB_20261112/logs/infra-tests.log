@@ -1,0 +1,18 @@
+.............................................................RESTORED 1 snapshot status COMPLETE
+ACME HTTP 127.0.0.1 "GET /.well-known/acme-challenge/check HTTP/1.1" 200 -
+ACME HTTP 127.0.0.1 code 404, message Not Found
+ACME HTTP 127.0.0.1 "GET /secret HTTP/1.1" 404 -
+ACME HTTP 127.0.0.1 code 404, message Not Found
+ACME HTTP 127.0.0.1 "GET /.well-known/acme-challenge/../../secret HTTP/1.1" 404 -
+ACME HTTP 127.0.0.1 code 404, message Not Found
+ACME HTTP 127.0.0.1 "GET /.well-known/acme-challenge/link HTTP/1.1" 404 -
+..TLS-ALPN-01 on port 443: pausing API only; worker and SSH stay running.
+CA validation failed
+TLS-ALPN-01 on port 443: pausing API only; worker and SSH stay running.
+.Verified TLS hostname + MCP initialize + tools/list: 3 tools
+Verified TLS hostname + MCP initialize + tools/list: 3 tools
+.....
+----------------------------------------------------------------------
+Ran 69 tests in 12.503s
+
+OK

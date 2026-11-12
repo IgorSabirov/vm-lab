@@ -192,13 +192,40 @@ class Bridge:
                 continue
             try:
                 request = json.loads(self.work.read(self.queue_dir + '/' + name, 4096))
-                if not isinstance(request, dict) or set(request) != {'run_id', 'commit'} or request['run_id'] != name[:-5] or not isinstance(request['commit'], str) or not SHA.fullmatch(request['commit']):
+                if not isinstance(request, dict) or request.get('run_id') != name[:-5] or not isinstance(request.get('commit'),str) or not SHA.fullmatch(request['commit']):
                     raise ValueError('Expected run_id and a full 40-character commit SHA')
-            except (OSError, ValueError) as exc:
+                plan = None
+                if set(request) == {'run_id','commit'}:
+                    if not self.config.get('allow_legacy_requests',False):
+                        raise ValueError('New requests require an exact approved run plan')
+                elif set(request) == {'run_id','commit','run_plan','run_plan_sha256'}:
+                    from run_contract import check_authorization, canonical_hash
+                    plan=json.loads(self.work.read(request['run_plan'],32768))
+                    approval_path=self.state/'authorizations'/(name[:-5]+'.json')
+                    if approval_path.is_symlink(): raise ValueError('Approval cannot be a symlink')
+                    approval=json.loads(approval_path.read_text())
+                    bound=check_authorization(plan,approval)
+                    if bound != request['run_plan_sha256'] or plan['run_id'] != request['run_id'] or plan['source']['commit'] != request['commit']:
+                        raise ValueError('Request differs from approved plan')
+                    if plan['source'].get('repository') != self.config['repository'] or plan['executor'] != {'kind':'vm','id':self.config.get('executor_id','legacy-github-bridge')}:
+                        raise ValueError('Plan is for another repository/executor')
+                    if plan['command'] != {'entrypoint':'run.py','args':[]}:
+                        raise ValueError('Bridge v1 only executes declared run.py')
+                    # Cap enforcement belongs to the worker, never infer it from an Issue label.
+                    limits=self.config.get('verified_worker_limits')
+                    if not limits or not limits.get('evidence_ref'):
+                        raise ValueError('Worker limit enforcement has not been attested')
+                    for key in ('hard_wall_seconds','memory_limit_mib','disk_limit_mib'):
+                        if limits.get(key, float('inf')) > plan['budget'][key]:
+                            raise ValueError('Worker limit exceeds approved budget: '+key)
+                else:
+                    raise ValueError('Unexpected request fields')
+            except (OSError, ValueError, KeyError, TypeError) as exc:
                 self.save({'run_id': name[:-5], 'stage': 'rejected', 'last_error': str(exc)[:1000]})
                 continue
             self.save({'run_id': request['run_id'], 'source_commit': request['commit'],
-                       'repository': self.config['repository'], 'stage': 'accepted', 'created': time.time()})
+                       'repository': self.config['repository'], 'stage': 'accepted', 'created': time.time(),
+                       'run_plan':plan,'authorization_mode':'EXACT_PRIVATE_APPROVAL' if plan else 'EXPLICIT_LEGACY_COMPATIBILITY'})
 
     def prepare(self, record):
         rid, commit = record['run_id'], record['source_commit']
@@ -231,6 +258,16 @@ class Bridge:
             raise ValueError('The source commit needs run.py and config.json')
         json.loads(files['config.json'])
         manifest = {name: digest(data) for name, data in files.items()}
+        if record.get('run_plan'):
+            from run_contract import canonical_hash, check_authorization
+            plan=record['run_plan']
+            approval=json.loads((self.state/'authorizations'/(rid+'.json')).read_text())
+            check_authorization(plan,approval)  # Recheck expiry immediately before queuing.
+            if self.git('rev-parse',commit+'^{tree}').decode().strip()!=plan['source']['tree_sha']:
+                raise ValueError('Source tree differs from plan')
+            if digest(files['config.json'])!=plan['source']['config_sha256'] or canonical_hash(manifest)!=plan['source']['input_manifest_sha256']:
+                raise ValueError('Source/configuration digest differs from plan')
+
         prefix = self.source_dir + '/' + rid
         for name, data in files.items():
             self.work.write(prefix + '/' + name, data, replace=False)
@@ -341,6 +378,21 @@ class Bridge:
             'files': {name: {'sha256': digest(data), 'bytes': len(data)} for name, data in files.items()},
         }
         files['run.json'] = json_bytes(manifest)
+        if record.get('run_plan'):
+            from run_contract import canonical_hash
+            plan=record['run_plan']
+            process={'schema':'vm-lab-process-v1','run_id':rid,'source_commit':record['source_commit'],
+                     'state':str(status.get('state','unknown')).upper(),
+                     'technical_gate':'REVIEW_REQUIRED','scientific_confirmation':False,
+                     'reason':'Execution receipt requires separate runtime/resource and scientific review',
+                     'worker_limits_evidence':self.config.get('verified_worker_limits'),
+                     'worker_status':status}
+            files['RUN_PLAN.json']=json_bytes(plan)
+            files['PROCESS.json']=json_bytes(process)
+            receipt={'schema':'vm-lab-result-manifest-v1','run_id':rid,'source_commit':record['source_commit'],
+                     'plan_sha256':canonical_hash(plan),
+                     'files':[{'path':name,'sha256':digest(data),'size_bytes':len(data)} for name,data in sorted(files.items())]}
+            files['RESULT_MANIFEST.json']=json_bytes(receipt)
         spool = self.state / 'exports' / rid
         spool.mkdir(parents=True, exist_ok=True)
         for name, data in files.items():
@@ -415,14 +467,39 @@ class Bridge:
             if digest(data) != record['export_sha256'][name]:
                 raise ValueError('Saved export changed: ' + name)
             files['results/' + rid + '/' + name] = data
-        commit = self.publish_files(files, 'VM results: ' + rid)
+        mode = self.config.get('publication_mode', 'result_branch')
+        if mode not in {'result_branch', 'legacy_main'}:
+            raise ValueError('Unknown publication mode')
+        branch = 'results/' + rid if mode == 'result_branch' else 'main'
+        commit = self.publish_files(files, 'VM results: ' + rid, branch=branch, immutable=(mode == 'result_branch'))
+        record['publication_branch'] = branch
+        record['integration_state'] = 'PR_REQUIRED' if mode == 'result_branch' else 'LEGACY_DIRECT_MAIN'
+        record['compare_url'] = 'https://github.com/' + record['repository'] + '/compare/main...' + branch
         record.update(stage='published', results_commit=commit, last_error=None,
                       results_url='https://github.com/' + record['repository'] + '/tree/' + commit + '/results/' + rid)
         self.save(record)
 
-    def publish_files(self, files, message):
+    def publish_files(self, files, message, branch="main", immutable=False):
+        if branch != "main" and not (branch.startswith("results/") and ID.fullmatch(branch[len("results/"):])):
+            raise ValueError("Invalid result branch")
+        if immutable:
+            if any(not name.startswith(branch + "/") for name in files):
+                raise ValueError("Result publication cannot edit code or registries")
+            existing = self.git("ls-remote", "--heads", "origin", "refs/heads/" + branch).decode().strip()
+            if existing:
+                commit = existing.split()[0]
+                self.git("fetch", "--no-tags", "--depth=1", "origin", "refs/heads/" + branch)
+                actual_paths = set(self.git("ls-tree", "-r", "--name-only", commit, "--", branch + "/").decode().splitlines())
+                if actual_paths != set(files):
+                    raise ValueError("Existing run_id has a different artifact inventory")
+                for name,data in files.items():
+                    if self.git("show", commit + ":" + name) != data:
+                        raise ValueError("Existing run_id has different immutable results")
+                return commit
         self.git('fetch', '--no-tags', '--depth=1', 'origin', 'refs/heads/main')
         base = self.git('rev-parse', 'FETCH_HEAD').decode().strip()
+        if immutable and self.git('ls-tree', '-r', '--name-only', base, '--', branch + '/').strip():
+            raise ValueError('run_id is already published in main')
         index = self.state / ('index-' + secrets.token_hex(8))
         environment = {'GIT_INDEX_FILE': str(index)}
         try:
@@ -438,7 +515,7 @@ class Bridge:
             else:
                 commit = self.git('commit-tree', tree, '-p', base,
                                   data=(message + '\n').encode()).decode().strip()
-                self.git('push', 'origin', commit + ':refs/heads/main')  # Never force-push.
+                self.git('push', 'origin', commit + ':refs/heads/' + branch)  # Never force-push.
             return commit
         finally:
             index.unlink(missing_ok=True)

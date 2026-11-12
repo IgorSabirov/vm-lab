@@ -537,3 +537,10 @@ G_v001_r002 выполнен: 4,755 с при 6 с; 92 случая и 106 фа�
 не заменяются и не перезапускаются. Ключ ограничивается новым репозиторием.
 Связка проверена 28 октября 2026 года. Точные версии, отчёты и границы проверки —
 в [VALIDATION.md](VALIDATION.md).
+
+
+**Работа через GitHub:** [операционная карта](infra/GITHUB_OPERATING_MODEL.md) · [обслуживание типизированного реестра](infra/REGISTRY_MAINTENANCE.md) · [Project V2: схема рабочей доски](infra/GITHUB_PROJECT_SETUP.md) · [Issue Form](.github/ISSUE_TEMPLATE/research-task.yml) · [PR template](.github/pull_request_template.md).
+
+## Разработка и непрерывность
+
+[Текущее состояние](continuity/ACTIVE_STATE.json) · [Решения](decisions/README.md) · [Карта реестров](analysis/REGISTRY_LINKS/INDEX.md) · [Разбор и границы автоматизации](infra/reviews/GITHUB_20261112/REPORT.md) · [Контракт исполнения](infra/RUN_CONTRACT.md).

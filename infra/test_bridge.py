@@ -46,7 +46,8 @@ class Integration(unittest.TestCase):
         self.write_source()
         self.commit = self.commit_source('Initial input')
         self.config = {'state': str(self.state), 'work': str(self.work),
-                       'repository': 'test/fixture', 'remote': str(self.remote), 'ssh_command': '/usr/bin/false'}
+                       'repository': 'test/fixture', 'remote': str(self.remote), 'ssh_command': '/usr/bin/false',
+                       'publication_mode': 'legacy_main', 'allow_legacy_requests': True}
         self.bridge = LocalBridge(self.config)
         self.worker = subprocess.Popen([sys.executable, str(HERE / 'fixtures/worker_v4.py'), str(self.work)],
                                        stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
@@ -115,6 +116,65 @@ class Integration(unittest.TestCase):
                                   check=True, capture_output=True).stdout
         return read_github_result(fetch, repository='test/fixture', result_commit=result_commit,
                                   run_id=rid, source_commit=source_commit or self.commit)
+
+    def test_new_requests_require_private_plan_approval(self):
+        self.config.pop('allow_legacy_requests')
+        self.bridge=LocalBridge(self.config);self.request('unapproved_request')
+        self.bridge.discover()
+        self.assertEqual(self.record('unapproved_request')['stage'],'rejected')
+
+    def test_exact_plan_is_bound_before_queueing(self):
+        from run_contract import canonical_hash
+        from test_run_contract import plan
+        self.config.pop('allow_legacy_requests')
+        self.config['verified_worker_limits']={'evidence_ref':'fixture-only', 'hard_wall_seconds':700,'memory_limit_mib':128,'disk_limit_mib':64}
+        self.bridge=LocalBridge(self.config)
+        p=plan();p['acceptance']['required_artifacts']=['PROCESS.json','run.json'];rid=p['run_id']
+        manifest={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in self.seed.iterdir() if f.is_file()}
+        p['source']={'repository':'test/fixture','commit':self.commit,'tree_sha':self.git_seed('rev-parse','HEAD^{tree}'),'input_manifest_sha256':canonical_hash(manifest),'config_sha256':manifest['config.json']}
+        p['budget'].update(forecast_seconds=601,hard_wall_seconds=700)
+        p['executor']={'kind':'vm','id':'legacy-github-bridge'}
+        digest=canonical_hash(p)
+        (self.work/'data/plan.json').write_text(json.dumps(p))
+        approval=self.state/'authorizations';approval.mkdir()
+        (approval/(rid+'.json')).write_text(json.dumps({'authority':'user','reference':p['authorization']['reference'],'run_id':rid,'plan_sha256':digest}))
+        req={'run_id':rid,'commit':self.commit,'run_plan':'data/plan.json','run_plan_sha256':digest}
+        (self.work/'data/vm_lab_queue'/(rid+'.json')).write_text(json.dumps(req))
+        self.bridge.discover();record=self.record(rid)
+        self.assertEqual(record['stage'],'accepted')
+        # No job submitted: tamper with the saved immutable source binding first.
+        record['run_plan']['source']['config_sha256']='0'*64
+        with self.assertRaisesRegex(ValueError,'exact plan'):self.bridge.prepare(record)
+        self.assertFalse(list((self.work/'jobs').glob('*.json')))
+        self.bridge.prepare(self.record(rid))
+        self.assertEqual(self.record(rid)['stage'],'queued')
+        self.until(lambda:self.published(rid))
+        from run_contract import verify_receipt
+        # These always-present receipt artifacts are the approved fixture outputs.
+        # The runtime gate remains REVIEW_REQUIRED even after a successful process.
+        receipt=json.loads((self.state/'exports'/rid/'RESULT_MANIFEST.json').read_text())
+        self.assertEqual(receipt['plan_sha256'],digest)
+        process=json.loads((self.state/'exports'/rid/'PROCESS.json').read_text())
+        self.assertEqual(verify_receipt(self.state/'exports'/rid,p)['integrity'],'PASS')
+        self.assertFalse(process['scientific_confirmation'])
+        self.assertEqual(process['technical_gate'],'REVIEW_REQUIRED')
+
+    def test_result_branch_is_immutable_and_does_not_move_main(self):
+        rid='github_branch_result';self.config.pop('publication_mode')
+        self.bridge=LocalBridge(self.config)
+        before=self.cmd('git','--git-dir='+str(self.remote),'rev-parse','main')
+        self.request(rid);self.until(lambda:self.published(rid))
+        record=self.record(rid)
+        self.assertEqual(record['integration_state'],'PR_REQUIRED')
+        self.assertEqual(before,self.cmd('git','--git-dir='+str(self.remote),'rev-parse','main'))
+        branch='results/'+rid
+        files={branch+'/'+n:(self.state/'exports'/rid/n).read_bytes() for n in record['export_files']}
+        self.assertEqual(record['results_commit'],self.bridge.publish_files(files,'retry',branch=branch,immutable=True))
+        files[next(iter(files))]=b'tampered'
+        with self.assertRaisesRegex(ValueError,'immutable results'):
+            self.bridge.publish_files(files,'overwrite',branch=branch,immutable=True)
+        with self.assertRaisesRegex(ValueError,'cannot edit'):
+            self.bridge.publish_files({'AGENTS.md':b'bad'},'escape',branch=branch,immutable=True)
 
     def test_success_duplicate_and_bridge_restart(self):
         rid = 'github_smoke_success'
@@ -262,8 +322,11 @@ class Integration(unittest.TestCase):
         self.assertIn(b'END-OF-LARGE-LOG', result['artifacts']['output.log'])
 
     def test_real_medium_report_is_complete_and_full_file_is_not_published(self):
-        for name in ('run.py', 'reporting.py', 'config.json'):
-            (self.seed / name).write_bytes((HERE.parent / name).read_bytes())
+        # Exercise the real reporting API with a bounded transport fixture, never
+        # the repository's mutable production experiment entrypoint/configuration.
+        (self.seed / 'reporting.py').write_bytes((HERE.parent / 'reporting.py').read_bytes())
+        (self.seed / 'config.json').write_text('{"bulk_items":64}')
+        (self.seed / 'run.py').write_text('import os\nfrom reporting import write_report\nwrite_report({"bulk_items":64},{"actual":10,"expected":10,"ok":True,"run_id":"github_real_medium_report","source_commit":os.environ["VM_SOURCE_COMMIT"]})\n')
         commit = self.commit_source('Test the actual medium-report implementation')
         rid = 'github_real_medium_report'
         self.request(rid, commit)

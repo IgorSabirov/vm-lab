@@ -1,0 +1,28 @@
+name: CI failure advisor
+on:
+  workflow_run:
+    workflows: ['Development checks']
+    types: [completed]
+permissions:
+  actions: read
+  issues: write
+jobs:
+  report:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            // Never checkout the failed head, download its artifacts, or execute logs.
+            const {owner,repo}=context.repo, run=context.payload.workflow_run;
+            const jobs=await github.paginate(github.rest.actions.listJobsForWorkflowRun,{owner,repo,run_id:run.id,per_page:100});
+            const failed=jobs.filter(j=>j.conclusion==='failure').map(j=>`- [${j.name}](${j.html_url})`).join('\n');
+            core.summary.addHeading('Technical CI failure').addRaw(failed+'\nNo scientific status changed.').write();
+            for(const pr of run.pull_requests||[]) {
+              const marker=`<!-- vm-lab:failed-run:${run.id} -->`;
+              const comments=await github.paginate(github.rest.issues.listComments,{owner,repo,issue_number:pr.number,per_page:100});
+              if(!comments.some(c=>c.user?.login==='github-actions[bot]'&&c.body.startsWith(marker)))
+                await github.rest.issues.createComment({owner,repo,issue_number:pr.number,body:`${marker}\nTechnical checks failed at ${run.head_sha}.\n${failed}\n\nThis does not refute a scientific result. [Execution](${run.html_url}).`});
+            }

@@ -1,0 +1,33 @@
+name: Freeze reviewed snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Exact tested main commit (40 hex characters)
+        required: true
+      tag:
+        description: New infra snapshot tag, e.g. infra-20261112-v1
+        required: true
+permissions:
+  contents: write
+  checks: read
+jobs:
+  draft:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          SOURCE_SHA: ${{ inputs.source_sha }}
+          SNAPSHOT_TAG: ${{ inputs.tag }}
+        with:
+          script: |
+            const {owner,repo}=context.repo, sha=process.env.SOURCE_SHA, tag=process.env.SNAPSHOT_TAG;
+            if(!/^[a-f0-9]{40}$/.test(sha)||!/^infra-[0-9]{8}-v[1-9][0-9]*$/.test(tag))throw new Error('Invalid frozen identity');
+            const main=(await github.rest.repos.get({owner,repo})).data.default_branch;
+            const compare=await github.rest.repos.compareCommitsWithBasehead({owner,repo,basehead:`${sha}...${main}`});
+            if(!['ahead','identical'].includes(compare.data.status))throw new Error('Snapshot is not an ancestor of main');
+            const checks=await github.paginate(github.rest.checks.listForRef,{owner,repo,ref:sha,per_page:100});
+            if(!checks.some(c=>c.name==='merge-gate'&&c.conclusion==='success'&&c.app?.slug==='github-actions'))throw new Error('Technical merge gate is not PASS');
+            try {await github.rest.git.getRef({owner,repo,ref:`tags/${tag}`});throw new Error('Existing tags are immutable');} catch(e) {if(e.status!==404)throw e;}
+            await github.rest.repos.createRelease({owner,repo,tag_name:tag,target_commitish:sha,name:tag,draft:true,body:`Frozen infrastructure snapshot: ${sha}.\n\nTechnical checks only; no scientific status is promoted. The registry and its content hashes are retained in the commit. A draft release is not scientific acceptance.`});

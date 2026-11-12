@@ -20,6 +20,9 @@ class RegistryIntegrity(unittest.TestCase):
         for row in data['results']+data.get('external_reviews',[]):
             for p in row.get('managed_sources',[]):
                 f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_text((ROOT/p).read_text())
+        for source in (ROOT/'decisions').glob('D[0-9]*.json'):
+            f=dst/'decisions'/source.name;f.parent.mkdir(exist_ok=True);f.write_bytes(source.read_bytes())
+            ref=json.loads(source.read_text())['ratification']['reference'];f=dst/ref;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/ref).read_bytes())
         mod.run(dst,True)
         return dst
 
@@ -34,6 +37,15 @@ class RegistryIntegrity(unittest.TestCase):
         self.assertIn('premise:C01',{n['key'] for n in g['nodes']})
         self.assertIn('construct:C001',{n['key'] for n in g['nodes']})
 
+    def test_sources_obligations_decisions_are_typed(self):
+        p=self.fixture();_,g=mod.build(p)
+        self.assertEqual(g['counts']['obligation'],9)
+        self.assertTrue(any(e['source']=='result:R129' and e['target']=='obligation:N02' and e['relation']=='updates_not_closes' for e in g['edges']))
+        source=next(n for n in g['nodes'] if n['kind']=='source')
+        self.assertEqual(source['git_blob_sha'],mod.git_blob_sha((p/source['path']).read_bytes()))
+        f=p/'decisions/D001.json';d=json.loads(f.read_text());d['domain']='science';f.write_text(json.dumps(d))
+        with self.assertRaisesRegex(ValueError,'cannot ratify science'):mod.build(p)
+
     def test_duplicate_id_rejected(self):
         p=self.fixture();self.change_main(p,lambda d:d['results'].append(copy.deepcopy(d['results'][0])))
         with self.assertRaisesRegex(ValueError,'Duplicate'):mod.build(p)
@@ -44,7 +56,7 @@ class RegistryIntegrity(unittest.TestCase):
 
     def test_missing_premise_rejected(self):
         p=self.fixture();f=p/mod.PREMISES
-        f.write_text('\n'.join(l for l in f.read_text().splitlines() if not l.startswith('| A01 |')))
+        f.write_text('\n'.join(l for l in f.read_text().splitlines() if '></a>A01 |' not in l and not l.startswith('| A01 |')))
         with self.assertRaisesRegex(ValueError,'66'):mod.build(p)
 
     def test_missing_managed_source_rejected(self):
