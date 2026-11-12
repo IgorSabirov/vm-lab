@@ -7,6 +7,7 @@ This is not an SBOM of archived experiments, system libraries or external C++.
 import argparse
 import hashlib
 import json
+import uuid
 from pathlib import Path
 from urllib.parse import quote
 from packaging.requirements import Requirement
@@ -34,7 +35,9 @@ def generate(inspect):
             else:
                 missing.append({'package':name,'requirement':text})
         dependencies.append({'ref':ref,'dependsOn':sorted(set(dep))})
-    return {'bomFormat':'CycloneDX','specVersion':'1.6','version':1,
+    serial = uuid.uuid5(uuid.NAMESPACE_URL, json.dumps({'components':components,'dependencies':dependencies},sort_keys=True))
+    return {'$schema':'https://cyclonedx.org/schema/bom-1.6.schema.json',
+            'bomFormat':'CycloneDX','specVersion':'1.6','version':1,'serialNumber':serial.urn,
             'metadata':{'properties':[{'name':'vm-lab:scope','value':'pip inspect environment; default extras only; excludes OS and external C++'}]},
             'components':components,'dependencies':dependencies}, missing
 

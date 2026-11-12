@@ -37,14 +37,22 @@ jobs:
         with:
           subject-path: external-evidence/compendium.zip
       - name: Attest dependency inventory
+        id: sbom
         uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
         with:
           subject-path: external-evidence/compendium.zip
           sbom-path: external-evidence/sbom.cdx.json
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      - name: Preserve available attestation receipts
+        if: always()
+        env:
+          PROVENANCE: ${{ steps.attest.outputs.bundle-path }}
+          SBOM_ATTESTATION: ${{ steps.sbom.outputs.bundle-path }}
+        run: |
+          if [ -f "$PROVENANCE" ]; then cp "$PROVENANCE" external-evidence/provenance-attestation.json; fi
+          if [ -f "$SBOM_ATTESTATION" ]; then cp "$SBOM_ATTESTATION" external-evidence/sbom-attestation.json; fi
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: external-compendium-${{ github.sha }}
-          path: |
-            external-evidence/
-            ${{ steps.attest.outputs.bundle-path }}
+          path: external-evidence/
           retention-days: 90
