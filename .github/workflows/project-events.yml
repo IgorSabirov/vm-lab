@@ -1,0 +1,12 @@
+name: Project events
+on:
+  pull_request:
+    types: [opened, reopened, closed, edited, ready_for_review, converted_to_draft, synchronize, labeled, unlabeled]
+permissions:
+  contents: read
+jobs:
+  notify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - run: echo 'Project metadata refresh requested; no checkout, secrets, or PR code execution.'
