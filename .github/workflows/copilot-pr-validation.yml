@@ -1,0 +1,57 @@
+name: Validate Copilot proposal
+on:
+  workflow_run:
+    workflows: ['Copilot repository operator']
+    types: [completed]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  locate:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    outputs:
+      sha: ${{ steps.locate.outputs.sha }}
+      pr: ${{ steps.locate.outputs.pr }}
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        id: locate
+        with:
+          script: |
+            const {owner,repo}=context.repo;
+            const link=context.payload.workflow_run.html_url;
+            const prs=await github.paginate(github.rest.pulls.list,{owner,repo,state:'open',per_page:100});
+            const found=prs.filter(p=>p.user.login==='github-actions[bot]' && p.head.repo?.full_name===`${owner}/${repo}` && p.title.startsWith('[Copilot] ') && (p.body||'').includes(link));
+            if(found.length>1)throw Error('Ambiguous Copilot output');
+            if(found.length===1){
+              const p=found[0];
+              if(!/^[a-f0-9]{40}$/.test(p.head.sha))throw Error('Invalid source SHA');
+              core.setOutput('sha',p.head.sha);core.setOutput('pr',String(p.number));
+            }
+      - name: No proposal is not a scientific result
+        if: steps.locate.outputs.sha == ''
+        run: echo 'No uniquely attributable PR; no validation of a proposal is claimed.' >> "$GITHUB_STEP_SUMMARY"
+  check:
+    needs: locate
+    if: needs.locate.outputs.sha != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ needs.locate.outputs.sha }}
+          persist-credentials: false
+      - run: python -m pip install --disable-pip-version-check PyYAML==6.0.3 packaging==25.0
+      - name: Check actual proposed SHA without secrets
+        run: python tools/ci_suite.py integrity
+      - name: Record exact validation target
+        if: always()
+        env:
+          TARGET_SHA: ${{ needs.locate.outputs.sha }}
+          PR_NUMBER: ${{ needs.locate.outputs.pr }}
+          CHECK_STATUS: ${{ job.status }}
+        run: |
+          printf 'PR #%s at `%s`: %s. Technical validation only; no merge or scientific acceptance.\n' "$PR_NUMBER" "$TARGET_SHA" "$CHECK_STATUS" >> "$GITHUB_STEP_SUMMARY"
