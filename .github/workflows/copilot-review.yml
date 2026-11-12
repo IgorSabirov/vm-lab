@@ -78,9 +78,11 @@ jobs:
           retention-days: 30
   recover:
     name: Recover saved analysis (no model call)
-    if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-review-recover six-models-v1 43247986127'
+    if: github.actor == github.repository_owner && github.event.issue.number == 30 && (github.event.comment.body == '/vm-lab-review-recover six-models-v1 43247986127' || github.event.comment.body == '/vm-lab-review-recover six-models-v2 43296750512')
     runs-on: ubuntu-24.04
     timeout-minutes: 3
+    env:
+      RECOVERY_TASK: ${{ github.event.comment.body == '/vm-lab-review-recover six-models-v2 43296750512' && 'six-models-v2' || 'six-models-v1' }}
     permissions:
       contents: read
       actions: read
@@ -94,14 +96,14 @@ jobs:
       - name: Download the original saved response
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          artifact-ids: '13957606835'
-          run-id: '43247986127'
+          artifact-ids: ${{ env.RECOVERY_TASK == 'six-models-v2' && '13979631976' || '13957606835' }}
+          run-id: ${{ env.RECOVERY_TASK == 'six-models-v2' && '43296750512' || '43247986127' }}
           github-token: ${{ github.token }}
           path: review-output
           merge-multiple: true
       - name: Verify digests and recover without a model call
         id: recover
-        run: python infra/copilot_review.py recover
+        run: python infra/copilot_review.py recover --task "$RECOVERY_TASK"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: six-model-review

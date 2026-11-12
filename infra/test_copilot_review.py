@@ -90,6 +90,69 @@ class SixModelReviewTests(unittest.TestCase):
                 (output / 'FAILURE.json').write_text('{}')
                 with self.assertRaisesRegex(ValueError, 'digest mismatch'): review.recover(output)
 
+    def test_v2_declared_check_paths_are_uninspected_pointers(self):
+        c = review.build_context(task='six-models-v2')
+        paths = ['analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json',
+                 'analysis/ANTHROPIC_BH_20261112/CHECKS.json']
+        ledger = review.evidence_ledger(c)
+        d = self.valid()
+        for i, path in enumerate(paths):
+            self.assertEqual(ledger[path], 'REGISTRY_POINTER_ONLY')
+            d['models'][i]['evidence'] = [path]
+        self.assertEqual(review.validate_analysis(d, c), d)
+        rendered = review.markdown(d, {**c, 'executed_checks': []})
+        self.assertEqual(rendered.count('текст модели не передавался'), 2)
+        # Neither arbitrary prose nor unsafe typed values broaden the ledger.
+        c['context_contract']['cards'].append({'source': review.RESULTS, 'data': {
+            'description': 'analysis/NOT_SUPPLIED.json',
+            'managed_sources': ['/etc/passwd', '../secret', {'path': 'analysis/FAKE.json'}]}})
+        ledger = review.evidence_ledger(c)
+        for path in ('analysis/NOT_SUPPLIED.json', '/etc/passwd', '../secret', 'analysis/FAKE.json'):
+            self.assertNotIn(path, ledger)
+        c['files'].append({'path': paths[0], 'partial': False})
+        self.assertEqual(review.evidence_ledger(c)[paths[0]], 'SUPPLIED_CONTENT')
+
+    def test_invalid_response_is_preserved_in_full_and_recovery_keeps_original_failure(self):
+        response = 'invalid JSON ' + ('я' * 40000)
+        receipt = {'returncode': 0, 'timed_out': False, 'elapsed_seconds': 1}
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            with self.assertRaises(SystemExit):
+                review.finish(output, b'{}', self.context, receipt.copy(), response)
+            original = (output / 'FAILURE.json').read_bytes()
+            failure = json.loads(original)
+            self.assertEqual(failure['stdout'], response)
+            self.assertEqual(failure['response_bytes'], len(response.encode()))
+            self.assertEqual(failure['response_sha256'], review.sha(response.encode()))
+            self.assertEqual((output / 'RAW_RESPONSE.txt').read_text(), response)
+            with self.assertRaises(SystemExit):
+                review.finish(output, b'{}', self.context, {**receipt, 'recovery': {}}, response)
+            self.assertEqual((output / 'FAILURE.json').read_bytes(), original)
+            self.assertTrue((output / 'RECOVERY_FAILURE.json').exists())
+
+    def test_v2_recovery_selects_manifest_and_checks_task_identity(self):
+        c = {**review.build_context(task='six-models-v2'), 'executed_checks': []}
+        d = self.valid()
+        d['models'][0]['evidence'] = ['analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json']
+        f = {'run_id': '456', 'source_sha': c['source_sha'], 'returncode': 0,
+             'timed_out': False, 'elapsed_seconds': 1, 'error': 'old citation check',
+             'stdout': json.dumps(d)}
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            review.dump(output / 'CONTEXT.json', c); review.dump(output / 'FAILURE.json', f)
+            m = {'run_id': 456, 'source_sha': c['source_sha'],
+                 'context_sha256': review.sha((output / 'CONTEXT.json').read_bytes()),
+                 'failure_sha256': review.sha((output / 'FAILURE.json').read_bytes())}
+            with patch.object(review, 'read', return_value=json.dumps(m).encode()) as read, patch.object(
+                    review, 'invoke_native', side_effect=AssertionError('No repeated inference')):
+                review.recover(output, 'six-models-v2')
+                read.assert_called_once_with('infra/copilot/tasks/six-models-v2-recovery.json')
+                proposal = json.loads((output / 'native-proposal.json').read_text())
+                self.assertEqual(proposal['analysis'], d)
+                self.assertEqual(proposal['receipt']['recovery']['new_model_invocations'], 0)
+                with self.assertRaisesRegex(ValueError, 'identity'):
+                    review.recover(output, 'six-models-v1')
+
 
 if __name__ == '__main__':
     unittest.main()
