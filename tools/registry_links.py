@@ -15,8 +15,30 @@ from pathlib import Path
 MAIN = "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json"
 MAIN_MD = MAIN.replace(".json", ".md")
 QUESTIONS = "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json"
+QUESTIONS_MD = QUESTIONS.replace('.json', '.md')
 PREMISES = "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md"
 OUT = "analysis/REGISTRY_LINKS"
+REVIEW_RELATIONS = {
+    'scope_boundary', 'operational_requirement', 'clock_comparison',
+    'joint_model_requirement', 'conditional_open_system_constraint',
+    'classification_only', 'time_scale_analogy', 'premise_context_not_evidence',
+}
+
+
+def strip_block(text, key):
+    return re.sub(r'\n*<!-- generated:'+re.escape(key)+r' -->.*?<!-- /generated:'+re.escape(key)+r' -->\n*', '\n', text, flags=re.S).rstrip()+'\n'
+
+
+def anchor(key):
+    return key.lower().replace(':', '-')
+
+
+def neighborhood(graph, key):
+    node = next((n for n in graph['nodes'] if n['key'] == key), None)
+    if node is None:
+        raise ValueError(f'Unknown typed node {key}')
+    return {'node': node, 'incoming': [e for e in graph['edges'] if e['target'] == key],
+            'outgoing': [e for e in graph['edges'] if e['source'] == key]}
 
 
 def unique(items, label):
@@ -63,15 +85,19 @@ def replace_block(text, key, body):
 
 def build(root):
     raw = {p: (root / p).read_text() for p in (MAIN, QUESTIONS, PREMISES)}
+    # Generated premise navigation is not a fourth semantic source (or a hash cycle).
+    raw[PREMISES] = strip_block(raw[PREMISES], 'external-review-links')
     main, questions = json.loads(raw[MAIN]), json.loads(raw[QUESTIONS])
     groups = {"result": unique(main['results'], MAIN), "construct": unique(main['constructs'], MAIN),
               "link": unique(main['open_links'], MAIN), "question": unique(questions['questions'], QUESTIONS)}
     premise_rows = parse_premises(raw[PREMISES])
     groups['premise'] = unique(premise_rows, PREMISES)
+    groups['review'] = unique(main.get('external_reviews', []), 'external reviews')
     nodes = []
     for kind, group in groups.items():
         for ident, item in group.items():
             path = PREMISES if kind == 'premise' else QUESTIONS.replace('.json','.md') if kind == 'question' else MAIN_MD
+            if kind == 'review': path = item['report']
             nodes.append({"key": f"{kind}:{ident}", "id": ident, "kind": kind, "title": item.get('title',item.get('current_statement','')),
                           "status": item.get('status'), "path": path})
     edges = set()
@@ -102,14 +128,60 @@ def build(root):
     for r in groups['result'].values():
         for source in r.get('managed_sources',[]):
             if not (root/source).is_file(): raise ValueError(f"Missing managed source {source}")
-    graph = {"schema":"vm-lab-registry-links-v1", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
+    review_details = {}
+    exclusions = []
+    evidence_hashes = {}
+    def validate_target(target):
+        parts = target.split(':')
+        if len(parts) != 2 or parts[0] not in groups or parts[1] not in groups[parts[0]]:
+            raise ValueError(f'Dangling typed review reference: {target}')
+        if parts[0] == 'review': raise ValueError('Review targets must be existing registry entries')
+        return parts
+    for ident, review in groups['review'].items():
+        if review.get('scientific_status_promoted') is not False:
+            raise ValueError('External review must not promote scientific status')
+        for source in review.get('managed_sources', []):
+            if not (root/source).is_file(): raise ValueError(f'Missing managed review source {source}')
+            evidence_hashes[source] = hashlib.sha256((root/source).read_bytes()).hexdigest()
+        if review['report'] not in evidence_hashes:
+            raise ValueError('Review report must be a managed source')
+        targets = set()
+        for item in review['links']:
+            kind, target = validate_target(item['target'])
+            if item['target'] in targets: raise ValueError('Duplicate review target')
+            targets.add(item['target'])
+            if item['relation'] not in REVIEW_RELATIONS:
+                raise ValueError(f"Unknown review relation {item['relation']}")
+            if not item.get('rationale'): raise ValueError('Review link requires rationale')
+            source, sep, fragment = item['evidence'].partition('#')
+            if source not in evidence_hashes or not sep or not fragment or f'id="{fragment}"' not in (root/source).read_text():
+                raise ValueError(f"Missing review evidence anchor {item['evidence']}")
+            add('review',ident,kind,target,item['relation'])
+            review_details[('review:'+ident,item['target'],item['relation'])] = {k:item[k] for k in ('rationale','evidence','claim')}
+        excluded_targets = set()
+        for item in review.get('excluded_links', []):
+            validate_target(item['target'])
+            if item['target'] in targets or item['target'] in excluded_targets:
+                raise ValueError('Contradictory or duplicate excluded review target')
+            excluded_targets.add(item['target'])
+            if not item.get('rationale'): raise ValueError('Excluded link requires rationale')
+            exclusions.append({'source':'review:'+ident, **item})
+    for ident, item in groups['question'].items():
+        ref = item.get('external_review_reference')
+        if ref:
+            rev = groups['review'].get(ref['review_id'])
+            if not rev or ref['report'] != rev['report'] or not any(x['target']=='question:'+ident for x in rev['links']):
+                raise ValueError(f'Dangling question review reference {ident}')
+    graph = {"schema":"vm-lab-registry-links-v2", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
+             "managed_review_sources": evidence_hashes,
              "counts": {k:len(v) for k,v in groups.items()},
              "semantics":"Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
              "nodes": sorted(nodes,key=lambda x:x['key']),
-             "edges": [{"source":a,"target":b,"relation":r} for a,b,r in sorted(edges)]}
+             "edges": [{"source":a,"target":b,"relation":r, **review_details.get((a,b,r),{})} for a,b,r in sorted(edges)],
+             "excluded_review_links": exclusions}
     bykey = {x['key']: x for x in nodes}
     def mdlink(key):
-        n=bykey[key];return f"[{n['id']}](../../{n['path']})"
+        n=bykey[key];return f"[{n['id']}](#{anchor(key)})"
     lines = ["# Связи реестров", "", "Сгенерировано `python tools/registry_links.py --write`. Научные статусы берутся из исходных карточек; связи их не повышают.", "",
              "[Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)", "",
              "Число записей: " + ", ".join(f"{k}={v}" for k,v in graph['counts'].items()) + ".", "",
@@ -121,6 +193,7 @@ def build(root):
         p['direct_result_ids']=[bykey[x]['id'] for x in direct]
         p['navigation_construct_ids']=[bykey[x]['id'] for x in cs]
         p['navigation_result_ids']=[bykey[x]['id'] for x in nav]
+        p['context_review_ids']=sorted(bykey[a]['id'] for a,b,r in edges if b==pk and a.startswith('review:'))
         lines.append(f"| {p['id']} | {', '.join(mdlink(x) for x in direct) or 'Нет новой прямой аттестации'} | {', '.join(mdlink(x) for x in cs)}; {', '.join(mdlink(x) for x in nav)} |")
     lines += ["", "## Результат → предпосылки", "", "| Результат | Прямые связи |", "|---|---|"]
     for rid in groups['result']:
@@ -128,6 +201,21 @@ def build(root):
         if ps: lines.append(f"| {mdlink('result:'+rid)} | {', '.join(mdlink(x) for x in ps)} |")
     lines += ["", "Полный граф с родителями, конструкциями и открытыми вопросами: [INDEX.json](INDEX.json).", "",
               "`premise:C01` не равно `construct:C001`; литературные L01–L71 внутри текста не являются открытыми L-связями проекта."]
+    lines += ['', '## Карточки и обратные связи', '', 'Каждая связь хранится один раз. Входящие и исходящие переходы ниже вычислены из того же графа. Обратный переход — навигация, а не обратное доказательство.']
+    for n in graph['nodes']:
+        key = n['key']; adjacent = neighborhood(graph,key)
+        lines += ['', f'<a id="{anchor(key)}"></a>', '', f"### {key}", '',
+                  f"{n['title']} — [исходная карточка](../../{n['path']}).", '']
+        for label,direction,other in [('Входящие','incoming','source'),('Исходящие','outgoing','target')]:
+            entries=adjacent[direction]
+            lines.append(f"**{label}:** "+('; '.join(f"{mdlink(e[other])} `{e['relation']}`" for e in entries) or 'нет')+'.')
+        if n['kind']=='review':
+            lines += ['', '| Связь | Смысл и граница | Основание |', '|---|---|---|']
+            for e in adjacent['outgoing']:
+                lines.append(f"| {mdlink(e['target'])} `{e['relation']}` | {e['rationale']} | [разбор](../../{e['evidence']}) |")
+            lines += ['', '**Не включены в положительные связи:**']
+            for e in exclusions:
+                if e['source']==key:lines.append(f"- {mdlink(e['target'])}: `{e['decision']}` — {e['rationale']}")
     premise_json={"schema":"premises-current-mirror-v1","source":PREMISES,"main_registry":MAIN,
                   "note":"Generated exact-text mirror; preserves 66 historical IDs. The nine N-debts remain in source Markdown. Navigation is not new proof.","entries":premise_rows}
     outputs={OUT+'/INDEX.json':json.dumps(graph,ensure_ascii=False,indent=2)+'\n',
@@ -137,6 +225,32 @@ def build(root):
     for r in groups['result'].values():
         if r.get('managed_card'):
             md=replace_block(md,r['id'],render_card(r))
+    # Put review backlinks at the point of entry, including legacy cards.
+    def review_table(kinds):
+        rows=['## Внешние разборы: контекст и границы', '', 'Ссылки не меняют научный статус карточек. [Полная карта](../REGISTRY_LINKS/INDEX.md).', '',
+              '| Карточка | Разбор | Тип связи | Смысл |', '|---|---|---|---|']
+        for e in graph['edges']:
+            if e['source'].startswith('review:') and e['target'].split(':')[0] in kinds:
+                rows.append(f"| [{e['target']}](../REGISTRY_LINKS/INDEX.md#{anchor(e['target'])}) | [{e['source'].split(':')[1]}](../../{bykey[e['source']]['path']}) | `{e['relation']}` | {e['rationale']} |")
+        return '\n'.join(rows)
+    def card_backlinks(text, kinds):
+        text=re.sub(r'\n*<!-- generated:review-card-[^>]+ -->.*?<!-- /generated:review-card-[^>]+ -->\n*','\n\n',text,flags=re.S)
+        for n in graph['nodes']:
+            if n['kind'] not in kinds: continue
+            es=[e for e in graph['edges'] if e['source'].startswith('review:') and e['target']==n['key']]
+            if not es: continue
+            pattern=r'(^#{2,4}\s+'+re.escape(n['id'])+r'(?:[. —:]|$)[^\n]*\n)'
+            body='\n\n'.join(f"**Внешний разбор:** [{e['source'].split(':')[1]}](../../{e['evidence']}); `{e['relation']}`. {e['rationale']} [Все связи карточки](../REGISTRY_LINKS/INDEX.md#{anchor(n['key'])})." for e in es)
+            block=replace_block('', 'review-card-'+anchor(n['key']), body)
+            text,count=re.subn(pattern,lambda m:m[1]+'\n'+block+'\n',text,count=1,flags=re.M)
+            if count!=1:raise ValueError(f"Missing review target Markdown entry {n['id']}")
+        return text
+    md=card_backlinks(md,{'result','construct'})
+    md=replace_block(md,'external-review-links',review_table({'result','construct','link'}))
+    qmd=card_backlinks((root/QUESTIONS_MD).read_text(),{'question'})
+    qmd=replace_block(qmd,'external-review-links',review_table({'question'}))
+    outputs[QUESTIONS_MD]=qmd
+    outputs[PREMISES]=replace_block(raw[PREMISES],'external-review-links',review_table({'premise'}))
     for kind in ('result','construct'):
         for ident in groups[kind]:
             if not re.search(r'^#{2,4}\s+'+re.escape(ident)+r'(?:[. —:]|$)',md,re.M):
@@ -166,10 +280,13 @@ def main():
     p.add_argument('--write',action='store_true')
     p.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1])
     p.add_argument('--summary',type=Path)
+    p.add_argument('--node',help='Show typed incoming/outgoing references, e.g. question:U006')
     a=p.parse_args()
     stale,graph=run(a.root,a.write)
-    summary=json.dumps({'status':'UPDATED' if a.write and stale else 'FAIL' if stale else 'PASS',
-                        'counts':graph['counts'],'edges':len(graph['edges']),'stale':stale},ensure_ascii=False)
+    payload={'status':'UPDATED' if a.write and stale else 'FAIL' if stale else 'PASS',
+             'counts':graph['counts'],'edges':len(graph['edges']),'stale':stale}
+    if a.node: payload['query']=neighborhood(graph,a.node)
+    summary=json.dumps(payload,ensure_ascii=False)
     print(summary)
     if a.summary:
         with a.summary.open('a') as f:f.write('### Registry consistency\n\n```json\n'+summary+'\n```\n')

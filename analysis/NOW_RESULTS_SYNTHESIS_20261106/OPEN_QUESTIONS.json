@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 4,
-  "date": "2026-11-11",
+  "version": 5,
+  "date": "2026-11-12",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
   "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
-  "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы.",
+  "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы. 12.11: CCC_TL_20261112 добавляет граничную ссылку к U006; статусы и условия закрытия сохранены.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
   "workflow": [
     "Сразу записывать вопрос и точное место возникновения: результат/поле/вмешательство, коммит и источник; рядом с исходным наблюдением ставить ссылку на U-ID.",
@@ -248,6 +248,13 @@
         "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
         "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
         "status_changed": false
+      },
+      "external_review_reference": {
+        "review_id": "CCC_TL_20261112",
+        "report": "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+        "relation": "scope_boundary",
+        "status_changed": false,
+        "note": "Геометрия CCC/CBST задана; вопрос происхождения причинной/метрической структуры этим не решён."
       }
     },
     {
@@ -1469,7 +1476,7 @@
       "boot/retire и горизонт"
     ]
   },
-  "last_evidence_review_commit": "22c08c86853e8b7ecb7b02cb888a00161d86185f",
+  "last_evidence_review_commit": "e7f13978620918556f2254a7184b4c1dee1e7b53",
   "origin_synthesis_20261111": {
     "id": "ORIGIN_SYNTHESIS_20261111_v1",
     "date": "2026-11-11",

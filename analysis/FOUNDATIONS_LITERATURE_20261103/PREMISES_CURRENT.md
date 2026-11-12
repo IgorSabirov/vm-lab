@@ -1,6 +1,6 @@
 # Актуальный реестр: что выведено и что остаётся входом
 
-Исходный срез 3 ноября 2026; адресно обновлено 11 ноября 2026. Все 66 ID сохранены.
+Исходный срез 3 ноября 2026; адресно обновлено 12 ноября 2026. Все 66 ID сохранены.
 Дополнено во втором обзоре: FOUNDATIONS_DEEPENING_20261103.
 Это 66 вопросов/условий, **не 66 независимых аксиом**. Историческая версия:
 [PREMISES.md](../PW_PREMISES_AUDIT_20261103/PREMISES.md).
@@ -157,3 +157,24 @@
 [Основной реестр R/C/L](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md), [вопросы U](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md), [автоматически собираемая карта](../REGISTRY_LINKS/INDEX.md), [машинное зеркало этих 66 карточек](PREMISES_CURRENT.json).
 
 Сопоставлены все 66 ID через уже существующий legacy_crosswalk основного реестра. Историческая навигация через конструкции не считается новым доказательством каждой предпосылки. Прямое новое свидетельство R129 добавлено адресно к 21 карточке; остальные 45 сохраняют свой научный текст. Девять N-долгов сохранены. Исторические литературные L01–L71 не смешиваются с открытыми L01–L10 проекта.
+
+<!-- generated:external-review-links -->
+## Внешние разборы: контекст и границы
+
+Ссылки не меняют научный статус карточек. [Полная карта](../REGISTRY_LINKS/INDEX.md).
+
+| Карточка | Разбор | Тип связи | Смысл |
+|---|---|---|---|
+| [premise:B01](../REGISTRY_LINKS/INDEX.md#premise-b01) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого. |
+| [premise:B06](../REGISTRY_LINKS/INDEX.md#premise-b06) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Масштаб/параметр времени и наблюдаемая физическая динамика различаются; общий пересчёт единиц не выводит часы или стрелу. |
+| [premise:C03](../REGISTRY_LINKS/INDEX.md#premise-c03) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание. |
+| [premise:C04](../REGISTRY_LINKS/INDEX.md#premise-c04) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание. |
+| [premise:C05](../REGISTRY_LINKS/INDEX.md#premise-c05) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Масштаб/параметр времени и наблюдаемая физическая динамика различаются; общий пересчёт единиц не выводит часы или стрелу. |
+| [premise:D03](../REGISTRY_LINKS/INDEX.md#premise-d03) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание. |
+| [premise:F02](../REGISTRY_LINKS/INDEX.md#premise-f02) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Исходные соседство, порядок и геометрический фон не выведены динамикой поля на этом фоне. |
+| [premise:F07](../REGISTRY_LINKS/INDEX.md#premise-f07) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Реконструкцию проверяют на объявленных наблюдаемых и вмешательствах, включая общий закон двух соседних световых пакетов. |
+| [premise:F11](../REGISTRY_LINKS/INDEX.md#premise-f11) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого. |
+| [premise:G03](../REGISTRY_LINKS/INDEX.md#premise-g03) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого. |
+| [premise:G07](../REGISTRY_LINKS/INDEX.md#premise-g07) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Открытый код доступен, но полное воспроизведение не выполнено; дефекты путей ограничивают запуск, а не опровергают физику. |
+| [premise:G08](../REGISTRY_LINKS/INDEX.md#premise-g08) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Открытый код доступен, но полное воспроизведение не выполнено; дефекты путей ограничивают запуск, а не опровергают физику. |
+<!-- /generated:external-review-links -->

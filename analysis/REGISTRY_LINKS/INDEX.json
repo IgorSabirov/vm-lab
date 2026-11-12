@@ -1,16 +1,24 @@
 {
-  "schema": "vm-lab-registry-links-v1",
+  "schema": "vm-lab-registry-links-v2",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "ba9685576f34db5e7e2fd228caffbf569f9471974fbeac1ec44106db81a684db",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5dfbf9dee7f83629760db0370ee527e52638d1412408e88c3436a2dc016dbb00",
-    "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "38d04a612f9d60a1314d96f4f69715170c4ca5d3ae7a81957d90249d5575e84e"
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "4fc1354eb665d5fbe124903da80dd214f396328982c1205a24a0f91b988f4a5e",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
+    "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "4182fde4bf37d7719510d8d4c8ef2d842465a5c7fcf6e2c23d9d721484419bc1"
+  },
+  "managed_review_sources": {
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md": "924e5b774835578e4f677441f4a1579c3f94c9a9e9e207e1cdbfbcad9f16bb9a",
+    "analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt": "f0899f9cfdc46c84938a9165357902c40a102fae805f57c4ac96e1181cc4fcd7",
+    "analysis/CCC_TL_REVIEW_20261112/SOURCES.json": "f625f56df40eb956dc2e10ba239a78053040c741c33204253771256c341bde77",
+    "analysis/CCC_TL_REVIEW_20261112/verify_algebra.py": "c9b442f4626cad64fb20cb94d6b40e1613f27034ff7966bd0c437440fa2e53fc",
+    "analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json": "a3e827d7660c3883356d70ae55079fe352808d39fea3ac5d58630871bdc547d0"
   },
   "counts": {
     "result": 129,
     "construct": 42,
     "link": 10,
     "question": 12,
-    "premise": 66
+    "premise": 66,
+    "review": 1
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -2085,6 +2093,14 @@
       "title": "Контактная организация: доминирование без конкуренции и преимущество при ограниченной ёмкости",
       "status": "АНАЛИТИКА И НЕЗАВИСИМЫЙ РАСЧЁТ / РАЗВЕДОЧНЫЙ УСЛОВНЫЙ РЕЗУЛЬТАТ",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md"
+    },
+    {
+      "key": "review:CCC_TL_20261112",
+      "id": "CCC_TL_20261112",
+      "kind": "review",
+      "title": "CCC+TL/CBST: геометрия, часы и границы общего закона",
+      "status": "EXTERNAL_REVIEW_WITH_CONDITIONAL_ANALYSIS_NOT_PHYSICAL_VALIDATION",
+      "path": "analysis/CCC_TL_REVIEW_20261112/REPORT.md"
     }
   ],
   "edges": [
@@ -5587,6 +5603,290 @@
       "source": "result:R129",
       "target": "question:U010",
       "relation": "informs_not_closes"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "construct:C001",
+      "relation": "scope_boundary",
+      "rationale": "Действие, пространство состояний, потенциал и начальные условия остаются входами; это не происхождение основания из абсолютного ничего.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#origin",
+      "claim": "origin"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "construct:C024",
+      "relation": "clock_comparison",
+      "rationale": "Сопоставление разных условных конструкций часов. Координатная замена и скалярное поле не тождественны PW-условлению и не строят внутреннего читателя.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "construct:C037",
+      "relation": "operational_requirement",
+      "rationale": "Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "construct:C042",
+      "relation": "operational_requirement",
+      "rationale": "Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "link:L09",
+      "relation": "scope_boundary",
+      "rationale": "CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry",
+      "claim": "geometry"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "link:L10",
+      "relation": "joint_model_requirement",
+      "rationale": "Раздельные удачные описания требуют одного закона для фона, сигналов, часов и возмущений; совместимость не следует из общей терминологии.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#joint-law",
+      "claim": "joint-law"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:B01",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#open-system",
+      "claim": "open-system"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:B06",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Масштаб/параметр времени и наблюдаемая физическая динамика различаются; общий пересчёт единиц не выводит часы или стрелу.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling",
+      "claim": "rescaling"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:C03",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:C04",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:C05",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Масштаб/параметр времени и наблюдаемая физическая динамика различаются; общий пересчёт единиц не выводит часы или стрелу.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling",
+      "claim": "rescaling"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:D03",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:F02",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Исходные соседство, порядок и геометрический фон не выведены динамикой поля на этом фоне.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry",
+      "claim": "geometry"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:F07",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Реконструкцию проверяют на объявленных наблюдаемых и вмешательствах, включая общий закон двух соседних световых пакетов.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#joint-law",
+      "claim": "joint-law"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:F11",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#open-system",
+      "claim": "open-system"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:G03",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#open-system",
+      "claim": "open-system"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:G07",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Открытый код доступен, но полное воспроизведение не выполнено; дефекты путей ограничивают запуск, а не опровергают физику.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#reproducibility",
+      "claim": "reproducibility"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "premise:G08",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Открытый код доступен, но полное воспроизведение не выполнено; дефекты путей ограничивают запуск, а не опровергают физику.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#reproducibility",
+      "claim": "reproducibility"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "question:U006",
+      "relation": "scope_boundary",
+      "rationale": "CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry",
+      "claim": "geometry"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R001",
+      "relation": "scope_boundary",
+      "rationale": "Действие, пространство состояний, потенциал и начальные условия остаются входами; это не происхождение основания из абсолютного ничего.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#origin",
+      "claim": "origin"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R047",
+      "relation": "clock_comparison",
+      "rationale": "Сопоставление разных условных конструкций часов. Координатная замена и скалярное поле не тождественны PW-условлению и не строят внутреннего читателя.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R076",
+      "relation": "classification_only",
+      "rationale": "Добавление феноменологических поправок в статью не является физическим корректором типа 2 в смысле проекта.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#classification",
+      "claim": "classification"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R079",
+      "relation": "conditional_open_system_constraint",
+      "rationale": "Применимо только при явном редуцированном диссипативном канале с объявленной подготовкой окружения; космологическое красное смещение само не требует материального резервуара.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#open-system",
+      "claim": "open-system"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R084",
+      "relation": "operational_requirement",
+      "rationale": "Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R085",
+      "relation": "scope_boundary",
+      "rationale": "CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry",
+      "claim": "geometry"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R090",
+      "relation": "joint_model_requirement",
+      "rationale": "Раздельные удачные описания требуют одного закона для фона, сигналов, часов и возмущений; совместимость не следует из общей терминологии.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#joint-law",
+      "claim": "joint-law"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R095",
+      "relation": "clock_comparison",
+      "rationale": "Сопоставление разных условных конструкций часов. Координатная замена и скалярное поле не тождественны PW-условлению и не строят внутреннего читателя.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R100",
+      "relation": "joint_model_requirement",
+      "rationale": "Раздельные удачные описания требуют одного закона для фона, сигналов, часов и возмущений; совместимость не следует из общей терминологии.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#joint-law",
+      "claim": "joint-law"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R123",
+      "relation": "operational_requirement",
+      "rationale": "Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks",
+      "claim": "clocks"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R129",
+      "relation": "time_scale_analogy",
+      "rationale": "Общий постоянный множитель всех интенсивностей обеих рук меняет шкалу времени; ёмкость меняет разрешённые переходы. Это формальная аналогия, не космологическое свидетельство.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling",
+      "claim": "rescaling"
+    }
+  ],
+  "excluded_review_links": [
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R054",
+      "decision": "REJECTED",
+      "rationale": "Полный ранг D_FIXED не является теоремой о перепараметризации BBN."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R102",
+      "decision": "WEAK_ANALOGY_NOT_LINKED",
+      "rationale": "Два представления тримерной самоэнергии слишком общая аналогия, не прямое отношение к CCC."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "question:U010",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Нет воспроизводства аппарата и условий действия следующего носителя."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "link:L04",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Нет отдельного причинного механизма содержания записи и действия."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "link:L07",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Не установлены сохранение способности продолжения, её причинная передача и генетическая преемственность."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "question:U003",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Не выбрана и не проверена совместная мера наших геометрических носителей."
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "question:U005",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Скалярно-гравитационная обратная связь сама не реализует обратное действие нашей организации на носитель."
     }
   ]
 }

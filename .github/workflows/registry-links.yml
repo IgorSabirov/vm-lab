@@ -2,19 +2,15 @@ name: Registry links
 on:
   push:
     paths:
-      - 'analysis/NOW_RESULTS_SYNTHESIS_20261106/**'
-      - 'analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.*'
-      - 'analysis/REGISTRY_LINKS/**'
-      - 'analysis/G3_CONTACT_CAPACITY_20261111/**'
+      - 'analysis/**'
+      - 'infra/REGISTRY_MAINTENANCE.md'
       - 'tools/registry_links.py'
       - 'tests/test_registry_links.py'
       - '.github/workflows/registry-links.yml'
   pull_request:
     paths:
-      - 'analysis/NOW_RESULTS_SYNTHESIS_20261106/**'
-      - 'analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.*'
-      - 'analysis/REGISTRY_LINKS/**'
-      - 'analysis/G3_CONTACT_CAPACITY_20261111/**'
+      - 'analysis/**'
+      - 'infra/REGISTRY_MAINTENANCE.md'
       - 'tools/registry_links.py'
       - 'tests/test_registry_links.py'
       - '.github/workflows/registry-links.yml'
