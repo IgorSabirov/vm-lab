@@ -20,7 +20,8 @@ permissions:
   copilot-requests: none
 engine:
   id: copilot
-  version: "1.0.105"
+  version: "1.0.103"
+  checksums-sha256: "26cd3e4b32cde498e4961fb4d48e7b85d7859fc69af1a645a19201fdd577bdb2"
   model: auto
   harness:
     max-retries: 0
