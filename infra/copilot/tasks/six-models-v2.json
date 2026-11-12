@@ -1,0 +1,131 @@
+{
+  "schema": "vm-lab-review-task-v2",
+  "id": "six-models-v2",
+  "issue": 30,
+  "question": "Что CCC+TL, Anthropic, Serbian, IsingCauset, CDT и ADD дают для возникновения условий продолжения, какие стыки уже существуют и какой следующий тест различает содержательные альтернативы?",
+  "authorization": "Owner: Изучи мнение соседей и доработай систему. 2026-11-12; no new physical law or scientific run.",
+  "mode": "exploratory_evidence_synthesis",
+  "scientific_status_promotion": false,
+  "budget": {
+    "executor": "GitHub Actions",
+    "model_calls": 1,
+    "max_ai_credits": 30,
+    "inference_timeout_seconds": 180,
+    "preparation_timeout_seconds": 180,
+    "expected_formula_seconds_upper": 6,
+    "formula_timeout_seconds_each": 20,
+    "context_bytes_upper": 600000
+  },
+  "models": [
+    {
+      "id": "CCC_TL",
+      "role": "Clock/observable consistency; phenomenological cosmology"
+    },
+    {
+      "id": "ANTHROPIC",
+      "role": "Conditional thermodynamic phase organization"
+    },
+    {
+      "id": "SERBIAN",
+      "role": "Local metric diagnostic"
+    },
+    {
+      "id": "ISINGCAUSET",
+      "role": "Joint statistical measure of order and spins"
+    },
+    {
+      "id": "CDT",
+      "role": "Alternative geometric ensemble"
+    },
+    {
+      "id": "ADD",
+      "role": "Explicit local carrier dynamics"
+    }
+  ],
+  "result_ids": [
+    "R126",
+    "R127",
+    "R128",
+    "R129"
+  ],
+  "source_ids": [
+    "CCC_SPARC",
+    "ANTHROPIC_HP",
+    "ANTHROPIC_BOOTSTRAP",
+    "SERBIAN_CPP",
+    "ISINGCAUSET",
+    "CDT2D",
+    "HAGEDORN_QSC"
+  ],
+  "nodes": [
+    "review:CCC_TL_20261112",
+    "review:ANTHROPIC_BH_20261112",
+    "external:CCC_SPARC",
+    "external:ANTHROPIC_HP",
+    "external:ANTHROPIC_BOOTSTRAP",
+    "external:SERBIAN_CPP",
+    "external:ISINGCAUSET",
+    "external:CDT2D",
+    "external:HAGEDORN_QSC",
+    "result:R126",
+    "result:R127",
+    "result:R128",
+    "result:R129",
+    "question:U006",
+    "question:U010",
+    "link:L04",
+    "link:L07",
+    "link:L09",
+    "link:L10",
+    "premise:F02",
+    "premise:F05",
+    "obligation:N02",
+    "obligation:N06"
+  ],
+  "evidence": [
+    {
+      "path": "analysis/CCC_TL_REVIEW_20261112/REPORT.md"
+    },
+    {
+      "path": "analysis/ANTHROPIC_BH_20261112/REPORT.md"
+    },
+    {
+      "path": "analysis/SERBIAN_CPP_ADOPTION_20261108/RESULT.md",
+      "start": 1,
+      "end": 68
+    },
+    {
+      "path": "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md",
+      "start": 59,
+      "end": 86
+    }
+  ],
+  "not_run": [
+    {
+      "id": "SERBIAN",
+      "reason": "Reuse historical author-kernel and adapter checks; unchanged source, no large generator rerun."
+    },
+    {
+      "id": "ISINGCAUSET",
+      "reason": "Author ensemble execution contract is DRAFT; joint measure is not a physical NOW time law."
+    },
+    {
+      "id": "CDT",
+      "reason": "Author equilibrium ensemble not prepared; imported NOW controls are not author ensembles."
+    },
+    {
+      "id": "ADD_NOW",
+      "reason": "Reuse current R126/R127 and published full NOW evidence; no repeated 3083-task run or new transport semantics."
+    },
+    {
+      "id": "CCC_FULL",
+      "reason": "No joint cosmological fit, BBN/SPARC data run or new emission/clock law."
+    },
+    {
+      "id": "ANTHROPIC_FULL",
+      "reason": "No upstream three-loop engine or bootstrap proof replication."
+    }
+  ],
+  "completion": "One structured review covering all six models, 1..8 proposed links and 1..3 distinguishing tests; exact-source context and executed-check receipts published by Actions. No automatic acceptance of proposed links. Required full mathematical context and mechanical comparison with existing graph edges.",
+  "context_contract": "infra/copilot/context/requirements.json"
+}

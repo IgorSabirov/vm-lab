@@ -1,0 +1,148 @@
+{
+  "rows": [
+    {
+      "index": 0,
+      "source": "external:ISINGCAUSET",
+      "target": "external:CDT2D",
+      "proposed_relation": "alternative_control",
+      "classification": "NEW_ENDPOINT_PAIR",
+      "existing_edges": [],
+      "allowed_as_external_review_relation": false,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 1,
+      "source": "external:SERBIAN_CPP",
+      "target": "result:R126",
+      "proposed_relation": "candidate_interface",
+      "classification": "NEW_ENDPOINT_PAIR",
+      "existing_edges": [],
+      "allowed_as_external_review_relation": false,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 2,
+      "source": "result:R126",
+      "target": "result:R127",
+      "proposed_relation": "scope_boundary",
+      "classification": "EXISTING_ENDPOINT_PAIR_DIFFERENT_TYPE",
+      "existing_edges": [
+        {
+          "source": "result:R126",
+          "target": "result:R127",
+          "relation": "parent"
+        }
+      ],
+      "allowed_as_external_review_relation": true,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 3,
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "result:R129",
+      "proposed_relation": "alternative_control",
+      "classification": "EXISTING_ENDPOINT_PAIR_DIFFERENT_TYPE",
+      "existing_edges": [
+        {
+          "source": "review:ANTHROPIC_BH_20261112",
+          "target": "result:R129",
+          "relation": "scope_boundary",
+          "rationale": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+          "claim": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax."
+        }
+      ],
+      "allowed_as_external_review_relation": false,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 4,
+      "source": "review:CCC_TL_20261112",
+      "target": "result:R129",
+      "proposed_relation": "shared_observable",
+      "classification": "EXISTING_ENDPOINT_PAIR_DIFFERENT_TYPE",
+      "existing_edges": [
+        {
+          "source": "review:CCC_TL_20261112",
+          "target": "result:R129",
+          "relation": "time_scale_analogy",
+          "rationale": "Общий постоянный множитель всех интенсивностей обеих рук меняет шкалу времени; ёмкость меняет разрешённые переходы. Это формальная аналогия, не космологическое свидетельство.",
+          "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling",
+          "claim": "rescaling"
+        }
+      ],
+      "allowed_as_external_review_relation": false,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 5,
+      "source": "review:CCC_TL_20261112",
+      "target": "link:L09",
+      "proposed_relation": "scope_boundary",
+      "classification": "EXISTING_TYPED_EDGE",
+      "existing_edges": [
+        {
+          "source": "review:CCC_TL_20261112",
+          "target": "link:L09",
+          "relation": "scope_boundary",
+          "rationale": "CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации.",
+          "evidence": "analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry",
+          "claim": "geometry"
+        }
+      ],
+      "allowed_as_external_review_relation": true,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    },
+    {
+      "index": 6,
+      "source": "review:ANTHROPIC_BH_20261112",
+      "target": "obligation:N06",
+      "proposed_relation": "scope_boundary",
+      "classification": "EXISTING_TYPED_EDGE",
+      "existing_edges": [
+        {
+          "source": "review:ANTHROPIC_BH_20261112",
+          "target": "obligation:N06",
+          "relation": "scope_boundary",
+          "rationale": "Равновесный минимум не устанавливает замыкание условий продолжения.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin",
+          "claim": "Равновесный минимум не устанавливает замыкание условий продолжения."
+        }
+      ],
+      "allowed_as_external_review_relation": true,
+      "semantic_equivalence": "NOT_EVALUATED",
+      "automatic_import": false
+    }
+  ],
+  "counts": {
+    "EXISTING_TYPED_EDGE": 2,
+    "EXISTING_ENDPOINT_PAIR_DIFFERENT_TYPE": 3,
+    "NEW_ENDPOINT_PAIR": 2
+  },
+  "allowed_external_review_relations": [
+    "classification_only",
+    "clock_comparison",
+    "conditional_open_system_constraint",
+    "joint_model_requirement",
+    "operational_requirement",
+    "premise_context_not_evidence",
+    "scope_boundary",
+    "time_scale_analogy"
+  ],
+  "note": "Same endpoints or type do not establish equivalent claims. No new registry edges are accepted.",
+  "schema": "vm-lab-context-review-v1",
+  "repository_source_sha": "cab4fa0a2c0aafc0ce5e15c3eb1b9fbc63ed0127",
+  "reviewed_pr": 33,
+  "reviewed_sha": "c29391536265133450d94a892ab826c7fcc483b3",
+  "reviewed_analysis_sha256": "de26490fd3bea23c6e17282341571b2804243d36c2f7200eff1b19e0a9f5db9e",
+  "graph_sha256": "4886b57a005cd9a59343e41878e621aff2380dabc661f1c80a87259060d9254c",
+  "new_model_calls": 0,
+  "new_scientific_runs": 0,
+  "scientific_status_promoted": false
+}

@@ -9,6 +9,12 @@ in GitHub Actions and returns a draft PR. The owner accepts scientific conclusio
 Start from continuity/ACTIVE_STATE.json and the exact source commit. Read only the
 cards and source files needed for this task; do not repeatedly ingest the archive.
 Use tools/registry_links.py and analysis/REGISTRY_LINKS/INDEX.json for typed links.
+For U010/R128/R129 and six-model integration use the requirements resolver in
+infra/research_context.py and infra/COPILOT_RESEARCH_CONTEXT_SPEC.md. The v2 task
+includes full COMMON_MODEL, R128.1 and R129, declared dependency cards and the
+unexpanded graph frontier. A file pointer is not supplied content. Do not silently
+drop mandatory definitions to fit a prompt. Compare proposed directed edges and
+types with the existing graph; same endpoints do not establish semantic equivalence.
 The main results register, premises register and SOURCE_INDEX are authoritative;
 Projects is a work queue. Do not create duplicate scientific registries.
 

@@ -8,10 +8,13 @@ concurrency:
   group: copilot-review-six-models-v1
   cancel-in-progress: false
 jobs:
-  review:
-    if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-review six-models-v1'
+  model_analysis:
+    name: Generate model analysis (not scientific acceptance)
+    if: github.actor == github.repository_owner && github.event.issue.number == 30 && (github.event.comment.body == '/vm-lab-review six-models-v1' || github.event.comment.body == '/vm-lab-review six-models-v2')
     runs-on: ubuntu-24.04
     timeout-minutes: 9
+    env:
+      REVIEW_TASK: ${{ github.event.comment.body == '/vm-lab-review six-models-v2' && 'six-models-v2' || 'six-models-v1' }}
     permissions:
       contents: read
       pull-requests: read
@@ -27,7 +30,7 @@ jobs:
         with:
           script: |
             const prs=await github.paginate(github.rest.pulls.list,{...context.repo,state:'all',per_page:100});
-            if(prs.some(p=>p.head.ref.startsWith('copilot/review-six-models-v1-')))
+            if(prs.some(p=>p.head.ref.startsWith(`copilot/review-${process.env.REVIEW_TASK}-`)))
               throw Error('Review proposal already exists; inspect/recover it instead of repeated inference');
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:
@@ -37,7 +40,7 @@ jobs:
       - name: Prepare exact evidence and bounded existing checks
         id: prepare
         timeout-minutes: 3
-        run: python infra/copilot_review.py prepare
+        run: python infra/copilot_review.py prepare --task "$REVIEW_TASK"
       - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
         with:
           destination: ${{ runner.temp }}/gh-aw/actions
@@ -57,7 +60,24 @@ jobs:
           name: six-model-review
           path: review-output/
           retention-days: 30
+  context_only:
+    name: Build required context (no model call)
+    if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-context six-models-v2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - run: python infra/copilot_review.py context --task six-models-v2 --output context-output
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: research-context-v2
+          path: context-output/
+          retention-days: 30
   recover:
+    name: Recover saved analysis (no model call)
     if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-review-recover six-models-v1 43247986127'
     runs-on: ubuntu-24.04
     timeout-minutes: 3
@@ -88,8 +108,8 @@ jobs:
           path: review-output/
           retention-days: 30
   publish:
-    needs: [review, recover]
-    if: always() && (needs.review.result == 'success' || needs.recover.result == 'success')
+    needs: [model_analysis, recover]
+    if: always() && (needs.model_analysis.result == 'success' || needs.recover.result == 'success')
     runs-on: ubuntu-24.04
     timeout-minutes: 3
     permissions:
@@ -107,7 +127,7 @@ jobs:
       - name: Publish fixed review files without executing model output
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
         env:
-          EXPECTED_SHA: ${{ needs.review.outputs.base_sha || needs.recover.outputs.base_sha }}
+          EXPECTED_SHA: ${{ needs.model_analysis.outputs.base_sha || needs.recover.outputs.base_sha }}
         with:
           script: |
             await require('./infra/copilot_publish.cjs').main({github,context,core,mode:'review'});
