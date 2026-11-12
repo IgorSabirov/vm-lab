@@ -4,7 +4,7 @@
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "4ede139a920807fba6f84ed6c778141661c69f78d5d17dfc3ab387c027c51b40",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
-    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "a96a37c2ea62871a27c6867a1dfbec11b979a7a57cd989b937935539ca9a240d",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "dd5ae9b8d8ebe17a68a3ce0f809428bb0e216bfeff99a59225254c6de1e38783",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
     "infra/external/contracts/CDT2D.json": "8b97b48d06bb3d672a060add80cda7be4e00869a9cb346c568c1bee497aad40d",
     "infra/external/contracts/HAGEDORN_QSC.json": "7b4202e5b8c813769b7da89483afd4de6dfd5fc7ae7f7616808147faf3902fe2",
@@ -15,6 +15,7 @@
     "infra/external/contracts/SERBIAN_CPP.json": "58baccfa1a1d0d2f1f79ea13dc0490c9b6610d62ef26c8328bbe287979e7b26d",
     "infra/external/contracts/ANTHROPIC_HP.json": "96935d576139f10497e46affa865f12204cb0f09e780eae6b196541565a43b8e",
     "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json": "0f6b6efd77f65f73ee683bce662217e9a7eba5a2fca88ce25787432193c6e336",
+    "infra/external/contracts/CCC_SPARC.json": "fd970ef75311b72c8d7077f072f1d0d603481cc96bb66adf57faffea11a39f2d",
     "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
     "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d"
   },
@@ -45,7 +46,7 @@
     "premise": 66,
     "obligation": 9,
     "review": 4,
-    "external": 10,
+    "external": 11,
     "decision": 2,
     "source": 21
   },
@@ -472,6 +473,15 @@
       "title": "BFSS/BMN: отдельный класс матричных моделей",
       "status": "CANDIDATE_NOT_EXECUTED",
       "path": "infra/external/contracts/BFSS_BMN.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:CCC_SPARC",
+      "id": "CCC_SPARC",
+      "kind": "external",
+      "title": "CCC SPARC: наблюдательная реализация, не полный CCC+TL",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/CCC_SPARC.json",
       "fragment": ""
     },
     {
@@ -2979,6 +2989,26 @@
     {
       "source": "external:BFSS_BMN",
       "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CCC_SPARC",
+      "target": "link:L10",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CCC_SPARC",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CCC_SPARC",
+      "target": "question:U006",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CCC_SPARC",
+      "target": "review:CCC_TL_20261112",
       "relation": "candidate_source_context_not_evidence"
     },
     {

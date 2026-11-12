@@ -1,0 +1,33 @@
+{
+  "schema": "vm-lab-external-contract-v1",
+  "id": "CONTROL_CCC_SPARC",
+  "source_id": "CCC_SPARC",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "analysis_mode": "engineering_check",
+  "question": "Прямой прогноз SPARC versus reconstruction using Vobs; source-specific future replication",
+  "scope_limit": "No full SPARC/CCC+TL reproduction. Existing symbolic background checks are separate.",
+  "outcomes_already_inspected": true,
+  "pre_execution_receipt_required": true,
+  "acm_badge_awarded": false,
+  "independence": {
+    "team_relation": "NOT_ASSESSED",
+    "artifact_relation": "UPSTREAM_ARTIFACT",
+    "implementation_independence": "NOT_CLAIMED"
+  },
+  "decision_points": [
+    {
+      "choice": "Соответствие наблюдаемых и семантики",
+      "state": "REQUIRES_SOURCE_SPECIFIC_REVIEW",
+      "alternatives": [],
+      "rationale": "Общие слова не устанавливают эквивалентность моделей."
+    }
+  ],
+  "criteria": [],
+  "numerical_configurations": [],
+  "budget": {
+    "max_seconds": null,
+    "executor": null
+  },
+  "next_action": "Declare forward observable, data inputs and author control; metadata monitoring does not execute upstream code."
+}
