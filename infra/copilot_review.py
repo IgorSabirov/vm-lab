@@ -134,6 +134,18 @@ def prepare(output):
                       'checks': {x['id']: x['status'] for x in checks}}))
 
 
+def evidence_ledger(package):
+    """Distinguish supplied text from pointers in supplied registry metadata."""
+    direct = {f['path'] for f in package['files']} | {RESULTS, SOURCES} | {c['path'] for c in package['contracts']}
+    indirect = {n['path'] for n in package['nodes'] if 'path' in n}
+    indirect |= {p for r in package['result_cards'] for p in r.get('sources', [])}
+    # Only literal repository paths in declared metadata, never arbitrary prose/URLs.
+    indirect = {p for p in indirect if isinstance(p, str) and not Path(p).is_absolute()
+                and '..' not in Path(p).parts and p.startswith(('analysis/', 'infra/'))}
+    return {p: 'SUPPLIED_CONTENT' if p in direct else 'REGISTRY_POINTER_ONLY'
+            for p in sorted(direct | indirect)}
+
+
 def validate_analysis(d, package):
     if not isinstance(d, dict) or set(d) != {'summary', 'models', 'connections', 'next_tests'}:
         raise ValueError('Unexpected analysis schema')
@@ -143,7 +155,7 @@ def validate_analysis(d, package):
     def evidence(items):
         if not isinstance(items, list) or not items or len(items) > 6 or any(x not in paths for x in items):
             raise ValueError('Evidence must reference supplied paths')
-    paths = {f['path'] for f in package['files']} | {RESULTS, SOURCES} | {c['path'] for c in package['contracts']}
+    paths = evidence_ledger(package)
     text(d['summary'])
     ids = {x['id'] for x in package['profile']['models']}
     if not isinstance(d['models'], list) or len(d['models']) != len(ids) or {x.get('id') for x in d['models']} != ids:
@@ -176,11 +188,15 @@ def validate_analysis(d, package):
 
 def markdown(d, package):
     base = 'https://github.com/IgorSabirov/vm-lab/blob/' + package['source_sha'] + '/'
+    ledger = evidence_ledger(package)
     def refs(row):
-        return 'Источники: ' + ', '.join('[' + p + '](' + base + p + ')' for p in row['evidence'])
+        return 'Источники: ' + ', '.join('[' + p + '](' + base + p + ')' +
+            (' (только ссылка из реестра; текст модели не передавался)' if ledger[p] == 'REGISTRY_POINTER_ONLY' else '')
+            for p in row['evidence'])
     lines = ['# Шесть моделей: предложения Copilot', '',
              'Статус: PROPOSED_FOR_REVIEW. Содержательные выводы не приняты автоматически.',
-             'Источник: `' + package['source_sha'] + '`. Задача #30.', '', d['summary'], '',
+             'Источник: `' + package['source_sha'] + '`. Задача #30.',
+             'Ссылки на непереданные тексты помечены отдельно: они не означают проверки этих документов моделью.', '', d['summary'], '',
              '## Что дано и что получено']
     for row in d['models']:
         lines += ['', '### ' + row['id'], row['contribution'], '', '**Дано:** ' + row['given'],
@@ -213,12 +229,17 @@ summary: строка;
 models: ровно шесть объектов {id,contribution,given,obtained,gap,evidence:[путь]};
 connections: 1..8 объектов {source:ключ узла,target:ключ узла,relation:candidate_interface|scope_boundary|alternative_control|shared_observable,claim,missing,evidence:[путь]};
 next_tests: 1..3 объекта {question,observable,control,discrimination,missing,evidence:[путь]}.
-Все текстовые поля — непустые строки. Ссылайся лишь на переданные пути и ключи nodes. Связи являются предложениями, а не новыми принятыми научными фактами.
+Все текстовые поля — непустые строки. Ссылайся лишь на переданные пути и ключи nodes. Путь в nodes.path или result_cards.sources — лишь указатель реестра, а не прочитанный тобой документ. Связи являются предложениями, а не новыми принятыми научными фактами.
 EVIDENCE_JSON:\n''' + json.dumps(package, ensure_ascii=False, separators=(',', ':'))
     if len(prompt.encode()) > 120000:
         raise ValueError('Prompt exceeds the native CLI argument bound')
     receipt = invoke_native(prompt, timeout=180)
+    receipt['repository_content_sent'] = True
     stdout = receipt.pop('stdout')
+    finish(output, raw, package, receipt, stdout)
+
+
+def finish(output, raw, package, receipt, stdout):
     if receipt['returncode'] or receipt['timed_out']:
         dump(output / 'FAILURE.json', {**receipt, 'stdout': stdout[:3000]})
         raise SystemExit('Native review failed; saved receipt, do not repeat blindly')
@@ -237,6 +258,8 @@ EVIDENCE_JSON:\n''' + json.dumps(package, ensure_ascii=False, separators=(',', '
                    context_sha256=sha(raw), analysis_sha256=sha((output / 'ANALYSIS.json').read_bytes()),
                    repository_content_sent=True, scientific_status_changed=False,
                    links_accepted=False, checks=package['executed_checks'])
+    cited = {p for group in ('models', 'connections', 'next_tests') for row in d[group] for p in row['evidence']}
+    receipt['evidence_scope'] = {p: v for p, v in evidence_ledger(package).items() if p in cited}
     proposal = {'source_sha': package['source_sha'], 'report': report, 'receipt': receipt,
                 'analysis': d, 'context': package}
     dump(output / 'native-proposal.json', proposal)
@@ -244,7 +267,31 @@ EVIDENCE_JSON:\n''' + json.dumps(package, ensure_ascii=False, separators=(',', '
                       'connections_proposed': len(d['connections']), 'tests_proposed': len(d['next_tests'])}))
 
 
+def recover(output):
+    """Validate and publish the pinned original response without any inference."""
+    manifest = json.loads(read('infra/copilot/tasks/six-models-v1-recovery.json'))
+    raw = (output / 'CONTEXT.json').read_bytes()
+    failure_raw = (output / 'FAILURE.json').read_bytes()
+    if sha(raw) != manifest['context_sha256'] or sha(failure_raw) != manifest['failure_sha256']:
+        raise ValueError('Saved review digest mismatch')
+    package, failure = json.loads(raw), json.loads(failure_raw)
+    if (package['source_sha'] != manifest['source_sha'] or
+        str(failure['run_id']) != str(manifest['run_id']) or
+        failure['returncode'] != 0 or failure['timed_out']):
+        raise ValueError('Saved review identity or execution mismatch')
+    receipt = {k: v for k, v in failure.items() if k not in ('error', 'stdout')}
+    receipt['recovery'] = {'run_id': os.environ.get('GITHUB_RUN_ID'),
+        'original_error': failure['error'], 'new_model_invocations': 0,
+        'original_response_sha256': sha(failure['stdout'].encode()),
+        'failure_sha256': manifest['failure_sha256'],
+        'change': 'Accept registry pointers as explicitly uninspected references; model content unchanged.'}
+    finish(output, raw, package, receipt, failure['stdout'])
+    if os.environ.get('GITHUB_OUTPUT'):
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write('base_sha=' + package['source_sha'] + '\n')
+
+
 if __name__ == '__main__':
-    p = argparse.ArgumentParser(); p.add_argument('command', choices=['prepare', 'generate'])
+    p = argparse.ArgumentParser(); p.add_argument('command', choices=['prepare', 'generate', 'recover'])
     p.add_argument('--output', type=Path, default=Path('review-output'))
-    args = p.parse_args(); {'prepare': prepare, 'generate': generate}[args.command](args.output)
+    args = p.parse_args(); {'prepare': prepare, 'generate': generate, 'recover': recover}[args.command](args.output)
