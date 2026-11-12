@@ -1,7 +1,7 @@
 name: Validate Copilot proposal
 on:
   workflow_run:
-    workflows: ['Copilot repository operator', 'Copilot native report pilot']
+    workflows: ['Copilot repository operator', 'Copilot native report pilot', 'Copilot six-model review']
     types: [completed]
 permissions:
   contents: read

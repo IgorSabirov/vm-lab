@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=10, decision=2, source=21.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=11, decision=2, source=21.
 
 ## Предпосылка → результаты
 
@@ -514,6 +514,15 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 **Входящие:** нет.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
+<a id="external-ccc_sparc"></a>
+
+### external:CCC_SPARC
+
+CCC SPARC: наблюдательная реализация, не полный CCC+TL — [исходная карточка](../../infra/external/contracts/CCC_SPARC.json).
+
+**Входящие:** нет.
+**Исходящие:** [L10](#link-l10) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [U006](#question-u006) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`.
+
 <a id="external-cdt2d"></a>
 
 ### external:CDT2D
@@ -664,7 +673,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 Локальные результаты → одна сквозная реализация — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l10).
 
-**Входящие:** [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n01"></a>
@@ -1168,7 +1177,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 **Открыто.** Порядок, соседство и композиция должны быть определены. CSG и внутренние причинные принципы уже предполагают частичный порядок/правило роста; снятие меток не выводит их происхождение **11.11:** В R129 возникают существующие контакты внутри заданного полного графа; сами возможные отношения не выведены. — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#premise-f02).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
 **Исходящие:** [C031](#construct-c031) `historical_navigation_not_proof`; [C036](#construct-c036) `historical_navigation_not_proof`; [C038](#construct-c038) `historical_navigation_not_proof`.
 
 <a id="premise-f03"></a>
@@ -1393,7 +1402,7 @@ BFSS/BMN: отдельный класс матричных моделей — [�
 
 Откуда берутся причинная и метрическая структуры? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u006).
 
-**Входящие:** [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`.
 **Исходящие:** [L09](#link-l09) `related_open_link`.
 
 <a id="question-u007"></a>
@@ -2643,7 +2652,7 @@ Anthropic: эффективный модуль Хокинга—Пейджа, п
 
 CCC+TL/CBST: геометрия, часы и границы общего закона — [исходная карточка](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md).
 
-**Входящие:** нет.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`.
 **Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |

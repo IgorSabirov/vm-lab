@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const {ensurePullRequest, validateProposal} = require('./copilot_publish.cjs');
+const {ensurePullRequest, validateProposal, validateReviewProposal} = require('./copilot_publish.cjs');
 
 function fake() {
   const state = {branch: false, creates: 0, pr: null, rejectPR: true, changed: false};
@@ -41,4 +41,20 @@ test('unverified or altered source output cannot be published', () => {
   const d = {source_sha: base, report: 'x'.repeat(600), receipt: {source_sha: base,
     status: 'NATIVE_REPORT_GENERATED', returncode: 0, timed_out: false, report_sha256: 'bad'}};
   assert.throws(() => validateProposal(d, base), /digest/);
+});
+
+test('six-model publisher binds context and analysis and cannot promote links', () => {
+  const digest = s => require('node:crypto').createHash('sha256').update(s).digest('hex');
+  const base = 'a'.repeat(40), report = 'report '.repeat(100);
+  const c = {source_sha: base, profile: {id: 'six-models-v1'}};
+  const a = {summary: 'proposal'}, contextText = JSON.stringify(c), analysisText = JSON.stringify(a);
+  const d = {source_sha: base, report, context: c, analysis: a,
+    receipt: {source_sha: base, status: 'NATIVE_REPORT_GENERATED', returncode: 0,
+      timed_out: false, task_id: 'six-models-v1', issue: 30, links_accepted: false,
+      scientific_status_changed: false, report_sha256: digest(report),
+      context_sha256: digest(contextText), analysis_sha256: digest(analysisText)}};
+  validateReviewProposal(d, base, contextText, analysisText);
+  assert.throws(() => validateReviewProposal(d, base, contextText+' ', analysisText), /mismatch/);
+  d.receipt.links_accepted = true;
+  assert.throws(() => validateReviewProposal(d, base, contextText, analysisText), /mismatch/);
 });
