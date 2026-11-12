@@ -28,7 +28,7 @@ def main():
         cwd = Path(tmp) / 'empty'
         cwd.mkdir()
         env.update(COPILOT_GITHUB_TOKEN=token, COPILOT_HOME=str(Path(tmp) / 'profile'))
-        argv = [cli, '-C', str(cwd), '--model', 'auto', '--max-ai-credits', '1',
+        argv = [cli, '-C', str(cwd), '--model', 'auto', '--max-ai-credits', '30',
                 '--disable-builtin-mcps', '--available-tools',
                 '--deny-tool', 'shell', '--deny-tool', 'write', '--deny-tool', 'url',
                 '--disallow-temp-dir', '--no-custom-instructions', '--no-ask-user',
@@ -56,7 +56,7 @@ def main():
     d = {'status': 'NATIVE_INFERENCE_PASS' if ok else 'NATIVE_INFERENCE_FAILED',
          'source_sha': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
          'cli_version': '1.0.103', 'model_selector': 'native auto',
-         'tools': [], 'repository_content_sent': False, 'max_ai_credits': 1,
+         'tools': [], 'repository_content_sent': False, 'max_ai_credits': 30,
          'timeout_seconds': 120, 'timed_out': timed_out, 'returncode': p.returncode,
          'elapsed_seconds': round(time.monotonic() - started, 3),
          'stdout': stdout[:4000], 'stderr': stderr[:4000]}
