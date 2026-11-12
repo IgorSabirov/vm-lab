@@ -78,6 +78,18 @@ class DelegationTests(unittest.TestCase):
                 if s.get('uses', '').startswith('actions/upload-artifact@'):
                     self.assertEqual(s['with']['retention-days'], 7)
 
+    def test_explicit_cli_version_has_authenticated_manifest_pin(self):
+        # Regression: the first authenticated run failed before inference because
+        # v1.0.105 was outside the pinned setup action's reviewed release table.
+        engine = self.source['engine']
+        checksum = engine['checksums-sha256']
+        self.assertRegex(checksum, r'^[a-f0-9]{64}$')
+        installs = [s['run'] for s in self.lock['jobs']['agent']['steps']
+                    if s.get('name') == 'Install GitHub Copilot CLI']
+        self.assertEqual(len(installs), 1)
+        self.assertIn('" ' + engine['version'] + ' ', installs[0])
+        self.assertIn('--checksums-sha256 ' + checksum, installs[0])
+
     def test_agent_cannot_publish_directly_or_merge(self):
         perms = self.lock['jobs']['agent']['permissions']
         self.assertTrue(all(v in ('read', 'none') for v in perms.values()))
