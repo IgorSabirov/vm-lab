@@ -207,6 +207,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 
 <!-- generated:review-card-question-u010 -->
+**Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Ограниченный модуль фазовой организации не закрывает происхождение условий. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#genesis); `scope_boundary`. Функция и воспроизводство условий различаются. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
@@ -326,6 +328,7 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограниченный модуль фазовой организации не закрывает происхождение условий. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `scope_boundary` | CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |

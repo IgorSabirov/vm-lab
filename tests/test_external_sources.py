@@ -18,7 +18,15 @@ class ExternalEvidence(unittest.TestCase):
         return json.loads((ROOT/'infra/external/contracts/NUMERICAL_ENV.json').read_text())
 
     def test_registered_sources_validate(self):
-        self.assertEqual(len(ext.validate(ROOT)),8)
+        rows=ext.validate(ROOT)
+        self.assertTrue({'ANTHROPIC_HP','ANTHROPIC_BOOTSTRAP'}.issubset({r['id'] for r in rows}))
+
+    def test_publication_cannot_impersonate_git_or_lose_version(self):
+        row=next(r for r in ext.validate(ROOT) if r['id']=='ANTHROPIC_HP')
+        for updates in ({'source_sha':'a'*40}, {'publication_version':None},
+                        {'source_record_sha256':'0'*64}, {'monitor_enabled':True}):
+            changed=copy.deepcopy(row);changed.update(updates)
+            with self.assertRaises(ValueError):ext.validate_publication(changed,ROOT)
 
     def test_unknown_tolerance_blocks_ready_contract(self):
         c=self.ready();c['criteria'][0]['absolute_tolerance']=None

@@ -1,0 +1,23 @@
+{
+  "schema": "vm-lab-bounded-analysis-v1",
+  "date": "2026-11-12",
+  "base_commit": "7b726a0137d5ac27423d33d0e2f422736ab2851b",
+  "question": "Which declared part of Anthropic's weak-coupling Hawking-Page calculation can be integrated and independently checked without treating the microscopic theory as derived?",
+  "mode": "exploratory_source_formula_consistency",
+  "published_outcomes_already_known": true,
+  "new_confirmatory_claim": false,
+  "executor": "assistant_sandbox",
+  "predicted_seconds": 1,
+  "max_seconds": 10,
+  "prediction_basis": "Standard-library arithmetic, exact rational checks and two bounded 100-iteration scalar bisections; no upstream code, simulation, fitting or network.",
+  "checks": [
+    {"id": "complete_square", "criterion": "Exact rational zero for real and imaginary components of the complex massive mode, with m2_squared > 0; kappa=0 removes the induced quartic term."},
+    {"id": "su2", "criterion": "Published polynomial inputs at x=1/2 give I=3/4 exactly. This does not regenerate those polynomials from the Hamiltonian."},
+    {"id": "coefficient", "criterion": "Recombine the published literal-scheme inputs; compare b/g^4 with -36.94 within 0.02, covering the printed 0.01 uncertainty and rounding. The underlying inputs remain imported."},
+    {"id": "phase", "criterion": "At the article's illustrative b=-0.1, solve the reduced potential's saddle birth and coexistence; compare a with 0.053 and 0.032 within 0.001, allowing figure rounding; check 0 < a_coexist < a_birth."},
+    {"id": "positive_control", "criterion": "For b>0 the ungapped minimum u=sqrt(-a/(2b)) approaches zero as a approaches zero from below, within u<=1/2."},
+    {"id": "bootstrap_constant", "criterion": "Evaluate the reported expression for Lambda_V; comparison with 9.1266 within 0.00005 is arithmetic only, not verification of the theorem."}
+  ],
+  "not_performed": ["Three-loop computation of b", "Regulator removal", "Resolution of the published Yang-Mills discrepancy", "Bootstrap proof replication", "A joint NOW/black-hole transition kernel", "Origin of the microscopic law, geometry or thermal measure"],
+  "failure_rule": "Record failed checks; never promote a partial arithmetic pass to a physical or full-replication PASS."
+}

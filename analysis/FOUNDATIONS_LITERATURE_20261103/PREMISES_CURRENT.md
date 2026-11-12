@@ -165,6 +165,8 @@
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [premise:F02](../REGISTRY_LINKS/INDEX.md#premise-f02) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `premise_context_not_evidence` | S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером. |
+| [premise:F05](../REGISTRY_LINKS/INDEX.md#premise-f05) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `premise_context_not_evidence` | Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте. |
 | [premise:B01](../REGISTRY_LINKS/INDEX.md#premise-b01) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого. |
 | [premise:B06](../REGISTRY_LINKS/INDEX.md#premise-b06) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Масштаб/параметр времени и наблюдаемая физическая динамика различаются; общий пересчёт единиц не выводит часы или стрелу. |
 | [premise:C03](../REGISTRY_LINKS/INDEX.md#premise-c03) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Заданные часы, показания и математическое условление не объясняют физический стандарт и внутреннее считывание. |

@@ -13582,6 +13582,107 @@
         }
       ],
       "excluded_links": []
+    },
+    {
+      "id": "ANTHROPIC_BH_20261112",
+      "title": "Anthropic: эффективный модуль Хокинга—Пейджа, проверки и баланс предпосылок",
+      "status": "REDUCED_MODEL_IMPLEMENTED_FULL_REPLICATION_OPEN",
+      "scientific_status_promoted": false,
+      "report": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+      "managed_sources": [
+        "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+        "analysis/ANTHROPIC_BH_20261112/adapter.py",
+        "analysis/ANTHROPIC_BH_20261112/PLAN.json",
+        "analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+        "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+        "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json"
+      ],
+      "links": [
+        {
+          "target": "external:ANTHROPIC_HP",
+          "relation": "joint_model_requirement",
+          "claim": "Эффективный потенциал интегрирован отдельно; общий переход NOW↔SYM ещё не определён.",
+          "rationale": "Эффективный потенциал интегрирован отдельно; общий переход NOW↔SYM ещё не определён.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#module"
+        },
+        {
+          "target": "external:ANTHROPIC_BOOTSTRAP",
+          "relation": "scope_boundary",
+          "claim": "Второй препринт зарегистрирован отдельно; проверена арифметика константы, не доказательство.",
+          "rationale": "Второй препринт зарегистрирован отдельно; проверена арифметика константы, не доказательство.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#sources"
+        },
+        {
+          "target": "external:HAGEDORN_QSC",
+          "relation": "scope_boundary",
+          "claim": "Температура Хагедорна не определяет коэффициент b и температуру сосуществования.",
+          "rationale": "Температура Хагедорна не определяет коэффициент b и температуру сосуществования.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#module"
+        },
+        {
+          "target": "result:R127",
+          "relation": "joint_model_requirement",
+          "claim": "Программный адаптер не задаёт автоматически общий физический закон ветвей.",
+          "rationale": "Программный адаптер не задаёт автоматически общий физический закон ветвей.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "result:R128",
+          "relation": "scope_boundary",
+          "claim": "Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано.",
+          "rationale": "Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "result:R129",
+          "relation": "scope_boundary",
+          "claim": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax.",
+          "rationale": "Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "Ограниченный модуль фазовой организации не закрывает происхождение условий.",
+          "rationale": "Ограниченный модуль фазовой организации не закрывает происхождение условий.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "obligation:N02",
+          "relation": "scope_boundary",
+          "claim": "Заданные входы и полученные эффективные свойства перечислены раздельно.",
+          "rationale": "Заданные входы и полученные эффективные свойства перечислены раздельно.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "obligation:N06",
+          "relation": "scope_boundary",
+          "claim": "Равновесный минимум не устанавливает замыкание условий продолжения.",
+          "rationale": "Равновесный минимум не устанавливает замыкание условий продолжения.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "premise:F02",
+          "relation": "premise_context_not_evidence",
+          "claim": "S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером.",
+          "rationale": "S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        },
+        {
+          "target": "premise:F05",
+          "relation": "premise_context_not_evidence",
+          "claim": "Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте.",
+          "rationale": "Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте.",
+          "evidence": "analysis/ANTHROPIC_BH_20261112/REPORT.md#origin"
+        }
+      ],
+      "excluded_links": [
+        {
+          "target": "link:L10",
+          "rationale": "Происхождение основания целого не выведено; препринт не является свидетельством закрытия L10.",
+          "decision": "NOT_EVIDENCE_FOR_CLOSURE"
+        }
+      ]
     }
   ]
 }
