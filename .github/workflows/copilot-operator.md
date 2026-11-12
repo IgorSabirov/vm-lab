@@ -22,7 +22,7 @@ engine:
   id: copilot
   version: "1.0.103"
   checksums-sha256: "26cd3e4b32cde498e4961fb4d48e7b85d7859fc69af1a645a19201fdd577bdb2"
-  model: auto
+  model: gpt-5.6-luna-free-auto
   harness:
     max-retries: 0
 runs-on: ubuntu-24.04
@@ -81,7 +81,7 @@ safe-outputs:
     report-as-issue: false
     engine:
       id: copilot
-      model: auto
+      model: gpt-5.6-luna-free-auto
     max-ai-credits: 10
 ---
 
