@@ -1,14 +1,31 @@
 {
   "schema": "vm-lab-active-state-v1",
   "observed_date": "2026-11-12",
-  "base_commit": "71b45a2a016ada23aabda6cea8d8cd47ffbb6d60",
-  "integration_pr": 3,
-  "active_decisions": ["decision:D001"],
-  "scientific_focus": ["question:U010", "question:U006", "link:L04", "link:L07", "link:L09", "link:L10"],
+  "base_commit": "e8d65443f1a148f449f0b67954a10d75839f5f99",
+  "integration_pr": 8,
+  "active_decisions": [
+    "decision:D001",
+    "decision:D002"
+  ],
+  "scientific_focus": [
+    "question:U010",
+    "question:U006",
+    "link:L04",
+    "link:L07",
+    "link:L09",
+    "link:L10"
+  ],
   "run_snapshot_source": "infra/CURRENT_RUN.json",
   "online_vm_status": "NOT_QUERIED_IN_THIS_INFRASTRUCTURE_TASK",
   "new_scientific_runs": 0,
   "new_vm_jobs": 0,
   "next_action": "Read current GitHub HEAD, this checkpoint, linked decisions and the relevant question; do not re-run completed tasks from a stale snapshot.",
-  "open_limitations": ["Private main rulesets require a higher GitHub plan", "VM service deployment is separate from repository publication", "Full Segura comparison is not completed; novelty is not established"]
+  "open_limitations": [
+    "Projects/rulesets/Discussions mutations unavailable in connector; setup code is prepared, server settings not applied",
+    "VM service deployment is separate from repository publication",
+    "Full Segura comparison is not completed; novelty is not established",
+    "New external model controls are DRAFT, not scientific executions"
+  ],
+  "integration_issue": 7,
+  "repository_visibility": "public"
 }

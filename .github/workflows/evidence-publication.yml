@@ -1,0 +1,50 @@
+name: Package and attest evidence
+on:
+  push:
+    branches: [main]
+    paths: ['infra/external/**', 'infra/reviews/EXTERNAL_20261112/**', 'tools/external_sources.py', 'tools/evidence_compendium.py', 'tools/dependency_evidence.py', 'requirements-ci.txt', '.github/workflows/evidence-publication.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main' && github.repository == 'IgorSabirov/vm-lab'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m venv "$RUNNER_TEMP/evidence-env"
+          "$RUNNER_TEMP/evidence-env/bin/python" -m pip install --disable-pip-version-check -r requirements-ci.txt
+      - run: |
+          mkdir -p external-evidence
+          python tools/external_sources.py validate
+          python tools/evidence_compendium.py
+          "$RUNNER_TEMP/evidence-env/bin/python" -m pip inspect --local > external-evidence/pip-inspect.json
+          "$RUNNER_TEMP/evidence-env/bin/python" tools/dependency_evidence.py --pip-inspect external-evidence/pip-inspect.json --output external-evidence
+      - name: Attest packaging, not historical VM execution
+        id: attest
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
+        with:
+          subject-path: external-evidence/compendium.zip
+      - name: Attest dependency inventory
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
+        with:
+          subject-path: external-evidence/compendium.zip
+          sbom-path: external-evidence/sbom.cdx.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: external-compendium-${{ github.sha }}
+          path: |
+            external-evidence/
+            ${{ steps.attest.outputs.bundle-path }}
+          retention-days: 90

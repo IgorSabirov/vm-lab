@@ -1,0 +1,49 @@
+name: Dependency review
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  dependencies:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - id: availability
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        with:
+          script: |
+            const pr=context.payload.pull_request;
+            try {
+              await github.request('GET /repos/{owner}/{repo}/dependency-graph/compare/{basehead}', {
+                ...context.repo, basehead:`${pr.base.sha}...${pr.head.sha}`, per_page:1
+              });
+              core.setOutput('available','true');
+            } catch(e) {
+              if(![403,404].includes(e.status)) throw e;
+              core.setOutput('available','false');
+              core.warning(`Native Dependency Review NOT_EVALUATED (HTTP ${e.status}); enable Dependency Graph in repository settings. The separate PyPA audit covers pinned CI Python requirements only.`);
+              await core.summary.addRaw('Native Dependency Review: **NOT_EVALUATED**; repository capability/access unavailable. PyPA audit below covers pinned CI Python requirements, not all repository dependency changes.\n').write();
+            }
+      - if: steps.availability.outputs.available == 'true'
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: never
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Audit pinned CI Python requirements independently
+        run: |
+          python -m venv "$RUNNER_TEMP/audit-env"
+          "$RUNNER_TEMP/audit-env/bin/python" -m pip install --disable-pip-version-check pip-audit==2.10.1
+          "$RUNNER_TEMP/audit-env/bin/python" -m pip_audit --no-deps --disable-pip -r requirements-ci.txt --format=json --output=pip-audit.json
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: pinned-ci-dependency-audit
+          path: pip-audit.json
+          if-no-files-found: warn
+          retention-days: 30

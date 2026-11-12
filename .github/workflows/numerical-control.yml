@@ -1,0 +1,38 @@
+name: Numerical environment control
+on:
+  pull_request:
+    paths: ['tools/numerical_control.py', 'tools/external_sources.py', 'infra/external/contracts/NUMERICAL_ENV.json', 'requirements-ci.txt', '.github/workflows/numerical-control.yml']
+  push:
+    branches: [main]
+    paths: ['tools/numerical_control.py', 'infra/external/contracts/NUMERICAL_ENV.json', 'requirements-ci.txt', '.github/workflows/numerical-control.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  numeric:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    strategy:
+      fail-fast: false
+      matrix:
+        threads: [1, 2]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check -r requirements-ci.txt
+      - name: Pre-execution receipt then finite numerical check
+        env:
+          OPENBLAS_NUM_THREADS: ${{ matrix.threads }}
+          OMP_NUM_THREADS: ${{ matrix.threads }}
+          MKL_NUM_THREADS: ${{ matrix.threads }}
+        run: python tools/numerical_control.py --output numerical-evidence
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: numerical-control-${{ matrix.threads }}
+          path: numerical-evidence/
+          retention-days: 30

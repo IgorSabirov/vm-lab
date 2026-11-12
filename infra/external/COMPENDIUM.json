@@ -1,0 +1,39 @@
+{
+  "schema": "vm-lab-compendium-descriptor-v1",
+  "scope": "External source metadata and complete finite numerical environment control",
+  "files": [
+    "infra/external/README.md",
+    "requirements-ci.txt",
+    "CITATION.cff",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json",
+    "third_party/piecewise_flat_qg/UPSTREAM.json",
+    "third_party/piecewise_flat_qg/LICENSE",
+    "third_party/piecewise_flat_qg/upstream_cpp.tar.xz",
+    "tools/external_sources.py",
+    "tools/evidence_compendium.py",
+    "tools/numerical_control.py",
+    "tools/dependency_evidence.py",
+    "tests/test_external_sources.py",
+    "infra/external/ACTIVE_DEPENDENCIES.json",
+    "infra/external/contracts/BFSS_BMN.json",
+    "infra/external/contracts/CDT2D.json",
+    "infra/external/contracts/GORDION.json",
+    "infra/external/contracts/HAGEDORN_QSC.json",
+    "infra/external/contracts/ISINGCAUSET.json",
+    "infra/external/contracts/LARGEN_YM.json",
+    "infra/external/contracts/NUMERICAL_ENV.json",
+    "infra/external/contracts/QSC_OPERATORS.json",
+    "infra/external/contracts/SERBIAN_CPP.json"
+  ],
+  "reproduce": "Install requirements-ci.txt; run tools/external_sources.py validate; run tools/numerical_control.py --output evidence with threads=1 and 2 as documented in infra/external/README.md.",
+  "raw_data": {
+    "kind": "EXPLICIT_CONSTRUCTION_IN_SOURCE",
+    "path": "tools/numerical_control.py",
+    "external_data_required": false
+  },
+  "limitations": [
+    "No new IsingCauset/CDT/QSC/BFSS/YM author experiment is bundled or claimed reproduced.",
+    "Existing full scientific VM data are outside this package.",
+    "Nested Serbian archive is preserved under its original license; not a new scientific replication."
+  ]
+}

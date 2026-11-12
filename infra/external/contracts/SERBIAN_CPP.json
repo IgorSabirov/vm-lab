@@ -1,0 +1,31 @@
+{
+  "schema": "vm-lab-external-contract-v1",
+  "id": "CONTROL_SERBIAN_CPP",
+  "source_id": "SERBIAN_CPP",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "analysis_mode": "engineering_check",
+  "question": "Будущая повторная проверка авторского ядра и адаптера",
+  "scope_limit": "Исторические проверки сохранены; новый запуск этим контрактом не назначен.",
+  "outcomes_already_inspected": true,
+  "pre_execution_receipt_required": true,
+  "acm_badge_awarded": false,
+  "independence": {
+    "team_relation": "DIFFERENT_FROM_UPSTREAM",
+    "artifact_relation": "UPSTREAM_ARTIFACT",
+    "implementation_independence": "NOT_CLAIMED"
+  },
+  "decision_points": [
+    {
+      "choice": "Использовать прежнее свидетельство или повторить затронутую проверку",
+      "state": "HISTORICAL_EVIDENCE_REUSED",
+      "rationale": "Исходное ядро не изменено."
+    }
+  ],
+  "criteria": [],
+  "numerical_configurations": [],
+  "budget": {
+    "max_seconds": null,
+    "executor": null
+  }
+}

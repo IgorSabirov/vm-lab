@@ -3185,6 +3185,13 @@
 <a id="r125"></a>
 ### R125. R125-v2: воспроизведённый предпрогон, причинная отмена и цена возврата
 
+
+
+<!-- generated:review-card-result-r125 -->
+**Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#method); `operational_requirement`. Предварительный план и бюджет уже существуют; внешний контракт расширяет их применение. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r125).
+<!-- /generated:review-card-result-r125 -->
+
+
 **Статус:** СПЕЦИФИКАЦИЯ / ЧАСТИЧНЫЙ ПРЕДПРОГОН / ТОЧНЫЕ ОГРАНИЧЕНИЯ; ПОЛНЫЙ СОБЫТИЙНЫЙ ТЕСТ НЕ ИСПОЛНЕН.
 
 **Результат.** Независимо совпали 507/7440 нарушений при tie-break по позиции и 0/7440 по ID; 5/1116 нарушений монотонности Hamilton и 0/1116 capped D’Hondt. Делимый аллокатор, приёмник, z, CP и PMF-based p совпали. Число 0.661245 подтверждено как P(|K−320|≥7), а не как удвоенный меньший хвост (0.658776). Буквальная мгновенная отмена резерва при удалённой потере нарушает причинность и независимость двух допустимых порядков. При возврате уже учтённого внутреннего перевода формула consumed+loss−return даёт −0.4 вместо истощения +0.1.
@@ -3245,6 +3252,13 @@
 <a id="r126"></a>
 ### R126. ADD: четыре семантики транспорта, периодичность и рост разделены
 
+
+
+<!-- generated:review-card-result-r126 -->
+**Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
+<!-- /generated:review-card-result-r126 -->
+
+
 **Статус:** ДОКАЗАНО ДЛЯ ЯВНЫХ ОПЕРАТОРОВ; АВТОРСКОЕ C2-СООТВЕТСТВИЕ НЕ АТТЕСТОВАНО
 
 **Результат:** Для bits-only/reverse доказано F^4=id на всех направленных циклических словах, любое L, через J=QIQ и IJ=JI. Рост исключён; при L=5 есть 70 активных периодов 2. Для full-figure/preserve доказаны Q²=τ с именами и E0-дихотомия тишина/неограниченный рост. Оба reverse-оператора нарушают Q²=τ. Три спектра воспроизведены; 194-состоянийный тихий класс инвариантен при любом L для bits-only.
@@ -3263,6 +3277,13 @@
 
 <a id="r127"></a>
 ### R127. Четыре кандидата: исполнимый патч прежнего NOW
+
+
+
+<!-- generated:review-card-result-r127 -->
+**Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
+<!-- /generated:review-card-result-r127 -->
+
 
 **Статус:** ПОЛНЫЙ ТЕХНИЧЕСКИЙ ПРОГОН ЗАВЕРШЁН; НАУЧНЫЕ СТАТУСЫ НЕ ПОВЫШЕНЫ
 
@@ -3554,6 +3575,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 
 <!-- generated:review-card-result-r128 -->
+**Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#profile); `scope_boundary`. Различимость не доказывает происхождение соответствия. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
 <!-- /generated:review-card-result-r128 -->
 
@@ -3663,6 +3686,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 <!-- generated:review-card-result-r129 -->
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#rescaling); `time_scale_analogy`. Общий постоянный множитель всех интенсивностей обеих рук меняет шкалу времени; ёмкость меняет разрешённые переходы. Это формальная аналогия, не космологическое свидетельство. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
 
+**Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#capacity); `scope_boundary`. Условный результат о ёмкости не закрывает происхождение условий. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
 <!-- /generated:review-card-result-r129 -->
 
@@ -3708,6 +3733,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R100](../REGISTRY_LINKS/INDEX.md#result-r100) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `joint_model_requirement` | Раздельные удачные описания требуют одного закона для фона, сигналов, часов и возмущений; совместимость не следует из общей терминологии. |
 | [result:R123](../REGISTRY_LINKS/INDEX.md#result-r123) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `operational_requirement` | Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее. |
 | [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `time_scale_analogy` | Общий постоянный множитель всех интенсивностей обеих рук меняет шкалу времени; ёмкость меняет разрешённые переходы. Это формальная аналогия, не космологическое свидетельство. |
+| [result:R125](../REGISTRY_LINKS/INDEX.md#result-r125) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `operational_requirement` | Предварительный план и бюджет уже существуют; внешний контракт расширяет их применение. Статус карточки сохранён. |
+| [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён. |
+| [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. |
+| [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. |
+| [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. |
 | [construct:C041](../REGISTRY_LINKS/INDEX.md#construct-c041) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Литературное сопоставление необходимо до заявления новизны. Научный статус не изменяется. |
 | [link:L04](../REGISTRY_LINKS/INDEX.md#link-l04) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Причинное использование содержания требует собственного вмешательства. Научный статус не изменяется. |
 | [link:L07](../REGISTRY_LINKS/INDEX.md#link-l07) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Самоподдержание аппарата отдельно от хранения следа. Научный статус не изменяется. |

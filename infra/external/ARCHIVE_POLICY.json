@@ -1,0 +1,33 @@
+{
+  "schema": "vm-lab-external-archive-v1",
+  "github_artifacts": {
+    "role": "temporary_delivery",
+    "retention_days_max_public": 90
+  },
+  "github_release": {
+    "workflow": ".github/workflows/freeze-release.yml",
+    "state": "DRAFT_REVIEW_REQUIRED",
+    "includes": [
+      "external-compendium.zip",
+      "attestation.json"
+    ]
+  },
+  "zenodo": {
+    "state": "NOT_CONNECTED",
+    "version_doi": null,
+    "concept_doi": null,
+    "requires": [
+      "accepted version",
+      "complete raw data or explicit access locator",
+      "version-specific authors",
+      "declared license",
+      "authenticated deposit"
+    ]
+  },
+  "software_heritage": {
+    "state": "NOT_VERIFIED",
+    "swhid": null,
+    "origin": "https://github.com/IgorSabirov/vm-lab",
+    "note": "Do not derive archival presence from a Git hash. Record a resolved archived object only."
+  }
+}

@@ -62,14 +62,19 @@ jobs:
           JOB_STATUS: ${{ job.status }}
         run: |
           printf 'Suite: `%s`; technical execution: **%s**. No scientific status is assigned.\n' "$SUITE" "$JOB_STATUS" >> "$GITHUB_STEP_SUMMARY"
+  external-contracts:
+    uses: ./.github/workflows/external-validation.yml
+    with:
+      source_sha: ${{ github.sha }}
   merge-gate:
     if: always()
-    needs: [plan, tests]
+    needs: [plan, tests, external-contracts]
     runs-on: ubuntu-24.04
     timeout-minutes: 1
     steps:
       - env:
           PLAN: ${{ needs.plan.result }}
           TESTS: ${{ needs.tests.result }}
+          EXTERNAL: ${{ needs.external-contracts.result }}
         run: |
-          test "$PLAN" = success && test "$TESTS" = success
+          test "$PLAN" = success && test "$TESTS" = success && test "$EXTERNAL" = success

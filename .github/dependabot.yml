@@ -6,5 +6,20 @@ updates:
       interval: weekly
       day: monday
       time: "08:00"
-      timezone: Europe/London
+      timezone: Europe/Moscow
     open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directories:
+      - /
+      - /experiments/now_integrated_v1
+      - /experiments/X27_PACKAGES_20261110/v043
+      - /experiments/X27_PACKAGES_20261110/v051
+    schedule:
+      interval: weekly
+      day: monday
+      time: "08:15"
+      timezone: Europe/Moscow
+    open-pull-requests-limit: 3
+    groups:
+      numerical-environment:
+        patterns: ["numpy", "scipy"]

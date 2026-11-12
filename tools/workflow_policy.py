@@ -11,6 +11,11 @@ def check(root=ROOT):
         if not isinstance(d.get('permissions'),dict):raise ValueError('Explicit top-level permissions required: '+p.name)
         if 'pull_request_target:' in raw:raise ValueError('Privileged PR execution forbidden')
         for job in d['jobs'].values():
+            if 'uses' in job:
+                if not re.fullmatch(r'\./\.github/workflows/[a-z0-9_-]+\.yml',job['uses']):
+                    raise ValueError('Only repository-local reusable jobs are allowed')
+                if not (root/job['uses']).is_file():raise ValueError('Missing reusable workflow')
+                continue  # Runtime bounds belong to each called job.
             if not 1<=job.get('timeout-minutes',0)<=10:raise ValueError('Bound every job runtime')
             for step in job.get('steps',[]):
                 use=step.get('uses','')

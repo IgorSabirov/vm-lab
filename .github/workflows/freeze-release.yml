@@ -11,12 +11,16 @@ on:
 permissions:
   contents: write
   checks: read
+  id-token: write
+  attestations: write
 jobs:
   draft:
+    if: github.ref == 'refs/heads/main' && github.repository == 'IgorSabirov/vm-lab'
     runs-on: ubuntu-24.04
-    timeout-minutes: 2
+    timeout-minutes: 5
     steps:
-      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+      - id: release
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           SOURCE_SHA: ${{ inputs.source_sha }}
           SNAPSHOT_TAG: ${{ inputs.tag }}
@@ -30,4 +34,25 @@ jobs:
             const checks=await github.paginate(github.rest.checks.listForRef,{owner,repo,ref:sha,per_page:100});
             if(!checks.some(c=>c.name==='merge-gate'&&c.conclusion==='success'&&c.app?.slug==='github-actions'))throw new Error('Technical merge gate is not PASS');
             try {await github.rest.git.getRef({owner,repo,ref:`tags/${tag}`});throw new Error('Existing tags are immutable');} catch(e) {if(e.status!==404)throw e;}
-            await github.rest.repos.createRelease({owner,repo,tag_name:tag,target_commitish:sha,name:tag,draft:true,body:`Frozen infrastructure snapshot: ${sha}.\n\nTechnical checks only; no scientific status is promoted. The registry and its content hashes are retained in the commit. A draft release is not scientific acceptance.`});
+            const release=await github.rest.repos.createRelease({owner,repo,tag_name:tag,target_commitish:sha,name:tag,draft:true,body:`Frozen infrastructure snapshot: ${sha}.\n\nTechnical checks only; no scientific status is promoted. The registry and its content hashes are retained in the commit. A draft release is not scientific acceptance.`});
+            core.setOutput('release_id',String(release.data.id));
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ inputs.source_sha }}
+          persist-credentials: false
+      - name: Build explicit package from reviewed snapshot
+        run: python tools/evidence_compendium.py
+      - id: attest
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
+        with:
+          subject-path: external-evidence/compendium.zip
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        env:
+          RELEASE_ID: ${{ steps.release.outputs.release_id }}
+          BUNDLE_PATH: ${{ steps.attest.outputs.bundle-path }}
+        with:
+          script: |
+            const fs=require('fs');
+            for (const [name,path] of [['external-compendium.zip','external-evidence/compendium.zip'],['attestation.json',process.env.BUNDLE_PATH]]) {
+              await github.rest.repos.uploadReleaseAsset({...context.repo,release_id:Number(process.env.RELEASE_ID),name,data:fs.readFileSync(path)});
+            }

@@ -1,0 +1,60 @@
+{
+  "id": "D002",
+  "title": "Внешние источники и публичная инфраструктура без автоматического научного принятия",
+  "domain": "infrastructure",
+  "status": "RATIFIED",
+  "question": "Как применить новые отзывы к уже публичному vm-lab и связать проверку внешнего кода с исходными предпосылками?",
+  "scope": [
+    "result:R125",
+    "result:R127",
+    "obligation:N02",
+    "obligation:N06",
+    "premise:F02",
+    "premise:F05"
+  ],
+  "alternatives": [
+    {
+      "id": "A",
+      "disposition": "SELECTED",
+      "rationale": "Дополнить существующий SOURCE_INDEX, проверять контракты, наблюдать upstream, публиковать подписанную упаковку и технические проверки."
+    },
+    {
+      "id": "B",
+      "disposition": "REJECTED",
+      "rationale": "Автоматически поднимать научные статусы или присваивать ACM badges по успешной сборке."
+    },
+    {
+      "id": "C",
+      "disposition": "SUPERSEDED_CONTEXT",
+      "rationale": "Предположение D001 о частном репозитории перестало действовать: владелец сделал vm-lab публичным до этого поручения. Историческое решение сохранено."
+    },
+    {
+      "id": "D",
+      "disposition": "DEFERRED_ACCESS",
+      "rationale": "Серверные rulesets/Projects/Discussions требуют отсутствующих административных методов или явно доступного токена; конфигурации готовы."
+    }
+  ],
+  "proposal": {
+    "author": "assistant",
+    "source": "infra/reviews/EXTERNAL_20261112/REPORT.md"
+  },
+  "ratification": {
+    "authority": "user",
+    "date": "2026-11-12",
+    "reference": "infra/reviews/EXTERNAL_20261112/AUTHORIZATION.md",
+    "scientific_acceptance": false
+  },
+  "consequences": {
+    "constrains": [],
+    "enables": [],
+    "supersedes": [],
+    "reopens": [
+      "decision:D001"
+    ]
+  },
+  "revisit_conditions": [
+    "Административные API доступны для применения готового плана",
+    "Принят конкретный контроль внешней модели с допуском и бюджетом",
+    "Создан внешний архив с проверенным DOI/SWHID"
+  ]
+}

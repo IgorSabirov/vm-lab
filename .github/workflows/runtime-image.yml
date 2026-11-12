@@ -1,0 +1,54 @@
+name: Frozen numerical runtime image
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['infra/external/Dockerfile', 'infra/external/Dockerfile.dockerignore', 'requirements-ci.txt', '.github/workflows/runtime-image.yml']
+permissions:
+  contents: read
+jobs:
+  image:
+    if: github.ref == 'refs/heads/main' && github.repository == 'IgorSabirov/vm-lab'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: .
+          file: infra/external/Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/igorsabirov/vm-lab-numerical:${{ github.sha }}
+          provenance: mode=max
+          sbom: true
+      - uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
+        with:
+          subject-name: ghcr.io/igorsabirov/vm-lab-numerical
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
+      - name: Record immutable identity
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          python -c 'import json,os; print(json.dumps({"image":"ghcr.io/igorsabirov/vm-lab-numerical","digest":os.environ["IMAGE_DIGEST"],"source_sha":os.environ["SOURCE_SHA"],"scientific_acceptance":False}))' > RUNTIME_IMAGE.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: runtime-image-receipt
+          path: RUNTIME_IMAGE.json
+          retention-days: 90

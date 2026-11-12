@@ -1,0 +1,15 @@
+{
+  "schema": "vm-lab-active-dependencies-v1",
+  "manifests": [
+    "requirements-ci.txt",
+    "experiments/now_integrated_v1/requirements.txt",
+    "experiments/X27_PACKAGES_20261110/v043/pyproject.toml",
+    "experiments/X27_PACKAGES_20261110/v051/pyproject.toml"
+  ],
+  "excluded": [
+    "results/VM_WORKSPACE_SNAPSHOTS/**",
+    "analysis/**",
+    "third_party/**"
+  ],
+  "rationale": "Архивные снимки не активные зависимости; сторонние лицензии учитываются отдельно в SOURCE_INDEX."
+}
