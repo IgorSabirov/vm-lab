@@ -46,36 +46,8 @@ def apply_repository(plan):
 
 
 def apply_project(plan):
-    owner,title=plan['owner'],plan['title']
-    data=graphql('query($owner:String!){user(login:$owner){id projectsV2(first:100){nodes{id title}}}}',{'owner':owner})['user']
-    project=next((p for p in data['projectsV2']['nodes'] if p['title']==title),None)
-    if project is None:
-        project=graphql('mutation($owner:ID!,$title:String!){createProjectV2(input:{ownerId:$owner,title:$title}){projectV2{id title}}}',{'owner':data['id'],'title':title})['createProjectV2']['projectV2']
-    pid=project['id']
-    fields=graphql('query($id:ID!){node(id:$id){... on ProjectV2{fields(first:100){nodes{... on ProjectV2Field{id name} ... on ProjectV2SingleSelectField{id name options{id name color description}}}}}}}',{'id':pid})['node']['fields']['nodes']
-    for name,options in plan['fields'].items():
-        found=next((f for f in fields if f.get('name')==name),None)
-        choices=[{'name':x,'color':'GRAY','description':x} for x in options] if options else None
-        if found:
-            if options and [x['name'] for x in found.get('options',[])]!=options:
-                # Keep IDs for existing options so populated items do not silently lose state.
-                old={o['name']:o for o in found.get('options',[])}
-                choices=[old.get(x,{'name':x,'color':'GRAY','description':x}) for x in options]
-                choices += [value for name,value in old.items() if name not in options]
-                graphql('mutation($field:ID!,$options:[ProjectV2SingleSelectFieldOptionInput!]!){updateProjectV2Field(input:{fieldId:$field,singleSelectOptions:$options}){projectV2Field{... on ProjectV2SingleSelectField{id}}}}',{'field':found['id'],'options':choices})
-            continue
-        graphql('mutation($input:CreateProjectV2FieldInput!){createProjectV2Field(input:$input){projectV2Field{... on ProjectV2Field{id} ... on ProjectV2SingleSelectField{id}}}}',{'input':{'projectId':pid,'name':name,'dataType':'SINGLE_SELECT' if options else 'TEXT',**({'singleSelectOptions':choices} if options else {})}})
-    repo=request('/repos/'+REPOSITORY)
-    graphql('mutation($project:ID!,$repo:ID!){linkProjectV2ToRepository(input:{projectId:$project,repositoryId:$repo}){repository{id}}}',{'project':pid,'repo':repo['node_id']})
-    # addProjectV2ItemById returns an existing item if it is already present.
-    page=1;count=0
-    while True:
-        items=request('/repos/'+REPOSITORY+'/issues?state=open&per_page=100&page='+str(page))
-        for item in items:
-            graphql('mutation($project:ID!,$content:ID!){addProjectV2ItemById(input:{projectId:$project,contentId:$content}){item{id}}}',{'project':pid,'content':item['node_id']});count+=1
-        if len(items)<100:break
-        page+=1
-    return {'project_id':pid,'open_items_added_or_existing':count,'built_in_auto_add':'Configure once in Projects UI; not claimed enabled by this script'}
+    from project_sync import setup_and_sync
+    return setup_and_sync(plan, request=request, graphql=graphql)
 
 
 def main():

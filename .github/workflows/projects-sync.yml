@@ -1,0 +1,39 @@
+name: Projects working board
+on:
+  push:
+    branches: [main]
+    paths: ['tools/project_sync.py', 'tools/github_setup.py', 'infra/external/GITHUB_SETUP.json', '.github/workflows/projects-sync.yml']
+  issues:
+    types: [opened, reopened, closed, edited, deleted, transferred, labeled, unlabeled]
+  workflow_run:
+    workflows: [Project events]
+    types: [completed]
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vm-lab-projects
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Create, reconcile and read back the working board
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_TOKEN }}
+        run: python3 tools/project_sync.py --apply
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: projects-readback
+          path: project-evidence/PROJECTS_STATUS.json
+          if-no-files-found: warn
+          retention-days: 7
