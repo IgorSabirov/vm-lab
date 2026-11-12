@@ -33,6 +33,7 @@ assert not list(Path.cwd().iterdir())
 assert os.environ['COPILOT_GITHUB_TOKEN'] == 'github_pat_FAKESECRET'
 assert not any(k in os.environ for k in ['GH_TOKEN','GITHUB_TOKEN','COPILOT_PROVIDER_BASE_URL','GH_AW_MODEL_ROUTING'])
 assert sys.argv[sys.argv.index('--model')+1] == 'auto'
+assert sys.argv[sys.argv.index('--max-ai-credits')+1] == '30'
 assert sys.argv[sys.argv.index('--available-tools')+1] == '--deny-tool'
 assert '--no-custom-instructions' in sys.argv
 print('VM_LAB_COPILOT_OK')
