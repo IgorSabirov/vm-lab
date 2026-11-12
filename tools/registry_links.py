@@ -18,6 +18,7 @@ QUESTIONS = "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json"
 QUESTIONS_MD = QUESTIONS.replace('.json', '.md')
 PREMISES = "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md"
 OUT = "analysis/REGISTRY_LINKS"
+EXTERNAL = 'analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json'
 REVIEW_RELATIONS = {
     'scope_boundary', 'operational_requirement', 'clock_comparison',
     'joint_model_requirement', 'conditional_open_system_constraint',
@@ -168,6 +169,11 @@ def build(root):
     groups['premise'] = unique(premise_rows, PREMISES)
     groups['obligation'] = unique(parse_obligations(raw[PREMISES]), 'obligations')
     groups['review'] = unique(main.get('external_reviews', []), 'external reviews')
+    raw[EXTERNAL] = (root/EXTERNAL).read_text()
+    groups['external'] = unique(json.loads(raw[EXTERNAL]).get('external_integrations', []), 'external sources')
+    for item in groups['external'].values():
+        if not (root/item['contract']).is_file(): raise ValueError('Missing external source contract')
+        raw[item['contract']] = (root/item['contract']).read_text()
     decision_files=sorted((root/'decisions').glob('D[0-9]*.json'))
     decisions=[json.loads(p.read_text()) for p in decision_files]
     groups['decision']=unique(decisions,'decisions')
@@ -187,6 +193,7 @@ def build(root):
             if kind == 'obligation': path = PREMISES
             if kind == 'source': path = item['path']
             if kind == 'decision': path = 'decisions/'+ident+'.md'
+            if kind == 'external': path = item['contract']
             nodes.append({"key": f"{kind}:{ident}", "id": ident, "kind": kind, "title": item.get('title',item.get('current_statement','')),
                           "status": item.get('status'), "path": path,
                           "fragment": ('premise-'+ident.lower() if kind=='premise' else 'obligation-'+ident.lower() if kind=='obligation' else ident.lower() if kind in {'result','construct','link','question'} else ''), **({k:item[k] for k in ('sha256','git_blob_sha','size_bytes')} if kind=='source' else {})})
@@ -195,6 +202,11 @@ def build(root):
         if a not in groups[ka] or b not in groups[kb]:
             raise ValueError(f"Dangling typed reference: {ka}:{a} -> {kb}:{b}")
         edges.add((f"{ka}:{a}",f"{kb}:{b}",relation))
+    for ident, item in groups['external'].items():
+        for target in item['links']:
+            kind, key = target.split(':', 1)
+            if kind not in groups: raise ValueError('Unknown external source target')
+            add('external', ident, kind, key, 'candidate_source_context_not_evidence')
     for kind in ('result','review'):
         for ident,item in groups[kind].items():
             for path in item.get('managed_sources',[]):add(kind,ident,'source',path,'managed_evidence_source' if kind=='result' else 'review_source_not_attestation')
@@ -282,7 +294,7 @@ def build(root):
             rev = groups['review'].get(ref['review_id'])
             if not rev or ref['report'] != rev['report'] or not any(x['target']=='question:'+ident for x in rev['links']):
                 raise ValueError(f'Dangling question review reference {ident}')
-    graph = {"schema":"vm-lab-registry-links-v3", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
+    graph = {"schema":"vm-lab-registry-links-v4", "sources": {p: hashlib.sha256(s.encode()).hexdigest() for p,s in raw.items()},
              "managed_review_sources": evidence_hashes,
              "counts": {k:len(v) for k,v in groups.items()},
              "semantics":"Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",

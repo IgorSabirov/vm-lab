@@ -1,10 +1,20 @@
 {
-  "schema": "vm-lab-registry-links-v3",
+  "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "410ad56418a65ac56b5b2a11361b4aec034f14b85430340189695248ca8c627f",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "a7abbb6c883e88ccf8c3d84ec537e89324d09a493931196bf455d6cc7ee37078",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
-    "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8"
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "f3e0cebb9d971e1c9da28cddd6aa5bf1bb0b93ec0a45b6a7e92927dd417f087d",
+    "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
+    "infra/external/contracts/CDT2D.json": "8b97b48d06bb3d672a060add80cda7be4e00869a9cb346c568c1bee497aad40d",
+    "infra/external/contracts/HAGEDORN_QSC.json": "7b4202e5b8c813769b7da89483afd4de6dfd5fc7ae7f7616808147faf3902fe2",
+    "infra/external/contracts/QSC_OPERATORS.json": "e2bc0ed8805fee8bbae45c3d7c157db304590ecbda1747bd905c1d9e18c97fb9",
+    "infra/external/contracts/BFSS_BMN.json": "6b36b9ded26136be3735e34c42a5b40bcb10ec35e3879ed63e33b8e6a12f4186",
+    "infra/external/contracts/GORDION.json": "b0ce877105224af40e3e4e93ffaf173904fbc86a6c4648de8b8883d9f3f8502f",
+    "infra/external/contracts/LARGEN_YM.json": "1331f9e07014209323df0956bfe3f11e38b529c80d704d1045cf97cc9f19dd9d",
+    "infra/external/contracts/SERBIAN_CPP.json": "58baccfa1a1d0d2f1f79ea13dc0490c9b6610d62ef26c8328bbe287979e7b26d",
+    "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
+    "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d"
   },
   "managed_review_sources": {
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md": "924e5b774835578e4f677441f4a1579c3f94c9a9e9e207e1cdbfbcad9f16bb9a",
@@ -13,7 +23,11 @@
     "analysis/CCC_TL_REVIEW_20261112/verify_algebra.py": "c9b442f4626cad64fb20cb94d6b40e1613f27034ff7966bd0c437440fa2e53fc",
     "analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json": "a3e827d7660c3883356d70ae55079fe352808d39fea3ac5d58630871bdc547d0",
     "infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md": "3bcfebe556d5b7115c08e419ead91709774e3d1567a1ee6de0f30726ce138472",
-    "infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt": "ada06e3fe553b799e27674534b855062755b587d9fbab820fb51638229b0ec5d"
+    "infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt": "ada06e3fe553b799e27674534b855062755b587d9fbab820fb51638229b0ec5d",
+    "infra/reviews/EXTERNAL_20261112/REPORT.md": "812aa4d2c31bc0e8081abf6c9d5bc4d9376638ae077b7b68f58d75e26253fc1e",
+    "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt": "18f2000211b1a3167a4cac24057218539d9cfac4b4f6f8cb20a26a82d0661fec",
+    "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt": "fda3de0f4e2ecd7c690b4249b54c66b1c8c17756e2c48209a7a907264bd6414c",
+    "infra/external/README.md": "56c90cd89cab12f8631cf44e1cb83b1921bef4ef86b3301c5f5113017bd52346"
   },
   "counts": {
     "result": 129,
@@ -22,9 +36,10 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 2,
-    "decision": 1,
-    "source": 11
+    "review": 3,
+    "external": 8,
+    "decision": 2,
+    "source": 15
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -413,6 +428,87 @@
       "title": "Интегрировать GitHub-процесс при раздельной научной и технической приёмке",
       "status": "RATIFIED",
       "path": "decisions/D001.md",
+      "fragment": ""
+    },
+    {
+      "key": "decision:D002",
+      "id": "D002",
+      "kind": "decision",
+      "title": "Внешние источники и публичная инфраструктура без автоматического научного принятия",
+      "status": "RATIFIED",
+      "path": "decisions/D002.md",
+      "fragment": ""
+    },
+    {
+      "key": "external:BFSS_BMN",
+      "id": "BFSS_BMN",
+      "kind": "external",
+      "title": "BFSS/BMN: отдельный класс матричных моделей",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/BFSS_BMN.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:CDT2D",
+      "id": "CDT2D",
+      "kind": "external",
+      "title": "Контрольный ансамбль 2D геометрий",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/CDT2D.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:GORDION",
+      "id": "GORDION",
+      "kind": "external",
+      "title": "Большое N в решёточной калибровочной теории",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/GORDION.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:HAGEDORN_QSC",
+      "id": "HAGEDORN_QSC",
+      "kind": "external",
+      "title": "Температура Хагедорна; не коэффициент b",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/HAGEDORN_QSC.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:ISINGCAUSET",
+      "id": "ISINGCAUSET",
+      "kind": "external",
+      "title": "Совместная мера причинного порядка и спинов",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/ISINGCAUSET.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:LARGEN_YM",
+      "id": "LARGEN_YM",
+      "kind": "external",
+      "title": "Чистая SU(N) решёточная теория",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/LARGEN_YM.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:QSC_OPERATORS",
+      "id": "QSC_OPERATORS",
+      "kind": "external",
+      "title": "Спектр операторов N=4 SYM; не коэффициент b",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/QSC_OPERATORS.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:SERBIAN_CPP",
+      "id": "SERBIAN_CPP",
+      "kind": "external",
+      "title": "Авторское ядро сигнатур, версия 1.0.0",
+      "status": "HISTORICAL_ENGINEERING_CONTROLS_RECORDED",
+      "path": "infra/external/contracts/SERBIAN_CPP.json",
       "fragment": ""
     },
     {
@@ -2459,6 +2555,15 @@
       "fragment": ""
     },
     {
+      "key": "review:EXTERNAL_20261112",
+      "id": "EXTERNAL_20261112",
+      "kind": "review",
+      "title": "Внешние источники: воспроизводимость, пререгистрация и автоматизация GitHub",
+      "status": "REVIEW_ANALYZED_INFRASTRUCTURE_IMPLEMENTED",
+      "path": "infra/reviews/EXTERNAL_20261112/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "review:METHOD_20261112",
       "id": "METHOD_20261112",
       "kind": "review",
@@ -2576,6 +2681,54 @@
       "size_bytes": 10455
     },
     {
+      "key": "source:infra/external/README.md",
+      "id": "infra/external/README.md",
+      "kind": "source",
+      "title": "infra/external/README.md",
+      "status": null,
+      "path": "infra/external/README.md",
+      "fragment": "",
+      "sha256": "56c90cd89cab12f8631cf44e1cb83b1921bef4ef86b3301c5f5113017bd52346",
+      "git_blob_sha": "0ed0bd0bd9d2acb3120099fc940cc0cf8c2b89c5",
+      "size_bytes": 10221
+    },
+    {
+      "key": "source:infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
+      "id": "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
+      "kind": "source",
+      "title": "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
+      "status": null,
+      "path": "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
+      "fragment": "",
+      "sha256": "fda3de0f4e2ecd7c690b4249b54c66b1c8c17756e2c48209a7a907264bd6414c",
+      "git_blob_sha": "e76001b613929d2d948cbe444fef707676e19b6f",
+      "size_bytes": 33555
+    },
+    {
+      "key": "source:infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt",
+      "id": "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt",
+      "kind": "source",
+      "title": "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt",
+      "status": null,
+      "path": "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt",
+      "fragment": "",
+      "sha256": "18f2000211b1a3167a4cac24057218539d9cfac4b4f6f8cb20a26a82d0661fec",
+      "git_blob_sha": "01fb97061b92c24f11b35d5c381c58e9efaf210f",
+      "size_bytes": 18867
+    },
+    {
+      "key": "source:infra/reviews/EXTERNAL_20261112/REPORT.md",
+      "id": "infra/reviews/EXTERNAL_20261112/REPORT.md",
+      "kind": "source",
+      "title": "infra/reviews/EXTERNAL_20261112/REPORT.md",
+      "status": null,
+      "path": "infra/reviews/EXTERNAL_20261112/REPORT.md",
+      "fragment": "",
+      "sha256": "812aa4d2c31bc0e8081abf6c9d5bc4d9376638ae077b7b68f58d75e26253fc1e",
+      "git_blob_sha": "ab3545e66c554bd1cf127833cafc219ca1649f47",
+      "size_bytes": 12281
+    },
+    {
       "key": "source:infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md",
       "id": "infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md",
       "kind": "source",
@@ -2620,6 +2773,161 @@
       "source": "decision:D001",
       "target": "premise:G08",
       "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "decision:D001",
+      "relation": "decision_reopens"
+    },
+    {
+      "source": "decision:D002",
+      "target": "obligation:N02",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "obligation:N06",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "premise:F02",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "premise:F05",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "result:R125",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D002",
+      "target": "result:R127",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "external:BFSS_BMN",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:BFSS_BMN",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:BFSS_BMN",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CDT2D",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CDT2D",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:CDT2D",
+      "target": "result:R127",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:GORDION",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:GORDION",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:GORDION",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:HAGEDORN_QSC",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:HAGEDORN_QSC",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:HAGEDORN_QSC",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ISINGCAUSET",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ISINGCAUSET",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:ISINGCAUSET",
+      "target": "result:R127",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:LARGEN_YM",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:LARGEN_YM",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:LARGEN_YM",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:QSC_OPERATORS",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:QSC_OPERATORS",
+      "target": "question:U010",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:QSC_OPERATORS",
+      "target": "result:R128",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:SERBIAN_CPP",
+      "target": "obligation:N02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:SERBIAN_CPP",
+      "target": "premise:F02",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:SERBIAN_CPP",
+      "target": "result:R127",
+      "relation": "candidate_source_context_not_evidence"
     },
     {
       "source": "premise:A01",
@@ -6414,6 +6722,106 @@
     {
       "source": "review:CCC_TL_20261112",
       "target": "source:analysis/CCC_TL_REVIEW_20261112/verify_algebra.py",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "obligation:N02",
+      "relation": "scope_boundary",
+      "rationale": "Внешний источник добавляет объявленные входы; снятие предпосылки требует своего механизма. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Внешний источник добавляет объявленные входы; снятие предпосылки требует своего механизма."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "obligation:N06",
+      "relation": "scope_boundary",
+      "rationale": "Проверка поддержания части организации не доказывает полного замыкания. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Проверка поддержания части организации не доказывает полного замыкания."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "premise:F02",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Импорт готовой геометрии остаётся входом. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Импорт готовой геометрии остаётся входом."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "premise:F05",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Совместная статистическая мера не объясняет происхождения меры. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Совместная статистическая мера не объясняет происхождения меры."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Автоматизация не производит аппарат и не закрывает вопрос возникновения."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "result:R125",
+      "relation": "operational_requirement",
+      "rationale": "Предварительный план и бюджет уже существуют; внешний контракт расширяет их применение. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#method",
+      "claim": "Предварительный план и бюджет уже существуют; внешний контракт расширяет их применение."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "result:R126",
+      "relation": "scope_boundary",
+      "rationale": "Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Реконструкция собственного оператора не равна авторской модели."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "result:R127",
+      "relation": "scope_boundary",
+      "rationale": "Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Интеграция инструментов не доказывает совместимость законов."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "result:R128",
+      "relation": "scope_boundary",
+      "rationale": "Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Происхождение условий не устанавливается воспроизведением поведения."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "result:R129",
+      "relation": "scope_boundary",
+      "rationale": "Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён.",
+      "evidence": "infra/reviews/EXTERNAL_20261112/REPORT.md#science",
+      "claim": "Точный конечный расчёт, разведочный выбор и независимость реализации различаются."
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "source:infra/external/README.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "source:infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "source:infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:EXTERNAL_20261112",
+      "target": "source:infra/reviews/EXTERNAL_20261112/REPORT.md",
       "relation": "review_source_not_attestation"
     },
     {

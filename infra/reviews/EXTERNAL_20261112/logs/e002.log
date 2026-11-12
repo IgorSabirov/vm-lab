@@ -1,0 +1,98 @@
+START C011 Q_e179230bba47
+DONE C011 failed None stationary False
+START C030 Q_1d1858e03d33
+DONE C030 failed None stationary False
+START C079 Q_804bf2b26e1f
+DONE C079 failed None stationary False
+START C091 Q_d7205c2bea1e
+DONE C091 failed None stationary False
+START C098 R_95a69f2943ff
+DONE C098 failed None stationary False
+START C119 R_97d0b0d13261
+DONE C119 failed None stationary False
+START C148 R_888d415f7e32
+DONE C148 failed None stationary False
+START C156 R_4c95063d73d9
+DONE C156 failed None stationary False
+START C160 R_797155211c69
+DONE C160 failed None stationary False
+START C172 R_21542fa8d154
+DONE C172 failed None stationary False
+{"runtime": {"expected_seconds": 60.0, "lower_seconds": 0.0, "upper_seconds": 300.0, "actual_seconds": 9.717437744000108, "status": "INTERNAL_PASS_AWAITING_PROCESS", "branch": "smoke", "measured_interval": "entry to before final metadata rewrite; complete process checked via run.json", "source": null, "actual_over_expected": 0.16195729573333514}, "work": {"planned": {"trajectories": 10, "steps": 3000, "rhs_calls": 12000}, "actual": {"trajectories": 10, "steps": 3000, "rhs_calls": 12000}}, "report_budget": {"bytes": 388879, "files": 24}, "failures": []}
+..........START 0 0
+DONE 0 failed None stationary False
+START 1 1
+DONE 1 failed None stationary False
+START 2 2
+DONE 2 failed None stationary False
+EXTEND 0
+EXTEND 1
+EXTEND 2
+START 0 0
+DONE 0 failed advance: injected resource failure stationary False
+START 0 0
+DONE 0 failed advance: unexpected schema stationary False
+..START C011 Q_e179230bba47
+DONE C011 failed advance: Invalid observables: injected after partial evolution stationary False
+START C030 Q_1d1858e03d33
+DONE C030 failed None stationary False
+START C079 Q_804bf2b26e1f
+DONE C079 failed None stationary False
+START C091 Q_d7205c2bea1e
+DONE C091 failed None stationary False
+START C098 R_95a69f2943ff
+DONE C098 failed None stationary False
+START C119 R_97d0b0d13261
+DONE C119 failed None stationary False
+START C148 R_888d415f7e32
+DONE C148 failed None stationary False
+START C156 R_4c95063d73d9
+DONE C156 failed None stationary False
+START C160 R_797155211c69
+DONE C160 failed None stationary False
+START C172 R_21542fa8d154
+DONE C172 failed None stationary False
+{"runtime": {"expected_seconds": 90.0, "lower_seconds": 0.0, "upper_seconds": 300.0, "actual_seconds": 8.030618251000078, "status": "INTERNAL_REVIEW_REQUIRED", "branch": "smoke", "measured_interval": "entry to before final metadata rewrite; complete process checked via run.json", "source": null, "actual_over_expected": 0.08922909167777865}, "work": {"planned": {"trajectories": 10, "steps": 3000, "rhs_calls": 12000}, "actual": {"trajectories": 10, "steps": 2680, "rhs_calls": 10720}}, "report_budget": {"bytes": 372524, "files": 23}, "failures": ["Q_e179230bba47:advance:Invalid observables: injected after partial evolution", "work_volume_mismatch", "Q_e179230bba47:refinement_failed"]}
+........................START full_7c1820e764ee
+DONE full_7c1820e764ee
+START full_5222212ebc04
+DONE full_5222212ebc04
+START full_a2a1b36cf33b
+DONE full_a2a1b36cf33b
+.START full_7c1820e764ee
+DONE full_7c1820e764ee
+START full_5222212ebc04
+DONE full_5222212ebc04
+START full_a2a1b36cf33b
+DONE full_a2a1b36cf33b
+.START full_7c1820e764ee
+DONE full_7c1820e764ee
+START full_5222212ebc04
+DONE full_5222212ebc04
+START full_a2a1b36cf33b
+DONE full_a2a1b36cf33b
+..............................START small_000
+DONE small_000
+START small_001
+DONE small_001
+{"failure": null, "runtime_gate": {"expected_seconds": 1.0, "lower_seconds": 0.001, "upper_seconds": 30.0, "actual_seconds": 0.14155342399999427, "actual_over_expected": 0.14155342399999427, "deviation_seconds": -0.8584465760000057, "status": "PASS", "expected_counts": {"small_NESS": 2, "full_NESS": 0, "static_responses": 0, "frequency_responses": 0, "correlation_inputs": 0, "refinement_NESS": 2, "refinement_static_responses": 0, "refinement_frequency_responses": 0}, "actual_counts": {"small_NESS": 2, "full_NESS": 0, "static_responses": 0, "frequency_responses": 0, "correlation_inputs": 0, "refinement_NESS": 2, "refinement_static_responses": 0, "refinement_frequency_responses": 0}, "environment_comparable": true, "calibrated": true, "scope": "Worker internal measured interval; enclosing process duration must be checked separately"}, "verification": {"status": "REPORT_BYTES_AND_CONDITIONALS_VERIFIED", "files": 14, "full_data": "VERIFIED"}}
+.START full_synthetic
+DONE full_synthetic
+{"failure": null, "runtime_gate": {"expected_seconds": 1.0, "lower_seconds": 0.001, "upper_seconds": 30.0, "actual_seconds": 0.09156012000016744, "actual_over_expected": 0.09156012000016744, "deviation_seconds": -0.9084398799998326, "status": "PASS", "expected_counts": {"small_NESS": 0, "full_NESS": 1, "static_responses": 0, "frequency_responses": 3, "correlation_inputs": 3, "refinement_NESS": 1, "refinement_static_responses": 0, "refinement_frequency_responses": 3}, "actual_counts": {"small_NESS": 0, "full_NESS": 1, "static_responses": 0, "frequency_responses": 3, "correlation_inputs": 3, "refinement_NESS": 1, "refinement_static_responses": 0, "refinement_frequency_responses": 3}, "environment_comparable": true, "calibrated": true, "scope": "Worker internal measured interval; enclosing process duration must be checked separately"}, "verification": {"status": "REPORT_BYTES_AND_CONDITIONALS_VERIFIED", "files": 15, "full_data": "VERIFIED"}}
+.....................START QS production
+DONE QS
+START RR_QS production
+DONE RR_QS
+FINAL_REPORT_VERIFIED_NO_SUBSEQUENT_REPORT_WRITES
+.START QS calibration
+DONE QS
+START RR_QS calibration
+DONE RR_QS
+FINAL_REPORT_VERIFIED_NO_SUBSEQUENT_REPORT_WRITES
+............START small_000
+DONE small_000
+......
+----------------------------------------------------------------------
+Ran 109 tests in 44.693s
+
+OK

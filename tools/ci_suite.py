@@ -16,6 +16,8 @@ def main(s):
     if s=='integrity':
         call(['tools/registry_links.py'])
         call(['tools/workflow_policy.py'])
+        call(['tools/external_sources.py','validate'])
+        call(['-m','unittest','discover','-s','tests','-p','test_external*.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_registry_links.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_ci_policy.py'])
     elif s=='infra':call(['-m','unittest','discover','-s','infra','-p','test*.py'])

@@ -1,0 +1,118 @@
+{
+  "repository": {
+    "rulesets": [
+      {
+        "name": "vm-lab-main-reviewed",
+        "target": "branch",
+        "enforcement": "active",
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "include": [
+              "~DEFAULT_BRANCH"
+            ],
+            "exclude": []
+          }
+        },
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "non_fast_forward"
+          },
+          {
+            "type": "pull_request",
+            "parameters": {
+              "required_approving_review_count": 0,
+              "dismiss_stale_reviews_on_push": true,
+              "require_code_owner_review": false,
+              "require_last_push_approval": false,
+              "required_review_thread_resolution": true,
+              "allowed_merge_methods": [
+                "merge",
+                "squash",
+                "rebase"
+              ]
+            }
+          },
+          {
+            "type": "required_status_checks",
+            "parameters": {
+              "required_status_checks": [
+                {
+                  "context": "merge-gate"
+                }
+              ],
+              "strict_required_status_checks_policy": true
+            }
+          }
+        ]
+      },
+      {
+        "name": "vm-lab-immutable-release-tags",
+        "target": "tag",
+        "enforcement": "active",
+        "bypass_actors": [],
+        "conditions": {
+          "ref_name": {
+            "include": [
+              "refs/tags/infra-*",
+              "refs/tags/science-*"
+            ],
+            "exclude": []
+          }
+        },
+        "rules": [
+          {
+            "type": "deletion"
+          },
+          {
+            "type": "update"
+          }
+        ]
+      }
+    ],
+    "environments": [
+      "scientific-release",
+      "vm-authorized"
+    ],
+    "note": "No VM credentials or runners configured. Zero mandatory approving reviews avoids a one-owner self-approval deadlock; scientific acceptance is recorded separately."
+  },
+  "project": {
+    "owner": "IgorSabirov",
+    "title": "vm-lab — рабочая очередь",
+    "fields": {
+      "Status": [
+        "Inbox",
+        "Analysis",
+        "Ready",
+        "Running",
+        "Review",
+        "Done",
+        "Parked"
+      ],
+      "Work kind": [
+        "Science",
+        "Analysis",
+        "Code",
+        "Infrastructure",
+        "Documentation"
+      ],
+      "Permission": [
+        "Read-only",
+        "Docs",
+        "Code",
+        "Local compute",
+        "VM-authorized"
+      ],
+      "Lineage": null,
+      "Next action": null,
+      "Acceptance": null,
+      "Budget": null,
+      "Decision IDs": null,
+      "Run ID": null,
+      "Exact source SHA": null
+    }
+  }
+}

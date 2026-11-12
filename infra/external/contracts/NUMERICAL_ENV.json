@@ -1,0 +1,63 @@
+{
+  "schema": "vm-lab-external-contract-v1",
+  "id": "NUMERICAL_ENV",
+  "source_id": "LOCAL_NUMERICAL_ENV",
+  "state": "READY",
+  "execution_enabled": true,
+  "analysis_mode": "engineering_check",
+  "question": "Сохраняется ли известный спектр одной фиксированной матрицы при масштабировании и двух настройках потоков?",
+  "scope_limit": "Проверка численной среды, не физический результат и не независимая репликация.",
+  "outcomes_already_inspected": true,
+  "pre_execution_receipt_required": true,
+  "acm_badge_awarded": false,
+  "criteria": [
+    {
+      "id": "EIGENVALUES",
+      "observable": "max abs(computed eigenvalue / scale - exact eigenvalue)",
+      "expected": 0,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Фиксированный хорошо отделённый спектр [-4,-1,2,8], float64; запас относительно machine epsilon для 4x4, не универсальная граница.",
+      "failure_rule": "Любой из шести численных сравнений превышает 1e-12 → технический FAIL"
+    }
+  ],
+  "decision_points": [
+    {
+      "choice": "Сетка масштабов",
+      "values": [
+        9.5367431640625e-07,
+        1,
+        1048576
+      ],
+      "rationale": "Три фиксированных масштаба без подбора по исходу; все исходы публикуются."
+    },
+    {
+      "choice": "Два пути",
+      "values": [
+        "numpy.linalg.eigvalsh",
+        "scipy.linalg.eigvalsh evr"
+      ],
+      "rationale": "Могут использовать общий LAPACK; независимость не заявляется."
+    }
+  ],
+  "numerical_configurations": [
+    {
+      "OPENBLAS_NUM_THREADS": 1,
+      "OMP_NUM_THREADS": 1,
+      "MKL_NUM_THREADS": 1
+    },
+    {
+      "OPENBLAS_NUM_THREADS": 2,
+      "OMP_NUM_THREADS": 2,
+      "MKL_NUM_THREADS": 2
+    }
+  ],
+  "budget": {
+    "max_seconds": 30,
+    "executor": "local_or_github_standard_ci"
+  },
+  "statistical_power": {
+    "applicable": false,
+    "reason": "Детерминированные контрольные матрицы, не статистическая гипотеза."
+  }
+}
