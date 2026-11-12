@@ -20,7 +20,8 @@ def invoke_native(prompt, timeout=120):
         raise SystemExit('AUTH_MISSING')
     started = time.monotonic()
     # Keep runner networking/CA settings. Do not inherit provider overrides or
-    # another GitHub identity. The model receives no repository content/tools.
+    # another GitHub identity. No repository filesystem/tools are exposed;
+    # the caller explicitly supplies the bounded text evidence.
     env = {k: v for k, v in os.environ.items()
            if not k.startswith(('COPILOT_', 'GH_AW_')) and k not in ('GH_TOKEN', 'GITHUB_TOKEN')}
     with tempfile.TemporaryDirectory(prefix='copilot-native-control-') as tmp:
@@ -32,13 +33,15 @@ def invoke_native(prompt, timeout=120):
                 '--deny-tool', 'shell', '--deny-tool', 'write', '--deny-tool', 'url',
                 '--disallow-temp-dir', '--no-custom-instructions', '--no-ask-user',
                 '--no-auto-update', '--disable-client-telemetry', '--log-level', 'warning',
-                '-s', '-p', prompt]
-        p = subprocess.Popen(argv, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
+                '-s']
+        # Documented non-interactive stdin transport avoids ARG_MAX without
+        # dropping mathematical definitions. Never combine stdin with -p.
+        p = subprocess.Popen(argv, cwd=cwd, env=env, stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                              text=True, start_new_session=True)
         timed_out = False
         try:
-            stdout, stderr = p.communicate(timeout=timeout)
+            stdout, stderr = p.communicate(input=prompt, timeout=timeout)
         except subprocess.TimeoutExpired:
             timed_out = True
             os.killpg(p.pid, signal.SIGTERM)
@@ -54,6 +57,7 @@ def invoke_native(prompt, timeout=120):
     return {
          'source_sha': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
          'cli_version': '1.0.103', 'model_selector': 'native auto',
+         'prompt_transport': 'stdin',
          'tools': [], 'repository_content_sent': False, 'max_ai_credits': 30,
          'timeout_seconds': timeout, 'timed_out': timed_out, 'returncode': p.returncode,
          'elapsed_seconds': round(time.monotonic() - started, 3),

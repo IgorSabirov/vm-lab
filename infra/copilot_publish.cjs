@@ -68,12 +68,13 @@ async function main({github, context, core, mode}) {
     description = 'Copilot authored the report from pinned source data via native Auto. Trusted Actions gathered evidence, ran checks and published these fixed report files. No model execution tools, registry edits, science acceptance or VM use.';
   } else if (mode === 'review') {
     const raw = fs.readFileSync('proposal/native-proposal.json', 'utf8');
-    if (Buffer.byteLength(raw) > 300000) throw Error('Oversized review proposal');
+    if (Buffer.byteLength(raw) > 1400000) throw Error('Oversized review proposal');
     d = JSON.parse(raw);
     const contextText = fs.readFileSync('proposal/CONTEXT.json', 'utf8');
     const analysisText = fs.readFileSync('proposal/ANALYSIS.json', 'utf8');
     validateReviewProposal(d, base, contextText, analysisText);
-    const prefix = PREFIX + 'six-models-v1/';
+    const task = d.receipt.task_id;
+    const prefix = PREFIX + task + '/';
     files = [
       {path: prefix + 'REPORT.md', mode: '100644', type: 'blob', content: d.report},
       {path: prefix + 'CONTEXT.json', mode: '100644', type: 'blob', content: contextText},
@@ -81,7 +82,7 @@ async function main({github, context, core, mode}) {
       {path: prefix + 'RECEIPT.json', mode: '100644', type: 'blob', content: JSON.stringify(d.receipt, null, 2) + '\n'}];
     issue = 30;
     title = '[Copilot] Six-model review: proposed interfaces and discriminating tests';
-    branch = `copilot/review-six-models-v1-${context.runId}`;
+    branch = `copilot/review-${task}-${context.runId}`;
     description = 'One native Auto review of pinned evidence for CCC+TL, Anthropic, Serbian, IsingCauset, CDT and ADD. Trusted preparation ran two existing formula checks. All links/tests are proposals; no registry or scientific status is changed. The context and its source hashes are included.';
   } else throw Error('Unknown publication mode');
   const run = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
@@ -93,11 +94,12 @@ async function main({github, context, core, mode}) {
 
 function validateReviewProposal(d, base, contextText, analysisText) {
   validateProposal(d, base);
-  if (Buffer.byteLength(contextText) > 180000 || Buffer.byteLength(analysisText) > 40000)
+  const task = d.receipt.task_id;
+  if (!['six-models-v1', 'six-models-v2'].includes(task)) throw Error('Unknown review task');
+  if (Buffer.byteLength(contextText) > (task === 'six-models-v2' ? 600000 : 180000) || Buffer.byteLength(analysisText) > 40000)
     throw Error('Oversized review evidence');
   const c = JSON.parse(contextText);
-  if (d.receipt.task_id !== 'six-models-v1' || d.receipt.issue !== 30 ||
-      c.profile?.id !== 'six-models-v1' || c.source_sha !== base ||
+  if (d.receipt.issue !== 30 || c.profile?.id !== task || c.source_sha !== base ||
       d.receipt.links_accepted !== false || d.receipt.scientific_status_changed !== false ||
       digest(contextText) !== d.receipt.context_sha256 || digest(analysisText) !== d.receipt.analysis_sha256 ||
       JSON.stringify(c) !== JSON.stringify(d.context) || JSON.stringify(JSON.parse(analysisText)) !== JSON.stringify(d.analysis))

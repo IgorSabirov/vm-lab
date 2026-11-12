@@ -57,4 +57,7 @@ test('six-model publisher binds context and analysis and cannot promote links', 
   assert.throws(() => validateReviewProposal(d, base, contextText+' ', analysisText), /mismatch/);
   d.receipt.links_accepted = true;
   assert.throws(() => validateReviewProposal(d, base, contextText, analysisText), /mismatch/);
+  d.receipt.links_accepted = false;
+  d.receipt.task_id = '../escape';
+  assert.throws(() => validateReviewProposal(d, base, contextText, analysisText), /Unknown review task/);
 });

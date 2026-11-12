@@ -1,0 +1,19 @@
+{
+  "schema": "vm-lab-context-requirements-v1",
+  "expand_roots": ["question:U010", "result:R128", "result:R129"],
+  "incoming_relations": ["parent", "informs_not_closes", "decision_scope_not_scientific_evidence"],
+  "outgoing_relations": ["addresses", "boundary_open", "related_open_link", "updates_not_closes", "direct_conditional_evidence"],
+  "rules": [
+    {
+      "id": "continuation_foundations",
+      "when_any": ["question:U010", "result:R128", "result:R129"],
+      "required_nodes": ["question:U010", "result:R126", "result:R127", "result:R128", "result:R129", "obligation:N02", "obligation:N06", "decision:D001", "decision:D002"],
+      "documents": [
+        {"id": "common_model", "path": "analysis/COMMON_MODEL_20261109/MODEL.md", "category": "definitions_observables_genealogy", "required_markers": ["## 4.", "## 5.", "## 9.", "## 10.", "## 11.", "## 12."]},
+        {"id": "rho_genesis_specification", "path": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md", "category": "assumptions_constraints"},
+        {"id": "contact_capacity_result", "path": "analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md", "category": "results_tests_limits"}
+      ]
+    }
+  ],
+  "scope": "Explicit engineering policy for context selection, not a proof of scientific completeness and not a new physical law."
+}
