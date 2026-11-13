@@ -1,0 +1,83 @@
+name: Copilot link catalog
+on:
+  issue_comment:
+    types: [created]
+permissions:
+  contents: read
+concurrency:
+  group: copilot-now-code-catalog-v1
+  cancel-in-progress: false
+jobs:
+  catalog:
+    if: github.actor == github.repository_owner && github.event.issue.number == 41 && github.event.comment.body == '/vm-lab-catalog now-code-catalog-v1'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      base_sha: ${{ steps.prepare.outputs.base_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Reuse existing catalog instead of repeating inference
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        with:
+          script: |
+            const prs=await github.paginate(github.rest.pulls.list,{...context.repo,state:'all',per_page:100});
+            if(prs.some(p=>p.head.ref.startsWith('copilot/catalog-now-code-v1-')))
+              throw Error('Catalog proposal already exists; inspect or recover it');
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Gather public links and full project question
+        id: prepare
+        timeout-minutes: 4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python infra/copilot_catalog.py prepare
+      - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
+        with:
+          destination: ${{ runner.temp }}/gh-aw/actions
+      - name: Install verified native CLI
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_HOST: github.com
+          GH_AW_COPILOT_MIN_VERSION: 1.0.35
+        run: bash "$RUNNER_TEMP/gh-aw/actions/install_copilot_cli.sh" 1.0.103 --checksums-sha256 26cd3e4b32cde498e4961fb4d48e7b85d7859fc69af1a645a19201fdd577bdb2 --cooldown-days 3
+      - name: Copilot organizes links through the NOW question
+        timeout-minutes: 4
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: python infra/copilot_catalog.py generate
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: now-code-catalog
+          path: catalog-output/
+          retention-days: 30
+  publish:
+    needs: catalog
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: now-code-catalog
+          path: proposal
+      - name: Publish fixed catalog files without executing model output
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3
+        env:
+          EXPECTED_SHA: ${{ needs.catalog.outputs.base_sha }}
+        with:
+          script: |
+            await require('./infra/copilot_catalog_publish.cjs').main({github,context,core});
