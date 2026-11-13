@@ -10,11 +10,11 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import urllib.error
 import urllib.request
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = 'analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json'
@@ -98,11 +98,70 @@ def validate(root=ROOT):
             raise ValueError('Verification requires evidence, not metadata inspection')
         if not s.get('license_status') or not s.get('links'):
             raise ValueError('License assessment and typed links are required')
+        if s.get('resource_manifest'):
+            if s['resource_manifest'] not in s.get('managed_sources', []):
+                raise ValueError('Resource manifest must be tracked in the registry graph')
+            resolve_resources(s, root)
         c = json.loads(local(root, s['contract']).read_text())
         if c['source_id'] != s['id']:
             raise ValueError('Contract/source mismatch')
+        if s.get('resource_manifest') and c.get('resource_manifest') != s['resource_manifest']:
+            raise ValueError('Contract/resource manifest mismatch')
         validate_contract(c)
     return rows
+
+
+def resolve_resources(source, root=ROOT):
+    """Resolve metadata to immutable upstream URLs; never fetch or execute code."""
+    if (source.get('kind') != 'github'
+            or not REPO.fullmatch(source.get('repository', ''))
+            or not SHA.fullmatch(source.get('source_sha', ''))
+            or not SHA.fullmatch(source.get('source_tree_sha', ''))):
+        raise ValueError('Resources require a pinned GitHub source')
+    path = source.get('resource_manifest')
+    if not path:
+        raise ValueError('Source has no resource manifest')
+    manifest = json.loads(local(root, path).read_text())
+    if manifest.get('schema') != 'vm-lab-external-resources-v1':
+        raise ValueError('Unknown resource manifest schema')
+    identity = {'source_id': source['id'], 'repository': source['repository'],
+                'source_sha': source['source_sha'], 'source_tree_sha': source['source_tree_sha']}
+    if any(manifest.get(key) != value for key, value in identity.items()):
+        raise ValueError('Resource manifest identity differs from source pin')
+    if manifest.get('storage_policy') != 'UPSTREAM_LINKS_ONLY_NO_VENDORED_CODE_OR_DATA':
+        raise ValueError('Resources must be references, not vendored data')
+    resources = manifest.get('resources')
+    if not isinstance(resources, list) or not resources:
+        raise ValueError('Resources must be a nonempty list')
+    seen_ids, seen_paths, resolved = set(), set(), []
+    for resource in resources:
+        if set(resource) != {'id', 'path', 'role', 'type', 'git_sha'}:
+            raise ValueError('Resource fields must contain only identity and role')
+        ident, name = resource['id'], resource['path']
+        if not isinstance(ident, str) or not re.fullmatch(r'[a-z][a-z0-9_]*', ident) or ident in seen_ids:
+            raise ValueError('Invalid or duplicate resource ID')
+        if not isinstance(name, str) or not name or name != name.strip():
+            raise ValueError('Invalid resource path')
+        p = PurePosixPath(name)
+        if (p.is_absolute() or '..' in p.parts or '.' in p.parts
+                or str(p) != name or any(c in name for c in '\\?#%')
+                or any(ord(c) < 32 for c in name) or name in seen_paths):
+            raise ValueError('Invalid or duplicate resource path')
+        if resource['type'] not in {'blob', 'tree'} or not isinstance(resource['git_sha'], str) or not SHA.fullmatch(resource['git_sha']):
+            raise ValueError('Resource needs an exact Git blob/tree identity')
+        if not isinstance(resource['role'], str) or not resource['role'].strip():
+            raise ValueError('Resource role is required')
+        seen_ids.add(ident); seen_paths.add(name)
+        url = 'https://github.com/' + source['repository'] + '/' + resource['type'] + '/' + source['source_sha'] + '/' + quote(name, safe='/')
+        resolved.append({**resource, 'url': url})
+    for ref in manifest.get('project_references', []):
+        if not local(root, ref).is_file():
+            raise ValueError('Missing local project reference')
+    return {'schema': 'vm-lab-resolved-resources-v1', **identity,
+            'resource_manifest': path, 'resources': resolved,
+            'interface': manifest.get('interface', {}),
+            'project_references': manifest.get('project_references', []),
+            'execution_performed': False, 'scientific_status_promoted': False}
 
 
 def validate_publication(s, root):
@@ -182,12 +241,20 @@ def markdown(report):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('command', choices=['validate', 'monitor'])
+    p.add_argument('command', choices=['validate', 'monitor', 'resources'])
+    p.add_argument('source_id', nargs='?', help='Registered source ID for resources')
     p.add_argument('--output', type=Path, default=Path('external-evidence'))
     a = p.parse_args()
+    if (a.command == 'resources') != (a.source_id is not None):
+        p.error('resources requires SOURCE_ID; validate/monitor take no source ID')
     rows = validate()
     if a.command == 'validate':
         print(json.dumps({'status': 'PASS', 'sources': len(rows), 'scientific_status_promoted': False}))
+    elif a.command == 'resources':
+        source = next((row for row in rows if row['id'] == a.source_id), None)
+        if source is None:
+            p.error('Unknown registered source ID')
+        print(json.dumps(resolve_resources(source), ensure_ascii=False, indent=2))
     else:
         result = inspect(rows)
         a.output.mkdir(parents=True, exist_ok=True)

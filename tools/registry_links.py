@@ -179,7 +179,7 @@ def build(root):
     groups['decision']=unique(decisions,'decisions')
     for p in decision_files: raw[str(p.relative_to(root))]=p.read_text()
     source_rows={}
-    for item in list(groups['result'].values())+list(groups['review'].values()):
+    for item in list(groups['result'].values())+list(groups['review'].values())+list(groups['external'].values()):
         for path in item.get('managed_sources',[]):
             if not (root/path).is_file(): raise ValueError(f'Missing managed source {path}')
             data=(root/path).read_bytes()
@@ -207,6 +207,8 @@ def build(root):
             kind, key = target.split(':', 1)
             if kind not in groups: raise ValueError('Unknown external source target')
             add('external', ident, kind, key, 'candidate_source_context_not_evidence')
+        for path in item.get('managed_sources', []):
+            add('external', ident, 'source', path, 'external_metadata_not_execution_evidence')
     for kind in ('result','review'):
         for ident,item in groups[kind].items():
             for path in item.get('managed_sources',[]):add(kind,ident,'source',path,'managed_evidence_source' if kind=='result' else 'review_source_not_attestation')

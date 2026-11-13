@@ -24,7 +24,17 @@
     "infra/external/contracts/NUMERICAL_ENV.json",
     "infra/external/contracts/QSC_OPERATORS.json",
     "infra/external/contracts/SERBIAN_CPP.json",
-    "tests/test_dependency_evidence.py"
+    "tests/test_dependency_evidence.py",
+    "infra/external/contracts/ANTHROPIC_HP.json",
+    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json",
+    "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json",
+    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json",
+    "infra/external/contracts/CCC_SPARC.json",
+    "infra/external/contracts/PRIMAT.json",
+    "infra/external/sources/PRIMAT.json",
+    "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+    "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md"
   ],
   "reproduce": "Install requirements-ci.txt; run tools/external_sources.py validate; run tools/numerical_control.py --output evidence with threads=1 and 2 as documented in infra/external/README.md.",
   "raw_data": {
@@ -35,6 +45,7 @@
   "limitations": [
     "No new IsingCauset/CDT/QSC/BFSS/YM author experiment is bundled or claimed reproduced.",
     "Existing full scientific VM data are outside this package.",
-    "Nested Serbian archive is preserved under its original license; not a new scientific replication."
+    "Nested Serbian archive is preserved under its original license; not a new scientific replication.",
+    "PRIMAT code and numerical tables remain upstream. Only the pinned resource metadata and interface contract are bundled; no BBN execution is claimed."
   ]
 }

@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=11, decision=2, source=27.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=12, decision=2, source=30.
 
 ## Предпосылка → результаты
 
@@ -568,6 +568,15 @@ CCC SPARC: наблюдательная реализация, не полный 
 **Входящие:** нет.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
+<a id="external-primat"></a>
+
+### external:PRIMAT
+
+PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
+
+**Входящие:** нет.
+**Исходящие:** [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
+
 <a id="external-qsc_operators"></a>
 
 ### external:QSC_OPERATORS
@@ -673,7 +682,7 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 Локальные результаты → одна сквозная реализация — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l10).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n01"></a>
@@ -2652,7 +2661,7 @@ Anthropic: эффективный модуль Хокинга—Пейджа, п
 
 CCC+TL/CBST: геометрия, часы и границы общего закона — [исходная карточка](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`.
 **Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_BBN_DRIFT_20261113/PLAN.json](#source-analysis-ccc_bbn_drift_20261113-plan-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json](#source-analysis-ccc_bbn_drift_20261113-provenance-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/RESULTS.json](#source-analysis-ccc_bbn_drift_20261113-results-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json](#source-analysis-ccc_bbn_drift_20261113-validation-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/calculate.py](#source-analysis-ccc_bbn_drift_20261113-calculate-py) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
@@ -2822,7 +2831,7 @@ analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json — [исходная карто
 
 analysis/CCC_BBN_DRIFT_20261113/REPORT.md — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/REPORT.md).
 
-**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Входящие:** [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-ccc_bbn_drift_20261113-results-json"></a>
@@ -2933,6 +2942,15 @@ analysis/G3_CONTACT_CAPACITY_20261111/compute.py — [исходная карт�
 **Входящие:** [R129](#result-r129) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-primat_integration_20261113-report-md"></a>
+
+### source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md
+
+analysis/PRIMAT_INTEGRATION_20261113/REPORT.md — [исходная карточка](../../analysis/PRIMAT_INTEGRATION_20261113/REPORT.md).
+
+**Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
+**Исходящие:** нет.
+
 <a id="source-infra-external-readme-md"></a>
 
 ### source:infra/external/README.md
@@ -2940,6 +2958,24 @@ analysis/G3_CONTACT_CAPACITY_20261111/compute.py — [исходная карт�
 infra/external/README.md — [исходная карточка](../../infra/external/README.md).
 
 **Входящие:** [EXTERNAL_20261112](#review-external_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-infra-external-contracts-primat-json"></a>
+
+### source:infra/external/contracts/PRIMAT.json
+
+infra/external/contracts/PRIMAT.json — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
+
+**Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
+**Исходящие:** нет.
+
+<a id="source-infra-external-sources-primat-json"></a>
+
+### source:infra/external/sources/PRIMAT.json
+
+infra/external/sources/PRIMAT.json — [исходная карточка](../../infra/external/sources/PRIMAT.json).
+
+**Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
 **Исходящие:** нет.
 
 <a id="source-infra-reviews-external_20261112-github_review-txt"></a>
