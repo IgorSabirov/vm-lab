@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=11, decision=2, source=21.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=11, decision=2, source=27.
 
 ## Предпосылка → результаты
 
@@ -2653,7 +2653,7 @@ Anthropic: эффективный модуль Хокинга—Пейджа, п
 CCC+TL/CBST: геометрия, часы и границы общего закона — [исходная карточка](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md).
 
 **Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`.
-**Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
+**Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_BBN_DRIFT_20261113/PLAN.json](#source-analysis-ccc_bbn_drift_20261113-plan-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json](#source-analysis-ccc_bbn_drift_20261113-provenance-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/RESULTS.json](#source-analysis-ccc_bbn_drift_20261113-results-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json](#source-analysis-ccc_bbn_drift_20261113-validation-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/calculate.py](#source-analysis-ccc_bbn_drift_20261113-calculate-py) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -2796,6 +2796,60 @@ analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json — [исход�
 analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json).
 
 **Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-plan-json"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/PLAN.json
+
+analysis/CCC_BBN_DRIFT_20261113/PLAN.json — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/PLAN.json).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-provenance-json"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json
+
+analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-report-md"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/REPORT.md
+
+analysis/CCC_BBN_DRIFT_20261113/REPORT.md — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/REPORT.md).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-results-json"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/RESULTS.json
+
+analysis/CCC_BBN_DRIFT_20261113/RESULTS.json — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/RESULTS.json).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-validation-json"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json
+
+analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-calculate-py"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/calculate.py
+
+analysis/CCC_BBN_DRIFT_20261113/calculate.py — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/calculate.py).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-ccc_tl_review_20261112-algebra_check-json"></a>

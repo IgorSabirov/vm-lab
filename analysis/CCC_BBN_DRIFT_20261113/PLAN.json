@@ -1,0 +1,24 @@
+{
+  "question": "Does the published CCC+TL exponential drift produce a preferential BBN window?",
+  "mode": "exploratory analytic evaluation, not a nuclear-network simulation",
+  "base_commit": "aea477333268bcda62ae24ccc2ad26898e681e60",
+  "parent_report": "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+  "lineage": ["U006", "L09"],
+  "inputs": {
+    "Hc_km_s_Mpc": "59.5",
+    "alpha_over_Hc": "-0.80",
+    "early_f_reported_2024": "3.66",
+    "age_Gyr_rounded_crosscheck_only": "26.7",
+    "Mpc_km": "3.0856775814913673e19",
+    "Julian_year_seconds": "31557600"
+  },
+  "durations_seconds": [1, 100, 1000, 10000, 100000],
+  "duration_interpretation": "Declared sensitivity grid, not inferred BBN endpoints",
+  "clock_reference_seconds": [1, 100, 1000, 10000],
+  "clock_assumption": "All kinetic rates and cooling share 1/f; identical initial state and eta",
+  "expected_runtime_seconds_upper": 5,
+  "hard_timeout_seconds": 60,
+  "environment": "assistant sandbox, CPU, Python standard library",
+  "verification": "80-digit Decimal exponentials; independent Simpson quadrature for operational clock; float expm1 cross-check",
+  "not_claimed": ["full BBN abundances", "joint cosmological fit", "physical derivation of common rate scaling", "selection or feedback law"]
+}
