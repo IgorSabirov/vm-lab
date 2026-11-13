@@ -18,6 +18,8 @@ class RegistryIntegrity(unittest.TestCase):
             f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_text((ROOT/p).read_text())
         for row in json.loads((ROOT/mod.EXTERNAL).read_text())['external_integrations']:
             f=dst/row['contract'];f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/row['contract']).read_bytes())
+            for p in row.get('managed_sources', []):
+                f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/p).read_bytes())
         data=json.loads((dst/mod.MAIN).read_text())
         for row in data['results']+data.get('external_reviews',[]):
             for p in row.get('managed_sources',[]):

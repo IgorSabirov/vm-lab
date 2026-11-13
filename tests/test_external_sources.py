@@ -97,5 +97,17 @@ class ExternalEvidence(unittest.TestCase):
             spec['files']=['missing'];(root/'spec.json').write_text(json.dumps(spec))
             with self.assertRaises(ValueError):pack.build(root,'spec.json',root/'a.zip')
 
+    def test_packaged_source_metadata_validates_without_repository(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            archive = root / 'metadata.zip'
+            pack.build(ROOT, 'infra/external/COMPENDIUM.json', archive)
+            target = root / 'unpacked'
+            with zipfile.ZipFile(archive) as z:
+                z.extractall(target)
+            rows = ext.validate(target)
+            primat = next(row for row in rows if row['id'] == 'PRIMAT')
+            self.assertEqual(len(ext.resolve_resources(primat, target)['resources']), 20)
+
 
 if __name__=='__main__':unittest.main()

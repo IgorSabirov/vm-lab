@@ -479,6 +479,49 @@
       "status": "CANDIDATE_NOT_EXECUTED",
       "role": "Monitor the previously inspected SPARC implementation; not the entire CCC+TL theory",
       "inspection": "Existing source review: analysis/CCC_TL_REVIEW_20261112/REPORT.md. Metadata refreshed; no SPARC data calculation."
+    },
+    {
+      "id": "PRIMAT",
+      "title": "PRIMAT: авторская сеть первичного нуклеосинтеза",
+      "kind": "github",
+      "repository": "CyrilPitrou/primat",
+      "source_sha": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "source_tree_sha": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+      "source_archive_sha256": null,
+      "source_archive": null,
+      "last_verified_sha": null,
+      "verification_evidence": null,
+      "adapter_commit": null,
+      "runtime_image_digest": null,
+      "dependency_lock_sha256": null,
+      "control_fixture_sha256": null,
+      "expected_output_tolerance": null,
+      "license_status": "GPL-3.0-or-later; pinned LICENCE and CITATION.cff read",
+      "paper": "https://arxiv.org/abs/1801.08023",
+      "doi": "10.1016/j.physrep.2018.04.005",
+      "swhid": null,
+      "archive_status": "UPSTREAM_LINKS_ONLY_NOT_ARCHIVED_BY_VM_LAB",
+      "authors_at_version": [
+        "Cyril Pitrou",
+        "Julien Froustey"
+      ],
+      "contract": "infra/external/contracts/PRIMAT.json",
+      "resource_manifest": "infra/external/sources/PRIMAT.json",
+      "managed_sources": [
+        "infra/external/sources/PRIMAT.json",
+        "infra/external/contracts/PRIMAT.json",
+        "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md"
+      ],
+      "links": [
+        "review:CCC_TL_20261112",
+        "link:L10",
+        "source:analysis/CCC_BBN_DRIFT_20261113/REPORT.md"
+      ],
+      "monitor_enabled": true,
+      "upstream_update_policy": "REPORT_ONLY_REVIEW_REQUIRED",
+      "status": "REGISTERED_LINKS_ONLY_NOT_EXECUTED",
+      "role": "Авторский решатель и таблицы как внешняя зависимость для BBN; не новый физический закон CCC+TL",
+      "inspection": "Commit/tree and resource paths verified from the GitHub tree; LICENCE, CITATION.cff, pyproject.toml and pinned network/background/data documentation read. No upstream code installed or executed."
     }
   ]
 }

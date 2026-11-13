@@ -1,0 +1,217 @@
+{
+  "schema": "vm-lab-external-resources-v1",
+  "source_id": "PRIMAT",
+  "repository": "CyrilPitrou/primat",
+  "source_sha": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "source_tree_sha": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+  "storage_policy": "UPSTREAM_LINKS_ONLY_NO_VENDORED_CODE_OR_DATA",
+  "observed_date": "2026-11-13",
+  "resources": [
+    {
+      "id": "license",
+      "path": "LICENCE",
+      "role": "Лицензия авторского кода",
+      "type": "blob",
+      "git_sha": "f651a516cac987645c974c176d6d53056869f84b"
+    },
+    {
+      "id": "citation",
+      "path": "CITATION.cff",
+      "role": "Авторство и рекомендуемая научная ссылка",
+      "type": "blob",
+      "git_sha": "320bfc9f96fe3ff51313a5fbb99ce47fc9daeca7"
+    },
+    {
+      "id": "package",
+      "path": "pyproject.toml",
+      "role": "Версия пакета и зависимости",
+      "type": "blob",
+      "git_sha": "0d3610a0e73eea92ccb22b5d6d2ec239fdd149d4"
+    },
+    {
+      "id": "solver_api",
+      "path": "primat/backend.py",
+      "role": "run_bbn: выбор вычислительного ядра",
+      "type": "blob",
+      "git_sha": "a8b911156187813848dd533a8c81e8ef7d3e7b20"
+    },
+    {
+      "id": "parameters",
+      "path": "primat/config.py",
+      "role": "Параметры и значения по умолчанию",
+      "type": "blob",
+      "git_sha": "a6847711b100ac049313500ba9f6fe987549f474"
+    },
+    {
+      "id": "background_api",
+      "path": "primat/background.py",
+      "role": "Космологический фон",
+      "type": "blob",
+      "git_sha": "db8fe220a7e84e18d1f9c8880e372d4135d84fac"
+    },
+    {
+      "id": "weak_rates_api",
+      "path": "primat/weak_rates/api.py",
+      "role": "Слабые скорости n↔p",
+      "type": "blob",
+      "git_sha": "8d92aea8f197ee307b682683d9ad07d228ac2755"
+    },
+    {
+      "id": "nuclides",
+      "path": "primat/data/csv/nuclides.csv",
+      "role": "Каталог нуклидов",
+      "type": "blob",
+      "git_sha": "4f3efc6e4acf79caf032fd6870cdfe72a421ff65"
+    },
+    {
+      "id": "reactions",
+      "path": "primat/data/csv/reactions_large.csv",
+      "role": "Каталог реакций",
+      "type": "blob",
+      "git_sha": "275164d08848cf68dd25642c959b1ab313263c7a"
+    },
+    {
+      "id": "detailed_balance",
+      "path": "primat/data/csv/detailed_balance.csv",
+      "role": "Обратные реакции",
+      "type": "blob",
+      "git_sha": "c368a5beef3daa7b951d032493f46319d40e42cd"
+    },
+    {
+      "id": "network_small",
+      "path": "primat/data/nuclear/networks/small.txt",
+      "role": "Состав small",
+      "type": "blob",
+      "git_sha": "946b34b9bf587215c0b8706ccc08ee979b6c298c"
+    },
+    {
+      "id": "network_large",
+      "path": "primat/data/nuclear/networks/large.txt",
+      "role": "Состав large",
+      "type": "blob",
+      "git_sha": "c2733496410557c53d39f2090190e100d66f29c1"
+    },
+    {
+      "id": "network_parthenope_rates",
+      "path": "primat/data/nuclear/networks/small_parthenope.txt",
+      "role": "Вариант таблиц; не независимый решатель",
+      "type": "blob",
+      "git_sha": "e87b2300fe63e2473c853ac0d458a9c29eadc4ee"
+    },
+    {
+      "id": "rate_tables",
+      "path": "primat/data/nuclear/tables",
+      "role": "Авторские ядерные таблицы",
+      "type": "tree",
+      "git_sha": "b106f17cfdba1f8e47fcc0cb6032fb4d34d3309b"
+    },
+    {
+      "id": "neutrino_tables",
+      "path": "primat/data/NEVO",
+      "role": "Авторские нейтринные таблицы",
+      "type": "tree",
+      "git_sha": "4a04fe49b02b054d73137659ae56b48538a72d39"
+    },
+    {
+      "id": "network_documentation",
+      "path": "docs/howto/networks.md",
+      "role": "Состав сетей и температурные стадии",
+      "type": "blob",
+      "git_sha": "618d3ddbc4bf34332848848be4ef07c6e47faf65"
+    },
+    {
+      "id": "background_documentation",
+      "path": "docs/howto/backgrounds.md",
+      "role": "Контракт нестандартного фона",
+      "type": "blob",
+      "git_sha": "c70a29f077eeec869de855f66959b6cc38ed90fd"
+    },
+    {
+      "id": "data_documentation",
+      "path": "docs/howto/data-overlays.md",
+      "role": "Размещение данных и кешей",
+      "type": "blob",
+      "git_sha": "888778d1eabd4260225ad9b9d68a2dd8c438fc4e"
+    },
+    {
+      "id": "author_validation",
+      "path": "tests/README.md",
+      "role": "Авторские эталоны и допуски",
+      "type": "blob",
+      "git_sha": "d68f00e4c52cae94cfc0ec1910a6a547beb4486d"
+    },
+    {
+      "id": "physics",
+      "path": "docs/physics.md",
+      "role": "Описание физической модели",
+      "type": "blob",
+      "git_sha": "8c5276b52ec53d09e689f7b618286e4aa81994d6"
+    }
+  ],
+  "interface": {
+    "status": "DOCUMENTED_NOT_EXECUTED",
+    "python_entry_point": "primat.backend.run_bbn",
+    "standard_example_parameters": {
+      "Omegabh2": 0.02242,
+      "network": "small"
+    },
+    "example_output_keys": [
+      "YPBBN",
+      "DoH",
+      "Neff"
+    ],
+    "unit_convention": "Use the pinned upstream API conventions; custom-background T in MeV and t in seconds.",
+    "profiles": [
+      {
+        "id": "small",
+        "params": {
+          "network": "small"
+        },
+        "nuclides": 8,
+        "nuclear_reactions": 12,
+        "weak_channels": 1,
+        "total_channels": 13
+      },
+      {
+        "id": "large_a8",
+        "params": {
+          "network": "large",
+          "amax": 8
+        },
+        "nuclides": 12,
+        "nuclear_reactions": 66,
+        "weak_channels": 1,
+        "total_channels": 67
+      },
+      {
+        "id": "large",
+        "params": {
+          "network": "large"
+        },
+        "nuclides": 59,
+        "nuclear_reactions": 427,
+        "weak_channels": 1,
+        "total_channels": 428
+      }
+    ],
+    "counts_status": "UPSTREAM_DOCUMENTED_NOT_INDEPENDENTLY_ENUMERATED",
+    "runtime_data": "Load the pinned package's own data; do not duplicate upstream tables in vm-lab.",
+    "runtime_cache": "Use a separate writable cache_dir outside tracked vm-lab files.",
+    "ccc_mapping": {
+      "state": "DRAFT",
+      "common_scaling_reference": "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+      "implemented": false,
+      "background_subclass_backend": "python_only",
+      "changed_neutrino_history_cache_flags": {
+        "weak_rate_cache": false,
+        "save_nTOp": false
+      },
+      "tabulated_background_limitation": "custom_background forces incomplete_decoupling and spectral_distortions to false; changing H alone does not implement common CCC scaling."
+    }
+  },
+  "project_references": [
+    "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md"
+  ],
+  "scientific_status_promoted": false
+}

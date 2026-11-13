@@ -4,7 +4,7 @@
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "1fd7e9a305364d9e8fece770333327ce8f1649e576ed4c3032f6208431da58c1",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
-    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "dd5ae9b8d8ebe17a68a3ce0f809428bb0e216bfeff99a59225254c6de1e38783",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
     "infra/external/contracts/CDT2D.json": "8b97b48d06bb3d672a060add80cda7be4e00869a9cb346c568c1bee497aad40d",
     "infra/external/contracts/HAGEDORN_QSC.json": "7b4202e5b8c813769b7da89483afd4de6dfd5fc7ae7f7616808147faf3902fe2",
@@ -16,6 +16,7 @@
     "infra/external/contracts/ANTHROPIC_HP.json": "96935d576139f10497e46affa865f12204cb0f09e780eae6b196541565a43b8e",
     "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json": "0f6b6efd77f65f73ee683bce662217e9a7eba5a2fca88ce25787432193c6e336",
     "infra/external/contracts/CCC_SPARC.json": "fd970ef75311b72c8d7077f072f1d0d603481cc96bb66adf57faffea11a39f2d",
+    "infra/external/contracts/PRIMAT.json": "729abf14a2601cfca63157624586a838167bbdcf814562d0757888f322a6b3bd",
     "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
     "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d"
   },
@@ -36,7 +37,7 @@
     "infra/reviews/EXTERNAL_20261112/REPORT.md": "55ac76ce84d39a5a0c3fb5349625cb16ffeeefe3cbab40b374c45c5ed4887194",
     "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt": "18f2000211b1a3167a4cac24057218539d9cfac4b4f6f8cb20a26a82d0661fec",
     "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt": "fda3de0f4e2ecd7c690b4249b54c66b1c8c17756e2c48209a7a907264bd6414c",
-    "infra/external/README.md": "65479c33fd1d1a87b391a4887d46dcb5e779b9114ea2ad26e83963149e869223",
+    "infra/external/README.md": "5ee554977ad679a2a00b8432a9eb1bb2f7005a00060e24f510068ce8c5686854",
     "analysis/ANTHROPIC_BH_20261112/REPORT.md": "cde173a37df6ec20bb567a6bf18d4a73ba9c3143ea31ba9303775a8314e2d8c8",
     "analysis/ANTHROPIC_BH_20261112/adapter.py": "f2af50d95560a4ff4996ba6f7e3159946aa0182e74d99e3561ee55a11c75f05d",
     "analysis/ANTHROPIC_BH_20261112/PLAN.json": "fa3f6506914915da6c7ab6e8abf851e69431300e334bd3d8e73a5d595f7cc914",
@@ -52,9 +53,9 @@
     "premise": 66,
     "obligation": 9,
     "review": 4,
-    "external": 11,
+    "external": 12,
     "decision": 2,
-    "source": 27
+    "source": 30
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -533,6 +534,15 @@
       "title": "Чистая SU(N) решёточная теория",
       "status": "CANDIDATE_NOT_EXECUTED",
       "path": "infra/external/contracts/LARGEN_YM.json",
+      "fragment": ""
+    },
+    {
+      "key": "external:PRIMAT",
+      "id": "PRIMAT",
+      "kind": "external",
+      "title": "PRIMAT: авторская сеть первичного нуклеосинтеза",
+      "status": "REGISTERED_LINKS_ONLY_NOT_EXECUTED",
+      "path": "infra/external/contracts/PRIMAT.json",
       "fragment": ""
     },
     {
@@ -2876,6 +2886,18 @@
       "size_bytes": 10455
     },
     {
+      "key": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+      "id": "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+      "kind": "source",
+      "title": "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+      "status": null,
+      "path": "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+      "fragment": "",
+      "sha256": "d6eb3e8da09ca43ae1e17087c6957322fe25f0193be09694bb74a411633980de",
+      "git_blob_sha": "8bf4d96a577e9150f9db458e256e1dced3a19844",
+      "size_bytes": 10235
+    },
+    {
       "key": "source:infra/external/README.md",
       "id": "infra/external/README.md",
       "kind": "source",
@@ -2883,9 +2905,33 @@
       "status": null,
       "path": "infra/external/README.md",
       "fragment": "",
-      "sha256": "65479c33fd1d1a87b391a4887d46dcb5e779b9114ea2ad26e83963149e869223",
-      "git_blob_sha": "7bb9ee7d193ee1206297f34fdead48caa142731d",
-      "size_bytes": 10841
+      "sha256": "5ee554977ad679a2a00b8432a9eb1bb2f7005a00060e24f510068ce8c5686854",
+      "git_blob_sha": "c5aacfa540a22686d81ef305b0600b78258bcd41",
+      "size_bytes": 11566
+    },
+    {
+      "key": "source:infra/external/contracts/PRIMAT.json",
+      "id": "infra/external/contracts/PRIMAT.json",
+      "kind": "source",
+      "title": "infra/external/contracts/PRIMAT.json",
+      "status": null,
+      "path": "infra/external/contracts/PRIMAT.json",
+      "fragment": "",
+      "sha256": "729abf14a2601cfca63157624586a838167bbdcf814562d0757888f322a6b3bd",
+      "git_blob_sha": "21ad34556499685c474cafbf445e1c2d93a86187",
+      "size_bytes": 2273
+    },
+    {
+      "key": "source:infra/external/sources/PRIMAT.json",
+      "id": "infra/external/sources/PRIMAT.json",
+      "kind": "source",
+      "title": "infra/external/sources/PRIMAT.json",
+      "status": null,
+      "path": "infra/external/sources/PRIMAT.json",
+      "fragment": "",
+      "sha256": "d687fd3a00d9e273b82a09e7dfd41e5fe29a6895d236cf397d959bfe7d482b72",
+      "git_blob_sha": "876ce8db3952683132c34a017126143330f5804d",
+      "size_bytes": 7010
     },
     {
       "key": "source:infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt",
@@ -3163,6 +3209,36 @@
       "source": "external:LARGEN_YM",
       "target": "result:R128",
       "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "link:L10",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "review:CCC_TL_20261112",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "source:analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+      "relation": "candidate_source_context_not_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+      "relation": "external_metadata_not_execution_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "source:infra/external/contracts/PRIMAT.json",
+      "relation": "external_metadata_not_execution_evidence"
+    },
+    {
+      "source": "external:PRIMAT",
+      "target": "source:infra/external/sources/PRIMAT.json",
+      "relation": "external_metadata_not_execution_evidence"
     },
     {
       "source": "external:QSC_OPERATORS",

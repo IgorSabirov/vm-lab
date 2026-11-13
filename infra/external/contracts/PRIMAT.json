@@ -1,0 +1,44 @@
+{
+  "schema": "vm-lab-external-contract-v1",
+  "id": "CONTROL_PRIMAT",
+  "source_id": "PRIMAT",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "analysis_mode": "engineering_check",
+  "question": "Подключить авторскую BBN-сеть к проверке стандартного результата и общего масштабирования CCC+TL через закреплённые интерфейсы.",
+  "scope_limit": "Регистрация источника и ссылок не является запуском BBN, проверкой CCC+TL или принятием нового закона отдельных реакций.",
+  "outcomes_already_inspected": true,
+  "pre_execution_receipt_required": true,
+  "acm_badge_awarded": false,
+  "independence": {
+    "team_relation": "UPSTREAM_AUTHORS_AND_VM_LAB_DIFFER",
+    "artifact_relation": "UPSTREAM_ARTIFACT",
+    "implementation_independence": "NOT_CLAIMED"
+  },
+  "decision_points": [
+    {
+      "choice": "Стандартный эталон",
+      "state": "DOCUMENTED_CONTROL_NOT_RUN",
+      "rationale": "Закрепить все физические параметры, сетку и допуски из авторского tests/README.md перед сравнением."
+    },
+    {
+      "choice": "CCC+TL",
+      "state": "MAPPING_REQUIRED",
+      "rationale": "Общее масштабирование должно охватывать реакции, распад и охлаждение; подмена одного H(T) не реализует этот контроль."
+    },
+    {
+      "choice": "Сеть и бюджет",
+      "state": "CALIBRATION_REQUIRED",
+      "rationale": "Small, large A≤8 и large представлены как варианты. Машинное время и необходимый объём должны быть оценены до научного запуска."
+    }
+  ],
+  "criteria": [],
+  "numerical_configurations": [],
+  "budget": {
+    "max_seconds": null,
+    "executor": null
+  },
+  "resource_manifest": "infra/external/sources/PRIMAT.json",
+  "next_action": "Use resources PRIMAT for pinned links; prepare the baseline/run contract without modifying upstream data.",
+  "scientific_acceptance": false
+}
