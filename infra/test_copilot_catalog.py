@@ -7,6 +7,22 @@ from unittest.mock import patch
 import copilot_catalog as c
 
 class CatalogTests(unittest.TestCase):
+    def test_declared_catalog_is_valid_but_invented_source_is_not(self):
+        package=self.package()
+        package['task']['catalog_repository']='nschloe/awesome-scientific-computing'
+        value=self.selection()
+        value['shortlist'][0].update(id='nschloe/awesome-scientific-computing',tags=['catalog','correlations'])
+        c.validate_selection(value,package)
+        value['shortlist'][0]['id']='made/up'
+        with self.assertRaises(ValueError):c.validate_selection(value,package)
+    def test_render_does_not_promote_speculative_scientific_gaps(self):
+        package={'source_sha':'a'*40,'run_id':'1'}
+        selection=self.selection()
+        selection['gaps']=['UNSUPPORTED_SCIENTIFIC_CONCLUSION']
+        rows={}
+        c.add_entry(rows,'org/repo',{},'test')
+        rendered=c.render({'entries':list(rows.values())},selection,package)
+        self.assertNotIn('UNSUPPORTED_SCIENTIFIC_CONCLUSION',rendered)
     def test_collection_preserves_links_and_reports_partial_coverage(self):
         import base64
         def get(api, path):
@@ -18,8 +34,15 @@ class CatalogTests(unittest.TestCase):
                 return {'content':base64.b64encode(b'https://github.com/Org/Extra').decode(), 'html_url':'https://github.com/Org/Catalog/blob/main/README.md', 'sha':'b'*40}, receipt
             return [{'full_name':'Org/Repo','private':False,'description':'Simulation'}], receipt
         with tempfile.TemporaryDirectory() as temp, patch.object(c.PublicAPI, 'get', get):
-            output=Path(temp)
-            c.prepare(output)
+            root=Path(temp)/'repo'
+            output=Path(temp)/'output'
+            task=json.loads((c.ROOT/c.TASK).read_text())
+            for name in [c.TASK, c.SOURCE_INDEX]+task['context_paths']:
+                target=root/name
+                target.parent.mkdir(parents=True,exist_ok=True)
+                target.write_bytes((c.ROOT/name).read_bytes())
+            with patch.object(c,'ROOT',root), patch.object(c.subprocess,'check_output',return_value='a'*40):
+                c.prepare(output)
             rows=json.loads((output/'REGISTRY.json').read_text())['entries']
             self.assertIn('org/extra', {r['id'] for r in rows})
             self.assertEqual(sum(r['id']=='org/repo' for r in rows),1)
