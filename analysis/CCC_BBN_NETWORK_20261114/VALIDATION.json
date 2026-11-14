@@ -1,7 +1,7 @@
 {
   "kind": "STATIC_DESIGN_VALIDATION_ONLY",
   "date": "2026-11-14",
-  "revision_of_commit": "bb5f043b4c650b289f1dd905ff04520432395c11",
+  "validated_preceding_commit": "727f1e0512a2c1aef8d9334213d57624085dcffa",
   "checks": {
     "plan_json_parse": true,
     "parameter_basis_json_parse": true,
@@ -18,12 +18,22 @@
     "atlas_14_parameters_and_63_rates_recorded": true,
     "atlas_not_misrepresented_as_five_parameter_jacobian": true,
     "PRIMAT_eta0b_is_derived_from_Omegabh2_documented": true,
-    "constant_Omegabh2_not_claimed_to_implement_eta_history": true
+    "constant_Omegabh2_not_claimed_to_implement_eta_history": true,
+    "lbt_cmb_only_eta_separated_from_combined_posterior": false,
+    "zero_vm_jobs": true,
+    "source_pin_unchanged": false
+  },
+  "relative_markdown_links_checked": 15,
+  "missing_relative_markdown_links": [],
+  "files_git_blob_sha": {
+    "SPEC.md": "3ba20b0375f5a5428a14c23a4a1a8b55c4fa7bde",
+    "S2_MICROPHYSICS_AND_ANTHROPIC.md": "26780af9ce8e034b8714205ddc2afb5da2a88f60",
+    "PLAN.json": "10f058679ee5c1ab26e58c229fb6fd7e3bf2e8ba",
+    "S2_PARAMETER_BASIS.json": "906a1758dba75050cbd67fac19f05ec14d54ff08"
   },
   "limits": [
-    "GitHub content and JSON structure checks only; not JSON Schema certification",
-    "No finite-difference sensitivity runs, BBN solves, upstream-code execution or VM jobs",
-    "No scientific acceptance or registry status promotion",
-    "Relative Markdown links were checked against GitHub files in the design branch."
+    "GitHub content structure and JSON parsing only; not a JSON Schema or scientific model certification",
+    "No finite-difference sensitivity calculations, BBN solves, upstream-code execution or VM jobs",
+    "No scientific acceptance or registry status promotion"
   ]
 }
