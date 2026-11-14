@@ -162,7 +162,9 @@
         "Physical stress-energy/entropy transfer to the cosmological background",
         "Consistency and conservation equations"
       ],
-      "next": "Establish a physical bridge before coupling the black-hole sector to BBN"
+      "next": "Establish a physical bridge before coupling the black-hole sector to BBN",
+      "design_document": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/REPORT.md",
+      "bridge_contract": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json"
     },
     {
       "id": "A_CAUSAL_INTEGRATION",
@@ -192,6 +194,25 @@
       "status_field": "engineering_status",
       "expected_status": "PASS",
       "scope": "Historical observational summaries and eta covariance coefficient only; S3_STANDARD not accepted"
+    },
+    {
+      "id": "S3_BH_BACKGROUND",
+      "kind": "contract",
+      "depends": [
+        "S3_STANDARD",
+        "BH1"
+      ],
+      "automatic": false,
+      "execution_enabled": false,
+      "design_document": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/REPORT.md",
+      "bridge_contract": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json",
+      "missing": [
+        "Physical identification of X and R, complete stress-energy and initial state",
+        "Derived transition trigger/kinetics and energy-transfer collision terms",
+        "Validated cosmological/neutrino adapter with conservation and null controls",
+        "Nuclear/weak covariance and compatible BBN/CMB observational contract"
+      ],
+      "next": "Test a physically specified BH1 background at fixed Standard Model microphysics against S3; no S2 drift required, no arbitrary heating function, no automatic execution"
     }
   ],
   "previous_evidence": {

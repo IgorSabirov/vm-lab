@@ -1,0 +1,36 @@
+{
+  "status": "MANUAL_ALGEBRA_VERIFIED",
+  "BBN_executed": false,
+  "BH1_executed": false,
+  "scientific_acceptance": false,
+  "scope": "Conditional equilibrium/entropy identities and reuse of an existing local eta response; no physical embedding selected",
+  "sympy_version": "1.14.0",
+  "identities": {
+    "finite_volume_conformal_trace": "0",
+    "entropy_depends_on_TR_only": "0",
+    "adiabatic_control_variable": "0",
+    "sector_energy_exchange_cancels": "0",
+    "photon_entropy_eta_neff_relation": "0",
+    "late_photon_energy_to_entropy": "0",
+    "zero_injection_limit": "0"
+  },
+  "parent_commit": "9e2f5cec303e1a58f354479ffd1fca0db9cbd9b2",
+  "parent_result_sha256": "48a81ecf8734e04426d4b3463a0e68deb20c12e8865459272fcdbae4d9858f02",
+  "eta_component_only_at_fixed_late_eta": {
+    "order": [
+      "Yp",
+      "log10_D_over_H",
+      "ln_Neff_nu"
+    ],
+    "derivative_wrt_ln_Dgamma": [
+      0.00963883078901364,
+      -0.712964395898819,
+      -1.3333333333333333
+    ],
+    "dln_D_over_H_dln_Dgamma": -1.6416611898321258,
+    "dln_D_over_H_dln_Neff_nu": 1.2312458923740943,
+    "dYp_dln_Neff_nu": -0.00722912309176023,
+    "warning": "Not a full BH1 prediction: omitted extra expansion, weak-spectrum, nonthermal and direct nuclear effects must be separately computed."
+  },
+  "wall_seconds": 0.19168791199990665
+}

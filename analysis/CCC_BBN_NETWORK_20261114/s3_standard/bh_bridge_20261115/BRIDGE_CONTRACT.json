@@ -1,0 +1,149 @@
+{
+  "schema": "vm-lab-s3-bh-bridge-v1",
+  "id": "S3_BH_BRIDGE_20261115",
+  "status": "MANUAL_DERIVATION_PHYSICAL_EMBEDDING_OPEN",
+  "parents": [
+    "BH0",
+    "BH1",
+    "S3_STANDARD",
+    "S_ETA",
+    "question:U006",
+    "link:L10",
+    "issue:56"
+  ],
+  "source_commit": "9e2f5cec303e1a58f354479ffd1fca0db9cbd9b2",
+  "upstream_primat_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "execution_enabled": false,
+  "scientific_acceptance": false,
+  "new_autonomous_compute_package": false,
+  "route": {
+    "stage": "S3_BH_BACKGROUND",
+    "depends": [
+      "S3_STANDARD",
+      "BH1"
+    ],
+    "S2_required": false,
+    "condition": "Fixed Standard Model microphysics; direct variation of microphysics requires its own S2 law and response"
+  },
+  "selected_physical_model": null,
+  "unknowns": {
+    "sector_X": null,
+    "R_embedding": null,
+    "N": null,
+    "lambda": null,
+    "initial_state": null,
+    "complete_free_energy": null,
+    "transition_trigger": null,
+    "kinetic_law": null,
+    "collision_terms": null,
+    "cosmological_perturbations": null
+  },
+  "conditional_background": {
+    "gravity": "standard GR with fixed constants, reference bridge only; CCC needs separate equations",
+    "units": "hbar=c=k_B=1",
+    "signs": "Q_Xem and Q_Xnu positive out of X; Q_emnu positive em -> nu",
+    "required_history": [
+      "physical_time",
+      "a",
+      "H",
+      "T_gamma",
+      "n_b",
+      "f_nu_e",
+      "f_antinu_e",
+      "rho_X",
+      "p_X",
+      "Q_Xem",
+      "Q_Xnu",
+      "Q_emnu",
+      "comoving_entropy",
+      "phase_state"
+    ],
+    "nonmonotonic_temperature": "must be supported or excluded by a checked domain condition"
+  },
+  "analytic_results": [
+    {
+      "id": "CONFORMAL_NO_EXPANSION_TRIGGER",
+      "conditions": [
+        "F=R^-1 f(T_X R;N,lambda)",
+        "R proportional to cosmic a",
+        "isolated adiabatic quasistatic stable branch",
+        "fixed N and lambda",
+        "finite positive heat capacity",
+        "no additional scales or relevant gravitational-anomaly terms"
+      ],
+      "conclusion": "dS=C_R dln(T_X R)=0; no expansion-driven crossing of fixed chi_c",
+      "does_not_exclude": [
+        "prepared metastable-state relaxation with a physical kinetic law",
+        "nonadiabatic or nonconformal extensions"
+      ]
+    },
+    {
+      "id": "LATE_PHOTON_IDENTITY",
+      "conditions": [
+        "after BBN and standard e+- annihilation",
+        "before CMB",
+        "baryon number conserved",
+        "no neutrino heating",
+        "Planck photon spectrum restored",
+        "no nuclear photodissociation"
+      ],
+      "definition": "D_gamma=(s_gamma a^3)_after/(s_gamma a^3)_before",
+      "relations": [
+        "eta_CMB=eta_BBN/D_gamma",
+        "Neff_nu_after=Neff_nu_before*D_gamma^(-4/3)"
+      ],
+      "warning": "Neff_nu excludes surviving X radiation; full BBN prediction also needs H and neutrino history"
+    },
+    {
+      "id": "ETA_COMPONENT",
+      "parent_result": "analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json",
+      "parent_sha256": "48a81ecf8734e04426d4b3463a0e68deb20c12e8865459272fcdbae4d9858f02",
+      "interpretation": "Local reused eta response at fixed late eta; not a BH1 simulation or fit"
+    }
+  ],
+  "future_adapter_controls": [
+    "NULL",
+    "DECOUPLED",
+    "CONFORMAL",
+    "ENERGY_BARYON",
+    "LATE_PHOTON",
+    "NU_SPECTRUM",
+    "NUMERICAL"
+  ],
+  "numerical_tolerances": null,
+  "sources": [
+    {
+      "url": "https://hexagonmath.org/pdf/2611.00175v1",
+      "version": "v1",
+      "role": "SYM finite-volume phase structure and source limitations",
+      "read": "primary PDF, sections 1.1,1.7,3.3"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevD.100.015038",
+      "role": "energy/entropy history in concrete dark-sector BBN models; no model imported",
+      "read": "primary full text, sections II-III"
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.10264",
+      "role": "PRIMAT precedent for neutrino-sector effects; no code imported",
+      "read": "abstract only; full-text retrieval unavailable"
+    }
+  ],
+  "manual_verification": {
+    "script": "verify_identities.py",
+    "result": "CHECKS.json",
+    "sympy": "1.14.0",
+    "hard_wall_seconds": 60,
+    "BBN_executed": false,
+    "BH1_executed": false
+  },
+  "preserved": [
+    "CONTROL",
+    "RUN_REQUEST",
+    "CURRENT",
+    "rolling compute budget",
+    "previous FAIL/REVIEW evidence",
+    "R/C/L/U",
+    "S3_EXTENDED S2 dependencies"
+  ]
+}

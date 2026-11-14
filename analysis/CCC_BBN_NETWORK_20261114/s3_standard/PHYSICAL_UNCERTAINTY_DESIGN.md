@@ -135,3 +135,9 @@ PDG 2026 BBN review приводит рекомендацию `Yp = 0.245 ± 0.0
 [Отчёт и воспроизводимый экстрактор](manual_covariance_20261114/REPORT.md), задача #55. Закреплённые исходники и пять priority/placeholder tables проверены по SHA256. Установлены смысл `error=exp(sigma_log)`, independent-channel/one-parameter temperature model, detailed-balance связь, аналитический эффект cap=30 для f=10 и отличие p-response от uniform-rate response. Отдельно выявлена конечнопошаговая нормировка sensitivity helper; ранее полученный S_ETA использовал собственный корректный endpoint interval.
 
 Это частичное закрытие source/semantics вопросов, не полный аудит 427 каналов и не covariance abundances. Межканальные и температурные posterior correlations, weak-theory covariance и observational/CMB gates остаются открыты. BBN/MC не запускались; execution и scientific acceptance не меняются.
+
+## 10. Связь с фазовым сектором Anthropic
+
+[Проработка S3–BH1](bh_bridge_20261115/REPORT.md) и [машинный контракт](bh_bridge_20261115/BRIDGE_CONTRACT.json), задача #56. Отдельный `S3_BH_BACKGROUND` зависит от `BH1` и `S3_STANDARD`: фоновый эффект при фиксированной SM-микрофизике не требует закона дрейфа S2. Прежний S3_EXTENDED сохраняет зависимость от S2_PREDICTION.
+
+Получены условный запрет expansion-driven crossing для изолированного адиабатического конформного сектора с R proportional to a и связь поздней фотонной энтропии с eta и Neff_nu. Старый S_eta переиспользован только для eta-компоненты отклика; новый BBN/BH1 не запускался. Физическая идентификация X/R, полная энергия, триггер перехода, collision terms и кинетика остаются открыты. Контракт не допускает автоматическое исполнение, не меняет CONTROL/CURRENT/RUN_REQUEST или бюджет.
