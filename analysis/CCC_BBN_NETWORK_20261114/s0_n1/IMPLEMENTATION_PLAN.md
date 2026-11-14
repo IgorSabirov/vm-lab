@@ -1,3 +1,5 @@
+> Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.
+
 # S0-N1 implementation and execution plan
 
 **Status:** execution implementation complete; see PRELAUNCH_RESOLUTION.md. No R1–R8 output existed when v1.1 was frozen.

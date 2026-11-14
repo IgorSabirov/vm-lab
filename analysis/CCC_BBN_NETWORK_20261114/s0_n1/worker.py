@@ -9,6 +9,7 @@ def main():
  source=c.verify_freeze(root);tree=c.check_upstream(up);row=c.row_for(rid);group=row['cache_group']
  cache=root/'caches'/group;out=root/'runs'/rid;out.mkdir(parents=True,exist_ok=False);cache.mkdir(parents=True,exist_ok=True)
  started=time.monotonic();building=rid.startswith('CACHE_')
+ if c.environment_signature(c.env())!=c.read(root/'TARGET_ENVIRONMENT.json')['signature']:raise RuntimeError('Worker environment differs from the matched target anchor')
  sys.path.insert(0,str(up))
  import numpy as np
  from scipy.integrate._ivp.bdf import BDF

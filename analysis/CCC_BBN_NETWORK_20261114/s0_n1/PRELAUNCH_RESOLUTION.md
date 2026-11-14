@@ -1,3 +1,5 @@
+> Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.
+
 # S0-N1 prelaunch resolution, 14 November 2026
 
 The current user instruction authorizes implementation and conditional execution. The R0–R8 matrix, R_NET_AMAX8 and proposed numerical budgets are retained. No new physical model or fitted threshold is introduced. PR #47 and its baseline remain immutable.

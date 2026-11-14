@@ -16,6 +16,12 @@ class Contracts(unittest.TestCase):
   paths=[q['filepath'] for q in c.env()['threadpools']]
   self.assertTrue(any('numpy.libs' in x for x in paths))
   self.assertTrue(any('scipy.libs' in x for x in paths))
+ def test_environment_control_exact_config(self):
+  expected=dict(self.manifest['config']);expected['cache_dir']=str(Path('/tmp/env').resolve())
+  self.assertEqual(c.config_for('R_ENV','/tmp/env'),expected)
+ def test_primary_anchor_is_environment_control(self):
+  d=v.differences({'R0':{'Q':.4},'R_ENV':{'Q':.2},'R1':{'Q':.21}},'R_ENV')
+  self.assertAlmostEqual(d['R1']['Q']['signed'],.01)
  def test_unknown_and_read_only_run(self):
   for rid in ('R0','R9','CACHE_BG3000'):
    with self.assertRaises(ValueError):c.row_for(rid)

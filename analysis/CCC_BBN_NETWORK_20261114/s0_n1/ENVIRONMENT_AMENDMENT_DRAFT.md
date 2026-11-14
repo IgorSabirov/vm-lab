@@ -1,3 +1,5 @@
+> Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.
+
 # Proposed environment control — decision required, not enabled
 
 ## Observed problem

@@ -1,6 +1,8 @@
+> Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.
+
 # S0-N1 — preregistered numerical-convergence study
 
-**State:** IMPLEMENTED / BLOCKED_PRELAUNCH_ENVIRONMENT / NO_NUMERICAL_RUNS
+**State:** AUTHORIZED_V1_2_WITH_R_ENV / LAUNCHING
 **Scientific acceptance:** false
 **Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)
 **Upstream:** PRIMAT 0.3.3, commit `6f7e5680614fb119d65a6c9c65a292240b27c61e`

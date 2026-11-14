@@ -20,6 +20,7 @@ def git(*args):return subprocess.check_output(['git','-C',str(REPO),*map(str,arg
 def snapshot(p):return {str(f.relative_to(p)):digest(f) for f in sorted(Path(p).rglob('*')) if f.is_file()}
 def row_for(run_id):
  p=read(PKG/'N1_PREREGISTRATION.json');rows=p['run_matrix']+[p['network_control']]
+ if run_id=='R_ENV':return {**rows[0],'id':'R_ENV','execute':True,'role':'matched_environment_anchor'}
  if run_id=='PROBE':return {**next(r for r in rows if r['id']=='R8'),'id':'PROBE','numerical_precision':1e-6}
  if run_id.startswith('CACHE_BG') and run_id[8:] in ('2000','4000','8000'):
   return {**rows[0],'id':run_id,'sampling_temperature_per_decade':int(run_id[8:]),'cache_group':'BG'+run_id[8:]}
@@ -63,3 +64,7 @@ def validate_resolved(resolved,run_id):
  allowed=set(AXES)|{'cache_dir'}|({'amax'} if run_id=='R_NET_AMAX8' else set())
  for k,v in resolved.items():
   if k not in allowed and (type(v)!=type(baseline[k]) or v!=baseline[k]):raise RuntimeError('Non-matrix config changed: '+k)
+
+def environment_signature(e):
+ return {'python':e['python'],'numpy':e['numpy'],'scipy':e['scipy'],'threadpoolctl':e['threadpoolctl'],'machine':e['machine'],
+  'blas':sorted([p['user_api'],p['internal_api'],p['version'],p['architecture'],p['num_threads']] for p in e['threadpools'])}

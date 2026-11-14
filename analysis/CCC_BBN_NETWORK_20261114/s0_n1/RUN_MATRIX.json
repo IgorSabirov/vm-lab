@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-s0-n1-run-matrix-v1",
-  "status": "IMPLEMENTED_BLOCKED_ENVIRONMENT_BASELINE_MISMATCH",
-  "execution_enabled": false,
+  "status": "AUTHORIZED_V1_2_WITH_R_ENV_NOT_YET_RUN",
+  "execution_enabled": true,
   "scientific_acceptance": false,
   "preregistration": "N1_PREREGISTRATION.json",
   "matrix_definition": "Each R1-R8 entry is one complete PRIMAT three-era integration. R0 reuses the previously completed P2 COLD run and is not recomputed.",
@@ -284,13 +284,18 @@
     "final_species_floor": 1e-300
   },
   "interpretation": "The amax=8 comparison is a same-solver network truncation diagnostic, not an additional convergence rung or independent solver.",
-  "review_gate": "Current owner instruction authorizes implementation and launch after concrete prelaunch gates close. Matrix and budgets retained; publish resource admission before production.",
-  "execution_blocker": {
-    "code": "BASELINE_BLAS_ARCHITECTURE_MISMATCH",
-    "baseline": "Intel Xeon 6975P-C / OpenBLAS SkylakeX",
-    "allocated_runner": "AMD EPYC 7763 / OpenBLAS Haswell",
-    "versions_and_threads": "Match after explicit loading of both BLAS libraries",
-    "R1_R8_started": false,
-    "decision_needed": "Separate same-environment baseline control R_ENV, or compatible SkylakeX executor; original R0 remains immutable."
-  }
+  "review_gate": "Owner instructed launch after explicit R_ENV proposal; execute within frozen matrix/budgets and measured target admission without another permission request.",
+  "environment_control": {
+    "id": "R_ENV",
+    "role": "matched_environment_anchor",
+    "execute": true,
+    "numerical_precision": 1e-10,
+    "rate_grid_npts": 4000,
+    "sampling_temperature_per_decade": 2000,
+    "cache_group": "BG2000",
+    "historical_reference": "R0",
+    "rule": "Exact R0 configuration on current executor; primary convergence and network comparisons use R_ENV. R_ENV minus R0 is separately reported; R0 untouched."
+  },
+  "primary_anchor": "R_ENV",
+  "historical_reference": "R0"
 }
