@@ -1,0 +1,135 @@
+{
+  "status": "INDEPENDENT_ARTIFACT_CHECK_PASS",
+  "source_commit": "5be1858ed86abaaf47d99ad72ac16003a89607a3",
+  "files_hash_verified": 61,
+  "raw_and_dense_bit_identical": true,
+  "diagnostics": {
+    "COLD": {
+      "eras": [
+        {
+          "era": "HT",
+          "species": 2,
+          "raw_nodes": 429,
+          "nfev": 858,
+          "max_baryon_residual": 1.1102230246251565e-15,
+          "raw_min": 0.25807032259738866,
+          "dense_baryon_residual": 1.1102230246251565e-15
+        },
+        {
+          "era": "MT",
+          "species": 12,
+          "raw_nodes": 2165,
+          "nfev": 8311,
+          "max_baryon_residual": 1.652455949852083e-12,
+          "raw_min": -2.3634321680250355e-17,
+          "dense_baryon_residual": 1.652455949852083e-12
+        },
+        {
+          "era": "LT",
+          "species": 59,
+          "raw_nodes": 38788,
+          "nfev": 117149,
+          "max_baryon_residual": 1.651789816037308e-12,
+          "raw_min": 0.0,
+          "dense_baryon_residual": 1.6513457268274578e-12
+        }
+      ],
+      "YPBBN": 0.2470017916450453,
+      "DoH": 2.4366098021972785e-05,
+      "weak_unchanged": true,
+      "worker_status": "ENGINEERING_PASS"
+    },
+    "WARM": {
+      "eras": [
+        {
+          "era": "HT",
+          "species": 2,
+          "raw_nodes": 429,
+          "nfev": 858,
+          "max_baryon_residual": 1.1102230246251565e-15,
+          "raw_min": 0.25807032259738866,
+          "dense_baryon_residual": 1.1102230246251565e-15
+        },
+        {
+          "era": "MT",
+          "species": 12,
+          "raw_nodes": 2165,
+          "nfev": 8311,
+          "max_baryon_residual": 1.652455949852083e-12,
+          "raw_min": -2.3634321680250355e-17,
+          "dense_baryon_residual": 1.652455949852083e-12
+        },
+        {
+          "era": "LT",
+          "species": 59,
+          "raw_nodes": 38788,
+          "nfev": 117149,
+          "max_baryon_residual": 1.651789816037308e-12,
+          "raw_min": 0.0,
+          "dense_baryon_residual": 1.6513457268274578e-12
+        }
+      ],
+      "YPBBN": 0.2470017916450453,
+      "DoH": 2.4366098021972785e-05,
+      "weak_unchanged": true,
+      "worker_status": "ENGINEERING_PASS"
+    }
+  },
+  "runtime": {
+    "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
+    "hard_wall_cap_seconds_per_run": 1400,
+    "hard_total_wall_cap_seconds_including_calibration": 3000,
+    "executor": "GITHUB_ACTIONS_VM",
+    "total_package_wall_seconds": 442.5271927159992,
+    "cold_wall_seconds": 201.48158657099998,
+    "warm_wall_seconds": 199.08371359199998,
+    "total_wall_seconds": 400.56530016299996,
+    "forecast": {
+      "schema": "vm-lab-p2-runtime-forecast-v1",
+      "created_utc": "2026-11-14T08:48:03.766145+00:00",
+      "source_commit": "5be1858ed86abaaf47d99ad72ac16003a89607a3",
+      "probe": {
+        "status": "COMPLETED",
+        "wall_seconds": 15.038079709000002,
+        "cpu_seconds": 14.950130000000001,
+        "peak_rss_mib": 121.83203125,
+        "result_sha256": "f1c4c39b7e176b9bc4eb62daf88446b2c2b6ae5c18b5e504a6dd617425198db2"
+      },
+      "production_profile": "P2_FULLNET",
+      "production_config_sha256": "5eac03fdcfa6e0c7881b9f955af5070f0904d00bf6d02ec21c868eb5f00c9e3e",
+      "seconds": {
+        "low": 235.6727428890405,
+        "central": 471.345485778081,
+        "high": 824.8546001116417
+      },
+      "basis": "{\"low\": 235.6727428890405, \"central\": 471.345485778081, \"high\": 824.8546001116417, \"era_seconds_per_run\": {\"HT\": 0.021367216741738887, \"MT\": 0.9486097558328255, \"LT\": 221.39110436446595}, \"export_allowance_seconds_per_run\": 10, \"uncertainty_factors\": [0.5, 1.75], \"method\": \"Target P2 probe per-era solver time multiplied by strict P1 nfev / probe P2 nfev; two full runs. Envelope is engineering judgment, not a confidence interval.\", \"limitations\": \"Full-network adaptive step count and strict Jacobian cost are unknown. P1 work counts are an analogy, not guaranteed P2 work. Hard caps bound overruns; no precision reduction or automatic retry.\"}",
+      "forecast_method_status": "OPERATOR_ENGINEERING_WORK_COUNT_ENVELOPE",
+      "forecast_scope": "COLD_PLUS_WARM",
+      "calibration_seconds_already_used": 41.96189255299926,
+      "package_seconds": {
+        "low": 277.6346354420398,
+        "central": 513.3073783310803,
+        "high": 866.816492664641
+      },
+      "executor": {
+        "id": "GITHUB_ACTIONS_VM",
+        "package_cap": 3000,
+        "process_cap": 1400
+      },
+      "native_route": "WITHIN_EXECUTOR_CAP",
+      "approval_required": true,
+      "scientific_acceptance": false
+    },
+    "runtime_status": "FORECAST_IN_RANGE"
+  },
+  "scientific_acceptance": false,
+  "boundary": "Independent arithmetic/hash audit of one solver; not an independent BBN solver or validation of CCC/S2.",
+  "publication_order": {
+    "source": "5be1858ed86abaaf47d99ad72ac16003a89607a3",
+    "forecast": "266c64839da96ff55a3297a9ef78bd228af08399",
+    "approval": "b30d6fe1c3f37b580da511d23e6c6cd9057e611a",
+    "results": "cdbfb65d9a5ffceb3d65df06de89936521dc0be9",
+    "cold_started_utc": "2026-11-14T08:48:06.627927+00:00",
+    "forecast_and_approval_published_before_main": true
+  }
+}
