@@ -404,9 +404,15 @@ Le (2026) для GD 133 проверяет \(\mu\) в сильном грави�
 ### 7.2 Осторожность с LBT-derived eta
 
 LBT \(Y_p\) Project V сообщает измерение \(Y_p=0.2458\pm0.0013\).
-Значение \(\eta=(6.120\pm0.038)\times10^{-10}\) получено комбинированием \(Y_p\),
-D/H, BBN и CMB при фиксированном \(N_\nu=3\); вариант со свободным \(N_\nu\)
-даёт \(\eta=(6.101\pm0.044)\times10^{-10}\) и \(N_\nu=2.925\pm0.082\).
+CMB-only анализ в той же работе даёт
+\(\eta=(6.104\pm0.055)\times10^{-10}\) при фиксированном \(N_\nu=3\);
+это более корректный независимый кандидат на космологический вход, если принят
+тот же CMB likelihood и те же стандартные предпосылки. При свободном \(N_\nu\)
+CMB-only результат составляет \(\eta=(6.090\pm0.061)\times10^{-10}\).
+Значение \(\eta=(6.120\pm0.038)\times10^{-10}\) получено комбинированием
+\(Y_p\), D/H, BBN и CMB при фиксированном \(N_\nu=3\); вариант со свободным
+\(N_\nu\) даёт \(\eta=(6.101\pm0.044)\times10^{-10}\) и
+\(N_\nu=2.925\pm0.082\).
 
 Это **совместные posterior results**, а не независимые прямые measurements
 \(\eta_{\rm BBN}\). Нельзя использовать эти combined values как независимый prior
@@ -414,7 +420,9 @@ D/H, BBN и CMB при фиксированном \(N_\nu=3\); вариант с
 использование данных. Для независимого входа выбирается CMB-only baryon likelihood
 с опубликованной covariance/assumptions; либо LBT combined posterior цитируется
 только как результат совместной согласованности, не как внешне заданное \(\eta\).
-Режимы \(N_\nu=3\) fixed и free должны оставаться раздельными.
+Режимы \(N_\nu=3\) fixed и free должны оставаться раздельными. Не отождествлять
+обозначение \(N_\nu\) в конкретном likelihood с выходом \(N_{\rm eff}\) PRIMAT
+без сверки принятой нормировки и предпосылок по нейтринному сектору.
 
 ## 8. Паспорт S2 и предварительная регистрация
 
@@ -441,6 +449,16 @@ D/H, BBN и CMB при фиксированном \(N_\nu=3\); вариант с
 показать, какие комбинации данные способны ограничить, а какие остаются
 неидентифицируемыми. Нельзя после получения результатов менять по отдельности
 \(\alpha,\mu,\eta,G\) и rate normalizations ради восстановления желаемого совпадения.
+
+## 9. Источники численных ограничений и чувствительностей
+
+- [PDG/RPP 2026: Experimental Tests of Gravitational Theory](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-gravity-tests.pdf), §21.4.1, pp. 15–16.
+- [PDG/RPP 2025: Quark Masses](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf), scheme and scale convention.
+- [NIST CODATA 2022: proton/electron mass ratio](https://physics.nist.gov/cgi-bin/cuu/Value?mpsme%7Csearch_for=ratio).
+- [Uzan (2025), Fundamental constants: from measurement to the universe](https://doi.org/10.1007/s41114-025-00059-y), включая чувствительность Yb E3/E2.
+- [Le (2026), GD 133 white-dwarf H2 spectroscopy](https://doi.org/10.1140/epjc/s10052-026-15473-x).
+- [Burns et al. (2026), BBN sensitivity atlas](https://doi.org/10.1016/j.physrep.2026.07.001); [машинные таблицы и графики](https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas).
+- [Yeh et al. (2026), LBT Yp Project V](https://arxiv.org/abs/2601.22239), Table 1 (CMB-only versus combined constraints) и Table 2 (free (N_\nu)).
 
 ---
 
