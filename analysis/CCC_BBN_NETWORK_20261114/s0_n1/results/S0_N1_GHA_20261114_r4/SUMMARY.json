@@ -1,0 +1,72 @@
+{
+  "status": "ENGINEERING_PASS",
+  "numerical_status": "NUMERICAL_CONVERGENCE_FAIL",
+  "stability_status": "NUMERICAL_STABILITY_FAIL",
+  "cache_status": "CACHE_INTEGRITY_PASS",
+  "executed_strict_runs": [
+    "R_ENV",
+    "R_CACHE",
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7",
+    "R8",
+    "R_NET_AMAX8"
+  ],
+  "R0": "IMMUTABLE_HISTORICAL_REFERENCE",
+  "primary_anchor": "R_CACHE",
+  "process_seconds": 3402.9006214339997,
+  "controller_seconds_before_final_publication": 3448.20178017,
+  "forecast": {
+    "scope": "Eleven strict solves including R_ENV and generated-table anchor R_CACHE; preparation/probe already charged separately",
+    "per_run_central": {
+      "R_ENV": 267.2824165483647,
+      "R_CACHE": 267.2824165483647,
+      "R1": 420.7970066673836,
+      "R2": 523.1400667467294,
+      "R3": 292.8681815682012,
+      "R4": 305.66106407811935,
+      "R5": 292.8681815682012,
+      "R6": 305.66106407811935,
+      "R7": 471.9685367070565,
+      "R8": 574.3115967864024,
+      "R_NET_AMAX8": 126.56070893926412
+    },
+    "seconds": {
+      "low": 1924.2006201181032,
+      "central": 3848.4012402362064,
+      "high": 6927.122232425171
+    },
+    "preparation_seconds_used": 107.49993223899997,
+    "factors": {
+      "R_ENV": 1.0,
+      "R_CACHE": 1.0,
+      "R1": 1.6,
+      "R2": 2.0,
+      "R3": 1.1,
+      "R4": 1.15,
+      "R5": 1.1,
+      "R6": 1.15,
+      "R7": 1.8,
+      "R8": 2.2,
+      "R_NET_AMAX8": 0.45
+    },
+    "target_probe_per_era_seconds": [
+      0.012320104000011156,
+      0.07844497099999614,
+      11.564092219000003
+    ],
+    "method": "Measured target-worker time per nfev times R0 strict nfev; declared refinement factors by stratum plus largest-grid initialization/export allowance. Envelope 0.5-1.8 is engineering judgment, not a confidence interval or proven complexity law.",
+    "limitations": "Adaptive work and Jacobian counts unknown under refinement; cap bounds overrun. No thresholds/configs change after results."
+  },
+  "strict_solve_wall_seconds": 3295.400689195,
+  "runtime_review": {
+    "forecast_central_seconds": 3848.4012402362064,
+    "actual_strict_seconds": 3295.400689195,
+    "note": "Preparation/probe charged separately in process_seconds. Queue, setup and publication distinguished from worker wall time. Any out-of-range runtime requires engineering review; it is not a physics verdict."
+  },
+  "scientific_acceptance": false
+}
