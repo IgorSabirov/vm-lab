@@ -292,11 +292,48 @@
         "fundamental"
       ],
       "local_at_SM_fiducial": true,
-      "direct_map_to_five_diagnostic_coordinates": false
+      "direct_map_to_five_diagnostic_coordinates": false,
+      "parameter_names": [
+        "tau_n",
+        "Q_np",
+        "alpha_EM",
+        "G_F",
+        "m_e",
+        "g_A",
+        "V_ud",
+        "Delta_kappa",
+        "r_p",
+        "m_Z",
+        "G_N",
+        "Omega_b h^2",
+        "xi_nu",
+        "Delta_N_eff"
+      ],
+      "key_rates": [
+        "n+p->d+gamma",
+        "d+p->He3+gamma",
+        "d+d->He3+n",
+        "d+d->t+p",
+        "t+p->He4+gamma",
+        "t+d->He4+n",
+        "t+He4->Li7+gamma",
+        "He3+n->t+p",
+        "He3+d->He4+p",
+        "He3+He4->Be7+gamma",
+        "Be7+n->Li7+p",
+        "Li7+p->2He4"
+      ]
     },
     "observational_constraints_source": "PDG/RPP 2026",
     "LBT_eta_circularity_guard": true,
-    "execution_enabled": false
+    "execution_enabled": false,
+    "eta_input_reference": {
+      "LBT_CMB_only_fixed_Nnu3": "(6.104 +/- 0.055)e-10",
+      "LBT_CMB_only_free_Nnu": "(6.090 +/- 0.061)e-10",
+      "combined_BBN_CMB_Yp_D_eta_fixed_Nnu3": "(6.120 +/- 0.038)e-10",
+      "combined_eta_free_Nnu": "(6.101 +/- 0.044)e-10",
+      "input_recommendation": "Use a CMB-only likelihood for an independent BBN eta input; keep combined posterior as joint-consistency result."
+    }
   },
   "observational_sources": [
     "https://pdg.lbl.gov/2026/reviews/rpp2026-rev-gravity-tests.pdf",
@@ -305,7 +342,8 @@
     "https://doi.org/10.1140/epjc/s10052-026-15473-x",
     "https://doi.org/10.1016/j.physrep.2026.07.001",
     "https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas",
-    "https://arxiv.org/abs/2601.22239"
+    "https://arxiv.org/abs/2601.22239",
+    "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf"
   ],
   "validation_scope": "Static design verification only; scientific sensitivity calculations and BBN execution are not part of this revision."
 }
