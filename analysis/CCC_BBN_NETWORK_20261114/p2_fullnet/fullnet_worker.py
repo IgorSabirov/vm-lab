@@ -4,6 +4,7 @@ The parent orchestrator owns wall/RSS limits and records process receipts.
 This worker runs standard S0 only; it never applies the S1 clock adapter.
 """
 import argparse
+import gzip
 import hashlib
 import json
 import os
@@ -38,7 +39,7 @@ def dump(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False,
-                   default=lambda x: x.item() if hasattr(x, "item") else str(x))
+                   default=lambda x: x.item())
         + "\n",
         encoding="utf-8",
     )
@@ -246,12 +247,24 @@ def main():
     dump(out / "S0_EXECUTION_MANIFEST.json", manifest)
 
     solver_objects = []
+    era_timings = []
     original_solve_ivp = nuclear_module.solve_ivp
 
     def capture_solve_ivp(fun, t_span, y0, *a, **kw):
         kw["dense_output"] = True
+        era = ("HT", "MT", "LT")[len(solver_objects)]
+        phase_started = time.monotonic()
         sol = original_solve_ivp(fun, t_span, y0, *a, **kw)
+        solver_seconds = time.monotonic() - phase_started
         solver_objects.append(sol)
+        # Preserve completed work before validation, later eras or final export.
+        np.savez_compressed(out / ("RAW_" + era + ".npz"), t=sol.t, Y=sol.y)
+        with gzip.open(out / ("SOLVER_" + era + ".pkl.gz"), "wb", compresslevel=1) as stream:
+            pickle.dump(sol, stream, protocol=pickle.HIGHEST_PROTOCOL)
+        timing = {"era":era,"solver_seconds":solver_seconds,"checkpoint_seconds":time.monotonic()-phase_started-solver_seconds,
+                  "steps":len(sol.t),"nfev":sol.nfev,"njev":sol.njev,"nlu":sol.nlu,"success":bool(sol.success)}
+        era_timings.append(timing)
+        dump(out / ("ERA_" + era + ".json"), timing)
         return sol
 
     nuclear_module.solve_ivp = capture_solve_ivp
@@ -259,6 +272,8 @@ def main():
     run = PRIMAT(params)
     init_seconds = time.monotonic() - init_started
 
+    if len(run.nucl._lt_net.species)!=59 or len(run.nucl._lt_net.names)!=428:
+        raise RuntimeError("P2 network identity mismatch before integration")
     solve_started = time.monotonic()
     result = run.solve(progress=False)
     solve_seconds = time.monotonic() - solve_started
@@ -396,6 +411,8 @@ def main():
         "LT_has_59_distinct_species": len(lt_species) == 59 and len(set(lt_species)) == 59,
         "LT_has_428_channels_including_weak": lt_channels == 428,
         "all_final_abundances_finite": final_finite,
+        "all_raw_and_dense_values_finite": all(np.isfinite(sol.t).all() and np.isfinite(sol.y).all() for sol in solver_objects) and all(np.isfinite(e["Y"]).all() for e in traces),
+        "strictly_increasing_solver_times": all(np.all(np.diff(sol.t)>0) for sol in solver_objects),
         "clamp_matches_upstream_projection": clamp_matches_upstream,
         "final_abundances_nonnegative": all(v >= 0.0 for v in final.values()),
         "final_baryon_residual": final_mass_residual,
@@ -407,7 +424,7 @@ def main():
         "no_unexpected_new_cache_files": not unexpected_new,
     }
     engineering_pass = all(
-        value is True
+        isinstance(value, (bool, np.bool_)) and bool(value)
         for key, value in checks.items()
         if key not in ("final_baryon_residual",)
     )
@@ -432,6 +449,7 @@ def main():
         "unexpected_new_cache_files": unexpected_new,
         "timing": {
             "initialization_seconds": init_seconds,
+            "eras": era_timings,
             "solve_seconds": solve_seconds,
             "worker_wall_seconds": time.monotonic() - started,
             "peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0,
@@ -440,22 +458,8 @@ def main():
         "physics_failure_inference": "NOT_MADE",
     }
 
-    # This snapshot is written only after the solver has completed all eras.
-    # It is not a resumable checkpoint for a killed/incomplete solve.
-    with (out / "SOLVER_CHECKPOINT.pkl").open("wb") as stream:
-        pickle.dump({
-            "solver_objects": solver_objects,
-            "result": result_clean,
-            "Y_final": final,
-            "Nuclides": cfg.Nuclides,
-            "cache_load_events": [
-            {"path": public_path(event["path"], upstream, cache),
-             "sha256": event["sha256"], "git_blob_sha": event["git_blob_sha"],
-             "bytes": event["bytes"]}
-            for event in load_events
-        ],
-        }, stream, protocol=pickle.HIGHEST_PROTOCOL)
-
+    # Per-era compressed checkpoints already exist. Avoid an uncompressed
+    # full-network pickle exceeding the per-file cap after a successful solve.
     raw_arrays = {}
     for era, sol, species in zip(("HT", "MT", "LT"), solver_objects, phase_species):
         raw_arrays[f"{era}_t_seconds"] = np.asarray(sol.t, dtype=float)

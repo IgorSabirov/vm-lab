@@ -47,6 +47,8 @@ jobs:
           assert profile["id"] == "P2_FULLNET"
           assert profile["alias"] == "full_59_427"
           assert prod["network"] == "large" and "amax" not in prod
+          assert isinstance(prod["T_start_cosmo_MeV"], float)
+          assert prod["T_start_cosmo_MeV"] == 100.0
           assert profile["network"]["expected_nuclides_LT"] == 59
           assert profile["network"]["expected_nuclear_reactions_LT"] == 427
           assert profile["network"]["expected_total_channels_LT_including_weak"] == 428
@@ -60,7 +62,7 @@ jobs:
               assert probe[key] == prod[key], key
           assert profile["acceptance"]["scientific_acceptance"] is False
           assert profile["execution"]["main_run_wall_cap_seconds"] == 600
-          assert profile["execution"]["main_cold_warm_total_wall_cap_seconds"] == 1200
+          assert profile["execution"]["main_cold_warm_total_wall_cap_seconds"] == 600
           assert profile["execution"]["automatic_retry"] is False
           assert profile["execution"]["resume_after_timeout"] is False
           print("P2 profile/static gates: PASS (no solver was run)")

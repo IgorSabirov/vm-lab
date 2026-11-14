@@ -1,6 +1,6 @@
 """Stateful, approval-gated orchestration for P2_FULLNET.
 
-Commands: prepare -> probe -> forecast -> publish -> approve -> publish.
+Commands: prepare -> probe -> forecast -> publish -> approve -> publish -> run -> publish.
 No automatic retry, no solver resume, no S1/S2 mode.
 """
 import argparse
@@ -143,7 +143,14 @@ def verify_frozen(root):
         frozen = git("show", f"{frozen_commit}:{path}", check=False, text=False)
         if not frozen or sha256_bytes(frozen) != expected["sha256"]:
             raise RuntimeError(f"Git object does not match frozen file: {path}")
+    for filename, field in (("PRODUCTION_CONFIG.json","production_config_sha256"),("PROBE_CONFIG.json","probe_config_sha256")):
+        if digest(root/filename)!=freeze[field]:
+            raise RuntimeError("Frozen configuration changed: "+filename)
     return freeze
+
+
+def spent_seconds(root):
+    return sum(float(e.get("wall_seconds",0)) for e in ledger_events(root) if "run_id" in e and "exit_code" in e)
 
 
 def prepare(args):
@@ -168,6 +175,18 @@ def prepare(args):
         if probe.get(key) != production.get(key):
             raise RuntimeError(f"Probe altered cache/background-sensitive field: {key}")
 
+    sys.path.insert(0,str(upstream))
+    from primat.config import PRIMATConfig
+    from primat.weak_rates.cache import weak_rate_fingerprint, thermal_fingerprint
+    from primat.cache_utils import fingerprint_hash
+    actual_fingerprints={}
+    for name, config in (("production",production),("probe",probe)):
+        cfg=PRIMATConfig(config)
+        hashes=[fingerprint_hash(weak_rate_fingerprint(cfg)), fingerprint_hash(thermal_fingerprint(cfg))]
+        if hashes != ["7e3af87bd0404e0a","cfdb4d324bb5651f"]:
+            raise RuntimeError("Typed weak cache fingerprint mismatch before any solver: "+name+str(hashes))
+        actual_fingerprints[name]=hashes
+    write_json(root/"CACHE_PREFLIGHT.json",actual_fingerprints)
     write_json(root / "PRODUCTION_CONFIG.json", production)
     write_json(root / "PROBE_CONFIG.json", probe)
     write_json(root / "SETUP.json", {
@@ -312,6 +331,9 @@ def execute_worker(root, upstream, run_id, config, cache, out, cap, budget_scope
             "affinity": sorted(os.sched_getaffinity(0)) if hasattr(os, "sched_getaffinity") else None,
             "loadavg": list(os.getloadavg()) if hasattr(os, "getloadavg") else None,
             "disk_free_bytes": shutil.disk_usage(out.parent).free,
+            "cpuinfo":Path('/proc/cpuinfo').read_text().split('\n\n')[0],
+            "meminfo":Path('/proc/meminfo').read_text(),
+            "cgroup_quota":None,"cgroup_reason":"not exposed in this container",
         },
         "threads": {k: env[k] for k in (
             "OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"
@@ -320,7 +342,7 @@ def execute_worker(root, upstream, run_id, config, cache, out, cap, budget_scope
             str(p.relative_to(cache)): digest(p)
             for p in sorted(cache.rglob("*")) if p.is_file()
         },
-        "checkpoint": "post-completion snapshot only; not resumable",
+        "checkpoint": "each completed era has raw arrays and compressed solver snapshot; incomplete current era not resumable",
         "automatic_retry": False,
     }
     write_json(before_path, before)
@@ -393,11 +415,12 @@ def probe(args):
     upstream, _, _ = check_upstream(args.upstream)
     if (root / "CALIBRATION.json").exists():
         raise RuntimeError("Probe already exists; no automatic rerun/retry")
-    cap = 60.0
+    cap = min(60.0,600.0-spent_seconds(root))
+    if cap<=0: raise RuntimeError("P2 package budget exhausted")
     receipt = execute_worker(
         root, upstream, "PROBE", root / "PROBE_CONFIG.json",
         root / "cache_probe", root / "runs" / "PROBE",
-        cap, "P2_PROBE_NOT_CHARGED_TO_MAIN_BUDGET",
+        cap, "P2_CALIBRATION_INCLUDED_IN_PACKAGE",
     )
     result_path = root / "runs" / "PROBE" / "RESULT.json"
     worker_result = read_json(result_path) if result_path.is_file() else None
@@ -466,7 +489,10 @@ def forecast(args):
         "seconds": {"low": low, "central": central, "high": high},
         "basis": args.basis,
         "forecast_method_status": "OPERATOR_ENGINEERING_ENVELOPE_NOT_AUTOMATICALLY_EXTRAPOLATED",
-        "native_route": "WITHIN_600S_CAP" if high <= 600 else "SEPARATE_VM_CALIBRATION_REQUIRED",
+        "forecast_scope":"COLD_PLUS_WARM",
+        "calibration_seconds_already_used":spent_seconds(root),
+        "package_seconds":{"low":low+spent_seconds(root),"central":central+spent_seconds(root),"high":high+spent_seconds(root)},
+        "native_route": "WITHIN_600S_CAP" if high+spent_seconds(root) <= 600 else "SEPARATE_VM_CALIBRATION_REQUIRED",
         "approval_required": True,
         "scientific_acceptance": False,
     }
@@ -487,7 +513,7 @@ def forecast(args):
     if args.auto_approve:
         if not args.publish:
             raise RuntimeError("--auto-approve requires --publish; forecast must reach GitHub before main run")
-        if args.max_upper_seconds is None or high > args.max_upper_seconds or high > 600:
+        if args.max_upper_seconds is None or high+spent_seconds(root) > args.max_upper_seconds or high+spent_seconds(root) > 600:
             raise RuntimeError("Auto-approval refused: explicit max-upper bound is absent or exceeded")
         publish(root)
         create_approval(root, forecast_sha, "AUTO_APPROVED_BY_EXPLICIT_FLAG", args.max_upper_seconds)
@@ -556,7 +582,7 @@ def create_approval(root, forecast_sha, approver, max_upper):
     verify_forecast_published(root, forecast_sha)
     forecast_obj = read_json(root / "FORECAST.json")
     high = float(forecast_obj["seconds"]["high"])
-    if high > max_upper or high > 600:
+    if high+spent_seconds(root) > max_upper or high+spent_seconds(root) > 600:
         raise RuntimeError("Forecast upper bound exceeds the authorized execution budget")
     approval = {
         "schema": "vm-lab-p2-run-approval-v1",
@@ -565,7 +591,7 @@ def create_approval(root, forecast_sha, approver, max_upper):
         "forecast_sha256": forecast_sha,
         "authorized_max_upper_seconds": max_upper,
         "authorized_per_run_wall_cap_seconds": 600,
-        "authorized_cold_warm_total_wall_cap_seconds": 1200,
+        "authorized_total_wall_cap_seconds_including_calibration": 600,
         "runs": ["COLD", "WARM"],
         "scientific_acceptance": False,
     }
@@ -584,22 +610,21 @@ def execute_main(root, upstream):
     if approval["forecast_sha256"] != digest(root / "FORECAST.json"):
         raise RuntimeError("Approval receipt does not match current forecast")
     high = float(forecast_obj["seconds"]["high"])
-    if high > approval["authorized_max_upper_seconds"] or high > 600:
+    if high+spent_seconds(root) > approval["authorized_max_upper_seconds"] or high+spent_seconds(root) > 600:
         raise RuntimeError("Forecast exceeds approved budget")
     verify_frozen(root)
+    verify_forecast_published(root, approval["forecast_sha256"])
+    approval_rel=(root/"APPROVAL.json").relative_to(REPO)
+    if git("show",f"HEAD:{approval_rel}",text=False)!= (root/"APPROVAL.json").read_bytes():
+        raise RuntimeError("Approval receipt must be published before production")
 
     main_cache = root / "cache_main"
     if main_cache.exists() and any(main_cache.iterdir()):
         raise RuntimeError("Main cold/warm overlay is not empty; refusing to relabel it cold")
     main_cache.mkdir(parents=True, exist_ok=True)
-    main_events = [
-        event for event in ledger_events(root)
-        if event.get("stage") == "P2_MAIN"
-    ]
-    used = sum(float(event.get("wall_seconds", 0)) for event in main_events)
-    if used >= 1200:
-        raise RuntimeError("P2 cold/warm package 1200 s cap already exhausted")
-    remaining = 1200 - used
+    used = spent_seconds(root)
+    if used>=600: raise RuntimeError("P2 aggregate 600 s cap exhausted")
+    remaining=600-used
 
     cold = execute_worker(
         root, upstream, "COLD", root / "PRODUCTION_CONFIG.json",
@@ -618,7 +643,7 @@ def execute_main(root, upstream):
         return
 
     used += float(cold["wall_seconds"])
-    remaining = 1200 - used
+    remaining = 600 - used
     if remaining <= 1:
         write_json(root / "SUMMARY.json", {
             "status": "ENGINEERING_BUDGET_EXHAUSTED_AFTER_COLD",
@@ -667,10 +692,13 @@ def execute_main(root, upstream):
         "budget": {
             "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
             "hard_wall_cap_seconds_per_run": 600,
-            "hard_total_wall_cap_seconds_cold_warm": 1200,
+            "hard_total_wall_cap_seconds_including_calibration": 600,
+            "total_package_wall_seconds":spent_seconds(root),
             "cold_wall_seconds": cold["wall_seconds"],
             "warm_wall_seconds": warm["wall_seconds"],
             "total_wall_seconds": cold["wall_seconds"] + warm["wall_seconds"],
+            "forecast":forecast_obj,
+            "runtime_status":"FORECAST_IN_RANGE" if forecast_obj["seconds"]["low"]<=cold["wall_seconds"]+warm["wall_seconds"]<=forecast_obj["seconds"]["high"] else "REVIEW_REQUIRED",
         },
         "cold": cold,
         "warm": warm,
@@ -682,12 +710,13 @@ def execute_main(root, upstream):
     write_json(root / "SUMMARY.json", summary)
     finalize_artifacts(root)
     print(json.dumps({"status": summary["status"], "summary": str(root / "SUMMARY.json")}, ensure_ascii=False))
+    return 0 if success else 2
 
 
 def finalize_artifacts(root):
     files = sorted(
         p for p in root.rglob("*")
-        if p.is_file() and p.name != "ARTIFACTS.json"
+        if p.is_file() and p.name != "ARTIFACTS.json" and not any(x.startswith("cache_") for x in p.relative_to(root).parts) and not p.name.startswith("SOLVER_")
     )
     manifest = {
         "schema": "vm-lab-sha256-artifact-manifest-v1",
@@ -712,9 +741,8 @@ def approve(args):
     if args.max_upper_seconds > 600:
         raise RuntimeError("P2 native sandbox cap is 600 seconds")
     create_approval(root, args.forecast_sha, args.approved_by, args.max_upper_seconds)
-    publish(root)  # commit approval receipt before any main solver starts
-    print(json.dumps({"status": "APPROVED_FOR_ENGINEERING_RUN"}, ensure_ascii=False))
-    execute_main(root, args.upstream)
+    print(json.dumps({"status": "APPROVAL_RECEIPT_READY_PUBLISH_THEN_RUN"}, ensure_ascii=False))
+    return 0
 
 
 def main():
@@ -750,6 +778,10 @@ def main():
     p.add_argument("--approved-by", required=True)
     p.add_argument("--max-upper-seconds", type=float, required=True)
 
+    p = subs.add_parser("run")
+    add_root(p)
+    p.add_argument("--upstream",required=True)
+
     p = subs.add_parser("publish")
     add_root(p)
 
@@ -764,6 +796,8 @@ def main():
         return forecast(args)
     if args.command == "approve":
         return approve(args)
+    if args.command == "run":
+        return execute_main(run_root_arg(args.run_root),args.upstream)
     if args.command == "publish":
         publish(run_root_arg(args.run_root))
         return 0

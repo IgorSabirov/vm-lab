@@ -2,7 +2,7 @@
   "schema": "vm-lab-bbn-run-profile-v1",
   "id": "P2_FULLNET",
   "alias": "full_59_427",
-  "state": "ENGINEERING_PROFILE_DRAFT",
+  "state": "AUTHORIZED_EXECUTION_PROFILE",
   "source_design": "analysis/CCC_BBN_NETWORK_20261114/PLAN.json#profiles/P2_EXTENDED",
   "source_commit": "900a67f879621b501f74f8b1da561494fa3c4ae6",
   "upstream": {
@@ -24,7 +24,7 @@
   },
   "production_config": {
     "Omegabh2": 0.02242,
-    "T_start_cosmo_MeV": 100,
+    "T_start_cosmo_MeV": 100.0,
     "T_end_MeV": 0.001,
     "sampling_temperature_per_decade": 2000,
     "rate_grid_npts": 4000,
@@ -50,7 +50,7 @@
   },
   "probe_overrides_only": {
     "rate_grid_npts": 1000,
-    "numerical_precision": 0.000001
+    "numerical_precision": 1e-06
   },
   "cache_contract": {
     "weak_cache": "frozen_upstream",
@@ -79,7 +79,8 @@
       "all_constants_entering_weak_and_thermal_fingerprints"
     ],
     "background_history": "author NEVO tables; unchanged",
-    "background_grid": "author reference grid; unchanged"
+    "background_grid": "author reference grid; unchanged",
+    "typed_fingerprint_requirement": "T_start_cosmo_MeV must remain float 100.0: upstream fingerprints distinguish JSON 100 from 100.0. Compare actual hashes, not Python numeric equality."
   },
   "execution": {
     "stage": "S0_STANDARD_BBN_ONLY",
@@ -93,9 +94,11 @@
     "probe_uses_separate_overlay": true,
     "automatic_retry": false,
     "resume_after_timeout": false,
-    "checkpoint_semantics": "post-completion solver snapshot only; not live checkpoint/resume",
+    "checkpoint_semantics": "compressed snapshot and raw arrays after each completed era; incomplete current era not resumable",
     "main_run_wall_cap_seconds": 600,
-    "main_cold_warm_total_wall_cap_seconds": 1200
+    "main_cold_warm_total_wall_cap_seconds": 600,
+    "local_package_wall_cap_seconds_including_calibration": 600,
+    "budget_scope": "All P2 calibration attempts plus COLD and WARM; no per-process reset of the local 600 s boundary"
   },
   "acceptance": {
     "no_p1_published_abundance_target_comparison": true,
@@ -128,6 +131,8 @@
     "operator_must_record_low_central_high_and_basis": true,
     "no_default_runtime_multiplier": true,
     "approval_required_before_main_run": true,
-    "auto_approval_requires_explicit_upper_bound_and_published_forecast": true
+    "auto_approval_requires_explicit_upper_bound_and_published_forecast": true,
+    "forecast_scope": "COLD_PLUS_WARM; add all calibration time before executor routing",
+    "approval_authorization": "User instruction 2026-11-14: Доработай и запусти. Все права на всё предоставляю; delegated concrete runtime admission after measured forecast"
   }
 }
