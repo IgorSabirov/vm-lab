@@ -190,4 +190,4 @@ Every result must bind to the frozen PRIMAT commit, exact run-config SHA-256, co
 - No likelihood fit, BBN observational comparison, S1/S2/BH1/S3 calculation, independent solver, or ToV “now” claim is part of S0-N1.
 - No result may be described as scientific acceptance or evidence for CCC+TL merely because it passes the numerical gates.
 
-The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json); artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md). Execution remains disabled in this design PR. The matrix and budgets are a proposed preregistration for review, not yet an owner-ratified freeze.
+The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json), with a compact [RUN_MATRIX.json](RUN_MATRIX.json). Artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md); the staged implementation is described in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). Execution remains disabled in this design PR. The matrix and budgets are a proposed preregistration for review, not yet an owner-ratified freeze.
