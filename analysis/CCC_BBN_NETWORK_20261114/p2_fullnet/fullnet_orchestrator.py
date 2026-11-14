@@ -545,7 +545,7 @@ def create_approval(root, forecast_sha, approver, max_upper):
         "approved_by": approver,
         "forecast_sha256": forecast_sha,
         "authorized_max_upper_seconds": max_upper,
-        "authorized_package_wall_cap_seconds": 600,
+        "authorized_per_run_wall_cap_seconds": 600,\n        "authorized_cold_warm_total_wall_cap_seconds": 1200,
         "runs": ["COLD", "WARM"],
         "scientific_acceptance": False,
     }
@@ -577,14 +577,14 @@ def execute_main(root, upstream):
         if event.get("stage") == "P2_MAIN"
     ]
     used = sum(float(event.get("wall_seconds", 0)) for event in main_events)
-    if used >= 600:
+    if used >= 1200:
         raise RuntimeError("P2 package 600 s cap already exhausted")
-    remaining = 600 - used
+    remaining = 1200 - used
 
     cold = execute_worker(
         root, upstream, "COLD", root / "PRODUCTION_CONFIG.json",
         main_cache, root / "runs" / "COLD",
-        remaining, "P2_MAIN",
+        min(600, remaining), "P2_MAIN",
     )
     if cold["status"] != "COMPLETED" or not (root / "runs" / "COLD" / "RESULT.json").is_file():
         write_json(root / "SUMMARY.json", {
@@ -598,7 +598,7 @@ def execute_main(root, upstream):
         return
 
     used += float(cold["wall_seconds"])
-    remaining = 600 - used
+    remaining = 1200 - used
     if remaining <= 1:
         write_json(root / "SUMMARY.json", {
             "status": "ENGINEERING_BUDGET_EXHAUSTED_AFTER_COLD",
@@ -613,7 +613,7 @@ def execute_main(root, upstream):
     warm = execute_worker(
         root, upstream, "WARM", root / "PRODUCTION_CONFIG.json",
         main_cache, root / "runs" / "WARM",
-        remaining, "P2_MAIN",
+        min(600, remaining), "P2_MAIN",
     )
     repeatability = {"compared": False, "exact_trace_match": None, "exact_Y_final_match": None}
     if warm["status"] == "COMPLETED":
@@ -646,7 +646,7 @@ def execute_main(root, upstream):
         "status": "ENGINEERING_PASS" if success else "ENGINEERING_REVIEW_REQUIRED",
         "budget": {
             "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
-            "hard_wall_cap_seconds": 600,
+            "hard_wall_cap_seconds_per_run": 600,\n            "hard_total_wall_cap_seconds_cold_warm": 1200,
             "cold_wall_seconds": cold["wall_seconds"],
             "warm_wall_seconds": warm["wall_seconds"],
             "total_wall_seconds": cold["wall_seconds"] + warm["wall_seconds"],

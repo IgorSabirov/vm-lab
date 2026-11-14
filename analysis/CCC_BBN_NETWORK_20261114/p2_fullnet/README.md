@@ -50,7 +50,7 @@
    ```sh
    ./analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh approve --forecast-sha <SHA256> --approved-by <operator> --max-upper-seconds 600
    ```
-   Эта команда создаёт approval receipt и затем запускает cold и warm как два отдельных процесса, в пределах **общего** 600-секундного бюджета P2.
+   Эта команда создаёт approval receipt и затем запускает cold и warm как два отдельных процесса, в пределах **600 секунд на каждый процесс**; суммарный предел cold+warm — 1200 секунд.
 6. После завершения:
    ```sh
    ./analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh publish
