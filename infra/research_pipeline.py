@@ -10,7 +10,7 @@ from datetime import datetime,timezone
 
 REPO=Path(__file__).resolve().parents[1]
 PKG=REPO/'analysis/CCC_BBN_NETWORK_20261114/pipeline'
-IMPLEMENTATIONS={'s1_fullnet':REPO/'analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/launch.py'}
+IMPLEMENTATIONS={'s1_fullnet':REPO/'analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/launch.py', 's_eta':REPO/'analysis/CCC_BBN_NETWORK_20261114/s_eta/launch.py'}
 
 def read(path):return json.loads(Path(path).read_text())
 def write(path,value):
