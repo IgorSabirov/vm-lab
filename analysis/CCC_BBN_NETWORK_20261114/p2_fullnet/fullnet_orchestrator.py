@@ -57,7 +57,7 @@ def write_json(path, obj):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + "\\n",
+        json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
         encoding="utf-8",
     )
 
@@ -82,7 +82,7 @@ def run_root_arg(value):
 def append_ledger(root, event):
     path = root / "LEDGER.jsonl"
     path.parent.mkdir(parents=True, exist_ok=True)
-    line = json.dumps(event, ensure_ascii=False, sort_keys=True, allow_nan=False) + "\\n"
+    line = json.dumps(event, ensure_ascii=False, sort_keys=True, allow_nan=False) + "\n"
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
     try:
         fcntl.flock(fd, fcntl.LOCK_EX)

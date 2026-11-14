@@ -18,7 +18,7 @@ import time
 PIN = "6f7e5680614fb119d65a6c9c65a292240b27c61e"
 WEAK = {
     "nTOp_7e3af87bd0404e0a.txt": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
-    "nTOp_thermal_cfdb4d324bb5651f.txt": "e3a8b6782393df73a9140e5bd3941ff135af2c9",
+    "nTOp_thermal_cfdb4d324bb5651f.txt": "e3a8b6782393df73a9140e05bd3941ff135af2c9",
 }
 
 
