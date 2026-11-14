@@ -120,13 +120,20 @@
     },
     {
       "id": "BH0",
-      "kind": "contract",
+      "kind": "import",
       "depends": [],
-      "automatic": false,
-      "missing": [
-        "Frozen standalone phase-diagnostic run plan and criteria"
-      ],
-      "next": "Run the Anthropic phase diagnostic as a separate branch; no assumed feedback into BBN"
+      "summary": {
+        "path": "analysis/ANTHROPIC_BH0_BARRIER_20261114/results/SUMMARY.json",
+        "sha256": "1b24a4cc8e9d976a664a1aa03e904582cda5a605f5af7c625218a1bc50c847d8"
+      },
+      "manifest": {
+        "path": "analysis/ANTHROPIC_BH0_BARRIER_20261114/results/ARTIFACTS.json",
+        "sha256": "cc15e888761e642e4e7c5ff5321a40a75d5fb94660dc5d72469fc5982882aab1"
+      },
+      "status_field": "numerical_status",
+      "expected_status": "REDUCED_BARRIER_DIAGNOSTIC_PASS",
+      "automatic": true,
+      "role": "Reduced-potential barrier atlas, 9 cases/38 checks; imported coefficient; no finite-N measure, kinetics or BBN feedback"
     },
     {
       "id": "BH1",

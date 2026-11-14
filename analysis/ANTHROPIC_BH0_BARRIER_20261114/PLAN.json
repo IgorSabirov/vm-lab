@@ -1,0 +1,34 @@
+{
+  "id": "ANTHROPIC_BH0_BARRIER_20261114_r1",
+  "mode": "EXPLORATORY_REDUCED_MODEL_DERIVATION",
+  "execution_enabled": true,
+  "question": "What action barrier separates the two phases of the published reduced potential, and how does it scale as lambda tends to zero?",
+  "parents": ["CONTROL_ANTHROPIC_HP", "BH0", "question:U010"],
+  "source": "https://hexagonmath.org/pdf/2611.00175v1",
+  "source_equations": [19, 21, 22, 24, 63, 64],
+  "source_license": "CC-BY-4.0; Claude (Anthropic), 7 November 2026",
+  "already_known": "Published b, phase ordering and illustrative b=-0.1 landmarks have already been inspected; this is not a blind replication.",
+  "imported_b_over_lambda_squared": "-0.001481411600",
+  "lambda_grid": ["0.01", "0.03", "0.1", "0.3", "1"],
+  "additional_q": ["0.1", "1e-8", "1e-12", "1e-16"],
+  "decimal_precisions": [60, 90],
+  "independent_verifier": "mpmath 1.3.0; simultaneous solution of potential=0 and its derivative=0 at 70 decimal digits",
+  "criteria": {
+    "precision_relative": "1e-30",
+    "independent_relative": "1e-25",
+    "normalized_equation_residual": "1e-35",
+    "leading_limit_relative_at_q_1e_16": "1e-6",
+    "physical_acceptance": "NONE; conditional diagnostics only"
+  },
+  "budget": {
+    "executor": "AI sandbox",
+    "forecast_seconds": 20,
+    "forecast_range_seconds": [0.01, 90],
+    "forecast_basis": "Nine one-dimensional root pairs at two decimal precisions, under 25000 scalar iterations, plus nine two-variable verification roots; no matrix engine. Uncalibrated bounded first execution.",
+    "hard_wall_seconds": 90,
+    "memory_mib": 1024,
+    "output_mib": 5,
+    "automatic_retry": false
+  },
+  "claims_excluded": ["Three-loop coefficient replication", "Resolving the pure-Yang-Mills Coulomb discrepancy", "Finite-N probability distribution", "Nucleation rate or lifetime", "Physical BH1 coupling to BBN", "Fundamental NOW generator", "Uncomputed higher-order corrections"]
+}
