@@ -1,0 +1,442 @@
+{
+  "schema": "vm-lab-s0-n1-preregistration-v1",
+  "protocol_id": "S0-N1",
+  "title": "Full-network PRIMAT numerical-convergence study",
+  "status": "DESIGN_FROZEN_NOT_EXECUTED",
+  "execution_enabled": false,
+  "scientific_acceptance": false,
+  "scope": {
+    "primary_question": "Quantify numerical sensitivity of standard-BBN observables and abundance trajectories to ODE relative tolerance, nuclear-rate master-grid resolution, and background-temperature-grid resolution, independently and jointly.",
+    "included": [
+      "ODE relative-tolerance refinement",
+      "nuclear reaction-rate master T9 grid refinement",
+      "background temperature-grid refinement",
+      "joint refinement interaction diagnostics",
+      "raw-array baryon-budget decomposition",
+      "large versus large-amax-8 shared-light-species comparison"
+    ],
+    "excluded": [
+      "physical parameter uncertainty propagation",
+      "nuclear rate central-value variation or covariance sampling",
+      "independent solver comparison",
+      "observational likelihood or S3",
+      "S1, S2, BH1, eta evolution",
+      "CCC+TL or ToV scientific acceptance",
+      "high-precision acceptance of the heavy nuclide tail"
+    ]
+  },
+  "repository": {
+    "full_name": "IgorSabirov/vm-lab",
+    "design_branch": "s0-n1-design-20261114",
+    "base_branch": "s0-fullnet",
+    "parent_pr": 47,
+    "parent_head_sha": "81ca44e062de0405fb43acc5436ee9d6dfb372d4",
+    "parent_pr_url": "https://github.com/IgorSabirov/vm-lab/pull/47",
+    "baseline_source_commit": "5be1858ed86abaaf47d99ad72ac16003a89607a3"
+  },
+  "upstream": {
+    "repository": "https://github.com/CyrilPitrou/PRIMAT",
+    "version": "0.3.3",
+    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+    "tree": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+    "python_backend_only": true,
+    "numba": false,
+    "source_files": {
+      "nuclear_network_py_git_blob": "abf5ba57cd62320e2fe8ae9bcb2a5f45c0c6013b",
+      "weak_cache_py_git_blob": "6166d69a8f2f055cf31bf1ace0c2be4871d5a0ed",
+      "weak_api_py_git_blob": "8d92aea8f197ee307b682683d9ad07d228ac2755",
+      "performance_doc_git_blob": "cf0a10cf5a7981bfaa9aaec086a6deca4b0a5e41",
+      "reference_values_py_git_blob": "1ea059c9c6d8b801250e08099f72954b0a2aa2b5"
+    }
+  },
+  "baseline_R0": {
+    "disposition": "REUSE_EXISTING_P2_COLD_NO_RERUN",
+    "source": "PR #47, P2_GHA_20261114_r1/runs/COLD",
+    "report_url": "https://github.com/IgorSabirov/vm-lab/blob/s0-fullnet/analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/REPORT.md",
+    "result_path": "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/results/P2_GHA_20261114_r1/runs/COLD/RESULT.json",
+    "execution_manifest_path": "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/results/P2_GHA_20261114_r1/runs/COLD/S0_EXECUTION_MANIFEST.json",
+    "execution_manifest_git_blob": "0058cae202f6a591f553701d143de7badc32d518",
+    "configuration": {
+      "numerical_precision": 1e-10,
+      "effective_rtol_by_era": {
+        "HT": 1e-10,
+        "MT": 1e-10,
+        "LT": 1e-9
+      },
+      "rate_grid_npts": 4000,
+      "rate_grid_T9_min": 0.001,
+      "rate_grid_T9_max": 10,
+      "sampling_temperature_per_decade": 2000,
+      "network": "large",
+      "amax": null,
+      "Omegabh2": 0.02242,
+      "T_start_cosmo_MeV": 100,
+      "T_end_MeV": 0.001,
+      "tau_n": 878.4,
+      "sampling_nTOp_per_decade": 125,
+      "sampling_nTOp_thermal_per_decade": 25,
+      "vegas_n_eval": 100000,
+      "vegas_n_itn": 50
+    },
+    "observables": {
+      "YPBBN": 0.2470017916450453,
+      "DoH": 0.00002436609802197279,
+      "Neff": 3.0439772985579183,
+      "He3oH": 0.00001039752185673265,
+      "Li7oH": 5.499801934010039e-10,
+      "YCNO_diagnostic_only": 7.276222903021217e-15
+    },
+    "integrity_facts": {
+      "cold_warm_bitwise_identical": true,
+      "eras_completed": [
+        "HT",
+        "MT",
+        "LT"
+      ],
+      "LT_species": 59,
+      "LT_channels_including_weak": 428,
+      "maximum_global_baryon_residual": 1.652455949852083e-12,
+      "minimum_raw_abundance": -2.3634321680250355e-17,
+      "independent_solver": false,
+      "convergence_test_performed": false
+    }
+  },
+  "fixed_configuration": {
+    "network": "large",
+    "amax": null,
+    "Omegabh2": 0.02242,
+    "T_start_cosmo_MeV": 100,
+    "T_end_MeV": 0.001,
+    "tau_n": 878.4,
+    "sampling_nTOp_per_decade": 125,
+    "sampling_nTOp_thermal_per_decade": 25,
+    "vegas_n_eval": 100000,
+    "vegas_n_itn": 50,
+    "use_numba": false,
+    "strict_params": true,
+    "incomplete_decoupling": true,
+    "spectral_distortions": true,
+    "analytic_distortions": false,
+    "QED_corrections": true,
+    "nuclear_qed_corrections": true,
+    "radiative_corrections": true,
+    "finite_mass_corrections": true,
+    "thermal_corrections": true,
+    "tau_n_normalization": true,
+    "decay_era": false,
+    "backend": "python",
+    "solver_methods_by_era": {
+      "HT": "LSODA",
+      "MT": "BDF",
+      "LT": "BDF"
+    },
+    "absolute_tolerances_by_era": {
+      "HT": 1e-10,
+      "MT": 1e-15,
+      "LT": 1e-26
+    },
+    "note": "Absolute tolerances remain fixed during the numerical_precision sweep. This design therefore tests configured relative-tolerance sensitivity at these absolute-tolerance floors, not every possible atol refinement."
+  },
+  "run_matrix": [
+    {
+      "id": "R0",
+      "role": "existing_baseline",
+      "execute": false,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R1",
+      "role": "rtol_intermediate",
+      "execute": true,
+      "numerical_precision": 3e-11,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R2",
+      "role": "rtol_fine",
+      "execute": true,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R3",
+      "role": "rate_grid_intermediate",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 8000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R4",
+      "role": "rate_grid_fine",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R5",
+      "role": "background_grid_intermediate",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 4000,
+      "cache_group": "BG4000"
+    },
+    {
+      "id": "R6",
+      "role": "background_grid_fine",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 8000,
+      "cache_group": "BG8000"
+    },
+    {
+      "id": "R7",
+      "role": "joint_intermediate",
+      "execute": true,
+      "numerical_precision": 3e-11,
+      "rate_grid_npts": 8000,
+      "sampling_temperature_per_decade": 4000,
+      "cache_group": "BG4000"
+    },
+    {
+      "id": "R8",
+      "role": "joint_fine",
+      "execute": true,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "cache_group": "BG8000"
+    }
+  ],
+  "network_control": {
+    "id": "R_NET_AMAX8",
+    "execute": true,
+    "network": "large",
+    "amax": 8,
+    "numerical_precision": 1e-10,
+    "rate_grid_npts": 4000,
+    "sampling_temperature_per_decade": 2000,
+    "cache_group": "BG2000",
+    "role": "separate_network_truncation_diagnostic",
+    "compare_only_shared_light_species": true,
+    "expected_LT_species": 12,
+    "expected_channel_inventory": "derive_and_record_from_pinned_source_audit_before_run",
+    "acceptance_reference": "Pinned PRIMAT NUCLIDE_REL_TOL=1e-4 is a network-comparison reference only; it is not a numerical-convergence criterion."
+  },
+  "cache_policy": {
+    "isolate_overlay_per_cache_group": true,
+    "upstream_checkout_must_remain_clean": true,
+    "allow_unapproved_cache_creation": false,
+    "frozen_cache_groups": {
+      "BG2000": {
+        "sampling_temperature_per_decade": 2000,
+        "disposition": "reuse_S0_frozen_cache",
+        "nonthermal_file": "nTOp_7e3af87bd0404e0a.txt",
+        "nonthermal_git_blob_sha": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
+        "thermal_file": "nTOp_thermal_cfdb4d324bb5651f.txt",
+        "thermal_git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9"
+      },
+      "BG4000": {
+        "sampling_temperature_per_decade": 4000,
+        "disposition": "generate_once_then_freeze_nonthermal_weak_cache",
+        "consumers": [
+          "R5",
+          "R7"
+        ]
+      },
+      "BG8000": {
+        "sampling_temperature_per_decade": 8000,
+        "disposition": "generate_once_then_freeze_nonthermal_weak_cache",
+        "consumers": [
+          "R6",
+          "R8"
+        ]
+      }
+    },
+    "rules": [
+      "Compute both weak and thermal fingerprints with pinned PRIMATConfig before any solver run.",
+      "sampling_temperature_per_decade changes the non-thermal weak-rate fingerprint; do not reuse BG2000 nTOp at BG4000 or BG8000.",
+      "The thermal CCRTh fingerprint intentionally excludes sampling_temperature_per_decade; verify unchanged hash and exact bytes, then reuse the S0 thermal cache.",
+      "rate_grid_npts and numerical_precision do not change weak-cache identity.",
+      "For BG4000 and BG8000, create only the expected new non-thermal weak table in a dedicated isolated overlay; record input fingerprint, generator environment, SHA-256 and Git blob SHA.",
+      "Once frozen, a cache artifact is immutable and shared by all same-grid runs.",
+      "Any unexpected cache file, hash change, thermal recompute, missing load event, fallback path or upstream source mutation is an engineering failure."
+    ],
+    "baseline_thermal_fingerprint": "cfdb4d324bb5651f",
+    "baseline_nonthermal_fingerprint": "7e3af87bd0404e0a",
+    "new_fingerprints": "compute_at_runtime_and_freeze; do_not_guess"
+  },
+  "numerical_budget": {
+    "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
+    "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
+    "YPBBN_absolute": 0.000001,
+    "DoH_absolute": 3e-10,
+    "Neff_absolute": 0.000001,
+    "He3oH_relative": 0.00001,
+    "Li7oH_relative": 0.00001,
+    "final_light_species_relative": 0.00001,
+    "final_light_species": [
+      "n",
+      "p",
+      "H2",
+      "H3",
+      "He3",
+      "He4",
+      "Li7",
+      "Be7"
+    ],
+    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),species_floor); species_floor must be stated in the output and may not be changed after results are seen.",
+    "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
+    "upstream_reference_tolerances": {
+      "YPBBN_absolute": 0.00001,
+      "DoH_absolute": 3e-9,
+      "Neff_absolute": 0.00001,
+      "NUCLIDE_REL_TOL": 0.0001,
+      "source": "PRIMAT tests/reference_values.py at the pinned commit"
+    }
+  },
+  "convergence_analysis": {
+    "grid_axes": {
+      "rate_grid_npts": [
+        4000,
+        8000,
+        16000
+      ],
+      "sampling_temperature_per_decade": [
+        2000,
+        4000,
+        8000
+      ],
+      "expected_asymptotic_order_from_upstream_docs": 2,
+      "observed_order_formula": "p_obs=log2(abs(Q_N-Q_2N)/abs(Q_2N-Q_4N))",
+      "rule": "Report signed increments, absolute increments, ratio and p_obs. Do not force p=2. Undefined order near roundoff is reported as plateau/undefined. Sign changes, growth under refinement or implausible order trigger REVIEW_REQUIRED."
+    },
+    "rtol_axis": {
+      "numerical_precision": [
+        1e-10,
+        3e-11,
+        1e-11
+      ],
+      "effective_rtol": {
+        "R0": {
+          "HT": 1e-10,
+          "MT": 1e-10,
+          "LT": 1e-9
+        },
+        "R1": {
+          "HT": 3e-11,
+          "MT": 3e-11,
+          "LT": 3e-10
+        },
+        "R2": {
+          "HT": 1e-11,
+          "MT": 1e-11,
+          "LT": 1e-10
+        }
+      },
+      "rule": "Report R1-R0, R2-R1 and R2-R0. Do not apply the grid-order formula to rtol. Non-decreasing response or an apparent atol floor is unresolved."
+    },
+    "joint_interaction": {
+      "medium_run": "R7",
+      "fine_run": "R8",
+      "medium_formula": "(Q_R7-Q_R0)-[(Q_R1-Q_R0)+(Q_R3-Q_R0)+(Q_R5-Q_R0)]",
+      "fine_formula": "(Q_R8-Q_R0)-[(Q_R2-Q_R0)+(Q_R4-Q_R0)+(Q_R6-Q_R0)]",
+      "rule": "Report interaction residuals for every observable. A small total joint shift cannot mask a failed one-axis gate."
+    }
+  },
+  "acceptance_gates": {
+    "all_three_eras_successful": true,
+    "expected_full_LT_network_species": 59,
+    "expected_full_LT_channels_including_weak": 428,
+    "all_raw_arrays_finite": true,
+    "time_coordinates_strictly_monotone": true,
+    "all_final_abundances_finite": true,
+    "minimum_raw_abundance": -1e-12,
+    "in_era_baryon_drift_absolute": 1e-10,
+    "global_baryon_residual_absolute": 1e-10,
+    "baryon_handoff_step": "report separately; do not renormalize or treat the expected Saha seed as integration drift",
+    "R2_vs_R0_within_numerical_budget": true,
+    "R4_vs_R0_within_numerical_budget": true,
+    "R6_vs_R0_within_numerical_budget": true,
+    "R8_vs_R0_within_numerical_budget": true,
+    "adjacent_fine_rung_differences_within_budget": true,
+    "no_unexplained_cache_mutations": true,
+    "no_scientific_acceptance_promotion": true
+  },
+  "trajectory_contract": {
+    "output_per_run": "three era raw arrays and dense traces with exact species order and units",
+    "common_coordinate": "temperature T within each era, not equal cosmic time",
+    "samples_per_era": 401,
+    "sample_spacing": "logarithmic",
+    "key_species": [
+      "n",
+      "p",
+      "H2",
+      "H3",
+      "He3",
+      "He4",
+      "Li7",
+      "Be7"
+    ],
+    "compare": [
+      "maximum absolute deviation",
+      "trajectory-normalized maximum deviation",
+      "temperature location of maximum"
+    ],
+    "do_not_claim": "Dense samples are audit points, not all internal adaptive ODE steps."
+  },
+  "baryon_budget_contract": {
+    "raw_pre_clamp_only": true,
+    "formula": "B=sum_i A_i Y_i",
+    "components": [
+      "HT initial and final B; HT integration drift",
+      "MT initial B; HT-to-MT Saha-seed increment relative to HT final B",
+      "MT final B; MT integration drift",
+      "LT initial B; MT-to-LT transfer/projection increment",
+      "LT raw final B; LT integration drift",
+      "post-solver clamp and zero-fill increment, reported separately"
+    ],
+    "renormalization": "FORBIDDEN",
+    "source_basis": "Pinned primat/nuclear_network.py::_solve_MT explicitly adds Saha composite seeds on top of HT n+p without renormalization."
+  },
+  "resource_and_run_controls": {
+    "all_runs_must_have_prelaunch_forecast_and_approved_budget": true,
+    "no_automatic_retry": true,
+    "no_solver_resume_from_partial_era": true,
+    "no_implicit_budget_reset_between_runs": true,
+    "per_run_identity_and_hashes_required": true,
+    "exact_resource_caps": "Set only after an N1-specific target-runner probe and a published forecast; do not inherit S0 limits without recalibration."
+  },
+  "required_artifacts": [
+    "N1_PREREGISTRATION.json",
+    "RUN_MATRIX.json",
+    "CACHE_PREFLIGHT.json",
+    "CACHE_FREEZE.json",
+    "one execution manifest and process receipt per newly executed run",
+    "raw HT/MT/LT solver arrays and dense traces per run",
+    "BARYON_BUDGET.json",
+    "CONVERGENCE_SUMMARY.json",
+    "NETWORK_COMPARISON.json",
+    "ARTIFACTS.json"
+  ],
+  "status_rules": {
+    "numerical_repeatability": "separate from convergence",
+    "numerical_convergence": "only for this pinned solver, network, rate set, background and input point",
+    "independent_solver_validation": "not supplied by R_NET_AMAX8",
+    "physical_uncertainty": "not supplied by S0-N1",
+    "scientific_acceptance": false,
+    "registry_status_mutation": false
+  }
+}
