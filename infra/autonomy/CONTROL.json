@@ -1,0 +1,56 @@
+{
+  "schema": "vm-lab-autonomy-control-v1",
+  "enabled": true,
+  "active_branch": "science/autonomous-research-20261114",
+  "active_pr": null,
+  "pr_resolution": "Find open PR by exact head branch; no manual number update while source is frozen.",
+  "pipeline_definition": "analysis/CCC_BBN_NETWORK_20261114/pipeline/PIPELINE.json",
+  "request": "analysis/CCC_BBN_NETWORK_20261114/pipeline/RUN_REQUEST.json",
+  "current": "analysis/CCC_BBN_NETWORK_20261114/pipeline/CURRENT.json",
+  "event_trigger": {
+    "provider": "ChatGPT Automations + GitHub PR webhook",
+    "enabled_confirmed_utc": "2026-11-14T14:04:15Z",
+    "title_prefix": "Research pipeline:",
+    "events": [
+      "opened",
+      "ready_for_review",
+      "closed",
+      "synchronize"
+    ],
+    "polling_schedule": null
+  },
+  "active_stage": "S_ETA",
+  "next_focus": [
+    "S3_STANDARD",
+    "S2_RESPONSE"
+  ],
+  "previously_processed": [
+    {
+      "id": "S0_N1_FOLLOWUP_20261114_r1",
+      "summary_sha256": "5377ee2651a935d8c64c618279b1ba33a3e36ab6755b0a8e97f814159adfcb1c"
+    },
+    {
+      "id": "S1_FULLNET_20261114_r1",
+      "source_result_commit": "e69f27655de41c52a0e28ff840dea0f64c22e09f",
+      "status": "CONDITIONAL_INVARIANCE_PASS"
+    },
+    {
+      "id": "ANTHROPIC_BH0_BARRIER_20261114_r1",
+      "source_result_commit": "be258fc32fc4fe7154a6689ad8718e038ff4a92b",
+      "status": "REDUCED_BARRIER_DIAGNOSTIC_PASS"
+    }
+  ],
+  "limits": {
+    "simultaneous_compute_packages": 1,
+    "new_packages_per_event": 1,
+    "new_packages_per_rolling_24h": 2,
+    "package_seconds": 5400,
+    "process_seconds": 2400,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "automatic_retry": false,
+  "automatic_merge": false,
+  "automatic_scientific_acceptance": false,
+  "owner_authorization": "User asks GitHub to conduct experiments autonomously; standing permission for implementation, publication and execution within the accepted research program. New scientific premises remain explicit."
+}

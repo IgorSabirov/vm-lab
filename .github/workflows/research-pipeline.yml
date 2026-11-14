@@ -1,10 +1,11 @@
 name: CCC BBN research pipeline
 on:
   push:
-    branches: [science/ccc-bbn-pipeline-20261114]
+    branches: [science/autonomous-research-20261114]
     paths: [analysis/CCC_BBN_NETWORK_20261114/pipeline/RUN_REQUEST.json]
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: ccc-bbn-research-pipeline
   cancel-in-progress: false
@@ -12,7 +13,7 @@ jobs:
   research:
     if: github.repository == 'IgorSabirov/vm-lab'
     runs-on: ubuntu-24.04
-    timeout-minutes: 135
+    timeout-minutes: 105
     env:
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
@@ -27,9 +28,13 @@ jobs:
           fetch-depth: 0
       - name: Select pipeline publication branch
         run: |
-          git checkout -B science/ccc-bbn-pipeline-20261114 "$GITHUB_SHA"
+          git checkout -B science/autonomous-research-20261114 "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Enforce rolling autonomous compute budget
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python infra/autonomy/admit.py
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: CyrilPitrou/primat
@@ -43,11 +48,14 @@ jobs:
         run: python -m pip install numpy==2.3.5 scipy==1.17.0 threadpoolctl==3.6.0
       - name: Validate pipeline and S1 contracts
         run: |
-          python analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/test_contracts.py
-          python analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/launch.py --static-check-only --upstream "$GITHUB_WORKSPACE/upstream-primat"
+          python analysis/CCC_BBN_NETWORK_20261114/s_eta/test_contracts.py
+          python analysis/CCC_BBN_NETWORK_20261114/s_eta/launch.py --static-check-only --upstream "$GITHUB_WORKSPACE/upstream-primat"
           python infra/research_pipeline.py
       - name: Reuse evidence, execute ready stages and publish scientific diagnostics
         run: python infra/research_pipeline.py --execute --upstream "$GITHUB_WORKSPACE/upstream-primat"
+      - name: Publish early failure for the event-driven dispatcher
+        if: failure()
+        run: python infra/autonomy/record_failure.py
       - name: Preserve run and pipeline state
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -55,6 +63,7 @@ jobs:
           name: CCC-BBN-pipeline-${{ github.run_id }}
           retention-days: 90
           path: |
-            analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/results/**
+            ${{ runner.temp }}/autonomy-budget.json
+            analysis/CCC_BBN_NETWORK_20261114/s_eta/results/**
             analysis/CCC_BBN_NETWORK_20261114/pipeline/results/**
             analysis/CCC_BBN_NETWORK_20261114/pipeline/CURRENT.json
