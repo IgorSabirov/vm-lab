@@ -1,11 +1,11 @@
 # CCC–BBN: состояние общего пайплайна
 
-Запрос: `CCC_BBN_PIPELINE_20261114_r1`. Снимок: 2026-11-14T13:41:36.969954+00:00.
+Запрос: `CCC_BBN_PIPELINE_20261114_r1`. Снимок: 2026-11-14T13:41:41.653374+00:00.
 
 | Этап | Состояние | Следующее действие / свидетельство |
 |---|---|---|
 | S0_REFERENCE | COMPLETE | analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/results/S0_N1_FOLLOWUP_20261114_r1/SUMMARY.json |
-| S1_FULLNET | RUNNING |  |
+| S1_FULLNET | COMPLETE | analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/results/S1_FULLNET_20261114_r1/SUMMARY.json |
 | S_ETA | CONTRACT_REQUIRED | Prepare the bounded cosmological-input scan; do not silently change baryon/photon history |
 | S3_STANDARD | CONTRACT_REQUIRED | Compare standard BBN with observations using a frozen data contract; never reuse BBN+CMB posterior as independent prior |
 | S2_RESPONSE | CONTRACT_REQUIRED | Build and validate A -> B -> K response before interpreting parameter changes as new physics |
