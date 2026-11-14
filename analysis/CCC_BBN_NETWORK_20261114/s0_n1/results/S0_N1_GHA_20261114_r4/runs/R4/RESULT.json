@@ -1,0 +1,2155 @@
+{
+  "run_id": "R4",
+  "status": "ENGINEERING_PASS",
+  "result": {
+    "YPCMB": 0.24567547247769667,
+    "YPBBN": 0.24700179090142824,
+    "He4oH": 0.08201265634989865,
+    "DoH": 2.436610553426276e-05,
+    "He3oH": 1.0397528298386009e-05,
+    "He3oHe4": 0.0001267795577066302,
+    "Li7oH": 5.49977142821749e-10,
+    "Li6oLi7": 1.4195891388128478e-05,
+    "YCNO": 7.276166734876463e-15,
+    "Neff": 3.0439772985579183,
+    "Omeganurel": 5.698637952393702,
+    "OneOverOmeganunr": 93.04302365135274,
+    "Y_final": {
+      "n": 3.996227098409122e-16,
+      "p": 0.7529380277832369,
+      "H2": 1.8346167445726017e-05,
+      "H3": 5.839111173177957e-08,
+      "He3": 7.770303339075377e-06,
+      "He4": 0.06175044772535706,
+      "Li7": 9.177278820835779e-11,
+      "Be7": 3.223259170337096e-10,
+      "He6": 1.1013040241343102e-60,
+      "Li8": 8.640578361498399e-33,
+      "Li6": 5.878500243581017e-15,
+      "B8": 9.03872138254662e-34,
+      "Li9": 9.386937595893681e-56,
+      "Be9": 6.716238394281141e-19,
+      "Be10": 4.7035507888670365e-27,
+      "Be11": 7.212093099102478e-49,
+      "Be12": 1.0282724129507698e-73,
+      "B10": 1.8413674203995226e-21,
+      "B11": 2.486784097655607e-16,
+      "B12": 3.2321485139499235e-40,
+      "B13": 6.851646151147748e-64,
+      "B14": 3.4672817152005944e-87,
+      "B15": 5.553188332539615e-113,
+      "C9": 2.716001779006674e-62,
+      "C10": 9.429617129737143e-59,
+      "C11": 2.4683106312158027e-41,
+      "C12": 4.2116770742076924e-16,
+      "C13": 1.104350143756052e-16,
+      "C14": 2.134347763796232e-18,
+      "C15": 3.660920487662795e-42,
+      "C16": 1.152431470053919e-64,
+      "N12": 2.780474179753274e-72,
+      "N13": 2.0328282392109448e-41,
+      "N14": 5.3025628699034e-17,
+      "N15": 8.724491262657926e-19,
+      "N16": 3.6840621723709444e-41,
+      "N17": 1.4591619841159879e-62,
+      "O13": 1.2142639382903236e-102,
+      "O14": 4.103226938687196e-70,
+      "O15": 6.762858194646257e-46,
+      "O16": 7.31349987412097e-20,
+      "O17": 4.6362999524242715e-24,
+      "O18": 1.340429885186018e-22,
+      "O19": 3.147403106276147e-43,
+      "O20": 2.25602759532042e-63,
+      "F17": 3.155640428585518e-51,
+      "F18": 1.2066095770747148e-53,
+      "F19": 6.331159501658573e-26,
+      "F20": 2.550676892698871e-45,
+      "Ne18": 4.0343225918268605e-77,
+      "Ne19": 1.6670515888572424e-85,
+      "Ne20": 7.21526618478932e-28,
+      "Ne21": 5.677849713939318e-30,
+      "Ne22": 8.963141067887442e-32,
+      "Ne23": 3.350628896756984e-88,
+      "Na20": 4.0822980844980323e-125,
+      "Na21": 1.7964840114368016e-96,
+      "Na22": 2.9226814761209344e-36,
+      "Na23": 1.2350992895138807e-37
+    }
+  },
+  "eras": [
+    {
+      "era": "HT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "method_family": "LSODA",
+      "method": "LSODA",
+      "rtol": 1e-10,
+      "atol": 1e-10,
+      "nfev": 745,
+      "njev": 36,
+      "nlu": 36,
+      "steps": 391,
+      "solver_seconds": 0.027807385999949474,
+      "max_baryon_residual": 1.1102230246251565e-15,
+      "in_era_baryon_drift": 1.1102230246251565e-15,
+      "raw_min": 0.25807032246647765,
+      "boundary_time_clipping_seconds": 0.0
+    },
+    {
+      "era": "MT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "method_family": "BDF",
+      "method": "_BDFDirectLU",
+      "rtol": 1e-10,
+      "atol": 1e-15,
+      "nfev": 9198,
+      "njev": 604,
+      "nlu": 1341,
+      "steps": 2365,
+      "solver_seconds": 1.2491204219998053,
+      "max_baryon_residual": 1.6537882174816332e-12,
+      "in_era_baryon_drift": 1.3322676295501878e-15,
+      "raw_min": -4.355265067921485e-17,
+      "boundary_time_clipping_seconds": 0.0
+    },
+    {
+      "era": "LT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "method_family": "BDF",
+      "method": "_BDFDirectLU",
+      "rtol": 1e-09,
+      "atol": 1e-26,
+      "nfev": 117251,
+      "njev": 3854,
+      "nlu": 13931,
+      "steps": 39267,
+      "solver_seconds": 247.43503140000007,
+      "max_baryon_residual": 1.653122083666858e-12,
+      "in_era_baryon_drift": 1.4432899320127035e-14,
+      "raw_min": 0.0,
+      "boundary_time_clipping_seconds": 0.0
+    }
+  ],
+  "loaded_files": {
+    "PRIMAT/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e2.txt": {
+      "sha256": "4e8c84067545dc3fbc7d1f272f084db157f39d971a5b6ca48f0a99fdc1465cd6",
+      "git_blob_sha": "7e9ab7c5a086a81e90feccd087eb33eea5ee7866",
+      "bytes": 27835
+    },
+    "PRIMAT/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e3.txt": {
+      "sha256": "43c5c4d5c8d927dfcc6faa05d985edceec8c343415d8363c542254f3a0741afe",
+      "git_blob_sha": "8205956852e68ad11b69b307d51b43ce52758729",
+      "bytes": 26541
+    },
+    "N1_CACHE/BG2000_GEN/plasma/electron_thermo_45b89f3e1b24e961.txt": {
+      "sha256": "abc4ec4b2239a282a196d4228566fa70dc9249940babbc28e7a0fad59b6b4762",
+      "git_blob_sha": "1b84d0783b16ef827ecd19b68c379050498fe33a",
+      "bytes": 250194
+    },
+    "PRIMAT/primat/data/nuclear/tables/n_p__d_g/n_p__d_g_primat.txt": {
+      "sha256": "a2df5f53bce7b5f357bd63db7224d7498a9decd0d43171910e504a45543db9ea",
+      "git_blob_sha": "d2329d4500be24cb21e5320e82b3ce3228c282ac",
+      "bytes": 43171
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt": {
+      "sha256": "9fc482b66d8e0552d68ab5a97524bc4799e5d1ef33191e46bfa4459bee4ccadd",
+      "git_blob_sha": "9d14aefeb301c1ba0a036c4cce5cc3e241638558",
+      "bytes": 43176
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt": {
+      "sha256": "bd6ee9d61f8f9b5871741f409589f349a98b82250563d25fdb821f5cce184f63",
+      "git_blob_sha": "534ed4de314297e97a03a8922d5ec3a074b55aa6",
+      "bytes": 43171
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt": {
+      "sha256": "afd7c924268b38f3ee4a068a3b96246189193bfee2fac813cb5b570da880b622",
+      "git_blob_sha": "d3273f61e60513867c4d87abc198d28430d97a21",
+      "bytes": 43168
+    },
+    "PRIMAT/primat/data/nuclear/tables/t_p__a_g/t_p__a_g_primat.txt": {
+      "sha256": "4a683978a6b1e60429bf0590f03bfb69d51de610aaa18d4ace03df4f09501415",
+      "git_blob_sha": "9a4ce4475387e255bf0e9bf8dd4d4fd0e64520e5",
+      "bytes": 43174
+    },
+    "PRIMAT/primat/data/nuclear/tables/t_d__a_n/t_d__a_n_primat.txt": {
+      "sha256": "9a219a294bcb1688afbd8e0c06fa0b4bf596ebf06f544be70a9b4b07f5eb4f69",
+      "git_blob_sha": "a19047e53d042d12acb58ff260e2e3bb112b57d6",
+      "bytes": 43168
+    },
+    "PRIMAT/primat/data/nuclear/tables/t_a__Li7_g/t_a__Li7_g_primat.txt": {
+      "sha256": "143d42b7bd527ee3120e6e384915064401b33756e6d07276dc4e88dc1bdc4a74",
+      "git_blob_sha": "5280aebcb8af4313a12e1a6098f6eec1a649de11",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_n__t_p/He3_n__t_p_primat.txt": {
+      "sha256": "b896af54c92506265e9efe56095567d9db1995e3550e8c8a88a28681bc8bb814",
+      "git_blob_sha": "407aec4b05eee8d2868f8721101c6afc345ef4ea",
+      "bytes": 43177
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_d__a_p/He3_d__a_p_primat.txt": {
+      "sha256": "33076e686895eb6d9f8b7fc6e300e5be425a4304c3cda5ca638efc90674144ba",
+      "git_blob_sha": "cf9105aaba92f6b21a1d7d0c8c4217ef47e2b93f",
+      "bytes": 43171
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_a__Be7_g/He3_a__Be7_g_primat.txt": {
+      "sha256": "899565e5a557efc4835b7328c8e2788928b86e0f57a8af93f915f022c6f6c883",
+      "git_blob_sha": "457eea2ac3869069eb81e499b89ce9d58d02cbb3",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_n__Li7_p/Be7_n__Li7_p_primat.txt": {
+      "sha256": "87c3fade099f0a80a2cb1c11199cb31757b33418b4429ccc2665b0ea5539557f",
+      "git_blob_sha": "c50e3f364fee36d1db15d7d47b970bdb1c9ad793",
+      "bytes": 43178
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_p__a_a/Li7_p__a_a_primat.txt": {
+      "sha256": "8130b7cfd1189d205571069031f3790343f50515dd247502cb840b426035ccf7",
+      "git_blob_sha": "6c4f840cb740a31eb7fbc0a833518a4f886208bc",
+      "bytes": 43177
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_d__a_a_p/Be7_d__a_a_p_primat.txt": {
+      "sha256": "f1293582f714c9785de0c49dd998f57c007758ee5d01eed6762036e509170f80",
+      "git_blob_sha": "e2f1d3e0db37d2918ef898804b666a12ffb3559e",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_n__a_a/Be7_n__a_a_primat.txt": {
+      "sha256": "d78aa8b729e93fae23aad568188a2761ebb15006ea90411ca0dab05231f24fe8",
+      "git_blob_sha": "1ccb384f382c7b9ad8dcc0f7be6fa14698035653",
+      "bytes": 43175
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_p__Be7_g/Li6_p__Be7_g_primat.txt": {
+      "sha256": "0686cb204580742b40f7c56582510fdec81a268ba3f901a9c24892a44fc50ff4",
+      "git_blob_sha": "bd1d610c0810f303895a17a252bccc71fe36d28e",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_p__a_a_g/Li7_p__a_a_g_primat.txt": {
+      "sha256": "c5b51b6ecc5eec05711397080bba9c5ca9b2d70eb9a64d381c50345812f6614d",
+      "git_blob_sha": "fc6bb06df9c4a30051072ab3912f7a614853cdc5",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_a__Li6_g/d_a__Li6_g_primat.txt": {
+      "sha256": "db924285a9ae2e2d59b1ad64b09f90e615aad49c391570d1dbbe2a223edd6c21",
+      "git_blob_sha": "2b8e431d3ccc3457f3fe3d4dc7e1ac3ab5d99a18",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_He3__C11_d/B10_He3__C11_d_primat.txt": {
+      "sha256": "f71ddf3e99a03a90c6c539364ee72a54c4cf614d6a8543acb3fe06260833c7d4",
+      "git_blob_sha": "7cff5cb3022a25e6913b863b2bc3746d4a13c8f3",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_He3__C12_p/B10_He3__C12_p_primat.txt": {
+      "sha256": "c634182e052f788afa36dd51f685ff2e4a8feeec72b2fab8e497e65726cb9505",
+      "git_blob_sha": "002f98ddccb3391db4c772b5c7a673386a900ea4",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_He3__N12_n/B10_He3__N12_n_primat.txt": {
+      "sha256": "782f10b1255510cf0c6a5adf61f34c23f1d0a938f592460a6fd532854b07dc50",
+      "git_blob_sha": "73efb933b60bc7f1ef1192967030d19e1f3f37da",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_He3__N13_g/B10_He3__N13_g_primat.txt": {
+      "sha256": "3ece9776287886d4a4c2c6268964779b2a9867d2c4dd3a34d26f6473e8fce232",
+      "git_blob_sha": "c01e184c2be7b49cc21bec025b742e891c74741e",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_a__C12_d/B10_a__C12_d_primat.txt": {
+      "sha256": "65e2a1b9a96d4bc6796c6e8cf0df6d238a1afd74a98e0ba6e6ffc53d391914ec",
+      "git_blob_sha": "df5a6917bb650b240c30ed22102ccb6ee0ee9fcb",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_a__C13_p/B10_a__C13_p_primat.txt": {
+      "sha256": "98ed8d7d97b8ff1bb708ea51c00dae7d99bd7b6a446ae390d66e8a693a083e6f",
+      "git_blob_sha": "9c5699d039458e0d28ac26e7dd1c0779f3508df4",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_a__N13_n/B10_a__N13_n_primat.txt": {
+      "sha256": "147c0aa2eee79fb8e4d14e01fa92f3065219e6319c83759017b61fe50690b57a",
+      "git_blob_sha": "73cbd26644ed0fc1a14eb4d0defa280ce9adbaff",
+      "bytes": 43258
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_a__N14_g/B10_a__N14_g_primat.txt": {
+      "sha256": "d587885b51f6c37e1ba52b70c29c6a9bd4de2123e2d4a840729b687dbd57618b",
+      "git_blob_sha": "848966fe29d45f08ae00f3a1b18e62e9da3130e6",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_d__B11_p/B10_d__B11_p_primat.txt": {
+      "sha256": "d15b55d99448ddb89981a999582ce39762f6161a1850b3a44d0b429edcd7280d",
+      "git_blob_sha": "56d9850836c538845f2cef25294feef093676727",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_d__C11_n/B10_d__C11_n_primat.txt": {
+      "sha256": "eeab09eef3fd7a866d045dd59ee2543fea646fd26e2963b54dc2029c9a17a0d6",
+      "git_blob_sha": "a3ead4a6cfcf4a82e1d939891ea579b6279e1287",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_d__C12_g/B10_d__C12_g_primat.txt": {
+      "sha256": "a0dbb6588f2198681e7fb6eb6918d89868476b7940b47e945f7ebbeb26ad0d93",
+      "git_blob_sha": "7eb96739919ebe1488cd8fcbab2669a5a5034cbf",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_d__a_a_a/B10_d__a_a_a_primat.txt": {
+      "sha256": "69e7fe6043b7c5310666257a58b2f8b84ed3763326b8e214ec689df6573eb58c",
+      "git_blob_sha": "77cd7261c9348e1845f66cfa5cc2cb41edebf9a5",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_n__B11_g/B10_n__B11_g_primat.txt": {
+      "sha256": "c43607be4a5cb2f8ef10c09ce11efebf65f5a33eb824d04ba300c70aa42a3822",
+      "git_blob_sha": "fb48f40de70ba1897b0e345274cb257366ef7c98",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_n__Be10_p/B10_n__Be10_p_primat.txt": {
+      "sha256": "7a59e9d333696e43e02ace040da11d89ffa85dccec986bdc28b7c21e70e06bed",
+      "git_blob_sha": "3c6d262169d34d7ec9a58e2e5191a79d51bc3441",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_n__a_a_t/B10_n__a_a_t_primat.txt": {
+      "sha256": "adb041193e7833ba478dcc88ef995de3c68f9d173ae35ded5f60900898a71793",
+      "git_blob_sha": "07f158f48159414c68c148eb55f5594d555b6a5f",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_p__Be7_a/B10_p__Be7_a_primat.txt": {
+      "sha256": "d10b3a88be3ee5976b8430a6db611f22bbbbced244513655bbd22c0eaf082597",
+      "git_blob_sha": "7461a60b3a9c64d484e61a29a405e5f61187ab9c",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_p__C11_g/B10_p__C11_g_primat.txt": {
+      "sha256": "8e614c26bbde49cc9e2353f774b8734638dc07c339ecd962c7583107504c5a54",
+      "git_blob_sha": "422d91f5a41ae3ad26dc0e5c7503bcb60cefbb3b",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_p__a_a_He3/B10_p__a_a_He3_primat.txt": {
+      "sha256": "434210e2347e3df7bd861d019351c6d0162f779d1c304123e1bb234726f214f5",
+      "git_blob_sha": "18629cf8bf8ebf3b2633d6e445d36835cf08b5c5",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_t__B11_d/B10_t__B11_d_primat.txt": {
+      "sha256": "105ecf77c14ce16ccb33a4cd6f151b1d9e08102fc6b90d0e534aa10f418b2f96",
+      "git_blob_sha": "3ea3dd59115c7ce661a6e8818c1fc89582f50988",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_t__B12_p/B10_t__B12_p_primat.txt": {
+      "sha256": "27c203cdb2d2c6ba12d825b718a3bd6fef4f4db6bf3cb2ec2f60521a042f2771",
+      "git_blob_sha": "649af9498615333aafa4986b6c9614d3f49e8b17",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_t__Be9_a/B10_t__Be9_a_primat.txt": {
+      "sha256": "bc75b3bdf795f1e35a0aec5b3dabf690ebd1d2e425752290a6d4168a3610dddc",
+      "git_blob_sha": "5d1c26f9b8cbf006caf5f3c99bf91c2a66e5f657",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_t__C12_n/B10_t__C12_n_primat.txt": {
+      "sha256": "ad6245616da55b85ef7260faf99d43d84a5e4b38e48ef7e8eb6f84ab54382498",
+      "git_blob_sha": "efe23660a7b8acf6428783a640cf3bb31bae8734",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B10_t__C13_g/B10_t__C13_g_primat.txt": {
+      "sha256": "15ad693b3d84751eac1282b803e5c3f3b4b2679e799aab05f518958010d16e8f",
+      "git_blob_sha": "90c86036df42ded1c56763b196f6e5e13c8885d0",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_He3__B10_a/B11_He3__B10_a_primat.txt": {
+      "sha256": "a3faba08b28cdbf40511401f58cd1570e4f7c9fead9d03fa992ac783b81fbc08",
+      "git_blob_sha": "50a6691ef823703f62b527794c63a42362b0c6f9",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_He3__C12_d/B11_He3__C12_d_primat.txt": {
+      "sha256": "3d0ff4d8b1c2c43c066cb69b37e5afd2913dfdfdb904eee7c65ba2f5fcd0b772",
+      "git_blob_sha": "f341e90bbee9bac4b21cf8f4a6cf4cca33894edb",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_He3__C13_p/B11_He3__C13_p_primat.txt": {
+      "sha256": "2c77c1f7ade30334b28402a5105f9b4462329a5abcee71eb8473e678438083b1",
+      "git_blob_sha": "3b6b193f19dc524d7c84660cf09015a5de9ee9a2",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_He3__N13_n/B11_He3__N13_n_primat.txt": {
+      "sha256": "02f6e3a4d8f0868a1a2bdd1290953aa6159e177e30bc79dc8b069b94f66981fb",
+      "git_blob_sha": "d52c7a76b25ef4dc748a44a6279d3d809f81ee9e",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_He3__N14_g/B11_He3__N14_g_primat.txt": {
+      "sha256": "b5d11809c16e8bf6a190812bfd19fe52ee1f6cfcf98070cb2ae53e4b4e7d99ef",
+      "git_blob_sha": "f608fef1377a35999aa5b3851524f34c7a102bdd",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_a__C14_p/B11_a__C14_p_primat.txt": {
+      "sha256": "56b45e2c4f1113f655d79d4d721344deed7f482aee4ab7f809c0311fc28a487b",
+      "git_blob_sha": "9e726680f3e8ed220d47d216179a9ea2e1538c52",
+      "bytes": 43513
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_a__N14_n/B11_a__N14_n_primat.txt": {
+      "sha256": "b3e97cd178fa2c515f7182034b8238254afa361c25b7e474c3f16e7b08014747",
+      "git_blob_sha": "ebdd5ffec92b432f06dd01f818aa9f5b954ec36a",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_a__N15_g/B11_a__N15_g_primat.txt": {
+      "sha256": "a1a60c17fedebc8de41aafcba0c1d90f561ffd7b91d6001ad351d9a6f915cd94",
+      "git_blob_sha": "8140d633891d061ab8d805994b20b507dd79e221",
+      "bytes": 43324
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_d__B12_p/B11_d__B12_p_primat.txt": {
+      "sha256": "dbb607b9bd7943b36e795db53d5f3e056b7a6c26119137077e7adcd768c84680",
+      "git_blob_sha": "ded5ae906c05d3c2ad7bf7efdd82c2c050091364",
+      "bytes": 43170
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_d__Be9_a/B11_d__Be9_a_primat.txt": {
+      "sha256": "c987f7d9eb9c2aa4493fed1cef8a450ede198c9181c75fa2a7136773cfd799e6",
+      "git_blob_sha": "67abb7d5754218e7c120886cbc181db5f8c73b25",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_d__C12_n/B11_d__C12_n_primat.txt": {
+      "sha256": "e3cdb1da004e33117362d6398e4727245b098d6140b793d2e3072e7cf7f61fc2",
+      "git_blob_sha": "1bbcf2b1b24876ad617a7ebadd4ab8c995c73e63",
+      "bytes": 43172
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_d__C13_g/B11_d__C13_g_primat.txt": {
+      "sha256": "57ab8701cdf8f9f8144d8cc898bd6d36528a9b0c92b8633d2c5f869768b2c520",
+      "git_blob_sha": "b0e877de90b311245572253a880df11c0793caf1",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_n__B12_g/B11_n__B12_g_primat.txt": {
+      "sha256": "7f7db32f42c3caf36051fb64bcd84bdce9527cb51041f7a230d2c2f33b4fc52b",
+      "git_blob_sha": "586f5f099541892e002123f9df9cff10410a21e9",
+      "bytes": 43177
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_p__C11_n/B11_p__C11_n_primat.txt": {
+      "sha256": "9d14e480d9a020d89118bf504e76cf993fae7258f4577c85dfe07f60c807c5b9",
+      "git_blob_sha": "589302d27e554816f24e1b6c0331510f4fca5e72",
+      "bytes": 43357
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_p__C12_g/B11_p__C12_g_primat.txt": {
+      "sha256": "124284b751d47210f134bbd5ea1ca033d0445b19a2a02e331b3c021651311b5e",
+      "git_blob_sha": "a2804fb6c2b288e86d6df7c160cc520521536cf0",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_p__a_a_a/B11_p__a_a_a_primat.txt": {
+      "sha256": "667cf9770c9ea7183486aba256c8f9d868825b1acc8c7d93062c6f6e3b286b6d",
+      "git_blob_sha": "a25f268313ed5203a7752454102c367791afb6c7",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_t__B13_p/B11_t__B13_p_primat.txt": {
+      "sha256": "3ff4b74ab4973cf552c2ff632c5445dd86b5ab68c83fc8e5ff6746a90dc3f95a",
+      "git_blob_sha": "6744597b274185c2393778e8caacc78b72edebd1",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_t__Be10_a/B11_t__Be10_a_primat.txt": {
+      "sha256": "6d9e3153fa9ca9ae7f54580f74707ab13ead363f1a6cc5f9065c1d937f1c2f0b",
+      "git_blob_sha": "3a72f3db65dfc1f0c94882cbb26f18b2b56f7c6f",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_t__C13_n/B11_t__C13_n_primat.txt": {
+      "sha256": "fa0eb06d3791571b4ddb55153e2374cfcb0d17aa3a6e2eb416946d39ea1aa992",
+      "git_blob_sha": "c8ef7e4e3d074413e4a06c91b17238d1ece16559",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B11_t__C14_g/B11_t__C14_g_primat.txt": {
+      "sha256": "37eae90f35eb53bbd644706223edeb8cb9135c0a6bd8e8aeef747e4a5466ab4b",
+      "git_blob_sha": "5fa6c5a5622d23934b7fd958b76d7b747f9b9259",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_He3__B11_a/B12_He3__B11_a_primat.txt": {
+      "sha256": "60dfcfbe0867f12b4395f1b8bf5d5386c7c0fe3a0f8784d0e516de02015211c1",
+      "git_blob_sha": "4564d0524aaa6ad93fe69914c9a7944def500237",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_He3__C14_p/B12_He3__C14_p_primat.txt": {
+      "sha256": "f848aa7abe1d61c9d4587f517fa7f25c883d1bc461ff9fed3bc26ffe2822ca05",
+      "git_blob_sha": "38cade0d45bb571108f8b9b09bf0fd9f3ba551a3",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_He3__N14_n/B12_He3__N14_n_primat.txt": {
+      "sha256": "c67ee8483bc2e54de539897fb4debd421d54ce8193841841b438e05ae561aec4",
+      "git_blob_sha": "fffc8c3b5059526842500b22c39a39fe09541d36",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_He3__N15_g/B12_He3__N15_g_primat.txt": {
+      "sha256": "b01f4933b0604c858471cb29179dbc8daeaabf748fd2fd298e728c7de3900096",
+      "git_blob_sha": "4872c6a1c6d13130e2d39a4b30dea5102d687b5f",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_a__N15_n/B12_a__N15_n_primat.txt": {
+      "sha256": "5bead1ae8927b37e4ab93b7c488a94fb38d96f386b0e7557dc164cf600e88c93",
+      "git_blob_sha": "b60a89fd06726534c3d7f90f6cf23934255cff0a",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_a__N16_g/B12_a__N16_g_primat.txt": {
+      "sha256": "fde3e6f6a929559d197f2cdc8daaf710e5b75ebdf488f6344d1fd24036cd4d03",
+      "git_blob_sha": "a606349e33d76c0107f99d9e3e5e466ec43f7715",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_d__B13_p/B12_d__B13_p_primat.txt": {
+      "sha256": "c71a0886bc6880343d8b2823fe7a1e1bfb71ec529a287d36b69469cc613c3ac4",
+      "git_blob_sha": "81772f395d2330b37b4f5483cb8069bc4f274db3",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_d__Be10_a/B12_d__Be10_a_primat.txt": {
+      "sha256": "30d8424a4a9b9e5852848dd197c192ae776982c6250487a03f2b37911a9a6bca",
+      "git_blob_sha": "cc348b254d3006a8cac5ebaca3c6025677871319",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_d__C13_n/B12_d__C13_n_primat.txt": {
+      "sha256": "5c52b61110d84feb495f623884f533ca280a4d8419f625945b8c76e84b4de495",
+      "git_blob_sha": "872ae201e292bd4ca5aa55b4eb3d23125b48c94a",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_d__C14_g/B12_d__C14_g_primat.txt": {
+      "sha256": "2d50fdeace04ba41bd7073a739877cec0b71fc8db980cddb0a7698bdaafe75bd",
+      "git_blob_sha": "ec97006f60b94eb1b94e5dceadf41941d5dfaf79",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_n__B13_g/B12_n__B13_g_primat.txt": {
+      "sha256": "b92fe0b5d0cef9b7d4be5d99be3fabc58b632ea5b0444e0bdd03a5737091900b",
+      "git_blob_sha": "b1b7a7d9dee5a87fc61147daf07d7cdfe933f052",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_p__Be9_a/B12_p__Be9_a_primat.txt": {
+      "sha256": "e4d3e931aa49be4ddcb37bf1ffaa2b9915cf7f0e67e0ab7659421065caedceb9",
+      "git_blob_sha": "9b89b430f6162c1411cc850ba06c1055339b4988",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_p__C12_n/B12_p__C12_n_primat.txt": {
+      "sha256": "e4b4304d2bc6e323a6aee888cc7cfe3066732550aa2b14b67cee0004c6a4114f",
+      "git_blob_sha": "ac6c0e0c8ea06242bed9b8909d91b39dbe1e6eaf",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_p__C13_g/B12_p__C13_g_primat.txt": {
+      "sha256": "7ec5ee118f328d4089e551025903cb0337720926ba13feedd34ca6c0b98c5c59",
+      "git_blob_sha": "d698fa12da1644e23b2a6e66359a3e44a7a2ed3e",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_t__Be11_a/B12_t__Be11_a_primat.txt": {
+      "sha256": "108bcec02b256a1e3fc876c2f8153070b72a8fe7f3cc2ee03d7f478271b7be24",
+      "git_blob_sha": "d9217e5883587492eb74ebb08188e65b20abf0de",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_t__C14_n/B12_t__C14_n_primat.txt": {
+      "sha256": "a830e4649ea708a33f714490fca151ea38cd4872d1c7fe2204926d895e1832da",
+      "git_blob_sha": "f48111ec66b043d5dec4f29e150274fca3102aab",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B12_t__C15_g/B12_t__C15_g_primat.txt": {
+      "sha256": "ffcc169300abb5b5fb38be12d839f290264b86d51d12c0ad801441db9f30dabe",
+      "git_blob_sha": "66a8103ecd2d8ba6f93f321406ab835d54735d02",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_He3__C10_p/B8_He3__C10_p_primat.txt": {
+      "sha256": "18b083f64ea58afbdae2f0f601ad2466b0ebdded09b26f699db2849a73643e90",
+      "git_blob_sha": "04fb8ba22561a4f7d9c694b59a7a5032b1087bba",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_a__C11_p/B8_a__C11_p_primat.txt": {
+      "sha256": "8384e446821360809833175218ec95026a86660856146aec881431a911ce3cb3",
+      "git_blob_sha": "e0bb327cd48c07586ce15a347cc4b0a16df7e8aa",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_a__N12_g/B8_a__N12_g_primat.txt": {
+      "sha256": "980d539c8fd9d1ee7402840d2633490c7792ca2fa8b4457cf2d71e31490ef02c",
+      "git_blob_sha": "76a0bf65207f687ff6cdb420fc892185658ad20c",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_d__Be7_He3/B8_d__Be7_He3_primat.txt": {
+      "sha256": "b04862d6b0ca45124fecb991ee2816902cd0d0916081583b8b18fcb7e6c89ea4",
+      "git_blob_sha": "ce776a5e3d95e769c42edc6fa67ecd5d58c399c9",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_d__C10_g/B8_d__C10_g_primat.txt": {
+      "sha256": "d4250a89d2aab7b4650c8118ae79b7f091cfc36edc260f2580300c099bbfed60",
+      "git_blob_sha": "f2f03d777823ee53c52ae7f19c392fc69135243e",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_n__Be7_d/B8_n__Be7_d_primat.txt": {
+      "sha256": "0ab5d5f03e19309de577af079bd35df4b4fc6fc0421999b9a4382e987af0d153",
+      "git_blob_sha": "907febfda6ee950ac5f1ca38a5129cfa9f03b4bf",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_n__Li6_He3/B8_n__Li6_He3_primat.txt": {
+      "sha256": "f60d3300e973d0ab6c62e9c7246644c713604546884c3243a7ca56079f950898",
+      "git_blob_sha": "5248e24af971d1f8f599004a76da881287f26455",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_n__a_a_p/B8_n__a_a_p_primat.txt": {
+      "sha256": "7c6f28aa45d5ec5edc8acd0e51dc059bc654e5d2274c73f867afa55095b4b90e",
+      "git_blob_sha": "56594fd8b375edd59cbf0402cf7e1b295ea25d8c",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_p__C9_g/B8_p__C9_g_primat.txt": {
+      "sha256": "c59a2939bcce5ed93befdd43aa4fd67543e27d1bbd59a218365d77c1daaadc1f",
+      "git_blob_sha": "98f70e7416e9a4aaed2aaf0dea0f209071a9410b",
+      "bytes": 43271
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_t__B10_p/B8_t__B10_p_primat.txt": {
+      "sha256": "909c7e7ec807c7e9cd33bfa84d19504e2a23ccfe4da8897b50dd1b5967e11a00",
+      "git_blob_sha": "14bd354afd169ac8d5bd810033c86643b48629ba",
+      "bytes": 43179
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_t__Be7_a/B8_t__Be7_a_primat.txt": {
+      "sha256": "1f1e45810512de06605cb83aeaa9dade268d626ebb449fa1a817217164ea8de3",
+      "git_blob_sha": "ab883742adf44d6774352497bfa0ca1d94583a9d",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_t__C10_n/B8_t__C10_n_primat.txt": {
+      "sha256": "960fdb1fe037d6e46c09fe484f7ae1850f89a14f108a4dc9cd5a2cd0c5e6a152",
+      "git_blob_sha": "7ed866155fdb75f4b443d623911050e69dca9e94",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_t__C11_g/B8_t__C11_g_primat.txt": {
+      "sha256": "c52c6eeffff80d2b7225eca29d550f04d8b9be559f7e4973f87a7e4dea9212df",
+      "git_blob_sha": "ffd25570113a306b60be248b8a896cb8e5bbb85c",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/B8_t__a_a_He3/B8_t__a_a_He3_primat.txt": {
+      "sha256": "543e50415caee201198c756a0b87209a57463f1c2954c2d8c47cc05c48961d43",
+      "git_blob_sha": "c4b3e9731caa8fcb54b7a56d4aee6ea98041c754",
+      "bytes": 43194
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__B10_t/Be10_He3__B10_t_primat.txt": {
+      "sha256": "e8bfcb7ec2ca6890fc95411706fdd8f9d4e0b1375e03432854ebd1c3d263ca0e",
+      "git_blob_sha": "2595f2eceeda0227ab4600fba14fe8105dfd9423",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__B11_d/Be10_He3__B11_d_primat.txt": {
+      "sha256": "c4a14d4bfb35e9e3865d42d0ebb8c35cc611a0bf64d806b3157b5ff1fe5f076c",
+      "git_blob_sha": "d45f04c720a03b3392aeaccfb88a3ccf8e6817b7",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__B12_p/Be10_He3__B12_p_primat.txt": {
+      "sha256": "298ded78da3fdb399ca243c6d027973b822d71f85ddcdb628c82a2e2d1087462",
+      "git_blob_sha": "fe08abf5b87798361a826e38ad2139ce5dfd302a",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__Be9_a/Be10_He3__Be9_a_primat.txt": {
+      "sha256": "9c20dddeee869bfd97c0dcd450635fdb69206494168b1b8ea37200d4cbf69688",
+      "git_blob_sha": "2a8df299c82d905a5bf358ce3f3c16e80aa499f6",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__C12_n/Be10_He3__C12_n_primat.txt": {
+      "sha256": "056a1cae7045801979e7a518df6795695d05e620bd6147180852a6ca431e3465",
+      "git_blob_sha": "e65581e965ec194e9a6f7634494abcd0ca788e1c",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_He3__C13_g/Be10_He3__C13_g_primat.txt": {
+      "sha256": "196ab47484169f1c6da17e15de890fb629427e0e710e686a4aef3289cc351978",
+      "git_blob_sha": "77796c553dccadb7026b235c3d12140c76bdc8f6",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_a__C13_n/Be10_a__C13_n_primat.txt": {
+      "sha256": "dfe235641822a54fae87802b52dbc9d144c22a16b9593c0e9a6cd627cb3875e1",
+      "git_blob_sha": "41cb213e8554d39efd0fd542f441d8fe138d92c5",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_a__C14_g/Be10_a__C14_g_primat.txt": {
+      "sha256": "073e365a7fa8c25c7060688154cac1d85a88267e5184cfd631dc9a0629e65195",
+      "git_blob_sha": "36d9bc6e1960c91ed83f89e8dc032bf6eedce689",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_d__B11_n/Be10_d__B11_n_primat.txt": {
+      "sha256": "c363baee18eb02d52e9a1ba65a70c94bd576f761b02d4d1fb98ada3b981a3238",
+      "git_blob_sha": "51b60541d6b35f31a8967ac67bd2368d1fdacf9b",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_d__B12_g/Be10_d__B12_g_primat.txt": {
+      "sha256": "19c7075da9d694af5a57b197f6ec5b8e72d744cf099416e2c9488b25fc4563e0",
+      "git_blob_sha": "c3ad05647a7e2042bbe306f23af2620ada04f14c",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_d__Li8_a/Be10_d__Li8_a_primat.txt": {
+      "sha256": "64960611a2288fa11ef6b98516b4a97e363ebfaa453fb8f74a7c20a9bc430d96",
+      "git_blob_sha": "305c291078de76ad4fa8269bcce330190f34178b",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_n__Be11_g/Be10_n__Be11_g_primat.txt": {
+      "sha256": "8b57e2edd41f01f19b9f37a1ea9d0b2ea905b9581ec4db471c813bb39bc845be",
+      "git_blob_sha": "9e8cbd39b53e2e6e6e661b324e446da5180c45b8",
+      "bytes": 43220
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_p__B11_g/Be10_p__B11_g_primat.txt": {
+      "sha256": "1446059ea161ce6f2b85d721abd9b986c4c207309e14c034b9840c561a800e55",
+      "git_blob_sha": "34dabefec5dbaf1a6bd76b087421798eb5f2365c",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_p__Li7_a/Be10_p__Li7_a_primat.txt": {
+      "sha256": "c10d4d31e021c76307a18a1e7d1972c60c35b83647ff18ef67e9e89a8325812b",
+      "git_blob_sha": "afc658544c6921a8cc4b86580f95324f6141f492",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_p__a_a_t/Be10_p__a_a_t_primat.txt": {
+      "sha256": "ba334ce3d2e32839cda5556ad1ec29ac848e8f30debc12ea03b73f2b351b0324",
+      "git_blob_sha": "adfb7fa8cefc8604a5284e5a7319d0341b6b5c3e",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_t__B12_n/Be10_t__B12_n_primat.txt": {
+      "sha256": "30eb65594b82967c274e12a528dac89c1cb621c2f47dda179b90c10bacb27c5f",
+      "git_blob_sha": "10ffdece3946ccbb97cae16c745dad49dfa0b60a",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_t__B13_g/Be10_t__B13_g_primat.txt": {
+      "sha256": "da3e6f2172426fb6f7983525b905be524e95a79117a22289e40c955e37c5de14",
+      "git_blob_sha": "dbcf09d123a901cd9a492087a098af6bd51abfcf",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be10_t__Li9_a/Be10_t__Li9_a_primat.txt": {
+      "sha256": "e26b328aed6930255c6e56efc100e21715feac2da099ea3bed9809028c0626c8",
+      "git_blob_sha": "bfb896083202900254409c68f5bb8ba6e0fabfa1",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_He3__B13_p/Be11_He3__B13_p_primat.txt": {
+      "sha256": "3a239e4843b0bb1beafd41ad6ecff482a127fe35a6b04dbd149ce40f2ed61f6e",
+      "git_blob_sha": "b15fb8eb6c0a4ed65ffd738c15b0d4b4ee1d2370",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_He3__Be10_a/Be11_He3__Be10_a_primat.txt": {
+      "sha256": "02de234513e13be2584b6dddef2d752ead99690b89e572c9505bf70bbf66c07f",
+      "git_blob_sha": "2f6abd35708f338cc03f9fde069a3834587b91c4",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_He3__C13_n/Be11_He3__C13_n_primat.txt": {
+      "sha256": "42455a784bceecca6707b4bc4f591aa6b0a00f6afffd8fa6d20d8287d91289f4",
+      "git_blob_sha": "12cd8c18df38c41981b10fe8e683e0b9499e9cc8",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_He3__C14_g/Be11_He3__C14_g_primat.txt": {
+      "sha256": "40cbd615539799d8e97d4557dbe688636d6da9e171ce3243067ccd55aeb1d22a",
+      "git_blob_sha": "3a54cb8e634cfa03716f1d90c537da81d4edb29d",
+      "bytes": 43195
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_a__C14_n/Be11_a__C14_n_primat.txt": {
+      "sha256": "5a8dd043813926dd0556bcfede6ad04324b1c3f25a53ee352f90ae8d75b5ece6",
+      "git_blob_sha": "03ab9b0e535b12beaa6e56b23951561b4821ad15",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_a__C15_g/Be11_a__C15_g_primat.txt": {
+      "sha256": "cc881a78674f615cc46c7f0894a0bfe4881136fc29dc5c7ba80978370661e024",
+      "git_blob_sha": "3f3f71170c4ccd87ce09c2517822a59edd251878",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_d__B12_n/Be11_d__B12_n_primat.txt": {
+      "sha256": "f12646e9b3356111a47aa10dd2dd1f7ee6b6b876c06b7ffaa9cea3e0e2fb26cc",
+      "git_blob_sha": "aeaf1c8f6fedc3a065a458aefb7a88c4d3a3e4b7",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_d__B13_g/Be11_d__B13_g_primat.txt": {
+      "sha256": "952b810e7b8a3818936ad677a56ea8371f61aec4930abb8e40a915e3ccb1c16b",
+      "git_blob_sha": "99994a7b2cc28bcc317f76566aaf24b76f3715a6",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_d__Be12_p/Be11_d__Be12_p_primat.txt": {
+      "sha256": "ebc4970c635c80b5560e8ae4cde81492a551f76609d18cc5555a0e14993b7cc6",
+      "git_blob_sha": "14d0355f913deb8a60b6aededf15b6f0bf2d4aee",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_d__Li9_a/Be11_d__Li9_a_primat.txt": {
+      "sha256": "ffcf19095cf3ba56772efdd90a6f2b82dd1052923d2b72eb8c76268fbbc86c87",
+      "git_blob_sha": "3156dbaa7baa7ef8e425bc0028ea18d4f9899d89",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_n__Be12_g/Be11_n__Be12_g_primat.txt": {
+      "sha256": "7786e002a7e933be7c8395bf10461260262b6731f43470307c5c5ab177109c74",
+      "git_blob_sha": "7f9f2cf849d0494e4ba720ed9020007f58165de5",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_p__B11_n/Be11_p__B11_n_primat.txt": {
+      "sha256": "3b8d9086e910b3a369f2a79ac02743ecca109c3ea9a76f4622e7bc476ee0035e",
+      "git_blob_sha": "61cbc30ea4aaf8087257db328f589d4d97796184",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_p__B12_g/Be11_p__B12_g_primat.txt": {
+      "sha256": "94b0b58eee1a7297deec44330e4a77b01409b2e78c66a8161671b98154e431d8",
+      "git_blob_sha": "37a5bd600bb2fd65cd95c12f0fce4bf35127ccad",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_p__Be10_d/Be11_p__Be10_d_primat.txt": {
+      "sha256": "b75d96b7a7c17b261542709efb26e4ea6c509bf659efce3750e865d55fb25cb8",
+      "git_blob_sha": "7018851d7b5dd0da7d0160021f25d2ca23b0e95b",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_p__Be9_t/Be11_p__Be9_t_primat.txt": {
+      "sha256": "392e8f872775a7c02e768dbecaa904e5c53f3ef573c1e023d1b9b60a72d6ea7b",
+      "git_blob_sha": "17d0bd115febdc2b0e862e221587185a5f13d1a9",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_p__Li8_a/Be11_p__Li8_a_primat.txt": {
+      "sha256": "b7ff52dbfe9a1fc438aaf274870ce948116d40aa51089cd4bd354689b8ec5451",
+      "git_blob_sha": "874226070850f5618cf7d3c78cc52b2443df1c51",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_t__B13_n/Be11_t__B13_n_primat.txt": {
+      "sha256": "1891ece79797e203d1d80dc87dbfa881373038d899c0916e65eebe700122f52f",
+      "git_blob_sha": "21e6aff0367a645f286dc74c936395131ea55403",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be11_t__B14_g/Be11_t__B14_g_primat.txt": {
+      "sha256": "23b0cb8632c3bb254213c6a82882ca924f47b6b52ef05af44df65f71e8a2c13a",
+      "git_blob_sha": "84c9d745d01a09c30e015740108cdf3cea8283d1",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_He3__B14_p/Be12_He3__B14_p_primat.txt": {
+      "sha256": "a4b04f72a918845ccc4c5eaad16e1c94962924c5dcf161c0f687ee76b786fb60",
+      "git_blob_sha": "82106b427d7bcb0ae670bfb15a353d8b3611f505",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_He3__Be11_a/Be12_He3__Be11_a_primat.txt": {
+      "sha256": "8d395bb4796bc6c0a961e27375028f4b1fddd10af862da5337c6d57f21b628e7",
+      "git_blob_sha": "5a86490c5d74fea855c803e52375c6a195e18718",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_He3__C14_n/Be12_He3__C14_n_primat.txt": {
+      "sha256": "10771ffdf602b2b2d93f2e1ef06041c90d3d0be5dfc1e8a97efb7a2bb01b1b02",
+      "git_blob_sha": "555951865b7896ea13a2db68beac1daf39ef7e52",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_He3__C15_g/Be12_He3__C15_g_primat.txt": {
+      "sha256": "264836479fe4924a25c7298526c5889f6cdeb6027b24ecb55d99cc619a48e81e",
+      "git_blob_sha": "2eaae9179bb02a42893c11424930e45939388aac",
+      "bytes": 43195
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_a__C15_n/Be12_a__C15_n_primat.txt": {
+      "sha256": "5da629aae59eb9c6ca11d6cda891e25c1fa1c49688d194f96abf7a16b2b67b27",
+      "git_blob_sha": "5001ed3ead13d9015796d713807cb925f8f14b74",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_a__C16_g/Be12_a__C16_g_primat.txt": {
+      "sha256": "151c28914cb9effc0c39a3bd950671e89071e67a3c204d4acc78501168059236",
+      "git_blob_sha": "b24e922ade1d7ff7007c34590cd31fc1afe10d5c",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_d__B13_n/Be12_d__B13_n_primat.txt": {
+      "sha256": "bd05db30bbbbb15a01d66b9d9c5b16de57c7af265cea9274c8382bbea86eb5d3",
+      "git_blob_sha": "6727438ee03fce26264e6e70194c3aa690687bc8",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_d__B14_g/Be12_d__B14_g_primat.txt": {
+      "sha256": "0a0949d339645eb58b2d127ec4386e41679c57fe99b2b5b943fbad10ad59431a",
+      "git_blob_sha": "6b27f8068490d5ec2fdff54cefc06404e257ba10",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_p__B12_n/Be12_p__B12_n_primat.txt": {
+      "sha256": "90f3979628c0f9c4f4b6b31c894a57cae89fb218797e9d6fdf9b059e8505a548",
+      "git_blob_sha": "dde2c60f9e46c3edefc9b29bef3262a2aaf9fd7f",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_p__B13_g/Be12_p__B13_g_primat.txt": {
+      "sha256": "7e5e6c6769e7b41bc5e6bd9fff4b72b29ba9b77dd995d04271e97fffa7e617fa",
+      "git_blob_sha": "56dc863c7b69c3b06320ae5194862e94190cc328",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_p__Be10_t/Be12_p__Be10_t_primat.txt": {
+      "sha256": "ea9ec9b155559b3210042d68052565845f5dd7580949925672acdd9ac9f4eb48",
+      "git_blob_sha": "32430362821e3af35380c6b794b8b3be2a424bc4",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_p__Li9_a/Be12_p__Li9_a_primat.txt": {
+      "sha256": "6507bb18ac6463727f092f5de16a131453a9245a6221fa81dadb099505626a55",
+      "git_blob_sha": "522a5f4faf59cb63ded238cb2bbae4a4937e6599",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_t__B14_n/Be12_t__B14_n_primat.txt": {
+      "sha256": "9523b56be978cf14fdcf3e91532f8553430ab86d973a6cc88bef470eaa4d7c04",
+      "git_blob_sha": "0c7bf6720eb79aa0f5a39199907e9cefbb70ba7d",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be12_t__B15_g/Be12_t__B15_g_primat.txt": {
+      "sha256": "b2968b1305bf3dbc8a67dda44225de7b3c62cc196a7fe3cb63143be5e2c382c1",
+      "git_blob_sha": "89c2779f8c8fac937e3411c5e040c1ab138242b6",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_He3__C10_g/Be7_He3__C10_g_primat.txt": {
+      "sha256": "6879a22d039edc7658ecb8828652b1e15aba83056a1fc75c5698c4933feee9d3",
+      "git_blob_sha": "8be5cc09d5e327e1af7997f7f47f52a8b9dc2c86",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_He3__p_p_a_a/Be7_He3__p_p_a_a_primat.txt": {
+      "sha256": "616f058f33e139d2a3f3cd413bbf3b81e3ccab865a60dc87f6942f796a1130cb",
+      "git_blob_sha": "a326689ccc9cca6937b582158c92e7a7319a2f10",
+      "bytes": 43201
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_a__C11_g/Be7_a__C11_g_primat.txt": {
+      "sha256": "a372119a62dd3643c0568898f16b95f609a26a506b4e49e0820a16ffe6e342e3",
+      "git_blob_sha": "d95aeb9b383f5ec01cf697fdf2b48c0d3b3862b5",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_p__B8_g/Be7_p__B8_g_primat.txt": {
+      "sha256": "a7770b90b094c3841fbaeba199cf87b99651307bd386441a976a29fff4e98cfc",
+      "git_blob_sha": "c1c3cdb98dc9d1f6bcdc312e5557ca42b46abc37",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__B10_g/Be7_t__B10_g_primat.txt": {
+      "sha256": "27360ac5a0f335957aab518c8a9c32b77dfa55e2439edac57b9fe5c337d8e132",
+      "git_blob_sha": "35b012d5c2bf86f3c4e12914df5d98fcff2960ef",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__Be9_p/Be7_t__Be9_p_primat.txt": {
+      "sha256": "fe91b449ff4d013fa8df3818e57bf98b55cb5e487d62831920d94beedb1ec555",
+      "git_blob_sha": "85fc129c9de0b11755910d11b99e95f5d1eb46cc",
+      "bytes": 43171
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__Li6_a/Be7_t__Li6_a_primat.txt": {
+      "sha256": "7dc14de4dfa9f0049a222f0b7fa564b53e99f9dce266354e71c9da5be9f358be",
+      "git_blob_sha": "371afd4bc07f1cc688fb333af2cd2b326bdcd117",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__Li7_He3/Be7_t__Li7_He3_primat.txt": {
+      "sha256": "78074f1ca07bec80a1481ccc1cdd038186863963b2e3356b22b12acfe348ffe0",
+      "git_blob_sha": "df9bc139567449d1f694303fdc3ea1d200fdb381",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__a_a_d/Be7_t__a_a_d_primat.txt": {
+      "sha256": "4dc5cd3916b715c6b3cfcb1598b15840017f2d6ce840db93d05231b88fbe1437",
+      "git_blob_sha": "14c29fa7b59ceaf5960b2bb5be7e20f78d6823c8",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be7_t__a_a_n_p/Be7_t__a_a_n_p_primat.txt": {
+      "sha256": "614f22e0745f358cab0d43c5f6363948566e60ba17f3ffee1df903894097bc13",
+      "git_blob_sha": "f0892c9ffccbb64fca9d25dce51718ebdcf58bca",
+      "bytes": 43255
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_He3__B10_d/Be9_He3__B10_d_primat.txt": {
+      "sha256": "b08aea736137b981853eb8d53fc71f06c499a349432222789361976529ccdbb7",
+      "git_blob_sha": "2ac4c490e7ce996f5c0387fa0a96a8c354c70a59",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_He3__B11_p/Be9_He3__B11_p_primat.txt": {
+      "sha256": "74bbc8956989560ee8f509a90b477d00cb8bc116f977be35719e3cc32cd32a15",
+      "git_blob_sha": "ea5fa09dae8ba9a3f19cb7572ee7b558b094247a",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_He3__C11_n/Be9_He3__C11_n_primat.txt": {
+      "sha256": "2948aecaccbdf3eca0d606faff7e1bdea6621581863550d33aa7dc7cebbd0699",
+      "git_blob_sha": "e7d8e11b7228d87dc07e331af8a24febb6fedcf3",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_He3__C12_g/Be9_He3__C12_g_primat.txt": {
+      "sha256": "eec5977dbf9f53ad8567ef1bb5d2fb2594720ebe64cf602aeb0fa8ce54f013a3",
+      "git_blob_sha": "3150bb70a68709855914394fe9b9fd7637a01588",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_He3__a_a_a/Be9_He3__a_a_a_primat.txt": {
+      "sha256": "2c3c12a240d47ace02d4cf55812cf2ea856cbc9e143187955d3321808fce25b8",
+      "git_blob_sha": "3dfaf0eef8598251cdac6261ec8cf12abf65d299",
+      "bytes": 43196
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_a__C12_n/Be9_a__C12_n_primat.txt": {
+      "sha256": "39667e14d2090b3f46815ef969f8330a7815bcf522e0f358127181e010251840",
+      "git_blob_sha": "2c6bc7a57f17701458538ffdf0ade98fb4447cd9",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_a__C13_g/Be9_a__C13_g_primat.txt": {
+      "sha256": "b25edf9272c066a118b9b086dde4a5339e656b6c95f8c9f0b5a660af5e78ba3d",
+      "git_blob_sha": "2d61589f743cc2432f1ea3616a0a336e90b04984",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_d__B10_n/Be9_d__B10_n_primat.txt": {
+      "sha256": "85fff7e17039aec3fa9e08a68e1f95fc79f1bb13a2d9a8d0590c45af2e49a80b",
+      "git_blob_sha": "bd9e3bac5691b7a0c6eb0074405ba4091d9d5615",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_d__B11_g/Be9_d__B11_g_primat.txt": {
+      "sha256": "a45fca77c9b4e9f7f6e21e1dd2c53a3b186ec48912d7ffc0b8f714d1c68fc59d",
+      "git_blob_sha": "07df6e3515b0abdf8f27196c8ca1bd3025249c71",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_d__Be10_p/Be9_d__Be10_p_primat.txt": {
+      "sha256": "18ed7b7b4919e0d098a39a8c923685538ffc93854f6bedc6ae48cc1af46d243a",
+      "git_blob_sha": "47db2c70b8d452cd0ac0a22538bec1796674b5fb",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_d__Li7_a/Be9_d__Li7_a_primat.txt": {
+      "sha256": "df6f3ab2ad2e1543552c032871cd020c3301cc633cb62e841286168703b7065d",
+      "git_blob_sha": "6085fa80d37b806b75842c6bfea6dffe5d72b8f0",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_d__a_a_t/Be9_d__a_a_t_primat.txt": {
+      "sha256": "482bdc63c6a26e61342d32efc36bd4f2ce307acc80ea406b85af9b46e5c330e0",
+      "git_blob_sha": "ef238a90468132b86164dca2e9c8c3f97ee0d560",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_n__Be10_g/Be9_n__Be10_g_primat.txt": {
+      "sha256": "d38ea0c7206ead0f1aebb5a6e4c80c88a7c59ea900c294c323c4662817ff5007",
+      "git_blob_sha": "9ab44d71039a10cf4982700b29f204e559d9839f",
+      "bytes": 43273
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_p__B10_g/Be9_p__B10_g_primat.txt": {
+      "sha256": "a897a17eee8287655a4327964b79487d5609ef23cf2c9a8e03f981b59189149c",
+      "git_blob_sha": "e1eba13e654314e3d9ed0345ef2b2b0c2f11c204",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_p__Li6_a/Be9_p__Li6_a_primat.txt": {
+      "sha256": "87f387f89449f56d4cff96a1264201101f8780957d958b11608656c8d9e9e942",
+      "git_blob_sha": "404e64828dc1178dedfa7f727df5b45f91891e8f",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_p__a_a_d/Be9_p__a_a_d_primat.txt": {
+      "sha256": "a138e100ac35a3745d78ac4fd6e26817230c28e4d6c89d9cbb6c493d9ce9b12a",
+      "git_blob_sha": "0613ce53407e50232916c5f2b3254512734dc1ce",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_p__a_a_p_n/Be9_p__a_a_p_n_primat.txt": {
+      "sha256": "f81fb07971e68753eb26e4dd3dbff4d900b22d85fc9071387e35fc2c36f54a41",
+      "git_blob_sha": "1cea75af5a7e6c8eda89cf1ecd46b997e0ce6263",
+      "bytes": 43339
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_t__B11_n/Be9_t__B11_n_primat.txt": {
+      "sha256": "616e2947aa28018fd142ef64e19a22a1f323bbe9c33bc0d5987554b58a0533cf",
+      "git_blob_sha": "870e7f6f5990a519fc8819f60e39dd880063e2f4",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_t__B12_g/Be9_t__B12_g_primat.txt": {
+      "sha256": "c34d71565aaed7a51930944efd72d8440b6a51bbb23805054d86156b9b80f3db",
+      "git_blob_sha": "254d902d1b6089fc35f1cc92dd3d4b43933c15d3",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_t__Be10_d/Be9_t__Be10_d_primat.txt": {
+      "sha256": "31c64a7db83ca730cd59ef9d45b4f4a7bcdafe0d2e3f4cdb451846f53a474508",
+      "git_blob_sha": "e78c7aa8cdfcfdddb728629680f61e94838e5f81",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Be9_t__Li8_a/Be9_t__Li8_a_primat.txt": {
+      "sha256": "5f63f5416eb1f1176d500eca472b046850a0e1492930e2ad15542a4ad1ba29e1",
+      "git_blob_sha": "a24496ad961d60d15553a8f62a0df94d64df6289",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_He3__C10_a/C11_He3__C10_a_primat.txt": {
+      "sha256": "371dff6aeaf10dc7684e2e709debf29e26e762abd117f12f08c4f5d2491f7ff4",
+      "git_blob_sha": "95cdc726bfb5b24b4cfb9491de32b982645688e4",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_He3__N13_p/C11_He3__N13_p_primat.txt": {
+      "sha256": "180e5d56cf41fa97e60340286730f2be51ccb5fdcb882d817e18a0a1de0b5f6a",
+      "git_blob_sha": "2f526c8f05c3f6cb3de253ea8e1a32845f2f8d4a",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_He3__O14_g/C11_He3__O14_g_primat.txt": {
+      "sha256": "1413acca4ca8d06c30dc1988e0406a347a8941597960ad38437c2586bbc735ae",
+      "git_blob_sha": "e959a49fbf1eaabba79691ce950401b7315846eb",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_a__N14_p/C11_a__N14_p_primat.txt": {
+      "sha256": "f42d4ecd0d892e40b024069240f54a8a4646b78beae782d8c20af7a17cc036de",
+      "git_blob_sha": "36d319f665e5260b1bd49a8c1127b14153fb26a5",
+      "bytes": 43375
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_a__O15_g/C11_a__O15_g_primat.txt": {
+      "sha256": "13cf0b4e8db1debf2852a3dbd079c69a2d4791d35df0dab322965c634ba22452",
+      "git_blob_sha": "12d2f644decbe10e54fa1f6c4a4514c1fbce9bd7",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_d__C12_p/C11_d__C12_p_primat.txt": {
+      "sha256": "f6ba9d4e4d1226b0bd954598994056dfc0e33c447e808a270054e08456efc8f2",
+      "git_blob_sha": "45d26c2d5f668dbf8df3500aeedcd91607fe9eec",
+      "bytes": 43169
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_d__N13_g/C11_d__N13_g_primat.txt": {
+      "sha256": "b2c9d7d1c3a293cd693608ec983846482b0c2f1fe54940df5dd97bef2fc13aa7",
+      "git_blob_sha": "0564fece80064b7990b44e2968a9f09ca3bd2a31",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_n__C12_g/C11_n__C12_g_primat.txt": {
+      "sha256": "294de6acba1e84b4f47a93eaf4f17360d80029e4228a2dcf2598d35dea5c5f93",
+      "git_blob_sha": "ddd6005afadcaf2bb64b55de4568cea4db41f3e3",
+      "bytes": 43242
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_n__a_a_a/C11_n__a_a_a_primat.txt": {
+      "sha256": "b613fcf53403e05f57ed3a338459520e6f6af5d8d3e94e33dcccfd7294ddc6d9",
+      "git_blob_sha": "93a823a7ef8a6aff663af7145389f6ace214e3d6",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_p__N12_g/C11_p__N12_g_primat.txt": {
+      "sha256": "9d5eb0f095f2ab8c22cd50d2c5a59098ff9c584f40b922ecf6a452a2616e835a",
+      "git_blob_sha": "59a556df06b1c55ab557cbd55c0b95303f5e361b",
+      "bytes": 43350
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__B10_a/C11_t__B10_a_primat.txt": {
+      "sha256": "23084119ed8b32d3689ca25e12f7491e222fa7470203e4fcc55142718e497f3b",
+      "git_blob_sha": "07b00cff4e3981b704d9d7a985b656e284394f9a",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__B11_He3/C11_t__B11_He3_primat.txt": {
+      "sha256": "46eefe8043ba237bb537121732c467e5cd9d486cbd93fba206824a57d55e7d6b",
+      "git_blob_sha": "cc52e19cdff5d2bf984e56999466be215adf9877",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__C12_d/C11_t__C12_d_primat.txt": {
+      "sha256": "9d2e41171995d43d6c628d4e7795ac3a222048ee7df791f14e6207641868dac2",
+      "git_blob_sha": "36b55abfcf95d38b2f439c872d6a93a9f3ce92a4",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__C13_p/C11_t__C13_p_primat.txt": {
+      "sha256": "a26738367abc9966a0e1c3eaf1722c0374b6483c4253ab57e264f623ccc30589",
+      "git_blob_sha": "7708c38b649270108fe48803449df6182ce83a15",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__N13_n/C11_t__N13_n_primat.txt": {
+      "sha256": "d15faad1d7f8484e04cf4b70af4c81b74424e6842cef4cb16ebc3e93a122ab8a",
+      "git_blob_sha": "af0b32f4a66a1e9f7a4db96c1b6a5ff972ddd1a4",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C11_t__N14_g/C11_t__N14_g_primat.txt": {
+      "sha256": "3a8a0434b51a3b826af36665d3b79247caa99454476ad81e919d688ebc6c8951",
+      "git_blob_sha": "e6cb98c543f6c5609f9b052bf61592f63798e65e",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_He3__C11_a/C12_He3__C11_a_primat.txt": {
+      "sha256": "a06462446ff25453acf6b7b6795449de7168ddca3e42079bc8935626f91b97fb",
+      "git_blob_sha": "4cee7da7de314b9b558bf9587e2a3b4dfe95db79",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_He3__N14_p/C12_He3__N14_p_primat.txt": {
+      "sha256": "6e0a7e4558db554d878692d1a6dedddc24b00d5dd4186ff3bce17780cff0a42e",
+      "git_blob_sha": "b2356ea5d182c7d90ba1b557701ef7927cc4ff0d",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_He3__O15_g/C12_He3__O15_g_primat.txt": {
+      "sha256": "bc955a1d2d635f1d4e38ed08e04c2c076d71a7689fa3db62bac0841d9edbac39",
+      "git_blob_sha": "7e272782c7c914fcd9909a8aaf85098cbf7d4357",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_a__O16_g/C12_a__O16_g_primat.txt": {
+      "sha256": "42477581124388cdb84163b8b4daabe564fbef9405a4b197039c883c0af4e317",
+      "git_blob_sha": "e16c158c4e04f76db02291effc118fe355857a0a",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_d__C13_p/C12_d__C13_p_primat.txt": {
+      "sha256": "5772f378737f4b895b1ba1fcb5c318438dd5447adbc7e2de9bc2797db820afb6",
+      "git_blob_sha": "606d6b504ef037f64d8db58b1d106207fca326fb",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_d__N14_g/C12_d__N14_g_primat.txt": {
+      "sha256": "95c93501165fb1a49261d4305f2b3d5f13b356f877876ca47b1b01cfd539cb13",
+      "git_blob_sha": "74b2109bd2397be1975e1f5f3ea841dc5dabd443",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_n__C13_g/C12_n__C13_g_primat.txt": {
+      "sha256": "8a79e7c597aca9e4ebe458a5ac3f11f1dac8a6725139ea2ba23a6af8bd9beaba",
+      "git_blob_sha": "38d3381c9d0d756abfce80b2de295230c14ef35e",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_p__N13_g/C12_p__N13_g_primat.txt": {
+      "sha256": "de428e034034679436ee3665a3cc0ab7f03e62b0e59545c11b11aaf890d330fb",
+      "git_blob_sha": "ef8dd43be950f8d4e63dd4535eeb74e0fc856552",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_t__B11_a/C12_t__B11_a_primat.txt": {
+      "sha256": "5502a92f70c569c968a4972cf251af6ee84b21b94247aed31c6d164bb1a6b55a",
+      "git_blob_sha": "ef8b8b0dd99c5c9681334133ca95976ff6d04f63",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_t__C14_p/C12_t__C14_p_primat.txt": {
+      "sha256": "46787f17aafa8fb1e4a85c1a59a2fb236ba893de3835a2b75ff8d66858abfec4",
+      "git_blob_sha": "cc8f6dff24d96c6a10cb848cbcdd69eb9ec439c2",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_t__N14_n/C12_t__N14_n_primat.txt": {
+      "sha256": "c7bb6860405a0764a058a65861fff4cfd4e312823a85bb05a7610b8f62e0b96b",
+      "git_blob_sha": "9adc3d1d89de552972e2a90870d63656df89f39e",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C12_t__N15_g/C12_t__N15_g_primat.txt": {
+      "sha256": "83887f944d9a2d2661c2cd0d99f537ca598a7df2d56f93646751c8d903b3da63",
+      "git_blob_sha": "4751c57c17c30ee0655188e13fa278ee9c4ffbc0",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_He3__C12_a/C13_He3__C12_a_primat.txt": {
+      "sha256": "991e3ef2a154bced16bfb3f51924b3f1aa25760b17d15a99fe1d59aaaf86fdd4",
+      "git_blob_sha": "d90bf2c9cb0d3d8d1499e03dfa219a98e4afde1a",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_He3__N15_p/C13_He3__N15_p_primat.txt": {
+      "sha256": "4321b0abb54dc35ed94913774dbdfeb941f76f5fd7e5ed22096185872af9934f",
+      "git_blob_sha": "327e9cbd02541841aa6c3699f450a2cfd03d1bb3",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_He3__O15_n/C13_He3__O15_n_primat.txt": {
+      "sha256": "1dd1ef9bebddb9df239c7c039506825062692e5310d1b60938e438171bdf921c",
+      "git_blob_sha": "a387f8a5049ad0874f813b18892864185a71bd6e",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_He3__O16_g/C13_He3__O16_g_primat.txt": {
+      "sha256": "3d85eae8e6b081deb630545ac3e287012e6cb78cca9d8153e2da342188bebf8e",
+      "git_blob_sha": "6d9dcde23277a71d088667a4e6e027d7af9e07d5",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_a__O16_n/C13_a__O16_n_primat.txt": {
+      "sha256": "577f9f4f4e775be55d357d636bcbc89b76fbae7c895f50794ecaa0bc07ffc545",
+      "git_blob_sha": "1e9b21f7b5da8575719a789737b10cb431fcc0cd",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_a__O17_g/C13_a__O17_g_primat.txt": {
+      "sha256": "6772ba50a3d4c9427ccac33f1842f517da117efe4cbba098529e7dae5a88c016",
+      "git_blob_sha": "094304e34fbe3efe308648ce7b643eeae9481032",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_d__B11_a/C13_d__B11_a_primat.txt": {
+      "sha256": "c393f0d606dc634232f9732ae901fbfed01bfab41cdadde24d1bfaddec72ce71",
+      "git_blob_sha": "c5e90d416476e07ca5b9538b8a1276e650dbbef0",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_d__C14_p/C13_d__C14_p_primat.txt": {
+      "sha256": "2fec06920c531f98ef8193e0fb23bbc06614449f80f051548339712a15e5f97d",
+      "git_blob_sha": "0627d270477a991b1828ac0196d7ca05173b3efe",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_d__N14_n/C13_d__N14_n_primat.txt": {
+      "sha256": "fac60946e939da6a0bccf8fa6eea8908ac104ed6978abe1f55d4999a233a6431",
+      "git_blob_sha": "a93303aa7ea175aa5d5df22377f521a62ef706c3",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_d__N15_g/C13_d__N15_g_primat.txt": {
+      "sha256": "912dd711fca1933878607dc99fea30145cf4aa89ae8a63ec0575d2c94d18e366",
+      "git_blob_sha": "5211fd065638bb7dfb38eba8dd66dc23e69175b1",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_n__C14_g/C13_n__C14_g_primat.txt": {
+      "sha256": "e18157a18df8d07b45a14df27ca22d4e124d73e350387f9075290d93b5d167ee",
+      "git_blob_sha": "26a8e28d8c7bcb1c99850349565f410c2f19a0c7",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_p__N14_g/C13_p__N14_g_primat.txt": {
+      "sha256": "56194479341982e89ac877fc442b86109c5bea90c9266af350ee2e870f4a64d3",
+      "git_blob_sha": "e3be216c9053976141d599aa4993d73e2ff41da9",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_t__B12_a/C13_t__B12_a_primat.txt": {
+      "sha256": "bfa72bf263ea9b4814074a804ebabdbe56129dedcb8a5e122adb02051a5494b2",
+      "git_blob_sha": "47500db9405f4e6ea5f5aef52ab9d04f4b76ff69",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_t__C15_p/C13_t__C15_p_primat.txt": {
+      "sha256": "e0889fa06419e7de8db08c1f8a5fe0725a5eea680ab2c00c229d8c99540c3154",
+      "git_blob_sha": "18a933352152549c6c852289aa4b09bb3fe29d72",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_t__N15_n/C13_t__N15_n_primat.txt": {
+      "sha256": "64666ef81865596dd83c7f2b377060ca534d205016af1384c22fad7fa0d20db5",
+      "git_blob_sha": "7308b929d7df043c78eca3bd6bc00699583d01b6",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C13_t__N16_g/C13_t__N16_g_primat.txt": {
+      "sha256": "1889025b7c117ddcffecc738283db0d29ddb6aa7b6ea6744c631e1316f60c928",
+      "git_blob_sha": "dd9ee7167f99a0506a304e032efe1f664d440a1b",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_He3__C13_a/C14_He3__C13_a_primat.txt": {
+      "sha256": "1d3a2bca4f31316d8e4b3439b0750020de972f486ab1ac7e4c39e75bde61ede6",
+      "git_blob_sha": "a7f5cab9b6bd699815da414a2044211be2ddbb8c",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_He3__N16_p/C14_He3__N16_p_primat.txt": {
+      "sha256": "8bb9e5fa24b56e831ebcba8e9e0b20c1cfc1c4a0279ed53e99c9a8df5261c980",
+      "git_blob_sha": "0f5b755a10f286a9596609a688de9bb1f0a39b0c",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_He3__O16_n/C14_He3__O16_n_primat.txt": {
+      "sha256": "75fa746b45e1a377bd916f7c265ba55b6cd96b5836a3c1fa7ac82a3a9be564ce",
+      "git_blob_sha": "0f9460e174cd5d825184787f1a2955ceaadb8cda",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_He3__O17_g/C14_He3__O17_g_primat.txt": {
+      "sha256": "62c276b9179f91053840e2ac661a3bace517cf78172a2830e90657412f659d88",
+      "git_blob_sha": "6e8daf1367ea0127ed3b7624ed8e4372dda22dc4",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_a__O18_g/C14_a__O18_g_primat.txt": {
+      "sha256": "1154134c694030225d643000d7588fb6571fe2b99cc8c85ced1b16e5d9719c86",
+      "git_blob_sha": "fcde681810838df93013341a074bbc90053669ac",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_d__B12_a/C14_d__B12_a_primat.txt": {
+      "sha256": "a6b8d68718442f2a47dcb9a6735d101318c75c253b48fe9215793a17117dcedf",
+      "git_blob_sha": "80b08c571157f72995f9e887cc3eff6f9804b18c",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_d__N15_n/C14_d__N15_n_primat.txt": {
+      "sha256": "431d637ad893ac403596dbd974265ac2d2eeb44aa6fd4525acf7c6950d90b797",
+      "git_blob_sha": "766dee48767dc371b52f2cab090f80b944a02953",
+      "bytes": 43203
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_d__N16_g/C14_d__N16_g_primat.txt": {
+      "sha256": "d2bee5aa565fe712055d985c2c70c60e3e9791ac69a5a4643e9b5894a4df4148",
+      "git_blob_sha": "fc795ab0e4ba3e25a00d2bce837a88dba21e31a8",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_n__C15_g/C14_n__C15_g_primat.txt": {
+      "sha256": "b85eb5b2e045f986f27e3a65d5846101a7a51386de88e7008cb21a1bc40d23b6",
+      "git_blob_sha": "f48023f5e61f238dda416d41f9e9c7d41effb75e",
+      "bytes": 43165
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_p__N15_g/C14_p__N15_g_primat.txt": {
+      "sha256": "fa012cc9c26ff56ff3c0671233961df13d607d57570beb87a7290c3801a2537c",
+      "git_blob_sha": "fe24735e9b6176bd4daf6ac6d162d54a44eb05f1",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_t__N16_n/C14_t__N16_n_primat.txt": {
+      "sha256": "7f25a5418e9c5cf7a76acca154e0f830a9c81f7b0e2f3d81bacb3e45493fbf3f",
+      "git_blob_sha": "38cf8eb9a10f53a08efd07e5e8b99b2e2e1a9146",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C14_t__N17_g/C14_t__N17_g_primat.txt": {
+      "sha256": "d0c862a57386f7335de69d5abce05d99bdb88cd95a4506ea6e84a98046195167",
+      "git_blob_sha": "32bd839eb7e84a6714fcab02ecdeeaa2723424fc",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_a__O18_n/C15_a__O18_n_primat.txt": {
+      "sha256": "cea5142ae8258f33f6077f41e1cf58389b41f1039171870c05ceb6b7fbba591a",
+      "git_blob_sha": "32a2494fcf1b332f8489ccab20727b603a2af9cf",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_a__O19_g/C15_a__O19_g_primat.txt": {
+      "sha256": "eb334111500016189ed013336efcec04c9601ad7c79aa46c81d228c7cd7cfaf8",
+      "git_blob_sha": "422016aa14a6f608e4c901271b95bcdd6b5ec951",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_n__C16_g/C15_n__C16_g_primat.txt": {
+      "sha256": "fc0489dd7ff134b01b5481faf32308dfc38d0395c75c87e58040986e0ffdf0cc",
+      "git_blob_sha": "cb9eaff2a304f75e44966522625e0849f3040300",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_p__B12_a/C15_p__B12_a_primat.txt": {
+      "sha256": "eefb2c67c6b47f761b2d52e575e36d918fe8ee5f4e183b46201811ceddc17b28",
+      "git_blob_sha": "aa178030fdc3da2f93c9923c9433309d3c1b971f",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_p__C14_d/C15_p__C14_d_primat.txt": {
+      "sha256": "76c97647691b5742fe5807b4111caaaceb7f4eb16451ae80cc4bc90f2f15b918",
+      "git_blob_sha": "80ac7185e4158a1010b028494d1b3b124fe7c776",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_p__N15_n/C15_p__N15_n_primat.txt": {
+      "sha256": "5e6eefcd3039eb09291517b709c2985c2af3b21e01f070c2cc05b4ffac403b2b",
+      "git_blob_sha": "058155158bf2694cf1758c598f8a96dd90c5a760",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/C15_p__N16_g/C15_p__N16_g_primat.txt": {
+      "sha256": "4c6c09137c06125daa8c31cd0ee2886f231276c43e7b7d114a3081010e6ae1c1",
+      "git_blob_sha": "5d61faebb5348a879681c825af0041d412a8bc5b",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_a__N12_p/C9_a__N12_p_primat.txt": {
+      "sha256": "61438dbf38482e96ad97f5e2e525019aced05442b7ab4f78b87ccd5356ff8f7d",
+      "git_blob_sha": "360a14d4524cd957b1e9fbf900d8836350a7ddb9",
+      "bytes": 43469
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_a__O13_g/C9_a__O13_g_primat.txt": {
+      "sha256": "f9a7f5565ba3d8679c0c0d13384e321dddab1f9c0ad137c8ab185f3216292c6c",
+      "git_blob_sha": "21debf540e28a788ccdab89aec2bb645ba707412",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_d__C10_p/C9_d__C10_p_primat.txt": {
+      "sha256": "9430aab8f10b3bc7899bd1a5dc5e58df6f8c46f82706d2f1959d99b309ae7a02",
+      "git_blob_sha": "b87b0dace2813aa76a23f47343c79573625def88",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_n__B8_d/C9_n__B8_d_primat.txt": {
+      "sha256": "0f8ebb8f2df60870b7101f092b603944de06f75b5e3732b29234b6b091359df4",
+      "git_blob_sha": "a332adfcfbd125ad6c9ad0df68c638a353450fe7",
+      "bytes": 43179
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_n__Be7_He3/C9_n__Be7_He3_primat.txt": {
+      "sha256": "573956a8c46c9ffd9337aa0a9c4fe0b92538d761875615066c2d2aa93f86d754",
+      "git_blob_sha": "6b6e005abb7999c3d376f8c510ae0c97da0d474d",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_n__C10_g/C9_n__C10_g_primat.txt": {
+      "sha256": "ec6e5cc36fed1b415ea49121aa707846eaee3e41b508cc3e85af616affe17a75",
+      "git_blob_sha": "9fe1bb4b40b2bbf5b3d320fab609907c7e8fa0d1",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_t__B8_a/C9_t__B8_a_primat.txt": {
+      "sha256": "1bb0c5c680701ae007a9b014e77c7074bc00697a0c18997a993d5b07d1174640",
+      "git_blob_sha": "bf18e585b70dcf5590ca2534cd7869bd0954e2e0",
+      "bytes": 43179
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_t__C11_p/C9_t__C11_p_primat.txt": {
+      "sha256": "4e96c18fa51a063ac49121553eeb83e9ed4af6a769aea3886600016cca81a0a2",
+      "git_blob_sha": "66693d601e3ea16313437a556972113fbe683e23",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/C9_t__N12_g/C9_t__N12_g_primat.txt": {
+      "sha256": "95e57e9a5751d7e27366a40ed322590c9a7cdfeafe4c0f71dc551d23afe24405",
+      "git_blob_sha": "394d9433c7492a1ce98be80ae9791e79875e4194",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_a__Na21_g/F17_a__Na21_g_primat.txt": {
+      "sha256": "91d66aaa06aa6f32a99af457738cc5372c76aa5ee96a2bce42146927b60b5104",
+      "git_blob_sha": "be47236e516f55bd8c26af766fced47624ac3dc1",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_a__Ne20_p/F17_a__Ne20_p_primat.txt": {
+      "sha256": "75104bf2a4158a82bb0d44f4d114e64fa8faf6eea500fa4468906bf1299349a5",
+      "git_blob_sha": "1be27ef0a99f0baa0d7ab4f9866b4272d6cdb58c",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_n__F18_g/F17_n__F18_g_primat.txt": {
+      "sha256": "0d73e09e780018aca134181916c553d2e8770d65f2631940556ecf6ea6bad776",
+      "git_blob_sha": "2e2c8cad0b148c2ff6c5df2b16554e577c9fec70",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_n__N14_a/F17_n__N14_a_primat.txt": {
+      "sha256": "c28570eb9b73e4b3f4dcc3b6761b34d2344769ce9e8846b0e90f1f6959b37143",
+      "git_blob_sha": "17cac8c1762448fadc1e1a689c7cdea9b23d1fcd",
+      "bytes": 43244
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_n__O17_p/F17_n__O17_p_primat.txt": {
+      "sha256": "c6685567e8ba3129f0c393bca797ea267736e64753785a69b9a32883552df15e",
+      "git_blob_sha": "33999fbcf5112b51e65d6bd1790aee0f33d898b5",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/F17_p__Ne18_g/F17_p__Ne18_g_primat.txt": {
+      "sha256": "52c762e635af12b207459f2badebe6bb3e8949f680fc201d10a18a5025ea9243",
+      "git_blob_sha": "62a93cda442b167b2357c356db812e7a9c0b6587",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_a__Na22_g/F18_a__Na22_g_primat.txt": {
+      "sha256": "b6f43a1bb0d2782fd37459c1cbaf831f9c29f6473da997d11576b2158392f19a",
+      "git_blob_sha": "29e9d13013d43cd009ff14a96b2ca7389f155d68",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_a__Ne21_p/F18_a__Ne21_p_primat.txt": {
+      "sha256": "527625f88ae3641b3b349826077bc48e5dbdc373bf31e961287824226e477115",
+      "git_blob_sha": "a5f424fafbaf0e0d84fe04f46d4cf8bba6eafa7a",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_n__F19_g/F18_n__F19_g_primat.txt": {
+      "sha256": "bb97de676156ca84c896d18975d29ac2b793cc61726b7b98952ea6053122b2fb",
+      "git_blob_sha": "0d5204bc4ef7f303eb7de9671154d67318c9bdbb",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_n__N15_a/F18_n__N15_a_primat.txt": {
+      "sha256": "22ac799f094185798717b0ed6b2b273461df6832602accd64e90d82095663fda",
+      "git_blob_sha": "b2abdeac86e989b8a1a228fb342f61da00562433",
+      "bytes": 43216
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_n__O18_p/F18_n__O18_p_primat.txt": {
+      "sha256": "83df5af19ce846de996b08be4e7275c756a587595f2312e97d8d939a6ec2ed83",
+      "git_blob_sha": "782ed086f6f282ea25766bf54cca1a1f6c7edc28",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_p__Ne19_g/F18_p__Ne19_g_primat.txt": {
+      "sha256": "5914570aaff4e129623f71818f662d2c368e4b35d175c1b124dc89b74da8738f",
+      "git_blob_sha": "1884ce558062fbf050ce80a9257d65bd13d7ed4c",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/F18_p__O15_a/F18_p__O15_a_primat.txt": {
+      "sha256": "a5b808066e59e8495b8043fcc29ddc5a0e12a1296aadc1c1a629d041955d3dad",
+      "git_blob_sha": "965cfa5185f10889b1eae879d7fa642a310f712c",
+      "bytes": 43175
+    },
+    "PRIMAT/primat/data/nuclear/tables/F19_a__Na23_g/F19_a__Na23_g_primat.txt": {
+      "sha256": "85e3d0a18fa08f1afd2752cb9e2cbfcd5ca3ba903a561f8dac82baa4eba4fa24",
+      "git_blob_sha": "d56c00547206299e53ff75c7b1ea35d3eccc8947",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/F19_a__Ne22_p/F19_a__Ne22_p_primat.txt": {
+      "sha256": "73b072c3e9ee0300fac9881aa553b63f3114aa6a681c418f4065aedb7e67f548",
+      "git_blob_sha": "fbfbe1df80e813fce5f6c6069d456b4f8483c681",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/F19_n__F20_g/F19_n__F20_g_primat.txt": {
+      "sha256": "bc56f6020f26a4e77480c94d13d7dd5c7a14340cd7584b6a1b9905d11ee1acff",
+      "git_blob_sha": "babc2f16286703db6ff89350779fd609f54812fe",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/F19_p__Ne20_g/F19_p__Ne20_g_primat.txt": {
+      "sha256": "2f63873de4f5e4c8d45a0dedfc78d6b8a18fcc48f745a433b31cd5116cd58856",
+      "git_blob_sha": "174d879380681232ae66a05bce4d2561d3d88abc",
+      "bytes": 43366
+    },
+    "PRIMAT/primat/data/nuclear/tables/F19_p__O16_a/F19_p__O16_a_primat.txt": {
+      "sha256": "2f9e40ff954c2c0aa575192a49f8ffb1db2d0a519715b8a1bb185767d26670e9",
+      "git_blob_sha": "9d190ed0edba8c6dbb716a172107dedcb2655ffe",
+      "bytes": 43323
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_He3__a_p_p/He3_He3__a_p_p_primat.txt": {
+      "sha256": "7e6de39d1951da7fccdb57843f6d8ab0f0073c2889c15b9ac08483041de54adf",
+      "git_blob_sha": "46405907cc8ddbd195687256e9ff864b4aee9b16",
+      "bytes": 43197
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_n__a_g/He3_n__a_g_primat.txt": {
+      "sha256": "986ee93ddf77758e33da639950779ced5e0069706d3ef78296b366d76546cc20",
+      "git_blob_sha": "c1dfe99d12fe9d5325ec39b84fdbb8f2ea300a77",
+      "bytes": 43160
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_t__Li6_g/He3_t__Li6_g_primat.txt": {
+      "sha256": "b65a4c3db614a348e773e2a90dfe089b8b5009eb2763f5b2a4f35919c0bc02e8",
+      "git_blob_sha": "01b89fa2abf98633ac870df253af3f232bbc82f6",
+      "bytes": 43329
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_t__a_d/He3_t__a_d_primat.txt": {
+      "sha256": "94844bdb43a81a02f4c39b04fd765892e25336c543e80138a6ebfd49e7278564",
+      "git_blob_sha": "73e493d5be13804dacdcf872349d59de06d04a67",
+      "bytes": 43279
+    },
+    "PRIMAT/primat/data/nuclear/tables/He3_t__a_n_p/He3_t__a_n_p_primat.txt": {
+      "sha256": "8a96e250b56b23daf582be2b57a6af7cbfb0389e1e3f4446c2ed2de7d45c627a",
+      "git_blob_sha": "dc48e4bc2cfadd6c52a411f907e124ad27a275b6",
+      "bytes": 43286
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_He3__Be7_d/Li6_He3__Be7_d_primat.txt": {
+      "sha256": "f5a9a9ac7613aecca21530dac4dcca8502ce0738e4ce13f37bf3965ba39e1e7c",
+      "git_blob_sha": "7fdb6c6d970edff9f2474fde6beb666425c9510e",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_He3__a_a_p/Li6_He3__a_a_p_primat.txt": {
+      "sha256": "0464a168e5b4771b24350928c6713e72ee8f964efa19921561e6fed47b486d70",
+      "git_blob_sha": "501e72a9d67f7f1293c8305b35d248fcd86951d5",
+      "bytes": 43196
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_a__B10_g/Li6_a__B10_g_primat.txt": {
+      "sha256": "a4ea7005b3708612a5747f0bb69d68ef4ff500f9a2371e5782b0daa0be531e5b",
+      "git_blob_sha": "8eb7490d1d532d334bb5f85309e1b803d6b226b8",
+      "bytes": 43390
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_d__Be7_n/Li6_d__Be7_n_primat.txt": {
+      "sha256": "62436aa6000941593401603700d2b70fcd0564a2719efdddff61ec64746acb23",
+      "git_blob_sha": "0be494684fed349db45b641c418cc589066d38a5",
+      "bytes": 43223
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_d__Li7_p/Li6_d__Li7_p_primat.txt": {
+      "sha256": "b9ca64d02360c1f305e4e1359927ef1e1bb958bf037cf97dd4f3b97698f4ddd9",
+      "git_blob_sha": "26d53d956278353c105c26152de67bce9fd08098",
+      "bytes": 43223
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_n__Li7_g/Li6_n__Li7_g_primat.txt": {
+      "sha256": "e02e2b4323dccddbf86522eda0d43b919327193310cbac1dc62fa6f8bdbef1c4",
+      "git_blob_sha": "436f3a99510e8f3f27634556448ddf52b13a808b",
+      "bytes": 43162
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_n__t_a/Li6_n__t_a_primat.txt": {
+      "sha256": "e9491cd1d29108ee211f8ebadd952c512fb9ad40bc850eb0f5c205cfd288524e",
+      "git_blob_sha": "4dfb30c680b8c1f8f1ec18c2e1e61d65b4204441",
+      "bytes": 43302
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_p__He3_a/Li6_p__He3_a_primat.txt": {
+      "sha256": "103613ac218b9a898960445ef2f6e1554f74be7a6df773d0840b287fb50ddb48",
+      "git_blob_sha": "c09166f3ca2fc8318cc6d09e62e60d5f532dc3ed",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_t__Be9_g/Li6_t__Be9_g_primat.txt": {
+      "sha256": "535c9150db1a0cf529ea6a968c5322dd9e1f77d8c049b209d6255b0a253d1ac0",
+      "git_blob_sha": "a55d7fa4e431948f48ef8f983ffc826d1bdd689c",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_t__Li7_d/Li6_t__Li7_d_primat.txt": {
+      "sha256": "63db58d88674d1287b2e587b8bc38abfa8708f936582cf6f6a339219329e30e6",
+      "git_blob_sha": "6219ae476fdc28b30eb62c3e0fa1bd790f48d498",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_t__Li8_p/Li6_t__Li8_p_primat.txt": {
+      "sha256": "4e20f0f73a1ac15ac163bef403866427d9204945dd190c27367f11ca60bdfcf5",
+      "git_blob_sha": "0a19468bb7ac3ef129f33df21fcaad698c516f10",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li6_t__a_a_n/Li6_t__a_a_n_primat.txt": {
+      "sha256": "89cbd2a1bb24063127d67624eb730d8a9577c99d9dcd5eb2e1e116721b1b9dbf",
+      "git_blob_sha": "9070047b7c9f4a143cebe4ca57141905cea92f83",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_He3__B10_g/Li7_He3__B10_g_primat.txt": {
+      "sha256": "18e63c6767de827157f0a003662542e2979af070c26fbe9f29c5350f8708fae5",
+      "git_blob_sha": "cb860be8932af0ac55d537f07dde36e2d3ef28eb",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_He3__Be9_p/Li7_He3__Be9_p_primat.txt": {
+      "sha256": "f4f9f83af1984f034e0f4353328fb48e8423abc364440e6722855f1e6c703dc2",
+      "git_blob_sha": "cd860e1ac58eadddc9bcadba343934d2f4ac1b0e",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_He3__Li6_a/Li7_He3__Li6_a_primat.txt": {
+      "sha256": "7b1ea4be5bda47a53c0bc9fc3c3258760a6ea5ca78202f753c8eae3154a40569",
+      "git_blob_sha": "8927ccd2dccc5306f52c2eef599ddfda5b28d60e",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_He3__a_a_d/Li7_He3__a_a_d_primat.txt": {
+      "sha256": "3b9e234db6b46b1448d86520443e135c1e5b3cb6799803f4ac419d417ed8b770",
+      "git_blob_sha": "c5b756eb75657402d2f2baf2645358551dfb4972",
+      "bytes": 43194
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_He3__a_a_n_p/Li7_He3__a_a_n_p_primat.txt": {
+      "sha256": "015b2dce4d8754f734814ddb00c9314c3f796376e84422dcd01a4e93e13bcaa0",
+      "git_blob_sha": "c3b77eb3f2db760c765544e4009074eba14ab857",
+      "bytes": 43259
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_a__B10_n/Li7_a__B10_n_primat.txt": {
+      "sha256": "cacdb9c394705a3fbafe72f4444116814e47618dc3d14493466c231ef5f5f8d6",
+      "git_blob_sha": "3c4deee769ce0caced66aba1b2e9bc6dda52cf62",
+      "bytes": 43336
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_a__B11_g/Li7_a__B11_g_primat.txt": {
+      "sha256": "321c2cff98b0767db97118199e7ffe7b91d5582ba9db920a0302abfeec662b76",
+      "git_blob_sha": "8033f30a6c5b511539ebca74b9b3e5266e8e4606",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_d__Be9_g/Li7_d__Be9_g_primat.txt": {
+      "sha256": "7129ae5b6ee8e170362ec10a81aef5011e6de621735735f8e4777ecc144a176d",
+      "git_blob_sha": "8ad25d4bdd9227525444baaaf610802175a19845",
+      "bytes": 43178
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_d__Li8_p/Li7_d__Li8_p_primat.txt": {
+      "sha256": "54f6b02edc9916021db96f14f8ea18a5c66cb8574e24738e431c136fd0b7fb70",
+      "git_blob_sha": "ab0765c787d59b713f713725ad096d5f198ffb65",
+      "bytes": 43322
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_d__a_a_n/Li7_d__a_a_n_primat.txt": {
+      "sha256": "3f647b97cf9ea4994dc0721165ef7530525a3ccc183fad9e58beac5cec7c93a2",
+      "git_blob_sha": "fd4aa2d599f5ca1404e7e8b0e2f1439f5161a0de",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_n__Li8_g/Li7_n__Li8_g_primat.txt": {
+      "sha256": "71dc20e19e4ff0c9f2fc6bed22907334816eade91ac11c574fb556ff94d87a3e",
+      "git_blob_sha": "d7fbd6edabe85f5a0a910ca463d2888ee110df90",
+      "bytes": 43236
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_t__Be10_g/Li7_t__Be10_g_primat.txt": {
+      "sha256": "e7fa421359d3af6c3d086e3b97dd1fa2d9f32b55fb92e864ee7721c1cc724cc1",
+      "git_blob_sha": "b14c69b6de1e58c50a87ed16f0af5e5219cb1ff6",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_t__Be9_n/Li7_t__Be9_n_primat.txt": {
+      "sha256": "351d5a8e33031a5b00ee85c10f8ac2fd09038ed8501bc63712dc88338f32dd7f",
+      "git_blob_sha": "5de7d7744a7424b010d4c9434d55a4fd4cc91cbc",
+      "bytes": 43170
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li7_t__a_a_n_n/Li7_t__a_a_n_n_primat.txt": {
+      "sha256": "2cfb58d5e669c44f1e7c5e5948596c9e100097705a435687d4cc59d85851c5ae",
+      "git_blob_sha": "39169131cc1b169fd46adae72680e5c696ebf57a",
+      "bytes": 43255
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__B10_n/Li8_He3__B10_n_primat.txt": {
+      "sha256": "cd73547cc56e0c96032a809950cb86180eea671aad7955455e09051e58da8275",
+      "git_blob_sha": "e27ca2589bb3d258414f905fdde955cdeac67577",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__B11_g/Li8_He3__B11_g_primat.txt": {
+      "sha256": "24856e814f64e2d7c086fd06cc606397050accfefee50ed508b4f9121144f28b",
+      "git_blob_sha": "34b3b9a5d7f72d1265bfa929782d3d957d2d995b",
+      "bytes": 43192
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__Be10_p/Li8_He3__Be10_p_primat.txt": {
+      "sha256": "db893476aaff7cfc0bb7ccb279b273e974e92fd7e4a83e5fad69a7eec5052ce2",
+      "git_blob_sha": "ca59837c3cfa9d57ba678f8a19eedc37b71f3f70",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__Be9_d/Li8_He3__Be9_d_primat.txt": {
+      "sha256": "69d13e0cd17ec2a118cdce0f8c4882658a1b79ca882b1874be5645dbc0f90ca2",
+      "git_blob_sha": "eb14ec806024e71cde3f05c3aabb0e272469d960",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__Li7_a/Li8_He3__Li7_a_primat.txt": {
+      "sha256": "7cb11210a4a75bd098b35cfc1478fe50296ccef78c0a6663114d40bb57841a13",
+      "git_blob_sha": "9f34434888cc5f221700d84794a53de5c2a7076b",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_He3__a_a_t/Li8_He3__a_a_t_primat.txt": {
+      "sha256": "46b169ec52c53faa0170fa984ce53c04c242b66f5a267dfc43f4aaae03618680",
+      "git_blob_sha": "dc3b0974bd0938f206fa609089d4c02a8eeffb19",
+      "bytes": 43196
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_a__B11_n/Li8_a__B11_n_primat.txt": {
+      "sha256": "2eb6901ccce1b255be7adb2ce020ae9a35c8fe1286b1d285d971a2b52ee8a472",
+      "git_blob_sha": "96d36836a9355df4ae6d55f1bc7846216c54d679",
+      "bytes": 43171
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_a__B12_g/Li8_a__B12_g_primat.txt": {
+      "sha256": "e07f0975d18b83bf78d15819e3f0f28059b7be2a66817a870f2e0339e6a7d15c",
+      "git_blob_sha": "e6b24261e38b0c93e18ae39655a742f80eaee53f",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_d__Be10_g/Li8_d__Be10_g_primat.txt": {
+      "sha256": "c4e075da1dc13c8152b6ff4a80d413c80e3b411423deec34ac8330d4050e6210",
+      "git_blob_sha": "33d589558e4a0605df5d1de892c4c89815c4cd99",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_d__Be9_n/Li8_d__Be9_n_primat.txt": {
+      "sha256": "3835d20c6aa4bb3d18ae019a5db9c6b637704b62bad44b74475959fc215282ab",
+      "git_blob_sha": "0ff228c84166316a2a1700939c744c80d4894c3e",
+      "bytes": 43240
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_d__Li7_t/Li8_d__Li7_t_primat.txt": {
+      "sha256": "ba8f261e0a2dc3c09e9035a2ee08a85f6e00ceaca2efc2980da272614c44a528",
+      "git_blob_sha": "febc00761026d1cf15390964aea759ad6410bdfe",
+      "bytes": 43272
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_d__Li9_p/Li8_d__Li9_p_primat.txt": {
+      "sha256": "029acbacd51d218f789377c6fb739741f6429ab5430a169ded35ae2fc04c3fd3",
+      "git_blob_sha": "514eef515477ee1fa3b7c846f65a44a9131b2083",
+      "bytes": 43239
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_n__Li9_g/Li8_n__Li9_g_primat.txt": {
+      "sha256": "788b9d6a48f8f0a9e7bbebb06c3b400a831d9851d9d7aeed550fa2d7704e6d8a",
+      "git_blob_sha": "4dd993b8c9d2b5ef6b49c53c373498e3a8fcaabc",
+      "bytes": 43217
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_p__Be9_g/Li8_p__Be9_g_primat.txt": {
+      "sha256": "aae5b7d9c6dc42908cf07a05cd2a0ddb6099eccc21c38cc2c45ff66146524c96",
+      "git_blob_sha": "22b6d2e731041908fd479ffd1180000e88a13242",
+      "bytes": 43275
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_p__a_a_n/Li8_p__a_a_n_primat.txt": {
+      "sha256": "ffd198beafd464cc3e368001d8109c48e648aac7b07f0411b5bc83c2f864f196",
+      "git_blob_sha": "c406d05dd7d6c81bb15d4cee7ac0a80947cf42af",
+      "bytes": 43407
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_t__Be10_n/Li8_t__Be10_n_primat.txt": {
+      "sha256": "50fd620b120afebaa0546f573b3aa7deb34792192db0446c98b3c017b82239c2",
+      "git_blob_sha": "6ec270c262c7ad6859cced5c930f77c26f261e92",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li8_t__Be11_g/Li8_t__Be11_g_primat.txt": {
+      "sha256": "41eef797835f46e563d13b4504052aa2160c9af946e20975f2334bff63d025ed",
+      "git_blob_sha": "98093325ed36843eb66f95fabd98e60f864cb576",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__B11_n/Li9_He3__B11_n_primat.txt": {
+      "sha256": "cebcd344189096fef1c48a8a931331adf6c78fbfb739b1140db24d682a250064",
+      "git_blob_sha": "87bc86a16ab001bdccc335eb6bf2d90fe1ebba89",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__B12_g/Li9_He3__B12_g_primat.txt": {
+      "sha256": "eba01bce324517e8795daab8a5f4dcad48df26a411fab4a94bcd03c79e71801f",
+      "git_blob_sha": "e5a4136806a1d7b134ffb6a512fcb830dbf302d0",
+      "bytes": 43193
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__Be10_d/Li9_He3__Be10_d_primat.txt": {
+      "sha256": "087b277d200dc94f2d961b1061151bb1f90ffd39666b6de54290b0bc45a95bfe",
+      "git_blob_sha": "764c0a6ef12c027a4781b1bba467965b41e1bf33",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__Be11_p/Li9_He3__Be11_p_primat.txt": {
+      "sha256": "cea7262e7fa283cbc1be0cbe25d0d7a1312777535500f52394501b8f9f61fc23",
+      "git_blob_sha": "6e3116da90a03a1b80831edb607c90cd23cfab12",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__Be9_t/Li9_He3__Be9_t_primat.txt": {
+      "sha256": "ff20e563bc3f9c9e956ea7a5ea34fe716c361ca8888b19855fcce85e8b09d569",
+      "git_blob_sha": "31d6169bf27caff9b2abaf8a1ce2fee755b6394d",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_He3__Li8_a/Li9_He3__Li8_a_primat.txt": {
+      "sha256": "0a3d336606f4873e2277638369dee24472fca6ba0f7bd62c3d70f5fe39f09294",
+      "git_blob_sha": "1b53682624108d1fad2bcf4c6e25604222e4bb5b",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_a__B12_n/Li9_a__B12_n_primat.txt": {
+      "sha256": "af76cd380287fb298e0f84c40fc323153fc9c0f0bd363d97d4f916c416f57580",
+      "git_blob_sha": "57a301efefe49164892d315cf7f9789cf45d9537",
+      "bytes": 43169
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_a__B13_g/Li9_a__B13_g_primat.txt": {
+      "sha256": "3df542d08ac945cbf9e85013b687c17ba05b9f864f8186b48d8e52510a5c87fe",
+      "git_blob_sha": "4865022db686275beb853d1655d1cd23982e55b1",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_d__Be10_n/Li9_d__Be10_n_primat.txt": {
+      "sha256": "d4c0eee652a747f15861a12463eefd95823f1e9c10a8d7d9df4b3d1867050aa0",
+      "git_blob_sha": "1f15cf16ccb42644b1d3a0a2de47ca0999d430d0",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_d__Be11_g/Li9_d__Be11_g_primat.txt": {
+      "sha256": "da7d6a7562d8fdb1241d798f7e53b39d76ce972bc1f4d14c9580e0fa0be1f9a2",
+      "git_blob_sha": "a02fb5181b15c3c1f478d9f2516129a44b246845",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_d__Li8_t/Li9_d__Li8_t_primat.txt": {
+      "sha256": "1964bf6db34515d9fcbca8d1f8885b359b1735eda3e02d0096655d77ccc3bfdd",
+      "git_blob_sha": "2be1c45ef3686dfc58feaa7d577d33fa5effa4f2",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_p__Be10_g/Li9_p__Be10_g_primat.txt": {
+      "sha256": "0eaa355df1a976ec5cb6bbfc3b99fac26f918ea45740e4c373711922a6412c76",
+      "git_blob_sha": "aee03008bee77306e58e9067eb56450a540935b3",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_p__Be9_n/Li9_p__Be9_n_primat.txt": {
+      "sha256": "0fce55fd1428987a4c04d89726a424c97fd34f9c3555d8676659bffb38e426d7",
+      "git_blob_sha": "aa52a1467d8388d62202ad52bf843705ac705925",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_p__He6_a/Li9_p__He6_a_primat.txt": {
+      "sha256": "9a98da01d3e1a81f846bd9957bef2cbe236304a515ad0a0c8b8fe738108c8cc9",
+      "git_blob_sha": "cc0f479303660421db74ed32958dbf7759497593",
+      "bytes": 43163
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_p__Li7_t/Li9_p__Li7_t_primat.txt": {
+      "sha256": "e8d31ac0e817aa10f53b583a2dc4e04fcddf979f465c57377142d6664b4ac5c2",
+      "git_blob_sha": "929756ca4d3cfd22b588e26142f8de9f05900edc",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_t__Be11_n/Li9_t__Be11_n_primat.txt": {
+      "sha256": "8f3c32be2c0f778f63e565bc0225d6c4bfecacce77c9c339a8c2d1abaa7154e7",
+      "git_blob_sha": "e4d93dde3ca3f05c33805b5313efd222b4e7577c",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/Li9_t__Be12_g/Li9_t__Be12_g_primat.txt": {
+      "sha256": "6285b5ff85c1d92bb21e5951c22d6bf4b08c4bd15b01ead19b758f88f064ae5c",
+      "git_blob_sha": "cb1341a37a287914c368300d21e32f2ba5abb740",
+      "bytes": 43191
+    },
+    "PRIMAT/primat/data/nuclear/tables/N12_a__O15_p/N12_a__O15_p_primat.txt": {
+      "sha256": "b52d88df060d2ea1e12694a558aea67a0296641733e47d4d0ce622dba6e4b261",
+      "git_blob_sha": "6c1599b38a87a2401f5d9a11df3bdf00b3ed00f8",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/N12_n__C11_d/N12_n__C11_d_primat.txt": {
+      "sha256": "639001e914466eadf475af75c6ee83ec816d1db4ec39bffff67657a45c349bb4",
+      "git_blob_sha": "892f7ad110182f81ddb55926ed90638e2cdae77a",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/N12_n__C12_p/N12_n__C12_p_primat.txt": {
+      "sha256": "f3aa946a2e5065c5c3f4600d2841bcecd1c3de7a41ad1cff649ca57d177a4147",
+      "git_blob_sha": "3d49daf6140579daa6c92eab6090e6274a21494a",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/N12_n__N13_g/N12_n__N13_g_primat.txt": {
+      "sha256": "b114b64a2afac0b0d389b92c893ec6313ff0e202821b5b92343c4b8c674d2f51",
+      "git_blob_sha": "3a8a41f017e8a750ef2e3195a481c32268be11c2",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/N12_p__O13_g/N12_p__O13_g_primat.txt": {
+      "sha256": "39e89985b35efb64ad0984449798a3df82b611b7d067f030ee1a699dc301ec1b",
+      "git_blob_sha": "69c947130b012c040f06fd5840d58d9578f5826b",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/N13_a__F17_g/N13_a__F17_g_primat.txt": {
+      "sha256": "9e096dd4489bcc9abc1ea9ef51a8dbf1a61ca03d5caf70c72b8328ffd5c16738",
+      "git_blob_sha": "5037d556438d68a9bc08a333a14740c03dcd8f5a",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/N13_n__C12_d/N13_n__C12_d_primat.txt": {
+      "sha256": "ce93eeea9760a058edab5daeacc1847f2fa752be3e927727d76a86e94b628094",
+      "git_blob_sha": "92acd0ca88fc72f46844a69aed1157443c70ffd3",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/N13_n__C13_p/N13_n__C13_p_primat.txt": {
+      "sha256": "bf323fd13aa73301ca5739482846d2a970c824c154826c633649bac44060e95a",
+      "git_blob_sha": "085bc668e1e9735db3049f3f0f76d49afdd532e8",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/N13_n__N14_g/N13_n__N14_g_primat.txt": {
+      "sha256": "e2e20de007df76eda4d41cd2a152158844aa4cce93fd6a5c99b992415b0a5575",
+      "git_blob_sha": "19f0c5040d8e17f7a80779bcfe4fed6fa517adb0",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/N13_p__O14_g/N13_p__O14_g_primat.txt": {
+      "sha256": "09487adebda56eee6ff12d525bf47106c60f1299b925e11cff1380ed07149526",
+      "git_blob_sha": "49b895c9425c6d41df3bfd58da1f58a44bcb9d85",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/N14_a__F18_g/N14_a__F18_g_primat.txt": {
+      "sha256": "36249601812cf20239126e4a673148b6639c146aceaa3cc9d23aafb2dc94d366",
+      "git_blob_sha": "11b70d82a31b84e06348aeb83cd06a60eff57d0d",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/N14_n__C14_p/N14_n__C14_p_primat.txt": {
+      "sha256": "23f2069656283aae4ee1fa1de370cf455fe834986fc2bc550e762183c338efca",
+      "git_blob_sha": "52f902fbc6325e9ab90d42cfb196bd0db6b51a3a",
+      "bytes": 43244
+    },
+    "PRIMAT/primat/data/nuclear/tables/N14_n__N15_g/N14_n__N15_g_primat.txt": {
+      "sha256": "638de5af57a8142013e9d53a12ea4ec5518010c0515078171e292770851b2acf",
+      "git_blob_sha": "2895c49e02169245d0523c3836c07cd005630306",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/N14_p__O15_g/N14_p__O15_g_primat.txt": {
+      "sha256": "ed495dcd304b62276c6f0a03e49ad417b8c62988cf02de0c568ed69f1f418e49",
+      "git_blob_sha": "1364496d6de6c6e0ba6f882c77006f78ae2b4d0e",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/N15_a__F19_g/N15_a__F19_g_primat.txt": {
+      "sha256": "1a9235981ef05eb26c577827d747d6482654743090163a982291a44dbedaf9c2",
+      "git_blob_sha": "e23255f9af89f1422c621185bee051ea9f2719c2",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/N15_n__N16_g/N15_n__N16_g_primat.txt": {
+      "sha256": "bf0e6db000215ba8a064e35e8d231535916fcbb0f94ba9e5c9b73710b79d8c46",
+      "git_blob_sha": "feafee26d4de952e3a23f68e79d418445ae00263",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/N15_p__C12_a/N15_p__C12_a_primat.txt": {
+      "sha256": "88dcfc23a1fb0b3c34d8937addd3485a0b8e57555af6fe09f984731c407625ad",
+      "git_blob_sha": "80936383083daa5b9f90f0272dcb730969e9712c",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/N15_p__O16_g/N15_p__O16_g_primat.txt": {
+      "sha256": "f6cdbee574f5dcb2a372dc5001b44564c8c369e2abe5fcc1186d2c5a12cc73b0",
+      "git_blob_sha": "c4e3f0439dcdbc6c03c41616c5aa1f583c158459",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/Na20_n__F17_a/Na20_n__F17_a_primat.txt": {
+      "sha256": "033dcb2f3151e4ad3f105f9425e4d167f6d4b94fd2c6724d705e88c0722ee04f",
+      "git_blob_sha": "ba8a8fc7ba4a81575698110592b0ac7d59f8a43c",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Ne18_n__F18_p/Ne18_n__F18_p_primat.txt": {
+      "sha256": "b49c843d6dd2fd7747d77b30867c3808f36e09e62f51da418324b5e3d6f5f7ba",
+      "git_blob_sha": "3a39568c117f5a047ede168382b858019ae8afc7",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Ne18_n__O15_a/Ne18_n__O15_a_primat.txt": {
+      "sha256": "9f4a6c1e3d4bc88bad55f7e92b3b5cf0082d8bb952d8202a2ccdd2d5b6de169e",
+      "git_blob_sha": "a6e88a5cbb8c761194bbd68e445da463ee105f5c",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/Ne19_n__F19_p/Ne19_n__F19_p_primat.txt": {
+      "sha256": "67b5f6d25670f5efe880533db41abe11d076f8e5ac8debea17ac74245a5a8a0a",
+      "git_blob_sha": "431e406109c50d367252a3a34fb390d85ccf8803",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/Ne19_n__O16_a/Ne19_n__O16_a_primat.txt": {
+      "sha256": "525761702a58b3f5101161bb78c5c6b1b3e2fc8eb925df8043a176bd4e6cbe11",
+      "git_blob_sha": "5e2b84c90485d3944473ebc104391e61aba038ba",
+      "bytes": 43186
+    },
+    "PRIMAT/primat/data/nuclear/tables/Ne19_p__Na20_g/Ne19_p__Na20_g_primat.txt": {
+      "sha256": "0d4c904a2d1e2ad2e8708f81879114b83fc3793f04dacf2a833b6d3574ac8965",
+      "git_blob_sha": "a5fae7f33e5ed062cd8fe9186063a76288cb693d",
+      "bytes": 43185
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_a__F17_p/O14_a__F17_p_primat.txt": {
+      "sha256": "19610e634272e7e1ae1d727ae3a77448b55af58d4e9417dd204caeb0a068e024",
+      "git_blob_sha": "0e6db8d1fbbf909729e91e4b9394e5a567cf2a8c",
+      "bytes": 43651
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_a__Ne18_g/O14_a__Ne18_g_primat.txt": {
+      "sha256": "1f2c5d9676737a76b9ac9ccb379b26aa715e88a0bbe731eb27156cac87ee0eb4",
+      "git_blob_sha": "8bd5b218cc15d7058f743a5e071341879f18dfe7",
+      "bytes": 43265
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_n__C11_a/O14_n__C11_a_primat.txt": {
+      "sha256": "758ddd76455f17b2fc1f48e6a64c08a33346d164e61026f63faef6c5c8cc57de",
+      "git_blob_sha": "0c008c57734d7a5e9d71dcbf4a40dd1e0200d793",
+      "bytes": 43184
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_n__C12_He3/O14_n__C12_He3_primat.txt": {
+      "sha256": "82fb2cb7da684f8a816d74920ce101da49311888c4b0c8be16bd28f919a85d7e",
+      "git_blob_sha": "1493294cb7d8d7b6531bb88b079a52cb704c45dc",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_n__N14_p/O14_n__N14_p_primat.txt": {
+      "sha256": "1d57c21237ef0310ce8c2ebfedded12281a5bd02032e0e5c8c5e1cd5e1cfe992",
+      "git_blob_sha": "93e47f000b09147bf71b9303bae477b5adbba405",
+      "bytes": 43218
+    },
+    "PRIMAT/primat/data/nuclear/tables/O14_n__O15_g/O14_n__O15_g_primat.txt": {
+      "sha256": "9dff7b8d19ad9a4dc90204f5f7cb15ffe284e947c5cae6c1d3c12f8862c3a5a5",
+      "git_blob_sha": "bf5f2437eb3924898037206a108ed8ec71763a02",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/O15_a__Ne19_g/O15_a__Ne19_g_primat.txt": {
+      "sha256": "c3693c315d7391550d6a597bbcbc7010e7ec1a34259e2d63ab3b27a0d6286d29",
+      "git_blob_sha": "9edc1cec36998a16cb4ec5c2489dcd250fe5bc77",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/O15_n__C12_a/O15_n__C12_a_primat.txt": {
+      "sha256": "1a08932a3d665b481ba5524ae0406df85d23cd91c9e96b7f2338a39546a16689",
+      "git_blob_sha": "36d10a77af0e9a8541b584a7f128a239b03068e2",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/O15_n__N15_p/O15_n__N15_p_primat.txt": {
+      "sha256": "56e7c6e6d04d161faa603066cbbe64a4acd16296df1f37a9f4236a127176ceaf",
+      "git_blob_sha": "8e8b0ec615a15de4197efe6bd790af32e9538846",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/O15_n__O16_g/O15_n__O16_g_primat.txt": {
+      "sha256": "6921b1e74e233f982dc1cbcfde27290fd7fd2ee460da8c4291f49c84783db28a",
+      "git_blob_sha": "a5eaa60bfe83e2ee8bdb140ac0a6afd817687347",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/O16_a__Ne20_g/O16_a__Ne20_g_primat.txt": {
+      "sha256": "4491b95b07fe5e1f1e46ea292e679886c24c30e1006322312a378180985f6024",
+      "git_blob_sha": "b84316c2b0ab377b03ae13baff954082bc4db4dd",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/O16_n__O17_g/O16_n__O17_g_primat.txt": {
+      "sha256": "6be58f940ac0321dd3e862afa76058191377c7318e67806f8428ad807a1fa36b",
+      "git_blob_sha": "264e7b28fe1aada0530142cbad218745237e4b22",
+      "bytes": 43176
+    },
+    "PRIMAT/primat/data/nuclear/tables/O16_p__F17_g/O16_p__F17_g_primat.txt": {
+      "sha256": "2af6311233b7dde85d3f41a58151730638fc0a968e54db47b5f23efd904009d2",
+      "git_blob_sha": "f34dd348a4dd9b0e2addeb34ef0695c3c7bd9916",
+      "bytes": 43180
+    },
+    "PRIMAT/primat/data/nuclear/tables/O16_p__N13_a/O16_p__N13_a_primat.txt": {
+      "sha256": "2a6cce8a6f84504684c1ba780c616e5915a55a618766b2e7d4d68b8f3cf542da",
+      "git_blob_sha": "42d944d661244d41e16a56d164e018c8332482be",
+      "bytes": 43556
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_a__Ne20_n/O17_a__Ne20_n_primat.txt": {
+      "sha256": "4ce2c72ef92f2f5aa31c04c07b22d49fc1156721ea9319a9390e617d886cbd2f",
+      "git_blob_sha": "c174b6c93a8cba5650dd810a5706576a93e1465e",
+      "bytes": 43574
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_a__Ne21_g/O17_a__Ne21_g_primat.txt": {
+      "sha256": "8fb475a6f622afb55c861a5ad1c1ac65732c18ca5fb4b2476467fba0528d3f58",
+      "git_blob_sha": "b81289481bdd2e7bd70d7ab7a1e5e36cdbdef03d",
+      "bytes": 43285
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_n__C14_a/O17_n__C14_a_primat.txt": {
+      "sha256": "6d7954410138fc9b9eec1712858e9fa10ff38c7751a0350fdf248a5aa2af2164",
+      "git_blob_sha": "31dc085e0b30eac38fbdf094d66351eebc8aeb69",
+      "bytes": 43243
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_n__O18_g/O17_n__O18_g_primat.txt": {
+      "sha256": "b3cc7b44621bea2c494b1cc282143af0bc351d58293b56f580788b00e7db0268",
+      "git_blob_sha": "19c81a7040b7d1a528ef87a8064d24c044240d4a",
+      "bytes": 43187
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_p__F18_g/O17_p__F18_g_primat.txt": {
+      "sha256": "60de54c8ff15dcc71d8aa97b159865e3d0a14310c26b5db9885909fee1b7359e",
+      "git_blob_sha": "5fecdfec195c228de18539decec531e305346f9a",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/O17_p__N14_a/O17_p__N14_a_primat.txt": {
+      "sha256": "74c57bfea53513a726ce69f27ef76e7716fb1b6452b0e6310c792119a28cc5ea",
+      "git_blob_sha": "c140465bbdb464d5f30b8cbbf405581a0d189c12",
+      "bytes": 43176
+    },
+    "PRIMAT/primat/data/nuclear/tables/O18_a__Ne22_g/O18_a__Ne22_g_primat.txt": {
+      "sha256": "92fcf21d10dfa6b0c1607e295e1c473983461bba4e7807c2c43cec2219d58ebb",
+      "git_blob_sha": "3b57ab681bac37962f8bd10b74f64637dee68e13",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/O18_n__O19_g/O18_n__O19_g_primat.txt": {
+      "sha256": "31a14a88db3962b28e994a5de0498a1ce444b73e8cbb26c3ea2e53655ef413c8",
+      "git_blob_sha": "39209260b2c1e4aad7a5218468a485ad51810476",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/O18_p__F19_g/O18_p__F19_g_primat.txt": {
+      "sha256": "5ad74c4eadaf188b12313fdfd66166f3568594f6fe3757e666fe7e60aa722367",
+      "git_blob_sha": "b57ac9ce882dd9c07097b1353420e9b0f68ffccc",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/O18_p__N15_a/O18_p__N15_a_primat.txt": {
+      "sha256": "5136a43ba2c5ad1bfe16d6c7351a34de2514c56c373ea15e63c28d6d94160695",
+      "git_blob_sha": "b54b36454fb0860c6b0bb007e3473365df191191",
+      "bytes": 43176
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_a__Ne22_n/O19_a__Ne22_n_primat.txt": {
+      "sha256": "9a3a47fa1c88fab6c7fb17bda67fe65545987a41b8af1ae9427608dc789f9540",
+      "git_blob_sha": "f3ac98978ea6fbc402494f5ee181811e5ba483a0",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_a__Ne23_g/O19_a__Ne23_g_primat.txt": {
+      "sha256": "44d3fe0278d584d3adbaf8c7784da066c9b09f4cf3d103e5e7dab8054abc59bf",
+      "git_blob_sha": "677d80203beb1ddef93b6bcb1839b934149cd758",
+      "bytes": 43190
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_n__O20_g/O19_n__O20_g_primat.txt": {
+      "sha256": "5290f10e8737aacf23a6b98dc72c0769467cea3e7dc43610982fe5aae04ac3d6",
+      "git_blob_sha": "79f3a63cf425a4da4c0fc001f413b7e1dc9632ff",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_p__F19_n/O19_p__F19_n_primat.txt": {
+      "sha256": "44ebc1b51f83cc2fe43ea350fc5f2ebf06c5aa5a950ec8c158dad6f37fcb8d80",
+      "git_blob_sha": "c83c3263d51f5a8a936358162b109521f91502b9",
+      "bytes": 43182
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_p__F20_g/O19_p__F20_g_primat.txt": {
+      "sha256": "9cf37b7ec053cade3443e5d35f8b0cdffe26643acf142deb2d19d120c3031dce",
+      "git_blob_sha": "27b24e87a5e3740d05a4644477fa1b4811195e26",
+      "bytes": 43189
+    },
+    "PRIMAT/primat/data/nuclear/tables/O19_p__N16_a/O19_p__N16_a_primat.txt": {
+      "sha256": "bc89ba8c23e7eaa59a6dfb0db76a2cb6994a5d304a1c5a3f9bc8fbe87dccb3a6",
+      "git_blob_sha": "38456128c3cc9e2626eb214d013c2b9f95b46130",
+      "bytes": 43183
+    },
+    "PRIMAT/primat/data/nuclear/tables/a_a_a__C12_g_g/a_a_a__C12_g_g_primat.txt": {
+      "sha256": "f1930332fe9460274419ef68139abdb16e4984d496ad506399a6edd300858c56",
+      "git_blob_sha": "0fa7989c2c51156702cfa949bf19f82490cfbad6",
+      "bytes": 43706
+    },
+    "PRIMAT/primat/data/nuclear/tables/a_a_n__Be9_g/a_a_n__Be9_g_primat.txt": {
+      "sha256": "5ff6d47c4b6265c8ff654441496966c79f344d6b1e37077d07cf9789072b0146",
+      "git_blob_sha": "604d893407a74a866585016161d25b0d75be527e",
+      "bytes": 43496
+    },
+    "PRIMAT/primat/data/nuclear/tables/a_n_n__He6_g/a_n_n__He6_g_primat.txt": {
+      "sha256": "3e4acb568f240ae4e505aa21f1cba890c6a5a2380dfb56f55114e1a5d575e0de",
+      "git_blob_sha": "4f73079c62e952f642553422f96f4b8a019ceece",
+      "bytes": 43248
+    },
+    "PRIMAT/primat/data/nuclear/tables/a_n_p__Li6_g/a_n_p__Li6_g_primat.txt": {
+      "sha256": "95df1a29462308119771ad6aeeee6385708b793e9869d121fc5c1e60da03ae2a",
+      "git_blob_sha": "56a2b79d92680daca346448a08d881aa75d1e5cb",
+      "bytes": 43213
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_d__a_g/d_d__a_g_primat.txt": {
+      "sha256": "f89b2689ab7ce6bc70bca65468a9559ba2edb3d4f2c91673fc0d8b2c5db97899",
+      "git_blob_sha": "3ab4388ec9625010291d198066d8c917775d4e66",
+      "bytes": 43181
+    },
+    "PRIMAT/primat/data/nuclear/tables/d_n__t_g/d_n__t_g_primat.txt": {
+      "sha256": "025b239c98cca148de2312db9bfc0d42dc8bfb51468491a2b0028967c5e910c3",
+      "git_blob_sha": "fdb78ccd68f4843393b6f886c6fd763c70c324f8",
+      "bytes": 43188
+    },
+    "PRIMAT/primat/data/nuclear/tables/p_p_n__d_p/p_p_n__d_p_primat.txt": {
+      "sha256": "f884b7deddd8c2813f1bdaa882ad11b6d382cbf1617f13f11c4a66a47dd3e66e",
+      "git_blob_sha": "d35d388aaa1997aa3c89f5d7020e1ca40428c666",
+      "bytes": 43262
+    },
+    "PRIMAT/primat/data/nuclear/tables/t_t__a_n_n/t_t__a_n_n_primat.txt": {
+      "sha256": "bb3ee3693e2dee66dbc00ad438fc923aee381ffed44b1c2c8945273852e907fd",
+      "git_blob_sha": "751c57464c9551cf2afc7ffac82c24e14056703d",
+      "bytes": 43305
+    },
+    "PRIMAT/primat/data/NEVO/NEVOPRIMAT_col_1_7.csv": {
+      "sha256": "5df90294a15118bc6815bfcb2f7f4134e7924e026798adf739e1b66a91531699",
+      "git_blob_sha": "1ffce8eeed22d56762a3d01ee7ae87d5aa4eb45f",
+      "bytes": 106243
+    },
+    "PRIMAT/primat/data/NEVO/NEVOPRIMAT.csv": {
+      "sha256": "8e3c1a7cfd9b7ce8d848521cccb90ef615b54c453944746a6a98b0678f8976c2",
+      "git_blob_sha": "7f950b940f43ddf163363d4d998f86a44977e758",
+      "bytes": 1296227
+    },
+    "PRIMAT/primat/data/NEVO/NEVOGrid.csv": {
+      "sha256": "3624b7038ebf4e7918b6415f555ea8ce8c738e7727f570ff53a8c9b9a9d040de",
+      "git_blob_sha": "f9967a4a6a36e92333226d1cabb5e2c88c53c425",
+      "bytes": 2000
+    },
+    "N1_CACHE/BG2000_GEN/weak/nTOp_7e3af87bd0404e0a.txt": {
+      "sha256": "8c9031e462b490771c3643387377d15657c3fd9b6ab1e32c3c8e8741c9365377",
+      "git_blob_sha": "3900c4a5e89b31e16ac98fef647dbe0515459329",
+      "bytes": 38078
+    },
+    "PRIMAT/primat/data/cache_plasma_weak/weak/nTOp_thermal_cfdb4d324bb5651f.txt": {
+      "sha256": "9c263b76c7eff7048e7141c1df545aae008fad198a344ebca65ba0a42a38ea16",
+      "git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9",
+      "bytes": 5871
+    }
+  },
+  "cache_before": {
+    "plasma/electron_thermo_45b89f3e1b24e961.txt": {
+      "sha256": "abc4ec4b2239a282a196d4228566fa70dc9249940babbc28e7a0fad59b6b4762",
+      "git_blob_sha": "1b84d0783b16ef827ecd19b68c379050498fe33a",
+      "bytes": 250194
+    },
+    "weak/nTOp_7e3af87bd0404e0a.txt": {
+      "sha256": "8c9031e462b490771c3643387377d15657c3fd9b6ab1e32c3c8e8741c9365377",
+      "git_blob_sha": "3900c4a5e89b31e16ac98fef647dbe0515459329",
+      "bytes": 38078
+    }
+  },
+  "cache_after": {
+    "plasma/electron_thermo_45b89f3e1b24e961.txt": {
+      "sha256": "abc4ec4b2239a282a196d4228566fa70dc9249940babbc28e7a0fad59b6b4762",
+      "git_blob_sha": "1b84d0783b16ef827ecd19b68c379050498fe33a",
+      "bytes": 250194
+    },
+    "weak/nTOp_7e3af87bd0404e0a.txt": {
+      "sha256": "8c9031e462b490771c3643387377d15657c3fd9b6ab1e32c3c8e8741c9365377",
+      "git_blob_sha": "3900c4a5e89b31e16ac98fef647dbe0515459329",
+      "bytes": 38078
+    }
+  },
+  "timing": {
+    "initialization_seconds": 2.3792922179998186,
+    "wall_seconds": 252.66264936700009,
+    "peak_rss_mib": 498.4609375
+  },
+  "scientific_acceptance": false
+}
