@@ -53,6 +53,18 @@ def cache_snapshot(root):
     }
 
 
+def public_path(path, upstream, cache):
+    path = Path(path).resolve()
+    try:
+        return "PRIMAT_CHECKOUT/" + path.relative_to(upstream).as_posix()
+    except ValueError:
+        pass
+    try:
+        return "P2_CACHE_OVERLAY/" + path.relative_to(cache).as_posix()
+    except ValueError:
+        return path.name
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--upstream", required=True, type=Path)
@@ -134,7 +146,7 @@ def main():
             dump(out / "REJECTION.json", {
                 "status": "FROZEN_CACHE_MISSING",
                 "name": name,
-                "resolved_path": str(resolved),
+                "resolved_source": public_path(resolved, upstream, cache),
             })
             raise RuntimeError("Required frozen upstream weak cache is unavailable")
         info = digest(resolved)
@@ -142,7 +154,7 @@ def main():
             dump(out / "REJECTION.json", {
                 "status": "FROZEN_CACHE_CONTENT_MISMATCH",
                 "name": name,
-                "resolved_path": str(resolved),
+                "resolved_source": public_path(resolved, upstream, cache),
                 "actual": info,
                 "expected_git_blob_sha": WEAK[name],
             })
@@ -179,6 +191,22 @@ def main():
         source_dir / "run_fullnet.sh",
         config_path,
     ]
+    config_manifest = dict(params)
+    config_manifest["cache_dir"] = "<P2_RUN_ROOT>/cache_overlay"
+    frozen_manifest = {
+        str(p.relative_to(source_dir)): digest(p)
+        for p in frozen_files if p.is_file() and p != config_path
+    }
+    frozen_manifest["RUN_CONFIG/" + config_path.name] = digest(config_path)
+    cache_sources_manifest = {
+        name: {
+            "source": public_path(info["resolved_path"], upstream, cache),
+            "sha256": info["sha256"],
+            "git_blob_sha": info["git_blob_sha"],
+            "bytes": info["bytes"],
+        }
+        for name, info in cache_sources.items()
+    }
     manifest = {
         "schema": "vm-lab-p2-execution-manifest-v1",
         "run_id": args.run_id,
@@ -192,22 +220,19 @@ def main():
             "expected_LT_total_channels_including_weak": 428,
         },
         "mode": "S0_STANDARD_BBN",
-        "config": params,
+        "config": config_manifest,
         "resolved_defaults": {k: getattr(cfg, k) for k in DEFAULT_PARAMS},
         "cache_fingerprints": {
             "weak": weak_hash,
             "thermal": thermal_hash,
-            "resolved_files": cache_sources,
+            "resolved_files": cache_sources_manifest,
         },
         "cache_before": cache_before,
-        "cache_overlay": str(cache),
-        "frozen_vm_lab_files": {
-            str(p.relative_to(source_dir)): digest(p)
-            for p in frozen_files if p.is_file()
-        },
+        "cache_overlay": "<P2_RUN_ROOT>/cache_overlay",
+        "frozen_vm_lab_files": frozen_manifest,
         "environment": {
             "python": sys.version,
-            "python_executable": sys.executable,
+            "python_executable": Path(sys.executable).name,
             "numpy": np.__version__,
             "scipy": scipy.__version__,
             "platform": platform.platform(),
@@ -378,7 +403,12 @@ def main():
         "result": result_clean,
         "checks": checks,
         "eras": eras,
-        "cache_load_events": load_events,
+        "cache_load_events": [
+            {"path": public_path(event["path"], upstream, cache),
+             "sha256": event["sha256"], "git_blob_sha": event["git_blob_sha"],
+             "bytes": event["bytes"]}
+            for event in load_events
+        ],
         "cache_before": cache_before,
         "cache_after": cache_after,
         "new_cache_files": new_cache_files,
@@ -401,7 +431,12 @@ def main():
             "result": result_clean,
             "Y_final": final,
             "Nuclides": cfg.Nuclides,
-            "cache_load_events": load_events,
+            "cache_load_events": [
+            {"path": public_path(event["path"], upstream, cache),
+             "sha256": event["sha256"], "git_blob_sha": event["git_blob_sha"],
+             "bytes": event["bytes"]}
+            for event in load_events
+        ],
         }, stream, protocol=pickle.HIGHEST_PROTOCOL)
 
     raw_arrays = {}

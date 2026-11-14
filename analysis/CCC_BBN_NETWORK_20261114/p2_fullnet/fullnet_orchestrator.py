@@ -172,15 +172,15 @@ def prepare(args):
     write_json(root / "PROBE_CONFIG.json", probe)
     write_json(root / "SETUP.json", {
         "created_utc": now(),
-        "repo": str(REPO),
+        "repo": "<VM_LAB_CHECKOUT>",
         "source_commit": head,
         "source_parent_commit": PARENT_COMMIT,
-        "upstream_path_local_only": str(upstream),
+        "upstream_checkout": "external pinned PRIMAT checkout; local absolute path intentionally omitted",
         "upstream_commit": up_head,
         "upstream_tree": up_tree,
-        "run_root": str(root),
-        "probe_overlay": str(root / "cache_probe"),
-        "main_overlay": str(root / "cache_main"),
+        "run_root": "<VM_LAB_CHECKOUT>/" + str(root.relative_to(REPO)),
+        "probe_overlay": "<P2_RUN_ROOT>/cache_probe",
+        "main_overlay": "<P2_RUN_ROOT>/cache_main",
         "scientific_acceptance": False,
     })
 
@@ -253,7 +253,7 @@ def prepare(args):
         "upstream_commit": up_head,
         "P2_LT_species": 59,
         "P2_LT_channels_including_weak": 428,
-        "run_root": str(root),
+        "run_root": "<VM_LAB_CHECKOUT>/" + str(root.relative_to(REPO)),
         "next": "probe",
     }, ensure_ascii=False))
     return 0
@@ -290,8 +290,16 @@ def execute_worker(root, upstream, run_id, config, cache, out, cap, budget_scope
         resource.setrlimit(resource.RLIMIT_FSIZE, (128 * 1024**2, 128 * 1024**2))
         resource.setrlimit(resource.RLIMIT_CPU, (int(math.ceil(cap)), int(math.ceil(cap)) + 1))
 
+    command_receipt = [
+        Path(sys.executable).name, "fullnet_worker.py",
+        "--upstream", "<PINNED_PRIMAT_CHECKOUT>",
+        "--config", str(config.relative_to(REPO)),
+        "--cache", "<P2_RUN_ROOT>/" + str(cache.relative_to(root)),
+        "--out", "<P2_RUN_ROOT>/" + str(out.relative_to(root)),
+        "--run-id", run_id,
+    ]
     before = {
-        "utc": now(), "run_id": run_id, "command": command,
+        "utc": now(), "run_id": run_id, "command": command_receipt,
         "frozen_source_commit": read_json(root / "FREEZE.json")["source_commit"],
         "upstream_commit": UPSTREAM_PIN, "budget_scope": budget_scope,
         "limits": {
@@ -498,6 +506,16 @@ def publish(root):
     if git("rev-parse", "--abbrev-ref", "HEAD") != "s0-fullnet":
         raise RuntimeError("Publishing allowed only from s0-fullnet branch")
     git("add", "--", str(rel))
+    staged_paths = git("diff", "--cached", "--name-only").splitlines()
+    allowed_prefix = str(rel) + "/"
+    unrelated = [
+        item for item in staged_paths
+        if item != str(rel) and not item.startswith(allowed_prefix)
+    ]
+    if unrelated:
+        raise RuntimeError(
+            "Refusing to publish: unrelated staged files exist: " + ", ".join(unrelated)
+        )
     staged = subprocess.run(
         ["git", "-C", str(REPO), "diff", "--cached", "--quiet"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
