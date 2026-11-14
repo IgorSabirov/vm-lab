@@ -491,6 +491,7 @@ def forecast(args):
             raise RuntimeError("Auto-approval refused: explicit max-upper bound is absent or exceeded")
         publish(root)
         create_approval(root, forecast_sha, "AUTO_APPROVED_BY_EXPLICIT_FLAG", args.max_upper_seconds)
+        publish(root)  # commit approval receipt before any main solver starts
         execute_main(root, args.upstream)
     elif args.publish:
         publish(root)
@@ -711,6 +712,7 @@ def approve(args):
     if args.max_upper_seconds > 600:
         raise RuntimeError("P2 native sandbox cap is 600 seconds")
     create_approval(root, args.forecast_sha, args.approved_by, args.max_upper_seconds)
+    publish(root)  # commit approval receipt before any main solver starts
     print(json.dumps({"status": "APPROVED_FOR_ENGINEERING_RUN"}, ensure_ascii=False))
     execute_main(root, args.upstream)
 

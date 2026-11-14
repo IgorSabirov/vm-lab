@@ -46,7 +46,7 @@
    ```sh
    ./analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh publish
    ```
-5. Только после просмотра forecast и его публикации — явно подтвердите SHA forecast:
+5. Только после просмотра forecast и его публикации — явно подтвердите SHA forecast. Перед cold-запуском скрипт отдельно публикует `APPROVAL.json` и соответствующую запись в `LEDGER.jsonl`:
    ```sh
    ./analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh approve --forecast-sha <SHA256> --approved-by <operator> --max-upper-seconds 600
    ```
