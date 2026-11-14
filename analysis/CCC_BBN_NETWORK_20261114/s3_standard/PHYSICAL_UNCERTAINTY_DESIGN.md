@@ -73,7 +73,7 @@ PDG 2026 BBN review приводит рекомендацию `Yp = 0.245 ± 0.0
 
 Для вектора параметров `theta = (ln eta, ln rates, weak-rate parameters, tau_n, ...)` и выхода `z = (Yp, log10(D/H))` вычислять локальный response matrix
 `J = d z / d theta`, затем
-`C_theory = J C_theta J^T + C_numerical`.
+`C_theory = J C_theta J^T` для обоснованной вероятностной модели физических входов. Численная ошибка сохраняется отдельно как convergence bound; добавлять `C_numerical` допустимо только после обоснования её вероятностной модели, а не из одного solver tolerance.
 
 Разделить и опубликовать компоненты:
 - `C_nuclear` — только covariance rate parameters с provenance;
@@ -129,3 +129,9 @@ PDG 2026 BBN review приводит рекомендацию `Yp = 0.245 ± 0.0
 - de Grijs & Bono (2026), *Thirty years of primordial deuterium abundances: A provenance-aware statistical reanalysis*, arXiv:2611.02289. Preprint/provenance audit, not a new abundance recommendation. https://arxiv.org/abs/2611.02289
 - Louis et al. (2025), *The Atacama Cosmology Telescope: DR6 Power Spectra, Likelihoods and ΛCDM Parameters*, arXiv:2503.14452. https://arxiv.org/abs/2503.14452
 - Launders, Giovanetti & Liu (2026), *A data-driven prediction for the primordial deuterium abundance*, arXiv:2604.16600. https://arxiv.org/abs/2604.16600
+
+## 9. Ручной source/analytic audit от 14 ноября
+
+[Отчёт и воспроизводимый экстрактор](manual_covariance_20261114/REPORT.md), задача #55. Закреплённые исходники и пять priority/placeholder tables проверены по SHA256. Установлены смысл `error=exp(sigma_log)`, independent-channel/one-parameter temperature model, detailed-balance связь, аналитический эффект cap=30 для f=10 и отличие p-response от uniform-rate response. Отдельно выявлена конечнопошаговая нормировка sensitivity helper; ранее полученный S_ETA использовал собственный корректный endpoint interval.
+
+Это частичное закрытие source/semantics вопросов, не полный аудит 427 каналов и не covariance abundances. Межканальные и температурные posterior correlations, weak-theory covariance и observational/CMB gates остаются открыты. BBN/MC не запускались; execution и scientific acceptance не меняются.
