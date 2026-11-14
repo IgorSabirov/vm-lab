@@ -1,0 +1,56 @@
+{
+  "utc": "2026-11-14T08:29:12.950312+00:00",
+  "run_id": "PROBE",
+  "command": [
+    "python",
+    "fullnet_worker.py",
+    "--upstream",
+    "<PINNED_PRIMAT_CHECKOUT>",
+    "--config",
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/results/P2_FULLNET/PROBE_CONFIG.json",
+    "--cache",
+    "<P2_RUN_ROOT>/cache_probe",
+    "--out",
+    "<P2_RUN_ROOT>/runs/PROBE",
+    "--run-id",
+    "PROBE"
+  ],
+  "frozen_source_commit": "fe49ca3b132e9db02c0dbc34fe68cd908ce27b77",
+  "upstream_commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "budget_scope": "P2_PROBE_NOT_CHARGED_TO_MAIN_BUDGET",
+  "limits": {
+    "wall_seconds": 60.0,
+    "address_space_bytes": 4294967296,
+    "individual_file_bytes": 134217728,
+    "output_tree_bytes": 536870912
+  },
+  "machine": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "loadavg": [
+      0.14599609375,
+      0.0576171875,
+      0.01220703125
+    ],
+    "disk_free_bytes": 58206437376
+  },
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "cache_before": {},
+  "checkpoint": "post-completion snapshot only; not resumable",
+  "automatic_retry": false
+}

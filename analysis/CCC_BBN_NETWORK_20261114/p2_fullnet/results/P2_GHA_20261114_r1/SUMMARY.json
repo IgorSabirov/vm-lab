@@ -1,0 +1,92 @@
+{
+  "schema": "vm-lab-p2-summary-v1",
+  "status": "ENGINEERING_PASS",
+  "budget": {
+    "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
+    "hard_wall_cap_seconds_per_run": 1400,
+    "hard_total_wall_cap_seconds_including_calibration": 3000,
+    "executor": "GITHUB_ACTIONS_VM",
+    "total_package_wall_seconds": 442.5271927159992,
+    "cold_wall_seconds": 201.48158657099998,
+    "warm_wall_seconds": 199.08371359199998,
+    "total_wall_seconds": 400.56530016299996,
+    "forecast": {
+      "schema": "vm-lab-p2-runtime-forecast-v1",
+      "created_utc": "2026-11-14T08:48:03.766145+00:00",
+      "source_commit": "5be1858ed86abaaf47d99ad72ac16003a89607a3",
+      "probe": {
+        "status": "COMPLETED",
+        "wall_seconds": 15.038079709000002,
+        "cpu_seconds": 14.950130000000001,
+        "peak_rss_mib": 121.83203125,
+        "result_sha256": "f1c4c39b7e176b9bc4eb62daf88446b2c2b6ae5c18b5e504a6dd617425198db2"
+      },
+      "production_profile": "P2_FULLNET",
+      "production_config_sha256": "5eac03fdcfa6e0c7881b9f955af5070f0904d00bf6d02ec21c868eb5f00c9e3e",
+      "seconds": {
+        "low": 235.6727428890405,
+        "central": 471.345485778081,
+        "high": 824.8546001116417
+      },
+      "basis": "{\"low\": 235.6727428890405, \"central\": 471.345485778081, \"high\": 824.8546001116417, \"era_seconds_per_run\": {\"HT\": 0.021367216741738887, \"MT\": 0.9486097558328255, \"LT\": 221.39110436446595}, \"export_allowance_seconds_per_run\": 10, \"uncertainty_factors\": [0.5, 1.75], \"method\": \"Target P2 probe per-era solver time multiplied by strict P1 nfev / probe P2 nfev; two full runs. Envelope is engineering judgment, not a confidence interval.\", \"limitations\": \"Full-network adaptive step count and strict Jacobian cost are unknown. P1 work counts are an analogy, not guaranteed P2 work. Hard caps bound overruns; no precision reduction or automatic retry.\"}",
+      "forecast_method_status": "OPERATOR_ENGINEERING_WORK_COUNT_ENVELOPE",
+      "forecast_scope": "COLD_PLUS_WARM",
+      "calibration_seconds_already_used": 41.96189255299926,
+      "package_seconds": {
+        "low": 277.6346354420398,
+        "central": 513.3073783310803,
+        "high": 866.816492664641
+      },
+      "executor": {
+        "id": "GITHUB_ACTIONS_VM",
+        "package_cap": 3000,
+        "process_cap": 1400
+      },
+      "native_route": "WITHIN_EXECUTOR_CAP",
+      "approval_required": true,
+      "scientific_acceptance": false
+    },
+    "runtime_status": "FORECAST_IN_RANGE"
+  },
+  "cold": {
+    "utc": "2026-11-14T08:51:28.110147+00:00",
+    "run_id": "COLD",
+    "exit_code": 0,
+    "stop_reason": null,
+    "status": "COMPLETED",
+    "wall_seconds": 201.48158657099998,
+    "cpu_seconds": 201.37034200000002,
+    "sampled_peak_rss_mib": 372.6875,
+    "output_bytes": 52343507,
+    "result_present": true,
+    "cache_after": {
+      "plasma/electron_thermo_45b89f3e1b24e961.txt": "abc4ec4b2239a282a196d4228566fa70dc9249940babbc28e7a0fad59b6b4762"
+    }
+  },
+  "warm": {
+    "utc": "2026-11-14T08:54:47.211878+00:00",
+    "run_id": "WARM",
+    "exit_code": 0,
+    "stop_reason": null,
+    "status": "COMPLETED",
+    "wall_seconds": 199.08371359199998,
+    "cpu_seconds": 198.927354,
+    "sampled_peak_rss_mib": 373.15234375,
+    "output_bytes": 52344185,
+    "result_present": true,
+    "cache_after": {
+      "plasma/electron_thermo_45b89f3e1b24e961.txt": "abc4ec4b2239a282a196d4228566fa70dc9249940babbc28e7a0fad59b6b4762"
+    }
+  },
+  "repeatability": {
+    "compared": true,
+    "exact_trace_match": true,
+    "exact_Y_final_match": true,
+    "cold_status": "ENGINEERING_PASS",
+    "warm_status": "ENGINEERING_PASS",
+    "interpretation": "deterministic repeatability check, not cross-backend or independent-solver validation"
+  },
+  "physics_failure_inference": "NOT_MADE",
+  "scientific_acceptance": false,
+  "scope": "standard S0 PRIMAT full network only; S1-v2/S2/S_eta/BH1/B07/S3 excluded"
+}

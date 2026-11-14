@@ -1,0 +1,73 @@
+{
+  "schema": "vm-lab-provenance-manifest-v1",
+  "package": "P2_FULLNET",
+  "parent_source_commit": "900a67f879621b501f74f8b1da561494fa3c4ae6",
+  "parent_plan": "analysis/CCC_BBN_NETWORK_20261114/PLAN.json",
+  "parent_protocol": "analysis/CCC_BBN_NETWORK_20261114/prelaunch/PROTOCOL.md",
+  "project_genealogy": [
+    {
+      "id": "CCC_BBN_DRIFT_20261113",
+      "role": "upstream analytical clock/drift branch; contextual input, not re-run by this S0 package",
+      "path": "analysis/CCC_BBN_DRIFT_20261113/REPORT.md"
+    },
+    {
+      "id": "CCC_TL_REVIEW_20261112",
+      "role": "joint-law consistency review; constrains interpretation, not a prerequisite for standard S0",
+      "path": "analysis/CCC_TL_REVIEW_20261112/REPORT.md"
+    },
+    {
+      "id": "PRIMAT_INTEGRATION_20261113",
+      "role": "external source integration, provenance and license audit",
+      "path": "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md"
+    },
+    {
+      "id": "PR44",
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/44",
+      "role": "verified P0/P1 execution substrate; P2 was explicitly inventory-only in that revision"
+    },
+    {
+      "id": "L10",
+      "registry_id": "link:L10",
+      "role": "open requirement for one integrated implementation; this run is a bounded technical extension, not closure"
+    },
+    {
+      "id": "U006",
+      "registry_id": "question:U006",
+      "role": "open causal/metric-origin question; P2 abundance calculation does not resolve it"
+    },
+    {
+      "id": "S2_MICROPHYSICS_AND_ANTHROPIC",
+      "role": "separate theory branch; explicitly excluded from this S0 run",
+      "path": "analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md"
+    }
+  ],
+  "upstream_source": {
+    "repository": "https://github.com/CyrilPitrou/primat",
+    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+    "tree": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+    "license": "GPL-3.0-or-later",
+    "citation": "https://doi.org/10.1016/j.physrep.2018.04.005",
+    "network_docs": "https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/howto/networks.md",
+    "config_docs": "https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/primat/config.py",
+    "weak_cache_source": "https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/primat/weak_rates/cache.py",
+    "data_overlay_docs": "https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/howto/data-overlays.md",
+    "validation_tests": "https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/tests/README.md",
+    "CCC_TL_article": "https://arxiv.org/html/2604.03381v2",
+    "independent_nuclear_response_refs_not_used_in_this_run": [
+      "https://doi.org/10.1103/PhysRevD.76.063513",
+      "https://doi.org/10.1103/PhysRevD.87.085018",
+      "https://doi.org/10.1140/epja/s10050-022-00869-6",
+      "https://doi.org/10.1016/j.physrep.2026.07.001",
+      "https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas"
+    ]
+  },
+  "interpretation": {
+    "P2_is_standard_PRIMAT_large_network": true,
+    "full_59_427_is_launcher_alias_not_upstream_network_name": true,
+    "P1_author_abundance_targets_do_not_apply_as_P2_reference": true,
+    "heavy_nuclide_tail_is_approximate": true,
+    "S1_variable_f_remains_independent": true,
+    "no_physical_claim_is_created_by_running_a_larger_network": true,
+    "scientific_acceptance": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "low": 235.6727428890405,
+  "central": 471.345485778081,
+  "high": 824.8546001116417,
+  "era_seconds_per_run": {
+    "HT": 0.021367216741738887,
+    "MT": 0.9486097558328255,
+    "LT": 221.39110436446595
+  },
+  "export_allowance_seconds_per_run": 10,
+  "uncertainty_factors": [
+    0.5,
+    1.75
+  ],
+  "method": "Target P2 probe per-era solver time multiplied by strict P1 nfev / probe P2 nfev; two full runs. Envelope is engineering judgment, not a confidence interval.",
+  "limitations": "Full-network adaptive step count and strict Jacobian cost are unknown. P1 work counts are an analogy, not guaranteed P2 work. Hard caps bound overruns; no precision reduction or automatic retry."
+}
