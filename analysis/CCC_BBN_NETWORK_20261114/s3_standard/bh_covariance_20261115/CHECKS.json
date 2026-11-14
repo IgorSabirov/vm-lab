@@ -1,0 +1,112 @@
+{
+  "status": "SOURCE_MATRIX_AND_CONDITIONAL_IDENTITIES_VERIFIED",
+  "scope": "Laboratory covariance modes and local entropy identifiability; not a BBN uncertainty or Anthropic likelihood",
+  "BBN_executed": false,
+  "BH1_executed": false,
+  "GP_fitted": false,
+  "scientific_acceptance": false,
+  "source_commit": "065272ad94bce1c95beb7986fd8ed64cd2b90b8c",
+  "input_sha256": "806b63b8369294a2a1eafbb6d4b19b15ad076fb07e532d1c73971d89569a65ad",
+  "parent_result_sha256": "48a81ecf8734e04426d4b3463a0e68deb20c12e8865459272fcdbae4d9858f02",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "sympy": "1.14.0"
+  },
+  "table_v": {
+    "dimension": [
+      16,
+      16
+    ],
+    "symmetry_max_abs": 0.0,
+    "min_eigenvalue_a0_units_squared": 4.951738332264245e-05,
+    "max_eigenvalue_a0_units_squared": 0.03574736772593371,
+    "condition_number": 721.9155239486934,
+    "table_iii_max_sd_rounding_difference_mb": 0.004285619597724777,
+    "cross_correlation_range": [
+      0.017801847725304756,
+      0.9899554962411314
+    ],
+    "full_minus_independent_eigenvalue_range_mb2": [
+      -2.7575093719283905,
+      2.757509371928391
+    ]
+  },
+  "laboratory_modes_without_extra_1pct_scale": [
+    {
+      "lab_energy_keV": 646.1,
+      "cm_energy_keV_nonrelativistic": 323.05,
+      "same_energy_correlation": 0.7354885185146699,
+      "sd_geometric_mean_log_full_over_independent": 1.3071524025315078,
+      "sd_channel_ratio_log_full_over_independent": 0.5397708741272604
+    },
+    {
+      "lab_energy_keV": 557.3,
+      "cm_energy_keV_nonrelativistic": 278.65,
+      "same_energy_correlation": 0.95228816872597,
+      "sd_geometric_mean_log_full_over_independent": 1.3970253952012266,
+      "sd_channel_ratio_log_full_over_independent": 0.21981820935231136
+    },
+    {
+      "lab_energy_keV": 470.2,
+      "cm_energy_keV_nonrelativistic": 235.1,
+      "same_energy_correlation": 0.8549698245325759,
+      "sd_geometric_mean_log_full_over_independent": 1.3606336933868939,
+      "sd_channel_ratio_log_full_over_independent": 0.3855852077301985
+    },
+    {
+      "lab_energy_keV": 379.2,
+      "cm_energy_keV_nonrelativistic": 189.6,
+      "same_energy_correlation": 0.9300187449382562,
+      "sd_geometric_mean_log_full_over_independent": 1.3892448921815517,
+      "sd_channel_ratio_log_full_over_independent": 0.26457254118193924
+    },
+    {
+      "lab_energy_keV": 314.6,
+      "cm_energy_keV_nonrelativistic": 157.3,
+      "same_energy_correlation": 0.964867287831404,
+      "sd_geometric_mean_log_full_over_independent": 1.4016019682010636,
+      "sd_channel_ratio_log_full_over_independent": 0.1884460738113277
+    },
+    {
+      "lab_energy_keV": 232.8,
+      "cm_energy_keV_nonrelativistic": 116.4,
+      "same_energy_correlation": 0.9802672031727262,
+      "sd_geometric_mean_log_full_over_independent": 1.4071540958680306,
+      "sd_channel_ratio_log_full_over_independent": 0.1411288435502307
+    },
+    {
+      "lab_energy_keV": 172.8,
+      "cm_energy_keV_nonrelativistic": 86.4,
+      "same_energy_correlation": 0.9738873425494441,
+      "sd_geometric_mean_log_full_over_independent": 1.4048274764749797,
+      "sd_channel_ratio_log_full_over_independent": 0.16266456694972006
+    },
+    {
+      "lab_energy_keV": 112.2,
+      "cm_energy_keV_nonrelativistic": 56.1,
+      "same_energy_correlation": 0.9899554962411314,
+      "sd_geometric_mean_log_full_over_independent": 1.4106468111422696,
+      "sd_channel_ratio_log_full_over_independent": 0.10037715982306747
+    }
+  ],
+  "conditional_common_1pct_scale_sd_increase_fraction": [
+    0.026080536249141195,
+    0.2391499439264686
+  ],
+  "entropy_component_only": {
+    "a_dYp_dlneta": 0.00963883078901364,
+    "b_dlnDoH_dlneta": -1.6416611898321258,
+    "bbn_design_rank": 1,
+    "with_known_neutrino_component_design_rank": 2,
+    "RY_coefficient_of_delta_ln_Neff_nu": 0.00722912309176023,
+    "RD_coefficient_of_delta_ln_Neff_nu": -1.2312458923740943,
+    "identities": {
+      "helium_entropy_consistency": "0",
+      "deuterium_entropy_consistency": "0",
+      "bbn_eta_null_also_erases_entropy_component": "0"
+    },
+    "requires": "Late blackbody photon heating, conserved baryons, unchanged neutrinos, known initial Neff_nu, no residual-X contamination, no earlier background/weak or photodissociation effects"
+  },
+  "wall_seconds": 0.14497857600053976
+}
