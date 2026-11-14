@@ -1,0 +1,93 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃         ░█▀█░█▀▄░▀█▀░█▄█░█▀█░▀█▀              ┃
+┃         ░█▀▀░█▀▄░░█░░█░█░█▀█░░█░              ┃
+┃         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀░              ┃
+┃                                               ┃
+┃  Welcome to PRIMAT (python backend) v0.0.0+unknown    ┃
+┃                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+[opts-py] backend              = python
+[opts-py] network              = 'small' (amax=None)
+[opts-py] numerical_precision  = 1e-10
+[opts-py] radiative_corrections    = True
+[opts-py] finite_mass_corrections  = True
+[opts-py] thermal_corrections      = True
+[opts-py] spectral_distortions     = True
+[opts-py] tau_n_normalization      = True
+[opts-py] tau_n                = 878.4 s
+[opts-py] Omegabh2             = 0.02242 (eta0b=6.13744e-10)
+[opts-py] DeltaNeff            = 0
+[init-py] Electron-thermo tables built (2000 points).
+[init-py] QED pressure corrections tables loaded.
+[rates-py] Building 'small' network from text lists.
+[rates-py] MT network: 12 reactions over 8 nuclides.
+[rates-py] MT nuclides: n, p, H2, H3, He3, He4, Li7, Be7
+[rates-py] LT network: 12 reactions over 8 nuclides.
+[rates-py] LT nuclides: n, p, H2, H3, He3, He4, Li7, Be7
+------------------------------------------------------------
+Loaded 13 reactions (LT network):
+------------------------------------------------------------
+  n <-> p                 [weak n<->p]
+  n + p <-> H2            [Ando et al. 2006]
+  H2 + p <-> He3          [Moscoso et al. 2021]
+  H2 + H2 <-> He3 + n     [Gómez et al. 2017]
+  H2 + H2 <-> H3 + p      [Gómez et al. 2017]
+  H3 + p <-> He4          [Serpico et al. 2004]
+  H3 + H2 <-> He4 + n     [de Souza et al. 2019]
+  H3 + He4 <-> Li7        [Descouvemont et al. 2004]
+  He3 + n <-> H3 + p      [Descouvemont et al. 2004]
+  He3 + H2 <-> He4 + p    [de Souza et al. 2019]
+  He3 + He4 <-> Be7       [Iliadis et al. 2016]
+  Be7 + n <-> Li7 + p     [de Souza et al. 2020]
+  Li7 + p <-> He4 + He4   [Descouvemont et al. 2004]
+[bg-py] Solving cosmological background: a(T), t(T) relations ...
+[bg-py] Background a(T), t(T) ready in 1.90 s
+[weak-py] background n<->p weak rates: loaded from cache.
+[weak-py] n <--> p thermal corrections loaded from cache.
+[init-py] Initialisation complete in 7.3 s
+[nucl-py] Solving neutron decoupling at high temperature era (T = 10 -> 1 MeV)
+[nucl-py] [HT] Finished solve_ivp in 0.04 s
+[nucl-py] Solving nuclear network at mid temperature era (T = 1 -> 0.11 MeV)
+[nucl-py] [MT] Finished solve_ivp (small network, 8 nuclides) in 1.56 s
+[nucl-py] Solving nuclear network at low temperature era (T = 0.11 -> 0.001 MeV)
+[nucl-py] [LT] Finished solve_ivp (small network, 8 nuclides) in 18.24 s
+--------------------------------------------------
+Primordial abundances (8 nuclides) at T = 0.001 MeV
+--------------------------------------------------
+  Yn    = 3.997063e-16
+  Yp    = 7.529414e-01
+  YH2   = 1.834088e-05
+  YH3   = 5.851976e-08
+  YHe3  = 7.771666e-06
+  YHe4  = 6.174961e-02
+  YLi7  = 2.181345e-11
+  YBe7  = 3.966059e-10
+Traceback (most recent call last):
+  File "/workspace/scratch/b581bb5775cc/ccc-bbn-prelaunch/analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py", line 176, in <module>
+    main()
+  File "/workspace/scratch/b581bb5775cc/ccc-bbn-prelaunch/analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py", line 170, in main
+    dump(out/'RESULT.json', report)
+  File "/workspace/scratch/b581bb5775cc/ccc-bbn-prelaunch/analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py", line 24, in dump
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

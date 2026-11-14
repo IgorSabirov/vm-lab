@@ -1,0 +1,69 @@
+{
+  "utc": "2026-11-14T07:04:03.987358+00:00",
+  "source_commit": "a5c0799a62a645b00de1a023cfc5cac9b6090066",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/b581bb5775cc/ccc-bbn-prelaunch/analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py",
+    "--upstream",
+    "../upstream-primat",
+    "--config",
+    "analysis/CCC_BBN_NETWORK_20261114/prelaunch/P0.json",
+    "--cache",
+    "../bbn-cache-P0-repair",
+    "--out",
+    "/workspace/scratch/b581bb5775cc/ccc-bbn-prelaunch/analysis/CCC_BBN_NETWORK_20261114/prelaunch/results/P0_cold_repaired",
+    "--mode",
+    "S0",
+    "--alpha",
+    "0",
+    "--f0",
+    "3.66"
+  ],
+  "forecast": {
+    "central": 29.0,
+    "lower": 15.0,
+    "upper": 60.0,
+    "basis": "Measured failed-export P0: 28.86 s; same solver and new cold overlay, export fixed"
+  },
+  "limits": {
+    "wall_seconds": 90.0,
+    "package_seconds": 600,
+    "used_seconds": 28.8637389659998,
+    "address_space_bytes": 4294967296,
+    "individual_file_bytes": 134217728,
+    "output_tree_bytes": 536870912
+  },
+  "machine": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "cpuinfo": "processor\t: 0\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 1\nmodel name\t: AMD EPYC 7763 64-Core Processor\nstepping\t: 1\nmicrocode\t: 0x1000065\ncpu MHz\t\t: 2445.432\ncache size\t: 512 KB\nphysical id\t: 0\nsiblings\t: 9\ncore id\t\t: 0\ncpu cores\t: 9\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 13\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr arat npt nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload umip vaes vpclmulqdq rdpid fsrm arch_capabilities\nbugs\t\t: sysret_ss_attrs null_seg spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa\nbogomips\t: 4890.86\nTLB size\t: 2560 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 46 bits physical, 48 bits virtual\npower management:",
+    "memory": "MemTotal:       10206472 kB\nMemFree:         9399724 kB\nMemAvailable:    9492148 kB\nBuffers:            6640 kB\nCached:           131216 kB\nSwapCached:            0 kB\nActive:            32904 kB\nInactive:         142992 kB\nActive(anon):        108 kB\nInactive(anon):    67860 kB\nActive(file):      32796 kB\nInactive(file):    75132 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              2196 kB\nWriteback:             0 kB\nAnonPages:         68088 kB\nMapped:            75692 kB\nShmem:                28 kB\nKReclaimable:     267560 kB\nSlab:             324612 kB\nSReclaimable:     267560 kB\nSUnreclaim:        57052 kB\nKernelStack:        3660 kB\nPageTables:         4072 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     5103236 kB\nCommitted_AS:     533552 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        4904 kB\nVmallocChunk:          0 kB\nPercpu:             3888 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      241664 kB\nDirectMap2M:     7979008 kB\nDirectMap1G:    18874368 kB\n",
+    "loadavg": [
+      0.0751953125,
+      0.08203125,
+      0.02197265625
+    ],
+    "cgroup_cpu_quota": null,
+    "cgroup_memory_limit": null,
+    "cgroup_reason": "quota files not exposed in this container",
+    "disk_free": 58145173504
+  },
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "checkpoint": "Each completed run retained; no solver checkpoint or automatic retry",
+  "resume": "New run only with explicit revised manifest; completed runs never repeated for report repair"
+}
