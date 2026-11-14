@@ -178,7 +178,23 @@
       "uncertainty"
     ],
     "assigned_eta": null,
-    "execution_enabled": false
+    "execution_enabled": false,
+    "PRIMAT_interface": {
+      "input_parameter": "Omegabh2",
+      "derived_quantity": "eta0b",
+      "user_override_of_eta0b": "not a DEFAULT_PARAMS input in pinned PRIMAT 0.3.3",
+      "relation": "eta0b = Omegabh2_to_eta0b * Omegabh2",
+      "conversion_factor": "Omegabh2_to_eta0b = (rhocOverh2/n0CMB)/(ma/maOvermB)",
+      "mapping_requirement": "invert this pinned conversion to map CMB-only eta into Omegabh2; record forward residual and all constants",
+      "eta_history_change": "cannot be implemented by a constant Omegabh2; needs baryon-number and photon-entropy evolution in a consistent background"
+    },
+    "CMB_only_references": {
+      "fixed_Nnu3": "(6.104 +/- 0.055)e-10",
+      "free_Nnu": "(6.090 +/- 0.061)e-10",
+      "source": "Yeh et al. 2026, arXiv:2601.22239, Table 1 (fixed Nnu) and Table 2 (free Nnu)",
+      "use": "independent-input candidate; assumptions and covariance must be retained"
+    },
+    "combined_posterior_guard": "Do not use combined BBN+CMB+Yp+D eta posterior as independent prior if reusing same Yp/D observations in validation."
   },
   "anthropic_connection": {
     "source_id": "ANTHROPIC_HP",
