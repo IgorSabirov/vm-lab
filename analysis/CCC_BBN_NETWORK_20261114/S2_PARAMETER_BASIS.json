@@ -102,7 +102,16 @@
       "epoch_labels": [
         "BBN",
         "CMB"
-      ]
+      ],
+      "PRIMAT_0_3_3_interface": {
+        "input_parameter": "Omegabh2",
+        "derived_quantity": "eta0b",
+        "eta0b_is_DEFAULT_PARAMS": false,
+        "formula": "eta0b = Omegabh2_to_eta0b * Omegabh2",
+        "conversion_factor": "(rhocOverh2/n0CMB)/(ma/maOvermB)",
+        "conversion_rule": "Invert the pinned conversion to map external CMB eta to Omegabh2; save forward/backward residual.",
+        "eta_history_change": "A constant Omegabh2 does not implement eta_BBN != eta_CMB; requires baryon-number and photon-entropy evolution."
+      }
     },
     "N_eff": {
       "kind": "radiation_neutrino_background_parameter"
@@ -244,7 +253,7 @@
       "warning": "Combined eta posterior is not an independent prior if the same Yp and D/H observations are reused. Prefer CMB-only baryon likelihood for independent BBN input or report this as joint consistency only.",
       "CMB_only_eta_fixed_Nnu3": "(6.104 +/- 0.055)e-10",
       "CMB_only_eta_free_Nnu": "(6.090 +/- 0.061)e-10",
-      "input_recommendation": "Use CMB-only likelihood as independent eta input; combined CMB+BBN+Yp+D eta is a joint posterior, not an independent prior.",
+      "input_recommendation": "Use CMB-only likelihood as independent eta input with its assumptions/covariance; combined BBN+CMB+Yp+D eta is not an independent prior when reusing the same abundances.",
       "Nnu_mapping_warning": "Do not identify N_nu and PRIMAT Neff numerically without matching normalization and neutrino-sector assumptions."
     },
     "cross_epoch_ratio": "eta_BBN/eta_CMB",
