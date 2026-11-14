@@ -2,7 +2,7 @@
   "schema": "vm-lab-registry-links-v4",
   "sources": {
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "1fd7e9a305364d9e8fece770333327ce8f1649e576ed4c3032f6208431da58c1",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "7e6329e8063fa8b27b7be96d019a56ae9de0e5eff1e561775ef610373ac86af7",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -18,7 +18,8 @@
     "infra/external/contracts/CCC_SPARC.json": "fd970ef75311b72c8d7077f072f1d0d603481cc96bb66adf57faffea11a39f2d",
     "infra/external/contracts/PRIMAT.json": "729abf14a2601cfca63157624586a838167bbdcf814562d0757888f322a6b3bd",
     "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
-    "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d"
+    "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d",
+    "decisions/D003.json": "8c475357673ec79bb21474000d154f8a44f83223732b404a288a0336458ceb2c"
   },
   "managed_review_sources": {
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md": "01fabff1d23853fe5b1f4df9b666405d8a468d8eb6d3e564a49a2599f741dd9d",
@@ -54,7 +55,7 @@
     "obligation": 9,
     "review": 4,
     "external": 12,
-    "decision": 2,
+    "decision": 3,
     "source": 30
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
@@ -453,6 +454,15 @@
       "title": "Внешние источники и публичная инфраструктура без автоматического научного принятия",
       "status": "RATIFIED",
       "path": "decisions/D002.md",
+      "fragment": ""
+    },
+    {
+      "key": "decision:D003",
+      "id": "D003",
+      "kind": "decision",
+      "title": "Разделить причинную интеграцию и теорию дрейфа безразмерных параметров S2",
+      "status": "RATIFIED",
+      "path": "decisions/D003.md",
       "fragment": ""
     },
     {
@@ -3048,6 +3058,71 @@
     {
       "source": "decision:D002",
       "target": "result:R127",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L04",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L06",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L07",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L09",
+      "relation": "decision_constrains"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L09",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L10",
+      "relation": "decision_constrains"
+    },
+    {
+      "source": "decision:D003",
+      "target": "link:L10",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "question:U010",
+      "relation": "decision_constrains"
+    },
+    {
+      "source": "decision:D003",
+      "target": "question:U010",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "result:R126",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "result:R127",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "result:R128",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D003",
+      "target": "result:R129",
       "relation": "decision_scope_not_scientific_evidence"
     },
     {

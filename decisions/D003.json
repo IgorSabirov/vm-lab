@@ -1,0 +1,130 @@
+{
+  "id": "D003",
+  "title": "Разделить причинную интеграцию и теорию дрейфа безразмерных параметров S2",
+  "domain": "science",
+  "status": "RATIFIED",
+  "question": "Как исследовать механизм продолжения, не подменяя им происхождение и динамику задающих его параметров?",
+  "scope": [
+    "result:R126",
+    "result:R127",
+    "result:R128",
+    "result:R129",
+    "question:U010",
+    "link:L04",
+    "link:L06",
+    "link:L07",
+    "link:L09",
+    "link:L10"
+  ],
+  "alternatives": [
+    {
+      "id": "A",
+      "disposition": "SELECTED",
+      "rationale": "Две самостоятельные связанные линии: A — условный механизм ADD–R129–U010; B — независимая теория дрейфа безразмерных параметров S2. A может продвигаться при заданных параметрах."
+    },
+    {
+      "id": "B",
+      "disposition": "REJECTED",
+      "rationale": "Принимать успешную интеграцию, обратную связь или подбор коэффициентов за вывод закона S2 и фундаментальную полноту."
+    },
+    {
+      "id": "C",
+      "disposition": "DEFERRED",
+      "rationale": "Подключать Serbian, IsingCauset, CDT и Anthropic позднее как специализированные модули с собственными предпосылками; CCC сохраняется как условный контроль масштабирования."
+    }
+  ],
+  "proposal": {
+    "author": "user",
+    "source": "analysis/RESEARCH_ARCHITECTURE_20261114/REPORT.md"
+  },
+  "ratification": {
+    "authority": "user",
+    "status": "EXPLICIT_RESEARCH_ARCHITECTURE_ACCEPTANCE",
+    "date": "2026-11-14",
+    "timezone": "Europe/Moscow",
+    "reference": "analysis/RESEARCH_ARCHITECTURE_20261114/OWNER_DECISION.md",
+    "scientific_acceptance": true,
+    "accepted_object": "research architecture and inference boundaries only",
+    "new_physical_law_accepted": false,
+    "new_result_accepted": false,
+    "execution_authorized": false
+  },
+  "consequences": {
+    "constrains": [
+      "question:U010",
+      "link:L09",
+      "link:L10"
+    ],
+    "enables": [],
+    "supersedes": [],
+    "reopens": []
+  },
+  "research_tracks": {
+    "A": {
+      "subject": "causal integration ADD–R129–U010",
+      "status": "MECHANISM_TO_BE_SPECIFIED_AND_TESTED",
+      "parameter_mode": [
+        "fixed declared inputs",
+        "conditionally prescribed history"
+      ],
+      "waits_for_B": false,
+      "cycle": [
+        "carrier",
+        "contact",
+        "record",
+        "read",
+        "action",
+        "reproduction of continuation conditions"
+      ],
+      "requires": [
+        "causal content control",
+        "apparatus genealogy",
+        "resource accounting",
+        "declared horizon and continuation criterion"
+      ],
+      "fundamental_completeness_claimed": false
+    },
+    "B": {
+      "subject": "law of dimensionless S2 parameter drift",
+      "status": "OPEN_FUNDAMENTAL_THEORY",
+      "independent_parameters": null,
+      "evolution_argument": null,
+      "evolution_law": null,
+      "state_variables": null,
+      "initial_conditions": null,
+      "short_term_deadline": null,
+      "required_obligations": [
+        "independent dimensionless parameter basis",
+        "physical meaning of evolution argument",
+        "joint evolution mechanism",
+        "invariants constraints and critical regimes",
+        "dimensionless measurements discriminating alternatives"
+      ],
+      "automatic_identifications_forbidden": [
+        "RG flow",
+        "physical time",
+        "contact feedback",
+        "dimensional CCC scaling",
+        "BBN S2 variable list"
+      ]
+    }
+  },
+  "interface": {
+    "B_to_A": "explicit parameter/state/clock mapping with validity and uncertainty",
+    "A_to_B": "conditional observations and constraints, not origin proof",
+    "map_built": false
+  },
+  "status_policy": {
+    "automatic_scientific_promotion": false,
+    "R_C_L_U_statuses_changed": false,
+    "U010": "OPEN",
+    "bbn_pr": 44,
+    "bbn_S2_is_identical_to_B": false
+  },
+  "revisit_conditions": [
+    "Владелец уточнил архитектуру исследования",
+    "Предложен физически определённый закон B и различающие наблюдаемые",
+    "Построено явное отображение параметров B в механизм A",
+    "Выбран отдельный специализированный модуль с сохранёнными предпосылками"
+  ]
+}
