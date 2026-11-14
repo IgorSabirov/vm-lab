@@ -21,7 +21,7 @@ WEAK = {'nTOp_7e3af87bd0404e0a.txt': 'f5111a85112e94a237ed73f28ef860876ee0f8ed',
 
 def dump(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False, default=lambda x: x.item()) + '\n')
 
 
 def digest(path):
@@ -123,6 +123,12 @@ def main():
     solve_start = time.monotonic()
     result = run.solve(progress=False)
     solve_seconds = time.monotonic() - solve_start
+    # Preserve solver objects before export/validation: a report error must not
+    # force a repeated integration. Local checkpoint is not an upstream data copy.
+    import pickle
+    with (out/'SOLVER_CHECKPOINT.pkl').open('wb') as checkpoint:
+        pickle.dump({'sols':sols,'result':result,'Y_final':run.nuclear.Y_final,
+                     'Nuclides':cfg.Nuclides,'load_events':load_events}, checkpoint)
     if len(sols) != 3 or not all(s.success for s in sols):
         raise RuntimeError('Expected successful HT/MT/LT solves')
     weak_paths = {v['resolved_path'] for v in sources.values()}
