@@ -545,7 +545,8 @@ def create_approval(root, forecast_sha, approver, max_upper):
         "approved_by": approver,
         "forecast_sha256": forecast_sha,
         "authorized_max_upper_seconds": max_upper,
-        "authorized_per_run_wall_cap_seconds": 600,\n        "authorized_cold_warm_total_wall_cap_seconds": 1200,
+        "authorized_per_run_wall_cap_seconds": 600,
+        "authorized_cold_warm_total_wall_cap_seconds": 1200,
         "runs": ["COLD", "WARM"],
         "scientific_acceptance": False,
     }
@@ -578,7 +579,7 @@ def execute_main(root, upstream):
     ]
     used = sum(float(event.get("wall_seconds", 0)) for event in main_events)
     if used >= 1200:
-        raise RuntimeError("P2 package 600 s cap already exhausted")
+        raise RuntimeError("P2 cold/warm package 1200 s cap already exhausted")
     remaining = 1200 - used
 
     cold = execute_worker(
@@ -646,7 +647,8 @@ def execute_main(root, upstream):
         "status": "ENGINEERING_PASS" if success else "ENGINEERING_REVIEW_REQUIRED",
         "budget": {
             "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
-            "hard_wall_cap_seconds_per_run": 600,\n            "hard_total_wall_cap_seconds_cold_warm": 1200,
+            "hard_wall_cap_seconds_per_run": 600,
+            "hard_total_wall_cap_seconds_cold_warm": 1200,
             "cold_wall_seconds": cold["wall_seconds"],
             "warm_wall_seconds": warm["wall_seconds"],
             "total_wall_seconds": cold["wall_seconds"] + warm["wall_seconds"],
