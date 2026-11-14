@@ -2,8 +2,8 @@
   "schema": "vm-lab-pipeline-state-v1",
   "pipeline": "CCC_BBN",
   "request": "CCC_BBN_PIPELINE_20261114_r1",
-  "observed_utc": "2026-11-14T13:15:53.256416+00:00",
-  "source_commit": "c658466f839e9ae7de7a4f051792f7eee40e8551",
+  "observed_utc": "2026-11-14T13:18:46.048269+00:00",
+  "source_commit": "f3df1e14cb8c90eb5b6271cbee72638f9f74a12b",
   "stages": {
     "S0_REFERENCE": {
       "status": "COMPLETE",
@@ -12,10 +12,13 @@
       "dependencies": {}
     },
     "S1_FULLNET": {
-      "status": "READY",
+      "status": "RUNNING",
+      "automatic_retry": false,
       "dependencies": {
         "S0_REFERENCE": "COMPLETE"
-      }
+      },
+      "phase": "ADMITTED",
+      "workflow_url": "https://github.com/IgorSabirov/vm-lab/actions/runs/43599043343"
     },
     "S_ETA": {
       "status": "CONTRACT_REQUIRED",
