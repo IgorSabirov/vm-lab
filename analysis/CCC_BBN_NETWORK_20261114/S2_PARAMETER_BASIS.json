@@ -1,0 +1,290 @@
+{
+  "schema": "vm-lab-ccc-bbn-parameter-basis-v1",
+  "id": "CCC_BBN_NETWORK_S2_PARAMETER_BASIS",
+  "version": "0.1.2",
+  "date": "2026-11-14",
+  "state": "DESIGN_DRAFT",
+  "execution_enabled": false,
+  "scientific_acceptance": false,
+  "parent_spec": "analysis/CCC_BBN_NETWORK_20261114/SPEC.md",
+  "parent_addendum": "analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md",
+  "diagnostic_vector": {
+    "symbol": "g_diag",
+    "independence": "NOT_ASSUMED",
+    "independent_dynamical_dimension_count": null,
+    "rank": "NOT_COMPUTED",
+    "entries": [
+      {
+        "id": "alpha_EM",
+        "definition": "fine-structure constant",
+        "kind": "dimensionless_coupling",
+        "reference_source": "CODATA 2022"
+      },
+      {
+        "id": "mu",
+        "definition": "m_p/m_e",
+        "kind": "dimensionless_mass_ratio",
+        "reference_value": "1836.152673426(32)"
+      },
+      {
+        "id": "alpha_G_p",
+        "definition": "G*m_p^2/(hbar*c)",
+        "kind": "derived_dimensionless_gravity_coupling",
+        "reference_value_CODATA2022": "5.9061494334e-39",
+        "directly_measured": false
+      },
+      {
+        "id": "X_q",
+        "definition": "(m_u+m_d)/(2*Lambda_QCD)",
+        "kind": "light_quark_mass_ratio",
+        "scheme_scale_required": true
+      },
+      {
+        "id": "X_s",
+        "definition": "m_s/Lambda_QCD",
+        "kind": "strange_quark_mass_ratio",
+        "scheme_scale_required": true
+      }
+    ],
+    "rules": [
+      "Diagnostic coordinates do not define five independent scalar fields.",
+      "mu and alpha_G_p share m_p.",
+      "X_q and X_s share Lambda_QCD and quark mass renormalization conventions.",
+      "Never fit independent drifts for diagnostics unless theory supplies independent degrees of freedom."
+    ]
+  },
+  "theory_coordinates_example": {
+    "status": "ILLUSTRATIVE_NOT_ADOPTED",
+    "entries": [
+      "alpha_EM",
+      "m_e/Lambda_QCD",
+      "m_u/Lambda_QCD",
+      "m_d/Lambda_QCD",
+      "m_s/Lambda_QCD",
+      "G_N*Lambda_QCD^2 (natural energy units)",
+      "G_F*Lambda_QCD^2",
+      "g_A",
+      "V_ud"
+    ],
+    "required_metadata": [
+      "definition",
+      "units",
+      "renormalization_scheme",
+      "renormalization_scale",
+      "active_flavors_Nf",
+      "threshold_matching",
+      "reference_epoch",
+      "validity_domain",
+      "covariance"
+    ]
+  },
+  "derived_nuclear_diagnostics": [
+    {
+      "id": "q_np",
+      "definition": "(m_n-m_p)c^2/(m_e*c^2)",
+      "dimensionless": true
+    },
+    {
+      "id": "b_D",
+      "definition": "B_D/(m_e*c^2)",
+      "dimensionless": true
+    },
+    {
+      "id": "tau_n_hat",
+      "definition": "tau_n*m_e*c^2/hbar",
+      "dimensionless": true
+    }
+  ],
+  "cosmological_state_variables": {
+    "eta_b": {
+      "definition": "n_b/n_gamma",
+      "kind": "cosmological_state_variable_not_fundamental_coupling",
+      "epoch_labels": [
+        "BBN",
+        "CMB"
+      ],
+      "PRIMAT_0_3_3_interface": {
+        "input_parameter": "Omegabh2",
+        "derived_quantity": "eta0b",
+        "eta0b_is_DEFAULT_PARAMS": false,
+        "formula": "eta0b = Omegabh2_to_eta0b * Omegabh2",
+        "conversion_factor": "(rhocOverh2/n0CMB)/(ma/maOvermB)",
+        "conversion_rule": "Invert the pinned conversion to map external CMB eta to Omegabh2; save forward/backward residual.",
+        "eta_history_change": "A constant Omegabh2 does not implement eta_BBN != eta_CMB; requires baryon-number and photon-entropy evolution."
+      }
+    },
+    "N_eff": {
+      "kind": "radiation_neutrino_background_parameter"
+    },
+    "rule": "Keep eta_b and N_eff separate from dimensionless interaction diagnostics; derive eta_BBN/eta_CMB from baryon and photon entropy histories."
+  },
+  "response_chain": [
+    "theory M -> primary coordinates q_j(lambda)",
+    "q_j -> diagnostic coordinates g_a (matrix A)",
+    "g_a -> physical BBN input parameters p_A (matrix B with theory uncertainties)",
+    "p_A and reaction nuisance parameters -> forward/reverse rates, weak rates, neutron lifetime and background",
+    "BBN outputs O_i=(Y_p,D/H,He3/H,Li7/H,N_eff,Y_i(T_gamma))"
+  ],
+  "local_response": {
+    "A": "d ln(g_a)/d ln(q_j)",
+    "B": "d(p_A)/d ln(g_a), with absolute derivatives where fiducial is zero",
+    "K": "d ln(O_i)/d ln(p_A), only for nonzero fiducials",
+    "covariance": "C_O=J*C_input*J^T",
+    "requirements": [
+      "finite-difference step convergence",
+      "local linearity/R2 check",
+      "SVD/rank/condition-number analysis",
+      "full cross-covariance propagation",
+      "nonlinear grid for large excursions"
+    ]
+  },
+  "bbn_sensitivity_atlas": {
+    "citation": "Burns et al., Physics Reports 1194 (25 Oct 2026), DOI 10.1016/j.physrep.2026.07.001",
+    "implementation": "PRyMordial",
+    "parameter_inputs": 14,
+    "thermonuclear_rates": 63,
+    "rate_compilations": [
+      "PRIMAT",
+      "NACRE-II"
+    ],
+    "weak_rate_normalizations": [
+      "neutron lifetime tau_n",
+      "fundamental weak normalization"
+    ],
+    "local_about_SM_fiducial": true,
+    "direct_response_for_g_diag": false,
+    "full_PRIMAT_large_amax8_equivalence": false,
+    "use": "external sensitivity/covariance and priority reference",
+    "caveats": [
+      "Weak-rate normalization affects sensitivities; Q response may change sign across schemes.",
+      "Electron-mass response can be nonlinear in tau_n-normalized convention.",
+      "Local coefficients cannot be extrapolated to large early-universe excursions."
+    ],
+    "parameter_names": [
+      "tau_n",
+      "Q_np",
+      "alpha_EM",
+      "G_F",
+      "m_e",
+      "g_A",
+      "V_ud",
+      "Delta_kappa",
+      "r_p",
+      "m_Z",
+      "G_N",
+      "Omega_b h^2",
+      "xi_nu",
+      "Delta_N_eff"
+    ],
+    "key_reactions": [
+      "n+p->d+gamma",
+      "d+p->He3+gamma",
+      "d+d->He3+n",
+      "d+d->t+p",
+      "t+p->He4+gamma",
+      "t+d->He4+n",
+      "t+He4->Li7+gamma",
+      "He3+n->t+p",
+      "He3+d->He4+p",
+      "He3+He4->Be7+gamma",
+      "Be7+n->Li7+p",
+      "Li7+p->2He4"
+    ]
+  },
+  "external_constraints": {
+    "source": "PDG Review of Particle Physics 2026, Experimental Tests of Gravitational Theory (review revised August 2025)",
+    "values": [
+      {
+        "observable": "Delta alpha_EM/alpha_EM",
+        "constraint": "(1.2 +/- 1.7_stat +/- 0.9_sys)e-6",
+        "context": "quasar absorption z=1.0-2.4"
+      },
+      {
+        "observable": "abs(Delta mu/mu)",
+        "constraint": "<4e-7 at 95% CL",
+        "context": "quasar absorption z=0.88582"
+      },
+      {
+        "observable": "Delta alpha_EM/alpha_EM",
+        "constraint": "(3.6 +/- 3.7)e-3",
+        "context": "CMB z~1e3"
+      },
+      {
+        "observable": "d ln alpha_EM/dt",
+        "constraint": "(1.8 +/- 2.5)e-19 yr^-1",
+        "context": "atomic clocks present epoch"
+      },
+      {
+        "observable": "d ln mu/dt",
+        "constraint": "(-8 +/- 36)e-18 yr^-1",
+        "context": "atomic clocks present epoch"
+      },
+      {
+        "observable": "dG/dt / G",
+        "constraint": "(-5.0 +/- 9.6)e-15 yr^-1",
+        "context": "lunar laser ranging present epoch"
+      },
+      {
+        "observable": "fractional alpha_EM variation",
+        "constraint": "level ~1e-8",
+        "context": "Oklo ~2 Gyr"
+      },
+      {
+        "observable": "fractional light-quark mass/Lambda_QCD variation",
+        "constraint": "level ~4e-9",
+        "context": "Oklo ~2 Gyr; not direct constraint on X_s"
+      }
+    ],
+    "white_dwarf_GD133": {
+      "observable": "Delta mu/mu",
+      "value": "(0.02 +/- 0.09)e-8",
+      "context": "strong potential ~1e4 Earth; not cosmological secular drift"
+    },
+    "caveat": "Heterogeneous constraints at different epochs/environments and assumptions; do not combine into one universal limit on f(t).",
+    "quark_mass_convention_source": "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf"
+  },
+  "cosmological_observations": {
+    "LBT_Yp_Project_V": {
+      "citation": "Yeh et al. 2026, arXiv:2601.22239",
+      "direct_Yp": "0.2458 +/- 0.0013",
+      "combined_BBN_CMB_D_Yp_eta_fixed_Nnu3": "(6.120 +/- 0.038)e-10",
+      "combined_eta_free_Nnu": "(6.101 +/- 0.044)e-10",
+      "combined_Nnu_free": "2.925 +/- 0.082",
+      "warning": "Combined eta posterior is not an independent prior if the same Yp and D/H observations are reused. Prefer CMB-only baryon likelihood for independent BBN input or report this as joint consistency only.",
+      "CMB_only_eta_fixed_Nnu3": "(6.104 +/- 0.055)e-10",
+      "CMB_only_eta_free_Nnu": "(6.090 +/- 0.061)e-10",
+      "input_recommendation": "Use CMB-only likelihood as independent eta input with its assumptions/covariance; combined BBN+CMB+Yp+D eta is not an independent prior when reusing the same abundances.",
+      "Nnu_mapping_warning": "Do not identify N_nu and PRIMAT Neff numerically without matching normalization and neutrino-sector assumptions."
+    },
+    "cross_epoch_ratio": "eta_BBN/eta_CMB",
+    "needed_physics": [
+      "baryon number history",
+      "photon entropy exchange/production",
+      "neutrino-photon thermal history",
+      "joint likelihood covariance"
+    ]
+  },
+  "clock_response": {
+    "observable": "nu(Yb+,E3)/nu(Yb+,E2)",
+    "sensitivity_coefficient_alpha": "K_alpha=-6.95",
+    "citation": "Uzan 2025 DOI 10.1007/s41114-025-00059-y",
+    "warning": "Use full sensitivity vector if other couplings drift; do not label it unconditionally alpha-only."
+  },
+  "reference_values": {
+    "CODATA_2022_mu": "1836.152673426(32)",
+    "CODATA_2022_alpha_G_p": "5.9061494334e-39",
+    "alpha_G_p_is_derived": true
+  },
+  "branches": {
+    "S0": "standard PRIMAT reference",
+    "S1": "conditional universal time/rate/cooling rescaling",
+    "S_eta": "different cosmological eta input with fixed dimensionless nuclear couplings",
+    "S2": "unprovided theory extension changing dimensionless microphysics",
+    "S3": "joint observational likelihood after covariance and systematics"
+  },
+  "execution": {
+    "bbn_run_performed": false,
+    "upstream_code_executed": false,
+    "vm_jobs_submitted": 0
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "result": {
+    "YPCMB": 0.24567547394148412,
+    "YPBBN": 0.2470017923705305,
+    "He4oH": 0.08201265699747526,
+    "DoH": 2.4366105582987703e-05,
+    "He3oH": 1.0397527362001182e-05,
+    "He3oHe4": 0.0001267795452880068,
+    "Li7oH": 5.49982216342469e-10,
+    "Li6oLi7": 1.4195493609001362e-05,
+    "Neff": 3.0439772985579183,
+    "Omeganurel": 5.698637952393702,
+    "OneOverOmeganunr": 93.04302365135274,
+    "Y_final": {
+      "n": 3.9962327234425186e-16,
+      "p": 0.7529380263162745,
+      "H2": 1.8346167446668717e-05,
+      "H3": 5.839111378386138e-08,
+      "He3": 7.770302616730768e-06,
+      "He4": 0.06175044809263262,
+      "Li7": 9.177358870986178e-11,
+      "Be7": 3.223289357720871e-10,
+      "He6": 1.1013070345790696e-60,
+      "Li8": 8.640665917657587e-33,
+      "Li6": 5.878389739754836e-15,
+      "B8": 9.038766089290734e-34
+    }
+  },
+  "checks": {
+    "finite_outputs": true,
+    "solver_success": true,
+    "final_baryon_residual": 1.6433521210501567e-12,
+    "final_baryon_pass": true,
+    "raw_positivity_with_1e-12_roundoff_floor": true,
+    "author_YPBBN_residual": 2.3705304941223915e-09,
+    "author_DoH_residual": 7.582987701166199e-12,
+    "author_reference_pass": true,
+    "raw_baryon_pass": true,
+    "all_abundances_finite": true,
+    "engineering_pass": true
+  },
+  "eras": [
+    {
+      "era": "HT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 772,
+      "njev": 39,
+      "nlu": 39,
+      "steps": 407,
+      "raw_min": 0.25807032265070506,
+      "max_baryon_residual": 1.1102230246251565e-15
+    },
+    {
+      "era": "MT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 8803,
+      "njev": 589,
+      "nlu": 1279,
+      "steps": 2313,
+      "raw_min": -1.2750556745886187e-16,
+      "max_baryon_residual": 1.652011860642233e-12
+    },
+    {
+      "era": "LT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 188575,
+      "njev": 4850,
+      "nlu": 18955,
+      "steps": 61876,
+      "raw_min": 1.0456094634170462e-75,
+      "max_baryon_residual": 1.6548984405062583e-12
+    }
+  ],
+  "load_events": [
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e2.txt",
+      "sha256": "4e8c84067545dc3fbc7d1f272f084db157f39d971a5b6ca48f0a99fdc1465cd6",
+      "git_blob_sha": "7e9ab7c5a086a81e90feccd087eb33eea5ee7866",
+      "bytes": 27835
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e3.txt",
+      "sha256": "43c5c4d5c8d927dfcc6faa05d985edceec8c343415d8363c542254f3a0741afe",
+      "git_blob_sha": "8205956852e68ad11b69b307d51b43ce52758729",
+      "bytes": 26541
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/bbn-cache-P1/plasma/electron_thermo_45b89f3e1b24e961.txt",
+      "sha256": "5eb81efc68a8f5c664ab4aca23b336104398e567406ccad725c42c52783b8287",
+      "git_blob_sha": "ac416a912d67f149933da8b2040bad640441321d",
+      "bytes": 250194
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/weak/nTOp_7e3af87bd0404e0a.txt",
+      "sha256": "53e7c9a28c736f449f410e3b77d3f0af5c6760eed78a261430f8c5be6dbafa74",
+      "git_blob_sha": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
+      "bytes": 38078
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/weak/nTOp_thermal_cfdb4d324bb5651f.txt",
+      "sha256": "9c263b76c7eff7048e7141c1df545aae008fad198a344ebca65ba0a42a38ea16",
+      "git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9",
+      "bytes": 5871
+    }
+  ],
+  "background_clock_audit": null,
+  "cache_after": {
+    "plasma/electron_thermo_45b89f3e1b24e961.txt": {
+      "sha256": "5eb81efc68a8f5c664ab4aca23b336104398e567406ccad725c42c52783b8287",
+      "git_blob_sha": "ac416a912d67f149933da8b2040bad640441321d",
+      "bytes": 250194
+    }
+  },
+  "new_cache_files": [],
+  "timing": {
+    "init_seconds": 2.7351928890002455,
+    "solve_seconds": 99.70037362899984,
+    "worker_wall_seconds": 105.53159311200034,
+    "peak_rss_mib": 396.921875
+  },
+  "scientific_acceptance": false
+}

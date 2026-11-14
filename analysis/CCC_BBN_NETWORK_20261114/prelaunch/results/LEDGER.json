@@ -1,0 +1,135 @@
+[
+  {
+    "run": "P0_cold",
+    "source_commit": "27336952ff4d1b753d1769e98ef3e10a6d7529f0",
+    "exit_code": 1,
+    "stop_reason": null,
+    "wall_seconds": 28.8637389659998,
+    "cpu_seconds": 28.484334,
+    "forecast": {
+      "central": 60.0,
+      "lower": 5.0,
+      "upper": 180.0,
+      "basis": "Uncalibrated probe; upstream reference test estimate 60 s; no local measurement yet"
+    },
+    "runtime_status": "PASS",
+    "output_bytes": 7313
+  },
+  {
+    "run": "P0_cold_repaired",
+    "source_commit": "a5c0799a62a645b00de1a023cfc5cac9b6090066",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 31.084035714000493,
+    "cpu_seconds": 30.858842,
+    "forecast": {
+      "central": 29.0,
+      "lower": 15.0,
+      "upper": 60.0,
+      "basis": "Measured failed-export P0: 28.86 s; same solver and new cold overlay, export fixed"
+    },
+    "runtime_status": "PASS",
+    "output_bytes": 21675177
+  },
+  {
+    "run": "P1_cold",
+    "source_commit": "a5c0799a62a645b00de1a023cfc5cac9b6090066",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 82.20263596599943,
+    "cpu_seconds": 82.00545399999999,
+    "forecast": {
+      "central": 100.0,
+      "lower": 15.0,
+      "upper": 200.0,
+      "basis": "P0 measured 31.08 s; first P1 extrapolation using 66/12 rate count, 12/8 species and reused Python kernels"
+    },
+    "runtime_status": "PASS",
+    "output_bytes": 33189105
+  },
+  {
+    "run": "P1_warm",
+    "source_commit": "900a67f879621b501f74f8b1da561494fa3c4ae6",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 70.95687212200028,
+    "cpu_seconds": 70.554169,
+    "forecast": {
+      "central": 77.0,
+      "lower": 50.0,
+      "upper": 115.0,
+      "basis": "P1 cold 82.20 s, eliminate measured cold electron-thermo setup; same backend/config and separate process"
+    },
+    "runtime_status": "FORECAST_IN_RANGE",
+    "execution_status": "COMPLETED",
+    "output_bytes": 33189940
+  },
+  {
+    "run": "P1_refined",
+    "source_commit": "900a67f879621b501f74f8b1da561494fa3c4ae6",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 105.83396593799989,
+    "cpu_seconds": 105.69693299999999,
+    "forecast": {
+      "central": 105.0,
+      "lower": 60.0,
+      "upper": 160.0,
+      "basis": "P1 warm measured 70.96 s; 2x nuclear grid and 0.3x rtol; unchanged weak/background grids; adaptive-work uncertainty"
+    },
+    "runtime_status": "FORECAST_IN_RANGE",
+    "execution_status": "COMPLETED",
+    "output_bytes": 48404255
+  },
+  {
+    "run": "S1_exponential",
+    "source_commit": "760b51aaf69ace6c215e65b43457c0b3d3c79eaf",
+    "exit_code": 2,
+    "stop_reason": null,
+    "wall_seconds": 0.20228750900059822,
+    "cpu_seconds": 0.05401700000000001,
+    "forecast": {
+      "central": 95.0,
+      "lower": 60.0,
+      "upper": 140.0,
+      "basis": "P1 warm 70.96 s plus exact time-map and scaling callbacks; same rates and grids; shared remaining package budget"
+    },
+    "runtime_status": "REVIEW_REQUIRED",
+    "execution_status": "FAILED",
+    "output_bytes": 0
+  },
+  {
+    "run": "S1_exponential_repaired",
+    "source_commit": "1c43c72edc2bd74d7278421ed98e37e78fdaea68",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 82.39159109899992,
+    "cpu_seconds": 82.032354,
+    "forecast": {
+      "central": 95.0,
+      "lower": 60.0,
+      "upper": 140.0,
+      "basis": "P1 warm 70.96 s plus exact clock callbacks; first S1 attempt stopped in argparse before importing physics; argument forwarding fixed"
+    },
+    "runtime_status": "FORECAST_IN_RANGE",
+    "execution_status": "COMPLETED",
+    "output_bytes": 33284367
+  },
+  {
+    "run": "cooling_only",
+    "source_commit": "1c43c72edc2bd74d7278421ed98e37e78fdaea68",
+    "exit_code": 0,
+    "stop_reason": null,
+    "wall_seconds": 89.64297665899994,
+    "cpu_seconds": 89.129021,
+    "forecast": {
+      "central": 100.0,
+      "lower": 50.0,
+      "upper": 160.0,
+      "basis": "Measured P1 S1 82.47 s; unscaled rates with stretched cooling can increase stiffness; negative control is last solve, total package cap unchanged"
+    },
+    "runtime_status": "FORECAST_IN_RANGE",
+    "execution_status": "COMPLETED",
+    "output_bytes": 38302600
+  }
+]
