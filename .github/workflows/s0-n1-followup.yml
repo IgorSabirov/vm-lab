@@ -1,0 +1,56 @@
+name: S0 N1 targeted stability follow-up
+on:
+  push:
+    branches: [s0-n1-design-20261114]
+    paths: [analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/RUN_REQUEST.json]
+permissions:
+  contents: write
+concurrency:
+  group: s0-n1-explicit-execution
+  cancel-in-progress: false
+jobs:
+  followup:
+    if: github.repository == 'IgorSabirov/vm-lab'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 135
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Select publication branch
+        run: |
+          git checkout -B s0-n1-design-20261114 "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: CyrilPitrou/primat
+          ref: 6f7e5680614fb119d65a6c9c65a292240b27c61e
+          path: upstream-primat
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.16'
+      - name: Install pinned dependencies
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 threadpoolctl==3.6.0
+      - name: Check follow-up contracts
+        run: |
+          python analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/test_contracts.py
+          python analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/launch.py --static-check-only --upstream "$GITHUB_WORKSPACE/upstream-primat"
+      - name: Calibrate and execute four isolated follow-up runs
+        run: python analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/launch.py --upstream "$GITHUB_WORKSPACE/upstream-primat"
+      - name: Preserve all evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: S0-N1-followup-${{ github.run_id }}
+          retention-days: 90
+          path: analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/results/S0_N1_FOLLOWUP_20261114_r1/**

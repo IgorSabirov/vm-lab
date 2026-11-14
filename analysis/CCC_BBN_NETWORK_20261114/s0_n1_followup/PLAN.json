@@ -1,0 +1,93 @@
+{
+  "schema": "s0-n1-followup-v1",
+  "id": "S0_N1_FOLLOWUP_20261114_r1",
+  "parent_result_commit": "6b8d8ed5c33d82af574462fd02a39b894f549bed",
+  "parent_source_commit": "2aba628722ccf2b178b4ab3383eefdc15c2d655f",
+  "question": "Does the existing fine R8 operating point meet unchanged stability budgets under rate-grid and absolute-tolerance refinement and repeat exactly across fresh processes?",
+  "runs": [
+    {
+      "id": "F0",
+      "rate_grid_npts": 16000,
+      "numerical_precision": 1e-11,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000",
+      "role": "cold repeat of R8 before interventions"
+    },
+    {
+      "id": "F_RATE",
+      "rate_grid_npts": 32000,
+      "numerical_precision": 1e-11,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000",
+      "role": "double rate grid only"
+    },
+    {
+      "id": "F_ATOL",
+      "rate_grid_npts": 16000,
+      "numerical_precision": 1e-11,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 0.1,
+      "cache_group": "BG8000",
+      "role": "tighten HT/MT/LT absolute tolerances tenfold only"
+    },
+    {
+      "id": "F_REPEAT",
+      "rate_grid_npts": 16000,
+      "numerical_precision": 1e-11,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000",
+      "role": "cold repeat of F0 after intervening runs"
+    }
+  ],
+  "numerical_budget": {
+    "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
+    "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
+    "YPBBN_absolute": 1e-06,
+    "DoH_absolute": 3e-10,
+    "Neff_absolute": 1e-06,
+    "He3oH_relative": 1e-05,
+    "Li7oH_relative": 1e-05,
+    "final_light_species_relative": 1e-05,
+    "final_light_species": [
+      "n",
+      "p",
+      "H2",
+      "H3",
+      "He3",
+      "He4",
+      "Li7",
+      "Be7"
+    ],
+    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
+    "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
+    "upstream_reference_tolerances": {
+      "YPBBN_absolute": 1e-05,
+      "DoH_absolute": 3e-09,
+      "Neff_absolute": 1e-05,
+      "NUCLIDE_REL_TOL": 0.0001,
+      "source": "PRIMAT tests/reference_values.py at the pinned commit"
+    },
+    "final_species_floor": 1e-300
+  },
+  "execution_enabled": true,
+  "historical_N1_status": "NUMERICAL_CONVERGENCE_FAIL; immutable, no retroactive promotion",
+  "acceptance": {
+    "repeat": "F0 and F_REPEAT raw arrays, traces and scalar outputs bitwise identical; no fit or tolerance relaxation",
+    "refinement": "F_RATE versus F0 and F_ATOL versus F0: same observable budgets as N1",
+    "parent_environment": "F0 versus archived R8 reported separately; all current runs must share target environment",
+    "scope": "Bounded operating-point stability on rate grid and absolute tolerances; not a theorem of asymptotic convergence, independent-solver validation, or S2 discovery",
+    "stop": "Any engineering failure stops further workers and preserves evidence. Numerical fail is reported without automatic retry."
+  },
+  "runtime": {
+    "preparation_cap_seconds": 120,
+    "process_cap_seconds": 2400,
+    "package_cap_seconds": 7200,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648,
+    "routing": "Whole package >600 s. GitHub Actions VM. Fresh bounded target PROBE uses max rate grid and existing frozen BG8000 to calibrate before strict solves."
+  },
+  "scientific_acceptance": false
+}

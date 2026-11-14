@@ -1,0 +1,73 @@
+{
+  "parent_commit": "6b8d8ed5c33d82af574462fd02a39b894f549bed",
+  "archived_hashes_verified": 256,
+  "cold_reset": {
+    "implemented_in_original_series": true,
+    "evidence": "s0_n1/launch.py process(): subprocess.Popen of a fresh Python worker, serial wait, cache snapshots and frozen load hashes",
+    "environment_reproduction_raw_arrays": {
+      "HT": true,
+      "MT": true,
+      "LT": true
+    },
+    "limit": "Process isolation excludes persistence of Python globals. A dedicated same-machine before/after replay is newly scheduled; OS effects are not ruled out by process isolation alone."
+  },
+  "serialization": {
+    "shape": [
+      500,
+      3
+    ],
+    "dtype": "float64",
+    "generated_binary_sha256": "cf3e0ccaaa19ec89e5dd84e655d4cee30a21f01b82e8f59754b64e129795f1f2",
+    "reloaded_binary_sha256": "cf3e0ccaaa19ec89e5dd84e655d4cee30a21f01b82e8f59754b64e129795f1f2",
+    "bitwise_equal": true,
+    "max_absolute_difference": 0.0,
+    "format": "upstream np.savetxt default %.18e; np.loadtxt float64",
+    "scope": "Actual archived BG2000 generation before writing versus loaded text; not just text-file hashes"
+  },
+  "generation_difference": {
+    "max_normalized_difference": 1.261838460014329e-08,
+    "arises_before_serialization": true,
+    "origin": "Upstream shipped table versus current pinned generator/background realization; original generation environment is not reconstructed",
+    "not_a_precision_loss_claim": true
+  },
+  "original_failures": [
+    {
+      "pair": "R4_vs_R_CACHE",
+      "observable": "Y_n",
+      "value": 1.4487281924923218e-05,
+      "limit": 1e-05,
+      "metric": "relative",
+      "pass": false
+    },
+    {
+      "pair": "R8_vs_R_CACHE",
+      "observable": "Y_n",
+      "value": 1.3334929996280989e-05,
+      "limit": 1e-05,
+      "metric": "relative",
+      "pass": false
+    }
+  ],
+  "fine_level_increment_gates_all_pass": true,
+  "rate_grid_neutron_tail_diagnostic": {
+    "observed_order": 3.1293399487486795,
+    "estimated_absolute_tail_at_16000": 7.661297300877967e-23,
+    "estimated_relative_tail_at_16000": 1.9171326133912387e-07,
+    "conditional": "Three-point Richardson diagnostic only; requires asymptotic power law and fixed other errors. Not a certified bound."
+  },
+  "Neff": {
+    "value": 3.0439772985579183,
+    "dependency": "PRIMAT.main._build_results reads background.rho_nu_total_final; standard background uses fixed NEVO temperature tables at fixed T_end. Nuclear-network convergence cannot independently validate neutrino decoupling.",
+    "source_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+    "benchmark_source": "https://arxiv.org/abs/2012.02726",
+    "published_benchmark": "3.0440 +/- 0.0002 in this cited paper, not a universal certification"
+  },
+  "D_over_H": {
+    "R8_minus_R_CACHE": 2.44735247150428e-11,
+    "interpretation": "Deterministic difference between controlled numerical configurations, not a measured stochastic noise floor. Run index is not physical time. No requirement for different discretizations to collapse onto coarse R0.",
+    "literature": "https://arxiv.org/abs/2604.16600",
+    "literature_limit": "That paper obtains 2.442 +/- 0.040 times 1e-5 with Planck and 1.70 sigma versus Cooke; significance is dataset/rate dependent and is not calculated for our run."
+  },
+  "historical_status_unchanged": "NUMERICAL_CONVERGENCE_FAIL",
+  "scientific_acceptance": false
+}
