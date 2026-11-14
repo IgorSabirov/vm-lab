@@ -1,0 +1,60 @@
+name: P2 FULLNET static gate
+
+on:
+  pull_request:
+    branches:
+      - science/ccc-bbn-network-v01-design-20261114
+    paths:
+      - "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile runner without executing PRIMAT
+        run: |
+          python -m py_compile \
+            analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py \
+            analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_orchestrator.py
+          bash -n analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh
+      - name: Validate JSON profiles and stage boundaries
+        run: |
+          python -m json.tool analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/PROFILE.json >/dev/null
+          python -m json.tool analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/PROVENANCE.json >/dev/null
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("analysis/CCC_BBN_NETWORK_20261114/p2_fullnet")
+          profile = json.loads((root / "PROFILE.json").read_text())
+          prod = profile["production_config"]
+          probe = {**prod, **profile["probe_overrides_only"]}
+
+          assert profile["id"] == "P2_FULLNET"
+          assert profile["alias"] == "full_59_427"
+          assert prod["network"] == "large" and "amax" not in prod
+          assert profile["network"]["expected_nuclides_LT"] == 59
+          assert profile["network"]["expected_nuclear_reactions_LT"] == 427
+          assert profile["network"]["expected_total_channels_LT_including_weak"] == 428
+          assert probe["rate_grid_npts"] == 1000
+          assert probe["numerical_precision"] == 1e-6
+          for key in (
+              "sampling_temperature_per_decade", "sampling_nTOp_per_decade",
+              "sampling_nTOp_thermal_per_decade", "T_start_cosmo_MeV",
+              "T_end_MeV", "vegas_n_eval", "vegas_n_itn",
+          ):
+              assert probe[key] == prod[key], key
+          assert profile["acceptance"]["scientific_acceptance"] is False
+          assert profile["execution"]["automatic_retry"] is False
+          assert profile["execution"]["resume_after_timeout"] is False
+          print("P2 profile/static gates: PASS (no solver was run)")
+          PY
