@@ -1,6 +1,6 @@
 # S0-N1 — preregistered numerical-convergence study
 
-**State:** DESIGN_FROZEN / NOT_EXECUTED  
+**State:** DESIGN_DRAFT_FOR_REVIEW / NOT_EXECUTED  
 **Scientific acceptance:** false  
 **Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)  
 **Upstream:** PRIMAT 0.3.3, commit \`6f7e5680614fb119d65a6c9c65a292240b27c61e\`
@@ -94,9 +94,9 @@ The implementation must refuse:
 
 All caches live in run-specific overlays; the pinned upstream checkout stays clean and unchanged. A cache-build operation is not silently included in a solver run: it gets its own receipt, runtime accounting and freeze.
 
-## 5. Preregistered numerical budgets
+## 5. Proposed preregistered numerical budgets
 
-The following are **project-internal numerical-stability budgets**, not published PRIMAT physics uncertainties. They are set before R1–R8 are observed at one tenth of the corresponding pinned PRIMAT regression tolerances where available.
+The following are **proposed project-internal numerical-stability budgets**, not published PRIMAT physics uncertainties. They are set in this draft before R1–R8 are observed, at one tenth of the corresponding pinned PRIMAT regression tolerances where available. They require owner review/ratification before the run matrix is enabled.
 
 | Quantity | Numerical budget for a refined result relative to R0 |
 |---|---:|
@@ -190,4 +190,4 @@ Every result must bind to the frozen PRIMAT commit, exact run-config SHA-256, co
 - No likelihood fit, BBN observational comparison, S1/S2/BH1/S3 calculation, independent solver, or ToV “now” claim is part of S0-N1.
 - No result may be described as scientific acceptance or evidence for CCC+TL merely because it passes the numerical gates.
 
-The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json); artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md). Execution remains disabled in this design PR.
+The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json); artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md). Execution remains disabled in this design PR. The matrix and budgets are a proposed preregistration for review, not yet an owner-ratified freeze.
