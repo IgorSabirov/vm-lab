@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-14T10:32:00.629776+00:00",
+  "type": "RuntimeError",
+  "error": "Stage failed: CACHE_BG2000; preserved logs and completed eras",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/vm-lab/vm-lab/analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py\", line 118, in main\n    for rid in ['CACHE_BG2000','CACHE_BG4000','CACHE_BG8000']:process(root,up,rid,req,start)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/vm-lab/vm-lab/analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py\", line 92, in process\n    if proc.returncode!=0:raise RuntimeError('Stage failed: '+rid+'; preserved logs and completed eras')\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Stage failed: CACHE_BG2000; preserved logs and completed eras\n",
+  "scientific_acceptance": false
+}

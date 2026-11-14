@@ -1,0 +1,125 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃         ░█▀█░█▀▄░▀█▀░█▄█░█▀█░▀█▀              ┃
+┃         ░█▀▀░█▀▄░░█░░█░█░█▀█░░█░              ┃
+┃         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀░              ┃
+┃                                               ┃
+┃  Welcome to PRIMAT (python backend) v0.0.0+unknown    ┃
+┃                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+[opts-py] backend              = python
+[opts-py] network              = 'large' (amax=8)
+[opts-py] numerical_precision  = 1e-10
+[opts-py] radiative_corrections    = True
+[opts-py] finite_mass_corrections  = True
+[opts-py] thermal_corrections      = True
+[opts-py] spectral_distortions     = True
+[opts-py] tau_n_normalization      = True
+[opts-py] tau_n                = 878.4 s
+[opts-py] Omegabh2             = 0.02242 (eta0b=6.13744e-10)
+[opts-py] DeltaNeff            = 0
+[init-py] Electron-thermo tables loaded from cache (2000 points).
+[init-py] QED pressure corrections tables loaded.
+[rates-py] Building 'large' network from text lists.
+[rates-py] MT network: 17 reactions over 12 nuclides.
+[rates-py] MT nuclides: n, p, H2, H3, He3, He4, Li7, Be7, He6, Li8, Li6, B8
+[rates-py] LT network: 66 reactions over 12 nuclides.
+[rates-py] LT nuclides: n, p, H2, H3, He3, He4, Li7, Be7, He6, Li8, Li6, B8
+------------------------------------------------------------
+Loaded 67 reactions (LT network):
+------------------------------------------------------------
+  n <-> p                           [weak n<->p]
+  B8 <-> He4 + He4                  [9.001911e-01 s⁻¹  (T1/2=0.77 s, Audi)]
+  B8 + H2 <-> Be7 + He3             [TALYS2, Koning et al. 2023]
+  B8 + n <-> Be7 + H2               [TALYS2, Koning et al. 2023]
+  B8 + n <-> Li6 + He3              [TALYS2, Koning et al. 2023]
+  B8 + n <-> He4 + He4 + p          [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> Be7 + He4             [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> He4 + He4 + He3       [TALYS2, Koning et al. 2023]
+  Be7 + He3 <-> p + p + He4 + He4   [TALYS2, Koning et al. 2023]
+  Be7 <-> Li7                       [1.505449e-07 s⁻¹  (T1/2=4.604e+06 s, Audi)]
+  Be7 + H2 <-> He4 + He4 + p        [Rijal et al. 2019]
+  Be7 + n <-> Li7 + p               [de Souza et al. 2020]
+  Be7 + n <-> He4 + He4             [Barbagallo et al. 2016]
+  Be7 + p <-> B8                    [NACRE, Xu et al. 2010, 2011]
+  Be7 + H3 <-> Li6 + He4            [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> Li7 + He3            [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> He4 + He4 + H2       [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> He4 + He4 + n + p    [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  He3 + He3 <-> He4 + p + p         [NACRE, Xu et al. 2010, 2011]
+  He3 + He4 <-> Be7                 [Iliadis et al. 2016]
+  He3 + H2 <-> He4 + p              [de Souza et al. 2019]
+  He3 + n <-> He4                   [Wagoner 1969]
+  He3 + n <-> H3 + p                [Descouvemont et al. 2004]
+  He3 + H3 <-> Li6                  [Fukugita& Kajino 1990]
+  He3 + H3 <-> He4 + H2             [Caughlan& Fowler 1988]
+  He3 + H3 <-> He4 + n + p          [Caughlan& Fowler 1988]
+  He6 <-> Li6                       [8.592379e-01 s⁻¹  (T1/2=0.8067 s, Audi)]
+  Li6 + He3 <-> Be7 + H2            [TALYS2, Koning et al. 2023]
+  Li6 + He3 <-> He4 + He4 + p       [TALYS2, Koning et al. 2023]
+  Li6 + H2 <-> Be7 + n              [Malaney& Fowler 1989]
+  Li6 + H2 <-> Li7 + p              [Malaney& Fowler 1989]
+  Li6 + n <-> Li7                   [Malaney& Fowler 1989]
+  Li6 + n <-> H3 + He4              [Caughlan& Fowler 1988]
+  Li6 + p <-> Be7                   [NACRE, Xu et al. 2010, 2011]
+  Li6 + p <-> He3 + He4             [NACRE, Xu et al. 2010, 2011]
+  Li6 + H3 <-> Li7 + H2             [TALYS2, Koning et al. 2023]
+  Li6 + H3 <-> Li8 + p              [TALYS2, Koning et al. 2023]
+  Li6 + H3 <-> He4 + He4 + n        [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> Li6 + He4           [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> He4 + He4 + H2      [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> He4 + He4 + n + p   [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  Li7 + H2 <-> Li8 + p              [Malaney& Fowler 1989]
+  Li7 + H2 <-> He4 + He4 + n        [Coc et al. 2012]
+  Li7 + n <-> Li8                   [Malaney& Fowler 1989 & Heil et al. 1998]
+  Li7 + p <-> He4 + He4             [Descouvemont et al. 2004]
+  Li7 + p <-> He4 + He4             [NACRE, Xu et al. 2010, 2011]
+  Li7 + H3 <-> He4 + He4 + n + n    [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  Li8 + He3 <-> Li7 + He4           [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> He4 + He4 + H3      [TALYS2, Koning et al. 2023]
+  Li8 <-> He4 + He4                 [8.248806e-01 s⁻¹  (T1/2=0.8403 s, Audi)]
+  Li8 + H2 <-> Li7 + H3             [Hashimoto et al. 2009]
+  Li8 + p <-> He4 + He4 + n         [Mendes et al. 2012]
+  He4 + n + n <-> He6               [Efros et al. 1996]
+  He4 + n + p <-> Li6               [Caughlan& Fowler 1988]
+  H2 + He4 <-> Li6                  [Trezzi et al. (Luna) 2017]
+  H2 + H2 <-> He3 + n               [Gómez et al. 2017]
+  H2 + H2 <-> He4                   [NACRE, Xu et al. 2010, 2011]
+  H2 + H2 <-> H3 + p                [Gómez et al. 2017]
+  H2 + n <-> H3                     [Nagai et al. 2006]
+  H2 + p <-> He3                    [Moscoso et al. 2021]
+  n + p <-> H2                      [Ando et al. 2006]
+  p + p + n <-> H2 + p              [Caughlan& Fowler 1988]
+  H3 <-> He3                        [1.782872e-09 s⁻¹  (T1/2=3.888e+08 s, Audi)]
+  H3 + He4 <-> Li7                  [Descouvemont et al. 2004]
+  H3 + H2 <-> He4 + n               [de Souza et al. 2019]
+  H3 + p <-> He4                    [Serpico et al. 2004]
+  H3 + H3 <-> He4 + n + n           [Nagai et al. 2006]
+[bg-py] Solving cosmological background: a(T), t(T) relations ...
+[bg-py] Background a(T), t(T) ready in 1.07 s
+[weak-py] background n<->p weak rates: loaded from cache.
+[weak-py] n <--> p thermal corrections loaded from cache.
+[init-py] Initialisation complete in 1.3 s
+[nucl-py] Solving neutron decoupling at high temperature era (T = 10 -> 1 MeV)
+[nucl-py] [HT] Finished solve_ivp in 0.03 s
+[nucl-py] Solving nuclear network at mid temperature era (T = 1 -> 0.11 MeV)
+[nucl-py] [MT] Finished solve_ivp (large network, 12 nuclides) in 1.16 s
+[nucl-py] Solving nuclear network at low temperature era (T = 0.11 -> 0.001 MeV)
+[nucl-py] [LT] Finished solve_ivp (large network, 12 nuclides) in 48.42 s
+--------------------------------------------------
+Primordial abundances (12 nuclides) at T = 0.001 MeV
+--------------------------------------------------
+  Yn    = 3.996285e-16
+  Yp    = 7.529380e-01
+  YH2   = 1.834616e-05
+  YH3   = 5.839111e-08
+  YHe3  = 7.770299e-06
+  YHe4  = 6.175045e-02
+  YLi7  = 9.177394e-11
+  YBe7  = 3.223305e-10
+  YHe6  = 1.101338e-60
+  YLi8  = 8.640811e-33
+  YLi6  = 5.878388e-15
+  YB8   = 9.039849e-34

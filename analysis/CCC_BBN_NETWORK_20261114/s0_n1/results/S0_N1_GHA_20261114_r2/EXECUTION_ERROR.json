@@ -1,0 +1,7 @@
+{
+  "utc": "2026-11-14T10:19:24.266146+00:00",
+  "type": "RuntimeError",
+  "error": "BLAS/thread environment differs from R0",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/vm-lab/vm-lab/analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py\", line 116, in main\n    validate_environment(root);preflight(root,up);append(root,{'kind':'AUTHORIZATION','request':req,'workflow_url':'https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID']})\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/vm-lab/vm-lab/analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py\", line 63, in validate_environment\n    if signature(e['threadpools'])!=signature(old['threadpools']):raise RuntimeError('BLAS/thread environment differs from R0')\n                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: BLAS/thread environment differs from R0\n",
+  "scientific_acceptance": false
+}

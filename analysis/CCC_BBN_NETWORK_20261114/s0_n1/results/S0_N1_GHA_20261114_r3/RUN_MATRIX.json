@@ -1,0 +1,301 @@
+{
+  "schema": "vm-lab-s0-n1-run-matrix-v1",
+  "status": "AUTHORIZED_V1_2_WITH_R_ENV_NOT_YET_RUN",
+  "execution_enabled": true,
+  "scientific_acceptance": false,
+  "preregistration": "N1_PREREGISTRATION.json",
+  "matrix_definition": "Each R1-R8 entry is one complete PRIMAT three-era integration. R0 reuses the previously completed P2 COLD run and is not recomputed.",
+  "baseline_R0": {
+    "disposition": "REUSE_EXISTING_P2_COLD_NO_RERUN",
+    "source": "PR #47, P2_GHA_20261114_r1/runs/COLD",
+    "report_url": "https://github.com/IgorSabirov/vm-lab/blob/s0-fullnet/analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/REPORT.md",
+    "result_path": "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/results/P2_GHA_20261114_r1/runs/COLD/RESULT.json",
+    "execution_manifest_path": "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/results/P2_GHA_20261114_r1/runs/COLD/S0_EXECUTION_MANIFEST.json",
+    "execution_manifest_git_blob": "0058cae202f6a591f553701d143de7badc32d518",
+    "configuration": {
+      "numerical_precision": 1e-10,
+      "effective_rtol_by_era": {
+        "HT": 1e-10,
+        "MT": 1e-10,
+        "LT": 1e-09
+      },
+      "rate_grid_npts": 4000,
+      "rate_grid_T9_min": 0.001,
+      "rate_grid_T9_max": 10,
+      "sampling_temperature_per_decade": 2000,
+      "network": "large",
+      "amax": null,
+      "Omegabh2": 0.02242,
+      "T_start_cosmo_MeV": 100.0,
+      "T_end_MeV": 0.001,
+      "tau_n": 878.4,
+      "sampling_nTOp_per_decade": 125,
+      "sampling_nTOp_thermal_per_decade": 25,
+      "vegas_n_eval": 100000,
+      "vegas_n_itn": 50
+    },
+    "observables": {
+      "YPBBN": 0.2470017916450453,
+      "DoH": 2.436609802197279e-05,
+      "Neff": 3.0439772985579183,
+      "He3oH": 1.039752185673265e-05,
+      "Li7oH": 5.499801934010039e-10,
+      "YCNO_diagnostic_only": 7.276222903021217e-15
+    },
+    "integrity_facts": {
+      "cold_warm_bitwise_identical": true,
+      "eras_completed": [
+        "HT",
+        "MT",
+        "LT"
+      ],
+      "LT_species": 59,
+      "LT_channels_including_weak": 428,
+      "maximum_global_baryon_residual": 1.652455949852083e-12,
+      "minimum_raw_abundance": -2.3634321680250355e-17,
+      "independent_solver": false,
+      "convergence_test_performed": false
+    }
+  },
+  "fixed_configuration": {
+    "network": "large",
+    "amax": null,
+    "Omegabh2": 0.02242,
+    "T_start_cosmo_MeV": 100.0,
+    "T_end_MeV": 0.001,
+    "tau_n": 878.4,
+    "sampling_nTOp_per_decade": 125,
+    "sampling_nTOp_thermal_per_decade": 25,
+    "vegas_n_eval": 100000,
+    "vegas_n_itn": 50,
+    "use_numba": false,
+    "strict_params": true,
+    "incomplete_decoupling": true,
+    "spectral_distortions": true,
+    "analytic_distortions": false,
+    "QED_corrections": true,
+    "nuclear_qed_corrections": true,
+    "radiative_corrections": true,
+    "finite_mass_corrections": true,
+    "thermal_corrections": true,
+    "tau_n_normalization": true,
+    "decay_era": false,
+    "backend": "python",
+    "solver_methods_by_era": {
+      "HT": "LSODA",
+      "MT": "BDF",
+      "LT": "BDF"
+    },
+    "absolute_tolerances_by_era": {
+      "HT": 1e-10,
+      "MT": 1e-15,
+      "LT": 1e-26
+    },
+    "note": "Absolute tolerances remain fixed during the numerical_precision sweep. This design therefore tests configured relative-tolerance sensitivity at these absolute-tolerance floors, not every possible atol refinement.",
+    "rate_grid_T9_min": 0.001,
+    "rate_grid_T9_max": 10,
+    "resolved_config_inheritance": "Every resolved PRIMAT config field and physical constant in the R0 execution manifest is held fixed by exact type and value unless explicitly listed as a changed field in the corresponding run-matrix row.",
+    "allowed_run_specific_config_differences": {
+      "R1": [
+        "numerical_precision"
+      ],
+      "R2": [
+        "numerical_precision"
+      ],
+      "R3": [
+        "rate_grid_npts"
+      ],
+      "R4": [
+        "rate_grid_npts"
+      ],
+      "R5": [
+        "sampling_temperature_per_decade"
+      ],
+      "R6": [
+        "sampling_temperature_per_decade"
+      ],
+      "R7": [
+        "numerical_precision",
+        "rate_grid_npts",
+        "sampling_temperature_per_decade"
+      ],
+      "R8": [
+        "numerical_precision",
+        "rate_grid_npts",
+        "sampling_temperature_per_decade"
+      ],
+      "R_NET_AMAX8": [
+        "amax"
+      ]
+    }
+  },
+  "runs": [
+    {
+      "id": "R0",
+      "role": "existing_baseline",
+      "execute": false,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R1",
+      "role": "rtol_intermediate",
+      "execute": true,
+      "numerical_precision": 3e-11,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R2",
+      "role": "rtol_fine",
+      "execute": true,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R3",
+      "role": "rate_grid_intermediate",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 8000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R4",
+      "role": "rate_grid_fine",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 2000,
+      "cache_group": "BG2000"
+    },
+    {
+      "id": "R5",
+      "role": "background_grid_intermediate",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 4000,
+      "cache_group": "BG4000"
+    },
+    {
+      "id": "R6",
+      "role": "background_grid_fine",
+      "execute": true,
+      "numerical_precision": 1e-10,
+      "rate_grid_npts": 4000,
+      "sampling_temperature_per_decade": 8000,
+      "cache_group": "BG8000"
+    },
+    {
+      "id": "R7",
+      "role": "joint_intermediate",
+      "execute": true,
+      "numerical_precision": 3e-11,
+      "rate_grid_npts": 8000,
+      "sampling_temperature_per_decade": 4000,
+      "cache_group": "BG4000"
+    },
+    {
+      "id": "R8",
+      "role": "joint_fine",
+      "execute": true,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "cache_group": "BG8000"
+    }
+  ],
+  "separate_network_control": {
+    "id": "R_NET_AMAX8",
+    "execute": true,
+    "network": "large",
+    "amax": 8,
+    "numerical_precision": 1e-10,
+    "rate_grid_npts": 4000,
+    "sampling_temperature_per_decade": 2000,
+    "cache_group": "BG2000",
+    "role": "separate_network_truncation_diagnostic",
+    "compare_only_shared_light_species": true,
+    "expected_LT_species": 12,
+    "expected_channel_inventory": "derive_and_record_from_pinned_source_audit_before_run",
+    "acceptance_reference": "Pinned PRIMAT NUCLIDE_REL_TOL=1e-4 is a network-comparison reference only; it is not a numerical-convergence criterion."
+  },
+  "cache_groups": {
+    "BG2000": {
+      "sampling_temperature_per_decade": 2000,
+      "disposition": "reuse_S0_frozen_cache",
+      "nonthermal_file": "nTOp_7e3af87bd0404e0a.txt",
+      "nonthermal_git_blob_sha": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
+      "thermal_file": "nTOp_thermal_cfdb4d324bb5651f.txt",
+      "thermal_git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9"
+    },
+    "BG4000": {
+      "sampling_temperature_per_decade": 4000,
+      "disposition": "generate_once_then_freeze_nonthermal_weak_cache",
+      "consumers": [
+        "R5",
+        "R7"
+      ]
+    },
+    "BG8000": {
+      "sampling_temperature_per_decade": 8000,
+      "disposition": "generate_once_then_freeze_nonthermal_weak_cache",
+      "consumers": [
+        "R6",
+        "R8"
+      ]
+    }
+  },
+  "numerical_budget": {
+    "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
+    "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
+    "YPBBN_absolute": 1e-06,
+    "DoH_absolute": 3e-10,
+    "Neff_absolute": 1e-06,
+    "He3oH_relative": 1e-05,
+    "Li7oH_relative": 1e-05,
+    "final_light_species_relative": 1e-05,
+    "final_light_species": [
+      "n",
+      "p",
+      "H2",
+      "H3",
+      "He3",
+      "He4",
+      "Li7",
+      "Be7"
+    ],
+    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
+    "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
+    "upstream_reference_tolerances": {
+      "YPBBN_absolute": 1e-05,
+      "DoH_absolute": 3e-09,
+      "Neff_absolute": 1e-05,
+      "NUCLIDE_REL_TOL": 0.0001,
+      "source": "PRIMAT tests/reference_values.py at the pinned commit"
+    },
+    "final_species_floor": 1e-300
+  },
+  "interpretation": "The amax=8 comparison is a same-solver network truncation diagnostic, not an additional convergence rung or independent solver.",
+  "review_gate": "Owner instructed launch after explicit R_ENV proposal; execute within frozen matrix/budgets and measured target admission without another permission request.",
+  "environment_control": {
+    "id": "R_ENV",
+    "role": "matched_environment_anchor",
+    "execute": true,
+    "numerical_precision": 1e-10,
+    "rate_grid_npts": 4000,
+    "sampling_temperature_per_decade": 2000,
+    "cache_group": "BG2000",
+    "historical_reference": "R0",
+    "rule": "Exact R0 configuration on current executor; primary convergence and network comparisons use R_ENV. R_ENV minus R0 is separately reported; R0 untouched."
+  },
+  "primary_anchor": "R_ENV",
+  "historical_reference": "R0"
+}

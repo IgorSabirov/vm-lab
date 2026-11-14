@@ -1,0 +1,22 @@
+# S0-N1 result
+
+Engineering: **ENGINEERING_PASS**. Cache: **CACHE_INTEGRITY_PASS**. Numerical outcome: **NUMERICAL_CONVERGENCE_FAIL**.
+
+Stability budgets: **NUMERICAL_STABILITY_FAIL**. Fixed absolute tolerances; no scientific acceptance.
+
+| Run | Yp | D/H | Neff |
+|---|---:|---:|---:|
+| R0 | 0.2470017916450453 | 2.436609802197279e-05 | 3.043977298557918 |
+| R_ENV | 0.2470017916450453 | 2.436609802197279e-05 | 3.043977298557918 |
+| R_CACHE | 0.2470017906758809 | 2.436609796843454e-05 | 3.043977298557918 |
+| R1 | 0.2470017921310378 | 2.436609841517788e-05 | 3.043977298557918 |
+| R2 | 0.2470017922898291 | 2.436609873287711e-05 | 3.043977298557918 |
+| R3 | 0.2470017915691436 | 2.436610460682582e-05 | 3.043977298557918 |
+| R4 | 0.2470017909014282 | 2.436610553426276e-05 | 3.043977298557918 |
+| R5 | 0.2470017844773339 | 2.436610980225114e-05 | 3.043977298557918 |
+| R6 | 0.2470017834203983 | 2.436611288722046e-05 | 3.043977298557918 |
+| R7 | 0.2470017871096636 | 2.436611733824643e-05 | 3.043977298557918 |
+| R8 | 0.2470017858883068 | 2.436612244195926e-05 | 3.043977298557918 |
+| R_NET_AMAX8 | 0.2470017906921741 | 2.436609843825893e-05 | 3.043977298557918 |
+
+All raw data, per-era baryon decomposition, axis order flags, joint residuals and trajectory comparisons are in the adjacent JSON artifacts. A failed numerical budget is a measured numerical result, not a failed physical model. INCONCLUSIVE preserves unresolved order/atol questions; thresholds were not changed after observing results.
