@@ -1,0 +1,538 @@
+{
+  "F0": {
+    "eras": {
+      "HT": {
+        "species_order": [
+          "n",
+          "p"
+        ],
+        "B_initial_raw": 1.0,
+        "B_final_raw": 1.0000000000000022,
+        "integration_drift": 2.220446049250313e-15,
+        "max_in_era_drift": 2.4424906541753444e-15,
+        "max_global_residual": 2.4424906541753444e-15,
+        "raw_min": 0.2580703227443853
+      },
+      "MT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8"
+        ],
+        "B_initial_raw": 1.0000000000016542,
+        "B_final_raw": 1.000000000001654,
+        "integration_drift": -2.220446049250313e-16,
+        "max_in_era_drift": 1.7763568394002505e-15,
+        "max_global_residual": 1.6544543512964083e-12,
+        "raw_min": -5.154275116807662e-16,
+        "initial_composite_Saha_contribution": 1.6519523623177805e-12
+      },
+      "LT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8",
+          "Li9",
+          "Be9",
+          "Be10",
+          "Be11",
+          "Be12",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N16",
+          "N17",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "F17",
+          "F18",
+          "F19",
+          "F20",
+          "Ne18",
+          "Ne19",
+          "Ne20",
+          "Ne21",
+          "Ne22",
+          "Ne23",
+          "Na20",
+          "Na21",
+          "Na22",
+          "Na23"
+        ],
+        "B_initial_raw": 1.000000000001654,
+        "B_final_raw": 1.0000000000016573,
+        "integration_drift": 3.3306690738754696e-15,
+        "max_in_era_drift": 1.2878587085651816e-14,
+        "max_global_residual": 1.66688884917221e-12,
+        "raw_min": -1.0018930190350932e-28
+      }
+    },
+    "handoffs": {
+      "HT_to_MT": {
+        "B_before_raw": 1.0000000000000022,
+        "B_after_raw": 1.0000000000016542,
+        "delta_B": 1.652011860642233e-12,
+        "composite_Saha_sum_A_Y": 1.6519523623177805e-12,
+        "renormalized": false
+      },
+      "MT_to_LT": {
+        "B_before_raw": 1.000000000001654,
+        "B_after_raw": 1.000000000001654,
+        "delta_B": 0.0,
+        "species_mapping_verified": true
+      }
+    },
+    "postprocessing": {
+      "B_LT_final_raw": 1.0000000000016573,
+      "B_final_reported": 1.0000000000016573,
+      "clamp_and_zero_fill_delta_B": 0.0
+    },
+    "closure": {
+      "initial_B_minus_one": 0.0,
+      "decomposed_final_B_minus_one": 1.6573409311604337e-12,
+      "direct_final_B_minus_one": 1.6573409311604337e-12,
+      "decomposition_roundoff_residual": 0.0
+    }
+  },
+  "F_RATE": {
+    "eras": {
+      "HT": {
+        "species_order": [
+          "n",
+          "p"
+        ],
+        "B_initial_raw": 1.0,
+        "B_final_raw": 1.0000000000000022,
+        "integration_drift": 2.220446049250313e-15,
+        "max_in_era_drift": 2.4424906541753444e-15,
+        "max_global_residual": 2.4424906541753444e-15,
+        "raw_min": 0.2580703227443853
+      },
+      "MT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8"
+        ],
+        "B_initial_raw": 1.0000000000016542,
+        "B_final_raw": 1.0000000000016551,
+        "integration_drift": 8.881784197001252e-16,
+        "max_in_era_drift": 1.5543122344752192e-15,
+        "max_global_residual": 1.6557866189259585e-12,
+        "raw_min": -5.129445388945749e-16,
+        "initial_composite_Saha_contribution": 1.6519523623177805e-12
+      },
+      "LT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8",
+          "Li9",
+          "Be9",
+          "Be10",
+          "Be11",
+          "Be12",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N16",
+          "N17",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "F17",
+          "F18",
+          "F19",
+          "F20",
+          "Ne18",
+          "Ne19",
+          "Ne20",
+          "Ne21",
+          "Ne22",
+          "Ne23",
+          "Na20",
+          "Na21",
+          "Na22",
+          "Na23"
+        ],
+        "B_initial_raw": 1.0000000000016551,
+        "B_final_raw": 1.0000000000015878,
+        "integration_drift": -6.727951529228449e-14,
+        "max_in_era_drift": 6.772360450213455e-14,
+        "max_global_residual": 1.6626700016786344e-12,
+        "raw_min": 0.0
+      }
+    },
+    "handoffs": {
+      "HT_to_MT": {
+        "B_before_raw": 1.0000000000000022,
+        "B_after_raw": 1.0000000000016542,
+        "delta_B": 1.652011860642233e-12,
+        "composite_Saha_sum_A_Y": 1.6519523623177805e-12,
+        "renormalized": false
+      },
+      "MT_to_LT": {
+        "B_before_raw": 1.0000000000016551,
+        "B_after_raw": 1.0000000000016551,
+        "delta_B": 0.0,
+        "species_mapping_verified": true
+      }
+    },
+    "postprocessing": {
+      "B_LT_final_raw": 1.0000000000015878,
+      "B_final_reported": 1.0000000000015878,
+      "clamp_and_zero_fill_delta_B": 0.0
+    },
+    "closure": {
+      "initial_B_minus_one": 0.0,
+      "decomposed_final_B_minus_one": 1.5878409698188989e-12,
+      "direct_final_B_minus_one": 1.5878409698188989e-12,
+      "decomposition_roundoff_residual": 0.0
+    }
+  },
+  "F_ATOL": {
+    "eras": {
+      "HT": {
+        "species_order": [
+          "n",
+          "p"
+        ],
+        "B_initial_raw": 1.0,
+        "B_final_raw": 1.0000000000000018,
+        "integration_drift": 1.7763568394002505e-15,
+        "max_in_era_drift": 2.6645352591003757e-15,
+        "max_global_residual": 2.6645352591003757e-15,
+        "raw_min": 0.2580703229478051
+      },
+      "MT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8"
+        ],
+        "B_initial_raw": 1.0000000000016536,
+        "B_final_raw": 1.0000000000016545,
+        "integration_drift": 8.881784197001252e-16,
+        "max_in_era_drift": 1.7763568394002505e-15,
+        "max_global_residual": 1.6553425297161084e-12,
+        "raw_min": -6.931559796123072e-18,
+        "initial_composite_Saha_contribution": 1.6519523631669772e-12
+      },
+      "LT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8",
+          "Li9",
+          "Be9",
+          "Be10",
+          "Be11",
+          "Be12",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N16",
+          "N17",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "F17",
+          "F18",
+          "F19",
+          "F20",
+          "Ne18",
+          "Ne19",
+          "Ne20",
+          "Ne21",
+          "Ne22",
+          "Ne23",
+          "Na20",
+          "Na21",
+          "Na22",
+          "Na23"
+        ],
+        "B_initial_raw": 1.0000000000016545,
+        "B_final_raw": 1.0000000000016616,
+        "integration_drift": 7.105427357601002e-15,
+        "max_in_era_drift": 2.1094237467877974e-14,
+        "max_global_residual": 1.6755485887642863e-12,
+        "raw_min": -3.1255781057469725e-31
+      }
+    },
+    "handoffs": {
+      "HT_to_MT": {
+        "B_before_raw": 1.0000000000000018,
+        "B_after_raw": 1.0000000000016536,
+        "delta_B": 1.651789816037308e-12,
+        "composite_Saha_sum_A_Y": 1.6519523631669772e-12,
+        "renormalized": false
+      },
+      "MT_to_LT": {
+        "B_before_raw": 1.0000000000016545,
+        "B_after_raw": 1.0000000000016545,
+        "delta_B": 0.0,
+        "species_mapping_verified": true
+      }
+    },
+    "postprocessing": {
+      "B_LT_final_raw": 1.0000000000016616,
+      "B_final_reported": 1.0000000000016613,
+      "clamp_and_zero_fill_delta_B": -2.220446049250313e-16
+    },
+    "closure": {
+      "initial_B_minus_one": 0.0,
+      "decomposed_final_B_minus_one": 1.6613377340490842e-12,
+      "direct_final_B_minus_one": 1.6613377340490842e-12,
+      "decomposition_roundoff_residual": 0.0
+    }
+  },
+  "F_REPEAT": {
+    "eras": {
+      "HT": {
+        "species_order": [
+          "n",
+          "p"
+        ],
+        "B_initial_raw": 1.0,
+        "B_final_raw": 1.0000000000000022,
+        "integration_drift": 2.220446049250313e-15,
+        "max_in_era_drift": 2.4424906541753444e-15,
+        "max_global_residual": 2.4424906541753444e-15,
+        "raw_min": 0.2580703227443853
+      },
+      "MT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8"
+        ],
+        "B_initial_raw": 1.0000000000016542,
+        "B_final_raw": 1.000000000001654,
+        "integration_drift": -2.220446049250313e-16,
+        "max_in_era_drift": 1.7763568394002505e-15,
+        "max_global_residual": 1.6544543512964083e-12,
+        "raw_min": -5.154275116807662e-16,
+        "initial_composite_Saha_contribution": 1.6519523623177805e-12
+      },
+      "LT": {
+        "species_order": [
+          "n",
+          "p",
+          "H2",
+          "H3",
+          "He3",
+          "He4",
+          "Li7",
+          "Be7",
+          "He6",
+          "Li8",
+          "Li6",
+          "B8",
+          "Li9",
+          "Be9",
+          "Be10",
+          "Be11",
+          "Be12",
+          "B10",
+          "B11",
+          "B12",
+          "B13",
+          "B14",
+          "B15",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "N12",
+          "N13",
+          "N14",
+          "N15",
+          "N16",
+          "N17",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "F17",
+          "F18",
+          "F19",
+          "F20",
+          "Ne18",
+          "Ne19",
+          "Ne20",
+          "Ne21",
+          "Ne22",
+          "Ne23",
+          "Na20",
+          "Na21",
+          "Na22",
+          "Na23"
+        ],
+        "B_initial_raw": 1.000000000001654,
+        "B_final_raw": 1.0000000000016573,
+        "integration_drift": 3.3306690738754696e-15,
+        "max_in_era_drift": 1.2878587085651816e-14,
+        "max_global_residual": 1.66688884917221e-12,
+        "raw_min": -1.0018930190350932e-28
+      }
+    },
+    "handoffs": {
+      "HT_to_MT": {
+        "B_before_raw": 1.0000000000000022,
+        "B_after_raw": 1.0000000000016542,
+        "delta_B": 1.652011860642233e-12,
+        "composite_Saha_sum_A_Y": 1.6519523623177805e-12,
+        "renormalized": false
+      },
+      "MT_to_LT": {
+        "B_before_raw": 1.000000000001654,
+        "B_after_raw": 1.000000000001654,
+        "delta_B": 0.0,
+        "species_mapping_verified": true
+      }
+    },
+    "postprocessing": {
+      "B_LT_final_raw": 1.0000000000016573,
+      "B_final_reported": 1.0000000000016573,
+      "clamp_and_zero_fill_delta_B": 0.0
+    },
+    "closure": {
+      "initial_B_minus_one": 0.0,
+      "decomposed_final_B_minus_one": 1.6573409311604337e-12,
+      "direct_final_B_minus_one": 1.6573409311604337e-12,
+      "decomposition_roundoff_residual": 0.0
+    }
+  }
+}
