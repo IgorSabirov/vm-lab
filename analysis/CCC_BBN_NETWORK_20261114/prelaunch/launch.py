@@ -43,7 +43,7 @@ def main():
     for k in ('OPENBLAS_NUM_THREADS','OMP_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS'):
         env[k]='1'
     env['PYTHONDONTWRITEBYTECODE']='1'
-    command=[sys.executable,str(Path(__file__).with_name('run.py')),'--upstream',a.upstream,'--config',a.config,'--cache',a.cache,'--out',str(out),'--mode',a.mode,'--alpha',a.alpha,'--f0',a.f0]
+    command=[sys.executable,str(Path(__file__).with_name('run.py')),'--upstream',a.upstream,'--config',a.config,'--cache',a.cache,'--out',str(out),'--mode',a.mode,'--alpha='+a.alpha,'--f0',a.f0]
     def limits():
         resource.setrlimit(resource.RLIMIT_AS,(4*1024**3,4*1024**3))
         resource.setrlimit(resource.RLIMIT_FSIZE,(128*1024**2,128*1024**2))
