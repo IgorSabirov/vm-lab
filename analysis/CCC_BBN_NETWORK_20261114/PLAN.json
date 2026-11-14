@@ -1,0 +1,114 @@
+{
+  "schema": "vm-lab-analysis-design-v1",
+  "id": "CCC_BBN_NETWORK",
+  "version": "0.1",
+  "title": "CCC_BBN_NETWORK v0.1 DESIGN_DRAFT",
+  "date": "2026-11-14",
+  "state": "DESIGN_DRAFT",
+  "base_commit": "bb1c8b672e89d3d736ce3f35e2160c546cf41c10",
+  "scope": "Design of a reproducible BBN network study using pinned PRIMAT; no execution in this package.",
+  "parents": [
+    "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+    "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+    "infra/external/contracts/PRIMAT.json",
+    "infra/external/sources/PRIMAT.json",
+    "link:L10",
+    "question:U006"
+  ],
+  "upstream": {
+    "source_id": "PRIMAT",
+    "repository": "CyrilPitrou/primat",
+    "version": "0.3.3",
+    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61",
+    "tree": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+    "license": "GPL-3.0-or-later",
+    "storage_policy": "UPSTREAM_LINKS_ONLY_NO_VENDORED_CODE_OR_DATA"
+  },
+  "profiles": [
+    {
+      "id": "P0_SMALL",
+      "network": "small",
+      "amax": null,
+      "nuclides": 8,
+      "nuclear_reactions": 12,
+      "weak_channels": 1,
+      "purpose": "engineering smoke and invariant check"
+    },
+    {
+      "id": "P1_LIGHT_REFERENCE",
+      "network": "large",
+      "amax": 8,
+      "nuclides": 12,
+      "nuclear_reactions": 66,
+      "weak_channels": 1,
+      "purpose": "primary precision BBN reference for light-element abundances"
+    },
+    {
+      "id": "P2_EXTENDED",
+      "network": "large",
+      "amax": null,
+      "nuclides": 59,
+      "nuclear_reactions": 427,
+      "weak_channels": 1,
+      "purpose": "extended network diagnostic; heavy tail remains approximate"
+    }
+  ],
+  "reference": {
+    "backend": "python",
+    "network": "large",
+    "amax": 8,
+    "Omegabh2": 0.02242,
+    "T_start_cosmo_MeV": 100.0,
+    "T_end_MeV": 0.001,
+    "sampling_temperature_per_decade": 2000,
+    "rate_grid_npts": 4000,
+    "numerical_precision": 1e-10,
+    "sampling_nTOp_per_decade": 125,
+    "sampling_nTOp_thermal_per_decade": 25,
+    "vegas_n_eval": 100000,
+    "vegas_n_itn": 50,
+    "published_targets": {
+      "YPBBN": 0.24700179,
+      "YPBBN_abs_tolerance": 1e-5,
+      "DoH": 2.4366098e-5,
+      "DoH_abs_tolerance": 3e-9
+    },
+    "cache_identity_required_for_strict_reference": true,
+    "cache_regeneration_may_exceed_published_DoH_tolerance": true
+  },
+  "conditional_common_scaling": {
+    "claim": "If all active nuclear and weak rates, neutron decay and cooling scale by the same 1/f, then Y_i(T_gamma) is invariant for identical initial conditions, eta and dimensionless microphysics.",
+    "physical_derivation_of_common_scaling": "NOT_ESTABLISHED",
+    "requires_rate_coverage_manifest": true,
+    "requires_clock_mapping": true
+  },
+  "execution": {
+    "bbn_run_performed": false,
+    "upstream_code_installed_or_executed": false,
+    "vm_jobs_submitted": 0,
+    "scientific_acceptance": false,
+    "execution_enabled": false,
+    "budget_seconds": null,
+    "executor": null
+  },
+  "blocking_items": [
+    "B01_TIME_VARIABLE_MAPPING",
+    "B02_COMPLETE_RATE_COVERAGE",
+    "B03_BACKGROUND_NEUTRINO_PRESERVATION",
+    "B04_CACHE_IDENTITY_AND_REFERENCE",
+    "B05_DIMENSIONLESS_MICROPHYSICS_MAPPING",
+    "B06_ALPHA_EM_NUCLEAR_QED_MAPPING",
+    "B07_INDEPENDENT_BBN_ORACLE",
+    "B08_RUNTIME_CALIBRATION"
+  ],
+  "not_claimed": [
+    "full BBN abundance simulation",
+    "independent reproduction by a second solver",
+    "physical derivation of the common 1/f scaling",
+    "CCC+TL prediction of non-uniform nuclear rates",
+    "new cosmological fit",
+    "closure of U006, U010, L09 or L10",
+    "scientific promotion of any R/C/L/U status"
+  ]
+}
