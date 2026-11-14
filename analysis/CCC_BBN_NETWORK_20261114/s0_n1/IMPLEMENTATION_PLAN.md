@@ -1,7 +1,7 @@
 # S0-N1 implementation and execution plan
 
-**Status:** design only; no N1 solver run has been attempted.  
-**Execution switch:** disabled until the owner ratifies the exact preregistration and an N1-specific execution package is reviewed.
+**Status:** execution implementation complete; see PRELAUNCH_RESOLUTION.md. No R1–R8 output existed when v1.1 was frozen.
+**Execution switch:** enabled by the current conditional launch instruction; source/cache/environment/resource gates remain mandatory before production.
 
 ## Phase 0 — Ratify the question and thresholds
 
@@ -107,4 +107,4 @@ The execution package should include its own tests for:
 - distinguishing an expected Saha handoff increment from in-era baryon drift;
 - refusing to mark convergence PASS when any one-factor fine-rung gate fails.
 
-Only after these implementation checks pass and the owner has ratified the preregistration should the execution workflow be enabled.
+The current owner instruction authorizes this execution after implementation checks and the published target-machine admission pass. Scientific acceptance remains false.

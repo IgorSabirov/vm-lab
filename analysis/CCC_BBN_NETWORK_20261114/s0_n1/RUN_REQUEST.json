@@ -1,0 +1,24 @@
+{
+  "id": "S0_N1_GHA_20261114_r1",
+  "branch": "s0-n1-design-20261114",
+  "repository": "IgorSabirov/vm-lab",
+  "user_authorization": {
+    "user_instruction": "Подними контекст по гитхабу, доработай и запусти если не будет нерешенных вопросов",
+    "date": "2026-11-14",
+    "scope": "Implement and execute S0-N1 subject to prelaunch gates; no scientific acceptance or merge"
+  },
+  "executor": "GITHUB_ACTIONS_VM",
+  "source_ancestor": "81e05d4c61b2d14ee7f404707c1bdfb35197ba79",
+  "package_cap_seconds": 7200,
+  "process_cap_seconds": 1200,
+  "preparation_cap_seconds": 120,
+  "no_automatic_retry": true,
+  "scientific_acceptance": false,
+  "route_basis": {
+    "prior_same_executor_S0_cold_seconds": 201.48158657099998,
+    "strict_solves_count": 9,
+    "nine_baseline_cost_seconds": 1813.334279139,
+    "reason": "Even nine baseline solves exceed 600 s, before tighter tolerances and grids. Full series uses Actions VM with a fresh target-machine calibration; no local N1 integration.",
+    "initial_preparations": "Three initialization-only cache processes and one maximum-grid coarse probe, each capped at 120 s. Uncalibrated target probe is explicitly bounded. Production admission requires measured complete forecast."
+  }
+}

@@ -1,6 +1,6 @@
 # S0-N1 output contract
 
-This document defines the evidence required from a future execution. It is not evidence that any R1–R8 solve has run.
+This document defines required execution evidence. The implemented workflow produces it; only published process receipts/results establish which runs completed.
 
 ## 1. Per-run identity and execution manifest
 

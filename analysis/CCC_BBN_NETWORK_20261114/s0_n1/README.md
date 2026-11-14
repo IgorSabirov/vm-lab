@@ -1,8 +1,8 @@
 # S0-N1 — preregistered numerical-convergence study
 
-**State:** DESIGN_DRAFT_FOR_REVIEW / NOT_EXECUTED  
-**Scientific acceptance:** false  
-**Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)  
+**State:** IMPLEMENTED / AUTHORIZED_CONDITIONAL_LAUNCH / NOT_YET_RUN
+**Scientific acceptance:** false
+**Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)
 **Upstream:** PRIMAT 0.3.3, commit `6f7e5680614fb119d65a6c9c65a292240b27c61e`
 
 S0-N1 asks a narrower question than a physical validation:
@@ -190,4 +190,21 @@ Every result must bind to the frozen PRIMAT commit, exact run-config SHA-256, co
 - No likelihood fit, BBN observational comparison, S1/S2/BH1/S3 calculation, independent solver, or ToV “now” claim is part of S0-N1.
 - No result may be described as scientific acceptance or evidence for CCC+TL merely because it passes the numerical gates.
 
-The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json), with a compact [RUN_MATRIX.json](RUN_MATRIX.json). Artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md); the staged implementation is described in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). Execution remains disabled in this design PR. The matrix and budgets are a proposed preregistration for review, not yet an owner-ratified freeze.
+The machine-readable preregistration is [N1_PREREGISTRATION.json](N1_PREREGISTRATION.json), with a compact [RUN_MATRIX.json](RUN_MATRIX.json). Artifact and metric definitions are in [OUTPUT_CONTRACT.md](OUTPUT_CONTRACT.md); the staged implementation is described in [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). The current owner instruction authorizes launch after the concrete prelaunch gates close. Matrix values and numerical budgets remain those proposed before any R1–R8 outputs. See PRELAUNCH_RESOLUTION.md for implemented corrections and automatic admission gates.
+
+## Implemented execution package (v1.1)
+
+`common.py`, `worker.py`, `launch.py`, `verify.py` and `test_contracts.py` now implement the protocol. The workflow consumes one explicit RUN_REQUEST, preserves R0, freezes the source/configuration before numerical work, generates only permitted new cache files, publishes target calibration/forecast/admission, executes R1–R8 and R_NET_AMAX8 serially and publishes every completed stage.
+
+The request sets hard ceilings of 7200 s for the complete package, 1200 s per strict solve, 120 s per preparation/probe, 4 GiB address space and 2 GiB output. A measured forecast must fit both package and process ceilings before R1. These are bounded execution limits, not a claim that the work will take two hours.
+
+A separate BG2000 generator-closure check guards against mixing background refinement with a changed table-generation algorithm. It never replaces the shipped baseline cache or repeats R0. Three cache builders and one maximum-grid coarse probe are preparation, not convergence observations. Thermal Monte-Carlo recomputation is forbidden.
+
+The raw absolute tolerances remain fixed. Plateau/order checks are fully specified in preregistration v1.1; a passing observable budget can coexist with INCONCLUSIVE order evidence. No threshold is adjusted to measured R1–R8 outputs.
+
+Run statically without integration:
+
+```sh
+python analysis/CCC_BBN_NETWORK_20261114/s0_n1/test_contracts.py
+python analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py --static-check-only --upstream /path/to/pinned/primat
+```

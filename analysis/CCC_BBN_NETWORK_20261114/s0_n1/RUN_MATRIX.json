@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-s0-n1-run-matrix-v1",
-  "status": "PROPOSED_FOR_REVIEW_NOT_EXECUTED",
-  "execution_enabled": false,
+  "status": "AUTHORIZED_EXECUTION_PROTOCOL_V1_1_NOT_YET_RUN",
+  "execution_enabled": true,
   "scientific_acceptance": false,
   "preregistration": "N1_PREREGISTRATION.json",
   "matrix_definition": "Each R1-R8 entry is one complete PRIMAT three-era integration. R0 reuses the previously completed P2 COLD run and is not recomputed.",
@@ -17,7 +17,7 @@
       "effective_rtol_by_era": {
         "HT": 1e-10,
         "MT": 1e-10,
-        "LT": 1e-9
+        "LT": 1e-09
       },
       "rate_grid_npts": 4000,
       "rate_grid_T9_min": 0.001,
@@ -26,7 +26,7 @@
       "network": "large",
       "amax": null,
       "Omegabh2": 0.02242,
-      "T_start_cosmo_MeV": 100,
+      "T_start_cosmo_MeV": 100.0,
       "T_end_MeV": 0.001,
       "tau_n": 878.4,
       "sampling_nTOp_per_decade": 125,
@@ -36,9 +36,9 @@
     },
     "observables": {
       "YPBBN": 0.2470017916450453,
-      "DoH": 0.00002436609802197279,
+      "DoH": 2.436609802197279e-05,
       "Neff": 3.0439772985579183,
-      "He3oH": 0.00001039752185673265,
+      "He3oH": 1.039752185673265e-05,
       "Li7oH": 5.499801934010039e-10,
       "YCNO_diagnostic_only": 7.276222903021217e-15
     },
@@ -61,7 +61,7 @@
     "network": "large",
     "amax": null,
     "Omegabh2": 0.02242,
-    "T_start_cosmo_MeV": 100,
+    "T_start_cosmo_MeV": 100.0,
     "T_end_MeV": 0.001,
     "tau_n": 878.4,
     "sampling_nTOp_per_decade": 125,
@@ -256,12 +256,12 @@
   "numerical_budget": {
     "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
     "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
-    "YPBBN_absolute": 0.000001,
+    "YPBBN_absolute": 1e-06,
     "DoH_absolute": 3e-10,
-    "Neff_absolute": 0.000001,
-    "He3oH_relative": 0.00001,
-    "Li7oH_relative": 0.00001,
-    "final_light_species_relative": 0.00001,
+    "Neff_absolute": 1e-06,
+    "He3oH_relative": 1e-05,
+    "Li7oH_relative": 1e-05,
+    "final_light_species_relative": 1e-05,
     "final_light_species": [
       "n",
       "p",
@@ -275,14 +275,14 @@
     "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
     "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
     "upstream_reference_tolerances": {
-      "YPBBN_absolute": 0.00001,
-      "DoH_absolute": 3e-9,
-      "Neff_absolute": 0.00001,
+      "YPBBN_absolute": 1e-05,
+      "DoH_absolute": 3e-09,
+      "Neff_absolute": 1e-05,
       "NUCLIDE_REL_TOL": 0.0001,
       "source": "PRIMAT tests/reference_values.py at the pinned commit"
     },
     "final_species_floor": 1e-300
   },
   "interpretation": "The amax=8 comparison is a same-solver network truncation diagnostic, not an additional convergence rung or independent solver.",
-  "review_gate": "Owner must review and explicitly ratify the run matrix, numerical budgets, cache policy and resource policy before execution is enabled."
+  "review_gate": "Current owner instruction authorizes implementation and launch after concrete prelaunch gates close. Matrix and budgets retained; publish resource admission before production."
 }

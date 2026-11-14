@@ -2,8 +2,8 @@
   "schema": "vm-lab-s0-n1-preregistration-v1",
   "protocol_id": "S0-N1",
   "title": "Full-network PRIMAT numerical-convergence study",
-  "status": "DESIGN_PROPOSED_FOR_REVIEW_NOT_EXECUTED",
-  "execution_enabled": false,
+  "status": "AUTHORIZED_EXECUTION_PROTOCOL_V1_1_NOT_YET_RUN",
+  "execution_enabled": true,
   "scientific_acceptance": false,
   "scope": {
     "primary_question": "Quantify numerical sensitivity of standard-BBN observables and abundance trajectories to ODE relative tolerance, nuclear-rate master-grid resolution, and background-temperature-grid resolution, independently and jointly.",
@@ -61,7 +61,7 @@
       "effective_rtol_by_era": {
         "HT": 1e-10,
         "MT": 1e-10,
-        "LT": 1e-9
+        "LT": 1e-09
       },
       "rate_grid_npts": 4000,
       "rate_grid_T9_min": 0.001,
@@ -70,7 +70,7 @@
       "network": "large",
       "amax": null,
       "Omegabh2": 0.02242,
-      "T_start_cosmo_MeV": 100,
+      "T_start_cosmo_MeV": 100.0,
       "T_end_MeV": 0.001,
       "tau_n": 878.4,
       "sampling_nTOp_per_decade": 125,
@@ -80,9 +80,9 @@
     },
     "observables": {
       "YPBBN": 0.2470017916450453,
-      "DoH": 0.00002436609802197279,
+      "DoH": 2.436609802197279e-05,
       "Neff": 3.0439772985579183,
-      "He3oH": 0.00001039752185673265,
+      "He3oH": 1.039752185673265e-05,
       "Li7oH": 5.499801934010039e-10,
       "YCNO_diagnostic_only": 7.276222903021217e-15
     },
@@ -105,7 +105,7 @@
     "network": "large",
     "amax": null,
     "Omegabh2": 0.02242,
-    "T_start_cosmo_MeV": 100,
+    "T_start_cosmo_MeV": 100.0,
     "T_end_MeV": 0.001,
     "tau_n": 878.4,
     "sampling_nTOp_per_decade": 125,
@@ -312,17 +312,18 @@
     ],
     "baseline_thermal_fingerprint": "cfdb4d324bb5651f",
     "baseline_nonthermal_fingerprint": "7e3af87bd0404e0a",
-    "new_fingerprints": "compute_at_runtime_and_freeze; do_not_guess"
+    "new_fingerprints": "compute_at_runtime_and_freeze; do_not_guess",
+    "generator_closure": "Reconstruct BG2000 without replacement; require abs(generated-shipped)<=1e-10*max(abs(generated),abs(shipped))+1e-26 at every entry. The absolute term covers only the negligible low-T clamp/noise region of rates in 1/tau_n units. Failure blocks production as a generator confound."
   },
   "numerical_budget": {
     "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
     "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
-    "YPBBN_absolute": 0.000001,
+    "YPBBN_absolute": 1e-06,
     "DoH_absolute": 3e-10,
-    "Neff_absolute": 0.000001,
-    "He3oH_relative": 0.00001,
-    "Li7oH_relative": 0.00001,
-    "final_light_species_relative": 0.00001,
+    "Neff_absolute": 1e-06,
+    "He3oH_relative": 1e-05,
+    "Li7oH_relative": 1e-05,
+    "final_light_species_relative": 1e-05,
     "final_light_species": [
       "n",
       "p",
@@ -336,9 +337,9 @@
     "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
     "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
     "upstream_reference_tolerances": {
-      "YPBBN_absolute": 0.00001,
-      "DoH_absolute": 3e-9,
-      "Neff_absolute": 0.00001,
+      "YPBBN_absolute": 1e-05,
+      "DoH_absolute": 3e-09,
+      "Neff_absolute": 1e-05,
       "NUCLIDE_REL_TOL": 0.0001,
       "source": "PRIMAT tests/reference_values.py at the pinned commit"
     },
@@ -370,7 +371,7 @@
         "R0": {
           "HT": 1e-10,
           "MT": 1e-10,
-          "LT": 1e-9
+          "LT": 1e-09
         },
         "R1": {
           "HT": 3e-11,
@@ -391,6 +392,17 @@
       "medium_formula": "(Q_R7-Q_R0)-[(Q_R1-Q_R0)+(Q_R3-Q_R0)+(Q_R5-Q_R0)]",
       "fine_formula": "(Q_R8-Q_R0)-[(Q_R2-Q_R0)+(Q_R4-Q_R0)+(Q_R6-Q_R0)]",
       "rule": "Report interaction residuals for every observable. A small total joint shift cannot mask a failed one-axis gate."
+    },
+    "operational_rules": {
+      "roundoff_multiplier": 64,
+      "roundoff_formula": "64*float64_eps*max(abs(Q0),abs(Q1),abs(Q2),1e-300)",
+      "plausible_grid_order_interval": [
+        0.0,
+        4.0
+      ],
+      "grid_rule": "Both increments below roundoff: PLATEAU_ORDER_UNRESOLVED. Otherwise require same sign, shrinking fine increment and 0<p<=4. Else REVIEW_REQUIRED.",
+      "rtol_rule": "Both increments below roundoff: PLATEAU_ATOL_UNRESOLVED. Otherwise require shrinking fine increment. No order formula for rtol.",
+      "overall": "Any hard budget breach: NUMERICAL_CONVERGENCE_FAIL. Budgets pass but any unresolved/review axis: INCONCLUSIVE, with separate NUMERICAL_STABILITY_PASS. Else NUMERICAL_CONVERGENCE_PASS limited to fixed-atol protocol. Neff invariant under ODE/rate-grid is STRUCTURALLY_UNCHANGED and not a standalone blocker."
     }
   },
   "acceptance_gates": {
@@ -454,7 +466,15 @@
     "no_solver_resume_from_partial_era": true,
     "no_implicit_budget_reset_between_runs": true,
     "per_run_identity_and_hashes_required": true,
-    "exact_resource_caps": "Set only after an N1-specific target-runner probe and a published forecast; do not inherit S0 limits without recalibration."
+    "exact_resource_caps": "Set only after an N1-specific target-runner probe and a published forecast; do not inherit S0 limits without recalibration.",
+    "package_hard_seconds": 7200,
+    "per_solve_hard_seconds": 1200,
+    "per_preparation_hard_seconds": 120,
+    "memory_bytes": 4294967296,
+    "disk_bytes": 2147483648,
+    "target_executor": "GITHUB_ACTIONS_VM",
+    "initial_calibration": "Cache builders then one coarse-precision full-network probe at maximum grids, not a convergence datum",
+    "production_forecast": "All 9 solves plus measured preparations/probe; publish coefficients and envelope before R1; revisions change remaining time estimate only"
   },
   "required_artifacts": [
     "N1_PREREGISTRATION.json",
@@ -476,5 +496,20 @@
     "scientific_acceptance": false,
     "registry_status_mutation": false
   },
-  "review_gate": "Owner must review and explicitly ratify the run matrix, numerical budgets, cache policy and resource policy before execution is enabled."
+  "review_gate": "Current owner instruction authorizes implementation and launch after concrete prelaunch gates close. Matrix and budgets retained; publish resource admission before production.",
+  "version": "1.1",
+  "authorization": {
+    "user_instruction": "Подними контекст по гитхабу, доработай и запусти если не будет нерешенных вопросов",
+    "date": "2026-11-14",
+    "scope": "Implement and execute S0-N1 subject to prelaunch gates; no scientific acceptance or merge"
+  },
+  "prelaunch_amendments": {
+    "typed_config": "100.0 float inherited from exact R0 manifest; no physics change",
+    "solver_method": "BDF family includes pinned _BDFDirectLU subclass; record actual class",
+    "electron_thermo": "Allow electron_thermo_45b89f3e1b24e961.txt during initialization-only preparation of each group, then freeze; none generated in solver workers",
+    "generator_closure": "Reconstruct BG2000 without replacement; require abs(generated-shipped)<=1e-10*max(abs(generated),abs(shipped))+1e-26 at every entry. The absolute term covers only the negligible low-T clamp/noise region of rates in 1/tau_n units. Failure blocks production as a generator confound.",
+    "trajectory_boundary": "Use exact R0 T arrays. Clip only time boundary overshoots <=1e-9*max(t_end,1 s), record clipping. No R0 trace interpolation.",
+    "environment": "Python 3.12.16, NumPy 2.3.5, SciPy 1.17.0, threadpoolctl 3.6.0 as R0; compare BLAS/version/architecture/threads.",
+    "absolute_tolerance": "HT atol remains 1e-10; rtol sensitivity at fixed atol cannot establish complete ODE accuracy."
+  }
 }
