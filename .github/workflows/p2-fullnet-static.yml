@@ -29,8 +29,11 @@ jobs:
         run: |
           python -m py_compile \
             analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py \
-            analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_orchestrator.py
+            analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_orchestrator.py \
+            analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/cloud_run.py
           bash -n analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh
+      - name: Regression checks for budget and cache identity
+        run: python analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/test_execution_gate.py
       - name: Validate JSON profiles and stage boundaries
         run: |
           python -m json.tool analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/PROFILE.json >/dev/null

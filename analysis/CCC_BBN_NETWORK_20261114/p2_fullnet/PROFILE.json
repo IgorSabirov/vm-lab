@@ -98,7 +98,10 @@
     "main_run_wall_cap_seconds": 600,
     "main_cold_warm_total_wall_cap_seconds": 600,
     "local_package_wall_cap_seconds_including_calibration": 600,
-    "budget_scope": "All P2 calibration attempts plus COLD and WARM; no per-process reset of the local 600 s boundary"
+    "budget_scope": "All P2 calibration attempts plus COLD and WARM; no per-process reset of the local 600 s boundary",
+    "remote_executor": "GITHUB_ACTIONS_VM only under explicit RUN_REQUEST",
+    "remote_package_cap_seconds": 3000,
+    "remote_process_cap_seconds": 1400
   },
   "acceptance": {
     "no_p1_published_abundance_target_comparison": true,

@@ -259,10 +259,12 @@ def main():
         solver_objects.append(sol)
         # Preserve completed work before validation, later eras or final export.
         np.savez_compressed(out / ("RAW_" + era + ".npz"), t=sol.t, Y=sol.y)
+        sample_T=np.geomspace(float(run.background.T_of_t(sol.t[0])),float(run.background.T_of_t(sol.t[-1])),401)
+        sample_t=np.asarray(run.background.t_of_T(sample_T)); sample_t[0],sample_t[-1]=sol.t[0],sol.t[-1]
         with gzip.open(out / ("SOLVER_" + era + ".pkl.gz"), "wb", compresslevel=1) as stream:
-            pickle.dump(sol, stream, protocol=pickle.HIGHEST_PROTOCOL)
+            pickle.dump({"t":sol.t,"Y":sol.y,"sample_T":sample_T,"sample_t":sample_t,"sample_Y":sol.sol(sample_t),"success":bool(sol.success)}, stream, protocol=pickle.HIGHEST_PROTOCOL)
         timing = {"era":era,"solver_seconds":solver_seconds,"checkpoint_seconds":time.monotonic()-phase_started-solver_seconds,
-                  "steps":len(sol.t),"nfev":sol.nfev,"njev":sol.njev,"nlu":sol.nlu,"success":bool(sol.success)}
+                  "steps":int(len(sol.t)),"nfev":int(sol.nfev),"njev":int(sol.njev),"nlu":int(sol.nlu),"success":bool(sol.success)}
         era_timings.append(timing)
         dump(out / ("ERA_" + era + ".json"), timing)
         return sol

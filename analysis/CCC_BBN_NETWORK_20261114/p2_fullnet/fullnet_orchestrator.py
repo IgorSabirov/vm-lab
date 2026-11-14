@@ -31,6 +31,9 @@ FROZEN_INPUTS = [
     "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py",
     "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_orchestrator.py",
     "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh",
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/cloud_run.py",
+    ".github/workflows/p2-fullnet-execute.yml",
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/RUN_REQUEST.json",
     "analysis/CCC_BBN_NETWORK_20261114/prelaunch/audit.py",
     "analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py",
     "analysis/CCC_BBN_NETWORK_20261114/prelaunch/s1_adapter.py",
@@ -151,6 +154,15 @@ def verify_frozen(root):
 
 def spent_seconds(root):
     return sum(float(e.get("wall_seconds",0)) for e in ledger_events(root) if "run_id" in e and "exit_code" in e)
+
+
+def executor_policy():
+    if os.environ.get("GITHUB_ACTIONS")=="true":
+        request=read_json(PACKAGE/"RUN_REQUEST.json")
+        if os.environ.get("GITHUB_REPOSITORY")!="IgorSabirov/vm-lab" or request["executor"]!="GITHUB_ACTIONS_VM":
+            raise RuntimeError("Wrong hosted executor/request")
+        return {"id":"GITHUB_ACTIONS_VM","package_cap":int(request["package_wall_cap_seconds"]),"process_cap":int(request["process_wall_cap_seconds"])}
+    return {"id":"LOCAL_SANDBOX","package_cap":600,"process_cap":600}
 
 
 def prepare(args):
@@ -342,7 +354,7 @@ def execute_worker(root, upstream, run_id, config, cache, out, cap, budget_scope
             str(p.relative_to(cache)): digest(p)
             for p in sorted(cache.rglob("*")) if p.is_file()
         },
-        "checkpoint": "each completed era has raw arrays and compressed solver snapshot; incomplete current era not resumable",
+        "checkpoint": "each completed era has raw arrays and compressed raw/dense sample checkpoint; incomplete current era not resumable",
         "automatic_retry": False,
     }
     write_json(before_path, before)
@@ -415,7 +427,7 @@ def probe(args):
     upstream, _, _ = check_upstream(args.upstream)
     if (root / "CALIBRATION.json").exists():
         raise RuntimeError("Probe already exists; no automatic rerun/retry")
-    cap = min(60.0,600.0-spent_seconds(root))
+    cap = min(60.0,executor_policy()["package_cap"]-spent_seconds(root))
     if cap<=0: raise RuntimeError("P2 package budget exhausted")
     receipt = execute_worker(
         root, upstream, "PROBE", root / "PROBE_CONFIG.json",
@@ -437,7 +449,7 @@ def probe(args):
         "probe_result_sha256": digest(result_path) if result_path.is_file() else None,
         "probe_trace_sha256": digest(root / "runs" / "PROBE" / "TRACE.json")
             if (root / "runs" / "PROBE" / "TRACE.json").is_file() else None,
-        "forecast_policy": "No extrapolation multiplier is invented; a human must define the low/central/high envelope and its basis.",
+        "forecast_policy": "An explicitly documented operator engineering envelope with target-machine calibration is required.",
         "scientific_acceptance": False,
     }
     write_json(root / "CALIBRATION.json", calibration)
@@ -488,11 +500,12 @@ def forecast(args):
         "production_config_sha256": digest(root / "PRODUCTION_CONFIG.json"),
         "seconds": {"low": low, "central": central, "high": high},
         "basis": args.basis,
-        "forecast_method_status": "OPERATOR_ENGINEERING_ENVELOPE_NOT_AUTOMATICALLY_EXTRAPOLATED",
+        "forecast_method_status": "OPERATOR_ENGINEERING_WORK_COUNT_ENVELOPE",
         "forecast_scope":"COLD_PLUS_WARM",
         "calibration_seconds_already_used":spent_seconds(root),
         "package_seconds":{"low":low+spent_seconds(root),"central":central+spent_seconds(root),"high":high+spent_seconds(root)},
-        "native_route": "WITHIN_600S_CAP" if high+spent_seconds(root) <= 600 else "SEPARATE_VM_CALIBRATION_REQUIRED",
+        "executor":executor_policy(),
+        "native_route": "WITHIN_EXECUTOR_CAP" if high+spent_seconds(root) <= executor_policy()["package_cap"] else "FORECAST_EXCEEDS_EXECUTOR_CAP",
         "approval_required": True,
         "scientific_acceptance": False,
     }
@@ -513,7 +526,7 @@ def forecast(args):
     if args.auto_approve:
         if not args.publish:
             raise RuntimeError("--auto-approve requires --publish; forecast must reach GitHub before main run")
-        if args.max_upper_seconds is None or high+spent_seconds(root) > args.max_upper_seconds or high+spent_seconds(root) > 600:
+        if args.max_upper_seconds is None or high+spent_seconds(root) > args.max_upper_seconds or high+spent_seconds(root) > executor_policy()["package_cap"]:
             raise RuntimeError("Auto-approval refused: explicit max-upper bound is absent or exceeded")
         publish(root)
         create_approval(root, forecast_sha, "AUTO_APPROVED_BY_EXPLICIT_FLAG", args.max_upper_seconds)
@@ -582,7 +595,7 @@ def create_approval(root, forecast_sha, approver, max_upper):
     verify_forecast_published(root, forecast_sha)
     forecast_obj = read_json(root / "FORECAST.json")
     high = float(forecast_obj["seconds"]["high"])
-    if high+spent_seconds(root) > max_upper or high+spent_seconds(root) > 600:
+    if high+spent_seconds(root) > max_upper or high+spent_seconds(root) > executor_policy()["package_cap"]:
         raise RuntimeError("Forecast upper bound exceeds the authorized execution budget")
     approval = {
         "schema": "vm-lab-p2-run-approval-v1",
@@ -590,8 +603,9 @@ def create_approval(root, forecast_sha, approver, max_upper):
         "approved_by": approver,
         "forecast_sha256": forecast_sha,
         "authorized_max_upper_seconds": max_upper,
-        "authorized_per_run_wall_cap_seconds": 600,
-        "authorized_total_wall_cap_seconds_including_calibration": 600,
+        "authorized_per_run_wall_cap_seconds": executor_policy()["process_cap"],
+        "authorized_total_wall_cap_seconds_including_calibration": executor_policy()["package_cap"],
+        "executor":executor_policy()["id"],
         "runs": ["COLD", "WARM"],
         "scientific_acceptance": False,
     }
@@ -610,7 +624,7 @@ def execute_main(root, upstream):
     if approval["forecast_sha256"] != digest(root / "FORECAST.json"):
         raise RuntimeError("Approval receipt does not match current forecast")
     high = float(forecast_obj["seconds"]["high"])
-    if high+spent_seconds(root) > approval["authorized_max_upper_seconds"] or high+spent_seconds(root) > 600:
+    if high+spent_seconds(root) > approval["authorized_max_upper_seconds"] or high+spent_seconds(root) > executor_policy()["package_cap"]:
         raise RuntimeError("Forecast exceeds approved budget")
     verify_frozen(root)
     verify_forecast_published(root, approval["forecast_sha256"])
@@ -623,13 +637,13 @@ def execute_main(root, upstream):
         raise RuntimeError("Main cold/warm overlay is not empty; refusing to relabel it cold")
     main_cache.mkdir(parents=True, exist_ok=True)
     used = spent_seconds(root)
-    if used>=600: raise RuntimeError("P2 aggregate 600 s cap exhausted")
-    remaining=600-used
+    if used>=executor_policy()["package_cap"]: raise RuntimeError("P2 aggregate executor cap exhausted")
+    remaining=executor_policy()["package_cap"]-used
 
     cold = execute_worker(
         root, upstream, "COLD", root / "PRODUCTION_CONFIG.json",
         main_cache, root / "runs" / "COLD",
-        min(600, remaining), "P2_MAIN",
+        min(executor_policy()["process_cap"], remaining), "P2_MAIN",
     )
     if cold["status"] != "COMPLETED" or not (root / "runs" / "COLD" / "RESULT.json").is_file():
         write_json(root / "SUMMARY.json", {
@@ -640,10 +654,10 @@ def execute_main(root, upstream):
             "scientific_acceptance": False,
         })
         finalize_artifacts(root)
-        return
+        raise RuntimeError("P2 main did not complete; evidence retained")
 
     used += float(cold["wall_seconds"])
-    remaining = 600 - used
+    remaining = executor_policy()["package_cap"] - used
     if remaining <= 1:
         write_json(root / "SUMMARY.json", {
             "status": "ENGINEERING_BUDGET_EXHAUSTED_AFTER_COLD",
@@ -653,12 +667,12 @@ def execute_main(root, upstream):
             "scientific_acceptance": False,
         })
         finalize_artifacts(root)
-        return
+        raise RuntimeError("P2 main did not complete; evidence retained")
 
     warm = execute_worker(
         root, upstream, "WARM", root / "PRODUCTION_CONFIG.json",
         main_cache, root / "runs" / "WARM",
-        min(600, remaining), "P2_MAIN",
+        min(executor_policy()["process_cap"], remaining), "P2_MAIN",
     )
     repeatability = {"compared": False, "exact_trace_match": None, "exact_Y_final_match": None}
     if warm["status"] == "COMPLETED":
@@ -691,8 +705,9 @@ def execute_main(root, upstream):
         "status": "ENGINEERING_PASS" if success else "ENGINEERING_REVIEW_REQUIRED",
         "budget": {
             "scope": "P2 only; independent from P0/P1 cumulative prelaunch ledger",
-            "hard_wall_cap_seconds_per_run": 600,
-            "hard_total_wall_cap_seconds_including_calibration": 600,
+            "hard_wall_cap_seconds_per_run": executor_policy()["process_cap"],
+            "hard_total_wall_cap_seconds_including_calibration": executor_policy()["package_cap"],
+            "executor":executor_policy()["id"],
             "total_package_wall_seconds":spent_seconds(root),
             "cold_wall_seconds": cold["wall_seconds"],
             "warm_wall_seconds": warm["wall_seconds"],
@@ -710,7 +725,8 @@ def execute_main(root, upstream):
     write_json(root / "SUMMARY.json", summary)
     finalize_artifacts(root)
     print(json.dumps({"status": summary["status"], "summary": str(root / "SUMMARY.json")}, ensure_ascii=False))
-    return 0 if success else 2
+    if not success: raise RuntimeError("P2 main validation failed; artifacts retained")
+    return 0
 
 
 def finalize_artifacts(root):
@@ -738,8 +754,8 @@ def finalize_artifacts(root):
 def approve(args):
     root = run_root_arg(args.run_root)
     verify_frozen(root)
-    if args.max_upper_seconds > 600:
-        raise RuntimeError("P2 native sandbox cap is 600 seconds")
+    if args.max_upper_seconds > executor_policy()["package_cap"]:
+        raise RuntimeError("Requested cap exceeds selected executor policy")
     create_approval(root, args.forecast_sha, args.approved_by, args.max_upper_seconds)
     print(json.dumps({"status": "APPROVAL_RECEIPT_READY_PUBLISH_THEN_RUN"}, ensure_ascii=False))
     return 0

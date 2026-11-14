@@ -1,0 +1,552 @@
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃         ░█▀█░█▀▄░▀█▀░█▄█░█▀█░▀█▀              ┃
+┃         ░█▀▀░█▀▄░░█░░█░█░█▀█░░█░              ┃
+┃         ░▀░░░▀░▀░▀▀▀░▀░▀░▀░▀░░▀░              ┃
+┃                                               ┃
+┃  Welcome to PRIMAT (python backend) v0.0.0+unknown    ┃
+┃                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+[opts-py] backend              = python
+[opts-py] network              = 'large' (amax=None)
+[opts-py] numerical_precision  = 1e-06
+[opts-py] radiative_corrections    = True
+[opts-py] finite_mass_corrections  = True
+[opts-py] thermal_corrections      = True
+[opts-py] spectral_distortions     = True
+[opts-py] tau_n_normalization      = True
+[opts-py] tau_n                = 878.4 s
+[opts-py] Omegabh2             = 0.02242 (eta0b=6.13744e-10)
+[opts-py] DeltaNeff            = 0
+[init-py] Electron-thermo tables built (2000 points).
+[init-py] QED pressure corrections tables loaded.
+[rates-py] Building 'large' network from text lists.
+[rates-py] MT network: 17 reactions over 12 nuclides.
+[rates-py] MT nuclides: n, p, H2, H3, He3, He4, Li7, Be7, He6, Li8, Li6, B8
+[rates-py] LT network: 427 reactions over 59 nuclides.
+[rates-py] LT nuclides: n, p, H2, H3, He3, He4, Li7, Be7, He6, Li8, Li6, B8, Li9, Be9, Be10, Be11, Be12, B10, B11, B12, B13, B14, B15, C9, C10, C11, C12, C13, C14, C15, C16, N12, N13, N14, N15, N16, N17, O13, O14, O15, O16, O17, O18, O19, O20, F17, F18, F19, F20, Ne18, Ne19, Ne20, Ne21, Ne22, Ne23, Na20, Na21, Na22, Na23
+------------------------------------------------------------
+Loaded 428 reactions (LT network):
+------------------------------------------------------------
+  n <-> p                           [weak n<->p]
+  B10 + He3 <-> C11 + H2            [TALYS2, Koning et al. 2023]
+  B10 + He3 <-> C12 + p             [TALYS2, Koning et al. 2023]
+  B10 + He3 <-> N12 + n             [TALYS2, Koning et al. 2023]
+  B10 + He3 <-> N13                 [TALYS2, Koning et al. 2023]
+  B10 + He4 <-> C12 + H2            [TALYS2, Koning et al. 2023]
+  B10 + He4 <-> C13 + p             [TALYS2, Koning et al. 2023]
+  B10 + He4 <-> N13 + n             [Caughlan& Fowler 1988]
+  B10 + He4 <-> N14                 [TALYS2, Koning et al. 2023]
+  B10 + H2 <-> B11 + p              [TALYS2, Koning et al. 2023]
+  B10 + H2 <-> C11 + n              [TALYS2, Koning et al. 2023]
+  B10 + H2 <-> C12                  [TALYS2, Koning et al. 2023]
+  B10 + H2 <-> He4 + He4 + He4      [TALYS2, Koning et al. 2023]
+  B10 + n <-> B11                   [TALYS2, Koning et al. 2023]
+  B10 + n <-> Be10 + p              [TALYS2, Koning et al. 2023]
+  B10 + n <-> He4 + He4 + H3        [TALYS2, Koning et al. 2023]
+  B10 + p <-> Be7 + He4             [NACRE, Xu et al. 2010, 2011]
+  B10 + p <-> C11                   [NACRE, Xu et al. 2010, 2011]
+  B10 + p <-> He4 + He4 + He3       [TALYS2, Koning et al. 2023]
+  B10 + H3 <-> B11 + H2             [TALYS2, Koning et al. 2023]
+  B10 + H3 <-> B12 + p              [TALYS2, Koning et al. 2023]
+  B10 + H3 <-> Be9 + He4            [TALYS2, Koning et al. 2023]
+  B10 + H3 <-> C12 + n              [TALYS2, Koning et al. 2023]
+  B10 + H3 <-> C13                  [TALYS2, Koning et al. 2023]
+  B11 + He3 <-> B10 + He4           [TALYS2, Koning et al. 2023]
+  B11 + He3 <-> C12 + H2            [TALYS2, Koning et al. 2023]
+  B11 + He3 <-> C13 + p             [TALYS2, Koning et al. 2023]
+  B11 + He3 <-> N13 + n             [TALYS2, Koning et al. 2023]
+  B11 + He3 <-> N14                 [TALYS2, Koning et al. 2023]
+  B11 + He4 <-> C14 + p             [Wang et al. 1991]
+  B11 + He4 <-> N14 + n             [NACRE, Xu et al. 2010, 2011]
+  B11 + He4 <-> N15                 [Wang et al. 1991]
+  B11 + H2 <-> B12 + p              [Coc et al. 2012]
+  B11 + H2 <-> Be9 + He4            [TALYS2, Koning et al. 2023]
+  B11 + H2 <-> C12 + n              [Coc et al. 2012]
+  B11 + H2 <-> C13                  [TALYS2, Koning et al. 2023]
+  B11 + n <-> B12                   [Coc et al. 2012]
+  B11 + p <-> C11 + n               [NACRE, Angulo et al. 1999]
+  B11 + p <-> C12                   [NACRE, Xu et al. 2010, 2011]
+  B11 + p <-> He4 + He4 + He4       [NACRE, Xu et al. 2010, 2011]
+  B11 + H3 <-> B13 + p              [TALYS2, Koning et al. 2023]
+  B11 + H3 <-> Be10 + He4           [TALYS2, Koning et al. 2023]
+  B11 + H3 <-> C13 + n              [TALYS2, Koning et al. 2023]
+  B11 + H3 <-> C14                  [TALYS2, Koning et al. 2023]
+  B12 + He3 <-> B11 + He4           [TALYS2, Koning et al. 2023]
+  B12 + He3 <-> C14 + p             [TALYS2, Koning et al. 2023]
+  B12 + He3 <-> N14 + n             [TALYS2, Koning et al. 2023]
+  B12 + He3 <-> N15                 [TALYS2, Koning et al. 2023]
+  B12 <-> C12                       [3.431422e+01 s⁻¹  (T1/2=0.0202 s, Audi)]
+  B12 + He4 <-> N15 + n             [TALYS2, Koning et al. 2023]
+  B12 + He4 <-> N16                 [TALYS2, Koning et al. 2023]
+  B12 + H2 <-> B13 + p              [TALYS2, Koning et al. 2023]
+  B12 + H2 <-> Be10 + He4           [TALYS2, Koning et al. 2023]
+  B12 + H2 <-> C13 + n              [TALYS2, Koning et al. 2023]
+  B12 + H2 <-> C14                  [TALYS2, Koning et al. 2023]
+  B12 + n <-> B13                   [TALYS2, Koning et al. 2023]
+  B12 + p <-> Be9 + He4             [TALYS2, Koning et al. 2023]
+  B12 + p <-> C12 + n               [TALYS2, Koning et al. 2023]
+  B12 + p <-> C13                   [TALYS2, Koning et al. 2023]
+  B12 + H3 <-> Be11 + He4           [TALYS2, Koning et al. 2023]
+  B12 + H3 <-> C14 + n              [TALYS2, Koning et al. 2023]
+  B12 + H3 <-> C15                  [TALYS2, Koning et al. 2023]
+  B13 <-> C13                       [3.999695e+01 s⁻¹  (T1/2=0.01733 s, Audi)]
+  B14 <-> C14                       [5.545177e+01 s⁻¹  (T1/2=0.0125 s, Audi)]
+  B15 <-> C15                       [7.022768e+01 s⁻¹  (T1/2=0.00987 s, Audi)]
+  B8 + He3 <-> C10 + p              [TALYS2, Koning et al. 2023]
+  B8 <-> He4 + He4                  [9.001911e-01 s⁻¹  (T1/2=0.77 s, Audi)]
+  B8 + He4 <-> C11 + p              [TALYS2, Koning et al. 2023]
+  B8 + He4 <-> N12                  [TALYS2, Koning et al. 2023]
+  B8 + H2 <-> Be7 + He3             [TALYS2, Koning et al. 2023]
+  B8 + H2 <-> C10                   [TALYS2, Koning et al. 2023]
+  B8 + n <-> Be7 + H2               [TALYS2, Koning et al. 2023]
+  B8 + n <-> Li6 + He3              [TALYS2, Koning et al. 2023]
+  B8 + n <-> He4 + He4 + p          [TALYS2, Koning et al. 2023]
+  B8 + p <-> C9                     [Descouvemont 1999 & Beaumel et al. 2001]
+  B8 + H3 <-> B10 + p               [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> Be7 + He4             [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> C10 + n               [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> C11                   [TALYS2, Koning et al. 2023]
+  B8 + H3 <-> He4 + He4 + He3       [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> B10 + H3           [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> B11 + H2           [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> B12 + p            [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> Be9 + He4          [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> C12 + n            [TALYS2, Koning et al. 2023]
+  Be10 + He3 <-> C13                [TALYS2, Koning et al. 2023]
+  Be10 <-> B10                      [1.583632e-14 s⁻¹  (T1/2=4.377e+13 s, NUBASE2020,)]
+  Be10 + He4 <-> C13 + n            [TALYS2, Koning et al. 2023]
+  Be10 + He4 <-> C14                [TALYS2, Koning et al. 2023]
+  Be10 + H2 <-> B11 + n             [TALYS2, Koning et al. 2023]
+  Be10 + H2 <-> B12                 [TALYS2, Koning et al. 2023]
+  Be10 + H2 <-> Li8 + He4           [TALYS2, Koning et al. 2023]
+  Be10 + n <-> Be11                 [Rauscher et al. 1994]
+  Be10 + p <-> B11                  [TALYS2, Koning et al. 2023]
+  Be10 + p <-> Li7 + He4            [TALYS2, Koning et al. 2023]
+  Be10 + p <-> He4 + He4 + H3       [TALYS2, Koning et al. 2023]
+  Be10 + H3 <-> B12 + n             [TALYS2, Koning et al. 2023]
+  Be10 + H3 <-> B13                 [TALYS2, Koning et al. 2023]
+  Be10 + H3 <-> Li9 + He4           [TALYS2, Koning et al. 2023]
+  Be11 + He3 <-> B13 + p            [TALYS2, Koning et al. 2023]
+  Be11 + He3 <-> Be10 + He4         [TALYS2, Koning et al. 2023]
+  Be11 + He3 <-> C13 + n            [TALYS2, Koning et al. 2023]
+  Be11 + He3 <-> C14                [TALYS2, Koning et al. 2023]
+  Be11 <-> B11                      [5.019169e-02 s⁻¹  (T1/2=13.81 s, Audi)]
+  Be11 + He4 <-> C14 + n            [TALYS2, Koning et al. 2023]
+  Be11 + He4 <-> C15                [TALYS2, Koning et al. 2023]
+  Be11 + H2 <-> B12 + n             [TALYS2, Koning et al. 2023]
+  Be11 + H2 <-> B13                 [TALYS2, Koning et al. 2023]
+  Be11 + H2 <-> Be12 + p            [TALYS2, Koning et al. 2023]
+  Be11 + H2 <-> Li9 + He4           [TALYS2, Koning et al. 2023]
+  Be11 + n <-> Be12                 [Rauscher et al. 1994]
+  Be11 + p <-> B11 + n              [TALYS2, Koning et al. 2023]
+  Be11 + p <-> B12                  [TALYS2, Koning et al. 2023]
+  Be11 + p <-> Be10 + H2            [TALYS2, Koning et al. 2023]
+  Be11 + p <-> Be9 + H3             [TALYS2, Koning et al. 2023]
+  Be11 + p <-> Li8 + He4            [TALYS2, Koning et al. 2023]
+  Be11 + H3 <-> B13 + n             [TALYS2, Koning et al. 2023]
+  Be11 + H3 <-> B14                 [TALYS2, Koning et al. 2023]
+  Be12 + He3 <-> B14 + p            [TALYS2, Koning et al. 2023]
+  Be12 + He3 <-> Be11 + He4         [TALYS2, Koning et al. 2023]
+  Be12 + He3 <-> C14 + n            [TALYS2, Koning et al. 2023]
+  Be12 + He3 <-> C15                [TALYS2, Koning et al. 2023]
+  Be12 <-> B12                      [3.223940e+01 s⁻¹  (T1/2=0.0215 s, Audi)]
+  Be12 + He4 <-> C15 + n            [TALYS2, Koning et al. 2023]
+  Be12 + He4 <-> C16                [TALYS2, Koning et al. 2023]
+  Be12 + H2 <-> B13 + n             [TALYS2, Koning et al. 2023]
+  Be12 + H2 <-> B14                 [TALYS2, Koning et al. 2023]
+  Be12 + p <-> B12 + n              [TALYS2, Koning et al. 2023]
+  Be12 + p <-> B13                  [TALYS2, Koning et al. 2023]
+  Be12 + p <-> Be10 + H3            [TALYS2, Koning et al. 2023]
+  Be12 + p <-> Li9 + He4            [TALYS2, Koning et al. 2023]
+  Be12 + H3 <-> B14 + n             [TALYS2, Koning et al. 2023]
+  Be12 + H3 <-> B15                 [TALYS2, Koning et al. 2023]
+  Be7 + He3 <-> C10                 [TALYS2, Koning et al. 2023]
+  Be7 + He3 <-> p + p + He4 + He4   [TALYS2, Koning et al. 2023]
+  Be7 <-> Li7                       [1.505449e-07 s⁻¹  (T1/2=4.604e+06 s, Audi)]
+  Be7 + He4 <-> C11                 [NACRE, Xu et al. 2010, 2011]
+  Be7 + H2 <-> He4 + He4 + p        [Rijal et al. 2019]
+  Be7 + n <-> Li7 + p               [de Souza et al. 2020]
+  Be7 + n <-> He4 + He4             [Barbagallo et al. 2016]
+  Be7 + p <-> B8                    [NACRE, Xu et al. 2010, 2011]
+  Be7 + H3 <-> B10                  [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> Be9 + p              [Coc et al. 2012]
+  Be7 + H3 <-> Li6 + He4            [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> Li7 + He3            [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> He4 + He4 + H2       [TALYS2, Koning et al. 2023]
+  Be7 + H3 <-> He4 + He4 + n + p    [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  Be9 + He3 <-> B10 + H2            [TALYS2, Koning et al. 2023]
+  Be9 + He3 <-> B11 + p             [TALYS2, Koning et al. 2023]
+  Be9 + He3 <-> C11 + n             [TALYS2, Koning et al. 2023]
+  Be9 + He3 <-> C12                 [TALYS2, Koning et al. 2023]
+  Be9 + He3 <-> He4 + He4 + He4     [TALYS2, Koning et al. 2023]
+  Be9 + He4 <-> C12 + n             [NACRE, Xu et al. 2010, 2011]
+  Be9 + He4 <-> C13                 [TALYS2, Koning et al. 2023]
+  Be9 + H2 <-> B10 + n              [TALYS2, Koning et al. 2023]
+  Be9 + H2 <-> B11                  [TALYS2, Koning et al. 2023]
+  Be9 + H2 <-> Be10 + p             [TALYS2, Koning et al. 2023]
+  Be9 + H2 <-> Li7 + He4            [TALYS2, Koning et al. 2023]
+  Be9 + H2 <-> He4 + He4 + H3       [TALYS2, Koning et al. 2023]
+  Be9 + n <-> Be10                  [Rauscher et al. 1994]
+  Be9 + p <-> B10                   [NACRE, Xu et al. 2010, 2011]
+  Be9 + p <-> Li6 + He4             [NACRE, Xu et al. 2010, 2011]
+  Be9 + p <-> He4 + He4 + H2        [NACRE, Xu et al. 2010, 2011]
+  Be9 + p <-> He4 + He4 + p + n     [NACRE, Angulo et al. 1999]
+  Be9 + H3 <-> B11 + n              [TALYS2, Koning et al. 2023]
+  Be9 + H3 <-> B12                  [TALYS2, Koning et al. 2023]
+  Be9 + H3 <-> Be10 + H2            [TALYS2, Koning et al. 2023]
+  Be9 + H3 <-> Li8 + He4            [TALYS2, Koning et al. 2023]
+  C10 <-> B10                       [3.593298e-02 s⁻¹  (T1/2=19.29 s, Audi)]
+  C11 + He3 <-> C10 + He4           [TALYS2, Koning et al. 2023]
+  C11 + He3 <-> N13 + p             [TALYS2, Koning et al. 2023]
+  C11 + He3 <-> O14                 [TALYS2, Koning et al. 2023]
+  C11 <-> B11                       [5.665744e-04 s⁻¹  (T1/2=1223 s, Audi)]
+  C11 + He4 <-> N14 + p             [NACRE, Angulo et al. 1999]
+  C11 + He4 <-> O15                 [TALYS2, Koning et al. 2023]
+  C11 + H2 <-> C12 + p              [Coc et al. 2012]
+  C11 + H2 <-> N13                  [TALYS2, Koning et al. 2023]
+  C11 + n <-> C12                   [Rauscher et al. 1994]
+  C11 + n <-> He4 + He4 + He4       [Coc et al. 2012]
+  C11 + p <-> N12                   [Tang et al. 2003]
+  C11 + H3 <-> B10 + He4            [TALYS2, Koning et al. 2023]
+  C11 + H3 <-> B11 + He3            [TALYS2, Koning et al. 2023]
+  C11 + H3 <-> C12 + H2             [TALYS2, Koning et al. 2023]
+  C11 + H3 <-> C13 + p              [TALYS2, Koning et al. 2023]
+  C11 + H3 <-> N13 + n              [TALYS2, Koning et al. 2023]
+  C11 + H3 <-> N14                  [TALYS2, Koning et al. 2023]
+  C12 + He3 <-> C11 + He4           [TALYS2, Koning et al. 2023]
+  C12 + He3 <-> N14 + p             [TALYS2, Koning et al. 2023]
+  C12 + He3 <-> O15                 [TALYS2, Koning et al. 2023]
+  C12 + He4 <-> O16                 [NACRE, Xu et al. 2010, 2011]
+  C12 + H2 <-> C13 + p              [TALYS2, Koning et al. 2023]
+  C12 + H2 <-> N14                  [TALYS2, Koning et al. 2023]
+  C12 + n <-> C13                   [TALYS2, Koning et al. 2023]
+  C12 + p <-> N13                   [NACRE, Xu et al. 2010, 2011]
+  C12 + H3 <-> B11 + He4            [TALYS2, Koning et al. 2023]
+  C12 + H3 <-> C14 + p              [TALYS2, Koning et al. 2023]
+  C12 + H3 <-> N14 + n              [TALYS2, Koning et al. 2023]
+  C12 + H3 <-> N15                  [TALYS2, Koning et al. 2023]
+  C13 + He3 <-> C12 + He4           [TALYS2, Koning et al. 2023]
+  C13 + He3 <-> N15 + p             [TALYS2, Koning et al. 2023]
+  C13 + He3 <-> O15 + n             [TALYS2, Koning et al. 2023]
+  C13 + He3 <-> O16                 [TALYS2, Koning et al. 2023]
+  C13 + He4 <-> O16 + n             [NACRE, Xu et al. 2010, 2011]
+  C13 + He4 <-> O17                 [TALYS2, Koning et al. 2023]
+  C13 + H2 <-> B11 + He4            [TALYS2, Koning et al. 2023]
+  C13 + H2 <-> C14 + p              [TALYS2, Koning et al. 2023]
+  C13 + H2 <-> N14 + n              [TALYS2, Koning et al. 2023]
+  C13 + H2 <-> N15                  [TALYS2, Koning et al. 2023]
+  C13 + n <-> C14                   [TALYS2, Koning et al. 2023]
+  C13 + p <-> N14                   [NACRE, Xu et al. 2010, 2011]
+  C13 + H3 <-> B12 + He4            [TALYS2, Koning et al. 2023]
+  C13 + H3 <-> C15 + p              [TALYS2, Koning et al. 2023]
+  C13 + H3 <-> N15 + n              [TALYS2, Koning et al. 2023]
+  C13 + H3 <-> N16                  [TALYS2, Koning et al. 2023]
+  C14 + He3 <-> C13 + He4           [TALYS2, Koning et al. 2023]
+  C14 + He3 <-> N16 + p             [TALYS2, Koning et al. 2023]
+  C14 + He3 <-> O16 + n             [TALYS2, Koning et al. 2023]
+  C14 + He3 <-> O17                 [TALYS2, Koning et al. 2023]
+  C14 <-> N14                       [3.853505e-12 s⁻¹  (T1/2=1.799e+11 s, NUBASE2020,)]
+  C14 + He4 <-> O18                 [Iliadis et al. 2010]
+  C14 + H2 <-> B12 + He4            [TALYS2, Koning et al. 2023]
+  C14 + H2 <-> N15 + n              [Kawano et al. 1991]
+  C14 + H2 <-> N16                  [TALYS2, Koning et al. 2023]
+  C14 + n <-> C15                   [Kawano et al. 1991]
+  C14 + p <-> N15                   [Iliadis et al. 2010]
+  C14 + H3 <-> N16 + n              [TALYS2, Koning et al. 2023]
+  C14 + H3 <-> N17                  [TALYS2, Koning et al. 2023]
+  C15 <-> N15                       [2.830327e-01 s⁻¹  (T1/2=2.449 s, Audi)]
+  C15 + He4 <-> O18 + n             [TALYS2, Koning et al. 2023]
+  C15 + He4 <-> O19                 [TALYS2, Koning et al. 2023]
+  C15 + n <-> C16                   [TALYS2, Koning et al. 2023]
+  C15 + p <-> B12 + He4             [TALYS2, Koning et al. 2023]
+  C15 + p <-> C14 + H2              [TALYS2, Koning et al. 2023]
+  C15 + p <-> N15 + n               [TALYS2, Koning et al. 2023]
+  C15 + p <-> N16                   [TALYS2, Koning et al. 2023]
+  C16 <-> N16                       [9.279079e-01 s⁻¹  (T1/2=0.747 s, Audi)]
+  C9 <-> He4 + He4 + p              [5.501168e+00 s⁻¹  (T1/2=0.126 s, Audi)]
+  C9 + He4 <-> N12 + p              [Wiescher et al. 1989]
+  C9 + He4 <-> O13                  [TALYS2, Koning et al. 2023]
+  C9 + H2 <-> C10 + p               [TALYS2, Koning et al. 2023]
+  C9 + n <-> B8 + H2                [TALYS2, Koning et al. 2023]
+  C9 + n <-> Be7 + He3              [TALYS2, Koning et al. 2023]
+  C9 + n <-> C10                    [TALYS2, Koning et al. 2023]
+  C9 + H3 <-> B8 + He4              [TALYS2, Koning et al. 2023]
+  C9 + H3 <-> C11 + p               [TALYS2, Koning et al. 2023]
+  C9 + H3 <-> N12                   [TALYS2, Koning et al. 2023]
+  F17 <-> O17                       [1.074813e-02 s⁻¹  (T1/2=64.49 s, Audi)]
+  F17 + He4 <-> Na21                [TALYS2, Koning et al. 2023]
+  F17 + He4 <-> Ne20 + p            [TALYS2, Koning et al. 2023]
+  F17 + n <-> F18                   [TALYS2, Koning et al. 2023]
+  F17 + n <-> N14 + He4             [NACRE, Angulo et al. 1999]
+  F17 + n <-> O17 + p               [TALYS2, Koning et al. 2023]
+  F17 + p <-> Ne18                  [Iliadis et al. 2010]
+  F18 <-> O18                       [1.052408e-04 s⁻¹  (T1/2=6586 s, Audi)]
+  F18 + He4 <-> Na22                [TALYS2, Koning et al. 2023]
+  F18 + He4 <-> Ne21 + p            [TALYS2, Koning et al. 2023]
+  F18 + n <-> F19                   [TALYS2, Koning et al. 2023]
+  F18 + n <-> N15 + He4             [Caughlan& Fowler 1988]
+  F18 + n <-> O18 + p               [TALYS2, Koning et al. 2023]
+  F18 + p <-> Ne19                  [Iliadis et al. 2010]
+  F18 + p <-> O15 + He4             [Iliadis et al. 2010]
+  F19 + He4 <-> Na23                [TALYS2, Koning et al. 2023]
+  F19 + He4 <-> Ne22 + p            [TALYS2, Koning et al. 2023]
+  F19 + n <-> F20                   [TALYS2, Koning et al. 2023]
+  F19 + p <-> Ne20                  [NACRE, Angulo et al. 1999]
+  F19 + p <-> O16 + He4             [NACRE, Angulo et al. 1999]
+  F20 <-> Ne20                      [6.209327e-02 s⁻¹  (T1/2=11.16 s, Audi)]
+  He3 + He3 <-> He4 + p + p         [NACRE, Xu et al. 2010, 2011]
+  He3 + He4 <-> Be7                 [Iliadis et al. 2016]
+  He3 + H2 <-> He4 + p              [de Souza et al. 2019]
+  He3 + n <-> He4                   [Wagoner 1969]
+  He3 + n <-> H3 + p                [Descouvemont et al. 2004]
+  He3 + H3 <-> Li6                  [Fukugita& Kajino 1990]
+  He3 + H3 <-> He4 + H2             [Caughlan& Fowler 1988]
+  He3 + H3 <-> He4 + n + p          [Caughlan& Fowler 1988]
+  He6 <-> Li6                       [8.592379e-01 s⁻¹  (T1/2=0.8067 s, Audi)]
+  Li6 + He3 <-> Be7 + H2            [TALYS2, Koning et al. 2023]
+  Li6 + He3 <-> He4 + He4 + p       [TALYS2, Koning et al. 2023]
+  Li6 + He4 <-> B10                 [Caughlan& Fowler 1988]
+  Li6 + H2 <-> Be7 + n              [Malaney& Fowler 1989]
+  Li6 + H2 <-> Li7 + p              [Malaney& Fowler 1989]
+  Li6 + n <-> Li7                   [Malaney& Fowler 1989]
+  Li6 + n <-> H3 + He4              [Caughlan& Fowler 1988]
+  Li6 + p <-> Be7                   [NACRE, Xu et al. 2010, 2011]
+  Li6 + p <-> He3 + He4             [NACRE, Xu et al. 2010, 2011]
+  Li6 + H3 <-> Be9                  [TALYS2, Koning et al. 2023]
+  Li6 + H3 <-> Li7 + H2             [TALYS2, Koning et al. 2023]
+  Li6 + H3 <-> Li8 + p              [TALYS2, Koning et al. 2023]
+  Li6 + H3 <-> He4 + He4 + n        [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> B10                 [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> Be9 + p             [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> Li6 + He4           [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> He4 + He4 + H2      [TALYS2, Koning et al. 2023]
+  Li7 + He3 <-> He4 + He4 + n + p   [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  Li7 + He4 <-> B10 + n             [NACRE, Angulo et al. 1999]
+  Li7 + He4 <-> B11                 [NACRE, Xu et al. 2010, 2011]
+  Li7 + H2 <-> Be9                  [Coc et al. 2012]
+  Li7 + H2 <-> Li8 + p              [Malaney& Fowler 1989]
+  Li7 + H2 <-> He4 + He4 + n        [Coc et al. 2012]
+  Li7 + n <-> Li8                   [Malaney& Fowler 1989 & Heil et al. 1998]
+  Li7 + p <-> He4 + He4             [Descouvemont et al. 2004]
+  Li7 + p <-> He4 + He4             [NACRE, Xu et al. 2010, 2011]
+  Li7 + H3 <-> Be10                 [TALYS2, Koning et al. 2023]
+  Li7 + H3 <-> Be9 + n              [Coc et al. 2012]
+  Li7 + H3 <-> He4 + He4 + n + n    [Caughlan& Fowler 1988 & Malaney& Fowler 1989]
+  Li8 + He3 <-> B10 + n             [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> B11                 [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> Be10 + p            [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> Be9 + H2            [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> Li7 + He4           [TALYS2, Koning et al. 2023]
+  Li8 + He3 <-> He4 + He4 + H3      [TALYS2, Koning et al. 2023]
+  Li8 <-> He4 + He4                 [8.248806e-01 s⁻¹  (T1/2=0.8403 s, Audi)]
+  Li8 + He4 <-> B11 + n             [Coc et al. 2012]
+  Li8 + He4 <-> B12                 [TALYS2, Koning et al. 2023]
+  Li8 + H2 <-> Be10                 [TALYS2, Koning et al. 2023]
+  Li8 + H2 <-> Be9 + n              [Balbes et al. 1995]
+  Li8 + H2 <-> Li7 + H3             [Hashimoto et al. 2009]
+  Li8 + H2 <-> Li9 + p              [Balbes et al. 1995]
+  Li8 + n <-> Li9                   [Rauscher et al. 1994]
+  Li8 + p <-> Be9                   [TUNL & Camargo et al. 2008]
+  Li8 + p <-> He4 + He4 + n         [Mendes et al. 2012]
+  Li8 + H3 <-> Be10 + n             [TALYS2, Koning et al. 2023]
+  Li8 + H3 <-> Be11                 [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> B11 + n             [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> B12                 [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> Be10 + H2           [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> Be11 + p            [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> Be9 + H3            [TALYS2, Koning et al. 2023]
+  Li9 + He3 <-> Li8 + He4           [TALYS2, Koning et al. 2023]
+  Li9 <-> Be9                       [1.912666e+00 s⁻¹  (T1/2=0.3624 s, Audi)]
+  Li9 <-> He4 + He4 + n             [1.974867e+00 s⁻¹  (T1/2=0.351 s, Audi)]
+  Li9 + He4 <-> B12 + n             [Coc et al. 2012]
+  Li9 + He4 <-> B13                 [TALYS2, Koning et al. 2023]
+  Li9 + H2 <-> Be10 + n             [TALYS2, Koning et al. 2023]
+  Li9 + H2 <-> Be11                 [TALYS2, Koning et al. 2023]
+  Li9 + H2 <-> Li8 + H3             [TALYS2, Koning et al. 2023]
+  Li9 + p <-> Be10                  [TALYS2, Koning et al. 2023]
+  Li9 + p <-> Be9 + n               [TALYS2, Koning et al. 2023]
+  Li9 + p <-> He6 + He4             [=li7pa]
+  Li9 + p <-> Li7 + H3              [TALYS2, Koning et al. 2023]
+  Li9 + H3 <-> Be11 + n             [TALYS2, Koning et al. 2023]
+  Li9 + H3 <-> Be12                 [TALYS2, Koning et al. 2023]
+  N12 <-> C12                       [6.301338e+01 s⁻¹  (T1/2=0.011 s, Audi)]
+  N12 + He4 <-> O15 + p             [TALYS2, Koning et al. 2023]
+  N12 + n <-> C11 + H2              [TALYS2, Koning et al. 2023]
+  N12 + n <-> C12 + p               [TALYS2, Koning et al. 2023]
+  N12 + n <-> N13                   [TALYS2, Koning et al. 2023]
+  N12 + p <-> O13                   [TALYS2, Koning et al. 2023]
+  N13 <-> C13                       [1.159303e-03 s⁻¹  (T1/2=597.9 s, Audi)]
+  N13 + He4 <-> F17                 [TALYS2, Koning et al. 2023]
+  N13 + n <-> C12 + H2              [TALYS2, Koning et al. 2023]
+  N13 + n <-> C13 + p               [TALYS2, Koning et al. 2023]
+  N13 + n <-> N14                   [TALYS2, Koning et al. 2023]
+  N13 + p <-> O14                   [NACRE, Xu et al. 2010, 2011]
+  N14 + He4 <-> F18                 [Iliadis et al. 2010]
+  N14 + n <-> C14 + p               [Caughlan& Fowler 1988]
+  N14 + n <-> N15                   [TALYS2, Koning et al. 2023]
+  N14 + p <-> O15                   [NACRE, Xu et al. 2010, 2011]
+  N15 + He4 <-> F19                 [Iliadis et al. 2010]
+  N15 + n <-> N16                   [TALYS2, Koning et al. 2023]
+  N15 + p <-> C12 + He4             [NACRE, Xu et al. 2010, 2011]
+  N15 + p <-> O16                   [NACRE, Xu et al. 2010, 2011]
+  N16 <-> O16                       [9.721559e-02 s⁻¹  (T1/2=7.13 s, Audi)]
+  N17 <-> O16 + n                   [1.661028e-01 s⁻¹  (T1/2=4.173 s, Audi)]
+  Na20 <-> Ne20                     [1.547549e+00 s⁻¹  (T1/2=0.4479 s, Audi)]
+  Na20 + n <-> F17 + He4            [TALYS2, Koning et al. 2023]
+  Na21 <-> Ne21                     [3.082024e-02 s⁻¹  (T1/2=22.49 s, Audi)]
+  Na22 <-> Ne22                     [8.441899e-09 s⁻¹  (T1/2=8.211e+07 s, NUBASE2020,)]
+  Ne18 <-> F18                      [4.145617e-01 s⁻¹  (T1/2=1.672 s, Audi)]
+  Ne18 + n <-> F18 + p              [TALYS2, Koning et al. 2023]
+  Ne18 + n <-> O15 + He4            [TALYS2, Koning et al. 2023]
+  Ne19 <-> F19                      [4.007558e-02 s⁻¹  (T1/2=17.3 s, Audi)]
+  Ne19 + n <-> F19 + p              [TALYS2, Koning et al. 2023]
+  Ne19 + n <-> O16 + He4            [TALYS2, Koning et al. 2023]
+  Ne19 + p <-> Na20                 [Iliadis et al. 2010]
+  Ne23 <-> Na23                     [1.861297e-02 s⁻¹  (T1/2=37.24 s, Audi)]
+  O13 <-> N13                       [8.078638e+01 s⁻¹  (T1/2=0.00858 s, Audi)]
+  O14 <-> N14                       [9.818227e-03 s⁻¹  (T1/2=70.6 s, Audi)]
+  O14 + He4 <-> F17 + p             [Bardayan& Smith 1997]
+  O14 + He4 <-> Ne18                [Wiescher et al. 1987]
+  O14 + n <-> C11 + He4             [TALYS2, Koning et al. 2023]
+  O14 + n <-> C12 + He3             [TALYS2, Koning et al. 2023]
+  O14 + n <-> N14 + p               [Caughlan& Fowler 1988]
+  O14 + n <-> O15                   [TALYS2, Koning et al. 2023]
+  O15 <-> N15                       [5.670379e-03 s⁻¹  (T1/2=122.2 s, Audi)]
+  O15 + He4 <-> Ne19                [Iliadis et al. 2010]
+  O15 + n <-> C12 + He4             [TALYS2, Koning et al. 2023]
+  O15 + n <-> N15 + p               [TALYS2, Koning et al. 2023]
+  O15 + n <-> O16                   [TALYS2, Koning et al. 2023]
+  O16 + He4 <-> Ne20                [Iliadis et al. 2010]
+  O16 + n <-> O17                   [Igashira et al. 1995]
+  O16 + p <-> F17                   [Iliadis et al. 2010]
+  O16 + p <-> N13 + He4             [Caughlan& Fowler 1988]
+  O17 + He4 <-> Ne20 + n            [NACRE, Angulo et al. 1999]
+  O17 + He4 <-> Ne21                [Caughlan& Fowler 1988]
+  O17 + n <-> C14 + He4             [Koehler& Graff 1991]
+  O17 + n <-> O18                   [TALYS2, Koning et al. 2023]
+  O17 + p <-> F18                   [Iliadis et al. 2010]
+  O17 + p <-> N14 + He4             [Iliadis et al. 2010]
+  O18 + He4 <-> Ne22                [Iliadis et al. 2010]
+  O18 + n <-> O19                   [TALYS2, Koning et al. 2023]
+  O18 + p <-> F19                   [Iliadis et al. 2010]
+  O18 + p <-> N15 + He4             [Iliadis et al. 2010]
+  O19 <-> F19                       [2.619208e-02 s⁻¹  (T1/2=26.46 s, Audi)]
+  O19 + He4 <-> Ne22 + n            [TALYS2, Koning et al. 2023]
+  O19 + He4 <-> Ne23                [TALYS2, Koning et al. 2023]
+  O19 + n <-> O20                   [TALYS2, Koning et al. 2023]
+  O19 + p <-> F19 + n               [TALYS2, Koning et al. 2023]
+  O19 + p <-> F20                   [TALYS2, Koning et al. 2023]
+  O19 + p <-> N16 + He4             [TALYS2, Koning et al. 2023]
+  O20 <-> F20                       [5.130623e-02 s⁻¹  (T1/2=13.51 s, Audi)]
+  He4 + He4 + He4 <-> C12           [NACRE, Angulo et al. 1999]
+  He4 + He4 + n <-> Be9             [NACRE, Angulo et al. 1999]
+  He4 + n + n <-> He6               [Efros et al. 1996]
+  He4 + n + p <-> Li6               [Caughlan& Fowler 1988]
+  H2 + He4 <-> Li6                  [Trezzi et al. (Luna) 2017]
+  H2 + H2 <-> He3 + n               [Gómez et al. 2017]
+  H2 + H2 <-> He4                   [NACRE, Xu et al. 2010, 2011]
+  H2 + H2 <-> H3 + p                [Gómez et al. 2017]
+  H2 + n <-> H3                     [Nagai et al. 2006]
+  H2 + p <-> He3                    [Moscoso et al. 2021]
+  n + p <-> H2                      [Ando et al. 2006]
+  p + p + n <-> H2 + p              [Caughlan& Fowler 1988]
+  H3 <-> He3                        [1.782872e-09 s⁻¹  (T1/2=3.888e+08 s, Audi)]
+  H3 + He4 <-> Li7                  [Descouvemont et al. 2004]
+  H3 + H2 <-> He4 + n               [de Souza et al. 2019]
+  H3 + p <-> He4                    [Serpico et al. 2004]
+  H3 + H3 <-> He4 + n + n           [Nagai et al. 2006]
+[bg-py] Solving cosmological background: a(T), t(T) relations ...
+[bg-py] Background a(T), t(T) ready in 0.10 s
+[weak-py] background n<->p weak rates: loaded from cache.
+[weak-py] n <--> p thermal corrections loaded from cache.
+[init-py] Initialisation complete in 6.0 s
+[nucl-py] Solving neutron decoupling at high temperature era (T = 10 -> 1 MeV)
+[nucl-py] [HT] Finished solve_ivp in 0.02 s
+[nucl-py] Solving nuclear network at mid temperature era (T = 1 -> 0.11 MeV)
+[nucl-py] [MT] Finished solve_ivp (large network, 12 nuclides) in 0.13 s
+[nucl-py] Solving nuclear network at low temperature era (T = 0.11 -> 0.001 MeV)
+[nucl-py] [LT] Finished solve_ivp (large network, 59 nuclides) in 18.82 s
+--------------------------------------------------
+Primordial abundances (59 nuclides) at T = 0.001 MeV
+--------------------------------------------------
+  Yn    = 3.996066e-16
+  Yp    = 7.529458e-01
+  YH2   = 1.834510e-05
+  YH3   = 5.838781e-08
+  YHe3  = 7.770078e-06
+  YHe4  = 6.174851e-02
+  YLi7  = 9.178416e-11
+  YBe7  = 3.223833e-10
+  YHe6  = 1.101199e-60
+  YLi8  = 8.641301e-33
+  YLi6  = 5.877904e-15
+  YB8   = 9.047278e-34
+  YLi9  = 9.387364e-56
+  YBe9  = 6.715259e-19
+  YBe10 = 4.597676e-27
+  YBe11 = 7.049464e-49
+  YBe12 = 1.005044e-73
+  YB10  = 1.841845e-21
+  YB11  = 2.488705e-16
+  YB12  = 3.234515e-40
+  YB13  = 6.846837e-64
+  YB14  = 3.398410e-87
+  YB15  = 5.442622e-113
+  YC9   = 2.721698e-62
+  YC10  = 9.433957e-59
+  YC11  = 2.470663e-41
+  YC12  = 4.211575e-16
+  YC13  = 1.104391e-16
+  YC14  = 2.134901e-18
+  YC15  = 3.661723e-42
+  YC16  = 1.152638e-64
+  YN12  = 2.786420e-72
+  YN13  = 2.034825e-41
+  YN14  = 5.304341e-17
+  YN15  = 8.725952e-19
+  YN16  = 3.684534e-41
+  YN17  = 1.462383e-62
+  YO13  = 1.224482e-102
+  YO14  = 4.114272e-70
+  YO15  = 6.776327e-46
+  YO16  = 7.319504e-20
+  YO17  = 4.634988e-24
+  YO18  = 1.341357e-22
+  YO19  = 3.149452e-43
+  YO20  = 2.257403e-63
+  YF17  = 3.173595e-51
+  YF18  = 1.215616e-53
+  YF19  = 6.335276e-26
+  YF20  = 2.552233e-45
+  YNe18 = 4.045040e-77
+  YNe19 = 1.691818e-85
+  YNe20 = 7.225879e-28
+  YNe21 = 5.686634e-30
+  YNe22 = 8.971861e-32
+  YNe23 = 3.352712e-88
+  YNa20 = 4.157322e-125
+  YNa21 = 1.806438e-96
+  YNa22 = 2.929250e-36
+  YNa23 = 1.237364e-37
+Traceback (most recent call last):
+  File "/workspace/scratch/b581bb5775cc/ccc-bbn-p2/analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py", line 489, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/scratch/b581bb5775cc/ccc-bbn-p2/analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py", line 475, in main
+    print(json.dumps({
+          ^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int32 is not JSON serializable

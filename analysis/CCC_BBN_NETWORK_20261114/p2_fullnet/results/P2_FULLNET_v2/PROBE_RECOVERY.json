@@ -1,0 +1,66 @@
+{
+  "status": "NUMERICAL_PROBE_RECOVERED_EXPORT_ONLY_FAILURE",
+  "original_process_status": "FAILED_TECHNICAL",
+  "original_exit_code": 1,
+  "result_status": "ENGINEERING_PASS",
+  "cause": "Final console json.dumps received a NumPy int32 nlu counter; persisted JSON/NPZ had already been written correctly.",
+  "fix": "Cast counters to Python int; reduce recovery pickle to raw/dense sample arrays. No physics changes and no repeated integration.",
+  "independent_raw_checks": {
+    "HT": {
+      "shape": [
+        2,
+        162
+      ],
+      "finite": true,
+      "monotonic_t": true,
+      "max_baryon_residual": 5.551115123125783e-16
+    },
+    "MT": {
+      "shape": [
+        12,
+        164
+      ],
+      "finite": true,
+      "monotonic_t": true,
+      "max_baryon_residual": 1.652455949852083e-12
+    },
+    "LT": {
+      "shape": [
+        59,
+        2017
+      ],
+      "finite": true,
+      "monotonic_t": true,
+      "max_baryon_residual": 1.6542323066914832e-12
+    }
+  },
+  "dense_finite": true,
+  "hashes": {
+    "runs/PROBE/RESULT.json": "34fd03663479397338e8ec0f729a9d04957a130fa06b1d631fe937339ad0cac0",
+    "runs/PROBE/TRACE.json": "67e73d5deb236b952d01260e131bbb1969c0a9d673f5e45db357cc710f67d479",
+    "runs/PROBE/RAW_SOLVER.npz": "866ed10f2233c0a0d5be9bb2596581fa9381ed0519fd3415edada24b3baf9c37",
+    "process/PROBE.after.json": "ba39aab01d6b0bba6fa5f51317972e71751adf01ed13a15d9781494d27aa7aa8",
+    "process/PROBE.stderr.txt": "d125a773a3d2103cba7f4f4821d3fe2c6f24b4074837a165c03f030d95a0dd9b"
+  },
+  "local_work_count_forecast": {
+    "low": 395.2042452560781,
+    "central": 790.4084905121562,
+    "high": 1383.2148583962733,
+    "era_seconds_per_run": {
+      "HT": 0.04118106270243106,
+      "MT": 1.9598546875402238,
+      "LT": 377.2477215828355
+    },
+    "export_allowance_seconds_per_run": 10,
+    "uncertainty_factors": [
+      0.5,
+      1.75
+    ],
+    "method": "Target P2 probe per-era solver time multiplied by strict P1 nfev / probe P2 nfev; two full runs. Envelope is engineering judgment, not a confidence interval.",
+    "limitations": "Full-network adaptive step count and strict Jacobian cost are unknown. P1 work counts are an analogy, not guaranteed P2 work. Hard caps bound overruns; no precision reduction or automatic retry."
+  },
+  "spent_local_seconds": 26.923812843999258,
+  "route": "GITHUB_ACTIONS_VM_TARGET_MACHINE_CALIBRATION_REQUIRED",
+  "production_result": false,
+  "scientific_acceptance": false
+}

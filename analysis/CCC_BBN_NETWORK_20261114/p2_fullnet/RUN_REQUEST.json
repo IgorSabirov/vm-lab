@@ -1,0 +1,31 @@
+{
+  "schema": "vm-lab-p2-explicit-run-request-v1",
+  "id": "P2_GHA_20261114_r1",
+  "executor": "GITHUB_ACTIONS_VM",
+  "repository": "IgorSabirov/vm-lab",
+  "branch": "s0-fullnet",
+  "user_authorization": "Доработай и запусти. Все права на всё предоставляю",
+  "authorization_date": "2026-11-14",
+  "source_ancestor": "edb66e02149edb065e33de916425d05011e240fc",
+  "scope": "One target-machine calibration and one strict S0 cold/warm pair; no S1/S2 or scientific promotion",
+  "package_wall_cap_seconds": 3000,
+  "process_wall_cap_seconds": 1400,
+  "memory_cap_bytes": 4294967296,
+  "main_precision": 1e-10,
+  "main_nuclear_grid_npts": 4000,
+  "local_evidence": {
+    "P2_probe_wall_seconds": 25.91687187899879,
+    "P2_probe_LT_nfev": 6312,
+    "P2_probe_LT_solver_seconds": 18.557359767999515,
+    "P1_strict_nfev": {
+      "HT": 715,
+      "MT": 8626,
+      "LT": 128315
+    },
+    "P1_source": "https://github.com/IgorSabirov/vm-lab/blob/1fd3e7a82f7142d67fe92bb44ad61933783e8227/analysis/CCC_BBN_NETWORK_20261114/prelaunch/results/P1_cold/RESULT.json"
+  },
+  "route_basis": "Local P2 per-call cost times measured strict P1 work predicts roughly 13 minutes for cold+warm, above the 600 s local threshold. Both configured VM connectors unavailable. Repository AGENTS.md designates GitHub Actions for bounded computation and current user authorizes execution. The GitHub-hosted VM must be calibrated itself before production.",
+  "no_automatic_retry": true,
+  "scientific_acceptance": false,
+  "prior_P2_local_wall_seconds": 26.923812843999258
+}
