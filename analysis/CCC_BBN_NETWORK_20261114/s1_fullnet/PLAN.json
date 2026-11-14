@@ -1,0 +1,99 @@
+{
+  "schema": "ccc-bbn-s1-fullnet-v1",
+  "id": "S1_FULLNET_20261114_r1",
+  "execution_enabled": true,
+  "parent_result_commit": "c658466f839e9ae7de7a4f051792f7eee40e8551",
+  "upstream": {
+    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e"
+  },
+  "runs": [
+    {
+      "id": "CONTROL",
+      "mode": "S0",
+      "f0": 1.0,
+      "alpha_s_inv": 0.0,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000"
+    },
+    {
+      "id": "S1",
+      "mode": "S1",
+      "f0": 3.66,
+      "alpha_s_inv": -1.5426109418e-18,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000"
+    },
+    {
+      "id": "NEGATIVE",
+      "mode": "cooling_only",
+      "f0": 3.66,
+      "alpha_s_inv": -1.5426109418e-18,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000"
+    }
+  ],
+  "numerical_budget": {
+    "status": "PREREGISTERED_INTERNAL_STABILITY_BUDGET_NOT_PHYSICAL_UNCERTAINTY",
+    "rationale": "One tenth of the corresponding pinned PRIMAT regression tolerances, chosen before observing R1-R8.",
+    "YPBBN_absolute": 1e-06,
+    "DoH_absolute": 3e-10,
+    "Neff_absolute": 1e-06,
+    "He3oH_relative": 1e-05,
+    "Li7oH_relative": 1e-05,
+    "final_light_species_relative": 1e-05,
+    "final_light_species": [
+      "n",
+      "p",
+      "H2",
+      "H3",
+      "He3",
+      "He4",
+      "Li7",
+      "Be7"
+    ],
+    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
+    "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
+    "upstream_reference_tolerances": {
+      "YPBBN_absolute": 1e-05,
+      "DoH_absolute": 3e-09,
+      "Neff_absolute": 1e-05,
+      "NUCLIDE_REL_TOL": 0.0001,
+      "source": "PRIMAT tests/reference_values.py at the pinned commit"
+    },
+    "final_species_floor": 1e-300
+  },
+  "trajectory_envelope": {
+    "source_runs": [
+      "F0",
+      "F_RATE",
+      "F_ATOL"
+    ],
+    "formula": "5*max(max_T(abs(F_RATE-F0)),max_T(abs(F_ATOL-F0))) + 1e-10*max_T(abs(F0)) + 1e-14",
+    "applies": "every active species, per era; absolute floor does not certify relative accuracy of trace species below it",
+    "frozen_before_S1": true
+  },
+  "acceptance": {
+    "positive": "S1 vs matched CONTROL within frozen trajectory envelope and original final-observable budgets",
+    "negative": "cooling_only exceeds the frozen trajectory envelope by at least 100x and exceeds Yp or D/H final numerical budget by at least 100x",
+    "control": "CONTROL matches archived F0 within original budgets and frozen trajectory envelope",
+    "limits": "Conditional common-clock reparametrization only. No physical-clock identification, new microphysics, observational fit or S2 law."
+  },
+  "runtime": {
+    "preparation_cap_seconds": 120,
+    "process_cap_seconds": 2400,
+    "package_cap_seconds": 7200,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648,
+    "routing": "Whole three-run package >600 s: GitHub Actions; bounded target calibration before admission"
+  },
+  "scientific_acceptance": false
+}
