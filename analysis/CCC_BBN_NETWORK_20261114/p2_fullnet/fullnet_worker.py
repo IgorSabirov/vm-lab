@@ -293,8 +293,31 @@ def main():
             "Y": values.T.tolist(),
         })
 
-    final = dict(run.nuclear.Y_final)
+    final = {str(k): float(v) for k, v in dict(run.nuclear.Y_final).items()}
     final_finite = all(np.isfinite(float(v)) for v in final.values())
+    lt_raw_final = np.asarray(solver_objects[-1].y[:, -1], dtype=float)
+    if len(lt_raw_final) != len(lt_species) or set(final) != set(lt_species):
+        raise RuntimeError("LT raw solver state and Y_final species do not align")
+    raw_final_by_species = {
+        name: float(value) for name, value in zip(lt_species, lt_raw_final)
+    }
+    clamp_delta = {
+        name: float(final[name] - raw_final_by_species[name]) for name in lt_species
+    }
+    changed_by_postprocessing = [
+        name for name, delta in clamp_delta.items() if delta != 0.0
+    ]
+    clamp_checks = {
+        "raw_global_min": float(min(np.min(sol.y) for sol in solver_objects)),
+        "raw_LT_final_min": float(np.min(lt_raw_final)),
+        "postprocessed_Y_final_min": float(min(final.values())),
+        "max_abs_Y_final_minus_raw_LT": float(max(abs(v) for v in clamp_delta.values())),
+        "postprocessed_species_changed": changed_by_postprocessing,
+        "postprocess_delta_by_species": clamp_delta,
+        "final_abundances_finite": final_finite,
+        "final_abundances_nonnegative": all(v >= 0.0 for v in final.values()),
+        "interpretation": "diagnostic only; raw values are preserved, no local clamp is applied by this worker",
+    }
     final_mass_residual = abs(sum(
         sum(cfg.Nuclides[name]) * float(value) for name, value in final.items()
     ) - 1.0)
@@ -381,6 +404,13 @@ def main():
             "cache_load_events": load_events,
         }, stream, protocol=pickle.HIGHEST_PROTOCOL)
 
+    raw_arrays = {}
+    for era, sol, species in zip(("HT", "MT", "LT"), solver_objects, phase_species):
+        raw_arrays[f"{era}_t_seconds"] = np.asarray(sol.t, dtype=float)
+        raw_arrays[f"{era}_Y"] = np.asarray(sol.y, dtype=float)
+        raw_arrays[f"{era}_species"] = np.asarray(species, dtype="U")
+    np.savez_compressed(out / "RAW_SOLVER.npz", **raw_arrays)
+    report["clamp_checks"] = clamp_checks
     dump(out / "RESULT.json", report)
     dump(out / "TRACE.json", {
         "convention": "HT/MT/LT dense traces; no interpolation across era boundaries",
