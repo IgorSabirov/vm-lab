@@ -321,27 +321,42 @@ def main():
     final = {str(k): float(v) for k, v in dict(run.nuclear.Y_final).items()}
     final_finite = all(np.isfinite(float(v)) for v in final.values())
     lt_raw_final = np.asarray(solver_objects[-1].y[:, -1], dtype=float)
-    if len(lt_raw_final) != len(lt_species) or set(final) != set(lt_species):
-        raise RuntimeError("LT raw solver state and Y_final species do not align")
+    if len(lt_raw_final) != len(lt_species):
+        raise RuntimeError("LT raw solver state does not align with its species list")
     raw_final_by_species = {
         name: float(value) for name, value in zip(lt_species, lt_raw_final)
     }
+    if not set(lt_species).issubset(final):
+        raise RuntimeError("Y_final omits species that were integrated in LT")
+    extra_final_species = sorted(set(final) - set(lt_species))
+    expected_final = {
+        name: max(raw_final_by_species[name], 0.0) for name in lt_species
+    }
+    expected_final.update({name: 0.0 for name in extra_final_species})
     clamp_delta = {
-        name: float(final[name] - raw_final_by_species[name]) for name in lt_species
+        name: float(final[name] - (
+            raw_final_by_species[name] if name in raw_final_by_species else 0.0
+        ))
+        for name in final
     }
     changed_by_postprocessing = [
         name for name, delta in clamp_delta.items() if delta != 0.0
     ]
+    clamp_matches_upstream = all(
+        final[name] == expected_final[name] for name in expected_final
+    ) and set(expected_final) == set(final)
     clamp_checks = {
         "raw_global_min": float(min(np.min(sol.y) for sol in solver_objects)),
         "raw_LT_final_min": float(np.min(lt_raw_final)),
         "postprocessed_Y_final_min": float(min(final.values())),
         "max_abs_Y_final_minus_raw_LT": float(max(abs(v) for v in clamp_delta.values())),
         "postprocessed_species_changed": changed_by_postprocessing,
+        "zero_filled_species_not_in_LT": extra_final_species,
         "postprocess_delta_by_species": clamp_delta,
+        "matches_upstream_max_zero_clamp_and_light_zero_fill": clamp_matches_upstream,
         "final_abundances_finite": final_finite,
         "final_abundances_nonnegative": all(v >= 0.0 for v in final.values()),
-        "interpretation": "diagnostic only; raw values are preserved, no local clamp is applied by this worker",
+        "interpretation": "diagnostic and engineering gate; PRIMAT clamps each LT final Y to max(raw,0) and zero-fills any missing standard light species",
     }
     final_mass_residual = abs(sum(
         sum(cfg.Nuclides[name]) * float(value) for name, value in final.items()
@@ -381,6 +396,8 @@ def main():
         "LT_has_59_distinct_species": len(lt_species) == 59 and len(set(lt_species)) == 59,
         "LT_has_428_channels_including_weak": lt_channels == 428,
         "all_final_abundances_finite": final_finite,
+        "clamp_matches_upstream_projection": clamp_matches_upstream,
+        "final_abundances_nonnegative": all(v >= 0.0 for v in final.values()),
         "final_baryon_residual": final_mass_residual,
         "final_baryon_pass": final_mass_residual <= 1e-10,
         "raw_baryon_pass": all(e["max_baryon_residual"] <= 1e-10 for e in eras),
