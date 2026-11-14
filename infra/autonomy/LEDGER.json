@@ -1,0 +1,34 @@
+{
+  "packages": [
+    {
+      "id": "S_ETA_20261114_r1",
+      "executor": "github_actions",
+      "workflow_run_id": 43603380819,
+      "started_utc": "2026-11-14T14:09:28Z",
+      "result_sha": "063464de375161255d8e402f898e3cd36364741c"
+    },
+    {
+      "id": "S3_INPUT_AUDIT_20261114_r1",
+      "executor": "local",
+      "started_utc": "2026-11-14T14:32:49.197918+00:00",
+      "source_sha": "97539d9035a41a05cbe2ffebc587d6cf41a161f1",
+      "result_sha": "45f5a17131862dbeb8e703251e5f77da0b1f011b"
+    }
+  ],
+  "limits": {
+    "simultaneous_compute_packages": 1,
+    "new_packages_per_event": 1,
+    "new_packages_per_rolling_24h": 2,
+    "package_seconds": 5400,
+    "process_seconds": 2400,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "queue": {
+    "status": "BUDGET_WAIT",
+    "next": "S3_STANDARD physical rate covariance and independent CMB input audit",
+    "not_before_utc": "2026-11-15T14:09:29Z",
+    "new_packages_last_24h": 2,
+    "reason": "S_ETA Actions plus S3_INPUT_AUDIT local package; no rerun; preparation may continue without scientific execution"
+  }
+}
