@@ -1,12 +1,12 @@
 {
   "schema": "vm-lab-analysis-design-v1",
   "id": "CCC_BBN_NETWORK",
-  "version": "0.1",
-  "title": "CCC_BBN_NETWORK v0.1 DESIGN_DRAFT",
+  "version": "0.1.1",
+  "title": "CCC_BBN_NETWORK v0.1.1 DESIGN_DRAFT",
   "date": "2026-11-14",
   "state": "DESIGN_DRAFT",
   "base_commit": "bb1c8b672e89d3d736ce3f35e2160c546cf41c10",
-  "scope": "Design of a reproducible BBN network study using pinned PRIMAT; no execution in this package.",
+  "scope": "Design only: baseline/common scaling, separate eta input, unspecified S2 extension, and a bounded Anthropic phase-to-background interface; no execution.",
   "parents": [
     "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
@@ -14,13 +14,16 @@
     "infra/external/contracts/PRIMAT.json",
     "infra/external/sources/PRIMAT.json",
     "link:L10",
-    "question:U006"
+    "question:U006",
+    "analysis/ANTHROPIC_BH_20261112/REPORT.md",
+    "infra/external/contracts/ANTHROPIC_HP.json",
+    "infra/external/contracts/ANTHROPIC_BOOTSTRAP.json"
   ],
   "upstream": {
     "source_id": "PRIMAT",
     "repository": "CyrilPitrou/primat",
     "version": "0.3.3",
-    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61",
+    "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
     "tree": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
     "license": "GPL-3.0-or-later",
     "storage_policy": "UPSTREAM_LINKS_ONLY_NO_VENDORED_CODE_OR_DATA"
@@ -70,9 +73,9 @@
     "vegas_n_itn": 50,
     "published_targets": {
       "YPBBN": 0.24700179,
-      "YPBBN_abs_tolerance": 1e-5,
-      "DoH": 2.4366098e-5,
-      "DoH_abs_tolerance": 3e-9
+      "YPBBN_abs_tolerance": 1e-05,
+      "DoH": 2.4366098e-05,
+      "DoH_abs_tolerance": 3e-09
     },
     "cache_identity_required_for_strict_reference": true,
     "cache_regeneration_may_exceed_published_DoH_tolerance": true
@@ -109,6 +112,146 @@
     "CCC+TL prediction of non-uniform nuclear rates",
     "new cosmological fit",
     "closure of U006, U010, L09 or L10",
-    "scientific promotion of any R/C/L/U status"
-  ]
+    "scientific promotion of any R/C/L/U status",
+    "S2 is a prediction of the referenced invariant-dimensionless CCC model",
+    "identification of Anthropic SYM with a physical cosmological sector",
+    "Anthropic-derived nuclear masses or cross sections",
+    "execution of BH0 or BH1 in this revision"
+  ],
+  "revision_of_commit": "396e8c1e6bbd4113cb6d715cc725b6ee8950897e",
+  "scientific_addendum": "analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md",
+  "ccc_microphysics": {
+    "source": "https://arxiv.org/html/2604.03381v2",
+    "source_sections": [
+      "1.3",
+      "2.1",
+      "3",
+      "4"
+    ],
+    "dimensionless_parameters_in_reference_model": "ASSUMED_INVARIANT",
+    "nonuniform_microphysics_follows_from_reference_model": false,
+    "universal_rate_scaling": "ANSATZ_NOT_A_NUCLEAR_AMPLITUDE_DERIVATION",
+    "parameterization_guard": "Do not replace the vm-lab drift law (early factor about 3.66) by the BBN article illustration (factor 3) without an explicit model/clock mapping."
+  },
+  "s2_extension": {
+    "state": "UNSPECIFIED_MODEL_EXTENSION",
+    "execution_enabled": false,
+    "missing_first_mapping": "extension theory -> dimensionless q_j(t)",
+    "subsequent_mapping": "q_j -> nuclear/weak inputs -> consistent forward and reverse rates -> BBN",
+    "response_sources": [
+      {
+        "url": "https://doi.org/10.1103/PhysRevD.76.063513",
+        "role": "separate nuclear and fundamental-parameter response"
+      },
+      {
+        "url": "https://doi.org/10.1103/PhysRevD.87.085018",
+        "role": "quark-mass dependence of low-energy nuclear properties"
+      },
+      {
+        "url": "https://doi.org/10.1140/epja/s10050-022-00869-6",
+        "role": "BBN sensitivity to nuclear inputs"
+      }
+    ],
+    "coefficients_imported": false,
+    "required_metadata": [
+      "units",
+      "renormalization scheme and scale",
+      "reference point",
+      "parameter validity range",
+      "channel coverage",
+      "correlated theoretical uncertainty"
+    ],
+    "blocks_standard_baseline": false
+  },
+  "eta_input_branch": {
+    "id": "S_ETA",
+    "state": "DESIGN_DRAFT",
+    "source": "https://arxiv.org/html/2604.03381v2",
+    "changes_dimensionless_nuclear_couplings": false,
+    "requires": [
+      "named cosmological fit",
+      "mapping to eta and PRIMAT baryon input",
+      "uncertainty"
+    ],
+    "assigned_eta": null,
+    "execution_enabled": false
+  },
+  "anthropic_connection": {
+    "source_id": "ANTHROPIC_HP",
+    "source_url": "https://hexagonmath.org/2611.00175v1",
+    "source_contract": "infra/external/contracts/ANTHROPIC_HP.json",
+    "existing_adapter": "analysis/ANTHROPIC_BH_20261112/adapter.py",
+    "upstream_model": "large-N weakly coupled N=4 SYM on S3; not nuclear QCD",
+    "BH0": {
+      "state": "DESIGN_DIAGNOSTIC_NO_BACKREACTION",
+      "fixed_inputs": [
+        "lambda_tHooft",
+        "N",
+        "chi = k_B T_X R / (hbar c)"
+      ],
+      "outputs": [
+        "phase extrema",
+        "coexistence delta_W",
+        "quartic sign"
+      ],
+      "ccc_radius_scaling": "R proportional to f is an additional conditional identification",
+      "changes_bbn_background": false
+    },
+    "BH1": {
+      "state": "PHYSICAL_MATCHING_NOT_DEFINED",
+      "execution_enabled": false,
+      "proposed_flow": [
+        "phase sector",
+        "energy density / pressure / energy exchange",
+        "BBN background and thermal history",
+        "abundances"
+      ],
+      "required_inputs": [
+        "physical sector and geometry identification",
+        "R(t), N, lambda, T_X/T_gamma and initial conditions",
+        "absolute energy/pressure normalization",
+        "phase kinetics or justified equilibrium",
+        "photon/neutrino energy exchange and baryon accounting",
+        "CCC-compatible expansion and conservation laws"
+      ],
+      "baseline_control": "zero additional stress-energy and zero energy exchange",
+      "decoupled_control": "zero energy exchange with nonzero density may still change expansion",
+      "direct_nuclear_rate_mapping": false
+    },
+    "bootstrap_boundary": {
+      "source_id": "ANTHROPIC_BOOTSTRAP",
+      "source_url": "https://hexagonmath.org/2611.00174v1",
+      "role": "separate 2D CFT result; no supplied map to nuclear QCD or cosmology"
+    },
+    "blocks_standard_baseline": false
+  },
+  "blocker_scope": {
+    "B01_TIME_VARIABLE_MAPPING": [
+      "S1",
+      "S2 if CCC time is used",
+      "BH1 if coupled to CCC"
+    ],
+    "B02_COMPLETE_RATE_COVERAGE": [
+      "S1",
+      "S2"
+    ],
+    "B03_BACKGROUND_NEUTRINO_PRESERVATION": [
+      "custom background branches"
+    ],
+    "B04_CACHE_IDENTITY_AND_REFERENCE": [
+      "strict S0 reference; declared local baseline if caches differ"
+    ],
+    "B05_DIMENSIONLESS_MICROPHYSICS_MAPPING": [
+      "S2 only"
+    ],
+    "B06_ALPHA_EM_NUCLEAR_QED_MAPPING": [
+      "branches changing alpha_em"
+    ],
+    "B07_INDEPENDENT_BBN_ORACLE": [
+      "independent replication claim only"
+    ],
+    "B08_RUNTIME_CALIBRATION": [
+      "each intended computation"
+    ]
+  }
 }
