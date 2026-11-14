@@ -15,16 +15,25 @@ def main():
     p.add_argument('--envelope',type=Path,required=True); p.add_argument('--out',type=Path)
     a=p.parse_args(); b=load(a.baseline/'TRACE.json'); x=load(a.other/'TRACE.json')
     env=load(a.envelope) if a.action=='compare' else {'formula':'5*max_refinement_difference + 1e-10*max_baseline_abundance + 1e-14','fixed_inputs':'same weak/plasma caches and background grid','eras':[]}
+    for trace in (b,x):
+        assert [e['era'] for e in trace['eras']]==['HT','MT','LT']
+    if a.action=='compare':
+        assert [e['era'] for e in env['eras']]==['HT','MT','LT']
+        assert env['baseline']=={q.name:digest(q) for q in (a.baseline/'TRACE.json',a.baseline/'RESULT.json')}
     rows=[]
     for k,(eb,ex) in enumerate(zip(b['eras'],x['eras'])):
         assert eb['era']==ex['era'] and eb['species']==ex['species']
         assert np.allclose(eb['T_MeV'],ex['T_MeV'],rtol=1e-12,atol=0)
         yb,yx=np.array(eb['Y']),np.array(ex['Y']); diff=np.max(np.abs(yx-yb),axis=0)
+        assert yb.shape==yx.shape==(401,len(eb['species']))
+        assert np.isfinite(yb).all() and np.isfinite(yx).all()
         if a.action=='freeze':
             tol=5*diff+1e-10*np.max(np.abs(yb),axis=0)+1e-14
             env['eras'].append({'era':eb['era'],'species':eb['species'],'max_refinement_difference':diff.tolist(),'absolute_tolerance':tol.tolist()})
         else:
+            assert env['eras'][k]['era']==eb['era'] and env['eras'][k]['species']==eb['species']
             tol=np.array(env['eras'][k]['absolute_tolerance'])
+            assert np.isfinite(tol).all() and (tol>0).all()
             rows.append({'era':eb['era'],'species':eb['species'],'max_difference':diff.tolist(),'tolerance':tol.tolist(),'max_ratio':float(np.max(diff/tol)),'pass':bool(np.all(diff<=tol))})
     rb,rx=load(a.baseline/'RESULT.json'),load(a.other/'RESULT.json')
     final=[]

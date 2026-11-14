@@ -168,14 +168,19 @@ def main():
         if digest(Path(info['resolved_path']))['sha256'] != info['sha256']:
             raise RuntimeError('Weak cache mutated during run')
     report = {'result': result, 'checks': checks, 'eras': raw, 'load_events': load_events,
+              'background_clock_audit': getattr(run.background,'audit',None),
               'cache_after': after, 'new_cache_files': sorted(set(after)-set(before)),
               'timing': {'init_seconds': init_seconds, 'solve_seconds': solve_seconds,
                          'worker_wall_seconds': time.monotonic()-started,
                          'peak_rss_mib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024},
               'scientific_acceptance': False}
+    checks['raw_baryon_pass']=all(e['max_baryon_residual']<=1e-10 for e in raw)
+    checks['all_abundances_finite']=all(np.isfinite(v) for v in result['Y_final'].values())
+    checks['engineering_pass']=all(checks[k] for k in ('finite_outputs','all_abundances_finite','solver_success','final_baryon_pass','raw_baryon_pass','raw_positivity_with_1e-12_roundoff_floor')) and (args.mode=='cooling_only' or checks['author_reference_pass'])
     dump(out/'RESULT.json', report)
     dump(out/'TRACE.json', {'convention': 'Only active species, separate HT/MT/LT dense solutions; no 100-to-10 MeV zero-fill.', 'eras': traces})
     print(json.dumps({'out':str(out),'YPBBN':result['YPBBN'],'DoH':result['DoH'], 'reference_pass':checks['author_reference_pass'], **report['timing']}), flush=True)
+    if not checks['engineering_pass']: raise RuntimeError('Numerical engineering gate failed; artifacts preserved')
 
 
 if __name__ == '__main__':

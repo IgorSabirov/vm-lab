@@ -10,7 +10,7 @@ Pure Python PRIMAT at `6f7e5680614fb119d65a6c9c65a292240b27c61e`; direct `primat
 2. P1 high-precision large A≤8, separate fresh overlay, then a second fresh process with that P1 overlay.
 3. P1 refinement: tolerance 3e-11, nuclear grid 8000, background temperature sampling held at 2000; same weak tables. This measures the discretization envelope conditional on fixed background grid and upstream thermodynamic and weak caches, not uncertainty in those tables.
 4. Freeze per-era, per-species tolerance before S1: `5 * max_T |Y_refined - Y_base| + 1e-10 * max_T |Y_base| + 1e-14`. Same 401 logarithmic temperatures per era; no interpolation across era boundaries. Final-observable tolerance uses the same rule. This is a conservative engineering envelope, not a statistical confidence interval.
-5. P1 S1: constant f=3.66; exponential f=3.66 exp(alpha tc), alpha=-1.5426109418e-18 s^-1. A nonconstant diagnostic alpha=-1e-7 s^-1 may test the exact map separately; it is not a cosmological prediction.
+5. P1 S1: exponential f=3.66 exp(alpha tc), alpha=-1.5426109418e-18 s^-1. The constant limit and a nonconstant diagnostic alpha=-1e-7 s^-1 are checked pointwise, without redundant full-network solves. The diagnostic is not a cosmological prediction.
 6. Negative control: stretch the time–temperature relation by 3.66 while keeping all rates unchanged. It must disagree with the baseline beyond the frozen envelope. Changing an unused H callback alone is not a control.
 
 P2: static enumeration only, no 59-species solve. No S2, Sη, BH1, parameter fit, Monte Carlo or independent-solver claim. C/Python parity is separate from author reference reproduction and same-backend repeatability.
@@ -40,3 +40,7 @@ A source audit enumerates 13/67/428 LT channels including one n↔p channel, and
 ## Meaning of completion
 
 Close implementation/prelaunch questions only for P0/P1 S0 and this conditional S1. Fundamental S2 dynamics, alpha-dependent nuclear QED, physical-clock interpretation, second solver, observational likelihood and BH1 remain separate research questions. A successful computation does not promote R/C/L/U or count as scientific acceptance.
+
+## Pre-S1 workload amendment
+
+After P1 cold measured 82.20 s (8.10 setup, 71.40 solve), retain four necessary solves: P1 warm, refinement, exponential S1, cooling-only control. No additional full constant/stress runs. This removes redundant computation, not parts of a single long experiment. Forecast for the complete package including failed export and its repair: 142.15 s already used + 77 + 105 + 95 + 100 = 519.15 s central; engineering range 400–690 s. The hard cumulative cap stays 600 s. Uncertainty crosses the cap: continuation is conditional on remaining measured budget, never an automatic retry or local cap reset. If necessary, record the limitation and route the remaining scientifically complete validation package to VM with its own calibration.

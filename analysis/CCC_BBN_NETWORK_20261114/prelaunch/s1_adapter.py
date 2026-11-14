@@ -87,4 +87,29 @@ def attach(run, clock, scale_rates=True):
                 return original(Y, T_K, rho, base.weak_nTOp, base.weak_pTOn) / bg.factor_at_kelvin(T_K)
 
             setattr(run.nucl, name, scaled)
+    temperatures = np.geomspace(10., .001, 17)
+    u = np.asarray(base.t_of_T(temperatures))
+    tc = clock.to_scaled(u)
+    residuals = {}
+    def check(name, actual, expected):
+        actual, expected = np.asarray(actual), np.asarray(expected)
+        residuals[name] = float(np.max(np.abs(actual-expected)/np.maximum(np.abs(expected), 1e-200)))
+        if not np.allclose(actual, expected, rtol=2e-12, atol=1e-200):
+            raise RuntimeError('Clock/background identity failed: '+name)
+    check('clock_roundtrip', clock.to_standard(tc), u)
+    check('T_gamma', bg.T_of_t(tc), base.T_of_t(u))
+    check('rho_b', bg.rhoB_BBN(tc), base.rhoB_BBN(u))
+    check('scale_factor', bg.a_of_t(tc), base.a_of_t(u))
+    for flavour, expected in base.Tnu_of_t(u).items():
+        check('Tnu_'+flavour, bg.Tnu_of_t(tc)[flavour], expected)
+    if scale_rates:
+        for direction in ('weak_nTOp','weak_pTOn'):
+            kelvin=temperatures*run.cfg.MeV_to_Kelvin
+            check(direction,getattr(bg,direction)(kelvin)*clock.factor(tc),getattr(base,direction)(kelvin))
+    # Exact-map conditioning beyond the almost-constant physical alpha.
+    # These are pointwise algebra tests, not extra cosmological runs.
+    for alpha in (0., -1e-7):
+        test_clock=Clock(3.66,alpha)
+        check('clock_diagnostic_'+str(alpha),test_clock.to_standard(test_clock.to_scaled(u)),u)
+    bg.audit={'relative_residuals':residuals,'sample_count':17,'physical_clock_identification':False}
     return bg

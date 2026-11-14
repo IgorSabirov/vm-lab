@@ -26,6 +26,11 @@ def main():
     p.add_argument('--alpha',default='0')
     p.add_argument('--f0',default='3.66')
     a=p.parse_args()
+    repo=Path(__file__).resolve().parents[3]
+    source_files=[Path(__file__).resolve(),Path(__file__).with_name('run.py').resolve(),Path(__file__).with_name('s1_adapter.py').resolve(),Path(a.config).resolve()]
+    for file in source_files:
+        recorded=subprocess.check_output(['git','-C',str(repo),'show',a.source_commit+':'+str(file.relative_to(repo))])
+        if recorded!=file.read_bytes(): raise RuntimeError('Execution source differs from frozen GitHub commit: '+str(file))
     out=Path(a.out).resolve(); ledger=Path(a.ledger).resolve()
     records=json.loads(ledger.read_text()) if ledger.exists() else []
     used=sum(r['wall_seconds'] for r in records)
@@ -68,7 +73,8 @@ def main():
     elapsed=time.monotonic()-t; cpu1=resource.getrusage(resource.RUSAGE_CHILDREN)
     receipt={'run':out.name,'source_commit':a.source_commit,'exit_code':proc.returncode,'stop_reason':reason,
              'wall_seconds':elapsed,'cpu_seconds':cpu1.ru_utime+cpu1.ru_stime-cpu0.ru_utime-cpu0.ru_stime,
-             'forecast':before['forecast'],'runtime_status':'PASS' if a.lower<=elapsed<=a.upper else 'REVIEW_REQUIRED',
+             'forecast':before['forecast'],'runtime_status':'FORECAST_IN_RANGE' if a.lower<=elapsed<=a.upper else 'REVIEW_REQUIRED',
+             'execution_status':'COMPLETED' if proc.returncode==0 else 'FAILED',
              'output_bytes':sum(f.stat().st_size for f in out.rglob('*') if f.is_file()) if out.exists() else 0}
     prefix.with_suffix('.after.json').write_text(json.dumps(receipt,indent=2)+'\n')
     ledger.parent.mkdir(parents=True,exist_ok=True); ledger.write_text(json.dumps(records+[receipt],indent=2)+'\n')
