@@ -135,7 +135,43 @@
       "MT": 1e-15,
       "LT": 1e-26
     },
-    "note": "Absolute tolerances remain fixed during the numerical_precision sweep. This design therefore tests configured relative-tolerance sensitivity at these absolute-tolerance floors, not every possible atol refinement."
+    "note": "Absolute tolerances remain fixed during the numerical_precision sweep. This design therefore tests configured relative-tolerance sensitivity at these absolute-tolerance floors, not every possible atol refinement.",
+    "rate_grid_T9_min": 0.001,
+    "rate_grid_T9_max": 10,
+    "resolved_config_inheritance": "Every resolved PRIMAT config field and physical constant in the R0 execution manifest is held fixed by exact type and value unless explicitly listed as a changed field in the corresponding run-matrix row.",
+    "allowed_run_specific_config_differences": {
+      "R1": [
+        "numerical_precision"
+      ],
+      "R2": [
+        "numerical_precision"
+      ],
+      "R3": [
+        "rate_grid_npts"
+      ],
+      "R4": [
+        "rate_grid_npts"
+      ],
+      "R5": [
+        "sampling_temperature_per_decade"
+      ],
+      "R6": [
+        "sampling_temperature_per_decade"
+      ],
+      "R7": [
+        "numerical_precision",
+        "rate_grid_npts",
+        "sampling_temperature_per_decade"
+      ],
+      "R8": [
+        "numerical_precision",
+        "rate_grid_npts",
+        "sampling_temperature_per_decade"
+      ],
+      "R_NET_AMAX8": [
+        "amax"
+      ]
+    }
   },
   "run_matrix": [
     {
