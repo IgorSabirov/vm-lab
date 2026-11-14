@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-analysis-design-v1",
   "id": "CCC_BBN_NETWORK",
-  "version": "0.1.1",
-  "title": "CCC_BBN_NETWORK v0.1.1 DESIGN_DRAFT",
+  "version": "0.1.2",
+  "title": "CCC_BBN_NETWORK v0.1.2 DESIGN_DRAFT",
   "date": "2026-11-14",
   "state": "DESIGN_DRAFT",
   "base_commit": "bb1c8b672e89d3d736ce3f35e2160c546cf41c10",
@@ -62,7 +62,7 @@
     "network": "large",
     "amax": 8,
     "Omegabh2": 0.02242,
-    "T_start_cosmo_MeV": 100.0,
+    "T_start_cosmo_MeV": 100,
     "T_end_MeV": 0.001,
     "sampling_temperature_per_decade": 2000,
     "rate_grid_npts": 4000,
@@ -73,9 +73,9 @@
     "vegas_n_itn": 50,
     "published_targets": {
       "YPBBN": 0.24700179,
-      "YPBBN_abs_tolerance": 1e-05,
-      "DoH": 2.4366098e-05,
-      "DoH_abs_tolerance": 3e-09
+      "YPBBN_abs_tolerance": 0.00001,
+      "DoH": 0.000024366098,
+      "DoH_abs_tolerance": 3e-9
     },
     "cache_identity_required_for_strict_reference": true,
     "cache_regeneration_may_exceed_published_DoH_tolerance": true
@@ -103,7 +103,8 @@
     "B05_DIMENSIONLESS_MICROPHYSICS_MAPPING",
     "B06_ALPHA_EM_NUCLEAR_QED_MAPPING",
     "B07_INDEPENDENT_BBN_ORACLE",
-    "B08_RUNTIME_CALIBRATION"
+    "B08_RUNTIME_CALIBRATION",
+    "B09_OBSERVATIONAL_LIKELIHOOD_AND_COVARIANCE"
   ],
   "not_claimed": [
     "full BBN abundance simulation",
@@ -116,9 +117,12 @@
     "S2 is a prediction of the referenced invariant-dimensionless CCC model",
     "identification of Anthropic SYM with a physical cosmological sector",
     "Anthropic-derived nuclear masses or cross sections",
-    "execution of BH0 or BH1 in this revision"
+    "execution of BH0 or BH1 in this revision",
+    "five diagnostic ratios are independent degrees of freedom",
+    "PRyMordial atlas is a precomputed Jacobian for mu, alpha_G_p, X_q or X_s",
+    "LBT combined eta posterior is an independent eta prior when its Yp and D/H data are reused"
   ],
-  "revision_of_commit": "396e8c1e6bbd4113cb6d715cc725b6ee8950897e",
+  "revision_of_commit": "bb5f043b4c650b289f1dd905ff04520432395c11",
   "scientific_addendum": "analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md",
   "ccc_microphysics": {
     "source": "https://arxiv.org/html/2604.03381v2",
@@ -252,6 +256,56 @@
     ],
     "B08_RUNTIME_CALIBRATION": [
       "each intended computation"
+    ],
+    "B09_OBSERVATIONAL_LIKELIHOOD_AND_COVARIANCE": [
+      "S3 and joint S_eta/S2 observational fits only; does not block S0/S1"
     ]
-  }
+  },
+  "parameter_basis": "analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json",
+  "s2_parameter_basis": {
+    "diagnostic_coordinates": [
+      "alpha_EM",
+      "mu=m_p/m_e",
+      "alpha_G_p=G*m_p^2/(hbar*c)",
+      "X_q=mean_light_quark_mass/Lambda_QCD",
+      "X_s=m_s/Lambda_QCD"
+    ],
+    "independence": "NOT_ASSUMED",
+    "rank": "NOT_COMPUTED",
+    "primary_theory_coordinates": "must be derived from the actual extension theory; illustrative examples only",
+    "derived_nuclear_diagnostics": [
+      "q_np",
+      "b_D",
+      "tau_n_hat"
+    ],
+    "external_response_atlas": {
+      "citation": "Burns et al. 2026, Physics Reports 1194, DOI 10.1016/j.physrep.2026.07.001",
+      "code": "PRyMordial",
+      "parameters": 14,
+      "rates": 63,
+      "rate_compilations": [
+        "PRIMAT",
+        "NACRE-II"
+      ],
+      "weak_normalizations": [
+        "tau_n",
+        "fundamental"
+      ],
+      "local_at_SM_fiducial": true,
+      "direct_map_to_five_diagnostic_coordinates": false
+    },
+    "observational_constraints_source": "PDG/RPP 2026",
+    "LBT_eta_circularity_guard": true,
+    "execution_enabled": false
+  },
+  "observational_sources": [
+    "https://pdg.lbl.gov/2026/reviews/rpp2026-rev-gravity-tests.pdf",
+    "https://physics.nist.gov/cgi-bin/cuu/Value?mpsme%7Csearch_for=ratio",
+    "https://doi.org/10.1007/s41114-025-00059-y",
+    "https://doi.org/10.1140/epjc/s10052-026-15473-x",
+    "https://doi.org/10.1016/j.physrep.2026.07.001",
+    "https://github.com/Anne-KatherineBurns/bbn-sensitivity-atlas",
+    "https://arxiv.org/abs/2601.22239"
+  ],
+  "validation_scope": "Static design verification only; scientific sensitivity calculations and BBN execution are not part of this revision."
 }
