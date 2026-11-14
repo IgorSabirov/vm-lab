@@ -297,7 +297,7 @@
       "Li7",
       "Be7"
     ],
-    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),species_floor); species_floor must be stated in the output and may not be changed after results are seen.",
+    "relative_difference_definition": "abs(x_run-x_R0)/max(abs(x_run),abs(x_R0),1e-300) for final species; trajectory metric uses the per-species trajectory norm defined in OUTPUT_CONTRACT.md.",
     "trajectory_metric": "For each species, normalize pointwise absolute deviations by max(max_T(abs(Y_R0)), max_T(abs(Y_run)), 1e-30); report per-era maximum, temperature location and both absolute and normalized values. Trajectory metric is diagnostic unless separately thresholded in the preregistration.",
     "upstream_reference_tolerances": {
       "YPBBN_absolute": 0.00001,
@@ -305,7 +305,8 @@
       "Neff_absolute": 0.00001,
       "NUCLIDE_REL_TOL": 0.0001,
       "source": "PRIMAT tests/reference_values.py at the pinned commit"
-    }
+    },
+    "final_species_floor": 1e-300
   },
   "convergence_analysis": {
     "grid_axes": {
