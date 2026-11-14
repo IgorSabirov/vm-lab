@@ -1,12 +1,12 @@
 {
   "schema": "vm-lab-analysis-design-v1",
   "id": "CCC_BBN_NETWORK",
-  "version": "0.1.2",
-  "title": "CCC_BBN_NETWORK v0.1.2 DESIGN_DRAFT",
+  "version": "0.1.3",
+  "title": "CCC_BBN_NETWORK v0.1.3 scoped prelaunch",
   "date": "2026-11-14",
   "state": "DESIGN_DRAFT",
   "base_commit": "bb1c8b672e89d3d736ce3f35e2160c546cf41c10",
-  "scope": "Design only: baseline/common scaling, separate eta input, unspecified S2 extension, and a bounded Anthropic phase-to-background interface; no execution.",
+  "scope": "Design plus explicitly bounded S0/P0/P1 and conditional S1 prelaunch; see prelaunch/PROTOCOL.md.",
   "parents": [
     "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
@@ -73,9 +73,9 @@
     "vegas_n_itn": 50,
     "published_targets": {
       "YPBBN": 0.24700179,
-      "YPBBN_abs_tolerance": 0.00001,
-      "DoH": 0.000024366098,
-      "DoH_abs_tolerance": 3e-9
+      "YPBBN_abs_tolerance": 1e-05,
+      "DoH": 2.4366098e-05,
+      "DoH_abs_tolerance": 3e-09
     },
     "cache_identity_required_for_strict_reference": true,
     "cache_regeneration_may_exceed_published_DoH_tolerance": true
@@ -91,21 +91,12 @@
     "upstream_code_installed_or_executed": false,
     "vm_jobs_submitted": 0,
     "scientific_acceptance": false,
-    "execution_enabled": false,
-    "budget_seconds": null,
-    "executor": null
+    "execution_enabled": true,
+    "budget_seconds": 600,
+    "executor": "native sandbox; one thread; cumulative prelaunch cap",
+    "scope": "P0/P1 S0 and conditional P1 S1 only",
+    "protocol": "prelaunch/PROTOCOL.md"
   },
-  "blocking_items": [
-    "B01_TIME_VARIABLE_MAPPING",
-    "B02_COMPLETE_RATE_COVERAGE",
-    "B03_BACKGROUND_NEUTRINO_PRESERVATION",
-    "B04_CACHE_IDENTITY_AND_REFERENCE",
-    "B05_DIMENSIONLESS_MICROPHYSICS_MAPPING",
-    "B06_ALPHA_EM_NUCLEAR_QED_MAPPING",
-    "B07_INDEPENDENT_BBN_ORACLE",
-    "B08_RUNTIME_CALIBRATION",
-    "B09_OBSERVATIONAL_LIKELIHOOD_AND_COVARIANCE"
-  ],
   "not_claimed": [
     "full BBN abundance simulation",
     "independent reproduction by a second solver",
@@ -361,5 +352,29 @@
     "https://arxiv.org/abs/2601.22239",
     "https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf"
   ],
-  "validation_scope": "Static design verification only; scientific sensitivity calculations and BBN execution are not part of this revision."
+  "validation_scope": "Static design verification only; scientific sensitivity calculations and BBN execution are not part of this revision.",
+  "stage_requirements": {
+    "S0": [
+      "B04_CACHE_IDENTITY_AND_REFERENCE",
+      "B08_RUNTIME_CALIBRATION",
+      "FROZEN_CONFIG_AND_EXECUTOR"
+    ],
+    "S1": [
+      "S0",
+      "B01_CONDITIONAL_KINETIC_MAP",
+      "B02_COMPLETE_ACTIVE_P1_RATE_COVERAGE",
+      "B03_BACKGROUND_NEUTRINO_PRESERVATION",
+      "REFINEMENT_AND_NEGATIVE_CONTROL"
+    ],
+    "S2": [
+      "B05_DIMENSIONLESS_MICROPHYSICS_MAPPING",
+      "B06_ALPHA_EM_NUCLEAR_QED_MAPPING"
+    ],
+    "independent_validation": [
+      "B07_INDEPENDENT_BBN_ORACLE"
+    ],
+    "S3": [
+      "B09_OBSERVATIONAL_LIKELIHOOD_AND_COVARIANCE"
+    ]
+  }
 }
