@@ -1,6 +1,11 @@
 name: P2 FULLNET static gate
 
 on:
+  push:
+    branches:
+      - s0-fullnet
+    paths:
+      - "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/**"
   pull_request:
     branches:
       - science/ccc-bbn-network-v01-design-20261114
@@ -54,6 +59,8 @@ jobs:
           ):
               assert probe[key] == prod[key], key
           assert profile["acceptance"]["scientific_acceptance"] is False
+          assert profile["execution"]["main_run_wall_cap_seconds"] == 600
+          assert profile["execution"]["main_cold_warm_total_wall_cap_seconds"] == 1200
           assert profile["execution"]["automatic_retry"] is False
           assert profile["execution"]["resume_after_timeout"] is False
           print("P2 profile/static gates: PASS (no solver was run)")
