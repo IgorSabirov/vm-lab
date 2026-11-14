@@ -1,6 +1,6 @@
 {
   "schema": "vm-lab-s0-n1-run-matrix-v1",
-  "status": "AUTHORIZED_V1_2_WITH_R_ENV_NOT_YET_RUN",
+  "status": "AUTHORIZED_V1_3_GENERATOR_CONTROL_NOT_YET_RUN",
   "execution_enabled": true,
   "scientific_acceptance": false,
   "preregistration": "N1_PREREGISTRATION.json",
@@ -146,7 +146,7 @@
       "numerical_precision": 3e-11,
       "rate_grid_npts": 4000,
       "sampling_temperature_per_decade": 2000,
-      "cache_group": "BG2000"
+      "cache_group": "BG2000_GEN"
     },
     {
       "id": "R2",
@@ -155,7 +155,7 @@
       "numerical_precision": 1e-11,
       "rate_grid_npts": 4000,
       "sampling_temperature_per_decade": 2000,
-      "cache_group": "BG2000"
+      "cache_group": "BG2000_GEN"
     },
     {
       "id": "R3",
@@ -164,7 +164,7 @@
       "numerical_precision": 1e-10,
       "rate_grid_npts": 8000,
       "sampling_temperature_per_decade": 2000,
-      "cache_group": "BG2000"
+      "cache_group": "BG2000_GEN"
     },
     {
       "id": "R4",
@@ -173,7 +173,7 @@
       "numerical_precision": 1e-10,
       "rate_grid_npts": 16000,
       "sampling_temperature_per_decade": 2000,
-      "cache_group": "BG2000"
+      "cache_group": "BG2000_GEN"
     },
     {
       "id": "R5",
@@ -220,7 +220,7 @@
     "numerical_precision": 1e-10,
     "rate_grid_npts": 4000,
     "sampling_temperature_per_decade": 2000,
-    "cache_group": "BG2000",
+    "cache_group": "BG2000_GEN",
     "role": "separate_network_truncation_diagnostic",
     "compare_only_shared_light_species": true,
     "expected_LT_species": 12,
@@ -250,6 +250,18 @@
       "consumers": [
         "R6",
         "R8"
+      ]
+    },
+    "BG2000_GEN": {
+      "sampling_temperature_per_decade": 2000,
+      "disposition": "Generate once using pinned Python function, retain as separate overlay; never overwrite shipped BG2000",
+      "consumers": [
+        "R_CACHE",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R_NET_AMAX8"
       ]
     }
   },
@@ -296,6 +308,17 @@
     "historical_reference": "R0",
     "rule": "Exact R0 configuration on current executor; primary convergence and network comparisons use R_ENV. R_ENV minus R0 is separately reported; R0 untouched."
   },
-  "primary_anchor": "R_ENV",
-  "historical_reference": "R0"
+  "primary_anchor": "R_CACHE",
+  "historical_reference": "R0",
+  "cache_control": {
+    "id": "R_CACHE",
+    "role": "generated_table_matched_anchor",
+    "execute": true,
+    "numerical_precision": 1e-10,
+    "rate_grid_npts": 4000,
+    "sampling_temperature_per_decade": 2000,
+    "cache_group": "BG2000_GEN",
+    "historical_reference": "R0",
+    "rule": "Exact R0 configuration on current executor; primary convergence and network comparisons use R_ENV. R_ENV minus R0 is separately reported; R0 untouched."
+  }
 }

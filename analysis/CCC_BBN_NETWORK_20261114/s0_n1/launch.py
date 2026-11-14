@@ -2,7 +2,7 @@
 import argparse,json,math,os,resource,signal,subprocess,sys,time,traceback
 from pathlib import Path
 import common as c
-FACTOR={'R_ENV':1.0,'R1':1.6,'R2':2.0,'R3':1.1,'R4':1.15,'R5':1.1,'R6':1.15,'R7':1.8,'R8':2.2,'R_NET_AMAX8':0.45}
+FACTOR={'R_ENV':1.0,'R_CACHE':1.0,'R1':1.6,'R2':2.0,'R3':1.1,'R4':1.15,'R5':1.1,'R6':1.15,'R7':1.8,'R8':2.2,'R_NET_AMAX8':0.45}
 def append(root,event):
  with (root/'LEDGER.jsonl').open('a') as f:f.write(json.dumps({'utc':c.now(),**event},allow_nan=False)+'\n');f.flush();os.fsync(f.fileno())
 def events(root):return [json.loads(s) for s in (root/'LEDGER.jsonl').read_text().splitlines()] if (root/'LEDGER.jsonl').exists() else []
@@ -29,7 +29,7 @@ def preflight(root,up,require_committed=True):
  pre=c.read(c.PKG/'N1_PREREGISTRATION.json');matrix=c.read(c.PKG/'RUN_MATRIX.json')
  if not pre['execution_enabled'] or not matrix['execution_enabled']:raise RuntimeError('Execution disabled')
  if pre['run_matrix']!=matrix['runs'] or pre['numerical_budget']!=matrix['numerical_budget']:raise RuntimeError('Matrix/preregistration diverge')
- ids=['CACHE_BG2000','CACHE_BG4000','CACHE_BG8000','PROBE',*FACTOR]
+ ids=['CACHE_BG2000','CACHE_BG2000_GEN','CACHE_BG4000','CACHE_BG8000','PROBE',*FACTOR]
  configs={};fps={}
  for rid in ids:
   row=c.row_for(rid);group=row['cache_group'];params=c.config_for(rid,root/'caches'/group);cfg=PRIMATConfig(params)
@@ -97,7 +97,7 @@ def forecast(root):
  base=sum(p['solver_seconds']*old['eras'][i]['nfev']/p['nfev'] for i,p in enumerate(probe['eras']))
  setup=probe['timing']['initialization_seconds']+10
  central={rid:base*f+setup for rid,f in FACTOR.items()}
- return {'scope':'Ten strict solves including matched-environment R_ENV; preparation/probe already charged separately','per_run_central':central,'seconds':{'low':.5*sum(central.values()),'central':sum(central.values()),'high':1.8*sum(central.values())},'preparation_seconds_used':spent(root),'factors':FACTOR,'target_probe_per_era_seconds':[p['solver_seconds'] for p in probe['eras']],
+ return {'scope':'Eleven strict solves including R_ENV and generated-table anchor R_CACHE; preparation/probe already charged separately','per_run_central':central,'seconds':{'low':.5*sum(central.values()),'central':sum(central.values()),'high':1.8*sum(central.values())},'preparation_seconds_used':spent(root),'factors':FACTOR,'target_probe_per_era_seconds':[p['solver_seconds'] for p in probe['eras']],
   'method':'Measured target-worker time per nfev times R0 strict nfev; declared refinement factors by stratum plus largest-grid initialization/export allowance. Envelope 0.5-1.8 is engineering judgment, not a confidence interval or proven complexity law.','limitations':'Adaptive work and Jacobian counts unknown under refinement; cap bounds overrun. No thresholds/configs change after results.'}
 
 def main():
@@ -108,15 +108,17 @@ def main():
   print('Static configuration/fingerprint checks PASS; no solver executed');return 0
  req=c.read(c.PKG/'RUN_REQUEST.json')
  if os.environ.get('GITHUB_ACTIONS')!='true' or os.environ.get('GITHUB_REPOSITORY')!='IgorSabirov/vm-lab' or os.environ.get('GITHUB_REF')!='refs/heads/'+c.BRANCH or os.environ.get('GITHUB_RUN_ATTEMPT')!='1':raise RuntimeError('Wrong executor/branch or forbidden retry')
- if req['id']!='S0_N1_GHA_20261114_r3' or req['package_cap_seconds']!=14400 or req['process_cap_seconds']!=2400:raise RuntimeError('Unexpected request')
+ if req['id']!='S0_N1_GHA_20261114_r4' or req['package_cap_seconds']!=14400 or req['process_cap_seconds']!=2400:raise RuntimeError('Unexpected request')
  if c.git('rev-parse','HEAD')!=os.environ['GITHUB_SHA']:raise RuntimeError('Trigger source mismatch')
  c.git('merge-base','--is-ancestor',c.DESIGN,'HEAD');root=c.PKG/'results'/req['id']
  if root.exists():raise RuntimeError('Existing request; no duplicate run')
  root.mkdir(parents=True);start=time.monotonic();status=1
  try:
-  validate_environment(root);preflight(root,up);append(root,{'kind':'AUTHORIZATION','request':req,'workflow_url':'https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID']})
-  for rid in ['CACHE_BG2000','CACHE_BG4000','CACHE_BG8000']:process(root,up,rid,req,start)
-  groups={g:c.read(root/'runs'/('CACHE_'+g)/'RESULT.json') for g in ('BG2000','BG4000','BG8000')}
+  validate_environment(root);preflight(root,up)
+  for prior in req.get('prior_processes',[]):append(root,prior)
+  append(root,{'kind':'AUTHORIZATION','request':req,'workflow_url':'https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID']})
+  for rid in ['CACHE_BG2000','CACHE_BG2000_GEN','CACHE_BG4000','CACHE_BG8000']:process(root,up,rid,req,start)
+  groups={g:c.read(root/'runs'/('CACHE_'+g)/'RESULT.json') for g in ('BG2000','BG2000_GEN','BG4000','BG8000')}
   c.write(root/'CACHE_FREEZE.json',{'groups':groups,'frozen_utc':c.now(),'scientific_acceptance':False})
   for f in (root/'caches').rglob('*'):
    if f.is_file():f.chmod(0o444)
@@ -128,7 +130,7 @@ def main():
    process(root,up,rid,req,start);manifest(root);publish(root)
   import verify
   outcome=verify.analyze(root)
-  c.write(root/'SUMMARY.json',{'status':'ENGINEERING_PASS','numerical_status':outcome['status'],'stability_status':outcome['stability_status'],'cache_status':outcome['cache_status'],'executed_strict_runs':list(FACTOR),'R0':'IMMUTABLE_HISTORICAL_REFERENCE','primary_anchor':'R_ENV','process_seconds':spent(root),'controller_seconds_before_final_publication':time.monotonic()-start,'forecast':prediction,'strict_solve_wall_seconds':sum(e['wall_seconds'] for e in events(root) if e.get('kind')=='PROCESS' and e.get('run_id') in FACTOR),'runtime_review':{'forecast_central_seconds':prediction['seconds']['central'],'actual_strict_seconds':sum(e['wall_seconds'] for e in events(root) if e.get('kind')=='PROCESS' and e.get('run_id') in FACTOR),'note':'Preparation/probe charged separately in process_seconds. Queue, setup and publication distinguished from worker wall time. Any out-of-range runtime requires engineering review; it is not a physics verdict.'},'scientific_acceptance':False})
+  c.write(root/'SUMMARY.json',{'status':'ENGINEERING_PASS','numerical_status':outcome['status'],'stability_status':outcome['stability_status'],'cache_status':outcome['cache_status'],'executed_strict_runs':list(FACTOR),'R0':'IMMUTABLE_HISTORICAL_REFERENCE','primary_anchor':'R_CACHE','process_seconds':spent(root),'controller_seconds_before_final_publication':time.monotonic()-start,'forecast':prediction,'strict_solve_wall_seconds':sum(e['wall_seconds'] for e in events(root) if e.get('kind')=='PROCESS' and e.get('run_id') in FACTOR),'runtime_review':{'forecast_central_seconds':prediction['seconds']['central'],'actual_strict_seconds':sum(e['wall_seconds'] for e in events(root) if e.get('kind')=='PROCESS' and e.get('run_id') in FACTOR),'note':'Preparation/probe charged separately in process_seconds. Queue, setup and publication distinguished from worker wall time. Any out-of-range runtime requires engineering review; it is not a physics verdict.'},'scientific_acceptance':False})
   status=0
  except Exception as exc:
   c.write(root/'EXECUTION_ERROR.json',{'utc':c.now(),'type':type(exc).__name__,'error':str(exc),'traceback':traceback.format_exc(),'scientific_acceptance':False});traceback.print_exc()

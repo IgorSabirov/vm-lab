@@ -22,6 +22,10 @@ class Contracts(unittest.TestCase):
  def test_primary_anchor_is_environment_control(self):
   d=v.differences({'R0':{'Q':.4},'R_ENV':{'Q':.2},'R1':{'Q':.21}},'R_ENV')
   self.assertAlmostEqual(d['R1']['Q']['signed'],.01)
+ def test_generator_control_keeps_physical_configuration(self):
+  self.assertEqual(c.config_for('R_CACHE','/tmp/same'),c.config_for('R_ENV','/tmp/same'))
+  for run_id in ('R_CACHE','R1','R2','R3','R4','R_NET_AMAX8'):
+   self.assertEqual(c.row_for(run_id)['cache_group'],'BG2000_GEN')
  def test_unknown_and_read_only_run(self):
   for rid in ('R0','R9','CACHE_BG3000'):
    with self.assertRaises(ValueError):c.row_for(rid)

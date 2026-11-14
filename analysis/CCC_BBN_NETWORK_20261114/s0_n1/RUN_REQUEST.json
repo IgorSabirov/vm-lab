@@ -1,5 +1,5 @@
 {
-  "id": "S0_N1_GHA_20261114_r3",
+  "id": "S0_N1_GHA_20261114_r4",
   "branch": "s0-n1-design-20261114",
   "repository": "IgorSabirov/vm-lab",
   "user_authorization": {
@@ -16,7 +16,7 @@
   "scientific_acceptance": false,
   "route_basis": {
     "prior_same_executor_S0_cold_seconds": 201.48158657099998,
-    "strict_solves_count": 10,
+    "strict_solves_count": 11,
     "nine_baseline_cost_seconds": 1813.334279139,
     "reason": "Matched-environment R_ENV authorized. AMD/Haswell cannot inherit Intel timing; fresh target maximum-grid probe determines full-series forecast. 14400/2400 s are hard ceilings, not forecasts. No prior numerical worker work to repeat.",
     "initial_preparations": "Three initialization-only cache processes and one maximum-grid coarse probe, each capped at 120 s. Uncalibrated target probe is explicitly bounded. Production admission requires measured complete forecast."
@@ -30,5 +30,18 @@
       "request": "S0_N1_GHA_20261114_r2",
       "numerical_workers_started": 0
     }
-  ]
+  ],
+  "primary_anchor": "R_CACHE",
+  "prior_processes": [
+    {
+      "kind": "PROCESS",
+      "run_id": "PRIOR_r3_CACHE_BG2000",
+      "exit_code": 1,
+      "wall_seconds": 16.032534231,
+      "cpu_seconds": 15.847232,
+      "status": "ENGINEERING_FAIL_PRESERVED",
+      "source": "../S0_N1_GHA_20261114_r3/process/CACHE_BG2000.after.json"
+    }
+  ],
+  "current_amendment": "Generator control R_CACHE resolves the observed table discrepancy without modifying stability budgets; exact R_ENV remains environment-only control. Proceed under launch instruction."
 }

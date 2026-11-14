@@ -1,5 +1,5 @@
 """Isolated cache builder/probe/solver. Does not modify P2 or PRIMAT source."""
-import argparse,os,sys,time,resource
+import argparse,os,sys,time,resource,shutil
 from pathlib import Path
 import common as c
 
@@ -14,7 +14,7 @@ def main():
  import numpy as np
  from scipy.integrate._ivp.bdf import BDF
  from primat.config import PRIMATConfig,DEFAULT_PARAMS
- from primat.cache_utils import fingerprint_hash,resolve_cache_file
+ from primat.cache_utils import fingerprint_hash,resolve_cache_file,write_cache_with_fingerprint
  from primat.weak_rates.cache import weak_rate_fingerprint,thermal_fingerprint
  import primat.weak_rates.api as api
  import primat.weak_rates.corrections as corrections
@@ -75,7 +75,15 @@ def main():
    delta=abs(generated-shipped);relative=delta/norm
    regeneration={'max_normalized_difference':float(relative.max()),'rtol':1e-10,'absolute_tolerance':1e-26,'pass':bool(np.all(delta<=1e-10*np.maximum(abs(generated),abs(shipped))+1e-26)),'method':'Direct pinned ComputeWeakRates on initialized BG2000; shipped cache remains sole solve input'}
    c.write(out/'GENERATOR_CLOSURE.json',regeneration)
-   if not regeneration['pass']:raise RuntimeError('BG2000 generator differs from frozen baseline; background sweep is confounded')
+   np.savez_compressed(out/'GENERATED_WEAK.npz',table=generated,shipped=shipped)
+   if not np.isfinite(generated).all():raise RuntimeError('Nonfinite generated table')
+   target=root/'caches/BG2000_GEN';target.mkdir(parents=True,exist_ok=False)
+   if not write_cache_with_fingerprint(str(target/'weak'/('nTOp_'+weak+'.txt')),weak_rate_fingerprint(cfg),generated.T,col_header='T[K] Gamma_nTOp[1/tau_n] Gamma_pTOn[1/tau_n]'):raise RuntimeError('Generated table write failed')
+   shutil.copytree(cache/'plasma',target/'plasma')
+   regeneration['disposition']='Measured discrepancy retained; separate R_CACHE uses generated BG2000 as primary anchor, R_ENV retains shipped bytes'
+   c.write(out/'GENERATOR_CLOSURE.json',regeneration)
+  elif group=='BG2000_GEN':
+   if computed:raise RuntimeError('Generated BG2000 must load preserved builder table')
   elif len(computed)!=1:raise RuntimeError('Expected exactly one newly generated weak table')
   after=c.snapshot(cache)
   allowed_files={'plasma/electron_thermo_45b89f3e1b24e961.txt'}

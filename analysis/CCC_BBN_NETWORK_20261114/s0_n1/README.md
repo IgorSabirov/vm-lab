@@ -1,3 +1,5 @@
+> Current protocol v1.3 adds the explicit R_CACHE generator control; primary convergence anchor is R_CACHE, environment-only control is R_ENV. Eleven strict runs. Numerical thresholds unchanged. See CACHE_CONTROL_AMENDMENT.md. Earlier states below are historical.
+
 > Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.
 
 # S0-N1 — preregistered numerical-convergence study

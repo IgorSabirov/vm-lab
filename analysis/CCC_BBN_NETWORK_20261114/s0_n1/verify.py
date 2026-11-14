@@ -57,7 +57,7 @@ def baryon(rid,result,raw,mass,expected):
  return {'eras':era_data,'handoffs':{'HT_to_MT':{'B_before_raw':ht['B_final_raw'],'B_after_raw':mt['B_initial_raw'],'delta_B':dHM,'composite_Saha_sum_A_Y':mt['initial_composite_Saha_contribution'],'renormalized':False},'MT_to_LT':{'B_before_raw':mt['B_final_raw'],'B_after_raw':lt['B_initial_raw'],'delta_B':dML,'species_mapping_verified':True}},'postprocessing':{'B_LT_final_raw':lt['B_final_raw'],'B_final_reported':Bfinal,'clamp_and_zero_fill_delta_B':post},'closure':{'initial_B_minus_one':ht['B_initial_raw']-1,'decomposed_final_B_minus_one':decomposed,'direct_final_B_minus_one':Bfinal-1,'decomposition_roundoff_residual':closure}}
 def analyze(root):
  root=Path(root);pre=c.read(c.PKG/'N1_PREREGISTRATION.json');c.verify_freeze(root);hash_count=c.verify_artifacts(root)
- ids=['R0','R_ENV']+['R'+str(i) for i in range(1,9)]+['R_NET_AMAX8'];runs={i:read_run(root,i) for i in ids};freeze=c.read(root/'CACHE_FREEZE.json')
+ ids=['R0','R_ENV','R_CACHE']+['R'+str(i) for i in range(1,9)]+['R_NET_AMAX8'];runs={i:read_run(root,i) for i in ids};freeze=c.read(root/'CACHE_FREEZE.json')
  mass=runs['R1'][3]['mass_numbers']
  for n,a in mass.items():
   expected=1 if n in ('n','p') else int(re.search(r'\d+$',n).group())
@@ -79,30 +79,31 @@ def analyze(root):
   if m['source_commit']!=c.read(root/'SOURCE_FREEZE.json')['commit'] or m['upstream_commit']!=c.PIN:raise ValueError('Run source mismatch')
   cache_checks[rid]='CACHE_INTEGRITY_PASS'
   trajectories[rid]={}
-  for base,cur in zip(runs['R_ENV'][1]['eras'],t['eras']):
+  for base,cur in zip(runs['R_CACHE'][1]['eras'],t['eras']):
    if base['era']!=cur['era'] or not np.array_equal(base['T_MeV'],cur['T_MeV']):raise ValueError('Not aligned in temperature')
    metrics={}
    for n in set(base['species'])&set(cur['species']):
     x=np.array(base['Y'])[:,base['species'].index(n)];y=np.array(cur['Y'])[:,cur['species'].index(n)];d=abs(y-x);j=int(np.argmax(d));norm=max(float(abs(x).max()),float(abs(y).max()),1e-30)
     metrics[n]={'max_absolute':float(d[j]),'normalized_max':float(d[j]/norm),'T_MeV':cur['T_MeV'][j],'denominator':norm}
    trajectories[rid][cur['era']]=metrics
- axes={axis:{k:order([values[r][k] for r in runs3],axis,k) for k in values['R0']} for axis,runs3 in {'ode':['R_ENV','R1','R2'],'rate':['R_ENV','R3','R4'],'background':['R_ENV','R5','R6']}.items()}
+ axes={axis:{k:order([values[r][k] for r in runs3],axis,k) for k in values['R0']} for axis,runs3 in {'ode':['R_CACHE','R1','R2'],'rate':['R_CACHE','R3','R4'],'background':['R_CACHE','R5','R6']}.items()}
  gates={}
- pairs=[(r,'R_ENV') for r in ('R2','R4','R6','R8')]+[('R2','R1'),('R4','R3'),('R6','R5'),('R8','R7')]
+ pairs=[(r,'R_CACHE') for r in ('R2','R4','R6','R8')]+[('R2','R1'),('R4','R3'),('R6','R5'),('R8','R7')]
  for a,b in pairs:
   gates[a+'_vs_'+b]={}
   for k in values['R0']:
    bound,kind=budget_for(k,pre);d=delta(values[a][k],values[b][k]);gates[a+'_vs_'+b][k]={'value':d[kind],'limit':bound,'metric':kind,'pass':d[kind]<=bound}
  hard=all(g['pass'] for pair in gates.values() for g in pair.values());review=any(g['status'] not in ('RESOLVED','STRUCTURALLY_UNCHANGED') for axis in axes.values() for g in axis.values())
  status='NUMERICAL_CONVERGENCE_FAIL' if not hard else ('INCONCLUSIVE' if review else 'NUMERICAL_CONVERGENCE_PASS')
- interactions={level:{k:float(values[joint][k]-values['R_ENV'][k]-sum(values[i][k]-values['R_ENV'][k] for i in singles)) for k in values['R0']} for level,joint,singles in [('medium','R7',['R1','R3','R5']),('fine','R8',['R2','R4','R6'])]}
- out={'schema':'vm-lab-s0-n1-convergence-summary-v1','status':status,'engineering_status':'ENGINEERING_PASS','cache_status':'CACHE_INTEGRITY_PASS','stability_status':'NUMERICAL_STABILITY_PASS' if hard else 'NUMERICAL_STABILITY_FAIL','scientific_acceptance':False,'artifact_hashes_verified':hash_count,'primary_anchor':'R_ENV','observables':values,'differences_from_anchor':differences(values,'R_ENV'),'differences_from_R0':{rid:{k:delta(v,values['R0'][k]) for k,v in vals.items()} for rid,vals in values.items()},'axes':axes,'joint_interactions':interactions,'gates':gates,'trajectory_metrics':trajectories,'interpretation':{'fixed_atol_only':True,'primary_comparisons_use_matched_R_ENV':True,'independent_solver':False,'physical_uncertainty_propagated':False,'roundoff_plateau_is_not_proof_of_convergence':True}}
+ interactions={level:{k:float(values[joint][k]-values['R_CACHE'][k]-sum(values[i][k]-values['R_CACHE'][k] for i in singles)) for k in values['R0']} for level,joint,singles in [('medium','R7',['R1','R3','R5']),('fine','R8',['R2','R4','R6'])]}
+ out={'schema':'vm-lab-s0-n1-convergence-summary-v1','status':status,'engineering_status':'ENGINEERING_PASS','cache_status':'CACHE_INTEGRITY_PASS','stability_status':'NUMERICAL_STABILITY_PASS' if hard else 'NUMERICAL_STABILITY_FAIL','scientific_acceptance':False,'artifact_hashes_verified':hash_count,'primary_anchor':'R_CACHE','observables':values,'differences_from_anchor':differences(values,'R_CACHE'),'differences_from_R0':{rid:{k:delta(v,values['R0'][k]) for k,v in vals.items()} for rid,vals in values.items()},'axes':axes,'joint_interactions':interactions,'gates':gates,'trajectory_metrics':trajectories,'interpretation':{'fixed_atol_only':True,'primary_comparisons_use_matched_R_CACHE':True,'independent_solver':False,'physical_uncertainty_propagated':False,'roundoff_plateau_is_not_proof_of_convergence':True}}
  environment_comparison={k:{**delta(values['R_ENV'][k],values['R0'][k]),'limit':budget_for(k,pre)[0],'metric':budget_for(k,pre)[1],'within_budget':delta(values['R_ENV'][k],values['R0'][k])[budget_for(k,pre)[1]]<=budget_for(k,pre)[0]} for k in values['R0']}
  out['environment_status']='ENVIRONMENT_DISPLACEMENT_WITHIN_BUDGET' if all(x['within_budget'] for x in environment_comparison.values()) else 'ENVIRONMENT_SENSITIVITY_REVIEW_REQUIRED'
- c.write(root/'ENVIRONMENT_COMPARISON.json',{'status':out['environment_status'],'comparisons':environment_comparison,'primary_anchor':'R_ENV','historical_reference':'R0','scientific_acceptance':False})
+ c.write(root/'ENVIRONMENT_COMPARISON.json',{'status':out['environment_status'],'comparisons':environment_comparison,'primary_anchor':'R_CACHE','historical_reference':'R0','scientific_acceptance':False})
+ c.write(root/'CACHE_GENERATION_COMPARISON.json',{'comparisons':{k:delta(values['R_CACHE'][k],values['R_ENV'][k]) for k in values['R_ENV']},'same_machine':True,'same_configuration':True,'changed_input':'Nonthermal weak-table realization only; thermal table unchanged','scientific_acceptance':False})
  c.write(root/'CONVERGENCE_SUMMARY.json',out)
  c.write(root/'BARYON_BUDGET.json',{'schema':'vm-lab-s0-n1-baryon-budget-v1','mass_numbers_source':'pinned_PRIMAT_cfg.Nuclides cross-checked against isotope labels','renormalization_applied':False,'runs':baryons})
- full=runs['R_ENV'][0]['result']['Y_final'];small=runs['R_NET_AMAX8'][0]['result']['Y_final'];shared=set(runs['R_ENV'][2]['LT_species'])&set(runs['R_NET_AMAX8'][2]['LT_species'])
+ full=runs['R_CACHE'][0]['result']['Y_final'];small=runs['R_NET_AMAX8'][0]['result']['Y_final'];shared=set(runs['R_CACHE'][2]['LT_species'])&set(runs['R_NET_AMAX8'][2]['LT_species'])
  comp={n:delta(full[n],small[n]) for n in sorted(shared)}
  c.write(root/'NETWORK_COMPARISON.json',{'status':'SAME_SOLVER_NETWORK_COMPARISON','shared_species':comp,'reference_relative_tolerance':1e-4,'within_reference':all(d['relative']<=1e-4 for d in comp.values()),'independent_solver':False,'scientific_acceptance':False})
  summary=['# S0-N1 result','',f'Engineering: **ENGINEERING_PASS**. Cache: **CACHE_INTEGRITY_PASS**. Numerical outcome: **{status}**.', '',f'Stability budgets: **{out["stability_status"]}**. Fixed absolute tolerances; no scientific acceptance.','', '| Run | Yp | D/H | Neff |','|---|---:|---:|---:|']

@@ -20,6 +20,7 @@ def git(*args):return subprocess.check_output(['git','-C',str(REPO),*map(str,arg
 def snapshot(p):return {str(f.relative_to(p)):digest(f) for f in sorted(Path(p).rglob('*')) if f.is_file()}
 def row_for(run_id):
  p=read(PKG/'N1_PREREGISTRATION.json');rows=p['run_matrix']+[p['network_control']]
+ if run_id in ('R_CACHE','CACHE_BG2000_GEN'):return {**rows[0],'id':run_id,'execute':True,'cache_group':'BG2000_GEN','role':'generated_cache_anchor'}
  if run_id=='R_ENV':return {**rows[0],'id':'R_ENV','execute':True,'role':'matched_environment_anchor'}
  if run_id=='PROBE':return {**next(r for r in rows if r['id']=='R8'),'id':'PROBE','numerical_precision':1e-6}
  if run_id.startswith('CACHE_BG') and run_id[8:] in ('2000','4000','8000'):
