@@ -1,11 +1,12 @@
 {
   "schema": "vm-lab-active-state-v1",
-  "observed_date": "2026-11-13",
-  "base_commit": "e8d65443f1a148f449f0b67954a10d75839f5f99",
+  "observed_date": "2026-11-14",
+  "base_commit": "bb1c8b672e89d3d736ce3f35e2160c546cf41c10",
   "integration_pr": 8,
   "active_decisions": [
     "decision:D001",
-    "decision:D002"
+    "decision:D002",
+    "decision:D003"
   ],
   "scientific_focus": [
     "question:U010",
@@ -79,5 +80,16 @@
   "compute_preference": {
     "primary": "GitHub Actions for bounded authorized tasks",
     "vm": "paused/reserve per owner; not queried or changed in this task"
+  },
+  "research_architecture": {
+    "decision": "decision:D003",
+    "source": "analysis/RESEARCH_ARCHITECTURE_20261114/REPORT.md",
+    "A": "conditional causal integration ADD–R129–U010",
+    "B": "open theory of dimensionless S2 parameter drift",
+    "A_waits_for_B": false,
+    "B_short_term_deadline": null,
+    "new_law_accepted": false,
+    "new_execution_authorized": false,
+    "bbn_design_pr": 44
   }
 }
