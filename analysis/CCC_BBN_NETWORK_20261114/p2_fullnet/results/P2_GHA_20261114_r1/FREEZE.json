@@ -1,0 +1,77 @@
+{
+  "schema": "vm-lab-p2-source-freeze-v1",
+  "frozen_utc": "2026-11-14T08:47:48.671646+00:00",
+  "source_commit": "5be1858ed86abaaf47d99ad72ac16003a89607a3",
+  "source_parent_commit": "900a67f879621b501f74f8b1da561494fa3c4ae6",
+  "source_files": {
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/PROFILE.json": {
+      "sha256": "108eb14f402e10aef4b7f1d607b89e420b3ca846b213e477a44bc0b6f7be797b"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/PROVENANCE.json": {
+      "sha256": "25f91aad6f8bafb635b2dadb6a43ed3111e4e8411cd2c99b003ec525504489a9"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_worker.py": {
+      "sha256": "8d2d8631197b9e654645932b4f8a252bce65753447c704a4a7deaf3d1eea4b6e"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/fullnet_orchestrator.py": {
+      "sha256": "42d9bbc0961cfde273acd90bd073b2451efba67e25c8518fde9a51a9b70aa323"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/run_fullnet.sh": {
+      "sha256": "f62fec038b873070238b20ad453eec9757476f3d61bef26d0d06b3f1ffce167c"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/cloud_run.py": {
+      "sha256": "dda38a058588e01fe6a68770b524cf3bf15716e90c10cc3d2fad3d1e04a4db66"
+    },
+    ".github/workflows/p2-fullnet-execute.yml": {
+      "sha256": "2b95702f765b761bffc1e2250d804b8a91e946a8489ec0752271bb0eaf8d703e"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/p2_fullnet/RUN_REQUEST.json": {
+      "sha256": "70965b73ac2f468e5efa143b2b3a4d34ddd72c4d9b5057776999a94c8857e132"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/prelaunch/audit.py": {
+      "sha256": "ddf1bebf5748d763f5c2caf4b03a0a1f32579ae0c178717780729903c48c7202"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/prelaunch/run.py": {
+      "sha256": "abfa1882b27dd3a07db9dee1848ed3452beeadee315bc67a0fdfc607dee24ad2"
+    },
+    "analysis/CCC_BBN_NETWORK_20261114/prelaunch/s1_adapter.py": {
+      "sha256": "fe0dc748e29b16e0ffac58b4b7a06e403c76c378baaa7d707c8462e16fcc7170"
+    }
+  },
+  "profile_sha256": "108eb14f402e10aef4b7f1d607b89e420b3ca846b213e477a44bc0b6f7be797b",
+  "production_config_sha256": "5eac03fdcfa6e0c7881b9f955af5070f0904d00bf6d02ec21c868eb5f00c9e3e",
+  "probe_config_sha256": "10fd931be6c0ca4e3a56d1cbf749b9839fae175c54f6dd6d92c567d7982873ca",
+  "upstream_commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "upstream_tree": "2cf5f79dd9684eabe4216c949c5da846f95b81eb",
+  "cache_identity": {
+    "weak_cache": "frozen_upstream",
+    "expected_nonthermal_file": "nTOp_7e3af87bd0404e0a.txt",
+    "expected_nonthermal_git_blob_sha": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
+    "expected_thermal_file": "nTOp_thermal_cfdb4d324bb5651f.txt",
+    "expected_thermal_git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9",
+    "cache_dir_is_overlay_only": true,
+    "probe_and_main_overlays_are_separate": true,
+    "allowed_new_local_cache": "plasma/electron_thermo_*.txt only",
+    "weak_recomputation": "FORBIDDEN",
+    "cache_fingerprint_sensitive_fields_are_frozen": [
+      "sampling_temperature_per_decade",
+      "sampling_nTOp_per_decade",
+      "sampling_nTOp_thermal_per_decade",
+      "T_start_cosmo_MeV",
+      "T_end_MeV",
+      "incomplete_decoupling",
+      "spectral_distortions",
+      "QED_corrections",
+      "radiative_corrections",
+      "finite_mass_corrections",
+      "vegas_n_eval",
+      "vegas_n_itn",
+      "tau_n",
+      "all_constants_entering_weak_and_thermal_fingerprints"
+    ],
+    "background_history": "author NEVO tables; unchanged",
+    "background_grid": "author reference grid; unchanged",
+    "typed_fingerprint_requirement": "T_start_cosmo_MeV must remain float 100.0: upstream fingerprints distinguish JSON 100 from 100.0. Compare actual hashes, not Python numeric equality."
+  },
+  "scientific_acceptance": false
+}
