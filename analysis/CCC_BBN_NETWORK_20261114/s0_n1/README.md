@@ -3,7 +3,7 @@
 **State:** DESIGN_DRAFT_FOR_REVIEW / NOT_EXECUTED  
 **Scientific acceptance:** false  
 **Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)  
-**Upstream:** PRIMAT 0.3.3, commit \`6f7e5680614fb119d65a6c9c65a292240b27c61e\`
+**Upstream:** PRIMAT 0.3.3, commit `6f7e5680614fb119d65a6c9c65a292240b27c61e`
 
 S0-N1 asks a narrower question than a physical validation:
 
@@ -19,9 +19,9 @@ The three controls have distinct roles:
 
 | Control | Baseline | What it controls | What it does not mean |
 |---|---:|---|---|
-| \`numerical_precision\` | \`1e-10\` | Relative tolerance supplied to the era ODE solvers | It is not the effective LT rtol by itself |
-| \`rate_grid_npts\` | \`4000\` | Master \(T_9\) grid onto which nuclear reaction-rate tables are resampled | It is not the number of ODE steps |
-| \`sampling_temperature_per_decade\` | \`2000\` | Background temperature-grid density used for the \(a(T)\), \(t(T)\), and neutrino-temperature interpolation | It is not an output sampling count |
+| `numerical_precision` | `1e-10` | Relative tolerance supplied to the era ODE solvers | It is not the effective LT rtol by itself |
+| `rate_grid_npts` | `4000` | Master \(T_9\) grid onto which nuclear reaction-rate tables are resampled | It is not the number of ODE steps |
+| `sampling_temperature_per_decade` | `2000` | Background temperature-grid density used for the \(a(T)\), \(t(T)\), and neutrino-temperature interpolation | It is not an output sampling count |
 
 At the pinned Python backend, the actual relative tolerances are:
 
@@ -31,7 +31,7 @@ At the pinned Python backend, the actual relative tolerances are:
 | MT | BDF | \(1\times10^{-10}\) | \(1\times10^{-15}\) |
 | LT | BDF | \(1\times10^{-9}\) | \(1\times10^{-26}\) |
 
-For a changed \`numerical_precision=p\`, HT and MT use \`rtol=p\`; LT uses \`rtol=10p\`. Absolute tolerances remain fixed in this study and must be recorded explicitly in every run manifest. Thus the precision sweep estimates sensitivity to the configured relative tolerance at the pinned absolute-tolerance floors. If it plateaus in a way suggesting an absolute-tolerance floor, S0-N1 must report that limitation and propose a separately preregistered atol sweep; it must not claim that this sweep has tested every solver error control.
+For a changed `numerical_precision=p`, HT and MT use `rtol=p`; LT uses `rtol=10p`. Absolute tolerances remain fixed in this study and must be recorded explicitly in every run manifest. Thus the precision sweep estimates sensitivity to the configured relative tolerance at the pinned absolute-tolerance floors. If it plateaus in a way suggesting an absolute-tolerance floor, S0-N1 must report that limitation and propose a separately preregistered atol sweep; it must not claim that this sweep has tested every solver error control.
 
 The two grid controls are independent error sources. The pinned upstream performance notes report second-order convergence for both grids, but their quantitative measurements were made on the small network. Those numbers motivate the refinement design; they are not P2 predictions or acceptance evidence. See the [pinned upstream performance document](https://github.com/CyrilPitrou/PRIMAT/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/performance.md).
 
@@ -39,7 +39,7 @@ The two grid controls are independent error sources. The pinned upstream perform
 
 R0 is the existing P2 COLD result and is reused as the baseline. It is not rerun. Each of R1–R8 is one full three-era solve; the existing bitwise COLD/WARM test makes another identical warm solve unnecessary for this question.
 
-| ID | \`numerical_precision\` | \`rate_grid_npts\` | \`sampling_temperature_per_decade\` | Purpose |
+| ID | `numerical_precision` | `rate_grid_npts` | `sampling_temperature_per_decade` | Purpose |
 |---|---:|---:|---:|---|
 | R0 | \(1.0\times10^{-10}\) | 4000 | 2000 | Existing baseline; reuse |
 | R1 | \(3.0\times10^{-11}\) | 4000 | 2000 | ODE-tolerance intermediate |
@@ -55,7 +55,7 @@ This is deliberately larger than a five-run “baseline plus one change per fact
 
 ### Separate network-truncation control
 
-\`R_NET_AMAX8\` is not a convergence rung. It uses the baseline numerical settings but runs \`network="large", amax=8\`. Its sole purpose is to compare common light nuclides in \`large\` and \`large, amax=8\`. It is a same-solver network-completeness diagnostic, not an independent solver and not a test of the heavy tail. Compare only shared species and observables; preserve the full-network result as primary.
+`R_NET_AMAX8` is not a convergence rung. It uses the baseline numerical settings but runs `network="large", amax=8`. Its sole purpose is to compare common light nuclides in `large` and `large, amax=8`. It is a same-solver network-completeness diagnostic, not an independent solver and not a test of the heavy tail. Compare only shared species and observables; preserve the full-network result as primary.
 
 ## 3. Held-fixed inputs
 
@@ -63,9 +63,9 @@ Unless listed in the run matrix, all S0 settings remain frozen:
 
 - PRIMAT source pin, Python backend, Python/NumPy/SciPy/threadpool environment and single-thread policy;
 - \(\Omega_b h^2=0.02242\), \(T_\mathrm{start}=100\ \mathrm{MeV}\), \(T_\mathrm{end}=0.001\ \mathrm{MeV}\), \(\tau_n=878.4\ \mathrm{s}\);
-- network \`large\`, \`amax=null\` for R0–R8;
-- weak-rate sampling \`sampling_nTOp_per_decade=125\` and \`sampling_nTOp_thermal_per_decade=25\`;
-- VEGAS settings \`vegas_n_eval=100000\`, \`vegas_n_itn=50\`;
+- network `large`, `amax=null` for R0–R8;
+- weak-rate sampling `sampling_nTOp_per_decade=125` and `sampling_nTOp_thermal_per_decade=25`;
+- VEGAS settings `vegas_n_eval=100000`, `vegas_n_itn=50`;
 - all QED, radiative, finite-mass, thermal, spectral-distortion and incomplete-decoupling flags;
 - all physical constants, rate central values, reaction set, nuclide data and upstream tables.
 
@@ -77,14 +77,14 @@ A naive “reuse the old cache” implementation would invalidate the comparison
 
 At the pinned upstream:
 
-- \`rate_grid_npts\` does not change the \(n\leftrightarrow p\) weak-rate fingerprints.
-- \`numerical_precision\` does not change those fingerprints.
-- \`sampling_temperature_per_decade\` **does** enter the non-thermal weak-rate fingerprint, because the background \(T_\nu(T_\gamma)\) interpolation grid is consumed by the weak-rate calculation.
-- \`sampling_temperature_per_decade\` is deliberately absent from the thermal CCRTh fingerprint. The thermal cache should therefore remain the same, but its fingerprint and file hash must still be checked at runtime.
+- `rate_grid_npts` does not change the \(n\leftrightarrow p\) weak-rate fingerprints.
+- `numerical_precision` does not change those fingerprints.
+- `sampling_temperature_per_decade` **does** enter the non-thermal weak-rate fingerprint, because the background \(T_\nu(T_\gamma)\) interpolation grid is consumed by the weak-rate calculation.
+- `sampling_temperature_per_decade` is deliberately absent from the thermal CCRTh fingerprint. The thermal cache should therefore remain the same, but its fingerprint and file hash must still be checked at runtime.
 
-Consequently, the runs at background-grid density 4000 and 8000 require their own non-thermal weak-rate cache artifacts. Generate each such table once under the pinned source and an isolated cache overlay; record the computed fingerprint, source configuration, SHA-256 and Git blob SHA; then freeze and reuse the exact same bytes for every run at that background-grid density. R5 and R7 share the 4000-grid cache; R6 and R8 share the 8000-grid cache. R0–R4 and \`R_NET_AMAX8\` retain the S0 baseline cache.
+Consequently, the runs at background-grid density 4000 and 8000 require their own non-thermal weak-rate cache artifacts. Generate each such table once under the pinned source and an isolated cache overlay; record the computed fingerprint, source configuration, SHA-256 and Git blob SHA; then freeze and reuse the exact same bytes for every run at that background-grid density. R5 and R7 share the 4000-grid cache; R6 and R8 share the 8000-grid cache. R0–R4 and `R_NET_AMAX8` retain the S0 baseline cache.
 
-The baseline non-thermal weak table is \`nTOp_7e3af87bd0404e0a.txt\` (Git blob \`f5111a85112e94a237ed73f28ef860876ee0f8ed\`). The baseline thermal table is \`nTOp_thermal_cfdb4d324bb5651f.txt\` (Git blob \`e3a8b6782393df73a9140e05bd3941ff135af2c9\`). For new background grids, do not guess fingerprints: compute them with the pinned \`PRIMATConfig\` and require an exact cache-preflight receipt before any solver starts.
+The baseline non-thermal weak table is `nTOp_7e3af87bd0404e0a.txt` (Git blob `f5111a85112e94a237ed73f28ef860876ee0f8ed`). The baseline thermal table is `nTOp_thermal_cfdb4d324bb5651f.txt` (Git blob `e3a8b6782393df73a9140e05bd3941ff135af2c9`). For new background grids, do not guess fingerprints: compute them with the pinned `PRIMATConfig` and require an exact cache-preflight receipt before any solver starts.
 
 The implementation must refuse:
 - any weak-cache regeneration for a fingerprint already frozen;
@@ -170,14 +170,14 @@ The pinned PRIMAT code intentionally adds the MT composite Saha seeds on top of 
 
 The execution implementation must produce, at minimum:
 
-- \`N1_PREREGISTRATION.json\` — immutable copy of this preregistration and all matrix values;
-- \`RUN_MATRIX.json\` — resolved config, run identity and cache identity for every R0–R8 and \`R_NET_AMAX8\`;
+- `N1_PREREGISTRATION.json` — immutable copy of this preregistration and all matrix values;
+- `RUN_MATRIX.json` — resolved config, run identity and cache identity for every R0–R8 and `R_NET_AMAX8`;
 - one execution manifest, process receipt, solver result, per-era raw arrays and dense trace per newly executed run;
-- \`CACHE_PREFLIGHT.json\` and immutable receipts for all new weak-cache tables;
-- \`BARYON_BUDGET.json\` — era and handoff decomposition for every run;
-- \`CONVERGENCE_SUMMARY.json\` — per-observable deltas, observed orders, fine-rung gates, interaction residuals and final status;
-- \`NETWORK_COMPARISON.json\` — shared-light-species comparison for \`large\` versus \`large, amax=8\`;
-- \`ARTIFACTS.json\` — hashes of every published artifact, with its own checksum handled separately as in S0.
+- `CACHE_PREFLIGHT.json` and immutable receipts for all new weak-cache tables;
+- `BARYON_BUDGET.json` — era and handoff decomposition for every run;
+- `CONVERGENCE_SUMMARY.json` — per-observable deltas, observed orders, fine-rung gates, interaction residuals and final status;
+- `NETWORK_COMPARISON.json` — shared-light-species comparison for `large` versus `large, amax=8`;
+- `ARTIFACTS.json` — hashes of every published artifact, with its own checksum handled separately as in S0.
 
 Every result must bind to the frozen PRIMAT commit, exact run-config SHA-256, code commit, dependency versions, platform, solver/backend, all cache fingerprints and file hashes, and the effective rtol/atol for every era.
 
@@ -185,7 +185,7 @@ Every result must bind to the frozen PRIMAT commit, exact run-config SHA-256, co
 
 - A repeatability PASS is not a convergence PASS.
 - A convergence PASS is numerical evidence for this pinned code, rate compilation, background prescription and selected input point. It is not physical uncertainty propagation.
-- \`R_NET_AMAX8\` is a network-truncation comparison; it does not establish independent-solver agreement.
+- `R_NET_AMAX8` is a network-truncation comparison; it does not establish independent-solver agreement.
 - The heavy tail, including \(Y_\mathrm{CNO}\), remains diagnostic only; it is not used as a high-precision acceptance target.
 - No likelihood fit, BBN observational comparison, S1/S2/BH1/S3 calculation, independent solver, or ToV “now” claim is part of S0-N1.
 - No result may be described as scientific acceptance or evidence for CCC+TL merely because it passes the numerical gates.
