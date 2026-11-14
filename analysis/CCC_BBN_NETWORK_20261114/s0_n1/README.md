@@ -1,6 +1,6 @@
 # S0-N1 — preregistered numerical-convergence study
 
-**State:** IMPLEMENTED / AUTHORIZED_CONDITIONAL_LAUNCH / NOT_YET_RUN
+**State:** IMPLEMENTED / BLOCKED_PRELAUNCH_ENVIRONMENT / NO_NUMERICAL_RUNS
 **Scientific acceptance:** false
 **Parent S0:** [PR #47](https://github.com/IgorSabirov/vm-lab/pull/47)
 **Upstream:** PRIMAT 0.3.3, commit `6f7e5680614fb119d65a6c9c65a292240b27c61e`
@@ -208,3 +208,7 @@ Run statically without integration:
 python analysis/CCC_BBN_NETWORK_20261114/s0_n1/test_contracts.py
 python analysis/CCC_BBN_NETWORK_20261114/s0_n1/launch.py --static-check-only --upstream /path/to/pinned/primat
 ```
+
+## Observed launch blocker
+
+Both initialization attempts stopped at environment validation, before any numerical worker. The corrected check shows a genuine BLAS-kernel mismatch: existing R0 uses Intel/SkylakeX, the allocated Actions VM uses AMD EPYC/Haswell. Versions and one-thread settings agree. Execution is now disabled in both machine-readable files. See [READINESS.json](READINESS.json) and [the concrete environment-control proposal](ENVIRONMENT_AMENDMENT_DRAFT.md). The original nine-run matrix and numerical thresholds have not been changed, and R0 has not been repeated.

@@ -1,7 +1,7 @@
 # S0-N1 implementation and execution plan
 
 **Status:** execution implementation complete; see PRELAUNCH_RESOLUTION.md. No R1–R8 output existed when v1.1 was frozen.
-**Execution switch:** enabled by the current conditional launch instruction; source/cache/environment/resource gates remain mandatory before production.
+**Execution switch:** disabled after actual BLAS environment mismatch; see READINESS.json and ENVIRONMENT_AMENDMENT_DRAFT.md. No numerical workers started.
 
 ## Phase 0 — Ratify the question and thresholds
 

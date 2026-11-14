@@ -2,8 +2,8 @@
   "schema": "vm-lab-s0-n1-preregistration-v1",
   "protocol_id": "S0-N1",
   "title": "Full-network PRIMAT numerical-convergence study",
-  "status": "AUTHORIZED_EXECUTION_PROTOCOL_V1_1_NOT_YET_RUN",
-  "execution_enabled": true,
+  "status": "IMPLEMENTED_BLOCKED_ENVIRONMENT_BASELINE_MISMATCH",
+  "execution_enabled": false,
   "scientific_acceptance": false,
   "scope": {
     "primary_question": "Quantify numerical sensitivity of standard-BBN observables and abundance trajectories to ODE relative tolerance, nuclear-rate master-grid resolution, and background-temperature-grid resolution, independently and jointly.",
@@ -511,5 +511,13 @@
     "trajectory_boundary": "Use exact R0 T arrays. Clip only time boundary overshoots <=1e-9*max(t_end,1 s), record clipping. No R0 trace interpolation.",
     "environment": "Python 3.12.16, NumPy 2.3.5, SciPy 1.17.0, threadpoolctl 3.6.0 as R0; compare BLAS/version/architecture/threads.",
     "absolute_tolerance": "HT atol remains 1e-10; rtol sensitivity at fixed atol cannot establish complete ODE accuracy."
+  },
+  "execution_blocker": {
+    "code": "BASELINE_BLAS_ARCHITECTURE_MISMATCH",
+    "baseline": "Intel Xeon 6975P-C / OpenBLAS SkylakeX",
+    "allocated_runner": "AMD EPYC 7763 / OpenBLAS Haswell",
+    "versions_and_threads": "Match after explicit loading of both BLAS libraries",
+    "R1_R8_started": false,
+    "decision_needed": "Separate same-environment baseline control R_ENV, or compatible SkylakeX executor; original R0 remains immutable."
   }
 }

@@ -1,0 +1,26 @@
+{
+  "status": "BLOCKED_PRELAUNCH",
+  "implementation_status": "IMPLEMENTED_STATIC_TESTS_PASS",
+  "source_implementation": "08a133791f5eb61954fe9643d96353857c31a244",
+  "tests_passed": 12,
+  "upstream_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "physical_parameters_or_budgets_changed": false,
+  "numerical_workers_started": 0,
+  "R0_repeated": false,
+  "R1_R8_started": false,
+  "R_NET_AMAX8_started": false,
+  "cache_builders_started": false,
+  "scientific_acceptance": false,
+  "observed_blocker": {
+    "code": "BASELINE_BLAS_ARCHITECTURE_MISMATCH",
+    "baseline": "Intel Xeon 6975P-C / OpenBLAS SkylakeX",
+    "allocated_runner": "AMD EPYC 7763 / OpenBLAS Haswell",
+    "versions_and_threads": "Match after explicit loading of both BLAS libraries",
+    "R1_R8_started": false,
+    "decision_needed": "Separate same-environment baseline control R_ENV, or compatible SkylakeX executor; original R0 remains immutable."
+  },
+  "evidence_commit": "9615090ef7d0db43f637f5668069e93bddc8c3ef",
+  "evidence": "results/S0_N1_GHA_20261114_r2/ENVIRONMENT_CHECK.json",
+  "workflow": "https://github.com/IgorSabirov/vm-lab/actions/runs/43584689061",
+  "proposed_resolution": "ENVIRONMENT_AMENDMENT_DRAFT.md"
+}
