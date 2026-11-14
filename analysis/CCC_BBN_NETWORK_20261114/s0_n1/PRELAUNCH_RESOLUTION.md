@@ -19,3 +19,7 @@ The current user instruction authorizes implementation and conditional execution
 No unresolved scientific choice prevents preparation of this conditional execution. Generator closure, environment compatibility and measured resource admission are execution prerequisites: the workflow checks them and stops before R1 if any fails. A negative/inconclusive convergence result is a legitimate outcome, not a reason to change thresholds or silently add runs.
 
 Static implementation checks pass locally. The local checks did not integrate BBN; all N1 numerical preparation and solves run on the GitHub-hosted VM because the package is projected above 600 s.
+
+## Technical correction before any numerical worker
+
+Request r1 stopped before cache preparation: threadpool enumeration ran before scipy.linalg was imported, so it did not include SciPy's BLAS pool present in the R0 manifest. The error was reproduced locally (one library before import, two after). The environment reader now explicitly loads both numerical libraries, records actual versus baseline environment even on rejection, and has a regression test. Request r2 is an explicit corrected launch; no solver/cache work from r1 is repeated. The matrix, thresholds and preregistration bytes are unchanged.

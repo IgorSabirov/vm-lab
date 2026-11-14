@@ -39,7 +39,7 @@ def check_upstream(up):
  if g('rev-parse','HEAD')!=PIN or g('status','--porcelain','--untracked-files=no'):raise RuntimeError('Unclean or unpinned PRIMAT')
  return g('rev-parse','HEAD^{tree}')
 def env():
- import numpy,scipy,threadpoolctl
+ import numpy,scipy,scipy.linalg,threadpoolctl
  return {'python':platform.python_version(),'numpy':numpy.__version__,'scipy':scipy.__version__,'threadpoolctl':threadpoolctl.__version__,
   'platform':platform.platform(),'machine':platform.machine(),'affinity':sorted(os.sched_getaffinity(0)),
   'threadpools':threadpoolctl.threadpool_info(),'cpuinfo':Path('/proc/cpuinfo').read_text().split('\n\n')[0],

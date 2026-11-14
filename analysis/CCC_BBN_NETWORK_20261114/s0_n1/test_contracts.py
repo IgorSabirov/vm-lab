@@ -12,6 +12,10 @@ class Contracts(unittest.TestCase):
   cls.result,cls.trace,cls.raw,cls.manifest=v.read_run('.', 'R0')
   cls.expected={e:cls.raw[e+'_species'].tolist() for e in ('HT','MT','LT')}
   cls.mass={n:1 if n in ('n','p') else int(v.re.search(r'\d+$',n).group()) for names in cls.expected.values() for n in names}
+ def test_environment_loads_both_blas_libraries(self):
+  paths=[q['filepath'] for q in c.env()['threadpools']]
+  self.assertTrue(any('numpy.libs' in x for x in paths))
+  self.assertTrue(any('scipy.libs' in x for x in paths))
  def test_unknown_and_read_only_run(self):
   for rid in ('R0','R9','CACHE_BG3000'):
    with self.assertRaises(ValueError):c.row_for(rid)

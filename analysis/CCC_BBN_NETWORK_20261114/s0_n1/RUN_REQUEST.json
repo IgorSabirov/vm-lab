@@ -1,5 +1,5 @@
 {
-  "id": "S0_N1_GHA_20261114_r1",
+  "id": "S0_N1_GHA_20261114_r2",
   "branch": "s0-n1-design-20261114",
   "repository": "IgorSabirov/vm-lab",
   "user_authorization": {
@@ -20,5 +20,11 @@
     "nine_baseline_cost_seconds": 1813.334279139,
     "reason": "Even nine baseline solves exceed 600 s, before tighter tolerances and grids. Full series uses Actions VM with a fresh target-machine calibration; no local N1 integration.",
     "initial_preparations": "Three initialization-only cache processes and one maximum-grid coarse probe, each capped at 120 s. Uncalibrated target probe is explicitly bounded. Production admission requires measured complete forecast."
+  },
+  "previous_attempt": {
+    "request": "S0_N1_GHA_20261114_r1",
+    "evidence_commit": "167922eba6ef2a7dd5e2813fdd4ef79e63033bc4",
+    "numerical_workers_started": 0,
+    "reason": "Environment enumeration before scipy.linalg import omitted its BLAS library. Explicit reviewed technical correction; no scientific calculation repeated."
   }
 }

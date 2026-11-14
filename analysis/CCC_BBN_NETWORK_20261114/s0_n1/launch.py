@@ -53,9 +53,10 @@ def preflight(root,up,require_committed=True):
  c.write(root/'ENVIRONMENT.json',c.env())
  return ids
 
-def validate_environment():
+def validate_environment(root):
  import numpy,scipy,threadpoolctl
  e=c.env()
+ c.write(root/'ENVIRONMENT_CHECK.json',{'actual':e,'baseline':c.read(c.BASE/'S0_EXECUTION_MANIFEST.json')['environment']})
  if (e['python'],e['numpy'],e['scipy'],e['threadpoolctl'])!=('3.12.16','2.3.5','1.17.0','3.6.0'):raise RuntimeError('Pinned dependency mismatch')
  old=c.read(c.BASE/'S0_EXECUTION_MANIFEST.json')['environment']
  def signature(pools):return sorted((p['user_api'],p['internal_api'],p['version'],p['architecture'],p['num_threads']) for p in pools)
@@ -106,13 +107,13 @@ def main():
   print('Static configuration/fingerprint checks PASS; no solver executed');return 0
  req=c.read(c.PKG/'RUN_REQUEST.json')
  if os.environ.get('GITHUB_ACTIONS')!='true' or os.environ.get('GITHUB_REPOSITORY')!='IgorSabirov/vm-lab' or os.environ.get('GITHUB_REF')!='refs/heads/'+c.BRANCH or os.environ.get('GITHUB_RUN_ATTEMPT')!='1':raise RuntimeError('Wrong executor/branch or forbidden retry')
- if req['id']!='S0_N1_GHA_20261114_r1' or req['package_cap_seconds']!=7200 or req['process_cap_seconds']!=1200:raise RuntimeError('Unexpected request')
+ if req['id']!='S0_N1_GHA_20261114_r2' or req['package_cap_seconds']!=7200 or req['process_cap_seconds']!=1200:raise RuntimeError('Unexpected request')
  if c.git('rev-parse','HEAD')!=os.environ['GITHUB_SHA']:raise RuntimeError('Trigger source mismatch')
  c.git('merge-base','--is-ancestor',c.DESIGN,'HEAD');root=c.PKG/'results'/req['id']
  if root.exists():raise RuntimeError('Existing request; no duplicate run')
  root.mkdir(parents=True);start=time.monotonic();status=1
  try:
-  validate_environment();preflight(root,up);append(root,{'kind':'AUTHORIZATION','request':req,'workflow_url':'https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID']})
+  validate_environment(root);preflight(root,up);append(root,{'kind':'AUTHORIZATION','request':req,'workflow_url':'https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID']})
   for rid in ['CACHE_BG2000','CACHE_BG4000','CACHE_BG8000']:process(root,up,rid,req,start)
   groups={g:c.read(root/'runs'/('CACHE_'+g)/'RESULT.json') for g in ('BG2000','BG4000','BG8000')}
   c.write(root/'CACHE_FREEZE.json',{'groups':groups,'frozen_utc':c.now(),'scientific_acceptance':False})
