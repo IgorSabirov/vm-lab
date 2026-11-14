@@ -1,0 +1,129 @@
+{
+  "schema": "vm-lab-pipeline-state-v1",
+  "pipeline": "CCC_BBN",
+  "request": "CCC_BBN_PIPELINE_20261114_r1",
+  "observed_utc": "2026-11-14T13:15:53.256416+00:00",
+  "source_commit": "c658466f839e9ae7de7a4f051792f7eee40e8551",
+  "stages": {
+    "S0_REFERENCE": {
+      "status": "COMPLETE",
+      "evidence": "analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/results/S0_N1_FOLLOWUP_20261114_r1/SUMMARY.json",
+      "numerical_status": "OPERATING_POINT_STABILITY_PASS",
+      "dependencies": {}
+    },
+    "S1_FULLNET": {
+      "status": "READY",
+      "dependencies": {
+        "S0_REFERENCE": "COMPLETE"
+      }
+    },
+    "S_ETA": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Frozen eta grid/range and scientific comparison question",
+        "CMB-only prior or explicit likelihood contract",
+        "Adapter mapping eta to Omegabh2 with inverse residual; histories eta_BBN != eta_CMB require dynamics"
+      ],
+      "next_action": "Prepare the bounded cosmological-input scan; do not silently change baryon/photon history",
+      "dependencies": {
+        "S0_REFERENCE": "COMPLETE"
+      }
+    },
+    "S3_STANDARD": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Pinned observational datasets and covariance",
+        "Theory/rate uncertainty propagation",
+        "Likelihood and prior independence audit"
+      ],
+      "next_action": "Compare standard BBN with observations using a frozen data contract; never reuse BBN+CMB posterior as independent prior",
+      "dependencies": {
+        "S0_REFERENCE": "COMPLETE"
+      }
+    },
+    "S2_RESPONSE": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Independent primary basis q and rank of A",
+        "Physical maps q -> masses/bindings/weak rates/cross sections",
+        "B/K sensitivity matrices with nuclear covariance"
+      ],
+      "next_action": "Build and validate A -> B -> K response before interpreting parameter changes as new physics",
+      "dependencies": {
+        "S0_REFERENCE": "COMPLETE"
+      }
+    },
+    "S2_DYNAMICS": {
+      "status": "OPEN_THEORY",
+      "missing": [
+        "Physical definition of evolution parameter lambda",
+        "Law dq/dlambda and constraints/invariants",
+        "Dimensionless observables distinguishing alternatives"
+      ],
+      "next_action": "Derive the law independently; S1 PASS supplies no missing dynamics",
+      "dependencies": {}
+    },
+    "S2_PREDICTION": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Frozen physical parameter trajectories and solver interface"
+      ],
+      "next_action": "Generate physically specified predictions; no arbitrary changes of nuclear rates",
+      "waiting_dependencies": [
+        "S2_RESPONSE",
+        "S2_DYNAMICS"
+      ],
+      "dependencies": {
+        "S2_RESPONSE": "CONTRACT_REQUIRED",
+        "S2_DYNAMICS": "OPEN_THEORY"
+      }
+    },
+    "S3_EXTENDED": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Joint extended-model likelihood with shared nuisances"
+      ],
+      "next_action": "Test extended predictions against observations without automatic scientific promotion",
+      "waiting_dependencies": [
+        "S2_PREDICTION",
+        "S3_STANDARD"
+      ],
+      "dependencies": {
+        "S2_PREDICTION": "CONTRACT_REQUIRED",
+        "S3_STANDARD": "CONTRACT_REQUIRED"
+      }
+    },
+    "BH0": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Frozen standalone phase-diagnostic run plan and criteria"
+      ],
+      "next_action": "Run the Anthropic phase diagnostic as a separate branch; no assumed feedback into BBN",
+      "dependencies": {}
+    },
+    "BH1": {
+      "status": "OPEN_THEORY",
+      "missing": [
+        "Physical stress-energy/entropy transfer to the cosmological background",
+        "Consistency and conservation equations"
+      ],
+      "next_action": "Establish a physical bridge before coupling the black-hole sector to BBN",
+      "waiting_dependencies": [
+        "BH0"
+      ],
+      "dependencies": {
+        "BH0": "CONTRACT_REQUIRED"
+      }
+    },
+    "A_CAUSAL_INTEGRATION": {
+      "status": "CONTRACT_REQUIRED",
+      "missing": [
+        "Its own ADD–R129–U010 cycle contract and admissible interventions"
+      ],
+      "next_action": "Independent causal-organization line; results do not determine the S2 drift law",
+      "dependencies": {}
+    }
+  },
+  "scientific_acceptance": false,
+  "r_c_l_u_changed": false
+}

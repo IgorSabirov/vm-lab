@@ -1,0 +1,172 @@
+{
+  "schema": "vm-lab-research-pipeline-v1",
+  "id": "CCC_BBN",
+  "branch": "science/ccc-bbn-pipeline-20261114",
+  "parents": [
+    "question:U006",
+    "link:L10",
+    "analysis/CCC_BBN_NETWORK_20261114/PLAN.json"
+  ],
+  "stages": [
+    {
+      "id": "S0_REFERENCE",
+      "kind": "import",
+      "depends": [],
+      "summary": {
+        "path": "analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/results/S0_N1_FOLLOWUP_20261114_r1/SUMMARY.json",
+        "sha256": "5377ee2651a935d8c64c618279b1ba33a3e36ab6755b0a8e97f814159adfcb1c"
+      },
+      "status_field": "numerical_status",
+      "expected_status": "OPERATING_POINT_STABILITY_PASS",
+      "manifest": {
+        "path": "analysis/CCC_BBN_NETWORK_20261114/s0_n1_followup/results/S0_N1_FOLLOWUP_20261114_r1/ARTIFACTS.json",
+        "sha256": "b48f86496c35e4ad869ceb0f7b6b42b622493fcc17fe83aaaaeb27bcafa254d2"
+      },
+      "role": "Validated R8/F0 operating point; original coarse N1 failure retained",
+      "automatic": true
+    },
+    {
+      "id": "S1_FULLNET",
+      "kind": "execute",
+      "depends": [
+        "S0_REFERENCE"
+      ],
+      "implementation": "s1_fullnet",
+      "result": "analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/results/S1_FULLNET_20261114_r1/SUMMARY.json",
+      "status_field": "numerical_status",
+      "expected_status": "CONDITIONAL_INVARIANCE_PASS",
+      "automatic": true,
+      "claim": "Conditional common-clock invariance on full 59-species network with cooling-only negative control"
+    },
+    {
+      "id": "S_ETA",
+      "kind": "contract",
+      "depends": [
+        "S0_REFERENCE"
+      ],
+      "automatic": false,
+      "missing": [
+        "Frozen eta grid/range and scientific comparison question",
+        "CMB-only prior or explicit likelihood contract",
+        "Adapter mapping eta to Omegabh2 with inverse residual; histories eta_BBN != eta_CMB require dynamics"
+      ],
+      "next": "Prepare the bounded cosmological-input scan; do not silently change baryon/photon history"
+    },
+    {
+      "id": "S3_STANDARD",
+      "kind": "contract",
+      "depends": [
+        "S0_REFERENCE"
+      ],
+      "automatic": false,
+      "missing": [
+        "Pinned observational datasets and covariance",
+        "Theory/rate uncertainty propagation",
+        "Likelihood and prior independence audit"
+      ],
+      "next": "Compare standard BBN with observations using a frozen data contract; never reuse BBN+CMB posterior as independent prior"
+    },
+    {
+      "id": "S2_RESPONSE",
+      "kind": "contract",
+      "depends": [
+        "S0_REFERENCE"
+      ],
+      "automatic": false,
+      "missing": [
+        "Independent primary basis q and rank of A",
+        "Physical maps q -> masses/bindings/weak rates/cross sections",
+        "B/K sensitivity matrices with nuclear covariance"
+      ],
+      "next": "Build and validate A -> B -> K response before interpreting parameter changes as new physics"
+    },
+    {
+      "id": "S2_DYNAMICS",
+      "kind": "theory",
+      "depends": [],
+      "automatic": false,
+      "missing": [
+        "Physical definition of evolution parameter lambda",
+        "Law dq/dlambda and constraints/invariants",
+        "Dimensionless observables distinguishing alternatives"
+      ],
+      "next": "Derive the law independently; S1 PASS supplies no missing dynamics"
+    },
+    {
+      "id": "S2_PREDICTION",
+      "kind": "contract",
+      "depends": [
+        "S2_RESPONSE",
+        "S2_DYNAMICS"
+      ],
+      "automatic": false,
+      "missing": [
+        "Frozen physical parameter trajectories and solver interface"
+      ],
+      "next": "Generate physically specified predictions; no arbitrary changes of nuclear rates"
+    },
+    {
+      "id": "S3_EXTENDED",
+      "kind": "contract",
+      "depends": [
+        "S2_PREDICTION",
+        "S3_STANDARD"
+      ],
+      "automatic": false,
+      "missing": [
+        "Joint extended-model likelihood with shared nuisances"
+      ],
+      "next": "Test extended predictions against observations without automatic scientific promotion"
+    },
+    {
+      "id": "BH0",
+      "kind": "contract",
+      "depends": [],
+      "automatic": false,
+      "missing": [
+        "Frozen standalone phase-diagnostic run plan and criteria"
+      ],
+      "next": "Run the Anthropic phase diagnostic as a separate branch; no assumed feedback into BBN"
+    },
+    {
+      "id": "BH1",
+      "kind": "theory",
+      "depends": [
+        "BH0"
+      ],
+      "automatic": false,
+      "missing": [
+        "Physical stress-energy/entropy transfer to the cosmological background",
+        "Consistency and conservation equations"
+      ],
+      "next": "Establish a physical bridge before coupling the black-hole sector to BBN"
+    },
+    {
+      "id": "A_CAUSAL_INTEGRATION",
+      "kind": "separate_line",
+      "depends": [],
+      "automatic": false,
+      "missing": [
+        "Its own ADD–R129–U010 cycle contract and admissible interventions"
+      ],
+      "next": "Independent causal-organization line; results do not determine the S2 drift law"
+    }
+  ],
+  "previous_evidence": {
+    "P1_S1": {
+      "status": "CONDITIONAL_PASS_RECORDED",
+      "source": "https://github.com/IgorSabirov/vm-lab/blob/1fd3e7a82f7142d67fe92bb44ad61933783e8227/analysis/CCC_BBN_NETWORK_20261114/prelaunch/results/SUMMARY.json",
+      "scope": "P1 light network; does not replace full-network S1"
+    }
+  },
+  "policy": {
+    "reuse_verified_results": true,
+    "automatic_numeric_retry": false,
+    "automatic_threshold_changes": false,
+    "automatic_upstream_upgrade": false,
+    "automatic_merge": false,
+    "scientific_acceptance": "SEPARATE_USER_REVIEW",
+    "publication": "versioned result directories plus CURRENT pointer; preserve all old artifacts",
+    "r_c_l_u_updates": false
+  }
+}

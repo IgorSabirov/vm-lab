@@ -79,5 +79,16 @@
   "compute_preference": {
     "primary": "GitHub Actions for bounded authorized tasks",
     "vm": "paused/reserve per owner; not queried or changed in this task"
+  },
+  "research_pipelines": {
+    "CCC_BBN": {
+      "definition": "analysis/CCC_BBN_NETWORK_20261114/pipeline/PIPELINE.json",
+      "current": "analysis/CCC_BBN_NETWORK_20261114/pipeline/CURRENT.json",
+      "runner": "infra/research_pipeline.py",
+      "workflow": ".github/workflows/research-pipeline.yml",
+      "branch": "science/ccc-bbn-pipeline-20261114",
+      "scope": "S0 result reuse, full-network conditional S1, explicit downstream contracts; separate A/B research lines",
+      "scientific_acceptance": false
+    }
   }
 }
