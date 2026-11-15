@@ -28,7 +28,8 @@
       "total_commits": 13
     },
     "pull_request_for_working_branch": "NOT_CREATED",
-    "merged_to_main": false
+    "merged_to_main": false,
+    "current_tip_before_genealogy_chain_update": "e1b06c645c0851cae40bc24290db6cf0dab07052"
   },
   "research_lineage": [
     {
@@ -260,6 +261,18 @@
       "parent": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
       "date": "2026-11-15T21:11:08Z",
       "message": "Save S3 D+D analysis report with scientific limitations and status"
+    },
+    {
+      "sha": "a2907e1aeb8556bdb2d5c78df925226838841703",
+      "parent": "4c4ff32a962192f542e6b3963a583fe3f53463bf",
+      "date": "2026-11-15T21:11:44Z",
+      "message": "Save exact S3 D+D research provenance and commit genealogy"
+    },
+    {
+      "sha": "e1b06c645c0851cae40bc24290db6cf0dab07052",
+      "parent": "a2907e1aeb8556bdb2d5c78df925226838841703",
+      "date": "2026-11-15T21:11:56Z",
+      "message": "Correct exact timestamp in S3 D+D genealogy record"
     }
   ],
   "source_urls": {
@@ -276,6 +289,6 @@
     "The old r3 raw-arm identity comparison is verified at its saved artifact point but its workflow SUMMARY remains engineering FAIL due numpy.bool_ JSON serialization.",
     "The old r3 q vector perturbed ten non-D+D channels, so the new all-reaction q=0 baseline is not optional.",
     "No local D+D integration, kappa, physical rho, full S3 likelihood or scientific acceptance is recorded here.",
-    "The genealogy snapshot intentionally stops at the report commit; the next commit adds this GENEALOGY.json file."
+    "The genealogy file was added at commit a2907e1... and its timestamp correction was committed at e1b06c6...; this final content update is not self-referenced."
   ]
 }
