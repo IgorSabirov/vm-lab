@@ -82,6 +82,32 @@
       "processes_exited": true,
       "review": "infra/autonomy/events/43742136639.json",
       "automatic_retry": false
+    },
+    {
+      "schema": "vm-lab-autonomy-event-review-v1",
+      "workflow_run_id": 43743586010,
+      "pr": 75,
+      "package_id": "LINX_BBN_IDENTITY_20261115_r3",
+      "source_sha": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
+      "result_sha": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+      "status": "COMPLETE",
+      "engineering": "FAIL_PUBLICATION_SERIALIZATION",
+      "numerical": "BBN_IMPLEMENTATION_IDENTITY_PASS",
+      "science": "IMPLEMENTATION_EQUIVALENCE_AT_FROZEN_POINT_ONLY",
+      "scientific_acceptance": false,
+      "processes_exited": true,
+      "ledger_status_preserved": "FAILED",
+      "summary_sha256": "50f0bfad6cb65a3ab4788ba6bf9148a913dd3aa45199d395d41d5f558925fe5f",
+      "artifacts_sha256": "15f786ad46d61ebccfe0456982ed607bd5f07619715cf1ef64d22901736d98b2",
+      "verified_manifest_files": 21,
+      "recovery": "infra/autonomy/recoveries/43743586010/RECOVERED_VERIFICATION.json",
+      "original_fail_preserved": true,
+      "new_bbn_integrations": 0,
+      "automatic_retry": false,
+      "failure": "compare.checks.interval_valid is numpy.bool; JSON serialization rejected it after both strict runs. Unchanged frozen compare reused offline, scalar conversion only at serialization boundary.",
+      "next": "S3 remains DESIGN_ONLY: observational data/covariance, theory/rate uncertainty propagation and likelihood/prior independence audit missing; S2 physical mappings remain missing. No ready independent frozen package.",
+      "record_type": "terminal_package",
+      "review": "infra/autonomy/events/43743586010.json"
     }
   ],
   "limits": {
@@ -94,11 +120,11 @@
   "automatic_merge": false,
   "automatic_scientific_acceptance": false,
   "owner_authorization": "User asks GitHub to conduct experiments autonomously; standing permission for implementation, publication and execution within the accepted research program. New scientific premises remain explicit.",
-  "active_result_commit": "45f5a17131862dbeb8e703251e5f77da0b1f011b",
+  "active_result_commit": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
   "queue": {
-    "status": "RUNNING",
+    "status": "PREPARATION_REQUIRED",
     "next": "S3_STANDARD physical rate covariance and independent CMB input audit",
-    "reason": "Owner-authorized r3 launch confirmed: CAS admission published; setup/materialization succeeded; target-host calibration running before strict admission. S3 scientific dependents await verified identity and required scientific inputs.",
+    "reason": "S3 remains DESIGN_ONLY: observational data/covariance, theory/rate uncertainty propagation and likelihood/prior independence audit missing; S2 physical mappings remain missing. No ready independent frozen package.",
     "blocked_candidates": [
       {
         "id": "LINX_BBN_IDENTITY_20261115_r1",
@@ -120,8 +146,7 @@
         "review": "infra/autonomy/events/43742136639.json",
         "automatic_retry": false
       }
-    ],
-    "current": "LINX_BBN_IDENTITY_20261115_r3"
+    ]
   },
   "execution_policy": {
     "schema": "vm-lab-execution-plan-v1",
@@ -152,7 +177,12 @@
     "workflow_run_id": 43743586010,
     "admission_commit": "192639e64d8bf3ee72612f5e29739e8eaa100a8b",
     "admission_sha256": "27297c0d04bbb69d29b80c342dff5288d8b4859c55ae6d18795802ba220c0ed6",
-    "phase": "CALIBRATION_RESERVED",
-    "strict_execution_admitted": false
+    "phase": "COMPLETE",
+    "strict_execution_admitted": true,
+    "result_sha": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+    "engineering_status": "FAIL_PUBLICATION_SERIALIZATION",
+    "numerical_status": "BBN_IMPLEMENTATION_IDENTITY_PASS",
+    "recovery": "infra/autonomy/recoveries/43743586010/RECOVERED_VERIFICATION.json",
+    "processes_exited": true
   }
 }

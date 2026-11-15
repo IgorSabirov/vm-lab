@@ -1,0 +1,144 @@
+{
+  "id": "LINX_BBN_IDENTITY_20261115_v4",
+  "engineering_status": "PASS",
+  "checks": {
+    "background_sha256": true,
+    "contract_sha256": true,
+    "source_sha": true,
+    "versions": true,
+    "reaction_order": true,
+    "effective_q": true,
+    "table_sha256": true,
+    "integration_interval": true,
+    "roles": true,
+    "shape": true,
+    "finite": true,
+    "finite_initial": true,
+    "interval_valid": true,
+    "initial_identity": true,
+    "native_pristine": true,
+    "override_patch_only": true,
+    "override_identity": true,
+    "all_species": true,
+    "published_contract_hash": true,
+    "strict_not_calibration": true,
+    "frozen_source": true,
+    "background_content_hash": true,
+    "native_process_exited_successfully": true,
+    "override_process_exited_successfully": true,
+    "calibration_process_exited_successfully": true,
+    "strict_settings": true
+  },
+  "rows": [
+    {
+      "species": "n",
+      "native": 7.172625697423712e-11,
+      "override": 7.172625697423712e-11,
+      "delta": 0.0,
+      "allowed_abs": 1.0071726256974237e-18,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "p",
+      "native": 0.7526909553440587,
+      "override": 0.7526909553440587,
+      "delta": 0.0,
+      "allowed_abs": 7.526909653440587e-11,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "d",
+      "native": 1.8316407731073665e-05,
+      "override": 1.8316407731073665e-05,
+      "delta": 0.0,
+      "allowed_abs": 1.8326407731073665e-15,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "t",
+      "native": 5.8419894909040215e-08,
+      "override": 5.8419894909040215e-08,
+      "delta": 0.0,
+      "allowed_abs": 6.8419894909040216e-18,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "He3",
+      "native": 7.745263465725695e-06,
+      "override": 7.745263465725695e-06,
+      "delta": 0.0,
+      "allowed_abs": 7.755263465725695e-16,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "He4",
+      "native": 0.06181224943225726,
+      "override": 0.06181224943225726,
+      "delta": 0.0,
+      "allowed_abs": 6.181225943225726e-12,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "Li7",
+      "native": 2.1839471043380208e-11,
+      "override": 2.1839471043380208e-11,
+      "delta": 0.0,
+      "allowed_abs": 1.0021839471043382e-18,
+      "scaled_residual": 0.0,
+      "pass": true
+    },
+    {
+      "species": "Be7",
+      "native": 4.0635155921596303e-10,
+      "override": 4.0635155921596303e-10,
+      "delta": 0.0,
+      "allowed_abs": 1.0406351559215963e-18,
+      "scaled_residual": 0.0,
+      "pass": true
+    }
+  ],
+  "final_bitwise_equal": true,
+  "solver_stats": {
+    "native": {
+      "max_steps": 4096,
+      "num_accepted_steps": 900,
+      "num_rejected_steps": 301,
+      "num_steps": 1201
+    },
+    "override": {
+      "max_steps": 4096,
+      "num_accepted_steps": 900,
+      "num_rejected_steps": 301,
+      "num_steps": 1201
+    }
+  },
+  "scientific_acceptance": false,
+  "claim": "Full BBN implementation equivalence at the frozen operating point only",
+  "status": "RECOVERED_FROM_COMPLETED_ARTIFACTS",
+  "package_id": "LINX_BBN_IDENTITY_20261115_r3",
+  "workflow_run_id": 43743586010,
+  "result_sha": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+  "source_sha": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
+  "original_workflow_engineering_status": "FAIL",
+  "original_summary_sha256": "50f0bfad6cb65a3ab4788ba6bf9148a913dd3aa45199d395d41d5f558925fe5f",
+  "original_artifacts_sha256": "15f786ad46d61ebccfe0456982ed607bd5f07619715cf1ef64d22901736d98b2",
+  "numerical_status": "BBN_IMPLEMENTATION_IDENTITY_PASS",
+  "recovery_method": "Unchanged frozen compare function on hash-verified saved outputs; NumPy scalar.item() only for JSON serialization",
+  "serialization_failure_types": {
+    "interval_valid": "numpy.bool"
+  },
+  "verified_manifest_files": 21,
+  "new_bbn_integrations": 0,
+  "mapping_status": "NOT_ESTABLISHED",
+  "times_seconds": {
+    "calibration": 58.04826086100002,
+    "native": 57.352324046999996,
+    "override": 32.675916852
+  }
+}
