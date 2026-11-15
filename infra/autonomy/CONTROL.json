@@ -1,5 +1,5 @@
 {
-  "schema": "vm-lab-autonomy-control-v1",
+  "schema": "vm-lab-autonomy-control-v2",
   "enabled": true,
   "active_branch": "science/autonomous-s3-inputs-20261114",
   "active_pr": 54,
@@ -60,8 +60,6 @@
     "simultaneous_compute_packages": 1,
     "new_packages_per_event": 1,
     "new_packages_per_rolling_24h": 2,
-    "package_seconds": 5400,
-    "process_seconds": 2400,
     "memory_bytes": 4294967296,
     "output_bytes": 2147483648
   },
@@ -76,5 +74,20 @@
     "not_before_utc": "2026-11-15T14:09:29Z",
     "new_packages_last_24h": 2,
     "reason": "S_ETA Actions plus S3_INPUT_AUDIT local package; no rerun; preparation may continue without scientific execution"
+  },
+  "execution_policy": {
+    "schema": "vm-lab-execution-plan-v1",
+    "validator": "infra/autonomy/execution_policy.py",
+    "local_package_max_seconds": 600,
+    "github_job_max_seconds": 21600,
+    "package_budget": "explicit_calibrated_sum_of_sections",
+    "process_budget": "explicit_per_whole_realization",
+    "section_budget": "compute_plus_setup_verification_publication",
+    "vm_budget": "explicit_finite_budget_with_verified_worker_limits",
+    "continuous_integration": "one_process; VM when it cannot fit a hosted job with overhead",
+    "checkpoint": "method_defined_or_not_required; never implies automatic_resume",
+    "ledger_branch": "science/autonomous-research-20261114",
+    "ledger_path": "infra/autonomy/LEDGER.json",
+    "activation": "new_plans_only; frozen historical experiments unchanged"
   }
 }
