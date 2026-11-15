@@ -13689,6 +13689,394 @@
           "decision": "NOT_EVIDENCE_FOR_CLOSURE"
         }
       ]
+    },
+    {
+      "id": "HP_BRANCH_BALANCE_20261115",
+      "title": "HP–BH1: баланс ветвей, нормировки и связь с корпусом",
+      "status": "ANALYTIC_REVIEW_PHYSICAL_MAPPING_OPEN",
+      "scientific_status_promoted": false,
+      "report": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "managed_sources": [
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+        "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt"
+      ],
+      "links": [
+        {
+          "target": "external:ANTHROPIC_HP",
+          "relation": "joint_model_requirement",
+          "claim": "Полные ветви и космологическая динамика не выводятся из редуцированного адаптера.",
+          "rationale": "Полные ветви и космологическая динамика не выводятся из редуцированного адаптера. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R001",
+          "relation": "scope_boundary",
+          "claim": "Заданные мера, закон и геометрия не получают происхождения из тождества баланса.",
+          "rationale": "Заданные мера, закон и геометрия не получают происхождения из тождества баланса. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R034",
+          "relation": "scope_boundary",
+          "claim": "Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR.",
+          "rationale": "Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R040",
+          "relation": "scope_boundary",
+          "claim": "Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления.",
+          "rationale": "Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R041",
+          "relation": "scope_boundary",
+          "claim": "Статическое условие не заменяет механизм загрузки и последующей динамики.",
+          "rationale": "Статическое условие не заменяет механизм загрузки и последующей динамики. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R064",
+          "relation": "scope_boundary",
+          "claim": "Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний.",
+          "rationale": "Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R075",
+          "relation": "scope_boundary",
+          "claim": "Средняя фазовая доля не реализует причинное чтение физической записи.",
+          "rationale": "Средняя фазовая доля не реализует причинное чтение физической записи. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R094",
+          "relation": "scope_boundary",
+          "claim": "Сохранение наблюдаемой не доказывает воспроизводство организованного процесса.",
+          "rationale": "Сохранение наблюдаемой не доказывает воспроизводство организованного процесса. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R096",
+          "relation": "scope_boundary",
+          "claim": "Баланс частей не создаёт самосогласованную историю или происхождение целого.",
+          "rationale": "Баланс частей не создаёт самосогласованную историю или происхождение целого. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R101",
+          "relation": "scope_boundary",
+          "claim": "Аддитивная смесь не устанавливает операционную неаддитивность продолжения.",
+          "rationale": "Аддитивная смесь не устанавливает операционную неаддитивность продолжения. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R115",
+          "relation": "classification_only",
+          "claim": "Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей.",
+          "rationale": "Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R119",
+          "relation": "scope_boundary",
+          "claim": "Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии.",
+          "rationale": "Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R120",
+          "relation": "scope_boundary",
+          "claim": "Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π.",
+          "rationale": "Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "construct:C041",
+          "relation": "scope_boundary",
+          "claim": "Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения.",
+          "rationale": "Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R123",
+          "relation": "scope_boundary",
+          "claim": "Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена.",
+          "rationale": "Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "construct:C042",
+          "relation": "scope_boundary",
+          "claim": "Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями.",
+          "rationale": "Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R126",
+          "relation": "scope_boundary",
+          "claim": "ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD.",
+          "rationale": "ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R127",
+          "relation": "joint_model_requirement",
+          "claim": "Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора.",
+          "rationale": "Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R128",
+          "relation": "scope_boundary",
+          "claim": "Фазовая организация на заданной мере не закрывает происхождение меры или соответствия.",
+          "rationale": "Фазовая организация на заданной мере не закрывает происхождение меры или соответствия. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "result:R129",
+          "relation": "scope_boundary",
+          "claim": "Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP.",
+          "rationale": "Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "Радиус исходной S³ не считается выведенной причинной геометрией.",
+          "rationale": "Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "Энергетический баланс не воспроизводит средства действия следующего носителя.",
+          "rationale": "Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "link:L04",
+          "relation": "scope_boundary",
+          "claim": "Носитель и механизм чтения не возникают из интерпретации f как среднего.",
+          "rationale": "Носитель и механизм чтения не возникают из интерпретации f как среднего. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "link:L07",
+          "relation": "scope_boundary",
+          "claim": "Наследование условий продолжения не следует из сохранения G.",
+          "rationale": "Наследование условий продолжения не следует из сохранения G. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "link:L09",
+          "relation": "scope_boundary",
+          "claim": "Космологическое отображение радиуса и происхождение пространства-времени не установлены.",
+          "rationale": "Космологическое отображение радиуса и происхождение пространства-времени не установлены. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "link:L10",
+          "relation": "joint_model_requirement",
+          "claim": "Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством.",
+          "rationale": "Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "obligation:N02",
+          "relation": "scope_boundary",
+          "claim": "Источники, предпосылки, выводы и невыбранные гипотезы перечислены раздельно.",
+          "rationale": "Источники, предпосылки, выводы и невыбранные гипотезы перечислены раздельно. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "obligation:N06",
+          "relation": "scope_boundary",
+          "claim": "Не заявляется замыкание условий продолжения по сохранению одной плотности.",
+          "rationale": "Не заявляется замыкание условий продолжения по сохранению одной плотности. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "premise:F02",
+          "relation": "premise_context_not_evidence",
+          "claim": "Исходная геометрия S³ и отображение R пропорционально a не выведены данным разбором.",
+          "rationale": "Исходная геометрия S³ и отображение R пропорционально a не выведены данным разбором. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        },
+        {
+          "target": "premise:F05",
+          "relation": "premise_context_not_evidence",
+          "claim": "Тепловая и Haar-меры задаются до расчёта; новый носитель или мера не выбраны.",
+          "rationale": "Тепловая и Haar-меры задаются до расчёта; новый носитель или мера не выбраны. Статус существующей записи сохраняется.",
+          "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus"
+        }
+      ],
+      "excluded_links": [
+        {
+          "target": "external:ANTHROPIC_BOOTSTRAP",
+          "decision": "OUT_OF_SCOPE",
+          "rationale": "Этот разбор не проверяет bootstrap-доказательство и не переносит на него HP-результаты."
+        }
+      ],
+      "new_scientific_records": [],
+      "new_production_runs": 0,
+      "new_vm_jobs": 0
+    },
+    {
+      "id": "CORPUS_RECONCILIATION_20261115",
+      "title": "Сверка BBN/S3, HP, адаптеров и совместной достижимости: результаты и незакрытые связи",
+      "status": "SOURCE_RECONCILIATION_NOT_SCIENTIFIC_ACCEPTANCE",
+      "date": "2026-11-15",
+      "base_commit": "1bd0cff7b20d475931126bda6436fa62b68a309f",
+      "report": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md",
+      "scientific_status_promoted": false,
+      "managed_sources": [
+        "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md",
+        "analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json",
+        "analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json",
+        "analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md",
+        "analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md"
+      ],
+      "links": [
+        {
+          "target": "result:R126",
+          "relation": "scope_boundary",
+          "claim": "Исследовательская архитектура ратифицирована ранее; A не ждёт B.",
+          "rationale": "COR01: Новый закон или физическая полнота не приняты.; COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy"
+        },
+        {
+          "target": "result:R128",
+          "relation": "scope_boundary",
+          "claim": "Исследовательская архитектура ратифицирована ранее; A не ждёт B.",
+          "rationale": "COR01: Новый закон или физическая полнота не приняты.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy"
+        },
+        {
+          "target": "result:R129",
+          "relation": "scope_boundary",
+          "claim": "Исследовательская архитектура ратифицирована ранее; A не ждёт B.",
+          "rationale": "COR01: Новый закон или физическая полнота не приняты.; COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "Исследовательская архитектура ратифицирована ранее; A не ждёт B.",
+          "rationale": "COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy"
+        },
+        {
+          "target": "link:L10",
+          "relation": "joint_model_requirement",
+          "claim": "Исследовательская архитектура ратифицирована ранее; A не ждёт B.",
+          "rationale": "COR01: Новый закон или физическая полнота не приняты.; COR03: Только заданные численные вмешательства, не глобальная сходимость.; COR04: Условное масштабирование, не новый закон S2.; COR05: Не космологическая история η и не observational fit.; COR06: Нет полной меры, трёхпетлевой репликации или кинетики.; COR07: Не выполненный S3_STANDARD.; COR09: Узловая covariance не полный posterior кривых.; COR16: Космологическое отображение/кинетика не определены.; COR18: Изоморфное представление само по себе не новый физический результат.; COR20: Новая физическая связка/мера/контракт не выбраны.; COR21: Свежий review/PR не готовое задание.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy"
+        },
+        {
+          "target": "external:PRIMAT",
+          "relation": "scope_boundary",
+          "claim": "ENGINEERING_PASS; NUMERICAL_CONVERGENCE_FAIL.",
+          "rationale": "COR02: Следующий PASS не переписывает исходный FAIL.; COR03: Только заданные численные вмешательства, не глобальная сходимость.; COR04: Условное масштабирование, не новый закон S2.; COR05: Не космологическая история η и не observational fit.; COR07: Не выполненный S3_STANDARD.; COR08: Пять таблиц; не полный аудит 427 каналов и не D/H-uncertainty.; COR09: Узловая covariance не полный posterior кривых.; COR10: Суммарный N_eff не автоматически N_eff,ν; BH1 не найден.; COR11: Полная траектория не проверена.; COR12: Не физическая аттестация экстраполяции и не полная калибровка.; COR13: FULL_ROUTE_NOT_CALIBRATED; исторические бюджеты не актуальная общая политика.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "ENGINEERING_PASS; NUMERICAL_CONVERGENCE_FAIL.",
+          "rationale": "COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn"
+        },
+        {
+          "target": "external:ANTHROPIC_HP",
+          "relation": "scope_boundary",
+          "claim": "REDUCED_BARRIER_DIAGNOSTIC_PASS",
+          "rationale": "COR06: Нет полной меры, трёхпетлевой репликации или кинетики.; COR10: Суммарный N_eff не автоматически N_eff,ν; BH1 не найден.; COR16: Космологическое отображение/кинетика не определены.; COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn"
+        },
+        {
+          "target": "obligation:N02",
+          "relation": "scope_boundary",
+          "claim": "Параметр общий вдоль температурной истории; ln(f), clipping и detailed balance важны.",
+          "rationale": "COR08: Пять таблиц; не полный аудит 427 каналов и не D/H-uncertainty.; COR11: Полная траектория не проверена.; COR21: Свежий review/PR не готовое задание.; COR22: Один active; исполнитель не ремонтирует и не повторяет научный код автоматически.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#s3"
+        },
+        {
+          "target": "result:R127",
+          "relation": "joint_model_requirement",
+          "claim": "Две локальные последовательные секции, 20.525 s, PASS.",
+          "rationale": "COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR20: Новая физическая связка/мера/контракт не выбраны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#adapters"
+        },
+        {
+          "target": "external:SERBIAN_CPP",
+          "relation": "scope_boundary",
+          "claim": "Две локальные последовательные секции, 20.525 s, PASS.",
+          "rationale": "COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#adapters"
+        },
+        {
+          "target": "external:ISINGCAUSET",
+          "relation": "scope_boundary",
+          "claim": "Различать вариант, отображение, метод и контекст; не заполнять все пары.",
+          "rationale": "COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six"
+        },
+        {
+          "target": "external:CDT2D",
+          "relation": "scope_boundary",
+          "claim": "Различать вариант, отображение, метод и контекст; не заполнять все пары.",
+          "rationale": "COR17: Нет общего физического K.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six"
+        },
+        {
+          "target": "result:R120",
+          "relation": "scope_boundary",
+          "claim": "Три исхода по U; exact Markov/any initial law отличается от редукции с памятью.",
+          "rationale": "COR18: Изоморфное представление само по себе не новый физический результат.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six"
+        },
+        {
+          "target": "construct:C041",
+          "relation": "scope_boundary",
+          "claim": "Три исхода по U; exact Markov/any initial law отличается от редукции с памятью.",
+          "rationale": "COR18: Изоморфное представление само по себе не новый физический результат.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six"
+        },
+        {
+          "target": "result:R113",
+          "relation": "scope_boundary",
+          "claim": "Сообщён Δirr=-1.35; положительная joint-only достижимость не показана.",
+          "rationale": "COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg"
+        },
+        {
+          "target": "link:L04",
+          "relation": "scope_boundary",
+          "claim": "Цель: результат сверх справедливых компонентных/суррогатных моделей.",
+          "rationale": "COR20: Новая физическая связка/мера/контракт не выбраны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg"
+        },
+        {
+          "target": "link:L07",
+          "relation": "scope_boundary",
+          "claim": "Цель: результат сверх справедливых компонентных/суррогатных моделей.",
+          "rationale": "COR20: Новая физическая связка/мера/контракт не выбраны.",
+          "evidence": "analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg"
+        }
+      ],
+      "new_scientific_records": [],
+      "new_production_runs": 0,
+      "new_vm_jobs": 0
     }
   ]
 }

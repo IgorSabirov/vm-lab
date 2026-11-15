@@ -1,0 +1,147 @@
+{
+  "schema": "vm-lab-analytic-review-v1",
+  "id": "HP_BRANCH_BALANCE_20261115",
+  "title": "HP–BH1: термодинамический баланс, нормировки и генеалогия",
+  "date": "2026-11-15",
+  "base_commit": "c050a82e226e40b7dc8b43696ba2b28ff2a6ee41",
+  "status": "ANALYTIC_REVIEW_PHYSICAL_MAPPING_OPEN",
+  "scientific_acceptance": false,
+  "scientific_status_promoted": false,
+  "execution_enabled": false,
+  "new_physical_law_selected": false,
+  "new_carrier_selected": false,
+  "report": "REPORT.md",
+  "lineage": "LINEAGE.md",
+  "source_manifest": "SOURCES.json",
+  "symbolic_checks": "CHECKS.json",
+  "claims": [
+    {
+      "id": "BALANCE",
+      "status": "CONDITIONAL_IDENTITY_VERIFIED",
+      "statement": "R^-4 d(C_A+f*DeltaC)/dt equals Q only for the declared conformal additive ansatz and H=Rdot/R",
+      "evidence": "REPORT.md#balance"
+    },
+    {
+      "id": "GEOMETRY",
+      "status": "CONDITIONAL_IDENTITY_VERIFIED",
+      "statement": "With cosmic H_a: Q=Gdot/R^4+4(H_a-H_R)*rho+H_a*Theta; R proportional to a and Theta=0 must be established",
+      "evidence": "REPORT.md#balance"
+    },
+    {
+      "id": "ZERO_LEVEL_SIGN",
+      "status": "REFUTED_BY_EXACT_COUNTEREXAMPLES",
+      "statement": "No sign of Q from the side of a state-space level curve; velocity is essential",
+      "evidence": "REPORT.md#level-sets"
+    },
+    {
+      "id": "LEVEL_FAMILY",
+      "status": "CONDITIONAL_IDENTITY_VERIFIED",
+      "statement": "G=G_star gives a family of energy level sets, not a unique kinetic vector field",
+      "evidence": "REPORT.md#level-sets"
+    },
+    {
+      "id": "ADIABATIC_CONVERSION",
+      "status": "NOT_ESTABLISHED",
+      "statement": "Energy conservation alone does not establish reversible adiabatic evolution or a realizable conversion path",
+      "evidence": "REPORT.md#level-sets"
+    },
+    {
+      "id": "ACTION_TO_ENERGY",
+      "status": "CONDITIONAL_IDENTITY_VERIFIED",
+      "statement": "I=-ln Z, F=T I, C=-chi^2 I_prime/(2*pi^2), C_V=2*pi^2 C_prime",
+      "evidence": "REPORT.md#thermodynamics"
+    },
+    {
+      "id": "LATENT_HEAT",
+      "status": "SOURCE_DEFINED_LEADING_ORDER",
+      "statement": "DeltaC(chi_c)=3*N^2/(16*pi^2)*[1+O(lambda)] at leading large N; no numeric remainder bound or arbitrary-chi extension",
+      "evidence": "REPORT.md#thermodynamics"
+    },
+    {
+      "id": "ONE_ANCHOR",
+      "status": "INSUFFICIENT_TO_DETERMINE_FUNCTION",
+      "statement": "DeltaC at one chi does not determine its derivative or zero-exchange level sets",
+      "evidence": "REPORT.md#thermodynamics"
+    },
+    {
+      "id": "ABSOLUTE_BACKGROUND",
+      "status": "THERMODYNAMIC_MAP_REQUIRED",
+      "statement": "A common thermal term changes derivatives; a constant Casimir k/R shifts absolute C but not C_prime",
+      "evidence": "REPORT.md#thermodynamics"
+    },
+    {
+      "id": "LEADING_N_COMPENSATION",
+      "status": "NECESSARY_CORRECTION_VERIFIED",
+      "statement": "Compensation through f*DeltaC_prime survives without C_A_prime; dropping the latter requires a uniform ratio bound",
+      "evidence": "REPORT.md#large-n"
+    },
+    {
+      "id": "TRANSITION_WIDTH",
+      "status": "NOT_ESTABLISHED",
+      "statement": "DeltaC/DeltaC_prime is a local inverse logarithmic derivative, not an established transition width",
+      "evidence": "REPORT.md#large-n"
+    },
+    {
+      "id": "FREE_BASELINE",
+      "status": "SOURCE_AVAILABLE_NOT_IMPLEMENTED_HERE",
+      "statement": "Free large-N U(N) confined Z is available; SU(N) has the common adjoint-character correction and vacuum convention must be recorded",
+      "evidence": "REPORT.md#free-branch"
+    },
+    {
+      "id": "INTERACTING_POLE",
+      "status": "UNJUSTIFIED_EXTRAPOLATION_RESTRICTED",
+      "statement": "Free Hagedorn pole cannot directly supply interacting chi_c heat capacity; lambda^-2/lambda^-4 estimates need consistent interacting soft-mode validity",
+      "evidence": "REPORT.md#free-branch"
+    },
+    {
+      "id": "BACKGROUND_CHANNEL",
+      "status": "REPRESENTATION_DEPENDENT_NOT_PHYSICAL_CHANNEL",
+      "statement": "Q0 is a chosen baseline derivative unless an actual subsystem and interaction are separately defined",
+      "evidence": "REPORT.md#balance"
+    },
+    {
+      "id": "GAUGE_LANGUAGE",
+      "status": "NOT_ESTABLISHED",
+      "statement": "Algebraic rewriting is not proof of gauge symmetry",
+      "evidence": "REPORT.md#balance"
+    },
+    {
+      "id": "F_INTERPRETATIONS",
+      "status": "CANDIDATES_NOT_SELECTED",
+      "statement": "Probability, volume fraction and collective coordinate can share a mean yet differ in internal fluctuations, interfaces and kinetic energy",
+      "evidence": "REPORT.md#f-meaning"
+    },
+    {
+      "id": "REPO_NORMALIZATION",
+      "status": "ABSENT_IN_INSPECTED_ADAPTER_FILES",
+      "statement": "Reduced-potential adapter and BH0 verifier do not calculate complete Z_A/Z_B or absolute C_A; latent heat is a literature input in the bridge",
+      "evidence": "REPORT.md#repo-scope"
+    },
+    {
+      "id": "COMMON_INVARIANT",
+      "status": "NOT_ESTABLISHED",
+      "statement": "Same G does not fix a continuation profile or a common physical generator across model variants",
+      "evidence": "REPORT.md#corpus"
+    },
+    {
+      "id": "NEXT_PREPARATION",
+      "status": "PROPOSED_NOT_FROZEN",
+      "statement": "Free-branch normalization and convergence contract is a concrete possible next step; no RUN_REQUEST or BH1 activation",
+      "evidence": "REPORT.md#next"
+    }
+  ],
+  "new_bbn_runs": 0,
+  "new_hp_production_runs": 0,
+  "new_vm_jobs": 0,
+  "queue_changed": false,
+  "autonomous_compute_package": false,
+  "review_mode": "post-discussion analytic checking; not a preregistered confirmatory HP experiment",
+  "remaining_inputs": [
+    "Full branch thermodynamics at a declared accuracy and normalization",
+    "Cosmological geometry and stress-energy map",
+    "Physical meaning of f and full energy accounting",
+    "Real-time dynamics and entropy production",
+    "Independent interactions with other sectors"
+  ],
+  "existing_scientific_status_policy": "Preserve all existing R/C/L/U entries and historic FAIL/REVIEW evidence"
+}

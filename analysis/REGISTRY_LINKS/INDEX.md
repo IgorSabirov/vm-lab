@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=4, external=12, decision=2, source=30.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=6, external=12, decision=3, source=45.
 
 ## Предпосылка → результаты
 
@@ -457,7 +457,7 @@ CSG / TP и отмеченное будущее — [исходная карто
 
 Профиль продолжения и физическая передача организации — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c041).
 
-**Входящие:** [R120](#result-r120) `addresses`; [R121](#result-r121) `addresses`; [R122](#result-r122) `addresses`; [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R127](#result-r127) `addresses`; [R128](#result-r128) `addresses`; [R129](#result-r129) `addresses`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [R120](#result-r120) `addresses`; [R121](#result-r121) `addresses`; [R122](#result-r122) `addresses`; [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R127](#result-r127) `addresses`; [R128](#result-r128) `addresses`; [R129](#result-r129) `addresses`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="construct-c042"></a>
@@ -466,7 +466,7 @@ CSG / TP и отмеченное будущее — [исходная карто
 
 Релятивистская причинность, настоящее и коррекция к границам — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c042).
 
-**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
+**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="decision-d001"></a>
@@ -487,6 +487,15 @@ CSG / TP и отмеченное будущее — [исходная карто
 **Входящие:** нет.
 **Исходящие:** [D001](#decision-d001) `decision_reopens`; [N02](#obligation-n02) `decision_scope_not_scientific_evidence`; [N06](#obligation-n06) `decision_scope_not_scientific_evidence`; [F02](#premise-f02) `decision_scope_not_scientific_evidence`; [F05](#premise-f05) `decision_scope_not_scientific_evidence`; [R125](#result-r125) `decision_scope_not_scientific_evidence`; [R127](#result-r127) `decision_scope_not_scientific_evidence`.
 
+<a id="decision-d003"></a>
+
+### decision:D003
+
+Разделить причинную интеграцию и теорию дрейфа безразмерных параметров S2 — [исходная карточка](../../decisions/D003.md).
+
+**Входящие:** нет.
+**Исходящие:** [L04](#link-l04) `decision_scope_not_scientific_evidence`; [L06](#link-l06) `decision_scope_not_scientific_evidence`; [L07](#link-l07) `decision_scope_not_scientific_evidence`; [L09](#link-l09) `decision_constrains`; [L09](#link-l09) `decision_scope_not_scientific_evidence`; [L10](#link-l10) `decision_constrains`; [L10](#link-l10) `decision_scope_not_scientific_evidence`; [U010](#question-u010) `decision_constrains`; [U010](#question-u010) `decision_scope_not_scientific_evidence`; [R126](#result-r126) `decision_scope_not_scientific_evidence`; [R127](#result-r127) `decision_scope_not_scientific_evidence`; [R128](#result-r128) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `decision_scope_not_scientific_evidence`.
+
 <a id="external-anthropic_bootstrap"></a>
 
 ### external:ANTHROPIC_BOOTSTRAP
@@ -502,7 +511,7 @@ The spinless modular bootstrap at large central charge — [исходная к�
 
 The Hawking-Page transition at weak coupling — [исходная карточка](../../infra/external/contracts/ANTHROPIC_HP.json).
 
-**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`.
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [F05](#premise-f05) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
 <a id="external-bfss_bmn"></a>
@@ -529,7 +538,7 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 Контрольный ансамбль 2D геометрий — [исходная карточка](../../infra/external/contracts/CDT2D.json).
 
-**Входящие:** нет.
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [R127](#result-r127) `candidate_source_context_not_evidence`.
 
 <a id="external-gordion"></a>
@@ -556,7 +565,7 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 Совместная мера причинного порядка и спинов — [исходная карточка](../../infra/external/contracts/ISINGCAUSET.json).
 
-**Входящие:** нет.
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [R127](#result-r127) `candidate_source_context_not_evidence`.
 
 <a id="external-largen_ym"></a>
@@ -574,7 +583,7 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
 
-**Входящие:** нет.
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-qsc_operators"></a>
@@ -592,7 +601,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Авторское ядро сигнатур, версия 1.0.0 — [исходная карточка](../../infra/external/contracts/SERBIAN_CPP.json).
 
-**Входящие:** нет.
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [R127](#result-r127) `candidate_source_context_not_evidence`.
 
 <a id="link-l01"></a>
@@ -628,7 +637,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Исполнение → запись → дальнейшее действие — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l04).
 
-**Входящие:** [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l05"></a>
@@ -646,7 +655,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Возврат функции → воспроизводство условий — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l06).
 
-**Входящие:** [U001](#question-u001) `related_open_link`; [U005](#question-u005) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U005](#question-u005) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`.
 **Исходящие:** нет.
 
 <a id="link-l07"></a>
@@ -655,7 +664,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Инвариант отклика → сохраняемая способность продолжения и генетическая преемственность — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l07).
 
-**Входящие:** [U002](#question-u002) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U002](#question-u002) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l08"></a>
@@ -673,7 +682,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Организация → физическое пространство-время — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l09).
 
-**Входящие:** [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l10"></a>
@@ -682,7 +691,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Локальные результаты → одна сквозная реализация — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l10).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `joint_model_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n01"></a>
@@ -700,7 +709,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 цена реконструкции — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n02).
 
-**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n03"></a>
@@ -736,7 +745,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 автономное удержание — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#obligation-n06).
 
-**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D001](#decision-d001) `decision_scope_not_scientific_evidence`; [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `updates_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n07"></a>
@@ -1186,7 +1195,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 **Открыто.** Порядок, соседство и композиция должны быть определены. CSG и внутренние причинные принципы уже предполагают частичный порядок/правило роста; снятие меток не выводит их происхождение **11.11:** В R129 возникают существующие контакты внутри заданного полного графа; сами возможные отношения не выведены. — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#premise-f02).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R129](#result-r129) `direct_conditional_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `premise_context_not_evidence`.
 **Исходящие:** [C031](#construct-c031) `historical_navigation_not_proof`; [C036](#construct-c036) `historical_navigation_not_proof`; [C038](#construct-c038) `historical_navigation_not_proof`.
 
 <a id="premise-f03"></a>
@@ -1213,7 +1222,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 **Открыто.** Конкретное D, веса, границы не выбраны. Симметрия и согласованность всех конечных продолжений оставляют разные меры; MaxEnt/MaxCal используют prior и ограничения — [исходная карточка](../../analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md#premise-f05).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `premise_context_not_evidence`; [EXTERNAL_20261112](#review-external_20261112) `premise_context_not_evidence`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `premise_context_not_evidence`.
 **Исходящие:** [C012](#construct-c012) `historical_navigation_not_proof`.
 
 <a id="premise-f06"></a>
@@ -1411,7 +1420,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Откуда берутся причинная и метрическая структуры? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u006).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [L09](#link-l09) `related_open_link`.
 
 <a id="question-u007"></a>
@@ -1447,7 +1456,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Как передать следующему носителю способность воспроизводить условия дальнейшего действия? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u010).
 
-**Входящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [L04](#link-l04) `related_open_link`; [L06](#link-l06) `related_open_link`; [L07](#link-l07) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u011"></a>
@@ -1474,7 +1483,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Граница первичной флуктуации — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r001).
 
-**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`.
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C001](#construct-c001) `addresses`; [C003](#construct-c003) `addresses`; [R118](#result-r118) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r002"></a>
@@ -1771,7 +1780,7 @@ F2: количественный перенос G1 опровергнут — [�
 
 CORR: локальные состояния не определяют дальнейший поток — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r034).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C019](#construct-c019) `addresses`; [R127](#result-r127) `parent`.
 
 <a id="result-r035"></a>
@@ -1825,7 +1834,7 @@ RESET: предсказание малого непрерывного сброс
 
 BIC: точная защита существует при настройке — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r040).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C020](#construct-c020) `addresses`; [R102](#result-r102) `parent`; [R105](#result-r105) `parent`; [R115](#result-r115) `parent`.
 
 <a id="result-r041"></a>
@@ -1834,7 +1843,7 @@ BIC: точная защита существует при настройке �
 
 BIC: защита и загрузка конфликтуют в статическом протоколе — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r041).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C020](#construct-c020) `addresses`; [R105](#result-r105) `parent`; [R115](#result-r115) `parent`; [R127](#result-r127) `parent`.
 
 <a id="result-r042"></a>
@@ -2041,7 +2050,7 @@ M4: внутренний ремонт возможен с подготовлен
 
 Цикл ремонта требует доказанного последнего звена — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r064).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C030](#construct-c030) `addresses`; [U008](#question-u008) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R117](#result-r117) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`; [R129](#result-r129) `parent`.
 
 <a id="result-r065"></a>
@@ -2140,7 +2149,7 @@ V2 и A: расширение репертуара оплачено правил
 
 Запись теми же взаимодействиями, что исполнение — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r075).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C002](#construct-c002) `addresses`; [C010](#construct-c010) `addresses`; [C033](#construct-c033) `addresses`; [U010](#question-u010) `informs_not_closes`; [R116](#result-r116) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r076"></a>
@@ -2311,7 +2320,7 @@ H-B-2A: архивная полевая эволюция после заверш
 
 Завершение инициатора не тождественно прекращению организованного процесса — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r094).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C002](#construct-c002) `addresses`; [C005](#construct-c005) `addresses`; [C022](#construct-c022) `addresses`; [U010](#question-u010) `informs_not_closes`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R123](#result-r123) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r095"></a>
@@ -2329,7 +2338,7 @@ H-B-2A: архивная полевая эволюция после заверш
 
 Возникновение на допустимой внутренней стадии с самосогласованным причинным прошлым — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r096).
 
-**Входящие:** нет.
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C002](#construct-c002) `addresses`; [C004](#construct-c004) `addresses`; [R118](#result-r118) `parent`; [R123](#result-r123) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r097"></a>
@@ -2374,7 +2383,7 @@ GLORIA: восстановленная ветвь и предел статуса
 
 Генератор пары: неаддитивность множества достижимого — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r101).
 
-**Входящие:** [R004](#result-r004) `parent`; [R090](#result-r090) `parent`; [R098](#result-r098) `parent`.
+**Входящие:** [R004](#result-r004) `parent`; [R090](#result-r090) `parent`; [R098](#result-r098) `parent`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C008](#construct-c008) `addresses`; [C031](#construct-c031) `addresses`; [C040](#construct-c040) `addresses`.
 
 <a id="result-r102"></a>
@@ -2482,7 +2491,7 @@ GLORIA: восстановленная ветвь и предел статуса
 
 Блок 24: слежение нуля χ_A за FW-точкой — предложение — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r113).
 
-**Входящие:** [R112](#result-r112) `parent`.
+**Входящие:** [R112](#result-r112) `parent`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [C020](#construct-c020) `addresses`; [C035](#construct-c035) `addresses`; [C040](#construct-c040) `addresses`; [U012](#question-u012) `informs_not_closes`.
 
 <a id="result-r114"></a>
@@ -2500,7 +2509,7 @@ GLORIA: восстановленная ветвь и предел статуса
 
 Нуль ΔΣ, транспортный нуль и BIC требуют разных условий — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r115).
 
-**Входящие:** [R028](#result-r028) `parent`; [R040](#result-r040) `parent`; [R041](#result-r041) `parent`; [R102](#result-r102) `parent`; [R103](#result-r103) `parent`.
+**Входящие:** [R028](#result-r028) `parent`; [R040](#result-r040) `parent`; [R041](#result-r041) `parent`; [R102](#result-r102) `parent`; [R103](#result-r103) `parent`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `classification_only`.
 **Исходящие:** [C018](#construct-c018) `addresses`; [C020](#construct-c020) `addresses`; [C040](#construct-c040) `addresses`.
 
 <a id="result-r116"></a>
@@ -2536,7 +2545,7 @@ GLORIA: восстановленная ветвь и предел статуса
 
 Посредник: формирование отношений, запись и завершение взаимодействия — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r119).
 
-**Входящие:** [R043](#result-r043) `parent`; [R045](#result-r045) `parent`; [R047](#result-r047) `parent`; [R049](#result-r049) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R097](#result-r097) `parent`; [R117](#result-r117) `parent`.
+**Входящие:** [R043](#result-r043) `parent`; [R045](#result-r045) `parent`; [R047](#result-r047) `parent`; [R049](#result-r049) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R097](#result-r097) `parent`; [R117](#result-r117) `parent`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C005](#construct-c005) `addresses`; [C010](#construct-c010) `addresses`; [C021](#construct-c021) `addresses`; [C023](#construct-c023) `addresses`; [C024](#construct-c024) `addresses`; [C028](#construct-c028) `addresses`; [C033](#construct-c033) `addresses`; [L04](#link-l04) `boundary_open`; [L05](#link-l05) `boundary_open`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r120"></a>
@@ -2545,7 +2554,7 @@ GLORIA: восстановленная ветвь и предел статуса
 
 Профиль продолжения: исправления эквивалентности, причинной проверки и передачи — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r120).
 
-**Входящие:** [R043](#result-r043) `parent`; [R045](#result-r045) `parent`; [R046](#result-r046) `parent`; [R047](#result-r047) `parent`; [R055](#result-r055) `parent`; [R057](#result-r057) `parent`; [R064](#result-r064) `parent`; [R065](#result-r065) `parent`; [R066](#result-r066) `parent`; [R075](#result-r075) `parent`; [R079](#result-r079) `parent`; [R094](#result-r094) `parent`; [R097](#result-r097) `parent`; [R117](#result-r117) `parent`; [R119](#result-r119) `parent`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [R043](#result-r043) `parent`; [R045](#result-r045) `parent`; [R046](#result-r046) `parent`; [R047](#result-r047) `parent`; [R055](#result-r055) `parent`; [R057](#result-r057) `parent`; [R064](#result-r064) `parent`; [R065](#result-r065) `parent`; [R066](#result-r066) `parent`; [R075](#result-r075) `parent`; [R079](#result-r079) `parent`; [R094](#result-r094) `parent`; [R097](#result-r097) `parent`; [R117](#result-r117) `parent`; [R119](#result-r119) `parent`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C005](#construct-c005) `addresses`; [C021](#construct-c021) `addresses`; [C023](#construct-c023) `addresses`; [C024](#construct-c024) `addresses`; [C028](#construct-c028) `addresses`; [C033](#construct-c033) `addresses`; [C039](#construct-c039) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L05](#link-l05) `boundary_open`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r121"></a>
@@ -2572,7 +2581,7 @@ G8: метки, пространственный шаблон и восполн�
 
 Релятивистская совместимость целого, двух границ и типа 2 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r123).
 
-**Входящие:** [R057](#result-r057) `parent`; [R076](#result-r076) `parent`; [R080](#result-r080) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R094](#result-r094) `parent`; [R095](#result-r095) `parent`; [R096](#result-r096) `parent`; [R117](#result-r117) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R122](#result-r122) `parent`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
+**Входящие:** [R057](#result-r057) `parent`; [R076](#result-r076) `parent`; [R080](#result-r080) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R094](#result-r094) `parent`; [R095](#result-r095) `parent`; [R096](#result-r096) `parent`; [R117](#result-r117) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R122](#result-r122) `parent`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C002](#construct-c002) `addresses`; [C004](#construct-c004) `addresses`; [C005](#construct-c005) `addresses`; [C013](#construct-c013) `addresses`; [C024](#construct-c024) `addresses`; [C028](#construct-c028) `addresses`; [C034](#construct-c034) `addresses`; [C037](#construct-c037) `addresses`; [C041](#construct-c041) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L07](#link-l07) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [U006](#question-u006) `informs_not_closes`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R127](#result-r127) `parent`.
 
 <a id="result-r124"></a>
@@ -2599,7 +2608,7 @@ R125: предпрогон v2 и ограниченный событийный �
 
 ADD: четыре семантики транспорта, периодичность и рост разделены — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r126).
 
-**Входящие:** [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U004](#question-u004) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [R127](#result-r127) `parent`.
 
 <a id="result-r127"></a>
@@ -2608,7 +2617,7 @@ ADD: четыре семантики транспорта, периодично�
 
 Четыре кандидата: исполнимый патч прежнего NOW — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r127).
 
-**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R003](#result-r003) `parent`; [R006](#result-r006) `parent`; [R018](#result-r018) `parent`; [R023](#result-r023) `parent`; [R034](#result-r034) `parent`; [R037](#result-r037) `parent`; [R038](#result-r038) `parent`; [R041](#result-r041) `parent`; [R058](#result-r058) `parent`; [R063](#result-r063) `parent`; [R064](#result-r064) `parent`; [R074](#result-r074) `parent`; [R075](#result-r075) `parent`; [R076](#result-r076) `parent`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R087](#result-r087) `parent`; [R090](#result-r090) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R126](#result-r126) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`.
+**Входящие:** [D002](#decision-d002) `decision_scope_not_scientific_evidence`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [CDT2D](#external-cdt2d) `candidate_source_context_not_evidence`; [ISINGCAUSET](#external-isingcauset) `candidate_source_context_not_evidence`; [SERBIAN_CPP](#external-serbian_cpp) `candidate_source_context_not_evidence`; [R003](#result-r003) `parent`; [R006](#result-r006) `parent`; [R018](#result-r018) `parent`; [R023](#result-r023) `parent`; [R034](#result-r034) `parent`; [R037](#result-r037) `parent`; [R038](#result-r038) `parent`; [R041](#result-r041) `parent`; [R058](#result-r058) `parent`; [R063](#result-r063) `parent`; [R064](#result-r064) `parent`; [R074](#result-r074) `parent`; [R075](#result-r075) `parent`; [R076](#result-r076) `parent`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R083](#result-r083) `parent`; [R084](#result-r084) `parent`; [R085](#result-r085) `parent`; [R087](#result-r087) `parent`; [R090](#result-r090) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R123](#result-r123) `parent`; [R124](#result-r124) `parent`; [R125](#result-r125) `parent`; [R126](#result-r126) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `joint_model_requirement`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`.
 **Исходящие:** [C001](#construct-c001) `addresses`; [C002](#construct-c002) `addresses`; [C004](#construct-c004) `addresses`; [C005](#construct-c005) `addresses`; [C009](#construct-c009) `addresses`; [C010](#construct-c010) `addresses`; [C011](#construct-c011) `addresses`; [C023](#construct-c023) `addresses`; [C026](#construct-c026) `addresses`; [C028](#construct-c028) `addresses`; [C030](#construct-c030) `addresses`; [C032](#construct-c032) `addresses`; [C033](#construct-c033) `addresses`; [C034](#construct-c034) `addresses`; [C035](#construct-c035) `addresses`; [C036](#construct-c036) `addresses`; [C037](#construct-c037) `addresses`; [C038](#construct-c038) `addresses`; [C039](#construct-c039) `addresses`; [C041](#construct-c041) `addresses`; [C042](#construct-c042) `addresses`; [L01](#link-l01) `boundary_open`; [L02](#link-l02) `boundary_open`; [L03](#link-l03) `boundary_open`; [L04](#link-l04) `boundary_open`; [L05](#link-l05) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U001](#question-u001) `informs_not_closes`; [U002](#question-u002) `informs_not_closes`; [U003](#question-u003) `informs_not_closes`; [U004](#question-u004) `informs_not_closes`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U008](#question-u008) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R128](#result-r128) `parent`.
 
 <a id="result-r128"></a>
@@ -2617,7 +2626,7 @@ ADD: четыре семантики транспорта, периодично�
 
 Генезис ρ и организационное замыкание: предпосылки, причинные контроли и границы — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r128).
 
-**Входящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R001](#result-r001) `parent`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R127](#result-r127) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R001](#result-r001) `parent`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R075](#result-r075) `parent`; [R094](#result-r094) `parent`; [R096](#result-r096) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R122](#result-r122) `parent`; [R127](#result-r127) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C001](#construct-c001) `addresses`; [C002](#construct-c002) `addresses`; [C005](#construct-c005) `addresses`; [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C032](#construct-c032) `addresses`; [C033](#construct-c033) `addresses`; [C041](#construct-c041) `addresses`; [L01](#link-l01) `boundary_open`; [L02](#link-l02) `boundary_open`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R129](#result-r129) `parent`.
 
 <a id="result-r129"></a>
@@ -2626,7 +2635,7 @@ ADD: четыре семантики транспорта, периодично�
 
 Контактная организация: доминирование без конкуренции и преимущество при ограниченной ёмкости — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r129).
 
-**Входящие:** [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`.
 
 <a id="review-anthropic_bh_20261112"></a>
@@ -2706,6 +2715,38 @@ CCC+TL/CBST: геометрия, часы и границы общего зак�
 - [U003](#question-u003): `OUT_OF_SCOPE` — Не выбрана и не проверена совместная мера наших геометрических носителей.
 - [U005](#question-u005): `OUT_OF_SCOPE` — Скалярно-гравитационная обратная связь сама не реализует обратное действие нашей организации на носитель.
 
+<a id="review-corpus_reconciliation_20261115"></a>
+
+### review:CORPUS_RECONCILIATION_20261115
+
+Сверка BBN/S3, HP, адаптеров и совместной достижимости: результаты и незакрытые связи — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [C041](#construct-c041) `scope_boundary`; [ANTHROPIC_HP](#external-anthropic_hp) `scope_boundary`; [CDT2D](#external-cdt2d) `scope_boundary`; [ISINGCAUSET](#external-isingcauset) `scope_boundary`; [PRIMAT](#external-primat) `scope_boundary`; [SERBIAN_CPP](#external-serbian_cpp) `scope_boundary`; [L04](#link-l04) `scope_boundary`; [L07](#link-l07) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [N02](#obligation-n02) `scope_boundary`; [U006](#question-u006) `scope_boundary`; [U010](#question-u010) `scope_boundary`; [R113](#result-r113) `scope_boundary`; [R120](#result-r120) `scope_boundary`; [R126](#result-r126) `scope_boundary`; [R127](#result-r127) `joint_model_requirement`; [R128](#result-r128) `scope_boundary`; [R129](#result-r129) `scope_boundary`; [analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json](#source-analysis-corpus_reconciliation_20261115-coverage-json) `review_source_not_attestation`; [analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md](#source-analysis-corpus_reconciliation_20261115-discussion-md) `review_source_not_attestation`; [analysis/CORPUS_RECONCILIATION_20261115/REPORT.md](#source-analysis-corpus_reconciliation_20261115-report-md) `review_source_not_attestation`; [analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json](#source-analysis-corpus_reconciliation_20261115-sources-json) `review_source_not_attestation`; [analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md](#source-analysis-corpus_reconciliation_20261115-work_log-md) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [C041](#construct-c041) `scope_boundary` | COR18: Изоморфное представление само по себе не новый физический результат. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six) |
+| [ANTHROPIC_HP](#external-anthropic_hp) `scope_boundary` | COR06: Нет полной меры, трёхпетлевой репликации или кинетики.; COR10: Суммарный N_eff не автоматически N_eff,ν; BH1 не найден.; COR16: Космологическое отображение/кинетика не определены.; COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn) |
+| [CDT2D](#external-cdt2d) `scope_boundary` | COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six) |
+| [ISINGCAUSET](#external-isingcauset) `scope_boundary` | COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six) |
+| [PRIMAT](#external-primat) `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR03: Только заданные численные вмешательства, не глобальная сходимость.; COR04: Условное масштабирование, не новый закон S2.; COR05: Не космологическая история η и не observational fit.; COR07: Не выполненный S3_STANDARD.; COR08: Пять таблиц; не полный аудит 427 каналов и не D/H-uncertainty.; COR09: Узловая covariance не полный posterior кривых.; COR10: Суммарный N_eff не автоматически N_eff,ν; BH1 не найден.; COR11: Полная траектория не проверена.; COR12: Не физическая аттестация экстраполяции и не полная калибровка.; COR13: FULL_ROUTE_NOT_CALIBRATED; исторические бюджеты не актуальная общая политика. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn) |
+| [SERBIAN_CPP](#external-serbian_cpp) `scope_boundary` | COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#adapters) |
+| [L04](#link-l04) `scope_boundary` | COR20: Новая физическая связка/мера/контракт не выбраны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg) |
+| [L07](#link-l07) `scope_boundary` | COR20: Новая физическая связка/мера/контракт не выбраны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg) |
+| [L10](#link-l10) `joint_model_requirement` | COR01: Новый закон или физическая полнота не приняты.; COR03: Только заданные численные вмешательства, не глобальная сходимость.; COR04: Условное масштабирование, не новый закон S2.; COR05: Не космологическая история η и не observational fit.; COR06: Нет полной меры, трёхпетлевой репликации или кинетики.; COR07: Не выполненный S3_STANDARD.; COR09: Узловая covariance не полный posterior кривых.; COR16: Космологическое отображение/кинетика не определены.; COR18: Изоморфное представление само по себе не новый физический результат.; COR20: Новая физическая связка/мера/контракт не выбраны.; COR21: Свежий review/PR не готовое задание. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy) |
+| [N02](#obligation-n02) `scope_boundary` | COR08: Пять таблиц; не полный аудит 427 каналов и не D/H-uncertainty.; COR11: Полная траектория не проверена.; COR21: Свежий review/PR не готовое задание.; COR22: Один active; исполнитель не ремонтирует и не повторяет научный код автоматически. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#s3) |
+| [U006](#question-u006) `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn) |
+| [U010](#question-u010) `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy) |
+| [R113](#result-r113) `scope_boundary` | COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#chrg) |
+| [R120](#result-r120) `scope_boundary` | COR18: Изоморфное представление само по себе не новый физический результат.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#six) |
+| [R126](#result-r126) `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy) |
+| [R127](#result-r127) `joint_model_requirement` | COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR20: Новая физическая связка/мера/контракт не выбраны. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#adapters) |
+| [R128](#result-r128) `scope_boundary` | COR01: Новый закон или физическая полнота не приняты. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy) |
+| [R129](#result-r129) `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR17: Нет общего физического K. | [разбор](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy) |
+
+**Не включены в положительные связи:**
+
 <a id="review-external_20261112"></a>
 
 ### review:EXTERNAL_20261112
@@ -2729,6 +2770,51 @@ CCC+TL/CBST: геометрия, часы и границы общего зак�
 | [R129](#result-r129) `scope_boundary` | Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. | [разбор](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science) |
 
 **Не включены в положительные связи:**
+
+<a id="review-hp_branch_balance_20261115"></a>
+
+### review:HP_BRANCH_BALANCE_20261115
+
+HP–BH1: баланс ветвей, нормировки и связь с корпусом — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [C041](#construct-c041) `scope_boundary`; [C042](#construct-c042) `scope_boundary`; [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement`; [L04](#link-l04) `scope_boundary`; [L07](#link-l07) `scope_boundary`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [N02](#obligation-n02) `scope_boundary`; [N06](#obligation-n06) `scope_boundary`; [F02](#premise-f02) `premise_context_not_evidence`; [F05](#premise-f05) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [U010](#question-u010) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R034](#result-r034) `scope_boundary`; [R040](#result-r040) `scope_boundary`; [R041](#result-r041) `scope_boundary`; [R064](#result-r064) `scope_boundary`; [R075](#result-r075) `scope_boundary`; [R094](#result-r094) `scope_boundary`; [R096](#result-r096) `scope_boundary`; [R101](#result-r101) `scope_boundary`; [R115](#result-r115) `classification_only`; [R119](#result-r119) `scope_boundary`; [R120](#result-r120) `scope_boundary`; [R123](#result-r123) `scope_boundary`; [R126](#result-r126) `scope_boundary`; [R127](#result-r127) `joint_model_requirement`; [R128](#result-r128) `scope_boundary`; [R129](#result-r129) `scope_boundary`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json](#source-analysis-hp_branch_balance_review_20261115-assessment-json) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json](#source-analysis-hp_branch_balance_review_20261115-checks-json) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt](#source-analysis-hp_branch_balance_review_20261115-history_review_a-txt) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt](#source-analysis-hp_branch_balance_review_20261115-history_review_b-txt) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md](#source-analysis-hp_branch_balance_review_20261115-lineage-md) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt](#source-analysis-hp_branch_balance_review_20261115-neighbor_review-txt) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md](#source-analysis-hp_branch_balance_review_20261115-report-md) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json](#source-analysis-hp_branch_balance_review_20261115-sources-json) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json](#source-analysis-hp_branch_balance_review_20261115-validation-json) `review_source_not_attestation`; [analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py](#source-analysis-hp_branch_balance_review_20261115-verify_algebra-py) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [C041](#construct-c041) `scope_boundary` | Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [C042](#construct-c042) `scope_boundary` | Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement` | Полные ветви и космологическая динамика не выводятся из редуцированного адаптера. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [L04](#link-l04) `scope_boundary` | Носитель и механизм чтения не возникают из интерпретации f как среднего. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [L07](#link-l07) `scope_boundary` | Наследование условий продолжения не следует из сохранения G. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [L09](#link-l09) `scope_boundary` | Космологическое отображение радиуса и происхождение пространства-времени не установлены. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [L10](#link-l10) `joint_model_requirement` | Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [N02](#obligation-n02) `scope_boundary` | Источники, предпосылки, выводы и невыбранные гипотезы перечислены раздельно. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [N06](#obligation-n06) `scope_boundary` | Не заявляется замыкание условий продолжения по сохранению одной плотности. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [F02](#premise-f02) `premise_context_not_evidence` | Исходная геометрия S³ и отображение R пропорционально a не выведены данным разбором. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [F05](#premise-f05) `premise_context_not_evidence` | Тепловая и Haar-меры задаются до расчёта; новый носитель или мера не выбраны. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [U006](#question-u006) `scope_boundary` | Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [U010](#question-u010) `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R001](#result-r001) `scope_boundary` | Заданные мера, закон и геометрия не получают происхождения из тождества баланса. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R034](#result-r034) `scope_boundary` | Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R040](#result-r040) `scope_boundary` | Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R041](#result-r041) `scope_boundary` | Статическое условие не заменяет механизм загрузки и последующей динамики. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R064](#result-r064) `scope_boundary` | Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R075](#result-r075) `scope_boundary` | Средняя фазовая доля не реализует причинное чтение физической записи. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R094](#result-r094) `scope_boundary` | Сохранение наблюдаемой не доказывает воспроизводство организованного процесса. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R096](#result-r096) `scope_boundary` | Баланс частей не создаёт самосогласованную историю или происхождение целого. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R101](#result-r101) `scope_boundary` | Аддитивная смесь не устанавливает операционную неаддитивность продолжения. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R115](#result-r115) `classification_only` | Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R119](#result-r119) `scope_boundary` | Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R120](#result-r120) `scope_boundary` | Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R123](#result-r123) `scope_boundary` | Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R126](#result-r126) `scope_boundary` | ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R127](#result-r127) `joint_model_requirement` | Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R128](#result-r128) `scope_boundary` | Фазовая организация на заданной мере не закрывает происхождение меры или соответствия. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+| [R129](#result-r129) `scope_boundary` | Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP. Статус существующей записи сохраняется. | [разбор](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus) |
+
+**Не включены в положительные связи:**
+- [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap): `OUT_OF_SCOPE` — Этот разбор не проверяет bootstrap-доказательство и не переносит на него HP-результаты.
 
 <a id="review-method_20261112"></a>
 
@@ -2906,6 +2992,51 @@ analysis/CCC_TL_REVIEW_20261112/verify_algebra.py — [исходная карт
 **Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
 
+<a id="source-analysis-corpus_reconciliation_20261115-coverage-json"></a>
+
+### source:analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json
+
+analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json).
+
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-corpus_reconciliation_20261115-discussion-md"></a>
+
+### source:analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md
+
+analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md).
+
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-corpus_reconciliation_20261115-report-md"></a>
+
+### source:analysis/CORPUS_RECONCILIATION_20261115/REPORT.md
+
+analysis/CORPUS_RECONCILIATION_20261115/REPORT.md — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md).
+
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-corpus_reconciliation_20261115-sources-json"></a>
+
+### source:analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json
+
+analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json).
+
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-corpus_reconciliation_20261115-work_log-md"></a>
+
+### source:analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md
+
+analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md — [исходная карточка](../../analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md).
+
+**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
 <a id="source-analysis-g3_contact_capacity_20261111-report-md"></a>
 
 ### source:analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md
@@ -2940,6 +3071,96 @@ analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json — [исходная
 analysis/G3_CONTACT_CAPACITY_20261111/compute.py — [исходная карточка](../../analysis/G3_CONTACT_CAPACITY_20261111/compute.py).
 
 **Входящие:** [R129](#result-r129) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-assessment-json"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-checks-json"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-history_review_a-txt"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-history_review_b-txt"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-lineage-md"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-neighbor_review-txt"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-report-md"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-sources-json"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-validation-json"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-hp_branch_balance_review_20261115-verify_algebra-py"></a>
+
+### source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py
+
+analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py — [исходная карточка](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py).
+
+**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-primat_integration_20261113-report-md"></a>

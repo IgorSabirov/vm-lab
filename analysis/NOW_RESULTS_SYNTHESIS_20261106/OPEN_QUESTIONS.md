@@ -110,6 +110,10 @@
 
 <!-- generated:review-card-question-u006 -->
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry); `scope_boundary`. CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
+**Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn); `scope_boundary`. COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 <!-- /generated:review-card-question-u006 -->
 
 
@@ -209,7 +213,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 <!-- generated:review-card-question-u010 -->
 **Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Ограниченный модуль фазовой организации не закрывает происхождение условий. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
+**Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy); `scope_boundary`. COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#genesis); `scope_boundary`. Функция и воспроизводство условий различаются. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 <!-- /generated:review-card-question-u010 -->
@@ -330,6 +338,10 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 |---|---|---|---|
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограниченный модуль фазовой организации не закрывает происхождение условий. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `scope_boundary` | CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |
 <!-- /generated:external-review-links -->
