@@ -1,0 +1,14 @@
+{
+  "schema":"vm-lab-mapping-card-v1",
+  "id":"SERBIAN_CDT2D_GEOMETRIC_REPRESENTATION",
+  "status":["MAP_REQUIRED"],
+  "execution_enabled":false,
+  "scientific_acceptance":false,
+  "nodes":[{"id":"CDT2D","type":"ModelVariant"},{"id":"EDGE_LENGTHS_TO_GRAM","type":"Mapping"},{"id":"SERBIAN_SIGNATURE_KERNEL","type":"Method"}],
+  "context_family":"Nondegenerate Euclidean triangles; Lorentzian data require a separately declared map",
+  "context_instance":null,
+  "mapping":"G_ij=(l_0i^2+l_0j^2-l_ij^2)/2",
+  "claim":"Representation/method check. Positive definiteness is implied by admissible nondegenerate Euclidean input; not emergence of time.",
+  "outcomes":["valid_pd","exact_degenerate","indefinite_invalid_euclidean_sides","numerically_ambiguous_flag_separate"],
+  "missing_inputs":["Pinned CDT2D export and its metric convention", "Independent representation comparison on that export"]
+}

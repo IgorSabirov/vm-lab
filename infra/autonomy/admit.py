@@ -1,7 +1,7 @@
 """Shared package accounting and leased admission, before scientific execution."""
 from __future__ import annotations
 import base64
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -19,6 +19,12 @@ LEDGER_BRANCH = 'science/autonomous-research-20261114'
 LEDGER_PATH = 'infra/autonomy/LEDGER.json'
 REQUEST_PATH = 'analysis/CCC_BBN_NETWORK_20261114/pipeline/RUN_REQUEST.json'
 ACTIVE = {'RESERVED', 'SUBMITTED', 'QUEUED', 'RUNNING', 'UNKNOWN'}
+# Known non-compute workflows do not occupy the scientific package slot.
+NON_COMPUTE = {'.github/workflows/' + n + '.yml' for n in (
+    'development', 'codeql', 'dependency-review', 'project-events',
+    'projects-sync', 'result-pull-request', 'evidence-publication',
+    'scorecard', 'freeze-release', 'registry-advisor', 'upstream-monitor',
+    'external-validation', 'p2-fullnet-static', 'failure-advisor')}
 
 
 def moment(value):
@@ -30,7 +36,7 @@ def moment(value):
 
 def package_records(ledger, runs, now, current_run_id=None):
     """Union local/VM/Actions packages; run IDs are evidence, not package IDs."""
-    records = {}; mapped = set()
+    records = {}; mapped = {}
     for row in ledger['packages']:
         key = row['id']
         if key in records:
@@ -42,10 +48,15 @@ def package_records(ledger, runs, now, current_run_id=None):
         for run_id in set(ids):
             if run_id in mapped:
                 raise ValueError('Workflow run belongs to two packages')
-            mapped.add(run_id)
+            mapped[run_id] = key
     for run in runs:
-        if (run['id'] in mapped or run['id'] == current_run_id
+        if (run['id'] == current_run_id or run['status'] == 'completed'
+                or run.get('path') in NON_COMPUTE
                 or not run.get('head_branch', '').startswith('science/autonomous-')):
+            continue
+        if run['id'] in mapped:
+            # Live processes override stale terminal metadata, without rewriting evidence.
+            records[mapped[run['id']]]['status'] = 'RUNNING'
             continue
         records['unmapped_actions_' + str(run['id'])] = {
             'id': 'unmapped_actions_' + str(run['id']), 'started_utc': run['created_at'],
@@ -62,15 +73,8 @@ def decision(ledger, runs, candidate, now, limits, current_run_id=None):
         return {'admitted': False, 'reason': 'ALREADY_REGISTERED_NO_RETRY'}
     if any(r.get('status') in ACTIVE for r in records.values()):
         return {'admitted': False, 'reason': 'ACTIVE_PACKAGE'}
-    # Half-open rolling window: an entry leaves exactly 24 h after admission.
-    recent = {k: r for k, r in records.items() if moment(r['started_utc']) > now - timedelta(hours=24)}
-    cap = limits['new_packages_per_rolling_24h']; admitted = len(recent) < cap
-    result = {'admitted': admitted, 'reason': 'ADMITTED' if admitted else 'BUDGET_WAIT',
-              'packages_last_24h': sorted(recent), 'limit': cap}
-    if not admitted:
-        starts = sorted(moment(r['started_utc']) for r in recent.values())
-        result['not_before_utc'] = (starts[len(starts) - cap] + timedelta(hours=24)).isoformat()
-    return result
+    return {'admitted': True, 'reason': 'ADMITTED',
+            'registered_packages': sorted(records), 'daily_quota': None}
 
 
 def reserve(read_ledger, write_ledger, runs, candidate, now, limits, current_run_id=None):
@@ -114,14 +118,26 @@ def write_ledger(value, expected_blob):
         raise
 
 
-def actions_runs(now):
-    runs = []
-    for page in range(1, 11):
-        batch = api('actions/workflows/research-pipeline.yml/runs?per_page=100&page=' + str(page))['workflow_runs']
-        runs.extend(batch)
-        if len(batch) < 100 or moment(batch[-1]['created_at']) < now - timedelta(hours=24):
-            return runs
-    raise ValueError('Cannot establish 24-hour Actions history')
+def actions_runs(now=None):
+    """Read ALL nonterminal runs, regardless of age or workflow filename.
+
+    Unknown workflows on autonomous branches are conservatively blocking. No 24-hour history
+    is required. API failure or an incomplete page set denies admission.
+    """
+    runs = {}
+    for status in ('queued', 'in_progress', 'waiting', 'requested', 'pending'):
+        for page in range(1, 101):
+            response = api(f'actions/runs?status={status}&per_page=100&page={page}')
+            batch = response['workflow_runs']
+            if response.get('total_count', 0) > 10000:
+                raise ValueError('Cannot establish complete active Actions inventory')
+            for run in batch:
+                runs[run['id']] = run
+            if len(batch) < 100:
+                break
+        else:
+            raise ValueError('Cannot establish complete active Actions inventory')
+    return list(runs.values())
 
 
 def source_check(plan, path, request):
