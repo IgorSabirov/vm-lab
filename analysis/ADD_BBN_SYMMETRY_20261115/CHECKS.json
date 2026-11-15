@@ -1,0 +1,91 @@
+{
+  "status": "PASS_WITH_EXPLICIT_COUNTEREXAMPLES",
+  "semantics": "Corrected edges supplied by user; named cyclic graph; figure-consistent tau; n bits encoded by integers.",
+  "finite_cases": 5440,
+  "six_half_shift_identities_per_case": true,
+  "I_involution_n1_cases": 1344,
+  "general_proof": "REPORT.md#named-half-steps",
+  "full_dynamics_counterexample": {
+    "input_ab": [
+      "11",
+      "00",
+      "00",
+      "00"
+    ],
+    "TFT_vertex_count": 5,
+    "F_inverse_vertex_count": 4
+  },
+  "same_initial_vertex_and_particle_counts_different_next_size": {
+    "input_ab": [
+      "10",
+      "01",
+      "00",
+      "00"
+    ],
+    "F_X_and_F_TX_sizes": [
+      3,
+      4
+    ]
+  },
+  "sum_invariance_not_time_reversal": {
+    "P": [
+      [
+        1,
+        1
+      ]
+    ],
+    "L_lambda_1": [
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "swap": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "SLS": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        -1
+      ]
+    ],
+    "minus_L": [
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        0
+      ]
+    ]
+  },
+  "kappa_counterexample": [
+    "1",
+    "9/41"
+  ],
+  "budget": {
+    "forecast_seconds_upper": 30,
+    "ceiling_seconds": 600,
+    "actual_seconds": 0.1690809699939564,
+    "environment": "local",
+    "vm_jobs": 0,
+    "bbn_integrations": 0
+  },
+  "code_sha256": "1437150c0d1f67b1dc95b6dcdcc1cff96069f211910b31db344e95ef03d7d3e1"
+}

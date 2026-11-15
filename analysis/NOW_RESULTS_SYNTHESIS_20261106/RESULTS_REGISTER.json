@@ -14077,6 +14077,39 @@
       "new_scientific_records": [],
       "new_production_runs": 0,
       "new_vm_jobs": 0
+    },
+    {
+      "id": "ADD_BBN_SYMMETRY_20261115",
+      "title": "Инвариант наблюдаемой не доказывает симметрию закона",
+      "status": "CONDITIONAL_ANALYTIC_IDENTITIES_AND_COUNTEREXAMPLES",
+      "date": "2026-11-15",
+      "base_commit": "596bf10d998998f58ac3e3c18fad5c84dfc85c10",
+      "report": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "scientific_status_promoted": false,
+      "managed_sources": [
+        "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+        "analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+        "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json"
+      ],
+      "links": [
+        {
+          "target": "result:R126",
+          "relation": "scope_boundary",
+          "claim": "Полушаги обратны на именованных графах; модельная T не обращает полную QI.",
+          "rationale": "Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин.",
+          "evidence": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#full-dynamics"
+        },
+        {
+          "target": "external:PRIMAT",
+          "relation": "scope_boundary",
+          "claim": "Сохранение послераспадной суммы не доказывает симметрию кинетики.",
+          "rationale": "Двухкомпонентный распад: pS=p и pL=0 при SLS≠-L; κ зависит от весов.",
+          "evidence": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#bbn-observation"
+        }
+      ],
+      "new_scientific_records": [],
+      "new_production_runs": 0,
+      "new_vm_jobs": 0
     }
   ]
 }

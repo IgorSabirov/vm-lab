@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "bdfca855cec90802f395d74868bc7d19cb7c1468ff39b20808b7757671d8a45a",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "7fdc2e74a35d6e9aa7d8d23544360a93d511fc166ce202ecb5a719d3cd56d145",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
@@ -59,7 +59,10 @@
     "analysis/CORPUS_RECONCILIATION_20261115/COVERAGE.json": "ab0eb0bf5074f8718bc268c855c317a753a2d77b10f38cb58e50f4fef8e80f0d",
     "analysis/CORPUS_RECONCILIATION_20261115/SOURCES.json": "0f0a1d46f1fa528a126c1420268963bcf5cb0d70419df122328a318e5397832f",
     "analysis/CORPUS_RECONCILIATION_20261115/DISCUSSION.md": "8dad7496c6c82373d6247bd7b6de1065c04a5002619849628686d65f47c5c91c",
-    "analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md": "6f5306f56088f27fdbffd6ce09fea6c337ddacee33291bf492cb163fb599cc09"
+    "analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md": "6f5306f56088f27fdbffd6ce09fea6c337ddacee33291bf492cb163fb599cc09",
+    "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md": "d867e94c0f619072a3151b5e4a71aea6c0134ef0453dfda5760e5e2c61823d66",
+    "analysis/ADD_BBN_SYMMETRY_20261115/verify.py": "1437150c0d1f67b1dc95b6dcdcc1cff96069f211910b31db344e95ef03d7d3e1",
+    "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json": "7bce697694e6c8cc72e8510d8341907bf15e271d4d5ef44ad26537340eaca824"
   },
   "counts": {
     "result": 129,
@@ -68,10 +71,10 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 6,
+    "review": 7,
     "external": 12,
     "decision": 3,
-    "source": 45
+    "source": 48
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -2623,6 +2626,15 @@
       "fragment": "r129"
     },
     {
+      "key": "review:ADD_BBN_SYMMETRY_20261115",
+      "id": "ADD_BBN_SYMMETRY_20261115",
+      "kind": "review",
+      "title": "Инвариант наблюдаемой не доказывает симметрию закона",
+      "status": "CONDITIONAL_ANALYTIC_IDENTITIES_AND_COUNTEREXAMPLES",
+      "path": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "review:ANTHROPIC_BH_20261112",
       "id": "ANTHROPIC_BH_20261112",
       "kind": "review",
@@ -2675,6 +2687,42 @@
       "status": "REVIEW_ANALYZED_NO_NEW_EXPERIMENT",
       "path": "infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md",
       "fragment": ""
+    },
+    {
+      "key": "source:analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
+      "id": "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
+      "status": null,
+      "path": "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
+      "fragment": "",
+      "sha256": "7bce697694e6c8cc72e8510d8341907bf15e271d4d5ef44ad26537340eaca824",
+      "git_blob_sha": "5bbdf2d1a861acab79a2214437fca151500f4af6",
+      "size_bytes": 1522
+    },
+    {
+      "key": "source:analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "id": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "kind": "source",
+      "title": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "status": null,
+      "path": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "fragment": "",
+      "sha256": "d867e94c0f619072a3151b5e4a71aea6c0134ef0453dfda5760e5e2c61823d66",
+      "git_blob_sha": "067da6c4ae348c0c253f9c9556a22baf36fb6061",
+      "size_bytes": 10322
+    },
+    {
+      "key": "source:analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+      "id": "analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+      "kind": "source",
+      "title": "analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+      "status": null,
+      "path": "analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+      "fragment": "",
+      "sha256": "1437150c0d1f67b1dc95b6dcdcc1cff96069f211910b31db344e95ef03d7d3e1",
+      "git_blob_sha": "36aca4fa7335a4feb36e29e961dd3d029f63b6b8",
+      "size_bytes": 4642
     },
     {
       "key": "source:analysis/ANTHROPIC_BH_20261112/CHECKS.json",
@@ -7087,6 +7135,37 @@
       "source": "result:R129",
       "target": "source:analysis/G3_CONTACT_CAPACITY_20261111/compute.py",
       "relation": "managed_evidence_source"
+    },
+    {
+      "source": "review:ADD_BBN_SYMMETRY_20261115",
+      "target": "external:PRIMAT",
+      "relation": "scope_boundary",
+      "rationale": "Двухкомпонентный распад: pS=p и pL=0 при SLS≠-L; κ зависит от весов.",
+      "evidence": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#bbn-observation",
+      "claim": "Сохранение послераспадной суммы не доказывает симметрию кинетики."
+    },
+    {
+      "source": "review:ADD_BBN_SYMMETRY_20261115",
+      "target": "result:R126",
+      "relation": "scope_boundary",
+      "rationale": "Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин.",
+      "evidence": "analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#full-dynamics",
+      "claim": "Полушаги обратны на именованных графах; модельная T не обращает полную QI."
+    },
+    {
+      "source": "review:ADD_BBN_SYMMETRY_20261115",
+      "target": "source:analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ADD_BBN_SYMMETRY_20261115",
+      "target": "source:analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:ADD_BBN_SYMMETRY_20261115",
+      "target": "source:analysis/ADD_BBN_SYMMETRY_20261115/verify.py",
+      "relation": "review_source_not_attestation"
     },
     {
       "source": "review:ANTHROPIC_BH_20261112",

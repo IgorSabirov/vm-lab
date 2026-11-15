@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=6, external=12, decision=3, source=45.
+Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=7, external=12, decision=3, source=48.
 
 ## Предпосылка → результаты
 
@@ -583,7 +583,7 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
 
-**Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
+**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-qsc_operators"></a>
@@ -2608,7 +2608,7 @@ R125: предпрогон v2 и ограниченный событийный �
 
 ADD: четыре семантики транспорта, периодичность и рост разделены — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r126).
 
-**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U004](#question-u004) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [R127](#result-r127) `parent`.
 
 <a id="result-r127"></a>
@@ -2637,6 +2637,22 @@ ADD: четыре семантики транспорта, периодично�
 
 **Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`.
+
+<a id="review-add_bbn_symmetry_20261115"></a>
+
+### review:ADD_BBN_SYMMETRY_20261115
+
+Инвариант наблюдаемой не доказывает симметрию закона — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [PRIMAT](#external-primat) `scope_boundary`; [R126](#result-r126) `scope_boundary`; [analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json](#source-analysis-add_bbn_symmetry_20261115-checks-json) `review_source_not_attestation`; [analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md](#source-analysis-add_bbn_symmetry_20261115-report-md) `review_source_not_attestation`; [analysis/ADD_BBN_SYMMETRY_20261115/verify.py](#source-analysis-add_bbn_symmetry_20261115-verify-py) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [PRIMAT](#external-primat) `scope_boundary` | Двухкомпонентный распад: pS=p и pL=0 при SLS≠-L; κ зависит от весов. | [разбор](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#bbn-observation) |
+| [R126](#result-r126) `scope_boundary` | Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин. | [разбор](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#full-dynamics) |
+
+**Не включены в положительные связи:**
 
 <a id="review-anthropic_bh_20261112"></a>
 
@@ -2838,6 +2854,33 @@ HP–BH1: баланс ветвей, нормировки и связь с ко�
 | [R129](#result-r129) `scope_boundary` | Условный результат о ёмкости не закрывает происхождение условий. Научный статус не изменяется. | [разбор](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#capacity) |
 
 **Не включены в положительные связи:**
+
+<a id="source-analysis-add_bbn_symmetry_20261115-checks-json"></a>
+
+### source:analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json
+
+analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json).
+
+**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_bbn_symmetry_20261115-report-md"></a>
+
+### source:analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md
+
+analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md).
+
+**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_bbn_symmetry_20261115-verify-py"></a>
+
+### source:analysis/ADD_BBN_SYMMETRY_20261115/verify.py
+
+analysis/ADD_BBN_SYMMETRY_20261115/verify.py — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/verify.py).
+
+**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
 
 <a id="source-analysis-anthropic_bh_20261112-checks-json"></a>
 
