@@ -1,0 +1,59 @@
+{
+  "id": "add_f2",
+  "task_ids": [
+    "add_f2"
+  ],
+  "adapter": "add_f2",
+  "config": {
+    "seed": 20261115,
+    "initial_vertices": 6,
+    "steps": 4,
+    "bit_probability": 0.5,
+    "radius": 2
+  },
+  "run_plan": {
+    "schema": "vm-lab-run-plan-v1",
+    "run_id": "ADAPTERS_20261115_add_f2_r1",
+    "source": {
+      "commit": "985dda01924b85ea72fa8fb083d72ccbc645ba08",
+      "tree_sha": "9fd26e0fd7790f961acd132b3f768d59059a3b63",
+      "input_manifest_sha256": "b465e7cc2a86bb22f9ee529f12ed322a9e8b7c6582d70667d695a5e0f82da5dc",
+      "config_sha256": "d84d74c7bc82f15ef0a91f3166f49291e8ff21d41b4d80adab721bc3dcc1e63d"
+    },
+    "command": {
+      "entrypoint": "infra/adapters/worker.py",
+      "args": []
+    },
+    "authorization": {
+      "authority": "user",
+      "reference": "issue63-and-owner-apply-review-20261115",
+      "scope": "bounded engineering adapters; no scientific acceptance",
+      "duration": "persistent"
+    },
+    "budget": {
+      "forecast_seconds": 1,
+      "hard_wall_seconds": 20,
+      "memory_limit_mib": 4096,
+      "disk_limit_mib": 2048
+    },
+    "executor": {
+      "kind": "sandbox",
+      "id": "Linux-6.18.57-x86_64-with-glibc2.41; 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+    },
+    "acceptance": {
+      "required_artifacts": [
+        "RAW.json",
+        "DOMAIN.json",
+        "SECTION.json",
+        "stdout.log"
+      ]
+    },
+    "scientific_acceptance": "SEPARATE_USER_REVIEW"
+  },
+  "setup_seconds": 0,
+  "compute_seconds": 20,
+  "verification_seconds": 10,
+  "publication_seconds": 50,
+  "wall_seconds": 80,
+  "memory_bytes": 4294967296
+}
