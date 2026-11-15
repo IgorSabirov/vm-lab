@@ -1,0 +1,114 @@
+{
+  "started_utc": "2026-11-14T23:24:59Z",
+  "kind": "ENGINEERING_UNIT_AND_RHS_ONLY",
+  "source_sha256": {
+    "bounded_engineering.py": "caa40d99bab4eae3343f305d1d6affca1ccc83c6843d79bc98bdc7bdf556afed",
+    "ENGINEERING_PLAN.json": "c23fd1cf7b7df1584ecafaa57c1ef6a82ccd3f9f5cffddc4f36705a54707fbd4",
+    "bootstrap.py": "fae37161d0b7acb402120a211f16283a1a60e7d9213997f2bde1473d982d737b",
+    "apply_upstream_patch.py": "7f8a83aa6ab1bd4042fc8c9c4f8e03ded34d39e9e0f613b9fea0d31baafe9690",
+    "run_engineering.py": "b0c198de919bdc523a165b21fffa326395ce6a0b8f9ea50342c5f791e25f3cac",
+    "UPSTREAM.json": "ecc8f667aa1ad33015925334cb69e32d737336982ebef342e828825bba83feae",
+    "PATCH_RECEIPT.json": "591dcbed59ffaa6ba9194de78ac89bc6d0e0b7a4841ef6734ae2aaaf6b789d01",
+    "dd_adapter.py": "76b966430a105b4e748f71c013051cee0b3572e72bdb1b006e234f8c9278b2c8",
+    "requirements.lock": "bfaefc1526d52608f6c4085950b0594401525a477ef2963a996ddd2a91a1c243",
+    "test_adapter.py": "948dceb5a34187923091f7aa3988d477aa16f36d5f90b683e3feebe38d746ab4"
+  },
+  "plan": {
+    "id": "LINX_DD_ADAPTER_ENGINEERING_20261115_v1",
+    "mode": "engineering_check",
+    "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+    "parent_vm_lab_commit": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+    "scientific_execution_enabled": false,
+    "bbn_integrations": 0,
+    "gp_draws": 0,
+    "scope": [
+      "host validation",
+      "native table identity",
+      "single channel change",
+      "detailed balance",
+      "boundary policy",
+      "LINX nuclear RHS",
+      "JIT trace reuse"
+    ],
+    "network": "key_PRIMAT_2023",
+    "interpolation": [
+      "linear",
+      "log"
+    ],
+    "float_dtype": "float64",
+    "forecast_seconds": {
+      "central": 45,
+      "range": [
+        5,
+        150
+      ],
+      "basis": "Uncalibrated bounded engineering probe; 28 small tests and two 8-species RHS JITs, no ODE integration or GP inference. Broad interval reflects unknown cold JAX compilation on this host.",
+      "calibrated": false
+    },
+    "limits": {
+      "wall_seconds": 180,
+      "memory_bytes": 4294967296,
+      "output_bytes": 2147483648
+    },
+    "route": "local",
+    "criteria": {
+      "other_reaction_tables": "bitwise unchanged",
+      "native_dd_tables_rtol": 3e-15,
+      "rate_and_balance_rtol": 3e-14,
+      "rhs_identity_rtol": 5e-13,
+      "rhs_identity_atol": 1e-30,
+      "jit_trace_count": 1,
+      "invalid_input": "ValueError before compiled RHS",
+      "basis": "Floating point equivalence checks, not physical uncertainty or BBN acceptance thresholds"
+    },
+    "deferred": [
+      "full BBN output identity",
+      "BBN-level JIT reuse",
+      "complete package runtime calibration",
+      "GP posterior",
+      "A/B and coverage"
+    ],
+    "autonomy": "Do not alter CONTROL/CURRENT/RUN_REQUEST or dispatch a scientific package. Active queue remains BUDGET_WAIT.",
+    "scientific_acceptance": false
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "cpu_affinity": [
+    0
+  ],
+  "versions": {
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.12.2",
+    "diffrax": "0.7.1",
+    "interpax": "0.3.8",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pytest": "8.4.2"
+  },
+  "bbn_integrations": 0,
+  "gp_draws": 0,
+  "scientific_acceptance": false,
+  "exit_code": 0,
+  "engineering_status": "PASS",
+  "wall_seconds": 11.14891460400031,
+  "cpu_seconds": 10.964525852,
+  "max_rss_kib": 502828,
+  "rhs_metrics": {
+    "linear": {
+      "rhs_cold_seconds": 1.0825701979993028,
+      "rhs_warm_seconds": 9.263999891118146e-05,
+      "trace_count": 1,
+      "max_abs_native_rhs_residual": 0.0
+    },
+    "log": {
+      "rhs_cold_seconds": 0.9194465489999857,
+      "rhs_warm_seconds": 6.431200017686933e-05,
+      "trace_count": 1,
+      "max_abs_native_rhs_residual": 2.842170943040401e-14
+    }
+  },
+  "full_bbn_identity": "NOT_EXECUTED_BUDGET_WAIT",
+  "scope": "Reaction tables, detailed balance, host validation, real LINX RHS and JAX trace reuse only",
+  "runtime_status": "WITHIN_ESTIMATE"
+}

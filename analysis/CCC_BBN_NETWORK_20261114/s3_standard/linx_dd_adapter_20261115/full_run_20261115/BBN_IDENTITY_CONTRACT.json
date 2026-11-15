@@ -1,0 +1,110 @@
+{
+  "id": "LINX_BBN_IDENTITY_20261115_v2",
+  "status": "FROZEN_STRICT_INPUTS",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "adapter_parent_commit": "282dd5d308b9bc430db7acd82c01533cfafe472f",
+  "matrix": [
+    "native_pristine",
+    "identical_override"
+  ],
+  "bbn_integrations_planned": 2,
+  "gp_draws": 0,
+  "network": "key_PRIMAT_2023",
+  "species": [
+    "n",
+    "p",
+    "d",
+    "t",
+    "He3",
+    "He4",
+    "Li7",
+    "Be7"
+  ],
+  "interpolation": "linear",
+  "boundary_policy": "upstream-zero-linear",
+  "dtype": "float64",
+  "device": "cpu",
+  "q_by_reaction": {
+    "npdg": -0.1,
+    "dpHe3g": 0.15,
+    "ddHe3n": 0.0,
+    "ddtp": 0.0,
+    "tpag": -0.05,
+    "tdan": 0.1,
+    "He3ntp": -0.1,
+    "He3dap": 0.05,
+    "taLi7g": 0.2,
+    "He3aBe7g": -0.15,
+    "Li7paa": 0.1,
+    "Be7nLi7p": -0.05
+  },
+  "q_purpose": "Deterministic nonzero controls for preserving other rates; not a draw from a physical prior",
+  "background": {
+    "Delta_Neff_init": 0.0,
+    "n_out": 512,
+    "max_steps": 512,
+    "decoupled": false,
+    "use_FD": true,
+    "collision_me": true,
+    "LO": true,
+    "NLO": true,
+    "solver": "Tsit5",
+    "rtol": 1e-08,
+    "atol": 1e-10
+  },
+  "bbn": {
+    "T_start_K": 100000000000.0,
+    "T_end_K": 60000000.0,
+    "eta_fac": 1.0,
+    "tau_n_fac": 1.0,
+    "xi_nu": 0.0,
+    "sampling_nTOp": 150,
+    "solver": "Kvaerno3",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_steps": 4096,
+    "save_history": true,
+    "initialization": "Unchanged native standard initialization in both arms; saved dense solution must have bitwise identical Y(t0)"
+  },
+  "shared_inputs": [
+    "background.npz",
+    "q_by_reaction",
+    "solver settings",
+    "native initial-state rule",
+    "temperature interval",
+    "versions and CPU backend"
+  ],
+  "criteria": {
+    "output_rtol": 1e-10,
+    "output_atol": 1e-18,
+    "scale": "max(abs(Y_native_i), abs(Y_override_i))",
+    "all_species_required": true,
+    "finite_required": true,
+    "initial_state": "bitwise identical",
+    "input_tables": "bitwise identical to native precompute(q)",
+    "input_provenance": "matching shared NPZ SHA256, contract SHA256, source SHA, environment and reaction order"
+  },
+  "criteria_basis": "Strict engineering regression budget chosen before any BBN outcome: relative 1e-10, 1e4 below the solver rtol; absolute trace floor 1e-18, 1e9 below solver atol. These ratios are design separation, NOT error estimates or guarantees. Both arms use the same interpolation, so no new interpolation-error allowance is added. Bitwise output equality is reported but not required. Any breach remains FAIL without automatic threshold change or rerun.",
+  "diagnostics_only": [
+    "exact final equality",
+    "solver steps and rejections",
+    "Yp",
+    "D/H"
+  ],
+  "dynamic_table_change": "Separate later test only after identity PASS; not executed by this pair",
+  "jit_reuse": "Not assessed by two isolated processes; requires the later same-process dynamic-table test",
+  "runtime": {
+    "policy": "20261115-sequential-no-daily-quota-v1",
+    "calibration": "Separate preregistered coarse full-route process on target runner; two strict arms only after measured admission",
+    "limits": {
+      "package_seconds": 9900,
+      "process_seconds": 3600,
+      "memory_bytes": 4294967296,
+      "output_bytes": 2147483648
+    },
+    "automatic_retry": false
+  },
+  "scientific_acceptance": false,
+  "predecessor": "6b8710970f8b4291cce8c798f986865a984e8413",
+  "registry_reconciliation": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07"
+}

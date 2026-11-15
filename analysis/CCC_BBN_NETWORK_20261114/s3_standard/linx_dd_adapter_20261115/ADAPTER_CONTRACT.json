@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "IMPLEMENTED_ENGINEERING_PASS_FULL_BBN_PENDING",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "parent_commit": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+  "channels": [
+    "ddHe3n",
+    "ddtp"
+  ],
+  "grid": "unchanged Reaction.T9_vec",
+  "units": "cm^3 s^-1 g^-1",
+  "dtype": "float64",
+  "encoding": {
+    "linear": "positive rate values",
+    "log": "natural logarithm of rate values"
+  },
+  "native_q_for_replaced_channels": 0,
+  "other_reactions": "preserve native q and tables",
+  "reverse_rates": "same forward table, native detailed balance",
+  "validation": "host before JIT",
+  "boundary_policies": {
+    "reject": "default",
+    "upstream-zero-linear": "explicit preservation of upstream zero outside grid; linear only"
+  },
+  "acceptance": {
+    "unit_and_real_rhs": "30 PASS",
+    "full_bbn_identity": "NOT_EXECUTED_BUDGET_WAIT",
+    "full_bbn_jit_reuse": "NOT_EXECUTED",
+    "gp_posterior": "NOT_EXECUTED"
+  },
+  "bbn_integrations": 0,
+  "gp_draws": 0,
+  "scientific_acceptance": false,
+  "control_updated": false,
+  "dispatch": false
+}

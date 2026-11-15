@@ -1,0 +1,85 @@
+{
+  "plan": {
+    "id": "LINX_NATIVE_BOUNDARY_20261115_v1",
+    "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+    "question": "Actual unmodified LINX D+D forward rates outside the table in linear and log modes",
+    "network": "key_PRIMAT_2023",
+    "channels": [
+      "ddHe3n",
+      "ddtp"
+    ],
+    "interpolation": [
+      "linear",
+      "log"
+    ],
+    "T9": [
+      0.001,
+      1.0,
+      10.0,
+      10.000001,
+      12.0,
+      20.0,
+      50.0,
+      100.0
+    ],
+    "q": 0.0,
+    "paths": [
+      "precompute_rate_tables -> frwrd_rate_from_table",
+      "deprecated frwrd_rate_param control"
+    ],
+    "forecast_seconds": {
+      "central": 10,
+      "range": [
+        2,
+        30
+      ],
+      "basis": "Prior 30-test RHS suite: 12 s. This probe constructs four D+D method paths per interpolation with only vector evaluation. Not a BBN runtime forecast."
+    },
+    "limits": {
+      "wall_seconds": 60,
+      "memory_bytes": 4294967296,
+      "output_bytes": 2147483648
+    },
+    "bbn_integrations": 0,
+    "gp_draws": 0,
+    "scientific_acceptance": false
+  },
+  "upstream_sha256": {
+    "linx/__init__.py": "f90b13f8f25866f75973f72a2f2f60a94b225327f9da307c3f5a8dc8e98532b5",
+    "linx/abundances.py": "50b95793159e7966c5deda3f41961ea41a8268fd185c4d3dd9c1280365613bb6",
+    "linx/background.py": "ea43ce62393f9c6034d0bfdc4b2506745faa61a7352b0ed61ce6211f40bc4132",
+    "linx/const.py": "f5c27241a683a48b9cb46dea7fdd381e9b959cc6a7e3b02bc4e8023e9fcb3ca8",
+    "linx/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "linx/data/nuclear_rates/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "linx/data/nuclear_rates/key_PArthENoPE.py": "9282ab90545c479e8c5d261ef51009aa49d7af490aa2223e149b279decc2c226",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/Be7nLi7p.txt": "fa69002432b915bcc4c1d1991ada432867bc3743ee46235ab0bcb53975d0230c",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/He3aBe7g.txt": "55df64bafef9b4cc9156b6c2a15e6e5fd432e09b93201718315ca879e12f6e2f",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/He3dap.txt": "b1ff33b4a272c15ebc39e7506f719c02b1e6db010e0bf939fd5d71f409979907",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/He3ntp.txt": "459d228ab72790006b6bb3bd1e4dbb04cff4699c4af499da9f26965a06b0619a",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/Li7paa.txt": "f0d89f4b88e84994467adc9b37f7274b65a63de469a88ec9004ae463bf40cadc",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt": "2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt": "13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt": "02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/npdg.txt": "ffc0a608d4783adab7a3500d68ac586ce94c13feafb51c1a12ad2b44ee8a469c",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/taLi7g.txt": "68dd3e50759e2853de49a74ac7a2b8c4be251da36dd3c0bf2fd44ef53a89678a",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/tdan.txt": "224e37d4f2f9839a7b6c85436dac0ae9ee3cf82965ca66255873b6dc6de96907",
+    "linx/data/nuclear_rates/key_PRIMAT_2023/tpag.txt": "38af347ca80d026f157c6def242b44b9e1efd04bd6c38de452baf733798af2e3",
+    "linx/nuclear.py": "c15afe17d4f85f48a6b220ff6c7da90b74ba3a650cc7e8dd9a460c1f2dbe2b38",
+    "linx/reactions.py": "1b6564970be22bf180dfb55e0b27b45cb38da29f613b31ed355e3c8f8a7f1d45",
+    "linx/special_funcs.py": "ed497310ed2091c0d67d4997f9ae90c01796cd20afa478ab347d2b64d37e8a4c",
+    "linx/utils.py": "0db4e14d62988ea1a3fed3ba4d732647dbc324599c7db6a52917e9982cb6c59d"
+  },
+  "probe_sha256": "303810a7c645830688c95fcb7501190da9b67fa1719944a77fec89ae557f06f0",
+  "started_utc": "2026-11-15T03:16:25Z",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "cpu_affinity": [
+    0
+  ],
+  "versions": {
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.12.2",
+    "numpy": "2.2.6",
+    "interpax": "0.3.8"
+  }
+}
