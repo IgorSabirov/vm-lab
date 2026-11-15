@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "1fd7e9a305364d9e8fece770333327ce8f1649e576ed4c3032f6208431da58c1",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "26f73a44ec37335373846780dbc390f6cf8cf12d61bfc7d2bb4559fdc6a766c1",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "5617694a06118aa759bcace991c3c4c82b4d21426eec8b96c213c01fae886f5b",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
@@ -38,12 +38,22 @@
     "infra/reviews/EXTERNAL_20261112/METHOD_REVIEW.txt": "18f2000211b1a3167a4cac24057218539d9cfac4b4f6f8cb20a26a82d0661fec",
     "infra/reviews/EXTERNAL_20261112/GITHUB_REVIEW.txt": "fda3de0f4e2ecd7c690b4249b54c66b1c8c17756e2c48209a7a907264bd6414c",
     "infra/external/README.md": "193c1bd2fe1bc28e5ef0f350b537b9c19d27ce877f6c6ed163a07b8186686d41",
-    "analysis/ANTHROPIC_BH_20261112/REPORT.md": "cde173a37df6ec20bb567a6bf18d4a73ba9c3143ea31ba9303775a8314e2d8c8",
+    "analysis/ANTHROPIC_BH_20261112/REPORT.md": "60766a5a0b14dd54b75954651b8625baa1508c1956f947abed9cc0a48bcbd4ce",
     "analysis/ANTHROPIC_BH_20261112/adapter.py": "f2af50d95560a4ff4996ba6f7e3159946aa0182e74d99e3561ee55a11c75f05d",
     "analysis/ANTHROPIC_BH_20261112/PLAN.json": "fa3f6506914915da6c7ab6e8abf851e69431300e334bd3d8e73a5d595f7cc914",
     "analysis/ANTHROPIC_BH_20261112/CHECKS.json": "bc62d59266960a5caa9ef831446de8f5c58db0d193c7ff0397457e9bcdf72e33",
     "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json": "d003d79b76e6359e5d04d14eae502fa6a234ca2f6f4084791c1358b49ecf44f1",
-    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json": "ae7590571590ba6af72821f6ce144a639ef8c2da72cf5732e90b8f420c6276d0"
+    "analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json": "ae7590571590ba6af72821f6ce144a639ef8c2da72cf5732e90b8f420c6276d0",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md": "cbadc785700c92fb90d66c7df0e29ee082c4fcf1d67880a3c03f0c60db67085c",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md": "c841457621101320ce7406dbb3affc1847e0042756e5fc08c850f100aeb02662",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json": "93ce256a7f11c5f81f4c85355f68acddcd5d28f1c40cd151cb0e51bb030d8795",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json": "705d9468da6d792b8620ab5542ece3a4063e990e52f6bdfa8cea26c3d0360ede",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py": "ab59836143e334080a6b55d393c21e8ae4c1fec6e8076f9edd193360fbfca81f",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json": "a22007e3b310c6b96996b38d0b493939b2b53f6d856ce98ec689a0a3edf15d04",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json": "0b5439c8a21039482ce7d89752894b807deac13a78bab79552e121e9aa3b731c",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt": "3e0dc036c9fddca462517e0c10211e9e047d5b624ac1d39c97d6de6a74f75e42",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt": "d6428536b1a4a1f01f62a4fd4c566b7bed2a5966d2b346145e636f3561527cfd",
+    "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt": "cd5578c6f4b208b3b0625ac0b813cb0b0cae9d95fe4a0e839f83b0062b4c48d0"
   },
   "counts": {
     "result": 129,
@@ -52,10 +62,10 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 4,
+    "review": 5,
     "external": 12,
     "decision": 2,
-    "source": 30
+    "source": 40
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -2625,6 +2635,15 @@
       "fragment": ""
     },
     {
+      "key": "review:HP_BRANCH_BALANCE_20261115",
+      "id": "HP_BRANCH_BALANCE_20261115",
+      "kind": "review",
+      "title": "HP–BH1: баланс ветвей, нормировки и связь с корпусом",
+      "status": "ANALYTIC_REVIEW_PHYSICAL_MAPPING_OPEN",
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "review:METHOD_20261112",
       "id": "METHOD_20261112",
       "kind": "review",
@@ -2665,9 +2684,9 @@
       "status": null,
       "path": "analysis/ANTHROPIC_BH_20261112/REPORT.md",
       "fragment": "",
-      "sha256": "cde173a37df6ec20bb567a6bf18d4a73ba9c3143ea31ba9303775a8314e2d8c8",
-      "git_blob_sha": "131c8df144feeaeef73da5f12047524af49a4d92",
-      "size_bytes": 10083
+      "sha256": "60766a5a0b14dd54b75954651b8625baa1508c1956f947abed9cc0a48bcbd4ce",
+      "git_blob_sha": "6757ca21a103b51a7a60251189341bbe3587be4a",
+      "size_bytes": 11078
     },
     {
       "key": "source:analysis/ANTHROPIC_BH_20261112/adapter.py",
@@ -2884,6 +2903,126 @@
       "sha256": "13c6ce4d5926e0e5d170ac6346a28bd9c6c8242d85efc1d627b7a1af4fc179eb",
       "git_blob_sha": "7b16efc843e607ea109cbb0baabb81bdf24fc8a8",
       "size_bytes": 10455
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+      "fragment": "",
+      "sha256": "93ce256a7f11c5f81f4c85355f68acddcd5d28f1c40cd151cb0e51bb030d8795",
+      "git_blob_sha": "9e92fa53482cea42bfb29baf7ca2f01667d41bc4",
+      "size_bytes": 6209
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+      "fragment": "",
+      "sha256": "a22007e3b310c6b96996b38d0b493939b2b53f6d856ce98ec689a0a3edf15d04",
+      "git_blob_sha": "01e01695633db1360416c1dc8aa759287e97e0bd",
+      "size_bytes": 3476
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+      "fragment": "",
+      "sha256": "d6428536b1a4a1f01f62a4fd4c566b7bed2a5966d2b346145e636f3561527cfd",
+      "git_blob_sha": "457e1964fb5c40e511d561f2be39b7badca0f2b2",
+      "size_bytes": 28000
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt",
+      "fragment": "",
+      "sha256": "cd5578c6f4b208b3b0625ac0b813cb0b0cae9d95fe4a0e839f83b0062b4c48d0",
+      "git_blob_sha": "b1f700b393fdc76559e3e942817047a56f61d012",
+      "size_bytes": 19366
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+      "fragment": "",
+      "sha256": "c841457621101320ce7406dbb3affc1847e0042756e5fc08c850f100aeb02662",
+      "git_blob_sha": "f567d24f61453de468af37c6cb4a74b6dc81310b",
+      "size_bytes": 20881
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+      "fragment": "",
+      "sha256": "3e0dc036c9fddca462517e0c10211e9e047d5b624ac1d39c97d6de6a74f75e42",
+      "git_blob_sha": "74a159db9afc65263c98830178cbb6ecb7ba690c",
+      "size_bytes": 20424
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "fragment": "",
+      "sha256": "cbadc785700c92fb90d66c7df0e29ee082c4fcf1d67880a3c03f0c60db67085c",
+      "git_blob_sha": "b230436a4837ad64eb594b1971ec8bc77fdabed6",
+      "size_bytes": 26534
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+      "fragment": "",
+      "sha256": "705d9468da6d792b8620ab5542ece3a4063e990e52f6bdfa8cea26c3d0360ede",
+      "git_blob_sha": "4695133e3ac98071b6932c241e84fc5e0a7b075d",
+      "size_bytes": 12982
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+      "fragment": "",
+      "sha256": "0b5439c8a21039482ce7d89752894b807deac13a78bab79552e121e9aa3b731c",
+      "git_blob_sha": "ded2f3a9e1a0512aa3003f017d493046f7e2ffa6",
+      "size_bytes": 2577
+    },
+    {
+      "key": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "id": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "kind": "source",
+      "title": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "status": null,
+      "path": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "fragment": "",
+      "sha256": "ab59836143e334080a6b55d393c21e8ae4c1fec6e8076f9edd193360fbfca81f",
+      "git_blob_sha": "aaa7e5bbddf5eef4c9ebcd463d9d57275ba93231",
+      "size_bytes": 5537
     },
     {
       "key": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
@@ -7314,6 +7453,296 @@
       "relation": "review_source_not_attestation"
     },
     {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "construct:C041",
+      "relation": "scope_boundary",
+      "rationale": "Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "construct:C042",
+      "relation": "scope_boundary",
+      "rationale": "Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "external:ANTHROPIC_HP",
+      "relation": "joint_model_requirement",
+      "rationale": "Полные ветви и космологическая динамика не выводятся из редуцированного адаптера. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Полные ветви и космологическая динамика не выводятся из редуцированного адаптера."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "link:L04",
+      "relation": "scope_boundary",
+      "rationale": "Носитель и механизм чтения не возникают из интерпретации f как среднего. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Носитель и механизм чтения не возникают из интерпретации f как среднего."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "link:L07",
+      "relation": "scope_boundary",
+      "rationale": "Наследование условий продолжения не следует из сохранения G. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Наследование условий продолжения не следует из сохранения G."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "link:L09",
+      "relation": "scope_boundary",
+      "rationale": "Космологическое отображение радиуса и происхождение пространства-времени не установлены. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Космологическое отображение радиуса и происхождение пространства-времени не установлены."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "link:L10",
+      "relation": "joint_model_requirement",
+      "rationale": "Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "obligation:N02",
+      "relation": "scope_boundary",
+      "rationale": "Источники, предпосылки, выводы и невыбранные гипотезы перечислены раздельно. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Источники, предпосылки, выводы и невыбранные гипотезы перечислены раздельно."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "obligation:N06",
+      "relation": "scope_boundary",
+      "rationale": "Не заявляется замыкание условий продолжения по сохранению одной плотности. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Не заявляется замыкание условий продолжения по сохранению одной плотности."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "premise:F02",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Исходная геометрия S³ и отображение R пропорционально a не выведены данным разбором. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Исходная геометрия S³ и отображение R пропорционально a не выведены данным разбором."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "premise:F05",
+      "relation": "premise_context_not_evidence",
+      "rationale": "Тепловая и Haar-меры задаются до расчёта; новый носитель или мера не выбраны. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Тепловая и Haar-меры задаются до расчёта; новый носитель или мера не выбраны."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "question:U006",
+      "relation": "scope_boundary",
+      "rationale": "Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Радиус исходной S³ не считается выведенной причинной геометрией."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Энергетический баланс не воспроизводит средства действия следующего носителя."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R001",
+      "relation": "scope_boundary",
+      "rationale": "Заданные мера, закон и геометрия не получают происхождения из тождества баланса. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Заданные мера, закон и геометрия не получают происхождения из тождества баланса."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R034",
+      "relation": "scope_boundary",
+      "rationale": "Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R040",
+      "relation": "scope_boundary",
+      "rationale": "Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R041",
+      "relation": "scope_boundary",
+      "rationale": "Статическое условие не заменяет механизм загрузки и последующей динамики. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Статическое условие не заменяет механизм загрузки и последующей динамики."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R064",
+      "relation": "scope_boundary",
+      "rationale": "Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R075",
+      "relation": "scope_boundary",
+      "rationale": "Средняя фазовая доля не реализует причинное чтение физической записи. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Средняя фазовая доля не реализует причинное чтение физической записи."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R094",
+      "relation": "scope_boundary",
+      "rationale": "Сохранение наблюдаемой не доказывает воспроизводство организованного процесса. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Сохранение наблюдаемой не доказывает воспроизводство организованного процесса."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R096",
+      "relation": "scope_boundary",
+      "rationale": "Баланс частей не создаёт самосогласованную историю или происхождение целого. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Баланс частей не создаёт самосогласованную историю или происхождение целого."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R101",
+      "relation": "scope_boundary",
+      "rationale": "Аддитивная смесь не устанавливает операционную неаддитивность продолжения. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Аддитивная смесь не устанавливает операционную неаддитивность продолжения."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R115",
+      "relation": "classification_only",
+      "rationale": "Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R119",
+      "relation": "scope_boundary",
+      "rationale": "Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R120",
+      "relation": "scope_boundary",
+      "rationale": "Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R123",
+      "relation": "scope_boundary",
+      "rationale": "Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R126",
+      "relation": "scope_boundary",
+      "rationale": "ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R127",
+      "relation": "joint_model_requirement",
+      "rationale": "Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R128",
+      "relation": "scope_boundary",
+      "rationale": "Фазовая организация на заданной мере не закрывает происхождение меры или соответствия. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Фазовая организация на заданной мере не закрывает происхождение меры или соответствия."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "result:R129",
+      "relation": "scope_boundary",
+      "rationale": "Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP. Статус существующей записи сохраняется.",
+      "evidence": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus",
+      "claim": "Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP."
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/ASSESSMENT.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_A.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/HISTORY_REVIEW_B.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/NEIGHBOR_REVIEW.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/SOURCES.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/VALIDATION.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "source:analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "relation": "review_source_not_attestation"
+    },
+    {
       "source": "review:METHOD_20261112",
       "target": "construct:C041",
       "relation": "scope_boundary",
@@ -7444,6 +7873,12 @@
       "target": "link:L10",
       "rationale": "Происхождение основания целого не выведено; препринт не является свидетельством закрытия L10.",
       "decision": "NOT_EVIDENCE_FOR_CLOSURE"
+    },
+    {
+      "source": "review:HP_BRANCH_BALANCE_20261115",
+      "target": "external:ANTHROPIC_BOOTSTRAP",
+      "decision": "OUT_OF_SCOPE",
+      "rationale": "Этот разбор не проверяет bootstrap-доказательство и не переносит на него HP-результаты."
     }
   ]
 }

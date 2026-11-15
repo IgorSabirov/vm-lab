@@ -685,6 +685,8 @@
 
 
 <!-- generated:review-card-construct-c041 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c041).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#literature); `scope_boundary`. Литературное сопоставление необходимо до заявления новизны. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c041).
 <!-- /generated:review-card-construct-c041 -->
 
@@ -720,6 +722,8 @@
 
 <!-- generated:review-card-construct-c042 -->
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks); `operational_requirement`. Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
 <!-- /generated:review-card-construct-c042 -->
 
 
@@ -772,6 +776,8 @@
 
 <!-- generated:review-card-result-r001 -->
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#origin); `scope_boundary`. Действие, пространство состояний, потенциал и начальные условия остаются входами; это не происхождение основания из абсолютного ничего. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r001).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Заданные мера, закон и геометрия не получают происхождения из тождества баланса. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r001).
 <!-- /generated:review-card-result-r001 -->
 
 
@@ -1312,6 +1318,13 @@
 <a id="r034"></a>
 ### R034. CORR: локальные состояния не определяют дальнейший поток
 
+
+
+<!-- generated:review-card-result-r034 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r034).
+<!-- /generated:review-card-result-r034 -->
+
+
 **Статус:** ЧИСЛЕННО: АРХИВ.
 
 **Результат.** Замена ρ_ss на ρ_N⊗ρ_E сохраняет обе полные локальные маргинали и L, но меняет будущий выход. Нормированный абсолютный эффект на H=20: QS≈0.02326435, RR≈0.04035352, IC≈0.02938673; все выше заранее заданного 0.001.
@@ -1411,6 +1424,13 @@
 <a id="r040"></a>
 ### R040. BIC: точная защита существует при настройке
 
+
+
+<!-- generated:review-card-result-r040 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r040).
+<!-- /generated:review-card-result-r040 -->
+
+
 **Статус:** АНАЛИТИКА.
 
 **Результат.** В тримере при E_V=E₁+t₁γ_d/t₂−t₁t₂/γ_d состояние D∝t₂|V⟩−γ_d|1⟩ имеет нулевую амплитуду на узле 2 и сохраняется при связи окружения только с этим узлом.
@@ -1426,6 +1446,13 @@
 
 <a id="r041"></a>
 ### R041. BIC: защита и загрузка конфликтуют в статическом протоколе
+
+
+
+<!-- generated:review-card-result-r041 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Статическое условие не заменяет механизм загрузки и последующей динамики. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r041).
+<!-- /generated:review-card-result-r041 -->
+
 
 **Статус:** АНАЛИТИКА.
 
@@ -1854,6 +1881,13 @@
 <a id="r064"></a>
 ### R064. Цикл ремонта требует доказанного последнего звена
 
+
+
+<!-- generated:review-card-result-r064 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r064).
+<!-- /generated:review-card-result-r064 -->
+
+
 **Продолжение 11 ноября:** [R129 — динамические контакты и ёмкость](../G3_CONTACT_CAPACITY_20261111/REPORT.md). Условное уточнение; статус этой исходной карточки не повышен.
 
 **Статус:** АНАЛИТИКА.
@@ -2054,6 +2088,13 @@
 
 <a id="r075"></a>
 ### R075. Запись теми же взаимодействиями, что исполнение
+
+
+
+<!-- generated:review-card-result-r075 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Средняя фазовая доля не реализует причинное чтение физической записи. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r075).
+<!-- /generated:review-card-result-r075 -->
+
 
 **Статус:** ОТКРЫТЫЙ МОСТ.
 
@@ -2443,6 +2484,13 @@
 <a id="r094"></a>
 ### R094. Завершение инициатора не тождественно прекращению организованного процесса
 
+
+
+<!-- generated:review-card-result-r094 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Сохранение наблюдаемой не доказывает воспроизводство организованного процесса. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r094).
+<!-- /generated:review-card-result-r094 -->
+
+
 **Статус:** СИНТЕЗ ПРЕЖНИХ ОПОР.
 
 **Результат.** R038 даёт условное внутреннее поддержание x↔q после подготовки; R043 отделяет исчезновение посредника от сохранения отношений. Биологическая ветка формулирует взаимное поддержание ограничений. Эти части восстановлены в одной генетической рамке.
@@ -2497,6 +2545,13 @@
 
 <a id="r096"></a>
 ### R096. Возникновение на допустимой внутренней стадии с самосогласованным причинным прошлым
+
+
+
+<!-- generated:review-card-result-r096 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Баланс частей не создаёт самосогласованную историю или происхождение целого. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r096).
+<!-- /generated:review-card-result-r096 -->
+
 
 **Статус:** РАБОЧАЯ ГИПОТЕЗА ПО ПРЯМОМУ УКАЗАНИЮ ПОЛЬЗОВАТЕЛЯ.
 
@@ -2602,6 +2657,13 @@
 
 <a id="r101"></a>
 ### R101. Генератор пары: неаддитивность множества достижимого
+
+
+
+<!-- generated:review-card-result-r101 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Аддитивная смесь не устанавливает операционную неаддитивность продолжения. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r101).
+<!-- /generated:review-card-result-r101 -->
+
 
 **Статус.** ОПРЕДЕЛЕНИЕ / УСЛОВНЫЙ КРИТЕРИЙ
 
@@ -2869,6 +2931,13 @@
 <a id="r115"></a>
 ### R115. Нуль ΔΣ, транспортный нуль и BIC требуют разных условий
 
+
+
+<!-- generated:review-card-result-r115 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `classification_only`. Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r115).
+<!-- /generated:review-card-result-r115 -->
+
+
 **Статус.** ПРИМЕНЕНИЕ ИЗВЕСТНЫХ РАЗЛИЧЕНИЙ / ПРОВЕРКА АЛГЕБРЫ
 
 **Результат.** Для входа V и выхода M₂ элемент резольвенты G_M₂,V=[γ(z−E₁)+t₁t₂]/det(zI−H). Его кандидат в нуль Etr=E₁−t₁t₂/γ отличается от EΔ=E₁−2t₁t₂/γ. При параметрах вложения Etr=−1/30,EΔ=−11/30; в EΔ обе самоэнергии равны75/88, а не0.
@@ -2989,6 +3058,13 @@
 <a id="r119"></a>
 ### R119. Посредник: формирование отношений, запись и завершение взаимодействия
 
+
+
+<!-- generated:review-card-result-r119 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r119).
+<!-- /generated:review-card-result-r119 -->
+
+
 **Статус:** ВОССТАНОВЛЕННАЯ СВЯЗЬ ВЕТОК / ОГРАНИЧЕНИЯ ПОСТАНОВКИ.
 
 **Результат.** Связаны два употребления: временное электронное возбуждение/дырка в ядерной ветке и M как «посредник/память» в проекте PW-моста. Общая карта вопросов: формирование отношений → физическое завершение взаимодействия и распределение информации → сохраняющийся след/запись → причинное использование → возможное поддержание условий продолжения. В исходной схеме S — система, M — посредник/память, R — резервуар/сток, T — внутренние часы. Предложение оставить S,M,T сопровождалось оговоркой о потере отдельной диагностики reservoir/record leakage.
@@ -3026,6 +3102,8 @@
 
 
 <!-- generated:review-card-result-r120 -->
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r120).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#levels); `scope_boundary`. Спецификация профиля не является универсальным инвариантом. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r120).
 <!-- /generated:review-card-result-r120 -->
 
@@ -3128,6 +3206,8 @@
 
 <!-- generated:review-card-result-r123 -->
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks); `operational_requirement`. Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r123).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r123).
 <!-- /generated:review-card-result-r123 -->
 
 
@@ -3256,6 +3336,8 @@
 
 <!-- generated:review-card-result-r126 -->
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
 <!-- /generated:review-card-result-r126 -->
 
 
@@ -3284,6 +3366,8 @@
 **Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `joint_model_requirement`. Программный адаптер не задаёт автоматически общий физический закон ветвей. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
+
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `joint_model_requirement`. Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r127).
 <!-- /generated:review-card-result-r127 -->
 
 
@@ -3581,6 +3665,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
 
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Фазовая организация на заданной мере не закрывает происхождение меры или соответствия. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#profile); `scope_boundary`. Различимость не доказывает происхождение соответствия. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r128).
 <!-- /generated:review-card-result-r128 -->
 
@@ -3694,6 +3780,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
 
+**Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
+
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#capacity); `scope_boundary`. Условный результат о ёмкости не закрывает происхождение условий. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r129).
 <!-- /generated:review-card-result-r129 -->
 
@@ -3747,6 +3835,29 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. |
 | [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. |
 | [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. |
+| [construct:C041](../REGISTRY_LINKS/INDEX.md#construct-c041) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется. |
+| [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. |
+| [link:L04](../REGISTRY_LINKS/INDEX.md#link-l04) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Носитель и механизм чтения не возникают из интерпретации f как среднего. Статус существующей записи сохраняется. |
+| [link:L07](../REGISTRY_LINKS/INDEX.md#link-l07) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Наследование условий продолжения не следует из сохранения G. Статус существующей записи сохраняется. |
+| [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Космологическое отображение радиуса и происхождение пространства-времени не установлены. Статус существующей записи сохраняется. |
+| [link:L10](../REGISTRY_LINKS/INDEX.md#link-l10) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `joint_model_requirement` | Общий интерфейс и общий закон различаются; ни один из них не закрывается самим аналитическим тождеством. Статус существующей записи сохраняется. |
+| [result:R001](../REGISTRY_LINKS/INDEX.md#result-r001) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Заданные мера, закон и геометрия не получают происхождения из тождества баланса. Статус существующей записи сохраняется. |
+| [result:R034](../REGISTRY_LINKS/INDEX.md#result-r034) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Совпадение среднего не устанавливает совместный закон продолжения; это методологическая граница, не перенос HP-физики на CORR. Статус существующей записи сохраняется. |
+| [result:R040](../REGISTRY_LINKS/INDEX.md#result-r040) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Нулевой поток сам по себе не доказывает защищённое состояние или условия его приготовления. Статус существующей записи сохраняется. |
+| [result:R041](../REGISTRY_LINKS/INDEX.md#result-r041) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Статическое условие не заменяет механизм загрузки и последующей динамики. Статус существующей записи сохраняется. |
+| [result:R064](../REGISTRY_LINKS/INDEX.md#result-r064) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Сохранение одной энергии не устанавливает замкнутость множества способных продолжаться состояний. Статус существующей записи сохраняется. |
+| [result:R075](../REGISTRY_LINKS/INDEX.md#result-r075) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Средняя фазовая доля не реализует причинное чтение физической записи. Статус существующей записи сохраняется. |
+| [result:R094](../REGISTRY_LINKS/INDEX.md#result-r094) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Сохранение наблюдаемой не доказывает воспроизводство организованного процесса. Статус существующей записи сохраняется. |
+| [result:R096](../REGISTRY_LINKS/INDEX.md#result-r096) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Баланс частей не создаёт самосогласованную историю или происхождение целого. Статус существующей записи сохраняется. |
+| [result:R101](../REGISTRY_LINKS/INDEX.md#result-r101) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Аддитивная смесь не устанавливает операционную неаддитивность продолжения. Статус существующей записи сохраняется. |
+| [result:R115](../REGISTRY_LINKS/INDEX.md#result-r115) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `classification_only` | Нулевой Q, Fano-нуль и BIC не отождествляются; связь ограничена дисциплиной классификации нулей. Статус существующей записи сохраняется. |
+| [result:R119](../REGISTRY_LINKS/INDEX.md#result-r119) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Исключение переменных из редуцированного действия не доказывает исчезновение их физической энергии. Статус существующей записи сохраняется. |
+| [result:R120](../REGISTRY_LINKS/INDEX.md#result-r120) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Одинаковый G допускает разные скорости и Q; одного скаляра недостаточно для равенства Π. Статус существующей записи сохраняется. |
+| [result:R123](../REGISTRY_LINKS/INDEX.md#result-r123) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Согласование радиуса и космологического масштаба требуется отдельно; геометрия из термодинамики не выведена. Статус существующей записи сохраняется. |
+| [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется. |
+| [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `joint_model_requirement` | Инженерное исполнение нескольких адаптеров не задаёт общего физического генератора. Статус существующей записи сохраняется. |
+| [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Фазовая организация на заданной мере не закрывает происхождение меры или соответствия. Статус существующей записи сохраняется. |
+| [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Контактная ёмкость R129 не отождествлена с Haar-мерой, скрытой теплотой или энтропией HP. Статус существующей записи сохраняется. |
 | [construct:C041](../REGISTRY_LINKS/INDEX.md#construct-c041) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Литературное сопоставление необходимо до заявления новизны. Научный статус не изменяется. |
 | [link:L04](../REGISTRY_LINKS/INDEX.md#link-l04) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Причинное использование содержания требует собственного вмешательства. Научный статус не изменяется. |
 | [link:L07](../REGISTRY_LINKS/INDEX.md#link-l07) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Самоподдержание аппарата отдельно от хранения следа. Научный статус не изменяется. |
