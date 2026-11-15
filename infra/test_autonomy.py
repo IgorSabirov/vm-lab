@@ -220,8 +220,11 @@ class Accounting(unittest.TestCase):
 
     def test_disabled_request_never_reserves_or_queries_network(self):
         with tempfile.TemporaryDirectory() as tmp:
+            request_path = Path(tmp) / 'request.json'
+            request_path.write_text(json.dumps({'execution_enabled': False}))
             with patch.dict(os.environ, {'GITHUB_REPOSITORY': admit.REPOSITORY, 'GITHUB_RUN_ATTEMPT': '1',
                                         'GITHUB_REF_NAME': 'science/autonomous-fixture', 'RUNNER_TEMP': tmp}), \
+                    patch.object(admit, 'REQUEST_PATH', str(request_path)), \
                     patch.object(admit, 'api', side_effect=AssertionError('network forbidden')):
                 admit.main()
             self.assertFalse(json.loads((Path(tmp) / 'autonomy-budget.json').read_text())['execute'])
@@ -232,16 +235,32 @@ class Controller(unittest.TestCase):
         subprocess.run([sys.executable, '-c', 'from infra.research_pipeline import evaluate'],
                        cwd=research_pipeline.REPO, check=True, timeout=5)
 
-    def test_existing_flat_s3_manifest_is_verified_without_rewriting_evidence(self):
-        plan = research_pipeline.read(research_pipeline.PKG / 'PIPELINE.json')
-        stage = next(s for s in plan['stages'] if s['id'] == 'S3_INPUT_AUDIT')
-        result = research_pipeline.verify_import(stage)
-        self.assertTrue(research_pipeline.contract_complete(result, stage))
-        self.assertEqual(result['scientific_status'], 'INPUT_DIAGNOSTIC_ONLY')
-        self.assertFalse(result['scientific_acceptance'])
-        bad = copy.deepcopy(stage); bad['manifest']['sha256'] = '0' * 64
-        with self.assertRaisesRegex(ValueError, 'Pinned manifest'):
-            research_pipeline.verify_import(bad)
+    def test_flat_manifest_is_verified_without_rewriting_evidence(self):
+        # Format fixture, independent of which scientific stages this branch has.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            summary = root / 'SUMMARY.json'
+            summary.write_text(json.dumps({'engineering_status': 'PASS',
+                'scientific_status': 'INPUT_DIAGNOSTIC_ONLY', 'scientific_acceptance': False}))
+            payload = root / 'RESULT.json'; payload.write_text('{"fixture": true}')
+            manifest = root / 'ARTIFACTS.json'
+            manifest.write_text(json.dumps({p.name: research_pipeline.sha(p) for p in (summary, payload)}))
+            stage = {'kind': 'import', 'status_field': 'engineering_status', 'expected_status': 'PASS',
+                     'summary': {'path': summary.name, 'sha256': research_pipeline.sha(summary)},
+                     'manifest': {'path': manifest.name, 'sha256': research_pipeline.sha(manifest)}}
+            before = {p.name: p.read_bytes() for p in root.iterdir()}
+            with patch.object(research_pipeline, 'REPO', root):
+                result = research_pipeline.verify_import(stage)
+                self.assertTrue(research_pipeline.contract_complete(result, stage))
+                self.assertFalse(result['scientific_acceptance'])
+                self.assertEqual(result['scientific_status'], 'INPUT_DIAGNOSTIC_ONLY')
+                self.assertEqual(before, {p.name: p.read_bytes() for p in root.iterdir()})
+                bad = copy.deepcopy(stage); bad['manifest']['sha256'] = '0' * 64
+                with self.assertRaisesRegex(ValueError, 'Pinned manifest'):
+                    research_pipeline.verify_import(bad)
+                payload.write_text('{"tampered": true}')
+                with self.assertRaisesRegex(ValueError, 'Input artifact changed'):
+                    research_pipeline.verify_import(stage)
 
     def test_process_exit_and_hard_deadline(self):
         self.assertEqual(research_pipeline.bounded_process([sys.executable, '-c', 'pass'], 5), 0)
