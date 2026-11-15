@@ -1,18 +1,65 @@
 {
   "schema": "vm-lab-mapping-card-v1",
   "id": "CCC_BH1_COSMO_SCALING",
-  "status": ["SOURCE_AUDIT_REQUIRED", "MAP_REQUIRED"],
+  "status": [
+    "SOURCE_AUDIT_REQUIRED",
+    "MAP_REQUIRED"
+  ],
   "execution_enabled": false,
   "scientific_acceptance": false,
   "source_contract": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json",
-  "nodes": [{"id":"CCC_TL","type":"ModelVariant"},{"id":"BH1_COSMOLOGICAL_SECTOR","type":"UnspecifiedPhysicalSector"},{"id":"ANTHROPIC_HP","type":"ThermodynamicModel"}],
-  "mapping": {"R":"zeta*A","rho_X":"lambda*E","zeta":null,"lambda":null,"fit_to_amplitude_equality_forbidden":true},
-  "definitions_required": {"E":"Must establish energy density; total energy requires a physical volume first", "rho_X":"energy/physical-volume", "R":"physical length", "A":"physical scale with independently fixed length normalization", "Q_X":"energy/(physical-volume*physical-time); positive into X"},
+  "nodes": [
+    {
+      "id": "CCC_TL",
+      "type": "ModelVariant"
+    },
+    {
+      "id": "BH1_COSMOLOGICAL_SECTOR",
+      "type": "UnspecifiedPhysicalSector"
+    },
+    {
+      "id": "ANTHROPIC_HP",
+      "type": "ThermodynamicModel"
+    }
+  ],
+  "mapping": {
+    "R": "zeta*A",
+    "rho_X": "lambda*E",
+    "zeta": null,
+    "lambda": null,
+    "fit_to_amplitude_equality_forbidden": true
+  },
+  "definitions_required": {
+    "E": "Must establish energy density; total energy requires a physical volume first",
+    "rho_X": "energy/physical-volume",
+    "R": "physical length",
+    "A": "physical scale with independently fixed length normalization",
+    "Q_X": "energy/(physical-volume*physical-time); positive into X"
+  },
   "context_family": null,
   "context_instance": null,
   "exchange_law": null,
-  "conditional_identity": "For rho absolutely continuous, R>0 and w=1/3: d(rho_X*R^4)/dt=Q_X*R^4. Constant throughout an interval iff Q_X=0 almost everywhere. Equal endpoints imply only integral(Q_X*R^4 dt)=0.",
-  "discriminating_test": ["Fix zeta/lambda from independent geometry/physics before comparing amplitudes", "Predict and integrate the entire exchange history", "Compare a preregistered family of environments; one-way embedding is not equivalence"],
-  "missing_inputs": ["Cosmological sector/stress-energy embedding", "Independent normalizations", "Physical exchange law and context family"],
-  "scope": "ANTHROPIC_HP alone does not define the cosmological density, embedding or exchange kinetics. No invented Q, normalization or scientific invariant is installed."
+  "conditional_identity": "Conditional on R proportional to the cosmological scale a, rho absolutely continuous, R>0 and p=rho/3: d(rho_X*R^4)/dt=Q_X*R^4. Constant throughout an interval iff Q_X=0 almost everywhere. Equal endpoints imply only integral(Q_X*R^4 dt)=0.",
+  "discriminating_test": [
+    "Fix zeta/lambda from independent geometry/physics before comparing amplitudes",
+    "Predict and integrate the entire exchange history",
+    "Compare a preregistered family of environments; one-way embedding is not equivalence"
+  ],
+  "missing_inputs": [
+    "Cosmological sector/stress-energy embedding",
+    "Independent normalizations",
+    "Physical exchange law and context family"
+  ],
+  "scope": "ANTHROPIC_HP alone does not define the cosmological density, embedding or exchange kinetics. No invented Q, normalization or scientific invariant is installed.",
+  "analytic_review": {
+    "id": "HP_BRANCH_BALANCE_20261115",
+    "report": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md",
+    "lineage": "analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md",
+    "status": "ANALYTIC_REVIEW_PHYSICAL_MAPPING_OPEN",
+    "general_balance": "Q_X=Gdot/R^4+4*(H_a-H_R)*rho_X+H_a*Theta, with G=rho_X*R^4 and Theta=-rho_X+3*p_X",
+    "zero_exchange": "For the conformal matched-radius ansatz: G=C_A+f*DeltaC=constant; level sets do not determine kinetics or the sign of Q without velocities.",
+    "group_and_vacuum_normalization_required": true,
+    "thermodynamic_fraction_not_selected": true,
+    "scientific_status_promoted": false
+  }
 }

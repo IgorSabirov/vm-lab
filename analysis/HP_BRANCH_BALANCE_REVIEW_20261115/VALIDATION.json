@@ -1,0 +1,73 @@
+{
+  "schema": "vm-lab-analytic-validation-v1",
+  "status": "PASS",
+  "base_commit": "c050a82e226e40b7dc8b43696ba2b28ff2a6ee41",
+  "scientific_acceptance": false,
+  "scientific_status_promoted": false,
+  "validation_kind": "Local exact algebra and repository integrity; not physical acceptance or a new production experiment",
+  "commands": [
+    {
+      "command": "timeout 60s python analysis/HP_BRANCH_BALANCE_REVIEW_20261115/verify_algebra.py",
+      "status": "PASS",
+      "checks": 17,
+      "wall_seconds": 0.3475848150001184,
+      "evidence": "CHECKS.json",
+      "forecast_seconds": 10,
+      "hard_wall_seconds": 60
+    },
+    {
+      "command": "python tools/registry_links.py",
+      "status": "PASS",
+      "stale": []
+    },
+    {
+      "command": "python -m unittest discover -s tests -p test_registry_links.py",
+      "status": "PASS",
+      "tests": 18,
+      "wall_seconds": 6.77
+    },
+    {
+      "command": "python tools/ci_suite.py integrity",
+      "status": "PASS"
+    },
+    {
+      "command": "python tools/external_sources.py validate",
+      "status": "PASS",
+      "sources": 12
+    },
+    {
+      "command": "python tools/evidence_compendium.py",
+      "status": "PASS",
+      "files": 35
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "invariance": {
+    "existing_results_constructs_links_and_other_registry_fields": "identical to base except appended external review",
+    "open_questions_json": "byte-identical",
+    "common_model_existing_fields": "identical",
+    "mapping_existing_fields": "identical except explicit conditional radius assumption",
+    "protected_files": [
+      "infra/autonomy/CONTROL.json",
+      "infra/autonomy/LEDGER.json",
+      "analysis/CCC_BBN_NETWORK_20261114/pipeline/PIPELINE.json",
+      "analysis/CCC_BBN_NETWORK_20261114/pipeline/RUN_REQUEST.json",
+      "analysis/CCC_BBN_NETWORK_20261114/pipeline/CURRENT.json",
+      "analysis/ANTHROPIC_BH_20261112/adapter.py",
+      "analysis/ANTHROPIC_BH_20261112/CHECKS.json",
+      "analysis/ANTHROPIC_BH0_BARRIER_20261114/results/SUMMARY.json",
+      "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/REPORT.md",
+      "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json"
+    ],
+    "protected_files_byte_identical": true
+  },
+  "source_hashes_verified": 17,
+  "user_input_hashes_verified": 3,
+  "new_markdown_local_targets_checked": 46,
+  "ci_status": "Not claimed here; inspect the published PR checks for its exact HEAD",
+  "new_production_runs": 0,
+  "new_vm_jobs": 0
+}
