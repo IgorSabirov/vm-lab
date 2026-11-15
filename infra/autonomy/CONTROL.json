@@ -59,7 +59,6 @@
   "limits": {
     "simultaneous_compute_packages": 1,
     "new_packages_per_event": 1,
-    "new_packages_per_rolling_24h": 2,
     "memory_bytes": 4294967296,
     "output_bytes": 2147483648
   },
@@ -69,11 +68,9 @@
   "owner_authorization": "User asks GitHub to conduct experiments autonomously; standing permission for implementation, publication and execution within the accepted research program. New scientific premises remain explicit.",
   "active_result_commit": "45f5a17131862dbeb8e703251e5f77da0b1f011b",
   "queue": {
-    "status": "BUDGET_WAIT",
+    "status": "PREPARATION_REQUIRED",
     "next": "S3_STANDARD physical rate covariance and independent CMB input audit",
-    "not_before_utc": "2026-11-15T14:09:29Z",
-    "new_packages_last_24h": 2,
-    "reason": "S_ETA Actions plus S3_INPUT_AUDIT local package; no rerun; preparation may continue without scientific execution"
+    "reason": "Daily quota removed by owner. No execution-enabled scientific contract is ready; completed evidence is reused. Engineering preparation is independent."
   },
   "execution_policy": {
     "schema": "vm-lab-execution-plan-v1",
@@ -88,6 +85,10 @@
     "checkpoint": "method_defined_or_not_required; never implies automatic_resume",
     "ledger_branch": "science/autonomous-research-20261114",
     "ledger_path": "infra/autonomy/LEDGER.json",
-    "activation": "new_plans_only; frozen historical experiments unchanged"
-  }
+    "activation": "new_plans_only; frozen historical experiments unchanged",
+    "daily_quota": null,
+    "package_runner": "infra/package_runner.py"
+  },
+  "policy_version": "20261115-sequential-no-daily-quota-v1",
+  "automatic_code_repair": false
 }

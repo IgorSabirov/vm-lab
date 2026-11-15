@@ -15,7 +15,7 @@ from autonomy import admit, finish
 from autonomy.execution_policy import validate
 import research_pipeline
 
-LIMITS = {'new_packages_per_rolling_24h': 2, 'memory_bytes': 4 * 1024**3, 'output_bytes': 2 * 1024**3}
+LIMITS = {'memory_bytes': 4 * 1024**3, 'output_bytes': 2 * 1024**3}
 
 
 def example(seconds=(3600,), kind='independent_realizations'):
@@ -141,15 +141,17 @@ class Accounting(unittest.TestCase):
     def decide(self, candidate=None, now=None):
         return admit.decision(self.ledger, self.runs, candidate or self.new, now or self.now, LIMITS)
 
-    def test_mixed_executors_rolling_boundary(self):
-        self.assertFalse(self.decide(now=self.now - timedelta(seconds=2))['admitted'])
-        self.assertTrue(self.decide()['admitted'])
-        self.ledger['packages'].append({**self.new, 'status': 'COMPLETED'})
-        second = {'id': 'second'}
-        blocked = self.decide(second)
-        self.assertEqual(blocked['reason'], 'BUDGET_WAIT')
-        self.assertEqual(blocked['not_before_utc'], '2026-11-15T14:32:49.197918+00:00')
-        self.assertTrue(self.decide(second, datetime(2026, 11, 15, 14, 32, 50, tzinfo=timezone.utc))['admitted'])
+    def test_no_daily_cap_after_mixed_completed_packages(self):
+        self.ledger['packages'] += [
+            {**self.new, 'id': f'completed_{i}', 'executor': executor, 'status': 'COMPLETED'}
+            for i, executor in enumerate(('local', 'github_actions', 'vm', 'local'))]
+        result = self.decide()
+        self.assertTrue(result['admitted'])
+        self.assertIsNone(result['daily_quota'])
+        self.assertNotIn('not_before_utc', result)
+        # A stale cap in a historical control cannot silently restore the policy.
+        self.assertTrue(admit.decision(self.ledger, self.runs, self.new, self.now,
+                                      {**LIMITS, 'new_packages_per_rolling_24h': 2})['admitted'])
 
     def test_expired_package_never_retried(self):
         self.assertEqual(self.decide({'id': 'eta'})['reason'], 'ALREADY_REGISTERED_NO_RETRY')
@@ -161,11 +163,29 @@ class Accounting(unittest.TestCase):
     def test_multiple_workflow_sections_are_one_package(self):
         self.ledger['packages'][1].update(workflow_run_ids=[2, 3])
         self.runs += [dict(self.runs[0], id=i, created_at='2026-11-15T12:00:00Z') for i in (2, 3)]
-        self.assertEqual(self.decide()['packages_last_24h'], ['local'])
+        self.assertEqual(self.decide()['registered_packages'], ['eta', 'local'])
 
     def test_unknown_actions_are_conservatively_counted(self):
-        self.runs.append(dict(self.runs[0], id=99, created_at='2026-11-15T12:00:00Z'))
+        self.runs.append(dict(self.runs[0], id=99, created_at='2026-11-12T12:00:00Z', status='waiting'))
         self.assertFalse(self.decide()['admitted'])
+
+    def test_live_active_overrides_terminal_ledger_snapshot(self):
+        self.ledger['packages'][0]['status'] = 'COMPLETED'
+        self.runs[0]['status'] = 'in_progress'
+        self.assertEqual(self.decide()['reason'], 'ACTIVE_PACKAGE')
+        self.assertEqual(self.ledger['packages'][0]['status'], 'COMPLETED')
+
+    def test_active_inventory_pages_without_age_cutoff(self):
+        calls = []
+        def api(path):
+            calls.append(path)
+            if 'status=waiting&' in path and path.endswith('&page=1'):
+                return {'workflow_runs': [dict(self.runs[0], id=i+10, status='waiting') for i in range(100)]}
+            return {'workflow_runs': []}
+        with patch.object(admit, 'api', side_effect=api):
+            self.assertEqual(len(admit.actions_runs(self.now)), 100)
+        self.assertTrue(any('status=waiting&per_page=100&page=2' in p for p in calls))
+        self.assertTrue(any('status=pending&' in p for p in calls))
 
     def test_current_run_is_reserved_once(self):
         self.runs.append(dict(self.runs[0], id=99, created_at='2026-11-15T12:00:00Z', status='in_progress'))
