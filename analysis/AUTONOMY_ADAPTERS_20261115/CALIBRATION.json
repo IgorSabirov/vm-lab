@@ -1,0 +1,36 @@
+{
+  "source_commit": "cbe5f048dbcad8aa184297a9d81b257c1b2a1a17",
+  "executor": "local",
+  "environment_reference": "Linux-6.18.57-x86_64-with-glibc2.41; 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "classification": "ENGINEERING_CALIBRATION_ONLY",
+  "sections": {
+    "add_f2": {
+      "seconds": 0.1044225529999494,
+      "peak_group_rss_bytes": 12845056,
+      "returncode": 0,
+      "domain": {
+        "status": "PASS",
+        "scope": "Initial condition and particle conservation; not independent proof of F2 law",
+        "rows": 5,
+        "expected_particles": [
+          2,
+          6,
+          0,
+          1
+        ],
+        "scientific_acceptance": false
+      }
+    },
+    "serbian_signature": {
+      "seconds": 21.381622434000064,
+      "peak_group_rss_bytes": 162574336,
+      "returncode": 0,
+      "domain": {
+        "status": "FAIL",
+        "error": "AssertionError: "
+      }
+    }
+  },
+  "scientific_acceptance": false,
+  "measured_seconds": 21.50204635
+}

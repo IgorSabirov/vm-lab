@@ -1,0 +1,63 @@
+{
+  "adapter": "serbian_signature",
+  "config": {
+    "fixtures": [
+      {
+        "id": "euclidean_345",
+        "sides": [
+          3,
+          4,
+          5
+        ],
+        "expected_inertia": [
+          2,
+          0,
+          0
+        ],
+        "category": "valid_pd"
+      },
+      {
+        "id": "degenerate_112",
+        "sides": [
+          1,
+          1,
+          2
+        ],
+        "expected_inertia": [
+          1,
+          0,
+          1
+        ],
+        "category": "exact_degenerate"
+      },
+      {
+        "id": "invalid_113",
+        "sides": [
+          1,
+          1,
+          3
+        ],
+        "expected_inertia": [
+          1,
+          1,
+          0
+        ],
+        "category": "indefinite"
+      },
+      {
+        "id": "near_112",
+        "sides": [
+          1,
+          1,
+          1.9999999999999998
+        ],
+        "expected_inertia": [
+          2,
+          0,
+          0
+        ],
+        "category": "near_threshold"
+      }
+    ]
+  }
+}

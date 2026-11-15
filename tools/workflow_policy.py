@@ -19,8 +19,8 @@ LONG_EXECUTION_ALLOWLIST = {
     },
     "research-pipeline.yml": {
         "job": "research",
-        "minutes": 105,
-        "branch": "science/autonomous-research-20261114",
+        "minutes": 360,
+        "branch": "science/autonomous-**",
         "path": "analysis/CCC_BBN_NETWORK_20261114/pipeline/RUN_REQUEST.json",
     },
     "s0-n1-execute.yml": {

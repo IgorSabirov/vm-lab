@@ -1,0 +1,22 @@
+{
+  "schema": "vm-lab-policy-migration-v1",
+  "owner_decision": "Issue #63 and explicit request to apply the neighbor review, 2026-11-15",
+  "previous_controller": "0c2a88268ede88909b81b04998dd91af57ddc447",
+  "previous_anchor": "e16d1cf795fd9e3b5ea67dc26a9c6a8bf045c274",
+  "previous_active": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+  "removed_policy": {
+    "new_packages_per_rolling_24h": 2,
+    "queue_status": "BUDGET_WAIT",
+    "not_before_utc": "2026-11-15T14:09:29Z"
+  },
+  "replacement": "No daily quota; one active package, unique IDs, CAS and finite calibrated resource budgets",
+  "validation": {
+    "infra_tests": 132,
+    "passed": 132,
+    "seconds": 13.996,
+    "command": "python -m unittest discover -s infra -p 'test_*.py'"
+  },
+  "scientific_acceptance": false,
+  "scientific_result_pointer_unchanged": true,
+  "auto_merge": false
+}

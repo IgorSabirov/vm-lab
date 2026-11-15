@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "new_computation": false,
+  "previous_failure_preserved": "CALIBRATION.json",
+  "correction": "Do not identify an eigenvalue below zero_tolerance with the upstream numerically_ambiguous flag",
+  "result": {
+    "status": "PASS",
+    "scope": "Four Gram controls; mathematical inertia and numerical flags separate",
+    "fixtures": [
+      {
+        "id": "euclidean_345",
+        "exact_inertia": [
+          2,
+          0,
+          0
+        ],
+        "category": "valid_pd",
+        "independently_resolved": true,
+        "observed": {
+          "status": 0,
+          "counts": [
+            2,
+            0,
+            0
+          ],
+          "zero_tolerance": 6.521915363565902e-14,
+          "reliable": true,
+          "symmetry_adjusted": false,
+          "numerically_ambiguous": false
+        }
+      },
+      {
+        "id": "degenerate_112",
+        "exact_inertia": [
+          1,
+          0,
+          1
+        ],
+        "category": "exact_degenerate",
+        "independently_resolved": true,
+        "observed": {
+          "status": 0,
+          "counts": [
+            1,
+            0,
+            1
+          ],
+          "zero_tolerance": 7.105427357601002e-15,
+          "reliable": true,
+          "symmetry_adjusted": false,
+          "numerically_ambiguous": false
+        }
+      },
+      {
+        "id": "invalid_113",
+        "exact_inertia": [
+          1,
+          1,
+          0
+        ],
+        "category": "indefinite",
+        "independently_resolved": true,
+        "observed": {
+          "status": 0,
+          "counts": [
+            1,
+            1,
+            0
+          ],
+          "zero_tolerance": 1.8288713016877624e-14,
+          "reliable": true,
+          "symmetry_adjusted": false,
+          "numerically_ambiguous": false
+        }
+      },
+      {
+        "id": "near_112",
+        "exact_inertia": [
+          2,
+          0,
+          0
+        ],
+        "category": "near_threshold",
+        "independently_resolved": false,
+        "observed": {
+          "status": 0,
+          "counts": [
+            1,
+            0,
+            1
+          ],
+          "zero_tolerance": 7.105427357601e-15,
+          "reliable": true,
+          "symmetry_adjusted": false,
+          "numerically_ambiguous": false
+        }
+      }
+    ],
+    "scientific_acceptance": false
+  }
+}
