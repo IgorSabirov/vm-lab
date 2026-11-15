@@ -1,0 +1,305 @@
+{
+  "schema": "vm-lab-s3-bh-bridge-v2",
+  "id": "S3_BH_BRIDGE_20261115",
+  "status": "MANUAL_DERIVATION_PHYSICAL_EMBEDDING_OPEN",
+  "parents": [
+    "BH0",
+    "BH1",
+    "S3_STANDARD",
+    "S_ETA",
+    "question:U006",
+    "link:L10",
+    "issue:56",
+    "decision:D003"
+  ],
+  "source_commit": "9e2f5cec303e1a58f354479ffd1fca0db9cbd9b2",
+  "upstream_primat_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "execution_enabled": false,
+  "scientific_acceptance": false,
+  "new_autonomous_compute_package": false,
+  "route": {
+    "stage": "S3_BH_BACKGROUND",
+    "depends": [
+      "S3_STANDARD",
+      "BH1"
+    ],
+    "S2_required": false,
+    "condition": "Fixed Standard Model microphysics; direct variation of microphysics requires its own S2 law and response"
+  },
+  "selected_physical_model": null,
+  "unknowns": {
+    "sector_X": null,
+    "R_embedding": null,
+    "N": null,
+    "lambda": null,
+    "initial_state": null,
+    "complete_free_energy": null,
+    "transition_trigger": null,
+    "kinetic_law": null,
+    "collision_terms": null,
+    "cosmological_perturbations": null
+  },
+  "conditional_background": {
+    "gravity": "standard GR with fixed constants, reference bridge only; CCC needs separate equations",
+    "units": "hbar=c=k_B=1",
+    "signs": "Q_Xem and Q_Xnu positive out of X; Q_emnu positive em -> nu",
+    "required_history": [
+      "physical_time",
+      "a",
+      "H",
+      "T_gamma",
+      "n_b",
+      "f_nu_e",
+      "f_antinu_e",
+      "rho_X",
+      "p_X",
+      "Q_Xem",
+      "Q_Xnu",
+      "Q_emnu",
+      "comoving_entropy",
+      "phase_state"
+    ],
+    "nonmonotonic_temperature": "must be supported or excluded by a checked domain condition"
+  },
+  "analytic_results": [
+    {
+      "id": "CONFORMAL_NO_EXPANSION_TRIGGER",
+      "conditions": [
+        "F=R^-1 f(T_X R;N,lambda)",
+        "R proportional to cosmic a",
+        "isolated adiabatic quasistatic stable branch",
+        "fixed N and lambda",
+        "finite positive heat capacity",
+        "no additional scales or relevant gravitational-anomaly terms"
+      ],
+      "conclusion": "dS=C_R dln(T_X R)=0; no expansion-driven crossing of fixed chi_c",
+      "does_not_exclude": [
+        "prepared metastable-state relaxation with a physical kinetic law",
+        "nonadiabatic or nonconformal extensions"
+      ]
+    },
+    {
+      "id": "LATE_PHOTON_IDENTITY",
+      "conditions": [
+        "after BBN and standard e+- annihilation",
+        "before CMB",
+        "baryon number conserved",
+        "no neutrino heating",
+        "Planck photon spectrum restored",
+        "no nuclear photodissociation"
+      ],
+      "definition": "D_gamma=(s_gamma a^3)_after/(s_gamma a^3)_before",
+      "relations": [
+        "eta_CMB=eta_BBN/D_gamma",
+        "Neff_nu_after=Neff_nu_before*D_gamma^(-4/3)"
+      ],
+      "warning": "Neff_nu excludes surviving X radiation; full BBN prediction also needs H and neutrino history",
+      "domain": {
+        "redshift_scale": 2000000.0,
+        "blackbody_visibility_approx": "exp(-(z/1.98e6)^(5/2))",
+        "sharp_cutoff": false,
+        "required": "residual spectrum distortions below declared precision; boundary depends on background and injection; otherwise evolve spectrum",
+        "z_after_BBN_upper_bound": "defined by actual end of relevant nuclear processes, not a universal 1.2e8"
+      },
+      "instantaneous_energy_relations": [
+        "delta=Delta_rho_gamma/rho_gamma at fixed a",
+        "D_gamma=(1+delta)^(3/4)",
+        "Neff_nu_ratio=(1+delta)^-1"
+      ]
+    },
+    {
+      "id": "ETA_COMPONENT",
+      "parent_result": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json",
+      "parent_sha256": "48a81ecf8734e04426d4b3463a0e68deb20c12e8865459272fcdbae4d9858f02",
+      "interpretation": "Local reused eta response at fixed late eta; not a BH1 simulation or fit",
+      "parent_result_url": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json"
+    }
+  ],
+  "future_adapter_controls": [
+    "NULL",
+    "DECOUPLED",
+    "CONFORMAL",
+    "ENERGY_BARYON",
+    "LATE_PHOTON",
+    "NU_SPECTRUM",
+    "NUMERICAL"
+  ],
+  "numerical_tolerances": null,
+  "sources": [
+    {
+      "url": "https://hexagonmath.org/pdf/2611.00175v1",
+      "version": "v1",
+      "role": "SYM finite-volume phase structure and source limitations",
+      "read": "primary PDF, sections 1.1,1.7,3.3"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevD.100.015038",
+      "role": "energy/entropy history in concrete dark-sector BBN models; no model imported",
+      "read": "primary full text, sections II-III"
+    },
+    {
+      "url": "https://arxiv.org/abs/2402.10264",
+      "role": "PRIMAT precedent for neutrino-sector effects; no code imported",
+      "read": "abstract only; full-text retrieval unavailable"
+    },
+    {
+      "url": "https://arxiv.org/pdf/hep-th/9803131",
+      "role": "finite S3 strong-coupling thermodynamics",
+      "read": "eqs 2.9 and 2.18-2.20"
+    },
+    {
+      "url": "https://arxiv.org/pdf/hep-th/9805156",
+      "role": "planar strong-coupling normalization",
+      "read": "sections 1-2"
+    },
+    {
+      "url": "https://arxiv.org/abs/astro-ph/9605054",
+      "role": "FIRAS mu and y limits",
+      "read": "abstract"
+    },
+    {
+      "url": "https://doi.org/10.1088/0004-637X/758/2/76",
+      "role": "blackbody visibility and distortion energy",
+      "read": "eqs 2-3"
+    },
+    {
+      "url": "https://arxiv.org/abs/2112.06699",
+      "role": "thermalization regime limitations",
+      "read": "abstract and journal introduction"
+    }
+  ],
+  "manual_verification": {
+    "script": "verify_resolution.py",
+    "result": "CHECKS.json",
+    "hard_wall_seconds": 60,
+    "BBN_executed": false,
+    "BH1_executed": false,
+    "original_script_url": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/verify_identities.py",
+    "original_checks_url": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/CHECKS.json"
+  },
+  "preserved": [
+    "CONTROL",
+    "RUN_REQUEST",
+    "CURRENT",
+    "rolling compute budget",
+    "previous FAIL/REVIEW evidence",
+    "R/C/L/U",
+    "S3_EXTENDED S2 dependencies"
+  ],
+  "followup_covariance_identifiability": {
+    "report": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/REPORT.md",
+    "contract": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/CONNECTION_CONTRACT.json",
+    "status": "LABORATORY_COVARIANCE_AND_CONDITIONAL_IDENTIFIABILITY_VERIFIED",
+    "new_BH1_prediction": false,
+    "key_result": "Nuclear covariance changes directions of uncertainty; BBN eta and late-photon entropy eta-component remain degenerate without additional independent information."
+  },
+  "revision": "20261115-source-and-domain-resolution",
+  "revision_parent_commit": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+  "publication_base_commit": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07",
+  "original_contract_url": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json",
+  "source_resolution": {
+    "weak_latent_heat": {
+      "delta_E": "3*N^2/(8*R)*(1+O(lambda))",
+      "delta_rho": "3*N^2/(16*pi^2*R^4)*(1+O(lambda))",
+      "temperature": "Tc*R -> 1/log(7+4*sqrt(3)) as lambda -> 0",
+      "domain": "weak coupling, large N, finite S3; hexagon v1 eqs 25-26"
+    },
+    "planar_strong_extrapolation": {
+      "rho": "243*N^2/(128*pi^2*R^4)",
+      "derivation": "rho=3*pi^2*N^2*T^4/8, formally T=3/(2*pi*R)",
+      "domain_failure": "planar TR >> 1 extrapolated to TR=3/(2*pi); not exact finite-volume HP energy"
+    },
+    "strong_sphere_HP": {
+      "delta_rho": "3*N^2/(4*pi^2*R^4)",
+      "domain": "classical AdS5, large N and strong coupling; common AdS vacuum subtracted",
+      "derivation": "x=r_plus/R; E-E_AdS=3*N^2*x^2*(1+x^2)/(4*R); x_HP=1"
+    },
+    "ratios": {
+      "planar_over_weak": "81/8",
+      "strong_sphere_over_weak": "4",
+      "planar_over_strong_sphere": "81/32"
+    },
+    "verdict": "REGIME_AND_ASYMPTOTIC_DOMAIN_MISMATCH; not a factor-ten normalization error; full energy vs latent heat alone does not explain it",
+    "selected_source_delta_rho": "weak_latent_heat",
+    "cosmological_delta_rho_X": null
+  },
+  "embedding_kinematics": {
+    "assumption": "independently prescribed T_X proportional to a^-1",
+    "rows": [
+      {
+        "R": "a",
+        "n": 1,
+        "dlnchi_dlna": 0
+      },
+      {
+        "R": "H^-1 in RD, constant degrees of freedom",
+        "n": 2,
+        "dlnchi_dlna": 1
+      },
+      {
+        "R": "H^-1 in MD",
+        "n": 1.5,
+        "dlnchi_dlna": 0.5
+      },
+      {
+        "R": "constant",
+        "n": 0,
+        "dlnchi_dlna": -1
+      }
+    ],
+    "crossing_condition": "chi_c inside initial/final chi interval; a_cross=a_i*(chi_c/chi_i)^(1/(n-1)) for n != 1",
+    "adiabatic_caveat": "For F=R^-1 f(TR), S=-f_prime(TR); isolated quasistatic adiabat with nonzero C_R fixes TR for any R(a). Cannot retain T_X proportional a^-1 for arbitrary R without further physics.",
+    "geometry_caveat": "Closed FRW can have S3 slices; Hubble radius not automatically the sphere radius",
+    "physical_embedding_selected": false
+  },
+  "nucleation": {
+    "status": "CONDITIONAL_HAZARD_SCALING_ONLY",
+    "assumptions": [
+      "Gamma=A*R^-4*exp(-B)",
+      "V=c_V*R^3",
+      "R=R0*a",
+      "H=H0*a^-2",
+      "constant A and B"
+    ],
+    "integral": "I=A*c_V*exp(-B)*(a-a_i)/(R0*H0)",
+    "poisson_probability": "1-exp(-I), if Poisson assumptions hold",
+    "is_volume_fraction": false,
+    "missing": [
+      "physical meaning of f",
+      "spatial kinetic/gradient action or other justified dynamics",
+      "prefactor",
+      "growth and reverse rates",
+      "energy/entropy backreaction"
+    ],
+    "Q_rule": "Q_out=-[dot(rho_X)+3*H*(rho_X+p_X)] counted once",
+    "Gamma_derived_from_BH0": false
+  },
+  "FIRAS": {
+    "mu_95_abs_limit": 9e-05,
+    "y_95_abs_limit": 1.5e-05,
+    "small_pure_heating": [
+      "mu=1.401*J_bb*delta in mu regime",
+      "y=delta/4 in y regime"
+    ],
+    "validity": "thermal heating; transfer/visibility required; intermediate and photon-injection spectra not covered by these two scalar approximations",
+    "joint_likelihood": "L_BBN*L_CMB*L_FIRAS conditional on dataset independence and spectral model",
+    "likelihood_implemented": false,
+    "limits_are_not_a_ready_Gaussian_likelihood": true
+  },
+  "DH_energy_conversion": {
+    "assumption": "local D/H proportional eta^-1.6; fixed late eta; blackbody restored; eta component only",
+    "ratio": "(1+delta)^-1.2",
+    "one_percent_decrease": "delta=0.99^(-5/6)-1",
+    "linear_delta": 0.008333333333333333,
+    "review_error": "0.00625 is linear fractional eta change, not fractional photon energy",
+    "not_post_BBN_nuclear_evolution": true
+  },
+  "statistical_guards": [
+    "Leonard covariance is laboratory measurement covariance, not X portal coupling",
+    "J_phi Sigma J_phi^T is linear propagation; nonlinear residual needs model-specific validation",
+    "Boundary null may have unidentified parameters; no universal chi-square or Chernoff mixture assigned before physical model and calibration"
+  ],
+  "source_resolution_report": "REPORT.md",
+  "provenance_evidence": "GIT_EVIDENCE.json",
+  "publication_scope": "Analytical revision on main; execution authority remains infra/OPERATIONS.json and canonical CONTROL. Historical scientific branch not merged wholesale."
+}
