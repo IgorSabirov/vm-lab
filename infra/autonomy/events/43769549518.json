@@ -1,0 +1,112 @@
+{
+  "schema": "vm-lab-autonomy-event-review-v1",
+  "record_type": "terminal_package",
+  "id": "S3_DD_RESPONSE_20261115_r1",
+  "workflow_run_id": 43769549518,
+  "pr": 75,
+  "preparation_pr": 80,
+  "source_sha": "5853977d2f2b03e9cf0b2b0cae69ada64421f8c6",
+  "result_sha": "1ce668ca5bd1d79a128f0c1f761c1ff93ebe3464",
+  "status": "COMPLETE",
+  "engineering": "PASS",
+  "numerical": "LOCAL_RESPONSE_PARTIAL_STEP_CONVERGENCE",
+  "science": "D_H_AND_YP_STEP_CONVERGED; HE3_ONE_AND_LI7_TWO_DERIVATIVES_NOT_CONVERGED",
+  "mapping_status": "NOT_ESTABLISHED",
+  "receipt_integrity": "PASS",
+  "verified_manifest_files": 32,
+  "independent_observable_and_postprocess_recalculation": "PASS",
+  "integrations": 9,
+  "process_exit_and_budget_checks": "PASS",
+  "summary_sha256": "aaae4571d6758c904c55171b431e747df8b913f1be12be000916c3fffb1a21ec",
+  "artifacts_sha256": "e9f4d30dca048b8f8cfdbfb71a1e64d8b447c1ad43f6dc0dda7a65c4ee63c123",
+  "wall_seconds_package": 213.20521357199993,
+  "integration_wall_sum_seconds": 206.83042356399994,
+  "diagnostics": {
+    "D_H": {
+      "a_h0_5": [
+        -0.005927712018301889,
+        -0.00501068521037773
+      ],
+      "kappa": 0.9860413005086162,
+      "steps": {
+        "ddHe3n": {
+          "status": "STEP_CONVERGED",
+          "relative_discrepancy": 0.0010259958488052653
+        },
+        "ddtp": {
+          "status": "STEP_CONVERGED",
+          "relative_discrepancy": 0.006908574668039501
+        }
+      },
+      "hypothesis": "MATCH"
+    },
+    "Yp": {
+      "a_h0_5": [
+        0.00006573358930950235,
+        0.00005685328412963209
+      ],
+      "kappa": 0.9895594168048303,
+      "steps": {
+        "ddHe3n": {
+          "status": "STEP_CONVERGED",
+          "relative_discrepancy": 0.00009655250802020368
+        },
+        "ddtp": {
+          "status": "STEP_CONVERGED",
+          "relative_discrepancy": 0.00024149168247136648
+        }
+      },
+      "hypothesis": "NO_PREREGISTERED_SIGN"
+    },
+    "He3_H_late": {
+      "a_h0_5": [
+        0.0021902189148406137,
+        -0.0027596675890801947
+      ],
+      "kappa": -0.9738760663926759,
+      "steps": {
+        "ddHe3n": {
+          "status": "STEP_CONVERGED",
+          "relative_discrepancy": 0.0042700534681768924
+        },
+        "ddtp": {
+          "status": "STEP_NOT_CONVERGED",
+          "relative_discrepancy": 0.012062892164122924
+        }
+      },
+      "hypothesis": "DEVIATES_FROM_DIRECTIONAL_HYPOTHESIS"
+    },
+    "Li7_H_late": {
+      "a_h0_5": [
+        0.00736022434023198,
+        0.0005327502628347247
+      ],
+      "kappa": 0.1440101819836376,
+      "steps": {
+        "ddHe3n": {
+          "status": "STEP_NOT_CONVERGED",
+          "relative_discrepancy": 0.012717214292857394
+        },
+        "ddtp": {
+          "status": "STEP_NOT_CONVERGED",
+          "relative_discrepancy": 0.042854259348106
+        }
+      },
+      "hypothesis": "MATCH"
+    }
+  },
+  "scientific_acceptance": false,
+  "new_integrations": 0,
+  "source_unchanged": true,
+  "processes_exited": true,
+  "automatic_retry": false,
+  "review": "infra/autonomy/events/43769549518.json",
+  "report": "infra/autonomy/events/43769549518.md",
+  "blocked_dependents": [
+    "Treating all four observables as step-converged",
+    "Full correlated physical covariance without experimental rho and remaining rates",
+    "S3 observational likelihood without frozen data/covariance",
+    "BH1 or S2 coupling without physical mapping"
+  ],
+  "next": "Preserve mixed numerical result; no frozen independent successor in current queue. Any smaller-step integration requires separately authorized frozen package."
+}
