@@ -1,0 +1,121 @@
+{
+  "status": "STATIC_SOURCE_AND_ANALYTIC_AUDIT",
+  "pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "BBN_executed": false,
+  "MC_executed": false,
+  "scientific_acceptance": false,
+  "tables": [
+    {
+      "reaction": "d_d__He3_n",
+      "path": "primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt",
+      "source_header": "# d + d > He3 + n   [d_d__He3_n]   ref=Gómez et al. 2017",
+      "rows": 1000,
+      "T9_range": [
+        0.001,
+        10.0
+      ],
+      "factor_range": [
+        1.011,
+        1.018
+      ],
+      "nearest_T9": 0.7996555,
+      "factor_near_T9_0_8": 1.011
+    },
+    {
+      "reaction": "d_d__t_p",
+      "path": "primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt",
+      "source_header": "# d + d > t + p   [d_d__t_p]   ref=Gómez et al. 2017",
+      "rows": 1000,
+      "T9_range": [
+        0.001,
+        10.0
+      ],
+      "factor_range": [
+        1.011,
+        1.019
+      ],
+      "nearest_T9": 0.7996555,
+      "factor_near_T9_0_8": 1.011
+    },
+    {
+      "reaction": "d_p__He3_g",
+      "path": "primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt",
+      "source_header": "# d + p > He3 + g   [d_p__He3_g]   ref=Moscoso et al. 2021",
+      "rows": 1000,
+      "T9_range": [
+        0.001,
+        10.0
+      ],
+      "factor_range": [
+        1.021,
+        1.0485
+      ],
+      "nearest_T9": 0.7996555,
+      "factor_near_T9_0_8": 1.022
+    },
+    {
+      "reaction": "He3_t__a_d",
+      "path": "primat/data/nuclear/tables/He3_t__a_d/He3_t__a_d_primat.txt",
+      "source_header": "# He3 + t > He4 + d   [He3_t__a_d]   ref=Caughlan& Fowler 1988",
+      "rows": 1000,
+      "T9_range": [
+        0.001,
+        10.0
+      ],
+      "factor_range": [
+        10.0,
+        10.0
+      ],
+      "nearest_T9": 0.7996555,
+      "factor_near_T9_0_8": 10.0
+    },
+    {
+      "reaction": "He3_t__a_n_p",
+      "path": "primat/data/nuclear/tables/He3_t__a_n_p/He3_t__a_n_p_primat.txt",
+      "source_header": "# He3 + t > He4 + n + p   [He3_t__a_n_p]   ref=Caughlan& Fowler 1988",
+      "rows": 1000,
+      "T9_range": [
+        0.001,
+        10.0
+      ],
+      "factor_range": [
+        10.0,
+        10.0
+      ],
+      "nearest_T9": 0.7996555,
+      "factor_near_T9_0_8": 10.0
+    }
+  ],
+  "source_sha256": {
+    "primat/config.py": "b210b8f4e9496ba8cdda80d239370caef235eb166d73896cf03570cd9c7c925a",
+    "primat/main.py": "c35aa8cb0cd3376d0299bb93625f3adeb8332406fdac37e879c283291e612c9f",
+    "primat/network_data.py": "de6657fdf2801d674b6166bf5445fd9c67c6863ca3c3ed2d611987e9b850115a",
+    "primat/sensitivity.py": "8627bff7f1fb8027924a06c41ecda7579537a1a8d37da0fc24831cbe6a0c0234",
+    "primat/data/nuclear/networks/large.txt": "f84d6c5a10ef8f472457e56414d27c8c6f5721973d2908bf087d1253ba4c3ba6",
+    "primat-c/src/mc.c": "7148cafb0aec8ea8ba571960d7914aa33a1cf200128cdbd4ab530f4338d448de",
+    "primat-c/src/network_data.c": "70f039ab1bf01e42b2a27bcf6c825486784c85d8f3d53948c28dcbf94df69976",
+    "primat/data/nuclear/tables/d_d__He3_n/d_d__He3_n_primat.txt": "bd6ee9d61f8f9b5871741f409589f349a98b82250563d25fdb821f5cce184f63",
+    "primat/data/nuclear/tables/d_d__t_p/d_d__t_p_primat.txt": "afd7c924268b38f3ee4a068a3b96246189193bfee2fac813cb5b570da880b622",
+    "primat/data/nuclear/tables/d_p__He3_g/d_p__He3_g_primat.txt": "9fc482b66d8e0552d68ab5a97524bc4799e5d1ef33191e46bfa4459bee4ccadd",
+    "primat/data/nuclear/tables/He3_t__a_d/He3_t__a_d_primat.txt": "94844bdb43a81a02f4c39b04fd765892e25336c543e80138a6ebfd49e7278564",
+    "primat/data/nuclear/tables/He3_t__a_n_p/He3_t__a_n_p_primat.txt": "8a96e250b56b23daf582be2b57a6af7cbfb0389e1e3f4446c2ed2de7d45c627a"
+  },
+  "factor10_cap30": {
+    "normal_threshold": 1.4771212547196624,
+    "clipped_probability_per_channel": 0.13964313701826428,
+    "log_rate_variance_ratio_capped_to_uncapped": 0.7691607395489498
+  },
+  "sensitivity_denominator": {
+    "relative_step": 0.01,
+    "exact_log_interval": 0.020000666706669525,
+    "code_denominator": 0.019900661706336167,
+    "reported_to_exact_secant_ratio": 1.0050252098050347
+  },
+  "unresolved": [
+    "Cross-channel D+D covariance from shared experimental nuisance parameters",
+    "Posterior temperature covariance beyond single-amplitude compression",
+    "Probability interpretation of CF88 factor-10 placeholders",
+    "Output covariance and clamp impact on BBN abundances",
+    "Weak-rate theory covariance separate from neutron lifetime"
+  ]
+}

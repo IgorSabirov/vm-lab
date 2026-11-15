@@ -1,0 +1,42 @@
+{
+  "id": "S3_INPUT_AUDIT_20261114_r1",
+  "parent_pr": 53,
+  "parent_result_commit": "063464de375161255d8e402f898e3cd36364741c",
+  "response_sha256": "75aaec24b55bc73ee23f6b70952fd464473221a75d5c2676c3e92f2872a93653",
+  "primat_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "observations": {
+    "YPBBN": {
+      "mean": 0.2449,
+      "sigma": 0.004,
+      "source": "https://arxiv.org/abs/1503.08146",
+      "role": "Historical benchmark, not latest-data selection; convention mapping required before likelihood"
+    },
+    "DoH": {
+      "mean": 0.00002527,
+      "sigma": 3e-7,
+      "source": "https://arxiv.org/abs/1710.11129v3",
+      "role": "Published linear summary; original log measurement -4.5974 +/-0.0052; no likelihood approximation adopted"
+    }
+  },
+  "matrix": [
+    "YPBBN observed summary residual",
+    "D/H observed summary residual",
+    "2x2 eta-induced covariance coefficient J J^T"
+  ],
+  "criteria": [
+    "Imported response SHA256 matches",
+    "Secants recomputed from endpoint data",
+    "Residual arithmetic independently checked with Decimal",
+    "Covariance symmetric positive-semidefinite rank-one",
+    "No likelihood or significance without physical covariance"
+  ],
+  "budget": {
+    "executor": "local",
+    "forecast_upper_seconds": 60,
+    "max_process_seconds": 60,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "scope": "S3_STANDARD prerequisite diagnostic, not completed S3_STANDARD. No observational probability measure, eta prior or new physics selected. Historical benchmarks kept separate; no joint fit.",
+  "automatic_retry": false
+}

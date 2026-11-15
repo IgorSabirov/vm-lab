@@ -1,10 +1,14 @@
 {
   "schema": "vm-lab-pipeline-request-v1",
-  "id": "CCC_BBN_PIPELINE_20261114_r2",
-  "execution_enabled": true,
-  "stages": [
-    "S_ETA"
-  ],
-  "authorization": "Owner requested autonomous experiment progression; use completed S0/S1/BH0 and implement the already planned bounded S_eta input sensitivity without changing the physical law or numerical tolerances.",
-  "no_auto_retry": true
+  "id": "S3_INPUT_AUDIT_20261114_r1",
+  "execution_enabled": false,
+  "stages": [],
+  "status": "COMPLETED_LOCAL",
+  "source_sha": "97539d9035a41a05cbe2ffebc587d6cf41a161f1",
+  "result_sha": "45f5a17131862dbeb8e703251e5f77da0b1f011b",
+  "next": {
+    "status": "PREPARATION_REQUIRED",
+    "next": "S3_STANDARD physical rate covariance and independent CMB input audit",
+    "reason": "Daily quota removed by owner. No execution-enabled scientific contract is ready; completed evidence is reused. Engineering preparation is independent."
+  }
 }

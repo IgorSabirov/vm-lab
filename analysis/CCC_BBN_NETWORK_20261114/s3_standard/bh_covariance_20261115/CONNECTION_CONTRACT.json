@@ -1,0 +1,94 @@
+{
+  "schema": "vm-lab-s3-bh-covariance-identifiability-v1",
+  "id": "S3_BH_COVARIANCE_20261115",
+  "parent_commit": "065272ad94bce1c95beb7986fd8ed64cd2b90b8c",
+  "parents": [
+    "S3_STANDARD",
+    "S_ETA",
+    "BH0",
+    "BH1",
+    "S3_BH_BRIDGE_20261115",
+    "issue:56"
+  ],
+  "status": "MANUAL_ANALYSIS_COMPLETE_PHYSICAL_BH1_OPEN",
+  "execution_enabled": false,
+  "new_autonomous_compute_package": false,
+  "scientific_acceptance": false,
+  "scope": [
+    "Independently verify supplied Table V transcription against all 256 primary-PDF values",
+    "Laboratory common/relative covariance modes",
+    "Conditional eta/late-photon-entropy identifiability",
+    "Specify same-marginal propagation test and joint likelihood interface"
+  ],
+  "physical_model_selected": null,
+  "inputs": {
+    "leonard": {
+      "path": "LEONARD_INPUT.json",
+      "sha256": "806b63b8369294a2a1eafbb6d4b19b15ad076fb07e532d1c73971d89569a65ad",
+      "extra_1pct_scale_in_primary_matrix": false
+    },
+    "eta_response": {
+      "path": "../../s3_input_audit/results/RESULT.json",
+      "sha256": "48a81ecf8734e04426d4b3463a0e68deb20c12e8865459272fcdbae4d9858f02"
+    },
+    "primat_pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e"
+  },
+  "completed": {
+    "matrix_dimensions": [
+      16,
+      16
+    ],
+    "source_entries_cross_checked": 256,
+    "bbn_eta_entropy_component_rank": 1,
+    "with_known_neutrino_component_rank": 2,
+    "laboratory_modes_are_not_BBN_rate_responses": true
+  },
+  "counterfactual": {
+    "A": "joint posterior over two complete rate-temperature functions",
+    "B": "product of the SAME two marginal posteriors",
+    "preserve": [
+      "within-channel temperature correlations",
+      "marginal distributions",
+      "background and microphysics",
+      "other nuisance inputs"
+    ],
+    "gaussian_only": "zero cross block suffices; otherwise product-marginal sampling is required",
+    "separate_experiment": "refitting data with cross blocks zero may change marginals"
+  },
+  "no_claims": [
+    "D/H uncertainty increases by 40 percent",
+    "all BBN analyses omit covariance",
+    "observed nonstandard cosmological signal",
+    "Anthropic model physically embedded",
+    "new S2 law",
+    "fundamental organizational correlations equal epistemic parameter covariance"
+  ],
+  "required_for_actual_likelihood": [
+    "joint continuous S-factor posterior and extrapolation",
+    "consistent normalization and energy-error model",
+    "rate-function covariance or joint samples",
+    "background-specific BBN response or nonlinear propagation",
+    "complete physical BH1 including kinetics and exchange",
+    "independent observations and compatible CMB likelihood",
+    "distinguish total Neff from neutrino contribution"
+  ],
+  "next_ready_manual_work": "Reconstruct joint continuous S-factor posterior with source-based normalization; no background source invented",
+  "validation": {
+    "script": "verify_connection.py",
+    "result": "CHECKS.json",
+    "hard_wall_seconds": 60,
+    "BBN_executed": false,
+    "BH1_executed": false,
+    "GP_fitted": false
+  },
+  "preserved": [
+    "CONTROL",
+    "RUN_REQUEST",
+    "CURRENT",
+    "rolling budget",
+    "previous FAIL/REVIEW evidence",
+    "R/C/L/U",
+    "fundamental S2 question",
+    "separate ADD-R129-U010 line"
+  ]
+}
