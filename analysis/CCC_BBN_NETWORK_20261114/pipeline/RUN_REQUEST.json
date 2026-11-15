@@ -2,7 +2,7 @@
   "schema": "vm-lab-pipeline-request-v1",
   "id": "LINX_BBN_IDENTITY_20261115_r2",
   "implementation": "linx_bbn_identity_v3",
-  "execution_enabled": false,
+  "execution_enabled": true,
   "stages": [
     "LINX_BBN_IDENTITY"
   ],
@@ -16,5 +16,8 @@
   "executor": "github_actions",
   "strict_execution_requires": "published measured EXECUTION_PLAN and STRICT_ADMISSION after bounded calibration",
   "owner_authorization": "Explicit user request to launch the scientific run on GitHub; full prepared BBN identity prerequisite before S3.",
-  "status": "FROZEN_PREPARATION"
+  "status": "REQUESTED",
+  "source_commit": "ab9544dd92f75b10b1646ead7ca9a729491d1224",
+  "pr": 74,
+  "previous_attempt_run_id": 43732600379
 }
