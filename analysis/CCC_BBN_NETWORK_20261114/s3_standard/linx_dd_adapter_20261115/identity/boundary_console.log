@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/b581bb5775cc/linx-bbn-prep/identity/boundary_probe.py", line 73, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/scratch/b581bb5775cc/linx-bbn-prep/identity/boundary_probe.py", line 48, in main
+    from linx.nuclear import NuclearRates
+  File "/workspace/scratch/b581bb5775cc/linx-bbn-prep/upstream/linx/nuclear.py", line 5, in <module>
+    import linx.const as const
+  File "/workspace/scratch/b581bb5775cc/linx-bbn-prep/upstream/linx/const.py", line 5, in <module>
+    from linx.special_funcs import zeta_3 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'linx.special_funcs'

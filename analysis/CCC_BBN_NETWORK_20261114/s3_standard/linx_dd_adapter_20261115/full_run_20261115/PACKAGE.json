@@ -1,0 +1,47 @@
+{
+  "schema": "vm-lab-two-phase-package-v1",
+  "id": "LINX_BBN_IDENTITY_20261115_r1",
+  "publication_branch": "science/autonomous-bbn-identity-20261115",
+  "source_commit_binding": "RUN_REQUEST.source_commit; checked source worktree at that exact commit",
+  "strict_matrix": [
+    "native_pristine",
+    "identical_override"
+  ],
+  "calibration_processes": 1,
+  "strict_processes": 2,
+  "total_bbn_integrations_max": 3,
+  "seeds": null,
+  "seed_semantics": "All inputs deterministic; no GP or Monte Carlo draws",
+  "phases": [
+    "CAS_RESERVATION_FOR_BOUNDED_CALIBRATION",
+    "MEASURED_STRICT_ADMISSION",
+    "TWO_STRICT_ARMS",
+    "INDEPENDENT_VERIFICATION",
+    "TERMINAL_PUBLICATION"
+  ],
+  "budget": {
+    "package_seconds": 9900,
+    "process_seconds": 3600,
+    "section_seconds": 9900,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "allocation_seconds": {
+    "setup": 900,
+    "calibration": 600,
+    "strict_native": 3600,
+    "strict_override": 3600,
+    "verification": 60,
+    "publication": 240,
+    "reserve": 900
+  },
+  "scientific_acceptance": false,
+  "automatic_retry": false,
+  "new_law_selected": false,
+  "executor": "github_actions",
+  "executor_authorization": "Owner explicitly requested GitHub execution; target-host calibration is part of this one reserved package.",
+  "predecessor_pr": 57,
+  "active_predecessor_pr": 54,
+  "registry_commit": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07",
+  "policy_version": "20261115-sequential-no-daily-quota-v1"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "LINX_DD_ADAPTER_ENGINEERING_20261115_v2",
+  "mode": "engineering_check",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "parent_vm_lab_commit": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+  "scientific_execution_enabled": false,
+  "bbn_integrations": 0,
+  "gp_draws": 0,
+  "scope": [
+    "host validation",
+    "native table identity",
+    "single channel change",
+    "detailed balance",
+    "boundary policy",
+    "LINX nuclear RHS",
+    "JIT trace reuse"
+  ],
+  "network": "key_PRIMAT_2023",
+  "interpolation": [
+    "linear",
+    "log"
+  ],
+  "float_dtype": "float64",
+  "forecast_seconds": {
+    "central": 15,
+    "range": [
+      8,
+      45
+    ],
+    "basis": "v1: 28 unit/RHS tests completed in 11.77s supervised wall. v2 adds two host-wrapper checks and repairs RSS monitoring. No BBN or GP.",
+    "calibrated": true,
+    "calibration": "results_v1/SUPERVISOR.json"
+  },
+  "limits": {
+    "wall_seconds": 180,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "route": "local",
+  "criteria": {
+    "other_reaction_tables": "bitwise unchanged",
+    "native_dd_tables_rtol": 3e-15,
+    "rate_and_balance_rtol": 3e-14,
+    "rhs_identity_rtol": 5e-13,
+    "rhs_identity_atol": 1e-30,
+    "jit_trace_count": 1,
+    "invalid_input": "ValueError before compiled RHS",
+    "basis": "Floating point equivalence checks, not physical uncertainty or BBN acceptance thresholds"
+  },
+  "deferred": [
+    "full BBN output identity",
+    "BBN-level JIT reuse",
+    "complete package runtime calibration",
+    "GP posterior",
+    "A/B and coverage"
+  ],
+  "autonomy": "Do not alter CONTROL/CURRENT/RUN_REQUEST or dispatch a scientific package. Active queue remains BUDGET_WAIT.",
+  "scientific_acceptance": false
+}
