@@ -1,3 +1,5 @@
+> **15 ноября, ADD/BBN:** [инвариант наблюдаемой не доказывает симметрию закона](../ADD_BBN_SYMMETRY_20261115/REPORT.md). Направление полушага сверено с Fig. 2(a); TFT=F^-1 опровергнуто. Методическое уточнение, научные статусы сохранены.
+
 > **11 ноября, R129:** [контактная организация при ограниченной ёмкости](../G3_CONTACT_CAPACITY_20261111/REPORT.md). 129 R, 42 C, 10 L, 12 U; [66 исходных условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) связаны с результатами через [типизированную карту](../REGISTRY_LINKS/INDEX.md). Новый результат условный и разведочный; U010 остаётся OPEN.
 
 > **Разбор отзыва, 11 ноября:** [R013: точные формулы; CORR/RESET: нормировки и область тождества](../NEIGHBOR_R013_CORR_REVIEW_20261111/REPORT.md). Уточнены R013/R034/R035/R036/R096; 128 R сохранены. Малые матричные проверки выполнены в песочнице, новых производственных прогонов и закрытия L/U нет.
@@ -3346,6 +3348,8 @@
 
 
 <!-- generated:review-card-result-r126 -->
+**Внешний разбор:** [ADD_BBN_SYMMETRY_20261115](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#full-dynamics); `scope_boundary`. Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
+
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy); `scope_boundary`. COR01: Новый закон или физическая полнота не приняты.; COR14: Не единая динамика шести моделей и не аттестация всех сред.; COR17: Нет общего физического K. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
@@ -3829,6 +3833,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [ADD_BBN_SYMMETRY_20261115](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md) | `scope_boundary` | Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин. |
 | [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `joint_model_requirement` | Программный адаптер не задаёт автоматически общий физический закон ветвей. |
 | [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Фазовая организация получена условно на заданной теории и мере; происхождение этих оснований не показано. |
 | [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограничение меры в матричной модели не отождествлено с глобальной контактной ёмкостью Emax. |
