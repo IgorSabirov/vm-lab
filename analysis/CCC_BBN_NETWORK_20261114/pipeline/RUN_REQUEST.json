@@ -1,14 +1,14 @@
 {
   "schema": "vm-lab-pipeline-request-v1",
-  "id": "LINX_BBN_IDENTITY_20261115_r2",
-  "implementation": "linx_bbn_identity_v3",
-  "execution_enabled": true,
+  "id": "LINX_BBN_IDENTITY_20261115_r3",
+  "implementation": "linx_bbn_identity_v4",
+  "execution_enabled": false,
   "stages": [
     "LINX_BBN_IDENTITY"
   ],
   "package_contract": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/PACKAGE.json",
   "calibration_plan": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/CALIBRATION_PLAN.json",
-  "predecessor_pr": 73,
+  "predecessor_pr": 74,
   "adapter_predecessor_pr": 57,
   "registry_reconciliation_commit": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07",
   "scientific_acceptance": false,
@@ -16,8 +16,7 @@
   "executor": "github_actions",
   "strict_execution_requires": "published measured EXECUTION_PLAN and STRICT_ADMISSION after bounded calibration",
   "owner_authorization": "Explicit user request to launch the scientific run on GitHub; full prepared BBN identity prerequisite before S3.",
-  "status": "REQUESTED",
-  "source_commit": "ab9544dd92f75b10b1646ead7ca9a729491d1224",
+  "status": "FROZEN_PREPARATION",
   "pr": 74,
   "previous_attempt_run_id": 43732600379
 }

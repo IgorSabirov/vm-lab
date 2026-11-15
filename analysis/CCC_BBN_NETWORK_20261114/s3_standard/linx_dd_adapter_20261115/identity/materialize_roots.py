@@ -9,14 +9,20 @@ from urllib.request import urlopen
 
 PARENT=Path(__file__).resolve().parent.parent
 
+def verify_file(entry, data):
+    # SHA-256 is mandatory. Some pinned entries (LICENSE.txt) omit byte size.
+    if hashlib.sha256(data).hexdigest() != entry['sha256']:
+        raise ValueError('Upstream SHA256 mismatch: ' + entry['path'])
+    if 'size' in entry and len(data) != entry['size']:
+        raise ValueError('Upstream size mismatch: ' + entry['path'])
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('out',type=Path);a=p.parse_args()
     a.out.mkdir(parents=True,exist_ok=False)
     manifest=json.loads((PARENT/'UPSTREAM.json').read_text());pristine=a.out/'pristine';patched=a.out/'override'
     for e in manifest['files']:
         with urlopen(f"https://raw.githubusercontent.com/{manifest['repository']}/{manifest['commit']}/{e['path']}",timeout=60) as r:data=r.read()
-        if len(data)!=e['size'] or hashlib.sha256(data).hexdigest()!=e['sha256']:
-            raise ValueError('Upstream mismatch: '+e['path'])
+        verify_file(e, data)
         f=pristine/e['path'];f.parent.mkdir(exist_ok=True,parents=True);f.write_bytes(data)
     shutil.copytree(pristine,patched)
     sys.path.insert(0,str(PARENT))

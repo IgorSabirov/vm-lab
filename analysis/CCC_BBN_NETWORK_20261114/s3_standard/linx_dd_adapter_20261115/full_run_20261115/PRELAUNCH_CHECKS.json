@@ -1,39 +1,260 @@
 {
   "status": "PASS",
-  "kind": "launch_revision_v3_owner_requested",
-  "registry_commit": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07",
-  "source_parent": "7e3b5a75887bd327b57d98ebf4c72f46af09333a",
-  "adapter_parent": "6b8710970f8b4291cce8c798f986865a984e8413",
-  "strict_scientific_input_keys_unchanged": [
-    "network",
-    "species",
-    "matrix",
-    "interpolation",
-    "boundary_policy",
-    "q_by_reaction",
-    "background",
-    "bbn",
-    "criteria",
-    "dtype",
-    "device",
-    "upstream_commit"
-  ],
+  "kind": "owner_requested_materialization_repair_r3",
+  "source_parent": "ba157c8bd07d76760b4a4b87a48eeb13368e7821",
+  "previous_failed_run_id": 43742136639,
+  "previous_numerical_processes": 0,
+  "owner_authorization": "Исправь и запусти",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "upstream_manifest_unchanged": true,
+  "recorded_patch_exact_match": true,
+  "full_materialization": {
+    "status": "PASS",
+    "method": "Production materialize_roots.py, all 38 files fetched from fixed raw.githubusercontent.com URLs; both roots and recorded patch rehashed after delivery",
+    "files": [
+      {
+        "path": "linx/P_QED.py",
+        "bytes": 2181,
+        "sha256": "67a39d595a5c61cdff920c91751255a866cf6ab84516933b9c7ea67e0fd6b2b8",
+        "size_declared": true
+      },
+      {
+        "path": "linx/__init__.py",
+        "bytes": 98,
+        "sha256": "f90b13f8f25866f75973f72a2f2f60a94b225327f9da307c3f5a8dc8e98532b5",
+        "size_declared": true
+      },
+      {
+        "path": "linx/abundances.py",
+        "bytes": 20588,
+        "sha256": "50b95793159e7966c5deda3f41961ea41a8268fd185c4d3dd9c1280365613bb6",
+        "size_declared": true
+      },
+      {
+        "path": "linx/background.py",
+        "bytes": 10524,
+        "sha256": "ea43ce62393f9c6034d0bfdc4b2506745faa61a7352b0ed61ce6211f40bc4132",
+        "size_declared": true
+      },
+      {
+        "path": "linx/const.py",
+        "bytes": 3493,
+        "sha256": "f5c27241a683a48b9cb46dea7fdd381e9b959cc6a7e3b02bc4e8023e9fcb3ca8",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/__init__.py",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/MB_coefficients.txt",
+        "bytes": 90796,
+        "sha256": "9cae16c6502d15ec79a79db2244e2e0146540edb97bc09c5bef12cd70e2284ed",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/QED_P_int.txt",
+        "bytes": 620268,
+        "sha256": "8dc883806e6c63e530ce7c43f374f58a87570cc6971c98adf3bb40dbd71cf3f7",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/QED_d2P_intdT2.txt",
+        "bytes": 620280,
+        "sha256": "428af81dd7dc8902db35f558bca105a5c924941b6a491a6cc2b4ca98e6445777",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/QED_dP_intdT.txt",
+        "bytes": 620276,
+        "sha256": "3666425977839131fb6cd290ab831f7f9af24562f346c8e0e2312647ca355e32",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/nue_ann.txt",
+        "bytes": 8845,
+        "sha256": "76b83852c744d08cb4742d0d2c97130c13bc86e3b1701d0ba48530c2ef45b1cd",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/nue_scatt.txt",
+        "bytes": 8845,
+        "sha256": "3d82d81f04a3a763b17e305890d8135f21b30ca98c1846b9171d44dd6009ad6b",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/numu_ann.txt",
+        "bytes": 8845,
+        "sha256": "83ee1fd356e038e3f6aa2dcb264fca5b37218e9d43f5722f29073e7fc1e27f5c",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/background/numu_scatt.txt",
+        "bytes": 8845,
+        "sha256": "b746dbd98fc82c0b0d87b11ae71ad98465fef4fb20635fc7e769f3a15077e590",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/__init__.py",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PArthENoPE.py",
+        "bytes": 19146,
+        "sha256": "9282ab90545c479e8c5d261ef51009aa49d7af490aa2223e149b279decc2c226",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/Be7nLi7p.txt",
+        "bytes": 2275,
+        "sha256": "fa69002432b915bcc4c1d1991ada432867bc3743ee46235ab0bcb53975d0230c",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/He3aBe7g.txt",
+        "bytes": 2066,
+        "sha256": "55df64bafef9b4cc9156b6c2a15e6e5fd432e09b93201718315ca879e12f6e2f",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/He3dap.txt",
+        "bytes": 3730,
+        "sha256": "b1ff33b4a272c15ebc39e7506f719c02b1e6db010e0bf939fd5d71f409979907",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/He3ntp.txt",
+        "bytes": 2169,
+        "sha256": "459d228ab72790006b6bb3bd1e4dbb04cff4699c4af499da9f26965a06b0619a",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/Li7paa.txt",
+        "bytes": 2169,
+        "sha256": "f0d89f4b88e84994467adc9b37f7274b65a63de469a88ec9004ae463bf40cadc",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt",
+        "bytes": 2086,
+        "sha256": "2f25eb6683970d85f04ab9be6f5534391f697cb88c89bc0e4065a87d899718c5",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt",
+        "bytes": 2086,
+        "sha256": "13f3b6962a7171b08758ba73016a8769f0d29f04bbf925fc9720d1d5c25ab33e",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/dpHe3g.txt",
+        "bytes": 2154,
+        "sha256": "02b0a3456b83b4a87991fce23b7d3009de3b43b4df0d441c6c5d9efce923f8ce",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/npdg.txt",
+        "bytes": 2159,
+        "sha256": "ffc0a608d4783adab7a3500d68ac586ce94c13feafb51c1a12ad2b44ee8a469c",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/taLi7g.txt",
+        "bytes": 2169,
+        "sha256": "68dd3e50759e2853de49a74ac7a2b8c4be251da36dd3c0bf2fd44ef53a89678a",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/tdan.txt",
+        "bytes": 3754,
+        "sha256": "224e37d4f2f9839a7b6c85436dac0ae9ee3cf82965ca66255873b6dc6de96907",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/nuclear_rates/key_PRIMAT_2023/tpag.txt",
+        "bytes": 1952,
+        "sha256": "38af347ca80d026f157c6def242b44b9e1efd04bd6c38de452baf733798af2e3",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/weak_thermal_corrections/nTOp_thermal_corrections_SBBN.txt",
+        "bytes": 2516,
+        "sha256": "2e1bc9a45d4f1f34f7008c406cae199a61787b3b7719ea7fab7ac141e23fbe23",
+        "size_declared": true
+      },
+      {
+        "path": "linx/data/weak_thermal_corrections/pTOn_thermal_corrections_SBBN.txt",
+        "bytes": 2500,
+        "sha256": "24559bbc56d25ce078a46508a40cec5f18aaf73321a00505656c8d4071c88c95",
+        "size_declared": true
+      },
+      {
+        "path": "linx/nuclear.py",
+        "bytes": 37832,
+        "sha256": "c15afe17d4f85f48a6b220ff6c7da90b74ba3a650cc7e8dd9a460c1f2dbe2b38",
+        "size_declared": true
+      },
+      {
+        "path": "linx/reactions.py",
+        "bytes": 11271,
+        "sha256": "1b6564970be22bf180dfb55e0b27b45cb38da29f613b31ed355e3c8f8a7f1d45",
+        "size_declared": true
+      },
+      {
+        "path": "linx/special_funcs.py",
+        "bytes": 7446,
+        "sha256": "ed497310ed2091c0d67d4997f9ae90c01796cd20afa478ab347d2b64d37e8a4c",
+        "size_declared": true
+      },
+      {
+        "path": "linx/tau_n_vary_me.py",
+        "bytes": 831,
+        "sha256": "095e93e4ed10f7756b41fbf32d535ac17de75d2509fc314da8c0bd0dd22a6606",
+        "size_declared": true
+      },
+      {
+        "path": "linx/thermo.py",
+        "bytes": 37990,
+        "sha256": "37d51b242ec68fc797f0246add4f577cdba37a59e2ffbc1e975146f81a7c59bc",
+        "size_declared": true
+      },
+      {
+        "path": "linx/utils.py",
+        "bytes": 639,
+        "sha256": "0db4e14d62988ea1a3fed3ba4d732647dbc324599c7db6a52917e9982cb6c59d",
+        "size_declared": true
+      },
+      {
+        "path": "linx/weak_rates.py",
+        "bytes": 31242,
+        "sha256": "140ee415dfda1a985100a2afc7c21ff9603c611241e25e649ea5d5fb74cc1bbc",
+        "size_declared": true
+      },
+      {
+        "path": "LICENSE.txt",
+        "bytes": 1145,
+        "sha256": "8f1ee40b1b13d0c5710438ae9db3bfde4f61582c75cfa744ddf90439a5a35f92",
+        "size_declared": false
+      }
+    ],
+    "bbn_integrations": 0
+  },
+  "materialization_regressions": 4,
   "package_tests": 7,
   "autonomy_tests": 31,
   "verifier_negative_controls": 6,
   "workflow_policy": "PASS",
-  "new_bbn_calculations": 0,
-  "new_vm_jobs": 0,
-  "scientific_acceptance": false,
-  "calibration": "NOT_EXECUTED; must run on target host before strict admission",
-  "earlier_test_fixture_error": "Temporary directory outside repository in a controller unit test; fixture corrected before any numerical execution; no scientific input changed",
   "integrity_suite": "PASS",
-  "previous_admission_run_id": 43732600379,
-  "previous_numerical_processes": 0,
-  "regressions": [
-    "BH0 CI does not occupy scientific slot",
-    "Active ledger still blocks with BH0 CI",
-    "Unknown and real compute workflows still block",
-    "Full pipeline evaluates with required next field"
-  ]
+  "strict_contract_changed_keys": [
+    "id"
+  ],
+  "numerical_worker_unchanged": true,
+  "budget_unchanged": true,
+  "calibration": "NOT_EXECUTED; target-host calibration required before strict admission",
+  "scientific_acceptance": false,
+  "automatic_retry": false
 }
