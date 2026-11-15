@@ -233,8 +233,11 @@ class Accounting(unittest.TestCase):
 
     def test_disabled_request_never_reserves_or_queries_network(self):
         with tempfile.TemporaryDirectory() as tmp:
+            request = Path(tmp) / 'REQUEST.json'
+            request.write_text('{"execution_enabled": false}\n')
             with patch.dict(os.environ, {'GITHUB_REPOSITORY': admit.REPOSITORY, 'GITHUB_RUN_ATTEMPT': '1',
                                         'GITHUB_REF_NAME': 'science/autonomous-fixture', 'RUNNER_TEMP': tmp}), \
+                    patch.object(admit, 'REQUEST_PATH', str(request)), \
                     patch.object(admit, 'api', side_effect=AssertionError('network forbidden')):
                 admit.main()
             self.assertFalse(json.loads((Path(tmp) / 'autonomy-budget.json').read_text())['execute'])
