@@ -67,6 +67,21 @@
       "status": "NOT_ADMITTED",
       "automatic_retry": false,
       "review": "infra/autonomy/events/43732600379.json"
+    },
+    {
+      "id": "LINX_BBN_IDENTITY_20261115_r2",
+      "record_type": "terminal_package",
+      "workflow_run_id": 43742136639,
+      "source_sha": "ab9544dd92f75b10b1646ead7ca9a729491d1224",
+      "result_sha": "ba157c8bd07d76760b4a4b87a48eeb13368e7821",
+      "summary_sha256": "13a308ea7803ce41cf80087813010765c8b5b2e2b856b481f4aebe947e013464",
+      "artifacts_sha256": "fd2a2a326c2cc2b15baab1c6740d5a293631ad659b9acf74b059b29bcc36d92f",
+      "engineering": "FAIL",
+      "science": "NOT_EVALUATED",
+      "status": "COMPLETE",
+      "processes_exited": true,
+      "review": "infra/autonomy/events/43742136639.json",
+      "automatic_retry": false
     }
   ],
   "limits": {
@@ -93,6 +108,16 @@
         "status": "ADMISSION_DENIED",
         "reason": "ACTIVE_PACKAGE: overlapping BH0 evidence CI; full BBN processes did not start",
         "review": "infra/autonomy/events/43732600379.json",
+        "automatic_retry": false
+      },
+      {
+        "id": "LINX_BBN_IDENTITY_20261115_r2",
+        "pr": 74,
+        "source_sha": "ab9544dd92f75b10b1646ead7ca9a729491d1224",
+        "workflow_run_id": 43742136639,
+        "status": "TECHNICAL_FAILURE",
+        "reason": "LINX materializer KeyError(size) for LICENSE.txt; calibration and strict BBN never started",
+        "review": "infra/autonomy/events/43742136639.json",
         "automatic_retry": false
       }
     ]
