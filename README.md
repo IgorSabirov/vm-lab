@@ -1,3 +1,17 @@
+# Текущая работа — начать здесь
+
+[**Очередь, результаты на ветках и порядок завершения**](infra/RESEARCH_OPERATIONS.md) ·
+[**Живой обзор и рабочая доска**](https://github.com/IgorSabirov/vm-lab/actions/workflows/projects-sync.yml) ·
+[канонический CONTROL](https://github.com/IgorSabirov/vm-lab/blob/science/autonomous-research-20261114/infra/autonomy/CONTROL.json).
+
+`main` — точка входа и обслуживающий код. Действующий научный этап определяется
+через `CONTROL.active_branch/active_pr`, а не датой последнего merge.
+Обзор проверяет SHA и хеши квитанций, показывает завершённые результаты,
+незавершённые контракты и точное действие по каждому открытому PR.
+Инженерное завершение и научная приёмка разделены.
+
+---
+
 **11 ноября: R129 и связанные реестры.** [Условный результат о контактной ёмкости](analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md) · [129 результатов](analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 исходных условий](analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [карта связей](analysis/REGISTRY_LINKS/INDEX.md). [Автоматическая проверка связей](infra/REGISTRY_MAINTENANCE.md) отделена от научных статусов.
 
 [Связи всех карточек и адресный поиск](analysis/REGISTRY_LINKS/INDEX.md) · [Разбор CCC+TL/CBST: геометрия и часы](analysis/CCC_TL_REVIEW_20261112/REPORT.md). Внешний разбор не меняет научные статусы.

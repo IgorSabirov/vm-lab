@@ -66,6 +66,28 @@ class ExportTests(unittest.TestCase):
                 paths = b.run('ls-tree', '-r', '--name-only', last).decode().splitlines()
                 self.assertEqual(paths, ['keep.txt', 'results/snapshot/file.bin'])
                 self.assertEqual(b.run('show', last + ':results/snapshot/file.bin'), b'new data')
+                self.assertEqual(b.commit({'results/snapshot/file.bin': new}, 'repeat'), last)
+                # A second publisher advances main without changing our payload.
+                other = a.commit({'other.txt': a.blob(b'concurrent')}, 'other')
+                self.assertEqual(b.commit({'results/snapshot/file.bin': new}, 'repeat'), other)
+                self.assertEqual(b.run('show', other + ':keep.txt'), b'original')
+                # The remote accepts the next push, but the client loses the ACK.
+                original_b_run = b.run
+                pushes = []
+                def lost_ack(*args, **kwargs):
+                    result = original_b_run(*args, **kwargs)
+                    if args[0] == 'push':
+                        pushes.append(args)
+                        if len(pushes) == 1:
+                            return subprocess.CompletedProcess(args, 1, b'', b'lost acknowledgement')
+                    return result
+                changed = b.blob(b'changed data')
+                with patch.object(b, 'run', side_effect=lost_ack):
+                    recovered = b.commit({'results/snapshot/file.bin': changed}, 'export')
+                self.assertEqual(len(pushes), 1)
+                self.assertEqual(b.run('show', recovered + ':results/snapshot/file.bin'), b'changed data')
+                self.assertEqual(b.run('show', recovered + ':other.txt'), b'concurrent')
+                self.assertEqual(b.commit({'results/snapshot/file.bin': changed}, 'repeat'), recovered)
 
     def test_chunk_restore_and_path_rejection(self):
         with tempfile.TemporaryDirectory() as tmp:
