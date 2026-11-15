@@ -54,6 +54,19 @@
       "summary_sha256": "ac3c47756a5fcabd6639522fb48541d341977e171c051d0c552d89efdc17a161",
       "engineering": "PASS",
       "science": "INPUT_DIAGNOSTIC_ONLY"
+    },
+    {
+      "id": "LINX_BBN_IDENTITY_20261115_r1",
+      "record_type": "admission_attempt",
+      "workflow_run_id": 43732600379,
+      "source_sha": "fe2b185587b8e12d576b0a4b607a042ab7077b35",
+      "result_sha": "7e3b5a75887bd327b57d98ebf4c72f46af09333a",
+      "admission_sha256": "0f283a1a265adf15757994b33b1149433638ecd1343dcddef6ffee37c57820e6",
+      "engineering": "DISPATCH_DELIVERED_ADMISSION_DENIED",
+      "science": "NOT_EVALUATED",
+      "status": "NOT_ADMITTED",
+      "automatic_retry": false,
+      "review": "infra/autonomy/events/43732600379.json"
     }
   ],
   "limits": {
@@ -70,7 +83,19 @@
   "queue": {
     "status": "PREPARATION_REQUIRED",
     "next": "S3_STANDARD physical rate covariance and independent CMB input audit",
-    "reason": "Daily quota removed by owner. No execution-enabled scientific contract is ready; completed evidence is reused. Engineering preparation is independent."
+    "reason": "Daily quota removed by owner. No execution-enabled scientific contract is ready; completed evidence is reused. Engineering preparation is independent.",
+    "blocked_candidates": [
+      {
+        "id": "LINX_BBN_IDENTITY_20261115_r1",
+        "pr": 73,
+        "source_sha": "fe2b185587b8e12d576b0a4b607a042ab7077b35",
+        "workflow_run_id": 43732600379,
+        "status": "ADMISSION_DENIED",
+        "reason": "ACTIVE_PACKAGE: overlapping BH0 evidence CI; full BBN processes did not start",
+        "review": "infra/autonomy/events/43732600379.json",
+        "automatic_retry": false
+      }
+    ]
   },
   "execution_policy": {
     "schema": "vm-lab-execution-plan-v1",
