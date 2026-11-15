@@ -1,0 +1,62 @@
+{
+  "schema": "vm-lab-execution-plan-v1",
+  "package_id": "LINX_BBN_IDENTITY_20261115_r3",
+  "source_commit": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
+  "publication_branch": "science/autonomous-bbn-identity-v4-20261115",
+  "executor": "github_actions",
+  "workload_kind": "independent_realizations",
+  "checkpoint_policy": "not_required",
+  "parallel_sections": 1,
+  "scientific_acceptance": false,
+  "automatic_retry": false,
+  "input_manifest": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/INPUT_MANIFEST.json",
+    "sha256": "42609319429a5ca920d6720449dbc333937e73b1cacc756254ce55df1e36252f"
+  },
+  "acceptance": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/BBN_IDENTITY_CONTRACT.json",
+    "sha256": "fe148f33e6843a218fddd05375f385d336d176e7a060c99e49b2f656bbfc1716"
+  },
+  "calibration": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/results/LINX_BBN_IDENTITY_20261115_r3/CALIBRATION.json",
+    "sha256": "5503edcd9b015e06f69cd0180dc450208cb5da35b74f268bef933a451f534ddf",
+    "executor": "github_actions",
+    "environment_reference": "GitHub run 43743586010 ubuntu-24.04; CALIBRATION.json",
+    "measured_seconds": 58.04826086100002
+  },
+  "budget": {
+    "package_seconds": 9900,
+    "process_seconds": 3600,
+    "section_seconds": 9900,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "tasks": [
+    {
+      "id": "native_pristine",
+      "forecast_seconds": 174.14478258300005,
+      "process_seconds": 3600
+    },
+    {
+      "id": "identical_override",
+      "forecast_seconds": 174.14478258300005,
+      "process_seconds": 3600
+    }
+  ],
+  "sections": [
+    {
+      "id": "full_pair",
+      "task_ids": [
+        "native_pristine",
+        "identical_override"
+      ],
+      "compute_seconds": 7200,
+      "setup_seconds": 1500,
+      "verification_seconds": 60,
+      "publication_seconds": 240,
+      "wall_seconds": 9900,
+      "memory_bytes": 4294967296
+    }
+  ],
+  "calibration_accounting": "600 s calibration included in 1500 s setup; one reservation, no additional package"
+}

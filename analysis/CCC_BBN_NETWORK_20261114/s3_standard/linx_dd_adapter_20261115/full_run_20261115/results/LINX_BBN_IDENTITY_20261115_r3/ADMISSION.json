@@ -28,14 +28,23 @@
     "scientific_acceptance": false
   },
   "execute": true,
-  "phase": "CALIBRATION_RESERVED",
+  "phase": "STRICT_ADMITTED",
   "source_sha": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
   "contract_sha256": "fe148f33e6843a218fddd05375f385d336d176e7a060c99e49b2f656bbfc1716",
-  "observed_utc": "2026-11-15T17:53:25.565271+00:00",
+  "observed_utc": "2026-11-15T17:54:48.039327+00:00",
   "ledger_and_actions_checked": true,
   "policy_version": "20261115-sequential-no-daily-quota-v1",
   "route": "github_actions",
   "bounded_executor": true,
   "scientific_acceptance": false,
-  "strict_execution_admitted": false
+  "strict_execution_admitted": true,
+  "calibration_evidence": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/results/LINX_BBN_IDENTITY_20261115_r3/CALIBRATION.json",
+    "sha256": "5503edcd9b015e06f69cd0180dc450208cb5da35b74f268bef933a451f534ddf",
+    "executor": "github_actions",
+    "environment_reference": "GitHub run 43743586010 ubuntu-24.04; CALIBRATION.json",
+    "measured_seconds": 58.04826086100002
+  },
+  "forecast_package_seconds": 2148.289565166,
+  "measured_execution_plan_sha256": "11fe4ef50ef4adaefc2e839ab6be88528115ededfedc6b2d0b782514027fe0dc"
 }
