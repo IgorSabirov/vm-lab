@@ -132,6 +132,7 @@ def recover_old_identity():
 
 def run_one(sha, role, name, root, channel=None, q=None, background=None, background_sha=None):
     task_dir = OUT/name
+    print(json.dumps({"event":"integration_started","task":name,"utc":now()}), flush=True)
     cmd = [sys.executable,str(HERE/"worker.py"),"--role",role,"--root",str(root),
            "--out",str(task_dir),"--admission",str(OUT/"ADMISSION.json"),"--source-sha",sha]
     if channel is not None:
@@ -149,6 +150,8 @@ def run_one(sha, role, name, root, channel=None, q=None, background=None, backgr
     result = read(task_dir/"RESULT.json")
     result["supervisor"] = guard
     save(task_dir/"RESULT.json",result)
+    print(json.dumps({"event":"integration_completed","task":name,
+                      "wall_seconds":guard["wall_seconds"],"observables":result["observables"]}), flush=True)
     return result
 
 def postprocess(results):
@@ -284,11 +287,16 @@ def main():
                   "forecast_recorded_before_perturbations":True,
                   "within_5400_second_compute_cap":9*wall<=5400,"created_utc":now()}
         save(OUT/"FORECAST.json",forecast)
+        print(json.dumps({"event":"forecast_before_perturbations",**forecast}), flush=True)
+        if os.environ.get("GITHUB_STEP_SUMMARY"):
+            with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as summary_file:
+                summary_file.write("## Baseline and forecast before eight perturbations\n\n```json\n"+
+                                   json.dumps(forecast,indent=2)+"\n```\n")
         if wall>600 or 9*wall>5400:
             raise RuntimeError("Measured baseline forecast exceeds compute envelope; no perturbations started")
         bg=OUT/"baseline"/"background.npz"; bg_sha=baseline["background_sha256"]
-        for channel in CONTRACT["rate_model"]["channels"]:
-            for h in (1.0,0.5):
+        for h in (1.0,0.5):
+            for channel in CONTRACT["rate_model"]["channels"]:
                 suffix=str(h).replace(".","_")
                 for sign in (-1.0,1.0):
                     q=sign*h
