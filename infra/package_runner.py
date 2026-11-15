@@ -30,7 +30,7 @@ def dump(path, value):
 def files(folder):
     return [{'path': str(p.relative_to(folder)), 'size_bytes': p.stat().st_size,
              'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
-            for p in sorted(folder.rglob('*')) if p.is_file() and p != folder/'RESULT_MANIFEST.json']
+            for p in sorted(folder.rglob('*')) if p.is_file() and p != folder/'RESULT_MANIFEST.json' and 'build' not in p.relative_to(folder).parts]
 
 
 def validate_package(plan, root, limits):
@@ -43,8 +43,11 @@ def validate_package(plan, root, limits):
     if subprocess.check_output(['git', 'diff', 'HEAD', '--name-only'], cwd=root, text=True).strip():
         raise ValueError('Tracked source changed after freeze')
     tree = subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=root, text=True).strip()
+    run_ids = set()
     for section in plan['sections']:
         rp = section['run_plan']; validate_plan(rp)
+        if rp['run_id'] in run_ids: raise ValueError('Duplicate section run identity')
+        run_ids.add(rp['run_id'])
         if section['adapter'] not in ALLOWED or rp['command']['entrypoint'] != 'infra/adapters/worker.py':
             raise ValueError('Adapter/entrypoint is not allowlisted')
         if len(section['task_ids']) != 1 or rp['source']['commit'] != head or rp['source']['tree_sha'] != tree:
@@ -105,7 +108,9 @@ def bounded(command, folder, env, seconds, memory, disk, package_out):
 def execute_sections(plan, root, output, admission=None):
     output.mkdir(parents=True, exist_ok=False)
     start = time.monotonic(); summary = {'package_id': plan['package_id'], 'source_sha': plan['source_commit'],
-        'plan_sha256': digest(plan), 'sections': [], 'scientific_acceptance': False}
+        'plan_sha256': digest(plan), 'sections': [], 'scientific_acceptance': False,
+        'excluded_reproducible_scratch': ['*/build/'],
+        'preserved_evidence': 'RAW, DOMAIN, BUILD report, PROCESS, stdout and section plans; build source is pinned'}
     dump(output/'EXECUTION_PLAN.json', plan)
     if admission is not None: dump(output/'ADMISSION.json', admission)
     for section in plan['sections']:
