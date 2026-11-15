@@ -1,0 +1,110 @@
+{
+  "role": "identical_override",
+  "calibration_only": false,
+  "effective_bbn_settings": {
+    "T_start_K": 100000000000.0,
+    "T_end_K": 60000000.0,
+    "eta_fac": 1.0,
+    "tau_n_fac": 1.0,
+    "xi_nu": 0.0,
+    "sampling_nTOp": 150,
+    "solver": "Kvaerno3",
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_steps": 4096,
+    "save_history": true,
+    "initialization": "Unchanged native standard initialization in both arms; saved dense solution must have bitwise identical Y(t0)"
+  },
+  "source_sha": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
+  "contract_sha256": "fe148f33e6843a218fddd05375f385d336d176e7a060c99e49b2f656bbfc1716",
+  "background_sha256": "b1a67ad5532e19f8f8e03cc96e667cfe5c4331f29c23843118e61eb8c7e43e6a",
+  "versions": {
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.12.2",
+    "diffrax": "0.7.1",
+    "interpax": "0.3.8",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "reaction_order": [
+    "npdg",
+    "dpHe3g",
+    "ddHe3n",
+    "ddtp",
+    "tpag",
+    "tdan",
+    "taLi7g",
+    "He3ntp",
+    "He3dap",
+    "He3aBe7g",
+    "Be7nLi7p",
+    "Li7paa"
+  ],
+  "effective_q": [
+    -0.1,
+    0.15,
+    0.0,
+    0.0,
+    -0.05,
+    0.1,
+    0.2,
+    -0.1,
+    0.05,
+    -0.15,
+    -0.05,
+    0.1
+  ],
+  "table_sha256": [
+    "d802c62b5b387374fec85981cb43d5e79d206f3c273b91cba1a11d73b33922d6",
+    "f0bdcf359856f7f363b9d983b702fb2dd8915735605c92c9f1033db8b95b1c98",
+    "df0bb1cc777fb9d3080629e19296017a8e62dca67db7aa84fa7cd4291b0a3693",
+    "9d40f04a44c6c656f49a1a6a107012f9fe71a32d61a7379d8f0fcca9ae6d02cf",
+    "079c8fe0777c350d440b059a67c95c1cb8ae662278ef4fb7c09ce8023b776f02",
+    "9df2aaa406b3521ce27849af911ef83fd4620b881de0b3a99eb9151d71d0e222",
+    "a7201cec0711337c96771315beea04ac24443ea9aadeda196908cab5698d5446",
+    "f558639a69e4f7be7e15ff5fce1034091aa015f24d49b8a81b6303d928631ed5",
+    "da6e3faeffa00d4ea9607dd17aab9eaab8dc30c7ff7724db086d2c2fc427f202",
+    "0fd20faffffa43b2a189889a3e56423dcc5d42dc1b520246d002f9e503e87ce6",
+    "ad64b315943b8818a777402a51c6d63a685b07c874a2ee1b03672c9ff75c2ea1",
+    "1c663a6f9825e4be1d2d0184e37f892530a8c5073cb230408516bddab594fc59"
+  ],
+  "upstream_integrity": "ONLY_RECORDED_ABUNDANCES_PATCH",
+  "all_tables_bitwise_native": true,
+  "integration_interval": [
+    0.00924128806305267,
+    49225.783325675184
+  ],
+  "Y_initial": [
+    0.463148968581473,
+    0.5368510314185271,
+    3.8540754550479895e-12,
+    1.2732517832809452e-23,
+    1.3531014482135273e-23,
+    1.4737575129567762e-34,
+    1.267390635035423e-68,
+    1.2164934806633844e-68
+  ],
+  "Y_final": [
+    7.172625697423712e-11,
+    0.7526909553440587,
+    1.8316407731073665e-05,
+    5.8419894909040215e-08,
+    7.745263465725695e-06,
+    0.06181224943225726,
+    2.1839471043380208e-11,
+    4.0635155921596303e-10
+  ],
+  "solver_stats": {
+    "max_steps": 4096,
+    "num_accepted_steps": 900,
+    "num_rejected_steps": 301,
+    "num_steps": 1201
+  },
+  "Yp_diagnostic": 0.24724899772902903,
+  "D_H_diagnostic": 2.4334566000864386e-05,
+  "wall_seconds": 31.99956919600001,
+  "cpu_seconds": 31.952217693999998,
+  "peak_rss_kib": 1265328,
+  "scientific_acceptance": false
+}
