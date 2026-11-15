@@ -1,0 +1,225 @@
+{
+  "schema": "vm-lab-execution-plan-v1",
+  "package_id": "ADAPTERS_PY_CPP_20261115_r1",
+  "source_commit": "985dda01924b85ea72fa8fb083d72ccbc645ba08",
+  "publication_branch": "science/autonomous-policy-adapters-20261115",
+  "workload_kind": "independent_realizations",
+  "executor": "local",
+  "input_manifest": {
+    "path": "analysis/AUTONOMY_ADAPTERS_20261115/INPUT_MANIFEST.json",
+    "sha256": "b465e7cc2a86bb22f9ee529f12ed322a9e8b7c6582d70667d695a5e0f82da5dc"
+  },
+  "acceptance": {
+    "path": "analysis/AUTONOMY_ADAPTERS_20261115/ACCEPTANCE.json",
+    "sha256": "95849f38b5d46536830d4a27aed85d762b131fb84498fa69d69e39be93cb28e2"
+  },
+  "calibration": {
+    "path": "analysis/AUTONOMY_ADAPTERS_20261115/CALIBRATION.json",
+    "sha256": "d98e569477516c4771084ceef647266cbcacd97826b2fa716847c1684b455fb8",
+    "measured_seconds": 21.50204635,
+    "environment_reference": "Linux-6.18.57-x86_64-with-glibc2.41; 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "executor": "local",
+    "review": {
+      "path": "analysis/AUTONOMY_ADAPTERS_20261115/CALIBRATION_REVIEW.json",
+      "sha256": "07b1ab12912d74dc832c0ddf29049419ec2920abde3ef1bad0de89bb34f89e0a"
+    }
+  },
+  "tasks": [
+    {
+      "id": "add_f2",
+      "forecast_seconds": 1,
+      "process_seconds": 20,
+      "seed": 20261115
+    },
+    {
+      "id": "serbian_signature",
+      "forecast_seconds": 60,
+      "process_seconds": 120
+    }
+  ],
+  "sections": [
+    {
+      "id": "add_f2",
+      "task_ids": [
+        "add_f2"
+      ],
+      "adapter": "add_f2",
+      "config": {
+        "seed": 20261115,
+        "initial_vertices": 6,
+        "steps": 4,
+        "bit_probability": 0.5,
+        "radius": 2
+      },
+      "run_plan": {
+        "schema": "vm-lab-run-plan-v1",
+        "run_id": "ADAPTERS_20261115_add_f2_r1",
+        "source": {
+          "commit": "985dda01924b85ea72fa8fb083d72ccbc645ba08",
+          "tree_sha": "9fd26e0fd7790f961acd132b3f768d59059a3b63",
+          "input_manifest_sha256": "b465e7cc2a86bb22f9ee529f12ed322a9e8b7c6582d70667d695a5e0f82da5dc",
+          "config_sha256": "d84d74c7bc82f15ef0a91f3166f49291e8ff21d41b4d80adab721bc3dcc1e63d"
+        },
+        "command": {
+          "entrypoint": "infra/adapters/worker.py",
+          "args": []
+        },
+        "authorization": {
+          "authority": "user",
+          "reference": "issue63-and-owner-apply-review-20261115",
+          "scope": "bounded engineering adapters; no scientific acceptance",
+          "duration": "persistent"
+        },
+        "budget": {
+          "forecast_seconds": 1,
+          "hard_wall_seconds": 20,
+          "memory_limit_mib": 4096,
+          "disk_limit_mib": 2048
+        },
+        "executor": {
+          "kind": "sandbox",
+          "id": "Linux-6.18.57-x86_64-with-glibc2.41; 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+        },
+        "acceptance": {
+          "required_artifacts": [
+            "RAW.json",
+            "DOMAIN.json",
+            "SECTION.json",
+            "stdout.log"
+          ]
+        },
+        "scientific_acceptance": "SEPARATE_USER_REVIEW"
+      },
+      "setup_seconds": 0,
+      "compute_seconds": 20,
+      "verification_seconds": 10,
+      "publication_seconds": 50,
+      "wall_seconds": 80,
+      "memory_bytes": 4294967296
+    },
+    {
+      "id": "serbian_signature",
+      "task_ids": [
+        "serbian_signature"
+      ],
+      "adapter": "serbian_signature",
+      "config": {
+        "fixtures": [
+          {
+            "id": "euclidean_345",
+            "sides": [
+              3,
+              4,
+              5
+            ],
+            "expected_inertia": [
+              2,
+              0,
+              0
+            ],
+            "category": "valid_pd"
+          },
+          {
+            "id": "degenerate_112",
+            "sides": [
+              1,
+              1,
+              2
+            ],
+            "expected_inertia": [
+              1,
+              0,
+              1
+            ],
+            "category": "exact_degenerate"
+          },
+          {
+            "id": "invalid_113",
+            "sides": [
+              1,
+              1,
+              3
+            ],
+            "expected_inertia": [
+              1,
+              1,
+              0
+            ],
+            "category": "indefinite"
+          },
+          {
+            "id": "near_112",
+            "sides": [
+              1,
+              1,
+              1.9999999999999998
+            ],
+            "expected_inertia": [
+              2,
+              0,
+              0
+            ],
+            "category": "near_threshold"
+          }
+        ]
+      },
+      "run_plan": {
+        "schema": "vm-lab-run-plan-v1",
+        "run_id": "ADAPTERS_20261115_serbian_signature_r1",
+        "source": {
+          "commit": "985dda01924b85ea72fa8fb083d72ccbc645ba08",
+          "tree_sha": "9fd26e0fd7790f961acd132b3f768d59059a3b63",
+          "input_manifest_sha256": "b465e7cc2a86bb22f9ee529f12ed322a9e8b7c6582d70667d695a5e0f82da5dc",
+          "config_sha256": "2c236106b42146514d32c415a75feb003169cc8da0ba5c7c7c8bf54e5ac2ea89"
+        },
+        "command": {
+          "entrypoint": "infra/adapters/worker.py",
+          "args": []
+        },
+        "authorization": {
+          "authority": "user",
+          "reference": "issue63-and-owner-apply-review-20261115",
+          "scope": "bounded engineering adapters; no scientific acceptance",
+          "duration": "persistent"
+        },
+        "budget": {
+          "forecast_seconds": 60,
+          "hard_wall_seconds": 120,
+          "memory_limit_mib": 4096,
+          "disk_limit_mib": 2048
+        },
+        "executor": {
+          "kind": "sandbox",
+          "id": "Linux-6.18.57-x86_64-with-glibc2.41; 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+        },
+        "acceptance": {
+          "required_artifacts": [
+            "RAW.json",
+            "DOMAIN.json",
+            "SECTION.json",
+            "stdout.log",
+            "BUILD.json"
+          ]
+        },
+        "scientific_acceptance": "SEPARATE_USER_REVIEW"
+      },
+      "setup_seconds": 0,
+      "compute_seconds": 120,
+      "verification_seconds": 30,
+      "publication_seconds": 250,
+      "wall_seconds": 400,
+      "memory_bytes": 4294967296
+    }
+  ],
+  "parallel_sections": 1,
+  "budget": {
+    "package_seconds": 480,
+    "process_seconds": 120,
+    "section_seconds": 400,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "checkpoint_policy": "not_required",
+  "scientific_acceptance": false,
+  "automatic_retry": false
+}
