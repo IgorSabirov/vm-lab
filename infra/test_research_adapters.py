@@ -48,12 +48,20 @@ class Adapters(unittest.TestCase):
             self.assertIn('started',(folder/'stdout.log').read_text())
 
     def test_serbian_exact_math_is_not_the_ambiguity_flag(self):
-        config={'fixtures':[{'id':'degenerate','sides':[1,1,2],
-                           'expected_inertia':[1,0,1],'category':'exact_degenerate'}]}
-        # Shared four-fixture receipt is required; this deliberately cannot pass.
-        raw={'build_passed':True,'matrices':[[[1,-1],[-1,1]]],
-             'observed':{'counts':[[1,0,1]]}}
-        with self.assertRaises(AssertionError):verify('serbian_signature',raw,config)
+        base=ROOT/'analysis/AUTONOMY_ADAPTERS_20261115'
+        config=json.loads((base/'CONFIGS.json').read_text())['serbian_signature']
+        raw=json.loads((base/'calibration/serbian_signature/RAW.json').read_text())
+        result=verify('serbian_signature',raw,config)
+        self.assertEqual(result['fixtures'][1]['exact_inertia'],[1,0,1])
+        near=result['fixtures'][3]
+        self.assertEqual(near['exact_inertia'],[2,0,0])
+        self.assertFalse(near['independently_resolved'])
+        self.assertFalse(near['observed']['numerically_ambiguous'])
+        for change in (lambda x:x['observed']['counts'].__setitem__(2,[2,0,0]),
+                       lambda x:x['observed']['counts'].__setitem__(3,[2,0,0]),
+                       lambda x:x['observed']['reliable'].__setitem__(0,False)):
+            bad=copy.deepcopy(raw);change(bad)
+            with self.assertRaises(AssertionError):verify('serbian_signature',bad,config)
 
 
 if __name__=='__main__':unittest.main()

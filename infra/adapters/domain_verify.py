@@ -47,8 +47,15 @@ def serbian(raw, config):
             # A zero eigenvalue may be flagged ambiguous by this classifier.
         else:
             assert fixture['category'] == 'near_threshold'
-            assert obs['numerically_ambiguous'][i] is True
+            # The upstream flag is not equivalent to a small eigenvalue.
+            large = (float(a*a+b*b) + math.sqrt(float((a*a-b*b)**2 + (a*a+b*b-c*c)**2)))/2
+            small = float(determinant)/large
+            assert abs(small) <= obs['zero_tolerance'][i]
+            assert obs['counts'][i] == [1, 0, 1]
+            assert type(obs['numerically_ambiguous'][i]) is bool
+            assert type(obs['reliable'][i]) is bool
         records.append({'id': fixture['id'], 'exact_inertia': exact, 'category': fixture['category'],
+                        'independently_resolved': fixture['category'] != 'near_threshold',
                         'observed': {k: v[i] for k, v in obs.items()}})
     return {'status': 'PASS', 'scope': 'Four Gram controls; mathematical inertia and numerical flags separate',
             'fixtures': records, 'scientific_acceptance': False}
