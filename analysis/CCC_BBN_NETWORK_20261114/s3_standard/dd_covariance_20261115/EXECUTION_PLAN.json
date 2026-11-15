@@ -1,0 +1,103 @@
+{
+  "schema": "vm-lab-execution-plan-v1",
+  "package_id": "S3_DD_RESPONSE_20261115_r1",
+  "source_commit": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+  "publication_branch": "science/autonomous-bbn-identity-v4-20261115",
+  "executor": "github_actions",
+  "workload_kind": "independent_realizations",
+  "checkpoint_policy": "not_required",
+  "parallel_sections": 1,
+  "scientific_acceptance": false,
+  "automatic_retry": false,
+  "input_manifest": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/INPUT_MANIFEST.json",
+    "sha256": "05778db838d5f41dbfbd31e98ba7582ac381dc674a240ba0a9c32d11a439dd7a"
+  },
+  "acceptance": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/CONTRACT.json",
+    "sha256": "8b78dce8463dd47e39625f1e785ab6bd06d886332469e2902f6f4e0a0c970cd5"
+  },
+  "calibration": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/results/LINX_BBN_IDENTITY_20261115_r3/CALIBRATION.json",
+    "sha256": "5503edcd9b015e06f69cd0180dc450208cb5da35b74f268bef933a451f534ddf",
+    "executor": "github_actions",
+    "environment_reference": "Historical same-runner full BBN calibration from GitHub Actions run 43743586010; ubuntu-24.04, pinned LINX/adapter dependencies.",
+    "measured_seconds": 58.04826086100002
+  },
+  "budget": {
+    "package_seconds": 6600,
+    "process_seconds": 600,
+    "section_seconds": 6600,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648
+  },
+  "tasks": [
+    {
+      "id": "native_q0_baseline",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddHe3n_q_minus_1",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddHe3n_q_plus_1",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddtp_q_minus_1",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddtp_q_plus_1",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddHe3n_q_minus_0_5",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddHe3n_q_plus_0_5",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddtp_q_minus_0_5",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    },
+    {
+      "id": "ddtp_q_plus_0_5",
+      "forecast_seconds": 58.04826086100002,
+      "process_seconds": 600
+    }
+  ],
+  "sections": [
+    {
+      "id": "full_dd_response",
+      "task_ids": [
+        "native_q0_baseline",
+        "ddHe3n_q_minus_1",
+        "ddHe3n_q_plus_1",
+        "ddtp_q_minus_1",
+        "ddtp_q_plus_1",
+        "ddHe3n_q_minus_0_5",
+        "ddHe3n_q_plus_0_5",
+        "ddtp_q_minus_0_5",
+        "ddtp_q_plus_0_5"
+      ],
+      "compute_seconds": 5400,
+      "setup_seconds": 600,
+      "verification_seconds": 300,
+      "publication_seconds": 300,
+      "wall_seconds": 6600,
+      "memory_bytes": 4294967296
+    }
+  ]
+}

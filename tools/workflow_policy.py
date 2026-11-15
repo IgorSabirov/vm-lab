@@ -11,6 +11,12 @@ REPOSITORY_GUARD = "github.repository == 'IgorSabirov/vm-lab'"
 # Every exception is tied to one workflow, one job, one exact timeout, and one
 # push-only RUN_REQUEST path on a dedicated branch.
 LONG_EXECUTION_ALLOWLIST = {
+    "s3-dd-covariance.yml": {
+        "job": "response",
+        "minutes": 110,
+        "branch": "science/autonomous-bbn-identity-v4-20261115",
+        "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/RUN_REQUEST.json",
+    },
     "p2-fullnet-execute.yml": {
         "job": "fullnet",
         "minutes": 60,
@@ -44,7 +50,7 @@ def _triggers(workflow):
 
 
 def validate_runtime_contract(filename, workflow, triggers, job_name, job):
-    """Enforce 1–10 min by default; allow only four frozen execution contracts."""
+    """Enforce 1–10 min by default; allow only explicitly frozen execution contracts."""
     timeout = job.get("timeout-minutes", 0)
     if isinstance(timeout, int) and 1 <= timeout <= 10:
         return
