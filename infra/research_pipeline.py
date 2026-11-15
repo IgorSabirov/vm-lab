@@ -9,7 +9,10 @@ import sys
 import signal
 import time
 from datetime import datetime,timezone
-from autonomy.execution_policy import digest, validate as validate_execution
+try:
+    from .autonomy.execution_policy import digest, validate as validate_execution
+except ImportError:  # Direct CLI: python infra/research_pipeline.py.
+    from autonomy.execution_policy import digest, validate as validate_execution
 
 REPO=Path(__file__).resolve().parents[1]
 PKG=REPO/'analysis/CCC_BBN_NETWORK_20261114/pipeline'

@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -207,6 +208,10 @@ class Accounting(unittest.TestCase):
 
 
 class Controller(unittest.TestCase):
+    def test_package_import_used_by_bh0_workflow(self):
+        subprocess.run([sys.executable, '-c', 'from infra.research_pipeline import evaluate'],
+                       cwd=research_pipeline.REPO, check=True, timeout=5)
+
     def test_existing_flat_s3_manifest_is_verified_without_rewriting_evidence(self):
         plan = research_pipeline.read(research_pipeline.PKG / 'PIPELINE.json')
         stage = next(s for s in plan['stages'] if s['id'] == 'S3_INPUT_AUDIT')
