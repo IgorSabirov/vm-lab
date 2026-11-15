@@ -24,7 +24,8 @@ NON_COMPUTE = {'.github/workflows/' + n + '.yml' for n in (
     'development', 'codeql', 'dependency-review', 'project-events',
     'projects-sync', 'result-pull-request', 'evidence-publication',
     'scorecard', 'freeze-release', 'registry-advisor', 'upstream-monitor',
-    'external-validation', 'p2-fullnet-static', 'failure-advisor')}
+    'external-validation', 'p2-fullnet-static', 'failure-advisor',
+    'anthropic-bh0')}
 
 
 def moment(value):
