@@ -1,0 +1,57 @@
+{
+  "schema": "vm-lab-engineering-validation-v1",
+  "issue": 59,
+  "parent_pr": 54,
+  "base_commit": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+  "engineering_status": "LOCAL_CHECKS_PASS",
+  "checks": [
+    {
+      "command": "python tools/ci_suite.py infra",
+      "tests": 125,
+      "seconds": 13.371,
+      "result": "PASS"
+    },
+    {
+      "command": "python tools/ci_suite.py integrity",
+      "unit_tests": 68,
+      "result": "PASS"
+    },
+    {
+      "command": "python infra/research_pipeline.py",
+      "result": "Historical S0/S1/S_ETA/BH0/S3_INPUT_AUDIT imports COMPLETE; scientific contracts unchanged"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "scientific_execution": false,
+  "scientific_acceptance": false,
+  "r_c_l_u_changed": false,
+  "queue_changed": false,
+  "vm_services_changed": false,
+  "files_sha256": {
+    ".github/workflows/research-pipeline.yml": "1c38b21d927c28738c2436c418a0559bb09e153f0815ca4c21e5c9748ea10c61",
+    "AGENTS.md": "8c0cf290ca2308962adfa545ec50059cbc9a6cf08e3c7d2c8a3aa722d12f6c0a",
+    "RUNTIME_GATE.md": "20e992471cf95a531229bff85e5157461b21e12173f8ac5afddfd31b2da06294",
+    "SCIENCE_INFRASTRUCTURE_SEPARATION.md": "f91b3942a450b4a56c1309c5a4c42b4dd2a886b0a122a309d6f1842d6b9aac21",
+    "infra/LAUNCH_RUNBOOK.md": "bedd712f1fe56e4a5af98976dfe2ecc2cf295f9824d585032f10e0cb9a1050c0",
+    "infra/RUN_CONTRACT.md": "c6a3b303a8b66e7d1b819d062f86b6a70e3bcd3ba4fc42378ed94393a07385af",
+    "infra/autonomy/CONTROL.json": "1dfeb9f385cbf3f920c95ae90b65ae859e42c7f731dbdbe78bec92395fd89702",
+    "infra/autonomy/LEDGER.json": "07050d144af6e499632e9585f8be0370712b7f703d90f3a6ecac2033b4479694",
+    "infra/autonomy/README.md": "3db0ce5e4ab4d2781fd5751497bfb9041aeed04aa6d9b52aceea5e7cafebc3e9",
+    "infra/autonomy/admit.py": "773d8bfb69352f56947d62fa6b4e09eb7eb6affdfa6f5515bcd62a20cf47e876",
+    "infra/research_pipeline.py": "d7af87dd98368ea8de554fcf1117572c32211ea37cd2e209a352f43fad5a0948",
+    "tools/workflow_policy.py": "b6fd0e7a95a7b881ce78b9985691c89e755f2a5288aac5b728b72c14201352d6",
+    "infra/autonomy/EXECUTION_ROUTING.md": "3cfa08800488df855e64bdfe22e07fde28a9864ce3d9a6dd698dcbd5b8d7829f",
+    "infra/autonomy/execution_policy.py": "168f8be4c20b0a3e687cfef4a68c52f884c0292333af548e350d0fa63a08915a",
+    "infra/autonomy/finish.py": "cc04e8286c60965bc3bbbfe3ec0958a67223c20da61389f55c71617af5ac8a0a",
+    "infra/test_autonomy.py": "0e04b36aa33a001abab3ddb6314325ac440aa6a9cb9f3a25e3c412c445f96333"
+  },
+  "limitations": [
+    "Policy is in a separate PR, not deployed to the anchor branch",
+    "No BUDGET_WAIT time-trigger was installed",
+    "Existing CCC dispatcher remains single-section; future S3 MC needs its reviewed section-aware scientific adapter",
+    "VM route uses existing launch protocol, not an unverified automatic VM submitter"
+  ]
+}
