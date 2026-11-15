@@ -1,0 +1,127 @@
+{
+  "schema": "vm-lab-hp-balance-review-checks-v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "two_phase_balance",
+      "passed": true,
+      "residual": "0",
+      "scope": "R>0, H=Rdot/R, p=rho/3"
+    },
+    {
+      "id": "background_derivative",
+      "passed": true,
+      "residual": "0",
+      "scope": "Baseline branch derivative is not a separately identified exchange channel"
+    },
+    {
+      "id": "nonconformal_remainder",
+      "passed": true,
+      "residual": "0",
+      "scope": "General additive pressure ansatz"
+    },
+    {
+      "id": "radius_and_trace_correction",
+      "passed": true,
+      "residual": "0",
+      "scope": "R need not equal cosmic scale; Theta=-rho+3p"
+    },
+    {
+      "id": "pressure_from_free_energy",
+      "passed": true,
+      "residual": "0",
+      "scope": "Fixed dimensionless couplings; no omitted geometric terms"
+    },
+    {
+      "id": "action_to_density",
+      "passed": true,
+      "residual": "0",
+      "scope": "I=-ln Z, not entropy"
+    },
+    {
+      "id": "heat_capacity",
+      "passed": true,
+      "residual": "0",
+      "scope": "dE/dT at fixed R = 2*pi^2*Cprime"
+    },
+    {
+      "id": "common_vacuum_offset",
+      "passed": true,
+      "residual": "0",
+      "scope": "F shifts by k/R; common C offset, no Cprime shift"
+    },
+    {
+      "id": "isolated_constraint",
+      "passed": true,
+      "residual": "0",
+      "scope": "Nonzero denominator; necessary balance, not a kinetic solution"
+    },
+    {
+      "id": "cross_level_without_sign_change",
+      "passed": true,
+      "residual": "0",
+      "scope": "Crossing G=3/2 at t=0 does not flip Q"
+    },
+    {
+      "id": "reverse_velocity_reverses_Q",
+      "passed": true,
+      "residual": "0",
+      "scope": "Same state; different tangent directions"
+    },
+    {
+      "id": "leading_N_compensation",
+      "passed": true,
+      "residual": "0",
+      "scope": "C_A=0, DeltaC=N^2*chi^4, f=e^-4t, chi=e^t, t>=0; algebra only"
+    },
+    {
+      "id": "boundary_layer",
+      "passed": true,
+      "residual": "0",
+      "scope": "f=a/(b*N^2), omitted background contributes half the denominator"
+    },
+    {
+      "id": "one_anchor_many_slopes",
+      "passed": true,
+      "residual": "0",
+      "scope": "Latent heat at coexistence does not determine DeltaCprime"
+    },
+    {
+      "id": "simple_pole_density",
+      "passed": true,
+      "residual": "0",
+      "scope": "Free pole approached from below only"
+    },
+    {
+      "id": "simple_pole_heat_capacity",
+      "passed": true,
+      "residual": "0",
+      "scope": "No substitution of interacting Tc into a free pole"
+    },
+    {
+      "id": "su_u_common_prefactor",
+      "passed": true,
+      "residual": "0",
+      "scope": "Normalized Haar, zero-vacuum free thermal convention"
+    }
+  ],
+  "counterexample_values": {
+    "same_state_Q_plus": 1,
+    "same_state_Q_minus": -1,
+    "crossing_level_G_1_5_at_t_0_Q": 1,
+    "Q_change_without_crossing_G_1_5": {
+      "G": "3/2+t^2",
+      "Q": "2*t"
+    }
+  },
+  "scientific_acceptance": false,
+  "new_HP_BBN_or_kinetic_simulation": false,
+  "preregistered_confirmatory_experiment": false,
+  "purpose": "Post-review exact verification and falsification of overclaims; not new physical model",
+  "python": "3.12.14",
+  "sympy": "1.14.0",
+  "code_sha256": "ab59836143e334080a6b55d393c21e8ae4c1fec6e8076f9edd193360fbfca81f",
+  "wall_seconds": 0.3475848150001184,
+  "forecast_seconds": 10,
+  "hard_wall_seconds": 60
+}
