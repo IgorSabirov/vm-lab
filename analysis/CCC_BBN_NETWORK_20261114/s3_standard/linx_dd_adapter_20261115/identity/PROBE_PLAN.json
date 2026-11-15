@@ -1,0 +1,16 @@
+{
+  "id": "LINX_NATIVE_BOUNDARY_20261115_v1",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "question": "Actual unmodified LINX D+D forward rates outside the table in linear and log modes",
+  "network": "key_PRIMAT_2023",
+  "channels": ["ddHe3n", "ddtp"],
+  "interpolation": ["linear", "log"],
+  "T9": [0.001, 1.0, 10.0, 10.000001, 12.0, 20.0, 50.0, 100.0],
+  "q": 0.0,
+  "paths": ["precompute_rate_tables -> frwrd_rate_from_table", "deprecated frwrd_rate_param control"],
+  "forecast_seconds": {"central": 10, "range": [2, 30], "basis": "Prior 30-test RHS suite: 12 s. This probe constructs four D+D method paths per interpolation with only vector evaluation. Not a BBN runtime forecast."},
+  "limits": {"wall_seconds": 60, "memory_bytes": 4294967296, "output_bytes": 2147483648},
+  "bbn_integrations": 0,
+  "gp_draws": 0,
+  "scientific_acceptance": false
+}

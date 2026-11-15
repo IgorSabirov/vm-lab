@@ -1,0 +1,45 @@
+{
+  "schema": "vm-lab-autonomy-event-v1",
+  "event_delivery_id": "489838f0-e0a4-11f1-8442-4d81a6f31f7b",
+  "event_pr": 57,
+  "kind": "ENGINEERING_BOUNDARY_AND_PREPARATION_REVIEW",
+  "processed_id": "LINX_NATIVE_BOUNDARY_20261115_v1",
+  "workflow_run_id": null,
+  "result_sha": "ee5d94dca3393f3601e80523fff7e58ebea22476",
+  "result_path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/identity/boundary_results_r2/RESULT.json",
+  "result_sha256": "56b810fc3490475508c722428a4b636b6dffef46545cbe49f24f73af6f85fe2f",
+  "artifacts_sha256": {
+    "boundary_results_r2/RESULT.json": "56b810fc3490475508c722428a4b636b6dffef46545cbe49f24f73af6f85fe2f",
+    "boundary_results_r2/ADMISSION.json": "583cee7a421653f81a6192ba99e008afb0703b46cd1af9d15c3da0dfaeb1b608",
+    "boundary_console_r2.log.guard.json": "26d4bfc6313c080397dcf4188e81295bd819787a8824c6f52368c4df267182bf",
+    "BBN_IDENTITY_CONTRACT.json": "1105efd57941626b12a9262bd72868d370346136e816ab51e421356801268c67",
+    "PREPARATION_CHECKS.json": "b8a70934b8b14976a1d8282b498c868e93c45045cad1603698b5a9d19438ccbc"
+  },
+  "engineering_status": "NATIVE_BOUNDARY_CONFIRMED",
+  "finding": {
+    "linear_outside_DD_grid": 0,
+    "log_outside_DD_grid": 1,
+    "channels": [
+      "ddHe3n",
+      "ddtp"
+    ],
+    "native_paths_match": true
+  },
+  "scientific_status": "FULL_BBN_PAIR_NOT_EXECUTED",
+  "bbn_integrations": 0,
+  "gp_draws": 0,
+  "scientific_acceptance": false,
+  "initial_import_failure": "Preserved boundary_results/ADMISSION.json and boundary_console.log; missing pinned special_funcs was materialized before r2",
+  "active_branch": "science/autonomous-s3-inputs-20261114",
+  "active_pr": 54,
+  "active_head": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+  "queue": {
+    "status": "BUDGET_WAIT",
+    "not_before_utc": "2026-11-15T14:09:29Z",
+    "new_packages_last_24h": 2
+  },
+  "action": "PRESERVE_QUEUE_NO_DISPATCH",
+  "control_updated": false,
+  "deduplication": "Result SHA and result SHA256 identify the consumed engineering evidence. Receipt-only commits and repeated PR events must not rerun it. This is not a completed BBN/S3 package.",
+  "next": "Frozen native-pristine versus identical-override pair is implemented. Full-route calibration and combined Actions/local-ledger admission remain prerequisites to execution."
+}
