@@ -1,8 +1,8 @@
 {
   "status": "PASS",
-  "kind": "static_and_controller_checks_before_first_package",
+  "kind": "launch_revision_v3_owner_requested",
   "registry_commit": "d0b33363a48f7d55c63ba4d63e1d0d8b309b3b07",
-  "source_parent": "f9ab1fafc661637e5a9e9fc0bb9b36b2c538e0f1",
+  "source_parent": "7e3b5a75887bd327b57d98ebf4c72f46af09333a",
   "adapter_parent": "6b8710970f8b4291cce8c798f986865a984e8413",
   "strict_scientific_input_keys_unchanged": [
     "network",
@@ -19,12 +19,21 @@
     "upstream_commit"
   ],
   "package_tests": 7,
-  "autonomy_tests": 28,
+  "autonomy_tests": 31,
   "verifier_negative_controls": 6,
   "workflow_policy": "PASS",
   "new_bbn_calculations": 0,
   "new_vm_jobs": 0,
   "scientific_acceptance": false,
   "calibration": "NOT_EXECUTED; must run on target host before strict admission",
-  "earlier_test_fixture_error": "Temporary directory outside repository in a controller unit test; fixture corrected before any numerical execution; no scientific input changed"
+  "earlier_test_fixture_error": "Temporary directory outside repository in a controller unit test; fixture corrected before any numerical execution; no scientific input changed",
+  "integrity_suite": "PASS",
+  "previous_admission_run_id": 43732600379,
+  "previous_numerical_processes": 0,
+  "regressions": [
+    "BH0 CI does not occupy scientific slot",
+    "Active ledger still blocks with BH0 CI",
+    "Unknown and real compute workflows still block",
+    "Full pipeline evaluates with required next field"
+  ]
 }

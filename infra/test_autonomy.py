@@ -169,6 +169,19 @@ class Accounting(unittest.TestCase):
         self.runs.append(dict(self.runs[0], id=99, created_at='2026-11-12T12:00:00Z', status='waiting'))
         self.assertFalse(self.decide()['admitted'])
 
+    def test_bh0_evidence_ci_does_not_occupy_scientific_slot(self):
+        self.runs.append(dict(self.runs[0], id=99, status='in_progress',
+                             path='.github/workflows/anthropic-bh0.yml'))
+        self.assertTrue(self.decide()['admitted'])
+        self.ledger['packages'][0]['status'] = 'RUNNING'
+        self.assertEqual(self.decide()['reason'], 'ACTIVE_PACKAGE')
+
+    def test_bh0_exception_does_not_allow_compute_or_similarly_named_workflows(self):
+        for path in ('.github/workflows/research-pipeline.yml',
+                     '.github/workflows/anthropic-bh0-compute.yml'):
+            self.runs = [dict(self.runs[0], id=99, status='waiting', path=path)]
+            self.assertEqual(self.decide()['reason'], 'ACTIVE_PACKAGE')
+
     def test_live_active_overrides_terminal_ledger_snapshot(self):
         self.ledger['packages'][0]['status'] = 'COMPLETED'
         self.runs[0]['status'] = 'in_progress'
@@ -228,6 +241,13 @@ class Accounting(unittest.TestCase):
 
 
 class Controller(unittest.TestCase):
+    def test_full_pipeline_with_identity_card_evaluates(self):
+        state = research_pipeline.evaluate(
+            research_pipeline.read(research_pipeline.PKG / 'PIPELINE.json'),
+            research_pipeline.read(research_pipeline.PKG / 'RUN_REQUEST.json'))
+        self.assertEqual(state['stages']['BH0']['status'], 'COMPLETE')
+        self.assertIn('next_action', state['stages']['LINX_BBN_IDENTITY'])
+
     def test_package_import_used_by_bh0_workflow(self):
         subprocess.run([sys.executable, '-c', 'from infra.research_pipeline import evaluate'],
                        cwd=research_pipeline.REPO, check=True, timeout=5)
