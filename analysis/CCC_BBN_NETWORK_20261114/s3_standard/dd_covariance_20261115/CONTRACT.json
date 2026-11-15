@@ -1,0 +1,73 @@
+{
+  "schema": "vm-lab-s3-dd-covariance-response-v1",
+  "id": "S3_DD_RESPONSE_20261115_r1",
+  "status": "FROZEN_LOCAL_RESPONSE_PENDING_EXECUTION",
+  "scope": "Two D+D rate-shape parameters to local BBN observable sensitivities; no full nuclear covariance, posterior, likelihood, or scientific acceptance.",
+  "source": {
+    "upstream_repository": "cgiovanetti/LINX",
+    "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+    "network": "key_PRIMAT_2023",
+    "species_order": ["n", "p", "d", "t", "He3", "He4", "Li7", "Be7"],
+    "adapter": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/dd_adapter.py",
+    "adapter_patch": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/PATCH_RECEIPT.json"
+  },
+  "rate_model": {
+    "channels": ["ddHe3n", "ddtp"],
+    "parameterization": "r_i(T,q_i)=mu_i(T)*exp(q_i*ln(f_i(T)))",
+    "q_distribution_marginals": "N(0,1), unit marginal variance by parameterization",
+    "temperature_semantics": "One q_i per reaction is shared over the complete temperature table; f_i(T) is the pinned temperature-dependent expsigma column, not a scalar multiplier.",
+    "interpolation": "LINX native linear interpolation on unchanged Reaction.T9_vec nodes",
+    "units": "cm^3 s^-1 g^-1",
+    "dtype": "float64",
+    "reverse_rates": "Native detailed balance from the same perturbed forward table",
+    "other_reactions": "q=0 and native tables unchanged in every realization",
+    "adapter_semantics": "The adapter zeroes native q for the two replaced channels before precompute, then replaces only those two tables; no second application of q."
+  },
+  "design": {
+    "integrations": 9,
+    "baseline": "One native standard-background BBN integration with q=0 for every reaction; this is the centre of the local response.",
+    "perturbations": "Eight adapter integrations: each D+D channel at q=+/-1 and +/-0.5, with the other D+D channel and every other reaction fixed at q=0.",
+    "steps": [1.0, 0.5],
+    "derivative": "a_i(O;h)=[ln O(q_i=+h)-ln O(q_i=-h)]/(2h)",
+    "finite_difference_scope": "Central finite difference in the one-dimensional q_i direction; this estimates a local derivative, not the full nonlinear response over q~N(0,1).",
+    "shared_inputs": ["background", "initial conditions", "eta", "neutron lifetime", "weak rates", "reaction network", "T interval", "solver", "tolerances", "dtype", "upstream tables"],
+    "execution_order": ["baseline", "measure baseline wall time and publish forecast", "four perturbations at h=1", "four perturbations at h=0.5", "postprocess"],
+    "per_integration_wall_cap_seconds": 600,
+    "automatic_retry": false,
+    "adaptive_step_retry": false
+  },
+  "observables": {
+    "D_H": "Y_d/Y_p; proton abundance is the hydrogen-number proxy used by this LINX output.",
+    "Yp": "4*Y_He4",
+    "He3_H_late": "(Y_He3+Y_t)/Y_p; includes tritium that beta-decays to He3 after BBN.",
+    "Li7_H_late": "(Y_Li7+Y_Be7)/Y_p; includes Be7 that electron-captures to Li7 after BBN."
+  },
+  "correlation_model": {
+    "R_rho": [[1.0, "rho"], ["rho", 1.0]],
+    "rho_domain": "[-1,1] so R is positive semidefinite",
+    "rho_status": "UNMEASURED_PARAMETER; no joint experimental D+D posterior/covariance is present in the pinned audit. rho is not assigned a measured value or prior.",
+    "independent_comparator": "rho=0 with the same N(0,1) marginals; comparator only, not a claim that physical errors are independent."
+  },
+  "linearized_propagation": {
+    "output": "ln O",
+    "variance": "Var(ln O) approximately a^T R_rho a = a1^2+a2^2+2*rho*a1*a2",
+    "kappa": "2*a1*a2/(a1^2+a2^2), defined only when a1^2+a2^2>0",
+    "ratio": "sigma_corr/sigma_indep approximately sqrt(1+kappa*rho)",
+    "bounds": "-1<=kappa<=1 and -1<=rho<=1; kappa=1 iff a1=a2, kappa=-1 iff a1=-a2; ratio is real for every admissible pair.",
+    "limitation": "Delta-method/local-Jacobian result only. It is not the exact covariance of nonlinear BBN outputs over a broad q distribution; nonlinear correlated MC and posterior for rho remain separate work."
+  },
+  "preregistered_directional_hypotheses": {
+    "D_H": "a_ddHe3n<0 and a_ddtp<0 expected because both forward D+D channels consume deuterium; directional hypothesis, not a solver acceptance criterion.",
+    "He3_H_late": "both derivatives expected positive from direct He3 production and T->He3 decay; network-mediated destruction can reverse the net sign, so this is diagnostic, not an acceptance gate.",
+    "Li7_H_late": "both derivatives tentatively expected positive via T/He3 flow into Li7/Be7; competing reaction flows can reverse the net sign, so this is diagnostic, not an acceptance gate.",
+    "Yp": "no sign prediction; report both derivatives and the absolute D+D variance contribution, not a relative kappa-only diagnostic."
+  },
+  "step_convergence": {
+    "comparison": "a_i(h=1) versus a_i(h=0.5), independently for each observable and channel",
+    "relative_tolerance": 0.01,
+    "near_zero_rule": "If max(|a_1|,|a_0.5|)<1e-8, report NEAR_ZERO_RESPONSE and do not use a relative percentage; otherwise require |a_1-a_0.5|/max(|a_1|,|a_0.5|)<0.01 for STEP_CONVERGED.",
+    "failure_policy": "Report STEP_NOT_CONVERGED; no silent h=0.25 rerun or automatic retry. Any smaller-step follow-up is a separately admitted package."
+  },
+  "not_in_scope": ["joint GP posterior", "correlated Monte Carlo ensemble", "experimental determination of rho", "full 427-channel covariance", "CMB/BBN/FIRAS likelihood", "BH1 background", "S2 microphysics drift", "scientific acceptance"],
+  "scientific_acceptance": false
+}
