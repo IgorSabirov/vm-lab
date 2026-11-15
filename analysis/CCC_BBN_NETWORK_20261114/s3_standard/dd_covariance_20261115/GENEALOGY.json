@@ -1,0 +1,281 @@
+{
+  "schema": "vm-lab-research-genealogy-v1",
+  "recorded_date": "2026-11-16",
+  "repository": "IgorSabirov/vm-lab",
+  "subject": "S3 D+D two-channel local BBN covariance response",
+  "scientific_status": {
+    "analysis_report": "SAVED",
+    "response_integrations": "NOT_EXECUTED",
+    "local_jacobian": "NOT_MEASURED",
+    "kappa": "NOT_MEASURED",
+    "rho": "UNMEASURED_PARAMETER",
+    "correlated_monte_carlo": "NOT_EXECUTED",
+    "gp_posterior": "NOT_EXECUTED",
+    "observational_likelihood": "NOT_BUILT",
+    "scientific_acceptance": false
+  },
+  "branch_snapshot": {
+    "working_branch": "science/autonomous-dd-covariance-20261115",
+    "branch_created_from_commit": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+    "base_commit_url": "https://github.com/IgorSabirov/vm-lab/commit/b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+    "code_tip_before_report": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
+    "report_commit": "4c4ff32a962192f542e6b3963a583fe3f53463bf",
+    "report_commit_parent": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
+    "ancestry_comparison_against_base": {
+      "status": "ahead",
+      "ahead_by": 13,
+      "behind_by": 0,
+      "total_commits": 13
+    },
+    "pull_request_for_working_branch": "NOT_CREATED",
+    "merged_to_main": false
+  },
+  "research_lineage": [
+    {
+      "node": "S3 uncertainty audit",
+      "pull_request": 54,
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/54",
+      "state": "open_draft",
+      "head_branch": "science/autonomous-s3-inputs-20261114",
+      "head_sha": "f9ab1fafc661637e5a9e9fc0bb9b36b2c538e0f1",
+      "base_branch": "science/autonomous-research-20261114",
+      "base_sha": "063464de375161255d8e402f898e3cd36364741c",
+      "role": "Identified missing physical nuclear/weak uncertainty model, compatible CMB input and observational likelihood; issue #55 is the D+D rate/adapter follow-up.",
+      "limitation": "Not an executed BBN covariance calculation."
+    },
+    {
+      "node": "LINX D+D table adapter",
+      "pull_request": 57,
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/57",
+      "state": "open_draft",
+      "head_branch": "science/autonomous-linx-dd-adapter-20261115",
+      "head_sha": "6b8710970f8b4291cce8c798f986865a984e8413",
+      "base_branch": "science/autonomous-s3-inputs-20261114",
+      "base_sha": "a90564d2cbe9c89cbbeb3ffb7295359c09f86d3d",
+      "role": "Added two-channel table replacement for ddHe3n and ddtp on native LINX temperature nodes; maintained interpolation and detailed balance.",
+      "input_upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "note": "The PR described engineering preparation; its initial state had 0 BBN integrations and 0 GP draws."
+    },
+    {
+      "node": "BBN identity attempt r1",
+      "pull_request": 73,
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/73",
+      "head_sha": "7e3b5a75887bd327b57d98ebf4c72f46af09333a",
+      "run_id": 43732600379,
+      "outcome": "Admission blocked as ACTIVE_PACKAGE; no scientific BBN arms were started."
+    },
+    {
+      "node": "BBN identity attempt r2",
+      "pull_request": 74,
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/74",
+      "head_sha": "ba157c8bd07d76760b4a4b87a48eeb13368e7821",
+      "run_id": 43742136639,
+      "outcome": "Failed before strict arms during LINX materialization because an upstream LICENSE entry lacked an optional size field; no strict BBN arms completed."
+    },
+    {
+      "node": "BBN identity attempt r3",
+      "pull_request": 75,
+      "url": "https://github.com/IgorSabirov/vm-lab/pull/75",
+      "state": "open_draft",
+      "head_branch": "science/autonomous-bbn-identity-v4-20261115",
+      "head_sha": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+      "base_branch": "science/autonomous-bbn-identity-v3-20261115",
+      "base_sha": "ba157c8bd07d76760b4a4b87a48eeb13368e7821",
+      "run_id": 43743586010,
+      "frozen_compute_source_sha": "5183eb818d2b3c746d2e919b1f3561a08e7d1b09",
+      "calibration_seconds": 58.04826086100002,
+      "native_strict_seconds": 56.52089301699999,
+      "override_strict_seconds": 31.99956919600001,
+      "outcomes": {
+        "raw_arm_arrays": "Native and override final abundance vectors exactly equal in saved JSON.",
+        "rate_tables": "All saved table hashes equal; override recorded all_tables_bitwise_native=true.",
+        "summary": "Workflow terminal SUMMARY remains engineering_status=FAIL and numerical_status=NOT_EVALUATED because numpy.bool_ was not JSON serializable.",
+        "scientific_acceptance": false
+      },
+      "artifacts": {
+        "manifest_path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/results/LINX_BBN_IDENTITY_20261115_r3/ARTIFACTS.json",
+        "manifest_sha256": "15f786ad46d61ebccfe0456982ed607bd5f07619715cf1ef64d22901736d98b2",
+        "native_result_sha256": "d68abeba122e26aa3c50ada9c5ec3d0a6387828a8e6beb0905cc7c489b80c416",
+        "override_result_sha256": "b7ab022daa72a512ebeb83cb9670af7779f5d60a46497340c47beab135dd7f9c"
+      },
+      "limitation": "The r3 effective q vector has nonzero values for ten non-D+D channels; this pair is an adapter identity test, not the all-reaction q=0 centre required for the new local response."
+    },
+    {
+      "node": "New D+D local response analysis branch",
+      "branch": "science/autonomous-dd-covariance-20261115",
+      "fork_commit": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+      "code_tip_before_report": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
+      "report_commit": "4c4ff32a962192f542e6b3963a583fe3f53463bf",
+      "role": "Separates preconditions for a local D+D response from result-quality gates and stages a nine-integration design.",
+      "status": "Design draft; not admitted, not dispatched, not scientifically accepted."
+    }
+  ],
+  "source_lineage": {
+    "upstream": {
+      "repository": "cgiovanetti/LINX",
+      "commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "network": "key_PRIMAT_2023"
+    },
+    "rate_tables": [
+      "linx/data/nuclear_rates/key_PRIMAT_2023/ddHe3n.txt",
+      "linx/data/nuclear_rates/key_PRIMAT_2023/ddtp.txt"
+    ],
+    "adapter_commit": "6b8710970f8b4291cce8c798f986865a984e8413",
+    "adapter_semantics": "One q coordinate per channel multiplies the full temperature-dependent log(expsigma) curve; only two D+D forward tables are overridden; reverse rates use pinned detailed balance."
+  },
+  "current_package": {
+    "id": "S3_DD_RESPONSE_20261115_r1",
+    "directory": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/",
+    "files": [
+      "CONTRACT.json",
+      "README.md",
+      "PACKAGE.json",
+      "RUN_REQUEST.json",
+      "EXECUTION_PLAN.json",
+      "INPUT_MANIFEST.json",
+      "verify_math.py",
+      "worker.py",
+      "run.py",
+      "ANALYSIS_REPORT.md",
+      "GENEALOGY.json"
+    ],
+    "planned_integrations": {
+      "count": 9,
+      "arms": [
+        "One native baseline with q=0 for all reactions.",
+        "ddHe3n at q=-1,+1,-0.5,+0.5.",
+        "ddtp at q=-1,+1,-0.5,+0.5."
+      ],
+      "correlation": "R(rho)=[[1,rho],[rho,1]], rho in [-1,1], treated as an unmeasured parameter.",
+      "output": "Local derivatives of ln(D/H), ln(Yp), ln(late 3He/H), ln(late 7Li/H); kappa and conditional delta-method ratios.",
+      "budget": {
+        "package_seconds": 6600,
+        "per_integration_cap_seconds": 600,
+        "compute_seconds": 5400,
+        "setup_seconds": 600,
+        "verification_seconds": 300,
+        "publication_seconds": 300
+      },
+      "executor_declared": "GitHub Actions ubuntu-24.04",
+      "status": "NOT_EXECUTED"
+    },
+    "engineering_audit": {
+      "dedicated_workflow_expected": ".github/workflows/s3-dd-covariance.yml",
+      "dedicated_workflow_present_at_code_tip": false,
+      "request_execution_enabled": true,
+      "expected_merge_trigger": "pull_request closed as merged into science/autonomous-bbn-identity-v4-20261115",
+      "working_branch": "science/autonomous-dd-covariance-20261115",
+      "publication_branch_declared": "science/autonomous-bbn-identity-v4-20261115",
+      "package_pr_created": false,
+      "manifest_sha256_audit": "NOT_VERIFIED_BYTE_FOR_BYTE",
+      "execution_plan_file_hashes": "NOT_VERIFIED_BYTE_FOR_BYTE",
+      "math_test_file": "present_but_not_executed",
+      "adapter_identity_recovery_receipt": "planned_path_not_yet_created",
+      "admission": "NOT_REQUESTED",
+      "dispatch": "NOT_PERFORMED",
+      "scientific_acceptance": false
+    }
+  },
+  "branch_commit_chain": [
+    {
+      "sha": "9262987e8e3bb4b9a1dc0bbd62b7fcbe1981b188",
+      "parent": "b24c7e0cc47ff964d576f903ce7ba507d2dd731e",
+      "date": "2026-11-15T20:36:22Z",
+      "message": "Separate S3 local-response prerequisites from post-run acceptance gates"
+    },
+    {
+      "sha": "07380975b41044ca3f37885505ea4b09dc95d2ba",
+      "parent": "9262987e8e3bb4b9a1dc0bbd62b7fcbe1981b188",
+      "date": "2026-11-15T20:36:33Z",
+      "message": "Record recovered raw full-BBN identity evidence and planned D+D response"
+    },
+    {
+      "sha": "062fbc68943342bb9712d2209ba362a030b9416d",
+      "parent": "07380975b41044ca3f37885505ea4b09dc95d2ba",
+      "date": "2026-11-15T20:37:25Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "6633e0c2a9b5f4b960ea9de46321ee99190d77f4",
+      "parent": "062fbc68943342bb9712d2209ba362a030b9416d",
+      "date": "2026-11-15T20:37:27Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "374310ac4576ce1925a45a0e77f06ecdcdb3ba5d",
+      "parent": "6633e0c2a9b5f4b960ea9de46321ee99190d77f4",
+      "date": "2026-11-15T20:37:29Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "3aa17ca53ad2446ab1756e1aa81c828b8d17628f",
+      "parent": "374310ac4576ce1925a45a0e77f06ecdcdb3ba5d",
+      "date": "2026-11-15T20:37:31Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "7cfe37dd350eafdf44a82a53711bed37e24c32be",
+      "parent": "3aa17ca53ad2446ab1756e1aa81c828b8d17628f",
+      "date": "2026-11-15T20:37:34Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "31445e67a20a62989f5cc2856f68d194925f26f8",
+      "parent": "7cfe37dd350eafdf44a82a53711bed37e24c32be",
+      "date": "2026-11-15T20:37:36Z",
+      "message": "Add preregistered D+D local covariance-response package"
+    },
+    {
+      "sha": "48f8d144d858e66056012f1434a6e336de1c6166",
+      "parent": "31445e67a20a62989f5cc2856f68d194925f26f8",
+      "date": "2026-11-15T20:40:19Z",
+      "message": "Use repository-relative paths and pin corrected D+D runner"
+    },
+    {
+      "sha": "0ec0631e4e4356e5219e1be027896808ce198089",
+      "parent": "48f8d144d858e66056012f1434a6e336de1c6166",
+      "date": "2026-11-15T20:40:22Z",
+      "message": "Bind execution plan to corrected D+D input manifest"
+    },
+    {
+      "sha": "b30bcb4114f6eb964aa2cdd5ecdf511d468dc12d",
+      "parent": "0ec0631e4e4356e5219e1be027896808ce198089",
+      "date": "2026-11-15T20:40:41Z",
+      "message": "Add dependency-free D+D covariance algebra checks"
+    },
+    {
+      "sha": "364ed5c7bf6c64dd48f6de63b471aef48c7d2dbc",
+      "parent": "b30bcb4114f6eb964aa2cdd5ecdf511d468dc12d",
+      "date": "2026-11-15T20:43:48Z",
+      "message": "Add bounded LINX D+D response worker"
+    },
+    {
+      "sha": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
+      "parent": "364ed5c7bf6c64dd48f6de63b471aef48c7d2dbc",
+      "date": "2026-11-15T20:44:34Z",
+      "message": "Add admitted sequential D+D response runner"
+    },
+    {
+      "sha": "4c4ff32a962192f542e6b3963a583fe3f53463bf",
+      "parent": "f7b6060c40cfad8dbb4b350563269b68e42bf316",
+      "date": "2026-11-15T21:??:??Z",
+      "message": "Save S3 D+D analysis report with scientific limitations and status"
+    }
+  ],
+  "source_urls": {
+    "pr54": "https://github.com/IgorSabirov/vm-lab/pull/54",
+    "pr57": "https://github.com/IgorSabirov/vm-lab/pull/57",
+    "pr73": "https://github.com/IgorSabirov/vm-lab/pull/73",
+    "pr74": "https://github.com/IgorSabirov/vm-lab/pull/74",
+    "pr75": "https://github.com/IgorSabirov/vm-lab/pull/75",
+    "report": "https://github.com/IgorSabirov/vm-lab/blob/science/autonomous-dd-covariance-20261115/analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/ANALYSIS_REPORT.md",
+    "upstream_reactions": "https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py"
+  },
+  "genealogy_notes": [
+    "The branch starts from the published r3 evidence commit b24c7e0..., which is the current head of draft PR #75; it is not based on main.",
+    "The old r3 raw-arm identity comparison is verified at its saved artifact point but its workflow SUMMARY remains engineering FAIL due numpy.bool_ JSON serialization.",
+    "The old r3 q vector perturbed ten non-D+D channels, so the new all-reaction q=0 baseline is not optional.",
+    "No local D+D integration, kappa, physical rho, full S3 likelihood or scientific acceptance is recorded here.",
+    "The genealogy snapshot intentionally stops at the report commit; the next commit adds this GENEALOGY.json file."
+  ]
+}
