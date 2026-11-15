@@ -121,9 +121,9 @@
   "automatic_scientific_acceptance": false,
   "owner_authorization": "User asks GitHub to conduct experiments autonomously; standing permission for implementation, publication and execution within the accepted research program. New scientific premises remain explicit.",
   "queue": {
-    "status": "EXECUTION_SUBMITTED",
+    "status": "RUNNING",
     "next": "Complete nine D+D local-response integrations and publish sensitivities, kappa and rho table",
-    "reason": "Explicit owner launch order; PR #80 merged after exact-head CI; workflow 43769549518 is running. Baseline admission and forecast are recorded by the executor.",
+    "reason": "Runner setup and frozen-source validation passed; shared ledger reservation confirmed; nine-integration execution step is in progress.",
     "historical_preparation_boundary": "Full physical covariance and CMB likelihood remain outside this local response package."
   },
   "execution_policy": {
@@ -153,11 +153,13 @@
     "id": "S3_DD_RESPONSE_20261115_r1",
     "source_sha": "5853977d2f2b03e9cf0b2b0cae69ada64421f8c6",
     "workflow_run_id": 43769549518,
-    "phase": "SETUP",
-    "strict_execution_admitted": false,
+    "phase": "ADMITTED",
+    "strict_execution_admitted": true,
     "scientific_acceptance": false,
     "owner_instruction": "Запусти",
     "issue": 79,
-    "pr": 80
+    "pr": 80,
+    "admission_observed_in_ledger": true,
+    "execution_plan_sha256": "486c8e07ec7dc26fecec9c94f493d1454f7c444a1b89a9de05f38ce67438dab9"
   }
 }
