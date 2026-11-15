@@ -14,6 +14,8 @@ def call(args,pythonpath=None):
     subprocess.run([sys.executable,*args],cwd=ROOT,env=env,check=True,preexec_fn=cap if 'test_e002*.py' in args else None)
 def main(s):
     if s=='integrity':
+        subprocess.run(['node','--test','tests/test_ci_failure_report.cjs'],cwd=ROOT,check=True)
+        call(['-m','unittest','discover','-s','tests','-p','test_research_operations.py'])
         call(['tools/registry_links.py'])
         call(['tools/compile_copilot_workflow.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_copilot*.py'])

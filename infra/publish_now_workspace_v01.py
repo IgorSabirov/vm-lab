@@ -168,6 +168,10 @@ class Git:
             lines = b''.join(('100644 blob ' + oid + '\t' + path).encode() + b'\0' for path, oid in entries.items())
             self.run('update-index', '-z', '--index-info', data=lines)
             tree = self.run('write-tree').decode().strip()
+            if tree == self.run('rev-parse', parent + '^{tree}').decode().strip():
+                # Includes a successful push whose acknowledgement was lost.
+                # Re-fetch on every attempt preserves concurrent unrelated work.
+                return parent
             commit = self.run('commit-tree', tree, '-p', parent, data=(message + '\n').encode()).decode().strip()
             self.run('update-ref', 'refs/heads/export', commit)
             pushed = self.run('push', 'origin', commit + ':refs/heads/main', check=False)

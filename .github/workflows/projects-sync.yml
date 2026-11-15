@@ -2,7 +2,7 @@ name: Projects working board
 on:
   push:
     branches: [main]
-    paths: ['tools/project_sync.py', 'tools/github_setup.py', 'infra/external/GITHUB_SETUP.json', '.github/workflows/projects-sync.yml']
+    paths: ['tools/project_sync.py', 'tools/github_setup.py', 'tools/research_operations.py', 'infra/OPERATIONS.json', 'infra/external/GITHUB_SETUP.json', '.github/workflows/projects-sync.yml']
   issues:
     types: [opened, reopened, closed, edited, deleted, transferred, labeled, unlabeled]
   workflow_run:
@@ -17,6 +17,35 @@ concurrency:
   group: vm-lab-projects
   cancel-in-progress: false
 jobs:
+  operations:
+    if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      actions: read
+      checks: read
+      pull-requests: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          persist-credentials: false
+          sparse-checkout: |
+            tools/research_operations.py
+            infra/OPERATIONS.json
+          sparse-checkout-cone-mode: false
+      - name: Observe canonical queue and exact-head evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/research_operations.py
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: research-operations
+          path: project-evidence/OPERATIONS_STATUS.*
+          if-no-files-found: error
+          retention-days: 30
   sync:
     if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
