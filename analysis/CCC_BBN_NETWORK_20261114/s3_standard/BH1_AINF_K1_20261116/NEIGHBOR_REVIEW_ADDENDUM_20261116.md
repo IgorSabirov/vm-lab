@@ -124,6 +124,8 @@ R*H <= chi_HP*Acal^(1/4)*exp(-pi*N^2/128).
 For Acal=1 this gives:
 N=1: 0.46589; N=3: 0.38283; N=5: 0.25850; N=10: 0.04102; N=20: 2.60e-5.
 
+Do not identify the thermal-AdS spinodal with T2. In AGGL, the thermal-AdS metastability endpoint is the A3 merger at T_H; T2 is a separate gravitational-collapse threshold for the thermal graviton gas. The BBH metastability endpoint on cooling is T0 (the fold with the SBH). Thus the two directions have different spinodal endpoints, and T2 is not a substitute for the A3 spinodal.
+
 This is a useful conditional constraint to test an embedding, not a derived BH1 law:
 - AGGL's matrix-model rate is not itself a local rate per physical four-volume;
 - Acal and its N-dependence are unknown;
