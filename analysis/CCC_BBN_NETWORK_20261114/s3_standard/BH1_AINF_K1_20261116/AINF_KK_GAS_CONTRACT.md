@@ -1,7 +1,7 @@
 # A_infinity contract — thermal AdS supergravity KK gas
 
 **ID:** BH1_AINF_KK_GAS_20261116  
-**Status:** SPECIFICATION_PROPOSED / NOT_EXECUTED  
+**Status:** SOURCE_SPECIFIED / CATALOG_NOT_ASSEMBLED / THERMAL_SUM_NOT_COMPUTED  
 **Theory:** planar/large-N, strongly coupled N=4 SU(N) SYM on S3_R x S1_beta, dual to type-IIB supergravity on global AdS5 x S5.
 
 ## 1. Physical branch
@@ -31,7 +31,27 @@ Build a machine-readable complete one-particle spectrum table. Each row must ide
 
 The spectrum must include the complete type-IIB supergravity multiplet tower on S5, not only the chiral-primary scalar tower and not only protected scalar primaries. Include all bosonic and fermionic descendants with correct multiplicities.
 
-The source-level asymptotic check is polynomial one-particle growth rho(epsilon)~epsilon^8 (Horowitz-Ooguri). This establishes convergence behavior but does not replace the exact finite-level spectrum table.
+The source-level asymptotic check is polynomial one-particle growth rho_1(epsilon)~epsilon^8 (Horowitz–Ooguri eq. 2.2). This establishes convergence behavior but does not replace the exact finite-level spectrum table. The singleton/doubleton sector grows more slowly and does not change the leading power, but it must still be treated correctly in the low-level catalogue.
+
+
+## 2A. Source-defined spectrum checks and conditional coefficient hypothesis
+
+KRN (Phys. Rev. D 32, 389 (1985)) is the primary source for the complete IIB supergravity mass spectrum on S5 and the pure-gauge doubleton. HO (hep-th/9802116), eqs. (1.3), (2.2)-(2.3), provide the AdS descendant counting, integer/half-integer grading and the validity range. arXiv:1304.1540 is specifically the orbifold S5/Z3 and is not the primary unorbifolded S5 spectrum.
+
+HO's asymptotic statement is rho_1(epsilon)~epsilon^8. It follows from KK multiplicity ~l^4 and AdS descendant multiplicity ~s^3 with l+s=epsilon. The cumulative count scales as epsilon^9.
+
+A possible coefficient reconstruction is to use asymptotic factors l^4/12 and s^3/6 and a total polarization factor D. This gives c=D/20160. The proposed D=256 (128 bosonic plus 128 fermionic physical polarizations) is a **hypothesis pending the complete KRN catalogue**, not a source-established coefficient. If confirmed, c=4/315.
+
+If c is the total density and the boson/fermion high-energy densities are equal, the ordinary thermal trace gives
+
+A=8!*c*(1-2^(-10))*zeta(10),
+ln Z_gas~A*chi^9,
+E_gas*R~9*A*chi^10,
+S_gas~10*A*chi^9.
+
+For D=256 this conditional estimate is A~512.0087 and S_gas(n)~2.58291*n^(9/10). These numbers are catalogue validation targets, not computed A∞ outputs. The factor (1-2^(-10)) assumes equal asymptotic bosonic and fermionic densities; recompute it from z_B and z_F if that assumption fails.
+
+The HO validity window n<<lambda^(1/4) must be enforced. Do not extrapolate the high-energy KK gas to n~N^2 collapse without separately checking this bound and the string-loop regime. In ordinary classical IIB supergravity, g_s=lambda/(4*pi*N)<<1 also imposes lambda<<N, so the simultaneous hierarchy n~N^2<<lambda^(1/4) is not available at large N. This blocks treating the conditional chi_2 coefficient as a controlled KK-gas prediction.
 
 ## 3. Thermal partition function
 
@@ -61,7 +81,7 @@ C_V,Ainf=C_V,gas.
 
 ## 4. Convergence and domain
 
-The one-particle density grows polynomially, asymptotically as epsilon^8. Therefore z_B(q), z_F(q), and the ordinary free-gas thermal trace converge for every 0<q<1 (positive temperature). There is no finite-chi Hagedorn pole in the supergravity KK gas alone.
+HO eq. (2.2) gives the fixed-energy single-particle level density rho_1(epsilon)~epsilon^8, while the cumulative count below epsilon scales as epsilon^9. The power epsilon^7 is not the HO fixed-level density. The one-particle density grows polynomially, so z_B(q), z_F(q), and the ordinary free-gas thermal trace converge for every 0<q<1 (positive temperature). HO also states that bosonic global-AdS energies are integers and fermionic modes are half-odd-integers/antiperiodic. The supergravity approximation requires n<<lambda^(1/4) up to convention-dependent 4*pi factors. There is no finite-chi Hagedorn pole in the supergravity KK gas alone.
 
 This does not imply that the full string theory has no Hagedorn temperature. The string oscillator/winding sector has a separate Hagedorn scale chi_H(lambda) which grows as lambda^(1/4) at strong coupling. The AGGL A3 merger of thermal AdS and SBH is a full string/large-N saddle phenomenon, not a divergence of the truncated KK gas.
 
@@ -99,6 +119,9 @@ A09 HP matching: common-vacuum free energies reproduce the leading equality at c
 A10 correction: the O(N^-2) shift is reported only with all retained one-loop contributions explicitly listed.
 A11 cutoff separation: stringy Hagedorn and gravitational collapse are not conflated.
 A12 reproducibility: a clean rerun reproduces spectrum hashes and numerical tables.
+A13 integer/half-integer grading: bosonic modes occupy integer global energies; fermionic modes occupy half-odd-integer energies under the ordinary thermal spin structure.
+A14 low-level KRN match: compare the first KK levels, SO(6) representations, field spins, masses/conformal dimensions, and pure-gauge doubleton subtraction directly with KRN. The epsilon^8 asymptotic cannot detect low-level errors.
+A15 asymptotic multiplicity: reproduce rho_1(epsilon)~epsilon^8 from the complete catalogue without fitting; distinguish fixed-level density from cumulative count.
 
 ## 8. Acceptance
 
