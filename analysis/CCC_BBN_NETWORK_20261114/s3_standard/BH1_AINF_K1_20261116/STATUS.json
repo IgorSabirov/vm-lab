@@ -1,6 +1,6 @@
 {
   "id": "BH1_AINF_K1_20261116",
-  "status": "ANALYTICAL_SOURCE_REVIEW_UPDATED_CONDITIONAL_DERIVATIONS_NO_EXECUTION",
+  "status": "A_INFINITY_SPECTRAL_AUDIT_PEER_REPORTED_K2_ERRATUM_PENDING_A14",
   "branch": "bh1-ainf-k1-20261116",
   "base_commit": "f10f4d742af50fa6834287fab57921dfaffae1dd",
   "scientific_acceptance": false,
@@ -31,7 +31,25 @@
       "FRW_nucleation_bound": "CONDITIONAL_RATE_DENSITY_AND_ONE_HUBBLE_VOLUME_PROXY"
     },
     "K1_barrier": "PI_N2_OVER_32_EXACT_CLASSICAL_GRAVITY_ON_SHELL_ACTION_AT_HP",
-    "nucleation_bound": "CONDITIONAL_FRW_RATE_DENSITY_AND_ONE_HUBBLE_VOLUME_PROXY_ONLY"
+    "nucleation_bound": "CONDITIONAL_FRW_RATE_DENSITY_AND_ONE_HUBBLE_VOLUME_PROXY_ONLY",
+    "Weyl_law": "DERIVED_FROM_10D_PHASE_SPACE_WITH_D256: cumulative 256*epsilon^9/181440; continuous density 4/315 epsilon^8; discrete half-step level count 2/315 epsilon^8",
+    "KK_multiplet_dimensions": "PEER_REPORTED_MACHINE_CHECK dim M_k=256*dim[0,k-2,0] for k=2..46; not independently re-executed here",
+    "A13": "PEER_REPORTED_PASS",
+    "A14": "PARTIALLY_VERIFIED; k2 shortened massless character/null subtraction and k1 doubleton source match remain",
+    "A15": "TREND_ONLY; cumulative asymptotic tolerance not met/frozen; epsilon>kmax incomplete without omitted primary tower bound",
+    "Ainf_previous_thermal_sum": "INVALID_AS_IMPLEMENTED: positive-only RS truncation counted 291 rather than 256 at k2",
+    "Ainf_signed_thermal_values": {
+      "status": "PROVISIONAL_PEER_REPORTED_NOT_INDEPENDENTLY_EXECUTED_HERE",
+      "chi_HP": "3/(2*pi)",
+      "lnZ_gas": "2.62211017",
+      "E_gas_R": "9.50132242",
+      "F_gas_R": "-1.25196539",
+      "S_gas": "22.52163331",
+      "Cv_gas": "169.44509929",
+      "gas_only_midpoint_coefficient_over_N2": "0.39851296"
+    },
+    "Ainf_Weyl_high_energy_A": "512.0087251779 analytically follows from continuous Weyl density and equal asymptotic boson/fermion density assumption; does not validate finite-chi thermodynamics",
+    "Ainf_chi2_numeric": "UNCONTROLLED_EXTRAPOLATION; HO n<<lambda^(1/4) incompatible with n~N^2 in classical IIB lambda<<N regime"
   },
   "nulls": {
     "sector_X": "OPEN",
@@ -45,13 +63,12 @@
     "cosmological_perturbations": "OPEN"
   },
   "next_order": [
-    "Transcribe KRN S5 complete mass spectrum and HO AdS descendants to machine-readable thermal catalogue",
-    "Validate low KK levels, SO(6) representations, spins, dimensions, gauge modes and doubleton subtraction",
-    "Verify boson integer and fermion half-odd-integer global energy grading",
-    "Derive separate z_B and z_F and check epsilon^8 asymptotic without fitting",
-    "Compute Z_gas, F_gas, E_gas, S_gas and C_V only after catalogue passes",
-    "Compute finite-N midpoint only with both thermal-AdS and BBH one-loop factors",
-    "Derive a physical FRW nucleation rate and integrated completion probability before constraining R_embedding"
+    "Derive physical k2 shortened character with explicit gauge/null-submodule subtraction",
+    "Match k=2,3,4 component representations to KRN; justify k1 doubleton omission",
+    "Rebuild z_B,z_F from validated physical characters and rerun thermal sums",
+    "Extend k_max or prove rigorous omitted-primary tail bound; define A15 tolerance",
+    "Recompute lnZ, E, F, S, Cv and gas-only midpoint contribution with two derivative routes",
+    "Only then compute BBH one-loop determinant for complete finite-N HP midpoint"
   ],
   "source_manifest": "SOURCES.json",
   "report": "REPORT.md",
@@ -62,5 +79,6 @@
   ],
   "historical_correction": "The previous BH1 free-branch report's unsupported machine-run claims were retracted on this branch; see the erratum in bh_free_branch_A_20261116/REPORT.md.",
   "neighbor_review": "NEIGHBOR_REVIEW_ADDENDUM_20261116.md",
-  "neighbor_review_checks": "NEIGHBOR_REVIEW_CHECKS.json"
+  "neighbor_review_checks": "NEIGHBOR_REVIEW_CHECKS.json",
+  "neighbor_spectral_audit": "A_INFINITY_SPECTRAL_AUDIT_20261116.md"
 }
