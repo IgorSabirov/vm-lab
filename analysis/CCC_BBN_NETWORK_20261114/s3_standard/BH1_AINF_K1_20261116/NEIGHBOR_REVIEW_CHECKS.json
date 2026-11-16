@@ -1,0 +1,50 @@
+{
+  "id": "BH1_NEIGHBOR_REVIEW_CHECKS_20261116",
+  "status": "ANALYTICAL_SOURCE_REVIEW_WITH_CONDITIONAL_DERIVATIONS",
+  "machine_execution": false,
+  "source_checked": {
+    "AGGL_hep_th_0502227": {
+      "status": "VERIFIED",
+      "locators": ["section 2 eqs 2.1-2.6", "section 3 eqs 3.3-3.5", "section 4 eqs 4.33-4.41", "section 5 eqs 5.1-5.4", "section 6.2"],
+      "claims": ["phenomenological matrix model", "SBH Euclidean negative mode/bounce", "HP finite-N crossover scale O(N^-2)", "two-saddle weights K1,K3", "Gaussian prefactor detailed-balance structure", "T2 parametric collapse estimate"]
+    },
+    "Horowitz_Ooguri_hep_th_9802116": {
+      "status": "VERIFIED",
+      "locators": ["eq 1.2", "eq 1.3", "eqs 2.2-2.3"],
+      "claims": ["rho_1(epsilon)~epsilon^8", "cumulative count~epsilon^9", "S~n^(9/10)", "supergravity validity n<<(g_s*N)^(1/4) up to convention factors", "bosonic integer and fermionic half-odd-integer energies"]
+    },
+    "KRN_PhysRevD_32_389_1985": {
+      "status": "VERIFIED_FROM_PUBLISHED_ABSTRACT_AND_BIBLIOGRAPHIC_RECORD",
+      "claims": ["complete IIB supergravity mass spectrum on S5", "pure-gauge doubleton identified", "infinite KK towers"]
+    },
+    "arXiv_1304_1540": {
+      "status": "SCOPE_CORRECTED",
+      "claims": ["AdS5 x S5/Z3 orbifold spectrum; not the unorbifolded S5 primary spectrum"]
+    }
+  },
+  "algebraic_checks": {
+    "K1_barrier_pi_N2_over_32": "EXACT_SYMBOLIC_SUBSTITUTION",
+    "B_entropy_asymptotic_coefficient": "EXACT_ALGEBRAIC_IDENTITY",
+    "K1_detailed_balance_prefactor_relation": "EXACT_WITHIN_AGGL_SADDLE_APPROXIMATION",
+    "finite_N_crossover_scale": "SOURCE_DEFINED_ORDER_N_MINUS_2; not a universal midpoint shift",
+    "rho_power": "epsilon^8 fixed-level density; cumulative count epsilon^9"
+  },
+  "conditional_not_accepted": {
+    "D_256_and_c_4_over_315": "HYPOTHESIS_PENDING_COMPLETE_KK_CATALOGUE",
+    "A_512_0087": "CONDITIONAL_ON_EQUAL_BOSON_FERMION_ASYMPTOTIC_DENSITIES_AND_D_256",
+    "chi2_0_43018_N_1_over_5": "CONDITIONAL_HIGH_T_GAS_EXTRAPOLATION_NOT_CONTROLLED_AT_n~N^2",
+    "lambda_213_N_4_over_5": "OPTIONAL_ORDERING_CONDITION_chi2<chiH_NOT_REQUIRED",
+    "FRW_nucleation_bound": "CONDITIONAL_ON_LOCAL_RATE_DENSITY_ANSATZ_AND_GAMMA_OVER_H4_PROXY"
+  },
+  "open": [
+    "complete machine-readable KRN/HO thermal spectrum catalogue",
+    "low-level multiplet and doubleton validation",
+    "z_B(q), z_F(q) from exact catalogue",
+    "Z_gas, F_gas, E_gas, S_gas, C_V numerical calculation",
+    "complete finite-N midpoint including both saddle one-loop determinants",
+    "physical FRW nucleation rate and integrated completion probability",
+    "sector_X, R_embedding, N/lambda selection, portal collision terms"
+  ],
+  "scientific_acceptance": false,
+  "BH1_or_BBN_runs": 0
+}
