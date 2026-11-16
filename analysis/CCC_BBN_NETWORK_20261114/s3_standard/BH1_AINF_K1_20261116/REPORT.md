@@ -26,7 +26,7 @@ Let u=(r_+/R)^2. Do not use x for both the horizon ratio and the Polyakov-loop v
 
 The black-hole temperature is
 
-chi(u)=TR=(1+2u^2)/(2*pi*u).
+chi(u)=TR=(1+2u)/(2*pi*sqrt(u)).
 
 At fixed chi above chi_0=sqrt(2)/pi, the two roots are
 
@@ -55,9 +55,9 @@ The action formula above is an **on-shell gravitational action as a function of 
 Alvarez-Gaume, Gomez, Liu and Wadia (AGGL) give the semiclassical bounce interpretation and rates. In their notation the small black hole is the unstable saddle between thermal AdS and the BBH. Schematically,
 
 Gamma_(AdS->BBH) ~ (omega_0/(2*pi))*(K_2/K_1)*exp(-I_-),
-Gamma_(BBH->AdS) ~ (omega'_0/(2*pi))*(K_2/K_3)*exp(-(I_--I_+)).
+Gamma_(BBH->AdS) ~ (omega_0/(2*pi))*(K_2/K_3)*exp(-(I_--I_+)).
 
-Here I_- and I_+ are the small- and big-black-hole on-shell Euclidean actions; K_i are Gaussian saddle factors and omega_0, omega'_0 are unstable-mode frequencies. These prefactors are not determined by the on-shell action alone.
+Here I_- and I_+ are the small- and big-black-hole on-shell Euclidean actions; K_i are Gaussian factors in the AGGL phenomenological matrix integral and omega_0 is the unstable-mode frequency used in their two directional rates. The gravity discussion separately denotes determinant prefactors A_1,A_2. Do not identify the matrix-model K_i automatically with complete gravitational one-loop determinants.
 
 At chi_HP, I_+=0, so the two exponential suppression factors have the same exponent pi*N^2/32. This does **not** justify setting the full rates equal by dropping their determinant/frequency prefactors. Detailed balance applies to the complete equilibrium weights and rates.
 
