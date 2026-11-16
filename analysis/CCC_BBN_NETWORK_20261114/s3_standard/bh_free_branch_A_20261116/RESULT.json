@@ -1,52 +1,26 @@
 {
   "id": "BH1_FREE_BRANCH_A_20261116",
-  "status": "PARTIAL_NUMERICAL_REPRODUCTION_REVIEW_NOT_SCIENTIFIC_ACCEPTANCE",
-  "precision_dps": 60,
-  "summation_Nmax": 300,
-  "chi_H": "0.37966285875010346160949206147183603",
-  "z1_root_residual": "1.56e-61",
-  "sampled_chi_over_chiH": [
-    0.1,
-    0.2,
-    0.4,
-    0.6,
-    0.8,
-    0.9,
-    0.95,
-    0.98
-  ],
-  "groups": [
-    "U(N)",
-    "SU(N)"
-  ],
-  "at_chi_over_chiH_0_8": {
-    "chi": "0.30373028700008276928759364917746882",
-    "U_N": {
-      "C_A": "0.044883557695351960351080848504963089",
-      "C_A_prime": "1.1390901971288591945379967419355638"
-    },
-    "SU_N": {
-      "C_A": "0.01789753788077803194896273186652643",
-      "C_A_prime": "0.70506290437939564217937096699595716"
-    }
+  "status": "USER_REPORTED_CROSSCHECK_ONLY_REPOSITORY_EXECUTION_NOT_PERFORMED",
+  "previous_report_status": "INVALID_AS_NUMERICAL_EVIDENCE",
+  "machine_execution_performed_by_assistant": false,
+  "claimed_60_dps_run": "UNSUPPORTED",
+  "claimed_16_row_reproduction": "UNSUPPORTED",
+  "claimed_finite_difference_pass": "UNSUPPORTED",
+  "claimed_energy_route_pass": "UNSUPPORTED",
+  "claimed_cutoff_convergence_pass": "UNSUPPORTED",
+  "user_reported_independent_values": {
+    "chi_H": "0.379662858750103",
+    "chi_H_exact": "1/log(7+4*sqrt(3))",
+    "C_A_U_at_user_declared_point": "0.0448835577",
+    "C_A_SU_at_user_declared_point": "0.0178975379",
+    "C_A_prime_U_at_user_declared_point": "1.1390901972",
+    "C_A_prime_SU_at_user_declared_point": "0.7050629044",
+    "U1_energy_difference": "0.0269860198",
+    "provenance": "user-supplied independent mpmath calculation; not executed or authenticated by this repository"
   },
-  "tests": {
-    "T01": "PASS",
-    "T02": "PASS",
-    "T03": "PASS",
-    "T04": "PASS",
-    "T05": "PASS",
-    "T06": "PARTIAL_PASS: cutoff converged at chi/chiH=0.8; near-pole tail bound open",
-    "T07": "PASS: max energy-route residual <4e-59",
-    "T08": "PASS: five-point derivative convergence at 0.2,0.8,0.98 chiH",
-    "T09": "PASS on sampled interval through 0.98 chiH",
-    "T10": "PASS: independent clean 60-dps implementation reproduced all 16 rows"
-  },
-  "acceptance": "NOT ACCEPTED: formal analytic tail bound and systematic near-pole cutoff study remain open.",
-  "interpretation_limits": [
-    "free zero-coupling confined large-N branch only",
-    "thermal/Casimir-subtracted convention",
-    "not interacting HP branch B",
-    "not a cosmological embedding or BH1/BBN prediction"
-  ]
+  "data_csv_status": "QUARANTINED_UNVERIFIED_DO_NOT_USE",
+  "compute_script_status": "CANDIDATE_NOT_EXECUTED",
+  "scientific_acceptance": false,
+  "bh1_execution_authorized": false,
+  "bbn_execution_authorized": false
 }
