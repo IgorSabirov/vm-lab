@@ -1,6 +1,6 @@
 {
   "id": "BH1_AINF_K1_20261116",
-  "status": "ANALYTICAL_SOURCE_REVIEW_CONTRACTS_PROPOSED_NO_EXECUTION",
+  "status": "ANALYTICAL_SOURCE_REVIEW_UPDATED_CONDITIONAL_DERIVATIONS_NO_EXECUTION",
   "branch": "bh1-ainf-k1-20261116",
   "base_commit": "f10f4d742af50fa6834287fab57921dfaffae1dd",
   "scientific_acceptance": false,
@@ -12,34 +12,53 @@
   "branch_map": {
     "A_prime": "free zero-coupling confined branch; historical numerical artifacts quarantined pending actual execution",
     "A_infinity": "strong-coupling thermal AdS plus complete type-IIB supergravity KK gas; spectrum not yet reconstructed",
-    "B_infinity": "large AdS5-Schwarzschild black hole; classical thermodynamics source-defined"
+    "B_infinity": "large AdS5-Schwarzschild black hole; classical thermodynamics source-defined; B entropy asymptotic coefficient identity added"
   },
   "results": {
     "A_prime_vs_B_infinity": "EMPTY_COMMON_CHI_DOMAIN_FOR_THE_TWO_SELECTED_LIMITS_ONLY",
     "A_infinity_vs_B_infinity": "COMMON_BOUNDARY_AND_HAWKING_PAGE_COEXISTENCE_AT_CHI_3_OVER_2PI",
     "K1_bounce": "SOURCE_DEFINED_EUCLIDEAN_SEMICLASSICAL_STRUCTURE; PREFactors_NOT_NUMERICALLY_FIXED",
-    "finite_N_saddle_weight": "TWO_SADDLE_FORM_WITH_K1_K3_PREFactors; NOT_A_SPATIAL_VOLUME_FRACTION"
+    "finite_N_saddle_weight": "TWO_SADDLE_FORM_WITH_K1_K3_PREFactors; NOT_A_SPATIAL_VOLUME_FRACTION",
+    "K1_detailed_balance": "AGGL saddle prefactor ratio checked; equal equilibrium probability flows, not equal bare rates",
+    "B_entropy_asymptotic": "EXACT_ALGEBRAIC_IDENTITY_WITH_HOROWITZ_OOGURI_EQ_1_2",
+    "HO_spectral_density": "rho_1(epsilon)~epsilon^8; cumulative count~epsilon^9",
+    "KK_catalogue": "KRN full S5 mass spectrum exists in literature; repository transcription and thermal descendant catalogue remain open",
+    "conditional_estimates": {
+      "D256_c4over315": "HYPOTHESIS_PENDING_COMPLETE_CATALOGUE",
+      "A512_0087": "CONDITIONAL_ON_EQUAL_ASYMPTOTIC_BOSON_FERMION_DENSITIES_AND_D256",
+      "chi2_043018_N1over5": "CONDITIONAL_HIGH_T_GAS_EXTRAPOLATION_NOT_CONTROLLED_AT_n~N2",
+      "lambda_213_N4over5": "OPTIONAL_ORDERING_CONDITION_chi2_LT_chiH_NOT_REQUIRED",
+      "FRW_nucleation_bound": "CONDITIONAL_RATE_DENSITY_AND_ONE_HUBBLE_VOLUME_PROXY"
+    }
   },
   "nulls": {
     "sector_X": "OPEN",
     "R_embedding": "OPEN; old kappa bound is not applicable to A_infinity/B_infinity on the common boundary",
     "N_lambda": "OPEN; asymptotic regimes identified, numerical values and joint hierarchy absent",
     "complete_free_energy": "PARTIAL; common vacuum convention and A_infinity construction fixed, complete KK sum and finite-lambda corrections open",
-    "transition_trigger": "PARTIAL; canonical Euclidean bounce and spinodal structure, no cosmological trigger",
-    "kinetic_law": "PARTIAL; source-defined exponential rates, prefactors and real-time cosmological law open",
+    "transition_trigger": "PARTIAL; thermal nucleation before spinodal possible; spinodal is metastability endpoint, not automatic switching time",
+    "kinetic_law": "PARTIAL; AGGL canonical Euclidean bounce and prefactor balance structure; physical FRW rate density and integrated hazard open",
     "collision_terms": "OPEN",
     "initial_state": "OPEN",
     "cosmological_perturbations": "OPEN"
   },
   "next_order": [
-    "K1 analytical contract review and source-locator verification",
-    "complete KK multiplet and descendant spectrum table",
-    "ordinary canonical KK thermal partition",
-    "thermodynamic derivatives and convergence checks",
-    "finite-N coexistence shift with all O(N^0) terms declared"
+    "Transcribe KRN S5 complete mass spectrum and HO AdS descendants to machine-readable thermal catalogue",
+    "Validate low KK levels, SO(6) representations, spins, dimensions, gauge modes and doubleton subtraction",
+    "Verify boson integer and fermion half-odd-integer global energy grading",
+    "Derive separate z_B and z_F and check epsilon^8 asymptotic without fitting",
+    "Compute Z_gas, F_gas, E_gas, S_gas and C_V only after catalogue passes",
+    "Compute finite-N midpoint only with both thermal-AdS and BBH one-loop factors",
+    "Derive a physical FRW nucleation rate and integrated completion probability before constraining R_embedding"
   ],
   "source_manifest": "SOURCES.json",
   "report": "REPORT.md",
-  "contracts": ["K1_CONTRACT.md", "AINF_KK_GAS_CONTRACT.md"],
-  "historical_correction": "The previous BH1 free-branch report's unsupported machine-run claims were retracted on this branch; see the erratum in bh_free_branch_A_20261116/REPORT.md."
+  "contracts": [
+    "K1_CONTRACT.md",
+    "AINF_KK_GAS_CONTRACT.md",
+    "B_INFINITY_CONTRACT.md"
+  ],
+  "historical_correction": "The previous BH1 free-branch report's unsupported machine-run claims were retracted on this branch; see the erratum in bh_free_branch_A_20261116/REPORT.md.",
+  "neighbor_review": "NEIGHBOR_REVIEW_ADDENDUM_20261116.md",
+  "neighbor_review_checks": "NEIGHBOR_REVIEW_CHECKS.json"
 }
