@@ -1,4 +1,4 @@
-"""Bound one numerical process; ensure timeout/cancellation cannot orphan it."""
+"""Monitor numerical-process resources; cancellation cannot orphan it."""
 import json
 import os
 from pathlib import Path
@@ -22,7 +22,6 @@ def run(command,log_path,limits,env=None):
                 while p.poll() is None:
                     peak=max(peak,rss(p.pid))
                     size=sum(f.stat().st_size for f in Path(log_path).parent.rglob('*') if f.is_file())
-                    if time.monotonic()-start>limits['wall_seconds']:stop='WALL_LIMIT'
                     if peak>limits['memory_bytes']:stop='RSS_LIMIT'
                     if size>limits['output_bytes']:stop='OUTPUT_LIMIT'
                     if stop:break

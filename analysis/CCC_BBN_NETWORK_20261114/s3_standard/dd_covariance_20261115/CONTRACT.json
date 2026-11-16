@@ -32,7 +32,7 @@
     "finite_difference_scope": "Central finite difference in the one-dimensional q_i direction; this estimates a local derivative, not the full nonlinear response over q~N(0,1).",
     "shared_inputs": ["background", "initial conditions", "eta", "neutron lifetime", "weak rates", "reaction network", "T interval", "solver", "tolerances", "dtype", "upstream tables"],
     "execution_order": ["baseline", "measure baseline wall time and publish forecast", "four perturbations at h=1", "four perturbations at h=0.5", "postprocess"],
-    "per_integration_wall_cap_seconds": 600,
+    "per_integration_wall_cap_seconds": null,
     "automatic_retry": false,
     "adaptive_step_retry": false
   },

@@ -14,7 +14,7 @@ jobs:
   response:
     if: github.repository == 'IgorSabirov/vm-lab'
     runs-on: ubuntu-24.04
-    timeout-minutes: 110
+
     env:
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
@@ -47,13 +47,13 @@ jobs:
         with:
           python-version: '3.12.16'
       - name: Install pinned numerical environment
-        timeout-minutes: 10
-        run: timeout 600 python -m pip install --disable-pip-version-check -r "$ADAPTER_DIR/requirements.lock"
+
+        run: python -m pip install --disable-pip-version-check -r "$ADAPTER_DIR/requirements.lock"
       - name: Admit, run native q0, declare forecast, and execute eight perturbations
-        timeout-minutes: 100
+
         env:
           GH_TOKEN: ${{ github.token }}
-        run: timeout --signal=TERM --kill-after=15 6000 python "$PACKAGE_DIR/run.py"
+        run: python "$PACKAGE_DIR/run.py"
       - name: Preserve complete or partial results
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9

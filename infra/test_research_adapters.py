@@ -39,12 +39,12 @@ class Adapters(unittest.TestCase):
         admission['reservation']['status']='COMPLETED'
         with self.assertRaises(ValueError):check_admission(plan,admission)
 
-    def test_deadline_preserves_log_and_kills_worker(self):
+    def test_elapsed_time_preserves_log_without_stopping_worker(self):
         with tempfile.TemporaryDirectory() as t:
             folder=Path(t)
-            with self.assertRaisesRegex(RuntimeError,'budget exceeded'):
-                bounded([sys.executable,'-c','import time;print("started",flush=True);time.sleep(10)'],
-                        folder,{},.1,512*1024**2,1024**2,folder)
+            result = bounded([sys.executable,'-c','import time;print("started",flush=True);time.sleep(.15)'],
+                             folder,{},.001,512*1024**2,1024**2,folder)
+            self.assertEqual(result['returncode'],0)
             self.assertIn('started',(folder/'stdout.log').read_text())
 
     def test_serbian_exact_math_is_not_the_ambiguity_flag(self):
