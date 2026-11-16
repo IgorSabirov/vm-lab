@@ -1,7 +1,7 @@
 # A_infinity contract — thermal AdS supergravity KK gas
 
 **ID:** BH1_AINF_KK_GAS_20261116  
-**Status:** SOURCE_SPECIFIED / CATALOG_NOT_ASSEMBLED / THERMAL_SUM_NOT_COMPUTED  
+**Status:** PEER_REPORTED_CATALOG_RECONSTRUCTION / A14_PARTIAL / THERMAL_SUM_QUARANTINED_PENDING_K2_CHARACTER  
 **Theory:** planar/large-N, strongly coupled N=4 SU(N) SYM on S3_R x S1_beta, dual to type-IIB supergravity on global AdS5 x S5.
 
 ## 1. Physical branch
@@ -52,6 +52,17 @@ S_gas~10*A*chi^9.
 For D=256 this conditional estimate is A~512.0087 and S_gas(n)~2.58291*n^(9/10). These numbers are catalogue validation targets, not computed A∞ outputs. The factor (1-2^(-10)) assumes equal asymptotic bosonic and fermionic densities; recompute it from z_B and z_F if that assumption fails.
 
 The HO validity window n<<lambda^(1/4) must be enforced. Do not extrapolate the high-energy KK gas to n~N^2 collapse without separately checking this bound and the string-loop regime. In ordinary classical IIB supergravity, g_s=lambda/(4*pi*N)<<1 also imposes lambda<<N, so the simultaneous hierarchy n~N^2<<lambda^(1/4) is not available at large N. This blocks treating the conditional chi_2 coefficient as a controlled KK-gas prediction.
+
+
+## 2B. Audit erratum: k=2 and signed Racah–Speiser character
+
+A peer-supplied implementation reports the total dimension identity dim M_k=256*dim[0,k-2,0] for k=2..46, but its initial thermal-sum code discarded all negative Racah–Speiser coefficients while the total-dimension check retained them. At k=2 this counted 291 rather than 256 states. The earlier positive-only k=2 thermal table is therefore invalid as implemented.
+
+The peer supplied a signed-subtraction recalculation, but this is provisional until the k=2 massless shortened character and its null/gauge submodules are explicitly derived and matched to KRN. A negative RS coefficient is a representation-theoretic subtraction, not a negative physical particle degeneracy. Do not accept a thermal trace assembled by blindly retaining signed coefficients either; build the physical character first.
+
+The peer-reported corrected values at chi_HP are ln Z=2.62211017, E_gas R=9.50132242, F_gas R=-1.25196539, S=22.52163331, C_V=169.44509929 and gas-only delta-chi coefficient 0.39851296/N^2. They are **PROVISIONAL_PEER_REPORTED**, not independently executed or accepted results in this repository. See A_INFINITY_SPECTRAL_AUDIT_20261116.md.
+
+The peer reports k_max=46 and descendant energy cutoff epsilon=90. An asymptotic test above epsilon=k_max is not complete unless all primary towers that can contribute are included or a rigorous omitted-primary tail bound is supplied. A15 currently remains trend-only pending an explicit tolerance and complete tower coverage.
 
 ## 3. Thermal partition function
 
@@ -120,8 +131,8 @@ A10 correction: the O(N^-2) shift is reported only with all retained one-loop co
 A11 cutoff separation: stringy Hagedorn and gravitational collapse are not conflated.
 A12 reproducibility: a clean rerun reproduces spectrum hashes and numerical tables.
 A13 integer/half-integer grading: bosonic modes occupy integer global energies; fermionic modes occupy half-odd-integer energies under the ordinary thermal spin structure.
-A14 low-level KRN match: compare the first KK levels, SO(6) representations, field spins, masses/conformal dimensions, and pure-gauge doubleton subtraction directly with KRN. The epsilon^8 asymptotic cannot detect low-level errors.
-A15 asymptotic multiplicity: reproduce rho_1(epsilon)~epsilon^8 from the complete catalogue without fitting; distinguish fixed-level density from cumulative count.
+A14 low-level KRN match: compare the first KK levels, SO(6) representations, field spins, masses/conformal dimensions, shortened characters and pure-gauge doubleton subtraction directly with KRN. The epsilon^8 asymptotic cannot detect low-level errors. In particular, the k=2 massless graviton multiplet requires explicit null/gauge-submodule subtraction. Do not drop negative Racah–Speiser coefficients in one diagnostic while retaining them in another; do not treat signed RS coefficients as physical negative degeneracies without deriving the shortened character.
+A15 asymptotic multiplicity: reproduce the continuous Weyl density rho_cont~(4/315)*epsilon^8, the discrete level count at Delta epsilon=1/2 rho_level~(2/315)*epsilon^8, and cumulative count N(<=epsilon)/epsilon^9 -> 256/181440. Define a numerical tolerance and include all primary towers contributing below the tested epsilon; do not use epsilon>k_max as a complete-spectrum check.
 
 ## 8. Acceptance
 
