@@ -130,7 +130,7 @@ C_V,Ainf = C_V,gas,
 
 at the stated leading supergravity/one-loop order. The same vacuum subtraction must be used for B_infinity. The common additive vacuum energy cancels in the free-energy difference and in the bounce exponent, but it must remain in absolute energy accounting for the cosmological bridge.
 
-The complete KK one-particle spectrum and multiplicities have **not** yet been assembled in this repository. The entropy-growth estimate is not a substitute for the exact mode list. A_infinity is therefore a source-defined branch with a concrete construction, not a numerically reconstructed function.
+The complete unorbifolded S5 KK mass spectrum is already known in KRN (1985); HO provide the AdS descendant counting. What is not yet assembled in this repository is a machine-readable thermal catalogue with exact degeneracies, descendants, boson/fermion grading and doubleton/gauge subtraction. A_infinity is therefore source-defined but not yet numerically reconstructed.
 
 ## 4. Revised branch logic
 
@@ -164,3 +164,20 @@ No physical null is fully closed.
 4. Reassess BH1 physical embedding only after the same-theory thermodynamic pair is established.
 
 No BH1, BBN, S2 or VM production run was started by this update. The prior free-branch result artifacts have been corrected by an erratum on this branch; the old unsupported numerical rows are quarantined.
+
+
+## 7. Latest neighbor review: quantitative additions and caveats
+
+The full claim-by-claim disposition is in [NEIGHBOR_REVIEW_ADDENDUM_20261116.md](NEIGHBOR_REVIEW_ADDENDUM_20261116.md). Important additions:
+
+- B∞ now has a separate [B_INFINITY_CONTRACT.md](B_INFINITY_CONTRACT.md). Its high-energy entropy coefficient agrees exactly with Horowitz–Ooguri after using excitation energy above the common AdS vacuum:
+  `S_B ~ (2^(3/2)*pi/3^(3/4))*sqrt(N)*n^(3/4)`.
+- HO's fixed-level single-particle density is `rho_1(epsilon)~epsilon^8`; the cumulative count is `~epsilon^9`. The `epsilon^7` claim is not the HO density.
+- The exact low-level KRN match and integer/half-integer boson/fermion grading are now explicit catalogue acceptance tests. The leading epsilon^8 test alone cannot catch a bad doubleton subtraction or a wrong low-lying mode.
+- The proposed coefficient `D=256`, `c=4/315`, `A~512.0087` and `chi_2~0.43018*N^(1/5)` remain conditional until the full spectrum verifies the polarization bookkeeping. HO gives the power, not this coefficient.
+- HO's validity condition `n<<lambda^(1/4)` must not be dropped. At `n~N^2`, the proposed collapse extrapolation is outside the ordinary classical IIB supergravity hierarchy; do not call the numerical collapse coefficient a controlled KK result.
+- K1 now has an operational detailed-balance test: the rate prefactor ratio must equal the equilibrium saddle-weight prefactor ratio. Equality of bare rates does not follow from equality of exponents.
+- A cosmological nucleation estimate `R*H <= chi_HP*Acal^(1/4)*exp(-pi*N^2/128)` is recorded only as a conditional dimensional proxy. AGGL does not derive the assumed local FRW rate density `Acal*T^4*exp(-I_-)`. It cannot close R_embedding or kinetic_law.
+- Nonzero nucleation can occur before a spinodal. A spinodal is loss of metastability, not an automatic transition time. The actual switch requires a time-integrated hazard and backreaction.
+
+No KK catalogue or thermal sum was executed in this update. No BH1/BBN run was started; main remains untouched.
