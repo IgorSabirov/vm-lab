@@ -12,7 +12,6 @@ jobs:
     name: Generate model analysis (not scientific acceptance)
     if: github.actor == github.repository_owner && github.event.issue.number == 30 && (github.event.comment.body == '/vm-lab-review six-models-v1' || github.event.comment.body == '/vm-lab-review six-models-v2')
     runs-on: ubuntu-24.04
-    timeout-minutes: 9
     env:
       REVIEW_TASK: ${{ github.event.comment.body == '/vm-lab-review six-models-v2' && 'six-models-v2' || 'six-models-v1' }}
     permissions:
@@ -39,7 +38,6 @@ jobs:
         run: python -m pip install --disable-pip-version-check sympy==1.14.0 mpmath==1.3.0
       - name: Prepare exact evidence and bounded existing checks
         id: prepare
-        timeout-minutes: 3
         run: python infra/copilot_review.py prepare --task "$REVIEW_TASK"
       - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
         with:
@@ -64,7 +62,6 @@ jobs:
     name: Build required context (no model call)
     if: github.actor == github.repository_owner && github.event.issue.number == 30 && github.event.comment.body == '/vm-lab-context six-models-v2'
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -80,7 +77,6 @@ jobs:
     name: Recover saved analysis (no model call)
     if: github.actor == github.repository_owner && github.event.issue.number == 30 && (github.event.comment.body == '/vm-lab-review-recover six-models-v1 43247986127' || github.event.comment.body == '/vm-lab-review-recover six-models-v2 43296750512')
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
     env:
       RECOVERY_TASK: ${{ github.event.comment.body == '/vm-lab-review-recover six-models-v2 43296750512' && 'six-models-v2' || 'six-models-v1' }}
     permissions:
@@ -113,7 +109,6 @@ jobs:
     needs: [model_analysis, recover]
     if: always() && (needs.model_analysis.result == 'success' || needs.recover.result == 'success')
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: write
       pull-requests: write
