@@ -181,3 +181,29 @@ The full claim-by-claim disposition is in [NEIGHBOR_REVIEW_ADDENDUM_20261116.md]
 - Nonzero nucleation can occur before a spinodal. A spinodal is loss of metastability, not an automatic transition time. The actual switch requires a time-integrated hazard and backreaction.
 
 No KK catalogue or thermal sum was executed in this update. No BH1/BBN run was started; main remains untouched.
+
+
+## 8. New A∞ spectral audit and k=2 thermal-character erratum
+
+The latest peer-supplied audit is recorded in [A_INFINITY_SPECTRAL_AUDIT_20261116.md](A_INFINITY_SPECTRAL_AUDIT_20261116.md). It adds an independent 10D Weyl-law route and a Racah–Speiser multiplet-dimension reconstruction, but it also finds an implementation defect in the first thermal sum.
+
+### Accepted analytical structure
+- The 10D optical phase-space integral gives V_eff=pi^5/12.
+- With D=256 physical IIB polarizations, the cumulative Weyl count is N(<=epsilon)=256*epsilon^9/181440.
+- Continuous density is 4/315*epsilon^8; for the discrete spectrum with step 1/2, the per-level asymptotic count is 2/315*epsilon^8.
+- The peer reports dim M_k=256*dim[0,k-2,0] for k=2..46. This is a strong global check, not a substitute for low-level character validation.
+
+### Critical implementation correction
+The earlier thermal sum discarded negative Racah–Speiser coefficients even though the total multiplet count used signed cancellation. At k=2 this counted 291 instead of 256. The previous positive-only k=2 thermal values are now invalid as implemented. The peer's signed-subtraction values are provisional until the physical shortened massless character and gauge/null submodules are derived and matched to KRN. Do not interpret signed RS coefficients as negative physical degeneracies.
+
+The reported signed-subtraction values at chi_HP are lnZ=2.62211017, E_gas R=9.50132242, F_gas R=-1.25196539, S=22.52163331, C_V=169.44509929 and gas-only midpoint coefficient 0.39851296/N^2. These are peer-supplied, not independently executed by this repository, and are not accepted numerical results yet.
+
+### A15 and cutoff
+A15 must separately test the continuous Weyl density, the discrete level count and the cumulative count. The peer reports a trend at epsilon=45 but a 6.9% difference from the asymptotic cumulative coefficient; no tolerance was frozen. With k_max=46, points epsilon>46 are not a complete-primary-spectrum asymptotic test unless omitted primary towers are included or rigorously bounded. The peer's k=47 tail estimate is not independently verified here.
+
+### Scope boundary
+The high-energy coefficient A=512.008725... follows from the Weyl density and ordinary thermal statistics under the equal boson/fermion asymptotic-density assumption. It is insensitive to a finite k=2 correction. It does not validate finite-temperature lnZ at chi_HP, where low KK levels dominate. The HO validity condition n<<lambda^(1/4) prevents using the high-temperature KK gas as a controlled calculation at n~N^2 in the ordinary classical IIB regime.
+
+The weak-coupling branch A' and strong-coupling IIB branch A∞ remain separate asymptotic theories; no interpolation is inferred.
+
+No new machine execution was performed by this update. No BH1/BBN production run was started; main remains untouched.
