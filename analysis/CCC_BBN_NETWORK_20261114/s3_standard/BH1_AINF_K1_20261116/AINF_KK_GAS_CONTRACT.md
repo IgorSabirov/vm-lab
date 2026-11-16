@@ -85,17 +85,17 @@ HO eq. (2.2) gives the fixed-energy single-particle level density rho_1(epsilon)
 
 This does not imply that the full string theory has no Hagedorn temperature. The string oscillator/winding sector has a separate Hagedorn scale chi_H(lambda) which grows as lambda^(1/4) at strong coupling. The AGGL A3 merger of thermal AdS and SBH is a full string/large-N saddle phenomenon, not a divergence of the truncated KK gas.
 
-A further high-energy limit is gravitational collapse of the thermal gas. The estimate T_2~(R*l_p^4)^(-1/5) gives chi_2~N^(1/5) at leading scaling. This is a backreaction/collapse threshold, not a Hagedorn singularity. Keep chi_H(lambda) and chi_2(N) as separate cutoffs; compare them only after fixing a joint N,lambda hierarchy.
+A further high-energy limit is gravitational collapse of the thermal gas. AGGL quote the parametric estimate T_2~(R*l_p^4)^(-1/5), giving chi_2~N^(1/5) at leading scaling. This is a backreaction/collapse threshold, not a Hagedorn singularity. It is not a universal requirement that chi_2<chi_H. For fixed large lambda and N->infinity, chi_2 grows as N^(1/5) while chi_H(lambda) is fixed, so chi_2>chi_H; other joint scalings can reverse the ordering. Compare them only after fixing a joint N,lambda hierarchy. The numerical coefficient proposed from the high-temperature gas is conditional and not controlled at n~N^2 under the usual classical IIB hierarchy.
 
 ## 5. Vacuum and Hawking-Page matching
 
 Use the same E_vac convention for A_infinity and B_infinity. The common vacuum term cancels from F_B-F_A and from the leading Euclidean action difference, but it remains in absolute energy and gravitational sourcing.
 
-At classical leading order, F_B-F_A=0 at chi_HP=3/(2*pi). The thermal gas adds an O(N^0) correction. If ln Z_gas is the only O(N^0) term retained, the first-order coexistence shift is
+At classical leading order, F_B-F_A=0 at chi_HP=3/(2*pi). AGGL establish a finite-N crossover characteristic scale of order N^(-2); this is not itself a shift of the crossover midpoint. With saddle prefactors A_AdS and A_BH, the leading midpoint displacement is
 
-delta_chi_c = 3*ln Z_gas(chi_HP)/(2*pi^2*N^2) > 0.
+delta_chi_mid = 3/(2*pi^2*N^2)*ln(A_AdS/A_BH).
 
-This is conditional, not the complete finite-N shift. Include black-hole one-loop determinants and all other O(N^0) terms before claiming a complete corrected transition temperature.
+Here A_AdS includes Z_gas and the remaining thermal-AdS one-loop factors, while A_BH includes the black-hole one-loop factors. If the gas is the only O(N^0) term retained, the conditional gas-only estimate is delta_chi_mid = 3*ln Z_gas(chi_HP)/(2*pi^2*N^2), positive for Z_gas>1. The full sign and magnitude are OPEN until the black-hole determinant and all other O(N^0) terms are included.
 
 ## 6. Required outputs
 
