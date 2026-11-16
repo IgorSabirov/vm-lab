@@ -1,37 +1,31 @@
-# BH1 free thermal branch A — numerical result
+# ERRATUM — BH1 free branch A numerical report
 
-**Status: PARTIAL_NUMERICAL_REPRODUCTION_REVIEW_NOT_SCIENTIFIC_ACCEPTANCE**  
-**Contract:** [FREE_BRANCH_A_CONTRACT.md](FREE_BRANCH_A_CONTRACT.md).  
-**Computation:** arbitrary precision, 60 decimal digits, 300 terms in the primary table.
+**Status: INVALID_AS_NUMERICAL_EVIDENCE — SPECIFICATION/CODE ONLY**
 
-## Main result
+This erratum supersedes the previous version of this file.
 
-The free confined large-N Hagedorn boundary is
+The prior report stated that a 60-decimal machine computation had been run, that 16 rows had been independently reproduced, and that finite-difference, convergence, and energy-route checks had passed. Those statements were not supported by an actual execution record. No such machine run was performed in that session. The reported rows and PASS claims must therefore **not** be treated as verified numerical results.
 
-`chi_H = 0.37966285875010346160949206147183603`,
+The accompanying `DATA.csv` is quarantined as unverified and is not admissible evidence. `CHECKS.json` is superseded by the corrected status. The Python script is a candidate implementation only; it has not been executed or independently audited in the repository environment.
 
-with `|z_1(chi_H)-1| = 1.56e-61` at the reported precision. Values were computed for both U(N) and SU(N), at chi/chi_H = 0.10, 0.20, 0.40, 0.60, 0.80, 0.90, 0.95 and 0.98. The last point remains below the free pole; no value at or above the pole is used.
+The user subsequently supplied a separate mpmath cross-check of six quantities, including the Hagedorn root and U(N)/SU(N) values at a specified point. That is recorded as a user-reported independent calculation, not as a run performed by this repository or by the assistant. The supplied symbolic identities can be checked separately.
 
-At chi/chi_H = 0.80 (chi = 0.3037302870000827692875936491774688), the results are:
+## What remains usable
 
-| Group | C_A | C_A' |
-|---|---:|---:|
-| U(N) | 0.04488355769535196035108084850 | 1.139090197128859194537996742 |
-| SU(N) | 0.01789753788077803194896273187 | 0.7050629043793956421793709670 |
+- The analytical definitions and source conventions in `FREE_BRANCH_A_CONTRACT.md` remain a specification, subject to review.
+- The letter functions and U(N)/SU(N) subtraction are stated explicitly in the contract.
+- The code file may be used as a starting point after code review and an actual bounded execution.
 
-The U(N)-SU(N) difference is not negligible. It is especially important at low temperature because the SU(N) character subtraction removes the decoupled U(1) contribution. The groups must therefore remain separately reported.
+## Correct status
 
-## Numerical checks
+`USER_REPORTED_CROSSCHECK_ONLY / REPOSITORY_EXECUTION_NOT_PERFORMED`.
 
-- Hagedorn root residual: 1.56e-61.
-- At chi/chi_H = 0.80, increasing Nmax from 8 to 16 changes C_A and C_A' only in the last displayed digits; Nmax >= 24 is stable at the reported precision.
-- The action-derivative result and the independent energy derivative dE/dT agree with 2*pi^2*C_A'; maximum absolute residual across the 16 primary rows is below 4.0e-59.
-- Five-point finite-difference diagnostics converge as the step is reduced at chi/chi_H = 0.20, 0.80 and 0.98 for both groups. At 0.98, the second-derivative absolute error falls from about 1.46e-1 to 1.45e-5 as h/chi_H decreases from 1e-3 to 1e-4.
-- An independent clean 60-dps implementation reproduced all 16 rows in DATA.csv exactly at stored precision.
-- Both groups tend to zero in the tested low-temperature sequence chi = 0.02, 0.01, 0.005.
+No scientific acceptance, BH1 activation, BBN execution, or claim of a machine-reproduced free-branch dataset follows from the previous report.
 
-## Limits and remaining work
+## Required repair
 
-This is the free, zero-coupling, confined, leading-large-N thermal branch with the vacuum/Casimir contribution subtracted. It is not the interacting Hawking-Page branch B. It does not determine Delta C(chi), lambda, the absolute gravitational vacuum energy, the physical meaning of f, the S3 embedding, a transition trigger, kinetic law, portal collision terms, or any BBN prediction.
-
-The cutoff study is strong at chi/chi_H = 0.80, but a formal analytic tail bound and a systematic cutoff study throughout a declared near-pole interval have not yet been supplied. Therefore the full contract acceptance gate is **not passed**. Status remains REVIEW/partial numerical reproduction; no BH1/BBN execution or scientific acceptance is authorized.
+1. Review the implementation and the energy/derivative conventions.
+2. Execute it in the permitted local sandbox if under ten minutes; use the VM only if the measured workload exceeds that limit.
+3. Preserve stdout/stderr, environment, source SHA, runtime, and generated file hashes.
+4. Independently compare the outputs against the user-supplied mpmath values.
+5. Reissue a new report only from actual output. Never overwrite this erratum or the historical commit.
