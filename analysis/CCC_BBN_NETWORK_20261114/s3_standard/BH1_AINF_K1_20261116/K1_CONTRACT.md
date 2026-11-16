@@ -45,7 +45,7 @@ Required exact checks:
 The SBH is the unstable Euclidean bounce/thermalon separating the thermal-AdS and BBH saddles. Record the two directions separately:
 
 Gamma_(AdS->BBH) ~ (omega_0/(2*pi))*(K_2/K_1)*exp(-I_-),
-Gamma_(BBH->AdS) ~ (omega'_0/(2*pi))*(K_2/K_3)*exp(-(I_--I_+)).
+Gamma_(BBH->AdS) ~ (omega_0/(2*pi))*(K_2/K_3)*exp(-(I_--I_+)).
 
 The K_i are Gaussian factors of the AGGL phenomenological matrix integral and omega_0 is the unstable-mode frequency in that calculation. The source supplies this structure, not complete numerical factors for our target implementation and not automatically the complete gravitational one-loop determinants of the full IIB path integral.
 
