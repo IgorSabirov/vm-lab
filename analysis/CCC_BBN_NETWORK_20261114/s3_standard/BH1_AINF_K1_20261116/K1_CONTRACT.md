@@ -35,7 +35,8 @@ Required exact checks:
 - chi_HP=3/(2*pi) at u=1.
 - At chi_HP: u_-=1/4, u_+=1.
 - I_BH(u_+)=0 at u=1.
-- I_SBH(chi_HP)=pi*N^2/32.
+- I_SBH(chi_HP)=pi*N^2/32, since
+  I_-(u=1/4)=(pi*N^2/2)*[(1/4)^(3/2)*(3/4)/(3/2)]=pi*N^2/32.
 - Latent heat at coexistence Delta E=3*N^2/(2*R).
 - chi_HP-chi_0=(3-2*sqrt(2))/(2*pi).
 - Maximum BBH supercooling fraction 1-chi_0/chi_HP=1-2*sqrt(2)/3.
