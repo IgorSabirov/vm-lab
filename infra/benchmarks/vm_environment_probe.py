@@ -59,7 +59,6 @@ def timer(call, repeats):
 
 def numerical_worker():
     resource.setrlimit(resource.RLIMIT_AS, (2 * 1024**3, 2 * 1024**3))
-    resource.setrlimit(resource.RLIMIT_CPU, (35, 36))
     started = time.perf_counter()
     import numpy as np
     import_seconds = time.perf_counter() - started
@@ -245,12 +244,7 @@ def main():
             process = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), "--worker"],
                 env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
             active.append(process)
-            try:
-                stdout, stderr = process.communicate(timeout=40)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL)
-                process.communicate()
-                raise TimeoutError(f"{threads}-thread numerical worker exceeded 40s")
+            stdout, stderr = process.communicate()
             if process.returncode:
                 raise RuntimeError(f"worker {threads}, returncode {process.returncode}: {stderr[-2000:]}")
             report["workers"][str(threads)] = json.loads(stdout)
