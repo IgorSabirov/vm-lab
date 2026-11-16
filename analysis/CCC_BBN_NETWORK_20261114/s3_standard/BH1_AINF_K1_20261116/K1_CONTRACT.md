@@ -8,7 +8,7 @@
 
 - R: common AdS curvature radius and boundary S3 radius.
 - chi=TR.
-- u=r_+/R: black-hole horizon parameter.
+- u=(r_+/R)^2: squared dimensionless horizon parameter.
 - rho_1=(1/N)Tr U: Polyakov-loop order parameter.
 - m=(1/N^2)Tr U Tr U^dagger: nonnegative matrix-model variable.
 - mu, g: AGGL auxiliary saddle variables.
@@ -16,24 +16,24 @@
 
 ## 2. Classical saddle geometry
 
-chi(u)=(1+2u^2)/(2*pi*u).
+chi(u)=(1+2u)/(2*pi*sqrt(u)).
 
 For chi>=chi_0=sqrt(2)/pi,
 
-u_-(chi)=(pi*chi-sqrt(pi^2*chi^2-2))/2,
-u_+(chi)=(pi*chi+sqrt(pi^2*chi^2-2))/2.
+u_-(chi)=[(pi*chi-sqrt(pi^2*chi^2-2))/2]^2,
+u_+(chi)=[(pi*chi+sqrt(pi^2*chi^2-2))/2]^2.
 
 u_- is the small, negative-specific-heat saddle; u_+ is the big, positive-specific-heat saddle.
 
 The common-vacuum-subtracted on-shell action is
 
 I_BH(u)=beta*(F_BH-F_AdS)
-       =(pi*N^2/2)*u^3*(1-u^2)/(1+2*u^2).
+       =(pi*N^2/2)*u^(3/2)*(1-u)/(1+2*u).
 
 Required exact checks:
-- chi_0=sqrt(2)/pi at u=1/sqrt(2).
+- chi_0=sqrt(2)/pi at u=1/2.
 - chi_HP=3/(2*pi) at u=1.
-- At chi_HP: u_-=1/2, u_+=1.
+- At chi_HP: u_-=1/4, u_+=1.
 - I_BH(u_+)=0 at u=1.
 - I_SBH(chi_HP)=pi*N^2/32.
 - Latent heat at coexistence Delta E=3*N^2/(2*R).
