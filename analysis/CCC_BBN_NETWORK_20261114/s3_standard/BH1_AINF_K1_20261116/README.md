@@ -1,14 +1,15 @@
 # BH1: strong-coupling thermal AdS and Hawking-Page saddle review
 
-This branch is an analytical/source update only. No BH1, BBN or VM production computation has been executed.
+This branch is an analytical/source update only. No new machine run, BH1/BBN production run or VM job was performed by this update.
 
 ## Main documents
 
 - [Synthesis report](REPORT.md)
-- [Neighbor review addendum: K1, B∞ normalization, KK asymptotics and conditional bounds](NEIGHBOR_REVIEW_ADDENDUM_20261116.md)
+- [A∞ spectral audit and k=2 thermal-character erratum](A_INFINITY_SPECTRAL_AUDIT_20261116.md)
+- [Neighbor review addendum: K1, B∞ normalization and conditional bounds](NEIGHBOR_REVIEW_ADDENDUM_20261116.md)
 - [Machine-readable review ledger](NEIGHBOR_REVIEW_CHECKS.json)
 - [K1: HP saddles, Euclidean bounce and finite-N crossover](K1_CONTRACT.md)
-- [A∞: full thermal AdS KK gas contract](AINF_KK_GAS_CONTRACT.md)
+- [A∞: thermal AdS KK gas contract](AINF_KK_GAS_CONTRACT.md)
 - [B∞: classical black-hole thermodynamics and entropy normalization](B_INFINITY_CONTRACT.md)
 - [Primary source manifest](SOURCES.json)
 - [Machine-readable branch status](STATUS.json)
@@ -21,14 +22,15 @@ This branch is an analytical/source update only. No BH1, BBN or VM production co
 
 The empty common-chi domain applies only to A' versus B∞, not to A∞ versus B∞.
 
-## Latest progress
+## Latest A∞ audit
 
-- K1 barrier pi*N^2/32 and AGGL two-saddle structure source-checked.
-- Detailed-balance prefactor relation added as a test.
-- B∞ high-energy entropy coefficient identity added.
-- HO fixed-level density rho_1(epsilon)~epsilon^8 and cumulative count epsilon^9 fixed in the catalogue contract.
-- KRN S5 mass spectrum recognized as existing literature; machine-readable thermal catalogue still open.
-- D=256, c=4/315, A~512, chi2 numerical coefficient, optional lambda ordering and FRW nucleation bound are explicitly conditional, not accepted results.
-- Finite-N crossover scale O(N^-2) is separated from the midpoint shift.
+- 10D Weyl phase-space derivation gives cumulative count 256*epsilon^9/181440.
+- Continuous density is 4/315*epsilon^8; discrete half-step level count is 2/315*epsilon^8.
+- Peer reports dim M_k=256*dim[0,k-2,0] for k=2..46.
+- A13 grading is peer-reported pass; A14 low-level content remains partial.
+- The original positive-only k=2 thermal sum is invalid as implemented (291 states rather than 256).
+- Peer signed-subtraction thermal values are provisional until the shortened k=2 character is explicitly matched to KRN.
+- A15 remains trend-only pending tolerance and full primary-tower coverage.
+- The high-energy Weyl coefficient A=512.008725... is analytically supported under the stated boson/fermion asymptotic assumption; finite-chi A∞ thermodynamics is not yet accepted.
 
-Historical unsupported free-branch numerical claims remain quarantined by the erratum in the A' folder. No scientific acceptance is promoted and main is untouched.
+Historical unsupported A' numerical claims remain quarantined by the erratum in the A' folder. No scientific acceptance is promoted and main is untouched.
