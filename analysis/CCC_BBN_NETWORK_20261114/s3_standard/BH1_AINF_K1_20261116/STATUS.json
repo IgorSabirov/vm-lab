@@ -1,6 +1,6 @@
 {
   "id": "BH1_AINF_K1_20261116",
-  "status": "A_INFINITY_SPECTRAL_AUDIT_PEER_REPORTED_K2_ERRATUM_PENDING_A14",
+  "status": "A14_SOURCE_MATCHED_K234_A15C_RESEARCH_SESSION_REPORTED_RUN_REPO_REPRODUCIBILITY_PENDING",
   "branch": "bh1-ainf-k1-20261116",
   "base_commit": "f10f4d742af50fa6834287fab57921dfaffae1dd",
   "scientific_acceptance": false,
@@ -35,7 +35,7 @@
     "Weyl_law": "DERIVED_FROM_10D_PHASE_SPACE_WITH_D256: cumulative 256*epsilon^9/181440; continuous density 4/315 epsilon^8; discrete half-step level count 2/315 epsilon^8",
     "KK_multiplet_dimensions": "PEER_REPORTED_MACHINE_CHECK dim M_k=256*dim[0,k-2,0] for k=2..46; not independently re-executed here",
     "A13": "PEER_REPORTED_PASS",
-    "A14": "PARTIALLY_VERIFIED; k2 shortened massless character/null subtraction and k1 doubleton source match remain",
+    "A14": "SOURCE_MATCHED_K2_K3_K4_RESEARCH_SESSION_CHECKER; exact entries 14/14,25/25,34/34; repository artifacts/clean rerun pending",
     "A15": "TREND_ONLY; cumulative asymptotic tolerance not met/frozen; epsilon>kmax incomplete without omitted primary tower bound",
     "Ainf_previous_thermal_sum": "INVALID_AS_IMPLEMENTED: positive-only RS truncation counted 291 rather than 256 at k2",
     "Ainf_signed_thermal_values": {
@@ -49,7 +49,37 @@
       "gas_only_midpoint_coefficient_over_N2": "0.39851296"
     },
     "Ainf_Weyl_high_energy_A": "512.0087251779 analytically follows from continuous Weyl density and equal asymptotic boson/fermion density assumption; does not validate finite-chi thermodynamics",
-    "Ainf_chi2_numeric": "UNCONTROLLED_EXTRAPOLATION; HO n<<lambda^(1/4) incompatible with n~N^2 in classical IIB lambda<<N regime"
+    "Ainf_chi2_numeric": "UNCONTROLLED_EXTRAPOLATION; HO n<<lambda^(1/4) incompatible with n~N^2 in classical IIB lambda<<N regime",
+    "S1_S2_BAD": {
+      "S1": "VALID: positive RS primaries plus shortened characters",
+      "S2": "VALID: signed RS primaries plus long characters",
+      "BAD": "REJECTED: signed RS plus shortened characters double-subtracts the same null modules",
+      "k2_formal_positive_count": 291,
+      "k2_null_submodules": 35,
+      "k2_physical_short_multiplet": 256,
+      "provenance": "analytical equivalence and research-session checker; repository clean rerun pending"
+    },
+    "k1_doubleton": {
+      "boundary_singleton_states": 16,
+      "bulk_thermal_gas_states": 0,
+      "bulk_tower_starts_at_k": 2,
+      "status": "DOMAIN_DISTINCTION_ACCEPTED"
+    },
+    "A15c": {
+      "status": "RESEARCH_SESSION_REPORTED_NUMERIC_CONVERGENCE_AT_EPS120",
+      "kmax": 150,
+      "epsilon_max": 120,
+      "local_density_relative_deviation": "0.195%",
+      "cumulative_count_relative_deviation": "2.139%",
+      "tolerance_note": "pass only for local-density criterion with predeclared 0.5% tolerance; not pass for 1% cumulative criterion",
+      "committed_runner": false,
+      "clean_repository_rerun": false
+    },
+    "Ainf_thermal": {
+      "lnZ_HP_baseline": "~2.63 (peer/research-session S1 result)",
+      "lnZ_HP_BAD": "2.62211017 rejected double-subtraction diagnostic",
+      "status": "BASELINE_PROVISIONAL_UNTIL_REPOSITORY_RUNNER_AND_HASHED_OUTPUTS"
+    }
   },
   "nulls": {
     "sector_X": "OPEN",
@@ -63,12 +93,11 @@
     "cosmological_perturbations": "OPEN"
   },
   "next_order": [
-    "Derive physical k2 shortened character with explicit gauge/null-submodule subtraction",
-    "Match k=2,3,4 component representations to KRN; justify k1 doubleton omission",
-    "Rebuild z_B,z_F from validated physical characters and rerun thermal sums",
-    "Extend k_max or prove rigorous omitted-primary tail bound; define A15 tolerance",
-    "Recompute lnZ, E, F, S, Cv and gas-only midpoint contribution with two derivative routes",
-    "Only then compute BBH one-loop determinant for complete finite-N HP midpoint"
+    "Commit reproducible A14 source table transcription, S1/S2/BAD runner, A15c runner and hashed outputs",
+    "Add explicit k=1 boundary singleton=16 versus bulk quotient=0 tests",
+    "Freeze lnZ(chi_HP) approximately 2.63 pending clean repository rerun",
+    "In parallel define one explicitly provisional falsifiable X/portal ansatz and derive its cosmological equations",
+    "Continue BBH one-loop determinant only as finite-N precision work, not as blocker for starting X/portal branch"
   ],
   "source_manifest": "SOURCES.json",
   "report": "REPORT.md",
@@ -82,11 +111,11 @@
   "neighbor_review_checks": "NEIGHBOR_REVIEW_CHECKS.json",
   "neighbor_spectral_audit": "A_INFINITY_SPECTRAL_AUDIT_20261116.md",
   "null_closure_summary": {
-    "fully_closed": "0/8",
-    "materially_narrowed": "3/8: N_lambda, complete_free_energy, kinetic_law",
-    "open": "5/8: sector_X, R_embedding, collision_terms, initial_state, cosmological_perturbations",
-    "auxiliary_transition_trigger": "PARTIALLY_CONSTRAINED",
-    "detailed_ledger": "NULL_CLOSURE_STATUS_20261116.md"
+    "fully_closed": "0/8 physical cosmological nulls",
+    "materially_narrowed": "A∞ low-level spectral content A14; K1 source-level; B∞ normalization",
+    "still_open": "sector_X, R_embedding, N/lambda selection, complete finite-N free energy, real-time kinetic_law, portal collision_terms, initial_state, cosmological_perturbations",
+    "auxiliary_transition_trigger": "PARTIALLY_CONSTRAINED"
   },
-  "next_critical_block": "A_infinity A14: derive and validate physical k=2 shortened massless character, match k=2,3,4 to KRN, justify k=1 doubleton omission, then rebuild thermal partition"
+  "next_critical_block": "A_infinity A14: derive and validate physical k=2 shortened massless character, match k=2,3,4 to KRN, justify k=1 doubleton omission, then rebuild thermal partition",
+  "A14_A15c_reconciliation": "A14_A15C_RECONCILIATION_20261116.md"
 }
