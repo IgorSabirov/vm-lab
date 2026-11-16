@@ -6,11 +6,17 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import signal
+import time
 from datetime import datetime,timezone
+try:
+    from .autonomy.execution_policy import digest, validate as validate_execution
+except ImportError:  # Direct CLI: python infra/research_pipeline.py.
+    from autonomy.execution_policy import digest, validate as validate_execution
 
 REPO=Path(__file__).resolve().parents[1]
 PKG=REPO/'analysis/CCC_BBN_NETWORK_20261114/pipeline'
-IMPLEMENTATIONS={'s1_fullnet':REPO/'analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/launch.py'}
+IMPLEMENTATIONS={'s1_fullnet':REPO/'analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/launch.py', 's_eta':REPO/'analysis/CCC_BBN_NETWORK_20261114/s_eta/launch.py'}
 
 def read(path):return json.loads(Path(path).read_text())
 def write(path,value):
@@ -23,7 +29,11 @@ def safe(path):
     return p
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def contract_complete(value,stage):
-    return value.get('status')=='ENGINEERING_PASS' and value.get(stage['status_field'])==stage['expected_status']
+    engineering=value.get('status')=='ENGINEERING_PASS'
+    if ('status' not in value and stage['kind']=='import'
+            and stage['status_field']=='engineering_status'):
+        engineering=value.get('engineering_status')=='PASS'
+    return engineering and value.get(stage['status_field'])==stage['expected_status']
 
 def validate_definition(plan):
     ids=[s['id'] for s in plan['stages']]
@@ -47,9 +57,13 @@ def verify_import(stage):
         ref=stage[key]
         if sha(safe(ref['path']))!=ref['sha256']:raise ValueError('Pinned '+key+' differs')
     manifest=safe(stage['manifest']['path']);root=manifest.parent
-    for rel,entry in read(manifest)['files'].items():
+    document=read(manifest)
+    entries=document.get('files',document)
+    for rel,entry in entries.items():
+        expected=entry['sha256'] if isinstance(entry,dict) else entry
+        if not isinstance(expected,str) or len(expected)!=64:raise ValueError('Invalid artifact digest')
         path=(root/rel).resolve()
-        if not path.is_relative_to(root) or sha(path)!=entry['sha256']:raise ValueError('Input artifact changed: '+rel)
+        if not path.is_relative_to(root) or sha(path)!=expected:raise ValueError('Input artifact changed: '+rel)
     return read(safe(stage['summary']['path']))
 
 def evaluate(plan,request):
@@ -120,6 +134,28 @@ def stage_checkpoint(stage,phase):
     state['stages'][stage].update(status='RUNNING',phase=phase,workflow_url='https://github.com/IgorSabirov/vm-lab/actions/runs/'+os.environ['GITHUB_RUN_ID'])
     root=save_state(state);publish(root,plan['branch'])
 
+def execution_admission(request):
+    """A hosted controller cannot execute a VM/local plan or bypass admission."""
+    receipt=read(Path(os.environ['RUNNER_TEMP'])/'autonomy-budget.json')
+    execution=read(safe(request['execution_plan']))
+    report=validate_execution(execution,read(REPO/'infra/autonomy/CONTROL.json')['limits'],root=REPO)
+    if (not receipt.get('execute') or report['executor']!='github_actions'
+            or receipt.get('plan_sha256')!=digest(execution)
+            or receipt.get('reservation',{}).get('id')!=request['id']
+            or receipt['reservation'].get('workflow_run_id')!=int(os.environ['GITHUB_RUN_ID'])
+            or len(execution['sections'])!=1):
+        raise ValueError('Missing/mismatched single-section Actions admission')
+    return execution
+
+def bounded_process(argv,seconds):
+    # Kill the entire process group on a hard deadline, not just its launcher.
+    with subprocess.Popen(argv,cwd=REPO,start_new_session=True) as process:
+        try:return process.wait(timeout=seconds)
+        except subprocess.TimeoutExpired:
+            os.killpg(process.pid,signal.SIGKILL)
+            process.wait()
+            raise ValueError('Section compute budget exhausted; no automatic retry')
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--execute',action='store_true');ap.add_argument('--upstream');ap.add_argument('--output',type=Path);a=ap.parse_args()
     plan=read(PKG/'PIPELINE.json');req=read(PKG/'RUN_REQUEST.json');nodes=validate_definition(plan)
@@ -130,6 +166,8 @@ def main():
         print(json.dumps({k:v['status'] for k,v in state['stages'].items()}));return 0
     if not a.upstream:raise ValueError('Pinned upstream checkout required')
     if os.environ.get('GITHUB_REPOSITORY')!='IgorSabirov/vm-lab' or os.environ.get('GITHUB_REF')!='refs/heads/'+plan['branch'] or os.environ.get('GITHUB_RUN_ATTEMPT')!='1':raise ValueError('Wrong executor or forbidden retry')
+    execution=execution_admission(req)
+    deadline=time.monotonic()+execution['sections'][0]['compute_seconds']
     exit_code=0
     try:
         for key in req['stages']:
@@ -137,9 +175,11 @@ def main():
             if status=='COMPLETE':continue
             if status!='READY':raise ValueError(key+' cannot start: '+status+'; no automatic repeat')
             entry=IMPLEMENTATIONS[nodes[key]['implementation']]
-            proc=subprocess.run([sys.executable,str(entry),'--upstream',str(Path(a.upstream).resolve())],cwd=REPO)
+            remaining=deadline-time.monotonic()
+            if remaining<=0:raise ValueError('Section compute budget exhausted')
+            returncode=bounded_process([sys.executable,str(entry),'--upstream',str(Path(a.upstream).resolve())],remaining)
             state=evaluate(plan,req)
-            if proc.returncode or state['stages'][key]['status']!='COMPLETE':exit_code=1;break
+            if returncode or state['stages'][key]['status']!='COMPLETE':exit_code=1;break
     except Exception as exc:
         exit_code=1;state=evaluate(plan,req);state['controller_error']=str(exc)
     finally:

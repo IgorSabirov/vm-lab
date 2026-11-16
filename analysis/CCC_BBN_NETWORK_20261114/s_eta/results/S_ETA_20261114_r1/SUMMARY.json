@@ -1,0 +1,32 @@
+{
+  "status": "ENGINEERING_PASS",
+  "numerical_status": "LOCAL_ETA_RESPONSE_COMPLETE",
+  "executed_strict_runs": [
+    "ETA_LOW",
+    "ETA_HIGH"
+  ],
+  "process_seconds": 1097.11425544,
+  "controller_seconds": 1121.445687345,
+  "runtime": {
+    "forecast": {
+      "per_run_central": {
+        "ETA_LOW": 595.353762867611,
+        "ETA_HIGH": 595.353762867611
+      },
+      "seconds": {
+        "low": 595.353762867611,
+        "central": 1190.707525735222,
+        "high": 2143.2735463233994
+      },
+      "target_probe_seconds": 12.784330761999996,
+      "target_to_parent_probe_solver_ratio": 0.9601458559909497,
+      "method": "Archived R8 per-era solver time scaled by fresh same-code eta probe ratio; factor 1.1 per strict eta solve. 0.5–1.8 engineering envelope, not confidence interval.",
+      "preparation_seconds_used": 13.633923275,
+      "historical_N1_seconds_not_recharged": 3402.9006214339997
+    },
+    "actual_strict_seconds": 1083.4803321650002,
+    "central_difference_seconds": -107.22719357022174,
+    "within_envelope": true
+  },
+  "scientific_acceptance": false
+}

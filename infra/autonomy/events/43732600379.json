@@ -1,0 +1,57 @@
+{
+  "schema": "vm-lab-autonomy-event-review-v1",
+  "observed_utc": "2026-11-15T15:58:44.214Z",
+  "pr": 73,
+  "delivery_ids": [
+    "38908ad0-e10c-11f1-9f72-00bb44a19678",
+    "0b2eb1b0-e10d-11f1-94b8-311276f1f3c5",
+    "1fece7c0-e10d-11f1-97bd-fd9efca6b34e"
+  ],
+  "package_id": "LINX_BBN_IDENTITY_20261115_r1",
+  "source_sha": "fe2b185587b8e12d576b0a4b607a042ab7077b35",
+  "dispatch_sha": "a17df470bc601a3d730a88e2a639d7fa799f4768",
+  "result_sha": "7e3b5a75887bd327b57d98ebf4c72f46af09333a",
+  "workflow_run_id": 43732600379,
+  "workflow_url": "https://github.com/IgorSabirov/vm-lab/actions/runs/43732600379",
+  "workflow_conclusion": "success",
+  "execution_status": "NOT_ADMITTED",
+  "admission_reason": "ACTIVE_PACKAGE",
+  "engineering_assessment": "DISPATCH_DELIVERED_ADMISSION_DENIED",
+  "scientific_assessment": "NOT_EVALUATED",
+  "calibration_processes_started": 0,
+  "strict_processes_started": 0,
+  "ledger_reservation_created": false,
+  "admission": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115/full_run_20261115/results/LINX_BBN_IDENTITY_20261115_r1/ADMISSION.json",
+    "sha256": "0f283a1a265adf15757994b33b1149433638ecd1343dcddef6ffee37c57820e6",
+    "git_blob_sha": "9657976a68fe68b5a4906d2ec06e5417e11f4cc2"
+  },
+  "evidence_artifact": {
+    "id": 14169365808,
+    "sha256": "3b9d76392b9b281619c5020ff858003594d70738939044db291131c71a7b4210",
+    "url": "https://github.com/IgorSabirov/vm-lab/actions/runs/43732600379/artifacts/14169365808"
+  },
+  "blocking_workflow": {
+    "id": 43732605063,
+    "path": ".github/workflows/anthropic-bh0.yml",
+    "job_started_utc": "2026-11-15T15:56:02Z",
+    "job_completed_utc": "2026-11-15T15:56:45Z",
+    "admission_observed_utc": "2026-11-15T15:56:28.617676+00:00",
+    "classification_basis": "Absent from admit.NON_COMPUTE; same autonomous branch; no other non-allowlisted active run observed. Existing conservative admission counts it as a compute package."
+  },
+  "separate_ci_failure": {
+    "run_id": 43732071074,
+    "stage": "pipeline evaluation after successful 38-check BH0 verification",
+    "exception": "KeyError: next",
+    "cause": "New LINX_BBN_IDENTITY PIPELINE card lacks next; no code repair performed."
+  },
+  "automatic_retry": false,
+  "automatic_code_repair": false,
+  "scientific_acceptance": false,
+  "active_control_unchanged": {
+    "branch": "science/autonomous-s3-inputs-20261114",
+    "pr": 54
+  },
+  "next": "Preserve denial and CI FAIL. No scientific successor activation or duplicate submit. Corrected implementation requires separate owner request; ready independent contracts remain eligible.",
+  "state_note": "Workflow success means denial was published successfully; it is neither numerical execution nor scientific success. No terminal scientific SUMMARY exists because no numerical process started."
+}

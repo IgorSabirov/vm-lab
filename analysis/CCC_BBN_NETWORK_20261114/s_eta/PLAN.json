@@ -1,0 +1,57 @@
+{
+  "schema": "ccc-bbn-local-eta-v1",
+  "id": "S_ETA_20261114_r1",
+  "execution_enabled": true,
+  "question": "Local standard-BBN response on eta/eta0 = 0.99, 1, 1.01; reuse F0, compute two new full-network points.",
+  "mode": "EXPLORATORY_FINITE_INTERVAL_SENSITIVITY",
+  "upstream_commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "baseline_Omegabh2": 0.02242,
+  "eta_mapping": "eta_target = eta_F0 * factor; Omegabh2 = eta_target / Omegabh2_to_eta0b; validate actual eta to 1e-14 relative",
+  "observational_prior": null,
+  "likelihood": null,
+  "physical_eta_history": false,
+  "runs": [
+    {
+      "id": "ETA_LOW",
+      "mode": "S0",
+      "f0": 1.0,
+      "alpha_s_inv": 0.0,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000",
+      "eta_factor": 0.99
+    },
+    {
+      "id": "ETA_HIGH",
+      "mode": "S0",
+      "f0": 1.0,
+      "alpha_s_inv": 0.0,
+      "numerical_precision": 1e-11,
+      "rate_grid_npts": 16000,
+      "sampling_temperature_per_decade": 8000,
+      "atol_scale": 1.0,
+      "cache_group": "BG8000",
+      "eta_factor": 1.01
+    }
+  ],
+  "observables": [
+    "YPBBN",
+    "DoH",
+    "He3oH",
+    "Li7oH",
+    "Neff"
+  ],
+  "acceptance": "Full execution, conserved baryon budget and positivity under unchanged worker tolerances, frozen caches, mapping residual <=1e-14, finite positive observable outputs. No sign/size of response is required.",
+  "runtime": {
+    "preparation_cap_seconds": 120,
+    "process_cap_seconds": 2400,
+    "package_cap_seconds": 5400,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648,
+    "routing": "Whole package >600 s: GitHub Actions; archived full-network cost about 438 s/run, target calibration before admission; provisional central 1000 s, range 500-2000 s."
+  },
+  "scientific_acceptance": false,
+  "automatic_retry": false
+}

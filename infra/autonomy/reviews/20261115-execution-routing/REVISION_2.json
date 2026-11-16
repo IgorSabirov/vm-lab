@@ -1,0 +1,36 @@
+{
+  "schema": "vm-lab-engineering-revision-v1",
+  "predecessor_commit": "98a2b28837674f3964e020595fc35922b4777575",
+  "original_failure": {
+    "check": "python -c \"from infra.research_pipeline import evaluate\"",
+    "result": "FAIL",
+    "error": "ModuleNotFoundError: No module named autonomy",
+    "scientific_execution": false
+  },
+  "fix": "Support both package import and direct CLI; add regression for the BH0 workflow import path",
+  "verification": {
+    "command": "python -m unittest discover -s infra -p test_autonomy.py -v",
+    "tests": 26,
+    "seconds": 0.088,
+    "result": "PASS"
+  },
+  "files_sha256": {
+    "infra/research_pipeline.py": "4ddfbec7b70c6990f1db1c5c9724f5b4852b7b4c5f8556a7c8fa84c33256d13b",
+    "infra/test_autonomy.py": "57dbe8c824e157a8e1b803f4eec49f4b15c744c76af9f90bceaf721bd4dc405e"
+  },
+  "webhook_receipt": {
+    "delivery_id": "518cbc80-e0bb-11f1-878f-b426f08adeba",
+    "event_pr": 61,
+    "event_source_commit": "98a2b28837674f3964e020595fc35922b4777575",
+    "classification": "ENGINEERING_PREPARATION_REVIEW",
+    "action": "PRESERVE_QUEUE_NO_DISPATCH",
+    "active_pr": 54,
+    "active_result_sha": "45f5a17131862dbeb8e703251e5f77da0b1f011b",
+    "budget_status": "BUDGET_WAIT",
+    "not_before_utc": "2026-11-15T14:09:29Z",
+    "scientific_acceptance": false
+  },
+  "scientific_acceptance": false,
+  "new_scientific_packages": 0,
+  "previous_evidence_preserved": true
+}
