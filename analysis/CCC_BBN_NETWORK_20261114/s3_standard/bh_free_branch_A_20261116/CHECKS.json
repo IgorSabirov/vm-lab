@@ -1,22 +1,19 @@
 {
   "id": "BH1_FREE_BRANCH_A_20261116",
-  "status": "PARTIAL_NUMERICAL_REPRODUCTION_REVIEW_NOT_SCIENTIFIC_ACCEPTANCE",
-  "precision_dps": 60,
-  "summation_nmax_primary": 300,
+  "status": "NOT_EXECUTED",
   "checks": {
-    "T01_source_functions_and_N4_multiplicities": "PASS",
-    "T02_fermion_alternating_sign": "PASS",
-    "T03_SU_character_subtraction": "PASS",
-    "T04_low_temperature_limit": "PASS on chi=0.02, 0.01, 0.005 sequence",
-    "T05_hagedorn_root_and_domain_guard": "PASS; chi_H=0.37966285875010346160949206147183603; residual=1.56e-61",
-    "T06_cutoff_convergence_and_tail": "PARTIAL; rapid convergence demonstrated at chi/chi_H=0.8; analytic tail bound and systematic near-pole cutoff study remain open",
-    "T07_energy_derivative_crosscheck": "PASS; max absolute residual below 4e-59",
-    "T08_finite_difference_diagnostic": "PASS; five-point derivative estimates converge under step refinement at chi/chi_H=0.2, 0.8, 0.98 for both groups",
-    "T09_confined_factor_positivity": "PASS on sampled domain through chi/chi_H=0.98",
-    "T10_independent_reproducibility": "PASS; independent 60-dps implementation reproduced all 16 DATA.csv rows"
+    "T01_source_functions_and_N4_multiplicities": "SPECIFIED_NOT_RUN",
+    "T02_fermion_alternating_sign": "SPECIFIED_NOT_RUN",
+    "T03_SU_character_subtraction": "SPECIFIED_NOT_RUN",
+    "T04_low_temperature_limit": "SPECIFIED_NOT_RUN",
+    "T05_hagedorn_root_and_domain_guard": "USER_REPORTED_SYMBOLIC_CROSSCHECK_ONLY",
+    "T06_cutoff_convergence_and_tail": "NOT_RUN",
+    "T07_energy_derivative_crosscheck": "NOT_RUN",
+    "T08_finite_difference_diagnostic": "NOT_RUN",
+    "T09_confined_factor_positivity": "NOT_RUN",
+    "T10_independent_reproducibility": "NOT_RUN"
   },
-  "acceptance_gate": "NOT PASSED",
-  "reason": "No formal analytic tail bound and no systematic cutoff/tail validation throughout a declared near-pole interval.",
-  "scientific_scope": "Free zero-coupling confined leading-large-N thermal branch only; vacuum/Casimir subtracted.",
-  "not_established": ["interacting branch B", "Delta C(chi)", "absolute gravitational vacuum energy", "physical meaning of f", "R embedding", "transition trigger", "kinetic law", "portal collision terms", "BBN prediction"]
+  "previous_pass_claims": "RETRACTED_UNSUPPORTED",
+  "scientific_acceptance": false,
+  "execution_record": null
 }
