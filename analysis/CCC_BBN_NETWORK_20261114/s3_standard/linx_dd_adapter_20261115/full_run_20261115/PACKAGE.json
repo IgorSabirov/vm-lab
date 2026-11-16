@@ -20,9 +20,9 @@
     "TERMINAL_PUBLICATION"
   ],
   "budget": {
-    "package_seconds": 9900,
-    "process_seconds": 3600,
-    "section_seconds": 9900,
+    "package_seconds": null,
+    "process_seconds": null,
+    "section_seconds": null,
     "memory_bytes": 4294967296,
     "output_bytes": 2147483648
   },
@@ -51,5 +51,7 @@
     "status": "FAILED_SETUP",
     "numerical_processes_started": 0
   },
-  "revision_authorization": "Owner explicitly requested: Исправь и запусти. Repair materialization, preserve r2 failure and scientific inputs, and launch this separately versioned package."
+  "revision_authorization": "Owner explicitly requested: Исправь и запусти. Repair materialization, preserve r2 failure and scientific inputs, and launch this separately versioned package.",
+  "time_policy": "COMPUTE_AUTHORITY.md; owner placement; no duration deadline",
+  "allocation_semantics": "historical estimates, not enforced deadlines; measured forecast is emitted before strict runs"
 }

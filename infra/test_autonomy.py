@@ -44,41 +44,35 @@ def example(seconds=(3600,), kind='independent_realizations'):
 
 
 class Routing(unittest.TestCase):
-    def test_local_boundary_applies_to_entire_package(self):
-        self.assertEqual(validate(example((540,)), LIMITS)['executor'], 'local')
-        self.assertEqual(validate(example((541,)), LIMITS)['executor'], 'github_actions')
-        self.assertEqual(validate(example((300, 300)), LIMITS)['executor'], 'github_actions')
+    def test_owner_placement_is_independent_of_duration(self):
+        for seconds in (1, 600, 21600, 1000000):
+            for route in ('local', 'github_actions', 'vm'):
+                p = example((seconds,))
+                p['executor'] = p['calibration']['executor'] = route
+                result = validate(p, LIMITS)
+                self.assertEqual(result['executor'], route)
+                self.assertIsNone(result['duration_limit_seconds'])
+                self.assertTrue(all(s['timeout_minutes'] is None for s in result['sections']))
 
-    def test_twelve_hour_package_uses_three_whole_sections(self):
-        p = example((14400, 14400, 14400))
-        r = validate(p, LIMITS)
-        self.assertEqual(r['executor'], 'github_actions')
-        self.assertGreater(r['budget']['package_seconds'], 21600)
-        self.assertEqual([s['timeout_minutes'] for s in r['sections']], [241, 241, 241])
-
-    def test_continuous_with_overhead_boundary_and_vm(self):
-        self.assertEqual(validate(example((21540,), 'continuous'), LIMITS)['executor'], 'github_actions')
-        self.assertEqual(validate(example((21541,), 'continuous'), LIMITS)['executor'], 'vm')
-        self.assertEqual(validate(example((30000,), 'continuous'), LIMITS)['executor'], 'vm')
+    def test_forecast_is_retained_without_a_deadline(self):
+        p = example((14400,14400,14400))
+        p['budget'].update(package_seconds=None,process_seconds=None,section_seconds=None)
+        for t in p['tasks']: t['process_seconds'] = None
+        for section in p['sections']: section.update(wall_seconds=None,compute_seconds=None)
+        result = validate(p, LIMITS)
+        self.assertEqual(result['forecast_seconds'], 3*(14400*.8+60))
 
     def test_continuous_cannot_be_disguised_as_sections(self):
         with self.assertRaisesRegex(ValueError, 'cannot be split'):
             validate(example((10000, 10000), 'continuous'), LIMITS)
 
-    def test_vm_cannot_be_used_to_avoid_batching_independent_tasks(self):
-        p = example((14000, 14000))
-        p['sections'] = [{**p['sections'][0], 'task_ids': ['t0', 't1'],
-                          'compute_seconds': 28000, 'wall_seconds': 28060}]
-        p['budget']['section_seconds'] = 28060
-        with self.assertRaisesRegex(ValueError, 'Repartition'):
-            validate(p, LIMITS)
-
-    def test_vm_requires_verified_capacity_and_own_finite_budget(self):
-        for mutation in (lambda p: p['budget'].update(vm_seconds=None),
-                         lambda p: p['verified_vm_limits'].update(wall_seconds=21600),
-                         lambda p: p['verified_vm_limits'].update(memory_bytes=1)):
-            p = example((30000,), 'continuous'); mutation(p)
-            with self.assertRaises(ValueError): validate(p, LIMITS)
+    def test_vm_checks_resources_not_duration(self):
+        p = example((30000,), 'continuous')
+        p['budget']['vm_seconds'] = None
+        p['verified_vm_limits']['wall_seconds'] = None
+        validate(p, LIMITS)
+        p['verified_vm_limits']['memory_bytes'] = 1
+        with self.assertRaises(ValueError): validate(p, LIMITS)
 
     def test_tasks_must_be_covered_once(self):
         for ids in ([], ['t0', 't0'], ['unknown']):
@@ -92,12 +86,7 @@ class Routing(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Duplicate'): validate(p, LIMITS)
 
     def test_budget_and_parallel_memory_are_enforced(self):
-        changes = [lambda p: p['budget'].update(package_seconds=1),
-                   lambda p: p['sections'][0].update(wall_seconds=3600),
-                   lambda p: p['sections'][0].update(compute_seconds=3000),
-                   lambda p: p['budget'].update(process_seconds=1),
-                   lambda p: p['budget'].update(section_seconds=1),
-                   lambda p: p['budget'].update(output_bytes=3 * 1024**3),
+        changes = [lambda p: p['budget'].update(output_bytes=3 * 1024**3),
                    lambda p: p['tasks'][0].update(forecast_seconds=float('nan'))]
         for change in changes:
             with self.subTest(change=change):
@@ -266,10 +255,9 @@ class Controller(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Pinned manifest'):
             research_pipeline.verify_import(bad)
 
-    def test_process_exit_and_hard_deadline(self):
-        self.assertEqual(research_pipeline.bounded_process([sys.executable, '-c', 'pass'], 5), 0)
-        with self.assertRaisesRegex(ValueError, 'budget exhausted'):
-            research_pipeline.bounded_process([sys.executable, '-c', 'import time; time.sleep(5)'], .03)
+    def test_process_runs_past_legacy_deadline(self):
+        self.assertEqual(research_pipeline.bounded_process(
+            [sys.executable, '-c', 'import time; time.sleep(.08)'], .001), 0)
 
     def test_admission_binds_exact_plan_and_workflow(self):
         p = example()

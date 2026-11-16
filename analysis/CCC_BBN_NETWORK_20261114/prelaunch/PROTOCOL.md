@@ -1,3 +1,5 @@
+> **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](../../../COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
+
 # S0/S1 prelaunch — bounded validation, 14 November 2026
 
 Authorization: current user instruction «Исследуй, привлеки … и закрой все вопросы запуска» authorizes the necessary prelaunch audit, bounded calibration and conditional control. Permanent authorization covers publication to IgorSabirov/vm-lab. No merger or scientific acceptance is implied. Parent: CCC_BBN_NETWORK v0.1.2, PR #44, CCC_BBN_DRIFT and PRIMAT source contract.

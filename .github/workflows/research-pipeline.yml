@@ -13,7 +13,7 @@ jobs:
   research:
     if: github.repository == 'IgorSabirov/vm-lab'
     runs-on: ubuntu-24.04
-    timeout-minutes: 165
+
     env:
       OPENBLAS_NUM_THREADS: '1'
       OMP_NUM_THREADS: '1'
@@ -56,7 +56,7 @@ jobs:
       - name: Reserve one package and publish calibration admission
         if: steps.select.outputs.execute == 'true'
         id: admission
-        timeout-minutes: 4
+
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ steps.select.outputs.source }}
@@ -67,22 +67,22 @@ jobs:
           python-version: '3.12.16'
       - name: Install frozen dependencies
         if: steps.admission.outputs.execute == 'true'
-        timeout-minutes: 10
-        run: timeout 600 python -m pip install --disable-pip-version-check -r "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/../requirements.lock"
+
+        run: python -m pip install --disable-pip-version-check -r "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/../requirements.lock"
       - name: Materialize pristine and recorded-patch LINX roots
         if: steps.admission.outputs.execute == 'true'
-        timeout-minutes: 5
-        run: timeout 300 python "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/../identity/materialize_roots.py" "$RUNNER_TEMP/linx-identity-roots"
+
+        run: python "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/../identity/materialize_roots.py" "$RUNNER_TEMP/linx-identity-roots"
       - name: Calibrate full route, admit, execute two strict BBN arms and verify
         if: steps.admission.outputs.execute == 'true'
-        timeout-minutes: 135
+
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ steps.select.outputs.source }}
-        run: timeout --signal=TERM --kill-after=10 8100 python "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/run.py" execute
+        run: python "$RUNNER_TEMP/identity-source/$PACKAGE_DIR/run.py" execute
       - name: Publish terminal evidence and close reservation
         if: always() && steps.admission.outputs.execute == 'true'
-        timeout-minutes: 5
+
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ steps.select.outputs.source }}

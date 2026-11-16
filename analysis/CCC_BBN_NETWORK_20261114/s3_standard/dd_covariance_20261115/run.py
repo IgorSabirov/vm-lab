@@ -140,7 +140,7 @@ def run_one(sha, role, name, root, channel=None, q=None, background=None, backgr
     if background is not None:
         cmd += ["--background",str(background),"--background-sha256",str(background_sha)]
     env = {k:v for k,v in os.environ.items() if not k.endswith("TOKEN") and k not in ("GH_TOKEN","GITHUB_TOKEN")}
-    limits = {"wall_seconds":600,"memory_bytes":PACKAGE["budget"]["memory_bytes"]-128*1024**2,
+    limits = {"wall_seconds":None,"memory_bytes":PACKAGE["budget"]["memory_bytes"]-128*1024**2,
               "output_bytes":PACKAGE["budget"]["output_bytes"]}
     sys.path.insert(0,str(IDENTITY))
     import bounded
@@ -283,17 +283,15 @@ def main():
         results={"baseline":baseline}
         wall=float(baseline["supervisor"]["wall_seconds"])
         forecast={"measured_baseline_wall_seconds":wall,"remaining_integrations":8,
-                  "remaining_wall_forecast_seconds":8*wall,"per_integration_hard_cap_seconds":600,
+                  "remaining_wall_forecast_seconds":8*wall,"per_integration_hard_cap_seconds":None,
                   "forecast_recorded_before_perturbations":True,
-                  "within_5400_second_compute_cap":9*wall<=5400,"created_utc":now()}
+                  "duration_limit_seconds":None,"created_utc":now()}
         save(OUT/"FORECAST.json",forecast)
         print(json.dumps({"event":"forecast_before_perturbations",**forecast}), flush=True)
         if os.environ.get("GITHUB_STEP_SUMMARY"):
             with open(os.environ["GITHUB_STEP_SUMMARY"],"a") as summary_file:
                 summary_file.write("## Baseline and forecast before eight perturbations\n\n```json\n"+
                                    json.dumps(forecast,indent=2)+"\n```\n")
-        if wall>600 or 9*wall>5400:
-            raise RuntimeError("Measured baseline forecast exceeds compute envelope; no perturbations started")
         bg=OUT/"baseline"/"background.npz"; bg_sha=baseline["background_sha256"]
         for h in (1.0,0.5):
             for channel in CONTRACT["rate_model"]["channels"]:

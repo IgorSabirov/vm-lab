@@ -211,11 +211,11 @@ class Bridge:
                         raise ValueError('Plan is for another repository/executor')
                     if plan['command'] != {'entrypoint':'run.py','args':[]}:
                         raise ValueError('Bridge v1 only executes declared run.py')
-                    # Cap enforcement belongs to the worker, never infer it from an Issue label.
+                    # Memory/disk evidence belongs to the worker; duration does not route or deny a run.
                     limits=self.config.get('verified_worker_limits')
                     if not limits or not limits.get('evidence_ref'):
                         raise ValueError('Worker limit enforcement has not been attested')
-                    for key in ('hard_wall_seconds','memory_limit_mib','disk_limit_mib'):
+                    for key in ('memory_limit_mib','disk_limit_mib'):
                         if limits.get(key, float('inf')) > plan['budget'][key]:
                             raise ValueError('Worker limit exceeds approved budget: '+key)
                 else:

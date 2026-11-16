@@ -109,27 +109,24 @@ def main():
     started=time.monotonic();results={};conclusion='failure'
     try:
         for index,task in enumerate(plan['tasks']):
-            if time.monotonic()-started>plan['sections'][0]['compute_seconds']:
-                raise RuntimeError('Compute section deadline reached')
-            name=task['id'];remaining=plan['sections'][0]['compute_seconds']-(time.monotonic()-started)
+            name=task['id']
             command=[sys.executable,str(HERE/'worker.py'),'--role','perturb','--root',str(args.root.resolve()),
                 '--out',str(out/name),'--admission',str(out/'ADMISSION.json'),'--source-sha',plan['source_commit'],
                 '--background',str(background),'--background-sha256',bgsha,
                 '--channel',task['channel'],'--q',str(task['q'])]
             print(json.dumps({'event':'integration_started','task':name,'utc':now()}),flush=True)
             env={k:v for k,v in os.environ.items() if not k.endswith('TOKEN')}
-            limits={'wall_seconds':min(task['process_seconds'],remaining),'memory_bytes':plan['budget']['memory_bytes']-128*1024**2,'output_bytes':plan['budget']['output_bytes']}
+            limits={'wall_seconds':None,'memory_bytes':plan['budget']['memory_bytes']-128*1024**2,'output_bytes':plan['budget']['output_bytes']}
             guard=bounded.run(command,out/(name+'.log'),limits,env=env)
             if guard['exit_code'] or guard['stop']: raise RuntimeError(name+' failed: '+json.dumps(guard))
             result=read(out/name/'RESULT.json');result['supervisor']=guard
             write(out/name/'RESULT.json',result);results[name]=result
             print(json.dumps({'event':'integration_completed','task':name,'wall_seconds':guard['wall_seconds'],'observables':result['observables']}),flush=True)
             if index==0:
-                forecast=7*guard['wall_seconds'];available=plan['sections'][0]['compute_seconds']-(time.monotonic()-started)
+                forecast=7*guard['wall_seconds']
                 write(out/'LOCAL_FORECAST.json',{'measured_first_full_integration_seconds':guard['wall_seconds'],
-                    'remaining_integrations':7,'remaining_forecast_seconds':forecast,'remaining_compute_cap_seconds':available,
-                    'recorded_before_remaining_integrations':True,'forecast_within_cap':forecast<=available})
-                if forecast>available: raise RuntimeError('Measured local forecast exceeds admitted compute cap')
+                    'remaining_integrations':7,'remaining_forecast_seconds':forecast,'remaining_compute_cap_seconds':None,
+                    'recorded_before_remaining_integrations':True,'duration_limit_seconds':None})
         summary=aggregate(results);summary.update(source_sha=plan['source_commit'],
             execution_plan_sha256=plan_digest(plan),wall_seconds_compute_and_analysis=time.monotonic()-started,
             integration_supervisor_wall_seconds=sum(r['supervisor']['wall_seconds'] for r in results.values()),

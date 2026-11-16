@@ -75,22 +75,26 @@
   "execution_policy": {
     "schema": "vm-lab-execution-plan-v1",
     "validator": "infra/autonomy/execution_policy.py",
-    "local_package_max_seconds": 600,
-    "github_job_max_seconds": 21600,
-    "package_budget": "explicit_calibrated_sum_of_sections",
-    "process_budget": "explicit_per_whole_realization",
-    "section_budget": "compute_plus_setup_verification_publication",
-    "vm_budget": "explicit_finite_budget_with_verified_worker_limits",
-    "continuous_integration": "one_process; VM when it cannot fit a hosted job with overhead",
+    "local_package_max_seconds": null,
+    "github_job_max_seconds": null,
+    "package_budget": "forecast_only_no_duration_cap",
+    "process_budget": "forecast_only_no_duration_cap",
+    "section_budget": "forecast_including_setup_verification_publication",
+    "vm_budget": "owner_selected_no_project_duration_cap",
+    "continuous_integration": "one_process_on_owner_selected_executor",
     "checkpoint": "method_defined_or_not_required; never implies automatic_resume",
     "ledger_branch": "science/autonomous-research-20261114",
     "ledger_path": "infra/autonomy/LEDGER.json",
     "activation": "new_plans_only; frozen historical experiments unchanged",
     "daily_quota": null,
-    "package_runner": "infra/package_runner.py"
+    "package_runner": "infra/package_runner.py",
+    "placement_authority": "user",
+    "automatic_duration_routing": false,
+    "duration_limit_seconds": null,
+    "policy_document": "https://github.com/IgorSabirov/vm-lab/blob/main/COMPUTE_AUTHORITY.md"
   },
-  "policy_version": "20261115-sequential-no-daily-quota-v1",
+  "policy_version": "20261116-owner-placement-no-time-limits-v1",
   "automatic_code_repair": false,
-  "controller_source_commit": "985dda01924b85ea72fa8fb083d72ccbc645ba08",
-  "controller_review_pr": 65
+  "controller_source_commit": "c0e7358412bad80ec624fc6273289a7fe1434e96",
+  "controller_review_pr": 82
 }

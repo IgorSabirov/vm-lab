@@ -67,8 +67,7 @@ def validate_contract(c):
             v = row[field]
             if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v < 0:
                 raise ValueError('Tolerance must be finite and nonnegative')
-    if not 0 < c['budget']['max_seconds'] <= 600:
-        raise ValueError('This bounded runner is for <=600 second controls only')
+    # Legacy max_seconds is historical metadata, not a computation time gate.
     if len(c.get('numerical_configurations', [])) < 2:
         raise ValueError('Declare two configurations or keep contract in DRAFT')
 

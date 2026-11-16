@@ -96,14 +96,13 @@ def child(role,out,admission,*,calibration=False,native=None):
     if calibration:cmd+=['--calibration']
     if native:cmd+=['--native-dir',str(OUT/native)]
     env={k:v for k,v in os.environ.items() if not k.endswith('TOKEN') and k not in ('GH_TOKEN','GITHUB_TOKEN')}
-    limits={'wall_seconds':600 if calibration else 3600,'memory_bytes':PACKAGE['budget']['memory_bytes']-128*1024**2,'output_bytes':PACKAGE['budget']['output_bytes']}
+    limits={'wall_seconds':None,'memory_bytes':PACKAGE['budget']['memory_bytes']-128*1024**2,'output_bytes':PACKAGE['budget']['output_bytes']}
     result=bounded(cmd,OUT/(out+'.log'),limits,env=env)
     if result['exit_code']!=0 or result['stop']:raise ValueError(out+' process failed: '+json.dumps(result))
     return result
 
 def calibrated_plan(measured):
     cal=read(HERE/'CALIBRATION_PLAN.json');estimate=max(cal['minimum_arm_forecast_seconds'],cal['strict_forecast_factor']*measured)
-    if estimate>3600:raise ValueError('Measured forecast exceeds frozen process cap')
     evidence={'path':str((OUT/'CALIBRATION.json').relative_to(ROOT)),'sha256':digest(OUT/'CALIBRATION.json'),
               'executor':'github_actions','environment_reference':f"GitHub run {os.environ['GITHUB_RUN_ID']} ubuntu-24.04; CALIBRATION.json",
               'measured_seconds':measured}
@@ -113,10 +112,10 @@ def calibrated_plan(measured):
           'input_manifest':{'path':str((HERE/'INPUT_MANIFEST.json').relative_to(ROOT)),'sha256':digest(HERE/'INPUT_MANIFEST.json')},
           'acceptance':{'path':str((HERE/'BBN_IDENTITY_CONTRACT.json').relative_to(ROOT)),'sha256':digest(HERE/'BBN_IDENTITY_CONTRACT.json')},
           'calibration':evidence,'budget':PACKAGE['budget'],
-          'tasks':[{'id':x,'forecast_seconds':estimate,'process_seconds':3600} for x in PACKAGE['strict_matrix']],
-          'sections':[{'id':'full_pair','task_ids':PACKAGE['strict_matrix'],'compute_seconds':7200,'setup_seconds':1500,
-                       'verification_seconds':60,'publication_seconds':240,'wall_seconds':9900,'memory_bytes':PACKAGE['budget']['memory_bytes']}],
-          'calibration_accounting':'600 s calibration included in 1500 s setup; one reservation, no additional package'}
+          'tasks':[{'id':x,'forecast_seconds':estimate,'process_seconds':None} for x in PACKAGE['strict_matrix']],
+          'sections':[{'id':'full_pair','task_ids':PACKAGE['strict_matrix'],'compute_seconds':None,'setup_seconds':1500,
+                       'verification_seconds':60,'publication_seconds':240,'wall_seconds':None,'memory_bytes':PACKAGE['budget']['memory_bytes']}],
+          'calibration_accounting':'measured calibration is accounted once; setup is a forecast, not a deadline; one reservation'}
     execution_policy.validate(plan,read(ROOT/'infra/autonomy/CONTROL.json')['limits'],root=ROOT)
     return plan
 

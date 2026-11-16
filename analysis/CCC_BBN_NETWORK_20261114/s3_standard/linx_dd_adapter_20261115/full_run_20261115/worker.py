@@ -31,7 +31,7 @@ def admission_check(a,c):
     if r.get('bounded_executor') is not True or r.get('route')!='github_actions':raise ValueError('Bounded GitHub route required')
     if a.calibration:
         if a.role!='native_pristine' or r.get('phase')!='CALIBRATION_RESERVED':raise ValueError('Calibration-only admission required')
-    elif r.get('phase')!='STRICT_ADMITTED' or not r.get('calibration_evidence') or not 0<r.get('forecast_package_seconds',0)<=9900:
+    elif r.get('phase')!='STRICT_ADMITTED' or not r.get('calibration_evidence') or not 0<r.get('forecast_package_seconds',0):
         raise ValueError('Measured strict admission required')
     head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=HERE,text=True).strip()
     if not re.fullmatch('[0-9a-f]{40}',a.source_sha) or head!=a.source_sha:raise ValueError('Wrong frozen source')

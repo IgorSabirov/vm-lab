@@ -36,13 +36,13 @@ class PackageTests(unittest.TestCase):
             with patch.object(worker.subprocess,'check_output',return_value='a'*40+'\n'),patch.object(worker.subprocess,'run'):
                 self.assertTrue(worker.admission_check(a,{})['admitted'])
 
-    def test_calibrated_plan_stops_before_process_cap(self):
+    def test_calibrated_plan_retains_forecast_without_cap(self):
         with tempfile.TemporaryDirectory(dir=package.ROOT) as tmp,patch.dict(os.environ,{'SOURCE_SHA':'a'*40,'GITHUB_RUN_ID':'42'}):
             with patch.object(package,'OUT',Path(tmp)),patch.object(package,'digest',return_value='b'*64),patch.object(package.execution_policy,'validate'):
-                with self.assertRaisesRegex(ValueError,'forecast exceeds'):package.calibrated_plan(1201)
+                self.assertEqual(package.calibrated_plan(1201)['tasks'][0]['forecast_seconds'],3603)
                 plan=package.calibrated_plan(100)
                 self.assertEqual([t['forecast_seconds'] for t in plan['tasks']],[300,300])
-                self.assertEqual(plan['budget']['package_seconds'],9900)
+                self.assertIsNone(plan['budget']['package_seconds'])
 
     def test_nonzero_exit_preserved(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -57,10 +57,10 @@ class PackageTests(unittest.TestCase):
                 report=package.execution_policy.validate(plan,package.read(package.ROOT/'infra/autonomy/CONTROL.json')['limits'],root=package.ROOT)
                 self.assertEqual(report['executor'],'github_actions');self.assertEqual(len(plan['tasks']),2)
 
-    def test_wall_limit_reaps_worker(self):
+    def test_legacy_wall_limit_does_not_stop_worker(self):
         with tempfile.TemporaryDirectory() as tmp:
-            r=bounded.run([sys.executable,'-c','import time;time.sleep(30)'],Path(tmp)/'x.log',{'wall_seconds':.15,'memory_bytes':128*1024**2,'output_bytes':1024**2})
-            self.assertEqual(r['stop'],'WALL_LIMIT');self.assertTrue(r['process_exited'])
+            r=bounded.run([sys.executable,'-c','import time;time.sleep(.2)'],Path(tmp)/'x.log',{'wall_seconds':.01,'memory_bytes':128*1024**2,'output_bytes':1024**2})
+            self.assertIsNone(r['stop']);self.assertEqual(r['exit_code'],0);self.assertTrue(r['process_exited'])
             with self.assertRaises(ProcessLookupError):os.kill(r['pid'],0)
 
     def test_external_supervisor_signal_reaps_worker(self):

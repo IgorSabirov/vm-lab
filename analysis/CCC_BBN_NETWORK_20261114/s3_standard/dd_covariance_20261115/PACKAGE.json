@@ -19,13 +19,13 @@
   "dtype": "float64",
   "device": "cpu",
   "concurrency": 1,
-  "per_integration_wall_seconds": 600,
+  "per_integration_wall_seconds": null,
   "memory_bytes": 4294967296,
   "output_bytes": 2147483648,
   "budget": {
-    "package_seconds": 6600,
-    "process_seconds": 600,
-    "section_seconds": 6600,
+    "package_seconds": null,
+    "process_seconds": null,
+    "section_seconds": null,
     "memory_bytes": 4294967296,
     "output_bytes": 2147483648
   },
@@ -46,5 +46,6 @@
     "automatic_retry": false,
     "adaptive_step_retry": false
   },
-  "scientific_acceptance": false
+  "scientific_acceptance": false,
+  "time_policy": "COMPUTE_AUTHORITY.md; owner placement; no duration deadline"
 }

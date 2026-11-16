@@ -1,3 +1,5 @@
+> **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](../../COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
+
 # Copilot technical consultation: E002e method choice
 
 31 October 2026. User: «А может Копиплота попробовать озадачить? У него там лимит есть на ответы?» This authorizes a direct technical consultation under the existing project representation mandate.

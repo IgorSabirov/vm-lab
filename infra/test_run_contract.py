@@ -14,9 +14,15 @@ class Contracts(unittest.TestCase):
   p['source']['commit']='e'*40
   with self.assertRaisesRegex(ValueError,'exact plan'):check_authorization(p,a)
  def test_route_budget_expiry_and_path(self):
-  for change in [lambda p:p['budget'].update(forecast_seconds=601,hard_wall_seconds=700),lambda p:p['budget'].update(forecast_seconds=float('nan')),lambda p:p['authorization'].update(expires_at='2000-01-01T00:00:00Z'),lambda p:p['command'].update(entrypoint='../bad.py')]:
+  for change in [lambda p:p['budget'].update(forecast_seconds=float('nan')),lambda p:p['authorization'].update(expires_at='2000-01-01T00:00:00Z'),lambda p:p['command'].update(entrypoint='../bad.py')]:
    p=plan();change(p)
    with self.assertRaises(ValueError):validate_plan(p)
+ def test_owner_executor_is_independent_of_duration(self):
+  for executor in ('sandbox','local','vm','github_actions'):
+   for seconds in (1,601,1000000):
+    p=plan();p['executor']['kind']=executor
+    p['budget'].update(forecast_seconds=seconds,hard_wall_seconds=None)
+    validate_plan(p)
  def test_tampered_and_failed_receipts(self):
   p=plan();p['authorization']['expires_at']='2000-01-01T00:00:00Z'
   with tempfile.TemporaryDirectory() as t:

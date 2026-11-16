@@ -30,7 +30,7 @@ class RuntimePolicy(unittest.TestCase):
  def _contract(self, filename, rule, **changes):
   workflow={'concurrency':{'group':'bounded-compute','cancel-in-progress':False}}
   triggers={'push':{'branches':[rule['branch']],'paths':[rule['path']]}}
-  job={'timeout-minutes':rule['minutes'],'if':workflow_policy.REPOSITORY_GUARD}
+  job={'if':workflow_policy.REPOSITORY_GUARD}
   job.update(changes)
   return workflow,triggers,job
 
@@ -40,11 +40,12 @@ class RuntimePolicy(unittest.TestCase):
     workflow,triggers,job=self._contract(filename,rule)
     workflow_policy.validate_runtime_contract(filename,workflow,triggers,rule['job'],job)
 
- def test_unlisted_long_job_is_rejected(self):
-  with self.assertRaisesRegex(ValueError,'Unapproved job runtime'):
-   workflow_policy.validate_runtime_contract(
-    'development.yml',{}, {},'tests',{'timeout-minutes':11}
-   )
+ def test_runtime_is_not_a_routing_rule(self):
+  workflow_policy.validate_runtime_contract('development.yml',{}, {},'tests',{})
+  filename,rule=next(iter(workflow_policy.LONG_EXECUTION_ALLOWLIST.items()))
+  workflow,triggers,job=self._contract(filename,rule,**{'timeout-minutes':10})
+  with self.assertRaisesRegex(ValueError,'duration timer'):
+   workflow_policy.validate_runtime_contract(filename,workflow,triggers,rule['job'],job)
 
  def test_long_job_cannot_expand_its_trigger(self):
   filename,rule=next(iter(workflow_policy.LONG_EXECUTION_ALLOWLIST.items()))

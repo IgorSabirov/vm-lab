@@ -10,7 +10,7 @@ def run(root, output, config):
     root, output = Path(root), Path(output)
     subprocess.run([sys.executable, str(root/'tools/piecewise_flat_qg/build_and_check.py'),
                     '--build', str(output/'build'), '--report', str(output/'BUILD.json')],
-                   check=True, timeout=310)
+                   check=True)
     spec = importlib.util.spec_from_file_location('pinned_signature', root/'tools/piecewise_flat_qg/signature_kernel.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     matrices = []
