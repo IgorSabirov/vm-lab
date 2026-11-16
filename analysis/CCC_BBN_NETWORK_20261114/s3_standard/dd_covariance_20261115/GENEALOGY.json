@@ -4,14 +4,9 @@
   "repository": "IgorSabirov/vm-lab",
   "subject": "S3 D+D two-channel local BBN covariance response",
   "scientific_status": {
-    "analysis_report": "SAVED",
-    "response_integrations": "NOT_EXECUTED",
-    "local_jacobian": "NOT_MEASURED",
-    "kappa": "NOT_MEASURED",
-    "rho": "UNMEASURED_PARAMETER",
-    "correlated_monte_carlo": "NOT_EXECUTED",
-    "gp_posterior": "NOT_EXECUTED",
-    "observational_likelihood": "NOT_BUILT",
+    "original_nine_integrations": "COMPLETE",
+    "smaller_step_integrations": 8,
+    "numerical_step_gate": "PARTIAL_OR_FAILED",
     "scientific_acceptance": false
   },
   "branch_snapshot": {
@@ -289,6 +284,29 @@
     "The old r3 raw-arm identity comparison is verified at its saved artifact point but its workflow SUMMARY remains engineering FAIL due numpy.bool_ JSON serialization.",
     "The old r3 q vector perturbed ten non-D+D channels, so the new all-reaction q=0 baseline is not optional.",
     "No local D+D integration, kappa, physical rho, full S3 likelihood or scientific acceptance is recorded here.",
-    "The genealogy file was added at commit a2907e1... and its timestamp correction was committed at e1b06c6...; this final content update is not self-referenced."
-  ]
+    "The genealogy file was added at commit a2907e1... and its timestamp correction was committed at e1b06c6...; this final content update is not self-referenced.",
+    "Earlier no-integration statements describe the historical branch snapshot. The 20261116 refinement field and current report supersede that status, while preserving the old record."
+  ],
+  "status_before_refinement_update": {
+    "analysis_report": "SAVED",
+    "response_integrations": "NOT_EXECUTED",
+    "local_jacobian": "NOT_MEASURED",
+    "kappa": "NOT_MEASURED",
+    "rho": "UNMEASURED_PARAMETER",
+    "correlated_monte_carlo": "NOT_EXECUTED",
+    "gp_posterior": "NOT_EXECUTED",
+    "observational_likelihood": "NOT_BUILT",
+    "scientific_acceptance": false
+  },
+  "refinement_20261116": {
+    "parent_result_commit": "1ce668ca5bd1d79a128f0c1f761c1ff93ebe3464",
+    "source_commit": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+    "plan_commit": "cf5f3df9696cddd7c302ed42d45764c34d97de7b",
+    "report": "refinement_20261116/REPORT.md",
+    "summary": "refinement_20261116/results/S3_DD_CONVERGENCE_20261116_r1/SUMMARY.json",
+    "issue": 79,
+    "new_integrations": 8,
+    "automatic_retry": false,
+    "scientific_acceptance": false
+  }
 }

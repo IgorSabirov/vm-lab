@@ -1,0 +1,616 @@
+{
+  "id": "S3_DD_CONVERGENCE_20261116_r1",
+  "status": "COMPUTE_COMPLETE",
+  "new_integrations": 8,
+  "parent_result_commit": "1ce668ca5bd1d79a128f0c1f761c1ff93ebe3464",
+  "results": {
+    "D_H": {
+      "baseline_observable": 2.4359986850566737e-05,
+      "derivatives": {
+        "ddHe3n": {
+          "1.0": -0.00593380007254396,
+          "0.5": -0.005927712018301889,
+          "0.25": -0.005899024768289962,
+          "0.125": -0.005986107315479217
+        },
+        "ddtp": {
+          "1.0": -0.004976068517463794,
+          "0.5": -0.00501068521037773,
+          "0.25": -0.004966407292673836,
+          "0.125": -0.005064811390340651
+        }
+      },
+      "step_diagnostics": {
+        "ddHe3n": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.004839514794807005,
+            "status": "STEP_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.014547441701232362,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        },
+        "ddtp": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.008836699142901545,
+            "status": "STEP_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.01942897574714958,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        }
+      },
+      "order_diagnostics": {
+        "ddHe3n": {
+          "signed_differences": [
+            -2.868725001192729e-05,
+            8.708254718925446e-05
+          ],
+          "absolute_ratio": 0.3294259405341229,
+          "p": -1.6019739308175776,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        },
+        "ddtp": {
+          "signed_differences": [
+            -4.427791770389433e-05,
+            9.840409766681546e-05
+          ],
+          "absolute_ratio": 0.44996010078578313,
+          "p": -1.152131015557316,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        }
+      },
+      "by_step": {
+        "0.25": {
+          "a": [
+            -0.005899024768289962,
+            -0.004966407292673836
+          ],
+          "independent_quadratic_form": 5.94636946136223e-05,
+          "kappa": 0.985373001770641,
+          "correlated_quadratic_form": {
+            "-1.0": 8.697753558245969e-07,
+            "-0.8": 1.2588559207384136e-05,
+            "-0.5": 3.016673498472345e-05,
+            "-0.3": 4.188551883628299e-05,
+            "0.0": 5.94636946136223e-05,
+            "0.3": 7.704187039096161e-05,
+            "0.5": 8.876065424252114e-05,
+            "0.8": 0.00010633883001986047,
+            "1.0": 0.00011805761387142
+          },
+          "sigma_ratio": {
+            "-1.0": 0.12094212760390392,
+            "-0.8": 0.46011041999012275,
+            "-0.5": 0.7122594324504797,
+            "-0.3": 0.8392783206236223,
+            "0.0": 1.0,
+            "0.3": 1.1382494895809057,
+            "0.5": 1.2217554996337525,
+            "0.8": 1.3372727475786355,
+            "1.0": 1.4090326475176653
+          }
+        },
+        "0.125": {
+          "a": [
+            -0.005986107315479217,
+            -0.005064811390340651
+          ],
+          "independent_quadratic_form": 6.148579521215819e-05,
+          "kappa": 0.9861954101959945,
+          "correlated_quadratic_form": {
+            "-1.0": 8.48786181676925e-07,
+            "-0.8": 1.2976187987773174e-05,
+            "-0.5": 3.1167290696917555e-05,
+            "-0.3": 4.329469250301381e-05,
+            "0.0": 6.148579521215819e-05,
+            "0.3": 7.967689792130257e-05,
+            "0.5": 9.180429972739883e-05,
+            "0.8": 0.0001099954024365432,
+            "1.0": 0.00012212280424263945
+          },
+          "sigma_ratio": {
+            "-1.0": 0.1174929351237999,
+            "-0.8": 0.45939489749365336,
+            "-0.5": 0.7119707121097066,
+            "-0.3": 0.8391313228221204,
+            "0.0": 1.0,
+            "0.3": 1.1383578624750648,
+            "0.5": 1.2219237722124885,
+            "0.8": 1.3375187206752643,
+            "1.0": 1.4093244517129455
+          }
+        }
+      },
+      "richardson": {
+        "0.5_to_0.25": {
+          "a": [
+            -0.005889462351619319,
+            -0.004951647986772538
+          ],
+          "kappa": 0.9851448027342674,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        },
+        "0.25_to_0.125": {
+          "a": [
+            -0.006015134831208968,
+            -0.00509761275622959
+          ],
+          "kappa": 0.9864584112361023,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        }
+      },
+      "original_directional_hypothesis": {
+        "ddHe3n": "negative",
+        "ddtp": "negative"
+      },
+      "signs_h0_125": {
+        "ddHe3n": "negative",
+        "ddtp": "negative"
+      },
+      "directional_status": "MATCH"
+    },
+    "Yp": {
+      "baseline_observable": 0.2472485206878069,
+      "derivatives": {
+        "ddHe3n": {
+          "1.0": 6.572724256659335e-05,
+          "0.5": 6.573358930950235e-05,
+          "0.25": 6.572569759466518e-05,
+          "0.125": 6.573317583047356e-05
+        },
+        "ddtp": {
+          "1.0": 5.68395545343936e-05,
+          "0.5": 5.685328412963209e-05,
+          "0.25": 5.684252808269008e-05,
+          "0.125": 5.685544485611871e-05
+        }
+      },
+      "step_diagnostics": {
+        "ddHe3n": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.00012005604623252687,
+            "status": "STEP_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.00011376653742798716,
+            "status": "STEP_CONVERGED"
+          }
+        },
+        "ddtp": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.00018918954474963058,
+            "status": "STEP_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.00022718621692814558,
+            "status": "STEP_CONVERGED"
+          }
+        }
+      },
+      "order_diagnostics": {
+        "ddHe3n": {
+          "signed_differences": [
+            7.891714837171548e-09,
+            -7.478235808378031e-09
+          ],
+          "absolute_ratio": 1.0552909856533659,
+          "p": 0.07764086213198639,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        },
+        "ddtp": {
+          "signed_differences": [
+            1.0756046942006492e-08,
+            -1.2916773428628403e-08
+          ],
+          "absolute_ratio": 0.8327193320715115,
+          "p": -0.2640977775194882,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        }
+      },
+      "by_step": {
+        "0.25": {
+          "a": [
+            6.572569759466518e-05,
+            5.684252808269008e-05
+          ],
+          "independent_quadratic_form": 7.550940323136786e-09,
+          "kappa": 0.9895495531415215,
+          "correlated_quadratic_form": {
+            "-1.0": 7.89107005784837e-11,
+            "-0.8": 1.5733166250901435e-09,
+            "-0.5": 3.814925511857635e-09,
+            "-0.3": 5.309331436369295e-09,
+            "0.0": 7.550940323136786e-09,
+            "0.3": 9.792549209904277e-09,
+            "0.5": 1.1286955134415937e-08,
+            "0.8": 1.3528564021183429e-08,
+            "1.0": 1.502296994569509e-08
+          },
+          "sigma_ratio": {
+            "-1.0": 0.10222742713420167,
+            "-0.8": 0.4564650671045734,
+            "-0.5": 0.7107919691648459,
+            "-0.3": 0.8385315343250626,
+            "0.0": 1.0,
+            "0.3": 1.1387997479550374,
+            "0.5": 1.2226098218854455,
+            "0.8": 1.338521438944187,
+            "1.0": 1.4105139322748717
+          }
+        },
+        "0.125": {
+          "a": [
+            6.573317583047356e-05,
+            5.685544485611871e-05
+          ],
+          "independent_quadratic_form": 7.553392014547108e-09,
+          "kappa": 0.9895657332359779,
+          "correlated_quadratic_form": {
+            "-1.0": 7.881410725301959e-11,
+            "-0.8": 1.5737296887118372e-09,
+            "-0.5": 3.816103060900064e-09,
+            "-0.3": 5.3110186423588816e-09,
+            "0.0": 7.553392014547108e-09,
+            "0.3": 9.795765386735335e-09,
+            "0.5": 1.1290680968194154e-08,
+            "0.8": 1.353305434038238e-08,
+            "1.0": 1.5027969921841197e-08
+          },
+          "sigma_ratio": {
+            "-1.0": 0.10214825874199789,
+            "-0.8": 0.45645088827958,
+            "-0.5": 0.7107862782735828,
+            "-0.3": 0.8385286399576383,
+            "0.0": 1.0,
+            "0.3": 1.1388018791566834,
+            "0.5": 1.2226131303965244,
+            "0.8": 1.3385262741495896,
+            "1.0": 1.4105196677948089
+          }
+        }
+      },
+      "richardson": {
+        "0.5_to_0.25": {
+          "a": [
+            6.572306702305279e-05,
+            5.683894273370941e-05
+          ],
+          "kappa": 0.9895462635678878,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        },
+        "0.25_to_0.125": {
+          "a": [
+            6.573566857574302e-05,
+            5.685975044726158e-05
+          ],
+          "kappa": 0.9895711226634432,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        }
+      },
+      "original_directional_hypothesis": null,
+      "signs_h0_125": {
+        "ddHe3n": "positive",
+        "ddtp": "positive"
+      },
+      "directional_status": "NO_PREREGISTERED_SIGN"
+    },
+    "He3_H_late": {
+      "baseline_observable": 1.0357738298170805e-05,
+      "derivatives": {
+        "ddHe3n": {
+          "1.0": 0.002180866562967232,
+          "0.5": 0.0021902189148406137,
+          "0.25": 0.0022102519872468918,
+          "0.125": 0.002133403366357811
+        },
+        "ddtp": {
+          "1.0": -0.0027263780165442952,
+          "0.5": -0.0027596675890801947,
+          "0.25": -0.002708055999889325,
+          "0.125": -0.002805222452920475
+        }
+      },
+      "step_diagnostics": {
+        "ddHe3n": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.009063705189213024,
+            "status": "STEP_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.034769167195639036,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        },
+        "ddtp": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.018702103613889243,
+            "status": "STEP_NOT_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.03463769974106384,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        }
+      },
+      "order_diagnostics": {
+        "ddHe3n": {
+          "signed_differences": [
+            -2.0033072406278052e-05,
+            7.684862088908062e-05
+          ],
+          "absolute_ratio": 0.26068226305834125,
+          "p": -1.9396356703119195,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        },
+        "ddtp": {
+          "signed_differences": [
+            -5.161158919086972e-05,
+            9.716645303115001e-05
+          ],
+          "absolute_ratio": 0.5311667512893968,
+          "p": -0.9127632517626851,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        }
+      },
+      "by_step": {
+        "0.25": {
+          "a": [
+            0.0022102519872468918,
+            -0.002708055999889325
+          ],
+          "independent_quadratic_form": 1.2218781145665405e-05,
+          "kappa": -0.97971902172167,
+          "correlated_quadratic_form": {
+            "-1.0": 2.4189753456327902e-05,
+            "-0.8": 2.1795558994195405e-05,
+            "-0.5": 1.8204267300996655e-05,
+            "-0.3": 1.5810072838864154e-05,
+            "0.0": 1.2218781145665405e-05,
+            "0.3": 8.627489452466655e-06,
+            "0.5": 6.233294990334156e-06,
+            "0.8": 2.6420032971354065e-06,
+            "1.0": 2.478088350029074e-07
+          },
+          "sigma_ratio": {
+            "-1.0": 1.4070248831210022,
+            "-0.8": 1.335580479558359,
+            "-0.5": 1.2205980136231727,
+            "-0.3": 1.1375041567029551,
+            "0.0": 1.0,
+            "0.3": 0.8402882204836023,
+            "0.5": 0.7142411981530924,
+            "0.8": 0.46499976626087025,
+            "1.0": 0.14241129968626076
+          }
+        },
+        "0.125": {
+          "a": [
+            0.002133403366357811,
+            -0.002805222452920475
+          ],
+          "independent_quadratic_form": 1.2420682933956007e-05,
+          "kappa": -0.9636621522769893,
+          "correlated_quadratic_form": {
+            "-1.0": 2.4390024982842125e-05,
+            "-0.8": 2.19961565730649e-05,
+            "-0.5": 1.8405353958399067e-05,
+            "-0.3": 1.6011485548621844e-05,
+            "0.0": 1.2420682933956007e-05,
+            "0.3": 8.829880319290173e-06,
+            "0.5": 6.436011909512949e-06,
+            "0.8": 2.8452092948471146e-06,
+            "1.0": 4.5134088506989144e-07
+          },
+          "sigma_ratio": {
+            "-1.0": 1.4013073011573833,
+            "-0.8": 1.3307628345507667,
+            "-0.5": 1.2173048410889094,
+            "-0.3": 1.1353848007099165,
+            "0.0": 1.0,
+            "0.3": 0.843149663059236,
+            "0.5": 0.7198395125731188,
+            "0.8": 0.47861286879732823,
+            "1.0": 0.1906248874701589
+          }
+        }
+      },
+      "richardson": {
+        "0.5_to_0.25": {
+          "a": [
+            0.0022169296780489844,
+            -0.002690852136825702
+          ],
+          "kappa": -0.9815225049300104,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        },
+        "0.25_to_0.125": {
+          "a": [
+            0.002107787159394784,
+            -0.002837611270597525
+          ],
+          "kappa": -0.9573708227145518,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        }
+      },
+      "original_directional_hypothesis": {
+        "ddHe3n": "positive",
+        "ddtp": "positive"
+      },
+      "signs_h0_125": {
+        "ddHe3n": "positive",
+        "ddtp": "negative"
+      },
+      "directional_status": "DEVIATES_FROM_DIRECTIONAL_HYPOTHESIS"
+    },
+    "Li7_H_late": {
+      "baseline_observable": 5.699596953230689e-10,
+      "derivatives": {
+        "ddHe3n": {
+          "1.0": 0.007266622790053745,
+          "0.5": 0.00736022434023198,
+          "0.25": 0.007033708413814566,
+          "0.125": 0.008070251653748528
+        },
+        "ddtp": {
+          "1.0": 0.0005099196449034338,
+          "0.5": 0.0005327502628347247,
+          "0.25": 0.0005045249839596977,
+          "0.125": 0.0003470958722573414
+        }
+      },
+      "step_diagnostics": {
+        "ddHe3n": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.04436222475348126,
+            "status": "STEP_NOT_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.12844001456292897,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        },
+        "ddtp": {
+          "0.5_to_0.25": {
+            "relative_discrepancy": 0.05298031900508579,
+            "status": "STEP_NOT_CONVERGED"
+          },
+          "0.25_to_0.125": {
+            "relative_discrepancy": 0.31203432279367954,
+            "status": "STEP_NOT_CONVERGED"
+          }
+        }
+      },
+      "order_diagnostics": {
+        "ddHe3n": {
+          "signed_differences": [
+            0.00032651592641741445,
+            -0.0010365432399339625
+          ],
+          "absolute_ratio": 0.3150046364088165,
+          "p": -1.6665550317516933,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        },
+        "ddtp": {
+          "signed_differences": [
+            2.8225278875027016e-05,
+            0.0001574291117023563
+          ],
+          "absolute_ratio": 0.17928881494542892,
+          "p": -2.4796426073843563,
+          "status": "DIAGNOSTIC_ONLY_NO_SOLVER_NOISE_BOUND",
+          "environment_note": "h=0.5 is historical hosted CPU; 0.25 and 0.125 are this local CPU. Same library lock; no extra bridge integration."
+        }
+      },
+      "by_step": {
+        "0.25": {
+          "a": [
+            0.007033708413814566,
+            0.0005045249839596977
+          ],
+          "independent_quadratic_form": 4.9727599510005346e-05,
+          "kappa": 0.142724831265703,
+          "correlated_quadratic_form": {
+            "-1.0": 4.263023626069138e-05,
+            "-0.8": 4.404970891055417e-05,
+            "-0.5": 4.617891788534836e-05,
+            "-0.3": 4.759839053521116e-05,
+            "0.0": 4.9727599510005346e-05,
+            "0.3": 5.1856808484799534e-05,
+            "0.5": 5.327628113466233e-05,
+            "0.8": 5.540549010945652e-05,
+            "1.0": 5.682496275931931e-05
+          },
+          "sigma_ratio": {
+            "-1.0": 0.9258915534414908,
+            "-0.8": 0.9411801819988761,
+            "-0.5": 0.9636584376049163,
+            "-0.3": 0.9783570670365136,
+            "0.0": 1.0,
+            "0.3": 1.021184336630616,
+            "0.5": 1.0350663822349035,
+            "0.8": 1.055547187487401,
+            "1.0": 1.0689830827780686
+          }
+        },
+        "0.125": {
+          "a": [
+            0.008070251653748528,
+            0.0003470958722573414
+          ],
+          "independent_quadratic_form": 6.524943729936893e-05,
+          "kappa": 0.0858597760542278,
+          "correlated_quadratic_form": {
+            "-1.0": 5.964713522518074e-05,
+            "-0.8": 6.076759564001837e-05,
+            "-0.5": 6.244828626227483e-05,
+            "-0.3": 6.356874667711247e-05,
+            "0.0": 6.524943729936893e-05,
+            "0.3": 6.693012792162538e-05,
+            "0.5": 6.805058833646303e-05,
+            "0.8": 6.973127895871949e-05,
+            "1.0": 7.085173937355712e-05
+          },
+          "sigma_ratio": {
+            "-1.0": 0.9561068057208736,
+            "-0.8": 0.965045169490329,
+            "-0.5": 0.9782996023575222,
+            "-0.3": 0.9870370140900145,
+            "0.0": 1.0,
+            "0.3": 1.0127970837321107,
+            "0.5": 1.0212393882078354,
+            "0.8": 1.0337735829684285,
+            "1.0": 1.0420459567860854
+          }
+        }
+      },
+      "richardson": {
+        "0.5_to_0.25": {
+          "a": [
+            0.006924869771675428,
+            0.000495116557668022
+          ],
+          "kappa": 0.14226935844383273,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        },
+        "0.25_to_0.125": {
+          "a": [
+            0.008415766067059849,
+            0.0002946195016898893
+          ],
+          "kappa": 0.06993038222254636,
+          "status": "CONDITIONAL_H_SQUARED_EXTRAPOLATION"
+        }
+      },
+      "original_directional_hypothesis": {
+        "ddHe3n": "positive",
+        "ddtp": "positive"
+      },
+      "signs_h0_125": {
+        "ddHe3n": "positive",
+        "ddtp": "positive"
+      },
+      "directional_status": "MATCH"
+    }
+  },
+  "numerical_step_gate": "PARTIAL_OR_FAILED",
+  "scientific_acceptance": false,
+  "rho_status": "UNMEASURED_PARAMETER",
+  "propagation_status": "FIRST_ORDER_DELTA_METHOD_ONLY",
+  "solver_error_floor": "NOT_MEASURED",
+  "causal_reaction_fluxes": "NOT_MEASURED",
+  "source_sha": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+  "execution_plan_sha256": "4282e92d66cab5a519259ba64b23a3f9b666c181f0223229e383aebe71aed8e8",
+  "wall_seconds_compute_and_analysis": 215.16982117099997,
+  "integration_supervisor_wall_seconds": 215.16064588500012,
+  "completed_utc": "2026-11-16T04:01:28.128908+00:00"
+}

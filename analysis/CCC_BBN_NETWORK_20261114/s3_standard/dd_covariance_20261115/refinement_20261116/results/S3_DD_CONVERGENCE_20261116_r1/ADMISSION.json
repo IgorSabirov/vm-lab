@@ -1,0 +1,66 @@
+{
+  "package_id": "S3_DD_CONVERGENCE_20261116_r1",
+  "source_commit": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+  "plan_sha256": "4282e92d66cab5a519259ba64b23a3f9b666c181f0223229e383aebe71aed8e8",
+  "executor": "local",
+  "forecast_seconds": 425.48162854399925,
+  "budget": {
+    "package_seconds": 600,
+    "section_seconds": 600,
+    "process_seconds": 60,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648,
+    "vm_seconds": null
+  },
+  "parallel_sections": 1,
+  "sections": [
+    {
+      "id": "local_eight",
+      "task_ids": [
+        "ddHe3n_minus_0_25",
+        "ddHe3n_plus_0_25",
+        "ddtp_minus_0_25",
+        "ddtp_plus_0_25",
+        "ddHe3n_minus_0_125",
+        "ddHe3n_plus_0_125",
+        "ddtp_minus_0_125",
+        "ddtp_plus_0_125"
+      ],
+      "timeout_minutes": 10
+    }
+  ],
+  "scientific_acceptance": false,
+  "automatic_retry": false,
+  "admitted": true,
+  "reason": "ADMITTED",
+  "registered_packages": [
+    "ADAPTERS_PY_CPP_20261115_r1",
+    "LINX_BBN_IDENTITY_20261115_r2",
+    "LINX_BBN_IDENTITY_20261115_r3",
+    "S3_DD_RESPONSE_20261115_r1",
+    "S3_INPUT_AUDIT_20261114_r1",
+    "S_ETA_20261114_r1"
+  ],
+  "daily_quota": null,
+  "source_sha": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+  "execution_plan_sha256": "4282e92d66cab5a519259ba64b23a3f9b666c181f0223229e383aebe71aed8e8",
+  "ledger_commit": "99b44acf71158b48db427de9dbe0ed3331c498b2",
+  "reservation": {
+    "id": "S3_DD_CONVERGENCE_20261116_r1",
+    "executor": "local",
+    "started_utc": "2026-11-16T03:57:26.458460+00:00",
+    "source_sha": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+    "execution_plan_sha256": "4282e92d66cab5a519259ba64b23a3f9b666c181f0223229e383aebe71aed8e8",
+    "status": "RESERVED",
+    "budget": {
+      "package_seconds": 600,
+      "section_seconds": 600,
+      "process_seconds": 60,
+      "memory_bytes": 4294967296,
+      "output_bytes": 2147483648,
+      "vm_seconds": null
+    },
+    "authorization": "User explicitly requested eight smaller-step integrations locally and saving results to GitHub on 2026-11-16",
+    "scientific_acceptance": false
+  }
+}
