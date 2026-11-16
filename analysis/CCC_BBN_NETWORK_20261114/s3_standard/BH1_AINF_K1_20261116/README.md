@@ -5,6 +5,7 @@ This branch is an analytical/source update only. No new machine run, BH1/BBN pro
 ## Main documents
 
 - [Synthesis report](REPORT.md)
+- [Consolidated null-closure status (0/8 fully closed; 3/8 narrowed)](NULL_CLOSURE_STATUS_20261116.md)
 - [A∞ spectral audit and k=2 thermal-character erratum](A_INFINITY_SPECTRAL_AUDIT_20261116.md)
 - [Neighbor review addendum: K1, B∞ normalization and conditional bounds](NEIGHBOR_REVIEW_ADDENDUM_20261116.md)
 - [Machine-readable review ledger](NEIGHBOR_REVIEW_CHECKS.json)
