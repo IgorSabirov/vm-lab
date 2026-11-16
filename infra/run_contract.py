@@ -43,13 +43,13 @@ def validate_plan(plan, *, now=None, enforce_expiry=True):
         if dt.tzinfo is None or enforce_expiry and dt <= (now or datetime.now(timezone.utc)):raise ValueError('Expired or timezone-less authorization')
     elif auth.get('duration')!='persistent':raise ValueError('Declare an expiry or explicit persistent authorization')
     b=plan['budget']
-    for k in ('forecast_seconds','hard_wall_seconds','memory_limit_mib','disk_limit_mib'):
+    for k in ('forecast_seconds','memory_limit_mib','disk_limit_mib'):
         v=b.get(k)
         if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or v<=0:raise ValueError('Invalid positive budget '+k)
-    if b['hard_wall_seconds']<b['forecast_seconds']:raise ValueError('Wall cap below forecast')
-    expected='sandbox' if b['forecast_seconds']<=600 else 'vm'
-    if plan['executor'].get('kind')!=expected or not plan['executor'].get('id'):
-        raise ValueError('Executor violates the 600-second routing rule')
+    # 2026-11-16 owner directive: duration never chooses the executor.
+    # Historical hard_wall_seconds is receipt data, not a new execution limit.
+    if plan['executor'].get('kind') not in {'sandbox','local','vm','github_actions'} or not plan['executor'].get('id'):
+        raise ValueError('Declare the named executor chosen by the owner')
     if not plan['acceptance'].get('required_artifacts'):raise ValueError('Declare required artifacts')
     for path in plan['acceptance']['required_artifacts']:safe_path(path)
     if plan.get('scientific_acceptance')!='SEPARATE_USER_REVIEW':raise ValueError('Scientific acceptance must remain separate')
