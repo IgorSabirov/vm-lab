@@ -149,3 +149,14 @@ cmp -s arxiv_v2.pdf hal_journal.pdf
 - DOI: https://doi.org/10.1088/1367-2630/ad93f5
 - Existing arXiv checksum record: `analysis/ADD_DICHOTOMY_AUDIT_20261108/SOURCE_INDEX.json`
 - Correspondence timeline: `analysis/ADD_PABLO_CORRESPONDENCE_20261116/REPORT.md`
+
+
+## Дополнительная попытка получения PDF — 16 ноября, после повторного запроса
+
+Проверена и страница ResearchGate, где у статьи есть активные элементы “Download full-text PDF” (ссылки 7 и 9). Ссылка 7 раскрывает прямой PDF endpoint:
+
+`https://www.researchgate.net/publication/journal/New-Journal-of-Physics-1367-2630/publication/385918231_Time_arrow_without_past_hypothesis_a_toy_model_explanation/links/6749e06d790d154bf9b5b4d7/Time-arrow-without-past-hypothesis-a-toy-model-explanation.pdf`
+
+Однако загрузчик браузерного источника возвращает `Cache miss`, а загрузчик файловой среды не получает содержимое этого endpoint. Повторная попытка HAL URL по-прежнему блокируется Anubis (Access Denied). Это подтверждает наличие издательского PDF в ResearchGate, но не означает, что его бинарные байты получены нами. Ни SHA-256, ни `cmp` для журнального файла не выполнены.
+
+Пользовательский файл не запрашивался: получение публичного источника — наша задача. До появления доступного бинарного канала статус остаётся `TEXTUAL_MATCH_CONFIRMED / BINARY_COMPARISON_BLOCKED_BY_SOURCE_ACCESS`.
