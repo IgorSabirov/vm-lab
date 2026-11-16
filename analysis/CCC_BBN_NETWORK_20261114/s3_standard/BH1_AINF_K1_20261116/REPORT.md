@@ -22,7 +22,7 @@ The old empty-domain result remains valid only for A' versus B_infinity. It is n
 
 ### 2.1 Classical gravity thermodynamics
 
-Let u = r_+/R. Do not use x for both the horizon ratio and the Polyakov-loop variable.
+Let u=(r_+/R)^2. Do not use x for both the horizon ratio and the Polyakov-loop variable.
 
 The black-hole temperature is
 
@@ -30,21 +30,21 @@ chi(u)=TR=(1+2u^2)/(2*pi*u).
 
 At fixed chi above chi_0=sqrt(2)/pi, the two roots are
 
-u_-(chi)=(pi*chi-sqrt(pi^2*chi^2-2))/2,
-u_+(chi)=(pi*chi+sqrt(pi^2*chi^2-2))/2.
+u_-(chi)=[(pi*chi-sqrt(pi^2*chi^2-2))/2]^2,
+u_+(chi)=[(pi*chi+sqrt(pi^2*chi^2-2))/2]^2.
 
 The minus root is the small black hole (negative heat capacity); the plus root is the big black hole (positive heat capacity).
 
 In the common AdS-vacuum-subtracted convention, the on-shell action difference is
 
 I_BH(u)=beta*(F_BH-F_AdS)
-       =(pi*N^2/2)*u^3*(1-u^2)/(1+2*u^2).
+       =(pi*N^2/2)*u^(3/2)*(1-u)/(1+2*u).
 
-At u=1, chi_HP=3/(2*pi), I_BH=0. At the same temperature, u_-=1/2 and
+At u=1, chi_HP=3/(2*pi), I_BH=0. At the same temperature, u_-=1/4 and
 
 I_SBH(chi_HP)=pi*N^2/32.
 
-The black-hole fold is chi_0=sqrt(2)/pi. The maximum supercooling interval for a metastable big black hole, measured relative to chi_HP, is
+The black-hole fold is chi_0=sqrt(2)/pi at u=1/2. The maximum supercooling interval for a metastable big black hole, measured relative to chi_HP, is
 
 1-chi_0/chi_HP = 1-2*sqrt(2)/3 = 0.0571909584...
 
