@@ -1,0 +1,114 @@
+{
+  "schema": "vm-lab-execution-plan-v1",
+  "package_id": "S3_DD_CONVERGENCE_20261116_r1",
+  "source_commit": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+  "publication_branch": "science/autonomous-dd-refinement-20261116",
+  "executor": "local",
+  "workload_kind": "independent_realizations",
+  "parallel_sections": 1,
+  "input_manifest": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/refinement_20261116/INPUT_MANIFEST.json",
+    "sha256": "2341abba772898f4847474505c509eb3abce1e8607bf9a99dc9ed7a05b0dd5b2"
+  },
+  "acceptance": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/refinement_20261116/CONVERGENCE_DESIGN.json",
+    "sha256": "d264e5deb4fb56c2fbfc41c9225e74d62590af4964d085a44d64ed5832d4961d"
+  },
+  "calibration": {
+    "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/refinement_20261116/CALIBRATION.json",
+    "sha256": "6345e7d48174a71b89d19d8a72ff491f9c1e85be5160c074e5e6b496a4f110f9",
+    "executor": "local",
+    "environment_reference": "Transferred hosted measurement; same pinned dependency lock. Local first full task calibrates remainder under hard caps. See CALIBRATION.json.",
+    "measured_seconds": 21.080652499500005
+  },
+  "tasks": [
+    {
+      "id": "ddHe3n_minus_0_25",
+      "channel": "ddHe3n",
+      "q": -0.25,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddHe3n_plus_0_25",
+      "channel": "ddHe3n",
+      "q": 0.25,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddtp_minus_0_25",
+      "channel": "ddtp",
+      "q": -0.25,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddtp_plus_0_25",
+      "channel": "ddtp",
+      "q": 0.25,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddHe3n_minus_0_125",
+      "channel": "ddHe3n",
+      "q": -0.125,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddHe3n_plus_0_125",
+      "channel": "ddHe3n",
+      "q": 0.125,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddtp_minus_0_125",
+      "channel": "ddtp",
+      "q": -0.125,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    },
+    {
+      "id": "ddtp_plus_0_125",
+      "channel": "ddtp",
+      "q": 0.125,
+      "forecast_seconds": 38.185203567999906,
+      "process_seconds": 60
+    }
+  ],
+  "sections": [
+    {
+      "id": "local_eight",
+      "task_ids": [
+        "ddHe3n_minus_0_25",
+        "ddHe3n_plus_0_25",
+        "ddtp_minus_0_25",
+        "ddtp_plus_0_25",
+        "ddHe3n_minus_0_125",
+        "ddHe3n_plus_0_125",
+        "ddtp_minus_0_125",
+        "ddtp_plus_0_125"
+      ],
+      "setup_seconds": 30,
+      "compute_seconds": 480,
+      "verification_seconds": 30,
+      "publication_seconds": 60,
+      "wall_seconds": 600,
+      "memory_bytes": 4294967296
+    }
+  ],
+  "budget": {
+    "package_seconds": 600,
+    "section_seconds": 600,
+    "process_seconds": 60,
+    "memory_bytes": 4294967296,
+    "output_bytes": 2147483648,
+    "vm_seconds": null
+  },
+  "checkpoint_policy": "not_required",
+  "scientific_acceptance": false,
+  "automatic_retry": false
+}
