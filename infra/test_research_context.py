@@ -27,7 +27,7 @@ class ResearchContextTests(unittest.TestCase):
         self.assertTrue({'result', 'construct', 'link', 'question', 'premise', 'obligation', 'decision'} <= {x['key'].split(':')[0] for x in cards})
         self.assertTrue(all(len(x['source_sha256']) == 64 and x['required_by'] for x in cards))
         self.assertIn('unknown', next(x['data'] for x in cards if x['key'] == 'question:U010'))
-        self.assertLess(len(json.dumps(c, ensure_ascii=False, indent=2).encode()), 600000)
+        self.assertLess(len(json.dumps(c, ensure_ascii=False).encode()), 600000)
         self.assertTrue(c['context_contract']['frontier_not_expanded'])
 
     def test_missing_definition_or_stale_graph_stops_before_inference(self):
