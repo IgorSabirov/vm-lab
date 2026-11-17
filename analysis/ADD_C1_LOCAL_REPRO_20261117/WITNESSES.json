@@ -1,0 +1,536 @@
+{
+  "counterexamples": {
+    "P_ring:G3_Q2_tau": {
+      "case": {
+        "group": "simple_exhaustive",
+        "L": 3,
+        "index": 0,
+        "word": [
+          0,
+          0,
+          0
+        ]
+      },
+      "input": {
+        "states": [
+          [
+            "u0",
+            0
+          ],
+          [
+            "u1",
+            0
+          ],
+          [
+            "u2",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "u0",
+            "u1"
+          ],
+          [
+            "u1",
+            "u2"
+          ],
+          [
+            "u2",
+            "u0"
+          ]
+        ]
+      },
+      "observed": {
+        "states": [
+          [
+            "(Lu0,Ru1)",
+            0
+          ],
+          [
+            "(Lu1,Ru2)",
+            0
+          ],
+          [
+            "(Lu2,Ru0)",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "(Lu0,Ru1)",
+            "(Lu1,Ru2)"
+          ],
+          [
+            "(Lu1,Ru2)",
+            "(Lu2,Ru0)"
+          ],
+          [
+            "(Lu2,Ru0)",
+            "(Lu0,Ru1)"
+          ]
+        ]
+      },
+      "expected": {
+        "states": [
+          [
+            "u0",
+            0
+          ],
+          [
+            "u1",
+            0
+          ],
+          [
+            "u2",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "u0",
+            "u1"
+          ],
+          [
+            "u1",
+            "u2"
+          ],
+          [
+            "u2",
+            "u0"
+          ]
+        ]
+      },
+      "minimality": "first by declared enumeration within this group; not global term-size minimization"
+    },
+    "P_ring:G3_TQT_Qi": {
+      "case": {
+        "group": "simple_exhaustive",
+        "L": 3,
+        "index": 0,
+        "word": [
+          0,
+          0,
+          0
+        ]
+      },
+      "input": {
+        "states": [
+          [
+            "u0",
+            0
+          ],
+          [
+            "u1",
+            0
+          ],
+          [
+            "u2",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "u0",
+            "u1"
+          ],
+          [
+            "u1",
+            "u2"
+          ],
+          [
+            "u2",
+            "u0"
+          ]
+        ]
+      },
+      "observed": {
+        "states": [
+          [
+            "(Ru0,Lu1)",
+            0
+          ],
+          [
+            "(Ru1,Lu2)",
+            0
+          ],
+          [
+            "(Ru2,Lu0)",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu1)",
+            "(Ru2,Lu0)"
+          ],
+          [
+            "(Ru1,Lu2)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru2,Lu0)",
+            "(Ru1,Lu2)"
+          ]
+        ]
+      },
+      "expected": {
+        "states": [
+          [
+            "(Ru0,Lu2)",
+            0
+          ],
+          [
+            "(Ru1,Lu0)",
+            0
+          ],
+          [
+            "(Ru2,Lu1)",
+            0
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu2)",
+            "(Ru2,Lu1)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru0,Lu2)"
+          ],
+          [
+            "(Ru2,Lu1)",
+            "(Ru1,Lu0)"
+          ]
+        ]
+      },
+      "minimality": "first by declared enumeration within this group; not global term-size minimization"
+    }
+  },
+  "author_example": {
+    "input": {
+      "states": [
+        [
+          "u0",
+          1
+        ],
+        [
+          "u1",
+          0
+        ],
+        [
+          "u2",
+          2
+        ]
+      ],
+      "edges_b_to_a": [
+        [
+          "u0",
+          "u1"
+        ],
+        [
+          "u1",
+          "u2"
+        ],
+        [
+          "u2",
+          "u0"
+        ]
+      ]
+    },
+    "Q_A": {
+      "states": [
+        [
+          "(Ru0,Lu1)",
+          0
+        ],
+        [
+          "(Ru1,Lu2)",
+          0
+        ],
+        [
+          "(Ru2,Lu0)",
+          3
+        ]
+      ],
+      "edges_b_to_a": [
+        [
+          "(Ru0,Lu1)",
+          "(Ru1,Lu2)"
+        ],
+        [
+          "(Ru1,Lu2)",
+          "(Ru2,Lu0)"
+        ],
+        [
+          "(Ru2,Lu0)",
+          "(Ru0,Lu1)"
+        ]
+      ]
+    },
+    "Q_A_squared": {
+      "states": [
+        [
+          "u0",
+          2
+        ],
+        [
+          "u1",
+          0
+        ],
+        [
+          "u2",
+          1
+        ]
+      ],
+      "edges_b_to_a": [
+        [
+          "u0",
+          "u1"
+        ],
+        [
+          "u1",
+          "u2"
+        ],
+        [
+          "u2",
+          "u0"
+        ]
+      ]
+    },
+    "direct_tau": {
+      "states": [
+        [
+          "u0",
+          2
+        ],
+        [
+          "u1",
+          0
+        ],
+        [
+          "u2",
+          1
+        ]
+      ],
+      "edges_b_to_a": [
+        [
+          "u0",
+          "u1"
+        ],
+        [
+          "u1",
+          "u2"
+        ],
+        [
+          "u2",
+          "u0"
+        ]
+      ]
+    }
+  },
+  "P_raw": [
+    {
+      "L": 1,
+      "shape": {
+        "vertices": [
+          "(Ru0,Lu0)"
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu0)",
+            "(Ru0,Lu0)"
+          ]
+        ],
+        "bits_status": "UNBOUND_X_IN_PRINTED_CLAUSE"
+      },
+      "dangling_endpoint_names": [],
+      "vertex_count": 1,
+      "edge_count": 1,
+      "status": "BIT_CLAUSE_UNBOUND"
+    },
+    {
+      "L": 2,
+      "shape": {
+        "vertices": [
+          "(Ru0,Lu1)",
+          "(Ru1,Lu0)"
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu0)",
+            "(Ru0,Lu0)"
+          ],
+          [
+            "(Ru0,Lu0)",
+            "(Ru1,Lu0)"
+          ],
+          [
+            "(Ru0,Lu1)",
+            "(Ru0,Lu0)"
+          ],
+          [
+            "(Ru0,Lu1)",
+            "(Ru1,Lu0)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru1,Lu1)"
+          ],
+          [
+            "(Ru1,Lu1)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru1,Lu1)",
+            "(Ru1,Lu1)"
+          ]
+        ],
+        "bits_status": "UNBOUND_X_IN_PRINTED_CLAUSE"
+      },
+      "dangling_endpoint_names": [
+        "(Ru0,Lu0)",
+        "(Ru1,Lu1)"
+      ],
+      "vertex_count": 2,
+      "edge_count": 8,
+      "status": "SPEC_NOT_CLOSED"
+    },
+    {
+      "L": 3,
+      "shape": {
+        "vertices": [
+          "(Ru0,Lu1)",
+          "(Ru1,Lu2)",
+          "(Ru2,Lu0)"
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu0)",
+            "(Ru0,Lu0)"
+          ],
+          [
+            "(Ru0,Lu0)",
+            "(Ru1,Lu0)"
+          ],
+          [
+            "(Ru0,Lu0)",
+            "(Ru2,Lu0)"
+          ],
+          [
+            "(Ru0,Lu1)",
+            "(Ru0,Lu0)"
+          ],
+          [
+            "(Ru0,Lu1)",
+            "(Ru1,Lu0)"
+          ],
+          [
+            "(Ru0,Lu1)",
+            "(Ru2,Lu0)"
+          ],
+          [
+            "(Ru0,Lu2)",
+            "(Ru0,Lu0)"
+          ],
+          [
+            "(Ru0,Lu2)",
+            "(Ru1,Lu0)"
+          ],
+          [
+            "(Ru0,Lu2)",
+            "(Ru2,Lu0)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru1,Lu1)"
+          ],
+          [
+            "(Ru1,Lu0)",
+            "(Ru2,Lu1)"
+          ],
+          [
+            "(Ru1,Lu1)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru1,Lu1)",
+            "(Ru1,Lu1)"
+          ],
+          [
+            "(Ru1,Lu1)",
+            "(Ru2,Lu1)"
+          ],
+          [
+            "(Ru1,Lu2)",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "(Ru1,Lu2)",
+            "(Ru1,Lu1)"
+          ],
+          [
+            "(Ru1,Lu2)",
+            "(Ru2,Lu1)"
+          ],
+          [
+            "(Ru2,Lu0)",
+            "(Ru0,Lu2)"
+          ],
+          [
+            "(Ru2,Lu0)",
+            "(Ru1,Lu2)"
+          ],
+          [
+            "(Ru2,Lu0)",
+            "(Ru2,Lu2)"
+          ],
+          [
+            "(Ru2,Lu1)",
+            "(Ru0,Lu2)"
+          ],
+          [
+            "(Ru2,Lu1)",
+            "(Ru1,Lu2)"
+          ],
+          [
+            "(Ru2,Lu1)",
+            "(Ru2,Lu2)"
+          ],
+          [
+            "(Ru2,Lu2)",
+            "(Ru0,Lu2)"
+          ],
+          [
+            "(Ru2,Lu2)",
+            "(Ru1,Lu2)"
+          ],
+          [
+            "(Ru2,Lu2)",
+            "(Ru2,Lu2)"
+          ]
+        ],
+        "bits_status": "UNBOUND_X_IN_PRINTED_CLAUSE"
+      },
+      "dangling_endpoint_names": [
+        "(Ru0,Lu0)",
+        "(Ru0,Lu2)",
+        "(Ru1,Lu0)",
+        "(Ru1,Lu1)",
+        "(Ru2,Lu1)",
+        "(Ru2,Lu2)"
+      ],
+      "vertex_count": 3,
+      "edge_count": 27,
+      "status": "SPEC_NOT_CLOSED"
+    }
+  ]
+}
