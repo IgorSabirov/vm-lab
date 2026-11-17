@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=129, construct=42, link=10, question=12, premise=66, obligation=9, review=7, external=12, decision=3, source=48.
+Число записей: result=130, construct=42, link=10, question=12, premise=66, obligation=9, review=8, external=12, decision=3, source=52.
 
 ## Предпосылка → результаты
 
@@ -22,14 +22,14 @@
 | B03 | [R129](#result-r129) | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | B04 | [R129](#result-r129) | [C023](#construct-c023), [C025](#construct-c025), [C026](#construct-c026); [R045](#result-r045), [R046](#result-r046), [R048](#result-r048), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R079](#result-r079), [R114](#result-r114), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | B05 | [R129](#result-r129) | [C025](#construct-c025); [R048](#result-r048) |
-| B06 | [R129](#result-r129) | [C024](#construct-c024), [C037](#construct-c037); [R047](#result-r047), [R058](#result-r058), [R083](#result-r083), [R084](#result-r084), [R085](#result-r085), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127) |
+| B06 | [R129](#result-r129) | [C024](#construct-c024), [C037](#construct-c037); [R047](#result-r047), [R058](#result-r058), [R083](#result-r083), [R084](#result-r084), [R085](#result-r085), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130) |
 | B07 | Нет новой прямой аттестации | [C024](#construct-c024), [C033](#construct-c033); [R047](#result-r047), [R074](#result-r074), [R075](#result-r075), [R095](#result-r095), [R116](#result-r116), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128) |
 | B08 | Нет новой прямой аттестации | [C025](#construct-c025), [C030](#construct-c030); [R048](#result-r048), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R117](#result-r117), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | C01 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | C02 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | C03 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | C04 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
-| C05 | Нет новой прямой аттестации | [C024](#construct-c024), [C035](#construct-c035); [R047](#result-r047), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R095](#result-r095), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127) |
+| C05 | Нет новой прямой аттестации | [C024](#construct-c024), [C035](#construct-c035); [R047](#result-r047), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R095](#result-r095), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130) |
 | C06 | Нет новой прямой аттестации | [C024](#construct-c024), [C026](#construct-c026); [R047](#result-r047), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R095](#result-r095), [R114](#result-r114), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R127](#result-r127) |
 | C07 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | C08 | Нет новой прямой аттестации | [C011](#construct-c011), [C012](#construct-c012), [C026](#construct-c026); [R003](#result-r003), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R037](#result-r037), [R038](#result-r038), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R116](#result-r116), [R127](#result-r127) |
@@ -51,7 +51,7 @@
 | E04 | [R129](#result-r129) | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | E05 | [R129](#result-r129) | [C005](#construct-c005), [C020](#construct-c020), [C022](#construct-c022); [R038](#result-r038), [R039](#result-r039), [R040](#result-r040), [R041](#result-r041), [R042](#result-r042), [R043](#result-r043), [R044](#result-r044), [R094](#result-r094), [R102](#result-r102), [R103](#result-r103), [R105](#result-r105), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R115](#result-r115), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | E06 | Нет новой прямой аттестации | [C011](#construct-c011), [C026](#construct-c026); [R003](#result-r003), [R037](#result-r037), [R038](#result-r038), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R116](#result-r116), [R127](#result-r127) |
-| E07 | [R129](#result-r129) | [C005](#construct-c005), [C025](#construct-c025), [C035](#construct-c035); [R038](#result-r038), [R039](#result-r039), [R043](#result-r043), [R048](#result-r048), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R094](#result-r094), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R128](#result-r128) |
+| E07 | [R129](#result-r129) | [C005](#construct-c005), [C025](#construct-c025), [C035](#construct-c035); [R038](#result-r038), [R039](#result-r039), [R043](#result-r043), [R048](#result-r048), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R094](#result-r094), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R128](#result-r128), [R130](#result-r130) |
 | E08 | Нет новой прямой аттестации | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | E09 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | E10 | Нет новой прямой аттестации | [C001](#construct-c001), [C039](#construct-c039); [R001](#result-r001), [R002](#result-r002), [R090](#result-r090), [R100](#result-r100), [R117](#result-r117), [R118](#result-r118), [R120](#result-r120), [R127](#result-r127), [R128](#result-r128) |
@@ -69,7 +69,7 @@
 | F12 | Нет новой прямой аттестации | [C013](#construct-c013); [R012](#result-r012), [R083](#result-r083), [R123](#result-r123) |
 | F13 | Нет новой прямой аттестации | [C001](#construct-c001), [C004](#construct-c004); [R001](#result-r001), [R002](#result-r002), [R096](#result-r096), [R118](#result-r118), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128) |
 | G01 | [R129](#result-r129) | [C021](#construct-c021), [C022](#construct-c022), [C030](#construct-c030); [R043](#result-r043), [R044](#result-r044), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R094](#result-r094), [R097](#result-r097), [R117](#result-r117), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
-| G02 | [R129](#result-r129) | [C025](#construct-c025), [C035](#construct-c035); [R048](#result-r048), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R126](#result-r126), [R127](#result-r127) |
+| G02 | [R129](#result-r129) | [C025](#construct-c025), [C035](#construct-c035); [R048](#result-r048), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130) |
 | G03 | [R129](#result-r129) | [C023](#construct-c023), [C030](#construct-c030); [R045](#result-r045), [R046](#result-r046), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R079](#result-r079), [R117](#result-r117), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | G04 | [R129](#result-r129) | [C025](#construct-c025), [C026](#construct-c026), [C030](#construct-c030); [R048](#result-r048), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R114](#result-r114), [R117](#result-r117), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | G05 | Нет новой прямой аттестации | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
@@ -403,7 +403,7 @@ M4, ремонт доступа, перезарядка и ресурс повт
 
 Стрела и границы унитарного замкнутого мира — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c035).
 
-**Входящие:** [C05](#premise-c05) `historical_navigation_not_proof`; [E07](#premise-e07) `historical_navigation_not_proof`; [G02](#premise-g02) `historical_navigation_not_proof`; [R077](#result-r077) `addresses`; [R078](#result-r078) `addresses`; [R079](#result-r079) `addresses`; [R111](#result-r111) `addresses`; [R112](#result-r112) `addresses`; [R113](#result-r113) `addresses`; [R118](#result-r118) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`.
+**Входящие:** [C05](#premise-c05) `historical_navigation_not_proof`; [E07](#premise-e07) `historical_navigation_not_proof`; [G02](#premise-g02) `historical_navigation_not_proof`; [R077](#result-r077) `addresses`; [R078](#result-r078) `addresses`; [R079](#result-r079) `addresses`; [R111](#result-r111) `addresses`; [R112](#result-r112) `addresses`; [R113](#result-r113) `addresses`; [R118](#result-r118) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="construct-c036"></a>
@@ -421,7 +421,7 @@ M4, ремонт доступа, перезарядка и ресурс повт
 
 Миньковский, СТО/ОТО и организация «сейчас» — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c037).
 
-**Входящие:** [B06](#premise-b06) `historical_navigation_not_proof`; [R058](#result-r058) `addresses`; [R083](#result-r083) `addresses`; [R084](#result-r084) `addresses`; [R085](#result-r085) `addresses`; [R123](#result-r123) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
+**Входящие:** [B06](#premise-b06) `historical_navigation_not_proof`; [R058](#result-r058) `addresses`; [R083](#result-r083) `addresses`; [R084](#result-r084) `addresses`; [R085](#result-r085) `addresses`; [R123](#result-r123) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
 **Исходящие:** нет.
 
 <a id="construct-c038"></a>
@@ -466,7 +466,7 @@ CSG / TP и отмеченное будущее — [исходная карто
 
 Релятивистская причинность, настоящее и коррекция к границам — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c042).
 
-**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
+**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="decision-d001"></a>
@@ -637,7 +637,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Исполнение → запись → дальнейшее действие — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l04).
 
-**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R119](#result-r119) `boundary_open`; [R120](#result-r120) `boundary_open`; [R121](#result-r121) `boundary_open`; [R122](#result-r122) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l05"></a>
@@ -655,7 +655,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Возврат функции → воспроизводство условий — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l06).
 
-**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U005](#question-u005) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U005](#question-u005) `related_open_link`; [U008](#question-u008) `related_open_link`; [U010](#question-u010) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l07"></a>
@@ -673,7 +673,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Корректирующая роль → направленность и самопрезентация — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l08).
 
-**Входящие:** [U004](#question-u004) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`.
+**Входящие:** [U004](#question-u004) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R118](#result-r118) `boundary_open`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l09"></a>
@@ -682,7 +682,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Организация → физическое пространство-время — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l09).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="link-l10"></a>
@@ -691,7 +691,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Локальные результаты → одна сквозная реализация — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l10).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `joint_model_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`; [U002](#question-u002) `related_open_link`; [U009](#question-u009) `related_open_link`; [U010](#question-u010) `related_open_link`; [U011](#question-u011) `related_open_link`; [U012](#question-u012) `related_open_link`; [R116](#result-r116) `boundary_open`; [R117](#result-r117) `boundary_open`; [R118](#result-r118) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R129](#result-r129) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `joint_model_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** нет.
 
 <a id="obligation-n01"></a>
@@ -1411,7 +1411,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Как организация влияет обратно на изменение носителя? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u005).
 
-**Входящие:** [R127](#result-r127) `informs_not_closes`.
+**Входящие:** [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** [L06](#link-l06) `related_open_link`; [L09](#link-l09) `related_open_link`.
 
 <a id="question-u006"></a>
@@ -1420,7 +1420,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Откуда берутся причинная и метрическая структуры? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u006).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [L09](#link-l09) `related_open_link`.
 
 <a id="question-u007"></a>
@@ -1429,7 +1429,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Как физически обратить весь процесс вместе с аппаратом и средой? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u007).
 
-**Входящие:** [R127](#result-r127) `informs_not_closes`.
+**Входящие:** [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** [L08](#link-l08) `related_open_link`; [L09](#link-l09) `related_open_link`.
 
 <a id="question-u008"></a>
@@ -1447,7 +1447,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Является ли пробуждение ADD спонтанным нарушением симметрии? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u009).
 
-**Входящие:** [R126](#result-r126) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`.
+**Входящие:** [R126](#result-r126) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
 **Исходящие:** [L08](#link-l08) `related_open_link`; [L09](#link-l09) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u010"></a>
@@ -1456,7 +1456,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Как передать следующему носителю способность воспроизводить условия дальнейшего действия? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u010).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [L04](#link-l04) `related_open_link`; [L06](#link-l06) `related_open_link`; [L07](#link-l07) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u011"></a>
@@ -2149,7 +2149,7 @@ V2 и A: расширение репертуара оплачено правил
 
 Запись теми же взаимодействиями, что исполнение — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r075).
 
-**Входящие:** [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
+**Входящие:** [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
 **Исходящие:** [C002](#construct-c002) `addresses`; [C010](#construct-c010) `addresses`; [C033](#construct-c033) `addresses`; [U010](#question-u010) `informs_not_closes`; [R116](#result-r116) `parent`; [R119](#result-r119) `parent`; [R120](#result-r120) `parent`; [R121](#result-r121) `parent`; [R127](#result-r127) `parent`; [R128](#result-r128) `parent`.
 
 <a id="result-r076"></a>
@@ -2167,8 +2167,8 @@ V2 и A: расширение репертуара оплачено правил
 
 Конечное унитарное целое не имеет нетривиального вечного монотонного функционала указанного типа — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r077).
 
-**Входящие:** нет.
-**Исходящие:** [C035](#construct-c035) `addresses`; [R111](#result-r111) `parent`; [R118](#result-r118) `parent`; [R126](#result-r126) `parent`; [R127](#result-r127) `parent`.
+**Входящие:** [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
+**Исходящие:** [C035](#construct-c035) `addresses`; [R111](#result-r111) `parent`; [R118](#result-r118) `parent`; [R126](#result-r126) `parent`; [R127](#result-r127) `parent`; [R130](#result-r130) `parent`.
 
 <a id="result-r078"></a>
 
@@ -2176,8 +2176,8 @@ V2 и A: расширение репертуара оплачено правил
 
 Симметрия ансамбля не запрещает направленные истории — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r078).
 
-**Входящие:** нет.
-**Исходящие:** [C035](#construct-c035) `addresses`; [R111](#result-r111) `parent`; [R118](#result-r118) `parent`; [R126](#result-r126) `parent`; [R127](#result-r127) `parent`.
+**Входящие:** [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
+**Исходящие:** [C035](#construct-c035) `addresses`; [R111](#result-r111) `parent`; [R118](#result-r118) `parent`; [R126](#result-r126) `parent`; [R127](#result-r127) `parent`; [R130](#result-r130) `parent`.
 
 <a id="result-r079"></a>
 
@@ -2608,8 +2608,8 @@ R125: предпрогон v2 и ограниченный событийный �
 
 ADD: четыре семантики транспорта, периодичность и рост разделены — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r126).
 
-**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
-**Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U004](#question-u004) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [R127](#result-r127) `parent`.
+**Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R085](#result-r085) `parent`; [R090](#result-r090) `parent`; [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`.
+**Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U004](#question-u004) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [R127](#result-r127) `parent`; [R130](#result-r130) `parent`.
 
 <a id="result-r127"></a>
 
@@ -2638,6 +2638,15 @@ ADD: четыре семантики транспорта, периодично�
 **Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
 **Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`.
 
+<a id="result-r130"></a>
+
+### result:R130
+
+ADD: кольцевая C2, инволюция обращения и вечный активный цикл без роста — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r130).
+
+**Входящие:** [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R126](#result-r126) `parent`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`.
+**Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json](#source-analysis-add_neighbor_synthesis_20261117-checks-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py](#source-analysis-add_neighbor_synthesis_20261117-verify-py) `managed_evidence_source`.
+
 <a id="review-add_bbn_symmetry_20261115"></a>
 
 ### review:ADD_BBN_SYMMETRY_20261115
@@ -2651,6 +2660,38 @@ ADD: четыре семантики транспорта, периодично�
 |---|---|---|
 | [PRIMAT](#external-primat) `scope_boundary` | Двухкомпонентный распад: pS=p и pL=0 при SLS≠-L; κ зависит от весов. | [разбор](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#bbn-observation) |
 | [R126](#result-r126) `scope_boundary` | Fig. 2(a), алгебра имён, контрпример 5 против 4 вершин. | [разбор](../../analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md#full-dynamics) |
+
+**Не включены в положительные связи:**
+
+<a id="review-add_neighbor_20261117"></a>
+
+### review:ADD_NEIGHBOR_20261117
+
+ADD: сводка двух разборов, исправления C1/C2 и активный цикл — [исходная карточка](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [C035](#construct-c035) `scope_boundary`; [C037](#construct-c037) `scope_boundary`; [C042](#construct-c042) `scope_boundary`; [L04](#link-l04) `scope_boundary`; [L06](#link-l06) `scope_boundary`; [L08](#link-l08) `scope_boundary`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `scope_boundary`; [U005](#question-u005) `scope_boundary`; [U006](#question-u006) `scope_boundary`; [U007](#question-u007) `scope_boundary`; [U009](#question-u009) `scope_boundary`; [U010](#question-u010) `scope_boundary`; [R075](#result-r075) `scope_boundary`; [R077](#result-r077) `scope_boundary`; [R078](#result-r078) `scope_boundary`; [R126](#result-r126) `scope_boundary`; [R130](#result-r130) `scope_boundary`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `review_source_not_attestation`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [C035](#construct-c035) `scope_boundary` | Для заданной C2 обращение носителя установлено локально; физическая стрела целого этим не выведена. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2) |
+| [C037](#construct-c037) `scope_boundary` | Один граф двух каналов не задаёт две независимые геометрии и не устанавливает релятивистский смысл часов. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed) |
+| [C042](#construct-c042) `scope_boundary` | ADD→BH1 и метрический радиус требуют самостоятельного соответствия, не следуют из линейного роста. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed) |
+| [L04](#link-l04) `scope_boundary` | След→действие требует причинного контроля содержания; геометрическая чувствительность недостаточна. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function) |
+| [L06](#link-l06) `scope_boundary` | Вечные взаимодействия не доказывают воспроизводство средств следующего действия. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#active-cycle) |
+| [L08](#link-l08) `scope_boundary` | Симметрия закона и размер не устанавливают направленность самопрезентации. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#genealogy) |
+| [L09](#link-l09) `scope_boundary` | Пространство-время и связь с BH1 не выводятся из отношения несуществующих раздельных размеров каналов. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed) |
+| [L10](#link-l10) `scope_boundary` | Исправленная опорная C2 не есть сквозной физический закон всех модулей. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#genealogy) |
+| [U005](#question-u005) `scope_boundary` | Активность постоянного размера не устанавливает обратное управление носителем со стороны организации. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function) |
+| [U006](#question-u006) `scope_boundary` | Происхождение причинной и метрической структур не выведено из правил кольца. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed) |
+| [U007](#question-u007) `scope_boundary` | Обращение носителя C2 не реализует обращение аппарата, ресурсов, отходов и среды. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2) |
+| [U009](#question-u009) `scope_boundary` | Симметрия исправленной C2 не меняет секторную классификацию старого carrier и не устанавливает SSB. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2) |
+| [U010](#question-u010) `scope_boundary` | Наличие геометрического следа и вечных взаимодействий не доказывает наследование способности продолжения. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function) |
+| [R075](#result-r075) `scope_boundary` | Причинная роль промежутков не доказывает полезное чтение содержательного исторического следа. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function) |
+| [R077](#result-r077) `scope_boundary` | Конечный компактный класс, изменяемый размер и алгебра имён имеют разные предпосылки; нет автоматического переноса запрета. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#genealogy) |
+| [R078](#result-r078) `scope_boundary` | Обратимость, инволюция обращения, асимптотика отдельной истории и типичность ансамбля разделены. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#genealogy) |
+| [R126](#result-r126) `scope_boundary` | Старые I₂/R и новая кольцевая C2 различаются по рёбрам и пространственному порядку; исторические теоремы не переписаны. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#rules) |
+| [R130](#result-r130) `scope_boundary` | Условные выводы внесены в отдельную дочернюю карточку; вечная активность при L=3 не равна организационному замыканию. | [разбор](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#active-cycle) |
 
 **Не включены в положительные связи:**
 
@@ -2880,6 +2921,42 @@ analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md — [исходная карточ�
 analysis/ADD_BBN_SYMMETRY_20261115/verify.py — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/verify.py).
 
 **Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_neighbor_synthesis_20261117-checks-json"></a>
+
+### source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json
+
+analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json — [исходная карточка](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_neighbor_synthesis_20261117-report-md"></a>
+
+### source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md
+
+analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md — [исходная карточка](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_neighbor_synthesis_20261117-sources-json"></a>
+
+### source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json
+
+analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json — [исходная карточка](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_neighbor_synthesis_20261117-verify-py"></a>
+
+### source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py
+
+analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py — [исходная карточка](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-anthropic_bh_20261112-checks-json"></a>

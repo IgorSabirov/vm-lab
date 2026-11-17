@@ -87,6 +87,15 @@
 <a id="u005"></a>
 ## U005 — Как организация влияет обратно на изменение носителя?
 
+
+
+<!-- generated:review-card-question-u005 -->
+**Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function); `scope_boundary`. Активность постоянного размера не устанавливает обратное управление носителем со стороны организации. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u005).
+<!-- /generated:review-card-question-u005 -->
+
+
+**Уточнение 17 ноября, [R130](RESULTS_REGISTER.md#r130):** R130: явный C2-цикл сохраняет L=3 при вечных слияниях/расщеплениях; обратное управление геометрией со стороны организованного аппарата не показано. Статус вопроса не изменён.
+
 **Статус:** OPEN
 
 **Известно:** Аппарат и пакеты переносятся через split/merge/Q по заданным правилам. Обратное действие организации на сам закон Q/I2 в этом патче не реализовано.
@@ -109,6 +118,8 @@
 
 
 <!-- generated:review-card-question-u006 -->
+**Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed); `scope_boundary`. Происхождение причинной и метрической структур не выведено из правил кольца. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry); `scope_boundary`. CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn); `scope_boundary`. COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
@@ -116,6 +127,8 @@
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 <!-- /generated:review-card-question-u006 -->
 
+
+**Уточнение 17 ноября, [R130](RESULTS_REGISTER.md#r130):** R130: два битовых канала разделяют один граф. Раздельные размеры каналов и отображение длины ADD в радиус BH1 не определены; геометрический генезис не установлен. Статус вопроса не изменён.
 
 **Статус:** OPEN
 
@@ -135,6 +148,15 @@
 
 <a id="u007"></a>
 ## U007 — Как физически обратить весь процесс вместе с аппаратом и средой?
+
+
+
+<!-- generated:review-card-question-u007 -->
+**Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2); `scope_boundary`. Обращение носителя C2 не реализует обращение аппарата, ресурсов, отходов и среды. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u007).
+<!-- /generated:review-card-question-u007 -->
+
+
+**Уточнение 17 ноября, [R130](RESULTS_REGISTER.md#r130):** R130: для отдельной опорной кольцевой C2 с противоположной хиральностью и bit-only R выполнены T²=id и TFT=F⁻¹. Это обращение носителя, не всего процесса вместе с аппаратами и средой. Статус вопроса не изменён.
 
 **Статус:** OPEN
 
@@ -176,11 +198,20 @@
 <a id="u009"></a>
 ## U009 — Является ли пробуждение ADD спонтанным нарушением симметрии?
 
+
+
+<!-- generated:review-card-question-u009 -->
+**Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2); `scope_boundary`. Симметрия исправленной C2 не меняет секторную классификацию старого carrier и не устанавливает SSB. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u009).
+<!-- /generated:review-card-question-u009 -->
+
+
+**Уточнение 17 ноября, [R130](RESULTS_REGISTER.md#r130):** R130 отделяет старый carrier от опорной C2: в новой реализации RI₂=I₂R и T²=id выполнены, но активный цикл при L=3 опровергает универсальное прекращение слияний/рост. Это не SSB и не изменение исторического K-результата. Статус вопроса не изменён.
+
 **Статус:** OPEN
 
 **Известно:** Для текущего carrier FIG2A_FULL доказано сохранение шести чисел ненулевых полусостояний и K=nA1*nB1+nA2*nB2. Из E0: K=0 — вечная тишина, K>0 — неограниченный рост; первый рост t_s+1<=L, тихий период слова делит L. Nquiet(L)=2*9^L+2*8^L-4*6^L+4^L. Все 69904 слова L1..4 и 39722 E0 проверены на закреплённом carrier; PASS, 2.59 с. SSB не установлено: режимы принадлежат разным сохраняемым секторам. Авторский R не коммутирует с текущим I; отказ конкретного T не исключает всех возможных T.
 
-**Неизвестно:** Не заданы физическая группа симметрии, меняющийся под ней наблюдаемый параметр и механизм выбора ветви в полном связанном законе. Авторское T=IR не проходит; существование другого T не исключено.
+**Неизвестно:** Не заданы физическая группа симметрии, меняющийся под ней наблюдаемый параметр и механизм выбора ветви в полном связанном законе. Отказ T=IR относится к прежнему carrier; для отдельной опорной C2 см. R130. Механизм SSB не установлен.
 
 **Следующий вопрос:** Уточнить физическую симметрию и наблюдаемую на текущем явно заданном законе; не подменять это одним фактом роста и не запускать новую модель без её постановки.
 
@@ -211,6 +242,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 
 <!-- generated:review-card-question-u010 -->
+**Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function); `scope_boundary`. Наличие геометрического следа и вечных взаимодействий не доказывает наследование способности продолжения. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
 **Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Ограниченный модуль фазовой организации не закрывает происхождение условий. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy); `scope_boundary`. COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
@@ -222,6 +255,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#genesis); `scope_boundary`. Функция и воспроизводство условий различаются. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 <!-- /generated:review-card-question-u010 -->
 
+
+**Уточнение 17 ноября, [R130](RESULTS_REGISTER.md#r130):** R130 показывает причинную роль промежутков и автономный активный цикл без роста. Содержательное чтение записи, наследование аппарата и воспроизводство условий продолжения этим не установлены. Статус вопроса не изменён.
 
 **Новое свидетельство:** [R129](../G3_CONTACT_CAPACITY_20261111/REPORT.md) — контакты образуются динамически; роль ёмкости проверена в конечной CTMC. Это не производство следующего носителя. U010 остаётся OPEN.
 
@@ -336,6 +371,11 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [question:U005](../REGISTRY_LINKS/INDEX.md#question-u005) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Активность постоянного размера не устанавливает обратное управление носителем со стороны организации. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Происхождение причинной и метрической структур не выведено из правил кольца. |
+| [question:U007](../REGISTRY_LINKS/INDEX.md#question-u007) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Обращение носителя C2 не реализует обращение аппарата, ресурсов, отходов и среды. |
+| [question:U009](../REGISTRY_LINKS/INDEX.md#question-u009) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Симметрия исправленной C2 не меняет секторную классификацию старого carrier и не устанавливает SSB. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Наличие геометрического следа и вечных взаимодействий не доказывает наследование способности продолжения. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограниченный модуль фазовой организации не закрывает происхождение условий. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `scope_boundary` | CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. |
@@ -345,3 +385,4 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |
 <!-- /generated:external-review-links -->
+
