@@ -1,0 +1,407 @@
+{
+  "source_sha256": {
+    "ADD_C1_SCIENCE_20261117/PLAN.json": "6f57c469fcdccd4ecfe2fe90de24cb01fedc3738ca549224349a2660271175c9",
+    "ADD_C1_SCIENCE_20261117/science_engine.py": "7be8f31880a4df8ae46299acb0fa4e1e1f63091d7e311d4cde96ae1348e2eeb7",
+    "ADD_C1_SCIENCE_20261117/run_science.py": "5be65e488f509991e9c5c9d7d508282fd0a071c51d135a081b2a088d71d0f7e5",
+    "ADD_C1_LOCAL_REPRO_20261117/ring_engine.py": "ec7f16b9df95464c3cdc249bc5704491a71a5a916cfa82ffe97650ce15cf79a9",
+    "ADD_C1_LOCAL_REPRO_20261117/graph_engine.py": "023b69fd2fee66193db8917a82e5bcd255f58028395b4970855c4c001c83b8c4"
+  },
+  "named": {
+    "counts": {
+      "projected_transitions": 274,
+      "inputs": 137,
+      "A_lemma_patterns_checked": 22,
+      "P_ring_lemma_patterns_checked": 22,
+      "P_ring_lemma_failed": 22
+    },
+    "witnesses": {
+      "P_ring": {
+        "word": [
+          0,
+          1,
+          2,
+          1,
+          0
+        ],
+        "input": {
+          "states": [
+            [
+              "u0",
+              0
+            ],
+            [
+              "u1",
+              1
+            ],
+            [
+              "u2",
+              2
+            ],
+            [
+              "u3",
+              1
+            ],
+            [
+              "u4",
+              0
+            ]
+          ],
+          "edges_b_to_a": [
+            [
+              "u0",
+              "u1"
+            ],
+            [
+              "u1",
+              "u2"
+            ],
+            [
+              "u2",
+              "u3"
+            ],
+            [
+              "u3",
+              "u4"
+            ],
+            [
+              "u4",
+              "u0"
+            ]
+          ]
+        },
+        "preimage": {
+          "states": [
+            [
+              "(Ru0,Lu4)",
+              0
+            ],
+            [
+              "(Ru1,Lu0)",
+              0
+            ],
+            [
+              "(Ru3,Lu2)",
+              0
+            ],
+            [
+              "(Ru4,Lu3)",
+              1
+            ],
+            [
+              "Lu1",
+              2
+            ],
+            [
+              "Ru2",
+              1
+            ]
+          ],
+          "edges_b_to_a": [
+            [
+              "(Ru0,Lu4)",
+              "(Ru4,Lu3)"
+            ],
+            [
+              "(Ru1,Lu0)",
+              "(Ru0,Lu4)"
+            ],
+            [
+              "(Ru3,Lu2)",
+              "Ru2"
+            ],
+            [
+              "(Ru4,Lu3)",
+              "(Ru3,Lu2)"
+            ],
+            [
+              "Lu1",
+              "(Ru1,Lu0)"
+            ],
+            [
+              "Ru2",
+              "Lu1"
+            ]
+          ]
+        },
+        "expected_names": [
+          "Ru1",
+          "Lu2"
+        ]
+      }
+    },
+    "seconds": 0.03493813200111617
+  },
+  "short": {
+    "counts": {
+      "trajectories": 274,
+      "steps": 35072,
+      "particle_conservation_checks": 274,
+      "nongrowing_controls": 12,
+      "merger_extinctions": 131,
+      "latest_extinction": 2,
+      "appendix_b_windows": 12078,
+      "positive_integer_inverse_tails": 131,
+      "strict_lex_steps": 27
+    },
+    "seconds": 0.4218579240005056
+  },
+  "long": [
+    {
+      "name": "uniform_202611170_forward",
+      "direction": "forward",
+      "steps": 512,
+      "initial_word": [
+        2,
+        0,
+        3,
+        2,
+        1,
+        3,
+        2,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        2,
+        3,
+        0,
+        2,
+        1,
+        1,
+        0,
+        1,
+        1,
+        3,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        3,
+        3,
+        1,
+        3,
+        1,
+        2,
+        3,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        3,
+        2,
+        2,
+        2,
+        0,
+        1,
+        2,
+        3,
+        1,
+        3,
+        2,
+        0,
+        1,
+        3,
+        3,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        1,
+        0,
+        3,
+        0,
+        3,
+        1,
+        1,
+        0,
+        3,
+        1,
+        3,
+        0,
+        1,
+        3,
+        2,
+        2,
+        1,
+        0,
+        1,
+        1,
+        2
+      ],
+      "final_word": null,
+      "na": 55,
+      "nb": 52,
+      "initial_L": 100,
+      "final_L": 1766,
+      "forward_merger_extinction": 3,
+      "appendix_b_windows": 31,
+      "integer_linear_tail512": false,
+      "tail_slope": 3,
+      "late_log_size_log_t_fit": 0.48421359048210294,
+      "literal_theorem4_failures_under_declared_convention": {
+        "1": 153,
+        "5": 153
+      },
+      "visited_vertices": 608474,
+      "seconds": 0.04572082899903762
+    },
+    {
+      "name": "uniform_202611170_backward",
+      "direction": "backward",
+      "steps": 512,
+      "initial_word": [
+        2,
+        0,
+        3,
+        2,
+        1,
+        3,
+        2,
+        3,
+        1,
+        1,
+        3,
+        1,
+        1,
+        2,
+        1,
+        2,
+        3,
+        0,
+        2,
+        1,
+        1,
+        0,
+        1,
+        1,
+        3,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        3,
+        1,
+        3,
+        3,
+        0,
+        3,
+        3,
+        3,
+        1,
+        3,
+        1,
+        2,
+        3,
+        0,
+        0,
+        2,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        3,
+        2,
+        2,
+        2,
+        0,
+        1,
+        2,
+        3,
+        1,
+        3,
+        2,
+        0,
+        1,
+        3,
+        3,
+        3,
+        2,
+        0,
+        2,
+        1,
+        2,
+        1,
+        0,
+        3,
+        0,
+        3,
+        1,
+        1,
+        0,
+        3,
+        1,
+        3,
+        0,
+        1,
+        3,
+        2,
+        2,
+        1,
+        0,
+        1,
+        1,
+        2
+      ],
+      "final_word": null,
+      "na": 55,
+      "nb": 52,
+      "initial_L": 100,
+      "final_L": 16986,
+      "forward_merger_extinction": null,
+      "appendix_b_windows": 0,
+      "integer_linear_tail512": false,
+      "tail_slope": 33,
+      "late_log_size_log_t_fit": 0.9925510987583446,
+      "literal_theorem4_failures_under_declared_convention": {
+        "1": 153,
+        "5": 153
+      },
+      "visited_vertices": 4363020,
+      "seconds": 0.26499034100015706
+    }
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "forecast_code_seconds": 270.12012190614206,
+  "range_seconds": [
+    67.53003047653552,
+    810.3603657184262
+  ],
+  "scope_note": "Calibration separate; includes actual code, checks and raw result writing; excludes preparation/publishing. Envelope uses a dense seed for every long case."
+}
