@@ -4770,7 +4770,11 @@
         "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
         "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json",
         "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
-        "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json"
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json"
       ],
       "managed_sources": [
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
@@ -4790,9 +4794,13 @@
         "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
         "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json",
         "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
-        "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json"
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py",
+        "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json"
       ],
-      "genealogy_note": "Ретроспективная регистрация двух последних разборов и независимой проверки; не новая предрегистрация и не авторское подтверждение. Связка R130–BH1–BBN 17 ноября объединяет наблюдаемые ADD и условную термодинамику на границе физического сопряжения; не устанавливает ADD=X или BH1 из R130 и не создаёт BBN-прогноз.",
+      "genealogy_note": "Ретроспективная регистрация двух последних разборов и независимой проверки; не новая предрегистрация и не авторское подтверждение. Связка R130–BH1–BBN 17 ноября объединяет наблюдаемые ADD и условную термодинамику на границе физического сопряжения; не устанавливает ADD=X или BH1 из R130 и не создаёт BBN-прогноз. Разбор архитектуры и предпосылок фиксирует цену вариантов, условные ограничения и следующий энергетический кандидат D/I3; физическое сопряжение и научная приёмка остаются открыты.",
       "scientific_acceptance": false,
       "C1_author_reproduction_block1_20261117": {
         "report": "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
@@ -4858,6 +4866,24 @@
           "U007",
           "U010"
         ]
+      },
+      "architecture_premises_review_20261117": {
+        "report": "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
+        "contract": "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json",
+        "issue": 94,
+        "premise_group_count": 18,
+        "conditional_deductions": [
+          "clock/volume nonidentifiability",
+          "constant energy per conserved bit is not radiation under first-law assumptions",
+          "periodic observable cannot have strict stepwise entropy growth",
+          "coarse projection requires dynamic sufficiency",
+          "passive clock change differs from fixed-rate physical history"
+        ],
+        "recommended_candidate": "graph internal to coupled X, not yet accepted",
+        "preserved_decision": "D003",
+        "physical_model_selected": false,
+        "new_physical_runs": 0,
+        "scientific_acceptance": false
       }
     }
   ],
