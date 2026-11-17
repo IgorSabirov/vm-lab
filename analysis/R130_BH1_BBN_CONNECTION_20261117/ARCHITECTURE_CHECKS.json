@@ -1,0 +1,69 @@
+{
+  "schema": "vm-lab-r130-bh1-bbn-architecture-checks-v1",
+  "status": "PASS",
+  "mode": "exact_algebra_and_logical_counterexamples",
+  "physical_model_selected": false,
+  "scientific_acceptance": false,
+  "new_ADD_BH1_BBN_runs": 0,
+  "power_law_examples": [
+    {
+      "name": "C1_forward_radius_linear_clock",
+      "alpha": "1/2",
+      "gamma": "3",
+      "beta": "1",
+      "a_exponent": "1/2",
+      "w": "1/3"
+    },
+    {
+      "name": "C1_forward_volume_linear_clock",
+      "alpha": "1/2",
+      "gamma": "1",
+      "beta": "1",
+      "a_exponent": "1/6",
+      "w": "3"
+    },
+    {
+      "name": "C1_forward_radius_half_power_clock",
+      "alpha": "1/2",
+      "gamma": "3",
+      "beta": "1/2",
+      "a_exponent": "1",
+      "w": "-1/3"
+    },
+    {
+      "name": "C1_inverse_radius_linear_clock",
+      "alpha": "1",
+      "gamma": "3",
+      "beta": "1",
+      "a_exponent": "1",
+      "w": "-1/3"
+    },
+    {
+      "name": "C1_inverse_volume_linear_clock",
+      "alpha": "1",
+      "gamma": "1",
+      "beta": "1",
+      "a_exponent": "1/3",
+      "w": "1"
+    }
+  ],
+  "checks": {
+    "flat_GR_power_law_consistency": true,
+    "clock_volume_nonidentifiability": true,
+    "constant_particle_energy_is_not_radiation": true,
+    "coarse_projection_not_automatically_closed": true,
+    "passive_clock_change_differs_from_fixed_physical_rates": true,
+    "periodic_observable_has_no_strict_entropy_arrow": true,
+    "internal_energy_sources_cancel": true
+  },
+  "limits": [
+    "Power laws are asymptotic ansatzes, not differentiations of finite integer raw traces.",
+    "w inference additionally assumes flat 3+1 GR, zero Lambda, one dominant constant-w perfect fluid.",
+    "Generic four-state counterexample is not an observed violation of a particular R130 coarse graining.",
+    "No microscopic energy, clock, portal or collision term is inferred by these checks.",
+    "Theorem 5 damping dynamics of the ADD paper is not executed or attested here."
+  ],
+  "script_sha256": "3b0fbca0abedce01008736537ba1e0edfaf8894a7c8ed1bdd8b4fb2f48f4ddb9",
+  "code_wall_seconds": 0.0002525590000459488,
+  "preparation_and_publication_excluded": true
+}

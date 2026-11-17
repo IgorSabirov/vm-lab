@@ -1,0 +1,365 @@
+{
+  "schema": "vm-lab-r130-bh1-bbn-architecture-v1",
+  "date": "2026-11-17",
+  "issue": 94,
+  "base_commit": "40aa7c8646eccaa0124fdfdfc50a1253f3a68f23",
+  "status": "ANALYTICAL_REVIEW_COMPLETE_PHYSICAL_CHOICE_OPEN",
+  "scientific_acceptance": false,
+  "physical_architecture_selected": null,
+  "new_physical_runs": 0,
+  "accepted_research_architecture": "decision:D003",
+  "preserves_independent_lines": [
+    "A conditional causal continuation",
+    "B origin and drift of dimensionless parameters"
+  ],
+  "architecture_options": [
+    {
+      "id": "I",
+      "role": "externally_specified_map_of_R130_trajectory",
+      "closure": "not_demonstrated",
+      "claim": "conditional BBN constraints on chosen map"
+    },
+    {
+      "id": "II",
+      "role": "graph_as_internal_structure_of_coupled_X",
+      "closure": "energy_backreaction_and_declared_gravity_to_be_constructed",
+      "claim": "candidate conditional autonomous physical implementation",
+      "recommended_for_next_analysis": true,
+      "accepted": false
+    },
+    {
+      "id": "III",
+      "role": "graph_as_cosmological_geometry",
+      "closure": "metric_clock_gravity_matter_emergence_open",
+      "claim": "fundamental program, not prerequisite for all progress on A"
+    }
+  ],
+  "conditional_deductions": [
+    {
+      "id": "D-A1",
+      "assumptions": [
+        "L~n^alpha",
+        "V~L^gamma",
+        "V~a^3",
+        "t_phys~n^beta",
+        "alpha,gamma,beta>0"
+      ],
+      "result": "a~t_phys^(alpha*gamma/(3*beta)); expansion not identified by alpha alone"
+    },
+    {
+      "id": "D-A2",
+      "assumptions": [
+        "D-A1",
+        "flat 3+1 GR",
+        "Lambda=0",
+        "dominant perfect fluid with constant w"
+      ],
+      "result": "w=2*beta/(alpha*gamma)-1",
+      "physical_equation_of_state_inferred": false
+    },
+    {
+      "id": "D-A3",
+      "assumptions": [
+        "E=epsilon*N constant",
+        "changing physical volume",
+        "isolated first-law system"
+      ],
+      "result": "p=0; radiation p=E/(3V) requires E~V^(-1/3)"
+    },
+    {
+      "id": "D-A4",
+      "assumptions": [
+        "q(F^m z)=q(z)",
+        "S=s(q)"
+      ],
+      "result": "entropy increments sum to zero; no strict increase per step",
+      "does_not_claim": "periodicity of full named R130 state"
+    },
+    {
+      "id": "D-A5",
+      "assumptions": [
+        "dt_prime=kappa(t)dt",
+        "rates and H transformed by 1/kappa"
+      ],
+      "result": "Gamma dt and Gamma/H invariant; fixed physical rates instead give another scenario"
+    },
+    {
+      "id": "D-A6",
+      "assumptions": [
+        "deterministic macro projection q intended autonomous"
+      ],
+      "result": "q(z1)=q(z2) requires q(Kz1)=q(Kz2); reversibility alone is insufficient"
+    }
+  ],
+  "premise_groups": [
+    {
+      "id": "AP01",
+      "title": "Пространство состояний и закон R130",
+      "existing_premise_ids": [
+        "premise:A06",
+        "premise:B03",
+        "premise:B04"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "C1/C2-правила заданы; результат действует для них.",
+      "discriminating_check": "Сохранение закона при сопряжении либо новая аттестация.",
+      "status_change": false
+    },
+    {
+      "id": "AP02",
+      "title": "Начальная мера и типичность",
+      "existing_premise_ids": [
+        "premise:C08",
+        "premise:C09",
+        "premise:F08"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Seeds, ансамбль и условление заданы; глобальный prior не выбран.",
+      "discriminating_check": "Сравнить объявленные ансамбли без отбора по исходу.",
+      "status_change": false
+    },
+    {
+      "id": "AP03",
+      "title": "Физические часы",
+      "existing_premise_ids": [
+        "premise:B06",
+        "premise:C03",
+        "premise:C05"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Итерация и секунды не отождествлены; beta не выведено.",
+      "discriminating_check": "Независимые физические часы и отношения Gamma/H.",
+      "status_change": false
+    },
+    {
+      "id": "AP04",
+      "title": "Размерность и объём",
+      "existing_premise_ids": [
+        "premise:B03",
+        "premise:F02"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Кольцо, S3 и FRW имеют разные роли; gamma не выведено.",
+      "discriminating_check": "Метрическое/объёмное отображение и область.",
+      "status_change": false
+    },
+    {
+      "id": "AP05",
+      "title": "Полное состояние и разбиение",
+      "existing_premise_ids": [
+        "premise:B01",
+        "premise:B02"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Контроллер, среда, ресурс и допустимость входят в z.",
+      "discriminating_check": "Исключить скрытый внешний источник.",
+      "status_change": false
+    },
+    {
+      "id": "AP06",
+      "title": "Энергия и давление",
+      "existing_premise_ids": [
+        "premise:G03",
+        "premise:B06"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Инвариант счёта не выбирает физический источник энергии/стресса.",
+      "discriminating_check": "dE+p dV, потоки, устойчивость и нормировка.",
+      "status_change": false
+    },
+    {
+      "id": "AP07",
+      "title": "Гравитационная динамика",
+      "existing_premise_ids": [
+        "premise:B04",
+        "premise:F02"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "GR/FRW — условные входы; из R130 не выведены.",
+      "discriminating_check": "Фоновое ограничение с полным источником и однородность.",
+      "status_change": false
+    },
+    {
+      "id": "AP08",
+      "title": "Термодинамическая редукция",
+      "existing_premise_ids": [
+        "premise:F05",
+        "premise:G03"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Ансамбль, равновесие и свободная энергия требуют обоснования.",
+      "discriminating_check": "Вывести либо объявить F(T,R) и проверить домен.",
+      "status_change": false
+    },
+    {
+      "id": "AP09",
+      "title": "Адиабата и фазовый переход",
+      "existing_premise_ids": [
+        "premise:G03",
+        "premise:G02"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Изолированная квазистатическая конформная адиабата сохраняет TR.",
+      "discriminating_check": "Физический выход из условий либо метастабильная кинетика.",
+      "status_change": false
+    },
+    {
+      "id": "AP10",
+      "title": "Кинетика и collision terms",
+      "existing_premise_ids": [
+        "premise:B04",
+        "premise:B08",
+        "premise:G04"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Потенциал не задаёт Gamma,Q и автономный запуск.",
+      "discriminating_check": "Взаимодействия и встречные энергетические источники.",
+      "status_change": false
+    },
+    {
+      "id": "AP11",
+      "title": "Ядерные и нейтринные входы",
+      "existing_premise_ids": [
+        "premise:B04",
+        "premise:B06"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Микрофизика и weak corrections заданы; S2 не выведен.",
+      "discriminating_check": "Общие rates, weak режим, единицы и спектры.",
+      "status_change": false
+    },
+    {
+      "id": "AP12",
+      "title": "Смена часов и дрейф параметров",
+      "existing_premise_ids": [
+        "premise:B06",
+        "premise:C05"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Пассивное преобразование всех скоростей отличается от изменения Gamma/H.",
+      "discriminating_check": "Безразмерные наблюдаемые при фиксированных лабораторных скоростях.",
+      "status_change": false
+    },
+    {
+      "id": "AP13",
+      "title": "Содержание, чтение, действие",
+      "existing_premise_ids": [
+        "premise:D03",
+        "premise:D04",
+        "premise:D09"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Активность и сохранение слова не доказывают содержательное управление.",
+      "discriminating_check": "do(M) при фиксированной задаче и физически допустимом контроле.",
+      "status_change": false
+    },
+    {
+      "id": "AP14",
+      "title": "Воспроизводство ресурса",
+      "existing_premise_ids": [
+        "premise:G01",
+        "premise:G04"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Длительная активность не закрывает цикл воспроизводства условий.",
+      "discriminating_check": "Готовность следующего цикла, ресурс и вероятность выхода.",
+      "status_change": false
+    },
+    {
+      "id": "AP15",
+      "title": "Численная область и допуски",
+      "existing_premise_ids": [
+        "premise:G06",
+        "premise:G07"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Schema/backend имеют ограниченный домен; форматный PASS не физический.",
+      "discriminating_check": "Нативные контроли, сходимость, monotonicity/capability checks.",
+      "status_change": false
+    },
+    {
+      "id": "AP16",
+      "title": "Независимость свидетельств",
+      "existing_premise_ids": [
+        "premise:G06",
+        "premise:G07"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Общие rates/приближения коррелируют ошибки solver.",
+      "discriminating_check": "Разделить solver agreement, общий systematic и наблюдения.",
+      "status_change": false
+    },
+    {
+      "id": "AP17",
+      "title": "Обратное действие",
+      "existing_premise_ids": [
+        "premise:B07",
+        "premise:B01"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Среда может менять закон и автономность часов.",
+      "discriminating_check": "Коммутирующее соответствие либо оценённый предел.",
+      "status_change": false
+    },
+    {
+      "id": "AP18",
+      "title": "Достаточность сокращённого описания",
+      "existing_premise_ids": [
+        "premise:D01",
+        "premise:D07",
+        "premise:F07"
+      ],
+      "relation": "context_and_open_cost_not_discharge",
+      "current": "Одинаковые L,N,S не гарантируют одинакового продолжения.",
+      "discriminating_check": "Различающая пара или доказательство достаточности при вмешательствах.",
+      "status_change": false
+    }
+  ],
+  "obligation_links": [
+    "obligation:N02",
+    "obligation:N06"
+  ],
+  "open_questions": [
+    "question:U006",
+    "question:U007",
+    "question:U010"
+  ],
+  "closes": [],
+  "energy_candidate": {
+    "source": "https://arxiv.org/html/2306.07121v2",
+    "locator": "VI.2; Theorem 5; (23)-(24)",
+    "rule_variant": "D and I3 damping extension",
+    "invariant": "E_ADD=N_bound-N_radiation",
+    "status": "PRIMARY_SOURCE_CANDIDATE_NOT_REPRODUCED_IN_THIS_TASK",
+    "physical_energy_identified": false,
+    "missing": [
+      "exact rule/invariant reproduction",
+      "sign/zero/scale",
+      "stability and pressure",
+      "thermal measure",
+      "stress-energy and interactions"
+    ]
+  },
+  "verification": {
+    "script": "analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py",
+    "receipt": "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json",
+    "mode": "exact algebra/logical examples only",
+    "new_ADD_BH1_BBN_runs": 0
+  },
+  "implementation_gaps": [
+    "physical generator absent",
+    "shared history adapters absent",
+    "H positivity excludes contraction/bounce",
+    "neutrino fields optional in structural v1",
+    "comoving entropy absent in v1",
+    "same rates do not mean independent physics"
+  ],
+  "next_step_order": [
+    "independent clock/geometry constraints",
+    "energy lift and pressure",
+    "coupled balance and R130 limit",
+    "functional continuation",
+    "common-history BBN test"
+  ],
+  "independent_parallel_work": "Native PRIMAT/LINX controls and interface reconciliation need not wait for the full physical embedding."
+}
