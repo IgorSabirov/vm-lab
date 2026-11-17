@@ -1,3 +1,16 @@
+## Owner's execution workflow — 17 November 2026
+
+Read [the R130 methodological conclusions](../infra/METHODOLOGY_GPT_COPILOT_20261117.md).
+For authorized execution packages, GPT prepares the complete package; Copilot runs
+it on GitHub, fixes task-scoped technical defects and saves raw results there;
+GPT checks the published result. Do not require owner-mediated file transfers.
+Freeze corrections before the affected rerun, preserve prior evidence and never
+weaken the scientific contract to obtain success. Preparation/publication are
+outside code-runtime forecasts; calibration is separate.
+The verified R130 profile exposes execution/status only; autonomous editing was
+not demonstrated by that run. Use the documented working channel and confirm
+the selected profile has the tools required by the specific task.
+
 # vm-lab: repository operator
 
 Read AGENTS.md and SCIENCE_INFRASTRUCTURE_SEPARATION.md. The current assignment
