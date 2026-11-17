@@ -1,8 +1,8 @@
 {
   "source_sha256": {
-    "ADD_C1_SCIENCE_20261117/PLAN.json": "6f57c469fcdccd4ecfe2fe90de24cb01fedc3738ca549224349a2660271175c9",
+    "ADD_C1_SCIENCE_20261117/PLAN.json": "d581a3ca44640a5c8be7bc62b112f4839760530305e15227114ec7c5bf6e16f4",
     "ADD_C1_SCIENCE_20261117/science_engine.py": "7be8f31880a4df8ae46299acb0fa4e1e1f63091d7e311d4cde96ae1348e2eeb7",
-    "ADD_C1_SCIENCE_20261117/run_science.py": "5be65e488f509991e9c5c9d7d508282fd0a071c51d135a081b2a088d71d0f7e5",
+    "ADD_C1_SCIENCE_20261117/run_science.py": "fe1b78080b256ed10e64a4ef68bc12dbf36a65c4813f7b6ef5b1b437d2047fcf",
     "ADD_C1_LOCAL_REPRO_20261117/ring_engine.py": "ec7f16b9df95464c3cdc249bc5704491a71a5a916cfa82ffe97650ce15cf79a9",
     "ADD_C1_LOCAL_REPRO_20261117/graph_engine.py": "023b69fd2fee66193db8917a82e5bcd255f58028395b4970855c4c001c83b8c4"
   },
@@ -129,7 +129,7 @@
         ]
       }
     },
-    "seconds": 0.03493813200111617
+    "seconds": 0.03702030800013745
   },
   "short": {
     "counts": {
@@ -143,7 +143,7 @@
       "positive_integer_inverse_tails": 131,
       "strict_lex_steps": 27
     },
-    "seconds": 0.4218579240005056
+    "seconds": 0.47853635899991787
   },
   "long": [
     {
@@ -262,12 +262,13 @@
       "integer_linear_tail512": false,
       "tail_slope": 3,
       "late_log_size_log_t_fit": 0.48421359048210294,
+      "inverse_tail_status": null,
       "literal_theorem4_failures_under_declared_convention": {
         "1": 153,
         "5": 153
       },
       "visited_vertices": 608474,
-      "seconds": 0.04572082899903762
+      "seconds": 0.04673161299979256
     },
     {
       "name": "uniform_202611170_backward",
@@ -385,12 +386,13 @@
       "integer_linear_tail512": false,
       "tail_slope": 33,
       "late_log_size_log_t_fit": 0.9925510987583446,
+      "inverse_tail_status": "TRANSIENT_OR_CONTROL",
       "literal_theorem4_failures_under_declared_convention": {
         "1": 153,
         "5": 153
       },
       "visited_vertices": 4363020,
-      "seconds": 0.26499034100015706
+      "seconds": 0.25953154299895687
     }
   ],
   "environment": {
@@ -398,10 +400,15 @@
     "numpy": "2.3.5",
     "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
   },
-  "forecast_code_seconds": 270.12012190614206,
+  "forecast_code_seconds": 799.4116852426005,
   "range_seconds": [
-    67.53003047653552,
-    810.3603657184262
+    199.85292131065012,
+    2398.2350557278014
   ],
+  "forecast_components_seconds": {
+    "named_and_small": 20.547002932994904,
+    "baseline_long": 247.3440822477419,
+    "sparse_extensions_dense_envelope": 531.5206000618637
+  },
   "scope_note": "Calibration separate; includes actual code, checks and raw result writing; excludes preparation/publishing. Envelope uses a dense seed for every long case."
 }
