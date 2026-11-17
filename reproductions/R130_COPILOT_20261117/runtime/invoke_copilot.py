@@ -27,11 +27,12 @@ env.update(COPILOT_GITHUB_TOKEN=token, COPILOT_HOME=str(Path(os.environ['RUNNER_
 prompt = '''The repository owner IgorSabirov explicitly requests execution of the frozen R130 reproduction on GitHub and publication of the new raw results (issue #85). This is an execution task, not a review.
 Your working directory contains run_reproduction.py, immutable source/, reference/, SOURCE_MANIFEST.json and HANDOFF.md. Dependencies are already installed. A trusted publisher runs after your session and commits everything in results/ to the same repository.
 Use the bash tool to execute exactly: python run_reproduction.py
+You are already in the correct working directory; do not prepend cd or shell wrappers.
 The command performs all three blocks, both calibrations, 6032 operator inputs, 10920 short trajectories and 30 long trajectories, independent verification, plots and reference comparison. Do not edit code or change the command. Do not launch a duplicate. Let this command finish; if the tool returns a running session, use read_bash until it exits. Do not stop it because the command is taking time. There is no project runtime cutoff.
 Report the real exit status and final status line. A mismatch or error must be reported honestly. You do not need to commit or access the network yourself; the next workflow job publishes all results. Do not ask for confirmation; execution and publication are already authorized. Do not call subagents.'''
 argv = [shutil.which('copilot'), '-C', str(work), '--model', 'auto', '--max-ai-credits', '30',
         '--disable-builtin-mcps', '--available-tools', 'bash', 'read_bash', 'list_bash',
-        '--allow-tool', 'shell(python run_reproduction.py)', '--deny-tool', 'write', '--deny-tool', 'url',
+        '--allow-tool', 'shell(python run_reproduction.py)', '--deny-tool', 'url',
         '--no-custom-instructions', '--no-ask-user', '--no-auto-update', '--disable-client-telemetry',
         '--log-level', 'warning', '-s']
 started = time.perf_counter()
