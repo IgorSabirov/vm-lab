@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/IgorSabirov/vm-lab/blob/main/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json",
+  "title": "Canonical BBN history and nuclear-rate realization",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "history",
+    "rates",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "vm-lab-canonical-bbn-input-v1"
+    },
+    "history": {
+      "type": "object",
+      "required": [
+        "time_s",
+        "scale_factor",
+        "H_s_inv",
+        "T_gamma_MeV",
+        "n_b_cm3"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "time_s": {
+          "$ref": "#/$defs/series"
+        },
+        "scale_factor": {
+          "$ref": "#/$defs/series"
+        },
+        "H_s_inv": {
+          "$ref": "#/$defs/series"
+        },
+        "T_gamma_MeV": {
+          "$ref": "#/$defs/series"
+        },
+        "n_b_cm3": {
+          "$ref": "#/$defs/series"
+        },
+        "T_nu_MeV": {
+          "$ref": "#/$defs/series"
+        },
+        "f_nu_e": {
+          "$ref": "#/$defs/spectralSeries"
+        },
+        "f_antinu_e": {
+          "$ref": "#/$defs/spectralSeries"
+        },
+        "rho_X_MeV_cm3": {
+          "$ref": "#/$defs/series"
+        },
+        "p_X_MeV_cm3": {
+          "$ref": "#/$defs/series"
+        },
+        "Q_Xem_MeV_cm3_s": {
+          "$ref": "#/$defs/series"
+        },
+        "Q_Xnu_MeV_cm3_s": {
+          "$ref": "#/$defs/series"
+        },
+        "Q_emnu_MeV_cm3_s": {
+          "$ref": "#/$defs/series"
+        },
+        "phase_state": {
+          "type": "array",
+          "items": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          }
+        }
+      }
+    },
+    "rates": {
+      "type": "object",
+      "required": [
+        "network_id",
+        "species",
+        "reactions",
+        "temperature_unit",
+        "rate_units",
+        "interpolation",
+        "extrapolation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "network_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "species": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "reactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "reactants",
+              "products",
+              "T9",
+              "values"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "reactants": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "products": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "T9": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2
+              },
+              "q_value_MeV": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "temperature_unit": {
+          "const": "T9"
+        },
+        "rate_units": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interpolation": {
+          "enum": [
+            "linear",
+            "log"
+          ]
+        },
+        "extrapolation": {
+          "enum": [
+            "reject",
+            "upstream-zero-linear",
+            "declared-model"
+          ]
+        },
+        "covariance": {
+          "type": "object"
+        },
+        "detailed_balance_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "history_sha256",
+        "rates_sha256",
+        "producer",
+        "created_utc"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "history_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "rates_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "created_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_commits": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "environment": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "series": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2
+    },
+    "spectralSeries": {
+      "type": "object",
+      "required": [
+        "energy_MeV",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "energy_MeV": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2
+          }
+        }
+      }
+    }
+  }
+}
