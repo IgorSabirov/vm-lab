@@ -1,0 +1,192 @@
+{
+  "schema": "vm-lab-r130-bh1-bbn-connection-v1",
+  "id": "R130_BH1_BBN_20261117",
+  "date": "2026-11-17",
+  "issue": 92,
+  "status": "OBSERVABLE_CONTRACT_LINKED_PHYSICAL_EMBEDDING_OPEN",
+  "scientific_acceptance": false,
+  "execution_enabled": false,
+  "new_scientific_runs": 0,
+  "base_commit": "0c56531e2af693e28e8378cdc8a0157d96707019",
+  "report": "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+  "parents": [
+    {
+      "id": "result:R130",
+      "role": "dimensionless_dynamics_and_control_examples",
+      "path": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json"
+    },
+    {
+      "id": "S3_BH_BRIDGE_20261115",
+      "role": "conditional_thermodynamics_and_energy_balance",
+      "path": "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json"
+    },
+    {
+      "id": "PRIMAT_LINX_BBN_BRIDGE_20261117",
+      "role": "shared_nuclear_backend_input_contract",
+      "path": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BRIDGE_CONTRACT.md"
+    }
+  ],
+  "registry_links": {
+    "results": [
+      "R126",
+      "R130"
+    ],
+    "constructs": [
+      "C035",
+      "C037",
+      "C042"
+    ],
+    "questions": [
+      "U006",
+      "U007",
+      "U010"
+    ],
+    "open_links": [
+      "L06",
+      "L08",
+      "L10"
+    ],
+    "closes": []
+  },
+  "r130_evidence": {
+    "source_commit": "2c6f647ee4c9b87bc2918c6bf9a87e18b67a16a7",
+    "results_commit": "d2d0252f4237087552e61cb69894ad3fd6dec0aa",
+    "audit_commit": "0c3dc25a4443d96a133a9a8fdda19bf31d071886",
+    "run_id": 44082471150,
+    "raw_decoded_equal": 91,
+    "raw_decoded_total": 91,
+    "full_package": "C1/A",
+    "C2_scope": "explicit rule symmetry and finite active-word counterexample; no full statistical reproduction"
+  },
+  "observable_mapping": [
+    {
+      "source": [
+        "t"
+      ],
+      "meaning": "iteration_index_of_selected_forward_or_backward_iterator",
+      "target": [
+        "time_s"
+      ],
+      "mapping": null
+    },
+    {
+      "source": [
+        "L"
+      ],
+      "meaning": "one_dimensional_ring_vertex_count",
+      "target": [
+        "scale_factor",
+        "H_s_inv"
+      ],
+      "also_requires": "BH1 sphere radius R; physical volume and dimensionality",
+      "mapping": null
+    },
+    {
+      "source": [
+        "na",
+        "nb"
+      ],
+      "meaning": "bit_particle_counts_not_identified_as_baryons",
+      "target": [
+        "n_b_cm3"
+      ],
+      "mapping": null
+    },
+    {
+      "source": [
+        "S_global",
+        "S_local_r1",
+        "S_local_r5"
+      ],
+      "meaning": "combinatorial_entropy_not_thermodynamic_entropy",
+      "target": [],
+      "schema_gap": "comoving entropy is described in bridge prose but absent in BBN_HISTORY.schema.json v1",
+      "mapping": null
+    },
+    {
+      "source": [
+        "split_next",
+        "merge_next",
+        "n_f",
+        "d_f"
+      ],
+      "meaning": "graph_activity_not_nuclear_reactions_or_energy_release",
+      "target": [
+        "phase_state"
+      ],
+      "mapping": null
+    }
+  ],
+  "missing_physical_outputs": [
+    "T_gamma_MeV",
+    "T_nu_MeV",
+    "f_nu_e",
+    "f_antinu_e",
+    "rho_X_MeV_cm3",
+    "p_X_MeV_cm3",
+    "Q_Xem_MeV_cm3_s",
+    "Q_Xnu_MeV_cm3_s",
+    "Q_emnu_MeV_cm3_s"
+  ],
+  "physical_embedding": {
+    "selected_model": null,
+    "clock": null,
+    "geometry_and_volume": null,
+    "R_of_a": null,
+    "sector_X": null,
+    "energy_pressure_and_charges": null,
+    "thermodynamic_entropy": null,
+    "initial_conditions": null,
+    "transition_kinetics": null,
+    "collision_terms": null,
+    "backreaction": null,
+    "continuation_observable": null
+  },
+  "existing_constraints": [
+    "BH1 conformal adiabatic no-expansion-trigger within its stated domain",
+    "X/em/nu energy transfer counted once",
+    "C1 reversibility is not the C2 time-reversal symmetry",
+    "No inference from species-sum invariance to reversal of the full BBN law"
+  ],
+  "backend_contract": {
+    "schema_path": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json",
+    "schema_version": "vm-lab-canonical-bbn-input-v1",
+    "same_history_hash": true,
+    "same_rates_hash": true,
+    "shared_weak_neutrino_treatment_required": true,
+    "H_T_only_insufficient": true,
+    "structural_validation_is_not_physical_validation": true,
+    "PRIMAT_adapter": "NOT_IMPLEMENTED",
+    "LINX_canonical_history_adapter": "NOT_IMPLEMENTED",
+    "numerical_cross_comparison": "NOT_EXECUTED"
+  },
+  "control_roles": [
+    {
+      "id": "R130_C1_DILUTION",
+      "role": "growing ring with loss of mean fixed-radius local entropy",
+      "physical_BBN_history": false
+    },
+    {
+      "id": "R130_C2_BOUNDED_ACTIVITY",
+      "role": "active word cycle at L=3 without growth, not a cosmological expansion history",
+      "physical_BBN_history": false
+    }
+  ],
+  "inherited_future_physical_controls": [
+    "NULL",
+    "DECOUPLED",
+    "CONFORMAL",
+    "ENERGY_BARYON",
+    "LATE_PHOTON",
+    "NU_SPECTRUM",
+    "NUMERICAL"
+  ],
+  "completion_for_this_task": "Join known evidence, interfaces, missing physical mappings, registry and genealogy; no derived BBN history claimed",
+  "next_scientific_condition": "One explicit physical coupling law and initial state with closure/energy balance, reviewed before using it as an R130-derived BBN input",
+  "execution_route": [
+    "GPT prepares frozen package on GitHub",
+    "Copilot executes authorized scope and commits raw results",
+    "GPT compares code inputs and raw outputs",
+    "Owner performs scientific acceptance"
+  ]
+}

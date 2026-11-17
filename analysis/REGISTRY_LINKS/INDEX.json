@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "0c52336ba5eeea146d325ca67f18615344e26ea130175de213eac2eec71c3bb3",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "8c61cb18540eb78f035aab7df98005e66c05b6c98df8925d55160564a3e22034",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "ef324c5c8e77845d69e21e6d107a22e42de0491c95f7f83935a72078e90e56a0",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "8835c9f97855ccb639e44d8aecb1a2ea22e19d8aa16c936879d3ac60ed5744bc",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e3862bf3129ebd7a3548a698662db55052e8013f90f9e497754472248ca536a9",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -76,7 +76,7 @@
     "review": 8,
     "external": 12,
     "decision": 3,
-    "source": 64
+    "source": 66
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -2884,9 +2884,9 @@
       "status": null,
       "path": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
       "fragment": "",
-      "sha256": "6f1d7808e5ca6bafc1ebf4014fc3fcfde5da5d860b590efa49e5c235fe5eb7ba",
-      "git_blob_sha": "c38e2f714b22f869d6c61ae6d9564b91341ea72e",
-      "size_bytes": 9606
+      "sha256": "a4b0cbc14fb0644bf836a4bd39f91120f556d515235faff2162ce8d534ad02cc",
+      "git_blob_sha": "b79678116b37e771cc1657701f5c888c783a90e9",
+      "size_bytes": 10446
     },
     {
       "key": "source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
@@ -3379,6 +3379,30 @@
       "sha256": "d6eb3e8da09ca43ae1e17087c6957322fe25f0193be09694bb74a411633980de",
       "git_blob_sha": "8bf4d96a577e9150f9db458e256e1dced3a19844",
       "size_bytes": 10235
+    },
+    {
+      "key": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+      "id": "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+      "kind": "source",
+      "title": "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+      "status": null,
+      "path": "analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+      "fragment": "",
+      "sha256": "1a0680a70e5bee67f26e5f813f574eb0f79992735758929547b0c860178a8b03",
+      "git_blob_sha": "2d145ef14a3ad5ea3d71dc20acda05dbaa0157c0",
+      "size_bytes": 5539
+    },
+    {
+      "key": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+      "id": "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+      "status": null,
+      "path": "analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+      "fragment": "",
+      "sha256": "9fa2d066289acad9fa40d174910cd453c76123122ad1d7ab588c9a43b6258374",
+      "git_blob_sha": "a07f4b0b7b0731ae3a71e131f3b29b8c7fce2bad",
+      "size_bytes": 16148
     },
     {
       "key": "source:infra/external/README.md",
@@ -7506,6 +7530,16 @@
     {
       "source": "result:R130",
       "target": "source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
       "relation": "managed_evidence_source"
     },
     {
