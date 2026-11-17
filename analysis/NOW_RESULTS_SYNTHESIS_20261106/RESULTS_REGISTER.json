@@ -4755,16 +4755,50 @@
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py",
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
-        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json"
+        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json"
       ],
       "managed_sources": [
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py",
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
-        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json"
+        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json",
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256"
       ],
       "genealogy_note": "Ретроспективная регистрация двух последних разборов и независимой проверки; не новая предрегистрация и не авторское подтверждение.",
-      "scientific_acceptance": false
+      "scientific_acceptance": false,
+      "C1_author_reproduction_block1_20261117": {
+        "report": "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
+        "status": "FINITE_OPERATOR_AUDIT_COMPLETE_NOT_FULL_REPLICATION",
+        "executor": "assistant_local_environment",
+        "owner_instruction": "Гони первый блок на себе который 5 минут, резы на гит.",
+        "inputs": 6032,
+        "independent_representations": 2,
+        "differential_failures": 0,
+        "A_operator_contract": "PASS_FINITE_CORPUS",
+        "P_raw": "SPEC_NOT_CLOSED; edge quantifiers and unbound bit destination diagnosed without inventing dynamics",
+        "P_ring": "INVERTIBLE_CONTROL; Q2=tau and bit-only TQT=Qi fail on 6011/6032 inputs",
+        "actual_seconds": 7.771495005000361,
+        "forecast_seconds": 10.120808919027468,
+        "forecast_range_seconds": [
+          5.060404459513734,
+          30.362426757082403
+        ],
+        "all_R130_C2_claims_unchanged": true,
+        "theorem_replication_completed": false,
+        "source_manifest": "analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256"
+      }
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
@@ -8710,6 +8744,20 @@
       "new_vm_jobs": 0,
       "new_production_runs": 0,
       "note": "Дедупликация шести исходных/сборных файлов; R126 сохранён, уточнения и точные кольцевые результаты в R130; вопросы остаются открытыми."
+    },
+    {
+      "id": "ADD_C1_BLOCK1_20261117",
+      "date": "2026-11-17",
+      "base_commit": "4fd844c3141a98551f818790fe3235fdff7498e4",
+      "report": "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
+      "new_records": [],
+      "updates": [
+        "R130"
+      ],
+      "scientific_status_promoted": false,
+      "new_vm_jobs": 0,
+      "new_actions_science_jobs": 0,
+      "note": "Local first block explicitly ordered: finite C1 A audit with two independent representations, P_raw/P_ring distinction; full theorem replication remains open."
     }
   ],
   "lineage_edges": [

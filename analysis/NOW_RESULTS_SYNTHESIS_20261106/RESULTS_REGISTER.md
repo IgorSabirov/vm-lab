@@ -1,3 +1,5 @@
+> **17 ноября, первый блок A исполнен:** [6032 входа, две независимые реализации, 7.77 с](../ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md). A прошла конечные G1–G4; P_raw/P_ring разделены, контрпримеры сохранены. Свидетельство добавлено к R130; полная теоремная репликация открыта.
+
 > **17 ноября, R130:** [проверенная сводка C1/C2 и активный цикл без роста](../ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md). Теперь 130 R, 42 C, 10 L, 12 U. R126 сохранён за прежними операторами; R130 — отдельное условное продвижение. Открытые вопросы не закрыты.
 
 > **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](../../COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
@@ -3979,7 +3981,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R126, R077, R078. **Конструкции:** C035, C037, C042. **Вопросы:** U005, U006, U007, U009, U010.
 
-**Источники:** [REPORT.md](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md); [verify.py](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py); [CHECKS.json](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json); [SOURCES.json](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json).
+**Источники:** [REPORT.md](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md); [verify.py](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py); [CHECKS.json](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json); [SOURCES.json](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json); [REPORT_BLOCK1.md](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md); [RESULTS.json](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json); [SPEC.json](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R130 -->
