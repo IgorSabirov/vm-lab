@@ -102,8 +102,10 @@ def validate_input(payload: dict[str, Any]) -> dict[str, Any]:
     if rates["extrapolation"] not in ("reject", "upstream-zero-linear", "declared-model"):
         raise ContractError("unsupported extrapolation")
     species = rates.get("species")
-    if not isinstance(species, list) or not species or len(set(species)) != len(species):
-        raise ContractError("rates.species must be a nonempty unique list")
+    if (not isinstance(species, list) or not species
+            or any(not isinstance(item, str) or not item for item in species)
+            or len(set(species)) != len(species)):
+        raise ContractError("rates.species must be a nonempty unique string list")
     reactions = rates.get("reactions")
     if not isinstance(reactions, list) or not reactions:
         raise ContractError("rates.reactions must be a nonempty list")
