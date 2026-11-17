@@ -1,0 +1,22 @@
+{
+  "scope": "Continuation of the accepted C1 protocol: phases 3-7, author-clarified A; C2/C3 are outside this protocol",
+  "source_commit": "d24f1577c070595aa791b3b2dbd875d20b71d34b",
+  "prior_block_commit": "bd0f873e6a99cc494f3baa8d0e06188f90311e39",
+  "reference_engines": "../ADD_C1_LOCAL_REPRO_20261117/{ring_engine.py,graph_engine.py}",
+  "exhaustive_lengths": [1,2,3,4,5,6],
+  "exhaustive_trajectory_steps_each_direction": 128,
+  "long_trajectory_steps_each_direction": 4096,
+  "documented_extension": {"reason": "The first attempt exposed an invalid harness assumption of an inverse linear tail by 4096. The sparse two-particle transient may be quadratic in initial length; retain the original horizon and extend the affected families.", "initials": ["approaching_L128", "isolated_double_L128"], "direction": "backward", "steps": 16384, "original_attempt": "ATTEMPT1.json"},
+  "uniform_L100_seeds": [202611170,202611171,202611172,202611173],
+  "sparse_L100_seeds": [202611174,202611175],
+  "sparse_probability_per_bit": 0.1,
+  "adversarial": ["merger_L128", "approaching_L128", "full_L16", "alternating_L16", "isolated_double_L128", "empty_L100", "a_only_L100", "b_only_L100"],
+  "random_law": "numpy default_rng; independent Bernoulli bits at sparse density, uniform symbols 0..3 for uniform seeds; accept only both types, record full actual initial words",
+  "local_radii": [1,5],
+  "local_entropy": "ln binomial(2*min(L,2r+1),particles in the graph-distance ball); each vertex counted once",
+  "recording": "Every step: L, counts of both particles, merger measure, split/merge events, global entropy. Local entropy at t<=128 and every 16 steps afterwards. Raw CSV gzip plus exact initial/final words.",
+  "checks": ["named Lemma1 witnesses and independent engine equality", "word projection against both named engines", "particle conservation", "strict lexicographic measure until merger disappearance", "no renewed mergers after extinction", "AppendixB block-length inequalities", "inverse integer linear tail (finite observation)", "global entropy-size relation", "literal Theorem4 coefficient and corrected bound checked separately"],
+  "interpretation": "Finite trajectories are numerical support, never proof of asymptotics. Proof reconstruction is a separate document. No seed, horizon, or ensemble multiplicity attributed to the authors. Distinguish exact source reproduction from a new sampled illustration.",
+  "platform": "assistant local, explicitly selected by owner",
+  "calibration": "Separate execution before main; preparation excluded from code runtime; no duration cutoff."
+}

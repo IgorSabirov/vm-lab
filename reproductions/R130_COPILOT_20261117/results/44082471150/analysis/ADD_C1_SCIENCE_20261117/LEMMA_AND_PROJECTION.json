@@ -1,0 +1,74 @@
+{
+  "counts": {
+    "projected_transitions": 10920,
+    "inputs": 5460,
+    "A_lemma_patterns_checked": 1934,
+    "P_ring_lemma_patterns_checked": 1934,
+    "P_ring_lemma_failed": 1934
+  },
+  "witnesses": {
+    "P_ring": {
+      "word": [
+        1,
+        2
+      ],
+      "input": {
+        "states": [
+          [
+            "u0",
+            1
+          ],
+          [
+            "u1",
+            2
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "u0",
+            "u1"
+          ],
+          [
+            "u1",
+            "u0"
+          ]
+        ]
+      },
+      "preimage": {
+        "states": [
+          [
+            "(Ru0,Lu1)",
+            0
+          ],
+          [
+            "Lu0",
+            2
+          ],
+          [
+            "Ru1",
+            1
+          ]
+        ],
+        "edges_b_to_a": [
+          [
+            "(Ru0,Lu1)",
+            "Ru1"
+          ],
+          [
+            "Lu0",
+            "(Ru0,Lu1)"
+          ],
+          [
+            "Ru1",
+            "Lu0"
+          ]
+        ]
+      },
+      "expected_names": [
+        "Ru0",
+        "Lu1"
+      ]
+    }
+  },
+  "seconds": 1.3950920549999637
+}
