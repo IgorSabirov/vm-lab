@@ -1,0 +1,203 @@
+{
+  "schema": "vm-lab-bbn-network-map-v1",
+  "id": "PRIMAT_SMALL_TO_LINX_KEY_PRIMAT_2023",
+  "sources": {
+    "primat": {
+      "repository": "CyrilPitrou/primat",
+      "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "network_path": "primat/data/nuclear/networks/small.txt"
+    },
+    "linx": {
+      "repository": "cgiovanetti/LINX",
+      "commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "network_path": "linx/data/nuclear_rates/key_PRIMAT_2023"
+    }
+  },
+  "species_map": [
+    {
+      "primat": "n",
+      "linx": "n"
+    },
+    {
+      "primat": "p",
+      "linx": "p"
+    },
+    {
+      "primat": "d",
+      "linx": "d"
+    },
+    {
+      "primat": "t",
+      "linx": "t"
+    },
+    {
+      "primat": "He3",
+      "linx": "He3"
+    },
+    {
+      "primat": "a",
+      "linx": "a",
+      "physical_name": "He4"
+    },
+    {
+      "primat": "Li7",
+      "linx": "Li7"
+    },
+    {
+      "primat": "Be7",
+      "linx": "Be7"
+    }
+  ],
+  "reactions": [
+    {
+      "primat_id": "n_p__d_g",
+      "linx_id": "npdg",
+      "reactants": {
+        "n": 1,
+        "p": 1
+      },
+      "products": {
+        "d": 1
+      }
+    },
+    {
+      "primat_id": "d_p__He3_g",
+      "linx_id": "dpHe3g",
+      "reactants": {
+        "d": 1,
+        "p": 1
+      },
+      "products": {
+        "He3": 1
+      }
+    },
+    {
+      "primat_id": "d_d__He3_n",
+      "linx_id": "ddHe3n",
+      "reactants": {
+        "d": 2
+      },
+      "products": {
+        "He3": 1,
+        "n": 1
+      }
+    },
+    {
+      "primat_id": "d_d__t_p",
+      "linx_id": "ddtp",
+      "reactants": {
+        "d": 2
+      },
+      "products": {
+        "t": 1,
+        "p": 1
+      }
+    },
+    {
+      "primat_id": "t_p__a_g",
+      "linx_id": "tpag",
+      "reactants": {
+        "t": 1,
+        "p": 1
+      },
+      "products": {
+        "a": 1
+      }
+    },
+    {
+      "primat_id": "t_d__a_n",
+      "linx_id": "tdan",
+      "reactants": {
+        "t": 1,
+        "d": 1
+      },
+      "products": {
+        "a": 1,
+        "n": 1
+      }
+    },
+    {
+      "primat_id": "t_a__Li7_g",
+      "linx_id": "taLi7g",
+      "reactants": {
+        "t": 1,
+        "a": 1
+      },
+      "products": {
+        "Li7": 1
+      }
+    },
+    {
+      "primat_id": "He3_n__t_p",
+      "linx_id": "He3ntp",
+      "reactants": {
+        "He3": 1,
+        "n": 1
+      },
+      "products": {
+        "t": 1,
+        "p": 1
+      }
+    },
+    {
+      "primat_id": "He3_d__a_p",
+      "linx_id": "He3dap",
+      "reactants": {
+        "He3": 1,
+        "d": 1
+      },
+      "products": {
+        "a": 1,
+        "p": 1
+      }
+    },
+    {
+      "primat_id": "He3_a__Be7_g",
+      "linx_id": "He3aBe7g",
+      "reactants": {
+        "He3": 1,
+        "a": 1
+      },
+      "products": {
+        "Be7": 1
+      }
+    },
+    {
+      "primat_id": "Be7_n__Li7_p",
+      "linx_id": "Be7nLi7p",
+      "reactants": {
+        "Be7": 1,
+        "n": 1
+      },
+      "products": {
+        "Li7": 1,
+        "p": 1
+      }
+    },
+    {
+      "primat_id": "Li7_p__a_a",
+      "linx_id": "Li7paa",
+      "reactants": {
+        "Li7": 1,
+        "p": 1
+      },
+      "products": {
+        "a": 2
+      }
+    }
+  ],
+  "topology": {
+    "species_count": 8,
+    "reaction_count": 12,
+    "status": "NAME_AND_STOICHIOMETRY_MAP_FROM_PINNED_NETWORK_FILES"
+  },
+  "rates": {
+    "status": "NUMERICAL_RATE_ARRAY_IDENTITY_NOT_YET_CHECKED",
+    "warning": "Matching reaction topology does not establish identical rate arrays, units, interpolation, uncertainty model, or reverse-rate implementation."
+  },
+  "neutrino_weak_sector": {
+    "status": "NOT_MAPPED",
+    "warning": "LINX AbundanceModel currently documents a common-temperature neutrino energy-density input and xi_nu weak-rate parameter; PRIMAT supports richer background/weak-rate handling. Do not equate these interfaces."
+  },
+  "scientific_acceptance": false
+}
