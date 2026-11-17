@@ -1,0 +1,152 @@
+{
+  "schema": "r130-reproduction-registry-evidence-v1",
+  "date": "2026-11-17",
+  "result_id": "R130",
+  "parent_result_ids": [
+    "R126",
+    "R077",
+    "R078"
+  ],
+  "registration_base_commit": "cab453d79ac405479f3818f3eb1c041fc044bb85",
+  "scientific_acceptance": false,
+  "new_scientific_run_performed_for_registration": false,
+  "report": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+  "source_payload_commit": "9e53090e6f288d16adc692e57a22ab7326459bf9",
+  "executed_commit": "2c6f647ee4c9b87bc2918c6bf9a87e18b67a16a7",
+  "results_commit": "d2d0252f4237087552e61cb69894ad3fd6dec0aa",
+  "audit_commit": "0c3dc25a4443d96a133a9a8fdda19bf31d071886",
+  "issue": 85,
+  "pull_request": 88,
+  "run_id": 44082471150,
+  "execution_receipt": {
+    "status": "COMPLETE_REVIEW_DIFFERENCES",
+    "executor": "GitHub Actions, invoked by native Copilot CLI",
+    "source_commit": "2c6f647ee4c9b87bc2918c6bf9a87e18b67a16a7",
+    "source_payload_commit": "9e53090e6f288d16adc692e57a22ab7326459bf9",
+    "run_id": "44082471150",
+    "resume": false,
+    "environment": {
+      "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+      "numpy": "2.3.5",
+      "matplotlib": "3.10.7",
+      "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "cpu_count": 4
+    },
+    "commands": [
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.6411293560000786,
+        "cpu_seconds": 1.640365
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_LOCAL_REPRO_20261117/run_block1.py",
+          "--calibrate"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.15929872200001682,
+        "cpu_seconds": 0.15901400000000004
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_LOCAL_REPRO_20261117/run_block1.py",
+          "--run"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 7.62504839099995,
+        "cpu_seconds": 7.623819999999999
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/run_science.py",
+          "--calibrate"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.7459124089999705,
+        "cpu_seconds": 1.0043490000000008
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/run_science.py",
+          "--run"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 49.760633295999924,
+        "cpu_seconds": 50.051891999999995
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/verify_results.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.6419324800000368,
+        "cpu_seconds": 0.6414020000000042
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/plot_results.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 3.0521362119999367,
+        "cpu_seconds": 1.7872890000000003
+      }
+    ],
+    "historical_metadata_note": "Copied scientific scripts retain historical platform/timing strings; this receipt identifies the actual clean GitHub execution.",
+    "scope": {
+      "blocks": 3,
+      "operator_inputs": 6032,
+      "named_inputs": 5460,
+      "short_trajectories": 10920,
+      "short_steps": 1397760,
+      "long_trajectories_including_extensions": 30,
+      "long_steps_including_extensions": 147456
+    },
+    "orchestration_wall_seconds": 63.65999775099999,
+    "code_wall_seconds": 63.62609086599991,
+    "preparation_and_publication_excluded": true
+  },
+  "audit_summary": {
+    "archive_sha256": "9c8dbd35ed7bd868811157aec72f90cc200ddcd3a1571be7720e58dc4517bc2b",
+    "artifact_sha256": "4afd034c06145fdc270bf67663e4a3e1db3ee62e49ae62be17f758a660c06517",
+    "archive_files": 161,
+    "archive_manifest_verified": 160,
+    "artifact_files_verified_against_committed_git_blobs": 144,
+    "unchanged_input_files": 11,
+    "archive_coverage": {
+      "not_in_handoff": 40,
+      "output_regenerated": 106,
+      "input_copied": 11,
+      "reference_document_copied": 4
+    },
+    "raw_decoded_equal": 91,
+    "raw_encoded_equal": 30,
+    "json_compared_files": 46,
+    "json_difference_counts": {
+      "runtime_environment_or_forecast": 80,
+      "derived_status_added": 15,
+      "execution_history": 1
+    },
+    "png_pixels_equal": true,
+    "long_trajectory_csv_files": 30,
+    "long_transitions_including_extensions": 147456,
+    "exhaustive_csv_rows": 10920
+  },
+  "open_qualifications": [
+    "R130-C1-ENTROPY-COEFFICIENT",
+    "finite data are not asymptotic proof",
+    "C2/C3/damping full statistical reproduction not performed",
+    "same source in another environment, not another independent implementation",
+    "Copilot autonomous scientific code repair not tested"
+  ]
+}
