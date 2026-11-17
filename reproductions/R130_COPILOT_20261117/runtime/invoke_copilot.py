@@ -17,26 +17,44 @@ for name in ['source', 'reference']:
     shutil.copytree(source/name, work/name)
 for name in ['SOURCE_MANIFEST.json', 'HANDOFF.md']:
     shutil.copy2(source/name, work/name)
-shutil.copy2(HERE/'run_reproduction.py', work/'run_reproduction.py')
+for name in ['run_reproduction.py', 'reproduction_tool.py']:
+    shutil.copy2(HERE/name, work/name)
 out = work/'results'
 out.mkdir()
 token = os.environ.get('COPILOT_GITHUB_TOKEN', '')
 assert token, 'AUTH_MISSING: existing COPILOT_GITHUB_TOKEN is not available'
 env = {k:v for k,v in os.environ.items() if not k.startswith(('COPILOT_', 'GH_AW_')) and k not in ('GH_TOKEN', 'GITHUB_TOKEN')}
 env.update(COPILOT_GITHUB_TOKEN=token, COPILOT_HOME=str(Path(os.environ['RUNNER_TEMP'])/'r130-copilot-profile'))
-prompt = '''The repository owner IgorSabirov explicitly requests execution of the frozen R130 reproduction on GitHub and publication of the new raw results (issue #85). This is an execution task, not a review.
-Your working directory contains run_reproduction.py, immutable source/, reference/, SOURCE_MANIFEST.json and HANDOFF.md. Dependencies are already installed. A trusted publisher runs after your session and commits everything in results/ to the same repository.
-Use the bash tool to execute exactly: python run_reproduction.py
-You are already in the correct working directory; do not prepend cd or shell wrappers.
-The command performs all three blocks, both calibrations, 6032 operator inputs, 10920 short trajectories and 30 long trajectories, independent verification, plots and reference comparison. Do not edit code or change the command. Do not launch a duplicate. Let this command finish; if the tool returns a running session, use read_bash until it exits. Do not stop it because the command is taking time. There is no project runtime cutoff.
-Report the real exit status and final status line. A mismatch or error must be reported honestly. You do not need to commit or access the network yourself; the next workflow job publishes all results. Do not ask for confirmation; execution and publication are already authorized. Do not call subagents.'''
+prompt = """IgorSabirov explicitly authorizes the complete frozen R130 reproduction on his GitHub and commits of the new raw results (issue #85). Execute the task using the dedicated r130 MCP tools.
+Call r130.execute exactly once with no arguments. It runs all three scientific blocks, two calibrations, 6032 operator inputs, 10920 short and 30 long trajectories, verification, plots and comparison. The implementation is fixed and credentials are removed before execution.
+If the result is RUNNING, call r130.status until exit_code is not null. There is no project runtime cutoff. Do not ask for confirmation or change the scientific code. Report the real final status and exit code. A separate trusted job commits the raw results and receipts to this same repository after your session. A mismatch must be reported honestly. Shell, editing, browsing and delegation are not available or needed."""
+config = {'mcpServers': {'r130': {'command': sys.executable,
+          'args': [str(work/'reproduction_tool.py')], 'tools': ['execute', 'status']}}}
 argv = [shutil.which('copilot'), '-C', str(work), '--model', 'auto', '--max-ai-credits', '30',
-        '--disable-builtin-mcps', '--available-tools', 'bash', 'read_bash', 'list_bash',
-        '--allow-tool', 'shell(python run_reproduction.py)', '--deny-tool', 'url',
+        '--disable-builtin-mcps', '--additional-mcp-config', json.dumps(config),
+        '--excluded-tools', 'bash', 'powershell', 'edit', 'create', 'apply_patch', 'view', 'glob', 'grep',
+        'web_fetch', 'task', 'ask_user', 'skill', 'read_bash', 'write_bash', 'list_bash', 'stop_bash',
+        '--allow-tool', 'r130(execute)', '--allow-tool', 'r130(status)',
+        '--deny-tool', 'shell', '--deny-tool', 'write', '--deny-tool', 'url',
         '--no-custom-instructions', '--no-ask-user', '--no-auto-update', '--disable-client-telemetry',
         '--log-level', 'warning', '-s']
 started = time.perf_counter()
 p = subprocess.run(argv, cwd=work, env=env, input=prompt, capture_output=True, text=True)
+if (out/'COPILOT_TOOL_START.json').exists():
+    pid = json.loads((out/'COPILOT_TOOL_START.json').read_text())['pid']
+    while True:
+        rec = out/'EXECUTION_RECEIPT.json'
+        if rec.exists():
+            try:
+                if json.loads(rec.read_text()).get('status') != 'RUNNING':
+                    break
+            except json.JSONDecodeError:
+                pass
+        try:
+            os.kill(pid, 0)
+        except ProcessLookupError:
+            break
+        time.sleep(1)
 def redact(s):
     return re.sub(r'(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+', '[REDACTED]', s.replace(token, '[REDACTED]'))
 (out/'COPILOT_RESPONSE.txt').write_text(redact(p.stdout))
@@ -44,7 +62,8 @@ def redact(s):
 (out/'COPILOT_PROMPT.txt').write_text(prompt)
 receipt = {'cli_version': '1.0.103', 'model': 'native auto', 'returncode': p.returncode,
            'session_seconds': time.perf_counter()-started, 'max_ai_credits': 30,
-           'tool_permissions': ['shell(python run_reproduction.py)'],
+           'tool_permissions': ['r130(execute)', 'r130(status)'],
+           'shell_access': False, 'arbitrary_code_arguments': False,
            'source_commit': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
            'actual_execution_receipt_exists': (out/'EXECUTION_RECEIPT.json').exists()}
 (out/'COPILOT_RECEIPT.json').write_text(json.dumps(receipt, indent=2)+'\n')
