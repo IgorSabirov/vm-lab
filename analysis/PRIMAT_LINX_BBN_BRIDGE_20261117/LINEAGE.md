@@ -64,9 +64,14 @@ No R/C/L/U status is promoted by these documents.
    cover valid input, non-monotonic time, misaligned arrays, unknown species,
    stale hashes and non-finite values; all six passed in a local isolated test.
    JSON Schema alone cannot enforce all cross-array invariants.
-2. Generate the species/reaction equivalence map for PRIMAT small and LINX
-   `key_PRIMAT_2023`; do not infer identity from the matching 8/12 counts.
+2. The species/reaction equivalence map is implemented in `NETWORK_MAP.json`
+   for PRIMAT small and LINX `key_PRIMAT_2023`. Numerical rate identity is open;
+   do not infer it from matching species, stoichiometry or 8/12 counts.
 3. Implement thin adapters only for capabilities confirmed by pinned upstream
    source inspection. Explicitly report unsupported background/weak-rate inputs.
 4. Run native standard controls, then the frozen LINX identity pair, then the
    common-network comparison. Only then connect a physically selected BH1 history.
+
+## R130 joins the physical interface
+
+The [R130–BH1–BBN connection](../R130_BH1_BBN_CONNECTION_20261117/REPORT.md) links R126 → R130 evidence to the existing BH1/background input. R130 supplies dimensionless observables and C1/C2 controls; BH1 supplies conditional thermodynamic constraints. Neither is established as a physical realization of the other. The unimplemented physical map is explicit in [CONNECTION_CONTRACT.json](../R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json). Questions U006/U007/U010 stay OPEN; no new result number or scientific acceptance is assigned.

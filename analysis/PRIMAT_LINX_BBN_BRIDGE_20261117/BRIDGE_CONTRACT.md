@@ -46,8 +46,8 @@ BH1 thermodynamics + X-sector model
 
 Вводится единый версионируемый объект `BBNHistory`. Все массивы относятся к одной физической временной сетке и имеют общий SHA-256 манифест. Минимальные поля:
 
-- `t_s`: физическое время, секунды, строго возрастающая сетка;
-- `a`: масштабный фактор с объявленной нормировкой;
+- `time_s`: физическое время, секунды, строго возрастающая сетка;
+- `scale_factor`: масштабный фактор с объявленной нормировкой;
 - `H_s_inv`: скорость расширения, s^-1;
 - `T_gamma_MeV`: фотонная температура, MeV;
 - `n_b_cm3`: физическая барионная плотность, cm^-3;
@@ -139,8 +139,8 @@ Cross-backend disagreement раскладывается на: network mismatch, 
 | PRIMAT custom Python background | upstream docs и ограничения кешей | Частично документирован; общий history adapter отсутствует |
 | LINX D+D adapter | PR #57, 30 engineering checks | Есть для D+D table override |
 | LINX full BBN identity pair | `BBN_IDENTITY_CONTRACT.json` | Подготовлена, не исполнена |
-| Common BBNHistory serializer/validator | — | Нет |
-| Reaction/species equivalence map | — | Нет |
+| Common BBNHistory schema/validator | `BBN_HISTORY.schema.json`, `validate_contract.py`; 6 tests | Структурная проверка есть; физическая полнота не проверяется |
+| Reaction/species equivalence map | `NETWORK_MAP.json`, 8 species / 12 reactions | Топология сопоставлена; численная идентичность rates не установлена |
 | PRIMAT history adapter | — | Нет |
 | LINX common-history adapter | — | Нет |
 | Shared rate/covariance realization | — | Нет |
@@ -169,3 +169,11 @@ Committed in `analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/`:
 The map confirms matching network topology, not numerical equality of rate arrays or full solver equivalence. Pinned LINX source inspection also confirms that its documented abundance interface takes photon, neutrino and new-physics energy-density/pressure arrays, and assumes a common neutrino temperature in the described `rho_nu_vec` pathway. It is not an arbitrary electron-neutrino spectral-history adapter. PRIMAT has a Python custom-background route, but tabulated custom backgrounds disable documented incomplete-decoupling and spectral-distortion corrections. These are real adapter capability gaps, not implementation details to paper over.
 
 **Not yet implemented:** PRIMAT history adapter; LINX canonical-history adapter; rate-array/unit reconciliation; common weak/neutrino treatment; backend execution harness; PRIMAT↔LINX numerical comparison. No BBN, GP or BH1 integration was executed. Parent BH1 embedding remains open. Scientific acceptance remains false.
+
+## 10. Соединение с R130
+
+По поручению владельца этот интерфейс связан с [общим R130–BH1–BBN контрактом](../R130_BH1_BBN_CONNECTION_20261117/REPORT.md) и его [машинной записью](../R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json). R130 поставляет проверенные безразмерные наблюдаемые роста, комбинаторной энтропии и локальной активности. BH1 ограничивает возможную термодинамику и энергобаланс. Между ними и BBNHistory требуется явное физическое сопряжение: часы, геометрия/объём, X, энергия/давление, температуры и обмен em/nu. Оно пока не задано.
+
+C1-разрежение и активный ограниченный цикл C2 — разные контрольные случаи исследовательской постановки. Они не преобразованы в космологический фон. Число вершин не назначается scale_factor, а итерация — time_s. Общая история, rates и нейтринный режим по-прежнему должны быть одинаковыми для PRIMAT/LINX.
+
+Уточнение текущего implementation status: минимальный валидный envelope не является полной физической историей; нейтринные поля опциональны, уравнения Friedmann/энергии/барионного баланса не проверяются, документированная comoving_entropy ещё отсутствует в schema v1. Эти проверки относятся к будущему генератору и расширению контракта. Научный запуск данным соединением не выполнялся.
