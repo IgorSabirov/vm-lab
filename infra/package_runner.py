@@ -1,4 +1,4 @@
-"""One admission, independent bounded sections, integrity + independent domain checks.
+"""One admission, independent sections without duration deadlines, integrity + independent domain checks.
 
 This installed executor is local/sequential. Other routes fail before execution;
 execution_policy still describes the broader architecture, not a deployed worker.
@@ -56,8 +56,7 @@ def validate_package(plan, root, limits):
             raise ValueError('Section config differs from frozen plan')
         if rp['source']['input_manifest_sha256'] != plan['input_manifest']['sha256']:
             raise ValueError('Section input manifest mismatch')
-        if (rp['budget']['hard_wall_seconds'] > section['compute_seconds'] or
-            rp['budget']['memory_limit_mib']*1024**2 > section['memory_bytes'] or
+        if (rp['budget']['memory_limit_mib']*1024**2 > section['memory_bytes'] or
             rp['budget']['disk_limit_mib']*1024**2 > plan['budget']['output_bytes']):
             raise ValueError('Section receipt budget exceeds package reservation')
     return result
@@ -92,7 +91,7 @@ def bounded(command, folder, env, seconds, memory, disk, package_out):
                         continue
                 peak = max(peak, rss)
                 size = sum(p.stat().st_size for p in package_out.rglob('*') if p.is_file())
-                if time.monotonic()-start > seconds or rss > memory or size > disk:
+                if rss > memory or size > disk:
                     raise RuntimeError('Section/package resource budget exceeded')
                 time.sleep(.05)
             if child.returncode:
@@ -119,13 +118,10 @@ def execute_sections(plan, root, output, admission=None):
         process = {'run_id': rp['run_id'], 'source_commit': plan['source_commit'],
                    'state': 'FAILED', 'technical_gate': 'REVIEW_REQUIRED', 'scientific_confirmation': False}
         try:
-            remaining = plan['budget']['package_seconds']-(time.monotonic()-start)
-            cap = min(section['compute_seconds'], remaining-section['verification_seconds']-section['publication_seconds'])
-            if cap <= 0: raise RuntimeError('Package deadline exhausted')
             env = dict(os.environ, PYTHONPATH=str(root), SOURCE_ROOT=str(root),
                        SECTION_PLAN=str(folder/'SECTION.json'), SECTION_OUTPUT=str(folder),
                        OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1', MKL_NUM_THREADS='1')
-            process.update(bounded([sys.executable, '-m', 'infra.adapters.worker'], folder, env, cap,
+            process.update(bounded([sys.executable, '-m', 'infra.adapters.worker'], folder, env, None,
                                    section['memory_bytes'], plan['budget']['output_bytes'], output))
             raw = json.loads((folder/'RAW.json').read_text())
             check = verify(section['adapter'], raw, section['config']); dump(folder/'DOMAIN.json', check)
@@ -146,8 +142,10 @@ def execute_sections(plan, root, output, admission=None):
     summary.update(seconds=time.monotonic()-start,
                    engineering='PASS' if all(s['process']['technical_gate']=='PASS' and
                      s['integrity']['integrity']=='PASS' for s in summary['sections']) else 'REVIEW_REQUIRED')
-    if summary['seconds'] > plan['budget']['package_seconds']:
-        summary['engineering'] = 'REVIEW_REQUIRED'
+    forecast = sum(t['forecast_seconds'] for t in plan['tasks']) + sum(
+        s[k] for s in plan['sections'] for k in ('setup_seconds','verification_seconds','publication_seconds'))
+    summary['runtime_gate'] = {'forecast_seconds': forecast, 'actual_seconds': summary['seconds'],
+                               'actual_over_forecast': summary['seconds']/forecast, 'duration_limit_seconds': None}
     dump(output/'SUMMARY.json', summary)
     dump(output/'ARTIFACTS.json', {'files':files(output), 'scientific_acceptance':False})
     return summary

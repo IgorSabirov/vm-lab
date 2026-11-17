@@ -147,14 +147,14 @@ def execution_admission(request):
         raise ValueError('Missing/mismatched single-section Actions admission')
     return execution
 
-def bounded_process(argv,seconds):
-    # Kill the entire process group on a hard deadline, not just its launcher.
+def bounded_process(argv,seconds=None):
+    # Legacy argument is not a deadline. Explicit cancellation still reaps children.
     with subprocess.Popen(argv,cwd=REPO,start_new_session=True) as process:
-        try:return process.wait(timeout=seconds)
-        except subprocess.TimeoutExpired:
+        try:return process.wait()
+        except BaseException:
             os.killpg(process.pid,signal.SIGKILL)
             process.wait()
-            raise ValueError('Section compute budget exhausted; no automatic retry')
+            raise
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--execute',action='store_true');ap.add_argument('--upstream');ap.add_argument('--output',type=Path);a=ap.parse_args()
@@ -167,7 +167,6 @@ def main():
     if not a.upstream:raise ValueError('Pinned upstream checkout required')
     if os.environ.get('GITHUB_REPOSITORY')!='IgorSabirov/vm-lab' or os.environ.get('GITHUB_REF')!='refs/heads/'+plan['branch'] or os.environ.get('GITHUB_RUN_ATTEMPT')!='1':raise ValueError('Wrong executor or forbidden retry')
     execution=execution_admission(req)
-    deadline=time.monotonic()+execution['sections'][0]['compute_seconds']
     exit_code=0
     try:
         for key in req['stages']:
@@ -175,9 +174,7 @@ def main():
             if status=='COMPLETE':continue
             if status!='READY':raise ValueError(key+' cannot start: '+status+'; no automatic repeat')
             entry=IMPLEMENTATIONS[nodes[key]['implementation']]
-            remaining=deadline-time.monotonic()
-            if remaining<=0:raise ValueError('Section compute budget exhausted')
-            returncode=bounded_process([sys.executable,str(entry),'--upstream',str(Path(a.upstream).resolve())],remaining)
+            returncode=bounded_process([sys.executable,str(entry),'--upstream',str(Path(a.upstream).resolve())],None)
             state=evaluate(plan,req)
             if returncode or state['stages'][key]['status']!='COMPLETE':exit_code=1;break
     except Exception as exc:

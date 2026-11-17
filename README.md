@@ -1,3 +1,5 @@
+> **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
+
 **11 ноября: R129 и связанные реестры.** [Условный результат о контактной ёмкости](analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md) · [129 результатов](analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 исходных условий](analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [карта связей](analysis/REGISTRY_LINKS/INDEX.md). [Автоматическая проверка связей](infra/REGISTRY_MAINTENANCE.md) отделена от научных статусов.
 
 [Связи всех карточек и адресный поиск](analysis/REGISTRY_LINKS/INDEX.md) · [Разбор CCC+TL/CBST: геометрия и часы](analysis/CCC_TL_REVIEW_20261112/REPORT.md). Внешний разбор не меняет научные статусы.

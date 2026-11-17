@@ -11,7 +11,6 @@ jobs:
   generate:
     if: github.actor == github.repository_owner && github.event.issue.number == 16 && github.event.comment.body == '/vm-lab-native-pilot'
     runs-on: ubuntu-24.04
-    timeout-minutes: 6
     permissions:
       contents: read
       pull-requests: read
@@ -59,7 +58,6 @@ jobs:
   publish:
     needs: generate
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: write
       pull-requests: write
@@ -82,7 +80,6 @@ jobs:
   publish-saved:
     if: github.actor == github.repository_owner && github.event.issue.number == 16 && github.event.comment.body == '/vm-lab-native-publish'
     runs-on: ubuntu-24.04
-    timeout-minutes: 3
     permissions:
       contents: write
       pull-requests: write

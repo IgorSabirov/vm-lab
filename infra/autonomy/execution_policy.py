@@ -8,8 +8,6 @@ import math
 from pathlib import Path
 import re
 
-LOCAL_SECONDS = 600
-GITHUB_JOB_SECONDS = 21600
 SHA = re.compile(r"[0-9a-f]{40}")
 DIGEST = re.compile(r"[0-9a-f]{64}")
 IDENTIFIER = re.compile(r"[A-Za-z0-9_-]{1,100}")
@@ -43,11 +41,10 @@ def evidence(ref, root):
 
 
 def validate(plan, limits, *, root=None):
-    """Budgets are reservations, not forecasts; no historical limits are changed.
+    """Validate provenance, coverage, calibration and non-time resources.
 
-    A section executes whole tasks sequentially. Parallelism is between sections.
-    A continuous calculation has exactly one task and one section, on one process.
-    Package seconds are aggregate reserved executor time, including all sections.
+    The owner selects placement; forecasts never become execution deadlines.
+    Historical numeric time fields may be read without altering their bytes.
     """
     if plan.get("schema") != "vm-lab-execution-plan-v1":
         raise ValueError("Unknown execution plan schema")
@@ -86,8 +83,6 @@ def validate(plan, limits, *, root=None):
     matrix = {task["id"]: task for task in tasks}
     for task in tasks:
         forecast = number(task["forecast_seconds"], "task.forecast_seconds")
-        if number(task["process_seconds"], "task.process_seconds") < forecast:
-            raise ValueError("Process cap below calibrated forecast")
         # Seeds may repeat intentionally across A/B pairs; task IDs may not.
         if "seed" in task and (type(task["seed"]) is not int or task["seed"] < 0):
             raise ValueError("Invalid preregistered seed")
@@ -98,7 +93,7 @@ def validate(plan, limits, *, root=None):
         raise ValueError("A continuous integration cannot be split into sections")
 
     b = plan["budget"]
-    for key in ("package_seconds", "process_seconds", "section_seconds", "memory_bytes", "output_bytes"):
+    for key in ("memory_bytes", "output_bytes"):
         number(b[key], key)
     if b["memory_bytes"] > limits["memory_bytes"] or b["output_bytes"] > limits["output_bytes"]:
         raise ValueError("Package exceeds authorized memory/output budget")
@@ -112,61 +107,35 @@ def validate(plan, limits, *, root=None):
     for section in sections:
         if not section["task_ids"]:
             raise ValueError("Empty section")
-        compute = number(section["compute_seconds"], "section.compute_seconds")
         overhead = sum(number(section[key], key, zero=(key == "setup_seconds"))
                        for key in ("setup_seconds", "verification_seconds", "publication_seconds"))
-        wall = number(section["wall_seconds"], "section.wall_seconds")
-        if wall < compute + overhead:
-            raise ValueError("Section must reserve preparation, verification and publication time")
-        if compute < sum(matrix[i]["process_seconds"] for i in section["task_ids"]):
-            raise ValueError("Section cannot finish its whole task matrix within compute budget")
-        if wall > b["section_seconds"]:
-            raise ValueError("Section exceeds declared section cap")
         mem = number(section["memory_bytes"], "section.memory_bytes")
         peak_mem.append(mem)
         forecast_total += overhead + sum(matrix[i]["forecast_seconds"] for i in section["task_ids"])
     if sum(sorted(peak_mem, reverse=True)[:parallelism]) > b["memory_bytes"]:
         raise ValueError("Concurrent sections exceed aggregate memory budget")
-    if max(task["process_seconds"] for task in tasks) > b["process_seconds"]:
-        raise ValueError("Task exceeds declared process cap")
-    if sum(section["wall_seconds"] for section in sections) > b["package_seconds"]:
-        raise ValueError("Package budget must cover every section, including overhead")
-
-    if b["package_seconds"] <= LOCAL_SECONDS:
-        route = "local"
-    elif max(section["wall_seconds"] for section in sections) <= GITHUB_JOB_SECONDS:
-        route = "github_actions"
-    else:
-        if kind == "independent_realizations":
-            for section in sections:
-                overhead = sum(section[k] for k in ("setup_seconds", "verification_seconds", "publication_seconds"))
-                if (section["wall_seconds"] > GITHUB_JOB_SECONDS
-                        and all(matrix[i]["process_seconds"] + overhead <= GITHUB_JOB_SECONDS
-                                for i in section["task_ids"])):
-                    raise ValueError("Repartition whole independent tasks; oversized batching is not a VM requirement")
-        route = "vm"
-    if plan.get("executor") != route or plan["calibration"].get("executor") != route:
-        raise ValueError("Executor/calibration does not match the required route: " + route)
+    # The owner chooses placement. Calibration must describe that same executor.
+    # Legacy time-budget fields are retained in receipts, never used as deadlines.
+    route = plan.get("executor")
+    if route not in {"local", "github_actions", "vm"}:
+        raise ValueError("Declare the executor selected by the owner")
+    if plan["calibration"].get("executor") != route:
+        raise ValueError("Calibration must match the owner-selected executor")
     if route == "vm":
-        vm_seconds = number(b.get("vm_seconds"), "vm_seconds")
-        if vm_seconds < b["package_seconds"]:
-            raise ValueError("VM budget must cover the complete package")
         worker = plan["verified_vm_limits"]
         evidence(worker["evidence"], root)
-        if (number(worker["wall_seconds"], "worker.wall_seconds") < vm_seconds
-                or number(worker["memory_bytes"], "worker.memory_bytes") < b["memory_bytes"]
+        if (number(worker["memory_bytes"], "worker.memory_bytes") < b["memory_bytes"]
                 or number(worker["output_bytes"], "worker.output_bytes") < b["output_bytes"]):
-            raise ValueError("Verified VM worker limits do not support this package")
+            raise ValueError("Verified VM resources do not support this package")
         if not worker.get("executor_id"):
             raise ValueError("Identify the verified VM worker")
-    elif b.get("vm_seconds") is not None:
-        raise ValueError("VM budget belongs only to the VM route")
     return {"package_id": plan["package_id"], "source_commit": plan["source_commit"],
             "plan_sha256": digest(plan), "executor": route,
             "forecast_seconds": forecast_total, "budget": b,
-            "parallel_sections": parallelism,
+            "parallel_sections": parallelism, "placement_authority": "user",
+            "duration_limit_seconds": None,
             "sections": [{"id": s["id"], "task_ids": s["task_ids"],
-                          "timeout_minutes": math.ceil(s["wall_seconds"] / 60)} for s in sections],
+                          "timeout_minutes": None} for s in sections],
             "scientific_acceptance": False, "automatic_retry": False}
 
 

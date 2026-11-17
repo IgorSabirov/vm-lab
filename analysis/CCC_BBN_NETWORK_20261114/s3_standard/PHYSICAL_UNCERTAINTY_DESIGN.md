@@ -1,3 +1,5 @@
+> **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](../../../COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
+
 # S3_STANDARD — физические неопределённости: дизайн до исполнения
 
 **Статус:** `DESIGN_ONLY / NOT_EXECUTED / SCIENTIFIC_ACCEPTANCE=false`  
@@ -104,21 +106,54 @@ PDG 2026 BBN review приводит рекомендацию `Yp = 0.245 ± 0.0
 
 Не вычислять `chi2`, p-value, Bayes factor или «tension sigma» до завершения этих контрактов. Два исторических числа из `S3_INPUT_AUDIT` и матрица `J_eta J_eta^T` не являются готовым likelihood.
 
-## 6. Gates перед любым вычислительным S3
+## 6. Staged gates: local response is not the full S3 likelihood
 
-- [ ] Зафиксированы source commit, сетка, конфигурация, активные каналы, cache identities и хеши всех физических входов.
-- [ ] Для каждого rate документированы центральная функция, uncertainty semantics, первичный источник и covariance provenance; placeholders отмечены отдельно.
-- [ ] Проанализированы D+D и D(p,gamma)3He данные/функциональные формы; выполнен отдельный аудит weak rates и `tau_n`.
-- [ ] Заданы и обоснованы rate covariance blocks; отсутствие данных не замаскировано диагональной матрицей.
-- [ ] D/H dataset построен на absorber-level provenance; повторные публикации и компиляции устранены как дубли.
-- [ ] Yp source/estimator, sample selection, (y \to Y) convention, shared atomic/model systematics и covariance зафиксированы.
-- [ ] CMB input является действительно заявленным CMB-only likelihood/posterior; BBN consistency and free-`Yp` assumptions раскрыты; BBN-conditioned posterior не переиспользован.
-- [ ] Jacobian converged, MC covariance converged, numerical covariance отдельно измерена; все covariance matrices symmetric PSD within documented numerical tolerance.
-- [ ] Только после этого зафиксированы likelihood, priors, nuisance model и joint residual statistic.
+The previous version incorrectly placed Jacobian convergence, Monte Carlo covariance convergence and numerical covariance measurement among the gates **before any computational S3**. Those are properties of a computed response or of a later uncertainty-inference layer. Requiring them before the first calculation that produces them is circular. Gates are now separated by stage.
 
-## 7. Ограничения исполнения
+### 6.1 Preconditions for the bounded D+D response package
 
-На момент подготовки `S3_INPUT_AUDIT` очередь отмечена `BUDGET_WAIT` до 2026-11-15 14:09:29 UTC. Этот документ — подготовка контракта, а не новый compute package. Не запускать повторный BBN/Monte Carlo сейчас, не менять S1 tolerances, не создавать `RUN_REQUEST`, не переводить `S3_STANDARD` из contract в executed/accepted. Научная приёмка остаётся false.
+The package S3_DD_RESPONSE_20261115_r1 is a local sensitivity calculation on the standard BBN background. Its prerequisites are:
+
+- [ ] The LINX upstream commit, reaction network, dependency lock, adapter source and both D+D table hashes are pinned.
+- [ ] The uncertainty meaning is fixed: one scalar q_i~N(0,1) per channel multiplies the pinned temperature-dependent expsigma(T) as r_i(T,q_i)=mu_i(T) exp[q_i ln f_i(T)]; the same q_i acts over the full temperature history.
+- [ ] The reaction names, native temperature nodes, interpolation, rate units, reverse detailed-balance treatment and rate_tables_override no-double-application rule are checked.
+- [ ] The all-reaction q=0 native baseline, two D+D channels, central-difference steps h=1,0.5, fixed non-D+D rates, observables and output conventions are frozen.
+- [ ] The shared background, initial conditions, weak rates, eta, neutron lifetime, solver and tolerances are identical across all nine integrations.
+- [ ] The sequential execution plan has a measured same-environment calibration, 600 s per-integration cap, package/memory/output budgets, no automatic retry and a fresh shared-ledger admission.
+
+CMB likelihoods, absorber-level observational covariance, GP inference for rho, a correlated Monte Carlo ensemble, convergence of the **resulting** Jacobian and a numerical covariance estimate are **not** preconditions for this package. The package treats R(rho)=[[1,rho],[rho,1]], -1<=rho<=1, as a parameterized correlation family. The pinned source audit does not establish an experimental value or posterior for rho.
+
+### 6.2 Result-quality checks after the D+D integrations
+
+- [ ] The native q=0 baseline is finite and reproducible; all eight perturbed runs use the same background and pinned inputs.
+- [ ] For each output, both h=1 and h=0.5 central differences are reported. A discrepancy above 1% is STEP_NOT_CONVERGED; near-zero responses use an absolute/near-zero classification rather than a singular relative percentage. No unbudgeted smaller-step retry is automatic.
+- [ ] The local derivative a_i=partial ln O/partial q_i, kappa=2 a_1 a_2/(a_1^2+a_2^2), the independent quadratic form a^T a, and a^T R(rho) a are reported separately.
+- [ ] kappa is checked against [-1,1]; the correlation family is PSD over [-1,1]. The correlated/independent standard-deviation ratio is explicitly labelled a first-order delta-method result for ln O.
+- [ ] Absolute D+D variance contributions are retained. kappa is invariant under a common rescaling of a_1,a_2, so a ratio near one does not imply a small absolute uncertainty contribution.
+- [ ] Directional sign expectations for D/H, late 3He/H and late 7Li/H are diagnostics, not software acceptance gates. Yp has no preregistered sign. Late 3He includes surviving tritium after beta decay; late 7Li includes 7Be after electron capture.
+- [ ] A mismatch in a directional hypothesis is reported as a net-network-flow result for investigation, not automatically classified as a code defect.
+
+These checks establish only a local response under the stated standard-background and rate-shape assumptions. They do not establish the nonlinear covariance over a broad prior, the physical value of rho, or a full nuclear posterior.
+
+### 6.3 Additional gates for the later full S3 likelihood
+
+The following remain necessary before a full observational comparison, but they do not block the isolated D+D response calculation:
+
+- [ ] D/H absorber-level provenance, duplicates, measurement likelihoods and shared systematics are resolved.
+- [ ] Yp estimator, object selection, y-to-Y convention and shared atomic/model covariance are resolved.
+- [ ] A genuinely independent CMB likelihood/posterior is available with the BBN-consistency and free-Yp assumptions explicit.
+- [ ] The complete active-channel uncertainty model, placeholders, weak-rate uncertainty, neutron-lifetime covariance and any physical cross-channel covariance are specified. An unmeasured rho is not silently set to zero or treated as measured.
+- [ ] Full-network Jacobian convergence and nonlinearity are evaluated after the relevant response calculations exist.
+- [ ] A correlated Monte Carlo is compared with J C_theta J^T, with sample-size convergence, covariance-element Monte Carlo error, eigenvalues, rank and sensitivity to rate caps documented.
+- [ ] Numerical solver/grid error is measured separately and is not relabelled as physical covariance without a probability model.
+- [ ] Only after these inputs are fixed may a joint likelihood, priors, nuisance model and residual statistic be frozen.
+
+## 7. Scope and execution boundary
+
+S3_DD_RESPONSE_20261115_r1 is a separately frozen, bounded standard-background calculation. If admitted and executed, it may publish local D+D sensitivities and the conditional first-order covariance ratio. It does not promote the full S3_STANDARD likelihood to executed/accepted, does not choose a physical inter-channel rho, and does not authorize a full-network Monte Carlo, observational fit, BH1 background, S2 microphysics drift or changes to S1 tolerances. Scientific acceptance remains false.
+
+The shared autonomy ledger, active-run inventory, sequential package limit and explicit per-process/package budgets remain mandatory. No VM is requested: the nine independent integrations are sequential and planned for the pinned GitHub Actions CPU environment. An admission failure must stop before the first BBN integration; no automatic retries are allowed.
+
 
 ## 8. Источники, закреплённые для первичного аудита
 

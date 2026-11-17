@@ -1,3 +1,5 @@
+> **Действующее решение 16 ноября 2026:** [площадку выбирает владелец; временного потолка нет](../../../COMPUTE_AUTHORITY.md). Гейт времени — калибровка, прогноз и план/факт. Прежние временные ограничения и маршрутизация в тексте ниже отменены; факты прошлых запусков сохраняются.
+
 > Current protocol v1.3 adds the explicit R_CACHE generator control; primary convergence anchor is R_CACHE, environment-only control is R_ENV. Eleven strict runs. Numerical thresholds unchanged. See CACHE_CONTROL_AMENDMENT.md. Earlier states below are historical.
 
 > Current decision: owner authorized launch with R_ENV. Protocol v1.2 is enabled; ten strict integrations use the same frozen target environment. R0 stays immutable. Earlier blocked/proposed statements below are historical.

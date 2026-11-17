@@ -74,7 +74,7 @@ class DelegationTests(unittest.TestCase):
         self.assertEqual(self.source['max-daily-ai-credits'], 60)
         self.assertEqual(self.source['safe-outputs']['threat-detection']['max-ai-credits'], 10)
         for j in self.lock['jobs'].values():
-            self.assertTrue(1 <= j['timeout-minutes'] <= 10)
+            self.assertNotIn('timeout-minutes', j)
         for j in self.lock['jobs'].values():
             for s in j.get('steps', []):
                 if s.get('uses', '').startswith('actions/upload-artifact@'):
@@ -116,8 +116,8 @@ class DelegationTests(unittest.TestCase):
         bounded = compiler.bound_jobs(raw)
         self.assertEqual(compiler.bound_jobs(bounded), bounded)
         jobs = yaml.safe_load(bounded)['jobs']
-        self.assertEqual(jobs['first']['timeout-minutes'], 5)
-        self.assertEqual(jobs['second']['timeout-minutes'], 10)
+        self.assertNotIn('timeout-minutes', jobs['first'])
+        self.assertNotIn('timeout-minutes', jobs['second'])
 
     def test_proposal_validation_checks_exact_head_without_secrets(self):
         raw = (ROOT / '.github/workflows/copilot-pr-validation.yml').read_text()

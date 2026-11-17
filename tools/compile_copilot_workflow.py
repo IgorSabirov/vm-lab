@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile pinned gh-aw, cap ALL generated jobs, and record both file hashes."""
+"""Compile pinned gh-aw, remove project time ceilings, and record both file hashes."""
 import argparse
 import hashlib
 import json
@@ -17,23 +17,9 @@ MANIFEST = 'infra/copilot/COMPILE.json'
 
 
 def bound_jobs(text):
-    # Preserve the compiler's YAML formatting/frontmatter hash. The compiler does
-    # not allow activation/pre_activation timeout overrides. Cap framework jobs
-    # explicitly instead of exempting generated code from repository policy.
-    chunks = re.split(r'(?=^  [a-zA-Z_][a-zA-Z_0-9-]*:\n)', text, flags=re.M)
-    out = [chunks[0]]
-    for part in chunks[1:]:
-        # A job has steps/uses; don't rewrite top-level env or dispatch inputs.
-        if re.search(r'^    (steps|uses):', part, re.M):
-            if re.search(r'^    timeout-minutes:', part, re.M):
-                part = re.sub(r'^    timeout-minutes:.*$',
-                              lambda m: '    timeout-minutes: ' + str(min(10, int(m[0].split(':', 1)[1].strip()))),
-                              part, flags=re.M)
-            else:
-                part = part.replace('\n', '\n    timeout-minutes: 5\n', 1)
-        out.append(part)
-    bounded = ''.join(out)
-    return re.sub(r'^( +)retention-days:.*$', r'\1retention-days: 7', bounded, flags=re.M)
+    # Legacy API name retained; owner directive removes job and step time ceilings.
+    text = re.sub(r'^\s*timeout-minutes:.*\n', '', text, flags=re.M)
+    return re.sub(r'^( +)retention-days:.*$', r'\1retention-days: 7', text, flags=re.M)
 
 
 def digest(path):
@@ -67,7 +53,7 @@ def main():
     path.write_text(bound_jobs(path.read_text()))
     receipt = {'schema': 'vm-lab/copilot-compile/v1', 'compiler_version': VERSION,
                'compiler_commit': COMMIT, 'linux_amd64_sha256': BINARY_SHA256,
-               'postprocess': 'Cap generated job timeouts at 10m; set missing job timeouts to 5m; artifact retention 7d.',
+               'postprocess': 'Remove generated job and step time ceilings per COMPUTE_AUTHORITY.md; artifact retention 7d.',
                'sha256': {p: digest(ROOT / p) for p in (SOURCE, LOCK)}}
     (ROOT / MANIFEST).write_text(json.dumps(receipt, indent=2) + '\n')
     check()
