@@ -386,3 +386,6 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |
 <!-- /generated:external-review-links -->
 
+## Свидетельство R130 после полного C1 и повторного исполнения — 17 ноября
+
+[Полный подготовленный C1, повтор GitHub и аудит](../ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md) зарегистрированы в R130. U005/U006/U007/U009/U010 остаются OPEN: проверка воспроизводимости не закрывает обратное управление носителем, происхождение геометрии, физическое обращение целого, SSB или наследование способности продолжения. Прежние адресные границы R130 сохраняются. Отдельный вопрос о коэффициенте/нормировке Theorem 4 указан в [сводке R130](../ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md#open-questions).

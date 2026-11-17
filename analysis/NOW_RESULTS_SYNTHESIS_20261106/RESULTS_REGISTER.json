@@ -3968,7 +3968,8 @@
         "analysis/ADD_PABLO_CORRESPONDENCE_20261116/REPORT.md",
         "analysis/ADD_SOURCE_CROSSCOPY_AUDIT_20261116/REPORT.md",
         "analysis/ADD_PABLO_CORRESPONDENCE_20261116/REPRODUCTION_PROTOCOL_C1_v0.1.md",
-        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md"
+        "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
+        "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md"
       ],
       "genealogy_note": "Ретроспективная регистрация аудита предыдущего шага; не выдаётся за его предрегистрацию.",
       "revision_1_1": {
@@ -4050,6 +4051,13 @@
         "old_backend_not_modified": true,
         "scientific_acceptance": false,
         "old_missing_source_pointer": "analysis/ADD_PABLO_CORRESPONDENCE_20261116/NEIGHBOR_CRITIQUE_AND_REVISED_RESEARCH_LINE_20261116.md"
+      },
+      "C1_reproduction_followup_20261117": {
+        "child_result_id": "R130",
+        "report": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+        "scope": "Subsequent full prepared C1/A, clean same-code GitHub reproduction and archive-to-handoff audit; earlier dated first-block-only statements are historical.",
+        "historical_R126_operators_unchanged": true,
+        "scientific_acceptance": false
       }
     },
     {
@@ -4718,13 +4726,13 @@
     {
       "id": "R130",
       "section": "24. Геометрические кандидаты и интеграция",
-      "title": "ADD: кольцевая C2, инволюция обращения и вечный активный цикл без роста",
+      "title": "ADD: воспроизведение C1/A, симметрия C2 и активный цикл без роста",
       "status": "АНАЛИТИКА ДЛЯ ЯВНЫХ ПРАВИЛ + КОНЕЧНАЯ ИМЕНОВАННАЯ ПРОВЕРКА; ФИЗИЧЕСКОЕ ЗАМЫКАНИЕ НЕ УСТАНОВЛЕНО",
-      "result": "В объявленной кольцевой C1 зеркало имён с обменом битов коммутирует с F, а S=QT имеет S²=τ: предложенные обращения отвергнуты. В C2 с противоположным пространственным порядком расщепления каналов и bit-only R выполнены RI₂=I₂R, T²=id и TFT=F⁻¹. Точная орбита слова (1,2,12) имеет одно слияние и одно расщепление на каждом шаге при L=3. Смешанные кольца допускают тихие, активные ограниченные и растущие примеры; универсальный перенос C1-исчезновения слияний на C2 исключён.",
-      "inputs": "F=QI; кольцо b→a; s=a1+2b1+4a2+8b2; I₂: 3↔(1,2), 12↔(8,4). Имена и направленные рёбра сравниваются точно, без переименования. C1: 5440 именованных колец L3..6; мера (nf,df): 5460 слов L1..6, 1770 активных; C2: 4368 колец L1..3 на каждый из четырёх ε. Явные семейства X_L с временем исчезновения L−1 и смешанный (3,12) с линейными обеими дальними ветвями. Python 3.12.14; время и SHA кода в CHECKS.json.",
-      "limit": "Локальная алгебра и точные семейства относятся к явно заданному кольцевому оператору. Конечный PASS не аттестует общие именованные графы и не доказывает универсальное Δdf=−1. Старые правила и теоремы R126 сохранены отдельно; авторское соответствие всего backend не установлено. Периодичность слова не означает периодичность имён. Активный цикл не доказывает чтение следа, полезную функцию, воспроизводство условий, энтропийную стрелу или происхождение пространства-времени. Типичность смешанного роста требует заданной меры.",
+      "result": "В объявленной кольцевой C1 зеркало имён с обменом битов коммутирует с F, а S=QT имеет S²=τ: предложенные обращения отвергнуты. В C2 с противоположным пространственным порядком расщепления каналов и bit-only R выполнены RI₂=I₂R, T²=id и TFT=F⁻¹. Точная орбита слова (1,2,12) имеет одно слияние и одно расщепление на каждом шаге при L=3. Смешанные кольца допускают тихие, активные ограниченные и растущие примеры; универсальный перенос C1-исчезновения слияний на C2 исключён. После первого операторного блока выполнен полный подготовленный C1/A: Lemma 1/проекция, прямой и обратный рост, глобальная и локальная энтропия. Аналитическое восстановление сохранено отдельно; конечные траектории согласуются с ним. Тот же исправленный пакет заново исполнен Copilot на GitHub: 91/91 raw совпали после декомпрессии. Буквальный коэффициент Theorem 4 при объявленной нормировке не подтверждён; исправленная оценка сохраняет предел локальной энтропии 0.",
+      "inputs": "F=QI; кольцо b→a; s=a1+2b1+4a2+8b2; I₂: 3↔(1,2), 12↔(8,4). Имена и направленные рёбра сравниваются точно, без переименования. C1: 5440 именованных колец L3..6; мера (nf,df): 5460 слов L1..6, 1770 активных; C2: 4368 колец L1..3 на каждый из четырёх ε. Явные семейства X_L с временем исчезновения L−1 и смешанный (3,12) с линейными обеими дальними ветвями. Python 3.12.14; время и SHA кода в CHECKS.json. Полное продолжение C1: 6032 операторных входа; 5460 именованных входов; 10920 коротких траекторий по 128 шагов; 28 длинных по 4096 и 2 по 16384. GitHub run 44082471150: 63.626091 с семи команд, две калибровки отдельно 0.905211 с, без подготовки/публикации; Python 3.12.16/NumPy 2.3.5/Matplotlib 3.10.7.",
+      "limit": "Локальная алгебра и точные семейства относятся к явно заданному кольцевому оператору. Конечный PASS не аттестует общие именованные графы и не доказывает универсальное Δdf=−1. Старые правила и теоремы R126 сохранены отдельно; авторское соответствие всего backend не установлено. Периодичность слова не означает периодичность имён. Активный цикл не доказывает чтение следа, полезную функцию, воспроизводство условий, энтропийную стрелу или происхождение пространства-времени. Типичность смешанного роста требует заданной меры. Полный подготовленный C1 не означает воспроизведения всех расширений статьи. Математический текст не формально верифицирован; численные траектории не доказывают асимптотику. Повтор того же кода в другой среде не является новой независимой реализацией. Сохраняются COMPLETE_REVIEW_DIFFERENCES и вопрос R130-C1-ENTROPY-COEFFICIENT. Научная приёмка владельца не присваивается.",
       "framework_role": "Уточняет математический механизм и пределы переноса ADD в задачу стрелы из замкнутого целого. Новый ориентир — автономная активность при ограниченном размере; причинная роль содержательного следа и способность продолжения остаются отдельной задачей R075/L04/U010. Новая архитектура и производственный запуск не назначены.",
-      "evidence_level": "ЛОКАЛЬНАЯ АЛГЕБРА, ИНДУКТИВНЫЕ СЕМЕЙСТВА И ВОСПРОИЗВОДИМЫЙ КОНЕЧНЫЙ РАСЧЁТ; НЕ ОБЩАЯ ФИЗИЧЕСКАЯ АТТЕСТАЦИЯ",
+      "evidence_level": "ЛОКАЛЬНАЯ АЛГЕБРА, ИНДУКТИВНЫЕ СЕМЕЙСТВА И ВОСПРОИЗВОДИМЫЙ КОНЕЧНЫЙ РАСЧЁТ; НЕ ОБЩАЯ ФИЗИЧЕСКАЯ АТТЕСТАЦИЯ; ПОЛНЫЙ ПОДГОТОВЛЕННЫЙ C1 И ПОВТОР ТОГО ЖЕ КОДА В ДРУГОЙ СРЕДЕ С ПРЯМОЙ СВЕРКОЙ RAW",
       "parent_result_ids": [
         "R126",
         "R077",
@@ -4758,7 +4766,9 @@
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json",
         "analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md",
         "analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json",
-        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json"
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json",
+        "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+        "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json"
       ],
       "managed_sources": [
         "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
@@ -4774,7 +4784,9 @@
         "analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py",
         "analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json",
         "analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json",
-        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256"
+        "analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256",
+        "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+        "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json"
       ],
       "genealogy_note": "Ретроспективная регистрация двух последних разборов и независимой проверки; не новая предрегистрация и не авторское подтверждение.",
       "scientific_acceptance": false,
@@ -4798,6 +4810,34 @@
         "all_R130_C2_claims_unchanged": true,
         "theorem_replication_completed": false,
         "source_manifest": "analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256"
+      },
+      "C1_full_reproduction_20261117": {
+        "date": "2026-11-17",
+        "report": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+        "evidence": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json",
+        "status": "PREPARED_C1_EXECUTED_AND_REPRODUCED_WITH_DECLARED_QUALIFICATIONS",
+        "execution_status": "COMPLETE_REVIEW_DIFFERENCES",
+        "run_id": 44082471150,
+        "results_commit": "d2d0252f4237087552e61cb69894ad3fd6dec0aa",
+        "audit_commit": "0c3dc25a4443d96a133a9a8fdda19bf31d071886",
+        "scope": {
+          "blocks": 3,
+          "operator_inputs": 6032,
+          "named_inputs": 5460,
+          "short_trajectories": 10920,
+          "short_steps": 1397760,
+          "long_trajectories_including_extensions": 30,
+          "long_steps_including_extensions": 147456
+        },
+        "raw_decoded_exact_match": 91,
+        "source_files_unchanged": 11,
+        "handoff_archive_paths_not_included": 40,
+        "local_history": "attempt1 plus corrected resume; GitHub executed final archived code from clean state",
+        "C1_analytical_reconstruction": "saved mathematical argument, not formal machine proof",
+        "Theorem4_literal_coefficient": "OPEN_NORMALIZATION_OR_COEFFICIENT_QUESTION",
+        "C2_existing_results": "rechecked, not new discovery or full statistical replication",
+        "scientific_acceptance": false,
+        "new_scientific_run_for_registration": false
       }
     }
   ],
@@ -8022,7 +8062,7 @@
       "meaning": "Навигационное соответствие; исходный статус не изменён"
     }
   ],
-  "revision": "ADD_NEIGHBOR_20261117_R130",
+  "revision": "R130_C1_FULL_REPRODUCTION_REGISTERED_20261117",
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
     "adopted_date": "2026-11-06",
@@ -8758,6 +8798,21 @@
       "new_vm_jobs": 0,
       "new_actions_science_jobs": 0,
       "note": "Local first block explicitly ordered: finite C1 A audit with two independent representations, P_raw/P_ring distinction; full theorem replication remains open."
+    },
+    {
+      "id": "R130_C1_FULL_REPRODUCTION_REGISTERED_20261117",
+      "date": "2026-11-17",
+      "base_commit": "cab453d79ac405479f3818f3eb1c041fc044bb85",
+      "report": "analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md",
+      "new_records": [],
+      "updates": [
+        "R126",
+        "R130"
+      ],
+      "scientific_status_promoted": false,
+      "new_vm_jobs": 0,
+      "new_actions_science_jobs": 0,
+      "note": "Register previously completed local C1, GitHub run 44082471150 and audit 0c3dc25; preserve existing scientific acceptance and open boundaries."
     }
   ],
   "lineage_edges": [
