@@ -154,3 +154,18 @@ Cross-backend disagreement раскладывается на: network mismatch, 
 Первый контрольный тест: оба адаптера читают один frozen fixture и возвращают receipt, доказывающий одинаковые входные физические данные. Следующий тест — standard baseline каждого backend, затем общий подграф. Только после этих гейтов подключать BH1-историю.
 
 Это не меняет `BRIDGE_CONTRACT.json`, `CONTROL`, `CURRENT`, `RUN_REQUEST`, очередь вычислений или статусы R/C/L/U. Никакого BBN/BH1 исполнения этим документом не заявляется.
+
+
+## 9. Implementation status (17 November 2026)
+
+Committed in `analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/`:
+
+- `BBN_HISTORY.schema.json`: machine-readable input envelope.
+- `validate_contract.py`: strict cross-field validator for finite values, aligned history arrays, monotonic physical time, positive background quantities, reaction stoichiometry, interpolation constraints and canonical SHA-256 provenance.
+- `test_validate_contract.py`: six local unit tests passed (valid fixture and five negative controls).
+- `NETWORK_MAP.json`: explicit 8-species/12-reaction mapping between PRIMAT small and LINX `key_PRIMAT_2023`.
+- `LINEAGE.md`: parent genealogy and status boundaries.
+
+The map confirms matching network topology, not numerical equality of rate arrays or full solver equivalence. Pinned LINX source inspection also confirms that its documented abundance interface takes photon, neutrino and new-physics energy-density/pressure arrays, and assumes a common neutrino temperature in the described `rho_nu_vec` pathway. It is not an arbitrary electron-neutrino spectral-history adapter. PRIMAT has a Python custom-background route, but tabulated custom backgrounds disable documented incomplete-decoupling and spectral-distortion corrections. These are real adapter capability gaps, not implementation details to paper over.
+
+**Not yet implemented:** PRIMAT history adapter; LINX canonical-history adapter; rate-array/unit reconciliation; common weak/neutrino treatment; backend execution harness; PRIMAT↔LINX numerical comparison. No BBN, GP or BH1 integration was executed. Parent BH1 embedding remains open. Scientific acceptance remains false.
