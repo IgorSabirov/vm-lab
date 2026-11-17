@@ -1,0 +1,39 @@
+--- a/analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/worker.py
++++ b/analysis/CCC_BBN_NETWORK_20261114/s3_standard/dd_covariance_20261115/refinement_20261116/worker.py
+@@ -6,7 +6,7 @@
+ HERE = Path(__file__).resolve().parent
+ ROOT = next(p for p in HERE.parents if (p / "infra/autonomy/admit.py").is_file())
+ ADAPTER = ROOT / "analysis/CCC_BBN_NETWORK_20261114/s3_standard/linx_dd_adapter_20261115"
+-CONTRACT = json.loads((HERE / "CONTRACT.json").read_text())
++CONTRACT = json.loads((HERE.parent / "CONTRACT.json").read_text())
+ 
+ def digest(p):
+     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+@@ -30,7 +30,7 @@
+         raise ValueError("Scientific acceptance must remain false")
+     if a.role == "baseline" and (a.channel is not None or a.q is not None or a.background is not None):
+         raise ValueError("Baseline must be native q=0 and create its background")
+-    if a.role == "perturb" and (a.channel is None or a.q not in (-1.0, -0.5, 0.5, 1.0) or a.background is None):
++    if a.role == "perturb" and (a.channel is None or a.q not in (-0.25, -0.125, 0.125, 0.25) or a.background is None):
+         raise ValueError("Perturbation arguments are not preregistered")
+     a.out.mkdir(parents=True, exist_ok=False)
+     os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
+@@ -139,11 +139,17 @@
+         raise ValueError("Invalid derived BBN observable")
+     result = {
+         "role":a.role, "source_sha":a.source_sha,
+-        "contract_sha256":digest(HERE/"CONTRACT.json"), "background_sha256":digest(background),
++        "contract_sha256":digest(HERE.parent/"CONTRACT.json"), "background_sha256":digest(background),
+         "upstream_root":a.root.name, "upstream_commit":CONTRACT["source"]["upstream_commit"],
+         "network":"key_PRIMAT_2023", "reaction_order":list(net.reactions_names),
+         "q_other_reactions":0.0, "perturbation":perturbation,
+         "initial":initial.tolist(), "final":final.tolist(), "observables":observables,
++        "refinement_design_sha256":digest(HERE/"CONVERGENCE_DESIGN.json"),
++        "network_parameters":n, "background_parameters":b,
++        "t_network_start_seconds":float(sol.t0), "t_network_end_seconds":float(sol.t1),
++        "model_time_convention":"LINX cosmic time in seconds, inherited from pinned background",
++        "post_decay_projection_applied":True, "observation_epoch":"complete_decay_limit",
++        "projection_assumptions":["fixed endpoint H","complete T to He3 and Be7 to Li7 conversion","no subsequent nuclear redistribution"],
+         "solver_stats":{k:int(v) for k,v in sol.stats.items()}, "versions":versions,
+         "wall_seconds":time.perf_counter()-start, "cpu_seconds":time.process_time()-cpu_start,
+         "peak_rss_kib":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,

@@ -1,0 +1,105 @@
+{
+  "schema": "vm-lab-dd-step-refinement-design-v1",
+  "id": "S3_DD_CONVERGENCE_20261116_r1",
+  "status": "PREREGISTERED_FOR_USER_AUTHORIZED_LOCAL_EXECUTION",
+  "question": "Do the local D+D log responses approach a stable derivative as h decreases, including the negative He3/ddtp response and both Li7 responses?",
+  "parent_issue": 79,
+  "source_package_commit": "5853977d2f2b03e9cf0b2b0cae69ada64421f8c6",
+  "parent_result_commit": "1ce668ca5bd1d79a128f0c1f761c1ff93ebe3464",
+  "parent_contract_sha256": "8b78dce8463dd47e39625f1e785ab6bd06d886332469e2902f6f4e0a0c970cd5",
+  "inherited_inputs": "Same pinned LINX source, native tables, adapter, background, all other q=0 and solver tolerances as the parent package; no fit, retuning or rho inference.",
+  "background_sha256": "e1289712d2c6701ad89269984721e468415a261b559f7f972893cf72324e11f3",
+  "channels": [
+    "ddHe3n",
+    "ddtp"
+  ],
+  "steps": [
+    0.25,
+    0.125
+  ],
+  "signs": {
+    "He3_H_late_ddtp": "Existing observations negative, original preregistered hypothesis positive. Report sign stability/reversal; do not overwrite original hypothesis.",
+    "gate": "Sign agreement is diagnostic, not a software or numerical-convergence gate."
+  },
+  "new_integrations": 8,
+  "observables": [
+    "D_H",
+    "Yp",
+    "He3_H_late",
+    "Li7_H_late"
+  ],
+  "baseline": "Reuse the frozen q=0 baseline and background; do not add a tenth or substitute a nonzero-q control.",
+  "derivative": "a_i(h)=[ln O(+h e_i)-ln O(-h e_i)]/(2h)",
+  "step_diagnostics": {
+    "pairs": [
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.25,
+        0.125
+      ]
+    ],
+    "relative_discrepancy": "abs(a(h)-a(h/2))/max(abs(a(h)),abs(a(h/2)))",
+    "relative_tolerance": 0.01,
+    "comparison": "strictly_less_than",
+    "near_zero_threshold": 1e-08,
+    "near_zero_status": "NEAR_ZERO_RESPONSE; no relative percentage and no automatic relative-convergence PASS",
+    "final_pair": "0.25 versus 0.125, independently for all eight observable/channel components",
+    "failed_status": "STEP_NOT_CONVERGED; retain data; no automatic repeat or tolerance change",
+    "success_scope": "Local finite-step consistency only; not global delta-method validity, measured rho, a certified continuum error, or scientific acceptance"
+  },
+  "order_diagnostic": {
+    "formula": "p=log2(abs(a(0.5)-a(0.25))/abs(a(0.25)-a(0.125)))",
+    "inputs": "Absolute signed-derivative differences, not normalized discrepancy percentages",
+    "report": [
+      "both signed differences",
+      "both absolute differences",
+      "their ratio",
+      "p if both are nonzero",
+      "solver tolerances and statistics"
+    ],
+    "interpretation": "p near 2 is consistent with h^2 truncation. Values near 1 or 0 do not identify a unique error source. Cancellation, higher terms and solver noise can invalidate this interpretation.",
+    "zero_rule": "If either absolute difference is zero, p is undefined; if numerically tiny, report sensitivity rather than assert an order.",
+    "acceptance_threshold": null,
+    "why_no_threshold": "No new numerical noise bound or justified tolerance on p is available; order diagnosis must not become an invented automatic acceptance gate."
+  },
+  "richardson": {
+    "preregistered_formula": "[4*a(h/2)-a(h)]/3",
+    "report_pairs": [
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.25,
+        0.125
+      ]
+    ],
+    "status": "Conditional extrapolation; retain unextrapolated responses as primary. Compare extrapolants and signed differences. Two coarse steps alone do not validate h^2."
+  },
+  "epoch_metadata": {
+    "network_T_start_K": 100000000000,
+    "network_T_end_K": 60000000,
+    "network_time_seconds": "Export actual sol.t0 and sol.t1 with their model-time convention in the future worker; absent from old RESULT.",
+    "post_decay_projection_applied": true,
+    "projection": "He3_late=He3_end+T_end; Li7_late=Li7_end+Be7_end; H=H_end",
+    "observation_epoch": "complete_decay_limit",
+    "evaluation_time_days": null,
+    "assumptions": [
+      "complete parent-to-daughter conversion",
+      "fixed H during projection",
+      "no subsequent nuclear redistribution"
+    ],
+    "finite_time_decay_evolution": "Outside this package; requires environment-dependent kinetics, not the neutral Be7 laboratory clock."
+  },
+  "historical_forecast_seconds": {
+    "eight_perturbations": 168.64521999600004,
+    "eight_baseline_costs": 305.48162854399925,
+    "scope": "Compute only, not setup or a hard cap; calibrate the actual complete package before execution; placement is chosen only by the owner."
+  },
+  "execution_plan": "EXECUTION_PLAN.json",
+  "scientific_acceptance": false,
+  "publication_branch": "science/autonomous-dd-refinement-20261116"
+}

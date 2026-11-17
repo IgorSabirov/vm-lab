@@ -1,0 +1,127 @@
+{
+  "role": "perturb",
+  "source_sha": "cb5f436df8da5ada203baf257cdd0941f06f3ddc",
+  "contract_sha256": "8b78dce8463dd47e39625f1e785ab6bd06d886332469e2902f6f4e0a0c970cd5",
+  "background_sha256": "e1289712d2c6701ad89269984721e468415a261b559f7f972893cf72324e11f3",
+  "upstream_root": "override",
+  "upstream_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "network": "key_PRIMAT_2023",
+  "reaction_order": [
+    "npdg",
+    "dpHe3g",
+    "ddHe3n",
+    "ddtp",
+    "tpag",
+    "tdan",
+    "taLi7g",
+    "He3ntp",
+    "He3dap",
+    "He3aBe7g",
+    "Be7nLi7p",
+    "Li7paa"
+  ],
+  "q_other_reactions": 0.0,
+  "perturbation": {
+    "channel": "ddHe3n",
+    "q": 0.125,
+    "other_reactions_q": "ALL_ZERO",
+    "other_native_tables_unchanged": true,
+    "rate_table_sha256": {
+      "ddHe3n": "76df826f50c70c2c768ce5eb3a949663549cbaa914303dbf678ccac3f991ada6",
+      "ddtp": "9d40f04a44c6c656f49a1a6a107012f9fe71a32d61a7379d8f0fcca9ae6d02cf"
+    }
+  },
+  "initial": [
+    0.463148968581473,
+    0.5368510314185271,
+    3.8540754687098e-12,
+    1.2732517923077141e-23,
+    1.3531014578063937e-23,
+    1.4737575286291695e-34,
+    1.267390661991071e-68,
+    1.2164935065365208e-68
+  ],
+  "final": [
+    7.16081480865085e-11,
+    0.7526894055650738,
+    1.832198944374888e-05,
+    5.8425911404028414e-08,
+    7.7399391019304e-06,
+    0.06181263807288781,
+    2.1886587691086573e-11,
+    4.074776101195659e-10
+  ],
+  "observables": {
+    "D_H": 2.4342031797290724e-05,
+    "Yp": 0.24725055229155124,
+    "He3_H_late": 1.0360667966994815e-05,
+    "Li7_H_late": 5.704400708128896e-10
+  },
+  "refinement_design_sha256": "d264e5deb4fb56c2fbfc41c9225e74d62590af4964d085a44d64ed5832d4961d",
+  "network_parameters": {
+    "T_start_K": 100000000000.0,
+    "T_end_K": 60000000.0,
+    "eta_fac": 1.0,
+    "tau_n_fac": 1.0,
+    "xi_nu": 0.0,
+    "sampling_nTOp": 150,
+    "rtol": 1e-06,
+    "atol": 1e-09,
+    "max_steps": 4096,
+    "save_history": true
+  },
+  "background_parameters": {
+    "Delta_Neff_init": 0.0,
+    "n_out": 512,
+    "max_steps": 512,
+    "decoupled": false,
+    "use_FD": true,
+    "collision_me": true,
+    "LO": true,
+    "NLO": true,
+    "rtol": 1e-08,
+    "atol": 1e-10
+  },
+  "t_network_start_seconds": 0.00924128806305267,
+  "t_network_end_seconds": 49225.77288434088,
+  "model_time_convention": "LINX cosmic time in seconds, inherited from pinned background",
+  "post_decay_projection_applied": true,
+  "observation_epoch": "complete_decay_limit",
+  "projection_assumptions": [
+    "fixed endpoint H",
+    "complete T to He3 and Be7 to Li7 conversion",
+    "no subsequent nuclear redistribution"
+  ],
+  "solver_stats": {
+    "max_steps": 4096,
+    "num_accepted_steps": 896,
+    "num_rejected_steps": 271,
+    "num_steps": 1167
+  },
+  "versions": {
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.12.2",
+    "diffrax": "0.7.1",
+    "interpax": "0.3.8",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "wall_seconds": 26.61312206299999,
+  "cpu_seconds": 26.582090589,
+  "peak_rss_kib": 1194724,
+  "scientific_acceptance": false,
+  "supervisor": {
+    "pid": 52,
+    "exit_code": 0,
+    "process_exited": true,
+    "stop": null,
+    "wall_seconds": 28.254971315999683,
+    "peak_sampled_rss_bytes": 1100111872,
+    "limits": {
+      "wall_seconds": 60,
+      "memory_bytes": 4160749568,
+      "output_bytes": 2147483648
+    }
+  }
+}

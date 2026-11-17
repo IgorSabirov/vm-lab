@@ -1,0 +1,345 @@
+{
+  "result_commit": "1ce668ca5bd1d79a128f0c1f761c1ff93ebe3464",
+  "source_commit": "5853977d2f2b03e9cf0b2b0cae69ada64421f8c6",
+  "hash_checks": {
+    "SUMMARY.json": "aaae4571d6758c904c55171b431e747df8b913f1be12be000916c3fffb1a21ec",
+    "baseline/RESULT.json": "67bf7278893cc346b46df56ed236323bb6edd77e2b82b3007e515563468b6496",
+    "ddHe3n_minus_0_5/RESULT.json": "3f043b025aacd575c4f659aa5f391f2a289927567ab4296c5310a997d9d2c684",
+    "ddHe3n_minus_1_0/RESULT.json": "cb1d560e437abcdffc13162442d4c27a9574fdc95d90afd04afe1b6dd05d6012",
+    "ddHe3n_plus_0_5/RESULT.json": "3aff935ac20c19aca5010769048722d18f98f989ff143ff729646409d52e5f98",
+    "ddHe3n_plus_1_0/RESULT.json": "4a88858b859c3cc87364e80d9e0d8e8d72012dbaa972993a18d277da945237bf",
+    "ddtp_minus_0_5/RESULT.json": "76d7ac87b67ee5a049d4fce809c1a6bbd7bef6529756e7e1df5ccb4d22fd7911",
+    "ddtp_minus_1_0/RESULT.json": "11fe93342ed7b0f1f2647d7e6be8a65f7f4c4665c2c6116b86d269858a65fff2",
+    "ddtp_plus_0_5/RESULT.json": "ae2f2f10b1d96e9d7237b68abc6c9ba1c0081ff1fc7efb814dbd795d087fac94",
+    "ddtp_plus_1_0/RESULT.json": "4362348669f15fecd30f5940cd2db784737ee56cc38910c4b8c416128a6cd493"
+  },
+  "new_integrations": 0,
+  "scientific_acceptance": false,
+  "results": {
+    "D_H": {
+      "a_h1": [
+        -0.00593380007254396,
+        -0.004976068517463794
+      ],
+      "a_h0_5": [
+        -0.005927712018301889,
+        -0.00501068521037773
+      ],
+      "a_Richardson": [
+        -0.005925682666887866,
+        -0.005022224108015709
+      ],
+      "kappa_h0_5": 0.9860413005086163,
+      "kappa_Richardson": 0.9864719026924768,
+      "Richardson_relative_changes_percent": [
+        -0.03423498658095814,
+        0.23028582226798916
+      ],
+      "quadratic_model_ONLY": {
+        "predicted_a_h0_25": [
+          -0.005926190004741372,
+          -0.005019339383606214
+        ],
+        "predicted_a_h0_125": [
+          -0.005925809501351242,
+          -0.005021502926913335
+        ],
+        "predicted_gap_h0_5_to_h0_25_percent": [
+          0.025676239935718607,
+          0.17241657849934489
+        ],
+        "predicted_gap_h0_25_to_h0_125_percent": [
+          0.006420708580470346,
+          0.04308557295715633
+        ]
+      },
+      "directional_hypothesis": {
+        "status": "MATCH",
+        "expected": {
+          "ddHe3n": "negative",
+          "ddtp": "negative"
+        },
+        "observed": {
+          "ddHe3n": "negative",
+          "ddtp": "negative"
+        },
+        "matches": {
+          "ddHe3n": true,
+          "ddtp": true
+        },
+        "note": "Diagnostic network-flow hypothesis; not a software acceptance gate."
+      }
+    },
+    "Yp": {
+      "a_h1": [
+        6.572724256659335e-05,
+        5.68395545343936e-05
+      ],
+      "a_h0_5": [
+        6.573358930950235e-05,
+        5.685328412963209e-05
+      ],
+      "a_Richardson": [
+        6.573570489047202e-05,
+        5.685786066137825e-05
+      ],
+      "kappa_h0_5": 0.9895594168048303,
+      "kappa_Richardson": 0.9895663057543658,
+      "Richardson_relative_changes_percent": [
+        0.003218416934013662,
+        0.008049722749041576
+      ],
+      "quadratic_model_ONLY": {
+        "predicted_a_h0_25": [
+          6.57351759952296e-05,
+          5.685671652844171e-05
+        ],
+        "predicted_a_h0_125": [
+          6.573557266666141e-05,
+          5.6857574628144114e-05
+        ],
+        "predicted_gap_h0_5_to_h0_25_percent": [
+          0.002413754436993933,
+          0.006036927594833703
+        ],
+        "predicted_gap_h0_25_to_h0_125_percent": [
+          0.0006034349678889052,
+          0.0015092091212429498
+        ]
+      },
+      "directional_hypothesis": {
+        "status": "NO_PREREGISTERED_SIGN",
+        "observed": {
+          "ddHe3n": "positive",
+          "ddtp": "positive"
+        }
+      }
+    },
+    "He3_H_late": {
+      "a_h1": [
+        0.002180866562967232,
+        -0.0027263780165442952
+      ],
+      "a_h0_5": [
+        0.0021902189148406137,
+        -0.0027596675890801947
+      ],
+      "a_Richardson": [
+        0.002193336365465074,
+        -0.002770764113258828
+      ],
+      "kappa_h0_5": -0.9738760663926759,
+      "kappa_Richardson": -0.9733002410000516,
+      "Richardson_relative_changes_percent": [
+        0.14233511560588982,
+        0.40209640547076414
+      ],
+      "quadratic_model_ONLY": {
+        "predicted_a_h0_25": [
+          0.002192557002808959,
+          -0.0027679899822141696
+        ],
+        "predicted_a_h0_125": [
+          0.0021931415248010455,
+          -0.0027700705804976633
+        ],
+        "predicted_gap_h0_5_to_h0_25_percent": [
+          0.10663749974801313,
+          0.30066557998586485
+        ],
+        "predicted_gap_h0_25_to_h0_125_percent": [
+          0.026652269608519127,
+          0.07510993756411517
+        ]
+      },
+      "directional_hypothesis": {
+        "status": "DEVIATES_FROM_DIRECTIONAL_HYPOTHESIS",
+        "expected": {
+          "ddHe3n": "positive",
+          "ddtp": "positive"
+        },
+        "observed": {
+          "ddHe3n": "positive",
+          "ddtp": "negative"
+        },
+        "matches": {
+          "ddHe3n": true,
+          "ddtp": false
+        },
+        "note": "Diagnostic network-flow hypothesis; not a software acceptance gate."
+      }
+    },
+    "Li7_H_late": {
+      "a_h1": [
+        0.007266622790053745,
+        0.0005099196449034338
+      ],
+      "a_h0_5": [
+        0.00736022434023198,
+        0.0005327502628347247
+      ],
+      "a_Richardson": [
+        0.007391424856958058,
+        0.0005403604688118216
+      ],
+      "kappa_h0_5": 0.1440101819836376,
+      "kappa_Richardson": 0.1454355150205322,
+      "Richardson_relative_changes_percent": [
+        0.4239071430952425,
+        1.4284753116035267
+      ],
+      "quadratic_model_ONLY": {
+        "predicted_a_h0_25": [
+          0.007383624727776539,
+          0.0005384579173175474
+        ],
+        "predicted_a_h0_125": [
+          0.0073894748246626785,
+          0.0005398848309382531
+        ],
+        "predicted_gap_h0_5_to_h0_25_percent": [
+          0.31692276364654043,
+          1.0600001038626625
+        ],
+        "predicted_gap_h0_25_to_h0_125_percent": [
+          0.07916796558552101,
+          0.26429963187257616
+        ]
+      },
+      "directional_hypothesis": {
+        "status": "MATCH",
+        "expected": {
+          "ddHe3n": "positive",
+          "ddtp": "positive"
+        },
+        "observed": {
+          "ddHe3n": "positive",
+          "ddtp": "positive"
+        },
+        "matches": {
+          "ddHe3n": true,
+          "ddtp": true
+        },
+        "note": "Diagnostic network-flow hypothesis; not a software acceptance gate."
+      }
+    }
+  },
+  "geometry": {
+    "metric": "Euclidean in declared standardized (q_ddHe3n,q_ddtp) coordinates",
+    "column_cosines": {
+      "all": 0.494868698132348,
+      "without_Li7": 0.654476524288372,
+      "D_and_Yp": 0.9999999669302959
+    },
+    "row_pairs": {
+      "D_H_and_Yp": {
+        "oriented_angle_deg": 179.35110284384004,
+        "unoriented_axis_angle_deg": 0.6488971561599831,
+        "condition_number_raw": 7886.867165743113,
+        "condition_number_unit_rows": 176.59244319363393,
+        "raw_determinant": -7.639571836985087e-09
+      },
+      "D_H_and_He3_H_late": {
+        "oriented_angle_deg": 88.22960313331917,
+        "unoriented_axis_angle_deg": 88.22960313331917,
+        "condition_number_raw": 2.2046473663612423,
+        "condition_number_unit_rows": 1.031386663924713,
+        "raw_determinant": 2.7333012258390298e-05
+      },
+      "D_H_and_Li7_H_late": {
+        "oriented_angle_deg": 143.93220091539243,
+        "unoriented_axis_angle_deg": 36.06779908460758,
+        "condition_number_raw": 3.0763451275152547,
+        "condition_number_unit_rows": 3.071498868758817,
+        "raw_determinant": 3.3721777110903694e-05
+      }
+    },
+    "Li7_fraction_of_column1_squared_norm": 0.5756213071441807,
+    "sum_difference": {
+      "D_H": {
+        "sum_component": -0.007734614855711497,
+        "difference_component": -0.0006484358744130267,
+        "minor_to_major_amplitude_ratio": 0.0838355737822162
+      },
+      "Yp": {
+        "sum_component": 8.668200949326903e-05,
+        "difference_component": 6.279324011692286e-06,
+        "minor_to_major_amplitude_ratio": 0.07244091419200295
+      },
+      "He3_H_late": {
+        "sum_component": -0.00040266101909249696,
+        "difference_component": 0.0035000983130261754,
+        "minor_to_major_amplitude_ratio": 0.11504277396835672
+      },
+      "Li7_H_late": {
+        "sum_component": 0.005581175865561665,
+        "difference_component": 0.004827753218502966,
+        "minor_to_major_amplitude_ratio": 0.8650064672379075
+      }
+    },
+    "He3_alignment_with_D_null_axis_abs_cos": 0.9995226560201006
+  },
+  "exact_finite_window_component_decomposition": {
+    "He3_H_late": {
+      "ddHe3n": {
+        "1.0": {
+          "He3": 0.0022112996729663588,
+          "T": -3.0433109999150205e-05
+        },
+        "0.5": {
+          "He3": 0.002222123836843331,
+          "T": -3.190492200265609e-05
+        }
+      },
+      "ddtp": {
+        "1.0": {
+          "He3": -0.002762570683981714,
+          "T": 3.619266743744215e-05
+        },
+        "0.5": {
+          "He3": -0.002795695997110427,
+          "T": 3.602840803037431e-05
+        }
+      }
+    },
+    "Li7_H_late": {
+      "ddHe3n": {
+        "1.0": {
+          "Li7": -3.9766484193273975e-05,
+          "Be7": 0.0073063892742470556
+        },
+        "0.5": {
+          "Li7": -2.230562688966502e-05,
+          "Be7": 0.007382529967121623
+        }
+      },
+      "ddtp": {
+        "1.0": {
+          "Li7": -1.9442702244996574e-05,
+          "Be7": 0.0005293623471484474
+        },
+        "0.5": {
+          "Li7": -3.313573344093276e-05,
+          "Be7": 0.0005658859962757595
+        }
+      }
+    }
+  },
+  "endpoint_parent_fractions": {
+    "T_in_He3_plus_T": 0.007497552967372868,
+    "Be7_in_Li7_plus_Be7": 0.9489720406603864
+  },
+  "Yp_absolute_delta_method_sigma": {
+    "rho_zero": 2.1488159235614703e-05,
+    "maximum_over_rho": 3.0309423113569396e-05
+  },
+  "historical_perturbation_wall_seconds": {
+    "min": 20.73403203999999,
+    "max": 21.241099344000077,
+    "mean": 21.080652499500005,
+    "sum": 168.64521999600004,
+    "eight_run_forecast_at_same_per_run_cost": 168.64521999600004,
+    "eight_run_forecast_at_baseline_cost": 305.48162854399925,
+    "note": "Compute only; hardware/setup dependent, not a hard cap or admission."
+  }
+}
