@@ -60,9 +60,10 @@ No R/C/L/U status is promoted by these documents.
 
 ## Immediate implementation sequence
 
-1. Build and test a strict validator for this schema, including cross-array length,
-   monotonic-time, finite-value, unit and hash checks (JSON Schema alone cannot
-   enforce all of these).
+1. Implemented the first strict validator: `validate_contract.py`. Six unit tests
+   cover valid input, non-monotonic time, misaligned arrays, unknown species,
+   stale hashes and non-finite values; all six passed in a local isolated test.
+   JSON Schema alone cannot enforce all cross-array invariants.
 2. Generate the species/reaction equivalence map for PRIMAT small and LINX
    `key_PRIMAT_2023`; do not infer identity from the matching 8/12 counts.
 3. Implement thin adapters only for capabilities confirmed by pinned upstream
