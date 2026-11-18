@@ -41,6 +41,25 @@ class RegistryIntegrity(unittest.TestCase):
         self.assertIn('premise:C01',{n['key'] for n in g['nodes']})
         self.assertIn('construct:C001',{n['key'] for n in g['nodes']})
 
+    def test_component_genealogy_preserves_typed_boundaries(self):
+        p=self.fixture();_,g=mod.build(p)
+        node=mod.neighborhood(g,'component:NEUTRINO_KINETIC_BRIDGE')
+        self.assertTrue(node['incoming'])
+        self.assertTrue(any(e['target']=='source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json' for e in node['outgoing']))
+        self.change_main(p,lambda d:d['architecture_components'][0].update(scientific_acceptance=True))
+        with self.assertRaisesRegex(ValueError,'cannot accept physics'):mod.build(p)
+
+    def test_component_missing_parent_is_rejected(self):
+        p=self.fixture()
+        self.change_main(p,lambda d:d['architecture_components'][0]['parents'].append({
+            'target':'component:NOT_REGISTERED','relation':'input_contract_dependency','rationale':'negative control'}))
+        with self.assertRaisesRegex(ValueError,'Dangling'):mod.build(p)
+
+    def test_component_unresolved_source_is_rejected(self):
+        p=self.fixture()
+        self.change_main(p,lambda d:d['architecture_components'][0]['source_ids'].append('UNKNOWN_SOURCE'))
+        with self.assertRaisesRegex(ValueError,'Unknown component source'):mod.build(p)
+
     def test_sources_obligations_decisions_are_typed(self):
         p=self.fixture();_,g=mod.build(p)
         self.assertEqual(g['counts']['obligation'],9)

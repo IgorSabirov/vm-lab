@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=130, construct=42, link=10, question=12, premise=66, obligation=9, review=9, external=12, decision=3, source=72.
+Число записей: result=130, construct=42, link=10, question=12, premise=66, obligation=9, review=10, component=33, external=18, decision=3, source=79.
 
 ## Предпосылка → результаты
 
@@ -90,6 +90,303 @@
 ## Карточки и обратные связи
 
 Каждая связь хранится один раз. Входящие и исходящие переходы ниже вычислены из того же графа. Обратный переход — навигация, а не обратное доказательство.
+
+<a id="component-arca_dm_interpretation"></a>
+
+### component:ARCA_DM_INTERPRETATION
+
+Гипотеза распада DM для KM3-230213A — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_dm_interpretation).
+
+**Входящие:** [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `shared_data_not_independent`; [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`.
+**Исходящие:** [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-arca_event_constraints"></a>
+
+### component:ARCA_EVENT_CONSTRAINTS
+
+ARCA: KM3-230213A — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_event_constraints).
+
+**Входящие:** [ARCA_FLUX_RESPONSE](#component-arca_flux_response) `input_contract_dependency`.
+**Исходящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `shared_data_not_independent`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-arca_flux_response"></a>
+
+### component:ARCA_FLUX_RESPONSE
+
+ARCA: поток → отклик детектора — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_flux_response).
+
+**Входящие:** [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `input_contract_dependency`.
+**Исходящие:** [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-astrophysical_source_model"></a>
+
+### component:ASTROPHYSICAL_SOURCE_MODEL
+
+Астрофизические источники и распространение — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#astrophysical_source_model).
+
+**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `conceptual_parent_not_derivation`.
+**Исходящие:** [ARCA_FLUX_RESPONSE](#component-arca_flux_response) `input_contract_dependency`; [KM3NET_SUPERNOVA](#component-km3net_supernova) `input_contract_dependency`; [MULTIMESSENGER_LVK_ICECUBE](#component-multimessenger_lvk_icecube) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-bbn_cmb_observations"></a>
+
+### component:BBN_CMB_OBSERVATIONS
+
+Наблюдения abundances и CMB — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_cmb_observations).
+
+**Входящие:** нет.
+**Исходящие:** [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `derived_consistency_not_independent`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-bbn_response_bridge"></a>
+
+### component:BBN_RESPONSE_BRIDGE
+
+BBN: PRIMAT, LINX, PRyMordial — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_response_bridge).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [LINX](#external-linx) `candidate_source_context_not_evidence`; [LINX](#external-linx) `implementation_candidate_not_execution`; [PRIMAT](#external-primat) `implementation_candidate_not_execution`; [PRYMORDIAL](#external-prymordial) `candidate_source_context_not_evidence`; [PRYMORDIAL](#external-prymordial) `implementation_candidate_not_execution`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-bh1_thermodynamics"></a>
+
+### component:BH1_THERMODYNAMICS
+
+BH1: равновесная термодинамика — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bh1_thermodynamics).
+
+**Входящие:** [ANTHROPIC_HP](#external-anthropic_hp) `conceptual_parent_not_derivation`.
+**Исходящие:** [GW_SOURCE_MODEL](#component-gw_source_model) `input_contract_dependency`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-cern_ntof_rates"></a>
+
+### component:CERN_NTOF_RATES
+
+CERN n_TOF: ядерные данные — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_ntof_rates).
+
+**Входящие:** нет.
+**Исходящие:** [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-cern_particle_constraints"></a>
+
+### component:CERN_PARTICLE_CONSTRAINTS
+
+CERN: лабораторные ограничения X — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_particle_constraints).
+
+**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-copilot_reproduction"></a>
+
+### component:COPILOT_REPRODUCTION
+
+GPT → Copilot → GitHub → проверка — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#copilot_reproduction).
+
+**Входящие:** [R130](#result-r130) `methodological_parent_not_physical_evidence`.
+**Исходящие:** [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-cosmological_background"></a>
+
+### component:COSMOLOGICAL_BACKGROUND
+
+Совместная история X, em, ν и расширения — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background).
+
+**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [PHOTON_THERMALIZATION](#component-photon_thermalization) `input_contract_dependency`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-firas_constraints"></a>
+
+### component:FIRAS_CONSTRAINTS
+
+COBE/FIRAS: фотонный спектр — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#firas_constraints).
+
+**Входящие:** [PHOTON_THERMALIZATION](#component-photon_thermalization) `observational_constraint_requires_mapping`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-gw_bbn_energy_consistency"></a>
+
+### component:GW_BBN_ENERGY_CONSISTENCY
+
+Интегральная GW–BBN согласованность — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_bbn_energy_consistency).
+
+**Входящие:** [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `derived_consistency_not_independent`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`.
+**Исходящие:** [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-gw_response_bridge"></a>
+
+### component:GW_RESPONSE_BRIDGE
+
+Источник → перенос → наблюдаемый ΩGW — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_response_bridge).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [GW_SOURCE_MODEL](#component-gw_source_model) `input_contract_dependency`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `input_contract_dependency`.
+**Исходящие:** [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `input_contract_dependency`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [LVK_CONSTRAINTS](#component-lvk_constraints) `observational_constraint_requires_mapping`; [PTA_CONSTRAINTS](#component-pta_constraints) `observational_constraint_requires_mapping`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-gw_source_model"></a>
+
+### component:GW_SOURCE_MODEL
+
+Источник гравитационных волн — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_source_model).
+
+**Входящие:** [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `input_contract_dependency`; [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`.
+**Исходящие:** [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-joint_inference"></a>
+
+### component:JOINT_INFERENCE
+
+Совместная проверка одной физической модели — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#joint_inference).
+
+**Входящие:** [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `input_contract_dependency`; [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `input_contract_dependency`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `input_contract_dependency`; [FIRAS_CONSTRAINTS](#component-firas_constraints) `input_contract_dependency`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`; [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `input_contract_dependency`; [KM3NET_SUPERNOVA](#component-km3net_supernova) `input_contract_dependency`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `input_contract_dependency`; [LVK_CONSTRAINTS](#component-lvk_constraints) `input_contract_dependency`; [MULTIMESSENGER_LVK_ICECUBE](#component-multimessenger_lvk_icecube) `input_contract_dependency`; [PTA_CONSTRAINTS](#component-pta_constraints) `input_contract_dependency`.
+**Исходящие:** [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-km3net_neutrino_constraints"></a>
+
+### component:KM3NET_NEUTRINO_CONSTRAINTS
+
+KM3NeT: общий экспериментальный интерфейс — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#km3net_neutrino_constraints).
+
+**Входящие:** [ORCA_DECAY](#component-orca_decay) `input_contract_dependency`; [ORCA_DECOHERENCE](#component-orca_decoherence) `input_contract_dependency`; [ORCA_NSI](#component-orca_nsi) `input_contract_dependency`; [ORCA_STERILE](#component-orca_sterile) `input_contract_dependency`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-km3net_supernova"></a>
+
+### component:KM3NET_SUPERNOVA
+
+KM3NeT: вспышки сверхновых — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#km3net_supernova).
+
+**Входящие:** [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `input_contract_dependency`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-late_cosmology_response"></a>
+
+### component:LATE_COSMOLOGY_RESPONSE
+
+Поздняя нейтринная космология — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#late_cosmology_response).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [CLASS_NEUTRINOPHILIC](#external-class_neutrinophilic) `candidate_source_context_not_evidence`; [CLASS_NEUTRINOPHILIC](#external-class_neutrinophilic) `implementation_candidate_not_execution`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-lvk_constraints"></a>
+
+### component:LVK_CONSTRAINTS
+
+LVK: высокочастотный стохастический фон — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lvk_constraints).
+
+**Входящие:** [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `observational_constraint_requires_mapping`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-multimessenger_lvk_icecube"></a>
+
+### component:MULTIMESSENGER_LVK_ICECUBE
+
+Совместные GW–IceCube наблюдения — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#multimessenger_lvk_icecube).
+
+**Входящие:** [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `input_contract_dependency`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-neutrino_kinetic_bridge"></a>
+
+### component:NEUTRINO_KINETIC_BRIDGE
+
+Импульсная и флейворная нейтринная кинетика — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#neutrino_kinetic_bridge).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`; [FORTEPIANO_QKE](#external-fortepiano_qke) `candidate_source_context_not_evidence`; [FORTEPIANO_QKE](#external-fortepiano_qke) `implementation_candidate_not_execution`; [NUDEC_BSM_V2](#external-nudec_bsm_v2) `candidate_source_context_not_evidence`; [NUDEC_BSM_V2](#external-nudec_bsm_v2) `implementation_candidate_not_execution`; [NUDSMC](#external-nudsmc) `candidate_source_context_not_evidence`; [NUDSMC](#external-nudsmc) `implementation_candidate_not_execution`.
+**Исходящие:** [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `input_contract_dependency`; [ORCA_DECAY](#component-orca_decay) `observational_constraint_requires_mapping`; [ORCA_DECOHERENCE](#component-orca_decoherence) `observational_constraint_requires_mapping`; [ORCA_NSI](#component-orca_nsi) `observational_constraint_requires_mapping`; [ORCA_STERILE](#component-orca_sterile) `observational_constraint_requires_mapping`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-nuclear_rate_inputs"></a>
+
+### component:NUCLEAR_RATE_INPUTS
+
+Версионированные ядерные скорости — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#nuclear_rate_inputs).
+
+**Входящие:** [CERN_NTOF_RATES](#component-cern_ntof_rates) `input_contract_dependency`; [LINX](#external-linx) `implementation_candidate_not_execution`; [PRIMAT](#external-primat) `implementation_candidate_not_execution`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-orca_decay"></a>
+
+### component:ORCA_DECAY
+
+ORCA: невидимый распад ν3 — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_decay).
+
+**Входящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `observational_constraint_requires_mapping`; [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
+**Исходящие:** [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-orca_decoherence"></a>
+
+### component:ORCA_DECOHERENCE
+
+ORCA: декогеренция — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_decoherence).
+
+**Входящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `observational_constraint_requires_mapping`; [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
+**Исходящие:** [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-orca_nsi"></a>
+
+### component:ORCA_NSI
+
+ORCA: нестандартные взаимодействия — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_nsi).
+
+**Входящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `observational_constraint_requires_mapping`; [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
+**Исходящие:** [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-orca_sterile"></a>
+
+### component:ORCA_STERILE
+
+ORCA: стерильное состояние — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_sterile).
+
+**Входящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `observational_constraint_requires_mapping`; [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
+**Исходящие:** [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-photon_thermalization"></a>
+
+### component:PHOTON_THERMALIZATION
+
+Фотонная термализация и поздний нагрев — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#photon_thermalization).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`.
+**Исходящие:** [FIRAS_CONSTRAINTS](#component-firas_constraints) `observational_constraint_requires_mapping`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-pta_constraints"></a>
+
+### component:PTA_CONSTRAINTS
+
+PTA: низкочастотные GW — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#pta_constraints).
+
+**Входящие:** [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `observational_constraint_requires_mapping`.
+**Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-r130_physical_embedding"></a>
+
+### component:R130_PHYSICAL_EMBEDDING
+
+Физическое вложение R130 — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#r130_physical_embedding).
+
+**Входящие:** [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `conceptual_parent_not_derivation`; [C042](#construct-c042) `context_not_evidence`; [R130](#result-r130) `conceptual_parent_not_derivation`.
+**Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `conceptual_parent_not_derivation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-tensor_neutrino_response"></a>
+
+### component:TENSOR_NEUTRINO_RESPONSE
+
+Тензорная анизотропия нейтрино — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#tensor_neutrino_response).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`.
+**Исходящие:** [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-weak_rate_bridge"></a>
+
+### component:WEAK_RATE_BRIDGE
+
+Согласованные скорости n↔p — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#weak_rate_bridge).
+
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-x_microphysics"></a>
+
+### component:X_MICROPHYSICS
+
+Общая микрофизика сектора X — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics).
+
+**Входящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`.
+**Исходящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `input_contract_dependency`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `conceptual_parent_not_derivation`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `observational_constraint_requires_mapping`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [GW_SOURCE_MODEL](#component-gw_source_model) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [ORCA_DECAY](#component-orca_decay) `observational_constraint_requires_mapping`; [ORCA_DECOHERENCE](#component-orca_decoherence) `observational_constraint_requires_mapping`; [ORCA_NSI](#component-orca_nsi) `observational_constraint_requires_mapping`; [ORCA_STERILE](#component-orca_sterile) `observational_constraint_requires_mapping`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="construct-c001"></a>
 
@@ -466,8 +763,8 @@ CSG / TP и отмеченное будущее — [исходная карто
 
 Релятивистская причинность, настоящее и коррекция к границам — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c042).
 
-**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `joint_model_requirement`.
-**Исходящие:** нет.
+**Входящие:** [R123](#result-r123) `addresses`; [R124](#result-r124) `addresses`; [R125](#result-r125) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `joint_model_requirement`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `joint_model_requirement`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `context_not_evidence`.
 
 <a id="decision-d001"></a>
 
@@ -512,7 +809,7 @@ The spinless modular bootstrap at large central charge — [исходная к�
 The Hawking-Page transition at weak coupling — [исходная карточка](../../infra/external/contracts/ANTHROPIC_HP.json).
 
 **Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `joint_model_requirement`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `joint_model_requirement`.
-**Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [F05](#premise-f05) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
+**Исходящие:** [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `conceptual_parent_not_derivation`; [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [F05](#premise-f05) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
 <a id="external-bfss_bmn"></a>
 
@@ -540,6 +837,24 @@ CCC SPARC: наблюдательная реализация, не полный 
 
 **Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [F02](#premise-f02) `candidate_source_context_not_evidence`; [R127](#result-r127) `candidate_source_context_not_evidence`.
+
+<a id="external-class_neutrinophilic"></a>
+
+### external:CLASS_NEUTRINOPHILIC
+
+CLASS_neutrinophilic: поздняя ν–скалярная космология — [исходная карточка](../../infra/external/contracts/CLASS_NEUTRINOPHILIC.json).
+
+**Входящие:** нет.
+**Исходящие:** [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `candidate_source_context_not_evidence`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `implementation_candidate_not_execution`.
+
+<a id="external-fortepiano_qke"></a>
+
+### external:FORTEPIANO_QKE
+
+FortEPiaNO: опубликованный QKE-эталон, code pin открыт — [исходная карточка](../../infra/external/contracts/FORTEPIANO_QKE.json).
+
+**Входящие:** нет.
+**Исходящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `candidate_source_context_not_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `implementation_candidate_not_execution`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json](#source-analysis-neutrino_gw_architecture_20261118-fortepiano_source-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-gordion"></a>
 
@@ -577,6 +892,33 @@ CCC SPARC: наблюдательная реализация, не полный 
 **Входящие:** нет.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
+<a id="external-linx"></a>
+
+### external:LINX
+
+LINX: дифференцируемая BBN-сеть — [исходная карточка](../../infra/external/contracts/LINX.json).
+
+**Входящие:** нет.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `candidate_source_context_not_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `implementation_candidate_not_execution`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`.
+
+<a id="external-nudec_bsm_v2"></a>
+
+### external:NUDEC_BSM_V2
+
+nudec_BSM v2: моментум-осреднённая термодинамика — [исходная карточка](../../infra/external/contracts/NUDEC_BSM_V2.json).
+
+**Входящие:** нет.
+**Исходящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `candidate_source_context_not_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `implementation_candidate_not_execution`.
+
+<a id="external-nudsmc"></a>
+
+### external:NUDSMC
+
+νDSMC: неравновесный транспорт нейтрино и нестабильный реликт — [исходная карточка](../../infra/external/contracts/NUDSMC.json).
+
+**Входящие:** нет.
+**Исходящие:** [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `candidate_source_context_not_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `implementation_candidate_not_execution`.
+
 <a id="external-primat"></a>
 
 ### external:PRIMAT
@@ -584,7 +926,16 @@ CCC SPARC: наблюдательная реализация, не полный 
 PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
 
 **Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
-**Исходящие:** [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `implementation_candidate_not_execution`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
+
+<a id="external-prymordial"></a>
+
+### external:PRYMORDIAL
+
+PRyMordial: дополнительный BBN-приёмник — [исходная карточка](../../infra/external/contracts/PRYMORDIAL.json).
+
+**Входящие:** нет.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `candidate_source_context_not_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `implementation_candidate_not_execution`.
 
 <a id="external-qsc_operators"></a>
 
@@ -682,7 +1033,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Организация → физическое пространство-время — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#l09).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `joint_model_requirement`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [U001](#question-u001) `related_open_link`; [U003](#question-u003) `related_open_link`; [U004](#question-u004) `related_open_link`; [U005](#question-u005) `related_open_link`; [U006](#question-u006) `related_open_link`; [U007](#question-u007) `related_open_link`; [U009](#question-u009) `related_open_link`; [R123](#result-r123) `boundary_open`; [R124](#result-r124) `boundary_open`; [R125](#result-r125) `boundary_open`; [R126](#result-r126) `boundary_open`; [R127](#result-r127) `boundary_open`; [R128](#result-r128) `boundary_open`; [R130](#result-r130) `boundary_open`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `joint_model_requirement`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `joint_model_requirement`.
 **Исходящие:** нет.
 
 <a id="link-l10"></a>
@@ -1420,7 +1771,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Откуда берутся причинная и метрическая структуры? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u006).
 
-**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`.
+**Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [R123](#result-r123) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`.
 **Исходящие:** [L09](#link-l09) `related_open_link`.
 
 <a id="question-u007"></a>
@@ -1456,7 +1807,7 @@ PRIMAT: авторская сеть первичного нуклеосинте�
 
 Как передать следующему носителю способность воспроизводить условия дальнейшего действия? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u010).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`.
 **Исходящие:** [L04](#link-l04) `related_open_link`; [L06](#link-l06) `related_open_link`; [L07](#link-l07) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u011"></a>
@@ -2644,8 +2995,8 @@ ADD: четыре семантики транспорта, периодично�
 
 ADD: воспроизведение C1/A, симметрия C2 и активный цикл без роста — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r130).
 
-**Входящие:** [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R126](#result-r126) `parent`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`.
-**Исходящие:** [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json](#source-analysis-add_c1_author_repro_20261116-plan-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json](#source-analysis-add_c1_author_repro_20261116-preflight-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md](#source-analysis-add_c1_author_repro_20261116-report_block1-md) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json](#source-analysis-add_c1_author_repro_20261116-results-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256](#source-analysis-add_c1_author_repro_20261116-source_manifest-sha256) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json](#source-analysis-add_c1_author_repro_20261116-spec-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json](#source-analysis-add_c1_author_repro_20261116-witnesses-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py](#source-analysis-add_c1_author_repro_20261116-graph_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py](#source-analysis-add_c1_author_repro_20261116-ring_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py](#source-analysis-add_c1_author_repro_20261116-run_block1-py) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json](#source-analysis-add_c1_reproduction_status_20261117-evidence-json) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md](#source-analysis-add_c1_reproduction_status_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json](#source-analysis-add_neighbor_synthesis_20261117-checks-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py](#source-analysis-add_neighbor_synthesis_20261117-verify-py) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_checks-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_review-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json](#source-analysis-r130_bh1_bbn_connection_20261117-connection_contract-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md](#source-analysis-r130_bh1_bbn_connection_20261117-report-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py](#source-analysis-r130_bh1_bbn_connection_20261117-verify_architecture-py) `managed_evidence_source`.
+**Входящие:** [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R126](#result-r126) `parent`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`.
+**Исходящие:** [COPILOT_REPRODUCTION](#component-copilot_reproduction) `methodological_parent_not_physical_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`; [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json](#source-analysis-add_c1_author_repro_20261116-plan-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json](#source-analysis-add_c1_author_repro_20261116-preflight-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md](#source-analysis-add_c1_author_repro_20261116-report_block1-md) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json](#source-analysis-add_c1_author_repro_20261116-results-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256](#source-analysis-add_c1_author_repro_20261116-source_manifest-sha256) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json](#source-analysis-add_c1_author_repro_20261116-spec-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json](#source-analysis-add_c1_author_repro_20261116-witnesses-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py](#source-analysis-add_c1_author_repro_20261116-graph_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py](#source-analysis-add_c1_author_repro_20261116-ring_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py](#source-analysis-add_c1_author_repro_20261116-run_block1-py) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json](#source-analysis-add_c1_reproduction_status_20261117-evidence-json) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md](#source-analysis-add_c1_reproduction_status_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json](#source-analysis-add_neighbor_synthesis_20261117-checks-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py](#source-analysis-add_neighbor_synthesis_20261117-verify-py) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_checks-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_review-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json](#source-analysis-r130_bh1_bbn_connection_20261117-connection_contract-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md](#source-analysis-r130_bh1_bbn_connection_20261117-report-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py](#source-analysis-r130_bh1_bbn_connection_20261117-verify_architecture-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -2913,6 +3264,25 @@ R130–BH1–BBN: разбор соседей, предпосылки и при�
 | [U010](#question-u010) `scope_boundary` | Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение. | [разбор](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#review-verdict) |
 | [R126](#result-r126) `scope_boundary` | Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130. | [разбор](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators) |
 | [R130](#result-r130) `scope_boundary` | Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. | [разбор](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators) |
+
+**Не включены в положительные связи:**
+
+<a id="review-neutrino_gw_architecture_20261118"></a>
+
+### review:NEUTRINO_GW_ARCHITECTURE_20261118
+
+R130–BH1–BBN: нейтрино, GW и экспериментальные ограничения; полная генеалогия — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [C042](#construct-c042) `joint_model_requirement`; [L09](#link-l09) `joint_model_requirement`; [U006](#question-u006) `scope_boundary`; [U010](#question-u010) `scope_boundary`; [R130](#result-r130) `scope_boundary`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json](#source-analysis-neutrino_gw_architecture_20261118-fortepiano_source-json) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json](#source-analysis-neutrino_gw_architecture_20261118-gw_response_bridge-json) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json](#source-analysis-neutrino_gw_architecture_20261118-km3net_neutrino_constraints-json) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json](#source-analysis-neutrino_gw_architecture_20261118-neutrino_kinetic_bridge-json) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md](#source-analysis-neutrino_gw_architecture_20261118-report-md) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `review_source_not_attestation`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json](#source-analysis-neutrino_gw_architecture_20261118-validation_plan-json) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [C042](#construct-c042) `joint_model_requirement` | Причинная совместимость остаётся требованием, не термодинамическим доказательством. | [разбор](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope) |
+| [L09](#link-l09) `joint_model_requirement` | Сопряжение требует общего физического закона и параметров. | [разбор](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope) |
+| [U006](#question-u006) `scope_boundary` | Происхождение геометрии остаётся открытым. | [разбор](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope) |
+| [U010](#question-u010) `scope_boundary` | Нейтринная/GW наблюдаемость не закрывает внутреннее функциональное продолжение. | [разбор](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope) |
+| [R130](#result-r130) `scope_boundary` | Новый мост не выводится из воспроизведения R130. | [разбор](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope) |
 
 **Не включены в положительные связи:**
 
@@ -3427,6 +3797,69 @@ analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md — [исходная карт�
 analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json — [исходная карточка](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json).
 
 **Входящие:** [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-fortepiano_source-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json).
+
+**Входящие:** [FORTEPIANO_QKE](#external-fortepiano_qke) `external_metadata_not_execution_evidence`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-gw_response_bridge-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json).
+
+**Входящие:** [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-km3net_neutrino_constraints-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json).
+
+**Входящие:** [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-neutrino_kinetic_bridge-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json).
+
+**Входящие:** [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-report-md"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md).
+
+**Входящие:** [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-sources-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json).
+
+**Входящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `source_catalog_not_execution_evidence`; [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `source_catalog_not_execution_evidence`; [ARCA_FLUX_RESPONSE](#component-arca_flux_response) `source_catalog_not_execution_evidence`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `source_catalog_not_execution_evidence`; [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `source_catalog_not_execution_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `source_catalog_not_execution_evidence`; [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `source_catalog_not_execution_evidence`; [CERN_NTOF_RATES](#component-cern_ntof_rates) `source_catalog_not_execution_evidence`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `source_catalog_not_execution_evidence`; [COPILOT_REPRODUCTION](#component-copilot_reproduction) `source_catalog_not_execution_evidence`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `source_catalog_not_execution_evidence`; [FIRAS_CONSTRAINTS](#component-firas_constraints) `source_catalog_not_execution_evidence`; [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `source_catalog_not_execution_evidence`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `source_catalog_not_execution_evidence`; [GW_SOURCE_MODEL](#component-gw_source_model) `source_catalog_not_execution_evidence`; [JOINT_INFERENCE](#component-joint_inference) `source_catalog_not_execution_evidence`; [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `source_catalog_not_execution_evidence`; [KM3NET_SUPERNOVA](#component-km3net_supernova) `source_catalog_not_execution_evidence`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `source_catalog_not_execution_evidence`; [LVK_CONSTRAINTS](#component-lvk_constraints) `source_catalog_not_execution_evidence`; [MULTIMESSENGER_LVK_ICECUBE](#component-multimessenger_lvk_icecube) `source_catalog_not_execution_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `source_catalog_not_execution_evidence`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `source_catalog_not_execution_evidence`; [ORCA_DECAY](#component-orca_decay) `source_catalog_not_execution_evidence`; [ORCA_DECOHERENCE](#component-orca_decoherence) `source_catalog_not_execution_evidence`; [ORCA_NSI](#component-orca_nsi) `source_catalog_not_execution_evidence`; [ORCA_STERILE](#component-orca_sterile) `source_catalog_not_execution_evidence`; [PHOTON_THERMALIZATION](#component-photon_thermalization) `source_catalog_not_execution_evidence`; [PTA_CONSTRAINTS](#component-pta_constraints) `source_catalog_not_execution_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `source_catalog_not_execution_evidence`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `source_catalog_not_execution_evidence`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `source_catalog_not_execution_evidence`; [X_MICROPHYSICS](#component-x_microphysics) `source_catalog_not_execution_evidence`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-neutrino_gw_architecture_20261118-validation_plan-json"></a>
+
+### source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json
+
+analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json).
+
+**Входящие:** [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-primat_integration_20261113-report-md"></a>

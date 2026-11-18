@@ -1,0 +1,66 @@
+{
+  "schema": "vm-lab-neutrino-kinetic-contract-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "implemented_adapter": false,
+  "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+  "inputs": [
+    "model_id and parameter_map_id",
+    "source commits and collision operator version",
+    "t[s], a normalization, H[s^-1], Tgamma[MeV], e± EOS and chemical potentials",
+    "physical p[MeV] or comoving q=a*p, explicit quadrature/bin edges/tails",
+    "initial neutrino and antineutrino states, flavor basis and sterile dimension",
+    "X state, initial abundances, decay/inverse/scattering processes and conservation laws"
+  ],
+  "representations": {
+    "density_matrix": "rho_p, barrho_p, basis and complex offdiagonals; trace per momentum gives occupation sum",
+    "separate_spectra": "f_nu_alpha and f_antinu_alpha with declared helicity degeneracy; no offdiagonal reconstruction",
+    "moments": "T_alpha, mu_alpha and closure assumption; reconstructed FD is approximation, not momentum-resolved evidence"
+  },
+  "nudsmc_conversion": {
+    "limitation": "Public BBN format assumes f_nu=f_antinu; asymmetric histories unsupported without extension",
+    "input": "dn_(nu_alpha+antinu_alpha)/dp",
+    "formula_UR_equal_distributions": "f_nu_alpha=f_antinu_alpha=pi^2/p^2 * dn_pair/dp, in hbar=c=1 units with one helicity per particle",
+    "requirements": [
+      "check p versus energy and bin-integrated versus density values",
+      "convert volume/energy units before conversion",
+      "retain raw spectrum, bin edges and MC uncertainty",
+      "do not manufacture antineutrino asymmetry or coherence"
+    ]
+  },
+  "equation": "(d_t-H*p*d_p) rho_p = -i[H_p,rho_p] + C_SM + C_X; separate antineutrino equation",
+  "hamiltonian": "U M^2 Udag/(2p) + V_SM + V_NSI + V_X; model-dependent basis and medium",
+  "outputs": [
+    "f_nue, f_antinue and other flavors when supported",
+    "rho_nu, P_nu from declared momentum integrals",
+    "Q_Xnu and Q_emnu as separately labelled energy moments of collision terms",
+    "weak n->p and p->n tables only through a declared weak-rate calculation with electrons, tau_n and corrections"
+  ],
+  "energy_bookkeeping": "d rho_i/dt+3H(rho_i+P_i)=Q_i; sum_i Q_i=0 for the declared closed set. Export residuals in consistent units, including hbar conversion between MeV and seconds.",
+  "checks": [
+    "Hermiticity and occupancy eigenvalues in [0,1] when full density matrices are represented",
+    "energy and conserved-charge residuals",
+    "moment consistency with spectra and quadrature convergence",
+    "momentum-tail coverage and MC seeds/uncertainty",
+    "common weak corrections and neutron lifetime",
+    "initialization epoch: nuDSMC Mathematica BBN starts neutron equilibrium at Tgamma=3 MeV; validate nonstandard earlier histories"
+  ],
+  "unsupported_inferences": [
+    "isotropic spectra do not supply tensor anisotropic stress",
+    "effective open-system kinetics does not prove a fundamental global time arrow",
+    "moments cannot certify nonthermal spectra",
+    "same H(T) does not imply same weak history"
+  ],
+  "bbn_negotiation": {
+    "existing_schema": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json",
+    "extensions_required": [
+      "basis/flavor/antineutrino representation",
+      "weak rates with correction metadata",
+      "source-labelled collision energy moments",
+      "capability declaration and rejection of unsupported inputs"
+    ],
+    "primat": "custom_background has documented neutrino-correction limitations; external rate/spectrum hook must be verified and implemented",
+    "linx": "xi_nu affects weak rates without automatically updating rho_nu/Neff; simplified flavor state and interpolation assumptions require adapter work",
+    "history": "Do not sort away nonmonotonic T evolution; use a valid time parameterization and test caches/interpolation."
+  }
+}

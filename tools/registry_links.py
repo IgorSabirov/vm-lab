@@ -24,6 +24,12 @@ REVIEW_RELATIONS = {
     'joint_model_requirement', 'conditional_open_system_constraint',
     'classification_only', 'time_scale_analogy', 'premise_context_not_evidence',
 }
+COMPONENT_RELATIONS = {
+    'conceptual_parent_not_derivation', 'input_contract_dependency',
+    'implementation_candidate_not_execution', 'observational_constraint_requires_mapping',
+    'shared_data_not_independent', 'derived_consistency_not_independent',
+    'methodological_parent_not_physical_evidence', 'context_not_evidence',
+}
 
 
 def strip_block(text, key):
@@ -169,6 +175,7 @@ def build(root):
     groups['premise'] = unique(premise_rows, PREMISES)
     groups['obligation'] = unique(parse_obligations(raw[PREMISES]), 'obligations')
     groups['review'] = unique(main.get('external_reviews', []), 'external reviews')
+    groups['component'] = unique(main.get('architecture_components', []), 'architecture components')
     raw[EXTERNAL] = (root/EXTERNAL).read_text()
     groups['external'] = unique(json.loads(raw[EXTERNAL]).get('external_integrations', []), 'external sources')
     for item in groups['external'].values():
@@ -194,14 +201,49 @@ def build(root):
             if kind == 'source': path = item['path']
             if kind == 'decision': path = 'decisions/'+ident+'.md'
             if kind == 'external': path = item['contract']
+            if kind == 'component': path = item['path']
             nodes.append({"key": f"{kind}:{ident}", "id": ident, "kind": kind, "title": item.get('title',item.get('current_statement','')),
                           "status": item.get('status'), "path": path,
-                          "fragment": ('premise-'+ident.lower() if kind=='premise' else 'obligation-'+ident.lower() if kind=='obligation' else ident.lower() if kind in {'result','construct','link','question'} else ''), **({k:item[k] for k in ('sha256','git_blob_sha','size_bytes')} if kind=='source' else {})})
+                          "fragment": (item['fragment'] if kind=='component' else 'premise-'+ident.lower() if kind=='premise' else 'obligation-'+ident.lower() if kind=='obligation' else ident.lower() if kind in {'result','construct','link','question'} else ''), **({k:item[k] for k in ('sha256','git_blob_sha','size_bytes')} if kind=='source' else {})})
     edges = set()
     def add(ka, a, kb, b, relation):
         if a not in groups[ka] or b not in groups[kb]:
             raise ValueError(f"Dangling typed reference: {ka}:{a} -> {kb}:{b}")
         edges.add((f"{ka}:{a}",f"{kb}:{b}",relation))
+    component_details = {}
+    for ident, item in groups['component'].items():
+        if item.get('scientific_acceptance') is not False:
+            raise ValueError('Architecture registration cannot accept physics')
+        if not item.get('status') or not item.get('boundary') or not item.get('next_gate'):
+            raise ValueError('Component needs status, boundary and next gate')
+        if item['path'] not in source_rows or f'id="{item["fragment"]}"' not in (root/item['path']).read_text():
+            raise ValueError('Component needs an anchored managed report')
+        catalog = item['source_catalog']
+        if catalog not in source_rows:
+            raise ValueError('Component source catalog must be managed')
+        sources = json.loads((root/catalog).read_text())['sources']
+        if any(key not in sources for key in item['source_ids']):
+            raise ValueError('Unknown component source identity')
+        if not item['source_ids'] and not item['parents']:
+            raise ValueError('Component needs provenance')
+        seen = set()
+        for parent in item['parents']:
+            target, relation = parent['target'], parent['relation']
+            if target == 'component:'+ident or (target,relation) in seen:
+                raise ValueError('Self or duplicate component parent')
+            seen.add((target,relation))
+            if relation not in COMPONENT_RELATIONS or not parent.get('rationale'):
+                raise ValueError('Unknown or unexplained component relation')
+            kind, key = target.split(':',1)
+            if kind not in groups:
+                raise ValueError('Unknown component parent kind')
+            add(kind,key,'component',ident,relation)
+            component_details[(target,'component:'+ident,relation)] = {
+                'rationale': parent['rationale'],
+                'evidence': item['path']+'#'+item['fragment'],
+                'claim': ident,
+            }
+        add('component',ident,'source',catalog,'source_catalog_not_execution_evidence')
     for ident, item in groups['external'].items():
         for target in item['links']:
             kind, key = target.split(':', 1)
@@ -301,7 +343,7 @@ def build(root):
              "counts": {k:len(v) for k,v in groups.items()},
              "semantics":"Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
              "nodes": sorted(nodes,key=lambda x:x['key']),
-             "edges": [{"source":a,"target":b,"relation":r, **review_details.get((a,b,r),{})} for a,b,r in sorted(edges)],
+             "edges": [{"source":a,"target":b,"relation":r, **component_details.get((a,b,r),{}), **review_details.get((a,b,r),{})} for a,b,r in sorted(edges)],
              "excluded_review_links": exclusions}
     bykey = {x['key']: x for x in nodes}
     def mdlink(key):
@@ -373,6 +415,14 @@ def build(root):
     md=ensure_main_anchors(md, set(groups['result']) | set(groups['construct']) | set(groups['link']))
     md=card_backlinks(md,{'result','construct'})
     md=replace_block(md,'external-review-links',review_table({'result','construct','link'}))
+    if groups['component']:
+        rows=['## Архитектурные элементы и генеалогия', '',
+              'Карточки интерфейсов, источников наблюдений и открытых физических соответствий. Регистрация не означает реализацию или научную приёмку.', '',
+              '| Элемент | Статус | Родители и основания |', '|---|---|---|']
+        for ident,item in groups['component'].items():
+            parents='; '.join(f"`{p['target']}` ({p['relation']})" for p in item['parents']) or 'Первичные источники в карточке'
+            rows.append(f"| [{ident}](../../{item['path']}#{item['fragment']}) | {item['status']} | {parents} |")
+        md=replace_block(md,'architecture-components','\n'.join(rows))
     qmd=card_backlinks(ensure_question_anchors((root/QUESTIONS_MD).read_text(), set(groups['question'])),{'question'})
     qmd=replace_block(qmd,'external-review-links',review_table({'question'}))
     outputs[QUESTIONS_MD]=qmd

@@ -1,0 +1,104 @@
+{
+  "schema": "vm-lab-neutrino-gw-validation-plan-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "scientific_runs_performed": 0,
+  "executor_selected": null,
+  "runtime_limit_seconds": null,
+  "placement_authority": "user",
+  "stages": [
+    {
+      "id": "V0",
+      "title": "Static readiness",
+      "required_inputs": "source/licensing/platform pins and capability intersection",
+      "criterion_scope": "canonical Fort code pin; nuDSMC Linux/Mathematica readiness; no solver execution",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V1",
+      "title": "SM neutrino baseline",
+      "required_inputs": "same cosmology, initial state, electron/QED treatment and constants",
+      "criterion_scope": "compare rho_nu, Neff and energy balance; moments vs full spectra not forced equal",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V2",
+      "title": "Weak-rate interchange",
+      "required_inputs": "fixed f_nue,f_antinue and electron distributions with common correction scheme",
+      "criterion_scope": "compare n↔p integrals independently of background evolution",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V3",
+      "title": "Common X injection",
+      "required_inputs": "one symmetric small injection with identical forward/inverse processes",
+      "criterion_scope": "Fort X extension must first be sourced/implemented; no current plug-and-play claim",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V4",
+      "title": "Nonthermal convergence",
+      "required_inputs": "momentum grids/tails, time tolerances, seeds and MC statistics",
+      "criterion_scope": "full-QKE vs DSMC in their common physical regime; nudec is closure diagnostic",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V5",
+      "title": "BBN receiver comparison",
+      "required_inputs": "identical rates/uncertainties/weak history, eta, tau_n and initial conditions",
+      "criterion_scope": "PRIMAT/LINX first; PRyM optional; shared nuclear data are common systematics",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V6",
+      "title": "Tensor transfer control",
+      "required_inputs": "known primordial spectrum and declared collision/perturbation model",
+      "criterion_scope": "coupled/free-streaming limits; no inference from background f alone",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "V7",
+      "title": "Observational application",
+      "required_inputs": "one defined X, official likelihoods and overlap graph",
+      "criterion_scope": "BBN data once; ORCA analyses not blindly multiplied; ARCA interpretation is not second event",
+      "absolute_tolerance": null,
+      "relative_tolerance": null,
+      "tolerance_basis": "To be frozen after a declared pilot/calibration and upstream reference inspection, before confirmatory comparison.",
+      "status": "NOT_RUN"
+    }
+  ],
+  "reproduction_receipt": [
+    "frozen source+adapter commits",
+    "environment/container digest and dependency lock",
+    "model/initial conditions/units and full process switches",
+    "random seeds, grid, tolerances and pilot runtime estimate",
+    "commands, raw outputs, stderr/stdout and exit codes",
+    "SHA256 manifests and decoded payload comparison",
+    "original and repaired code versions; rerun all affected controls after repairs",
+    "GitHub committed raw/results/registry links; GPT verification; user scientific acceptance"
+  ],
+  "repair_boundary": "Copilot may fix declared engineering defects; changes to physical operators, parameters or acceptance criteria require a separately visible model revision and invalidate affected prior comparisons.",
+  "authorized_delivery_route": "GPT -> GitHub package -> Copilot/GitHub execution -> committed raw -> GPT verification",
+  "executor_selection_note": "GitHub/Copilot route already chosen by owner; concrete runnable environment for this new package remains unverified. No automatic move to VM or arbitrary command bridge."
+}

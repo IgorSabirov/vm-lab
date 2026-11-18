@@ -1,0 +1,45 @@
+{
+  "schema": "vm-lab-gw-response-contract-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "implemented_adapter": false,
+  "inputs": [
+    "same physical model_id/parameter map as neutrino and background",
+    "source epoch, source mechanism, primordial spectrum and UV/IR cutoffs",
+    "full expansion/entropy history",
+    "tensor perturbation hierarchy and pi_TT(k,t); isotropic QKE is insufficient",
+    "frequency, polarization, a0 and h0 conventions",
+    "foreground populations and detector response"
+  ],
+  "tensor_equation_conformal_time": "h_second + 2*calH*h_prime + k^2*h = 16*pi*G*a^2*pi_TT",
+  "source_requirements": {
+    "phase_transition": [
+      "nucleation history",
+      "beta_PT/H",
+      "wall velocity",
+      "efficiency factors",
+      "source duration"
+    ],
+    "boundary": "BH1 latent heat alone is not a GW source model; beta_PT differs from a clock-map exponent beta."
+  },
+  "outputs": [
+    "Omega_GW_today(f) with uncertainty",
+    "generation/transfer contributions separately",
+    "rho_GW at BBN integrated only over relevant subhorizon modes",
+    "detector-band predicted response"
+  ],
+  "bbn_consistency": {
+    "formula": "h0^2 integral Omega_GW_today(f) dlnf <= 5.6e-6 Delta_Neff_max",
+    "conditions": [
+      "waves generated before BBN",
+      "subhorizon modes at the constraint epoch",
+      "declared entropy/redshift and radiation normalization",
+      "specified UV cutoff and out-of-band spectrum"
+    ],
+    "likelihood_role": "DERIVED_FROM_BBN_CMB_NOT_INDEPENDENT",
+    "overlap_group": "BBN_CMB_RADIATION_BUDGET",
+    "preferred_implementation": "include rho_GW in common background and evaluate abundance/CMB observations once"
+  },
+  "pta_scope": "nHz decoupling feature is a theoretical response target, not an identified observed feature",
+  "lvk_scope": "25 Hz amplitude bound cannot replace the cosmological integral; posterior depends on spectral index and prior"
+}

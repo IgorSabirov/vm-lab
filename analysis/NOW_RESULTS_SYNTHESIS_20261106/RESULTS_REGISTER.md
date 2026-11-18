@@ -747,6 +747,8 @@
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
 
 **Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#clock-energy); `joint_model_requirement`. Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
+
+**Внешний разбор:** [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope); `joint_model_requirement`. Причинная совместимость остаётся требованием, не термодинамическим доказательством. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
 <!-- /generated:review-card-construct-c042 -->
 
 
@@ -3965,6 +3967,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `joint_model_requirement` | Данные CERN применимы только через одну физическую модель X и не выводят пространство-время из R130. |
 | [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130. |
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. |
+| [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Причинная совместимость остаётся требованием, не термодинамическим доказательством. |
+| [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Сопряжение требует общего физического закона и параметров. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Новый мост не выводится из воспроизведения R130. |
 <!-- /generated:external-review-links -->
 
 <!-- generated:R130 -->
@@ -3978,6 +3983,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#active-cycle); `scope_boundary`. Условные выводы внесены в отдельную дочернюю карточку; вечная активность при L=3 не равна организационному замыканию. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators); `scope_boundary`. Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope); `scope_boundary`. Новый мост не выводится из воспроизведения R130. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 <!-- /generated:review-card-result-r130 -->
 
 
@@ -3997,3 +4004,45 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R130 -->
+
+<!-- generated:architecture-components -->
+## Архитектурные элементы и генеалогия
+
+Карточки интерфейсов, источников наблюдений и открытых физических соответствий. Регистрация не означает реализацию или научную приёмку.
+
+| Элемент | Статус | Родители и основания |
+|---|---|---|
+| [BH1_THERMODYNAMICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bh1_thermodynamics) | EXISTING_REDUCED_CONTRACT | `external:ANTHROPIC_HP` (conceptual_parent_not_derivation) |
+| [R130_PHYSICAL_EMBEDDING](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#r130_physical_embedding) | OPEN | `result:R130` (conceptual_parent_not_derivation); `component:BH1_THERMODYNAMICS` (conceptual_parent_not_derivation); `construct:C042` (context_not_evidence) |
+| [X_MICROPHYSICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics) | UNDEFINED | `component:R130_PHYSICAL_EMBEDDING` (conceptual_parent_not_derivation) |
+| [COSMOLOGICAL_BACKGROUND](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency) |
+| [NEUTRINO_KINETIC_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#neutrino_kinetic_bridge) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `external:NUDSMC` (implementation_candidate_not_execution); `external:NUDEC_BSM_V2` (implementation_candidate_not_execution); `external:FORTEPIANO_QKE` (implementation_candidate_not_execution) |
+| [WEAK_RATE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#weak_rate_bridge) | CONTRACT_DRAFT | `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
+| [CERN_NTOF_RATES](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_ntof_rates) | PUBLISHED_DATA_NOT_INGESTED | Первичные источники в карточке |
+| [NUCLEAR_RATE_INPUTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#nuclear_rate_inputs) | MATCHING_OPEN | `component:CERN_NTOF_RATES` (input_contract_dependency); `external:PRIMAT` (implementation_candidate_not_execution); `external:LINX` (implementation_candidate_not_execution) |
+| [BBN_RESPONSE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_response_bridge) | FORMAT_IMPLEMENTED_ADAPTERS_INCOMPLETE | `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `component:WEAK_RATE_BRIDGE` (input_contract_dependency); `component:NUCLEAR_RATE_INPUTS` (input_contract_dependency); `external:PRIMAT` (implementation_candidate_not_execution); `external:LINX` (implementation_candidate_not_execution); `external:PRYMORDIAL` (implementation_candidate_not_execution) |
+| [BBN_CMB_OBSERVATIONS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_cmb_observations) | DATASET_SELECTION_OPEN | Первичные источники в карточке |
+| [GW_SOURCE_MODEL](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_source_model) | UNIMPLEMENTED | `component:X_MICROPHYSICS` (input_contract_dependency); `component:BH1_THERMODYNAMICS` (input_contract_dependency) |
+| [TENSOR_NEUTRINO_RESPONSE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#tensor_neutrino_response) | UNIMPLEMENTED | `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
+| [GW_RESPONSE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_response_bridge) | CONTRACT_DRAFT | `component:GW_SOURCE_MODEL` (input_contract_dependency); `component:TENSOR_NEUTRINO_RESPONSE` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
+| [GW_BBN_ENERGY_CONSISTENCY](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_bbn_energy_consistency) | DERIVED_NOT_INDEPENDENT | `component:GW_RESPONSE_BRIDGE` (input_contract_dependency); `component:BBN_CMB_OBSERVATIONS` (derived_consistency_not_independent) |
+| [PTA_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#pta_constraints) | PUBLISHED_DATA_NOT_INGESTED | `component:GW_RESPONSE_BRIDGE` (observational_constraint_requires_mapping) |
+| [LVK_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lvk_constraints) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:GW_RESPONSE_BRIDGE` (observational_constraint_requires_mapping) |
+| [ORCA_NSI](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_nsi) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:X_MICROPHYSICS` (observational_constraint_requires_mapping); `component:NEUTRINO_KINETIC_BRIDGE` (observational_constraint_requires_mapping) |
+| [ORCA_DECOHERENCE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_decoherence) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:X_MICROPHYSICS` (observational_constraint_requires_mapping); `component:NEUTRINO_KINETIC_BRIDGE` (observational_constraint_requires_mapping) |
+| [ORCA_STERILE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_sterile) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:X_MICROPHYSICS` (observational_constraint_requires_mapping); `component:NEUTRINO_KINETIC_BRIDGE` (observational_constraint_requires_mapping) |
+| [ORCA_DECAY](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#orca_decay) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:X_MICROPHYSICS` (observational_constraint_requires_mapping); `component:NEUTRINO_KINETIC_BRIDGE` (observational_constraint_requires_mapping) |
+| [KM3NET_NEUTRINO_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#km3net_neutrino_constraints) | CONTRACT_DRAFT | `component:ORCA_NSI` (input_contract_dependency); `component:ORCA_DECOHERENCE` (input_contract_dependency); `component:ORCA_STERILE` (input_contract_dependency); `component:ORCA_DECAY` (input_contract_dependency) |
+| [ASTROPHYSICAL_SOURCE_MODEL](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#astrophysical_source_model) | UNDEFINED | `component:X_MICROPHYSICS` (conceptual_parent_not_derivation) |
+| [ARCA_FLUX_RESPONSE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_flux_response) | UNIMPLEMENTED | `component:ASTROPHYSICAL_SOURCE_MODEL` (input_contract_dependency) |
+| [ARCA_EVENT_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_event_constraints) | PUBLISHED_EVENT_NOT_INGESTED | `component:ARCA_FLUX_RESPONSE` (input_contract_dependency) |
+| [ARCA_DM_INTERPRETATION](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#arca_dm_interpretation) | MODEL_CONDITIONAL | `component:ARCA_EVENT_CONSTRAINTS` (shared_data_not_independent); `component:X_MICROPHYSICS` (input_contract_dependency) |
+| [KM3NET_SUPERNOVA](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#km3net_supernova) | METHOD_PUBLISHED_NOT_INGESTED | `component:ASTROPHYSICAL_SOURCE_MODEL` (input_contract_dependency) |
+| [MULTIMESSENGER_LVK_ICECUBE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#multimessenger_lvk_icecube) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:ASTROPHYSICAL_SOURCE_MODEL` (input_contract_dependency) |
+| [CERN_PARTICLE_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_particle_constraints) | MODEL_MAPPING_OPEN | `component:X_MICROPHYSICS` (observational_constraint_requires_mapping) |
+| [LATE_COSMOLOGY_RESPONSE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#late_cosmology_response) | CANDIDATE_NOT_EXECUTED | `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency); `external:CLASS_NEUTRINOPHILIC` (implementation_candidate_not_execution) |
+| [JOINT_INFERENCE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#joint_inference) | DESIGN_ONLY | `component:BBN_RESPONSE_BRIDGE` (input_contract_dependency); `component:BBN_CMB_OBSERVATIONS` (input_contract_dependency); `component:GW_RESPONSE_BRIDGE` (input_contract_dependency); `component:PTA_CONSTRAINTS` (input_contract_dependency); `component:LVK_CONSTRAINTS` (input_contract_dependency); `component:KM3NET_NEUTRINO_CONSTRAINTS` (input_contract_dependency); `component:ARCA_EVENT_CONSTRAINTS` (input_contract_dependency); `component:KM3NET_SUPERNOVA` (input_contract_dependency); `component:MULTIMESSENGER_LVK_ICECUBE` (input_contract_dependency); `component:CERN_PARTICLE_CONSTRAINTS` (input_contract_dependency); `component:LATE_COSMOLOGY_RESPONSE` (input_contract_dependency); `component:FIRAS_CONSTRAINTS` (input_contract_dependency) |
+| [COPILOT_REPRODUCTION](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#copilot_reproduction) | EXISTING_METHOD_NEW_PACKAGE_NOT_RUN | `result:R130` (methodological_parent_not_physical_evidence) |
+| [PHOTON_THERMALIZATION](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#photon_thermalization) | UNIMPLEMENTED | `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
+| [FIRAS_CONSTRAINTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#firas_constraints) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:PHOTON_THERMALIZATION` (observational_constraint_requires_mapping) |
+<!-- /generated:architecture-components -->
