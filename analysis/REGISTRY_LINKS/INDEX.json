@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "2a49839247be28da37359c324c204381b831cbf45c5f3d2d2eb08915788b0edb",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "71db07f837de437cce36eb712b7cefa0760148932a90ac1ac42dbd7aa1609f6d",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "fbe663e3e1d616548348bdc4d0a9064ec111b40c01e21bc55a9222b03ffa3959",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e20b6e10c578c6d3983fbd2426f32609845daaf9329207a037fc9e1f6600f60f",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "ac68f47ec3a14a4c5ae5234ed32f0125d4c040634228baface1d7f5c204d6903",
@@ -64,7 +64,9 @@
     "analysis/ADD_BBN_SYMMETRY_20261115/verify.py": "1437150c0d1f67b1dc95b6dcdcc1cff96069f211910b31db344e95ef03d7d3e1",
     "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json": "7bce697694e6c8cc72e8510d8341907bf15e271d4d5ef44ad26537340eaca824",
     "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md": "4dab8530aa834002a151c5c6ea3c483d8f51f2dd807cda44aa8cb0bea375e5a7",
-    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json": "6a3a9eaf9dcf32fef066b7dca42127ce1534bf47a8425a7706d8819b92894e33"
+    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json": "6a3a9eaf9dcf32fef066b7dca42127ce1534bf47a8425a7706d8819b92894e33",
+    "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md": "22d7e84a77b6373de2f8a719f35f72c793dd9a2fc473782993f432fce6167623",
+    "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json": "5ec85c85effc75fc9843a3e67044a44e3503a576d76d1eb943ba0f81dd1f6564"
   },
   "counts": {
     "result": 130,
@@ -73,10 +75,10 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 8,
+    "review": 9,
     "external": 12,
     "decision": 3,
-    "source": 70
+    "source": 72
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -2709,6 +2711,15 @@
       "fragment": ""
     },
     {
+      "key": "review:NEIGHBOR_CERN_20261118",
+      "id": "NEIGHBOR_CERN_20261118",
+      "kind": "review",
+      "title": "R130–BH1–BBN: разбор соседей, предпосылки и применимость CERN",
+      "status": "REVIEW_WITH_STATIC_SOURCE_CHECKS_NO_NEW_PHYSICAL_RUN",
+      "path": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "source:analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
       "id": "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
       "kind": "source",
@@ -3369,6 +3380,30 @@
       "size_bytes": 5537
     },
     {
+      "key": "source:analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "id": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "status": null,
+      "path": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "fragment": "",
+      "sha256": "22d7e84a77b6373de2f8a719f35f72c793dd9a2fc473782993f432fce6167623",
+      "git_blob_sha": "c71801b933c2617764252361b1307cbf23a8a626",
+      "size_bytes": 29386
+    },
+    {
+      "key": "source:analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
+      "id": "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
+      "status": null,
+      "path": "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
+      "fragment": "",
+      "sha256": "5ec85c85effc75fc9843a3e67044a44e3503a576d76d1eb943ba0f81dd1f6564",
+      "git_blob_sha": "e9312625955cc5620de657f796c2a064c0282cfa",
+      "size_bytes": 4584
+    },
+    {
       "key": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
       "id": "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
       "kind": "source",
@@ -3412,9 +3447,9 @@
       "status": null,
       "path": "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
       "fragment": "",
-      "sha256": "e049f3cc506a1112bda8e355274034bb00b1fce72d63e3350c77439e496860e2",
-      "git_blob_sha": "a36306a6e06d7ade6162396f64b5ea3734403e1d",
-      "size_bytes": 27904
+      "sha256": "2ce8d0525310b40cfc71d2bfe65f6c72421b82ea7f7a6d2d0e2a155fc9914a3a",
+      "git_blob_sha": "fbeb2ce3dc83290a40f4cdc2c8a0e0ed86b77546",
+      "size_bytes": 28544
     },
     {
       "key": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
@@ -8847,6 +8882,64 @@
     {
       "source": "review:METHOD_20261112",
       "target": "source:infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "construct:C042",
+      "relation": "joint_model_requirement",
+      "rationale": "Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#clock-energy",
+      "claim": "clock-energy"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "link:L09",
+      "relation": "joint_model_requirement",
+      "rationale": "Данные CERN применимы только через одну физическую модель X и не выводят пространство-время из R130.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#cern",
+      "claim": "cern"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "question:U006",
+      "relation": "scope_boundary",
+      "rationale": "CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#ccc-identity",
+      "claim": "ccc-identity"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#review-verdict",
+      "claim": "review-verdict"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "result:R126",
+      "relation": "scope_boundary",
+      "rationale": "Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators",
+      "claim": "operators"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "result:R130",
+      "relation": "scope_boundary",
+      "rationale": "Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон.",
+      "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators",
+      "claim": "operators"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "source:analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_CERN_20261118",
+      "target": "source:analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
       "relation": "review_source_not_attestation"
     }
   ],

@@ -745,6 +745,8 @@
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#clocks); `operational_requirement`. Проверять релятивистский смысл часов, причинный доступ и выбранную фолиацию; готовая FLRW-метрика не устанавливает физическое настоящее. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
 
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
+
+**Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#clock-energy); `joint_model_requirement`. Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#construct-c042).
 <!-- /generated:review-card-construct-c042 -->
 
 
@@ -3390,6 +3392,8 @@
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Реконструкция собственного оператора не равна авторской модели. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
 
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. ADD_F2 сохраняет собственный оператор; знак Q не отождествлён со стрелой ADD. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
+
+**Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators); `scope_boundary`. Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r126).
 <!-- /generated:review-card-result-r126 -->
 
 
@@ -3957,6 +3961,10 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R120](../REGISTRY_LINKS/INDEX.md#result-r120) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Спецификация профиля не является универсальным инвариантом. Научный статус не изменяется. |
 | [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Различимость не доказывает происхождение соответствия. Научный статус не изменяется. |
 | [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Условный результат о ёмкости не закрывает происхождение условий. Научный статус не изменяется. |
+| [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `joint_model_requirement` | Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан. |
+| [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `joint_model_requirement` | Данные CERN применимы только через одну физическую модель X и не выводят пространство-время из R130. |
+| [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. |
 <!-- /generated:external-review-links -->
 
 <!-- generated:R130 -->
@@ -3968,6 +3976,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 <!-- generated:review-card-result-r130 -->
 **Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#active-cycle); `scope_boundary`. Условные выводы внесены в отдельную дочернюю карточку; вечная активность при L=3 не равна организационному замыканию. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators); `scope_boundary`. Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 <!-- /generated:review-card-result-r130 -->
 
 

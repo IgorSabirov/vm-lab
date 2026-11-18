@@ -125,6 +125,8 @@
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn); `scope_boundary`. COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
+**Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#ccc-identity); `scope_boundary`. CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 <!-- /generated:review-card-question-u006 -->
 
 
@@ -253,6 +255,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md#genesis); `scope_boundary`. Функция и воспроизводство условий различаются. Научный статус не изменяется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
+**Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#review-verdict); `scope_boundary`. Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 <!-- /generated:review-card-question-u010 -->
 
 
@@ -384,6 +388,8 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение. |
 <!-- /generated:external-review-links -->
 
 ## Свидетельство R130 после полного C1 и повторного исполнения — 17 ноября

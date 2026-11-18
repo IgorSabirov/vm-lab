@@ -1,0 +1,147 @@
+{
+  "schema": "vm-lab-neighbor-cern-review-v1",
+  "date": "2026-11-18",
+  "base_commit": "4792fccf09e7e5b259bb5e9bfa047a5c492dbd30",
+  "issue": 96,
+  "attachment": {
+    "original_filename": "Вставленный текст(20261118-010552).txt",
+    "sha256": "aaae33a7121fdd865696f5583b474635044d132366dae94a34c32affa9aae2d1",
+    "bytes": 160349,
+    "executed": false,
+    "published_in_repository": false,
+    "availability": "Original user attachment in conversation; this repository stores only its digest and methodological assessment."
+  },
+  "verification": {
+    "mode": "STATIC_PINNED_SOURCE_REVIEW_AND_CONDITIONAL_ANALYTIC_DERIVATION",
+    "new_physical_runs": 0,
+    "neighbor_numeric_claims_independently_rerun": false,
+    "new_model_accepted": false,
+    "scientific_status_promoted": false,
+    "emails_sent": false
+  },
+  "project_sources": [
+    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py",
+    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md",
+    "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+    "analysis/CCC_TL_REVIEW_20261112/SOURCES.json",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json",
+    "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json",
+    "analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json"
+  ],
+  "external_code": [
+    {
+      "repository": "CyrilPitrou/primat",
+      "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "path": "primat/config.py",
+      "evidence_lines": [
+        [
+          230,
+          237
+        ],
+        [
+          1510,
+          1537
+        ]
+      ],
+      "scope": "custom background flags and cache qualification"
+    },
+    {
+      "repository": "CyrilPitrou/primat",
+      "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "path": "primat/background.py",
+      "evidence_lines": [
+        [
+          1511,
+          1533
+        ],
+        [
+          1598,
+          1626
+        ],
+        [
+          1773,
+          1841
+        ]
+      ],
+      "scope": "background inputs, inverse interpolation, residual-density Neff estimator"
+    },
+    {
+      "repository": "cgiovanetti/LINX",
+      "commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "path": "linx/abundances.py",
+      "evidence_lines": [
+        [
+          139,
+          168
+        ],
+        [
+          215,
+          254
+        ],
+        [
+          362,
+          392
+        ],
+        [
+          438,
+          467
+        ]
+      ],
+      "scope": "neutrino contract, pressure, positive log interpolation and sorting"
+    }
+  ],
+  "public_sources": [
+    {
+      "id": "NTOF_Be7np",
+      "url": "https://doi.org/10.1103/PhysRevLett.121.042701",
+      "kind": "primary_experimental_paper",
+      "scope": "Be7(n,p)Li7 measurement with ISOLDE target; matches existing 12-reaction topology; lithium problem not solved"
+    },
+    {
+      "id": "NTOF_Be7nalpha",
+      "url": "https://doi.org/10.1103/PhysRevLett.117.152701",
+      "kind": "primary_experimental_paper",
+      "scope": "additional Be7 destruction channel absent from current common 12-reaction topology"
+    },
+    {
+      "id": "NA64_positrons",
+      "url": "https://doi.org/10.1103/PhysRevD.109.L031103",
+      "kind": "primary_experimental_paper",
+      "scope": "model-dependent invisible dark-photon exclusion; no application to an undefined X"
+    },
+    {
+      "id": "NA64_status_2026",
+      "url": "https://home.cern/na64-a-decade-of-hunting-dark-matter/",
+      "published": "2026-09-04",
+      "kind": "official_cern",
+      "scope": "current programme and existing limits"
+    },
+    {
+      "id": "CERN_TH",
+      "url": "https://theory.cern/",
+      "kind": "official_cern",
+      "scope": "theory/cosmology/astroparticle research; no contact or review promised"
+    },
+    {
+      "id": "HEPData",
+      "url": "https://dphep.web.cern.ch/hepdata/",
+      "kind": "official_cern",
+      "scope": "publication tables repository; availability of a particular likelihood is not established"
+    },
+    {
+      "id": "CERN_OpenData",
+      "url": "https://opendata.cern/docs/about",
+      "kind": "official_cern",
+      "scope": "data access is distinct from computation allocation"
+    }
+  ],
+  "key_boundaries": [
+    "CCC_GUPTA_IS_NOT_CONFORMAL_CYCLIC_COSMOLOGY",
+    "OLD_CORE_IS_NOT_CURRENT_R130",
+    "CLOCK_RATE_IS_A_PHYSICAL_ASSUMPTION",
+    "SAME_OBSERVATIONS_ARE_NOT_TWO_LIKELIHOODS",
+    "NO_CERN_BOUND_WITHOUT_DEFINED_X",
+    "NO_ROUTING_BY_600_SECOND_RULE"
+  ]
+}
