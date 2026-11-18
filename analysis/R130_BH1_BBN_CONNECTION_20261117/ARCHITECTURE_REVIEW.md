@@ -190,3 +190,8 @@ s=\frac{2}{3(1+w)},\qquad w=\frac{2\beta}{\alpha\gamma}-1.
 Репозиторные основания: [R130](../ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md), [BH1](../CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/REPORT.md), [PRIMAT/LINX](../PRIMAT_LINX_BBN_BRIDGE_20261117/BRIDGE_CONTRACT.md), [D003](../RESEARCH_ARCHITECTURE_20261114/REPORT.md), [COMMON_MODEL](../COMMON_MODEL_20261109/MODEL.md), [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 
 Физическая реализация и научная приёмка открыты. Исторические результаты и контрпримеры сохранены.
+
+
+## Дополнение 18 ноября: внешний разбор и CERN
+
+[Критическая сверка соседей](../NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) уточняет условие часов/энергии, пределы интерфейсов PRIMAT/LINX и применимость ядерных/ускорительных данных CERN. Выявлена подмена CCC+TL конформно-циклическим сценарием; она не переносится в архитектуру. Нового физического прогона и принятой реализации X нет.

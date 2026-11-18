@@ -14538,6 +14538,63 @@
       ],
       "excluded_links": [],
       "note": "Обзор не повышает статусы родителей; собственные условные выводы зарегистрированы отдельно как R130."
+    },
+    {
+      "id": "NEIGHBOR_CERN_20261118",
+      "title": "R130–BH1–BBN: разбор соседей, предпосылки и применимость CERN",
+      "status": "REVIEW_WITH_STATIC_SOURCE_CHECKS_NO_NEW_PHYSICAL_RUN",
+      "date": "2026-11-18",
+      "base_commit": "4792fccf09e7e5b259bb5e9bfa047a5c492dbd30",
+      "report": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "managed_sources": [
+        "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+        "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R126",
+          "relation": "scope_boundary",
+          "claim": "operators",
+          "rationale": "Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators"
+        },
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "operators",
+          "rationale": "Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators"
+        },
+        {
+          "target": "construct:C042",
+          "relation": "joint_model_requirement",
+          "claim": "clock-energy",
+          "rationale": "Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#clock-energy"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "ccc-identity",
+          "rationale": "CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#ccc-identity"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "review-verdict",
+          "rationale": "Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#review-verdict"
+        },
+        {
+          "target": "link:L09",
+          "relation": "joint_model_requirement",
+          "claim": "cern",
+          "rationale": "Данные CERN применимы только через одну физическую модель X и не выводят пространство-время из R130.",
+          "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#cern"
+        }
+      ]
     }
   ]
 }
