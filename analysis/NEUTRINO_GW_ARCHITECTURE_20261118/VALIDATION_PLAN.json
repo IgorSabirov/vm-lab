@@ -100,5 +100,56 @@
   ],
   "repair_boundary": "Copilot may fix declared engineering defects; changes to physical operators, parameters or acceptance criteria require a separately visible model revision and invalidate affected prior comparisons.",
   "authorized_delivery_route": "GPT -> GitHub package -> Copilot/GitHub execution -> committed raw -> GPT verification",
-  "executor_selection_note": "GitHub/Copilot route already chosen by owner; concrete runnable environment for this new package remains unverified. No automatic move to VM or arbitrary command bridge."
+  "executor_selection_note": "GitHub/Copilot route already chosen by owner; concrete runnable environment for this new package remains unverified. No automatic move to VM or arbitrary command bridge.",
+  "stage_requirements_by_task": [
+    {
+      "task": "native_author_baseline",
+      "requires": [
+        "pinned author configuration/environment"
+      ],
+      "does_not_require": [
+        "new experimental likelihood",
+        "new joint nuclear covariance",
+        "external weak-rate adapter"
+      ],
+      "completion_claim": "native reference reproduced only"
+    },
+    {
+      "task": "deterministic_backend_agreement",
+      "requires": [
+        "common nuclear rates/network",
+        "matched weak/background regime",
+        "same constants/initial state/output definitions"
+      ],
+      "does_not_require": [
+        "observational likelihood",
+        "rate covariance when inputs are fixed"
+      ],
+      "completion_claim": "implementation agreement in the specified common regime"
+    },
+    {
+      "task": "nuclear_uncertainty_propagation",
+      "requires": [
+        "joint rate-function posterior/covariance or common samples",
+        "verified basis/correlation adapter",
+        "matched weak/background treatment"
+      ],
+      "completion_claim": "propagated input uncertainty, not observed new physics"
+    },
+    {
+      "task": "physical_observational_fit",
+      "requires": [
+        "complete X/background model",
+        "nuclear uncertainty budget",
+        "weak/neutrino validation",
+        "independent observations and joint nuisance/eta/CMB treatment"
+      ],
+      "completion_claim": "conditional model compatibility, subject to scientific review"
+    }
+  ],
+  "followup_contracts": [
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json"
+  ],
+  "historical_s3_note": "S3_STANDARD/eta baseline already saved at the pinned historical source. This extension does not mark it unperformed. S3 in neighbor prose is not V3 (common X injection). Missing covariance blocks a claimed physical fit, not every native calculation."
 }

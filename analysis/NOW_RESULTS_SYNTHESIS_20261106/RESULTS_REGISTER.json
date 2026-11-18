@@ -14650,6 +14650,96 @@
           "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
         }
       ]
+    },
+    {
+      "id": "NEIGHBOR_COLLIDER_20261118",
+      "title": "Соседи: collider/BBN mapping, FASER identities и корреляции LINX",
+      "status": "REVIEW_WITH_SOURCE_AND_CONDITIONAL_ARITHMETIC_CHECKS",
+      "date": "2026-11-18",
+      "base_commit": "8a3a8ce978d335baddf9d23c761e7af3f084dba8",
+      "report": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "managed_sources": [
+        "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+        "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+        "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+        "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+        "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "scope_boundary",
+          "claim": "colliders",
+          "rationale": "Дополнены конкретные анализы; универсальная BBN-невосприимчивость не установлена.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#colliders"
+        },
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "scope_boundary",
+          "claim": "forward",
+          "rationale": "Отделены emulsion/electronic анализы и их статистические зависимости.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#forward"
+        },
+        {
+          "target": "component:NUCLEAR_RATE_INPUTS",
+          "relation": "scope_boundary",
+          "claim": "correlations",
+          "rationale": "Опровергнуто DIAGONAL_ONLY; выделена ограниченная температурная форма.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#correlations"
+        },
+        {
+          "target": "component:WEAK_RATE_BRIDGE",
+          "relation": "scope_boundary",
+          "claim": "s3",
+          "rationale": "Требования зависят от native/comparison/UQ/fit задачи.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#s3"
+        },
+        {
+          "target": "component:BBN_CMB_OBSERVATIONS",
+          "relation": "scope_boundary",
+          "claim": "s3",
+          "rationale": "Сохранены исторические S3 baseline и открытая joint likelihood.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#s3"
+        },
+        {
+          "target": "component:JOINT_INFERENCE",
+          "relation": "scope_boundary",
+          "claim": "independence",
+          "rationale": "Разделены event overlap и общие nuisance.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#independence"
+        },
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Новое физическое следствие R130 не заявлено.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Происхождение геометрии остаётся открытым.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Функциональное продолжение не закрывается collider-данными.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "link:L09",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Общий физический закон и mapping остаются необходимыми.",
+          "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope"
+        }
+      ]
     }
   ],
   "architecture_components": [
@@ -14812,7 +14902,8 @@
       "source_ids": [
         "PRIMAT",
         "LINX",
-        "FORMAT"
+        "FORMAT",
+        "COLLIDER_S3_AUDIT"
       ],
       "parents": [
         {
@@ -14826,9 +14917,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок.",
-      "next_gate": "Отдельно сверить интегрирование слабых ядер на заданных спектрах; передавать rates в s^-1 с метаданными поправок.",
-      "scientific_acceptance": false
+      "boundary": "ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок. Необходим для сравнения общего weak-режима, но не для запуска каждого нативного контроля.",
+      "next_gate": "Сопоставить слабые скорости и поправки на общей истории; не требовать наблюдательной covariance для deterministic baseline.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
     },
     {
       "id": "CERN_NTOF_RATES",
@@ -14860,7 +14952,11 @@
         "NETWORK",
         "NUDSMC",
         "PRIMAT",
-        "LINX"
+        "LINX",
+        "COLLIDER_LINX_Q",
+        "COLLIDER_LINX_FORWARD",
+        "COLLIDER_LINX_RATE",
+        "COLLIDER_S3_COVARIANCE"
       ],
       "parents": [
         {
@@ -14879,9 +14975,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения.",
-      "next_gate": "Сверить источники, единицы, симметрийные множители, интерполяцию, screening, обратные реакции и корреляции ошибок.",
-      "scientific_acceptance": false
+      "boundary": "νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения. LINX q не запрещает корреляции между реакциями; один q_i ограничивает температурную форму.",
+      "next_gate": "Продолжить сохранённую S3-генеалогию совместного posterior; сверить коррелированные реализации и проверить достаточность температурного базиса.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
     },
     {
       "id": "BBN_RESPONSE_BRIDGE",
@@ -14944,12 +15041,14 @@
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
         "BH1",
-        "CERN_REVIEW"
+        "CERN_REVIEW",
+        "COLLIDER_S3_AUDIT"
       ],
       "parents": [],
-      "boundary": "Конкретные likelihood, ковариации и выборки Yp,D/H/CMB здесь ещё не закреплены. Не назначать произвольные Gaussian priors.",
-      "next_gate": "Выбрать первичные наборы, nuisance-параметры и зависимости ηBBN–ηCMB при позднем нагреве.",
-      "scientific_acceptance": false
+      "boundary": "Конкретные likelihood, ковариации и выборки Yp,D/H/CMB здесь ещё не закреплены. Не назначать произвольные Gaussian priors. Нативный контроль может быть выполнен до выбора observational likelihood; исторический S3 baseline уже существует.",
+      "next_gate": "Явно выбрать eta free/conditioned, карту фотонного нагрева и совместную likelihood без повторного CMB prior.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
     },
     {
       "id": "GW_SOURCE_MODEL",
@@ -15411,7 +15510,9 @@
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
         "NA64",
-        "CERN_REVIEW"
+        "CERN_REVIEW",
+        "COLLIDER_CMS_TOP",
+        "COLLIDER_ATLAS_TOP"
       ],
       "parents": [
         {
@@ -15420,9 +15521,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "NA64 проверяет определённые порталы/посредники; CERN не поставляет готовый закон X или вычислительное время автоматически.",
-      "next_gate": "Выбрать Lagrangian/branching ratios, проверить applicability и получить первичные данные/likelihood.",
-      "scientific_acceptance": false
+      "boundary": "NA64 проверяет определённые порталы/посредники; CERN не поставляет готовый закон X или вычислительное время автоматически. Расширено отдельными CMS/ATLAS/LHCb паспортами; предполагаемые collider limits не являются универсальной BBN-границей.",
+      "next_gate": "Проверить общую модель, mass-dependent rates/lifetimes/acceptance и полноценные статистические релизы; см. COLLIDER_CONSTRAINTS.json.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
     },
     {
       "id": "LATE_COSMOLOGY_RESPONSE",
@@ -15466,7 +15568,9 @@
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
         "CERN_REVIEW",
-        "GW_BBN"
+        "GW_BBN",
+        "COLLIDER_CMS_TOP",
+        "COLLIDER_ATLAS_TOP"
       ],
       "parents": [
         {
@@ -15528,11 +15632,22 @@
           "target": "component:FIRAS_CONSTRAINTS",
           "relation": "input_contract_dependency",
           "rationale": "Сохраняет фотонный канал исходного BH1–BBN bridge, отдельно от CMB anisotropies."
+        },
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "input_contract_dependency",
+          "rationale": "Отдельная экспериментальная ветвь с модельным matching."
+        },
+        {
+          "target": "component:HNL_COSMOLOGY_MAPPING",
+          "relation": "input_contract_dependency",
+          "rationale": "При HNL-кандидате обеспечивает связь лабораторного и космологического предсказаний."
         }
       ],
-      "boundary": "Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми.",
-      "next_gate": "Построить likelihood graph с dataset IDs, covariance/overlap и одним использованием каждого наблюдения.",
-      "scientific_acceptance": false
+      "boundary": "Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми. Разные ATLAS/CMS события не становятся общими из-за совпадения масс; nuisance всё равно согласуются. Контуры не перемножаются как likelihood.",
+      "next_gate": "Использовать dataset/selection overlap и nuisance map из COLLIDER_CONSTRAINTS.json; перед fit выполнить требования отдельно для UQ и данных.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
     },
     {
       "id": "COPILOT_REPRODUCTION",
@@ -15601,6 +15716,309 @@
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "firas_constraints",
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "CMS_HNL_TOP",
+      "title": "CMS_TOP: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cms_hnl_top",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_CMS_TOP"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "CMS_HNL_DISPLACED",
+      "title": "CMS_DISPLACED: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cms_hnl_displaced",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_CMS_DISPLACED"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ATLAS_HNL_TOP",
+      "title": "ATLAS_TOP: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_top",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_ATLAS_TOP"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ATLAS_HNL_DISPLACED",
+      "title": "ATLAS_DISPLACED: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_displaced",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_ATLAS_DISPLACED"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ATLAS_HNL_PROMPT",
+      "title": "ATLAS_PROMPT: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_prompt",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_ATLAS_PROMPT"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "LHCB_HNL_B_DECAYS",
+      "title": "LHCB_B: отдельный HNL-анализ",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "lhcb_hnl_b_decays",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_LHCB_B"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Ограничение действует через конкретную модель производства, распада и отбора."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "context_not_evidence",
+          "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
+        }
+      ],
+      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
+      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "LHC_FORWARD_NEUTRINO_DATA",
+      "title": "LHC forward: отдельные сечения/потоки",
+      "element_kind": "interface",
+      "status": "PASSPORTS_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "lhc_forward_neutrino_data",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_FASER_EMULSION",
+        "COLLIDER_FASER_ELECTRONIC_2025",
+        "COLLIDER_FASER_ELECTRONIC_2026",
+        "COLLIDER_SND_CC"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Высокоэнергетические ядерные взаимодействия ограничивают общие операторы лишь после matching."
+        }
+      ],
+      "boundary": "Не является прямым источником MeV collision kernel; разные детекторные анализы не взаимозаменяемы.",
+      "next_gate": "Сохранить target, flavor, ν/antiν, бины, flux prior, response и covariance каждого анализа.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "FASER_EMULSION_2026",
+      "title": "FASER_EMULSION: измерительный паспорт",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_emulsion_2026",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_FASER_EMULSION"
+      ],
+      "parents": [
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "context_not_evidence",
+          "rationale": "Отдельный анализ с собственной экспозицией и response."
+        }
+      ],
+      "boundary": "Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.",
+      "next_gate": "Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "FASER_ELECTRONIC_2025",
+      "title": "FASER_ELECTRONIC_2025: измерительный паспорт",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_electronic_2025",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_FASER_ELECTRONIC_2025"
+      ],
+      "parents": [
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "context_not_evidence",
+          "rationale": "Отдельный анализ с собственной экспозицией и response."
+        }
+      ],
+      "boundary": "Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.",
+      "next_gate": "Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "FASER_ELECTRONIC_2026",
+      "title": "FASER_ELECTRONIC_2026: измерительный паспорт",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_electronic_2026",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_FASER_ELECTRONIC_2026"
+      ],
+      "parents": [
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "context_not_evidence",
+          "rationale": "Отдельный анализ с собственной экспозицией и response."
+        }
+      ],
+      "boundary": "Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.",
+      "next_gate": "Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "SND_CC_2026",
+      "title": "SND_CC: измерительный паспорт",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "snd_cc_2026",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_SND_CC"
+      ],
+      "parents": [
+        {
+          "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+          "relation": "context_not_evidence",
+          "rationale": "Отдельный анализ с собственной экспозицией и response."
+        }
+      ],
+      "boundary": "Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.",
+      "next_gate": "Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "HNL_COSMOLOGY_MAPPING",
+      "title": "HNL: от лабораторной модели к космологической истории",
+      "element_kind": "mapping",
+      "status": "MODEL_MAPPING_OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "hnl_cosmology_mapping",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COLLIDER_HNL_BBN",
+        "COLLIDER_HNL_DARK"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Требуется одна микрофизическая модель."
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Эпоха и эффективность production/thermalization определяются полной историей."
+        }
+      ],
+      "boundary": "Вакуумное proper lifetime не задаёт production time, abundance, plasma thermalization или BBN-эффект.",
+      "next_gate": "Рассчитать width с порогами/ароматами и production/inverse/decay/energy-transfer history; при передаче в QKE явно определить дополнительные состояния.",
       "scientific_acceptance": false
     }
   ]

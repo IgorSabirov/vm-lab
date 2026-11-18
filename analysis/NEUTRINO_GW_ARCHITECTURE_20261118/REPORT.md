@@ -171,11 +171,11 @@ flowchart TD
 
 **Родители:** `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json).
+**Источники:** [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [COLLIDER_S3_AUDIT](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json).
 
-**Граница:** ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок.
+**Граница:** ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок. Необходим для сравнения общего weak-режима, но не для запуска каждого нативного контроля.
 
-**Следующий шаг:** Отдельно сверить интегрирование слабых ядер на заданных спектрах; передавать rates в s^-1 с метаданными поправок.
+**Следующий шаг:** Сопоставить слабые скорости и поправки на общей истории; не требовать наблюдательной covariance для deterministic baseline.
 
 <a id="cern_ntof_rates"></a>
 ### CERN_NTOF_RATES — CERN n_TOF: ядерные данные
@@ -197,11 +197,11 @@ flowchart TD
 
 **Родители:** `component:CERN_NTOF_RATES` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRIMAT` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:LINX` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [NETWORK](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json), [NUDSMC](https://github.com/maksymovchynnikov/nuDSMC/tree/84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8).
+**Источники:** [NETWORK](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json), [NUDSMC](https://github.com/maksymovchynnikov/nuDSMC/tree/84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [COLLIDER_LINX_Q](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/abundances.py), [COLLIDER_LINX_FORWARD](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/nuclear.py), [COLLIDER_LINX_RATE](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [COLLIDER_S3_COVARIANCE](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/CONNECTION_CONTRACT.json).
 
-**Граница:** νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения.
+**Граница:** νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения. LINX q не запрещает корреляции между реакциями; один q_i ограничивает температурную форму.
 
-**Следующий шаг:** Сверить источники, единицы, симметрийные множители, интерполяцию, screening, обратные реакции и корреляции ошибок.
+**Следующий шаг:** Продолжить сохранённую S3-генеалогию совместного posterior; сверить коррелированные реализации и проверить достаточность температурного базиса.
 
 <a id="bbn_response_bridge"></a>
 ### BBN_RESPONSE_BRIDGE — BBN: PRIMAT, LINX, PRyMordial
@@ -221,13 +221,13 @@ flowchart TD
 
 **Статус:** `DATASET_SELECTION_OPEN`.
 
-**Родители:** Первичные внешние наблюдения/публикации; не потомок R130.
+**Родители:** Первичные источники.
 
-**Источники:** [BH1](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md).
+**Источники:** [BH1](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [COLLIDER_S3_AUDIT](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json).
 
-**Граница:** Конкретные likelihood, ковариации и выборки Yp,D/H/CMB здесь ещё не закреплены. Не назначать произвольные Gaussian priors.
+**Граница:** Конкретные likelihood, ковариации и выборки Yp,D/H/CMB здесь ещё не закреплены. Не назначать произвольные Gaussian priors. Нативный контроль может быть выполнен до выбора observational likelihood; исторический S3 baseline уже существует.
 
-**Следующий шаг:** Выбрать первичные наборы, nuisance-параметры и зависимости ηBBN–ηCMB при позднем нагреве.
+**Следующий шаг:** Явно выбрать eta free/conditioned, карту фотонного нагрева и совместную likelihood без повторного CMB prior.
 
 <a id="gw_source_model"></a>
 ### GW_SOURCE_MODEL — Источник гравитационных волн
@@ -457,11 +457,11 @@ flowchart TD
 
 **Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [NA64](https://doi.org/10.1103/PhysRevD.109.L031103), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md).
+**Источники:** [NA64](https://doi.org/10.1103/PhysRevD.109.L031103), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [COLLIDER_CMS_TOP](https://cms-results.web.cern.ch/cms-results/public-results/publications/B2G-24-023/), [COLLIDER_ATLAS_TOP](https://doi.org/10.1103/PhysRevD.110.112004).
 
-**Граница:** NA64 проверяет определённые порталы/посредники; CERN не поставляет готовый закон X или вычислительное время автоматически.
+**Граница:** NA64 проверяет определённые порталы/посредники; CERN не поставляет готовый закон X или вычислительное время автоматически. Расширено отдельными CMS/ATLAS/LHCb паспортами; предполагаемые collider limits не являются универсальной BBN-границей.
 
-**Следующий шаг:** Выбрать Lagrangian/branching ratios, проверить applicability и получить первичные данные/likelihood.
+**Следующий шаг:** Проверить общую модель, mass-dependent rates/lifetimes/acceptance и полноценные статистические релизы; см. COLLIDER_CONSTRAINTS.json.
 
 <a id="late_cosmology_response"></a>
 ### LATE_COSMOLOGY_RESPONSE — Поздняя нейтринная космология
@@ -481,13 +481,13 @@ flowchart TD
 
 **Статус:** `DESIGN_ONLY`.
 
-**Родители:** `component:BBN_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:BBN_CMB_OBSERVATIONS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:GW_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:PTA_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LVK_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_NEUTRINO_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:ARCA_EVENT_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_SUPERNOVA` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:MULTIMESSENGER_LVK_ICECUBE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:CERN_PARTICLE_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LATE_COSMOLOGY_RESPONSE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:FIRAS_CONSTRAINTS` (input_contract_dependency): Фотонный канал исходного BH1–BBN bridge.
+**Родители:** `component:BBN_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:BBN_CMB_OBSERVATIONS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:GW_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:PTA_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LVK_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_NEUTRINO_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:ARCA_EVENT_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_SUPERNOVA` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:MULTIMESSENGER_LVK_ICECUBE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:CERN_PARTICLE_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LATE_COSMOLOGY_RESPONSE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:FIRAS_CONSTRAINTS` (input_contract_dependency): Сохраняет фотонный канал исходного BH1–BBN bridge, отдельно от CMB anisotropies.; `component:LHC_FORWARD_NEUTRINO_DATA` (input_contract_dependency): Отдельная экспериментальная ветвь с модельным matching.; `component:HNL_COSMOLOGY_MAPPING` (input_contract_dependency): При HNL-кандидате обеспечивает связь лабораторного и космологического предсказаний.
 
-**Источники:** [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [GW_BBN](https://arxiv.org/abs/2011.12414).
+**Источники:** [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [GW_BBN](https://arxiv.org/abs/2011.12414), [COLLIDER_CMS_TOP](https://cms-results.web.cern.ch/cms-results/public-results/publications/B2G-24-023/), [COLLIDER_ATLAS_TOP](https://doi.org/10.1103/PhysRevD.110.112004).
 
-**Граница:** Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми.
+**Граница:** Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми. Разные ATLAS/CMS события не становятся общими из-за совпадения масс; nuisance всё равно согласуются. Контуры не перемножаются как likelihood.
 
-**Следующий шаг:** Построить likelihood graph с dataset IDs, covariance/overlap и одним использованием каждого наблюдения.
+**Следующий шаг:** Использовать dataset/selection overlap и nuisance map из COLLIDER_CONSTRAINTS.json; перед fit выполнить требования отдельно для UQ и данных.
 
 <a id="copilot_reproduction"></a>
 ### COPILOT_REPRODUCTION — GPT → Copilot → GitHub → проверка
@@ -528,6 +528,162 @@ flowchart TD
 
 **Следующий шаг:** Закрепить релиз спектра, covariance/foregrounds и модель термализации; применять согласованно с другими CMB данными.
 
+<a id="cms_hnl_top"></a>
+### CMS_HNL_TOP — CMS_TOP: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_CMS_TOP](https://cms-results.web.cern.ch/cms-results/public-results/publications/B2G-24-023/).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="cms_hnl_displaced"></a>
+### CMS_HNL_DISPLACED — CMS_DISPLACED: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_CMS_DISPLACED](https://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/EXO-24-015/index.html).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="atlas_hnl_top"></a>
+### ATLAS_HNL_TOP — ATLAS_TOP: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_ATLAS_TOP](https://doi.org/10.1103/PhysRevD.110.112004).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="atlas_hnl_displaced"></a>
+### ATLAS_HNL_DISPLACED — ATLAS_DISPLACED: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_ATLAS_DISPLACED](https://arxiv.org/pdf/2503.16213v2).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="atlas_hnl_prompt"></a>
+### ATLAS_HNL_PROMPT — ATLAS_PROMPT: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_ATLAS_PROMPT](https://arxiv.org/pdf/2508.20929v2).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="lhcb_hnl_b_decays"></a>
+### LHCB_HNL_B_DECAYS — LHCB_B: отдельный HNL-анализ
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
+
+**Источники:** [COLLIDER_LHCB_B](https://cds.cern.ch/record/2951445/files/2512.14551.pdf).
+
+**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+
+**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+
+<a id="lhc_forward_neutrino_data"></a>
+### LHC_FORWARD_NEUTRINO_DATA — LHC forward: отдельные сечения/потоки
+
+**Статус:** `PASSPORTS_DRAFT`.
+
+**Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Высокоэнергетические ядерные взаимодействия ограничивают общие операторы лишь после matching.
+
+**Источники:** [COLLIDER_FASER_EMULSION](https://repository.cern/records/rv94s-t9681), [COLLIDER_FASER_ELECTRONIC_2025](https://arxiv.org/abs/2412.03186v3), [COLLIDER_FASER_ELECTRONIC_2026](https://repository.cern/records/eg0mj-1ep53), [COLLIDER_SND_CC](https://arxiv.org/abs/2606.14669).
+
+**Граница:** Не является прямым источником MeV collision kernel; разные детекторные анализы не взаимозаменяемы.
+
+**Следующий шаг:** Сохранить target, flavor, ν/antiν, бины, flux prior, response и covariance каждого анализа.
+
+<a id="faser_emulsion_2026"></a>
+### FASER_EMULSION_2026 — FASER_EMULSION: измерительный паспорт
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:LHC_FORWARD_NEUTRINO_DATA` (context_not_evidence): Отдельный анализ с собственной экспозицией и response.
+
+**Источники:** [COLLIDER_FASER_EMULSION](https://repository.cern/records/rv94s-t9681).
+
+**Граница:** Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.
+
+**Следующий шаг:** Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.
+
+<a id="faser_electronic_2025"></a>
+### FASER_ELECTRONIC_2025 — FASER_ELECTRONIC_2025: измерительный паспорт
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:LHC_FORWARD_NEUTRINO_DATA` (context_not_evidence): Отдельный анализ с собственной экспозицией и response.
+
+**Источники:** [COLLIDER_FASER_ELECTRONIC_2025](https://arxiv.org/abs/2412.03186v3).
+
+**Граница:** Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.
+
+**Следующий шаг:** Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.
+
+<a id="faser_electronic_2026"></a>
+### FASER_ELECTRONIC_2026 — FASER_ELECTRONIC_2026: измерительный паспорт
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:LHC_FORWARD_NEUTRINO_DATA` (context_not_evidence): Отдельный анализ с собственной экспозицией и response.
+
+**Источники:** [COLLIDER_FASER_ELECTRONIC_2026](https://repository.cern/records/eg0mj-1ep53).
+
+**Граница:** Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.
+
+**Следующий шаг:** Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.
+
+<a id="snd_cc_2026"></a>
+### SND_CC_2026 — SND_CC: измерительный паспорт
+
+**Статус:** `PUBLISHED_CONSTRAINT_NOT_INGESTED`.
+
+**Родители:** `component:LHC_FORWARD_NEUTRINO_DATA` (context_not_evidence): Отдельный анализ с собственной экспозицией и response.
+
+**Источники:** [COLLIDER_SND_CC](https://arxiv.org/abs/2606.14669).
+
+**Граница:** Данные, бины и subdetector определены паспортом; общая выборка и потоковые nuisance требуют проверки.
+
+**Следующий шаг:** Получить таблицы/response/covariance; не перемножать flux и cross-section продукты тех же событий.
+
+<a id="hnl_cosmology_mapping"></a>
+### HNL_COSMOLOGY_MAPPING — HNL: от лабораторной модели к космологической истории
+
+**Статус:** `MODEL_MAPPING_OPEN`.
+
+**Родители:** `component:X_MICROPHYSICS` (input_contract_dependency): Требуется одна микрофизическая модель.; `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Эпоха и эффективность production/thermalization определяются полной историей.
+
+**Источники:** [COLLIDER_HNL_BBN](https://arxiv.org/abs/2006.07387v3), [COLLIDER_HNL_DARK](https://doi.org/10.1103/r7bw-jzjl).
+
+**Граница:** Вакуумное proper lifetime не задаёт production time, abundance, plasma thermalization или BBN-эффект.
+
+**Следующий шаг:** Рассчитать width с порогами/ароматами и production/inverse/decay/energy-transfer history; при передаче в QKE явно определить дополнительные состояния.
+
 ## 6. Закреплённые версии кода и научный статус
 
 | Источник | Commit | Статус |
@@ -543,3 +699,7 @@ flowchart TD
 Ни одна карточка не повышает научный статус R001–R130 или 66 предпосылок. Реальные данные и likelihood не загружены, адаптеры и физические solver runs не выполнены. Главный следующий физический шаг — конкретизировать X и общий SM-контроль; наблюдательные ветви подключаются через явное отображение параметров.
 
 Проверка регистрации: 21 локальный тест `tests/test_registry_links.py` прошёл; проверены запрет научного принятия через карточку архитектуры, отсутствие неизвестных родителей/источников и согласованность сгенерированной навигации. Отдельно проверены шесть новых DRAFT-контрактов и закрепления источников. Все прежние научные поля основного реестра сохранены без изменений. Полный набор проверок репозитория выполняется GitHub CI на коммите публикации.
+
+## Дополнение по соседям: collider/BBN и covariance
+
+[Проверка 16 тезисов и дополненная схема](../NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md). Теперь 45 компонентов; отдельно зарегистрированы HNL-анализы, FASER/FASERν/SND и cosmology mapping. Сохранены [измерительные паспорта](COLLIDER_CONSTRAINTS.json) и [контракт rate covariance](NUCLEAR_RATE_COVARIANCE.json). LINX не объявляется DIAGONAL_ONLY; универсальный статус BBN_VACUOUS не принят.

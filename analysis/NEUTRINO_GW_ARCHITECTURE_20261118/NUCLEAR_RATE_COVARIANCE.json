@@ -1,0 +1,45 @@
+{
+  "schema": "vm-lab-rate-covariance-contract-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "adapter_implemented": false,
+  "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+  "source_ids": [
+    "LINX_Q",
+    "LINX_FORWARD",
+    "LINX_RATE",
+    "S3_COVARIANCE"
+  ],
+  "linx_native_interface": {
+    "pin": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+    "model_at_tabulation_nodes": "log R_i(T) = log R_med_i(T) + s_i(T)*q_i, s_i=log(expsigma_i)",
+    "default_q": "all zero; no random joint prior imposed by this call",
+    "correlated_amplitudes": "draw z with covariance I; q=Lz where L L^T=C_q; pass same q to both adapters with reaction ordering checked",
+    "expressible_covariance": "Cov[log R_i(T), log R_j(Tprime)] = s_i(T)*C_q[i,j]*s_j(Tprime) at grid nodes / compatible log interpolation",
+    "boundary": "One scalar per reaction yields a fixed temperature shape, not an arbitrary multi-mode covariance over (reaction,T). Analytic/custom rates may have a different q meaning and must declare it."
+  },
+  "inputs_required": [
+    "reaction identities/order and forward/reverse mapping",
+    "units and common temperature grid",
+    "source normalization/systematics/energy errors",
+    "joint S-factor posterior or joint rate-function samples",
+    "between-reaction and within-reaction temperature covariance",
+    "distribution model and PSD/normalization checks",
+    "shared realization hash for PRIMAT/LINX"
+  ],
+  "general_extension": "If the posterior requires several temperature modes, use log R_i(T)=log Rmed_i(T)+sum_k B_ik(T) z_k or supplied joint tables through an explicit adapter. Do not squeeze arbitrary rate-function covariance into one q_i.",
+  "counterfactual": {
+    "A": "joint posterior",
+    "B": "product of the SAME marginal rate-function posteriors",
+    "preserve": [
+      "marginals",
+      "within-channel temperature correlations",
+      "background/weak physics",
+      "all other nuisance"
+    ],
+    "gaussian_case": "zero only between-channel covariance blocks",
+    "non_gaussian_case": "resample product marginals; zero covariance alone does not establish independence",
+    "prior_work": "S3_COVARIANCE; this is its interface continuation, not a new physical result"
+  },
+  "observational_eta_policy": "Declare free eta_BBN versus CMB conditioning and photon-production map eta_BBN→eta_CMB; count shared CMB information once."
+}
