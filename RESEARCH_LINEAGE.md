@@ -325,3 +325,6 @@ R126 → R130 → [архитектура моста](analysis/R130_BH1_BBN_CONN
 ### Дополнение по коллайдерным отзывам
 
 [Разбор и поправки](analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md) продолжает PR99: 12 новых адресных компонентов (всего 45), паспорта наблюдений, HNL cosmology mapping и честная граница корреляционного API LINX. Исторические S3 audit/covariance сохранены по fixed ref; новые физические результаты не заявлены.
+
+
+Уточнение 18 ноября, Issue #102: [последовательные отзывы и принятые границы](analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md). Обновлены существующие NUCLEAR_RATE_INPUTS, WEAK_RATE_BRIDGE, BBN_RESPONSE_BRIDGE, CMS_HNL_DISPLACED, HNL_COSMOLOGY_MAPPING, JOINT_INFERENCE. Различаются латентная размерность / ранг ковариации / ошибка сжатия; cache resolver / физический weak run; описанная likelihood / импортированная модель. Число R/C/L/U и научные статусы не повышены; R130–BH1 физическое вложение остаётся открытым.

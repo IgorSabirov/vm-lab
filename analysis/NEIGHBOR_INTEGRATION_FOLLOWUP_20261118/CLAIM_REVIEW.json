@@ -1,0 +1,82 @@
+{
+  "schema": "vm-lab-neighbor-claim-review-v1",
+  "claims": [
+    {
+      "id": "LINX_RATE_Q_RANK_LIMIT",
+      "verdict": "REFORMULATED",
+      "reason": "Separate latent input dimension, local Jacobian rank and covariance rank. Essential rank is relative to declared latent measure and regularity; not universally equal to number of independent input scalars."
+    },
+    {
+      "id": "RATE_SHAPE_INTERP_HESSIAN",
+      "verdict": "ACCEPT_WITH_DOMAIN",
+      "reason": "Positive rate interpolation weights inside the table: Hessian of log-sum-exp equals weighted variance. Covariance rank can exceed latent dimension."
+    },
+    {
+      "id": "ADAPTER_TEST_COV_ONLY",
+      "verdict": "INSUFFICIENT",
+      "reason": "Compare joint rate-function draws on common nodes and between nodes; ranks/Jacobians/moments alone do not identify a posterior."
+    },
+    {
+      "id": "TABLE_V_RANK_BUDGET",
+      "verdict": "DOWNGRADED",
+      "reason": "16 laboratory components / 8 per channel give a ceiling for a specified linear pushforward only. Measured 8:1 loss is withdrawn, not an accepted finding."
+    },
+    {
+      "id": "COORDINATE_CHANGE_W",
+      "verdict": "CORRECT_NEIGHBOR_DEMONSTRATION",
+      "reason": "For xprime=D x use Wprime=W D^-1. Changing C to D C D^T with fixed W changes the physical map. Output rescaling may change covariance spectra; exact invertible rank remains unchanged."
+    },
+    {
+      "id": "LEONARD_REAL_MATRIX",
+      "verdict": "VERIFIED_MATRIX_ONLY",
+      "reason": "Real saved matrix is positive definite, numerical rank 16, condition about 721.9 in a0 coordinates. No S-factor posterior or BBN uncertainty propagation."
+    },
+    {
+      "id": "PRIMAT_CACHE_ISOLATION",
+      "verdict": "RESOLVER_VERIFIED_PHYSICAL_GATES_PENDING",
+      "reason": "Empty cache_dir does not isolate; control data_dir and cache_dir and every matching thermal/nonthermal fingerprint. G1–G4 physical recomputation not executed."
+    },
+    {
+      "id": "PRIMAT_BACKGROUND_CONTENT",
+      "verdict": "ADAPTER_PROVENANCE_REQUIRED",
+      "reason": "Pinned custom_background fingerprint records path, not content. Immutable path/content hash and dependency audit required; no blanket claim of incorrect thermal fingerprint."
+    },
+    {
+      "id": "CMS_DISPLACED_NATURE",
+      "verdict": "SOURCE_CONFIRMED",
+      "reason": "Majorana confirmed in PAS Figure 7 and paper; muon-only benchmark. PAS and paper are versions of one analysis."
+    },
+    {
+      "id": "CMS_LIKELIHOOD",
+      "verdict": "DESCRIBED_NOT_INGESTED",
+      "reason": "Binned likelihood and shared 3.9 percent normalization documented; no full statistical workspace ingested or combined fit executed."
+    },
+    {
+      "id": "HNL_DARK_DECAY_DIRECTION",
+      "verdict": "CONDITIONAL",
+      "reason": "Daughter content, energy return and production history matter; no universal strengthening/weakening theorem or lifetime-only BBN clearance."
+    },
+    {
+      "id": "HNL_FREEZE_IN_SOURCE_SCOPE",
+      "verdict": "CORRECT_NEIGHBOR_RESTRICTION",
+      "reason": "Appendix C v3 explicitly says numerical code includes freeze-in and freeze-out. Analytical freeze-out assumptions do not delimit all numerical results."
+    },
+    {
+      "id": "HNL_COSMOLOGY_MAPPING",
+      "verdict": "MODEL_MAPPING_OPEN",
+      "reason": "Production regime and energy-return history are derived diagnostics; T_reheat/operators/initial state are inputs. No model selected or computed."
+    },
+    {
+      "id": "S3_ORDERING_RULE",
+      "verdict": "ADOPTED",
+      "reason": "Native baseline, matched fixed-input comparison, uncertainty propagation and observational fit have different prerequisites. No posterior requirement for the first two."
+    },
+    {
+      "id": "EXECUTION_ROUTE",
+      "verdict": "PRESERVED",
+      "reason": "Do not turn neighbor VM proposals into an automatic routing decision; owner-selected GPT/Copilot/GitHub route and scientific acceptance remain."
+    }
+  ],
+  "new_result_id": null,
+  "scientific_status_promoted": false
+}

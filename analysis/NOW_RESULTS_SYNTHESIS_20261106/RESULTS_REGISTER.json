@@ -14740,6 +14740,75 @@
           "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope"
         }
       ]
+    },
+    {
+      "id": "NEIGHBOR_INTEGRATION_FOLLOWUP_20261118",
+      "title": "Соседи: латентные направления, лабораторный перенос, weak-cache и HNL production",
+      "status": "DOCUMENTED_WITH_SOURCE_MATRIX_AND_RESOLVER_CHECKS",
+      "date": "2026-11-18",
+      "base_commit": "6917e330cea5fb9de9a23de29b9013fac7a1bd05",
+      "report": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+      "managed_sources": [
+        "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+        "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/SOURCES.json",
+        "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/CLAIM_REVIEW.json",
+        "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/verify_review.py",
+        "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/CHECKS.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/PRIMAT_CACHE_ISOLATION.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "component:NUCLEAR_RATE_INPUTS",
+          "relation": "scope_boundary",
+          "claim": "rates",
+          "rationale": "Латентная размерность, локальный ранг Якобиана и ранг ковариации различаются. Leonard даёт 16 измерительных компонент; измеренной потери 8:1 нет. Совместный posterior не восстановлен.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#rates"
+        },
+        {
+          "target": "component:WEAK_RATE_BRIDGE",
+          "relation": "scope_boundary",
+          "claim": "cache",
+          "rationale": "Пустой cache_dir PRIMAT не изолирует кэш. Нужны controlled data_dir и overlay; weak_rate_cache=False не отключает thermal reads. Проверены пути, не weak recomputation.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#cache"
+        },
+        {
+          "target": "component:BBN_RESPONSE_BRIDGE",
+          "relation": "scope_boundary",
+          "claim": "ordering",
+          "rationale": "Нативный baseline, deterministic common-input comparison, UQ и observational fit имеют разные предпосылки. Ни один адаптер не объявлен завершённым; covariance не блокирует фиксированный контроль.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#ordering"
+        },
+        {
+          "target": "component:CMS_HNL_DISPLACED",
+          "relation": "scope_boundary",
+          "claim": "cms",
+          "rationale": "PAS и arXiv:2610.40911v1 — один CMS-EXO-24-015; Majorana подтверждена, muon-only benchmark. Likelihood описана, не импортирована; 3.9% signal normalization общая между периодами.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#cms"
+        },
+        {
+          "target": "component:HNL_COSMOLOGY_MAPPING",
+          "relation": "scope_boundary",
+          "claim": "hnl",
+          "rationale": "Production regime — вывод кинетики при заданных T_reheat, операторах и начальных распределениях. Требуются дочерние спектры, возврат энергии и энтропия; lifetime не заменяет эти величины.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#hnl"
+        },
+        {
+          "target": "component:JOINT_INFERENCE",
+          "relation": "scope_boundary",
+          "claim": "ordering",
+          "rationale": "Общие данные и nuisance учитываются один раз. Covariance/rank/Jacobian сами по себе не определяют joint posterior. Детерминированное согласие не является observational fit.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#ordering"
+        },
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Уточнение интеграции не меняет воспроизведённый R130 или открытое физическое вложение.",
+          "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#scope"
+        }
+      ]
     }
   ],
   "architecture_components": [
@@ -14903,7 +14972,10 @@
         "PRIMAT",
         "LINX",
         "FORMAT",
-        "COLLIDER_S3_AUDIT"
+        "COLLIDER_S3_AUDIT",
+        "FOLLOWUP_PRIMAT_CACHE_RESOLVER",
+        "FOLLOWUP_PRIMAT_CACHE_FIELDS",
+        "FOLLOWUP_PRIMAT_CACHE_DOC"
       ],
       "parents": [
         {
@@ -14917,10 +14989,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок. Необходим для сравнения общего weak-режима, но не для запуска каждого нативного контроля.",
-      "next_gate": "Сопоставить слабые скорости и поправки на общей истории; не требовать наблюдательной covariance для deterministic baseline.",
+      "boundary": "Пустой cache_dir PRIMAT не изолирует кэш. Нужны controlled data_dir и overlay; weak_rate_cache=False не отключает thermal reads. Проверены пути, не weak recomputation.",
+      "next_gate": "В согласованном пакете выполнить G1–G4 отдельно для Python/C, логируя оба fingerprint, actual paths, content hashes и VEGAS uncertainty.",
       "scientific_acceptance": false,
-      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     },
     {
       "id": "CERN_NTOF_RATES",
@@ -14956,7 +15028,9 @@
         "COLLIDER_LINX_Q",
         "COLLIDER_LINX_FORWARD",
         "COLLIDER_LINX_RATE",
-        "COLLIDER_S3_COVARIANCE"
+        "COLLIDER_S3_COVARIANCE",
+        "FOLLOWUP_LINX_INTERPOLATION",
+        "FOLLOWUP_LEONARD_INPUT"
       ],
       "parents": [
         {
@@ -14975,10 +15049,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения. LINX q не запрещает корреляции между реакциями; один q_i ограничивает температурную форму.",
-      "next_gate": "Продолжить сохранённую S3-генеалогию совместного posterior; сверить коррелированные реализации и проверить достаточность температурного базиса.",
+      "boundary": "Латентная размерность, локальный ранг Якобиана и ранг ковариации различаются. Leonard даёт 16 измерительных компонент; измеренной потери 8:1 нет. Совместный posterior не восстановлен.",
+      "next_gate": "Сверить фиксированные rates независимо от UQ; для UQ построить физический перенос Table V и проверить совместные реализации между узлами и ошибку сжатия в abundances.",
       "scientific_acceptance": false,
-      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     },
     {
       "id": "BBN_RESPONSE_BRIDGE",
@@ -14993,7 +15067,9 @@
         "PRIMAT",
         "LINX",
         "PRYMORDIAL",
-        "CERN_REVIEW"
+        "CERN_REVIEW",
+        "FOLLOWUP_LINX_INTERPOLATION",
+        "FOLLOWUP_PRIMAT_CACHE_DOC"
       ],
       "parents": [
         {
@@ -15027,9 +15103,10 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "Три реализации не дают три независимых наблюдения. Общие ядерные таблицы/поправки создают общую систематику.",
-      "next_gate": "Реализовать адаптеры общего фона и weak rates в подтверждённом пересечении возможностей; сверить Yp,D/H с едиными определениями.",
-      "scientific_acceptance": false
+      "boundary": "Нативный baseline, deterministic common-input comparison, UQ и observational fit имеют разные предпосылки. Ни один адаптер не объявлен завершённым; covariance не блокирует фиксированный контроль.",
+      "next_gate": "Закрепить общий допустимый thermal/weak режим, rates/units/interpolation/reverse mapping/constants/init; затем сравнить определения Yp и D/H.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     },
     {
       "id": "BBN_CMB_OBSERVATIONS",
@@ -15570,7 +15647,9 @@
         "CERN_REVIEW",
         "GW_BBN",
         "COLLIDER_CMS_TOP",
-        "COLLIDER_ATLAS_TOP"
+        "COLLIDER_ATLAS_TOP",
+        "FOLLOWUP_CMS_PAPER",
+        "FOLLOWUP_HNL_DARK_V3"
       ],
       "parents": [
         {
@@ -15644,10 +15723,10 @@
           "rationale": "При HNL-кандидате обеспечивает связь лабораторного и космологического предсказаний."
         }
       ],
-      "boundary": "Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми. Разные ATLAS/CMS события не становятся общими из-за совпадения масс; nuisance всё равно согласуются. Контуры не перемножаются как likelihood.",
-      "next_gate": "Использовать dataset/selection overlap и nuisance map из COLLIDER_CONSTRAINTS.json; перед fit выполнить требования отдельно для UQ и данных.",
+      "boundary": "Общие данные и nuisance учитываются один раз. Covariance/rank/Jacobian сами по себе не определяют joint posterior. Детерминированное согласие не является observational fit.",
+      "next_gate": "Согласовать joint rate-function draws и наблюдательную likelihood с eta/CMB mapping; версия CMS PAS/paper считается одним анализом.",
       "scientific_acceptance": false,
-      "followup_review": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md"
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     },
     {
       "id": "COPILOT_REPRODUCTION",
@@ -15754,7 +15833,10 @@
       "fragment": "cms_hnl_displaced",
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
-        "COLLIDER_CMS_DISPLACED"
+        "COLLIDER_CMS_DISPLACED",
+        "FOLLOWUP_CMS_PAS",
+        "FOLLOWUP_CMS_PAPER",
+        "FOLLOWUP_CMS_RELEASE"
       ],
       "parents": [
         {
@@ -15768,9 +15850,10 @@
           "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным."
         }
       ],
-      "boundary": "Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.",
-      "next_gate": "Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.",
-      "scientific_acceptance": false
+      "boundary": "PAS и arXiv:2610.40911v1 — один CMS-EXO-24-015; Majorana подтверждена, muon-only benchmark. Likelihood описана, не импортирована; 3.9% signal normalization общая между периодами.",
+      "next_gate": "Импортировать response/statistical model с nuisance и overlap map; не превращать Lxy=50–400 cm в proper-lifetime bound.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     },
     {
       "id": "ATLAS_HNL_TOP",
@@ -16003,7 +16086,8 @@
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
         "COLLIDER_HNL_BBN",
-        "COLLIDER_HNL_DARK"
+        "COLLIDER_HNL_DARK",
+        "FOLLOWUP_HNL_DARK_V3"
       ],
       "parents": [
         {
@@ -16017,9 +16101,10 @@
           "rationale": "Эпоха и эффективность production/thermalization определяются полной историей."
         }
       ],
-      "boundary": "Вакуумное proper lifetime не задаёт production time, abundance, plasma thermalization или BBN-эффект.",
-      "next_gate": "Рассчитать width с порогами/ароматами и production/inverse/decay/energy-transfer history; при передаче в QKE явно определить дополнительные состояния.",
-      "scientific_acceptance": false
+      "boundary": "Production regime — вывод кинетики при заданных T_reheat, операторах и начальных распределениях. Требуются дочерние спектры, возврат энергии и энтропия; lifetime не заменяет эти величины.",
+      "next_gate": "Реализовать HNL_COSMOLOGY_MAPPING.json для явно выбранной модели; получить production/decay/energy history. Ни freeze-in, ни dark branching сами по себе не закрывают BBN.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     }
   ]
 }

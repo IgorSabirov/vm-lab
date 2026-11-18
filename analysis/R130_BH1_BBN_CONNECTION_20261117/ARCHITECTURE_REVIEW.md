@@ -203,3 +203,6 @@ s=\frac{2}{3(1+w)},\qquad w=\frac{2\beta}{\alpha\gamma}-1.
 ### Уточнение задач BBN по отзывам 18 ноября
 
 [Дополнение](../NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#s3) различает нативные контроли, deterministic agreement, ядерную UQ и observational fit. Отсутствие covariance не обнуляет выполненный standard baseline и не блокирует любой нативный расчёт. Новые collider-паспорта и корреляционный контракт не принимают физическую реализацию R130.
+
+
+Уточнение 18 ноября, Issue #102: [последовательные отзывы и принятые границы](../../analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md). Обновлены существующие NUCLEAR_RATE_INPUTS, WEAK_RATE_BRIDGE, BBN_RESPONSE_BRIDGE, CMS_HNL_DISPLACED, HNL_COSMOLOGY_MAPPING, JOINT_INFERENCE. Различаются латентная размерность / ранг ковариации / ошибка сжатия; cache resolver / физический weak run; описанная likelihood / импортированная модель. Число R/C/L/U и научные статусы не повышены; R130–BH1 физическое вложение остаётся открытым.
