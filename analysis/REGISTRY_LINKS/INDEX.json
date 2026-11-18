@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "b0bc6a3c85727423378743fdb03d183ca0d4692d3172bbf893994d75ca75c7c9",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "829a696052c0fb3ca53465d67d4c092524aa2b4e065222d6b192ba597a3c0128",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "fbe663e3e1d616548348bdc4d0a9064ec111b40c01e21bc55a9222b03ffa3959",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e20b6e10c578c6d3983fbd2426f32609845daaf9329207a037fc9e1f6600f60f",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "5dce18a73e5147073d5e89a5b18ef0f2ce49839f74195b818d604af8f6eb8ced",
@@ -73,13 +73,20 @@
     "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json": "6a3a9eaf9dcf32fef066b7dca42127ce1534bf47a8425a7706d8819b92894e33",
     "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md": "22d7e84a77b6373de2f8a719f35f72c793dd9a2fc473782993f432fce6167623",
     "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json": "5ec85c85effc75fc9843a3e67044a44e3503a576d76d1eb943ba0f81dd1f6564",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md": "7e7b7d4b0aa0d57183cbfae957edf63a6ece85b3d8562298e7975018f67c0b79",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json": "7caf445aacfdd033fa233fe86939e9efddab26fc612cc1000f4c4e0f3c10b2f4",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md": "4161d8146064b6c6b30e224b838a8314bee2d22d97ff83f8ff2a878ad13b98ac",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json": "20811bfd343577c2d90f4d5e37cb3e571631cbbd61e73deffab2ec29fc0cbcfd",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json": "624373fc75fd6e072b0a0e74304a37ee8240942627578f0b7645972e6ff48e27",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json": "2f5b372c4078f9f91dec11d2cea6b0b0740a1ae6e5de23ecfe7fe58fd4df52df",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json": "ccdd292396c25094753c7ef68ea22d0660d4b87f63edb40b3ebd7d4cb8313a67",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json": "3aafc83442e4260735062eb397a74412e734190508f75db2894936e19957f0ec",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json": "b5e7cc1939ea734dd86d87f6eba35dac1e9fd7e7c6ff2a28be6ff542f6ecaf5b"
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json": "2d9d58d22cccbf79ea779d993f436bdda529d9e0e7f3fd55cedd6cc9453d28a1",
+    "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md": "db8aed63ab0587598b37a40452bd78b6127f24e44aa99e3c4618cf9ab7251a53",
+    "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json": "f539f1bab8e3d70e8be0a68df27dc43de88f89485eda4856083e4e927a607503",
+    "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json": "e974e5c0169711e95cdc5ad1b8628612f0276fbbce40240aa64cb4a999051014",
+    "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py": "c0ef6c21c09ee9e9af85002cd6c18771ccb77e1767e2937f1af7ddabb9e595e3",
+    "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json": "a1bb8034522804e6f7ac0a2cf7f7dc7fff7550bafd8ec8494696bf2a2346ff7d",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json": "8e3d79aad50bb111cad63c82a94f027fecf268d39b0ffd9e1d0d708384a0e167",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json": "7fe2490bc576f9d66a51c4418bc10e7b28212578fcf5f1898ac0132635bfc84d"
   },
   "counts": {
     "result": 130,
@@ -88,11 +95,11 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 10,
-    "component": 33,
+    "review": 11,
+    "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 79
+    "source": 86
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -131,6 +138,33 @@
       "status": "UNDEFINED",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "astrophysical_source_model"
+    },
+    {
+      "key": "component:ATLAS_HNL_DISPLACED",
+      "id": "ATLAS_HNL_DISPLACED",
+      "kind": "component",
+      "title": "ATLAS_DISPLACED: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_displaced"
+    },
+    {
+      "key": "component:ATLAS_HNL_PROMPT",
+      "id": "ATLAS_HNL_PROMPT",
+      "kind": "component",
+      "title": "ATLAS_PROMPT: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_prompt"
+    },
+    {
+      "key": "component:ATLAS_HNL_TOP",
+      "id": "ATLAS_HNL_TOP",
+      "kind": "component",
+      "title": "ATLAS_TOP: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "atlas_hnl_top"
     },
     {
       "key": "component:BBN_CMB_OBSERVATIONS",
@@ -178,6 +212,24 @@
       "fragment": "cern_particle_constraints"
     },
     {
+      "key": "component:CMS_HNL_DISPLACED",
+      "id": "CMS_HNL_DISPLACED",
+      "kind": "component",
+      "title": "CMS_DISPLACED: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cms_hnl_displaced"
+    },
+    {
+      "key": "component:CMS_HNL_TOP",
+      "id": "CMS_HNL_TOP",
+      "kind": "component",
+      "title": "CMS_TOP: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cms_hnl_top"
+    },
+    {
       "key": "component:COPILOT_REPRODUCTION",
       "id": "COPILOT_REPRODUCTION",
       "kind": "component",
@@ -194,6 +246,33 @@
       "status": "CONTRACT_DRAFT",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "cosmological_background"
+    },
+    {
+      "key": "component:FASER_ELECTRONIC_2025",
+      "id": "FASER_ELECTRONIC_2025",
+      "kind": "component",
+      "title": "FASER_ELECTRONIC_2025: измерительный паспорт",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_electronic_2025"
+    },
+    {
+      "key": "component:FASER_ELECTRONIC_2026",
+      "id": "FASER_ELECTRONIC_2026",
+      "kind": "component",
+      "title": "FASER_ELECTRONIC_2026: измерительный паспорт",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_electronic_2026"
+    },
+    {
+      "key": "component:FASER_EMULSION_2026",
+      "id": "FASER_EMULSION_2026",
+      "kind": "component",
+      "title": "FASER_EMULSION: измерительный паспорт",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "faser_emulsion_2026"
     },
     {
       "key": "component:FIRAS_CONSTRAINTS",
@@ -232,6 +311,15 @@
       "fragment": "gw_source_model"
     },
     {
+      "key": "component:HNL_COSMOLOGY_MAPPING",
+      "id": "HNL_COSMOLOGY_MAPPING",
+      "kind": "component",
+      "title": "HNL: от лабораторной модели к космологической истории",
+      "status": "MODEL_MAPPING_OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "hnl_cosmology_mapping"
+    },
+    {
       "key": "component:JOINT_INFERENCE",
       "id": "JOINT_INFERENCE",
       "kind": "component",
@@ -266,6 +354,24 @@
       "status": "CANDIDATE_NOT_EXECUTED",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "late_cosmology_response"
+    },
+    {
+      "key": "component:LHCB_HNL_B_DECAYS",
+      "id": "LHCB_HNL_B_DECAYS",
+      "kind": "component",
+      "title": "LHCB_B: отдельный HNL-анализ",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "lhcb_hnl_b_decays"
+    },
+    {
+      "key": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "id": "LHC_FORWARD_NEUTRINO_DATA",
+      "kind": "component",
+      "title": "LHC forward: отдельные сечения/потоки",
+      "status": "PASSPORTS_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "lhc_forward_neutrino_data"
     },
     {
       "key": "component:LVK_CONSTRAINTS",
@@ -365,6 +471,15 @@
       "status": "OPEN",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "r130_physical_embedding"
+    },
+    {
+      "key": "component:SND_CC_2026",
+      "id": "SND_CC_2026",
+      "kind": "component",
+      "title": "SND_CC: измерительный паспорт",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "snd_cc_2026"
     },
     {
       "key": "component:TENSOR_NEUTRINO_RESPONSE",
@@ -3085,6 +3200,15 @@
       "fragment": ""
     },
     {
+      "key": "review:NEIGHBOR_COLLIDER_20261118",
+      "id": "NEIGHBOR_COLLIDER_20261118",
+      "kind": "review",
+      "title": "Соседи: collider/BBN mapping, FASER identities и корреляции LINX",
+      "status": "REVIEW_WITH_SOURCE_AND_CONDITIONAL_ARITHMETIC_CHECKS",
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "review:NEUTRINO_GW_ARCHITECTURE_20261118",
       "id": "NEUTRINO_GW_ARCHITECTURE_20261118",
       "kind": "review",
@@ -3778,6 +3902,78 @@
       "size_bytes": 4584
     },
     {
+      "key": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+      "id": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+      "status": null,
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+      "fragment": "",
+      "sha256": "a1bb8034522804e6f7ac0a2cf7f7dc7fff7550bafd8ec8494696bf2a2346ff7d",
+      "git_blob_sha": "b3125beca6a7fbd481baaa9f0427ac0a57623aea",
+      "size_bytes": 2258
+    },
+    {
+      "key": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+      "id": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+      "status": null,
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+      "fragment": "",
+      "sha256": "e974e5c0169711e95cdc5ad1b8628612f0276fbbce40240aa64cb4a999051014",
+      "git_blob_sha": "d2c167abfebbc4c2fdf567008bdf8a3452344fda",
+      "size_bytes": 5215
+    },
+    {
+      "key": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "id": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "status": null,
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "fragment": "",
+      "sha256": "db8aed63ab0587598b37a40452bd78b6127f24e44aa99e3c4618cf9ab7251a53",
+      "git_blob_sha": "c8a1dbe517bf2ee8f0cd73eb251ae901e4605efc",
+      "size_bytes": 16991
+    },
+    {
+      "key": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "id": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "status": null,
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "fragment": "",
+      "sha256": "f539f1bab8e3d70e8be0a68df27dc43de88f89485eda4856083e4e927a607503",
+      "git_blob_sha": "1fe7979818fbb5422e499d73d2fa4ad547b52a9d",
+      "size_bytes": 7853
+    },
+    {
+      "key": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+      "id": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+      "kind": "source",
+      "title": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+      "status": null,
+      "path": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+      "fragment": "",
+      "sha256": "c0ef6c21c09ee9e9af85002cd6c18771ccb77e1767e2937f1af7ddabb9e595e3",
+      "git_blob_sha": "c7e599549cde6dd0450913e0e835df71898ff95d",
+      "size_bytes": 4060
+    },
+    {
+      "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+      "id": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+      "kind": "source",
+      "title": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+      "status": null,
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+      "fragment": "",
+      "sha256": "8e3d79aad50bb111cad63c82a94f027fecf268d39b0ffd9e1d0d708384a0e167",
+      "git_blob_sha": "b6a0281476c0b61483c11a6de1b4d9be704cb43c",
+      "size_bytes": 14085
+    },
+    {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json",
       "id": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json",
       "kind": "source",
@@ -3826,6 +4022,18 @@
       "size_bytes": 3907
     },
     {
+      "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+      "id": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+      "kind": "source",
+      "title": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+      "status": null,
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+      "fragment": "",
+      "sha256": "7fe2490bc576f9d66a51c4418bc10e7b28212578fcf5f1898ac0132635bfc84d",
+      "git_blob_sha": "53a894514f55277a6976f2af1ac67523af40172e",
+      "size_bytes": 2425
+    },
+    {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "id": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "kind": "source",
@@ -3833,9 +4041,9 @@
       "status": null,
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "",
-      "sha256": "7e7b7d4b0aa0d57183cbfae957edf63a6ece85b3d8562298e7975018f67c0b79",
-      "git_blob_sha": "00e5f67b8ff1654bf7373314466320e4e0adc5ba",
-      "size_bytes": 59620
+      "sha256": "4161d8146064b6c6b30e224b838a8314bee2d22d97ff83f8ff2a878ad13b98ac",
+      "git_blob_sha": "28d8ef9b6403330d2c525ecc865a4292f756cb5f",
+      "size_bytes": 75552
     },
     {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
@@ -3845,9 +4053,9 @@
       "status": null,
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "fragment": "",
-      "sha256": "7caf445aacfdd033fa233fe86939e9efddab26fc612cc1000f4c4e0f3c10b2f4",
-      "git_blob_sha": "f8234c6b0c12baec266e03c96f09464dc9c69b90",
-      "size_bytes": 18265
+      "sha256": "20811bfd343577c2d90f4d5e37cb3e571631cbbd61e73deffab2ec29fc0cbcfd",
+      "git_blob_sha": "c2abfde2b35ca97054581f5c84e774b6c29e86e5",
+      "size_bytes": 25704
     },
     {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json",
@@ -3857,9 +4065,9 @@
       "status": null,
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json",
       "fragment": "",
-      "sha256": "b5e7cc1939ea734dd86d87f6eba35dac1e9fd7e7c6ff2a28be6ff542f6ecaf5b",
-      "git_blob_sha": "86413f4be770ff42fce485f1d68990b6c2cdb145",
-      "size_bytes": 5427
+      "sha256": "2d9d58d22cccbf79ea779d993f436bdda529d9e0e7f3fd55cedd6cc9453d28a1",
+      "git_blob_sha": "f480a708b66af821d6793a9b6ede0c6890dbf131",
+      "size_bytes": 7404
     },
     {
       "key": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
@@ -3905,9 +4113,9 @@
       "status": null,
       "path": "analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
       "fragment": "",
-      "sha256": "5ce4c1df48f12f0a1d4ec7d1a3fd52b6698964b87ffc3100266a7642f583fad0",
-      "git_blob_sha": "9858de34986c9694cfd06f9b477c4f080e47ba3c",
-      "size_bytes": 29157
+      "sha256": "a9f701c90a2dbcae8ebb12388191cc878fcd00a126c009a948b8885a0ff90606",
+      "git_blob_sha": "4c9f0e4437636720caa2e68908c3a37d03c40155",
+      "size_bytes": 29748
     },
     {
       "key": "source:analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json",
@@ -4112,6 +4320,21 @@
       "relation": "source_catalog_not_execution_evidence"
     },
     {
+      "source": "component:ATLAS_HNL_DISPLACED",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:ATLAS_HNL_PROMPT",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:ATLAS_HNL_TOP",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
       "source": "component:BBN_CMB_OBSERVATIONS",
       "target": "component:GW_BBN_ENERGY_CONSISTENCY",
       "relation": "derived_consistency_not_independent",
@@ -4181,6 +4404,46 @@
     },
     {
       "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:ATLAS_HNL_DISPLACED",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_displaced",
+      "claim": "ATLAS_HNL_DISPLACED"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:ATLAS_HNL_PROMPT",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_prompt",
+      "claim": "ATLAS_HNL_PROMPT"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:ATLAS_HNL_TOP",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_top",
+      "claim": "ATLAS_HNL_TOP"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:CMS_HNL_DISPLACED",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cms_hnl_displaced",
+      "claim": "CMS_HNL_DISPLACED"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:CMS_HNL_TOP",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cms_hnl_top",
+      "claim": "CMS_HNL_TOP"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
       "target": "component:JOINT_INFERENCE",
       "relation": "input_contract_dependency",
       "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.",
@@ -4189,6 +4452,24 @@
     },
     {
       "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "component:LHCB_HNL_B_DECAYS",
+      "relation": "context_not_evidence",
+      "rationale": "Часть существующей лабораторной ветви, без признания X обнаруженным.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lhcb_hnl_b_decays",
+      "claim": "LHCB_HNL_B_DECAYS"
+    },
+    {
+      "source": "component:CERN_PARTICLE_CONSTRAINTS",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:CMS_HNL_DISPLACED",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:CMS_HNL_TOP",
       "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "relation": "source_catalog_not_execution_evidence"
     },
@@ -4212,6 +4493,14 @@
       "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.",
       "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_response_bridge",
       "claim": "GW_RESPONSE_BRIDGE"
+    },
+    {
+      "source": "component:COSMOLOGICAL_BACKGROUND",
+      "target": "component:HNL_COSMOLOGY_MAPPING",
+      "relation": "input_contract_dependency",
+      "rationale": "Эпоха и эффективность production/thermalization определяются полной историей.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#hnl_cosmology_mapping",
+      "claim": "HNL_COSMOLOGY_MAPPING"
     },
     {
       "source": "component:COSMOLOGICAL_BACKGROUND",
@@ -4255,6 +4544,21 @@
     },
     {
       "source": "component:COSMOLOGICAL_BACKGROUND",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:FASER_ELECTRONIC_2025",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:FASER_ELECTRONIC_2026",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:FASER_EMULSION_2026",
       "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "relation": "source_catalog_not_execution_evidence"
     },
@@ -4327,6 +4631,19 @@
       "relation": "source_catalog_not_execution_evidence"
     },
     {
+      "source": "component:HNL_COSMOLOGY_MAPPING",
+      "target": "component:JOINT_INFERENCE",
+      "relation": "input_contract_dependency",
+      "rationale": "При HNL-кандидате обеспечивает связь лабораторного и космологического предсказаний.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#joint_inference",
+      "claim": "JOINT_INFERENCE"
+    },
+    {
+      "source": "component:HNL_COSMOLOGY_MAPPING",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
       "source": "component:JOINT_INFERENCE",
       "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "relation": "source_catalog_not_execution_evidence"
@@ -4367,6 +4684,56 @@
     },
     {
       "source": "component:LATE_COSMOLOGY_RESPONSE",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:LHCB_HNL_B_DECAYS",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "target": "component:FASER_ELECTRONIC_2025",
+      "relation": "context_not_evidence",
+      "rationale": "Отдельный анализ с собственной экспозицией и response.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#faser_electronic_2025",
+      "claim": "FASER_ELECTRONIC_2025"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "target": "component:FASER_ELECTRONIC_2026",
+      "relation": "context_not_evidence",
+      "rationale": "Отдельный анализ с собственной экспозицией и response.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#faser_electronic_2026",
+      "claim": "FASER_ELECTRONIC_2026"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "target": "component:FASER_EMULSION_2026",
+      "relation": "context_not_evidence",
+      "rationale": "Отдельный анализ с собственной экспозицией и response.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#faser_emulsion_2026",
+      "claim": "FASER_EMULSION_2026"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "target": "component:JOINT_INFERENCE",
+      "relation": "input_contract_dependency",
+      "rationale": "Отдельная экспериментальная ветвь с модельным matching.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#joint_inference",
+      "claim": "JOINT_INFERENCE"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "target": "component:SND_CC_2026",
+      "relation": "context_not_evidence",
+      "rationale": "Отдельный анализ с собственной экспозицией и response.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#snd_cc_2026",
+      "claim": "SND_CC_2026"
+    },
+    {
+      "source": "component:LHC_FORWARD_NEUTRINO_DATA",
       "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "relation": "source_catalog_not_execution_evidence"
     },
@@ -4562,6 +4929,11 @@
       "relation": "source_catalog_not_execution_evidence"
     },
     {
+      "source": "component:SND_CC_2026",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "relation": "source_catalog_not_execution_evidence"
+    },
+    {
       "source": "component:TENSOR_NEUTRINO_RESPONSE",
       "target": "component:GW_RESPONSE_BRIDGE",
       "relation": "input_contract_dependency",
@@ -4605,11 +4977,51 @@
     },
     {
       "source": "component:X_MICROPHYSICS",
+      "target": "component:ATLAS_HNL_DISPLACED",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_displaced",
+      "claim": "ATLAS_HNL_DISPLACED"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:ATLAS_HNL_PROMPT",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_prompt",
+      "claim": "ATLAS_HNL_PROMPT"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:ATLAS_HNL_TOP",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#atlas_hnl_top",
+      "claim": "ATLAS_HNL_TOP"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
       "target": "component:CERN_PARTICLE_CONSTRAINTS",
       "relation": "observational_constraint_requires_mapping",
       "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.",
       "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_particle_constraints",
       "claim": "CERN_PARTICLE_CONSTRAINTS"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:CMS_HNL_DISPLACED",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cms_hnl_displaced",
+      "claim": "CMS_HNL_DISPLACED"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:CMS_HNL_TOP",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cms_hnl_top",
+      "claim": "CMS_HNL_TOP"
     },
     {
       "source": "component:X_MICROPHYSICS",
@@ -4626,6 +5038,30 @@
       "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.",
       "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#gw_source_model",
       "claim": "GW_SOURCE_MODEL"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:HNL_COSMOLOGY_MAPPING",
+      "relation": "input_contract_dependency",
+      "rationale": "Требуется одна микрофизическая модель.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#hnl_cosmology_mapping",
+      "claim": "HNL_COSMOLOGY_MAPPING"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:LHCB_HNL_B_DECAYS",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Ограничение действует через конкретную модель производства, распада и отбора.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lhcb_hnl_b_decays",
+      "claim": "LHCB_HNL_B_DECAYS"
+    },
+    {
+      "source": "component:X_MICROPHYSICS",
+      "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "relation": "observational_constraint_requires_mapping",
+      "rationale": "Высокоэнергетические ядерные взаимодействия ограничивают общие операторы лишь после matching.",
+      "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lhc_forward_neutrino_data",
+      "claim": "LHC_FORWARD_NEUTRINO_DATA"
     },
     {
       "source": "component:X_MICROPHYSICS",
@@ -10166,6 +10602,121 @@
     {
       "source": "review:NEIGHBOR_CERN_20261118",
       "target": "source:analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:BBN_CMB_OBSERVATIONS",
+      "relation": "scope_boundary",
+      "rationale": "Сохранены исторические S3 baseline и открытая joint likelihood.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#s3",
+      "claim": "s3"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:CERN_PARTICLE_CONSTRAINTS",
+      "relation": "scope_boundary",
+      "rationale": "Дополнены конкретные анализы; универсальная BBN-невосприимчивость не установлена.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#colliders",
+      "claim": "colliders"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:JOINT_INFERENCE",
+      "relation": "scope_boundary",
+      "rationale": "Разделены event overlap и общие nuisance.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#independence",
+      "claim": "independence"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:LHC_FORWARD_NEUTRINO_DATA",
+      "relation": "scope_boundary",
+      "rationale": "Отделены emulsion/electronic анализы и их статистические зависимости.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#forward",
+      "claim": "forward"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:NUCLEAR_RATE_INPUTS",
+      "relation": "scope_boundary",
+      "rationale": "Опровергнуто DIAGONAL_ONLY; выделена ограниченная температурная форма.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#correlations",
+      "claim": "correlations"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "component:WEAK_RATE_BRIDGE",
+      "relation": "scope_boundary",
+      "rationale": "Требования зависят от native/comparison/UQ/fit задачи.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#s3",
+      "claim": "s3"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "link:L09",
+      "relation": "scope_boundary",
+      "rationale": "Общий физический закон и mapping остаются необходимыми.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope",
+      "claim": "scope"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "question:U006",
+      "relation": "scope_boundary",
+      "rationale": "Происхождение геометрии остаётся открытым.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope",
+      "claim": "scope"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Функциональное продолжение не закрывается collider-данными.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope",
+      "claim": "scope"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "result:R130",
+      "relation": "scope_boundary",
+      "rationale": "Новое физическое следствие R130 не заявлено.",
+      "evidence": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope",
+      "claim": "scope"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/CLAIM_REVIEW.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/verify_review.py",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NEIGHBOR_COLLIDER_20261118",
+      "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
       "relation": "review_source_not_attestation"
     },
     {

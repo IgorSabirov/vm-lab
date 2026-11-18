@@ -1,0 +1,397 @@
+{
+  "schema": "vm-lab-collider-observation-passports-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+  "passports": [
+    {
+      "id": "CMS_TOP",
+      "component_id": "CMS_HNL_TOP",
+      "kind": "HNL_SEARCH",
+      "source_id": "CMS_TOP",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "CMS",
+      "dataset": "Run2_2016_2018_138fb",
+      "mass_GeV": [
+        20,
+        100
+      ],
+      "nature": "Majorana",
+      "flavor_scenarios": [
+        "electron-only",
+        "muon-only"
+      ],
+      "production": "ttbar; t->b l N",
+      "signature": "same-sign same-flavor dilepton + jets",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.95
+      },
+      "observables": [
+        "B(t->b l N)",
+        "model-specific |V_lN|^2"
+      ],
+      "observed_BR_limit_ranges": {
+        "ee": [
+          1.1e-05,
+          4.8e-05
+        ],
+        "mumu": [
+          3.7e-06,
+          2.4e-05
+        ]
+      },
+      "observed_mixing_limit_ranges": {
+        "e": [
+          0.00016,
+          0.11
+        ],
+        "mu": [
+          4.2e-05,
+          0.039
+        ]
+      },
+      "range_warning": "Ranges over scanned masses, not rectangular exclusions or values assigned to arbitrary masses.",
+      "hepdata": {
+        "url": "https://www.hepdata.net/record/ins3222878",
+        "status": "LINK_VERIFIED_CONTENT_READ_403"
+      },
+      "physics_boundary": "Below mW production W may be on shell, HNL decay W is virtual; above threshold use the appropriate topology. No mass-independent BR/U² conversion."
+    },
+    {
+      "id": "CMS_DISPLACED",
+      "component_id": "CMS_HNL_DISPLACED",
+      "kind": "HNL_SEARCH",
+      "source_id": "CMS_DISPLACED",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "CMS",
+      "release_status": "PRELIMINARY_PAS",
+      "dataset": [
+        "Run2_138fb",
+        "Run3_2022_34.6fb"
+      ],
+      "mass_GeV": [
+        1,
+        5
+      ],
+      "signature": "one prompt muon + two displaced muons reconstructed outside tracker",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.95
+      },
+      "nature": null,
+      "flavor_assumption": "muon mixing observable; complete model assumptions need PAS tables",
+      "numerical_contour": null,
+      "physics_boundary": "Do not fill missing lifetime/branching assumptions from a different CMS analysis."
+    },
+    {
+      "id": "ATLAS_TOP",
+      "component_id": "ATLAS_HNL_TOP",
+      "kind": "HNL_SEARCH",
+      "source_id": "ATLAS_TOP",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "ATLAS",
+      "dataset": "Run2_140fb",
+      "mass_GeV": [
+        15,
+        75
+      ],
+      "nature": "Majorana",
+      "production": "ttbar; W->lN",
+      "signature": "same-charge same-flavor dileptons",
+      "observables": [
+        "signal cross section",
+        "benchmark type-I mixing"
+      ],
+      "numerical_contour": null,
+      "physics_boundary": "Distinct event sample from CMS; correlated theory nuisance still need definition."
+    },
+    {
+      "id": "ATLAS_DISPLACED",
+      "component_id": "ATLAS_HNL_DISPLACED",
+      "kind": "HNL_SEARCH",
+      "source_id": "ATLAS_DISPLACED",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "ATLAS",
+      "dataset": "Run2_140fb",
+      "simulated_leptonic_mass_GeV": [
+        1,
+        20
+      ],
+      "semileptonic_mass_points_GeV": [
+        1,
+        2,
+        3
+      ],
+      "reported_exclusion_summary": {
+        "masses_below_GeV": 14.5,
+        "mixing_as_low_as": 1e-07
+      },
+      "nature": [
+        "Dirac-like",
+        "Majorana-like"
+      ],
+      "flavor_scenarios": [
+        "1SFH",
+        "2QDH NH: (0.06,0.48,0.46)",
+        "2QDH IH: (1/3,1/3,1/3)"
+      ],
+      "boundary": "Simulation range is not full excluded mass interval; contour depends on mass/lifetime/flavor.",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.95
+      }
+    },
+    {
+      "id": "ATLAS_PROMPT",
+      "component_id": "ATLAS_HNL_PROMPT",
+      "kind": "HNL_SEARCH",
+      "source_id": "ATLAS_PROMPT",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "ATLAS",
+      "dataset": "Run2_140fb",
+      "mass_GeV": [
+        8,
+        65
+      ],
+      "strongest_window_GeV": [
+        15,
+        30
+      ],
+      "strongest_mixing_limits": {
+        "e": 1.1e-05,
+        "mu": 5e-06
+      },
+      "flavor_scenarios": [
+        "single HNL, single active flavor"
+      ],
+      "nature": "LNV Majorana benchmark",
+      "signature": "prompt two same-charge or three leptons; veto same-flavor three-lepton channel",
+      "numerical_contour": null
+    },
+    {
+      "id": "LHCB_B",
+      "component_id": "LHCB_HNL_B_DECAYS",
+      "kind": "HNL_SEARCH",
+      "source_id": "LHCB_B",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "LHCb",
+      "dataset": "Run2_13TeV_5fb",
+      "mass_GeV": [
+        1.6,
+        5.5
+      ],
+      "production": "B meson",
+      "signature": "N->mu±pi∓",
+      "nature": [
+        "LNC",
+        "LNV"
+      ],
+      "flavor_scenarios": [
+        "muon mixing; other flavors negligible"
+      ],
+      "numerical_contour": null,
+      "physics_boundary": "No single 1e-6 limit at every mass is inferred; lifetime-dependent acceptance matters."
+    },
+    {
+      "id": "FASER_EMULSION",
+      "component_id": "FASER_EMULSION_2026",
+      "kind": "FORWARD_NEUTRINO",
+      "source_id": "FASER_EMULSION",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "FASER",
+      "subdetector": "FASERnu emulsion/tungsten",
+      "dataset": "2022_9.5fb_subset_681.1kg",
+      "binning": {
+        "mu_energy_bins": 2,
+        "electron_bins": 1,
+        "electron_energy_reconstruction": false
+      },
+      "nu_antinu_separation": "combined published cross sections; not the electronic charge-analysis",
+      "target": "tungsten",
+      "observables": [
+        "nu_mu CC",
+        "nu_e CC"
+      ],
+      "release_status": "CONFERENCE_NOTE",
+      "unfolding_matrix": null
+    },
+    {
+      "id": "FASER_ELECTRONIC_2025",
+      "component_id": "FASER_ELECTRONIC_2025",
+      "kind": "FORWARD_NEUTRINO",
+      "source_id": "FASER_ELECTRONIC_2025",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "FASER",
+      "subdetector": "active electronic components",
+      "dataset": "2022_2023_65.6fb",
+      "binning": {
+        "published_bins": 6,
+        "exact_edges": null
+      },
+      "nu_antinu_separation": "neutrino and antineutrino information; exact charge-separated/mixed-bin response not ingested",
+      "target": "tungsten; cross-section normalization per nucleon must be retained",
+      "observables": [
+        "cross section conditional on predicted flux",
+        "flux conditional on predicted cross section"
+      ],
+      "hepdata": {
+        "url": "https://doi.org/10.17182/hepdata.156838.v1",
+        "status": "PRIMARY_CITATION_VERIFIED_CONTENT_NOT_INGESTED"
+      },
+      "unfolding_matrix": null
+    },
+    {
+      "id": "FASER_ELECTRONIC_2026",
+      "component_id": "FASER_ELECTRONIC_2026",
+      "kind": "FORWARD_NEUTRINO",
+      "source_id": "FASER_ELECTRONIC_2026",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "FASER",
+      "subdetector": "active electronic components",
+      "dataset": "Run3_186pm4fb",
+      "binning": {
+        "axes": [
+          "energy",
+          "rapidity"
+        ],
+        "exact_edges": null
+      },
+      "nu_antinu_separation": "NOT_VERIFIED_FOR_THIS_RELEASE",
+      "background_subtracted_events": {
+        "value": 766.8,
+        "uncertainty": 29.6
+      },
+      "observables": [
+        "double-differential muon-neutrino flux and neutrino-nucleon cross section"
+      ],
+      "release_status": "CONFERENCE_NOTE",
+      "unfolding_matrix": null,
+      "target": "fiducial sensitive detector regions; numerical material/normalization mapping required"
+    },
+    {
+      "id": "SND_CC",
+      "component_id": "SND_CC_2026",
+      "kind": "FORWARD_NEUTRINO",
+      "source_id": "SND_CC",
+      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
+      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "covariance": null,
+      "response_ingested": false,
+      "scientific_acceptance": false,
+      "experiment": "SND@LHC",
+      "subdetector": "electronic detectors",
+      "dataset": "Run3_2022_2023_68.6fb",
+      "nu_antinu_separation": "combined nu_mu + antinu_mu",
+      "target": "tungsten nucleus",
+      "median_energy_GeV": 228,
+      "candidates": 31,
+      "observed_cross_section_cm2": {
+        "central": 3.7e-34,
+        "plus": 2.4e-34,
+        "minus": 1.2e-34
+      },
+      "observables": [
+        "flux-model-dependent combined CC cross section"
+      ],
+      "binning": {
+        "energy_distribution_required": true
+      },
+      "unfolding_matrix": null
+    }
+  ],
+  "data_dependencies": [
+    {
+      "a": "CMS_TOP",
+      "b": "ATLAS_TOP",
+      "event_relation": "DISTINCT_DETECTOR_EVENT_SAMPLES",
+      "combination": "Conditional combination possible with common parameterization and explicit shared nuisance; mass overlap is not data duplication."
+    },
+    {
+      "a": "CMS_TOP",
+      "b": "CMS_DISPLACED",
+      "event_relation": "SAME_EXPERIMENT_RUN2_COVERAGE_EVENT_OVERLAP_UNVERIFIED",
+      "combination": "Check selections, common calibrations and signal model; do not infer independence from different labels."
+    },
+    {
+      "a": "ATLAS_TOP",
+      "b": "ATLAS_PROMPT",
+      "event_relation": "RUN2_COVERAGE_OVERLAP_SELECTION_OVERLAP_UNVERIFIED",
+      "combination": "Needs category/event and nuisance map."
+    },
+    {
+      "a": "ATLAS_DISPLACED",
+      "b": "ATLAS_PROMPT",
+      "event_relation": "RUN2_COVERAGE_OVERLAP_SELECTION_OVERLAP_UNVERIFIED",
+      "combination": "Different topology alone does not document all correlations."
+    },
+    {
+      "a": "FASER_ELECTRONIC_2025",
+      "b": "FASER_ELECTRONIC_2026",
+      "event_relation": "OVERLAPPING_DATA_TAKING_AND_POTENTIALLY_SHARED_EVENTS",
+      "combination": "Use one release or a documented joint model; no naive product."
+    },
+    {
+      "a": "FASER_EMULSION",
+      "b": "FASER_ELECTRONIC_2026",
+      "event_relation": "DIFFERENT_ANALYSIS_SUBDETECTOR_EVENT_OVERLAP_UNVERIFIED",
+      "combination": "Different binning is not contradiction; shared flux/hadron-production uncertainties need treatment."
+    },
+    {
+      "a": "FASER_ELECTRONIC_2026",
+      "b": "SND_CC",
+      "event_relation": "DISTINCT_DETECTOR_EVENT_SAMPLES",
+      "combination": "Separate events; common hadron-production/PDF/flux assumptions may correlate predictions."
+    }
+  ],
+  "common_requirements": [
+    "model_id and parameter_map",
+    "mass-dependent total and partial widths, Dirac/Majorana and flavor pattern",
+    "production cross section and branching fractions",
+    "proper lifetime, boost distribution and efficiency/acceptance",
+    "luminosity, background, detector response and nuisance model",
+    "observed/expected limit convention and release identity",
+    "likelihood versus contour-only status",
+    "confidence intervals are not Gaussian likelihoods"
+  ],
+  "hnl_yield_contract": "N_sig = luminosity * integral(d sigma_prod * branching(decay) * acceptance_efficiency(boost,lifetime,kinematics)); include topology/combinatoric factors explicitly.",
+  "contour_policy": "Published contour may test the identical benchmark at its stated confidence; it is not a likelihood. LLP contours may exclude bounded regions rather than all U² above a line.",
+  "bbn_policy": "No VACUOUS status from a proper lifetime table. Evaluate production, abundance, energy partition, inverse processes, hadronic/electromagnetic showers, entropy, lepton/baryon asymmetry and daughters in the common cosmological model.",
+  "forward_policy": "Flux and cross section extracted from the same events are alternative conditional products, not two independent likelihoods; high-energy nuclear CC data do not directly replace MeV nu-e or n↔p rates."
+}

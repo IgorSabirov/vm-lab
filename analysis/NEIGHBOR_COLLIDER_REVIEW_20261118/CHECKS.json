@@ -1,0 +1,75 @@
+{
+  "schema": "vm-lab-neighbor-conditional-checks-v1",
+  "status": "PASS",
+  "mode": "CONDITIONAL_ARITHMETIC_AND_EXACT_LINEAR_ALGEBRA",
+  "physical_solver_runs": 0,
+  "LINX_executed": false,
+  "conditional_width": {
+    "C": 10,
+    "K_GeV_minus4": 4.570443126997507e-14,
+    "rows": [
+      {
+        "mass_GeV": 1.6,
+        "illustrative_U2_not_measured_contour": 1e-06,
+        "tau_s_C10": 1.373433211189305e-07,
+        "ctau_cm": 4117.449182812748,
+        "constant_gstar_10_75_temperature_GeV": 2.3180585883459845
+      },
+      {
+        "mass_GeV": 5.5,
+        "illustrative_U2_not_measured_contour": 1e-06,
+        "tau_s_C10": 2.8615017163130426e-10,
+        "ctau_cm": 8.578566331047057,
+        "constant_gstar_10_75_temperature_GeV": 50.784499367743216
+      },
+      {
+        "mass_GeV": 20.0,
+        "illustrative_U2_not_measured_contour": 5e-06,
+        "tau_s_C10": 9.000931892850231e-14,
+        "ctau_cm": 0.0026984114964481633,
+        "constant_gstar_10_75_temperature_GeV": 2863.4159722218574
+      }
+    ],
+    "m100GeV_rejected": true,
+    "limits": [
+      "C is an assumed constant, not a calculated flavor/threshold-dependent width",
+      "Points are illustrative, not digitized collider contours",
+      "Constant g*=10.75 temperatures are internal consistency checks, not physical predictions",
+      "Production, boosts, inverse reactions and thermalization not calculated"
+    ]
+  },
+  "correlated_q": {
+    "L": [
+      [
+        "1",
+        "0"
+      ],
+      [
+        "3/5",
+        "4/5"
+      ]
+    ],
+    "covariance": [
+      [
+        "1",
+        "3/5"
+      ],
+      [
+        "3/5",
+        "1"
+      ]
+    ],
+    "independence_forced_by_vector_API": false,
+    "one_amplitude_temperature_covariance_rank": 1,
+    "full_rate_posterior_reconstructed": false
+  },
+  "cross_section_scale_check": {
+    "sigma_nue_cm2": 1.7232640037088891e-43,
+    "sigma_nucleon_cm2": 1.5504e-36,
+    "ratio": 8996880.319342578,
+    "log10_ratio": 6.954091943331828,
+    "scope": "Dimensional estimate with omitted coupling/flux/target corrections; not an SND fit or measurement comparison"
+  },
+  "elapsed_seconds": 0.00014304699999456716,
+  "code_sha256": "c0ef6c21c09ee9e9af85002cd6c18771ccb77e1767e2937f1af7ddabb9e595e3"
+}

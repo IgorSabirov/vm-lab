@@ -1,0 +1,87 @@
+{
+  "schema": "vm-lab-neighbor-claim-review-v1",
+  "claims": [
+    {
+      "id": "extend_cern",
+      "verdict": "ACCEPT",
+      "reason": "Расширить существующий CERN-узел, дать отдельные паспорта; данные не помещать внутрь X как физический закон."
+    },
+    {
+      "id": "forward_branch",
+      "verdict": "ACCEPT_WITH_SCOPE",
+      "reason": "Отдельная ветвь forward neutrinos; прямой подстановки в MeV collision terms нет. Возможное ограничение общих операторов требует явного matching."
+    },
+    {
+      "id": "faser_two_plus_one",
+      "verdict": "REJECT_NEIGHBOR_REFUTATION",
+      "reason": "2 μ bins +1 e bin подтверждены CERN-FASER-CONF-2026-002; 2D в CONF-2026-005 относится к другому детекторному анализу."
+    },
+    {
+      "id": "cms_pas_unconfirmed",
+      "verdict": "RESOLVED",
+      "reason": "CMS-PAS-EXO-24-015 от 24.03.2026 подтверждён, 1–5 GeV. PRELIMINARY сохраняется."
+    },
+    {
+      "id": "cms_br_as_mixing",
+      "verdict": "CORRECT",
+      "reason": "CMS отдельно публикует BR и модельные mixing limits. Подстановка 1e-6 как установленного U² из top-BR недопустима."
+    },
+    {
+      "id": "hepdata_absent",
+      "verdict": "CORRECT",
+      "reason": "CMS official page содержит HEPData ins3222878. Прямое чтение получило 403; наличие полной likelihood не установлено."
+    },
+    {
+      "id": "lhc_bbn_vacuous",
+      "verdict": "REJECT_UNSUPPORTED_STATUS",
+      "reason": "Не добавлять BBN_RELEVANCE_ASSESSED_VACUOUS_FOR_MIXING_HNL: произвольные точки и условная ширина не доказывают отсутствие всей BBN-чувствительности."
+    },
+    {
+      "id": "all_decay_above_100GeV",
+      "verdict": "REJECT_INTERNAL_CONTRADICTION",
+      "reason": "Уже формула самого отзыва даёт 2.32 и 50.8 GeV для первых двух точек, не >>100 GeV; физическая эпоха распада требует ещё production/boost/thermal history."
+    },
+    {
+      "id": "constant_width_and_time",
+      "verdict": "QUALIFY",
+      "reason": "C=10 не универсален по массам/ароматам; m^5 contact law не работает на W-пороге. g*=10.75 нельзя переносить на всю эпоху от 0.07 MeV до GeV."
+    },
+    {
+      "id": "linx_diagonal_only",
+      "verdict": "REJECT",
+      "reason": "q-vector не устанавливает независимость: q=Lz даёт межреакционные корреляции. Ограничение — фиксированная температурная форма одной амплитуды на реакцию."
+    },
+    {
+      "id": "atlas_cms_independent",
+      "verdict": "ACCEPT_WITH_NUISANCE_CAVEAT",
+      "reason": "Разные события/детекторы; совпадение масс не означает повтор данных. Общие theory/PDF/cross-section nuisance и модельный matching остаются."
+    },
+    {
+      "id": "s3_three_obligations",
+      "verdict": "REFINE_BY_TASK",
+      "reason": "Общий deterministic BBN test требует rates/weak/background, но не наблюдательной ковариации; UQ и observational fit имеют дополнительные требования. Исторические выполненные S3 результаты не обнуляются."
+    },
+    {
+      "id": "sigma_nine_orders",
+      "verdict": "CORRECT",
+      "reason": "В собственных числах отзыва отношение на нуклон ~9e6, то есть ~7 порядков. Наивное умножение на A и сравнение ν со смесью ν+antiν не валидирует SND."
+    },
+    {
+      "id": "lifetime_topology_validation",
+      "verdict": "REJECT_AS_VALIDATION",
+      "reason": "Prompt/displaced classification зависит от boost, геометрии, эффективности и decay channels; сходство cτ с топологией не калибрует общую ширину."
+    },
+    {
+      "id": "600_second_routing",
+      "verdict": "NOT_APPLICABLE",
+      "reason": "Из приложения не принимается отменённое правило маршрутизации ≤600s. Действует выбор владельца и оценка стоимости; физический запуск не назначен."
+    },
+    {
+      "id": "pablo_i2m",
+      "verdict": "OUT_OF_SCOPE",
+      "reason": "Предложение вернуться к I2m/письму Пабло не является частью текущего поручения и не меняет эту ветвь."
+    }
+  ],
+  "new_result_id": null,
+  "scientific_status_promoted": false
+}
