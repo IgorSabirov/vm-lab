@@ -1,0 +1,143 @@
+{
+  "result": {
+    "YPCMB": 0.055675200072694796,
+    "YPBBN": 0.056051992286458976,
+    "He4oH": 0.014845360887982186,
+    "DoH": 8.832193325607541e-07,
+    "He3oH": 5.374932059611194e-06,
+    "He3oHe4": 0.00036206139413979356,
+    "Li7oH": 5.359120876143876e-10,
+    "Li6oLi7": 1.0006213157417855e-07,
+    "Neff": 3.0439772985579183,
+    "Omeganurel": 5.698637952393702,
+    "OneOverOmeganunr": 93.04302365135274,
+    "Y_final": {
+      "n": 7.181059075405303e-19,
+      "p": 0.9439311160807639,
+      "H2": 8.3369821032818e-07,
+      "H3": 1.5626692895685871e-09,
+      "He3": 5.072002948597505e-06,
+      "He4": 0.014012998071614744,
+      "Li7": 2.599967296726607e-10,
+      "Be7": 2.4586736531036033e-10,
+      "He6": 8.069975462047515e-67,
+      "Li8": 4.3987937260192316e-35,
+      "Li6": 5.06178396308438e-17,
+      "B8": 8.644491614151854e-34
+    }
+  },
+  "checks": {
+    "finite_outputs": true,
+    "solver_success": true,
+    "final_baryon_residual": 1.545874539488068e-12,
+    "final_baryon_pass": true,
+    "raw_positivity_with_1e-12_roundoff_floor": true,
+    "author_YPBBN_residual": -0.19094979771354104,
+    "author_DoH_residual": -2.3482878667439247e-05,
+    "author_reference_pass": false,
+    "author_reference_pass_expected": false,
+    "raw_baryon_pass": true,
+    "all_abundances_finite": true,
+    "engineering_pass": true
+  },
+  "eras": [
+    {
+      "era": "HT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 908,
+      "njev": 55,
+      "nlu": 55,
+      "steps": 479,
+      "raw_min": 0.2318681966238139,
+      "max_baryon_residual": 8.881784197001252e-16
+    },
+    {
+      "era": "MT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 6246,
+      "njev": 418,
+      "nlu": 896,
+      "steps": 1627,
+      "raw_min": -1.118880687483321e-16,
+      "max_baryon_residual": 1.5374368445009168e-12
+    },
+    {
+      "era": "LT",
+      "success": true,
+      "status": 0,
+      "message": "The solver successfully reached the end of the integration interval.",
+      "nfev": 153567,
+      "njev": 5382,
+      "nlu": 17570,
+      "steps": 50035,
+      "raw_min": 9.020775274423042e-76,
+      "max_baryon_residual": 1.5483170301422433e-12
+    }
+  ],
+  "load_events": [
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e2.txt",
+      "sha256": "4e8c84067545dc3fbc7d1f272f084db157f39d971a5b6ca48f0a99fdc1465cd6",
+      "git_blob_sha": "7e9ab7c5a086a81e90feccd087eb33eea5ee7866",
+      "bytes": 27835
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/plasma/QED_pressure_correction_e3.txt",
+      "sha256": "43c5c4d5c8d927dfcc6faa05d985edceec8c343415d8363c542254f3a0741afe",
+      "git_blob_sha": "8205956852e68ad11b69b307d51b43ce52758729",
+      "bytes": 26541
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/bbn-cache-P1/plasma/electron_thermo_45b89f3e1b24e961.txt",
+      "sha256": "5eb81efc68a8f5c664ab4aca23b336104398e567406ccad725c42c52783b8287",
+      "git_blob_sha": "ac416a912d67f149933da8b2040bad640441321d",
+      "bytes": 250194
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/weak/nTOp_7e3af87bd0404e0a.txt",
+      "sha256": "53e7c9a28c736f449f410e3b77d3f0af5c6760eed78a261430f8c5be6dbafa74",
+      "git_blob_sha": "f5111a85112e94a237ed73f28ef860876ee0f8ed",
+      "bytes": 38078
+    },
+    {
+      "path": "/workspace/scratch/b581bb5775cc/upstream-primat/primat/data/cache_plasma_weak/weak/nTOp_thermal_cfdb4d324bb5651f.txt",
+      "sha256": "9c263b76c7eff7048e7141c1df545aae008fad198a344ebca65ba0a42a38ea16",
+      "git_blob_sha": "e3a8b6782393df73a9140e05bd3941ff135af2c9",
+      "bytes": 5871
+    }
+  ],
+  "background_clock_audit": {
+    "relative_residuals": {
+      "clock_roundtrip": 1.8778090070018136e-16,
+      "T_gamma": 2.220446049250313e-16,
+      "rho_b": 4.777817028879868e-16,
+      "scale_factor": 1.21594683964745e-16,
+      "Tnu_e": 2.22941207267064e-16,
+      "Tnu_mu": 2.229770156732771e-16,
+      "Tnu_tau": 2.229782420006314e-16,
+      "clock_diagnostic_0.0": 0.0,
+      "clock_diagnostic_-1e-07": 1.4902142265678748e-16
+    },
+    "sample_count": 17,
+    "physical_clock_identification": false
+  },
+  "cache_after": {
+    "plasma/electron_thermo_45b89f3e1b24e961.txt": {
+      "sha256": "5eb81efc68a8f5c664ab4aca23b336104398e567406ccad725c42c52783b8287",
+      "git_blob_sha": "ac416a912d67f149933da8b2040bad640441321d",
+      "bytes": 250194
+    }
+  },
+  "new_cache_files": [],
+  "timing": {
+    "init_seconds": 2.120786842000598,
+    "solve_seconds": 84.32511046899981,
+    "worker_wall_seconds": 89.23537634900003,
+    "peak_rss_mib": 293.16015625
+  },
+  "scientific_acceptance": false
+}

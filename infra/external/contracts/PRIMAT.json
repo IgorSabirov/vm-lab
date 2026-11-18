@@ -2,11 +2,11 @@
   "schema": "vm-lab-external-contract-v1",
   "id": "CONTROL_PRIMAT",
   "source_id": "PRIMAT",
-  "state": "DRAFT",
-  "execution_enabled": false,
+  "state": "READY",
+  "execution_enabled": true,
   "analysis_mode": "engineering_check",
   "question": "Подключить авторскую BBN-сеть к проверке стандартного результата и общего масштабирования CCC+TL через закреплённые интерфейсы.",
-  "scope_limit": "Регистрация источника и ссылок не является запуском BBN, проверкой CCC+TL или принятием нового закона отдельных реакций.",
+  "scope_limit": "Only immutable P0/P1 S0 and conditional P1 S1 prelaunch under analysis/CCC_BBN_NETWORK_20261114/prelaunch/PROTOCOL.md. No S2, Sη, P2 full solve, BH1 or automatic upstream execution.",
   "outcomes_already_inspected": true,
   "pre_execution_receipt_required": true,
   "acm_badge_awarded": false,
@@ -17,28 +17,86 @@
   },
   "decision_points": [
     {
-      "choice": "Стандартный эталон",
-      "state": "DOCUMENTED_CONTROL_NOT_RUN",
-      "rationale": "Закрепить все физические параметры, сетку и допуски из авторского tests/README.md перед сравнением."
+      "choice": "S0",
+      "state": "PINNED_HIGH_PRECISION_P0_P1",
+      "rationale": "Separate author reproduction, cold/warm repeatability and optional C/Python parity."
     },
     {
-      "choice": "CCC+TL",
-      "state": "MAPPING_REQUIRED",
-      "rationale": "Общее масштабирование должно охватывать реакции, распад и охлаждение; подмена одного H(T) не реализует этот контроль."
+      "choice": "S1",
+      "state": "CONDITIONAL_KINETIC_CLOCK",
+      "rationale": "Scale HT weak callbacks and complete MT/LT RHS/Jacobian once; retain NEVO at corresponding T; physical clock identification unproved."
     },
     {
-      "choice": "Сеть и бюджет",
-      "state": "CALIBRATION_REQUIRED",
-      "rationale": "Small, large A≤8 и large представлены как варианты. Машинное время и необходимый объём должны быть оценены до научного запуска."
+      "choice": "Budget",
+      "state": "MEASURED_NATIVE_EXECUTOR",
+      "rationale": "See per-process pre/post receipts and package ledger; this does not authorize a VM job or unlimited future execution."
     }
   ],
-  "criteria": [],
-  "numerical_configurations": [],
+  "criteria": [
+    {
+      "id": "REFERENCE_YP",
+      "observable": "abs(computed YPBBN - profile author target)",
+      "expected": 0,
+      "absolute_tolerance": 1e-05,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Upstream high-precision reference, same weak cache",
+      "failure_rule": "Exceeding bound fails the named engineering control; cooling-only must instead fail S1 invariance while retaining numerical invariants."
+    },
+    {
+      "id": "REFERENCE_DOH",
+      "observable": "abs(computed DoH - profile author target)",
+      "expected": 0,
+      "absolute_tolerance": 3e-09,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Upstream high-precision reference, same weak cache",
+      "failure_rule": "Exceeding bound fails the named engineering control; cooling-only must instead fail S1 invariance while retaining numerical invariants."
+    },
+    {
+      "id": "BARYON",
+      "observable": "max |sum A_i Y_i - 1|, all solver eras and final",
+      "expected": 0,
+      "absolute_tolerance": 1e-10,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Original SPEC V04",
+      "failure_rule": "Exceeding bound fails the named engineering control; cooling-only must instead fail S1 invariance while retaining numerical invariants."
+    },
+    {
+      "id": "RAW_NEGATIVITY",
+      "observable": "max(0,-min raw solver Y)",
+      "expected": 0,
+      "absolute_tolerance": 1e-12,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Prelaunch protocol numerical roundoff floor; final clamping alone is insufficient",
+      "failure_rule": "Exceeding bound fails the named engineering control; cooling-only must instead fail S1 invariance while retaining numerical invariants."
+    },
+    {
+      "id": "S1_ENVELOPE_RATIO",
+      "observable": "max trajectory/observable error divided by frozen per-coordinate envelope",
+      "expected": 0,
+      "absolute_tolerance": 1.0,
+      "relative_tolerance": 0,
+      "tolerance_basis": "Envelope fixed from independent baseline refinement before scaled solve; exact hashes required",
+      "failure_rule": "Exceeding bound fails the named engineering control; cooling-only must instead fail S1 invariance while retaining numerical invariants."
+    }
+  ],
+  "numerical_configurations": [
+    {
+      "id": "P0",
+      "path": "analysis/CCC_BBN_NETWORK_20261114/prelaunch/P0.json"
+    },
+    {
+      "id": "P1",
+      "path": "analysis/CCC_BBN_NETWORK_20261114/prelaunch/P1.json"
+    }
+  ],
   "budget": {
-    "max_seconds": null,
-    "executor": null
+    "max_seconds": 600,
+    "executor": "native local sandbox, single process at a time, one BLAS/OpenMP thread, shared cumulative ledger",
+    "memory_bytes": 4294967296
   },
   "resource_manifest": "infra/external/sources/PRIMAT.json",
-  "next_action": "Use resources PRIMAT for pinned links; prepare the baseline/run contract without modifying upstream data.",
-  "scientific_acceptance": false
+  "next_action": "Review published prelaunch evidence; every future workload requires its own frozen manifest and measured runtime forecast. Do not repeat completed controls automatically.",
+  "scientific_acceptance": false,
+  "execution_protocol": "analysis/CCC_BBN_NETWORK_20261114/prelaunch/PROTOCOL.md",
+  "authorization": "Current user request to close launch questions; frozen per-run receipts required."
 }
