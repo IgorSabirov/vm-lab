@@ -1,0 +1,195 @@
+{
+  "schema": "vm-lab-observation-passports-v0.1",
+  "state": "DRAFT",
+  "execution_enabled": false,
+  "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+  "observations": {
+    "ORCA_NSI": {
+      "source_id": "ORCA_NSI",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "ORCA6_2020_2021_433_KTY",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.9
+      },
+      "bounds": {
+        "abs_epsilon_mu_tau": 0.0054,
+        "abs_epsilon_e_tau": 0.074,
+        "abs_epsilon_e_mu": 0.056,
+        "epsilon_tau_tau_minus_mu_mu": [
+          -0.015,
+          0.017
+        ]
+      },
+      "conditions": [
+        "published one-parameter/benchmark profiles; do not assemble a rectangular simultaneous confidence region",
+        "Earth matter effective NSI; species-dependent operator matching to early plasma required"
+      ]
+    },
+    "ORCA_DECOH": {
+      "source_id": "ORCA_DECOH",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "ORCA6_2020_2021_433_KTY",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.9
+      },
+      "benchmark": {
+        "n": -1,
+        "E0_GeV": 1,
+        "Gamma21_upper_GeV": 1.9e-22,
+        "Gamma31_upper_GeV": 2.7e-22
+      },
+      "conditions": [
+        "specific published decoherence model and marginalization",
+        "no direct extrapolation to MeV plasma or collision damping"
+      ]
+    },
+    "ORCA_STERILE": {
+      "source_id": "ORCA_STERILE",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "ORCA6_2020_2021_433_KTY",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.9
+      },
+      "bounds": {
+        "Umu4_squared": 0.138,
+        "Utau4_squared": 0.076
+      },
+      "conditions": [
+        "published regime Delta_m41_squared >=1 eV^2, benchmark 1 eV^2",
+        "theta14=0, delta14=0 and other fixed/prior parameters must be retained",
+        "no universal sterile-mass exclusion"
+      ]
+    },
+    "ORCA_DECAY": {
+      "source_id": "ORCA_DECAY",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "ORCA6_2020_2021_433_KTY",
+      "parameter": "alpha3=m3/tau3 in natural units",
+      "result": "No significant decay evidence; SM within 2.1 sigma",
+      "conditions": [
+        "invisible daughters and model assumptions; include daughter energy in early-Universe balance"
+      ]
+    },
+    "ARCA_EVENT": {
+      "source_id": "ARCA_EVENT",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "KM3_230213A",
+      "energy_summary": {
+        "median_PeV": 220,
+        "interval68_PeV": [
+          110,
+          790
+        ],
+        "interval90_PeV": [
+          72,
+          2600
+        ],
+        "prior": "E^-2 spectrum"
+      },
+      "conditions": [
+        "summary is not event likelihood",
+        "flavor, direction, exposure, selection and energy response required"
+      ]
+    },
+    "ARCA_DM": {
+      "source_id": "ARCA_DM",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "KM3_230213A",
+      "role": "INTERPRETATION_OF_SAME_EVENT_NOT_ADDITIONAL_DATA",
+      "conditions": [
+        "specific decay channels, mass/lifetime and halo/extragalactic model",
+        "joint constraints from other neutrino and gamma data required"
+      ]
+    },
+    "KM3_SN": {
+      "source_id": "KM3_SN",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "KM3_SN_METHOD",
+      "role": "DETECTOR_METHOD_NOT_OBSERVED_BBN_HISTORY",
+      "conditions": [
+        "46% increased reach in candidate Galactic supernovae relative to prior strategy",
+        "hit-rate response does not yield full f_nue(E,t)"
+      ]
+    },
+    "LVK_SGWB": {
+      "source_id": "LVK_SGWB",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "LVK_O1_TO_O4A_SGWB",
+      "confidence": {
+        "kind": "Bayesian_credible",
+        "level": 0.95
+      },
+      "prior": "log-uniform amplitude",
+      "reference_Hz": 25,
+      "bounds": {
+        "alpha_2_over_3": 2e-09,
+        "alpha_0": 2.8e-09
+      },
+      "conditions": [
+        "specific power-law model and detector band",
+        "data to 2025-04-01; publication 2026-08-24",
+        "do not use as independent integral BBN bound"
+      ]
+    },
+    "PTA": {
+      "source_id": "PTA",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "PTA_DATASET_SELECTION_OPEN",
+      "conditions": [
+        "NANOGrav 15-year cited as example, no release ingested",
+        "shared pulsars and foreground model must be tracked"
+      ]
+    },
+    "LVK_ICECUBE": {
+      "source_id": "LVK_ICECUBE",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "GW_O3_ICECUBE",
+      "conditions": [
+        "joint astrophysical counterpart model",
+        "GW events may overlap other GW catalog analyses"
+      ]
+    },
+    "FIRAS": {
+      "source_id": "FIRAS",
+      "likelihood_status": "NOT_DOWNLOADED_OR_RECONSTRUCTED",
+      "covariance": null,
+      "data_overlap_group": "COBE_FIRAS_SPECTRUM",
+      "confidence": {
+        "kind": "CL",
+        "level": 0.95
+      },
+      "bounds": {
+        "abs_y": 1.5e-05,
+        "abs_mu": 9e-05
+      },
+      "conditions": [
+        "specific spectral templates and foreground treatment",
+        "not a universal heating bound without thermalization history"
+      ]
+    }
+  },
+  "combination_policy": "No product of overlapping published profiles without joint likelihood/covariance or an explicitly justified alternative. No Gaussian manufactured from upper limits. Different benchmark extensions are not automatically simultaneous.",
+  "required_release_fields": [
+    "dataset_id/version/hash",
+    "response and selection",
+    "nuisance parameters and priors",
+    "profiled versus marginalized dimensions",
+    "fixed parameters",
+    "statistical convention",
+    "overlap/correlation model",
+    "physical parameter map"
+  ]
+}

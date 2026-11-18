@@ -14595,6 +14595,1013 @@
           "evidence": "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#cern"
         }
       ]
+    },
+    {
+      "id": "NEUTRINO_GW_ARCHITECTURE_20261118",
+      "title": "R130–BH1–BBN: нейтрино, GW и экспериментальные ограничения; полная генеалогия",
+      "status": "ARCHITECTURE_AND_SOURCE_REVIEW_NO_PHYSICAL_RUN",
+      "date": "2026-11-18",
+      "base_commit": "aa21593e16a764c487394ab307b514ac6c3285c3",
+      "report": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "managed_sources": [
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Новый мост не выводится из воспроизведения R130.",
+          "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "construct:C042",
+          "relation": "joint_model_requirement",
+          "claim": "scope",
+          "rationale": "Причинная совместимость остаётся требованием, не термодинамическим доказательством.",
+          "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Происхождение геометрии остаётся открытым.",
+          "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "scope",
+          "rationale": "Нейтринная/GW наблюдаемость не закрывает внутреннее функциональное продолжение.",
+          "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
+        },
+        {
+          "target": "link:L09",
+          "relation": "joint_model_requirement",
+          "claim": "scope",
+          "rationale": "Сопряжение требует общего физического закона и параметров.",
+          "evidence": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope"
+        }
+      ]
+    }
+  ],
+  "architecture_components": [
+    {
+      "id": "BH1_THERMODYNAMICS",
+      "title": "BH1: равновесная термодинамика",
+      "element_kind": "physical_model",
+      "status": "EXISTING_REDUCED_CONTRACT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "bh1_thermodynamics",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "BH1",
+        "CERN_REVIEW"
+      ],
+      "parents": [
+        {
+          "target": "external:ANTHROPIC_HP",
+          "relation": "conceptual_parent_not_derivation",
+          "rationale": "Равновесный эффективный потенциал — источник условных оценок, не космологическая кинетика."
+        }
+      ],
+      "boundary": "Скрытая теплота и переход не задают автоматически физические часы, X, скорость перехода или GW.",
+      "next_gate": "Определить физический носитель и область применимости BH1.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "R130_PHYSICAL_EMBEDDING",
+      "title": "Физическое вложение R130",
+      "element_kind": "mapping",
+      "status": "OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "r130_physical_embedding",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "R130",
+        "BH1"
+      ],
+      "parents": [
+        {
+          "target": "result:R130",
+          "relation": "conceptual_parent_not_derivation",
+          "rationale": "Свойства дискретной модели сохраняются как контрольный предел; физический смысл не доказан."
+        },
+        {
+          "target": "component:BH1_THERMODYNAMICS",
+          "relation": "conceptual_parent_not_derivation",
+          "rationale": "Сопряжение двух описаний — гипотеза."
+        },
+        {
+          "target": "construct:C042",
+          "relation": "context_not_evidence",
+          "rationale": "C042 задаёт требования причинной совместимости; это не результат BH1."
+        }
+      ],
+      "boundary": "Длина кольца не является масштабным фактором; BH1 и ADD могут описывать один носитель, тогда их энергии нельзя складывать.",
+      "next_gate": "Задать часы, отображение состояний/объёма/энергии, обратное действие и контрольный предел R130.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "X_MICROPHYSICS",
+      "title": "Общая микрофизика сектора X",
+      "element_kind": "physical_model",
+      "status": "UNDEFINED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "x_microphysics",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "BH1",
+        "R130"
+      ],
+      "parents": [
+        {
+          "target": "component:R130_PHYSICAL_EMBEDDING",
+          "relation": "conceptual_parent_not_derivation",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "MeV-реликт, eV-бозон и 100 PeV DM не становятся одной частицей из-за символа X.",
+      "next_gate": "Выбрать явную модель: поля, массы, взаимодействия, стабильность, начальные условия и сохраняемые заряды.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "COSMOLOGICAL_BACKGROUND",
+      "title": "Совместная история X, em, ν и расширения",
+      "element_kind": "forward_model",
+      "status": "CONTRACT_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cosmological_background",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "BH1",
+        "FORMAT"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Фон и нейтрино должны решаться с обратной связью; H(T) не специфицирует всю физику и может быть неоднозначен при нагреве.",
+      "next_gate": "Объявить t,a,H,EOS, начальные плотности, барионное число и энергетические потоки; проверить сумму Q=0.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "NEUTRINO_KINETIC_BRIDGE",
+      "title": "Импульсная и флейворная нейтринная кинетика",
+      "element_kind": "interface",
+      "status": "CONTRACT_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "neutrino_kinetic_bridge",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "NUDSMC",
+        "NUDEC_PAPER",
+        "FORT_QKE",
+        "FORT_CODE",
+        "FORT_COPY"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:NUDSMC",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:NUDEC_BSM_V2",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:FORTEPIANO_QKE",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "νDSMC-спектры, моментное замыкание nudec и матрицы Fort — разные объекты. Готовый общий X-оператор во всех трёх не подтверждён.",
+      "next_gate": "Начать с общего SM-предела; затем только совпадающий набор X-процессов и декларация асимметрий/осцилляций.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "WEAK_RATE_BRIDGE",
+      "title": "Согласованные скорости n↔p",
+      "element_kind": "interface",
+      "status": "CONTRACT_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "weak_rate_bridge",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "PRIMAT",
+        "LINX",
+        "FORMAT"
+      ],
+      "parents": [
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок.",
+      "next_gate": "Отдельно сверить интегрирование слабых ядер на заданных спектрах; передавать rates в s^-1 с метаданными поправок.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "CERN_NTOF_RATES",
+      "title": "CERN n_TOF: ядерные данные",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_DATA_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cern_ntof_rates",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "NTOF_NP",
+        "NTOF_NA",
+        "CERN_REVIEW"
+      ],
+      "parents": [],
+      "boundary": "7Be(n,p) входит в общую топологию; 7Be(n,α) требует явного расширения сети. Влияние на проблему лития не обещано.",
+      "next_gate": "Найти численные сечения/ковариации, проверить термическое усреднение и идентичность уже используемых таблиц.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "NUCLEAR_RATE_INPUTS",
+      "title": "Версионированные ядерные скорости",
+      "element_kind": "data_contract",
+      "status": "MATCHING_OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "nuclear_rate_inputs",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "NETWORK",
+        "NUDSMC",
+        "PRIMAT",
+        "LINX"
+      ],
+      "parents": [
+        {
+          "target": "component:CERN_NTOF_RATES",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:PRIMAT",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:LINX",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения.",
+      "next_gate": "Сверить источники, единицы, симметрийные множители, интерполяцию, screening, обратные реакции и корреляции ошибок.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "BBN_RESPONSE_BRIDGE",
+      "title": "BBN: PRIMAT, LINX, PRyMordial",
+      "element_kind": "interface",
+      "status": "FORMAT_IMPLEMENTED_ADAPTERS_INCOMPLETE",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "bbn_response_bridge",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "FORMAT",
+        "PRIMAT",
+        "LINX",
+        "PRYMORDIAL",
+        "CERN_REVIEW"
+      ],
+      "parents": [
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:WEAK_RATE_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NUCLEAR_RATE_INPUTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:PRIMAT",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:LINX",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:PRYMORDIAL",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Три реализации не дают три независимых наблюдения. Общие ядерные таблицы/поправки создают общую систематику.",
+      "next_gate": "Реализовать адаптеры общего фона и weak rates в подтверждённом пересечении возможностей; сверить Yp,D/H с едиными определениями.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "BBN_CMB_OBSERVATIONS",
+      "title": "Наблюдения abundances и CMB",
+      "element_kind": "experiment",
+      "status": "DATASET_SELECTION_OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "bbn_cmb_observations",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "BH1",
+        "CERN_REVIEW"
+      ],
+      "parents": [],
+      "boundary": "Конкретные likelihood, ковариации и выборки Yp,D/H/CMB здесь ещё не закреплены. Не назначать произвольные Gaussian priors.",
+      "next_gate": "Выбрать первичные наборы, nuisance-параметры и зависимости ηBBN–ηCMB при позднем нагреве.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "GW_SOURCE_MODEL",
+      "title": "Источник гравитационных волн",
+      "element_kind": "forward_model",
+      "status": "UNIMPLEMENTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "gw_source_model",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "GW_BBN",
+        "BH1"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:BH1_THERMODYNAMICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Для фазового перехода нужны nucleation, βPT/H, скорость стенки, энергетические эффективности; латентной теплоты недостаточно.",
+      "next_gate": "Задать источник, эпоху, UV/IR-cutoff и область формулы; не путать βPT с показателем физических часов.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "TENSOR_NEUTRINO_RESPONSE",
+      "title": "Тензорная анизотропия нейтрино",
+      "element_kind": "forward_model",
+      "status": "UNIMPLEMENTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "tensor_neutrino_response",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "NU_TENSOR",
+        "NU_NHZ"
+      ],
+      "parents": [
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Изотропные fν(p,t) и ρν не содержат πν^TT(k,t); нужен отдельный угловой/возмущённый Boltzmann/QKE-оператор.",
+      "next_gate": "Построить тензорную иерархию и проверить связанный и свободный пределы; не выдавать фоновые спектры за тензорный ответ.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "GW_RESPONSE_BRIDGE",
+      "title": "Источник → перенос → наблюдаемый ΩGW",
+      "element_kind": "interface",
+      "status": "CONTRACT_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "gw_response_bridge",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "GW_BBN",
+        "NU_TENSOR",
+        "NU_NHZ"
+      ],
+      "parents": [
+        {
+          "target": "component:GW_SOURCE_MODEL",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:TENSOR_NEUTRINO_RESPONSE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Первичный спектр и поздние астрофизические источники имеют разную историю; красное смещение зависит от полной тепловой истории.",
+      "next_gate": "Закрепить нормировку частоты/Ω, h0, t_generation, transfer function и foreground model.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "GW_BBN_ENERGY_CONSISTENCY",
+      "title": "Интегральная GW–BBN согласованность",
+      "element_kind": "derived_constraint",
+      "status": "DERIVED_NOT_INDEPENDENT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "gw_bbn_energy_consistency",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "GW_BBN"
+      ],
+      "parents": [
+        {
+          "target": "component:GW_RESPONSE_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:BBN_CMB_OBSERVATIONS",
+          "relation": "derived_consistency_not_independent",
+          "rationale": "Использует тот же радиационный бюджет BBN/CMB; не добавляется повторно как независимая likelihood."
+        }
+      ],
+      "boundary": "Граница 5.6e-6 ΔNeff относится к интегралу ΩGW h0², существовавшему до BBN и субгоризонтным модам, при оговорённых энтропии/нормировке.",
+      "next_gate": "Включить ρGW в единый фон и BBN fit; внешнюю интегральную границу использовать как диагностику, не дублировать данные.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "PTA_CONSTRAINTS",
+      "title": "PTA: низкочастотные GW",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_DATA_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "pta_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "PTA",
+        "NU_NHZ"
+      ],
+      "parents": [
+        {
+          "target": "component:GW_RESPONSE_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Характерный след порядка nHz не означает обнаруженную нейтринную ступеньку. Астрофизический фон и общие пульсары мешают независимому перемножению PTA.",
+      "next_gate": "Выбрать конкретный релиз, foregrounds, корреляции и параметризованную передаточную функцию.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "LVK_CONSTRAINTS",
+      "title": "LVK: высокочастотный стохастический фон",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "lvk_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "LVK_SGWB"
+      ],
+      "parents": [
+        {
+          "target": "component:GW_RESPONSE_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Предел в 25 Hz условен по спектральному индексу и log-uniform prior; не полная энергия GW.",
+      "next_gate": "Получить релиз likelihood/response, полосы и covariance; применить к предсказанному спектру с foregrounds.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ORCA_NSI",
+      "title": "ORCA: нестандартные взаимодействия",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "orca_nsi",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ORCA_NSI"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Эффективные ε в веществе Земли не являются ранневселенскими collision terms. Диагональный предел асимметричен: [-0.015,0.017].",
+      "next_gate": "Вывести общий оператор/посредник и отображение состава Земли в e±/ν-плазму с тепловым усреднением.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ORCA_DECOHERENCE",
+      "title": "ORCA: декогеренция",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "orca_decoherence",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ORCA_DECOH"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Γ(E)=Γ0(E/1 GeV)^n относится к феноменологической модели; это не автоматически частота ранних столкновений.",
+      "next_gate": "Вывести модель окружения, единицы, положительность/полную положительность и исключить двойной счёт damping.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ORCA_STERILE",
+      "title": "ORCA: стерильное состояние",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "orca_sterile",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ORCA_STERILE"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Границы условны по 3+1, Δm41² и фиксированным параметрам; нельзя распространить их на все массы.",
+      "next_gate": "Согласовать 4×4 QKE, начальную заселённость, θ14/фазы и используемый likelihood.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ORCA_DECAY",
+      "title": "ORCA: невидимый распад ν3",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "orca_decay",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ORCA_DECAY"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "2.1σ не обнаружение; параметр α3=m3/τ3 требует физического канала распада и дочерних состояний.",
+      "next_gate": "Перенести распад и inverse processes в энергетически согласованный оператор.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "KM3NET_NEUTRINO_CONSTRAINTS",
+      "title": "KM3NeT: общий экспериментальный интерфейс",
+      "element_kind": "interface",
+      "status": "CONTRACT_DRAFT",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "km3net_neutrino_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ORCA_NSI",
+        "ORCA_DECOH",
+        "ORCA_STERILE",
+        "ORCA_DECAY"
+      ],
+      "parents": [
+        {
+          "target": "component:ORCA_NSI",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:ORCA_DECOHERENCE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:ORCA_STERILE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:ORCA_DECAY",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Четыре анализа существенно перекрываются по ORCA6 2020–2021/433 кт·лет и имеют разные модели. Их likelihood нельзя автоматически перемножать.",
+      "next_gate": "Закрепить overlap groups и совместную nuisance-модель либо использовать отдельные условные проверки.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ASTROPHYSICAL_SOURCE_MODEL",
+      "title": "Астрофизические источники и распространение",
+      "element_kind": "forward_model",
+      "status": "UNDEFINED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "astrophysical_source_model",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ARCA_EVENT",
+        "LVK_ICECUBE",
+        "KM3_SN"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "conceptual_parent_not_derivation",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "История источника, пространственное распределение, фон и propagation не выводятся из ранней однородной X-истории.",
+      "next_gate": "Отдельно задать DM/source population, распады/ускорение, красное смещение и нейтринный перенос.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ARCA_FLUX_RESPONSE",
+      "title": "ARCA: поток → отклик детектора",
+      "element_kind": "forward_model",
+      "status": "UNIMPLEMENTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "arca_flux_response",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ARCA_EVENT"
+      ],
+      "parents": [
+        {
+          "target": "component:ASTROPHYSICAL_SOURCE_MODEL",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Φν(E,Ω,t) требуется свернуть с экспозицией, effective area и разрешением; оценка энергии одного события не есть готовая likelihood потока.",
+      "next_gate": "Получить response и background с версией, exposure, flavor/ν–antiν зависимостью.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ARCA_EVENT_CONSTRAINTS",
+      "title": "ARCA: KM3-230213A",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_EVENT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "arca_event_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ARCA_EVENT"
+      ],
+      "parents": [
+        {
+          "target": "component:ARCA_FLUX_RESPONSE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "220 PeV — медиана при E^-2 prior; 68%:110–790 PeV, 90%:72 PeV–2.6 EeV. Это не моноэнергетический поток и не обнаружение X.",
+      "next_gate": "Использовать event likelihood и selection function, а не Gaussian вокруг 220 PeV.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "ARCA_DM_INTERPRETATION",
+      "title": "Гипотеза распада DM для KM3-230213A",
+      "element_kind": "interpretation",
+      "status": "MODEL_CONDITIONAL",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "arca_dm_interpretation",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "ARCA_DM",
+        "ARCA_EVENT"
+      ],
+      "parents": [
+        {
+          "target": "component:ARCA_EVENT_CONSTRAINTS",
+          "relation": "shared_data_not_independent",
+          "rationale": "Повторно использует KM3-230213A; это интерпретация, не второе наблюдение."
+        },
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Массы >100 PeV и времена жизни порядка 10^26–10^27 s условны по каналам; нельзя отождествить этот X с BBN-реликтом.",
+      "next_gate": "Проверить ту же модель по IceCube, γ-данным, abundance и cosmological lifetime без повторного счёта события.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "KM3NET_SUPERNOVA",
+      "title": "KM3NeT: вспышки сверхновых",
+      "element_kind": "experiment",
+      "status": "METHOD_PUBLISHED_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "km3net_supernova",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "KM3_SN"
+      ],
+      "parents": [
+        {
+          "target": "component:ASTROPHYSICAL_SOURCE_MODEL",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "46% — улучшение охвата кандидатов, не число обнаруженных вспышек; hit-rate не восстанавливает полные спектры/ароматы.",
+      "next_gate": "Задать SN emission model и hit-level detector response; не использовать как реликтовый BBN спектр.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "MULTIMESSENGER_LVK_ICECUBE",
+      "title": "Совместные GW–IceCube наблюдения",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "multimessenger_lvk_icecube",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "LVK_ICECUBE"
+      ],
+      "parents": [
+        {
+          "target": "component:ASTROPHYSICAL_SOURCE_MODEL",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Астрофизические высокоэнергетические нейтрино не являются MeV-нейтрино эпохи BBN; пересечения GW-каталогов требуют учёта.",
+      "next_gate": "Построить joint source likelihood, selection effects и overlap с одиночными каталогами.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "CERN_PARTICLE_CONSTRAINTS",
+      "title": "CERN: лабораторные ограничения X",
+      "element_kind": "experiment",
+      "status": "MODEL_MAPPING_OPEN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "cern_particle_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "NA64",
+        "CERN_REVIEW"
+      ],
+      "parents": [
+        {
+          "target": "component:X_MICROPHYSICS",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "NA64 проверяет определённые порталы/посредники; CERN не поставляет готовый закон X или вычислительное время автоматически.",
+      "next_gate": "Выбрать Lagrangian/branching ratios, проверить applicability и получить первичные данные/likelihood.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "LATE_COSMOLOGY_RESPONSE",
+      "title": "Поздняя нейтринная космология",
+      "element_kind": "forward_model",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "late_cosmology_response",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "CLASS_NEUTRINOPHILIC"
+      ],
+      "parents": [
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "external:CLASS_NEUTRINOPHILIC",
+          "relation": "implementation_candidate_not_execution",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        }
+      ],
+      "boundary": "Публичная модификация CLASS v2.10.1 описывает конкретный лёгкий скаляр/majoron и приближения; не доказан общий BBN/QKE/GW адаптер.",
+      "next_gate": "Согласовать ранние/поздние переменные, массу и приближения возмущений; не заменять tensor hierarchy по названию CLASS.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "JOINT_INFERENCE",
+      "title": "Совместная проверка одной физической модели",
+      "element_kind": "inference",
+      "status": "DESIGN_ONLY",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "joint_inference",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "CERN_REVIEW",
+        "GW_BBN"
+      ],
+      "parents": [
+        {
+          "target": "component:BBN_RESPONSE_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:BBN_CMB_OBSERVATIONS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:GW_RESPONSE_BRIDGE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:PTA_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:LVK_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:KM3NET_NEUTRINO_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:ARCA_EVENT_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:KM3NET_SUPERNOVA",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:MULTIMESSENGER_LVK_ICECUBE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:LATE_COSMOLOGY_RESPONSE",
+          "relation": "input_contract_dependency",
+          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+        },
+        {
+          "target": "component:FIRAS_CONSTRAINTS",
+          "relation": "input_contract_dependency",
+          "rationale": "Сохраняет фотонный канал исходного BH1–BBN bridge, отдельно от CMB anisotropies."
+        }
+      ],
+      "boundary": "Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми.",
+      "next_gate": "Построить likelihood graph с dataset IDs, covariance/overlap и одним использованием каждого наблюдения.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "COPILOT_REPRODUCTION",
+      "title": "GPT → Copilot → GitHub → проверка",
+      "element_kind": "execution_method",
+      "status": "EXISTING_METHOD_NEW_PACKAGE_NOT_RUN",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "copilot_reproduction",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "source_ids": [
+        "COPILOT",
+        "R130"
+      ],
+      "parents": [
+        {
+          "target": "result:R130",
+          "relation": "methodological_parent_not_physical_evidence",
+          "rationale": "R130 даёт опыт воспроизведения кода/сырья, не доказательство новой физики."
+        }
+      ],
+      "boundary": "Сборка пакета не равна запуску; публикация raw не равна независимому подтверждению физической интерпретации. Проверенный профиль R130 исполняет фиксированный пакет; универсальный вход и ремонт следующего пакета ещё должны быть реализованы.",
+      "next_gate": "Заморозить код, source pins, окружение, seeds и критерии; Copilot исполняет совместимый пакет, коммитит raw/logs/manifest; GPT сверяет, пользователь принимает науку.",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "PHOTON_THERMALIZATION",
+      "title": "Фотонная термализация и поздний нагрев",
+      "element_kind": "forward_model",
+      "status": "UNIMPLEMENTED",
+      "source_ids": [
+        "BH1",
+        "FIRAS"
+      ],
+      "parents": [
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "input_contract_dependency",
+          "rationale": "Источник Q_Xem и redshift history должны быть общими с BBN/нейтринным балансом."
+        }
+      ],
+      "boundary": "Одна температура фотонов не описывает произвольное спектральное искажение; эффект зависит от эпохи и каналов термализации.",
+      "next_gate": "Построить передачу истории инжекции в ΔIν/μ/y и изменение числа фотонов; согласовать ηBBN–ηCMB.",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "photon_thermalization",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "scientific_acceptance": false
+    },
+    {
+      "id": "FIRAS_CONSTRAINTS",
+      "title": "COBE/FIRAS: фотонный спектр",
+      "element_kind": "experiment",
+      "status": "PUBLISHED_CONSTRAINT_NOT_INGESTED",
+      "source_ids": [
+        "FIRAS",
+        "BH1"
+      ],
+      "parents": [
+        {
+          "target": "component:PHOTON_THERMALIZATION",
+          "relation": "observational_constraint_requires_mapping",
+          "rationale": "Данные ограничивают предсказанный фотонный спектр, а не любую энергию X без модели тепловыделения."
+        }
+      ],
+      "boundary": "Классические |y|<1.5e-5 и |μ|<9e-5 (95% CL) условны по шаблонам и foregrounds; это не универсальный предел на Q_Xem.",
+      "next_gate": "Закрепить релиз спектра, covariance/foregrounds и модель термализации; применять согласованно с другими CMB данными.",
+      "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "fragment": "firas_constraints",
+      "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+      "scientific_acceptance": false
     }
   ]
 }

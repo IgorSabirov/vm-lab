@@ -34,7 +34,20 @@
     "infra/external/sources/PRIMAT.json",
     "analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
-    "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md"
+    "analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+    "infra/external/contracts/NUDSMC.json",
+    "infra/external/contracts/NUDEC_BSM_V2.json",
+    "infra/external/contracts/PRYMORDIAL.json",
+    "infra/external/contracts/CLASS_NEUTRINOPHILIC.json",
+    "infra/external/contracts/LINX.json",
+    "infra/external/contracts/FORTEPIANO_QKE.json"
   ],
   "reproduce": "Install requirements-ci.txt; run tools/external_sources.py validate; run tools/numerical_control.py --output evidence with threads=1 and 2 as documented in infra/external/README.md.",
   "raw_data": {
@@ -46,6 +59,7 @@
     "No new IsingCauset/CDT/QSC/BFSS/YM author experiment is bundled or claimed reproduced.",
     "Existing full scientific VM data are outside this package.",
     "Nested Serbian archive is preserved under its original license; not a new scientific replication.",
-    "PRIMAT code and numerical tables remain upstream. Only the pinned resource metadata and interface contract are bundled; no BBN execution is claimed."
+    "PRIMAT code and numerical tables remain upstream. Only the pinned resource metadata and interface contract are bundled; no BBN execution is claimed.",
+    "Neutrino/GW sources are metadata and DRAFT interfaces only. No nuDSMC/nudec/FortEPiaNO/LINX/PRyMordial/CLASS code, likelihood release or physical run is bundled; canonical Fort code pin remains open."
   ]
 }

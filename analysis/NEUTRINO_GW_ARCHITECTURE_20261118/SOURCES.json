@@ -1,0 +1,348 @@
+{
+  "schema": "vm-lab-neutrino-gw-source-catalog-v1",
+  "date": "2026-11-18",
+  "base_commit": "aa21593e16a764c487394ab307b514ac6c3285c3",
+  "issue": 98,
+  "new_physical_runs": 0,
+  "sources": {
+    "R130": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md",
+      "scope": "Проверенная дискретная модель и открытое физическое отображение; архитектуры I/II/III.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "BH1": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json",
+      "scope": "Существующий физический BH1–BBN контракт; X, часы, кинетика и collision terms не определены.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "FORMAT": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json",
+      "scope": "Реализован формат истории, не адаптер полного QKE.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "CERN_REVIEW": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md",
+      "scope": "Предыдущий разбор BH1/BBN/CERN и ограничений PRIMAT/LINX.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "NETWORK": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json",
+      "scope": "Сопоставление 8 нуклидов/12 реакций; численная идентичность таблиц не установлена.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "COPILOT": {
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/infra/METHODOLOGY_GPT_COPILOT_20261117.md",
+      "scope": "Standing GPT→Copilot→GitHub method; demonstrated R130 executor is fixed-package, not a universal arbitrary-code/repair backend.",
+      "kind": "project_source",
+      "commit": "aa21593e16a764c487394ab307b514ac6c3285c3"
+    },
+    "NUDEC_PAPER": {
+      "url": "https://arxiv.org/abs/2511.04747v2",
+      "scope": "Моментум-осреднённое отцепление; SM-сравнение с FortEPiaNO, не гарантия при произвольной инжекции.",
+      "kind": "primary_publication",
+      "doi": "10.1088/1475-7516/2026/02/046",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "FORT_QKE": {
+      "url": "https://arxiv.org/abs/2012.02726v3",
+      "scope": "Полные импульсные QKE трёх ароматов, нейтринные столкновения и QED до e^3.",
+      "kind": "primary_publication",
+      "doi": "10.1088/1475-7516/2021/04/073",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ORCA_NSI": {
+      "url": "https://doi.org/10.1088/1475-7516/2025/02/073",
+      "scope": "ORCA6 NSI: 5828 событий, 433 кт·лет; эффективные параметры среды Земли.",
+      "kind": "primary_publication",
+      "doi": "10.1088/1475-7516/2025/02/073",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ORCA_DECOH": {
+      "url": "https://arxiv.org/abs/2410.01388v2",
+      "scope": "Феноменологическая декогеренция ORCA6; E0=1 GeV, n=-2,-1.",
+      "kind": "primary_publication",
+      "doi": "10.1088/1475-7516/2025/03/039",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ORCA_STERILE": {
+      "url": "https://arxiv.org/abs/2510.07360v2",
+      "scope": "ORCA6 3+1; ограничения в режиме Δm41²≥1 eV²; конкретный эталон 1 eV².",
+      "kind": "primary_publication",
+      "doi": "10.1007/JHEP02(2026)080",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ORCA_DECAY": {
+      "url": "https://arxiv.org/abs/2501.11336",
+      "scope": "ORCA6 невидимый распад ν3; отклонение 2.1σ не является обнаружением.",
+      "kind": "primary_publication",
+      "doi": "10.1007/JHEP04(2025)105",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ARCA_EVENT": {
+      "url": "https://doi.org/10.1038/s41586-024-08543-1",
+      "scope": "KM3-230213A: условная оценка энергии при спектральном предположении E^-2.",
+      "kind": "primary_publication",
+      "doi": "10.1038/s41586-024-08543-1",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "ARCA_DM": {
+      "url": "https://arxiv.org/abs/2606.09986v1",
+      "scope": "Интерпретация того же события распадом тяжёлой DM; не новая независимая регистрация.",
+      "kind": "primary_publication",
+      "doi": null,
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "KM3_SN": {
+      "url": "https://arxiv.org/abs/2511.18565v2",
+      "scope": "Улучшение охвата кандидатов галактических SN на 46%; метод всплеска частоты срабатываний.",
+      "kind": "primary_publication",
+      "doi": null,
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "LVK_SGWB": {
+      "url": "https://arxiv.org/abs/2608.23477v1",
+      "scope": "Изотропный SGWB: O1–данные до 2025-04-01; 95% Bayesian credible, log-uniform amplitude prior.",
+      "kind": "primary_publication",
+      "doi": null,
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "LVK_ICECUBE": {
+      "url": "https://arxiv.org/abs/2601.07595v3",
+      "scope": "Поиск высокоэнергетических нейтринных counterparts GW O3.",
+      "kind": "primary_publication",
+      "doi": "10.3847/1538-4357/ae4e1b",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "PTA": {
+      "url": "https://arxiv.org/abs/2306.16213v1",
+      "scope": "NANOGrav 15-year evidence for GW background; не обнаружение нейтринного отделения.",
+      "kind": "primary_publication",
+      "doi": null,
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NU_TENSOR": {
+      "url": "https://arxiv.org/abs/astro-ph/0306304",
+      "scope": "Weinberg: влияние свободных нейтрино на тензорные моды.",
+      "kind": "primary_publication",
+      "doi": "10.1103/PhysRevD.69.023503",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NU_NHZ": {
+      "url": "https://doi.org/10.1088/0264-9381/27/19/194008",
+      "scope": "Lattanzi–Benini–Montani: частотный след нейтринного отделения порядка nHz; обнаружение трудно.",
+      "kind": "primary_publication",
+      "doi": "10.1088/0264-9381/27/19/194008",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "GW_BBN": {
+      "url": "https://arxiv.org/abs/2011.12414",
+      "scope": "Обзор космологических GW; интегральная радиационная граница при заданной тепловой истории.",
+      "kind": "primary_publication",
+      "doi": null,
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NTOF_NP": {
+      "url": "https://doi.org/10.1103/PhysRevLett.121.042701",
+      "scope": "7Be(n,p)7Li; канал в текущей общей сети.",
+      "kind": "primary_publication",
+      "doi": "10.1103/PhysRevLett.121.042701",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NTOF_NA": {
+      "url": "https://doi.org/10.1103/PhysRevLett.117.152701",
+      "scope": "7Be(n,α); дополнительный канал вне текущего общего списка 12 реакций.",
+      "kind": "primary_publication",
+      "doi": "10.1103/PhysRevLett.117.152701",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NA64": {
+      "url": "https://doi.org/10.1103/PhysRevD.109.L031103",
+      "scope": "Условные ограничения invisible dark photon; не произвольного X.",
+      "kind": "primary_publication",
+      "doi": "10.1103/PhysRevD.109.L031103",
+      "inspection": "Relevant abstract/results/conditions; no independent reproduction or numerical likelihood ingestion."
+    },
+    "NUDSMC": {
+      "url": "https://github.com/maksymovchynnikov/nuDSMC/tree/84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7",
+      "scope": "νDSMC: неравновесный транспорт нейтрино и нестабильный реликт",
+      "kind": "pinned_code",
+      "id": "NUDSMC",
+      "repository": "maksymovchynnikov/nuDSMC",
+      "source_sha": "84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7",
+      "source_tree_sha": "f16e918dabb4159e0323a287d97b4897b2517382",
+      "default_branch": "main",
+      "github_license_metadata": "BSD-2-Clause",
+      "license_scope": "BSD-2-Clause applies to native library; LICENSES.md does not grant a new blanket license to Mathematica notebooks/data; private native sources reported in BUILD.md.",
+      "inspected_paths": [
+        "README.md",
+        "docs/USAGE.md",
+        "docs/BBN-MATHEMATICA.md",
+        "docs/BBN.md",
+        "LICENSES.md",
+        "docs/BUILD.md",
+        "Native-iterator.md"
+      ],
+      "paper_inspection": "2609.31833v2 identity/scope linked by canonical README; full arXiv text unavailable to this review.",
+      "scientific_parent_source_ids": [
+        "HERITAGE_2409_15129",
+        "HERITAGE_2508_08379",
+        "HERITAGE_2609_31833"
+      ],
+      "platform_boundary": "Pure Mathematica backend is documented for local compilation on Linux; shipped native C++ backend is not. Mathematica licensing/install/compilation readiness is unverified here."
+    },
+    "NUDEC_BSM_V2": {
+      "url": "https://github.com/MiguelEA/nudec_BSM/tree/9f1824ec34031642feb0f626a162931bc48bb648",
+      "scope": "nudec_BSM v2: моментум-осреднённая термодинамика",
+      "kind": "pinned_code",
+      "id": "NUDEC_BSM_V2",
+      "repository": "MiguelEA/nudec_BSM",
+      "source_sha": "9f1824ec34031642feb0f626a162931bc48bb648",
+      "source_tree_sha": "a8c98c0eee58079a062d33c47a70e832c860d158",
+      "default_branch": "v2",
+      "github_license_metadata": "GPL-3.0",
+      "license_scope": "GPL-3.0",
+      "inspected_paths": [
+        "README.md",
+        "BasicModules_source/nudec_v2.py"
+      ],
+      "scientific_parent_source_ids": [
+        "HERITAGE_1812_05605",
+        "HERITAGE_2001_04466",
+        "HERITAGE_2511_04747"
+      ]
+    },
+    "PRYMORDIAL": {
+      "url": "https://github.com/vallima/PRyMordial/tree/725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+      "scope": "PRyMordial: дополнительный BBN-приёмник",
+      "kind": "pinned_code",
+      "id": "PRYMORDIAL",
+      "repository": "vallima/PRyMordial",
+      "source_sha": "725d8a8db3ad5ea2630580d825c9d0d69ed76533",
+      "source_tree_sha": "2bd940ca1b1a05593eb0bc215fdfce40b7f68093",
+      "default_branch": "main",
+      "github_license_metadata": null,
+      "license_scope": "GPL-3.0, doc/LICENSE inspected",
+      "inspected_paths": [
+        "README.md",
+        "doc/LICENSE"
+      ],
+      "scientific_parent_source_ids": [
+        "HERITAGE_2307_07061"
+      ]
+    },
+    "CLASS_NEUTRINOPHILIC": {
+      "url": "https://github.com/stefanmarinus/CLASS_neutrinophilic/tree/4a043f5432e02b97190adce85f00fa890eaee499",
+      "scope": "CLASS_neutrinophilic: поздняя ν–скалярная космология",
+      "kind": "pinned_code",
+      "id": "CLASS_NEUTRINOPHILIC",
+      "repository": "stefanmarinus/CLASS_neutrinophilic",
+      "source_sha": "4a043f5432e02b97190adce85f00fa890eaee499",
+      "source_tree_sha": "b92b38c32e019f2fe6f9e12f52ce2581b05ecbbe",
+      "default_branch": "master",
+      "github_license_metadata": "MIT",
+      "license_scope": "MIT",
+      "inspected_paths": [
+        "README.md"
+      ],
+      "scientific_parent_source_ids": [
+        "HERITAGE_2305_01692"
+      ]
+    },
+    "LINX": {
+      "url": "https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "scope": "LINX: дифференцируемая BBN-сеть",
+      "kind": "pinned_code",
+      "id": "LINX",
+      "repository": "cgiovanetti/LINX",
+      "source_sha": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "source_tree_sha": "1f838f91885431a179f6de0873b8246f568c661b",
+      "default_branch": "main",
+      "github_license_metadata": "MIT",
+      "license_scope": "MIT"
+    },
+    "PRIMAT": {
+      "url": "https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "scope": "Existing pin retained; custom_background and weak corrections qualified in CERN_REVIEW.",
+      "kind": "pinned_code",
+      "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e"
+    },
+    "FORT_CODE": {
+      "url": "https://bitbucket.org/ahep_cosmo/fortepiano_public/",
+      "scope": "Canonical repository URL confirmed; current source commit and current feature matrix NOT retrieved.",
+      "kind": "canonical_location_unpinned",
+      "commit": null
+    },
+    "FORT_COPY": {
+      "url": "https://github.com/JakeSpisak/FortEPiaNO_public_copy/tree/ee5432e11542f5f321dcb817f464d41f6b14ed91",
+      "scope": "Noncanonical copy, branch modify_mass_matrix. README vs ini NSI discrepancy; not a substitute for canonical code.",
+      "kind": "noncanonical_reference_only",
+      "commit": "ee5432e11542f5f321dcb817f464d41f6b14ed91",
+      "inspected_paths": [
+        "README.md",
+        "ini/explanatory.ini"
+      ]
+    },
+    "FIRAS": {
+      "url": "https://arxiv.org/abs/astro-ph/9605054v1",
+      "kind": "primary_publication",
+      "doi": "10.1086/178173",
+      "scope": "COBE/FIRAS spectral distortions; primary abstract verified. No likelihood ingested."
+    },
+    "HERITAGE_2409_15129": {
+      "url": "https://arxiv.org/abs/2409.15129",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDSMC; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2508_08379": {
+      "url": "https://arxiv.org/abs/2508.08379",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDSMC; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2609_31833": {
+      "url": "https://arxiv.org/abs/2609.31833",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDSMC; original README link checked, not full reproduction."
+    },
+    "HERITAGE_1812_05605": {
+      "url": "https://arxiv.org/abs/1812.05605",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDEC_BSM_V2; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2001_04466": {
+      "url": "https://arxiv.org/abs/2001.04466",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDEC_BSM_V2; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2511_04747": {
+      "url": "https://arxiv.org/abs/2511.04747",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of NUDEC_BSM_V2; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2307_07061": {
+      "url": "https://arxiv.org/abs/2307.07061",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of PRYMORDIAL; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2305_01692": {
+      "url": "https://arxiv.org/abs/2305.01692",
+      "kind": "publication_identity_from_canonical_readme",
+      "scope": "Scientific ancestry of CLASS_NEUTRINOPHILIC; original README link checked, not full reproduction."
+    },
+    "HERITAGE_2012_02726v3": {
+      "url": "https://arxiv.org/abs/2012.02726v3",
+      "kind": "primary_publication",
+      "scope": "Scientific ancestry of FORTEPIANO_QKE; original README link checked, not full reproduction."
+    }
+  },
+  "unconfirmed_artifacts": [
+    "Separate canonical ννBSM repository",
+    "Separate Jackson–Laine full momentum-dependent NLO kernel repository",
+    "nuDSMC-linked mev-universe Python dependency identity"
+  ],
+  "likelihoods_ingested": false
+}

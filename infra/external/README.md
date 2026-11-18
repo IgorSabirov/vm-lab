@@ -119,3 +119,7 @@ IsingCauset → NOW остаётся кандидатом, не утверждё
 ансамбля в NOW проверяет устойчивость продолжения к подготовке геометрии; для
 обратного физического действия требуется отдельный закон. MC-шаг не физическое
 время. Ни этот план, ни автоматизация не закрывают U010 или N02/N06.
+
+### Нейтринная/GW-архитектура (2026-11-18)
+
+В существующий SOURCE_INDEX добавлены pinned νDSMC, nudec_BSM v2, LINX, PRyMordial, CLASS_neutrinophilic и versioned publication FortEPiaNO. Мониторинг новых записей выключен, execution_enabled=false; Fort code pin и платформенная/лицензионная готовность νDSMC остаются открыты. [Генеалогия и контракты](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md).
