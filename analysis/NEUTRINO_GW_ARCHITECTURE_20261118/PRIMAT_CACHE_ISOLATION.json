@@ -1,0 +1,62 @@
+{
+  "schema": "vm-lab-primat-cache-isolation-v1",
+  "state": "DRAFT_PHYSICAL_RECOMPUTATION_NOT_RUN",
+  "execution_enabled": false,
+  "source_catalog": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/SOURCES.json",
+  "source_ids": [
+    "PRIMAT_CACHE_RESOLVER",
+    "PRIMAT_CACHE_FIELDS",
+    "PRIMAT_CACHE_DOC"
+  ],
+  "pin": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+  "resolved_semantics": [
+    "cache_dir is additive read-first overlay; empty overlay falls back to data_dir/cache_plasma_weak.",
+    "data_dir is a complete replacement data tree: preserve required NEVO/nuclear/CSV data in a controlled copy.",
+    "weak_rate_cache=False forces nonthermal recomputation only; save_nTOp flags govern writes.",
+    "Never delete original caches/results; manipulate only an isolated diagnostic copy."
+  ],
+  "resolver_test_status": "PASS_SYNTHETIC_PATH_TESTS_ONLY",
+  "physical_backend_tests": {
+    "python": "NOT_RUN",
+    "c": "NOT_RUN"
+  },
+  "gates": [
+    {
+      "id": "G1",
+      "setup": "Controlled full data_dir copy with relevant weak caches absent, cache_dir=None or verified empty controlled overlay; thermal corrections enabled.",
+      "expect": "Cache misses for both fingerprinted tables, then evidence of both recomputations.",
+      "status": "PHYSICAL_EXECUTION_PENDING"
+    },
+    {
+      "id": "G2",
+      "setup": "Same isolated data_dir plus an external controlled overlay containing matching tables.",
+      "expect": "Resolved reads use overlay for each matching file; capture path and actual hash.",
+      "status": "PHYSICAL_EXECUTION_PENDING"
+    },
+    {
+      "id": "G3",
+      "setup": "weak_rate_cache=False with a matching thermal table available.",
+      "expect": "Nonthermal recomputes, thermal may load. False is not a fully cold-run flag.",
+      "status": "PHYSICAL_EXECUTION_PENDING"
+    },
+    {
+      "id": "G4",
+      "setup": "thermal_corrections enabled; matching thermal fingerprint absent from EVERY read base in the controlled environment, or changed covered integrand parameter.",
+      "expect": "CCRTh recomputes. Save VEGAS seed/state if controllable, settings, error estimate and cache provenance.",
+      "status": "PHYSICAL_EXECUTION_PENDING"
+    }
+  ],
+  "receipt_required": [
+    "upstream/adapter SHA and environment",
+    "backend, data_dir and cache_dir resolution",
+    "WEAK_RATE_BG_FIELDS and THERMAL_BG_FIELDS",
+    "both fingerprint payloads, constants hashes and names",
+    "WEAK_RATE_FORMAT_VERSION (7 at pin)",
+    "actual cache read/write paths and content SHA256",
+    "load/recompute log evidence separately for thermal/nonthermal",
+    "custom_background immutable path and file content hash",
+    "settings and statistical provenance for thermal VEGAS; compare with MC uncertainty, not byte equality"
+  ],
+  "background_identity": "Pinned weak fingerprint stores custom_background path. Same-path changed content needs adapter-side immutable naming/content manifest and an explicit dependency check. Narrower thermal fields are intentional; audit actual integrand dependencies.",
+  "executor_policy": "Physical G1–G4 not scheduled by this documentation edit; no automatic VM choice. Retain owner-selected GPT→Copilot/GitHub publication workflow."
+}

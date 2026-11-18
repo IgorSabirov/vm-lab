@@ -60,7 +60,7 @@
     {
       "id": "V5",
       "title": "BBN receiver comparison",
-      "required_inputs": "identical rates/uncertainties/weak history, eta, tau_n and initial conditions",
+      "required_inputs": "For deterministic comparison: common fixed rates/network/units/interpolation/reverse mapping, constants, initial conditions and compatible weak/background treatment. Joint uncertainty law only for UQ variant.",
       "criterion_scope": "PRIMAT/LINX first; PRyM optional; shared nuclear data are common systematics",
       "absolute_tolerance": null,
       "relative_tolerance": null,
@@ -125,12 +125,13 @@
         "observational likelihood",
         "rate covariance when inputs are fixed"
       ],
-      "completion_claim": "implementation agreement in the specified common regime"
+      "completion_claim": "implementation agreement in the specified common regime",
+      "readiness": "NOT_ESTABLISHED: adapters, weak matching and isolated-cache evidence remain incomplete; native success alone is insufficient."
     },
     {
       "task": "nuclear_uncertainty_propagation",
       "requires": [
-        "joint rate-function posterior/covariance or common samples",
+        "Joint rate-function posterior or shared draws; covariance alone only under an explicitly declared distributional approximation.",
         "verified basis/correlation adapter",
         "matched weak/background treatment"
       ],
@@ -149,7 +150,11 @@
   ],
   "followup_contracts": [
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/COLLIDER_CONSTRAINTS.json",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json"
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/PRIMAT_CACHE_ISOLATION.json",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json"
   ],
-  "historical_s3_note": "S3_STANDARD/eta baseline already saved at the pinned historical source. This extension does not mark it unperformed. S3 in neighbor prose is not V3 (common X injection). Missing covariance blocks a claimed physical fit, not every native calculation."
+  "historical_s3_note": "S3_STANDARD/eta baseline already saved at the pinned historical source. This extension does not mark it unperformed. S3 in neighbor prose is not V3 (common X injection). Missing covariance blocks a claimed physical fit, not every native calculation.",
+  "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+  "stage_order_note": "V0–V7 are capability checks, not one mandatory serial chain. Native baselines can proceed without a new posterior. Deterministic common thermal BBN does not require X injection or full nonequilibrium QKE; declare its actual common subset."
 }

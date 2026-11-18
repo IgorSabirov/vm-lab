@@ -3969,6 +3969,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. |
 | [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md) | `scope_boundary` | Общий физический закон и mapping остаются необходимыми. |
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md) | `scope_boundary` | Новое физическое следствие R130 не заявлено. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](../../analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md) | `scope_boundary` | Уточнение интеграции не меняет воспроизведённый R130 или открытое физическое вложение. |
 | [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Причинная совместимость остаётся требованием, не термодинамическим доказательством. |
 | [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Сопряжение требует общего физического закона и параметров. |
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Новый мост не выводится из воспроизведения R130. |
@@ -3987,6 +3988,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators); `scope_boundary`. Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope); `scope_boundary`. Новое физическое следствие R130 не заявлено. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](../../analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#scope); `scope_boundary`. Уточнение интеграции не меняет воспроизведённый R130 или открытое физическое вложение. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope); `scope_boundary`. Новый мост не выводится из воспроизведения R130. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 <!-- /generated:review-card-result-r130 -->

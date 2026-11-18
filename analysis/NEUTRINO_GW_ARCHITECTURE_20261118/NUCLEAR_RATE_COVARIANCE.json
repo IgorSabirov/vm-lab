@@ -1,5 +1,5 @@
 {
-  "schema": "vm-lab-rate-covariance-contract-v0.1",
+  "schema": "vm-lab-rate-covariance-contract-v0.2",
   "state": "DRAFT",
   "execution_enabled": false,
   "adapter_implemented": false,
@@ -16,7 +16,7 @@
     "default_q": "all zero; no random joint prior imposed by this call",
     "correlated_amplitudes": "draw z with covariance I; q=Lz where L L^T=C_q; pass same q to both adapters with reaction ordering checked",
     "expressible_covariance": "Cov[log R_i(T), log R_j(Tprime)] = s_i(T)*C_q[i,j]*s_j(Tprime) at grid nodes / compatible log interpolation",
-    "boundary": "One scalar per reaction yields a fixed temperature shape, not an arbitrary multi-mode covariance over (reaction,T). Analytic/custom rates may have a different q meaning and must declare it."
+    "boundary": "One tabular q_i per reaction is one latent input. With linear interpolation of rates the log-rate curve is nonlinear between nodes, so covariance rank can exceed one without adding a latent direction. Analytic/custom rate parameterizations require their own contract."
   },
   "inputs_required": [
     "reaction identities/order and forward/reverse mapping",
@@ -41,5 +41,46 @@
     "non_gaussian_case": "resample product marginals; zero covariance alone does not establish independence",
     "prior_work": "S3_COVARIANCE; this is its interface continuation, not a new physical result"
   },
-  "observational_eta_policy": "Declare free eta_BBN versus CMB conditioning and photon-production map eta_BBN→eta_CMB; count shared CMB information once."
+  "observational_eta_policy": "Declare free eta_BBN versus CMB conditioning and photon-production map eta_BBN→eta_CMB; count shared CMB information once.",
+  "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+  "rank_contract": {
+    "coordinates": "Declare independent latent coordinates z, their measure/support, reaction ordering and a finite common temperature grid. For singular input measures parameterize their actual support first.",
+    "input_dimension": "r is the number of independent latent coordinates in this declared smooth representation, not a universal information-theoretic dimension.",
+    "local_active_dimension": "r_loc(z)=rank(dF/dz), F=log R on positive-rate grid; r_loc <= r. Redundant inputs may be invisible, singular points may lower the local rank.",
+    "regular_rank_diagnostic": "ess_sup_mu rank(dF/dz), with stated measure and smooth regular-domain assumptions; not by itself a characterization of global posterior/support.",
+    "coordinate_invariance": "Local Jacobian rank is invariant under differentiable coordinate changes with invertible derivatives; covariance rank/spectrum need not be invariant under nonlinear output changes.",
+    "affine_log_case": "At nodes / log interpolation, F=m+S q and Cov(F)=S Cq S^T. One reaction has rank <=1, full joint map rank <=number of q amplitudes.",
+    "linear_rate_case": "R=sum_k w_k exp(m_k+s_k q), w_k>=0 within valid table; d2(log R)/dq2=Var_p(s), p_k=w_k exp(m_k+s_k q)/R. A curved one-dimensional support can have covariance rank 2.",
+    "not_sufficient": [
+      "covariance equality",
+      "local Jacobian equality",
+      "rank equality"
+    ]
+  },
+  "adapter_checks_required": [
+    "Match correlated q=Lz across reactions and preserve reaction ordering.",
+    "Distinguish rank-two covariance for one reaction at two temperatures from rank-two covariance for two reactions.",
+    "Compare joint function samples on common nodes and inter-node temperatures; record interpolation, units, valid domain and tails.",
+    "Compare latent measure, active directions, non-Gaussian structure and posterior predictive abundances.",
+    "Keep same marginal function posteriors in correlation-removal counterfactual; do not change within-channel temperature law."
+  ],
+  "laboratory_pushforward": {
+    "input_source_catalog": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/SOURCES.json",
+    "input_source_id": "LEONARD_INPUT",
+    "components": 16,
+    "components_per_channel": 8,
+    "convention": "p eight lab energies then n eight; sigma=4*pi*a0, C_sigma=(4*pi)^2*C_a0; E_cm=E_lab/2 for d+d.",
+    "rank_ceiling": "C_R=W C_lab W^T: rank<=16, channel<=8 only for the specified fixed linear map of these measurements; not a ceiling on an augmented functional posterior.",
+    "coordinate_change": "xprime=D x implies Cprime=D C D^T AND Wprime=W D^-1; physical output covariance unchanged. A random PSD surrogate with fixed W after scaling does not measure Leonard information loss.",
+    "missing_physics": [
+      "cross-section/S-factor interpolation and positivity model",
+      "quadrature weights for irregular energies and consistent reduced-mass/rate units",
+      "extrapolation uncertainties",
+      "additional normalization and energy errors; avoid double counting"
+    ],
+    "compression_criterion": "Compare full and compressed joint rate-function distributions and propagated observable distributions (Yp,D/H; other abundances if declared); quantify error relative to a predefined scientific tolerance. No measured 8:1 deficit.",
+    "posterior_scope": "C_R alone defines a full Gaussian model only with a declared Gaussian approximation and mean. Covariance alone does not define general P(R).",
+    "full_posterior_reconstructed": false,
+    "bbn_propagation_performed": false
+  }
 }

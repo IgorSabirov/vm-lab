@@ -1,0 +1,43 @@
+{
+  "schema": "vm-lab-hnl-cosmology-mapping-v1",
+  "state": "MODEL_MAPPING_OPEN",
+  "execution_enabled": false,
+  "model_selected": false,
+  "source_catalog": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/SOURCES.json",
+  "source_ids": [
+    "HNL_DARK_V3",
+    "CMS_PAPER"
+  ],
+  "physical_inputs": {
+    "T_reheat": "value, units and thermal-history model; temperature alone does not fix reheating history",
+    "initial_distributions": "f_N, daughter and SM distributions at declared initial surface",
+    "microphysics": "masses, Dirac/Majorana, flavor mixing, operators, mediator masses/couplings and dark-SM interactions",
+    "daughter_sector_content": "species, masses, interactions and stable/unstable nature",
+    "widths_branching_spectra": "partial widths, branching fractions and daughter spectra derived from same model, with thresholds",
+    "background_model": "a,H,T_gamma and entropy history with consistent gstar_energy/gstar_entropy"
+  },
+  "derived_diagnostics": {
+    "production_regime": "freeze-in/freeze-out/mixed or none; inferred from kinetic history, not an independent switch granting BBN safety",
+    "production_history": "f_N(p,t), yields, production/inverse/scattering/decay terms; Gamma_prod/H over full accessible history is diagnostic, not proof at one time",
+    "energy_return_history": "Q to electromagnetic/neutrino/dark sectors; energy_return_epoch is a stated summary of this history",
+    "entropy_dilution_history": "derived from common energy/entropy evolution, not independent double-counted nuisance",
+    "gstar_at_decoupling": "evaluate at derived decoupling if that epoch exists; otherwise not applicable"
+  },
+  "kinetic_convention": "(partial_t-H p partial_p) f_N = C_prod+ C_scatt+ C_inverse+ C_decay, each term signed consistently with detailed balance; expansion included explicitly.",
+  "required_outputs": [
+    "f_N and daughter distributions",
+    "rho and pressure per sector",
+    "energy transfer and conservation residual",
+    "f_nue, f_antinue and consistent weak rates",
+    "eta_BBN→eta_CMB and photon entropy changes",
+    "BBN abundances in declared common solver regime"
+  ],
+  "source_scope": "HNL_DARK_V3 Appendix B uses freeze-out analytic approximations; Appendix C states its numerical code includes both freeze-in and freeze-out. Do not label the whole paper freeze-out-only.",
+  "inference_boundaries": [
+    "Dark daughters can retain energy or return it to SM; direction of constraint depends on model/history.",
+    "Freeze-in or low reheating is not unconditional exclusion clearance; late injection/photodisintegration and cosmological consistency remain.",
+    "Sub-GeV/GeV benchmarks do not automatically provide a 20–75 GeV exclusion.",
+    "Proper lifetime and detector displacement alone do not give a cosmological abundance or BBN verdict."
+  ],
+  "mapping_to_architecture": "Optional realization of X_MICROPHYSICS feeding COSMOLOGICAL_BACKGROUND and NEUTRINO_KINETIC_BRIDGE; HNL is not required for all standard BBN controls."
+}

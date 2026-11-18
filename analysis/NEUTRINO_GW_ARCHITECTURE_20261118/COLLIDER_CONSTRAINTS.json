@@ -1,5 +1,5 @@
 {
-  "schema": "vm-lab-collider-observation-passports-v0.1",
+  "schema": "vm-lab-collider-observation-passports-v0.2",
   "state": "DRAFT",
   "execution_enabled": false,
   "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
@@ -66,14 +66,14 @@
       "id": "CMS_DISPLACED",
       "component_id": "CMS_HNL_DISPLACED",
       "kind": "HNL_SEARCH",
-      "source_id": "CMS_DISPLACED",
-      "source_catalog": "analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/SOURCES.json",
-      "likelihood_status": "NOT_INGESTED_FULL_STATISTICAL_MODEL_UNVERIFIED",
+      "source_id": "CMS_PAPER",
+      "source_catalog": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/SOURCES.json",
+      "likelihood_status": "DESCRIBED_NOT_INGESTED",
       "covariance": null,
       "response_ingested": false,
       "scientific_acceptance": false,
       "experiment": "CMS",
-      "release_status": "PRELIMINARY_PAS",
+      "release_status": "PAPER_SUBMITTED_TO_JHEP",
       "dataset": [
         "Run2_138fb",
         "Run3_2022_34.6fb"
@@ -87,10 +87,71 @@
         "kind": "CL",
         "level": 0.95
       },
-      "nature": null,
-      "flavor_assumption": "muon mixing observable; complete model assumptions need PAS tables",
+      "nature": "Majorana",
+      "flavor_assumption": "single HNL, muon-only |V_Ne|:|V_Nmu|:|V_Ntau|=0:1:0",
       "numerical_contour": null,
-      "physics_boundary": "Do not fill missing lifetime/branching assumptions from a different CMS analysis."
+      "physics_boundary": "PAS/paper count once; compute boost/efficiency/lifetime response. Described likelihood is not a downloaded statistical model.",
+      "analysis_id": "CMS-EXO-24-015",
+      "versions": [
+        {
+          "id": "PAS",
+          "date": "2026-03-24",
+          "source_id": "CMS_PAS",
+          "nature_locator": "Figure 7 caption",
+          "data_identity": "Run2_138fb + Run3_2022_34.6fb"
+        },
+        {
+          "id": "arXiv:2610.40911v1",
+          "official_release_date": "2026-10-30",
+          "source_id": "CMS_PAPER",
+          "data_identity": "same two periods; not an independent dataset"
+        }
+      ],
+      "field_evidence": {
+        "nature": [
+          "CMS_PAS Figure 7",
+          "CMS_PAPER abstract/section 8"
+        ],
+        "flavor_assumption": [
+          "CMS_PAPER section 4"
+        ],
+        "likelihood_description": [
+          "CMS_PAPER sections 7–8"
+        ],
+        "acceptance": [
+          "CMS_PAPER sections 4–5"
+        ],
+        "hepdata": [
+          "CMS_RELEASE link 7"
+        ]
+      },
+      "approximate_target_displacement_cm": {
+        "Lxy": [
+          50,
+          400
+        ],
+        "meaning": "Approximate acceptance target, not an exact hard cut or model-free proper lifetime bound."
+      },
+      "likelihood_description": {
+        "form": "Binned Poisson with nuisance; CLs, 95 percent",
+        "SR_bins_per_period": 4,
+        "shared_signal_normalization_fraction": 0.039,
+        "shared_across": [
+          "Run2",
+          "2022"
+        ],
+        "background_transfer_uncertainty_fraction": {
+          "Run2": 0.26,
+          "2022": 0.49
+        },
+        "workspace_ingested": false,
+        "all_correlations_reconstructed": false
+      },
+      "hepdata": {
+        "url": "https://www.hepdata.net/record/ins3220999",
+        "status": "LINK_VERIFIED_CONTENT_NOT_INGESTED"
+      },
+      "orthogonality_scope": "DSA tracker-match veto is orthogonal to the specific earlier displaced-muon selection cited in section 5; not a proof of independence from CMS_TOP or all control regions. Bibliography numbers differ between HTML/PDF; use section and cited analysis identity."
     },
     {
       "id": "ATLAS_TOP",
@@ -393,5 +454,14 @@
   "hnl_yield_contract": "N_sig = luminosity * integral(d sigma_prod * branching(decay) * acceptance_efficiency(boost,lifetime,kinematics)); include topology/combinatoric factors explicitly.",
   "contour_policy": "Published contour may test the identical benchmark at its stated confidence; it is not a likelihood. LLP contours may exclude bounded regions rather than all U² above a line.",
   "bbn_policy": "No VACUOUS status from a proper lifetime table. Evaluate production, abundance, energy partition, inverse processes, hadronic/electromagnetic showers, entropy, lepton/baryon asymmetry and daughters in the common cosmological model.",
-  "forward_policy": "Flux and cross section extracted from the same events are alternative conditional products, not two independent likelihoods; high-energy nuclear CC data do not directly replace MeV nu-e or n↔p rates."
+  "forward_policy": "Flux and cross section extracted from the same events are alternative conditional products, not two independent likelihoods; high-energy nuclear CC data do not directly replace MeV nu-e or n↔p rates.",
+  "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+  "hnl_mapping_contract": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json",
+  "idealized_acceptance_note": {
+    "scope": "Fixed kinematics, unit efficiency, ideal Lxy window a>0,b>a, not a CMS response",
+    "formula": "lambda_T=(pT_N/m_N)c*tau; P=exp(-a/lambda_T)-exp(-b/lambda_T)",
+    "large_lifetime_tail": "P~(b-a)/lambda_T (power tail, not exponential)",
+    "conditional_yield": "If u=U^2, production proportional to u and lambda=A/u with fixed branching: N=k*u*(exp(-a*u/A)-exp(-b*u/A)); small-u N proportional to u^2. Two exclusion crossings exist only if maximum exceeds declared threshold.",
+    "no_inference": "No proper lifetime bound from geometry alone; no cosmological VACUOUS classification."
+  }
 }

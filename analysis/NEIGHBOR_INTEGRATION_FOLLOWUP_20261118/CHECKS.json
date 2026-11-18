@@ -1,0 +1,166 @@
+{
+  "schema": "vm-lab-integration-followup-checks-v1",
+  "status": "PASS",
+  "mode": "MATHEMATICS_SAVED_MATRIX_AND_FILE_RESOLVER_ONLY",
+  "physical_solver_runs": 0,
+  "LINX_executed": false,
+  "PRIMAT_BBN_executed": false,
+  "HNL_computed": false,
+  "nonlinear_rates": {
+    "rows": [
+      {
+        "sigma": 0.3,
+        "covariance": [
+          [
+            0.0008999999999999992,
+            0.002099760359295988
+          ],
+          [
+            0.002099760359295988,
+            0.004899201399357542
+          ]
+        ],
+        "eigenvalues": [
+          4.960948797214874e-08,
+          0.00579915178986957
+        ],
+        "covariance_numerical_rank": 2,
+        "jacobian_ranks_at_minus2_0_2": [
+          1,
+          1,
+          1
+        ],
+        "reconstruction_max_residual": 4.440892098500626e-16
+      },
+      {
+        "sigma": 1.0,
+        "covariance": [
+          [
+            0.00999999999999999,
+            0.02330418703969731
+          ],
+          [
+            0.02330418703969731,
+            0.0543475540568051
+          ]
+        ],
+        "eigenvalues": [
+          6.06773341996214e-06,
+          0.06434148632338513
+        ],
+        "covariance_numerical_rank": 2,
+        "jacobian_ranks_at_minus2_0_2": [
+          1,
+          1,
+          1
+        ],
+        "reconstruction_max_residual": 1.7763568394002505e-15
+      },
+      {
+        "sigma": 3.0,
+        "covariance": [
+          [
+            0.08999999999999996,
+            0.2079023371188933
+          ],
+          [
+            0.2079023371188933,
+            0.4831421757026435
+          ]
+        ],
+        "eigenvalues": [
+          0.00045297524998706706,
+          0.5726892004526564
+        ],
+        "covariance_numerical_rank": 2,
+        "jacobian_ranks_at_minus2_0_2": [
+          1,
+          1,
+          1
+        ],
+        "reconstruction_max_residual": 3.552713678800501e-15
+      }
+    ],
+    "quadrature_orders": [
+      100,
+      200
+    ],
+    "grid_T9": [
+      1.0,
+      4.0
+    ],
+    "evaluation_T9": 2.5,
+    "linear_rate_hessian_q0": 0.00888888888888889,
+    "finite_difference_of_gradient": 0.008888888888697322,
+    "log_interpolation_covariance_rank": 1,
+    "latent_vs_active_examples": {
+      "q1_plus_q2": {
+        "inputs": 2,
+        "active_rank": 1
+      },
+      "q_cubed": {
+        "rank_at_zero": 0,
+        "rank_at_regular_nonzero": 1
+      }
+    },
+    "scope": "Conditional mathematical model of tabular formulas, not execution of LINX or fit of a reaction posterior."
+  },
+  "coordinate_scaling": {
+    "input_change_max_residual": 3.552713678800501e-15,
+    "unchanged_W_changes_physical_output": true,
+    "exact_rank_diagonal_1_1e_minus18": 2,
+    "numerical_rank": 1,
+    "numpy_default_relative_rank_threshold": 4.440892098500626e-16,
+    "scope": "Explicit synthetic matrices, not Leonard, S-factor conversion or measured BBN information loss."
+  },
+  "leonard": {
+    "input_sha256": "806b63b8369294a2a1eafbb6d4b19b15ad076fb07e532d1c73971d89569a65ad",
+    "source_url": "https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/LEONARD_INPUT.json",
+    "shape": [
+      16,
+      16
+    ],
+    "numerical_rank": 16,
+    "numpy_default_relative_rank_threshold": 3.552713678800501e-15,
+    "eigenvalue_min": 4.9517383322645144e-05,
+    "eigenvalue_max": 0.035747367725933725,
+    "condition_number": 721.9155239486839,
+    "representation": "a0 (mb/sr); p eight energies then n eight",
+    "full_rate_posterior_reconstructed": false,
+    "physical_W_constructed": false,
+    "bbn_propagation_performed": false
+  },
+  "cache_resolver": {
+    "input_sha256": "f1264dd13358bad45635c9c6eda0c81810ebe6a001f41c00b853a57b0550388c",
+    "functions": [
+      "_cache_bases",
+      "cache_write_dir",
+      "resolve_cache_file"
+    ],
+    "cases": [
+      {
+        "filename": "nTOp_example.txt",
+        "empty_overlay_falls_back": true,
+        "isolated_no_overlay_misses": true,
+        "populated_overlay_wins": true
+      },
+      {
+        "filename": "nTOp_thermal_example.txt",
+        "empty_overlay_falls_back": true,
+        "isolated_no_overlay_misses": true,
+        "populated_overlay_wins": true
+      }
+    ],
+    "actual_weak_fingerprint_computed": false,
+    "weak_rate_integrators_run": false,
+    "c_backend_run": false,
+    "scope": "Exact pinned Python resolver functions, synthetic filenames and contents; no full data tree or physical weak/BBN run."
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "code_sha256": "b99c327979fa1cb17f183ce08a2c690e370ae0069420138b496cc573b4676a72",
+  "elapsed_seconds": 0.06733540200002608
+}

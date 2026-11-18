@@ -88,10 +88,27 @@ flowchart TD
 
 ## 4. Контракты и последовательность проверок
 
+Актуальное уточнение: [разбор последовательных отзывов](../NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md), [ядерная неопределённость](NUCLEAR_RATE_COVARIANCE.json), [изоляция PRIMAT](PRIMAT_CACHE_ISOLATION.json), [HNL mapping](HNL_COSMOLOGY_MAPPING.json). Техническая диаграмма ниже разделяет зависимости; она не утверждает готовность адаптеров.
+
+```mermaid
+flowchart TD
+ P["Версии и физические входы"] --> N["Нативные эталоны"]
+ P --> M["Общий фон, weak и rates"]
+ M --> D["Фиксированное сравнение BBN"]
+ L["Лабораторные данные и модель ошибок"] --> J["Совместные функции скоростей"]
+ J --> U["Перенос неопределённости"]
+ D --> U
+ U --> F["Сопоставление с наблюдениями"]
+ O["BBN/CMB и общие nuisance"] --> F
+ X["Физическая история X"] --> M
+```
+
+X нужен для нестандартной физической ветви; стандартный общий thermal benchmark использует объявленные стандартные входы. Нативное согласие, UQ и наблюдательное согласие имеют разные критерии.
+
 - [NEUTRINO_KINETIC_BRIDGE.json](NEUTRINO_KINETIC_BRIDGE.json): представления данных, единицы, энергия, ν/antiν, weak rates и ограничение возможностей адаптера.
 - [GW_RESPONSE_BRIDGE.json](GW_RESPONSE_BRIDGE.json): источник, тензорный перенос, космологический интеграл и detector response.
 - [KM3NET_NEUTRINO_CONSTRAINTS.json](KM3NET_NEUTRINO_CONSTRAINTS.json): паспорта ORCA/ARCA/SN и соседних наблюдательных каналов; общие выборки и статистические условия.
-- [VALIDATION_PLAN.json](VALIDATION_PLAN.json): V0 готовность → V1 общий SM → V2 слабые скорости → V3 общий X-оператор → V4 неравновесная сходимость → V5 BBN → V6 tensor response → V7 наблюдения. Переходы имеют условия, не являются обещанием готовых запусков.
+- [VALIDATION_PLAN.json](VALIDATION_PLAN.json): V0–V7 описывают проверки возможностей. Это не обязательная последовательная цепочка: нативный baseline и фиксированный общий BBN-контроль не требуют восстановления posterior или X-инжекции. Требования разделены по задачам в `stage_requirements_by_task`; общий weak/background режим ещё нужно согласовать.
 
 Допуски не выдуманы: они остаются null до объявленной калибровки и замораживаются перед сравнением. Универсального временного лимита нет; оценка стоимости сохраняется, маршрут GitHub/Copilot уже выбран владельцем; готовность конкретного окружения нового пакета проверяется отдельно. Схема исполнения сохраняется: GPT собирает пакет, Copilot запускает совместимый код и фиксирует raw/logs/environment на GitHub, GPT сверяет. Исправление физического оператора является новой версией модели, а не незаметной технической починкой. Публикация архитектуры не разрешает автоматически новый физический прогон.
 
@@ -171,11 +188,11 @@ flowchart TD
 
 **Родители:** `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [COLLIDER_S3_AUDIT](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json).
+**Источники:** [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [COLLIDER_S3_AUDIT](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_input_audit/results/RESULT.json), [FOLLOWUP_PRIMAT_CACHE_RESOLVER](https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/primat/cache_utils.py), [FOLLOWUP_PRIMAT_CACHE_FIELDS](https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/primat/weak_rates/cache.py), [FOLLOWUP_PRIMAT_CACHE_DOC](https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/howto/weak-rate-cache.md).
 
-**Граница:** ρν и Tν не заменяют fνe,fantiνe. Нужны также e±, τn и единая схема радиативных/конечномассовых поправок. Необходим для сравнения общего weak-режима, но не для запуска каждого нативного контроля.
+**Граница:** Пустой cache_dir PRIMAT не изолирует кэш. Нужны controlled data_dir и overlay; weak_rate_cache=False не отключает thermal reads. Проверены пути, не weak recomputation.
 
-**Следующий шаг:** Сопоставить слабые скорости и поправки на общей истории; не требовать наблюдательной covariance для deterministic baseline.
+**Следующий шаг:** В согласованном пакете выполнить G1–G4 отдельно для Python/C, логируя оба fingerprint, actual paths, content hashes и VEGAS uncertainty.
 
 <a id="cern_ntof_rates"></a>
 ### CERN_NTOF_RATES — CERN n_TOF: ядерные данные
@@ -197,11 +214,11 @@ flowchart TD
 
 **Родители:** `component:CERN_NTOF_RATES` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRIMAT` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:LINX` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [NETWORK](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json), [NUDSMC](https://github.com/maksymovchynnikov/nuDSMC/tree/84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [COLLIDER_LINX_Q](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/abundances.py), [COLLIDER_LINX_FORWARD](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/nuclear.py), [COLLIDER_LINX_RATE](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [COLLIDER_S3_COVARIANCE](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/CONNECTION_CONTRACT.json).
+**Источники:** [NETWORK](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json), [NUDSMC](https://github.com/maksymovchynnikov/nuDSMC/tree/84a02c1ed7c54e8bde0e88cadb611fbe9ddb44b7), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [COLLIDER_LINX_Q](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/abundances.py), [COLLIDER_LINX_FORWARD](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/nuclear.py), [COLLIDER_LINX_RATE](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [COLLIDER_S3_COVARIANCE](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/CONNECTION_CONTRACT.json), [FOLLOWUP_LINX_INTERPOLATION](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [FOLLOWUP_LEONARD_INPUT](https://github.com/IgorSabirov/vm-lab/blob/b24c7e0cc47ff964d576f903ce7ba507d2dd731e/analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_covariance_20261115/LEONARD_INPUT.json).
 
-**Граница:** νDSMC BBN использует PRIMAT AC2024; существующая карта LINX — key_PRIMAT_2023. Совпадение имён реакций не доказывает численного совпадения. LINX q не запрещает корреляции между реакциями; один q_i ограничивает температурную форму.
+**Граница:** Латентная размерность, локальный ранг Якобиана и ранг ковариации различаются. Leonard даёт 16 измерительных компонент; измеренной потери 8:1 нет. Совместный posterior не восстановлен.
 
-**Следующий шаг:** Продолжить сохранённую S3-генеалогию совместного posterior; сверить коррелированные реализации и проверить достаточность температурного базиса.
+**Следующий шаг:** Сверить фиксированные rates независимо от UQ; для UQ построить физический перенос Table V и проверить совместные реализации между узлами и ошибку сжатия в abundances.
 
 <a id="bbn_response_bridge"></a>
 ### BBN_RESPONSE_BRIDGE — BBN: PRIMAT, LINX, PRyMordial
@@ -210,11 +227,11 @@ flowchart TD
 
 **Родители:** `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:WEAK_RATE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:NUCLEAR_RATE_INPUTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRIMAT` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:LINX` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRYMORDIAL` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
 
-**Источники:** [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [PRYMORDIAL](https://github.com/vallima/PRyMordial/tree/725d8a8db3ad5ea2630580d825c9d0d69ed76533), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md).
+**Источники:** [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [PRYMORDIAL](https://github.com/vallima/PRyMordial/tree/725d8a8db3ad5ea2630580d825c9d0d69ed76533), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [FOLLOWUP_LINX_INTERPOLATION](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [FOLLOWUP_PRIMAT_CACHE_DOC](https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/howto/weak-rate-cache.md).
 
-**Граница:** Три реализации не дают три независимых наблюдения. Общие ядерные таблицы/поправки создают общую систематику.
+**Граница:** Нативный baseline, deterministic common-input comparison, UQ и observational fit имеют разные предпосылки. Ни один адаптер не объявлен завершённым; covariance не блокирует фиксированный контроль.
 
-**Следующий шаг:** Реализовать адаптеры общего фона и weak rates в подтверждённом пересечении возможностей; сверить Yp,D/H с едиными определениями.
+**Следующий шаг:** Закрепить общий допустимый thermal/weak режим, rates/units/interpolation/reverse mapping/constants/init; затем сравнить определения Yp и D/H.
 
 <a id="bbn_cmb_observations"></a>
 ### BBN_CMB_OBSERVATIONS — Наблюдения abundances и CMB
@@ -483,11 +500,11 @@ flowchart TD
 
 **Родители:** `component:BBN_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:BBN_CMB_OBSERVATIONS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:GW_RESPONSE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:PTA_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LVK_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_NEUTRINO_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:ARCA_EVENT_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:KM3NET_SUPERNOVA` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:MULTIMESSENGER_LVK_ICECUBE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:CERN_PARTICLE_CONSTRAINTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:LATE_COSMOLOGY_RESPONSE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:FIRAS_CONSTRAINTS` (input_contract_dependency): Сохраняет фотонный канал исходного BH1–BBN bridge, отдельно от CMB anisotropies.; `component:LHC_FORWARD_NEUTRINO_DATA` (input_contract_dependency): Отдельная экспериментальная ветвь с модельным matching.; `component:HNL_COSMOLOGY_MAPPING` (input_contract_dependency): При HNL-кандидате обеспечивает связь лабораторного и космологического предсказаний.
 
-**Источники:** [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [GW_BBN](https://arxiv.org/abs/2011.12414), [COLLIDER_CMS_TOP](https://cms-results.web.cern.ch/cms-results/public-results/publications/B2G-24-023/), [COLLIDER_ATLAS_TOP](https://doi.org/10.1103/PhysRevD.110.112004).
+**Источники:** [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [GW_BBN](https://arxiv.org/abs/2011.12414), [COLLIDER_CMS_TOP](https://cms-results.web.cern.ch/cms-results/public-results/publications/B2G-24-023/), [COLLIDER_ATLAS_TOP](https://doi.org/10.1103/PhysRevD.110.112004), [FOLLOWUP_CMS_PAPER](https://arxiv.org/html/2610.40911v1), [FOLLOWUP_HNL_DARK_V3](https://arxiv.org/html/2507.12270v3).
 
-**Граница:** Общие параметры должны иметь доказанное отображение; одинаковые данные, ядерные входы и nuisance нельзя считать независимыми. Разные ATLAS/CMS события не становятся общими из-за совпадения масс; nuisance всё равно согласуются. Контуры не перемножаются как likelihood.
+**Граница:** Общие данные и nuisance учитываются один раз. Covariance/rank/Jacobian сами по себе не определяют joint posterior. Детерминированное согласие не является observational fit.
 
-**Следующий шаг:** Использовать dataset/selection overlap и nuisance map из COLLIDER_CONSTRAINTS.json; перед fit выполнить требования отдельно для UQ и данных.
+**Следующий шаг:** Согласовать joint rate-function draws и наблюдательную likelihood с eta/CMB mapping; версия CMS PAS/paper считается одним анализом.
 
 <a id="copilot_reproduction"></a>
 ### COPILOT_REPRODUCTION — GPT → Copilot → GitHub → проверка
@@ -548,11 +565,11 @@ flowchart TD
 
 **Родители:** `component:X_MICROPHYSICS` (observational_constraint_requires_mapping): Ограничение действует через конкретную модель производства, распада и отбора.; `component:CERN_PARTICLE_CONSTRAINTS` (context_not_evidence): Часть существующей лабораторной ветви, без признания X обнаруженным.
 
-**Источники:** [COLLIDER_CMS_DISPLACED](https://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/EXO-24-015/index.html).
+**Источники:** [COLLIDER_CMS_DISPLACED](https://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/EXO-24-015/index.html), [FOLLOWUP_CMS_PAS](https://cms-results.web.cern.ch/cms-results/public-results/preliminary-results/EXO-24-015/index.html), [FOLLOWUP_CMS_PAPER](https://arxiv.org/html/2610.40911v1), [FOLLOWUP_CMS_RELEASE](https://cms-results.web.cern.ch/cms-results/public-results/publications/EXO-24-015/).
 
-**Граница:** Паспорт сохраняет отдельную выборку, окно, статус релиза и модельные допущения; численная likelihood не импортирована.
+**Граница:** PAS и arXiv:2610.40911v1 — один CMS-EXO-24-015; Majorana подтверждена, muon-only benchmark. Likelihood описана, не импортирована; 3.9% signal normalization общая между периодами.
 
-**Следующий шаг:** Закрепить response/likelihood и полное отображение модели; не превращать диапазон опубликованных пределов в единое U² для всех масс.
+**Следующий шаг:** Импортировать response/statistical model с nuisance и overlap map; не превращать Lxy=50–400 cm в proper-lifetime bound.
 
 <a id="atlas_hnl_top"></a>
 ### ATLAS_HNL_TOP — ATLAS_TOP: отдельный HNL-анализ
@@ -678,11 +695,11 @@ flowchart TD
 
 **Родители:** `component:X_MICROPHYSICS` (input_contract_dependency): Требуется одна микрофизическая модель.; `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Эпоха и эффективность production/thermalization определяются полной историей.
 
-**Источники:** [COLLIDER_HNL_BBN](https://arxiv.org/abs/2006.07387v3), [COLLIDER_HNL_DARK](https://doi.org/10.1103/r7bw-jzjl).
+**Источники:** [COLLIDER_HNL_BBN](https://arxiv.org/abs/2006.07387v3), [COLLIDER_HNL_DARK](https://doi.org/10.1103/r7bw-jzjl), [FOLLOWUP_HNL_DARK_V3](https://arxiv.org/html/2507.12270v3).
 
-**Граница:** Вакуумное proper lifetime не задаёт production time, abundance, plasma thermalization или BBN-эффект.
+**Граница:** Production regime — вывод кинетики при заданных T_reheat, операторах и начальных распределениях. Требуются дочерние спектры, возврат энергии и энтропия; lifetime не заменяет эти величины.
 
-**Следующий шаг:** Рассчитать width с порогами/ароматами и production/inverse/decay/energy-transfer history; при передаче в QKE явно определить дополнительные состояния.
+**Следующий шаг:** Реализовать HNL_COSMOLOGY_MAPPING.json для явно выбранной модели; получить production/decay/energy history. Ни freeze-in, ни dark branching сами по себе не закрывают BBN.
 
 ## 6. Закреплённые версии кода и научный статус
 
