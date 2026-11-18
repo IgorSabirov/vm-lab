@@ -1,0 +1,2611 @@
+ADD / I2 / R / sqrt(tau) — SINGLE-FILE HANDOFF DOSSIER
+Generated from IgorSabirov/vm-lab at immutable base commit:
+ab4b98e7285946875091b017b8c11a9c75e6fb7c
+
+PURPOSE
+This is a plain UTF-8 text bundle for an independent reviewer/agent whose environment
+cannot clone the repository or fetch individual files. It contains the full contents
+of the relevant source, audit, report, verifier and machine-result files below.
+It is NOT a ZIP, not a patch, and not a claim that the requested new regression
+suite has already been implemented or run.
+
+REPOSITORY
+https://github.com/IgorSabirov/vm-lab
+Base commit:
+https://github.com/IgorSabirov/vm-lab/tree/ab4b98e7285946875091b017b8c11a9c75e6fb7c
+Article under audit:
+https://arxiv.org/html/2306.07121v2
+https://arxiv.org/pdf/2306.07121v2
+
+IMPORTANT STATUS / SCOPE
+- ADD_FT10_MINIMAL.py labels itself ASSEMBLED_NOT_EXECUTED_NOT_ATTESTED.
+- Its Fig. 2 named fixture is NOT_TRANSCRIBED_NOT_VERIFIED.
+- Its full C2 mirrored I2 table is explicitly outside that minimal test.
+- R130 verify.py is a separate finite reference implementation, not proof for all
+  named graphs and not proof that the frozen backend is correct.
+- R130 CHECKS.json reports finite counts only. Do not upgrade finite enumeration
+  into a global theorem or production/physical result.
+- No new VM jobs or production runs are represented here.
+
+CORRECTIONS THAT MUST BE RESPECTED IN ANY FOLLOW-UP ANALYSIS
+1) The C2 split branch is present in I2. In the tuple convention (a1,b1,a2,b2),
+   split state (0,0,1,1) is detected, with children (0,0,0,1) on the left and
+   (0,0,1,0) on the right. Therefore "C2 split is absent" is false. The remaining
+   question is whether its orientation and port map match Fig. 7.
+2) sqrt_tau is the Definition-4 half-step candidate: new names are constructed
+   from u.r vee v.l. It changes names/topology by design. Do not reject it merely
+   because names differ. tau_port_reference is a separate full-tau transport
+   reference, not Definition 4. Test (sqrt_tau)^2=tau with explicit name maps.
+3) In R_c2, state bits are reversed as (s[3],s[2],s[1],s[0]), but the implementation
+   also swaps every a/b port label. Proposition 1's R operation swaps bit values;
+   it does not itself prescribe relabelling all graph ports. Test a bit-only R
+   separately; do not assume it repairs all identities.
+4) A previously supplied alleged TFT counterexample computed T(F(g)) and discarded
+   the earlier T(g). It did NOT test T F T = F^{-1}. The correct expression is:
+       lhs = T_sym(F_sym(T_sym(g)))
+       rhs = F_sym_inverse(g)
+       assert graph_equal(lhs, rhs)
+   Test T^2=id independently:
+       assert graph_equal(T_sym(T_sym(g)), g)
+5) R130 finite results: TFT_Finv has zero failures for all four chirality variants.
+   For equal orientations (+1,+1) and (-1,-1), RI_IR and T_squared_id each have
+   1574 failures out of 4368; for opposite orientations (+1,-1), (-1,+1), both
+   have zero failures. Never report TFT as failing in R130.
+6) R130 C1 reversal tests also have many failures (5428/5440 reflected-swap and
+   5175/5440 bit-only); do not claim a bit-only patch alone solves the C1 identities.
+
+REQUIRED DELIVERABLE FROM THE REVIEWER
+Work from the contents below; do not ask the user to paste files or fetch separate
+URLs. If external retrieval is unavailable, this file is the complete handoff.
+Return:
+- exact source-conformance analysis against Definition 4, Fig. 7, Proposition 1,
+  and Appendix A Definitions 8–9;
+- a minimal patch in a separate file or commit (do not silently mutate/fix the
+  frozen baseline);
+- executable regression tests and machine-readable JSON;
+- Python version, exact command, SHA-256 of scripts and outputs;
+- for each FAIL, first concrete counterexample with named vertices, states,
+  directed port edges, and both compared results;
+- separate PASS/FAIL/OPEN/NOT_EXECUTED status for each identity below.
+Do not infer PASS from code inspection. Do not claim a test ran unless the command
+and output exist. Preserve named graph equality; do not silently replace it by
+unlabelled graph isomorphism or cyclic word equivalence.
+
+MINIMUM IDENTITY MATRIX
+- I2^2 = id
+- R^2 = id
+- R I2 = I2 R
+- R sqrt(tau) R = sqrt(tau)^(-1)
+- T^2 = id, with T = I2 R under the declared convention
+- T F T = F^(-1)
+- F F^(-1) = id and F^(-1) F = id
+- (sqrt(tau))^2 = tau, with explicit named-vertex correspondence
+Run C1 and C2 separately. For C2, retain all four orientation choices
+(+1,+1), (+1,-1), (-1,+1), (-1,-1). Enumerate local states and adjacent ordered
+pairs to identify all split/merge/no-op cases and overlap/redex restrictions.
+Do not assume all local states split or merge.
+
+FILE MANIFEST
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/source/ADD_FT10_MINIMAL.py
+LABEL: PRIMARY FROZEN BACKEND / FT10
+GIT BLOB SHA: 4119e9ea319d7fb3406a57d3208b81b289da9168
+CHARACTERS: 27847
+========================================================================================
+#!/usr/bin/env python3
+"""ADD_FT10_MINIMAL — assembled 2026-11-08, NOT EXECUTED.
+
+Minimal R126 prerequisite, not a new NOW experiment or an attested ADD law.
+Usage after review: python ADD_FT10_MINIMAL.py --run-minimal --json-out ft10.json
+No external dependencies, imports of project files, downloads or VM access.
+
+Provenance:
+  IgorSabirov/vm-lab @ 107cca83c6369734c3d434e756a32377c249d89d
+  analysis/FOUR_CANDIDATE_INTEGRATION_20261108/evidence/add_reconstruction/
+  add_backend_smoke_v1.py, Git blob 16139da045cd14ea591b6f4938f598a2af49fb03
+The graph/name/transport/I2 functions below are preserved from that source.
+New code below them supplies only explicit layouts, A1 validation and a
+bounded diagnostic harness. NO mirror/parity fix has been silently applied.
+
+Primary specification: https://arxiv.org/html/2306.07121v2
+Definition 4, Fig. 2, Definitions 8–9 in Appendix A.
+
+Unresolved source-conformance issue:
+  The literal incidence reading of Definition 4 is recorded separately from
+  the independent full-edge, port-following tau reference. Matching the former
+  is not certification of the latter. Report both; never repair a mismatch by
+  ring isomorphism, index reversal or changing the reading on alternate ticks.
+  Fig. 2 named fixture has NOT been transcribed, so its gate stays NOT_VERIFIED.
+
+Internal tuples in inherited core are (a1,b1,a2,b2), NOT (a1,a2,b1,b2).
+C1 inputs below have two bits; the adapter explicitly pads channel 2 with zero.
+Name terms are a separate structure, already present in the inherited source.
+I2's C1 restriction is checked here; the full C2 mirrored I2 table is outside
+this minimal test. C3/D, growth, ensembles and NOW integration are excluded.
+
+Inherited source description:
+ADD_BACKEND_SMOKE_V1
+
+Standalone, standard-library-only reconstruction of the local graph operations
+in Arrighi–Dowek–Durbec, arXiv:2306.07121v2, for a finite cyclic graph.
+
+IMPORTANT SCOPE:
+- This is an independent implementation reconstructed from the paper's text,
+  equations and Fig. 7; it is not the authors' source code.
+- It is an algebra/interface smoke test, not a reproduction of the paper's
+  asymptotic proofs or a physical model of NOW.
+- The optional repair object is an organizational overlay and is NOT part of
+  the ADD reversible dynamics.
+"""
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+import math
+import random
+import statistics
+import sys
+from dataclasses import dataclass
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+
+
+# ---------------------------------------------------------------------------
+# Named graph objects (names are essential for exact reversibility).
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class Name:
+    tag: str
+    x: object = None
+    y: object = None
+
+
+def base_name(i: object) -> Name:
+    return Name("base", i, None)
+
+
+def proj_left(n: Name) -> Name:
+    return n.x if n.tag == "merge" else Name("left", n, None)
+
+
+def proj_right(n: Name) -> Name:
+    return n.y if n.tag == "merge" else Name("right", n, None)
+
+
+def merge_name(x: Name, y: Name) -> Name:
+    # The defining cancellation law (u.l) vee (u.r) = u.
+    if x.tag == "left" and y.tag == "right" and x.x == y.x:
+        return x.x
+    return Name("merge", x, y)
+
+
+@dataclass(frozen=True)
+class Port:
+    node: Name
+    port: str  # "a" or "b"
+
+
+def edge(p: Port, q: Port) -> Tuple[Port, Port]:
+    """Canonical orientation: b-port endpoint first, a-port endpoint second."""
+    if p.port == q.port:
+        raise ValueError(f"an edge must join an a port to a b port: {p}, {q}")
+    return (p, q) if p.port == "b" else (q, p)
+
+
+@dataclass
+class Graph:
+    # State order is (a1, b1, a2, b2); C1 uses a2=b2=0.
+    states: Dict[Name, Tuple[int, int, int, int]]
+    edges: List[Tuple[Port, Port]]
+
+
+def ring_graph(states: Sequence[Tuple[int, int, int, int]]) -> Graph:
+    if not states:
+        raise ValueError("a cyclic graph must have at least one vertex")
+    names = [base_name(i) for i in range(len(states))]
+    es = [edge(Port(names[i], "b"), Port(names[(i + 1) % len(names)], "a"))
+          for i in range(len(names))]
+    g = Graph(dict(zip(names, states)), es)
+    validate_graph(g)
+    return g
+
+
+def edge_key(e: Tuple[Port, Port]) -> frozenset:
+    return frozenset(e)
+
+
+def validate_graph(g: Graph) -> None:
+    if not g.states:
+        raise ValueError("empty graph is not in the finite cyclic state space")
+    expected = {Port(n, p) for n in g.states for p in ("a", "b")}
+    seen = []
+    if len(g.edges) != len(g.states):
+        raise ValueError("a finite 2-port cycle must have |E|=|V|")
+    for s in g.states.values():
+        if len(s) != 4 or any(x not in (0, 1) for x in s):
+            raise ValueError(f"invalid C2 node state: {s}")
+    for e in g.edges:
+        if len(e) != 2 or {e[0].port, e[1].port} != {"a", "b"}:
+            raise ValueError(f"invalid edge: {e}")
+        if e[0].port != "b" or e[1].port != "a":
+            raise ValueError(f"edge is not in canonical b->a orientation: {e}")
+        for p in e:
+            if p.node not in g.states:
+                raise ValueError(f"edge references absent node: {p.node}")
+            seen.append(p)
+    if len(seen) != len(expected) or len(set(seen)) != len(seen) or set(seen) != expected:
+        raise ValueError("every a/b port must occur in exactly one edge")
+
+    # Connectedness: this smoke is for one circular component, not a disjoint union.
+    adj = {n: set() for n in g.states}
+    for x, y in g.edges:
+        adj[x.node].add(y.node)
+        adj[y.node].add(x.node)
+    start = next(iter(g.states))
+    visited = {start}
+    stack = [start]
+    while stack:
+        u = stack.pop()
+        for v in adj[u]:
+            if v not in visited:
+                visited.add(v)
+                stack.append(v)
+    if visited != set(g.states):
+        raise ValueError("graph has more than one connected component")
+
+
+def mate_map(g: Graph) -> Dict[Port, Port]:
+    out: Dict[Port, Port] = {}
+    for x, y in g.edges:
+        out[x] = y
+        out[y] = x
+    return out
+
+
+def edge_from_port(g: Graph, p: Port) -> Tuple[Port, Port]:
+    m = mate_map(g)
+    if p not in m:
+        raise ValueError(f"unmatched port: {p}")
+    return edge(p, m[p])
+
+
+def directed_edge_nodes(e: Tuple[Port, Port]) -> Tuple[Name, Name]:
+    if e[0].port == "b" and e[1].port == "a":
+        return e[0].node, e[1].node
+    raise ValueError(f"edge must be canonical b->a: {e}")
+
+
+def graph_equal(g: Graph, h: Graph) -> bool:
+    return (g.states == h.states and
+            {edge_key(e) for e in g.edges} == {edge_key(e) for e in h.edges})
+
+
+def particle_counts(g: Graph) -> Tuple[int, int, int, int]:
+    return tuple(sum(s[i] for s in g.states.values()) for i in range(4))  # type: ignore
+
+
+def particle_total(g: Graph) -> int:
+    return sum(particle_counts(g))
+
+
+# ---------------------------------------------------------------------------
+# Reversible half-shift sqrt(tau) and exact inverse.
+# ---------------------------------------------------------------------------
+
+def sqrt_tau(g: Graph) -> Graph:
+    validate_graph(g)
+    new_name_by_edge: Dict[Tuple[Name, Name], Name] = {}
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        new_name_by_edge[(u, v)] = merge_name(proj_right(u), proj_left(v))
+
+    new_states: Dict[Name, Tuple[int, int, int, int]] = {}
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        w = new_name_by_edge[(u, v)]
+        su, sv = g.states[u], g.states[v]
+        new_states[w] = (su[0], sv[1], su[2], sv[3])
+
+    new_edges = []
+    for u in g.states:
+        u_out, x = directed_edge_nodes(edge_from_port(g, Port(u, "b")))
+        y, u_in = directed_edge_nodes(edge_from_port(g, Port(u, "a")))
+        if u_out != u or u_in != u:
+            raise AssertionError("cycle incidence reconstruction failed")
+        no = new_name_by_edge[(u, x)]
+        ni = new_name_by_edge[(y, u)]
+        new_edges.append(edge(Port(no, "b"), Port(ni, "a")))
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def sqrt_tau_inverse(g: Graph) -> Graph:
+    """Algebraic inverse of sqrt_tau, retaining exact named-vertex identities."""
+    validate_graph(g)
+    original_name_by_edge: Dict[Tuple[Name, Name], Name] = {}
+    for e in g.edges:
+        w, z = directed_edge_nodes(e)
+        # If w=u.r vee x.l and z=y.r vee u.l, recover u.
+        original_name_by_edge[(w, z)] = merge_name(proj_right(z), proj_left(w))
+
+    new_states: Dict[Name, Tuple[int, int, int, int]] = {}
+    for (w, z), u in original_name_by_edge.items():
+        sw, sz = g.states[w], g.states[z]
+        new_states[u] = (sw[0], sz[1], sw[2], sz[3])
+
+    new_edges = []
+    for w in g.states:
+        _, z = directed_edge_nodes(edge_from_port(g, Port(w, "b")))
+        y, _ = directed_edge_nodes(edge_from_port(g, Port(w, "a")))
+        tail = original_name_by_edge[(w, z)]
+        head = original_name_by_edge[(y, w)]
+        new_edges.append(edge(Port(tail, "b"), Port(head, "a")))
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def port_time_flip(g: Graph) -> Graph:
+    """T0 for sqrt(tau): swap a<->b and corresponding internal bits."""
+    states = {n: (s[1], s[0], s[3], s[2]) for n, s in g.states.items()}
+    edges = []
+    for e in g.edges:
+        x = Port(e[0].node, "a" if e[0].port == "b" else "b")
+        y = Port(e[1].node, "a" if e[1].port == "b" else "b")
+        edges.append(edge(x, y))
+    out = Graph(states, edges)
+    validate_graph(out)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Involutive local collision/split step I2, from the two mirrored Fig. 7 rules.
+# This is built as one simultaneous boundary-port rewrite; that matters when
+# two redexes sit at adjacent vertices and share an old edge.
+# ---------------------------------------------------------------------------
+
+def I2(g: Graph) -> Graph:
+    validate_graph(g)
+    splits: Dict[Name, int] = {}
+    for n, s in g.states.items():
+        if s == (1, 1, 0, 0):
+            splits[n] = 1
+        elif s == (0, 0, 1, 1):
+            splits[n] = 2
+
+    merges: List[Tuple[Name, Name, int]] = []
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        su, sv = g.states[u], g.states[v]
+        if su == (1, 0, 0, 0) and sv == (0, 1, 0, 0):
+            merges.append((u, v, 1))
+        elif su == (0, 0, 1, 0) and sv == (0, 0, 0, 1):
+            # Mirrored channel-2 pattern; the recovered parent order is v vee u.
+            merges.append((u, v, 2))
+
+    used = set(splits)
+    merge_parent: Dict[Tuple[Name, Name, int], Name] = {}
+    for u, v, channel in merges:
+        if u in used or v in used:
+            raise ValueError("overlapping I2 rewrite patterns; state is not admissible")
+        used.update((u, v))
+        parent = merge_name(u, v) if channel == 1 else merge_name(v, u)
+        merge_parent[(u, v, channel)] = parent
+
+    new_states = {n: s for n, s in g.states.items() if n not in used}
+    boundary_map: Dict[Port, Port] = {}
+    internal_edges: List[Tuple[Port, Port]] = []
+
+    # Vertex splits.
+    for n, channel in splits.items():
+        nl, nr = proj_left(n), proj_right(n)
+        if nl in new_states or nr in new_states or nl == nr:
+            raise ValueError("I2 split would collide with an existing named vertex")
+        if channel == 1:
+            new_states[nl] = (1, 0, 0, 0)  # a1 particle on left child
+            new_states[nr] = (0, 1, 0, 0)  # b1 particle on right child
+            boundary_map[Port(n, "a")] = Port(nl, "a")
+            boundary_map[Port(n, "b")] = Port(nr, "b")
+            internal_edges.append(edge(Port(nl, "b"), Port(nr, "a")))
+        else:
+            # Mirror of channel 1 under R: old a goes to right, old b to left.
+            new_states[nl] = (0, 0, 0, 1)  # b2 particle on left child
+            new_states[nr] = (0, 0, 1, 0)  # a2 particle on right child
+            boundary_map[Port(n, "a")] = Port(nr, "a")
+            boundary_map[Port(n, "b")] = Port(nl, "b")
+            internal_edges.append(edge(Port(nr, "b"), Port(nl, "a")))
+
+    # Vertex merges.
+    merge_edge_keys = set()
+    for (u, v, channel), parent in merge_parent.items():
+        new_states[parent] = (1, 1, 0, 0) if channel == 1 else (0, 0, 1, 1)
+        boundary_map[Port(u, "a")] = Port(parent, "a")
+        boundary_map[Port(v, "b")] = Port(parent, "b")
+        merge_edge_keys.add(frozenset((Port(u, "b"), Port(v, "a"))))
+
+    # Unchanged vertices keep their port identities.
+    for n in g.states:
+        if n not in used:
+            boundary_map[Port(n, "a")] = Port(n, "a")
+            boundary_map[Port(n, "b")] = Port(n, "b")
+
+    # Apply all boundary substitutions simultaneously, then add split edges.
+    new_edges = []
+    for old_e in g.edges:
+        if frozenset(old_e) in merge_edge_keys:
+            continue
+        try:
+            new_edges.append(edge(boundary_map[old_e[0]], boundary_map[old_e[1]]))
+        except KeyError as exc:
+            raise AssertionError(f"unmapped boundary port in I2: {exc}") from exc
+    new_edges.extend(internal_edges)
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def R_c2(g: Graph) -> Graph:
+    """R: a1<->b2, a2<->b1, plus exchange of port labels a<->b."""
+    states = {n: (s[3], s[2], s[1], s[0]) for n, s in g.states.items()}
+    edges = []
+    for e in g.edges:
+        x = Port(e[0].node, "a" if e[0].port == "b" else "b")
+        y = Port(e[1].node, "a" if e[1].port == "b" else "b")
+        edges.append(edge(x, y))
+    out = Graph(states, edges)
+    validate_graph(out)
+    return out
+
+
+def f_main(g: Graph) -> Graph:
+    # C1 restriction: second channel is empty and remains empty.
+    if any(s[2] or s[3] for s in g.states.values()):
+        raise ValueError("f_main is defined here only on the C1 subspace")
+    return sqrt_tau(I2(g))
+
+
+def f_main_inverse(g: Graph) -> Graph:
+    if any(s[2] or s[3] for s in g.states.values()):
+        raise ValueError("f_main_inverse is defined here only on the C1 subspace")
+    return I2(sqrt_tau_inverse(g))
+
+
+def f_sym(g: Graph) -> Graph:
+    return sqrt_tau(I2(g))
+
+
+def f_sym_inverse(g: Graph) -> Graph:
+    return I2(sqrt_tau_inverse(g))
+
+
+def T_sym(g: Graph) -> Graph:
+    return I2(R_c2(g))
+
+
+# ---------------------------------------------------------------------------
+# FT-10 harness. No functions in this section execute on import.
+# ---------------------------------------------------------------------------
+
+ASSEMBLY = {
+    "artifact": "ADD_FT10_MINIMAL",
+    "parent": "R126 / existing NOW_INTEGRATED_CONTINUATION_V1 prerequisite",
+    "base_commit": "107cca83c6369734c3d434e756a32377c249d89d",
+    "prepared_status": "ASSEMBLED_NOT_EXECUTED_NOT_ATTESTED",
+    "core_layout": ["a1", "b1", "a2", "b2"],
+    "C1_layout": ["a1", "b1"],
+    "C2_external_layout": ["a1", "a2", "b1", "b2"],
+    "scope": "two three-vertex C1 fixtures; one C2 transport fixture; finite name-law cases",
+    "mirror_equals_Def4": "NOT_PROVEN",
+    "ADD_source_conformance": "NOT_ATTESTED",
+    "NOW_integration": "BLOCKED",
+    "figure_2_named_fixture": "NOT_TRANSCRIBED_NOT_VERIFIED",
+    "limits": {"max_vertices": 8, "max_name_nodes": 1000, "max_half_steps": 2},
+}
+
+
+def c1_state(a1: int, b1: int) -> tuple:
+    if a1 not in (0, 1) or b1 not in (0, 1):
+        raise ValueError("C1 consists of exactly two binary bits")
+    return (a1, b1, 0, 0)
+
+
+def c2_state(a1: int, a2: int, b1: int, b2: int) -> tuple:
+    if any(x not in (0, 1) for x in (a1, a2, b1, b2)):
+        raise ValueError("C2 consists of four binary bits")
+    return (a1, b1, a2, b2)
+
+
+def project(name: Name, word: str) -> Name:
+    for letter in word:
+        if letter not in "lr":
+            raise ValueError("name projection alphabet is l,r")
+        name = proj_left(name) if letter == "l" else proj_right(name)
+    return name
+
+
+def leaf_addresses(name: Name, suffix: str = "") -> list:
+    """Expand a finite name into its root/path cylinders, respecting projections.
+
+    Two cylinders overlap iff their roots agree and one path prefixes the other.
+    Checking every pair, including pairs within one name, checks disjointness
+    of descendant cones (A1) for these finite constructor-normalized terms.
+    The suffix is a projection of the CURRENT name, not its underlying root.
+    """
+    if name.tag == "base":
+        return [(name.x, suffix)]
+    if name.tag in ("left", "right"):
+        return leaf_addresses(name.x, ("l" if name.tag == "left" else "r") + suffix)
+    if name.tag == "merge":
+        if suffix:
+            child = name.x if suffix[0] == "l" else name.y
+            return leaf_addresses(child, suffix[1:])
+        return leaf_addresses(name.x) + leaf_addresses(name.y)
+    raise ValueError("unknown name constructor")
+
+
+def name_size(name: Name) -> int:
+    if name.tag == "base":
+        return 1
+    if name.tag in ("left", "right"):
+        return 1 + name_size(name.x)
+    return 1 + name_size(name.x) + name_size(name.y)
+
+
+def validate_A1(g: Graph) -> None:
+    leaves = []
+    for owner in g.states:
+        for root, path in leaf_addresses(owner):
+            for old_owner, old_root, old_path in leaves:
+                if root == old_root and (path.startswith(old_path) or old_path.startswith(path)):
+                    raise ValueError("A1 descendant cones intersect: "
+                                     + repr((old_owner, owner, old_path, path)))
+            leaves.append((owner, root, path))
+
+
+def validate_minimal(g: Graph) -> None:
+    if len(g.states) > ASSEMBLY["limits"]["max_vertices"]:
+        raise ValueError("minimal graph size cap exceeded")
+    if sum(name_size(n) for n in g.states) > ASSEMBLY["limits"]["max_name_nodes"]:
+        raise ValueError("minimal name-term cap exceeded")
+    validate_graph(g)
+    validate_A1(g)
+
+
+def name_text(n: Name) -> str:
+    if n.tag == "base":
+        return str(n.x)
+    if n.tag in ("left", "right"):
+        return "(" + name_text(n.x) + ")." + ("l" if n.tag == "left" else "r")
+    return "(" + name_text(n.x) + " vee " + name_text(n.y) + ")"
+
+
+def snapshot(g: Graph) -> dict:
+    validate_minimal(g)
+    return {
+        "states_a1_b1_a2_b2": {name_text(n): list(s) for n, s in g.states.items()},
+        "edges_b_to_a": sorted([[name_text(e[0].node), name_text(e[1].node)]
+                                  for e in g.edges]),
+        "particle_counts": list(particle_counts(g)),
+    }
+
+
+def def4_literal_reference(g: Graph) -> Graph:
+    """Separate direct incidence evaluator; NOT an independently attested law.
+
+    Construct w_(u,v)=u.r vee v.l. For each old vertex connect the new vertex
+    of its b-incident edge at port b to that of its a-incident edge at port a.
+    Preserve this literal reading so a conflict with Fig. 2/tau remains visible.
+    Does not call sqrt_tau, directed_edge_nodes, edge_from_port or mate_map.
+    """
+    validate_minimal(g)
+    incidence = {}
+    out_states = {}
+    for p, q in g.edges:
+        b, a = (p, q) if p.port == "b" else (q, p)
+        w = merge_name(proj_right(b.node), proj_left(a.node))
+        if w in out_states:
+            raise ValueError("new vertex name collision")
+        sb, sa = g.states[b.node], g.states[a.node]
+        out_states[w] = (sb[0], sa[1], sb[2], sa[3])
+        incidence[(b.node, "b")] = w
+        incidence[(a.node, "a")] = w
+    out_edges = [(Port(incidence[(u, "b")], "b"),
+                  Port(incidence[(u, "a")], "a")) for u in g.states]
+    out = Graph(out_states, out_edges)
+    validate_minimal(out)
+    return out
+
+
+def tau_port_reference(g: Graph) -> Graph:
+    """Independent full transport: follow occupied port once; keep names/edges.
+
+    This encodes the prose 'moves all particles along their corresponding port'.
+    It shares no transport table or coordinate map with sqrt_tau. If the named
+    comparison fails, do not substitute a ring isomorphism or a parity rule.
+    """
+    validate_minimal(g)
+    slots = {n: [0, 0, 0, 0] for n in g.states}
+    for source, s in g.states.items():
+        for channel in (0, 1):
+            for offset, port in ((0, "a"), (1, "b")):
+                i = 2 * channel + offset
+                ends = [q if p == Port(source, port) else p
+                        for p, q in g.edges
+                        if p == Port(source, port) or q == Port(source, port)]
+                if len(ends) != 1:
+                    raise ValueError("reference requires one edge per port")
+                slots[ends[0].node][i] = s[i]
+    out = Graph({n: tuple(s) for n, s in slots.items()}, list(g.edges))
+    validate_minimal(out)
+    return out
+
+
+def tagged_locations(g: Graph, channel: int = 1) -> dict:
+    """Unique a/b particle identities are read from distinct occupied slots."""
+    a_index, b_index = 2 * (channel - 1), 2 * (channel - 1) + 1
+    return {tag: [{"name": name_text(n), "port": port}
+                  for n, s in g.states.items() if s[index]]
+            for tag, port, index in (("A", "a", a_index), ("B", "b", b_index))}
+
+
+def name_contract() -> dict:
+    u, v = base_name("u"), base_name("v")
+    cases = (u, proj_left(u), merge_name(u, v),
+             merge_name(proj_right(u), proj_left(v)))
+    laws = {
+        "merge_left_projection": all(proj_left(merge_name(x, v)) == x for x in cases),
+        "merge_right_projection": all(proj_right(merge_name(u, x)) == x for x in cases),
+        "empty_projection": all(project(x, "") == x for x in cases),
+        "child_merge_cancellation": all(merge_name(proj_left(x), proj_right(x)) == x
+                                        for x in cases),
+        "ordered_merge": merge_name(u, v) != merge_name(v, u),
+    }
+    # Both cross-vertex collisions and internal self-overlap must be rejected.
+    invalid = ((u, proj_left(u)),
+               (merge_name(u, v), merge_name(v, base_name("w"))),
+               (merge_name(u, u),))
+    rejected = []
+    for names in invalid:
+        try:
+            validate_A1(Graph({n: c1_state(0, 0) for n in names}, []))
+        except ValueError:
+            rejected.append(True)
+        else:
+            rejected.append(False)
+    laws["A1_negative_controls"] = all(rejected)
+    validate_A1(Graph({proj_left(u): c1_state(0, 0),
+                      proj_right(u): c1_state(0, 0), v: c1_state(0, 0)}, []))
+    return {"status": "PASS" if all(laws.values()) else "FAIL",
+            "finite_cases_only": True, "laws": laws}
+
+
+def transport_contract(g: Graph, channel: int = 1) -> dict:
+    validate_minimal(g)
+    first = sqrt_tau(g)
+    second = sqrt_tau(first)
+    literal = def4_literal_reference(g)
+    expected = tau_port_reference(g)
+    stages = (g, first, second)
+    for stage in stages:
+        validate_minimal(stage)
+    checks = {
+        "first_equals_literal_Def4_reading": graph_equal(first, literal),
+        "second_equals_literal_Def4_reading": graph_equal(second, def4_literal_reference(first)),
+        "sqrt_inverse_exact_names": graph_equal(sqrt_tau_inverse(first), g),
+        "bit_counts": all(particle_counts(x) == particle_counts(g) for x in stages),
+        "two_halves_equal_port_tau_exact_names": graph_equal(second, expected),
+        "tagged_worldlines_equal_port_tau": tagged_locations(second, channel)
+                                              == tagged_locations(expected, channel),
+    }
+    return {"status": "PASS" if all(checks.values()) else "FAIL",
+            "checks": checks,
+            "trace": [snapshot(x) for x in stages],
+            "worldlines": [tagged_locations(x, channel) for x in stages],
+            "independent_tau": snapshot(expected),
+            "independent_tau_tags": tagged_locations(expected, channel),
+            "scope": "literal Definition 4 reading and port tau are separate constraints"}
+
+
+def minimal_run() -> dict:
+    # A double occupancy supplies the two oppositely oriented tagged particles.
+    # I followed immediately by I is an operator-level split/remerge test;
+    # it is NOT described as an orbit of the composed sqrt_tau I law.
+    initial = ring_graph([c1_state(1, 1), c1_state(0, 0), c1_state(0, 0)])
+    split = I2(initial)
+    remerged = I2(split)
+    for g in (initial, split, remerged):
+        validate_minimal(g)
+    parent = base_name(0)
+    split_checks = {
+        "left_child_state": split.states.get(proj_left(parent)) == c1_state(1, 0),
+        "right_child_state": split.states.get(proj_right(parent)) == c1_state(0, 1),
+        "internal_b_to_a_edge": frozenset((Port(proj_left(parent), "b"),
+                                           Port(proj_right(parent), "a")))
+                                   in {frozenset(e) for e in split.edges},
+        "I_squared_exact_names_edges_states": graph_equal(remerged, initial),
+        "particle_counts": particle_counts(initial) == particle_counts(split),
+    }
+    # Separate pre-existing adjacent names must merge in the declared order.
+    adjacent = ring_graph([c1_state(1, 0), c1_state(0, 1), c1_state(0, 0)])
+    merged = I2(adjacent)
+    validate_minimal(merged)
+    split_checks["unrelated_name_merge"] = merged.states.get(
+        merge_name(base_name(0), base_name(1))) == c1_state(1, 1)
+    split_checks["unrelated_name_merge_inverse"] = graph_equal(I2(merged), adjacent)
+    tests = {
+        "FT10A_layouts": {"status": "PASS" if (
+            c1_state(1, 0) == (1, 0, 0, 0) and
+            c2_state(1, 1, 0, 0) == (1, 0, 1, 0)) else "FAIL"},
+        "FT10B_name_algebra": name_contract(),
+        "FT10C_C1_split_merge": {
+            "status": "PASS" if all(split_checks.values()) else "FAIL",
+            "checks": split_checks,
+            "trace_I_then_I": [snapshot(g) for g in (initial, split, remerged)],
+            "trace_unrelated_merge": [snapshot(adjacent), snapshot(merged)],
+            "scope": "I2 restricted to C1, not full mirrored C2 table"},
+        "FT10D_C1_on_initial": transport_contract(initial),
+        "FT10D_C1_after_split": transport_contract(split),
+        "FT10D_C2_transport": transport_contract(ring_graph([
+            c2_state(0, 1, 0, 0), c2_state(0, 0, 0, 1),
+            c2_state(0, 0, 0, 0)]), channel=2),
+    }
+    return {"assembly": ASSEMBLY, "executed": True,
+            "status": "PASS_FINITE_CONSTRAINTS_ONLY" if all(
+                x["status"] == "PASS" for x in tests.values()) else "FAIL",
+            "source_conformance": "NOT_ATTESTED",
+            "NOW_integration": "BLOCKED", "tests": tests,
+            "not_checked": ["Fig.2 exact named fixture", "full C2 I2 table",
+                            "C3/D", "mirror reading equivalence", "general proof"]}
+
+
+def main_minimal() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-minimal", action="store_true",
+                        help="explicitly execute the bounded FT10 diagnostics")
+    parser.add_argument("--json-out", help="write a report, only with --run-minimal")
+    args = parser.parse_args()
+    if not args.run_minimal:
+        if args.json_out:
+            parser.error("--json-out requires --run-minimal")
+        print(json.dumps(ASSEMBLY, ensure_ascii=False, indent=2))
+        return 0
+    try:
+        result = minimal_run()
+    except Exception as exc:
+        result = {"assembly": ASSEMBLY, "executed": True, "status": "ERROR",
+                  "error": {"type": type(exc).__name__, "message": str(exc)},
+                  "source_conformance": "NOT_ATTESTED", "NOW_integration": "BLOCKED"}
+    rendered = json.dumps(result, ensure_ascii=False, indent=2)
+    if args.json_out:
+        with open(args.json_out, "w", encoding="utf-8") as output:
+            output.write(rendered + "\n")
+    print(rendered)
+    return 0 if result["status"] == "PASS_FINITE_CONSTRAINTS_ONLY" else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main_minimal())
+
+
+
+========================================================================================
+END FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/source/ADD_FT10_MINIMAL.py
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py
+LABEL: CONTINUATION AUDIT
+GIT BLOB SHA: 814c22222129fce9f83f5160a5660c05f62b4e40
+CHARACTERS: 16538
+========================================================================================
+#!/usr/bin/env python3
+"""Independent bounded audit of four explicitly distinct transport conventions.
+
+Bit order: integer bit 0=a1, 1=b1, 2=a2, 3=b2. Words follow b->a.
+The imported frozen core supplies Name/Graph/I2, never the word dynamics.
+No VM calls, network, pip installs, or experiment integration.
+"""
+from __future__ import annotations
+import argparse
+from collections import Counter
+import hashlib
+import importlib.util
+import itertools
+import json
+from pathlib import Path
+import platform
+import sys
+import time
+
+HERE = Path(__file__).resolve().parent
+spec = importlib.util.spec_from_file_location("frozen_ft10", HERE / "source/ADD_FT10_MINIMAL.py")
+core = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = core
+spec.loader.exec_module(core)
+MODES = {
+    "LITERAL_DEF4": (False, True),
+    "FIG2A_BITS_ONLY": (True, True),
+    "FIG2A_FULL": (True, False),
+    "PRESERVE_EDGES_LITERAL_BITS": (False, False),
+}
+SPLIT = {3: (1, 2), 12: (4, 8)}
+MERGE = {(1, 2): 3, (4, 8): 12}
+
+
+def canon(w):
+    w = tuple(w)
+    return min(w[i:] + w[:i] for i in range(len(w)))
+
+
+def bits(s):
+    return tuple((s >> i) & 1 for i in range(4))
+
+
+def motifs(w):
+    return (sum(x in SPLIT for x in w),
+            sum((x, w[(i+1) % len(w)]) in MERGE for i, x in enumerate(w)))
+
+
+def particles(w):
+    return tuple(sum((s >> i) & 1 for s in w) for i in range(4))
+
+
+def collision(w):
+    """Simultaneous disjoint rewrites; explicitly handle a pair crossing the cut."""
+    n = len(w)
+    start = 1 if (w[-1], w[0]) in MERGE else 0
+    out = []
+    i = 0
+    while i < n:
+        s, t = w[(start+i) % n], w[(start+i+1) % n]
+        if (s, t) in MERGE:
+            out.append(MERGE[s, t])
+            i += 2
+        else:
+            out.extend(SPLIT.get(s, (s,)))
+            i += 1
+    return tuple(out)
+
+
+def half(w, mode):
+    swap, reverse = MODES[mode]
+    h = tuple(((t & 5) | (s & 10)) if swap else ((s & 5) | (t & 10))
+              for s, t in zip(w, w[1:] + w[:1]))
+    return h[::-1] if reverse else h
+
+
+def step(w, mode):
+    return half(collision(w), mode)
+
+
+def facing(s, t):
+    """One b-channel at the left faces the same single a-channel at the right."""
+    return ((s & 10), (t & 5)) in ((2, 1), (8, 4))
+
+
+def gap_toggle(w):
+    """Independent J=Q I Q rule: toggle zero/one empty vertex at eligible gaps.
+
+    Nonzero vertices retain their states. Simultaneous deletions never touch;
+    insertions occur only between original adjacent nonzero endpoints.
+    """
+    out = []
+    for i, s in enumerate(w):
+        previous, following = w[i-1], w[(i+1) % len(w)]
+        if not (s == 0 and facing(previous, following)):
+            out.append(s)
+        if facing(s, following):
+            out.append(0)
+    assert out
+    return tuple(out)
+
+
+def structural_checks(max_L=5):
+    """Finite crosschecks of the local rules used in the arbitrary-L proof."""
+    results = []
+    active_period2 = None
+    mode = "FIG2A_BITS_ONLY"
+    for L in range(1,max_L+1):
+        reps, weighted = 0, 0
+        started = time.perf_counter()
+        for w in itertools.product(range(16), repeat=L):
+            if canon(w) != w:
+                continue
+            reps += 1
+            weighted += len({w[i:]+w[:i] for i in range(L)})
+            j = gap_toggle(w)
+            assert canon(j) == canon(half(collision(half(w,mode)),mode))
+            assert canon(gap_toggle(j)) == w
+            assert canon(collision(j)) == canon(gap_toggle(collision(w)))
+            assert particles(j) == particles(w)
+            z = w
+            for _ in range(4):
+                z = step(z,mode)
+            assert canon(z) == w
+            if active_period2 is None and not any(motifs(w)):
+                o = orbit(w,mode,4)
+                if o['active'] and o['period'] == 2:
+                    active_period2 = {"initial":w, **o}
+        assert weighted == 16**L
+        row = {"L":L,"all_labelled_words":weighted,"rotation_representatives":reps,
+               "J_equals_QIQ":True,"J_involution":True,"I_J_commute":True,
+               "F_fourth_is_identity_word":True,"seconds":time.perf_counter()-started}
+        results.append(row)
+        print(json.dumps(row),flush=True)
+    return {"all_states_not_only_E0":results,"active_period2_E0_witness":active_period2,
+            "proof_reference":"CONTINUATION_REPORT.md#arbitrary-l-proof"}
+
+
+def spectral_checks():
+    import sympy as sp
+    x = sp.Symbol('lambda')
+    valid = [s for s in range(16) if s not in SPLIT]
+    pairs = [(s,t) for s in valid for t in valid if (s,t) not in MERGE]
+    indexes = {pair:i for i,pair in enumerate(pairs)}
+    E = sp.zeros(16)
+    QL = sp.zeros(16)
+    QF = sp.zeros(len(pairs))
+    for s,t in pairs:
+        E[s,t] = 1
+        if ((s & 5) | (t & 10)) not in SPLIT:
+            QL[s,t] = 1
+    for i,(s,t) in enumerate(pairs):
+        h1 = (t & 5) | (s & 10)
+        for u in valid:
+            if (t,u) not in indexes:
+                continue
+            h2 = (u & 5) | (t & 10)
+            # h1 was checked by the previous transition of every closed walk.
+            # Keeping these transient edges reproduces the supplied 2424-edge
+            # presentation rather than its equally valid 2196-edge pruning.
+            if h2 not in SPLIT and (h2,h1) not in MERGE:
+                QF[i,indexes[t,u]] = 1
+    expected = [x**14*(x*x-14*x+2), x**13*(x-1)*(x*x-13*x+4),
+                x**187*(x**3-x*x-2*x-1)*(x**4-13*x**3+6*x*x+7*x+4)]
+    rows = {}
+    for name,M,want in zip(('E0','Q_literal','Q_bits_only'),(E,QL,QF),expected):
+        t0 = time.perf_counter()
+        polynomial = M.charpoly(x).as_expr()
+        assert sp.expand(polynomial-want) == 0
+        factor = sp.factor(polynomial)
+        # Obtain exact traces from the characteristic polynomial (Newton sums),
+        # avoiding dense matrix powers; these are compared to direct word counts.
+        coefficients = sp.Poly(polynomial,x).all_coeffs()
+        traces = [M.rows]
+        for n in range(1,7):
+            traces.append(-sum(coefficients[j]*traces[n-j] for j in range(1,n))-n*coefficients[n])
+        rows[name] = {'dimension':M.rows,'transition_edges':int(sum(M)),
+                      'charpoly':str(factor),'matches_neighbor':True,
+                      'traces_L1_L6':[int(v) for v in traces[1:]],'seconds':time.perf_counter()-t0}
+    return {'sympy':sp.__version__,'matrices':rows,
+            'quiet_invariant_all_L':True,'proof_reference':'CONTINUATION_REPORT.md#quiet-class'}
+
+
+def ordered_nodes(g):
+    nxt = {p.node: q.node for p, q in g.edges}
+    out = [next(iter(g.states))]
+    while nxt[out[-1]] != out[0]:
+        out.append(nxt[out[-1]])
+    assert len(out) == len(g.states)
+    return out
+
+
+def graph_word(g):
+    return canon(tuple(sum(v << i for i, v in enumerate(g.states[n])) for n in ordered_nodes(g)))
+
+
+def graph_half(g, mode):
+    swap, reverse = MODES[mode]
+    ns = ordered_nodes(g)
+    names = [core.merge_name(core.proj_right(u), core.proj_left(v))
+             for u, v in zip(ns, ns[1:] + ns[:1])]
+    states = {}
+    for i, name in enumerate(names):
+        s, t = g.states[ns[i]], g.states[ns[(i+1) % len(ns)]]
+        states[name] = (t[0], s[1], t[2], s[3]) if swap else (s[0], t[1], s[2], t[3])
+    es = [(core.Port(n, "b"), core.Port(names[(i+(-1 if reverse else 1)) % len(ns)], "a"))
+          for i, n in enumerate(names)]
+    out = core.Graph(states, es)
+    core.validate_graph(out)
+    core.validate_A1(out)
+    return out
+
+
+def graph_half_inverse(g, mode):
+    """Recover each old vertex from its adjacent new vertices, with explicit names."""
+    swap, reverse = MODES[mode]
+    ws = ordered_nodes(g)
+    # For reverse edges w_i follows w_(i+1); for forward edges w_i follows w_(i-1).
+    old, states = [], {}
+    for i, w in enumerate(ws):
+        previous = ws[(i + (1 if reverse else -1)) % len(ws)]
+        u = core.merge_name(core.proj_right(previous), core.proj_left(w))
+        old.append(u)
+        a_source, b_source = (previous, w) if swap else (w, previous)
+        a, b = g.states[a_source], g.states[b_source]
+        states[u] = (a[0], b[1], a[2], b[3])
+    es = [(core.Port(u, "b"), core.Port(old[(i+(-1 if reverse else 1)) % len(old)], "a"))
+          for i, u in enumerate(old)]
+    out = core.Graph(states, es)
+    core.validate_graph(out)
+    core.validate_A1(out)
+    return out
+
+
+def snapshot(g):
+    return {"vertices": [{"name": core.name_text(n), "bits": g.states[n]} for n in ordered_nodes(g)],
+            "edges": [[core.name_text(p.node)+":b", core.name_text(q.node)+":a"] for p,q in g.edges],
+            "word": graph_word(g)}
+
+
+def graph_gates():
+    """Exhaustive L<=2 C2 plus L=3 C1; no derived Q used as tau oracle."""
+    count = 0
+    for alphabet, lengths in ((range(16), (1, 2)), (range(4), (3,))):
+        for L in lengths:
+            for w in itertools.product(alphabet, repeat=L):
+                g = core.ring_graph([bits(s) for s in w])
+                core.validate_A1(g)
+                ig = core.I2(g)
+                core.validate_A1(ig)
+                assert graph_word(ig) == canon(collision(w))
+                assert core.graph_equal(core.I2(ig), g)
+                for mode in MODES:
+                    q = graph_half(g, mode)
+                    assert graph_word(q) == canon(half(w, mode))
+                    assert graph_word(graph_half(ig, mode)) == canon(step(w, mode))
+                    assert core.graph_equal(graph_half_inverse(q, mode), g)
+                    assert core.graph_equal(graph_half(graph_half_inverse(g, mode), mode), g)
+                    assert particles(w) == core.particle_counts(q)
+                    if mode == "LITERAL_DEF4":
+                        assert core.graph_equal(q, core.sqrt_tau(g))
+                count += 1
+    # Independent 16 single-occupied-slot worldlines on a four-node ring.
+    tau_results = {}
+    for mode in MODES:
+        named_pass = word_pass = 0
+        witness = None
+        for slot in range(16):
+            w = [0]*4
+            w[slot//4] = 1 << (slot % 4)
+            g = core.ring_graph([bits(s) for s in w])
+            q2 = graph_half(graph_half(g, mode), mode)
+            tau = core.tau_port_reference(g)
+            ok = core.graph_equal(q2, tau)
+            named_pass += ok
+            word_pass += graph_word(q2) == graph_word(tau)
+            if not ok and witness is None:
+                witness = {"input": snapshot(g), "q_squared": snapshot(q2), "tau_port": snapshot(tau)}
+        tau_results[mode] = {"cases": 16, "exact_named_pass": named_pass,
+                             "word_rotation_pass": word_pass, "counterexample": witness}
+    # Rotation alone hides the single-particle shift; use a mixed C2 state as well.
+    w = (0, 4, 9, 2)
+    g = core.ring_graph([bits(s) for s in w])
+    for mode in MODES:
+        q2 = graph_half(graph_half(g, mode), mode)
+        tau_results[mode]["mixed_word_equals_tau"] = graph_word(q2) == graph_word(core.tau_port_reference(g))
+        tau_results[mode]["mixed_q_squared"] = graph_word(q2)
+    return {"projection_and_inverses_graphs": count, "four_modes": list(MODES),
+            "tau_port_worldlines": tau_results}
+
+
+def orbit(w, mode, horizon=40, cap=256):
+    initial = canon(w)
+    seen, states = {}, []
+    current = initial
+    for t in range(horizon+1):
+        key = canon(current)
+        if key in seen:
+            start = seen[key]
+            return {"period": t-start, "transient": start, "active": any(any(motifs(x)) for x in states),
+                    "max_L": max(map(len, states)), "min_L": min(map(len, states)), "states": states}
+        if len(current) > cap:
+            break
+        seen[key] = t
+        states.append(key)
+        current = step(key, mode)
+    return {"period": None, "transient": None, "active": any(any(motifs(x)) for x in states),
+            "max_L": max(map(len, states)), "min_L": min(map(len, states)), "states": states}
+
+
+def exhaustive(L, alphabet, modes, horizon=40):
+    started = time.perf_counter()
+    e0_alphabet = [s for s in alphabet if s not in SPLIT]
+    total, reps = 0, 0
+    data = {m: {"first": Counter(), "periods": Counter(), "active": 0, "transients": 0,
+                "unresolved": 0, "max_L": L, "min_L": L, "witnesses": {}} for m in modes}
+    for w in itertools.product(e0_alphabet, repeat=L):
+        if motifs(w)[1] or canon(w) != w:
+            continue
+        weight = len({w[i:]+w[:i] for i in range(L)})
+        total += weight
+        reps += 1
+        for mode in modes:
+            d = data[mode]
+            s, m = motifs(half(w, mode))
+            category = "both" if s and m else "split_only" if s else "merge_only" if m else "none"
+            d["first"][category] += weight
+            o = orbit(w, mode, horizon)
+            assert all(particles(x) == particles(w) for x in o["states"])
+            if mode in ("LITERAL_DEF4", "FIG2A_FULL"):
+                assert all(motifs(x)[1] == 0 for x in o["states"])
+                assert all(len(y)-len(x) == motifs(x)[0] for x,y in zip(o['states'],o['states'][1:]))
+            if mode == "LITERAL_DEF4":
+                assert all(motifs(y)[0] >= motifs(x)[0] for x,y in zip(o['states'],o['states'][1:]))
+            label = str(o["period"]) if o["period"] is not None else "unresolved"
+            d["periods"][label] += weight
+            d["active"] += weight*o["active"]
+            d["transients"] += weight*bool(o["transient"])
+            d["unresolved"] += weight*(o["period"] is None)
+            d["max_L"] = max(d["max_L"], o["max_L"])
+            d["min_L"] = min(d["min_L"], o["min_L"])
+            if label not in d["witnesses"]:
+                d["witnesses"][label] = {"initial": w, **o}
+    return {"L": L, "alphabet_size": len(alphabet), "labelled_E0": total,
+            "rotation_representatives": reps, "horizon": horizon, "modes": data,
+            "seconds": time.perf_counter()-started}
+
+
+def named_witness(w, mode, horizon):
+    g = g0 = core.ring_graph([bits(s) for s in w])
+    records, period = [], None
+    for t in range(horizon+1):
+        core.validate_A1(g)
+        records.append({"t": t, "L": len(g.states), "motifs": motifs(graph_word(g)), **snapshot(g)})
+        if t and core.graph_equal(g, g0):
+            period = t
+            break
+        if t < horizon:
+            g = graph_half(core.I2(g), mode)
+    return {"initial": w, "mode": mode, "exact_named_period": period, "trace": records}
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--stage", choices=("gates", "orbits", "witnesses", "structural", "spectra"), required=True)
+    p.add_argument("--lengths", default="2,3,4")
+    p.add_argument("--alphabet", type=int, default=16, choices=(4,16))
+    p.add_argument("--modes", default="FIG2A_BITS_ONLY")
+    p.add_argument("--horizon", type=int, default=40)
+    p.add_argument("--out", type=Path, required=True)
+    a = p.parse_args()
+    t0 = time.perf_counter()
+    result = {"stage": a.stage, "python": sys.version, "platform": platform.platform(),
+              "source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+              "frozen_core_sha256": hashlib.sha256((HERE/"source/ADD_FT10_MINIMAL.py").read_bytes()).hexdigest()}
+    if a.stage == "gates":
+        result["gates"] = graph_gates()
+    elif a.stage == "orbits":
+        result["exhaustive"] = []
+        for L in map(int, a.lengths.split(",")):
+            r = exhaustive(L, range(a.alphabet), a.modes.split(","), a.horizon)
+            result["exhaustive"].append(r)
+            print(json.dumps({"L":L,"E0":r["labelled_E0"],"seconds":r["seconds"],
+                              "modes": {m:{k:v for k,v in d.items() if k!="witnesses"} for m,d in r["modes"].items()}}),flush=True)
+    elif a.stage == "spectra":
+        result["spectra"] = spectral_checks()
+    elif a.stage == "structural":
+        result["structural"] = structural_checks(max(map(int,a.lengths.split(','))))
+    else:
+        result["witnesses"] = [named_witness(w,m,h) for w,m,h in
+            [((0,2,0,1),"LITERAL_DEF4",8), ((0,2,0,1),"FIG2A_BITS_ONLY",20),
+             ((0,4,9),"FIG2A_BITS_ONLY",8), ((0,4,9),"LITERAL_DEF4",8),
+             ((0,2,0,1),"FIG2A_FULL",12), ((0,4,9),"FIG2A_FULL",12),
+             ((0,1,6,1,6),"FIG2A_BITS_ONLY",4)]]
+    result["wall_seconds"] = time.perf_counter()-t0
+    a.out.parent.mkdir(parents=True,exist_ok=True)
+    a.out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
+    print(json.dumps({"saved":str(a.out),"seconds":result["wall_seconds"]}),flush=True)
+
+
+if __name__ == "__main__":
+    main()
+========================================================================================
+END FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/CONTINUATION_AUDIT.py
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/source/add_backend_smoke_v1.py
+LABEL: INHERITED SMOKE SOURCE
+GIT BLOB SHA: 16139da045cd14ea591b6f4938f598a2af49fb03
+CHARACTERS: 31649
+========================================================================================
+#!/usr/bin/env python3
+"""ADD_BACKEND_SMOKE_V1
+
+Standalone, standard-library-only reconstruction of the local graph operations
+in Arrighi–Dowek–Durbec, arXiv:2306.07121v2, for a finite cyclic graph.
+
+IMPORTANT SCOPE:
+- This is an independent implementation reconstructed from the paper's text,
+  equations and Fig. 7; it is not the authors' source code.
+- It is an algebra/interface smoke test, not a reproduction of the paper's
+  asymptotic proofs or a physical model of NOW.
+- The optional repair object is an organizational overlay and is NOT part of
+  the ADD reversible dynamics.
+"""
+from __future__ import annotations
+
+import argparse
+import itertools
+import json
+import math
+import random
+import statistics
+import sys
+from dataclasses import dataclass
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+
+
+# ---------------------------------------------------------------------------
+# Named graph objects (names are essential for exact reversibility).
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class Name:
+    tag: str
+    x: object = None
+    y: object = None
+
+
+def base_name(i: object) -> Name:
+    return Name("base", i, None)
+
+
+def proj_left(n: Name) -> Name:
+    return n.x if n.tag == "merge" else Name("left", n, None)
+
+
+def proj_right(n: Name) -> Name:
+    return n.y if n.tag == "merge" else Name("right", n, None)
+
+
+def merge_name(x: Name, y: Name) -> Name:
+    # The defining cancellation law (u.l) vee (u.r) = u.
+    if x.tag == "left" and y.tag == "right" and x.x == y.x:
+        return x.x
+    return Name("merge", x, y)
+
+
+@dataclass(frozen=True)
+class Port:
+    node: Name
+    port: str  # "a" or "b"
+
+
+def edge(p: Port, q: Port) -> Tuple[Port, Port]:
+    """Canonical orientation: b-port endpoint first, a-port endpoint second."""
+    if p.port == q.port:
+        raise ValueError(f"an edge must join an a port to a b port: {p}, {q}")
+    return (p, q) if p.port == "b" else (q, p)
+
+
+@dataclass
+class Graph:
+    # State order is (a1, b1, a2, b2); C1 uses a2=b2=0.
+    states: Dict[Name, Tuple[int, int, int, int]]
+    edges: List[Tuple[Port, Port]]
+
+
+def ring_graph(states: Sequence[Tuple[int, int, int, int]]) -> Graph:
+    if not states:
+        raise ValueError("a cyclic graph must have at least one vertex")
+    names = [base_name(i) for i in range(len(states))]
+    es = [edge(Port(names[i], "b"), Port(names[(i + 1) % len(names)], "a"))
+          for i in range(len(names))]
+    g = Graph(dict(zip(names, states)), es)
+    validate_graph(g)
+    return g
+
+
+def edge_key(e: Tuple[Port, Port]) -> frozenset:
+    return frozenset(e)
+
+
+def validate_graph(g: Graph) -> None:
+    if not g.states:
+        raise ValueError("empty graph is not in the finite cyclic state space")
+    expected = {Port(n, p) for n in g.states for p in ("a", "b")}
+    seen = []
+    if len(g.edges) != len(g.states):
+        raise ValueError("a finite 2-port cycle must have |E|=|V|")
+    for s in g.states.values():
+        if len(s) != 4 or any(x not in (0, 1) for x in s):
+            raise ValueError(f"invalid C2 node state: {s}")
+    for e in g.edges:
+        if len(e) != 2 or {e[0].port, e[1].port} != {"a", "b"}:
+            raise ValueError(f"invalid edge: {e}")
+        if e[0].port != "b" or e[1].port != "a":
+            raise ValueError(f"edge is not in canonical b->a orientation: {e}")
+        for p in e:
+            if p.node not in g.states:
+                raise ValueError(f"edge references absent node: {p.node}")
+            seen.append(p)
+    if len(seen) != len(expected) or len(set(seen)) != len(seen) or set(seen) != expected:
+        raise ValueError("every a/b port must occur in exactly one edge")
+
+    # Connectedness: this smoke is for one circular component, not a disjoint union.
+    adj = {n: set() for n in g.states}
+    for x, y in g.edges:
+        adj[x.node].add(y.node)
+        adj[y.node].add(x.node)
+    start = next(iter(g.states))
+    visited = {start}
+    stack = [start]
+    while stack:
+        u = stack.pop()
+        for v in adj[u]:
+            if v not in visited:
+                visited.add(v)
+                stack.append(v)
+    if visited != set(g.states):
+        raise ValueError("graph has more than one connected component")
+
+
+def mate_map(g: Graph) -> Dict[Port, Port]:
+    out: Dict[Port, Port] = {}
+    for x, y in g.edges:
+        out[x] = y
+        out[y] = x
+    return out
+
+
+def edge_from_port(g: Graph, p: Port) -> Tuple[Port, Port]:
+    m = mate_map(g)
+    if p not in m:
+        raise ValueError(f"unmatched port: {p}")
+    return edge(p, m[p])
+
+
+def directed_edge_nodes(e: Tuple[Port, Port]) -> Tuple[Name, Name]:
+    if e[0].port == "b" and e[1].port == "a":
+        return e[0].node, e[1].node
+    raise ValueError(f"edge must be canonical b->a: {e}")
+
+
+def graph_equal(g: Graph, h: Graph) -> bool:
+    return (g.states == h.states and
+            {edge_key(e) for e in g.edges} == {edge_key(e) for e in h.edges})
+
+
+def particle_counts(g: Graph) -> Tuple[int, int, int, int]:
+    return tuple(sum(s[i] for s in g.states.values()) for i in range(4))  # type: ignore
+
+
+def particle_total(g: Graph) -> int:
+    return sum(particle_counts(g))
+
+
+# ---------------------------------------------------------------------------
+# Reversible half-shift sqrt(tau) and exact inverse.
+# ---------------------------------------------------------------------------
+
+def sqrt_tau(g: Graph) -> Graph:
+    validate_graph(g)
+    new_name_by_edge: Dict[Tuple[Name, Name], Name] = {}
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        new_name_by_edge[(u, v)] = merge_name(proj_right(u), proj_left(v))
+
+    new_states: Dict[Name, Tuple[int, int, int, int]] = {}
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        w = new_name_by_edge[(u, v)]
+        su, sv = g.states[u], g.states[v]
+        new_states[w] = (su[0], sv[1], su[2], sv[3])
+
+    new_edges = []
+    for u in g.states:
+        u_out, x = directed_edge_nodes(edge_from_port(g, Port(u, "b")))
+        y, u_in = directed_edge_nodes(edge_from_port(g, Port(u, "a")))
+        if u_out != u or u_in != u:
+            raise AssertionError("cycle incidence reconstruction failed")
+        no = new_name_by_edge[(u, x)]
+        ni = new_name_by_edge[(y, u)]
+        new_edges.append(edge(Port(no, "b"), Port(ni, "a")))
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def sqrt_tau_inverse(g: Graph) -> Graph:
+    """Algebraic inverse of sqrt_tau, retaining exact named-vertex identities."""
+    validate_graph(g)
+    original_name_by_edge: Dict[Tuple[Name, Name], Name] = {}
+    for e in g.edges:
+        w, z = directed_edge_nodes(e)
+        # If w=u.r vee x.l and z=y.r vee u.l, recover u.
+        original_name_by_edge[(w, z)] = merge_name(proj_right(z), proj_left(w))
+
+    new_states: Dict[Name, Tuple[int, int, int, int]] = {}
+    for (w, z), u in original_name_by_edge.items():
+        sw, sz = g.states[w], g.states[z]
+        new_states[u] = (sw[0], sz[1], sw[2], sz[3])
+
+    new_edges = []
+    for w in g.states:
+        _, z = directed_edge_nodes(edge_from_port(g, Port(w, "b")))
+        y, _ = directed_edge_nodes(edge_from_port(g, Port(w, "a")))
+        tail = original_name_by_edge[(w, z)]
+        head = original_name_by_edge[(y, w)]
+        new_edges.append(edge(Port(tail, "b"), Port(head, "a")))
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def port_time_flip(g: Graph) -> Graph:
+    """T0 for sqrt(tau): swap a<->b and corresponding internal bits."""
+    states = {n: (s[1], s[0], s[3], s[2]) for n, s in g.states.items()}
+    edges = []
+    for e in g.edges:
+        x = Port(e[0].node, "a" if e[0].port == "b" else "b")
+        y = Port(e[1].node, "a" if e[1].port == "b" else "b")
+        edges.append(edge(x, y))
+    out = Graph(states, edges)
+    validate_graph(out)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Involutive local collision/split step I2, from the two mirrored Fig. 7 rules.
+# This is built as one simultaneous boundary-port rewrite; that matters when
+# two redexes sit at adjacent vertices and share an old edge.
+# ---------------------------------------------------------------------------
+
+def I2(g: Graph) -> Graph:
+    validate_graph(g)
+    splits: Dict[Name, int] = {}
+    for n, s in g.states.items():
+        if s == (1, 1, 0, 0):
+            splits[n] = 1
+        elif s == (0, 0, 1, 1):
+            splits[n] = 2
+
+    merges: List[Tuple[Name, Name, int]] = []
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        su, sv = g.states[u], g.states[v]
+        if su == (1, 0, 0, 0) and sv == (0, 1, 0, 0):
+            merges.append((u, v, 1))
+        elif su == (0, 0, 1, 0) and sv == (0, 0, 0, 1):
+            # Mirrored channel-2 pattern; the recovered parent order is v vee u.
+            merges.append((u, v, 2))
+
+    used = set(splits)
+    merge_parent: Dict[Tuple[Name, Name, int], Name] = {}
+    for u, v, channel in merges:
+        if u in used or v in used:
+            raise ValueError("overlapping I2 rewrite patterns; state is not admissible")
+        used.update((u, v))
+        parent = merge_name(u, v) if channel == 1 else merge_name(v, u)
+        merge_parent[(u, v, channel)] = parent
+
+    new_states = {n: s for n, s in g.states.items() if n not in used}
+    boundary_map: Dict[Port, Port] = {}
+    internal_edges: List[Tuple[Port, Port]] = []
+
+    # Vertex splits.
+    for n, channel in splits.items():
+        nl, nr = proj_left(n), proj_right(n)
+        if nl in new_states or nr in new_states or nl == nr:
+            raise ValueError("I2 split would collide with an existing named vertex")
+        if channel == 1:
+            new_states[nl] = (1, 0, 0, 0)  # a1 particle on left child
+            new_states[nr] = (0, 1, 0, 0)  # b1 particle on right child
+            boundary_map[Port(n, "a")] = Port(nl, "a")
+            boundary_map[Port(n, "b")] = Port(nr, "b")
+            internal_edges.append(edge(Port(nl, "b"), Port(nr, "a")))
+        else:
+            # Mirror of channel 1 under R: old a goes to right, old b to left.
+            new_states[nl] = (0, 0, 0, 1)  # b2 particle on left child
+            new_states[nr] = (0, 0, 1, 0)  # a2 particle on right child
+            boundary_map[Port(n, "a")] = Port(nr, "a")
+            boundary_map[Port(n, "b")] = Port(nl, "b")
+            internal_edges.append(edge(Port(nr, "b"), Port(nl, "a")))
+
+    # Vertex merges.
+    merge_edge_keys = set()
+    for (u, v, channel), parent in merge_parent.items():
+        new_states[parent] = (1, 1, 0, 0) if channel == 1 else (0, 0, 1, 1)
+        boundary_map[Port(u, "a")] = Port(parent, "a")
+        boundary_map[Port(v, "b")] = Port(parent, "b")
+        merge_edge_keys.add(frozenset((Port(u, "b"), Port(v, "a"))))
+
+    # Unchanged vertices keep their port identities.
+    for n in g.states:
+        if n not in used:
+            boundary_map[Port(n, "a")] = Port(n, "a")
+            boundary_map[Port(n, "b")] = Port(n, "b")
+
+    # Apply all boundary substitutions simultaneously, then add split edges.
+    new_edges = []
+    for old_e in g.edges:
+        if frozenset(old_e) in merge_edge_keys:
+            continue
+        try:
+            new_edges.append(edge(boundary_map[old_e[0]], boundary_map[old_e[1]]))
+        except KeyError as exc:
+            raise AssertionError(f"unmapped boundary port in I2: {exc}") from exc
+    new_edges.extend(internal_edges)
+
+    out = Graph(new_states, new_edges)
+    validate_graph(out)
+    return out
+
+
+def R_c2(g: Graph) -> Graph:
+    """R: a1<->b2, a2<->b1, plus exchange of port labels a<->b."""
+    states = {n: (s[3], s[2], s[1], s[0]) for n, s in g.states.items()}
+    edges = []
+    for e in g.edges:
+        x = Port(e[0].node, "a" if e[0].port == "b" else "b")
+        y = Port(e[1].node, "a" if e[1].port == "b" else "b")
+        edges.append(edge(x, y))
+    out = Graph(states, edges)
+    validate_graph(out)
+    return out
+
+
+def f_main(g: Graph) -> Graph:
+    # C1 restriction: second channel is empty and remains empty.
+    if any(s[2] or s[3] for s in g.states.values()):
+        raise ValueError("f_main is defined here only on the C1 subspace")
+    return sqrt_tau(I2(g))
+
+
+def f_main_inverse(g: Graph) -> Graph:
+    if any(s[2] or s[3] for s in g.states.values()):
+        raise ValueError("f_main_inverse is defined here only on the C1 subspace")
+    return I2(sqrt_tau_inverse(g))
+
+
+def f_sym(g: Graph) -> Graph:
+    return sqrt_tau(I2(g))
+
+
+def f_sym_inverse(g: Graph) -> Graph:
+    return I2(sqrt_tau_inverse(g))
+
+
+def T_sym(g: Graph) -> Graph:
+    return I2(R_c2(g))
+
+
+# ---------------------------------------------------------------------------
+# Observables: count entropy, occupancy density, local motifs and graph paths.
+# ---------------------------------------------------------------------------
+
+def log_binomial(n: int, k: int) -> float:
+    if not (0 <= k <= n):
+        raise ValueError(f"invalid binomial arguments n={n}, k={k}")
+    return math.lgamma(n + 1) - math.lgamma(k + 1) - math.lgamma(n - k + 1)
+
+
+def entropy_c1(g: Graph) -> float:
+    if any(s[2] or s[3] for s in g.states.values()):
+        raise ValueError("C1 entropy requested for a C2 state")
+    L = len(g.states)
+    p = particle_total(g)
+    return log_binomial(2 * L, p)
+
+
+def entropy_c2_total_slots(g: Graph) -> float:
+    """Coarse-grain by L and total p: log binomial(4L,p), not thermodynamic S."""
+    L = len(g.states)
+    p = particle_total(g)
+    return log_binomial(4 * L, p)
+
+
+def entropy_c2_species_resolved(g: Graph) -> float:
+    """Alternative coarse-graining: preserve the four per-channel bit counts."""
+    L = len(g.states)
+    counts = particle_counts(g)
+    return sum(log_binomial(L, p_i) for p_i in counts)
+
+
+def graph_neighbors(g: Graph) -> Dict[Name, set]:
+    adj = {n: set() for n in g.states}
+    for x, y in g.edges:
+        adj[x.node].add(y.node)
+        adj[y.node].add(x.node)
+    return adj
+
+
+def graph_distance(g: Graph, source: Name, target: Name) -> Optional[int]:
+    """Undirected spatial graph distance; deliberately NOT a causal-time predicate."""
+    if source not in g.states or target not in g.states:
+        return None
+    if source == target:
+        return 0
+    adj = graph_neighbors(g)
+    queue = [(source, 0)]
+    seen = {source}
+    for node, d in queue:
+        for nxt in adj[node]:
+            if nxt == target:
+                return d + 1
+            if nxt not in seen:
+                seen.add(nxt)
+                queue.append((nxt, d + 1))
+    return None
+
+
+def radius_window(g: Graph, center: Name, radius: int) -> set:
+    if radius < 0:
+        raise ValueError("radius must be nonnegative")
+    adj = graph_neighbors(g)
+    dist = {center: 0}
+    queue = [center]
+    for node in queue:
+        if dist[node] == radius:
+            continue
+        for nxt in adj[node]:
+            if nxt not in dist:
+                dist[nxt] = dist[node] + 1
+                queue.append(nxt)
+    return set(dist)
+
+
+def local_observables(g: Graph, radius: int = 2) -> dict:
+    L = len(g.states)
+    p = particle_total(g)
+    counts = particle_counts(g)
+    windows = [radius_window(g, n, radius) for n in g.states]
+    local_particle_density = statistics.mean(
+        sum(sum(g.states[x]) for x in w) / len(w) for w in windows
+    )
+    local_slot_fraction = statistics.mean(
+        sum(sum(g.states[x]) for x in w) / (4 * len(w)) for w in windows
+    )
+
+    split_motifs = sum(1 for s in g.states.values() if s in ((1, 1, 0, 0), (0, 0, 1, 1)))
+    merge_motifs = 0
+    for e in g.edges:
+        u, v = directed_edge_nodes(e)
+        su, sv = g.states[u], g.states[v]
+        if ((su == (1, 0, 0, 0) and sv == (0, 1, 0, 0)) or
+            (su == (0, 0, 1, 0) and sv == (0, 0, 0, 1))):
+            merge_motifs += 1
+
+    return {
+        "L": L,
+        "p_total": p,
+        "p_by_bit": list(counts),
+        "particle_density_per_vertex": p / L,
+        "slot_occupancy_fraction": p / (4 * L),
+        "mean_radius_window_particle_density": local_particle_density,
+        "mean_radius_window_slot_fraction": local_slot_fraction,
+        "active_split_patterns": split_motifs,
+        "active_merge_patterns": merge_motifs,
+        "active_local_rewrite_patterns": split_motifs + merge_motifs,
+        "S_C2_total_slots": entropy_c2_total_slots(g),
+        "S_C2_species_resolved": entropy_c2_species_resolved(g),
+        "spatial_graph_connected": True,
+        "causal_reachability": "NOT_DEFINED_BY_SPATIAL_GRAPH_ALONE",
+    }
+
+
+# ---------------------------------------------------------------------------
+# Organizational overlay: local repair is not part of ADD's reversible law.
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class RepairEvent:
+    event_id: str
+    initiator: Name
+    endpoints: Tuple[Name, Name]
+    parent_event_ids: Tuple[str, ...]
+    start_tick: int
+    delay: int
+    cost: float
+
+
+def schedule_local_repair(g: Graph, event: RepairEvent, local_resource: float) -> dict:
+    if event.initiator not in event.endpoints:
+        raise ValueError("repair must be initiated by one of the local endpoints")
+    if len(set(event.endpoints)) != 2:
+        raise ValueError("repair must identify two distinct endpoints")
+    if any(n not in g.states for n in event.endpoints):
+        raise ValueError("repair endpoints must exist in the local graph")
+    if graph_distance(g, event.endpoints[0], event.endpoints[1]) != 1:
+        raise ValueError("repair endpoints must share a direct local channel")
+    if not event.parent_event_ids:
+        raise ValueError("repair needs at least one causal parent event")
+    if event.start_tick < 0 or event.delay < 1:
+        raise ValueError("repair requires nonnegative start and strictly positive delay")
+    if event.cost <= 0 or local_resource < event.cost:
+        raise ValueError("repair requires positive cost covered by local resource")
+    return {
+        "event_id": event.event_id,
+        "initiator": repr(event.initiator),
+        "endpoints": [repr(x) for x in event.endpoints],
+        "parent_event_ids": list(event.parent_event_ids),
+        "start_tick": event.start_tick,
+        "completion_tick": event.start_tick + event.delay,
+        "cost": event.cost,
+        "local_resource_before": local_resource,
+        "local_resource_after": local_resource - event.cost,
+        "mutates_ADD_state": False,
+        "status": "SCHEDULED_LOCAL_OVERLAY_EVENT",
+    }
+
+
+def create_carrier_from_waste(*_args, **_kwargs):
+    raise NotImplementedError(
+        "waste is not a free carrier; an explicit recycling mechanism and balance are required"
+    )
+
+
+def path_log_ratio(p_forward: Optional[float], p_reverse: Optional[float],
+                   reverse_protocol_defined: bool) -> Optional[float]:
+    """Return log(P_F/P_R); None means the reverse experiment is undefined."""
+    if not reverse_protocol_defined or p_forward is None or p_reverse is None:
+        return None
+    if not (0.0 <= p_forward <= 1.0 and 0.0 <= p_reverse <= 1.0):
+        raise ValueError("path probabilities must be in [0,1]")
+    if p_forward == 0.0 and p_reverse == 0.0:
+        return None  # the paired path is absent on both sides
+    if p_reverse == 0.0:
+        return math.inf  # valid, defined reverse ensemble has zero support here
+    if p_forward == 0.0:
+        return -math.inf
+    return math.log(p_forward / p_reverse)
+
+
+# ---------------------------------------------------------------------------
+# Smoke tests.
+# ---------------------------------------------------------------------------
+
+def test_exhaustive_c1() -> dict:
+    tested = 0
+    for states in itertools.product(((0, 0, 0, 0), (1, 0, 0, 0),
+                                     (0, 1, 0, 0), (1, 1, 0, 0)), repeat=3):
+        g = ring_graph(states)
+        if not graph_equal(f_main_inverse(f_main(g)), g):
+            raise AssertionError(f"C1 main reversibility failed at {states}")
+        before = particle_counts(g)
+        if particle_counts(f_main(g)) != before:
+            raise AssertionError("C1 particle conservation failed")
+        tested += 1
+    return {"status": "PASS", "states": tested, "ring_vertices": 3}
+
+
+def test_exhaustive_c2() -> dict:
+    tested = 0
+    for states in itertools.product(itertools.product((0, 1), repeat=4), repeat=3):
+        g = ring_graph(states)
+        before = particle_counts(g)
+        i2 = I2(g)
+        if not graph_equal(I2(i2), g):
+            raise AssertionError(f"I2 involution failed at {states}")
+        r = R_c2(g)
+        if not graph_equal(R_c2(r), g):
+            raise AssertionError(f"R involution failed at {states}")
+        if not graph_equal(I2(r), R_c2(i2)):
+            raise AssertionError(f"I2R=RI2 failed at {states}")
+        shifted = sqrt_tau(g)
+        if not graph_equal(sqrt_tau_inverse(shifted), g):
+            raise AssertionError(f"sqrt(tau) inverse failed at {states}")
+        if not graph_equal(R_c2(sqrt_tau(R_c2(g))), sqrt_tau_inverse(g)):
+            raise AssertionError(f"R sqrt(tau) R = sqrt(tau)^-1 failed at {states}")
+        t = T_sym(g)
+        if not graph_equal(T_sym(t), g):
+            raise AssertionError(f"T^2=Id failed at {states}")
+        if not graph_equal(T_sym(f_sym(T_sym(g))), f_sym_inverse(g)):
+            raise AssertionError(f"T f_sym T = f_sym^-1 failed at {states}")
+        if not graph_equal(f_sym_inverse(f_sym(g)), g):
+            raise AssertionError(f"f_sym inverse composition failed at {states}")
+        if particle_counts(i2) != before:
+            raise AssertionError("I2 did not conserve bitwise particle counts")
+        if particle_counts(shifted) != before:
+            raise AssertionError("sqrt(tau) did not conserve bitwise particle counts")
+        if particle_counts(f_sym(g)) != before:
+            raise AssertionError("f_sym did not conserve bitwise particle counts")
+        tested += 1
+    return {
+        "status": "PASS",
+        "states": tested,
+        "ring_vertices": 3,
+        "checks": ["I2^2=Id", "R^2=Id", "I2R=RI2",
+                   "sqrt(tau)^-1 sqrt(tau)=Id", "R sqrt(tau) R=sqrt(tau)^-1",
+                   "T^2=Id", "T f_sym T=f_sym^-1", "four bit-counts conserved"],
+    }
+
+
+def find_main_not_time_symmetric_witness() -> dict:
+    # Main C1 is reversible, but the paper says it is not time-symmetric.
+    for states in itertools.product(((0, 0, 0, 0), (1, 0, 0, 0),
+                                     (0, 1, 0, 0), (1, 1, 0, 0)), repeat=3):
+        g = ring_graph(states)
+        # In C1, T0 is the port time flip; compare T0 f T0 with f^-1.
+        lhs = port_time_flip(f_main(port_time_flip(g)))
+        rhs = f_main_inverse(g)
+        if not graph_equal(lhs, rhs):
+            return {"status": "PASS", "counterexample_found": True,
+                    "initial_states": [list(x) for x in states],
+                    "meaning": "finite witness that this C1 implementation is not time-symmetric"}
+    return {"status": "UNRESOLVED", "counterexample_found": False}
+
+
+def test_repair_and_reverse_contract() -> dict:
+    g = ring_graph([(0, 0, 0, 0)] * 4)
+    n0, n1 = list(g.states)[:2]
+    ev = RepairEvent("repair-1", n0, (n0, n1), ("damage-0",), 4, 2, 3.0)
+    successful = schedule_local_repair(g, ev, local_resource=5.0)
+    if successful["completion_tick"] != 6 or successful["local_resource_after"] != 2.0:
+        raise AssertionError("repair timing/resource accounting failed")
+
+    rejected = {}
+    try:
+        schedule_local_repair(g, RepairEvent("remote", list(g.states)[2], (n0, n1),
+                                              ("damage-0",), 4, 2, 1.0), 5.0)
+    except ValueError:
+        rejected["remote_initiator"] = True
+    try:
+        schedule_local_repair(g, RepairEvent("instant", n0, (n0, n1),
+                                              ("damage-0",), 4, 0, 1.0), 5.0)
+    except ValueError:
+        rejected["zero_delay"] = True
+    try:
+        schedule_local_repair(g, RepairEvent("unfunded", n0, (n0, n1),
+                                              ("damage-0",), 4, 2, 6.0), 5.0)
+    except ValueError:
+        rejected["insufficient_local_resource"] = True
+    try:
+        schedule_local_repair(g, RepairEvent("nonlocal", n0, (n0, list(g.states)[2]),
+                                              ("damage-0",), 4, 2, 1.0), 5.0)
+    except ValueError:
+        rejected["nonadjacent_endpoints"] = True
+    try:
+        schedule_local_repair(g, RepairEvent("free", n0, (n0, n1),
+                                              ("damage-0",), 4, 2, 0.0), 5.0)
+    except ValueError:
+        rejected["zero_cost"] = True
+    if len(rejected) != 5:
+        raise AssertionError(f"repair negative controls incomplete: {rejected}")
+
+    if path_log_ratio(0.2, None, reverse_protocol_defined=False) is not None:
+        raise AssertionError("undefined reverse protocol must return undefined A")
+    if path_log_ratio(0.2, 0.2, reverse_protocol_defined=True) != 0.0:
+        raise AssertionError("paired exact preparation should give A=0")
+    if not math.isinf(path_log_ratio(0.2, 0.0, reverse_protocol_defined=True) or 0.0):
+        raise AssertionError("valid zero reverse support must be distinct from undefined")
+    try:
+        create_carrier_from_waste("waste")
+    except NotImplementedError:
+        waste_guard = True
+    else:
+        waste_guard = False
+    if not waste_guard:
+        raise AssertionError("waste-to-carrier must not be implicit")
+    return {
+        "status": "PASS",
+        "repair_overlay": successful,
+        "negative_controls": rejected,
+        "reverse_protocol_undefined": "A_UNDEFINED (None), not infinity",
+        "matched_forward_reverse_probability": "A=0",
+        "valid_zero_reverse_support": "infinity only when reverse ensemble is defined",
+        "waste_to_carrier": "BLOCKED without explicit recycling mechanism",
+    }
+
+
+def sample_trajectory(seed: int = 20261104, initial_vertices: int = 12,
+                      steps: int = 24, bit_probability: float = 0.50,
+                      radius: int = 2) -> dict:
+    rng = random.Random(seed)
+    states = [tuple(int(rng.random() < bit_probability) for _ in range(4))
+              for _ in range(initial_vertices)]
+    g = ring_graph(states)
+    rows = []
+    for t in range(steps + 1):
+        obs = local_observables(g, radius=radius)
+        rows.append({"t": t, **obs})
+        if t < steps:
+            before = particle_counts(g)
+            g = f_sym(g)
+            if particle_counts(g) != before:
+                raise AssertionError("particle counts changed along sample trajectory")
+    return {
+        "seed": seed,
+        "initial_vertices": initial_vertices,
+        "steps": steps,
+        "bit_probability": bit_probability,
+        "window_radius": radius,
+        "rows": rows,
+        "interpretation": (
+            "one finite trajectory of the reconstructed F2 rule; numerical illustration only, "
+            "not evidence for the paper's asymptotic Theta(n) statement"
+        ),
+    }
+
+
+def sample_ensemble(seed_start: int = 20261100, count: int = 8,
+                    initial_vertices: int = 12, steps: int = 24,
+                    bit_probability: float = 0.50) -> dict:
+    """Small seeded ensemble; descriptive calibration, not an asymptotic test."""
+    runs = []
+    exemplar = None
+    for seed in range(seed_start, seed_start + count):
+        tr = sample_trajectory(seed=seed, initial_vertices=initial_vertices,
+                               steps=steps, bit_probability=bit_probability)
+        rows = tr["rows"]
+        first, last = rows[0], rows[-1]
+        runs.append({
+            "seed": seed,
+            "L_initial": first["L"],
+            "L_final": last["L"],
+            "delta_L": last["L"] - first["L"],
+            "p_total": first["p_total"],
+            "S_initial": first["S_C2_total_slots"],
+            "S_final": last["S_C2_total_slots"],
+            "local_density_initial": first["mean_radius_window_particle_density"],
+            "local_density_final": last["mean_radius_window_particle_density"],
+            "active_patterns_initial": first["active_local_rewrite_patterns"],
+            "active_patterns_final": last["active_local_rewrite_patterns"],
+        })
+        if seed == 20261104:
+            exemplar = tr
+    deltas = [r["delta_L"] for r in runs]
+    s_deltas = [r["S_final"] - r["S_initial"] for r in runs]
+    rho_ratios = [
+        (r["local_density_final"] / r["local_density_initial"]
+         if r["local_density_initial"] > 0 else None) for r in runs
+    ]
+    valid_rho_ratios = [x for x in rho_ratios if x is not None]
+    return {
+        "seed_start": seed_start,
+        "sample_count": count,
+        "initial_vertices": initial_vertices,
+        "steps": steps,
+        "bit_probability": bit_probability,
+        "trajectories_with_L_growth": sum(d > 0 for d in deltas),
+        "median_delta_L": statistics.median(deltas),
+        "min_L_final": min(r["L_final"] for r in runs),
+        "max_L_final": max(r["L_final"] for r in runs),
+        "median_delta_S_C2_total_slots": statistics.median(s_deltas),
+        "median_local_density_ratio_final_over_initial": (
+            statistics.median(valid_rho_ratios) if valid_rho_ratios else None
+        ),
+        "runs": runs,
+        "exemplar_seed_20261104": exemplar,
+        "interpretation": (
+            "small finite seed ensemble from this independent reconstruction; "
+            "not a genericity proof, not a Theta(n) estimate, and not a reproduction "
+            "of the authors' numerical setup"
+        ),
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json-out", default=None, help="optional path for JSON results")
+    parser.add_argument("--skip-growth", action="store_true", help="skip illustrative trajectory")
+    args = parser.parse_args()
+
+    results = {
+        "artifact": "ADD_BACKEND_SMOKE_V1",
+        "implementation_status": "INDEPENDENT_RECONSTRUCTION_FROM_PAPER_TEXT_AND_FIGURE_7",
+        "not_author_code": True,
+        "not_NOW_integration": True,
+        "tests": {
+            "C1_reversibility_and_conservation": test_exhaustive_c1(),
+            "C2_full_exhaustive_symmetry": test_exhaustive_c2(),
+            "main_C1_not_time_symmetric": find_main_not_time_symmetric_witness(),
+            "repair_reverse_resource_contract": test_repair_and_reverse_contract(),
+        },
+        "growth_demo": None if args.skip_growth else sample_ensemble(),
+        "important_scope_limits": [
+            "the spatial ring graph alone does not define a causal event order or delivery event",
+            "the repair object is an external organizational overlay, not an ADD rule",
+            "no thermodynamic energy/heat balance is defined",
+        "organizational viability is not computed: no record-reader-writer apparatus is embedded",
+        "no global topology rewrite operation is exposed",
+            "waste recycling and carrier creation are not implemented",
+            "C2 entropy is an explicit coarse-graining choice, not a unique thermodynamic entropy",
+            "no asymptotic theorem is inferred from the finite sample trajectory",
+        ],
+    }
+    rendered = json.dumps(results, ensure_ascii=False, indent=2)
+    if args.json_out:
+        with open(args.json_out, "w", encoding="utf-8") as f:
+            f.write(rendered + "\n")
+    print(rendered)
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        print(f"FATAL: {type(exc).__name__}: {exc}", file=sys.stderr)
+        raise
+========================================================================================
+END FILE: analysis/ADD_DICHOTOMY_AUDIT_20261108/source/add_backend_smoke_v1.py
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md
+LABEL: R130 REPORT
+GIT BLOB SHA: 84eec4243dc29f8ae29da50b7542d7272c344f18
+CHARACTERS: 14289
+========================================================================================
+# R130: ADD — сверка соседних разборов и продвижение R126
+
+> Последующее обновление 17 ноября: [подготовленные фазы C1 завершены и повторены на GitHub](../ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md). Формулировки ниже о ещё не выполненном переносе C1 относятся к моменту этого разбора; исторический текст и результаты C2 сохранены.
+
+Дата: 17 ноября 2026. Основание репозитория: `fa5e736b5b217ce171a4d1a395544b287d7021b3`.
+
+**Получено:** зеркальная гипотеза C1 закрыта отрицательно; для явно заданной кольцевой C2 восстановлена инволюция обращения; найден точный активный цикл постоянного размера. Это различает симметрию закона, рост и продолжение взаимодействий. Исторический R126 и его замороженные операторы сохранены. Полной аттестации статьи, физической стрелы и организационного замыкания здесь нет.
+
+[Карточка R130](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r130) · [R126](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r126) · [машинные результаты](CHECKS.json) · [проверяющий код](verify.py) · [источники и повторы](SOURCES.json) · [генеалогия](../../RESEARCH_LINEAGE.md#add-progress-20261117).
+
+## 1. Что прочитано и что действительно новое
+
+Сведены исходный «Пабло.txt», дополнение `060652` и сборные файлы `055652`, `063503`, `063754`, `064027`. `063503` побайтно совпадает с `060652`. В остальных трёх сборных текстах нет новых непустых строк относительно объединения двух исходных текстов; порядок и повторы различаются. Повторное включение вывода не считается независимым подтверждением. Исходные вложения и переписка не перепубликуются. Манифест содержит имена, размеры, хеши и результат сравнения; опубликованное математическое свидетельство — независимый код, вывод и приведённая ниже алгебра.
+
+Внутри отзывов есть последовательные исправления автора: ошибочный Q⁻¹, неверная склейка имён, затем исправленные правила. Поэтому в итог перенесены проверенные утверждения, а не последний встреченный блок вывода машины. Число 5440 само по себе не идентифицирует корпус: наш C1 L=3..6 отличается от старой суммы C1 L=3..5 и C2 L=3.
+
+Первичный источник: Arrighi, Dowek, Durbec, [arXiv:2306.07121v2](https://arxiv.org/html/2306.07121v2), [PDF](https://arxiv.org/pdf/2306.07121v2); журнальный DOI [10.1088/1367-2630/ad93f5](https://doi.org/10.1088/1367-2630/ad93f5). Для этой сверки нужны Fig. 2, Fig. 7, Proposition 1 и приложения B/D. Противоположные расщепления C2 показаны в **Fig. 7**; Fig. 2(a) показывает транспорт, Fig. 2(b) — C1, Definition 3 определяет временную симметрию. Новое письмо Пабло этим изменением не отправлялось.
+
+<a id="rules"></a>
+## 2. Точная область правил и расхождение со старым кодом
+
+Кольцо перечисляется вдоль рёбер b→a. Биты кодируются `s=a1+2*b1+4*a2+8*b2`; в C1 остаются младшие два. Склейка упорядочена: `left(x∨y)=x`, `right(x∨y)=y`, `left(u)∨right(u)=u`. Обратная склейка `right(u)∨left(u)` не сокращается.
+
+Q создаёт вершину `right(u_i)∨left(u_(i+1))`, берёт a-биты у следующей вершины и b-биты у текущей. Q⁻¹ использует те же имена новых вершин, a-биты текущей и b-биты следующей. Поэтому Q²=τ: на прежнем имени u_i a приходит от i+1, b — от i−1. F=QI, F⁻¹=IQ⁻¹.
+
+В C1 взаимодействие одновременно заменяет `3 ↔ (1,2)`. В опорной C2 оно заменяет `3 ↔ (1,2)` и `12 ↔ (8,4)`. Остальные локальные символы не расщепляются в данном шаге; Q может впоследствии превратить их в активные. Названия левого и правого потомков и внешние порты сохраняют пространственный порядок. R в C2 меняет a1↔b2, a2↔b1, сохраняя имена и рёбра.
+
+**Найденное расхождение с замороженным исходником:** [ADD_FT10_MINIMAL.py](../ADD_DICHOTOMY_AUDIT_20261108/source/ADD_FT10_MINIMAL.py) на исходном SHA кладёт b2 на `u.l` и a2 на `u.r`, но одновременно обращает подключение их внешних портов и внутреннего ребра. В пространственном порядке вдоль b→a получается `(4,8)`. Кроме того, `R_c2` меняет метки портов рёбер. Это другой оператор, чем bit-only R выше. Исправление таблицы битов без проверки рёбер не устраняет расхождение. Старый исходник и его результаты не переписаны; `verify.py` — отдельная опорная реализация.
+
+Именованные проверки сравнивают множество `(имя, состояние)` и множество направленных рёбер с точными именами. Забывается лишь выбор первой строки списка кольца. Произвольное переименование не разрешено. Сравнение циклических слов используется только в специально отмеченных формулах траекторий.
+
+<a id="c1"></a>
+## 3. C1: что закрыто, что ещё требуется
+
+Пусть B меняет a↔b, M зеркалит порядок кольца и алгебру имён, C=MB. Локальные правила дают CQ=QC, CI=IC и C²=id. Следовательно, **CFC=F**, а не F⁻¹. Для S=QC имеем **S²=Q²=τ**, а не id. Это отрицательный ответ на конкретные гипотезы из дополнения R126 от 16–17 ноября, а не доказательство отсутствия любого мыслимого обращения.
+
+На всех 5440 именованных C1-кольцах L=3..6: Q²=τ, I²=id, FF⁻¹=id, CFC=F, S²=τ проходят без нарушений; CFC=F⁻¹ нарушается 5428 раз, BFB=F⁻¹ — 5175 раз. Уже слово `(0,0,1)` даёт именованный контрпример зеркальному обращению. Эти конечные числа сопровождают локальную алгебру, а не заменяют её.
+
+Для `X_L=(1,2,0^(L−2))`, L≥2, пока длина больше единицы, один шаг уменьшает её на 1 и оставляет одну сливающуюся пару. На шаге **L−1** остаётся `(3,)`, n_f=0. Это индукция по длине; L=8,16,32 дают 7,15,31. Универсальное O(1) для транзиента опровергнуто; конечность транзиента этим не опровергнута.
+
+Нужная вспомогательная величина учитывает обход кольца, включая собственную частицу пары. Для пары `(1 в i, 2 в i+1)` берём минимум положительных k, при которых a-бит находится в `i+1+k` либо b-бит в `i−k`; d_f — минимум по парам. Если пар нет, значение d_f для лексикографического сравнения не существенно. На X_L это d_f=L−1. В Appendix B используется именно подход с расстоянием до встречной частицы, допускающий собственную пару.
+
+Полный конечный корпус C1 L=1..6 содержит 5460 слов, из них 1770 активных. Для `(n_f,d_f)` нет нестрогих шагов, пока n_f>0; в 462 шагах с неизменным n_f получено Δd_f=−1. **Равенство −1 на всём допустимом классе этой конечной проверкой не доказано.** Полный перенос доказательства Theorem 1 на авторски разъяснённую спецификацию A остаётся отдельным обязательством.
+
+Замены d_f на длину или число пустых вершин отвергнуты точными примерами:
+
+| Кандидат | Переход | Почему не подходит |
+|---|---|---|
+| `(n_f,L)` | `(0,1,2,0,3,3) → (1,2,1,0,3,0,2)` | n_f=1, длина 6→7 |
+| `(n_f,#0)` | `(1,1,2,2,3) → (1,2,3,0,3)` | n_f=1, пустых 0→1 |
+
+Баланс ΔL=c−n_f воспроизведён. E0 в прежнем аудите — фильтр **начального** слова, не требование ко всей орбите. Прежнее доказательство через конечность слов не опровергается бесконечной алгеброй имён. Оценка Θ(√n) не устанавливает точный коэффициент 2n_a n_b. Отмотка `F^(−n)F^400X=F^(400−n)X` на конечном участке не является контрпримером к дальней асимптотике.
+
+<a id="c2"></a>
+## 4. C2: симметрия восстановлена для объявленного оператора
+
+Варианты ε=(±1,±1) задают порядок двух потомков каждого канала. При ε=(+1,−1) правила приведены выше. I₂²=R²=id и RQR=Q⁻¹ дают для T=I₂R:
+
+`TFT = I₂R · QI₂ · I₂R = I₂(RQR) = I₂Q⁻¹ = F⁻¹`.
+
+Это тождество само по себе недостаточно: T должно быть инволюцией. Условие T²=id эквивалентно RI₂=I₂R. R переводит `(1,2)` в `(8,4)`, сохраняя порядок имён; локальные пары согласуются ровно при противоположных ε. Это проверяемая локальная реализация конструкции Proposition 1, не открытие самой конструкции.
+
+| Нарушения на 4368 именованных кольцах L=1..3 для каждого ε | (+,+) | (+,−) | (−,+) | (−,−) |
+|---|---:|---:|---:|---:|
+| I₂²=id, R²=id, RQR=Q⁻¹, FF⁻¹=id | 0 | 0 | 0 | 0 |
+| TFT=F⁻¹ | 0 | 0 | 0 | 0 |
+| RI₂=I₂R | 1574 | 0 | 0 | 1574 |
+| T²=id | 1574 | 0 | 0 | 1574 |
+
+Итак, прошлый отказ T=IR в старой реконструкции R126 не переносится на исправленную C2. И наоборот: PASS этой реализации не аттестует автоматически весь старый backend, C3, damping или произвольные именованные графы. Уникальность R среди всех отображений не доказана; перебор небольшого семейства R этого не даёт.
+
+<a id="active-cycle"></a>
+## 5. Существенный новый предел: взаимодействия без роста
+
+При ε=(+1,−1) имеется точное решение на циклических словах:
+
+`(1,2,12) --I₂--> (3,8,4) --Q--> (2,12,1)`.
+
+Выход есть циклический поворот входа. Правила эквивариантны повороту, поэтому на **каждом** следующем шаге имеется одно слияние первого канала и одно расщепление второго. Длина постоянно равна 3. Вывод для всех шагов следует из равенства и индукции, а не из длинной конечной трассы. Имена эволюционируют; их периодичность не утверждается.
+
+Это опровергает универсальные тезисы «в любой занятой C2 слияния исчезают за конечное время» и «любое занятое C2-кольцо неограниченно растёт». Следовательно, C1-аргумент конечного исчезновения слияний нельзя перенести на всю C2. Это не опровержение утверждения о **типичном** росте при отдельно заданной мере.
+
+Для нашей задачи результат полезен как точно заданное автономное продолжение взаимодействий при ограниченном размере. Он ещё не показывает полезную функцию, чтение истории, восстановление условий или направленную энтропийную динамику. Называть этот цикл жизнью или автопоэзисом было бы преждевременно.
+
+<a id="mixed"></a>
+## 6. Смешанный сектор: три разных поведения
+
+| Точный пример | Получено | Что исключено |
+|---|---|---|
+| `(6,9) --I₂--> (6,9) --Q--> (3,12)` | транспорт активирует смешанные символы | «9 занятых символов инертны навсегда», «весь смешанный сектор мёртв» |
+| `(5,10,0,0) → (0,10,0,5) → (0,10,5,0) → (0,15,0,0) → (5,10,0,0)` | тихий цикл слова, L=4 | универсальная активность смешанного сектора |
+| `(1,2,12)` | вечная активность, L=3 | универсальный рост или прекращение слияний |
+| `(3,12)` | линейные обе дальние ветви | перенос таблицы «смешанное: вперёд n, назад √n» на все засевы |
+
+Последняя строка имеет проверяемые формулы (с точностью до циклического поворота): при n≥1 `F^n(3,12)=(0,2,12,1,0^(n−1))`, длина n+3; `F⁻¹(3,12)=(6,9)`; при n≥2 `F^(−n)(3,12)=(1,2,8,0^(n−2),4)`, длина n+2. Базовые шаги и подстановка в правила доказывают продолжение семейств; первые шесть шагов включены в проверку. Для чистого второго канала `(12,0^k) → (12,0^(k+1))`, k≥0, рост также точно линейный.
+
+Два канала используют **один граф**. Поэтому отношение двух «размеров каналов» пока не определено, и из разных чистых подсекторов не следует наличие двух независимых геометрий или двух одновременных физических стрел. Линейный рост не является космологической инфляцией. Привязка ADD к R(t) в BH1 требует самостоятельного физического соответствия; здесь она не введена.
+
+<a id="function"></a>
+## 7. Геометрия, память и замыкание: точная граница продвижения
+
+В C1 `(1,2,0,0)` даёт L′=3, а `(1,0,2,0)` — L′=4 при одинаковых исходной длине, числе битов и циклическом порядке частиц. Значит, промежутки причинно влияют на следующий переход. Переименование при сохранении расположения битов не меняет их динамику. Эти утверждения совместимы: геометрия действует, но полезное чтение исторического следа ещё не продемонстрировано.
+
+Нужный мост к R075/L04 остаётся прежним: сравнить содержательный след при фиксированной задаче и физических возможностях, затем измерить доступность следующего действия. Наличие имён или выбор окна энтропии исследователем не создают внутреннего читателя. Appendix D задаёт наблюдение/окна через имена; зависимость от разбиения сама по себе не доказывает ошибку калибровочной инвариантности. Средняя локальная энтропия не описывает всех возможных наблюдателей. Damping не устанавливает автоматически организацию и воспроизводство условий.
+
+<a id="genealogy"></a>
+## 8. Генеалогия: было → получено → стало
+
+| Родитель или открытый мост | Изменение | Текущий вывод |
+|---|---|---|
+| R077: ограничение конечного унитарного мира | ADD допускает неограниченное множество состояний; отдельно различены слова и имена | это контекст для обхода предпосылок ограничения, не перенос теоремы между классами |
+| R078: симметрия ансамбля и истории | разделены обратимость, инволюция T, асимптотика и выбор меры | симметрия закона не доказывает типичность траекторий |
+| R126: четыре исторические семантики | обнаружены конкретные различия I₂/R; прежняя зеркальная гипотеза опровергнута | старые теоремы сохранены за прежними операторами |
+| R126 + авторские уточнения → R130 | отдельная именованная C1/C2, явные семейства и контрпримеры | конструктивное уточнение механизма без замены производственного носителя |
+| R075, L04; U010 | причинная роль расстояний подтверждена, роль содержательного следа не установлена | «геометрия действует» не закрывает «запись управляет продолжением» |
+| U005 / L06 | вечный активный цикл найден | воспроизводство аппарата и условий не доказано |
+| U007 | C2 обращение выполнено в объявленном носителе | обращение всего аппарата, среды, отходов и ресурсов остаётся OPEN |
+| U009 / L08 | симметрия исправленной C2 и старые K-сектора разведены | спонтанное нарушение симметрии не установлено |
+| U006 / L09 / L10 | один изменяющийся граф не есть выведенное пространство-время | общий физический закон и связь с BH1 открыты |
+
+R130 — дочерняя запись R126/R077/R078. Ссылки на R075 и вопросы означают ограничение переноса, а не доказательство родительских гипотез. Машинные обратные ссылки строятся из того же реестра.
+
+**Следующий различающий вопрос:** для конкретного объявленного класса смешанных C2 отделить тихие, активные ограниченные и растущие орбиты; утверждение о типичности возможно только после задания меры. Для возврата к основной цели требуется отдельный причинный тест содержательного следа и способности продолжения. Этот разбор не принимает новый закон, меру, ADD-R или вычислительный запуск.
+
+## 9. Проверка и цена
+
+`python analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py` сохраняет `CHECKS.json`. Это воспроизводимая упаковка конечных проверок последнего разбора: Python 3.12.14, около 1.6 секунды в текущей среде; точное время и SHA скрипта находятся в JSON. Это не новый производственный физический прогон; ВМ и очереди не затронуты. Предрегистрация или прежний прогноз времени задним числом не выдуманы. Научная приёмка остаётся за владельцем.
+
+Итог поручения: повторные файлы разобраны без размножения свидетельств; новые условные выводы отделены от отвергнутых обобщений; R126 дополнен, R130 зарегистрирован, вопросы и встречные связи обновлены. Главная задача — стрела из замкнутого целого и происхождение «сейчас» — остаётся открытой.
+========================================================================================
+END FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py
+LABEL: R130 FINITE VERIFIER
+GIT BLOB SHA: f60f2f07bdedaac5ecd8557bb4b85b08d9d7b951
+CHARACTERS: 9561
+========================================================================================
+#!/usr/bin/env python3
+"""Finite reference checks, distinct from the frozen ADD_FT10_MINIMAL backend.
+
+Ring order follows b -> a; s=a1+2*b1+4*a2+8*b2. Named equality keeps
+names and directed edges, and forgets only the list's starting vertex.
+No renaming quotient. All-L claims require the proofs in REPORT.md.
+"""
+from itertools import product
+from pathlib import Path
+import hashlib
+import json
+import platform
+import time
+
+
+def left(u):
+    return u[1] if u[0] == 'v' else ('l', u)
+
+
+def right(u):
+    return u[2] if u[0] == 'v' else ('r', u)
+
+
+def join(x, y):
+    if x[0] == 'l' and y[0] == 'r' and x[1] == y[1]:
+        return x[1]
+    return ('v', x, y)
+
+
+def mirror_name(u):
+    if u[0] == 'atom':
+        return u
+    if u[0] == 'l':
+        return right(mirror_name(u[1]))
+    if u[0] == 'r':
+        return left(mirror_name(u[1]))
+    return join(mirror_name(u[2]), mirror_name(u[1]))
+
+
+def named(w):
+    return tuple((('atom', i), s) for i, s in enumerate(w))
+
+
+def canonical(x):
+    return (frozenset(x), frozenset((x[i][0], x[(i+1) % len(x)][0])
+                                   for i in range(len(x))))
+
+
+def equal(x, y):
+    return canonical(x) == canonical(y)
+
+
+def word(x):
+    return tuple(s for u, s in x)
+
+
+def cyclic(w):
+    return min(w[i:]+w[:i] for i in range(len(w)))
+
+
+def transport(x, channels=1, inverse=False):
+    a_mask = sum(1 << (2*c) for c in range(channels))
+    b_mask = 2*a_mask
+    return tuple((join(right(u), left(x[(i+1) % len(x)][0])),
+                  ((s & a_mask) | (x[(i+1) % len(x)][1] & b_mask))
+                  if inverse else
+                  ((s & b_mask) | (x[(i+1) % len(x)][1] & a_mask)))
+                 for i, (u, s) in enumerate(x))
+
+
+def interact(x, eps=(1,)):
+    split = {3 << (2*c): ((1 << (2*c), 2 << (2*c)) if e == 1
+                         else (2 << (2*c), 1 << (2*c)))
+             for c, e in enumerate(eps)}
+    merge = {v: k for k, v in split.items()}
+    n = len(x)
+    starts = {i for i in range(n) if n > 1 and
+              (x[i][1], x[(i+1) % n][1]) in merge}
+    ends = {(i+1) % n for i in starts}
+    start = next(i for i in range(n) if i not in ends)
+    out, k = [], 0
+    while k < n:
+        i = (start+k) % n
+        u, s = x[i]
+        if i in starts:
+            v, t = x[(i+1) % n]
+            out.append((join(u, v), merge[s, t]))
+            k += 2
+        elif s in split:
+            a, b = split[s]
+            out.extend(((left(u), a), (right(u), b)))
+            k += 1
+        else:
+            out.append((u, s))
+            k += 1
+    return tuple(out)
+
+
+def forward(x, eps=(1,)):
+    return transport(interact(x, eps), len(eps))
+
+
+def backward(x, eps=(1,)):
+    return interact(transport(x, len(eps), True), eps)
+
+
+def swap_bits(x):
+    return tuple((u, ((s & 1) << 1) | ((s & 2) >> 1)) for u, s in x)
+
+
+def reflected_swap(x):
+    return tuple((mirror_name(u), s) for u, s in reversed(swap_bits(x)))
+
+
+def r2(x):
+    return tuple((u, ((s & 1) << 3) | ((s & 2) << 1) |
+                  ((s & 4) >> 1) | ((s & 8) >> 3)) for u, s in x)
+
+
+def nf(w):
+    return sum(w[i] == 1 and w[(i+1) % len(w)] == 2 for i in range(len(w)))
+
+
+def df(w):
+    if not nf(w):
+        return 0
+    n = len(w)
+    return min(k for i in range(n) if w[i] == 1 and w[(i+1) % n] == 2
+               for k in range(1, n+1)
+               if w[(i+1+k) % n] & 1 or w[(i-k) % n] & 2)
+
+
+def main():
+    started = time.perf_counter()
+    c1 = {'states': 0, 'Q_squared_tau': 0, 'I_squared_id': 0,
+          'F_Finv_id': 0, 'mirror_swap_commutation': 0,
+          'mirror_swap_reversal_failures': 0, 'bit_only_reversal_failures': 0,
+          'S_squared_tau': 0, 'vertex_balance': 0, 'nf_increase': 0}
+    measure = {'states': 0, 'active': 0, 'not_strict': 0,
+               'nf_unchanged': 0, 'df_not_minus_one_when_nf_unchanged': 0,
+               'nf_L_not_strict': 0, 'nf_empty_not_strict': 0}
+    witness = None
+    for n in range(1, 7):
+        for w in product(range(4), repeat=n):
+            x = named(w)
+            y = forward(x)
+            v = word(y)
+            measure['states'] += 1
+            if nf(w):
+                measure['active'] += 1
+                measure['not_strict'] += (nf(v), df(v)) >= (nf(w), df(w))
+                measure['nf_L_not_strict'] += (nf(v), len(v)) >= (nf(w), len(w))
+                measure['nf_empty_not_strict'] += (nf(v), v.count(0)) >= (nf(w), w.count(0))
+                if nf(v) == nf(w):
+                    measure['nf_unchanged'] += 1
+                    measure['df_not_minus_one_when_nf_unchanged'] += df(v) != df(w)-1
+            if n < 3:
+                continue
+            c1['states'] += 1
+            tau = tuple((x[i][0], (x[(i+1) % n][1] & 1) |
+                         (x[(i-1) % n][1] & 2)) for i in range(n))
+            c1['Q_squared_tau'] += not equal(transport(transport(x)), tau)
+            c1['I_squared_id'] += not equal(interact(interact(x)), x)
+            c1['F_Finv_id'] += not equal(forward(backward(x)), x)
+            tft = reflected_swap(forward(reflected_swap(x)))
+            c1['mirror_swap_commutation'] += not equal(tft, y)
+            bad = not equal(tft, backward(x))
+            c1['mirror_swap_reversal_failures'] += bad
+            if bad and witness is None:
+                witness = w
+            c1['bit_only_reversal_failures'] += not equal(swap_bits(forward(swap_bits(x))), backward(x))
+            s2 = transport(reflected_swap(transport(reflected_swap(x))))
+            c1['S_squared_tau'] += not equal(s2, tau)
+            c1['vertex_balance'] += len(v)-n != w.count(3)-nf(w)
+            c1['nf_increase'] += nf(v) > nf(w)
+    c2 = {}
+    for eps in product((1, -1), repeat=2):
+        counts = {k: 0 for k in ['states', 'I_squared_id', 'R_squared_id', 'RI_IR',
+                                  'RQR_Qinv', 'T_squared_id', 'TFT_Finv', 'F_Finv_id']}
+        def T(x):
+            return interact(r2(x), eps)
+        for n in range(1, 4):
+            for w in product(range(16), repeat=n):
+                x = named(w)
+                counts['states'] += 1
+                counts['I_squared_id'] += not equal(interact(interact(x, eps), eps), x)
+                counts['R_squared_id'] += not equal(r2(r2(x)), x)
+                counts['RI_IR'] += not equal(r2(interact(x, eps)), interact(r2(x), eps))
+                counts['RQR_Qinv'] += not equal(r2(transport(r2(x), 2)), transport(x, 2, True))
+                counts['T_squared_id'] += not equal(T(T(x)), x)
+                counts['TFT_Finv'] += not equal(T(forward(T(x), eps)), backward(x, eps))
+                counts['F_Finv_id'] += not equal(forward(backward(x, eps), eps), x)
+        c2[str(eps)] = counts
+    extinction = {}
+    for n in (8, 16, 32):
+        x = named((1, 2)+(0,)*(n-2))
+        t = 0
+        while nf(word(x)):
+            x = forward(x)
+            t += 1
+        assert t == n-1
+        extinction[n] = t
+    ep = (1, -1)
+    def fw(w):
+        return word(forward(named(w), ep))
+    assert cyclic(fw((1, 2, 12))) == cyclic((1, 2, 12))
+    assert fw((6, 9)) == (3, 12)
+    quiet = [(5, 10, 0, 0)]
+    for _ in range(4):
+        assert word(interact(named(quiet[-1]), ep)) == quiet[-1]
+        quiet.append(fw(quiet[-1]))
+    assert quiet[0] == quiet[-1]
+    x = named((3, 12))
+    forward_lengths = [len(x)]
+    for n in range(1, 7):
+        x = forward(x, ep)
+        assert cyclic(word(x)) == cyclic((0, 2, 12, 1)+(0,)*(n-1))
+        forward_lengths.append(len(x))
+    x = named((3, 12))
+    backward_lengths = [len(x)]
+    for n in range(1, 7):
+        x = backward(x, ep)
+        expected = (6, 9) if n == 1 else (1, 2, 8)+(0,)*(n-2)+(4,)
+        assert cyclic(word(x)) == cyclic(expected)
+        backward_lengths.append(len(x))
+    assert all(c1[k] == 0 for k in c1 if k not in
+               {'states', 'mirror_swap_reversal_failures', 'bit_only_reversal_failures'})
+    assert c1['mirror_swap_reversal_failures'] > 0
+    assert c1['bit_only_reversal_failures'] > 0
+    assert measure['not_strict'] == measure['df_not_minus_one_when_nf_unchanged'] == 0
+    for eps, row in c2.items():
+        assert all(row[k] == 0 for k in row if k not in {'states', 'RI_IR', 'T_squared_id'})
+        opposite = eps in {'(1, -1)', '(-1, 1)'}
+        assert (row['RI_IR'] == row['T_squared_id'] == 0) == opposite
+    result = {'status': 'PASS_WITH_REJECTED_HYPOTHESES', 'scope': 'finite named rings; no global-graph attestation',
+              'base_commit': 'fa5e736b5b217ce171a4d1a395544b287d7021b3',
+              'python': platform.python_version(), 'elapsed_seconds': time.perf_counter()-started,
+              'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+              'counts_are_failure_counts_except_states': True,
+              'C1_L3_to_6': c1, 'C1_first_mirror_reversal_counterexample': witness,
+              'C1_measure_L1_to_6': measure, 'C2_L1_to_3_by_chirality': c2,
+              'extinction_times': extinction, 'active_constant_size': {'seed': [1, 2, 12], 'I': word(interact(named((1, 2, 12)), ep)), 'F': fw((1, 2, 12))},
+              'mixed_activation': {'seed': [6, 9], 'F': fw((6, 9))},
+              'quiet_mixed_word_cycle': quiet,
+              'mixed_seed_3_12_lengths': {'forward': forward_lengths, 'backward': backward_lengths},
+              'word_periodicity_is_not_named_periodicity': True,
+              'new_vm_jobs': 0, 'new_production_runs': 0}
+    Path(__file__).with_name('CHECKS.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+if __name__ == '__main__':
+    main()
+========================================================================================
+END FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py
+
+
+========================================================================================
+BEGIN FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json
+LABEL: R130 MACHINE RESULTS
+GIT BLOB SHA: 13c3ba08e96638d87cd35de2f9541892c8d0b4fa
+CHARACTERS: 2745
+========================================================================================
+{
+  "status": "PASS_WITH_REJECTED_HYPOTHESES",
+  "scope": "finite named rings; no global-graph attestation",
+  "base_commit": "fa5e736b5b217ce171a4d1a395544b287d7021b3",
+  "python": "3.12.14",
+  "elapsed_seconds": 1.5552857500001664,
+  "script_sha256": "d46a47443e610ffe42a0160aaae0487e6c0a9be9e6b96bf72ce39962cf7cf9a1",
+  "counts_are_failure_counts_except_states": true,
+  "C1_L3_to_6": {
+    "states": 5440,
+    "Q_squared_tau": 0,
+    "I_squared_id": 0,
+    "F_Finv_id": 0,
+    "mirror_swap_commutation": 0,
+    "mirror_swap_reversal_failures": 5428,
+    "bit_only_reversal_failures": 5175,
+    "S_squared_tau": 0,
+    "vertex_balance": 0,
+    "nf_increase": 0
+  },
+  "C1_first_mirror_reversal_counterexample": [
+    0,
+    0,
+    1
+  ],
+  "C1_measure_L1_to_6": {
+    "states": 5460,
+    "active": 1770,
+    "not_strict": 0,
+    "nf_unchanged": 462,
+    "df_not_minus_one_when_nf_unchanged": 0,
+    "nf_L_not_strict": 188,
+    "nf_empty_not_strict": 243
+  },
+  "C2_L1_to_3_by_chirality": {
+    "(1, 1)": {
+      "states": 4368,
+      "I_squared_id": 0,
+      "R_squared_id": 0,
+      "RI_IR": 1574,
+      "RQR_Qinv": 0,
+      "T_squared_id": 1574,
+      "TFT_Finv": 0,
+      "F_Finv_id": 0
+    },
+    "(1, -1)": {
+      "states": 4368,
+      "I_squared_id": 0,
+      "R_squared_id": 0,
+      "RI_IR": 0,
+      "RQR_Qinv": 0,
+      "T_squared_id": 0,
+      "TFT_Finv": 0,
+      "F_Finv_id": 0
+    },
+    "(-1, 1)": {
+      "states": 4368,
+      "I_squared_id": 0,
+      "R_squared_id": 0,
+      "RI_IR": 0,
+      "RQR_Qinv": 0,
+      "T_squared_id": 0,
+      "TFT_Finv": 0,
+      "F_Finv_id": 0
+    },
+    "(-1, -1)": {
+      "states": 4368,
+      "I_squared_id": 0,
+      "R_squared_id": 0,
+      "RI_IR": 1574,
+      "RQR_Qinv": 0,
+      "T_squared_id": 1574,
+      "TFT_Finv": 0,
+      "F_Finv_id": 0
+    }
+  },
+  "extinction_times": {
+    "8": 7,
+    "16": 15,
+    "32": 31
+  },
+  "active_constant_size": {
+    "seed": [
+      1,
+      2,
+      12
+    ],
+    "I": [
+      3,
+      8,
+      4
+    ],
+    "F": [
+      2,
+      12,
+      1
+    ]
+  },
+  "mixed_activation": {
+    "seed": [
+      6,
+      9
+    ],
+    "F": [
+      3,
+      12
+    ]
+  },
+  "quiet_mixed_word_cycle": [
+    [
+      5,
+      10,
+      0,
+      0
+    ],
+    [
+      0,
+      10,
+      0,
+      5
+    ],
+    [
+      0,
+      10,
+      5,
+      0
+    ],
+    [
+      0,
+      15,
+      0,
+      0
+    ],
+    [
+      5,
+      10,
+      0,
+      0
+    ]
+  ],
+  "mixed_seed_3_12_lengths": {
+    "forward": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "backward": [
+      2,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "word_periodicity_is_not_named_periodicity": true,
+  "new_vm_jobs": 0,
+  "new_production_runs": 0
+}
+========================================================================================
+END FILE: analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json
+
+END OF DOSSIER
