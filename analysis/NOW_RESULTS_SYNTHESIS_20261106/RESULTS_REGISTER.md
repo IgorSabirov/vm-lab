@@ -1,3 +1,5 @@
+> **19 ноября 2026 · R131.** [Два кольца с одинаковой парной статистикой](#r131) дают длины 7 и 8 через два шага. В реестре 131 результат. [Расчёт и данные](../R131_CONNES_ADD_20261119/REPORT.md)
+
 > **17 ноября, первый блок A исполнен:** [6032 входа, две независимые реализации, 7.77 с](../ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md). A прошла конечные G1–G4; P_raw/P_ring разделены, контрпримеры сохранены. Свидетельство добавлено к R130; полная теоремная репликация открыта.
 
 > **17 ноября, R130:** [проверенная сводка C1/C2 и активный цикл без роста](../ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md). Теперь 130 R, 42 C, 10 L, 12 U. R126 сохранён за прежними операторами; R130 — отдельное условное продвижение. Открытые вопросы не закрыты.
@@ -4023,7 +4025,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | Элемент | Статус | Родители и основания |
 |---|---|---|
 | [BH1_THERMODYNAMICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bh1_thermodynamics) | EXISTING_REDUCED_CONTRACT | `external:ANTHROPIC_HP` (conceptual_parent_not_derivation) |
-| [R130_PHYSICAL_EMBEDDING](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#r130_physical_embedding) | OPEN | `result:R130` (conceptual_parent_not_derivation); `component:BH1_THERMODYNAMICS` (conceptual_parent_not_derivation); `construct:C042` (context_not_evidence) |
+| [R130_PHYSICAL_EMBEDDING](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#r130_physical_embedding) | OPEN | `result:R130` (conceptual_parent_not_derivation); `component:BH1_THERMODYNAMICS` (conceptual_parent_not_derivation); `construct:C042` (context_not_evidence); `result:R131` (methodological_parent_not_physical_evidence) |
 | [X_MICROPHYSICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics) | UNDEFINED | `component:R130_PHYSICAL_EMBEDDING` (conceptual_parent_not_derivation) |
 | [COSMOLOGICAL_BACKGROUND](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency) |
 | [NEUTRINO_KINETIC_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#neutrino_kinetic_bridge) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `external:NUDSMC` (implementation_candidate_not_execution); `external:NUDEC_BSM_V2` (implementation_candidate_not_execution); `external:FORTEPIANO_QKE` (implementation_candidate_not_execution) |
@@ -4068,3 +4070,25 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [SND_CC_2026](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#snd_cc_2026) | PUBLISHED_CONSTRAINT_NOT_INGESTED | `component:LHC_FORWARD_NEUTRINO_DATA` (context_not_evidence) |
 | [HNL_COSMOLOGY_MAPPING](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#hnl_cosmology_mapping) | MODEL_MAPPING_OPEN | `component:X_MICROPHYSICS` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
 <!-- /generated:architecture-components -->
+
+<!-- generated:R131 -->
+<a id="r131"></a>
+
+### R131. Конн–ADD. Предел парных корреляций для прогноза длины кольца R130
+
+**Статус:** ТОЧНЫЙ КОНЕЧНЫЙ КОНТРПРИМЕР НА ИМЕНОВАННОМ ОПЕРАТОРЕ R130
+
+**Результат.** Два восьмивершинных кольца с четырьмя частицами имеют одинаковые ориентированные попарные корреляции всех типов на всех сдвигах. После двух шагов их длины равны 7 и 8. Начальные состояния различает смешанный след с тремя вставками проектора занятости (184 и 186), а также счётчик занятых троек (0 и 1).
+
+**Условия.** Именованный F=QI₂, ε=(+1,−1), возбуждён только первый канал. Слова 00012021 и 00100212 в порядке b→a. Лапласиан однородного цикла, диагональный проектор на занятые вершины, 72 целочисленных сравнения и точное обращение каждого исполненного перехода.
+
+**Граница.** Недостаточность относится к трансляционно-инвариантным парным наблюдаемым на начальном кольце. Достаточность выбранной трёхточечной величины установлена только для различения предъявленной пары. Физическая стрела, внутреннее чтение и перенос в BH1, BBN или CCC остаются открыты.
+
+**Место в рамке.** Проверяемая нижняя граница на данные для точного прогноза продолжения. Конн и Маджид дают математический контекст совместного измерения алгебры и оператора. Космологические связи имеют отдельные физические предпосылки.
+
+**Родители:** R130. **Конструкции:** C037. **Вопросы:** U006, U010.
+
+**Источники:** [REPORT.md](../../analysis/R131_CONNES_ADD_20261119/REPORT.md); [verify.py](../../analysis/R131_CONNES_ADD_20261119/verify.py); [CHECKS.json](../../analysis/R131_CONNES_ADD_20261119/CHECKS.json).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R131 -->
