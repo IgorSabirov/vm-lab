@@ -27,6 +27,21 @@
     "cancellation_control": "At R=1 and w=Tc^4=(1+sqrt(73))/9, Delta_D>0, relative slope=0, relative curvature=(627*sqrt(73)-6009)/1024 for the specified radial continuation",
     "stationary_boundary_control": "Delta_D=0, Delta_E=4 and positive relative slope 2/11 at R=T=1 for the common thermal term example"
   },
+  "entropy_followup": {
+    "report": "ENTROPY_REVIEW.md",
+    "checker": "check_entropy_review.py",
+    "reviewed_commit": "5074aa9d141877cb68f45c523a208138ab9e8232",
+    "review_input_sha256": "c93f645bd62ae817bdaec9132363a2bff341bba02a4e3cc7c4b3def37dd384ac",
+    "SYMBOLICALLY_CHECKED": [
+      "At a regular equal-slope contact y_zz=-S_c,zz/C_R. A stationary inflection can cross.",
+      "Specified control: unique global minimum S*=2.32825685449037 at R=1. For 0<S0<S* there is no contact; at S* one tangency; for S*<S0<4 two crossings; for S0>=4 one finite-radius crossing."
+    ],
+    "SOURCE_DERIVED": [
+      "hep-th/0608156 (1.2), (5.8-5.9) and text after (5.1); hep-th/0412029 (4.1): lambda_std=2*lambda_A. Leading v_c=11*lambda_std^2/(576*pi^4)=1/(11*L^2), L=ln(1/(R*Lambda)). Higher-order error at a given radius is not bounded by the leading term.",
+      "hep-th/0310285 (5.15),(5.58) and hep-th/0608156 (2.16): free pure gauge, N to infinity before the one-sided temperature limits: R*Delta_E/N^2=3/4 and Delta_S/N^2=3*ln(2+sqrt(3))/4."
+    ],
+    "OPEN": ["Occupied branch entropy on the interacting coexistence line with initial entropy and radius for X", "Conversion dynamics and a consistent BBN or GW source history"]
+  },
   "sources": {
     "pure_YM_thermal_slope": "https://arxiv.org/pdf/hep-th/0608156",
     "pure_YM_order": "https://arxiv.org/abs/hep-th/0502149",
