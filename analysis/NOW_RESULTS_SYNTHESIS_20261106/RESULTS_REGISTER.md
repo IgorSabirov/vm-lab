@@ -3973,6 +3973,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Причинная совместимость остаётся требованием, не термодинамическим доказательством. |
 | [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `joint_model_requirement` | Сопряжение требует общего физического закона и параметров. |
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Новый мост не выводится из воспроизведения R130. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NOW_PROJECT_INTEGRATION_20261119](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md) | `scope_boundary` | Одинаковые числа блоков до k допускают разные длины на шаге k+1. Отображение в физический объём открыто. |
 <!-- /generated:external-review-links -->
 
 <!-- generated:R130 -->
@@ -3992,6 +3993,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](../../analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#scope); `scope_boundary`. Уточнение интеграции не меняет воспроизведённый R130 или открытое физическое вложение. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope); `scope_boundary`. Новый мост не выводится из воспроизведения R130. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [NOW_PROJECT_INTEGRATION_20261119](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#c2); `scope_boundary`. Одинаковые числа блоков до k допускают разные длины на шаге k+1. Отображение в физический объём открыто. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 <!-- /generated:review-card-result-r130 -->
 
 
@@ -4025,7 +4028,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [COSMOLOGICAL_BACKGROUND](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency) |
 | [NEUTRINO_KINETIC_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#neutrino_kinetic_bridge) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `external:NUDSMC` (implementation_candidate_not_execution); `external:NUDEC_BSM_V2` (implementation_candidate_not_execution); `external:FORTEPIANO_QKE` (implementation_candidate_not_execution) |
 | [WEAK_RATE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#weak_rate_bridge) | CONTRACT_DRAFT | `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
-| [CERN_NTOF_RATES](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_ntof_rates) | PUBLISHED_DATA_NOT_INGESTED | Первичные источники в карточке |
+| [CERN_NTOF_RATES](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cern_ntof_rates) | LINX_NP_LOW_T_PROVENANCE_VERIFIED | Первичные источники в карточке |
 | [NUCLEAR_RATE_INPUTS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#nuclear_rate_inputs) | MATCHING_OPEN | `component:CERN_NTOF_RATES` (input_contract_dependency); `external:PRIMAT` (implementation_candidate_not_execution); `external:LINX` (implementation_candidate_not_execution) |
 | [BBN_RESPONSE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_response_bridge) | FORMAT_IMPLEMENTED_ADAPTERS_INCOMPLETE | `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `component:WEAK_RATE_BRIDGE` (input_contract_dependency); `component:NUCLEAR_RATE_INPUTS` (input_contract_dependency); `external:PRIMAT` (implementation_candidate_not_execution); `external:LINX` (implementation_candidate_not_execution); `external:PRYMORDIAL` (implementation_candidate_not_execution) |
 | [BBN_CMB_OBSERVATIONS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_cmb_observations) | DATASET_SELECTION_OPEN | Первичные источники в карточке |

@@ -265,6 +265,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope); `scope_boundary`. Функциональное продолжение не закрывается collider-данными. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#scope); `scope_boundary`. Нейтринная/GW наблюдаемость не закрывает внутреннее функциональное продолжение. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
+**Внешний разбор:** [NOW_PROJECT_INTEGRATION_20261119](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity); `operational_requirement`. Для местного чтения требуются физические часы, носитель, ресурсы и контроль следующего действия. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 <!-- /generated:review-card-question-u010 -->
 
 
@@ -402,6 +404,7 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md) | `scope_boundary` | Функциональное продолжение не закрывается collider-данными. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Происхождение геометрии остаётся открытым. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Нейтринная/GW наблюдаемость не закрывает внутреннее функциональное продолжение. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [NOW_PROJECT_INTEGRATION_20261119](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md) | `operational_requirement` | Для местного чтения требуются физические часы, носитель, ресурсы и контроль следующего действия. |
 <!-- /generated:external-review-links -->
 
 ## Свидетельство R130 после полного C1 и повторного исполнения — 17 ноября

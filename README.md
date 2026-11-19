@@ -6,6 +6,8 @@
 
 # Текущая работа — начать здесь
 
+[**Общая схема проектов «Сейчас» и гравитации · 19 ноября**](analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md) — от ADD и продолжения NOW до ЦЕРН, БАК, BBN и гравитационных волн.
+
 [**Очередь, результаты на ветках и порядок завершения**](infra/RESEARCH_OPERATIONS.md) ·
 [**Живой обзор и рабочая доска**](https://github.com/IgorSabirov/vm-lab/actions/workflows/projects-sync.yml) ·
 [канонический CONTROL](https://github.com/IgorSabirov/vm-lab/blob/science/autonomous-research-20261114/infra/autonomy/CONTROL.json).

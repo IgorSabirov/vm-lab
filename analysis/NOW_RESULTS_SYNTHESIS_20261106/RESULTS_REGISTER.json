@@ -8859,6 +8859,20 @@
       "new_vm_jobs": 0,
       "new_actions_science_jobs": 0,
       "note": "Register previously completed local C1, GitHub run 44082471150 and audit 0c3dc25; preserve existing scientific acceptance and open boundaries."
+    },
+    {
+      "id": "NOW_PROJECT_INTEGRATION_20261119",
+      "date": "2026-11-19",
+      "base_commit": "3a351b99455b881172b728fb9ce632339e4a17cd",
+      "report": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "updates": [
+        "CERN_NTOF_RATES",
+        "R130",
+        "U010"
+      ],
+      "new_records": [],
+      "scientific_status_promoted": false,
+      "note": "Добавлены общая схема, адресные связи разборов и происхождение ядерной скорости. Статус отдельной ветви источника уточнён. Физическое вложение и единый сквозной расчёт открыты."
     }
   ],
   "lineage_edges": [
@@ -14809,6 +14823,92 @@
           "evidence": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md#scope"
         }
       ]
+    },
+    {
+      "id": "NOW_PROJECT_INTEGRATION_20261119",
+      "title": "Общая интеграция NOW с гравитацией, ядерными и коллайдерными измерениями",
+      "status": "DOCUMENTED_WITH_REPRODUCIBLE_PARTIAL_RESULTS",
+      "date": "2026-11-19",
+      "base_commit": "3a351b99455b881172b728fb9ce632339e4a17cd",
+      "report": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "managed_sources": [
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "Точный горизонт локальной статистики на кольце.",
+          "rationale": "Одинаковые числа блоков до k допускают разные длины на шаге k+1. Отображение в физический объём открыто.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#c2"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Геометрическое обратное действие в том же причинном цикле.",
+          "rationale": "Для местного чтения требуются физические часы, носитель, ресурсы и контроль следующего действия.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity"
+        },
+        {
+          "target": "component:R130_PHYSICAL_EMBEDDING",
+          "relation": "scope_boundary",
+          "claim": "Достаточность передаваемого состояния.",
+          "rationale": "Граница проверена для иерархии блоков и длины на заданном горизонте.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#c2"
+        },
+        {
+          "target": "component:BH1_THERMODYNAMICS",
+          "relation": "scope_boundary",
+          "claim": "Условие дрейфа температуры на радиус.",
+          "rationale": "Равновесная ветвь даёт термодинамику, а производство напряжений требует кинетики.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity"
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "joint_model_requirement",
+          "claim": "Один физический источник и часы.",
+          "rationale": "Вариант II требует баланса энергии и обратного влияния геометрии на те же носители.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity"
+        },
+        {
+          "target": "component:GW_RESPONSE_BRIDGE",
+          "relation": "joint_model_requirement",
+          "claim": "Источник и перенос тензорных мод.",
+          "rationale": "Для спектра необходимы коррелятор источника, история расширения и угловой отклик нейтрино.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity"
+        },
+        {
+          "target": "component:CERN_NTOF_RATES",
+          "relation": "classification_only",
+          "claim": "Происхождение низкотемпературной таблицы.",
+          "rationale": "Измерение Damone вошло через de Souza; на 46 узлах совпали медианы и факторы.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear"
+        },
+        {
+          "target": "component:NUCLEAR_RATE_INPUTS",
+          "relation": "scope_boundary",
+          "claim": "Сетка, интерполяция и корреляции.",
+          "rationale": "При фиксированных таблицах выбор интерполяции изменяет скорость. Межтемпературная ковариация открыта.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear"
+        },
+        {
+          "target": "component:BBN_RESPONSE_BRIDGE",
+          "relation": "scope_boundary",
+          "claim": "Раздельная приёмка одиночного и парного расчёта.",
+          "rationale": "Тождественная подмена проверена в LINX. Общая история PRIMAT/LINX требует отдельного запуска.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#s3"
+        },
+        {
+          "target": "component:CERN_PARTICLE_CONSTRAINTS",
+          "relation": "scope_boundary",
+          "claim": "Коллайдеры и фиксированные мишени.",
+          "rationale": "Перенос в космологию требует общей модели X, рождения и распадов.",
+          "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#experiments"
+        }
+      ]
     }
   ],
   "architecture_components": [
@@ -14998,19 +15098,24 @@
       "id": "CERN_NTOF_RATES",
       "title": "CERN n_TOF: ядерные данные",
       "element_kind": "experiment",
-      "status": "PUBLISHED_DATA_NOT_INGESTED",
+      "status": "LINX_NP_LOW_T_PROVENANCE_VERIFIED",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "cern_ntof_rates",
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "source_ids": [
         "NTOF_NP",
         "NTOF_NA",
-        "CERN_REVIEW"
+        "CERN_REVIEW",
+        "NTOF_DE_SOUZA_2020",
+        "NTOF_DESCOUVEMONT_2004",
+        "NTOF_LINX_TABLE_2023",
+        "NTOF_LINX_PAPER"
       ],
       "parents": [],
-      "boundary": "7Be(n,p) входит в общую топологию; 7Be(n,α) требует явного расширения сети. Влияние на проблему лития не обещано.",
-      "next_gate": "Найти численные сечения/ковариации, проверить термическое усреднение и идентичность уже используемых таблиц.",
-      "scientific_acceptance": false
+      "boundary": "Для ⁷Be(n,p) установлен путь ISOLDE/n_TOF → Damone → de Souza → LINX. Совпадают 46/46 низкотемпературных медиан и факторов до точности публикации, включая 1 ГК. Импорт сырых сечений, совместная ковариация и вклад в выходы BBN открыты. ⁷Be(n,α) требует расширения сети.",
+      "next_gate": "Связать температурные ошибки с совместными экспериментальными нормировками и проверить фактически использованные скорости в двух решателях.",
+      "scientific_acceptance": false,
+      "followup_review": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear"
     },
     {
       "id": "NUCLEAR_RATE_INPUTS",

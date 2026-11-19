@@ -197,15 +197,15 @@ X нужен для нестандартной физической ветви; 
 <a id="cern_ntof_rates"></a>
 ### CERN_NTOF_RATES — CERN n_TOF: ядерные данные
 
-**Статус:** `PUBLISHED_DATA_NOT_INGESTED`.
+**Статус:** `LINX_NP_LOW_T_PROVENANCE_VERIFIED`. Обновлено 19 ноября по [сверке исходных таблиц](../NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear).
 
 **Родители:** Первичные внешние наблюдения/публикации; не потомок R130.
 
-**Источники:** [NTOF_NP](https://doi.org/10.1103/PhysRevLett.121.042701), [NTOF_NA](https://doi.org/10.1103/PhysRevLett.117.152701), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md).
+**Источники:** [NTOF_NP](https://doi.org/10.1103/PhysRevLett.121.042701), [de Souza](https://arxiv.org/pdf/1912.06210), [файл LINX](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/data/nuclear_rates/key_PRIMAT_2023/Be7nLi7p.txt), [NTOF_NA](https://doi.org/10.1103/PhysRevLett.117.152701), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md).
 
-**Граница:** 7Be(n,p) входит в общую топологию; 7Be(n,α) требует явного расширения сети. Влияние на проблему лития не обещано.
+**Граница:** Для ⁷Be(n,p) установлен путь ISOLDE/n_TOF → Damone → de Souza → LINX. Совпадают 46/46 низкотемпературных медиан и факторов до точности публикации, включая 1 ГК. Импорт сырых сечений, совместная ковариация и вклад в выходы BBN открыты. ⁷Be(n,α) требует расширения сети.
 
-**Следующий шаг:** Найти численные сечения/ковариации, проверить термическое усреднение и идентичность уже используемых таблиц.
+**Следующий шаг:** Связать температурные ошибки с совместными экспериментальными нормировками и проверить фактически использованные скорости в двух решателях.
 
 <a id="nuclear_rate_inputs"></a>
 ### NUCLEAR_RATE_INPUTS — Версионированные ядерные скорости

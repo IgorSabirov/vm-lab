@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "f852c31da8db7b874b3868d997560efb2d6466e9d719f121e96a78ecb5ef6876",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "abcd79447e60432fc73272da2708c468695d8b3a4d8a7ffd6c8fb27cc923b2f8",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "fbe663e3e1d616548348bdc4d0a9064ec111b40c01e21bc55a9222b03ffa3959",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "e20b6e10c578c6d3983fbd2426f32609845daaf9329207a037fc9e1f6600f60f",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "5dce18a73e5147073d5e89a5b18ef0f2ce49839f74195b818d604af8f6eb8ced",
@@ -73,8 +73,8 @@
     "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json": "6a3a9eaf9dcf32fef066b7dca42127ce1534bf47a8425a7706d8819b92894e33",
     "analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md": "22d7e84a77b6373de2f8a719f35f72c793dd9a2fc473782993f432fce6167623",
     "analysis/NEIGHBOR_CERN_REVIEW_20261118/SOURCES.json": "5ec85c85effc75fc9843a3e67044a44e3503a576d76d1eb943ba0f81dd1f6564",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md": "5cd901980de0f990305facf1c28da53d0036f686c7afdaadd96b18e9761f3720",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json": "c6318bc55210608ea4790a4d2e1e266ee85d113037e129f4684c63527fd3b5e6",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md": "2a74fff9944406273f0401314e09d9293c1f8978b07a24303e20a9298ffed077",
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json": "ae767ebd9f37236db9f76b173a94eb3202812105becc794dffd7c7536f139ecd",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/FORTEPIANO_SOURCE.json": "624373fc75fd6e072b0a0e74304a37ee8240942627578f0b7645972e6ff48e27",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NEUTRINO_KINETIC_BRIDGE.json": "2f5b372c4078f9f91dec11d2cea6b0b0740a1ae6e5de23ecfe7fe58fd4df52df",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json": "ccdd292396c25094753c7ef68ea22d0660d4b87f63edb40b3ebd7d4cb8313a67",
@@ -93,7 +93,10 @@
     "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/verify_review.py": "b99c327979fa1cb17f183ce08a2c690e370ae0069420138b496cc573b4676a72",
     "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/CHECKS.json": "c09ca7ea37f13d5bee1062d1806708364cd1a048ccf3163b25af6b26595cbae1",
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/PRIMAT_CACHE_ISOLATION.json": "b380cc78949d42e1937bccf9cd2da5a29d1d677f7a80c262bd027bcb37f4865e",
-    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json": "bcd7959fb4655a1bf8a87936fed67990388d0ab7b406d9e4001253688b28b67a"
+    "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json": "bcd7959fb4655a1bf8a87936fed67990388d0ab7b406d9e4001253688b28b67a",
+    "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md": "c50c38873c461febfd5c0e4ecaf4be5e555b8fe8b70c168ddcf82a26b227ac6d",
+    "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json": "6663b893120deee83618e6eacdfbae452619593ad85ae69c6641ab88d0b9f91d",
+    "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json": "028035e09c5972338ec6575b58f9d4a3e8bc00585d22ccc51b4c592ba1655976"
   },
   "counts": {
     "result": 130,
@@ -102,11 +105,11 @@
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 12,
+    "review": 13,
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 93
+    "source": 96
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -205,7 +208,7 @@
       "id": "CERN_NTOF_RATES",
       "kind": "component",
       "title": "CERN n_TOF: ядерные данные",
-      "status": "PUBLISHED_DATA_NOT_INGESTED",
+      "status": "LINX_NP_LOW_T_PROVENANCE_VERIFIED",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "cern_ntof_rates"
     },
@@ -3234,6 +3237,15 @@
       "fragment": ""
     },
     {
+      "key": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "id": "NOW_PROJECT_INTEGRATION_20261119",
+      "kind": "review",
+      "title": "Общая интеграция NOW с гравитацией, ядерными и коллайдерными измерениями",
+      "status": "DOCUMENTED_WITH_REPRODUCIBLE_PARTIAL_RESULTS",
+      "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "fragment": ""
+    },
+    {
       "key": "source:analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
       "id": "analysis/ADD_BBN_SYMMETRY_20261115/CHECKS.json",
       "kind": "source",
@@ -4141,9 +4153,9 @@
       "status": null,
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "",
-      "sha256": "5cd901980de0f990305facf1c28da53d0036f686c7afdaadd96b18e9761f3720",
-      "git_blob_sha": "f2ae77b54e9e9439ade1de6b02dc3434a3e4ba16",
-      "size_bytes": 78479
+      "sha256": "2a74fff9944406273f0401314e09d9293c1f8978b07a24303e20a9298ffed077",
+      "git_blob_sha": "9b587345fff3db464e56ef7536a0a429c4f086d1",
+      "size_bytes": 79138
     },
     {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
@@ -4153,9 +4165,9 @@
       "status": null,
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
       "fragment": "",
-      "sha256": "c6318bc55210608ea4790a4d2e1e266ee85d113037e129f4684c63527fd3b5e6",
-      "git_blob_sha": "0403f96bd2a2660c2a394d658d2600f8eb959ba7",
-      "size_bytes": 30360
+      "sha256": "ae767ebd9f37236db9f76b173a94eb3202812105becc794dffd7c7536f139ecd",
+      "git_blob_sha": "67b6e6ef434088fb7f0b601d70d20dd3f313818e",
+      "size_bytes": 31556
     },
     {
       "key": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json",
@@ -4168,6 +4180,42 @@
       "sha256": "6aea79ac3d9573bf60d6a9c5afff6f07239b2af9dbf92236164a41e4f11c1e6f",
       "git_blob_sha": "8eabc5f48466c4992f50e50a9159af39ac413a56",
       "size_bytes": 8255
+    },
+    {
+      "key": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+      "id": "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+      "kind": "source",
+      "title": "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+      "status": null,
+      "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+      "fragment": "",
+      "sha256": "6663b893120deee83618e6eacdfbae452619593ad85ae69c6641ab88d0b9f91d",
+      "git_blob_sha": "dec56356b1b65627b3432de57fb92139a93e2402",
+      "size_bytes": 3153
+    },
+    {
+      "key": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "id": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "kind": "source",
+      "title": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "status": null,
+      "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "fragment": "",
+      "sha256": "c50c38873c461febfd5c0e4ecaf4be5e555b8fe8b70c168ddcf82a26b227ac6d",
+      "git_blob_sha": "de37fb3e4684a5bd3e9fe35579e99cedc3d0bbe2",
+      "size_bytes": 28095
+    },
+    {
+      "key": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
+      "id": "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
+      "kind": "source",
+      "title": "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
+      "status": null,
+      "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
+      "fragment": "",
+      "sha256": "028035e09c5972338ec6575b58f9d4a3e8bc00585d22ccc51b4c592ba1655976",
+      "git_blob_sha": "7845adcd2516b909aace5f47b699bb970c8ba544",
+      "size_bytes": 3449
     },
     {
       "key": "source:analysis/PRIMAT_INTEGRATION_20261113/REPORT.md",
@@ -10983,6 +11031,101 @@
     {
       "source": "review:NEUTRINO_GW_ARCHITECTURE_20261118",
       "target": "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/VALIDATION_PLAN.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:BBN_RESPONSE_BRIDGE",
+      "relation": "scope_boundary",
+      "rationale": "Тождественная подмена проверена в LINX. Общая история PRIMAT/LINX требует отдельного запуска.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#s3",
+      "claim": "Раздельная приёмка одиночного и парного расчёта."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:BH1_THERMODYNAMICS",
+      "relation": "scope_boundary",
+      "rationale": "Равновесная ветвь даёт термодинамику, а производство напряжений требует кинетики.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity",
+      "claim": "Условие дрейфа температуры на радиус."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:CERN_NTOF_RATES",
+      "relation": "classification_only",
+      "rationale": "Измерение Damone вошло через de Souza; на 46 узлах совпали медианы и факторы.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear",
+      "claim": "Происхождение низкотемпературной таблицы."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:CERN_PARTICLE_CONSTRAINTS",
+      "relation": "scope_boundary",
+      "rationale": "Перенос в космологию требует общей модели X, рождения и распадов.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#experiments",
+      "claim": "Коллайдеры и фиксированные мишени."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:COSMOLOGICAL_BACKGROUND",
+      "relation": "joint_model_requirement",
+      "rationale": "Вариант II требует баланса энергии и обратного влияния геометрии на те же носители.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity",
+      "claim": "Один физический источник и часы."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:GW_RESPONSE_BRIDGE",
+      "relation": "joint_model_requirement",
+      "rationale": "Для спектра необходимы коррелятор источника, история расширения и угловой отклик нейтрино.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity",
+      "claim": "Источник и перенос тензорных мод."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:NUCLEAR_RATE_INPUTS",
+      "relation": "scope_boundary",
+      "rationale": "При фиксированных таблицах выбор интерполяции изменяет скорость. Межтемпературная ковариация открыта.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#nuclear",
+      "claim": "Сетка, интерполяция и корреляции."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "component:R130_PHYSICAL_EMBEDDING",
+      "relation": "scope_boundary",
+      "rationale": "Граница проверена для иерархии блоков и длины на заданном горизонте.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#c2",
+      "claim": "Достаточность передаваемого состояния."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "question:U010",
+      "relation": "operational_requirement",
+      "rationale": "Для местного чтения требуются физические часы, носитель, ресурсы и контроль следующего действия.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#gravity",
+      "claim": "Геометрическое обратное действие в том же причинном цикле."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "result:R130",
+      "relation": "scope_boundary",
+      "rationale": "Одинаковые числа блоков до k допускают разные длины на шаге k+1. Отображение в физический объём открыто.",
+      "evidence": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#c2",
+      "claim": "Точный горизонт локальной статистики на кольце."
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:NOW_PROJECT_INTEGRATION_20261119",
+      "target": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
       "relation": "review_source_not_attestation"
     }
   ],
