@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=131, construct=42, link=10, question=12, premise=66, obligation=9, review=13, component=45, external=18, decision=3, source=99.
+Число записей: result=131, construct=42, link=10, question=12, premise=66, obligation=9, review=13, component=45, external=18, decision=3, source=102.
 
 ## Предпосылка → результаты
 
@@ -3113,7 +3113,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Конн–ADD. Предел парных корреляций для прогноза длины кольца R130 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r131).
 
 **Входящие:** [R130](#result-r130) `parent`.
-**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json](#source-analysis-r131_connes_add_20261119-neighbor_review-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py](#source-analysis-r131_connes_add_20261119-neighbor_review-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4278,6 +4278,33 @@ analysis/R131_CONNES_ADD_20261119/CHECKS.json — [исходная карточ
 ### source:analysis/R131_CONNES_ADD_20261119/REPORT.md
 
 analysis/R131_CONNES_ADD_20261119/REPORT.md — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/REPORT.md).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r131_connes_add_20261119-neighbor_review-checks-json"></a>
+
+### source:analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json
+
+analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r131_connes_add_20261119-neighbor_review-readme-md"></a>
+
+### source:analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md
+
+analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r131_connes_add_20261119-neighbor_review-verify-py"></a>
+
+### source:analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py
+
+analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py).
 
 **Входящие:** [R131](#result-r131) `managed_evidence_source`.
 **Исходящие:** нет.
