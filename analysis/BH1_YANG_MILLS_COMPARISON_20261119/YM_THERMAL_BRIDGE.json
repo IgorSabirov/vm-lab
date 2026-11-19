@@ -42,6 +42,33 @@
     ],
     "OPEN": ["Occupied branch entropy on the interacting coexistence line with initial entropy and radius for X", "Conversion dynamics and a consistent BBN or GW source history"]
   },
+  "thermal_sectors": {
+    "reviewed_commit": "0711f3aa57ce32317eacef35fd93aef8ea86a71c",
+    "report": "THERMAL_SECTORS.md",
+    "receipt": "THERMAL_SECTORS_CHECKS.json",
+    "initial_state": [
+      "R0",
+      "T0 for each thermalized component",
+      "direction and interval of R",
+      "occupied branch"
+    ],
+    "partition_convention": [
+      "physical content of the trace and any common g(R) factor",
+      "vacuum subtraction E_vac(R)",
+      "include free U(1) for U(N) or remove it for pure SU(N)"
+    ],
+    "thermal_contact": "Specify a common equilibrium temperature with maintained thermal contact, or evolve decoupled components at their own temperatures. Identify any transfer to visible plasma separately.",
+    "matched_gap_shift": "S_extra(T0,R0)-S_extra(Tc(R),R)",
+    "photon_free_reference": {
+      "S": 5.08710013775828,
+      "C_R": 18.748659236821,
+      "x": "2-sqrt(3)",
+      "interpretation": "One free transverse vector on round S^3; the entropy ratio 0.57226 uses 9 times the planar entropy jump."
+    },
+    "common_temperature_on_weak_YM_phase_line": "dS_gamma,c/dlnR=C_gamma,c*v_c. S_gamma,c=S_gamma,free+0.15830302879846*lambda_A+O(lambda_A^2).",
+    "confined_nonzero_coupling": "Entropy coefficients from the small-x, first-order-in-lambda_A, k=4,5,6 terms of hep-th/0608156 Eq. (4.36); valid away from Hagedorn. They do not fix S_i,c.",
+    "open": "Non-Abelian branch entropy on the interacting coexistence line, physical coupling of sector X to the background, and conversion kinetics."
+  },
   "sources": {
     "pure_YM_thermal_slope": "https://arxiv.org/pdf/hep-th/0608156",
     "pure_YM_order": "https://arxiv.org/abs/hep-th/0502149",

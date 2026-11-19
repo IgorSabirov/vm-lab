@@ -1,0 +1,91 @@
+{
+  "reviewed_git_commit": "0711f3aa57ce32317eacef35fd93aef8ea86a71c",
+  "attached_review_sha256": "b038913289c634c24cfba7f4d9880c786fa6cec180c811876564c79a85e60e1a",
+  "scope": "Local execution of published controls and new formula checks. No independent full finite-temperature non-Abelian simulation.",
+  "python": "3.12.14",
+  "sympy": "1.14.0",
+  "mpmath": "1.3.0",
+  "parameters": {
+    "photon": {
+      "mpmath_decimal_places": 55,
+      "energy_levels": [
+        2,
+        140
+      ],
+      "winding_terms": 80,
+      "x": "2-sqrt(3)",
+      "vacuum": "thermal contribution only"
+    },
+    "crossing": {
+      "R0": 1,
+      "S0": "S_star-0.05",
+      "kappa": [
+        -0.5,
+        1
+      ]
+    },
+    "cold_SU": {
+      "x": "1/50",
+      "lambda_A": "1/20",
+      "retained_levels": [
+        4,
+        5,
+        6
+      ],
+      "free_product_terms": 40
+    }
+  },
+  "dependency_sha256": {
+    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py": "d46a47443e610ffe42a0160aaae0487e6c0a9be9e6b96bf72ce39962cf7cf9a1"
+  },
+  "runs": [
+    {
+      "command": [
+        "python",
+        "analysis/BH1_YANG_MILLS_COMPARISON_20261119/check_entropy_review.py"
+      ],
+      "source_sha256": "1fd979c34f7bd739b4ac246e924e884e6c008a062249aeee4b7d8ec03b9259a9",
+      "started_utc": "2026-11-19T10:37:20.870054+00:00",
+      "elapsed_seconds": 0.702737,
+      "exit_code": 0,
+      "stdout": "{\n  \"global_control\": {\n    \"S_min\": 2.32825685449037,\n    \"C_R\": 10.688252586690663,\n    \"S_c_second\": 6.80446779386769,\n    \"relative_curvature\": -0.6366305192245195,\n    \"R_to_zero_entropy_limit\": 4\n  },\n  \"free_planar\": {\n    \"R_delta_E_per_N2\": \"3/4\",\n    \"delta_S_per_N2\": 0.9877184226936125\n  },\n  \"one_loop_examples\": [\n    {\n      \"L\": 10,\n      \"lambda_std\": 2.153368232964951,\n      \"lambda_A\": 1.0766841164824754,\n      \"relative_TcR_shift_LL\": 0.00909090909090909,\n      \"v_c_LL\": 0.0009090909090909091\n    },\n    {\n      \"L\": 20,\n      \"lambda_std\": 1.0766841164824754,\n      \"lambda_A\": 0.5383420582412377,\n      \"relative_TcR_shift_LL\": 0.004545454545454545,\n      \"v_c_LL\": 0.00022727272727272727\n    },\n    {\n      \"L\": 100,\n      \"lambda_std\": 0.2153368232964951,\n      \"lambda_A\": 0.10766841164824754,\n      \"relative_TcR_shift_LL\": 0.0009090909090909091,\n      \"v_c_LL\": 9.090909090909091e-06\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "analysis/BH1_YANG_MILLS_COMPARISON_20261119/check_thermal_sectors.py"
+      ],
+      "source_sha256": "7886213e5d93072103de39b7315c83635355db0f3292fb39d9a631d48789ed93",
+      "started_utc": "2026-11-19T10:37:21.573065+00:00",
+      "elapsed_seconds": 1.049042,
+      "exit_code": 0,
+      "stdout": "{\n  \"common_additions_checked\": 4,\n  \"photon\": {\n    \"logZ\": \"1.019697208629325152874\",\n    \"thermal_ER\": \"3.088483647523285869971\",\n    \"S\": \"5.087100137758278604743\",\n    \"C_R\": \"18.74865923682096505299\",\n    \"max_two_sums_difference\": \"1.305060893599704905342e-54\",\n    \"N3_planar_ratio\": \"0.5722616240146231677403\",\n    \"S_gamma_c_lambda_A_coefficient\": \"0.1583030287984624441759\",\n    \"dS_gamma_c_dlnR_leading_at_lambda_std_0p1\": \"0.00003675707349422922494128\"\n  },\n  \"matched_initial_state\": {\n    \"logR_root_minus_half\": \"-3.434001869678753344935\",\n    \"R_root_minus_half\": \"0.03225759144883633313207\",\n    \"plus_one_gap_at_0\": \"-0.05\",\n    \"plus_one_gap_at_0p1\": \"0.0126714995596387605974\",\n    \"plus_one_gap_at_0p2\": \"-0.01382837837205655885651\",\n    \"integral_max_residual\": \"1.223494587749723348758e-55\"\n  },\n  \"cold_SU_low_temperature\": {\n    \"S_free_truncated\": \"0.0000628676135282530033\",\n    \"dS_dlambda_A_truncated\": \"-4.77022738466263893e-6\",\n    \"S_at_lambda_A_0p05_truncated\": \"0.0000626291021590198714\",\n    \"S_free_product_40_terms\": \"0.00006292056914980255879426\",\n    \"S_free_omitted_levels\": \"5.29556215495555e-8\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "analysis/BH1_YANG_MILLS_COMPARISON_20261119/check_thermal_bridge.py"
+      ],
+      "source_sha256": "f8af19a4b818e664a2e2c14d1c9b6b36d2baa54295c80b21db8db3b1db7a3bbc",
+      "started_utc": "2026-11-19T10:37:22.622249+00:00",
+      "elapsed_seconds": 1.785047,
+      "exit_code": 0,
+      "stdout": "{\n  \"cancellation\": {\n    \"Tc\": 1.0147802889480522,\n    \"h\": 0.9123851890783861,\n    \"delta_D\": 2.1208897211816735,\n    \"delta_E\": 6.1208897211816735,\n    \"common_log_TR_slope\": 0.3465002340823457,\n    \"relative_slope\": 0,\n    \"relative_curvature\": -0.6366305192245195\n  },\n  \"stationary_boundary_relative_slope\": \"2/11\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "analysis/BH1_YANG_MILLS_COMPARISON_20261119/check.py"
+      ],
+      "source_sha256": "2ac45c6b7382975eba1cad58e28c3b70221c1f128b8c526a58e84766e95cbbb6",
+      "started_utc": "2026-11-19T10:37:24.407925+00:00",
+      "elapsed_seconds": 1.636496,
+      "exit_code": 0,
+      "stdout": "Closed cyclic words: 687 periods: {1: 191, 2: 20, 3: 152} partitions: [483, 667, 667]\nSparse recurrence checked for L=3..54; six-charge counts checked for L=2..7\nCoexistence slope checked for 100 exact rational parameter sets\n",
+      "stderr": ""
+    }
+  ]
+}
