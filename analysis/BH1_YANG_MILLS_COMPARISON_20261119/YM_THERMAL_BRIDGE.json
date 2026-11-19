@@ -69,6 +69,26 @@
     "confined_nonzero_coupling": "Entropy coefficients from the small-x, first-order-in-lambda_A, k=4,5,6 terms of hep-th/0608156 Eq. (4.36); valid away from Hagedorn. They do not fix S_i,c.",
     "open": "Non-Abelian branch entropy on the interacting coexistence line, physical coupling of sector X to the background, and conversion kinetics."
   },
+  "rank_and_ensemble": {
+    "report": "../ADD_BH1_CCC_PENROSE_20261119/REPORT.md",
+    "receipt": "../ADD_BH1_CCC_PENROSE_20261119/CHECKS.json",
+    "planar": "Separate saddle entropies on the coexistence line, with N limit and one-sided thermal limits stated.",
+    "finite_compact": "Specify a pseudocritical observable and interval. Here chi=9*Var(abs(Tr(U))/3) in the full equilibrium SU(3) ensemble.",
+    "free_SU3_check": {
+      "geometry": "round S^3",
+      "lambda": 0,
+      "temperature_scan_TR": [
+        0.4,
+        1.2
+      ],
+      "peak_TR_rounded": 0.72361,
+      "chi_peak_rounded": 0.45066,
+      "total_S_over_kB_rounded": 7.667,
+      "vacuum_energy": "subtracted"
+    },
+    "thermal_regime": "Separate adiabats for isolated sectors. A shared evolving temperature requires an exchange mechanism and equilibration relative to expansion. Specify the entropy budget including any reservoir.",
+    "open": "Interacting phase-resolved entropy and a physical X trajectory."
+  },
   "sources": {
     "pure_YM_thermal_slope": "https://arxiv.org/pdf/hep-th/0608156",
     "pure_YM_order": "https://arxiv.org/abs/hep-th/0502149",
