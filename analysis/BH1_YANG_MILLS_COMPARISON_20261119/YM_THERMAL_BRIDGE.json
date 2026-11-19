@@ -1,0 +1,37 @@
+{
+  "scope": "Equilibrium thermodynamics on a round spatial three-sphere",
+  "date": "2026-11-19",
+  "parent_commit": "cd10f5b5e508688b7d5c741699966842a5a19a74",
+  "review_input_sha256": "29eddfdb60848150c0ab50f9d1e48ce484d2a1b8da41457d0def89f01b04a801",
+  "status": "Equilibrium identities checked; weak-coupling phase-boundary slope sourced; microscopic thermal solver and cosmological X history open",
+  "inputs": {
+    "theory": "Record gauge group, matter content, N and limit, renormalization scheme, physical scales",
+    "ensemble": "Canonical at beta=1/T; other couplings and charges held fixed in thermodynamic derivatives",
+    "geometry": "S^1_beta x S^3_R, round static spatial metric, V=2*pi^2*R^3, natural units",
+    "free_energy": "Total branch free energies F_i(T,R), with a common vacuum subtraction and absolute convention for any gravitational use",
+    "microscopic_inputs_open": ["branch-resolved thermal Z or saddle action including common terms", "measure for thermal holonomy", "consistent physical radius and state of sector X"],
+    "adiabat": "Specify occupied homogeneous branch, S0 and initial R; require an invertible entropy-temperature relation on the interval"
+  },
+  "derived": {
+    "S": "-F_T", "E": "F-T*F_T", "p": "-F_R/(6*pi^2*R^2)", "rho": "E/(2*pi^2*R^3)",
+    "D": "E-3*p*V=F-T*F_T+R*F_R", "C_R": "-T*F_TT",
+    "coexistence": "F_2(Tc,R)=F_1(Tc,R); Delta=branch2-branch1 evaluated at Tc; Delta_E=Tc*Delta_S != 0",
+    "phase_line_slope": "d ln(Tc*R)/d ln R=Delta_D/Delta_E",
+    "relative_slope": "d ln(T/Tc)/d ln R at fixed S=(partial_T D)_R/C_R-Delta_D/Delta_E",
+    "crossing_test": "For continuous states and C_R>0, the sign of T(S0,R)-Tc(R) equals the sign of S0-S_i(Tc(R),R) on the same branch. Check for a sign change across contact.",
+    "thermal_history_open": ["adiabatic crossing for physical X", "nucleation and completion", "transfer to plasma and cosmological expansion", "BBN and GW outputs"]
+  },
+  "cases": {
+    "N4_SYM": "Fixed exactly marginal coupling and F_i=phi_i(T*R)/R imply D_i=0, x_c=Tc*R constant and zero relative slope along a regular adiabat",
+    "pure_YM": "Planar non-Abelian sector on a small S^3: x_c=x_0*(1+lambda_A(1/R)/(12*pi^2)+O(lambda_A^2)); x_c rises locally with R at weak coupling. The matter adiabat requires independent branch entropy.",
+    "cancellation_control": "At R=1 and w=Tc^4=(1+sqrt(73))/9, Delta_D>0, relative slope=0, relative curvature=(627*sqrt(73)-6009)/1024 for the specified radial continuation",
+    "stationary_boundary_control": "Delta_D=0, Delta_E=4 and positive relative slope 2/11 at R=T=1 for the common thermal term example"
+  },
+  "sources": {
+    "pure_YM_thermal_slope": "https://arxiv.org/pdf/hep-th/0608156",
+    "pure_YM_order": "https://arxiv.org/abs/hep-th/0502149",
+    "N4_SYM_thermal_transition": "https://hexagonmath.org/pdf/2611.00175v1",
+    "OS_scalar_bridge": "https://github.com/yang-mills-group/YM/blob/main/submissions/openai-20261028/docs/checks.md",
+    "stress_tensor_and_trace": "https://alexisdpc.github.io/yang-mills/references/assessment-1-2026-11-10.pdf"
+  }
+}
