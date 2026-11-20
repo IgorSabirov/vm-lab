@@ -10,6 +10,8 @@ from scipy.integrate import quad
 from scipy.optimize import brentq
 from scipy.special import kv
 
+from uncertainties import scales, matched_interface, coefficient as interface_error, eos_intervals
+from kinetic_control import kinetic, hubble
 from extract import physics, observations, baseline_observations, article, measurement, one, WITH_ERROR
 from fetch import acquire, HERE, sources
 sys.path.insert(0, str(HERE.parent / 'xb_reference'))
@@ -57,7 +59,7 @@ def boundary(sm, m, R, x, entropy):
 
 def freeze_out(sm, m, R, xc):
     # FMS equations 8, 10-15, single nonrelativistic species, N=3, NDA B=1.
-    reduced_mpl = 2.435e18  # GeV
+    from kinetic_control import MPL_REDUCED_GEV as reduced_mpl  # (8 pi G)^(-1/2), GeV, FMS
     sigma = (4*math.pi/3)**6 / ((4*math.pi)**3 * m**5)
 
     def at(x):
@@ -65,7 +67,7 @@ def freeze_out(sm, m, R, xc):
         tg = sm.temp(x*n/R)
         gs,grho = sm.degrees(tg)
         rho_sm = math.pi**2/30 * grho * tg**4
-        h = math.sqrt(rho_sm/3)/reduced_mpl
+        h = hubble(rho_sm)
         return tg,gs,grho,n,rho_sm,math.log(x*sigma*n*n/(3*h))
     x = brentq(lambda y: at(y)[-1],xc,40)
     tg,gs,grho,n,rho_sm,residual = at(x)
@@ -122,9 +124,10 @@ def thin_wall_controls(files, latent_heat):
     rows = []
     for macro, nt in [('SigRotF', 4), ('SigRotS', 6)]:
         result = measurement(one(r'\\def\\'+macro+r'\{'+WITH_ERROR+r'\}', source))
-        coefficient = 16 * math.pi * result['value']**3 / (3 * latent_heat**2)
+        coefficient = 16 * math.pi * result['value']**3 / (3 * latent_heat['value']**2)
         # Delta p = L * delta, delta = 1 - T/Tc. Finite-Nt sensitivity only.
-        rows.append(dict(Nt=nt, sigma_over_Tc3=result, thin_wall_coefficient=coefficient))
+        rows.append(dict(Nt=nt, sigma_over_Tc3=result, thin_wall_coefficient=coefficient,
+                         mixed_scheme=True, error=interface_error(result,latent_heat)))
     return rows
 
 
@@ -170,10 +173,12 @@ def run(files):
                 for approximation in ('NR','Bose'):
                     variants[label+approximation] = gas_entropy(states,x,approximation=='Bose')
             cases[name] = {k:boundary(sm,m,R,x,s) for k,s in variants.items()}
-        rows.append(dict(**pt,boundary=cases,single_species_FMS=freeze_out(sm,m,R,xc)))
+        rows.append(dict(**pt,boundary=cases,single_species_FMS=freeze_out(sm,m,R,xc),
+                         isolated_MB_kinetics=[kinetic(sm,m,R,xc,B) for B in (0.3,1.,3.)]))
     lock = sources()
-    return dict(source_sha256={k:lock[k]['sha256'] for k in files},
-                dim8_portal=scalar_portal_control(files),finite_Nt_interfaces=thin_wall_controls(files,p['latent_heat']['value']),
+    return dict(flow_scale=scales(p,files), matched_interface=matched_interface(files),
+                eos_intervals=eos_intervals(p),source_sha256={k:lock[k]['sha256'] for k in files},
+                dim8_portal=scalar_portal_control(files),finite_Nt_interfaces=thin_wall_controls(files,p['latent_heat']),
                 source_physics=p, equilibrium_eos=equilibrium_eos(p), observations={**baseline_observations(files), **observations(files)}, rows=rows,
                 Tc_over_m0_string_tension_check=p['Tc_over_sqrt_sigma']['value']/p['m0_over_sqrt_sigma']['value'])
 
@@ -183,7 +188,7 @@ def main():
     parser.add_argument('--cache',type=Path,required=True)
     parser.add_argument('--offline',action='store_true')
     args=parser.parse_args()
-    files=acquire(args.cache,{'physics','observations','interface','portal','bbn_baseline'},args.offline)
+    files=acquire(args.cache,{'physics','observations','interface','portal','bbn_baseline','lattice_controls'},args.offline)
     print(json.dumps(run(files),indent=2,allow_nan=False))
 
 

@@ -118,8 +118,14 @@ def baseline_observations(files):
     """Read the two primordial estimators used by the frozen P0 likelihood."""
     cooke = article(files['cooke'], 'ms.tex', 'latin1')
     aver = article(files['aver'], 'AOS4-8e.tex', 'latin1')
+    cooke=one(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',cooke)
+    aver=one(
+        r'\n\\abstract\{(.*?)\n\}\s*\\keywords\{',aver)
     d = one(r'deduce that the primordial deuterium abundance is .*? = '+NUMBER+r'\\pm'+NUMBER,cooke)
     y = one(r'From a regression to zero metallicity, we determine Y\$_\{p\}\$ \$=\$ '+NUMBER+r' \$\\pm\$ '+NUMBER,aver)
+    if not (-4.7 < float(d[0]) < -4.4 and 0. < float(d[1]) < .1
+            and .22 < float(y[0]) < .27 and 0. < float(y[1]) < .03):
+        raise ValueError('BBN estimator or uncertainty outside registered source sanity range')
     return {
         'Cooke-DH': dict(value=float(d[0]),sigma=float(d[1]),observable='log10_D_over_H',units='log10 number ratio'),
         'Aver-Yp': dict(value=float(y[0]),sigma=float(y[1]),observable='Y_p',units='mass fraction')

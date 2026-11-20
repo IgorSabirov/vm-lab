@@ -48,9 +48,9 @@ def compute(inputs, table):
     scale, mass, cold = (inputs["lattice"][key] for key in
                          ("r0_Tc", "r0_m0", "s_cold_over_Tc3"))
     ratio = scale["value"] / mass["value"]
-    frac = math.sqrt((scale["sigma"] / scale["value"])**2 +
-                     (mass["sigma_stat"] / mass["value"])**2 +
-                     (mass["sigma_anisotropy"] / mass["value"])**2)
+    pieces = [scale["sigma"]/scale["value"], mass["sigma_stat"]/mass["value"],
+              mass["sigma_anisotropy"]/mass["value"]]
+    frac = math.hypot(*pieces)
     points = []
     for point in inputs["preparations"]:
         m0 = point["m0_GeV"]
@@ -68,7 +68,10 @@ def compute(inputs, table):
         points.append(dict(point_id=point["point_id"], m0_GeV=m0, R_post=R,
                            T_X_MeV=1000*tx, T_gamma_MeV=1000*tg, xi=tx/tg,
                            input_shift_envelope=envelope))
-    return {"Tc_over_m0": ratio, "linear_sigma_assuming_independent_errors": ratio*frac,
+    return {"Tc_over_m0": ratio, "absolute_sigma_rss_zero_covariance": ratio*frac,
+            "relative_sigma_rss_zero_covariance": frac,
+            "absolute_sigma_range_unknown_correlations_first_order": [
+                ratio*max(0., 2*max(pieces)-sum(pieces)), ratio*sum(pieces)],
             "boundary": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
             "points": points}
 
