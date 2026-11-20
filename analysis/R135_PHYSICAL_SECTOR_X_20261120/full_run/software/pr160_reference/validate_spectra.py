@@ -1,5 +1,6 @@
 """Compare both mass scales and independently parsed glueball spectra on the four FMS preparations."""
 import argparse
+import math
 from pathlib import Path
 import sys
 
@@ -17,8 +18,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cache",type=Path,required=True)
     parser.add_argument("--out",type=Path,required=True)
+    parser.add_argument("--stable-omega-threshold",type=float,
+                        help="declared diagnostic density threshold for the stable single-species calculation")
     parser.add_argument("--offline",action="store_true")
     args = parser.parse_args()
+    if args.stable_omega_threshold is not None and not (math.isfinite(args.stable_omega_threshold) and args.stable_omega_threshold>0):
+        parser.error("the density threshold must be positive and finite")
     args.out.mkdir(parents=True,exist_ok=False)
     sm = SM(obtain(args.cache,sources()["sm"],args.offline))
     rows, source_ids = [], {}
@@ -45,8 +50,21 @@ def main():
             rates = {str(B):kinetic(sm,m,point["R_post"],1/ratio,B=B)["Omega_h2"] for B in (.3,1.,3.)}
             rows.append({"preparation":point["point_id"],"scale":route,"Tc_over_m0":ratio,
                          "lattice_EOS_boundary":point,"ideal_gas_models":gases,"isolated_single_species_Omega_h2":rates})
+    decisions = []
+    for first, second in zip(rows[::2],rows[1::2],strict=True):
+        stable = [entry["isolated_single_species_Omega_h2"] for entry in (first,second)]
+        delta = {b:stable[1][b]/stable[0][b]-1 for b in stable[0]}
+        threshold = args.stable_omega_threshold
+        if threshold is None:
+            disposition = "THRESHOLD_NOT_SPECIFIED"
+        elif any((stable[0][b]>threshold) != (stable[1][b]>threshold) for b in delta):
+            disposition = "SCALE_DEPENDENCE_UNRESOLVED"
+        else:
+            disposition = "SAME_STABLE_DENSITY_CLASSIFICATION_ON_TESTED_SCALES"
+        decisions.append({"preparation":first["preparation"], "relative_change_string_vs_r0":delta,
+                          "stable_omega_threshold":threshold, "scope":"stable single species only", "disposition":disposition})
     write_json(args.out/"VALIDATION.json",{"points":4,"scale_branches":2,"stable_single_species_integrations":24,
-               "spectrum_sha256":source_ids,"results":rows,"full_X_outcome":"OPEN_INPUT",
+               "spectrum_sha256":source_ids,"results":rows,"scale_decisions":decisions,"full_X_outcome":"OPEN_INPUT",
                "combination":"separate model and scale sensitivities, no averaging"})
 
 

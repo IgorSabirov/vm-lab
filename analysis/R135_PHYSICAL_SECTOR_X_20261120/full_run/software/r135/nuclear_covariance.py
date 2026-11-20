@@ -104,6 +104,10 @@ def propagate(spec, histories, pair, tolerance, out):
                     answer, _ = pair.solve(varied, engine, tolerance, directory)
                     solutions[key] = [math.log10(answer["D_H"]), answer["Yp"]]
                 slots[f"{i}/{engine}/{corner}"] = key
+        # Each registered rate table is unique. Its specialized JAX Jacobian
+        # will never be called at another node of this quadrature.
+        pair.compiled.clear()
+        pair.jax.clear_caches()
     matrices = {f"{e}/{c}":covariance([solutions[slots[f"{i}/{e}/{c}"]] for i in range(len(nodes))],
                                         [n["weight"] for n in nodes])
                 for e in ("linx","primat") for c in CORNERS}

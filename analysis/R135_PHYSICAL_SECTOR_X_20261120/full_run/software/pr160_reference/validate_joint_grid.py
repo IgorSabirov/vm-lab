@@ -46,8 +46,14 @@ def main():
                     surface="postconfinement",phase_fraction=1.)
         cfg["recipient_eos"]["gamma"]["rho_over_T4"] = math.pi**2/15
         cfg["recipient_eos"]["nu"]["rho_over_T4"] = 3.044*7/8*math.pi**2/15
-        cfg.update(samples=33, atol_relative=1e-12, eos_bundle=eos,nucleation_definition=kernel, wall_transport=wall,
-                   collision_model=coll, initial_history=init)
+        cfg.update(samples=513, atol_relative=1e-12, nucleation_definition=kernel, wall_transport=wall,
+                   collision_model=coll)
+        init["a0"] = init.pop("scale_factor")
+        init["eta_b"] = init.pop("eta_b_gamma")
+        init["neutrinos"] = {"kind":"thermal","T_MeV":init.pop("T_nu_MeV")}
+        init["phase"] = "cold"
+        scale = {"anchor":{"value":tx,"sigma":0,"unit":"MeV","source":"assigned control temperature","origin":"diagnostic"},
+                 "ratio":{"value":1.,"sigma":0,"unit":"1","source":"identity ratio","origin":"diagnostic"}}
         ident={"claim_id":"XB_SU3_cosmology","model_id":"post-BBN-control","point_id":branch,"thermal_path":cfg["thermal_path"]}
         def node(name,config,inputs):
             return {"id":name,"stage":name,"config":config,"inputs":inputs,"mode":"validation","key":ident,
@@ -60,8 +66,12 @@ def main():
         p9={"relative_floor":1e-6,"refinement":[{"rtol":10.**-i,"atol":10.**(-i-3)} for i in (11,12,13)],
             "theory_covariance_logD_Yp":[[0,0],[0,0]],"class_source_root":str(args.class_root.absolute()),
             "planck_data_root":str(args.planck_root.absolute()),"planck_python":str(args.planck_python.absolute()),
-            "planck_python_sha256":sha256(args.planck_python),"profile_nuisance":False}
-        nodes=[node("P7",cfg,[]),node("P8",p8,[edge("channel_history","P7","channel_history.json"),
+            "planck_python_sha256":sha256(args.planck_python),"profile_nuisance":False,
+            "class_refinement":[{"tol_perturbations_integration":1e-6},{"tol_perturbations_integration":5e-7}],
+            "max_cmb_delta_logL":.05}
+        nodes=[node("P1",{"eos":eos,"scale":scale,"initial_history":init},[]),
+               node("P7",cfg,[edge("eos_bundle","P1","eos_bundle.json"),
+                              edge("initial_history","P1","initial_history.json")]),node("P8",p8,[edge("channel_history","P7","channel_history.json"),
                file("weak_rates",out/"weak.json"),file("nuclear_rates",out/"rates.json")]),
                node("P9",p9,[edge("bbn_inputs","P8","bbn_inputs.json"),edge("class_inputs","P8","class_inputs.json"),
                               edge("channel_history","P7","channel_history.json"),file("data_release_lock",release)])]
@@ -74,7 +84,7 @@ def main():
         paired = {}
         for model, ref in plans.items():
             plan = read_json(out/ref["file"])
-            plan["nodes"][0]["config"]["initial_history"]["eta_b_gamma"] = eta
+            plan["nodes"][0]["config"]["initial_history"]["eta_b"] = eta
             path = out/(model+"-"+str(eta)+".json")
             write_json(path,plan)
             paired[model] = {"file":path.name,"sha256":sha256(path),"P9":"P9"}

@@ -83,8 +83,14 @@ def review(row, entry, base, response, audit):
     for name, ref in proof.get("supporting_files", {}).items():
         supporting[name] = sha256(linked(path.parent, ref))
     if kind == "inapplicability_evidence":
-        if response and any(r.get("status") == "CONDITIONAL" for r in response.get("histories",{}).values()):
-            raise InputError("GW inapplicability contradicts a computed response on this path")
+        for corner, result in (response or {}).get("histories", {}).items():
+            if result.get("status") == "CONDITIONAL":
+                power = np.asarray(result.get("Omega_GW_today_per_logf", []), float)
+                budget = result.get("bbn_budget", [])
+                if (not len(power) or np.any(power != 0) or not budget
+                        or any(epoch.get("rho_GW_over_rho_total") != 0 for epoch in budget)
+                        or audit.get("histories", {}).get(corner, {}).get("numerical_status") != "RECONSTRUCTED"):
+                    raise InputError("GW inapplicability contradicts or lacks verification of the computed response")
         outcome = "NOT_APPLICABLE_BY_PROOF"
         update.update(status="INAPPLICABILITY_FOR_REVIEW", scientific_acceptance="owner_review")
     else:

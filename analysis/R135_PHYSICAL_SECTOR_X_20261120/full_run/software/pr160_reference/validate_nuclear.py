@@ -4,6 +4,8 @@ import math
 from pathlib import Path
 import sys
 
+import numpy as np
+
 SOFTWARE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SOFTWARE))
 
@@ -16,9 +18,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=SOFTWARE/"extensions_reference/p7_bbn_control/BBN_input.json")
     parser.add_argument("--design", choices=("dpHe3g","linx-12"), default="dpHe3g")
+    parser.add_argument("--resume", action="store_true", help="reuse native receipts for identical inputs")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    args.out.mkdir(parents=True, exist_ok=False)
+    args.out.mkdir(parents=True, exist_ok=args.resume)
     pair = NativePair()
     history = read_json(args.input)
     q = [float(name == "dpHe3g") for name in pair.names]
@@ -43,6 +46,8 @@ def main():
                     quadrature="third-degree spherical-radial cubature", nodes=nodes)
     histories = dict.fromkeys(CORNERS, history)
     tolerance = {"rtol": 1e-7, "atol": 1e-11}
+    if args.resume and read_json(args.out/"ensemble.json") != spec:
+        raise ValueError("existing output belongs to another nuclear ensemble")
     write_json(args.out/"ensemble.json", spec)
     propagate(spec, histories, pair, tolerance, args.out)
     matrices = reconstruct(spec, histories, tolerance, args.out)
@@ -56,6 +61,16 @@ def main():
               "scope": "finite quadrature on one diagnostic history; experimental cross-channel correlations outside prior",
               "ensemble_sha256": sha256(args.out/"ensemble.json"),
               "nuclear_covariance_sha256": sha256(args.out/"nuclear_covariance.json")}
+    endpoints = []
+    for i, node in enumerate(spec["nodes"]):
+        for engine in ("linx", "primat"):
+            path = args.out/"nuclear_solves"/report["slots"][f"{i}/{engine}/00"]/"trajectory.npz"
+            with np.load(path, allow_pickle=False) as trajectory:
+                endpoints.append({"node":i,"weight":node["weight"],"engine":engine,
+                                  "species":trajectory["species"].tolist(),
+                                  "final_number_per_baryon":trajectory["Y"][-1].tolist(),
+                                  "trajectory_sha256":sha256(path)})
+    result["endpoint_table_00"] = endpoints
     write_json(args.out/"VALIDATION.json", result)
     print(result)
 
