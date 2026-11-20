@@ -9,7 +9,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 from science import MASSES, OUT, SPECIES, dump, yields
 
-PREVIOUS = (Path(os.environ["GITHUB_WORKSPACE"])/"prior/reproductions/BBN_COSMO_20261120/results/44718056893")
+PREVIOUS = (Path(os.environ["GITHUB_WORKSPACE"])/"prior/reproductions/BBN_COSMO_20261120/results/44719121230")
 
 
 def recover():
@@ -22,11 +22,24 @@ def recover():
         shutil.copytree(PREVIOUS/name, OUT/name)
     for name in ("LINX_NATIVE.json","PRIMAT_NATIVE.json","output_background.tsv","output_tables.tsv"):
         shutil.copy2(PREVIOUS/name,OUT/name)
-    summary=json.loads((PREVIOUS/"SUMMARY.json").read_text())
-    dump(OUT/"CHECKPOINT.json",dict(commit="cbb1050f6d831a6ac1a405c9e984aeffa3f1a2cc",
-         run=44718056893, files_verified=len(checked),reused_linx=sorted(k for k in checked if k.endswith("/linx.npz")),
-         native_timings_s={k:v for k,v in summary["timings"].items() if "native" in k}))
-    return summary["CLASS"]["primat_native"]
+    parent=json.loads((PREVIOUS/"CHECKPOINT.json").read_text())
+    receipt=json.loads((PREVIOUS/"EXECUTION_RECEIPT.json").read_text())
+    assert receipt["completed_pairs"]==16 and receipt["completed_CLASS"]==4
+    dump(OUT/"CHECKPOINT.json",dict(commit="f30d500b16e699a1ab41778258b60b5b4097ffbb",
+         run=44719121230, files_verified=len(checked), prior=parent,
+         completed_pair_checkpoints=16,completed_CLASS_checkpoints=4))
+    return receipt
+
+
+def read_class(name):
+    p=OUT/"class"/name
+    pars=dict(line.split(" = ",1) for line in (p/"parameters.ini").read_text().splitlines())
+    cl=np.loadtxt(next(p.glob("*cl.dat")))
+    bg=np.loadtxt(next(p.glob("*background.dat")))
+    assert np.array_equal(cl[:,0],np.arange(2,2501)) and np.isfinite(cl).all() and np.isfinite(bg).all()
+    return dict(YHe=float(pars["YHe"]),N_ur=float(pars["N_ur"]),omega_b=float(pars["omega_b"]),
+                n_ell=len(cl),n_background=len(bg),TT_ell200=float(cl[198,1]))
+
 
 
 def solve(pair,name):

@@ -41,21 +41,23 @@ def main():
         str(Path(os.environ["GITHUB_WORKSPACE"])/"vendor"/n),"rev-parse","HEAD"],text=True).strip()
         for n in ("class","primat","linx")}, packages={d.metadata["Name"]:d.version for d in importlib.metadata.distributions()},
         commit=os.environ["GITHUB_SHA"], run_id=os.environ["GITHUB_RUN_ID"]))
-    from resume import recover, solve
-    cmb["primat_native"] = recover()
+    from resume import recover, solve, read_class
+    recover()
+    cmb["primat_native"] = read_class("primat_native")
     native,linx=[json.loads((OUT/(k+"_NATIVE.json")).read_text()) for k in ("PRIMAT","LINX")]
     pair = Pair()
     def add(name, **kw):
-        value = run("pair_"+name,solve,pair,name)
+        saved=OUT/"cases"/name/"observables.json"
+        value = json.loads(saved.read_text()) if saved.exists() else run("pair_"+name,solve,pair,name)
         if value:
             cases[name] = value
             if name in ("baseline","early","late","extra"):
-                cmb[name] = run("CLASS_"+name,cosmology,name,value["linx"]["YHe_CMB"],
+                cmb[name] = read_class(name) if (OUT/"class"/name).exists() else run("CLASS_"+name,cosmology,name,value["linx"]["YHe_CMB"],
                                 value["Neff"],value["omega_b"])
     add("baseline")
-    write("FORECAST.json",dict(calibration_s={k:v for k,v in timings.items() if "native" in k or "baseline" in k},
-          remaining_pairs=16, forecast_s_range=[3*timings["pair_baseline"],17*timings["pair_baseline"]],
-          basis="measured restart baseline; remaining costs include two independently refined solvers"))
+    import shutil
+    from resume import PREVIOUS
+    shutil.copy2(PREVIOUS/"FORECAST.json", OUT/"FORECAST.json")
     add("baseline_tight",tight=True)
     for w in ("early","late"):
         add(w,window=w)
@@ -72,7 +74,12 @@ def main():
     rad = (7./8)*(4./11)**(4./3)
     d=float(rx[0]/(rad*rg[0]))
     dfrac=float(rx[-1]/(rg[-1]+3*rn[-1]))
-    assert abs(dfrac-.04)<1.e-10
+    # Use the measured energy available at the background endpoint. The LINX
+    # termination event samples a slightly different final temperature across
+    # backgrounds. Retain the failed nominal-target diagnostic without adding
+    # energy, changing the input history, or discarding the CLASS calculation.
+    assert 0 < dfrac < 1
+    nominal_residual = dfrac - .04
     add("extra",delta=d)
     if "extra" in cases:
             v = cases["extra"]
@@ -81,7 +88,8 @@ def main():
             assert abs((3*rn[-1]/rg[-1]/rad)-nfinal)<1.e-10
             cmb["compensated"] = run("CLASS_compensated",cosmology,"compensated",v["linx"]["YHe_CMB"],
                                      nfinal,v["omega_b"]*eta_ratio)
-            write("LATE_TRANSFER.json",dict(delta_init=d, heating=dfrac, eta_CMB_over_eta_BBN=eta_ratio,
+            write("LATE_TRANSFER.json",dict(delta_init=d, heating=dfrac, target_heating=.04, target_residual=nominal_residual,
+                  target_within_1e_minus10=abs(nominal_residual)<1.e-10, eta_CMB_over_eta_BBN=eta_ratio,
                   N_pre=v["Neff"],N_post=nfinal, omega_b_BBN_convention=v["omega_b"],
                   omega_b_CLASS=v["omega_b"]*eta_ratio,
                   relative_energy_closure=float(((1+dfrac)*rg[-1]*(1+nfinal*rad)
@@ -90,10 +98,11 @@ def main():
     numerical = (native and native["reference_pass"] and linx and linx["reference_pass"]
                  and all(v["control_pass"] for v in cases.values()))
     write("SUMMARY.json", dict(cases=cases, CLASS=cmb, DD=derivatives, timings=timings,
-                                 errors=errors, numerical_controls_pass=bool(numerical)))
+                                 errors=errors, numerical_controls_pass=bool(numerical),
+                                 reservoir_target_within_1e_minus10=abs(nominal_residual)<1.e-10))
     if errors or len(cases)!=17 or len(cmb)!=6 or not all(cmb.values()):
         return "INCOMPLETE"
-    return "COMPLETE_CONTROLS_PASS" if numerical else "COMPLETE_CONTROL_DISCREPANCY"
+    return "COMPLETE_CONTROLS_PASS" if numerical and abs(nominal_residual)<1.e-10 else "COMPLETE_CONTROL_DISCREPANCY"
 
 
 status = "INCOMPLETE"
