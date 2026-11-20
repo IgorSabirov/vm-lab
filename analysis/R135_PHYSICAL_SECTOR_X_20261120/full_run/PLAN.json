@@ -1,0 +1,330 @@
+{
+  "project": "R135",
+  "revision": "1.0",
+  "state": "DESIGN_ONLY",
+  "parent_commit": "d8d11cb2214bb3dcba861715e1c5bfc37968b4be",
+  "tracker": "https://github.com/IgorSabirov/vm-lab/issues/155",
+  "current_delivery": "project_documentation",
+  "execution_started": false,
+  "scientific_acceptance": "owner_review",
+  "architectures": [
+    "XA",
+    "XB"
+  ],
+  "thermal_paths": [
+    "isolated_during_transition",
+    "exchange_during_transition"
+  ],
+  "claims": [
+    "XA_carrier",
+    "XB_SU3_cosmology",
+    "graph_as_XB_marker"
+  ],
+  "dependency_rule": "requires are stage inputs. Conditional requirements apply to the named claim. A documented falsification of a necessary premise may replace a downstream dependency only for the affected claim and parameter domain. P10 accounts for all paths; open inputs cannot satisfy full completion.",
+  "scope_ids": [
+    "R130",
+    "R131",
+    "R132",
+    "R133",
+    "R134",
+    "R135",
+    "C037",
+    "U006"
+  ],
+  "stages": [
+    {
+      "id": "P0",
+      "label": "Гипотезы, подготовки и данные",
+      "requires": [],
+      "requires_for_claim": {},
+      "development": [
+        "Заморозить X-A, X-B, гипотезу маркера, ветви теплообмена и набор физических точек",
+        "Зафиксировать наблюдательные releases, пороги, тестовые подготовки и бюджет"
+      ],
+      "deliverables": [
+        "model_register.json",
+        "data_release_lock.json",
+        "decision_rules.json"
+      ],
+      "acceptance": "Для каждого тезиса определены измерение, независимый вход и правило решения",
+      "consumers": [
+        "P1",
+        "P2",
+        "P3",
+        "P6",
+        "P10"
+      ]
+    },
+    {
+      "id": "P1",
+      "label": "G3/G6a — шкала и EOS",
+      "requires": [
+        "P0"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Получить безразмерную калибровку и независимый размерный якорь либо объявить внешний скан",
+        "Сшить EOS X и видимого сектора, зарегистрировать начальные условия и неопределённости"
+      ],
+      "deliverables": [
+        "scale.json",
+        "eos_bundle.json",
+        "initial_history.json"
+      ],
+      "acceptance": "Внутренняя термодинамическая согласованность и маркировка источника МэВ",
+      "consumers": [
+        "P4",
+        "P5",
+        "P6",
+        "P7"
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "T1/T2 — закон графа и отображение",
+      "requires": [
+        "P0"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Вывести представление достижимых меток, включая 3, либо измерение блоков",
+        "Задать H_X, меру, размерную нормировку и независимую подготовку"
+      ],
+      "deliverables": [
+        "graph_law.json",
+        "state_map.json",
+        "heldout_prediction.json"
+      ],
+      "acceptance": "Зарегистрирован физический прогноз либо исключена точно указанная реализация",
+      "consumers": [
+        "P4",
+        "P5",
+        "P6"
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "G4 — независимые ансамбли",
+      "requires": [
+        "P0"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Пригодный архив либо независимая генерация",
+        "Вычислить мощность и корреляции, выполнить отложенные измерения на четырёх решётках"
+      ],
+      "deliverables": [
+        "ensemble_manifest.csv",
+        "heldout_counts.jsonl",
+        "ym_connected.csv",
+        "mixing.json"
+      ],
+      "acceptance": "Пригодность физических полей, ESS, интервал и контролируемые объём/шаг",
+      "consumers": [
+        "P4",
+        "P5",
+        "P10"
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "T1/G4 — реальное время и перенос наблюдаемой",
+      "requires": [
+        "P1"
+      ],
+      "requires_for_claim": {
+        "XA": [
+          "P2"
+        ],
+        "XB_marker": [
+          "P2",
+          "P3"
+        ],
+        "XB_physical_order_from_ensemble": [
+          "P3"
+        ]
+      },
+      "development": [
+        "Калибровать реальновременной отклик по независимым входам",
+        "Сопоставить подготовки, наблюдаемую и влияние q на барьер"
+      ],
+      "deliverables": [
+        "retarded_response.csv",
+        "relaxation_times.csv",
+        "operator_matching.json"
+      ],
+      "acceptance": "Время в физических единицах, ошибки и калиброванный отклик или зарегистрированный отрицательный исход",
+      "consumers": [
+        "P5",
+        "P7",
+        "P10"
+      ]
+    },
+    {
+      "id": "P5",
+      "label": "G5 — нуклеация и теплоотвод",
+      "requires": [
+        "P1"
+      ],
+      "requires_for_claim": {
+        "XA": [
+          "P2"
+        ],
+        "barrier_from_own_ensemble": [
+          "P3"
+        ],
+        "q_dependent_barrier": [
+          "P4"
+        ]
+      },
+      "development": [
+        "Рассчитать действие, префактор, трение, гидродинамику и стадии карманов"
+      ],
+      "deliverables": [
+        "nucleation_kernel.csv",
+        "wall_transport.json",
+        "pocket_model.json"
+      ],
+      "acceptance": "Температурный диапазон и изменения при вариации физических и численных входов",
+      "consumers": [
+        "P7"
+      ]
+    },
+    {
+      "id": "P6",
+      "label": "T3 — операторы и распады",
+      "requires": [
+        "P0",
+        "P1"
+      ],
+      "requires_for_claim": {
+        "XA": [
+          "P2"
+        ]
+      },
+      "development": [
+        "Специфицировать лагранжиан и амплитуды по фазам",
+        "Получить ширины, каналы, матричные элементы и суррогат на общем состоянии"
+      ],
+      "deliverables": [
+        "collision_model.json",
+        "decay_table.csv",
+        "thermalization_model.json"
+      ],
+      "acceptance": "Размерности, пороги, детальный баланс, сохранение энергии и область применимости",
+      "consumers": [
+        "P7",
+        "P8"
+      ]
+    },
+    {
+      "id": "P7",
+      "label": "G5/G6b — совместная история",
+      "requires": [
+        "P1",
+        "P5",
+        "P6"
+      ],
+      "requires_for_claim": {
+        "q_causation": [
+          "P4"
+        ]
+      },
+      "development": [
+        "Итерировать расширение, нуклеацию, стенки, перенос и остаток в одной задаче",
+        "Вычислить самосогласованные истории пяти углов при применимости"
+      ],
+      "deliverables": [
+        "phase_history.csv",
+        "channel_history.json",
+        "pocket_history.csv",
+        "balance.json"
+      ],
+      "acceptance": "Баланс с работой расширения, стабильность решения, f/Q через 1 и 10 H0^-1",
+      "consumers": [
+        "P8",
+        "P9",
+        "P10"
+      ]
+    },
+    {
+      "id": "P8",
+      "label": "T3/G6b — адаптеры историй",
+      "requires": [
+        "P6",
+        "P7"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Сверить фазовые распределения, weak rates и кэши на общей сетке",
+        "Проверить границы API обоих backend и развить недостающие адаптеры"
+      ],
+      "deliverables": [
+        "bbn_inputs.json",
+        "weak_rates_manifest.json",
+        "class_inputs.json"
+      ],
+      "acceptance": "Раздельные SHA пяти историй и реальное чтение заданных входов",
+      "consumers": [
+        "P9"
+      ]
+    },
+    {
+      "id": "P9",
+      "label": "G6b — BBN/CMB и статистика",
+      "requires": [
+        "P7",
+        "P8"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Выполнить PRIMAT, LINX, CLASS и выбранный likelihood",
+        "Профилировать неопределённости и оценить в том числе отрицательные исходы"
+      ],
+      "deliverables": [
+        "abundances.csv",
+        "mixed_response.csv",
+        "cmb_spectra_manifest.json",
+        "likelihood_grid.csv"
+      ],
+      "acceptance": "Сходимость первичных значений и остатка, воспроизводимый статистический вывод",
+      "consumers": [
+        "P10"
+      ]
+    },
+    {
+      "id": "P10",
+      "label": "Приёмка всей матрицы",
+      "requires": [
+        "P0",
+        "P3",
+        "P4",
+        "P7",
+        "P9"
+      ],
+      "requires_for_claim": {},
+      "development": [
+        "Сопоставить каждое утверждение и каждую тепловую ветвь с результатом или обоснованным исключением",
+        "Восстановить ключевые числа из сырья и передать владельцу"
+      ],
+      "deliverables": [
+        "claim_matrix.csv",
+        "MANIFEST.sha256",
+        "EXECUTION_RECEIPT.json",
+        "FINAL_REPORT.md"
+      ],
+      "acceptance": "Все включённые утверждения и точки учтены; физические пробелы объявлены незавершёнными",
+      "consumers": []
+    }
+  ],
+  "outcomes": {
+    "SUPPORTED": "Условие зарегистрированного теста выполнено в указанной области",
+    "EXCLUDED": "Опровергнуто необходимое условие точно указанного кандидата/точки",
+    "CONDITIONAL": "Число вычислено при явном внешнем входе",
+    "INCONCLUSIVE": "Данные допускают разные выводы",
+    "OPEN_INPUT": "Предстоит разработка физического входа",
+    "TECHNICAL_FAILURE": "Отказ вычисления либо повреждение данных",
+    "NOT_APPLICABLE_BY_PROOF": "Есть ссылка на достаточное доказательство отсечения данного пути"
+  },
+  "completion": "Every declared branch and point has complete physical evidence or a verified sufficient exclusion. An unmeasured required input is never a completed physical run; conditional scans do not establish an absolute scale or identify a carrier."
+}
