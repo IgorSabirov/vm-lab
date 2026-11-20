@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 
 HERE = Path(__file__).resolve().parent
-PARENT = HERE.parent / "CHECKS.json"
+PARENT = HERE.parent / "ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120" / "CHECKS.json"
 
 
 def n4(word):
