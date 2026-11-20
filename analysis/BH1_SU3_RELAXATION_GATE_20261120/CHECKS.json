@@ -1,0 +1,96 @@
+{
+  "status": "PASS_CONDITIONAL_MICROSCOPIC_TIMESCALE",
+  "lattice_choice": "1.175(10), newer SU(3) latent-heat estimate",
+  "latent_heat_over_Tc4": 1.175,
+  "latent_heat_error": 0.01,
+  "BBN_target_Delta_rho_over_Tgamma4": 0.044518075411783944,
+  "derived_Tc_over_Tgamma": 0.44118895200076275,
+  "xi_interval_from_latent_heat_error": [
+    0.4402552135354998,
+    0.4421326770759415
+  ],
+  "mass_assumption": "m_X=T_c",
+  "relaxation_assumption": "tau_X=1/m_X in natural units, no critical slowing down",
+  "physical_hubble_law": "H=1.66*sqrt(g_star)*T_gamma^2/M_Pl; M_Pl=1.2209e22 MeV",
+  "epochs": [
+    {
+      "name": "BBN_start",
+      "Tgamma_MeV": 8.617,
+      "gstar": 10.75,
+      "Tc_MeV": 3.801725199390573,
+      "mX_MeV": 3.801725199390573,
+      "H_MeV": 3.3101251372490847e-20,
+      "tauX_seconds": 1.731350695746008e-22,
+      "Hubble_time_seconds": 0.019884805848972047,
+      "tauX_over_Hubble_time": 8.70690269191394e-21,
+      "Hubble_times_faster": 114851404154165560000
+    },
+    {
+      "name": "BBN_early_window_low",
+      "Tgamma_MeV": 2,
+      "gstar": 10.75,
+      "Tc_MeV": 0.8823779040015255,
+      "mX_MeV": 0.8823779040015255,
+      "H_MeV": 1.783167818878093e-21,
+      "tauX_seconds": 7.459524472621676e-22,
+      "Hubble_time_seconds": 0.36912507613227563,
+      "tauX_over_Hubble_time": 2.020866355324113e-21,
+      "Hubble_times_faster": 494837274798222300000
+    },
+    {
+      "name": "BBN_late_window_high",
+      "Tgamma_MeV": 0.2,
+      "gstar": 10.75,
+      "Tc_MeV": 0.08823779040015256,
+      "mX_MeV": 0.08823779040015256,
+      "H_MeV": 1.7831678188780933e-23,
+      "tauX_seconds": 7.459524472621676e-21,
+      "Hubble_time_seconds": 36.912507613227554,
+      "tauX_over_Hubble_time": 2.0208663553241133e-22,
+      "Hubble_times_faster": 4.948372747982222e+21
+    },
+    {
+      "name": "BBN_late_window_low",
+      "Tgamma_MeV": 0.02,
+      "gstar": 3.36,
+      "Tc_MeV": 0.008823779040015255,
+      "mX_MeV": 0.008823779040015255,
+      "H_MeV": 9.969138378083963e-26,
+      "tauX_seconds": 7.459524472621676e-20,
+      "Hubble_time_seconds": 6602.495942347489,
+      "tauX_over_Hubble_time": 1.1298037193445778e-23,
+      "Hubble_times_faster": 8.851094954618493e+22
+    },
+    {
+      "name": "BBN_end",
+      "Tgamma_MeV": 0.00517,
+      "gstar": 3.36,
+      "Tc_MeV": 0.0022809468818439436,
+      "mX_MeV": 0.0022809468818439436,
+      "H_MeV": 6.661602569849212e-27,
+      "tauX_seconds": 2.8856961209368184e-19,
+      "Hubble_time_seconds": 98806.84865217033,
+      "tauX_over_Hubble_time": 2.9205426145057337e-24,
+      "Hubble_times_faster": 3.4240212590400355e+23
+    }
+  ],
+  "decision": {
+    "criterion": "tau_X <= H^-1",
+    "status": "PASS_AT_ALL_LISTED_BBN_EPOCHS",
+    "max_tau_over_Hubble_time": 8.70690269191394e-21,
+    "min_hubble_times_faster": 114851404154165560000,
+    "caveat": "conditional on mX=Tc and no critical slowing down"
+  },
+  "naive_shortcut": {
+    "assumed_H": "H=T_gamma",
+    "tau_over_Hubble_time": 2.2666025417569187,
+    "warning": "H~Tgamma is not the physical Friedmann Hubble rate in MeV units; it omits M_Pl/Tgamma. It would produce a false failure."
+  },
+  "limitations": [
+    "L/Tc^4 is dimensionless and does not derive mX=Tc; this is the tested mass-gap hypothesis.",
+    "The BBN-derived xi uses 100% latent-heat efficiency and selected SU(3) latent heat.",
+    "Near a critical point, critical slowing down can make tau_X much longer than 1/m_X; no dynamic critical exponent or damping coefficient is supplied.",
+    "The SU(3) transition epoch must coincide with the BBN epoch being compared.",
+    "This tests microscopic equilibration time, not bubble nucleation, phase-conversion completion, or portal energy-transfer time."
+  ]
+}
