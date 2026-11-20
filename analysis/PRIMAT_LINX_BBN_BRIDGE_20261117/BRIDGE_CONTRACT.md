@@ -1,5 +1,7 @@
 # PRIMAT + LINX как два вычислительных backend нашего BBN bridge
 
+На GitHub проверены две нативные точки, 17 пар на общих тепловых входах и шесть расчётов CLASS до ℓ=2500. Физический источник BH1 и наблюдательная подгонка остаются открытыми. [Прямые расчёты 20 ноября](PAIRED_RUN_20261120.md). Датированные состояния ниже относятся к указанным в них версиям.
+
 Дата: 17 ноября 2026  
 Родительская физическая спецификация: `analysis/CCC_BBN_NETWORK_20261114/s3_standard/bh_bridge_20261115/BRIDGE_CONTRACT.json`  
 Статус: `COMMON_INTERFACE_SPECIFIED / BACKEND_COUPLING_NOT_IMPLEMENTED / BBN_NOT_EXECUTED`  

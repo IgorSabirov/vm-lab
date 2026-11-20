@@ -226,15 +226,15 @@ X нужен для нестандартной физической ветви; 
 <a id="bbn_response_bridge"></a>
 ### BBN_RESPONSE_BRIDGE — BBN: PRIMAT, LINX, PRyMordial
 
-**Статус:** `FORMAT_IMPLEMENTED_ADAPTERS_INCOMPLETE`.
+**Статус** `THERMAL_PAIRED_FORWARD_RUN`. [Выполненные расчёты](../PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md).
 
-**Родители:** `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:WEAK_RATE_BRIDGE` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `component:NUCLEAR_RATE_INPUTS` (input_contract_dependency): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRIMAT` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:LINX` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.; `external:PRYMORDIAL` (implementation_candidate_not_execution): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.
+**Родители.** component:COSMOLOGICAL_BACKGROUND (input_contract_dependency). component:WEAK_RATE_BRIDGE (input_contract_dependency). component:NUCLEAR_RATE_INPUTS (input_contract_dependency). external:PRIMAT (input_contract_dependency). external:LINX (input_contract_dependency). external:PRYMORDIAL (implementation_candidate_not_execution).
 
 **Источники:** [FORMAT](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json), [PRIMAT](https://github.com/CyrilPitrou/primat/tree/6f7e5680614fb119d65a6c9c65a292240b27c61e), [LINX](https://github.com/cgiovanetti/LINX/tree/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8), [PRYMORDIAL](https://github.com/vallima/PRyMordial/tree/725d8a8db3ad5ea2630580d825c9d0d69ed76533), [CERN_REVIEW](https://github.com/IgorSabirov/vm-lab/blob/aa21593e16a764c487394ab307b514ac6c3285c3/analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md), [FOLLOWUP_LINX_INTERPOLATION](https://github.com/cgiovanetti/LINX/blob/bfba07c77a5fcba1cc772d42f2d9e9be8a542df8/linx/reactions.py), [FOLLOWUP_PRIMAT_CACHE_DOC](https://github.com/CyrilPitrou/primat/blob/6f7e5680614fb119d65a6c9c65a292240b27c61e/docs/howto/weak-rate-cache.md).
 
-**Граница:** Нативный baseline, deterministic common-input comparison, UQ и observational fit имеют разные предпосылки. Ни один адаптер не объявлен завершённым; covariance не блокирует фиксированный контроль.
+Парная тепловая сеть имеет 8 видов и 12 ядерных каналов. Здесь PRIMAT использует свои RHS и якобиан при общих скоростях LINX. Произвольные нейтринные спектры, модель X, совместная ядерная UQ и наблюдательный fit остаются открытыми.
 
-**Следующий шаг:** Закрепить общий допустимый thermal/weak режим, rates/units/interpolation/reverse mapping/constants/init; затем сравнить определения Yp и D/H.
+Сопоставить температурную нормировку ядерных полос с внешним атласом, затем проверить кинетические входы и заданный источник.
 
 <a id="bbn_cmb_observations"></a>
 ### BBN_CMB_OBSERVATIONS — Наблюдения abundances и CMB
