@@ -29,8 +29,15 @@ def main():
     parser.add_argument("--cache", type=Path, required=True)
     parser.add_argument("--native-cmb-python", type=Path,
                         help="optional already pinned ACT/SPT environment for the native regression tests")
+    for flag in ("native-bbn-python","linx-root","primat-root","class-root",
+                 "cascade-python","acropolis-root","planck-python","planck-root","zero-x-theory"):
+        parser.add_argument("--"+flag,type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
+    groups = [(args.native_bbn_python,args.linx_root,args.primat_root,args.class_root),
+              (args.cascade_python,args.acropolis_root),(args.planck_python,args.planck_root,args.zero_x_theory)]
+    if any(any(group) and not all(group) for group in groups):
+        parser.error("provide the interpreter and all required data paths for each requested native group")
     output = args.out.resolve()
     if output.exists():
         parser.error("choose a new output directory")
@@ -68,6 +75,18 @@ def main():
         run("native_cmb", [str(args.native_cmb_python.absolute()), "-m", "unittest", "discover",
                            "-s", "tests", "-p", "test_external_cmb*.py", "-v"],
             extra_env={"R135_EXTERNAL_CMB_NATIVE": "1", "OPENBLAS_NUM_THREADS": "1", "OMP_NUM_THREADS": "2"})
+    for label, python, pattern, bindings in (
+            ("native_bbn_class",args.native_bbn_python,"test_backends.py",
+             {"R135_NATIVE_TESTS":"1","R135_CLASS_ROOT":str(args.class_root),
+              "PYTHONPATH":os.pathsep.join(str(p) for p in (args.linx_root,args.primat_root))}),
+            ("native_cascade",args.cascade_python,"test_cascades.py",{"R135_ACROPOLIS_PATH":str(args.acropolis_root)}),
+            ("native_planck",args.planck_python,"test_likelihood.py",
+             {"R135_PLANCK_ROOT":str(args.planck_root),"R135_PLANCK_THEORY":str(args.zero_x_theory)})):
+        if python:
+            run(label,[str(python.absolute()),"-m","unittest","discover","-s","tests","-p",pattern,"-v"],
+                extra_env={**bindings,"OPENBLAS_NUM_THREADS":"1","OMP_NUM_THREADS":"2"})
+            if commands[-1]["skipped"]:
+                raise RuntimeError(label+" skipped requested native tests")
     run("registry", [sys.executable, "tools/registry_links.py", "--summary", str(output / "registry.json")], REPO)
     with tempfile.TemporaryDirectory(prefix="r135-pr160-p0-") as directory:
         work = Path(directory)

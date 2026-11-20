@@ -799,6 +799,42 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
     uncertainty = _audit_parameter_intervals(root, balance.get("uncertainty_ensemble"))
     if uncertainty["status"] == "INCOMPLETE_UNCERTAINTY":
         unresolved.append("INCOMPLETE_PARAMETER_UNCERTAINTY")
+    refine = bundle.get("request", {}).get("config",{}).get("history_refinement")
+    if refine:
+        from .history_refinement import check, mixed_check
+        path = root/"history_refinement.json"
+        if not path.is_file():
+            raise InputError("requested P7 refinement is missing")
+        record = read_json(path)
+        limit = refine["max_abs_normalized_change"]
+        if set(record["corners"]) != set(CORNERS):
+            raise InputError("incomplete P7 refinement record")
+        for corner, part in record["corners"].items():
+            levels = part["levels"]
+            final = levels[-1]
+            h = payload["histories"][corner]
+            if (final["time_s"] != h["time_s"] or final["f"] != h["phase_fraction"]
+                    or not np.allclose(final["H_over_H0"], np.array(h["H_s_inv"])/h["H_s_inv"][0])
+                    or not np.allclose(final["T_X_over_T0"], np.array(h["T_X_MeV"])/h["T_X_MeV"][0])):
+                raise InputError("P7 finest resolution differs from the actual history")
+            meta = balance["corners"][corner]
+            unit = float(meta["a0"]) ** 3 * float(meta["latent_heat_MeV4"])
+            energy = [[float(row[f"E_{sector}_comoving_MeV4"]) / unit for sector in SECTORS]
+                      for row in rows if row["corner"] == corner]
+            if not np.allclose(final["delivered_energy"], energy, rtol=1e-12, atol=1e-15):
+                raise InputError("P7 refinement delivered energies differ from the raw history")
+            comparison = check(levels,limit)
+            if comparison != part["check"]:
+                raise InputError("P7 refinement statistic differs on replay")
+            if comparison["status"] != "PASS":
+                unresolved.append("P7_RESOLUTION_OPEN:"+corner)
+        mixed = mixed_check(record["corners"],limit)
+        if mixed != record["mixed"]:
+            raise InputError("P7 mixed-response refinement differs")
+        if mixed["status"] != "PASS":
+            unresolved.append("MIXED_P7_RESOLUTION_OPEN")
+    elif bundle.get("receipt",{}).get("mode") == "physical":
+        unresolved.append("P7_RESOLUTION_NOT_ESTABLISHED")
     return dict(status="PARTIAL" if unresolved else "RECONSTRUCTED", recomputed=answers,
                 reasons=unresolved, quadrature_rtol=quadrature_rtol,
                 uncertainty_status=balance.get("uncertainty_ensemble", "NOT_SUPPLIED"),
@@ -847,6 +883,12 @@ def audit_p8(bundle, artifact_index):
     source = read_json(source_path)["histories"]
     if set(bbn["histories"]) != set(CORNERS) or set(cmb["histories"]) != set(CORNERS):
         raise InputError("P8 dropped a portal corner")
+    from .weak_precision import compare as compare_weak
+    reference_path = _lookup_input(bundle, "weak_precision_reference", artifact_index)
+    references = read_json(reference_path) if reference_path is not None else {}
+    pion_file = _lookup_input(bundle, "pion_conversion_kernels", artifact_index)
+    pion_kernels = read_json(pion_file) if pion_file is not None else {}
+    comparisons = {}
     accuracy_open=[]
     for corner in CORNERS:
         item = bbn["histories"][corner]
@@ -866,7 +908,19 @@ def audit_p8(bundle, artifact_index):
             expected=_bridge_hash({k:source[corner][k] for k in ("f_nu_e","f_antinu_e")})
             if item["weak_rates"].get("neutrino_spectra_sha256")!=expected:
                 raise InputError("weak table is not bound to the actual nonthermal distributions")
-        if item["weak_rates"].get("production_precision_validated") is False:
+        if "pion_conversion" in item or corner in pion_kernels:
+            from .meson_conversion import project
+            if corner not in pion_kernels:
+                accuracy_open.append("PION_CONVERSION_KERNEL_UNAVAILABLE:" + corner)
+            elif project(source[corner], pion_kernels[corner], item["source_history_sha256"]) != item.get("pion_conversion"):
+                raise InputError("pion conversion rates differ from the P7 pion populations")
+            accuracy_open.append("PION_CASCADE_BACKREACTION_OPEN:" + corner)
+        check = compare_weak(item, references.get(corner), bundle["request"].get("config", {}).get("weak_precision_policy"))
+        recorded = weak["histories"][corner].get("precision")
+        if recorded is not None and reference_path is not None and recorded != check:
+            raise InputError("P8 weak precision record disagrees with the independent benchmark")
+        comparisons[corner] = check
+        if check["status"] != "THERMAL_DOMAIN" or item["weak_rates"].get("production_precision_validated") is False:
             accuracy_open.append("NONTHERMAL_WEAK_CORRECTION_BUDGET_OPEN:"+corner)
         if cmb["histories"][corner]["source_P7_history_sha256"] != _bridge_hash(source[corner]):
             raise InputError("CMB matching refers to a different P7 history")
@@ -881,7 +935,7 @@ def audit_p8(bundle, artifact_index):
             # perturbation problem. Background BBN use remains valid.
             accuracy_open.append("GW_SCALAR_APPLICABILITY_REQUIRES_PHYSICAL_REVIEW:" + corner)
     return dict(status="PARTIAL" if accuracy_open else "RECONSTRUCTED", computed_histories_retained=5,
-                unresolved=accuracy_open,
+                unresolved=accuracy_open, weak_precision=comparisons,
                 distinction="prepared inputs; actual native reads independently verified at P9")
 
 
@@ -1181,6 +1235,11 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
             time = float(sample["time_s"])
             if not history["time_s"][0] <= time <= history["time_s"][-1]:
                 raise InputError("Backend extrapolated beyond the source history")
+            if "pion_conversion" in native_input:
+                pion = native_input["pion_conversion"]
+                expect = [np.interp(time,pion["time_s"],pion[k]) for k in ("n_to_p_s_inv","p_to_n_s_inv")]
+                if not np.allclose(expect, sample.get("pion_conversion_s_inv", []), rtol=1e-12, atol=0):
+                    raise InputError("native pion conversion rates differ from the prepared history")
             for name in ("T_gamma_MeV", "n_b_cm3"):
                 actual = np.exp(np.interp(time, history["time_s"], np.log(history[name])))
                 _close(actual, sample[name], "native read of " + name, rtol=1e-7)
@@ -1220,6 +1279,19 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
         reasons.append("FROZEN_OBSERVATIONAL_RELEASE_NOT_AVAILABLE_TO_AUDITOR")
     data = read_json(data_file) if data_file is not None else {}
     releases = data.get("data_releases", data.get("releases", data.get("datasets", [])))
+    cfg = bundle["request"]["config"]
+    theory = {f"{e}/{c}":cfg.get("theory_covariance_logD_Yp") for e in ("linx","primat") for c in CORNERS}
+    if (root/"nuclear_covariance.json").is_file():
+        from .nuclear_covariance import reconstruct
+        design = _lookup_input(bundle, "nuclear_rate_ensemble", artifact_index)
+        if design is None or prepared is None:
+            reasons.append("NUCLEAR_COVARIANCE_REPLAY_INPUT_UNAVAILABLE")
+        else:
+            theory = reconstruct(read_json(design), prepared, cfg["refinement"][-1], root)
+    elif any(r["name"] == "nuclear_rate_ensemble" for r in bundle["request"].get("inputs", [])) and (likelihood_rows or bbn_only_path.is_file()):
+        raise InputError("missing requested propagated nuclear covariance")
+    if (likelihood_rows or bbn_only_path.is_file()) and any(m is None for m in theory.values()):
+        reasons.append("THEORY_COVARIANCE_NOT_RECONSTRUCTED")
     likelihood_keys = [(r["engine"], r["corner"]) for r in likelihood_rows]
     if len(set(likelihood_keys)) != len(likelihood_keys):
         raise InputError("Duplicate likelihood point")
@@ -1255,9 +1327,9 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
         directory = root / "class" / engine / corner
         result = read_json(directory / "likelihood.json")
         observed = reconstructed[engine, 2, corner]
-        if releases:
+        if releases and theory[f"{engine}/{corner}"] is not None:
             bbn = _bbn_likelihood(observed["D_H"], observed["Yp"], releases,
-                                  bundle["request"]["config"]["theory_covariance_logD_Yp"])
+                                  theory[f"{engine}/{corner}"])
             _close(bbn, result["BBN"]["logL_BBN"], "independent BBN likelihood")
         else:
             bbn = result["BBN"]["logL_BBN"]
@@ -1282,9 +1354,10 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
             raise InputError("BBN-only likelihood omitted or duplicated a converged history")
         for record in bbn_rows:
             observed = reconstructed[record["engine"], 2, record["corner"]]
-            if releases:
+            matrix = theory[f"{record['engine']}/{record['corner']}"]
+            if releases and matrix is not None:
                 logl = _bbn_likelihood(observed["D_H"], observed["Yp"], releases,
-                                      bundle["request"]["config"]["theory_covariance_logD_Yp"])
+                                      matrix)
                 _close(logl, record["logL_BBN"], "BBN-only likelihood from raw final abundances")
                 bbn_only[f"{record['engine']}/{record['corner']}"] = logl
     if not likelihood_rows:
@@ -1298,6 +1371,8 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
     if external_cmb.get("status") in ("PARTIAL", "OPEN_INPUT"):
         reasons.extend("EXTERNAL_CMB: " + reason for reason in external_cmb.get("remaining", []))
     return dict(status="PARTIAL" if reasons else "RECONSTRUCTED", native_runs=len(rows),
+                source_P8_file_sha256=sha256(prepared_path) if prepared_path is not None else None,
+                final_Yp={c:{e:reconstructed[e,2,c]["Yp"] for e in ("linx","primat")} for c in CORNERS},
                 mixed_gates=reconstructed_gates, likelihood=likelihood_values,
                 bbn_only_likelihood=bbn_only, gw=gw_audit, external_cmb=external_cmb,
                 cmb_precision=cmb_precision, independently_replayed_spectra=len(replayed),
@@ -1411,22 +1486,34 @@ def _gw_coverage(inputs, expected_keys, bundles, audits, proof_results):
             raise InputError("Conflicting GW responses for the same P0 point/path")
         responses[point] = response
         response_checks[point] = audits[bundle["input_name"]].get("gw", {})
+    from .gw_review import submissions, review
+    entries, base = submissions(inputs)
+    if not isinstance(entries, dict) or set(entries) - {p["point_id"] for p in points}:
+        raise InputError("unregistered GW evidence point")
     report = coverage_status(points, responses)
     for row in report["rows"]:
         row["stage_evidence"] = [dict(stage=b["stage"], source_manifest_sha256=b["manifest_sha256"],
+                                     mode=b.get("receipt",{}).get("mode"),
+                                     lineage_reasons=audits[b["input_name"]].get("lineage_reasons",[]),
                                      audit_status=audits[b["input_name"]]["status"])
                                  for b in bundles if b["key"][2] == row["point_id"]
                                  and b["stage"] in ("P5", "P7", "P9")]
         if row["point_id"] in response_checks:
             row["independent_response_audit"] = response_checks[row["point_id"]]
+        pid = row["point_id"]
+        if pid in entries:
+            row.update(review(row, entries[pid], base, responses.get(pid), response_checks.get(pid, {})))
         for key, proof in proof_results.items():
             if key[2] != row["point_id"] or not {"P5", "P7", "P9"} <= set(proof["exempt_stages"]):
                 continue
             row.update(status="EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE", missing=[],
                        exemption=dict(key=dict(zip(KEY_FIELDS, key)), **proof))
+    report["full_physical_completion"] = bool(report["rows"]) and all(
+        r["full_physical_completion"] or r["status"] in {"NOT_APPLICABLE_BY_PROOF","EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE"}
+        for r in report["rows"])
     report.update(scope=scope, model_register_file_sha256=registry_sha,
                   selected_claim_keys=[dict(zip(KEY_FIELDS, key)) for key in expected_keys],
-                  status="OPEN_INPUT" if any(r["status"] == "OPEN_INPUT" for r in report["rows"]) else "CONDITIONAL")
+                  status="COMPLETE" if report["full_physical_completion"] else ("OPEN_INPUT" if any(r["status"] == "OPEN_INPUT" for r in report["rows"]) else "CONDITIONAL"))
     return report
 
 
@@ -1496,6 +1583,23 @@ def run(config, inputs, out):
             result["status"] = "PARTIAL"
             result["lineage_reasons"] = lineage_reasons
         audits[bundle["input_name"]] = result
+    from .weak_precision import helium_check
+    for p8 in (b for b in bundles if b["stage"] == "P8"):
+        check = audits[p8["input_name"]]
+        if "weak_precision" not in check:
+            continue
+        p8_sha = sha256(p8["root"] / "bbn_inputs.json")
+        for p9 in (b for b in bundles if b["stage"] == "P9" and b["key"] == p8["key"]):
+            observed = audits[p9["input_name"]]
+            if observed.get("source_P8_file_sha256") != p8_sha:
+                continue
+            for corner, comparison in check["weak_precision"].items():
+                outcome = helium_check(comparison, observed.get("final_Yp", {}).get(corner, {}))
+                comparison["helium_check"] = outcome
+                if outcome["status"] == "PRECISION_VALIDATED":
+                    check["unresolved"].remove("NONTHERMAL_WEAK_CORRECTION_BUDGET_OPEN:" + corner)
+            if not check["unresolved"] and not check.get("lineage_reasons"):
+                check["status"] = "RECONSTRUCTED"
     proof_results = {}
     for record in config.get("proofs", []):
         name = record["proof_input"]
@@ -1535,7 +1639,15 @@ def run(config, inputs, out):
         gw_row = gw_rows.get(key[2])
         if gw_row is None:
             raise InputError("Expected claim point is absent from the frozen GW coverage matrix")
-        gw_exempt = gw_row["status"] == "EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE"
+        gw_exempt = gw_row["status"] == "NOT_APPLICABLE_BY_PROOF" or (
+            gw_row["status"] == "EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE"
+            and gw_row["exemption"]["key"] == dict(zip(KEY_FIELDS, key)))
+        if gw_row["status"] in {"FULL_RESPONSE", "NOT_APPLICABLE_BY_PROOF"}:
+            for b in present:
+                check = audits[b["input_name"]]
+                if (b["stage"] == "P9" and b["input_name"] in partial and not check.get("lineage_reasons")
+                        and check.get("reasons") and all(reason.startswith("GW: ") for reason in check["reasons"])):
+                    partial.remove(b["input_name"])
         if gw_required and not gw_exempt and not gw_row["full_physical_completion"]:
             partial.append("GW_PHYSICAL_INPUTS_OR_LIKELIHOOD_OPEN")
         unresolved = [b["input_name"] for b in present if b["receipt"]["result"].get("evidence_status") in

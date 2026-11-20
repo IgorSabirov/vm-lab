@@ -148,3 +148,30 @@ def baseline_observations(files):
         'Cooke-DH': dict(value=float(d[0]),sigma=float(d[1]),observable='log10_D_over_H',units='log10 number ratio'),
         'Aver-Yp': dict(value=float(y[0]),sigma=float(y[1]),observable='Y_p',units='mass fraction')
     }
+
+
+def continuum_spin_spectrum(path):
+    """Athenodorou–Teper v2, continuum table_MK_J, with spin-identification flags."""
+    text = article(path, "paper.tex")
+    tables = re.findall(r"\\begin\{table\}.*?\\end\{table\}", text, re.S)
+    chosen = [table for table in tables if r"\label{table_MK_J}" in table]
+    if len(chosen) != 1 or "P=+,C=+ & P=-,C=+ &  P=+,C=-   &  P=-,C=-" not in chosen[0]:
+        raise ValueError("unexpected continuum spin table or column order")
+    states = []
+    for spin, level, cells in re.findall(r"^\s*([0-4]) (gs|ex[12])\s*&([^\\]+)\\\\", chosen[0], re.M):
+        for sign, entry in zip(("++","-+","+-","--"),cells.split("&"),strict=True):
+            if not entry.strip():
+                continue
+            m = re.fullmatch(r"\s*(\d+\.\d+)\((\d+)\)(\**)\s*",entry)
+            if not m:
+                raise ValueError("unreadable continuum glueball mass")
+            mass, error, stars = m.groups()
+            states.append({"JPC":spin+"^{"+sign+"}", "spin":int(spin), "level":level,
+                           "m_over_sqrt_sigma":float(mass),"sigma_m_over_sqrt_sigma":uncertainty(mass,error),
+                           "spin_uncertainty_stars":len(stars)})
+    scalar = next(row for row in states if row["JPC"]=="0^{++}" and row["level"]=="gs")
+    if len(states) != 20:
+        raise ValueError(f"unexpected number of resolved spin states: {len(states)}")
+    for state in states:
+        state["m_over_m0"] = state["m_over_sqrt_sigma"]/scalar["m_over_sqrt_sigma"]
+    return states

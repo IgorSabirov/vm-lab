@@ -21,11 +21,19 @@ def main(argv=None):
     parser.add_argument("--verify", type=Path, metavar="RESULT_DIR")
     parser.add_argument("--source-digest", action="store_true")
     parser.add_argument("--pipeline", type=Path, help="execute a frozen explicit stage DAG")
+    parser.add_argument("--joint-grid", type=Path, help="run matched frozen baseline/X P7–P9 pipelines at every cosmological coordinate")
     args = parser.parse_args(argv)
     try:
         if args.source_digest:
             print(json.dumps(source_inventory(), indent=2))
             return 0
+        if args.joint_grid:
+            if not args.out:
+                parser.error("--joint-grid requires --out")
+            from .joint_grid import run
+            result = run(args.joint_grid, args.out)
+            print(json.dumps({"status":result["status"],"profiles":result["profiles"]}, ensure_ascii=False))
+            return 3 if result["missing"] else 0
         if args.pipeline:
             if not args.out:
                 parser.error("--pipeline requires --out")

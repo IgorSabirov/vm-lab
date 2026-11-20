@@ -320,6 +320,14 @@ def run(config, inputs, out):
         rate_bundle = read_json(rate_path)
         rates, reverse = rate_bundle["rates"], rate_bundle["reverse_alpha_beta_gamma"]
     weak_bundle = read_json(inputs["weak_rates"]) if "weak_rates" in inputs else {}
+    from .meson_conversion import project as project_pions
+    pions = read_json(inputs["pion_conversion_kernels"]) if "pion_conversion_kernels" in inputs else None
+    if pions is not None and set(pions) != set(CORNERS):
+        raise InputError("pion conversion requires kernels for every portal history")
+    from .weak_precision import compare as compare_weak
+    references = read_json(inputs["weak_precision_reference"]) if "weak_precision_reference" in inputs else {}
+    if set(references) - set(histories):
+        raise InputError("weak precision reference contains an unknown history")
     prepared, manifest = {}, {}
     for corner, hist in histories.items():
         if config.get("_mode") != "validation":
@@ -348,8 +356,11 @@ def run(config, inputs, out):
                                                   config.get("common_initial_abundances")),
                              applicability=config.get("applicability", {}))
         item["reverse_alpha_beta_gamma"] = reverse
+        if pions is not None:
+            item["pion_conversion"] = project_pions(hist, pions[corner], item["source_history_sha256"])
+        comparison = compare_weak(item, references.get(corner), config.get("weak_precision_policy"))
         prepared[corner] = item
-        manifest[corner] = {"weak_rates_sha256": canonical_hash(item["weak_rates"]),
+        manifest[corner] = {"precision": comparison, "weak_rates_sha256": canonical_hash(item["weak_rates"]),
                             "canonical_history_sha256": item["canonical"]["provenance"]["history_sha256"],
                             "neutrino_input": "spectra_bound_to_weak_rates" if "f_nu_e" in hist else "thermal",
                             "actual_backend_consumption": False, "status": "PREPARED"}

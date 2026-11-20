@@ -54,8 +54,10 @@ def load_prepared(inputs):
     provenance=prepared.get('donor_provenance',{})
     if provenance.get('source_lock_sha256')!=sha256(DONORS/'sources.json'):
         raise InputError('P1 donor source lock differs from the current pinned release')
-    selected={name:row for name,row in fetch.sources().items()
-              if row['group'] in {'physics','lattice_controls','portal'}}
+    groups = {'physics','lattice_controls','portal'}
+    if prepared.get('relic_spectrum_control',{}).get('spectrum_model') == 'athenodorou_teper':
+        groups.add('glueball_spectrum')
+    selected={name:row for name,row in fetch.sources().items() if row['group'] in groups}
     records=provenance.get('files',{})
     if set(records)!=set(selected):
         raise InputError('P1 donor source inventory is incomplete or belongs to a different preparation')
@@ -236,7 +238,13 @@ def prepare(config):
     if not config.get('cache'):
         raise OpenInput('donor input preparation needs a cache path')
     try:
-        files=fetch.acquire(Path(config['cache']),{'physics','lattice_controls','portal'},config.get('offline',True))
+        spectrum = config.get('spectrum_model', 'fms')
+        if spectrum not in ('fms','athenodorou_teper'):
+            raise InputError('unknown glueball spectrum model')
+        groups = {'physics','lattice_controls','portal'}
+        if spectrum == 'athenodorou_teper':
+            groups.add('glueball_spectrum')
+        files=fetch.acquire(Path(config['cache']),groups,config.get('offline',True))
         p=extract.physics(files)
     except (KeyError,ValueError,OSError) as exc:
         raise InputError('verified donor replay failed: '+str(exc)) from exc
@@ -331,6 +339,12 @@ def prepare(config):
     provenance={'source_lock_sha256':sha256(DONORS/'sources.json'),
                 'files':{name:dict(url=lock[name]['url'],bytes=path.stat().st_size,sha256=sha256(path)) for name,path in files.items()},
                 'reader_sha256':{name:sha256(DONORS/name) for name in ('fetch.py','extract.py','uncertainties.py')}}
+    if spectrum == 'athenodorou_teper':
+        states = extract.continuum_spin_spectrum(files['at-su3-spectrum'])
+        spectrum_id, locator = 'at-su3-spectrum', 'Athenodorou–Teper v2, paper.tex, table_MK_J'
+    else:
+        states = p['states']
+        spectrum_id, locator = 'fms', 'Forestell–Morrissey–Sigurdson v2, draft-final.tex, tab:states'
     limitations=['marginal entropy errors do not provide the measured joint covariance',
                  'pressure-anchor uncertainty and interpolation systematic require independent justification',
                  'stable phase domains do not provide a metastable transition history',
@@ -371,12 +385,12 @@ def prepare(config):
             'literature_preparation':point,'interface_control':interface,
             'portal_control':extract.scalar_portal(files),
             'relic_spectrum_control':{
-                'status':'MASS_RATIOS_ONLY','source':'Forestell-Morrissey-Sigurdson SU(3) glueball spectrum table',
-                'donor_sha256':provenance['files']['fms']['sha256'],
+                'status':'MASS_RATIOS_ONLY','spectrum_model':spectrum,'source':locator,
+                'donor_sha256':provenance['files'][spectrum_id]['sha256'],
                 'mass_source':copy.deepcopy(anchor),
                 'states':[{**row,'mass_MeV':row['m_over_m0']*float(anchor['value']),
-                           'spin_degeneracy':2*row['spin']+1} for row in p['states']],
-                'mass_ratio_uncertainty_status':'OPEN_INPUT; the rounded source table is not a covariance matrix',
+                           'spin_degeneracy':2*row['spin']+1} for row in states],
+                'mass_ratio_uncertainty_status':'OPEN_INPUT; joint mass covariance not reported',
                 'populations_and_reaction_network_status':'OPEN_INPUT',
                 'decay_widths_status':'OPEN_INPUT'},
             'within_phase_secant_controls':controls.eos_intervals(p),

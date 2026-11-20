@@ -457,7 +457,7 @@ class CoupledModel:
             "nucleation_rate_MeV4":gamma_bar*(self.H0*HBAR_MEV_S)**4,
             "wall_temperature_MeV": front,
             "wall_speed": v, "rho": rho, "pressure": pressure, "Q": qarray,
-            "kinetic_species":kinetic_records,
+            "kinetic_species":kinetic_records, "bulk_entropy_MeV3":x["s_MeV3"],
             "gw":gw_record,
             "f_dot_s_inv": fdot, "relic_T_MeV": tr,
             "old_volume_log_growth_s_inv":(3*hubble-4*np.pi*max(y[9],0)*v/(a/self.a0)*self.H0) if self.f0<1 else None,
@@ -550,6 +550,8 @@ class CoupledModel:
                        radiation_weighted_sources_MeV4=state[RADIATION_ENERGY].tolist(),
                        radiation_trace_work_MeV4=state[TRACE_WORK].tolist(),
                        relic_n_MeV3=state[5], bubble_moments=state[J].tolist())
+            from .history_observables import entropies
+            row["comoving_entropy_MeV3"] = entropies(row, self)
             row["balance_MeV4"] = (row["scale_factor"]**3*row["rho"]-self.initial_energy-
                                       state[ENERGY]+state[WORK]).tolist()
             row["radiation_balance_MeV4"]=(row["scale_factor"]**4*row["rho"]-self.initial_energy*self.a0-state[RADIATION_ENERGY]-state[TRACE_WORK]).tolist()
@@ -586,6 +588,9 @@ def summarize(records, meta):
     result["max_relative_total_balance"] = float(np.max(np.abs(np.sum([r["balance_MeV4"] for r in records], axis=1)))/max(sum(meta["initial_energy_MeV4"]), normalization))
     result["max_relative_sector_balance"] = float(np.max(np.abs([r["balance_MeV4"] for r in records]))/max(sum(meta["initial_energy_MeV4"]), normalization))
     result["max_relative_radiation_balance"]=float(np.max(np.abs([r["radiation_balance_MeV4"] for r in records]))/max(sum(meta["initial_energy_MeV4"])*meta["a0"],normalization*meta["a0"]))
+    from .history_observables import domination
+    result["hidden_visible_equality"] = domination(time, [r["scale_factor"] for r in records],
+        [r["T_gamma_MeV"] for r in records], [r["rho"] for r in records])
     result["recrossings_Tc"] = meta.get("Tc_crossings",[])
     result["maximum_neglected_inverse_decay_energy_bound_fraction"]=max(r["inverse_decay_neglected_energy_bound_fraction"] for r in records)
     viable=[r for r in records if r["I"]>=.34 and r["old_volume_log_growth_s_inv"] is not None and r["old_volume_log_growth_s_inv"]<0]
@@ -607,6 +612,10 @@ def _payload(records):
     hist["rho_extra_MeV4"] = [float(r["rho"][[0, 3, 4]].sum()) for r in records]
     hist["p_extra_MeV4"] = [float(r["pressure"][[0, 3, 4]].sum()) for r in records]
     hist["Q_MeV4_s"] = {s: [float(r["Q"][i]) for r in records] for i, s in enumerate(SECTORS)}
+    if all("comoving_entropy_MeV3" in r for r in records):
+        hist["comoving_entropy_MeV3"] = {k:[r["comoving_entropy_MeV3"][k] for r in records]
+                                          for k in ("S_X","S_vis","R")}
+        hist["entropy_definition"] = "X bulk plus resolved relic; visible photons/electromagnetic bath plus neutrinos; R dimensionless; null indicates undetermined entropy"
     from .kinetic_history import spectra_from_records
     spectra=spectra_from_records(records)
     hist.update(spectra)
@@ -693,7 +702,7 @@ def propagate_uncertainty(config,definitions,out):
             for corner in CORNERS:
                 records,meta=model.solve(corner)
                 summary=summarize(records,meta);summary.update(meta)
-                if max(summary["max_relative_sector_balance"],summary["max_relative_radiation_balance"])>float(changed_config.get("balance_rtol",1e-5)):
+                if max(summary["max_relative_sector_balance"],summary["max_relative_radiation_balance"])>float(changed_config.get("balance_rtol",1e-6)):
                     raise RuntimeError("uncertainty draw fails energy-balance tolerance")
                 item["corners"][corner]=summary
                 write_json(target/f"raw_history_{corner}.json",{"records":records,"summary":summary})
@@ -807,6 +816,7 @@ def run(config, inputs, out):
                  "collision_model":collisions,"initial_history":initial}
     write_json(out/"history_definition.json",{"config":config,"inputs":definitions})
     all_rows, all_pockets, payload, balances = [], [], {}, {}
+    refinements = {}
     for corner in CORNERS:
         checkpoint = out / f"checkpoint_{corner}.json"
         records, meta = model.solve(corner, checkpoint=checkpoint, resume=inputs.get(f"checkpoint_{corner}"))
@@ -819,6 +829,9 @@ def run(config, inputs, out):
         if config.get("_key"):
             payload[corner].update({field:config["_key"][field] for field in
                                    ("point_id","model_id","thermal_path")})
+        if config.get("history_refinement"):
+            from .history_refinement import run as refine_history
+            refinements[corner] = refine_history(model, corner, records, meta, config["history_refinement"])
         summary = summarize(records, meta)
         summary.update(meta)
         balances[corner] = summary
@@ -836,8 +849,15 @@ def run(config, inputs, out):
                 "bubble_J0": row["bubble_moments"][0], "bubble_J1": row["bubble_moments"][1],
                 "bubble_J2": row["bubble_moments"][2], "bubble_J3": row["bubble_moments"][3],
                 "pocket_size_distribution": "NOT_DETERMINED_BY_HOMOGENEOUS_SURVIVAL"})
-    limit = finite(config.get("balance_rtol", 1e-5), "balance tolerance", positive=True)
-    failed = [k for k, v in balances.items() if max(v["max_relative_sector_balance"],v["max_relative_radiation_balance"]) > limit]
+    limit = finite(config.get("balance_rtol", 1e-6), "balance tolerance", positive=True)
+    failed = [k for k, v in balances.items() if max(v["max_relative_sector_balance"],v["max_relative_radiation_balance"],v["max_relative_total_balance"]) > limit]
+    if refinements:
+        from .history_refinement import mixed_check
+        mixed = mixed_check(refinements, config["history_refinement"]["max_abs_normalized_change"])
+        failed.extend(k for k,v in refinements.items() if v["check"]["status"] != "PASS" or max(v["relative_balances"]) > limit)
+        if mixed["status"] != "PASS":
+            failed.append("mixed_response")
+        write_json(out/"history_refinement.json", {"corners":refinements,"mixed":mixed})
     write_csv(out / "phase_history.csv", all_rows)
     write_csv(out / "pocket_history.csv", all_pockets)
     write_json(out / "channel_history.json", {"schema": "R135-channel-history-v1",

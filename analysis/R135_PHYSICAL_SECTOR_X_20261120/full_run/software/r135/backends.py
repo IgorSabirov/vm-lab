@@ -191,6 +191,14 @@ class HistoryInterpolator:
         self.history = validate_history(item["canonical"]["history"])
         self.weak = validate_weak_rates(item["weak_rates"], self.history)
         self.t = np.asarray(self.history["time_s"])
+        self.pions = item.get("pion_conversion")
+        if self.pions is not None:
+            if self.pions.get("time_s") != self.history["time_s"] or self.pions.get("history_sha256") != item.get("source_history_sha256"):
+                raise InputError("pion rates refer to a different time grid or history")
+            for name in ("n_to_p_s_inv", "p_to_n_s_inv"):
+                rates = np.asarray(self.pions[name], float)
+                if rates.shape != self.t.shape or np.any(rates < 0) or not np.isfinite(rates).all():
+                    raise InputError("invalid pion conversion rates")
         self.weak_t = np.asarray(self.weak["time_s"])
         self.logtemp = np.log(self.history["T_gamma_MeV"])
         self.lognb = np.log(self.history["n_b_cm3"])
@@ -211,6 +219,11 @@ class HistoryInterpolator:
         self.calls += 1
         sample = {"time_s": float(t), "T_gamma_MeV": temp, "n_b_cm3": nb,
                   "lambda_n_to_p_s_inv": fw, "lambda_p_to_n_s_inv": bw}
+        if self.pions is not None:
+            corrections = [float(np.interp(t, self.t, self.pions[k])) for k in ("n_to_p_s_inv","p_to_n_s_inv")]
+            sample["pion_conversion_s_inv"] = corrections
+            fw += corrections[0]
+            bw += corrections[1]
         if self.first_sample is None:
             self.first_sample = sample
         self.last_sample = sample
@@ -221,6 +234,8 @@ class HistoryInterpolator:
         thresholds = sorted({self.kB * 1e9 * r["T9"][i]
                              for r in rates["reactions"] for i in (0, -1)})
         points = {float(self.t[0]), float(self.t[-1])}
+        if self.pions is not None:
+            points.update(self.t)  # resolve knots of the supplied conversion rates
         for threshold in thresholds:
             logedge = math.log(threshold)
             for t0, t1, x0, x1 in zip(self.t[:-1], self.t[1:], self.logtemp[:-1], self.logtemp[1:]):
@@ -711,6 +726,10 @@ def run(config, inputs, out):
     if bundle.get("schema") != "R135-bbn-inputs-v1" or set(bundle.get("histories", {})) != set(CORNERS):
         raise OpenInput("P9 needs all five P8 histories")
     histories = bundle["histories"]
+    if config.get("lithium_policy", "excluded") != "excluded":
+        raise OpenInput("including lithium requires a registered likelihood and depletion model")
+    write_json(out/"lithium_policy.json", {"policy":"excluded", "network_output":"Li7_H_late",
+               "reason":"no registered lithium abundance and astrophysical depletion likelihood"})
     gw_response = prepare_gw_response(config, inputs, bundle, out)
     if len({canonical_hash(h["initial_abundances"]) for h in histories.values()}) != 1:
         raise InputError("five-corner runs must start from the same registered preparation")
@@ -733,7 +752,9 @@ def run(config, inputs, out):
     write_json(out / "data_release_lock.json", data)
     applicability = bundle.get("applicability", {})
     if applicability.get("photodisintegration_or_nonthermal_nuclear_sources", False):
-        raise OpenInput("nonthermal nuclear source terms need an implemented cascade/network kernel")
+        if (applicability.get("nonthermal_nuclear_channels") != ["charged_pion_free_nucleon_conversion"]
+                or any("pion_conversion" not in h for h in histories.values())):
+            raise OpenInput("requested nonthermal nuclear channels require additional cascade/network kernels")
     tolerances = config.get("refinement")
     if not isinstance(tolerances, list) or len(tolerances) != 3:
         raise InputError("P9 requires three registered refinement levels")
@@ -774,6 +795,14 @@ def run(config, inputs, out):
         return {"software_status": "FAIL_CONVERGENCE", "evidence_status": "INCONCLUSIVE",
                 "metrics": {"bbn_integrations": 30, "class_integrations": 0},
                 "limitations": ["At least one abundance or mixed residual failed the frozen numerical gate."]}
+    theory = {}
+    if "nuclear_rate_ensemble" in inputs:
+        if "theory_covariance_logD_Yp" in config:
+            raise InputError("choose a propagated nuclear ensemble or supplied theory covariance")
+        from .nuclear_covariance import propagate
+        theory = propagate(read_json(inputs["nuclear_rate_ensemble"]), histories, pair, tolerances[-1], out)
+    elif "theory_covariance_logD_Yp" in config:
+        theory = {f"{e}/{c}": config["theory_covariance_logD_Yp"] for e in results for c in CORNERS}
     class_bundle = read_json(require_input(inputs, "class_inputs"))
     if set(class_bundle.get("histories", {})) != set(CORNERS):
         raise OpenInput("CLASS inputs must cover all five histories")
@@ -784,12 +813,12 @@ def run(config, inputs, out):
         # integration or turn a conditional background match into a spectrum.
         from .likelihood import bbn_loglike
         bbn_rows = []
-        if "theory_covariance_logD_Yp" in config:
+        if theory:
             for engine in results:
                 for corner in CORNERS:
                     abundance = results[engine][-1][corner]
                     result = bbn_loglike(abundance["D_H"], abundance["Yp"], releases,
-                                         config["theory_covariance_logD_Yp"])
+                                         theory[f"{engine}/{corner}"])
                     bbn_rows.append({"engine": engine, "corner": corner, **result})
         write_json(out / "bbn_likelihoods.json", {"evaluations": bbn_rows,
                    "status": "CONDITIONAL" if bbn_rows else "OPEN_INPUT",
@@ -810,7 +839,7 @@ def run(config, inputs, out):
     if (cmb_mode == "native_class" and not class_root) or not planck_root:
         raise OpenInput("CLASS source checkout and verified Planck release directory are required")
     from .likelihood import evaluate_batch, isolated_batch, bbn_loglike, joint_loglike
-    if "theory_covariance_logD_Yp" not in config:
+    if not theory:
         raise OpenInput("BBN likelihood requires explicit propagated theory covariance in (logD,Yp) units")
     accuracy_levels = config.get("class_refinement")
     if accuracy_levels is not None:
@@ -884,7 +913,7 @@ def run(config, inputs, out):
         for corner in CORNERS:
             abundance = results[engine][-1][corner]
             cmb = evaluations["evaluations"][f"{engine}/{corner}"]
-            bbn = bbn_loglike(abundance["D_H"], abundance["Yp"], releases, config["theory_covariance_logD_Yp"])
+            bbn = bbn_loglike(abundance["D_H"], abundance["Yp"], releases, theory[f"{engine}/{corner}"])
             joint = joint_loglike(bbn, cmb, extra_cmb_gaussians=config.get("extra_cmb_gaussians"))
             likelihood_rows.append({"engine": engine, "corner": corner, **joint,
                                     "status": "CONDITIONAL_LIKELIHOOD", "confidence_calibrated": False,
