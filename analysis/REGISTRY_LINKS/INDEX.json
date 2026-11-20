@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "64c129fb2773a8bfab7dc551d7dafbec076015d2d51619e9debeb20cf4fcdc1d",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "473eddfe994d7ab451c1ed390e39cfb6c050f991afcebac3082bb311732f9a16",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "7168431cce17d32218218bf454699caeee680b556ef6feb5b6fad88c70ec8a8c",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "5dce18a73e5147073d5e89a5b18ef0f2ce49839f74195b818d604af8f6eb8ced",
@@ -109,7 +109,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 110
+    "source": 113
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3442,6 +3442,42 @@
       "sha256": "a4b0cbc14fb0644bf836a4bd39f91120f556d515235faff2162ce8d534ad02cc",
       "git_blob_sha": "b79678116b37e771cc1657701f5c888c783a90e9",
       "size_bytes": 10446
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "fragment": "",
+      "sha256": "bad405eece6660417076b5c3a263deee2b993d04021da73772879706ee8d1447",
+      "git_blob_sha": "a0b0a016f55cb9a035e70d7c84cbd9f983ecd143",
+      "size_bytes": 617
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "fragment": "",
+      "sha256": "c236cd6dbf10fca6aa7668b620bd81a80dce910054ced6f5a79f3fadf9671f0f",
+      "git_blob_sha": "2432a28e88b6d6a6939d8ce026e03e91044c55e8",
+      "size_bytes": 21731
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "fragment": "",
+      "sha256": "ae90a769cb6618e736921f83b72ee0ce2c61c6b33627cbb3cd01012568a90dab",
+      "git_blob_sha": "ac8b747420ee8800399e495a168640b77af793e2",
+      "size_bytes": 5563
     },
     {
       "key": "source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
@@ -9603,6 +9639,21 @@
     },
     {
       "source": "result:R130",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
       "target": "source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -9741,6 +9792,21 @@
       "source": "result:R132",
       "target": "question:U006",
       "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "relation": "managed_evidence_source"
     },
     {
       "source": "result:R132",
