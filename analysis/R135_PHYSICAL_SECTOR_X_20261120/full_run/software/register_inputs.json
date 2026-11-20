@@ -1,0 +1,532 @@
+{
+  "models": [
+    {
+      "model_id": "XA-graph",
+      "architecture": "XA",
+      "thermal_paths": [
+        "isolated_during_transition",
+        "exchange_during_transition"
+      ],
+      "required_inputs": [
+        "law_of_energy",
+        "state_map_including_3",
+        "physical_clock",
+        "dimensionful_calibration",
+        "collision_model"
+      ]
+    },
+    {
+      "model_id": "XB-pureSU3",
+      "architecture": "XB",
+      "thermal_paths": [
+        "isolated_during_transition",
+        "exchange_during_transition"
+      ],
+      "required_inputs": [
+        "independent_ensembles",
+        "absolute_scale_or_parameter_scan",
+        "nucleation_and_wall_transport",
+        "collision_model",
+        "relic_fate"
+      ]
+    }
+  ],
+  "points": [
+    {
+      "point_id": "XA-T0-0-0",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-0-1",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-0-2",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-0-3",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-1-0",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-1-1",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-1-2",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-1-3",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-2-0",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-2-1",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-2-2",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T0-2-3",
+      "model_id": "XA-graph",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-0-0",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-0-1",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-0-2",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-0-3",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-1-0",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-1-1",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-1-2",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-1-3",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-2-0",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-2-1",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-2-2",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XA-T1-2-3",
+      "model_id": "XA-graph",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-0-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-0-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-0-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-0-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-1-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-1-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-1-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-1-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-2-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-2-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-2-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T0-2-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-0-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-0-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-0-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-0-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.02,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-1-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-1-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-1-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-1-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 0.2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-2-0",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.3,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-2-1",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.44118895,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-2-2",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 0.6,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-T1-2-3",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "exchange_during_transition",
+      "role": "diagnostic",
+      "T_gamma_event_MeV": 2,
+      "xi_event": 1.0,
+      "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    }
+  ],
+  "data_releases": [
+    {
+      "data_id": "Cooke-DH",
+      "version": "arXiv:1710.11129v3",
+      "source": "https://arxiv.org/abs/1710.11129v3",
+      "state": "published_statistic",
+      "observable": "log10_D_over_H",
+      "units": "log10 number ratio",
+      "value": -4.5974,
+      "sigma": 0.0052
+    },
+    {
+      "data_id": "Aver-Yp",
+      "version": "JCAP 07 (2015) 011",
+      "source": "https://doi.org/10.1088/1475-7516/2015/07/011",
+      "state": "published_statistic",
+      "observable": "Y_p",
+      "units": "mass fraction",
+      "value": 0.2449,
+      "sigma": 0.004
+    },
+    {
+      "data_id": "Planck2018-TTTEEE-lowE",
+      "version": "Planck 2018 baseline TT,TE,EE+lowE",
+      "source": "https://pla.esac.esa.int/",
+      "state": "artifact_required",
+      "missing": [
+        "exact released likelihood files, checksums and dependency version",
+        "nuisance definitions, priors, covariance and zero-source baseline"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "claim": "XA_carrier",
+      "models": [
+        "XA-graph"
+      ],
+      "test": "registered necessary identity or independent dimensionful graph prediction",
+      "pending": "specify law, preparation, clock, numerical prediction and uncertainty before unblinding"
+    },
+    {
+      "claim": "XB_SU3_cosmology",
+      "models": [
+        "XB-pureSU3"
+      ],
+      "test": "joint history to D/H, Yp and CMB; profile statistic with 95% calibrated threshold",
+      "pending": "freeze supported physical points, priors, likelihood files and threshold calibration",
+      "required_data_ids": [
+        "Cooke-DH",
+        "Aver-Yp",
+        "Planck2018-TTTEEE-lowE"
+      ]
+    },
+    {
+      "claim": "graph_as_XB_marker",
+      "models": [
+        "XA-graph",
+        "XB-pureSU3"
+      ],
+      "test": "independent matched preparations and predicted fourth-order contrast",
+      "pending": "freeze full operator map, sign or interval of prediction and lower-marginal matching precision"
+    }
+  ]
+}
