@@ -1,0 +1,42 @@
+{
+  "model": "H_X = h L + J N_1111(a) + h N_gamma; N_gamma=sum_i(r_i^L+r_i^R); N_1111=sum_i a_i a_{i+1} a_{i+2} a_{i+3}; a_i,b_i,r_i^L,r_i^R in {0,1}; k_B=1",
+  "interpretation": "h is the proposed energy quantum per emitted radiation bit/contact gap; J is the neighbor-sensitive E4 coupling. The article ADD does not provide a dimensional h. J/h remains a parameter.",
+  "ensemble": "canonical, fixed graph length L=24; b-sector is a 2^L degeneracy; each vertex has two radiation two-level port bits r_i^L,r_i^R; exact transfer-DP count for N_1111; C is at fixed L, not yet physical C_R",
+  "BBN": {
+    "target_Delta_rho_over_Tgamma4": 0.044518075411783944,
+    "xi": 0.5,
+    "required_chi_nu_g": 0.7122892065885431,
+    "if_g_equals_0p5_required_chi_times_nu": 1.4245784131770862,
+    "warning": "nu is the physical ADD event density per V T_X^3, not the equilibrium radiation occupation fraction. The model does not derive nu, chi, h/T_X, or V."
+  },
+  "contact_event_balance": {
+    "counts_by_delta_N4": {"0":4155,"1":242,"2":65,"3":38},
+    "examples": {
+      "0":["012","30"],
+      "1":["011121","31011"],
+      "2":["112","31"],
+      "3":["1112","311"]
+    },
+    "energy_release_over_h_for_J_over_h_1": {"0":1,"1":0,"2":-1,"3":-2},
+    "scope":"cyclic words L=3..8, no state 3, exactly one 12 redex"
+  },
+  "thermodynamics_J_over_h_1": [
+    {"L":24,"h_over_T":0.25,"J_over_h":1.0,"logZ":54.62709332128259,"F_over_T":-54.62709332128259,"U_over_T":11.475024072184045,"S_over_kB":66.10211739346663,"C_fixed_L_over_kB":0.8454317909678294,"mean_N4":0.8845683312544875,"var_N4":1.712472684080548,"mean_radiation_bits":21.015527957481694,"state_count_check":16777216},
+    {"L":24,"h_over_T":0.5,"J_over_h":1.0,"logZ":43.56054541165456,"F_over_T":-43.56054541165456,"U_over_T":21.343067669674728,"S_over_kB":64.90361308132928,"C_fixed_L_over_kB":3.0567084966585916,"mean_N4":0.5641832370384764,"var_N4":0.9466558009578318,"mean_radiation_bits":18.121952102310978,"state_count_check":16777216},
+    {"L":24,"h_over_T":1.0,"J_over_h":1.0,"logZ":23.645765262645828,"F_over_T":-23.645765262645828,"U_over_T":37.17468693776389,"S_over_kB":60.82045220040972,"C_fixed_L_over_kB":9.801633883478544,"mean_N4":0.2654987120041249,"var_N4":0.36426108788741596,"mean_radiation_bits":12.909188225759765,"state_count_check":16777216},
+    {"L":24,"h_over_T":2.0,"J_over_h":1.0,"logZ":-9.44832198448078,"F_over_T":9.44832198448078,"U_over_T":59.59957004216206,"S_over_kB":50.15124805768128,"C_fixed_L_over_kB":20.509828608429178,"mean_N4":0.07804476401938748,"var_N4":0.08776505273898229,"mean_radiation_bits":5.721740257061642,"state_count_check":16777216}
+  ],
+  "kinetics_L8": [
+    {"L":8,"betaJ":0.25,"states":256,"lambda_gap_over_Gamma0":0.9369271386338227,"tau_Gamma0":1.0673188541193788,"rate_model":"single-site heat-bath Glauber; detailed balance; not deterministic ADD F=QI"},
+    {"L":8,"betaJ":0.5,"states":256,"lambda_gap_over_Gamma0":0.878357541852415,"tau_Gamma0":1.1384885452125189,"rate_model":"single-site heat-bath Glauber; detailed balance; not deterministic ADD F=QI"},
+    {"L":8,"betaJ":1.0,"states":256,"lambda_gap_over_Gamma0":0.7900294472648777,"tau_Gamma0":1.265775603000687,"rate_model":"single-site heat-bath Glauber; detailed balance; not deterministic ADD F=QI"},
+    {"L":8,"betaJ":2.0,"states":256,"lambda_gap_over_Gamma0":0.699860904937754,"tau_Gamma0":1.4288553524631307,"rate_model":"single-site heat-bath Glauber; detailed balance; not deterministic ADD F=QI"}
+  ],
+  "identifiability": [
+    "Fixed-L partition function and fixed-L heat capacity are defined for this explicit effective model; physical C_R additionally needs L-to-R mapping.",
+    "Fixed-L canonical ensemble is not the full ADD ensemble because ADD changes L.",
+    "Glauber rates are a chosen detailed-balance bath dynamics; Gamma0 is free.",
+    "tau_X=tau_Gamma0/Gamma0; compare with H^-1 only after Gamma0/H is physically derived.",
+    "No physical BBN prediction is claimed; only the required parameter combination is evaluated."
+  ]
+}
