@@ -1,0 +1,49 @@
+{
+  "status": "PASS_SYMBOLIC_LOCAL_SEPARABILITY_NOT_PHYSICAL_ENERGY",
+  "rule": "E=sum_i eps[(s_i,s_i+1)] + sum_i eta[(e_i-1,e_i,e_i+1)]",
+  "edge_type": "ordered directed pair (s_i,s_i+1), ring orientation b->a",
+  "eta_support": "three consecutive directed edges = four consecutive vertex labels",
+  "calibration_words": ["0", "12", "3"],
+  "calibration_roles": ["inert/no-op state", "merge redex 1->2", "split parent state 3"],
+  "calibration_warning": "No independent energy labels exist; three words define calibration cases but cannot determine numeric eps/eta. Coefficients remain symbolic.",
+  "pairs": {
+    "R131_vs_R132": {
+      "A": "111111221212222222112121",
+      "B": "111112111121222221222212",
+      "edge_counts_equal": true,
+      "eta_feature_vectors_differ": true,
+      "all_three_point_counts_equal": true,
+      "N2121": [2, 1],
+      "delta_E": "(+1)*eta[(11,11,11)] + (-1)*eta[(11,11,12)] + (-1)*eta[(11,12,21)] + (+1)*eta[(11,12,22)] + (-1)*eta[(12,21,11)] + (+1)*eta[(12,21,12)] + (+1)*eta[(12,22,21)] + (-1)*eta[(12,22,22)] + (-1)*eta[(21,11,11)] + (+1)*eta[(21,11,12)] + (+1)*eta[(21,12,21)] + (-1)*eta[(21,12,22)] + (+1)*eta[(22,21,11)] + (-1)*eta[(22,21,12)] + (-1)*eta[(22,22,21)] + (+1)*eta[(22,22,22)]"
+    },
+    "three_node": {
+      "A": "120",
+      "B": "102",
+      "edge_counts_equal": false,
+      "eta_feature_vectors_differ": true,
+      "all_three_point_counts_equal": false,
+      "N2121": [0, 0],
+      "delta_E": "(+1)*eps[01] + (-1)*eps[02] + (-1)*eps[10] + (+1)*eps[12] + (+1)*eps[20] + (-1)*eps[21] + (+1)*eta[(01,12,20)] + (-1)*eta[(02,21,10)] + (-1)*eta[(10,02,21)] + (+1)*eta[(12,20,01)] + (+1)*eta[(20,01,12)] + (-1)*eta[(21,10,02)]"
+    },
+    "heldout_24": {
+      "A": "111112112111222221221222",
+      "B": "111111212211222222121122",
+      "edge_counts_equal": true,
+      "eta_feature_vectors_differ": true,
+      "all_three_point_counts_equal": true,
+      "N2121": [0, 1],
+      "delta_E": "(-1)*eta[(11,11,11)] + (+1)*eta[(11,11,12)] + (+1)*eta[(11,12,21)] + (-1)*eta[(11,12,22)] + (+1)*eta[(12,21,11)] + (-1)*eta[(12,21,12)] + (-1)*eta[(12,22,21)] + (+1)*eta[(12,22,22)] + (+1)*eta[(21,11,11)] + (-1)*eta[(21,11,12)] + (-1)*eta[(21,12,21)] + (+1)*eta[(21,12,22)] + (-1)*eta[(22,21,11)] + (+1)*eta[(22,21,12)] + (+1)*eta[(22,22,21)] + (-1)*eta[(22,22,22)]"
+    }
+  },
+  "heldout_generation": {
+    "method": "lexicographic enumeration of 12-bit halves h in {1,2}^12; form h||(3-h); group by all directed pair correlations; choose first group with differing N2121 outside R131/R132 dihedral orbits",
+    "group_size": 96,
+    "not_dihedrally_equivalent_to_R131_pair": true
+  },
+  "interpretation": {
+    "R131_R132": "All directed edge-count contributions cancel; only four-vertex local eta features distinguish.",
+    "three_node": "The same oriented local functional distinguishes through eps and eta; reflection-invariant coefficients erase the distinction.",
+    "heldout": "The same frozen local feature family separates a new 24-node pair with identical all-shift three-point counts.",
+    "physical_gate": "NOT_PASSED: no independent energy labels, microscopic X degrees of freedom, coefficient derivation, kinetic law, or relaxation time."
+  }
+}
