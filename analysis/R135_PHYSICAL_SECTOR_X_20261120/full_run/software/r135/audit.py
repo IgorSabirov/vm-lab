@@ -641,6 +641,35 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
         if not np.allclose(h, friedmann, rtol=1e-10, atol=1e-15):
             raise InputError("Saved expansion history violates the declared Friedmann equation")
         pressure = np.column_stack([column(f"p_{s}_MeV4") for s in SECTORS])
+        kinetic=payload["histories"][corner].get("kinetic_species")
+        if kinetic is not None:
+            from scipy.integrate import quad
+            if len(kinetic)!=len(t):
+                raise InputError("kinetic trajectory length differs from P7")
+            for j,species in enumerate(kinetic):
+                reconstructed_rho={};reconstructed_pressure={}
+                for item in species:
+                    edges=np.asarray(item["q_edges_MeV"],float)/a[j]
+                    occupation=np.asarray(item["occupation"],float)
+                    mass=float(item["mass_MeV"]);degeneracy=float(item["degeneracy"])
+                    if (edges.shape!=(len(occupation)+1,) or np.any(np.diff(edges)<=0) or edges[0]!=0
+                            or not np.isfinite(occupation).all() or np.any(occupation<0)
+                            or (item["statistics"]=="fermion" and np.any(occupation>1))):
+                        raise InputError("invalid saved kinetic occupation/grid")
+                    # Independent adaptive quadrature in physical p; the P7
+                    # producer uses fixed Gauss quadrature in comoving cells.
+                    energy=sum(float(f)*quad(lambda p:p*p*math.hypot(p,mass),lo,hi,epsabs=1e-13)[0]
+                               for lo,hi,f in zip(edges[:-1],edges[1:],occupation))*degeneracy/(2*np.pi**2)
+                    momentum=sum(float(f)*quad(lambda p:p**4/math.hypot(p,mass) if p else 0.,lo,hi,epsabs=1e-13)[0]
+                                 for lo,hi,f in zip(edges[:-1],edges[1:],occupation))*degeneracy/(6*np.pi**2)
+                    sector=item["sector"]
+                    reconstructed_rho[sector]=reconstructed_rho.get(sector,0)+energy
+                    reconstructed_pressure[sector]=reconstructed_pressure.get(sector,0)+momentum
+                    _close(energy,item["rho_MeV4"],"kinetic energy moment",rtol=1e-8,atol=1e-12)
+                    _close(momentum,item["pressure_MeV4"],"kinetic pressure moment",rtol=1e-8,atol=1e-12)
+                for sector in reconstructed_rho:
+                    _close(reconstructed_rho[sector],rho[j,SECTORS.index(sector)],"kinetic sector density",rtol=1e-8,atol=1e-12)
+                    _close(reconstructed_pressure[sector],pressure[j,SECTORS.index(sector)],"kinetic sector pressure",rtol=1e-8,atol=1e-12)
         q = np.column_stack([column(f"Q_{s}_MeV4_s") for s in SECTORS])
         energy = np.column_stack([column(f"E_{s}_comoving_MeV4") for s in SECTORS])
         work = np.column_stack([column(f"work_{s}_comoving_MeV4") for s in SECTORS])
@@ -780,6 +809,7 @@ def audit_p8(bundle, artifact_index):
     source = read_json(source_path)["histories"]
     if set(bbn["histories"]) != set(CORNERS) or set(cmb["histories"]) != set(CORNERS):
         raise InputError("P8 dropped a portal corner")
+    accuracy_open=[]
     for corner in CORNERS:
         item = bbn["histories"][corner]
         canonical = item["canonical"]
@@ -794,9 +824,16 @@ def audit_p8(bundle, artifact_index):
             raise InputError("Canonical nuclear table hash mismatch")
         if canonical_hash(item["weak_rates"]) != weak["histories"][corner]["weak_rates_sha256"]:
             raise InputError("Weak-rate provenance mismatch")
+        if "f_nu_e" in source[corner]:
+            expected=_bridge_hash({k:source[corner][k] for k in ("f_nu_e","f_antinu_e")})
+            if item["weak_rates"].get("neutrino_spectra_sha256")!=expected:
+                raise InputError("weak table is not bound to the actual nonthermal distributions")
+        if item["weak_rates"].get("production_precision_validated") is False:
+            accuracy_open.append("NONTHERMAL_WEAK_CORRECTION_BUDGET_OPEN:"+corner)
         if cmb["histories"][corner]["source_P7_history_sha256"] != _bridge_hash(source[corner]):
             raise InputError("CMB matching refers to a different P7 history")
-    return dict(status="RECONSTRUCTED", computed_histories_retained=5,
+    return dict(status="PARTIAL" if accuracy_open else "RECONSTRUCTED", computed_histories_retained=5,
+                unresolved=accuracy_open,
                 distinction="prepared inputs; actual native reads independently verified at P9")
 
 

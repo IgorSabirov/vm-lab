@@ -1,0 +1,286 @@
+[
+  {
+    "_mode": "validation",
+    "atol_relative": 1e-12,
+    "balance_rtol": 1e-06,
+    "duration_H0": 100,
+    "kinetic_species": [
+      {
+        "degeneracy": 1,
+        "initial_occupation": [
+          0.244051594733762,
+          0.14533928298743812,
+          0.07381011362686378,
+          0.03461492186424464,
+          0.01560814565174115,
+          0.00690776815222473,
+          0.0030305660887119668,
+          0.0013240509230810203,
+          0.0005772966080136914,
+          0.00025143972207723595,
+          0.00010944933224586151,
+          4.76253200135783e-05
+        ],
+        "name": "nu_e",
+        "operator": {
+          "kind": "collisionless"
+        },
+        "q_edges_MeV": [
+          0.0,
+          0.4166666666666667,
+          0.8333333333333334,
+          1.25,
+          1.6666666666666667,
+          2.0833333333333335,
+          2.5,
+          2.916666666666667,
+          3.3333333333333335,
+          3.75,
+          4.166666666666667,
+          4.583333333333334,
+          5.0
+        ],
+        "role": "nu_e",
+        "sector": "nu",
+        "source": "nonthermal diagnostic cells",
+        "statistics": "fermion"
+      },
+      {
+        "degeneracy": 1,
+        "initial_occupation": [
+          0.34864513533394575,
+          0.2076275471249116,
+          0.10544301946694827,
+          0.04944988837749235,
+          0.022297350931058786,
+          0.009868240217463901,
+          0.004329380126731381,
+          0.0018915013186871718,
+          0.0008247094400195592,
+          0.00035919960296747997,
+          0.0001563561889226593,
+          6.8036171447969e-05
+        ],
+        "name": "antinu_e",
+        "operator": {
+          "kind": "collisionless"
+        },
+        "q_edges_MeV": [
+          0.0,
+          0.4166666666666667,
+          0.8333333333333334,
+          1.25,
+          1.6666666666666667,
+          2.0833333333333335,
+          2.5,
+          2.916666666666667,
+          3.3333333333333335,
+          3.75,
+          4.166666666666667,
+          4.583333333333334,
+          5.0
+        ],
+        "role": "antinu_e",
+        "sector": "nu",
+        "source": "nonthermal diagnostic cells",
+        "statistics": "fermion"
+      },
+      {
+        "degeneracy": 4,
+        "initial_occupation": [
+          0.4225046348141883,
+          0.3385768156696839,
+          0.255578282372237,
+          0.18572356651489225,
+          0.13120241883774605,
+          0.09077090876548002,
+          0.061861703959214184,
+          0.04171655465095064,
+          0.027927264760702186,
+          0.01860332273763389,
+          0.012350775290463484,
+          0.008181200639834869,
+          0.0054110524199974565,
+          0.0035752387313244703,
+          0.002360651865708281,
+          0.0015579705222007612,
+          0.0010279015381649817,
+          0.0006780346902370735,
+          0.0004471871099476834,
+          0.00029490555002031774,
+          0.0001944670117151318,
+          0.0001282292394349042,
+          8.45497478311213e-05,
+          5.574755234759064e-05
+        ],
+        "name": "mu_tau",
+        "operator": {
+          "kind": "collisionless"
+        },
+        "q_edges_MeV": [
+          0.0,
+          0.20833333333333334,
+          0.4166666666666667,
+          0.625,
+          0.8333333333333334,
+          1.0416666666666667,
+          1.25,
+          1.4583333333333335,
+          1.6666666666666667,
+          1.875,
+          2.0833333333333335,
+          2.291666666666667,
+          2.5,
+          2.7083333333333335,
+          2.916666666666667,
+          3.125,
+          3.3333333333333335,
+          3.541666666666667,
+          3.75,
+          3.9583333333333335,
+          4.166666666666667,
+          4.375,
+          4.583333333333334,
+          4.791666666666667,
+          5.0
+        ],
+        "sector": "nu",
+        "source": "diagnostic four equal mu/tau helicities, no oscillations",
+        "statistics": "fermion"
+      }
+    ],
+    "max_step_H0": 0.2,
+    "neutrino_closure": "momentum_grid",
+    "phase_model": "homogeneous_growth",
+    "recipient_eos": {
+      "free": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      },
+      "gamma": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      },
+      "nu": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      }
+    },
+    "rtol": 1e-09,
+    "samples": 257,
+    "thermal_closure_source": "diagnostic exact thermal reservoirs",
+    "thermal_path": "exchange_during_transition"
+  },
+  {
+    "phases": {
+      "cold": {
+        "T_range_MeV": [
+          0.005,
+          2
+        ],
+        "coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "kind": "pressure_polynomial",
+        "source": "diagnostic bag"
+      },
+      "hot": {
+        "T_range_MeV": [
+          0.005,
+          2
+        ],
+        "coefficients": [
+          -1,
+          0,
+          0,
+          0,
+          2
+        ],
+        "kind": "pressure_polynomial",
+        "source": "diagnostic bag"
+      }
+    },
+    "transitions": [
+      {
+        "T_c_MeV": 1,
+        "cold": "cold",
+        "hot": "hot",
+        "latent_heat_MeV4": 4
+      }
+    ]
+  },
+  {
+    "S3_over_T": [
+      20,
+      20
+    ],
+    "T_MeV": [
+      0.005,
+      1.01
+    ],
+    "prefactor_MeV4": [
+      7.780407614394064e-74,
+      7.780407614394064e-74
+    ],
+    "prefactor_source": "diagnostic rate",
+    "source": "diagnostic rate"
+  },
+  {
+    "T_range_MeV": [
+      0.005,
+      2
+    ],
+    "conductivity_MeV3": 20,
+    "conductivity_source": "diagnostic",
+    "domain_source": "diagnostic",
+    "friction_MeV4": 0.5,
+    "friction_source": "diagnostic",
+    "max_abs_speed": 0.999,
+    "max_relative_temperature_difference": 1,
+    "reference_temperature_MeV": 1
+  },
+  {
+    "source": "diagnostic transfer",
+    "thermal_channels": [
+      {
+        "T_range_MeV": [
+          0.001,
+          2
+        ],
+        "amplitudes": [
+          0,
+          0.31006746980213223,
+          0.21925081052244275
+        ],
+        "coefficient_unit": "MeV^0/s",
+        "id": "em",
+        "kind": "matched_power_law",
+        "phase_weights": {
+          "cold": 1,
+          "hot": 0.1
+        },
+        "power": 4,
+        "recipient": "gamma",
+        "source": "diagnostic independent transfer"
+      }
+    ]
+  },
+  {
+    "T_X_MeV": 1,
+    "T_free_MeV": 0.1,
+    "T_gamma_MeV": 0.5,
+    "eta_b_gamma": 6e-10,
+    "phase_fraction": 0,
+    "scale_factor": 1,
+    "source": "diagnostic initial surface",
+    "surface": "first_cooling_Tc",
+    "time_s": 0
+  }
+]

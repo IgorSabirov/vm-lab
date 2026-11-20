@@ -107,9 +107,19 @@ def validate_history(history):
     for name in ("f_nu_e", "f_antinu_e"):
         if name in h:
             spec = h[name]
-            e = _array(spec.get("energy_MeV"), name + ".energy_MeV", positive=True)
             values = np.asarray(spec.get("values"), dtype=float)
-            if np.any(np.diff(e) <= 0) or values.shape != (n, len(e)) or not np.isfinite(values).all():
+            if "energy_edges_MeV" in spec:
+                if "energy_MeV" in spec:
+                    raise InputError("choose cell edges or node samples, not both spectral representations")
+                e=np.asarray(spec["energy_edges_MeV"],float)
+                if e.ndim==1:e=np.tile(e,(n,1))
+                valid=e.ndim==2 and e.shape[0]==n and e.shape[1]>=2 and np.isfinite(e).all() and np.all(e[:,0]==0) and np.all(np.diff(e,axis=1)>0)
+                expected=(n,e.shape[1]-1) if valid else None
+            else:
+                e = _array(spec.get("energy_MeV"), name + ".energy_MeV", positive=True)
+                valid=np.all(np.diff(e)>0)
+                expected=(n,len(e))
+            if not valid or values.shape != expected or not np.isfinite(values).all():
                 raise InputError(f"{name}: invalid momentum grid or time/momentum shape")
             if np.any(values < 0) or np.any(values > 1):
                 raise InputError(f"{name}: fermion occupation must lie in [0, 1]")
@@ -299,6 +309,9 @@ def run(config, inputs, out):
                 raise OpenInput("a thermal weak-rate closure cannot consume nonthermal spectra")
             from .backends import thermal_weak_rates
             weak = thermal_weak_rates(hist, config.get("thermal_weak", {}))
+        if weak is None and config.get("weak_rates_mode") == "born_spectrum_integrals":
+            from .neutrino_rates import weak_rates_from_history
+            weak = weak_rates_from_history(hist, **config.get("born_weak", {}))
         item = adapt_history(hist, rates, weak, producer="R135 P7 -> P8",
                              created_utc=config.get("created_utc", "2026-11-20T00:00:00Z"),
                              source_commits=config.get("source_commits", {}),
@@ -318,6 +331,9 @@ def run(config, inputs, out):
         if specification.get("perturbation_model", {}).get("kind") == "external_computed_perturbations":
             class_inputs[corner] = external_perturbation_input(histories[corner], specification)
             limitations.append("General X perturbations are supplied as an independently computed, hash-bound spectrum; native equations are not implemented here.")
+        elif specification.get("perturbation_model", {}).get("kind") == "class_ethos_idm_idr":
+            from .perturbations import match_ethos_history
+            class_inputs[corner] = match_ethos_history(histories[corner], specification)
         else:
             class_inputs[corner] = match_class_history(histories[corner], specification)
         class_inputs[corner]["source_P7_history_sha256"] = bridge_hash(histories[corner])
@@ -326,6 +342,8 @@ def run(config, inputs, out):
     write_json(out / "bbn_inputs.json", payload)
     write_json(out / "weak_rates_manifest.json", {"schema": "R135-weak-rate-manifest-v1", "histories": manifest})
     write_json(out / "class_inputs.json", {"schema": "R135-class-inputs-v1", "histories": class_inputs})
+    if config.get("weak_rates_mode")=="born_spectrum_integrals":
+        limitations.append("Computed nonthermal weak rates include all six Born/static-nucleon processes; radiative, recoil and finite-temperature corrections require a separate accuracy budget.")
     return {"software_status": "PASS", "evidence_status": "DIAGNOSTIC" if config.get("_mode") == "validation" else "CONDITIONAL",
             "metrics": {"prepared_histories": len(prepared), "actual_solver_calls": 0},
             "limitations": limitations + ["P8 prepares inputs; actual backend consumption is recorded by P9."]}

@@ -1,5 +1,11 @@
 # P7: сопряжённая история
 
+Нетермальные ячейки и их обратная связь с этой историей описаны в
+[NUMERICS_KINETICS_NEUTRINOS.md](NUMERICS_KINETICS_NEUTRINOS.md);
+геометрическое продолжение — в [NUMERICS_POCKETS.md](NUMERICS_POCKETS.md).
+Область и оставшиеся ограничения всех расширений собраны в
+[EXTENSIONS.md](EXTENSIONS.md).
+
 `r135.history.CoupledModel` использует фактические определения P1/P5/P6.
 Пример [coupled_control.json](examples/coupled_control.json) содержит **явно
 диагностические** коэффициенты. Его можно выполнять только как проверку ПО;

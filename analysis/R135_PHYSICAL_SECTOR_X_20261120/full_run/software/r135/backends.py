@@ -36,14 +36,15 @@ AMU_G = 1.66053906660e-24
 def capabilities():
     """Implementation coverage, deliberately separate from installed backends."""
     return {"implemented": ["time-indexed common-input LINX and PRIMAT kernels", "nonmonotone-temperature histories",
-                            "supplied nonthermal weak rates bound to neutrino spectra", "native thermal weak integrals",
+                            "supplied or computed six-process Born nonthermal weak rates bound to neutrino spectra", "native thermal weak integrals",
                             "all five histories at three precision levels", "actual input-consumption receipts",
                             "lensed native CLASS spectra through ell=2508 in established free-streaming domain",
+                            "history-bound native CLASS ETHOS elastic cold IDM and thermal IDR perturbations",
                             "import of independently computed general-X spectra with execution provenance",
                             "full frozen Planck and joint BBN likelihood", "fixed-cosmology nuisance profiling"],
-            "not_implemented_here": ["general interacting-X Boltzmann perturbation equations",
-                                     "nonthermal nuclear/photodisintegration cascade kernels",
-                                     "weak integrals of arbitrary neutrino spectra without supplied rates"],
+            "not_implemented_here": ["arbitrary interacting-X equations outside the selected ETHOS family",
+                                     "simultaneous thermal BBN/hadronic cascade and fully coupled low-energy heat deposition",
+                                     "precision radiative/recoil/finite-temperature corrections for arbitrary neutrino spectra"],
             "required_model_inputs": ["actual P7 history and initial abundances", "physical weak/nuclear-rate realization",
                                       "CMB perturbation applicability or independently computed spectra",
                                       "propagated theory covariance", "calibrated statistical decision rule"],
@@ -434,7 +435,13 @@ def native_baseline(engine, output):
 def run_class(class_input, source_root, output, *, YHe):
     """Call the pinned CLASS binary for an explicitly established native model."""
     from .observations import validate_class_model
-    doc = validate_class_model(class_input)
+    if class_input.get("perturbation_model",{}).get("kind")=="class_ethos_idm_idr":
+        from .perturbations import validate_ethos_input
+        doc=validate_ethos_input(class_input)
+        actual_model="native CLASS elastic ETHOS IDM-IDR perturbation equations"
+    else:
+        doc = validate_class_model(class_input)
+        actual_model="standard native CLASS free-streaming radiation after matching"
     source = verify_checkout(source_root, PINS["class"])
     binary = Path(source_root).resolve() / "class"
     if not binary.is_file():
@@ -484,7 +491,7 @@ def run_class(class_input, source_root, output, *, YHe):
                "binary_sha256": sha256(binary), "parameters_sha256": sha256(parameter_file),
                "source_P7_history_sha256": class_input.get("source_P7_history_sha256"),
                "spectra_sha256": sha256(out / "spectra.json"), "input": doc, "matching": class_input.get("matching"),
-               "actual_model": "standard native CLASS free-streaming radiation after matching",
+               "actual_model": actual_model,
                "files": {p.name: sha256(p) for p in out.iterdir() if p.is_file()}}
     write_json(out / "receipt.json", receipt)
     return spectra, receipt

@@ -167,13 +167,20 @@ class CoupledModel:
                 raise InputError(f"inconsistent initial-surface aliases: {canonical}/{alias}")
             if canonical not in self.initial and alias in self.initial:
                 self.initial[canonical]=self.initial[alias]
+        kinetic_definitions=config.get("kinetic_species",[])
+        kinetic_nu=any(s.get("sector")=="nu" for s in kinetic_definitions)
         nu=self.initial.get("neutrinos",{})
         if nu:
-            if nu.get("kind")!="thermal":
+            if kinetic_nu:
+                if nu.get("kind")!="momentum_grid" or set(nu)-{"kind","source"}:
+                    raise InputError("kinetic neutrino occupations are specified in kinetic_species; conflicting initial spectra/temperatures are forbidden")
+            elif nu.get("kind")!="thermal":
                 raise OpenInput("thermal P7 closure cannot replace a supplied nonthermal initial spectrum")
-            if "T_nu_MeV" in self.initial and self.initial["T_nu_MeV"]!=nu["T_MeV"]:
+            if nu.get("kind")=="thermal" and "T_nu_MeV" in self.initial and self.initial["T_nu_MeV"]!=nu["T_MeV"]:
                 raise InputError("conflicting initial neutrino temperatures")
-            self.initial["T_nu_MeV"]=nu["T_MeV"]
+            if nu.get("kind")=="thermal":self.initial["T_nu_MeV"]=nu["T_MeV"]
+        if kinetic_nu and "T_nu_MeV" in self.initial:
+            raise InputError("a resolved neutrino sector must not also prescribe a thermal T_nu initial condition")
         if "phase_fraction" not in self.initial and self.initial.get("phase") in {"hot","cold"}:
             self.initial["phase_fraction"]=float(self.initial["phase"]=="cold")
         self.tc = self.eos.Tc_MeV
@@ -182,12 +189,21 @@ class CoupledModel:
             raise InputError("P7 requires a named thermal path")
         if config.get("phase_model") != "homogeneous_growth":
             raise OpenInput("P7 requires a validated phase kernel; implemented branch is homogeneous_growth")
-        if config.get("neutrino_closure") != "thermal":
+        if config.get("neutrino_closure") not in {"thermal","momentum_grid"}:
             raise OpenInput("a nonthermal neutrino closure requires a supplied kinetic solver, not Tnu alone")
         if not config.get("thermal_closure_source"):
             raise OpenInput("thermal neutrino approximation needs an applicability source")
         self.baths = {s: BathEOS(config["recipient_eos"][s]) for s in SECTORS[1:4]}
         self.relic = config.get("relic")
+        from .kinetic_history import KineticCollection
+        self.kinetic=KineticCollection(kinetic_definitions,offset=NSTATE,a0=self.initial.get("scale_factor",1))
+        self.nstate=self.kinetic.size
+        if ("nu" in self.kinetic.sectors)!=(config.get("neutrino_closure")=="momentum_grid"):
+            raise InputError("momentum_grid closure and resolved nu species must be selected together")
+        if self.relic and "relic" in self.kinetic.sectors:
+            raise InputError("a relic cannot be represented by both MB moments and momentum cells")
+        if any(c["recipient"] in self.kinetic.sectors for c in self.collision.channels):
+            raise OpenInput("thermal transfer cannot heat a kinetic species; supply its momentum collision operator")
         if self.relic:
             require_source(self.relic, "relic evolution")
             if self.relic.get("excluded_from_phase_eos") is not True:
@@ -203,6 +219,8 @@ class CoupledModel:
             self.decay_rate = table[0]["total_width_MeV"]/HBAR_MEV_S
             self.branches = {s: sum(x["branching_fraction"] for x in table if x["recipient"] == s)
                              for s in SECTORS[1:4]}
+            if any(self.branches.get(s,0)>0 for s in self.kinetic.sectors):
+                raise OpenInput("thermal relic decay moments cannot replace kinetic daughter source spectra")
             if self.decay_rate and abs(sum(self.branches.values())-1) > 1e-12:
                 raise OpenInput("all open relic decay channels must have supported recipients")
             if self.decay_rate and self.relic.get("instant_thermalization") is not True:
@@ -247,10 +265,11 @@ class CoupledModel:
             if self.path=="isolated_during_transition" and (activation is None or self.isolation_end_s is None or self.decay_activation_s<self.isolation_end_s):
                 raise OpenInput("nonzero relic decay is incompatible with exact isolation; specify a sourced late activation after the isolation interval")
         self.eta = finite(self.initial["eta_b_gamma"], "initial baryon photon ratio", positive=True)
-        self.y0 = np.zeros(NSTATE)
+        self.y0 = self.kinetic.initialize(np.zeros(self.nstate))
         self.y0[1] = finite(self.initial["T_X_MeV"], "initial X temperature", positive=True)
         for i, s in enumerate(SECTORS[1:4], start=2):
-            self.y0[i] = self.baths[s].density(finite(self.initial["T_"+s+"_MeV"], s+" temperature", nonnegative=True))
+            if s not in self.kinetic.sectors:
+                self.y0[i] = self.baths[s].density(finite(self.initial["T_"+s+"_MeV"], s+" temperature", nonnegative=True))
         self.surface = self.initial.get("surface")
         if self.surface not in {"first_cooling_Tc", "postconfinement"}:
             raise OpenInput("initial history must identify a first-cooling or postconfinement surface")
@@ -265,20 +284,21 @@ class CoupledModel:
             tr = finite(self.initial.get("relic_T_MeV", 0), "initial relic temperature", nonnegative=True)
             self.y0[6] = self.y0[5]*(self.mass if self.dust else relic_energy_per_particle(tr, self.mass))
         rho_x = self.eos.mixture(self.y0[1], self.f0)["rho_MeV4"]
-        total = rho_x+sum(self.y0[2:5])+self.y0[6]
+        kinetic_rho,_,_=self.kinetic.moments(self.y0,self.a0)
+        total = rho_x+sum(self.y0[2:5])+self.y0[6]+kinetic_rho.sum()
         if total <= 0:
             raise InputError("nonpositive total initial energy density")
         self.H0 = math.sqrt(8*np.pi*G_NEWTON_MEV_MINUS2*total/3)/HBAR_MEV_S
         self.L = self.eos.at(self.tc, "hot")["rho_MeV4"]-self.eos.at(self.tc, "cold")["rho_MeV4"]
         if self.L <= 0:
             raise InputError("positive hot-to-cold latent heat required")
-        self.initial_energy = np.array([rho_x, *self.y0[2:5], self.y0[6]])*self.a0**3
+        self.initial_energy = (np.array([rho_x, *self.y0[2:5], self.y0[6]])+kinetic_rho)*self.a0**3
         self.initial_density=self.initial_energy/self.a0**3
         self.n_b0 = self.eta*2*zeta(3)/np.pi**2*self.initial["T_gamma_MeV"]**3/HBARC_MEV_CM**3
 
     def evaluate(self, tau, y, corner):
         y=np.asarray(y,float)
-        if y.shape!=(NSTATE,) or not np.all(np.isfinite(y)):
+        if y.shape!=(self.nstate,) or not np.all(np.isfinite(y)):
             raise InputError("nonfinite or malformed coupled state")
         if np.any(y[2:7]<0):
             raise InputError("recipient/relic state became negative; refine the solver or input model")
@@ -301,6 +321,12 @@ class CoupledModel:
         tr, pr, dilation = relic_state(max(y[5], 0), max(y[6], 0), self.mass, dust=self.dust) if self.relic else (0., 0., 1.)
         rho = np.array([x["rho_MeV4"], *y[2:5], y[6]])
         pressure = np.array([x["p_MeV4"], *[ps[s] for s in SECTORS[1:4]], pr])
+        kinetic_rho,kinetic_pressure,kinetic_records=self.kinetic.moments(y,a)
+        rho+=kinetic_rho;pressure+=kinetic_pressure
+        # These temperatures are energy-equivalent diagnostics only. Thermal
+        # transfer to these sectors was rejected above; weak rates use f(q).
+        for s in self.kinetic.sectors & {"nu","free"}:
+            ts[s]=self.baths[s].at_density(rho[SECTORS.index(s)])[0]
         if rho.sum() <= 0:
             raise InputError("nonpositive total density")
         hubble = math.sqrt(8*np.pi*G_NEWTON_MEV_MINUS2*rho.sum()/3)/HBAR_MEV_S
@@ -332,6 +358,8 @@ class CoupledModel:
         fdot_tau = old*4*np.pi*max(y[9], 0)*v/(a/self.a0)
         fdot = fdot_tau*self.H0
         qarray = np.array([q[s] for s in SECTORS[:4]]+[0.])
+        kinetic_derivative,kinetic_q=self.kinetic.rhs(physical_time,y,a,{"X":tx,"gamma":ts["gamma"]},corner,isolated=isolated)
+        qarray+=kinetic_q
         ndot = 0.
         inverse_neglected_bound_fraction=0.
         if self.relic:
@@ -381,12 +409,16 @@ class CoupledModel:
             raise RuntimeError("coupled sources violate sum Q=0")
         if not x.get("phase_derivative_available",True) and fdot!=0:
             raise OpenInput("phase conversion requires both EOS branches at the current temperature")
-        derivative = np.zeros(NSTATE)
+        derivative = kinetic_derivative
         derivative[0] = hubble/self.H0
         derivative[1] = (-3*hubble*(rho[0]+pressure[0])+qarray[0]-x["drho_df_MeV4"]*fdot)/x["cv_MeV3"]/self.H0
         derivative[2:5] = (-3*hubble*(rho[1:4]+pressure[1:4])+qarray[1:4])/self.H0
+        for s in self.kinetic.sectors & {"nu","free"}:
+            derivative[SECTORS.index(s)+1]=0.
         derivative[5] = ndot/self.H0
         derivative[6] = (-3*hubble*(rho[4]+pressure[4])+qarray[4])/self.H0
+        if "relic" in self.kinetic.sectors:derivative[6]=0.
+        derivative[NSTATE:]/=self.H0
         derivative[7] = gamma_bar*(a/self.a0)**3
         derivative[8] = v/(a/self.a0)*y[7]
         derivative[9] = 2*v/(a/self.a0)*y[8]
@@ -401,6 +433,7 @@ class CoupledModel:
             "nucleation_rate_MeV4":gamma_bar*(self.H0*HBAR_MEV_S)**4,
             "wall_temperature_MeV": front,
             "wall_speed": v, "rho": rho, "pressure": pressure, "Q": qarray,
+            "kinetic_species":kinetic_records,
             "f_dot_s_inv": fdot, "relic_T_MeV": tr,
             "old_volume_log_growth_s_inv":(3*hubble-4*np.pi*max(y[9],0)*v/(a/self.a0)*self.H0) if self.f0<1 else None,
             "isolation_active":isolated,
@@ -435,9 +468,9 @@ class CoupledModel:
             last_tau, y = cp["tau"], np.asarray(cp["state"], float)
             saved_t, saved_y = cp["sample_tau"], cp["sample_states"]
             crossings=cp.get("Tc_crossings",[])
-            if cp.get("schema")!="R135-history-checkpoint-v2" or len(saved_t)!=len(saved_y) or not saved_t or saved_t[0]!=0 or np.any(np.diff(saved_t)<=0) or saved_t[-1]>last_tau or np.asarray(saved_y).shape!=(len(saved_t),NSTATE) or not np.all(np.isfinite(saved_y)):
+            if cp.get("schema")!="R135-history-checkpoint-v2" or len(saved_t)!=len(saved_y) or not saved_t or saved_t[0]!=0 or np.any(np.diff(saved_t)<=0) or saved_t[-1]>last_tau or np.asarray(saved_y).shape!=(len(saved_t),self.nstate) or not np.all(np.isfinite(saved_y)):
                 raise InputError("invalid checkpoint trajectory")
-            if y.shape != (NSTATE,) or not np.isfinite(y).all() or last_tau not in intervals:
+            if y.shape != (self.nstate,) or not np.isfinite(y).all() or last_tau not in intervals:
                 raise InputError("invalid history checkpoint state/boundary")
         if self.surface == "first_cooling_Tc" and self.evaluate(0., self.y0, corner)[0][1] >= 0:
             raise InputError("registered initial surface is not a cooling crossing of Tc")
@@ -449,7 +482,7 @@ class CoupledModel:
         atol = finite(self.config.get("atol_relative", 1e-10), "absolute relative tolerance", positive=True)*scale
         if "atol_state" in self.config:
             atol=np.asarray(self.config["atol_state"],float)
-            if atol.shape!=(NSTATE,) or not np.all(np.isfinite(atol)) or np.any(atol<=0):
+            if atol.shape!=(self.nstate,) or not np.all(np.isfinite(atol)) or np.any(atol<=0):
                 raise InputError("atol_state must give a positive finite tolerance per coupled coordinate")
         rtol = finite(self.config.get("rtol", 1e-7), "relative tolerance", positive=True)
         def crossing(t,state): return state[1]-self.tc
@@ -480,6 +513,7 @@ class CoupledModel:
         records = []
         for tau, state in zip(saved_t, saved_y):
             state = np.asarray(state)
+            self.kinetic.validate_accepted(state)
             _, row = self.evaluate(tau, state, corner)
             row.update(time_s=self.t0+tau/self.H0, tau_H0=tau, corner=corner,
                        comoving_energy_sources_MeV4=state[ENERGY].tolist(),
@@ -495,7 +529,9 @@ class CoupledModel:
             "a0": self.a0,"initial_phase_fraction":self.f0, "latent_heat_MeV4": self.L, "initial_energy_MeV4": self.initial_energy.tolist(),
             "onset_definition": self.surface, "input_sha256": digest,"Tc_crossings":crossings,
             "solver": {"method":self.config.get("method","DOP853"),"rtol":rtol,"atol_state":atol.tolist()},
-            "pocket_geometry_status":"OPEN_INPUT",
+            "pocket_geometry_status":"SELECTED_GEOMETRY_PENDING" if self.config.get("pocket_geometry") else "OPEN_INPUT",
+            "kinetic_species_count":len(self.kinetic.species),
+            "nonthermal_sectors":sorted(self.kinetic.sectors),
             "isolation_model":{"path":self.path,"end_time_s":self.isolation_end_s,"decay_activation_s":self.decay_activation_s,
                                "continuous_portals_disabled_for_full_history":self.path=="isolated_during_transition" and self.isolation_end_s is None}}
 
@@ -541,7 +577,15 @@ def _payload(records):
     hist["rho_extra_MeV4"] = [float(r["rho"][[0, 3, 4]].sum()) for r in records]
     hist["p_extra_MeV4"] = [float(r["pressure"][[0, 3, 4]].sum()) for r in records]
     hist["Q_MeV4_s"] = {s: [float(r["Q"][i]) for r in records] for i, s in enumerate(SECTORS)}
-    hist["neutrino_closure"] = "thermal"
+    from .kinetic_history import spectra_from_records
+    spectra=spectra_from_records(records)
+    hist.update(spectra)
+    hist["neutrino_closure"] = "momentum_grid" if spectra else "thermal"
+    if spectra:
+        hist["T_nu_energy_equivalent_MeV"]=hist.pop("T_nu_MeV")
+    if any(r.get("kinetic_species") for r in records):
+        hist["kinetic_species"]=[r["kinetic_species"] for r in records]
+        hist["kinetic_temperature_interpretation"]="energy-equivalent diagnostics; use the saved occupations"
     return hist
 
 
@@ -671,6 +715,11 @@ def run(config, inputs, out):
     for corner in CORNERS:
         checkpoint = out / f"checkpoint_{corner}.json"
         records, meta = model.solve(corner, checkpoint=checkpoint, resume=inputs.get(f"checkpoint_{corner}"))
+        if config.get("pocket_geometry"):
+            from .pockets import geometry_from_p7
+            geometry=geometry_from_p7(records,config["pocket_geometry"])
+            write_json(out/f"pocket_geometry_{corner}.json",geometry)
+            meta["pocket_geometry_status"]="CONDITIONAL_GEOMETRY_COMPUTED_SURFACE_FEEDBACK_OPEN"
         payload[corner] = _payload(records)
         summary = summarize(records, meta)
         summary.update(meta)
@@ -718,7 +767,7 @@ def run(config, inputs, out):
     return {"software_status": "FAIL" if failed else "PASS", "evidence_status": "CONDITIONAL",
         "metrics": {"independent_histories": len(payload), "H0_s_inv": model.H0,
                     "max_sector_balance": max(b["max_relative_sector_balance"] for b in balances.values())},
-        "limitations": ["No pocket radius distribution follows from volume survival alone",
-            "Implemented closure assumes homogeneous bubble growth and locally thermal recipients",
+        "limitations": ["Selected pocket geometry uses the actual nucleation/growth history; trapped-particle dynamics needs its own physical closure",
+            "Bulk X uses a thermal phase EOS; selected kinetic nu/free/relic species use explicit momentum operators and reciprocal bath sources",
             "Completion confidence requires physical input uncertainty propagation",
             "BBN/CMB adapters separately require adequate temperature and late-time coverage"]}

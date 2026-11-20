@@ -34,6 +34,9 @@ def source_inventory() -> dict:
     paths += list((HERE / "planck_pr3").glob("*.py"))
     paths += [HERE / "r135_stage.py"] if (HERE / "r135_stage.py").exists() else []
     paths += [HERE / "register_inputs.json", HERE.parent / "PLAN.json"]
+    paths += list(HERE.glob("*_sources.lock.json"))
+    paths += [p for p in (HERE/"cascade_requirements.lock",HERE/"neutrino_reference/sources.json",
+                          HERE/"perturbations_reference/SOURCES.lock.json") if p.is_file()]
     paths += list((HERE / "planck_pr3").glob("*.json")) + list((HERE / "planck_pr3").glob("*.lock"))
     paths += list((HERE / "xb_reference").glob("*.json"))
     paths += [HERE.parent.parent / "run_design" / name for name in

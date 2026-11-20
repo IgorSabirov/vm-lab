@@ -80,13 +80,19 @@
       "a^4 source and trace balance",
       "explicit uncertainty samples and preserved failed draws",
       "postconfinement event censoring",
-      "sourced isolation intervals without numerical phase switch"
+      "sourced isolation intervals without numerical phase switch",
+      "momentum-cell nu/free/relic distributions with FD/BE/MB statistics",
+      "exact collision-energy transfer to thermal reservoirs and kinetic rho/P in Friedmann",
+      "lossless time-dependent neutrino momentum-cell outputs",
+      "optional geometry from actual corner nucleation/a/v history"
     ],
     "P8": [
       "physical-time weak-rate handoff including reheating",
       "hashed neutrino spectra and rates",
       "canonical common-input BBN preparation",
-      "late history matching for native CLASS or external computed spectra"
+      "late history matching for native CLASS or external computed spectra",
+      "six-process Born weak integrals for arbitrary neutrino/antineutrino spectra",
+      "history-derived ETHOS IDM-IDR density and momentum-opacity matching"
     ],
     "P9": [
       "30 native BBN integrations with three refinements",
@@ -95,35 +101,42 @@
       "hash-bound external calculated Cl import",
       "full Planck PR3 and nuisance profile",
       "BBN correlated likelihood and calibrated decision interface",
-      "two-or-three CLASS accuracy refinements and delta logL gate"
+      "two-or-three CLASS accuracy refinements and delta logL gate",
+      "native CLASS elastic ETHOS fluid or radiation hierarchy with domain guards"
     ],
     "P10": [
       "independent raw-number reconstruction",
       "complete registered key matrix",
       "hash and source audit",
       "scoped machine-checked necessary-condition witness"
+    ],
+    "separate_conditional_extensions": [
+      "pinned ACROPOLIS gamma/electron/positron cascade and 17 photoreaction rates",
+      "time-ordered post-BBN nine-isotope evolution with actual P7 background handoff",
+      "Poisson/periodic old-phase connected components and projected radius distribution",
+      "spherical trapped-radiation pocket pressure/cooling dynamics with energy ledger"
     ]
   },
   "additional_implementation_for_other_physical_modes": [
     {
-      "item": "nonthermal coupled distributions",
-      "reason": "The current P7 closure evolves thermal recipients. Nonthermal spectra can be imported and checked at P8, but a selected model still needs its full momentum-dependent coupled kinetic operator."
+      "item": "model-specific complete kinetic collision operators",
+      "reason": "Momentum evolution and reciprocal bath sources now run. The X amplitudes and derived multidimensional kernels, neutrino flavour density matrices/oscillations, number-changing glueball collisions and possible condensates are not inferred from supplied cell rates."
     },
     {
-      "item": "electromagnetic/hadronic cascade and photodisintegration sources",
-      "reason": "Native thermal small-network adapters reject these terms until a concrete cascade/network kernel is supplied and implemented."
+      "item": "hadronic cascades and fully coupled thermal deposition",
+      "reason": "The pinned electromagnetic/photodisintegration solver is implemented for perturbative post-BBN injections. Simultaneous hadronic cascade+thermal BBN, meson conversion and low-energy heat/CMB deposition are not complete. The 2026 hadronic calculation is not a publicly reproducible solver; old donor alpha is not substituted."
     },
     {
-      "item": "general interacting X perturbations",
-      "reason": "The native CLASS branch has a checked free-streaming-radiation matching domain. Other equations require a pinned implementation; P9 accepts its computed spectra with provenance but does not derive those equations."
+      "item": "arbitrary-spectrum precision weak corrections",
+      "reason": "All six Born/static-nucleon processes now run and agree with independent LINX Born quadrature. Radiative, finite-nucleon-mass, weak-magnetism and thermal/QED corrections for arbitrary spectra remain open; the audit cannot count these Born histories as precision-complete."
     },
     {
-      "item": "self-consistent old-pocket geometry",
-      "reason": "Homogeneous phase survival gives volume fraction, not a unique pocket-radius distribution. A geometry closure must be specified and verified before using pocket surfaces as dynamical sources."
+      "item": "interacting X outside elastic ETHOS IDM-IDR",
+      "reason": "A genuine pinned CLASS interacting family now runs with history-derived parameters. Decays/production, perturbed energy transfer, nonthermal or semirelativistic components, isocurvature and transition stress require further equations; pure confined SU3 is not automatically cold IDM plus massless IDR."
     },
     {
-      "item": "arbitrary-neutrino-spectrum weak-rate integrals",
-      "reason": "The native pointwise generator computes thermal rates in an explicit domain. Nonthermal spectra require independently computed bound weak-rate tables; arbitrary spectra are not silently thermalized."
+      "item": "global feedback of pocket population and surfaces",
+      "reason": "Actual-history geometry and a pressure/cooling spherical pocket closure are implemented separately. Their simultaneous embedding into P7 with model-specific trapping, surface transport, emission spectra and no double-counted latent heat remains open."
     }
   ],
   "physical_inputs_not_inferred_by_software": [
@@ -134,5 +147,6 @@
     "portal amplitudes, relic spectrum, channels and thermalization domain",
     "frozen physical uncertainty distributions and calibrated statistical exclusion thresholds"
   ],
-  "completion_rule": "A passing numerical test, conditional benchmark or a green CI result is not completion of the full physical R135 project. Missing inputs and unsupported models remain explicit."
+  "completion_rule": "A passing numerical test, conditional benchmark or a green CI result is not completion of the full physical R135 project. Missing inputs and unsupported models remain explicit.",
+  "extension_revision": "literature_supported_nonthermal_cascades_ethos_pockets"
 }
