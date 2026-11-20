@@ -89,3 +89,5 @@ python analysis/BH1_SU3_RELAXATION_GATE_20261120/verify.py
 \`\`\`
 
 Machine results are in [CHECKS.json](CHECKS.json).
+
+[R135. Gate D, равновесный контроль и раздельный учёт передачи](../R135_PHYSICAL_SECTOR_X_20261120/REPORT.md#thermal).

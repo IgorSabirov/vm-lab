@@ -60,3 +60,5 @@ python analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py --demo strings-demo -
 ## Что потребовалось бы для BBN
 
 Дилатонный сценарий Dreyer–Martins использует PRyMordial и базы PRIMAT/NACRE II. Для независимого выхода из R134 нужен закон изменения параметров или космологическая численность и распад конкретного реликта. Вариант позднего фоторасщепления требует передать из BBN состав и его ковариацию с согласованными видами ядер и эпохой. [Проверенные применения](../NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md) · [CosmoBit, AlterBBN и ACROPOLIS](../NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics).
+
+[R135. Совместный отклик двух голономий](../R135_PHYSICAL_SECTOR_X_20261120/REPORT.md#operations).

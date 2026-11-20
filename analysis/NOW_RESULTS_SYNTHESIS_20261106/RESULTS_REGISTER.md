@@ -4044,7 +4044,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 |---|---|---|
 | [BH1_THERMODYNAMICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bh1_thermodynamics) | EXISTING_REDUCED_CONTRACT | `external:ANTHROPIC_HP` (conceptual_parent_not_derivation) |
 | [R130_PHYSICAL_EMBEDDING](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#r130_physical_embedding) | OPEN | `result:R130` (conceptual_parent_not_derivation); `component:BH1_THERMODYNAMICS` (conceptual_parent_not_derivation); `construct:C042` (context_not_evidence); `result:R131` (methodological_parent_not_physical_evidence); `result:R132` (methodological_parent_not_physical_evidence) |
-| [X_MICROPHYSICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics) | UNDEFINED | `component:R130_PHYSICAL_EMBEDDING` (conceptual_parent_not_derivation) |
+| [X_MICROPHYSICS](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics) | UNDEFINED | `component:R130_PHYSICAL_EMBEDDING` (conceptual_parent_not_derivation); `result:R135` (methodological_parent_not_physical_evidence) |
 | [COSMOLOGICAL_BACKGROUND](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency) |
 | [NEUTRINO_KINETIC_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#neutrino_kinetic_bridge) | CONTRACT_DRAFT | `component:X_MICROPHYSICS` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency); `external:NUDSMC` (implementation_candidate_not_execution); `external:NUDEC_BSM_V2` (implementation_candidate_not_execution); `external:FORTEPIANO_QKE` (implementation_candidate_not_execution) |
 | [WEAK_RATE_BRIDGE](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#weak_rate_bridge) | CONTRACT_DRAFT | `component:NEUTRINO_KINETIC_BRIDGE` (input_contract_dependency); `component:COSMOLOGICAL_BACKGROUND` (input_contract_dependency) |
@@ -4219,3 +4219,25 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R134 -->
+
+<!-- generated:R135 -->
+<a id="r135"></a>
+
+### R135. Физический сектор X и многоконтурная различимость
+
+**Статус:** КОНЕЧНЫЕ ТОЖДЕСТВА И СВИДЕТЕЛИ ПРОВЕРЕНЫ · ФИЗИЧЕСКАЯ ИДЕНТИФИКАЦИЯ И GATE D ОТКРЫТЫ
+
+**Результат.** На зеркальной паре длины 8 направленный четырёхточечный счётчик M− даёт +1 и −1. На паре длины 24 при равенстве всех трёхточечных данных чётный M+ даёт 4 и 2. Однопетельный знак и двухточечная циркуляция недостаточны. Для чистой SU(3) найден независимый метод назначения локальных центровых секторов.
+
+**Условия.** Входные слова и именованный шаг R130, циклические проекторы и ориентированный сдвиг R132, фиксированные голономии и решёточная термодинамика чистой SU(3).
+
+**Граница.** Независимая физическая подготовка YM-состояний, энергия и реальное время X, завершение фазового перехода и портальные источники остаются открытыми. Равновесная длительность 0.96667 H₀⁻¹ относится к изолированной обратимой смешанной фазе во внешнем радиационном фоне.
+
+**Место в рамке.** Сверить, какие свойства внутреннего порядка переживают смену представления и достаточны для прогноза. Закрытие физической модели требует независимого фазового и космологического отклика.
+
+**Родители:** R130, R131, R132, R133, R134. **Конструкции:** C037. **Вопросы:** U006.
+
+**Источники:** [REPORT.md](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md); [verify.py](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py); [CHECKS.json](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R135 -->
