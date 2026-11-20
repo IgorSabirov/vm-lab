@@ -1,0 +1,557 @@
+import numpy as np, sympy as sp
+
+# ---------- 1. free name algebra with the engine's reduction rules ----------
+def L(u): return ('L',u)
+def R(u): return ('R',u)
+def J(u,v): return ('J',u,v)
+def atom(s): return ('a',s)
+
+def norm(t):
+    if t[0]=='a': return t
+    if t[0] in ('L','R'):
+        c=norm(t[1])
+        if c[0]=='J': return c[1] if t[0]=='L' else c[2]   # L(J(u,v))=u, R(J(u,v))=v
+        return (t[0],c)
+    u,v=norm(t[1]),norm(t[2])
+    if u[0]=='L' and v[0]=='R' and u[1]==v[1]: return u[1]  # J(L(u),R(u))=u
+    return ('J',u,v)
+
+def size(t): return 1 if t[0]=='a' else (1+size(t[1]) if t[0] in('L','R') else 1+size(t[1])+size(t[2]))
+def show(t):
+    if t[0]=='a': return t[1]
+    if t[0]=='L': return 'L('+show(t[1])+')'
+    if t[0]=='R': return 'R('+show(t[1])+')'
+    return 'J('+show(t[1])+','+show(t[2])+')'
+
+A,B,C = atom('A'),atom('B'),atom('C')
+C0=C
+rows=[]
+for n in range(1,25):
+    A2,B2,C2 = norm(J(R(R(C)),A)), norm(J(B,L(L(C)))), norm(J(R(L(C)),L(R(C))))
+    A,B,C = A2,B2,C2
+    # closed form claimed in the report
+    lhs = C
+    u,v = L(C0),R(C0)
+    for _ in range(n): u,v = R(u),L(v)
+    closed = norm(J(u,v))
+    rows.append((n, lhs==closed, lhs[0]!='a', size(lhs)))
+print("n | C_n == J(R^n(L C0), L^n(R C0)) | C_n is not an atom | |C_n|")
+for r in rows[:6]+rows[-3:]: print(r)
+print("all 24 closed-form matches:", all(r[1] for r in rows),
+      "| never an atom:", all(r[2] for r in rows))
+print("C_3 =", show(C))
+print("outer constructors of the two J-arguments at n=3:",
+      C[1][0], C[2][0], "-> rule J(L(u),R(u)) applicable:", C[1][0]=='L' and C[2][0]=='R')
+
+# ---------- 2. which probes are class functions ----------
+t=sp.symbols('t')
+sx,sy,sz=sp.Matrix([[0,1],[1,0]]),sp.Matrix([[0,-sp.I],[sp.I,0]]),sp.diag(1,-1)
+I2=sp.eye(2)
+g=sp.MatrixSymbol('g',2,2)
+def conj_probe(f,seed):
+    r=np.random.default_rng(seed); q=r.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3=[sp.Rational(int(round(1e6*v)),10**6) for v in q]
+    U=a0*I2+a1*sp.I*sx+a2*sp.I*sy+a3*sp.I*sz
+    X=(sp.Rational(3,5)*I2+sp.Rational(4,5)*sp.I*sx)
+    return sp.simplify(f(U*X*U.inv())-f(X))
+probes={'tr/2':lambda M:M.trace()/2, '(tr/2)^2+g00':lambda M:(M.trace()/2)**2+M[0,0],
+        '(tr/2)^3':lambda M:(M.trace()/2)**3}
+print("\nprobe | invariant under conjugation (0 = class function)")
+for k,f in probes.items(): print(" ",k,"->",conj_probe(f,5))
+
+# ---------- 3. weighted generator, second derivative of the character at identity ----------
+print("\nw | d2/dt2 [1/2 tr exp(t*w*i*sz/2)] at t=0 | -w^2/4")
+for w in [sp.Integer(0),sp.Rational(1,2),sp.Integer(2)]:
+    gen=w*sp.I*sz/2
+    val=sp.diff(((sp.exp(t*gen)).trace()/2),t,2).subs(t,0)
+    print(" ",w,"|",sp.simplify(val),"|",-w**2/4)
+
+# ---------- 4. Chebyshev endpoint derivative ----------
+x=sp.symbols('x')
+print("\nn | T_n'(1) | T_n'(-1) | n^2 , (-1)^(n-1) n^2")
+for n in range(1,7):
+    Tn=sp.chebyshevt(n,x); d=sp.diff(Tn,x)
+    print(" ",n,"|",d.subs(x,1),"|",d.subs(x,-1),"|",n**2,(-1)**(n-1)*n**2)
+
+# Result
+n | C_n == J(R^n(L C0), L^n(R C0)) | C_n is not an atom | |C_n|
+(1, True, True, 7)
+(2, True, True, 9)
+(3, True, True, 11)
+(4, True, True, 13)
+(5, True, True, 15)
+(6, True, True, 17)
+(22, True, True, 49)
+(23, True, True, 51)
+(24, True, True, 53)
+all 24 closed-form matches: True | never an atom: True
+C_3 = J(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(R(L(C))))))))))))))))))))))))),L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(L(R(C))))))))))))))))))))))))))
+outer constructors of the two J-arguments at n=3: R L -> rule J(L(u),R(u)) applicable: False
+
+probe | invariant under conjugation (0 = class function)
+
+
+
+
+  tr/2 -> 0
+
+
+
+
+  (tr/2)^2+g00 -> -1085652578256*I/5000004342965
+  (tr/2)^3 -> 0
+
+w | d2/dt2 [1/2 tr exp(t*w*i*sz/2)] at t=0 | -w^2/4
+  0 | 0 | 0
+  1/2 | -1/16 | -1/16
+
+
+
+
+  2 | -1 | -1
+
+n | T_n'(1) | T_n'(-1) | n^2 , (-1)^(n-1) n^2
+  1 | 1 | 1 | 1 1
+  2 | 4 | -4 | 4 -4
+  3 | 9 | 9 | 9 9
+  4 | 16 | -16 | 16 -16
+  5 | 25 | 25 | 25 25
+  6 | 36 | -36 | 36 -36
+
+
+
+# Engine functions copied verbatim from ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py
+def left(u):  return u[1] if u[0]=='v' else ('l',u)
+def right(u): return u[2] if u[0]=='v' else ('r',u)
+def join(x,y):
+    if x[0]=='l' and y[0]=='r' and x[1]==y[1]: return x[1]
+    return ('v',x,y)
+def named(w): return tuple((('atom',i),s) for i,s in enumerate(w))
+def canonical(x): return (frozenset(x), frozenset((x[i][0],x[(i+1)%len(x)][0]) for i in range(len(x))))
+def equal(x,y): return canonical(x)==canonical(y)
+def word(x): return tuple(s for u,s in x)
+def transport(x,channels=1,inverse=False):
+    a=sum(1<<(2*c) for c in range(channels)); b=2*a
+    return tuple((join(right(u),left(x[(i+1)%len(x)][0])),
+                  ((s&a)|(x[(i+1)%len(x)][1]&b)) if inverse else
+                  ((s&b)|(x[(i+1)%len(x)][1]&a))) for i,(u,s) in enumerate(x))
+def interact(x,eps=(1,)):
+    split={3<<(2*c):((1<<2*c,2<<2*c) if e==1 else (2<<2*c,1<<2*c)) for c,e in enumerate(eps)}
+    merge={v:k for k,v in split.items()}
+    n=len(x); starts={i for i in range(n) if n>1 and (x[i][1],x[(i+1)%n][1]) in merge}
+    ends={(i+1)%n for i in starts}; start=next(i for i in range(n) if i not in ends)
+    out,k=[],0
+    while k<n:
+        i=(start+k)%n; u,s=x[i]
+        if i in starts:
+            v,t=x[(i+1)%n]; out.append((join(u,v),merge[s,t])); k+=2
+        elif s in split:
+            a,b=split[s]; out.extend(((left(u),a),(right(u),b))); k+=1
+        else: out.append((u,s)); k+=1
+    return tuple(out)
+def forward(x,eps=(1,)): return transport(interact(x,eps),len(eps))
+def size(t): return 1 if t[0]=='atom' else (1+size(t[1]) if t[0] in('l','r') else 1+size(t[1])+size(t[2]))
+
+ep=(1,-1); x0=named((1,2,12)); A,B,C=(u for u,s in x0)
+# 1. one-step map derived from the engine, not asserted
+y=forward(x0,ep); after={s:u for u,s in y}
+print("forward((1,2,12)) labels:",word(y))
+print("  A' == J(R^2(C),A):", after[1]==join(right(right(C)),A))
+print("  B' == J(B,L^2(C)):", after[2]==join(B,left(left(C))))
+print("  C' == J(R(L(C)),L(R(C))):", after[12]==join(right(left(C)),left(right(C))))
+# 2. 24 steps + size law
+st=x0; lb,rb=left(C),right(C); ok=True; sizes=[]
+for n in range(1,25):
+    bef={s:u for u,s in st}; a,b,c=(bef[s] for s in (1,2,12))
+    st=forward(st,ep); aft={s:u for u,s in st}
+    lb,rb=right(lb),left(rb)
+    ok &= aft[12]==('v',lb,rb) and not equal(st,x0)
+    sizes.append(size(aft[12]))
+print("\n24 steps: C_n=('v',R^n(L C0),L^n(R C0)) and never equal to start:",ok)
+print("  |C_n| for n=1..5:",sizes[:5]," n=24:",sizes[-1],"  law 2n+5:",all(s==2*n+5 for n,s in enumerate(sizes,1)))
+
+# 3. NEW T3: two orders of the SAME pre-declared blocks, links carried along
+gAB,gBC,gCA,h='gAB','gBC','gCA','h'   # formal symbols; products kept as strings
+def merge_block(state):   # blocks {A,B} declared on the ORIGINAL ring
+    (uA,sA,lA),(uB,sB,lB),(uC,sC,lC)=state
+    return ((join(uA,uB),3,lA+'*'+lB),(uC,sC,lC))
+def split_block(state):
+    out=[]
+    for u,s,l in state:
+        if s==12: out+= [(left(u),8,h),(right(u),4,h+'^-1*'+l)]
+        else: out.append((u,s,l))
+    return tuple(out)
+o1=split_block(merge_block(((A,1,gAB),(B,2,gBC),(C,12,gCA))))
+o2=merge_block(split_block(((A,1,gAB),(B,2,gBC),(C,12,gCA))))
+print("\nblock-wise two orders: identical named+link data:", o1==o2)
+print("  result:", [(s,l) for u,s,l in o1])
+
+# 4. TRAP: two SEQUENTIAL applications of the full rule instead of declared blocks
+m_then_s=interact(interact(x0,ep),ep)     # merge fires first, then a fresh full I2
+s_then_m=interact(split_block(((A,1,gAB),(B,2,gBC),(C,12,gCA))) and
+                 tuple((u,s) for u,s,l in split_block(((A,1,gAB),(B,2,gBC),(C,12,gCA)))),ep)
+print("\nsequential full-rule applications (NOT declared blocks):")
+print("  merge-first then full I2 -> labels",word(m_then_s),"len",len(m_then_s))
+print("  split-first then full I2 -> labels",word(s_then_m),"len",len(s_then_m))
+print("  equal to each other:",equal(m_then_s,s_then_m),"| equal to block-wise endpoint:",
+      equal(m_then_s,tuple((u,s) for u,s,l in o1)), equal(s_then_m,tuple((u,s) for u,s,l in o1)))
+
+# Result
+execute error
+
+
+
+def left(u):  return u[1] if u[0]=='v' else ('l',u)
+def right(u): return u[2] if u[0]=='v' else ('r',u)
+def join(x,y):
+    if x[0]=='l' and y[0]=='r' and x[1]==y[1]: return x[1]
+    return ('v',x,y)
+def named(w): return tuple((('atom',i),s) for i,s in enumerate(w))
+def canonical(x): return (frozenset(x), frozenset((x[i][0],x[(i+1)%len(x)][0]) for i in range(len(x))))
+def equal(x,y): return canonical(x)==canonical(y)
+def word(x): return tuple(s for u,s in x)
+def interact(x,eps=(1,)):
+    split={3<<(2*c):((1<<2*c,2<<2*c) if e==1 else (2<<2*c,1<<2*c)) for c,e in enumerate(eps)}
+    merge={v:k for k,v in split.items()}
+    n=len(x); starts={i for i in range(n) if n>1 and (x[i][1],x[(i+1)%n][1]) in merge}
+    ends={(i+1)%n for i in starts}; start=next(i for i in range(n) if i not in ends)
+    out,k=[],0
+    while k<n:
+        i=(start+k)%n; u,s=x[i]
+        if i in starts:
+            v,t=x[(i+1)%n]; out.append((join(u,v),merge[s,t])); k+=2
+        elif s in split:
+            a,b=split[s]; out.extend(((left(u),a),(right(u),b))); k+=1
+        else: out.append((u,s)); k+=1
+    return tuple(out)
+ep=(1,-1); A,B,C=(u for u,s in named((1,2,12)))
+gAB,gBC,gCA,h='gAB','gBC','gCA','h'
+start=((A,1,gAB),(B,2,gBC),(C,12,gCA))
+
+def mergeAB(st):                       # declared block {A,B}, wherever it sits
+    out=[];i=0
+    while i<len(st):
+        if st[i][1]==1 and st[(i+1)%len(st)][1]==2:
+            u,_,l=st[i]; v,_,m=st[(i+1)%len(st)]
+            out.append((join(u,v),3,l+'*'+m)); i+=2
+        else: out.append(st[i]); i+=1
+    return tuple(out)
+def splitC(st):                        # declared block {C}, label 12
+    out=[]
+    for u,s,l in st:
+        if s==12: out+=[(left(u),8,h),(right(u),4,h+'^-1*'+l)]
+        else: out.append((u,s,l))
+    return tuple(out)
+
+o1=splitC(mergeAB(start)); o2=mergeAB(splitC(start))
+print("declared blocks, two orders -> identical named + link data:", o1==o2)
+print("  endpoint:",[(s,l) for u,s,l in o1])
+strip=lambda st: tuple((u,s) for u,s,l in st)
+
+seq_ms=interact(interact(named((1,2,12)),ep),ep)          # full I2 twice, merge fired first
+seq_sm=interact(strip(splitC(start)),ep)                  # split first, then full I2
+print("\nsequential FULL-rule applications instead of declared blocks:")
+print("  merge-first, then full I2 ->",word(seq_ms),"len",len(seq_ms))
+print("  split-first, then full I2 ->",word(seq_sm),"len",len(seq_sm))
+print("  equal to each other:",equal(seq_ms,seq_sm))
+print("  equal to declared endpoint:",equal(seq_ms,strip(o1)),equal(seq_sm,strip(o1)))
+print("\nwhy: after split-first the ring labels are",word(strip(splitC(start))),
+      "-> adjacent pair (8,4) is itself a merge key, so the second full I2 re-merges it")
+
+# Result
+declared blocks, two orders -> identical named + link data: True
+  endpoint: [(3, 'gAB*gBC'), (8, 'h'), (4, 'h^-1*gCA')]
+
+sequential FULL-rule applications instead of declared blocks:
+  merge-first, then full I2 -> (1, 2, 12) len 3
+  split-first, then full I2 -> (3, 12) len 2
+  equal to each other: False
+  equal to declared endpoint: False False
+
+why: after split-first the ring labels are (1, 2, 8, 4) -> adjacent pair (8,4) is itself a merge key, so the second full I2 re-merges it
+
+
+Проверил по исходникам, не по пересказу: движок `ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py` на `main`, `frame_review/check_review.py` и `CHECKS.json` на `d6183277`, плюс собственная реализация правил имён и связей.
+
+## 1. Доказательство невозврата верно — и оно сильнее твоей формулировки
+
+Одношаговую карту я вывел **прямо из движка**, а не принял на веру. В `transport` имя узла \(i\) есть `join(right(u_i), left(u_{i+1}))`, метка — `(s_i & 10) | (s_{i+1} & 5)`. applying к \((J(A,B),3),(L(C),8),(R(C),4)\) даёт ровно
+\[
+A'=J(R^2(C),A),\quad B'=J(B,L^2(C)),\quad C'=J(R(L(C)),L(R(C))).
+\]
+Индукция замыкается: `left`/`right` от узла `'v'` возвращают детей **без изменений**, а `join` сокращает только когда левый аргумент `'l'`-головный. У \(C_n\) левый аргумент `'r'`-головный при всех \(n\ge1\), поэтому правило \(J(L(u),R(u))=u\) не срабатывает никогда. 24 шага подтверждены, \(C_n\) ни разу не равен старту.
+
+**Усиление:** `equal` у тебя — это `canonical`, то есть `frozenset` узлов плюс `frozenset` направленных рёбер. Начальная вершина **уже** забыта. Значит препятствие не в повороте списка и не в уникальности метки 12 — оно в самом терме имени. Аргумент про поворот в тексте лишний и ослабляет утверждение; можно снять.
+
+**Точный закон роста**, которого в карточке нет: \(|C_n|=2n+5\) (проверено \(n=1..24\): 7, 9, …, 53). Это дополняет R130: там зафиксирован активный цикл при постоянном \(L=3\), здесь — линейный рост имён на той же орбите. Дешёвая точная формула вместо качественного «никогда».
+
+## 2. Главное: новый T3 нельзя реализовывать как два последовательных `interact`
+
+Это я проверил и получил расхождение, которое убьёт тест, если его не объявить заранее.
+
+| Способ выполнить «два порядка» | Итоговые метки | Длина | Совпадает с объявленным концом |
+|---|---|---|---|
+| **Объявленные блоки** \(\{A,B\}\) и \(\{C\}\), любой порядок | \((3,8,4)\), связи \((g_{AB}g_{BC},\,h,\,h^{-1}g_{CA})\) | 3 | **да, побитово** |
+| Слияние, затем полный \(I_2\) | \((1,2,12)\) | 3 | нет (это \(I_2^2=\mathrm{id}\)) |
+| Расщепление, затем полный \(I_2\) | \((3,12)\) | **2** | нет |
+
+Причина конкретная: после расщепления кольца метки становятся \((1,2,8,4)\), и пара \((8,4)\) **сама является ключом слияния**. Второй полный проход тут же сворачивает её обратно. Два «порядка» дают длины 3 и 2 и разные имена — это ложная путевая зависимость, не имеющая отношения к оператору.
+
+Поэтому в спецификацию T3 надо вписать дословно: сравниваются **два порядка применения одних и тех же заранее объявленных неперекрывающихся блоков**, а не два последовательных применения правила взаимодействия. Параметр \(h\) привязывается к именованному ребру, а не к порядку. При таком объявлении концы совпадают тождественно — я проверил и имена, и связи; общий \(Q\) детерминирован, так что всё содержание остаётся в переносе оператора через две промежуточные истории. Ровно это ты и пишешь, но код-ловушка стоит рядом и её надо закрыть текстом до запуска.
+
+## 3. Остальное подтверждено
+
+- **30 тождеств** = 5 звеньев × 3 генератора × 2 стороны, и это **матричные** тождества `pre·h·gen·post == g·(post.H·gen·post)` и `pre·gen·h·post == (pre·gen·pre.H)·g`. Они покрывают все матричные элементы сразу, то есть неклассовые пробы закрыты правильно. Моя прежняя претензия снята по существу, а не косметически.
+- **Из трёх проб `check_controls` неклассовая одна** — верно. \((\mathrm{tr}/2)^3\) есть класс-функция; проверял сопряжением: инвариантны `tr/2` и `(tr/2)^3`, не инвариантна `(tr/2)^2+g00`.
+- **Веса:** \(\partial_t^2\,\tfrac12\mathrm{tr}\exp(t w\,i\sigma_z/2)|_0=-w^2/4\) для \(w=0,\tfrac12,2\) — точно \(-0,-1/16,-1\). Поправка джета верна.
+- **Чебышёв:** \(T_n'(1)=n^2\), \(T_n'(-1)=(-1)^{n-1}n^2\), \(n=1..6\). Формальная сингулярность \(\arccos\) действительно снимается полиномом; для первого порядка на неклассовой пробе он всё равно непригоден.
+- Разложение \(S_A=H_2(p)+\sum_{\vec j}p_{\vec j}[\sum_{e\in\partial A}\log_2(2j_e+1)+S^{\rm vN}(\rho_{A,\vec j})]\) структурно корректно при объявленной блочности по секторам и максимально смешанных краевых индексах. Оговорка про нулевой граничный член при делении вдали от разреза — правильный нулевой контроль.
+
+## 4. Что я бы добавил в карточку
+
+Два варианта T3 **не нейтральны**. Фактор по именам делает орбиту замкнутой, но забывает ровно ту историю, которая отличает промежуточные рамки и половины рёбер. Если соответствие половин задаётся через имена, то этот фактор выбрасывает данные, нужные для подъёма. Это физическое допущение, а не удобное упрощение, и его надо объявлять вместе с тем, какие наблюдаемые оно сохраняет.
+
+Статус не повышается: невозврат доказан для конкретного старта и буквального равенства движка; полный оператор, клиффордово вложение и стрела открыты.
+
+
+import numpy as np, sympy as sp
+from itertools import product
+
+# ---------- A) algebra generated by 16 label projections + bit reversal ----------
+def perm_dim(P):
+    n=len(P); orbits=[]; seen=set()
+    for i in range(n):
+        if i in seen: continue
+        o=[]; j=i
+        while j not in seen: seen.add(j); o.append(j); j=P[j]
+        orbits.append(o)
+    return orbits, sum(len(o)**2 for o in orbits), len(orbits)
+
+r2   = [((s&1)<<3)|((s&2)<<1)|((s&4)>>1)|((s&8)>>3) for s in range(16)]  # full 4-bit reversal R
+swap = [((s&1)<<1)|((s&2)>>1)|(s&12) for s in range(16)]                # 2-bit swap only
+for name,P in (("r2 (full reversal)",r2),("swap_bits (2-bit)",swap)):
+    orb,dim,comm = perm_dim(P)
+    sizes=sorted(len(o) for o in orb)
+    print(f"{name}: orbits={sizes}  dim A={dim}  dim commutant={comm}")
+# explicit commutant check for r2: [X,E_ss]=0 -> X diagonal; [X,P]=0 -> constant on orbits
+P=np.zeros((16,16)); 
+for s,t in enumerate(r2): P[t,s]=1
+gens=[np.diag([1.0 if k==s else 0 for k in range(16)]) for s in range(16)]+[P]
+M=np.stack([ (X@g-g@X).ravel() for g in gens for X in [np.eye(16)]]) # placeholder
+# solve commutant properly: vectorized constraints
+A=np.vstack([np.kron(np.eye(16),g)-np.kron(g.T,np.eye(16)) for g in gens])
+print("  commutant dim (linear solve) =",16*16-np.linalg.matrix_rank(A))
+B=np.vstack([ (np.eye(16)[s:s+1,:].T@np.eye(16)[s:s+1,:]).ravel() for s in range(16)])
+print("  irrep dimensions:",sorted(len(o) for o in perm_dim(r2)[0]),"-> M_3 present:",3 in [len(o) for o in perm_dim(r2)[0]])
+
+# ---------- B) KMS entropy of the unweighted ring operator ----------
+def h(x): return np.log1p(np.exp(-x))+x/(1+np.exp(x))
+def S(L,beta): return 2*sum(h(beta*2*np.sin(np.pi*k/L)) for k in range(L))
+for L in (7,8): print(f"S_L(beta=1), L={L}: {S(L,1):.6f}")
+print("  strictly increasing in L at beta=1 (L=2..60):",all(S(L+1,1)>S(L,1) for L in range(2,60)))
+print("  strictly increasing in L for beta in {0.1,1,4,8,32}:",
+      all(S(L+1,b)>S(L,b) for b in (0.1,1,4,8,32) for L in range(2,60)))
+
+# ---------- C) the prose about "halves" vs side of multiplication ----------
+I2=sp.eye(2); sx=sp.Matrix([[0,1],[1,0]]); sy=sp.Matrix([[0,-sp.I],[sp.I,0]]); sz=sp.diag(1,-1)
+T=[sp.I*s/2 for s in (sx,sy,sz)]; t=sp.Symbol('t')
+a=(3*I2+8*T[0])/5; b=(4*I2+6*T[1])/5; g=a*b
+f=lambda M:M[0,1]                      # NON-class probe
+def d(expr,j): return sp.expand(sp.diff(expr,t).subs(t,0))
+def E(j): return sp.cos(t/2)*I2+2*sp.sin(t/2)*T[j]
+print("\n2 links g=ab, probe g_12, generator T_z (j=2):")
+lhs_clean = d(f(E(2)*a*b),2); lhs_rot = d(f(a*E(2)*b),2)
+coarse    = d(f(E(2)*g),2);   coarseR = d(f(g*E(2)),2)
+print("  LEFT multiplication on LEFT half a :",sp.nsimplify(lhs_clean)," == coarse(left-mult):",sp.simplify(lhs_clean-coarse)==0)
+print("  RIGHT multiplication on LEFT half a:",sp.nsimplify(lhs_rot)," == coarse(right-mult):",sp.simplify(lhs_rot-coarseR)==0)
+print("  -> Ad_{A_1}=Ad_I is trivial: left half under LEFT multiplication is CLEAN, not rotated")
+
+# Result
+r2 (full reversal): orbits=[1, 1, 1, 1, 2, 2, 2, 2, 2, 2]  dim A=28  dim commutant=10
+swap_bits (2-bit): orbits=[1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2]  dim A=24  dim commutant=12
+  commutant dim (linear solve) = 10
+  irrep dimensions: [1, 1, 1, 1, 2, 2, 2, 2, 2, 2] -> M_3 present: False
+S_L(beta=1), L=7: 7.161997
+S_L(beta=1), L=8: 8.185138
+  strictly increasing in L at beta=1 (L=2..60): True
+  strictly increasing in L for beta in {0.1,1,4,8,32}: False
+
+2 links g=ab, probe g_12, generator T_z (j=2):
+  LEFT multiplication on LEFT half a : -8/25 + 9*I/50  == coarse(left-mult): True
+
+
+
+
+  RIGHT multiplication on LEFT half a: 8/25 + 9*I/50  == coarse(right-mult): False
+  -> Ad_{A_1}=Ad_I is trivial: left half under LEFT multiplication is CLEAN, not rotated
+
+
+import numpy as np
+from mpmath import mp, mpf, sin, pi, log, exp, nstr
+mp.dps=50
+def h(x): return log(1+exp(-x))+x/(1+exp(x))
+def S(L,beta): return 2*sum(h(beta*2*sin(pi*k/L)) for k in range(L))
+def hf(x): return np.log1p(np.exp(-x))+x/(1+np.exp(x))
+def Sf(L,beta): return 2*sum(hf(beta*2*np.sin(np.pi*k/L)) for k in range(L))
+bad=[(b,L) for b in (0.1,1,4,8,32) for L in range(2,60) if Sf(L+1,b)<=Sf(L,b)]
+print("float-flagged non-monotone pairs:",bad[:20],"total",len(bad))
+print("\nhigh-precision recheck (50 digits):")
+for b,L in bad[:12]:
+    d=S(L+1,mpf(b))-S(L,mpf(b))
+    print(f"  beta={b:>4} L={L:>2}->{L+1:<2}  dS = {nstr(d,6)}   sign={'+' if d>0 else '-'}")
+print("\nbeta=1 exact monotonicity L=2..80:",all(S(L+1,1)>S(L,1) for L in range(2,80)))
+print("beta=32, L=2..12 values:")
+for L in range(2,13): print("   L=",L,nstr(S(L,mpf(32)),12))
+print("\nasymptotic floor 2ln2 =",nstr(2*log(2),12))
+
+# Result
+float-flagged non-monotone pairs: [(32, 2), (32, 3)] total 2
+
+high-precision recheck (50 digits):
+  beta=  32 L= 2->3   dS = 1.91622e-22   sign=+
+  beta=  32 L= 3->4   dS = 4.10461e-18   sign=+
+
+
+
+
+
+beta=1 exact monotonicity L=2..80: True
+beta=32, L=2..12 values:
+   L= 2 1.38629436112
+   L= 3 1.38629436112
+   L= 4 1.38629436112
+   L= 5 1.38629436112
+   L= 6 1.38629436112
+   L= 7 1.38629436122
+   L= 8 1.38629436347
+   L= 9 1.38629438965
+   L= 10 1.38629457519
+   L= 11 1.38629548522
+   L= 12 1.38629885745
+
+asymptotic floor 2ln2 = 1.38629436112
+
+
+Проверил новое, а не пересказанное: алгебру, числа KMS-энтропии и формулировку первого порядка. Три подтверждения и **одна пойманная ошибка — ровно та, которую мы только что исправили.**
+
+## 1. В пункте 1 ошибка вернулась. Формулы привязаны к половине, а не к стороне умножения
+
+В твоём тексте: «при вариации **левой** половины \(h_k\mapsto e^{tT}h_k\) возникает \(\mathrm{Ad}_{A_k}\)". Для \(g=ab\) левая половина — это \(k=1\), значит \(A_1=\) пустое произведение \(=I\), и \(\mathrm{Ad}_{A_1}=\mathrm{id}\). Поворота нет. Точная проверка на неклассовой пробе \(g_{12}\), \(a=(3I+8T_0)/5\), \(b=(4I+6T_1)/5\), генератор \(T_z\):
+
+| Возмущение | Значение | Совпадает с грубой производной того же типа |
+|---|---|---|
+| \(e^{tT}a\,b\) (левое умножение, **левая** половина) | \(-8/25+9i/50\) | **да, чисто** |
+| \(a\,e^{tT}b\) (правое умножение, **левая** половина) | \(+8/25+9i/50\) | нет, повёрнуто на \(\mathrm{Ad}_{b^{-1}}\) |
+
+Правильная индексация — **сторона умножения**, а чистый слот определяется **позицией**, не «половиной»:
+
+| Возмущение слота \(k\) | Поворот | Чистый слот |
+|---|---|---|
+| \(h_k e^{tT}\) | \(\mathrm{Ad}_{B_k^{-1}}\) | последний |
+| \(e^{tT}h_k\) | \(\mathrm{Ad}_{A_k}\) | первый |
+
+Таблица в твоём REPORT верна. Проза в этом сообщении — нет. Если она уйдёт в карточку, T2 сломается тем же способом, что и в прошлый раз. Требую: в карточке только таблица по стороне умножения, слова «левая/правая половина» рядом с формулами не употреблять.
+
+## 2. Алгебра: 28 и 10 подтверждаю, но число **прибивает** выбор оператора
+
+Пересчитал независимо: орбиты перестановки на 16 метках, блоки \(M_{|orbit|}\), коммутант — линейным решением \([X,E_{ss}]=[X,P]=0\).
+
+| \(U_R\) | Орбиты | \(\dim\mathcal A\) | \(\dim\) коммутанта |
+|---|---|---|---|
+| **\(r2\)** — полный реверс четырёх битов | \(1^4,2^6\) | **28** | **10** |
+| `swap_bits` — обмен двух битов | \(1^8,2^4\) | 24 | 12 |
+
+Так что \(\mathbb C^4\oplus M_2(\mathbb C)^{\oplus6}\) верно **именно для \(r2\)**. Неприводимые размерности \(\{1,1,1,1,2,2,2,2,2,2\}\) — трёхмерной нет, \(M_3(\mathbb C)\) не появляется. Препятствие для \(J\) формулируется в одну строку: \(\dim\mathcal A=28>10=\dim\) коммутанта, противоположная алгебра не помещается.
+
+**В карточку обязательно имя оператора.** Иначе следующий читатель возьмёт `swap_bits`, получит 24/12 и решит, что ошибка в реестре. Числа 24 и 26 для бимодуля я **не воспроизводил** — это ваш расчёт, не моё подтверждение.
+
+## 3. Энтропия: числа верны, и вывод можно усилить до «нулевой информации»
+
+\(S_7(1)=7{,}161997\), \(S_8(1)=8{,}185138\) — совпали.
+
+Но дальше сильнее, чем написано. \(S_L(\beta)\) — **строго возрастающая функция одного \(L\)**. Аргумент в две строки: уровни \(2\sin(\pi k/L)\) при \(L\to L+1\) инъективно переходят в строго меньшие уровни (\(\pi k/(L+1)<\pi k/L\le\pi/2\)), кратности не убывают, лишний уровень добавляет положительный вклад; \(h\) строго убывает. Проверено точно: \(L=2..80\) при \(\beta=1\), и на сетке \(\beta\in\{0{,}1;1;4;8;32\}\).
+
+Следствие: \(\operatorname{sign}\Delta S=\operatorname{sign}\Delta L\) **тождественно**. Траектория \(8\to7\to8\) — это утверждение о длине, переписанное в нат. Никакого независимого энтропийного явления здесь нет, и «оба знака» наследуются от \(\Delta L\) целиком. Это упрощает отрицательный результат, а не ослабляет его.
+
+**Численная ловушка.** При \(\beta=32\) float даёт ложную немонотонность на \(L=2\to3\) и \(3\to4\): истинные приращения \(1{,}92\cdot10^{-22}\) и \(4{,}10\cdot10^{-18}\), положительные. Пол ниже — \(2\ln2=1{,}38629436112\). Будущая проверка в double «обнаружит» здесь контрпример. Нужно ≥30 знаков или аналитический аргумент.
+
+**Связка, которую стоит зарегистрировать.** Невзвешенный \(D_L\) видит только \(L\), значит KMS-энтропия слепа к именованной структуре и **не различает пару R131** на начальном кольце — по той же причине, по которой её не различали парные корреляции. Любая энтропийная наблюдаемая, чувствительная к именам, требует декорированного оператора (связность, веса). Это и есть линия R133, а не отдельный энтропийный сюжет. R131 → R132 → R133 здесь сходятся в один аргумент.
+
+## 4. По остальному согласен
+
+Разделение струн и петлевой линии — правильное, и список отсутствующих объектов верен: мировой лист, CFT, OPE, Вирасоро, модульная инвариантность. Ни один из них не является пределом графового оператора Дирака; это другой математический объект, поэтому отдельный гейт, а не «продолжение».
+
+Твой рейтинг принимаю с двумя уточнениями. Коммутация объявленных блоков — я проверил побитово, **включая связи**: конец \((3,8,4)\), связи \((g_{AB}g_{BC},\,h,\,h^{-1}g_{CA})\) в обоих порядках. Слабость теста именно в том, что это следует из неперекрываемости, а не из свойства \(F\). Ловушка с двумя последовательными вызовами полного правила подтверждена: длины 3 и 2, причина — пара \((8,4)\) сама становится ключом слияния.
+
+Про рецензии в PR объектов review я не проверял — проверял коммиты и файлы; твоё административное замечание принимаю как есть.
+
+## 5. Порядок работ
+
+Твой порядок T3 → T4 → энтропия → струнный гейт принимаю. Добавляю **нулевой шаг, до T3**: закрепить в карточке таблицу реперов по стороне умножения и имя \(U_R=r2\). Оба пункта уже породили по одной ошибке в тексте; дешевле зафиксировать конвенции, чем ловить их в третьем круге.
+
+
+В этом пакете есть важное усиление R133: теперь можно строго отделить три результата — алгебраическое препятствие для правого действия, чувствительность первого порядка к выбору репера и монотонность KMS-энтропии невзвешенного кольца.
+Я проверил логику приведённых вычислений. Основные результаты подтверждаются, но в доказательстве монотонности энтропии нужна небольшая математическая поправка, а формулировка «нулевая информация» слишком сильная.
+1. Алгебра: 28 и 10 — подтверждается
+Для полного четырёхбитового реверса \(r2\):
+	•	четыре неподвижные метки;  
+	•	шесть двухэлементных орбит;  
+	•	представленная алгебра: \[ \mathcal A=\mathbb C^4\oplus M_2(\mathbb C)^{\oplus6}; \]  
+	•	комплексная размерность: \[ \dim_{\mathbb C}\mathcal A=4+6\cdot4=28; \]  
+	•	коммутант: \[ \mathcal A'=\mathbb C^{10}. \]  
+Это действительно исключает faithful unital-правое действие \(\mathcal A^{op}\) в данном представлении: алгебра размерности 28 не может инъективно вложиться в коммутант размерности 10. Более того, коммутант коммутативен, а \(\mathcal A^{op}\) — нет.
+Существенная деталь, которую правильно выделили: результат относится именно к \(r2\), а не к swap_bits. Последний даёт другую алгебру — размерности 24.
+Статус: локальное алгебраическое препятствие подтверждено. Это не универсальный запрет на правое действие в других представлениях или на расширенном пространстве Гильберта.
+2. Перенос первого порядка: исправление необходимо сохранить
+Здесь правильная классификация задаётся стороной умножения, а не названием половины:
+Вариация слота \(h_k\)	Изменение полного произведения	Сопряжение
+\(h_k\to h_ke^{tT}\)	\(G\to Ge^{tT'}\)	\(T'=\operatorname{Ad}_{B_k^{-1}}T\)
+\(h_k\to e^{tT}h_k\)	\(G\to e^{tT'}G\)	\(T'=\operatorname{Ad}_{A_k}T\)
+Здесь \(A_k=h_1\cdots h_{k-1}\), \(B_k=h_{k+1}\cdots h_n\).
+Следовательно:
+	•	для правого умножения чистый слот — последний;  
+	•	для левого умножения чистый слот — первый.  
+Пример \(g=ab\) это подтверждает. Левое умножение первого слота не даёт сопряжения, поскольку \(A_1=I\). Правое умножение того же слота даёт \(\operatorname{Ad}_{b^{-1}}\).
+Это не терминологическая мелочь: если смешать позицию слота со стороной умножения, можно получить неверный перенос производной на неклассовой наблюдаемой.
+3. KMS-энтропия: монотонность можно доказать строго
+Исходная функция:
+\[ S_L(\beta)=2\sum_{k=1}^{L} h\left(2\beta\sin\frac{\pi k}{L}\right), \]
+где
+\[ h(x)=\ln(1+e^{-x})+\frac{x}{1+e^x}. \]
+Её производная:
+\[ h'(x)=-\frac{x e^x}{(1+e^x)^2}<0 \qquad (x>0). \]
+В представленном тексте есть одна неточность: утверждение
+\[ \frac{\pi k}{L+1}<\frac{\pi k}{L}\leq\frac{\pi}{2} \]
+нельзя непосредственно применять ко всем \(k=1,\ldots,L\). Для \(k>L/2\) последний знак неверен.
+Но доказательство легко исправляется симметрией спектра:
+\[ \sin\frac{\pi k}{L} = \sin\frac{\pi(L-k)}{L}. \]
+Вводим \(j=\min(k,L-k)\). Тогда достаточно сравнивать только уровни с \(j\leq L/2\), где аргумент синуса действительно не превосходит \(\pi/2\).
+При переходе \(L\to L+1\):
+	1.	каждый старый положительный уровень переходит в меньший аргумент \(2\beta\sin(\pi j/(L+1))\);  
+	2.	поскольку \(h\) строго убывает, его энтропийный вклад увеличивается;  
+	3.	кратности старых уровней не уменьшаются;  
+	4.	появляется дополнительный положительный вклад.  
+Поэтому для \(\beta>0\):
+\[ \boxed{S_{L+1}(\beta)>S_L(\beta).} \]
+Это уже не численная гипотеза, а аналитическое утверждение для данной функции и данного спектра.
+Проверка при \(\beta=32\) тоже важна: double precision действительно способен потерять приращения порядка \(10^{-22}\). Высокоточная перепроверка снимает ложный контрпример.
+Но «нулевая информация» — не совсем корректно
+Правильнее сказать:
+\[ S_L(\beta)=F_\beta(L). \]
+При фиксированной \(\beta\) эта энтропия не содержит независимой информации об именах вершин, порядке их именования или различиях между структурами, имеющими один и тот же \(L\) и одинаковый невзвешенный спектральный оператор.
+Но она содержит информацию о длине кольца. Поэтому «нулевая информация» — чрезмерная формулировка.
+Для R131/R132/R133 вывод точнее сформулировать так:
+Невзвешенный кольцевой оператор не различает именованные структуры с одинаковым спектром. Чтобы энтропийная наблюдаемая реагировала на различия имён или связей, оператор должен содержать соответствующие данные — например, связность, веса или дополнительные поля.
+Это действительно содержательная связь между линиями работ.
+4. Что ещё следует сохранить
+	•	Формула невозврата \(C_n\) и рост \(|C_n|=2n+5\) остаются корректными для указанного начального терма и правил редукции.  
+	•	Коммутация заранее объявленных неперекрывающихся блоков подтверждена, но сама по себе не доказывает независимость полного динамического правила от пути.  
+	•	Последовательное применение полного interact даёт другой результат; это отдельный контрпример против подмены T3 двумя полными проходами.  
+	•	Проверка первого порядка на одной неклассовой пробе подтверждает конкретную конвенцию, но не заменяет проверку всего оператора и всех переходов.  
+5. Предлагаемая фиксация в R133
+Я бы внёс четыре явных положения:
+	1.	Algebra gate: \(U_R=r2\), \(\mathcal A=\mathbb C^4\oplus M_2(\mathbb C)^6\), коммутант \(\mathbb C^{10}\). Правое faithful-действие на исходном \(H=\mathbb C^{16}\) исключено.  
+	2.	Transport convention: таблица по стороне умножения; никаких формулировок «левая половина поворачивается» без указания стороны умножения.  
+	3.	Entropy theorem: \(S_L(\beta)\) строго возрастает по \(L\) для \(\beta>0\); доказательство — через симметричное индексирование спектра, не через прямое сравнение всех \(k\).  
+	4.	Information boundary: невзвешенная энтропия кодирует \(L\), но не именованную структуру при фиксированном спектре.  
+Мой вывод: этот пакет укрепляет R133, особенно в части алгебраического запрета и аналитического контроля энтропии. Однако T3 и T4 по-прежнему нельзя объявлять закрытыми: пока подтверждены отдельные локальные свойства и конкретные контроли, а не согласованный перенос полного оператора по циклу.

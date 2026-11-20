@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=133, construct=42, link=10, question=12, premise=66, obligation=9, review=14, component=45, external=18, decision=3, source=126.
+Число записей: result=133, construct=42, link=10, question=12, premise=66, obligation=9, review=14, component=45, external=18, decision=3, source=130.
 
 ## Предпосылка → результаты
 
@@ -3131,7 +3131,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Петлевая геометрия и Конн на именованных перестройках ADD — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r133).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `scope_boundary`.
-**Исходящие:** [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md](#source-analysis-add_connes_port_transport_20261120-loop_test-donors-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-frame_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-frame_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-frame_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py](#source-analysis-r133_loop_connes_20261120-frame_review-check_review-py) `managed_evidence_source`.
+**Исходящие:** [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md](#source-analysis-add_connes_port_transport_20261120-loop_test-donors-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-entropy_block_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-entropy_block_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py](#source-analysis-r133_loop_connes_20261120-entropy_block_review-verify-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-frame_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-frame_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-frame_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py](#source-analysis-r133_loop_connes_20261120-frame_review-check_review-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4531,6 +4531,42 @@ analysis/R133_LOOP_CONNES_20261120/REPORT.md — [исходная карточ�
 analysis/R133_LOOP_CONNES_20261120/check_controls.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py).
 
 **Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-entropy_block_review-checks-json"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json
+
+analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-entropy_block_review-neighbor_original-txt"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt
+
+analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md
+
+analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-entropy_block_review-verify-py"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py
+
+analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r133_loop_connes_20261120-frame_review-checks-json"></a>
