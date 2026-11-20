@@ -40,6 +40,14 @@ def witness():
     blocks = [(i, j, sign) for (i, j), sign in zip(pairs, (1, -1, 1, 1, 1, 1))]
     opposite = [(j, i, -sign) for i, j, sign in blocks]
     blocks.extend(opposite)
+    pairing = np.zeros((len(DIMS), len(DIMS)), dtype=int)
+    for i, j, sign in blocks:
+        pairing[i, j] += sign  # trace of gamma on a pair of minimal projections
+    assert np.array_equal(pairing.T, -pairing)
+    # Four nonzero rows with disjoint support in the scalar-to-matrix block.
+    scalar_rows = pairing[:4, 4:]
+    assert not np.any(pairing[:4, :4]) and not np.any(pairing[4:, 4:])
+    assert np.array_equal(scalar_rows @ scalar_rows.T, np.diag([2, 2, 1, 1]))
     basis = [(i, j, s, t) for i, j, _ in blocks for s in range(DIMS[i]) for t in range(DIMS[j])]
     index = {v: k for k, v in enumerate(basis)}
     n = len(basis)
