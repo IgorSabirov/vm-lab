@@ -116,6 +116,8 @@ def validate_request(request: dict, stage: str, base: Path) -> tuple[dict, dict]
     config = request.get("config")
     if not isinstance(config, dict) or canonical_hash(config) != request.get("config_sha256"):
         raise InputError("configuration checksum mismatch")
+    if config.get("thermal_path", request["key"]["thermal_path"]) != request["key"]["thermal_path"]:
+        raise InputError("configuration thermal path differs from the request key")
     if any(k.startswith("_") for k in config):
         raise InputError("configuration keys beginning '_' are reserved")
     mode = request.get("mode")

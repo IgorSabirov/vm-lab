@@ -45,6 +45,11 @@ class ContractTests(unittest.TestCase):
             with self.assertRaises(InputError):
                 validate_request(changed, "P0", Path("."))
 
+    def test_configuration_cannot_relabel_the_thermal_branch(self):
+        req = request(config={"thermal_path": "exchange_during_transition"})
+        with self.assertRaisesRegex(InputError, "thermal path"):
+            validate_request(req, "P0", Path("."))
+
     def test_frozen_inputs_reject_tamper_and_duplicates(self):
         with tempfile.TemporaryDirectory() as t:
             base = Path(t)
