@@ -41,23 +41,12 @@ def main():
         str(Path(os.environ["GITHUB_WORKSPACE"])/"vendor"/n),"rev-parse","HEAD"],text=True).strip()
         for n in ("class","primat","linx")}, packages={d.metadata["Name"]:d.version for d in importlib.metadata.distributions()},
         commit=os.environ["GITHUB_SHA"], run_id=os.environ["GITHUB_RUN_ID"]))
-    native = run("PRIMAT_native", native_primat)
-    if native:
-        cmb["primat_native"] = run("CLASS_primat_native", cosmology, "primat_native",
-                                  native["YPCMB"],native["Neff"],0.02242)
+    from resume import recover, solve
+    cmb["primat_native"] = recover()
+    native,linx=[json.loads((OUT/(k+"_NATIVE.json")).read_text()) for k in ("PRIMAT","LINX")]
     pair = Pair()
-    def legacy():
-        t,a,rg,rn,rx,px,*_ = pair.background(0.,None,1.)
-        sol = pair.model(*map(pair.jp.asarray,(rg,rn,rx,px)),a_vec=pair.jp.asarray(a),
-                         t_vec=pair.jp.asarray(t),save_history=True)
-        result=yields(np.asarray(sol.evaluate(sol.t1)),pair.cfg)
-        result["S3_reference_D_H"]=2.435998685e-5
-        result["reference_pass"]=abs(result["D_H"]/2.435998685e-5-1)<1.e-4
-        write("LINX_NATIVE.json",result)
-        return result
-    linx = run("LINX_native",legacy)
     def add(name, **kw):
-        value = run("pair_"+name,pair.case,name,**kw)
+        value = run("pair_"+name,solve,pair,name)
         if value:
             cases[name] = value
             if name in ("baseline","early","late","extra"):
@@ -66,7 +55,7 @@ def main():
     add("baseline")
     write("FORECAST.json",dict(calibration_s={k:v for k,v in timings.items() if "native" in k or "baseline" in k},
           remaining_pairs=16, forecast_s_range=[3*timings["pair_baseline"],17*timings["pair_baseline"]],
-          basis="baseline includes JIT compilation; shared JIT and background reuse make upper bound conservative"))
+          basis="measured restart baseline; remaining costs include two independently refined solvers"))
     add("baseline_tight",tight=True)
     for w in ("early","late"):
         add(w,window=w)
@@ -78,18 +67,15 @@ def main():
         add(f"tight_ddtp_{h:+g}",channel="ddtp",q=h,tight=True)
     # Choose the pre-existing radiation reservoir that supplies the frozen 4% late control.
     # At fixed a it is transferred to photons and residual free-streaming radiation.
-    from scipy.optimize import brentq
-    def reservoir(delta):
-        _,_,rg,rn,rx,*_ = pair.background(float(delta),None,1.)
-        return float(rx[-1]/(rg[-1]+3*rn[-1]))
-    d = run("reserve_calibration",brentq,lambda x:reservoir(x)-.04,0.,5.)
-    if d is not None:
-        add("extra",delta=d)
-        if "extra" in cases:
+    with np.load(OUT/"cases"/"extra"/"plasma.npz") as z:
+        rg,rn,rx=[z[k].copy() for k in ("rho_gamma_MeV4","rho_one_nu_MeV4","rho_extra_MeV4")]
+    rad = (7./8)*(4./11)**(4./3)
+    d=float(rx[0]/(rad*rg[0]))
+    dfrac=float(rx[-1]/(rg[-1]+3*rn[-1]))
+    assert abs(dfrac-.04)<1.e-10
+    add("extra",delta=d)
+    if "extra" in cases:
             v = cases["extra"]
-            dfrac = reservoir(d)
-            _,_,rg,rn,rx,*_ = pair.background(d,None,1.)
-            rad = (7./8)*(4./11)**(4./3)
             nfinal = float((3*rn[-1]+rx[-1]-dfrac*rg[-1])/((1+dfrac)*rg[-1]*rad))
             eta_ratio = (1+dfrac)**(-.75)
             assert abs((3*rn[-1]/rg[-1]/rad)-nfinal)<1.e-10

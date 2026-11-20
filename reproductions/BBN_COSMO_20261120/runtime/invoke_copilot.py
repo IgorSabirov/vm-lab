@@ -13,7 +13,7 @@ HERE = Path(__file__).resolve().parent
 source = HERE.parent
 work = Path(os.environ['RUNNER_TEMP'])/'bbn-copilot-task'
 work.mkdir()
-for name in ["run_bbn.py", "science.py", "reproduction_tool.py"]:
+for name in ["run_bbn.py", "science.py", "resume.py", "reproduction_tool.py"]:
     shutil.copy2(HERE/name, work/name)
 bridge = Path(os.environ["GITHUB_WORKSPACE"])/"analysis/PRIMAT_LINX_BBN_BRIDGE_20261117"
 for name in ["NETWORK_MAP.json", "BBN_HISTORY.schema.json", "validate_contract.py"]:
