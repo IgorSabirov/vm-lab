@@ -1,0 +1,139 @@
+{
+  "controls": [],
+  "definition": {
+    "source": "explicit isolated diagnostic transfer",
+    "thermal_channels": [],
+    "thermalization": {
+      "source": "diagnostic reservoir",
+      "status": "EXPLICIT_DIAGNOSTIC_THERMAL_LIMIT"
+    }
+  },
+  "donor_controls": {
+    "number_changing": {
+      "B": 1.0,
+      "B_probability_measure": null,
+      "N": 3,
+      "T_X_range_MeV": [
+        1.0,
+        180.0
+      ],
+      "coefficient_MeV_minus5": 2.722087390314386e-15,
+      "donor_sha256": "a946f7c910ecb03ffc2622cd15cabc070478036a23bf7df5586d9d98c5b57303",
+      "energy_source_convention": "3<->2 conserves total isolated species energy; solve number and energy together",
+      "kinetic_equilibrium": {
+        "minimum_rate_over_H": 100.0,
+        "minimum_rate_over_chemical_rate": 100.0,
+        "rate_kind": "momentum_relaxation",
+        "required_ratio": 10.0,
+        "source": "assumed diagnostic hierarchy; independent measurement remains open"
+      },
+      "limitations": [
+        "single scalar MB gas in kinetic equilibrium",
+        "NDA is not a calibrated energy-dependent multi-species collision kernel"
+      ],
+      "low_momentum_applicability": {
+        "T_X_range_MeV": [
+          1.0,
+          180.0
+        ],
+        "maximum_T_X_over_m0": 0.2,
+        "source": "explicitly assigned diagnostic low-momentum range"
+      },
+      "m0_MeV": 1000.0,
+      "mass_source": {
+        "origin": "external_model",
+        "sigma": 0.0,
+        "source": "Forestell-Morrissey-Sigurdson figure 3, XB-FMS-top-left",
+        "uncertainty_interpretation": "fixed published model parameter, not a measurement",
+        "unit": "MeV",
+        "value": 1000.0
+      },
+      "number_source_convention": "dn/dt + 3Hn = - coefficient_MeV_minus5 / hbar_MeV_s * n^2 * (n - n_eq)",
+      "prepared_input": {
+        "artifact": "donor_inputs.json",
+        "schema": "R135-donor-stage-inputs-v1",
+        "sha256": "15b2560a3e96231dd7c78c3e1376fc4d467479968c42469dd527d62e0f6ae243",
+        "source_lock_sha256": "ee7f84d63614aa7a66848c444ebc88fa21ce39828274498cb1d09a7bad91e3c0"
+      },
+      "production_precision_validated": false,
+      "schema": "R135-FMS-NDA-3to2-v1",
+      "source": "diagnostic FMS sensitivity preparation",
+      "status": "NDA_SENSITIVITY"
+    },
+    "scalar_portal": {
+      "C_odd_channels_status": "OPEN_INPUT",
+      "M_MeV": 10000000.0,
+      "T_X_MeV": 177.12589073634206,
+      "T_gamma_MeV": 34975.69557476148,
+      "channel": "0++ -> gg, partonic EFT",
+      "cosmological_energy_source_status": "OPEN_INPUT",
+      "donor_sha256": "653bf48363576955491573fe300d925656c217625ad434fcff2123ebba535c82",
+      "eft_maximum_ratio": 0.1,
+      "eft_ratios": {
+        "E_max_over_M": 0.1,
+        "T_X_over_M": 1.7712589073634204e-05,
+        "T_gamma_over_M": 0.0034975695574761476,
+        "m0_over_M": 0.0001
+      },
+      "energy_support": {
+        "center_of_mass_energy_MeV": [
+          1000.0,
+          1000000.0
+        ],
+        "maximum_omitted_probability": 1e-08,
+        "omitted_probability_bound": 1e-10,
+        "source": "diagnostic assigned source support"
+      },
+      "hadronic_matching_status": "OPEN_INPUT",
+      "limitations": [
+        "only the scalar matrix-element marginal variation is propagated here",
+        "all other open channels, inverse reactions, hadronization and energy deposition remain required"
+      ],
+      "m0_MeV": 1000.0,
+      "mass_source": {
+        "origin": "external_model",
+        "sigma": 0.0,
+        "source": "Forestell-Morrissey-Sigurdson figure 3, XB-FMS-top-left",
+        "uncertainty_interpretation": "fixed published model parameter, not a measurement",
+        "unit": "MeV",
+        "value": 1000.0
+      },
+      "matrix_element_input_range_MeV": [
+        5.8052761979759105e-36,
+        1.404733499757134e-35
+      ],
+      "partial_width_MeV": 9.478367619534742e-36,
+      "partial_width_s_inv": 1.440017538449968e-14,
+      "partonic_applicability": {
+        "maximum_alpha_s": 0.3,
+        "minimum_scalar_mass_MeV": 2000.0,
+        "source": "diagnostic declared bound; no hadronic matching claim"
+      },
+      "partonic_applicable": false,
+      "prepared_input": {
+        "artifact": "donor_inputs.json",
+        "schema": "R135-donor-stage-inputs-v1",
+        "sha256": "15b2560a3e96231dd7c78c3e1376fc4d467479968c42469dd527d62e0f6ae243",
+        "source_lock_sha256": "ee7f84d63614aa7a66848c444ebc88fa21ce39828274498cb1d09a7bad91e3c0"
+      },
+      "production_precision_validated": false,
+      "running_alpha_s": {
+        "alpha_s": 0.2,
+        "interpolation": "linear alpha_s in log(mu); no extrapolation",
+        "mu_MeV": 1000.0,
+        "n_f": 3,
+        "scheme": "MSbar",
+        "source": "assigned diagnostic running table; not a QCD fit",
+        "thresholds_MeV": []
+      },
+      "schema": "R135-FMS-scalar-partial-width-v1",
+      "source": "assigned diagnostic portal inputs; not a calibrated cosmological-X model",
+      "status": "PARTIAL_WIDTH_ONLY",
+      "usable_as_total_width": false
+    }
+  },
+  "independent_matching_status": "REQUIRES_VALIDATION_OF_SUPPLIED_EVIDENCE",
+  "quadratures": [],
+  "schema": "R135-collision-model-v1",
+  "supplied_matching_refs": []
+}

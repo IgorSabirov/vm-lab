@@ -1,0 +1,273 @@
+{
+  "P1_result": {
+    "evidence_status": "CONDITIONAL",
+    "limitations": [
+      "Thermodynamic consistency does not establish the origin of a model's energy scale.",
+      "marginal entropy errors do not provide the measured joint covariance",
+      "pressure-anchor uncertainty and interpolation systematic require independent justification",
+      "stable phase domains do not provide a metastable transition history",
+      "scale routes are separate sensitivity alternatives, not independent repeated measurements",
+      "the published FMS mass is an external model parameter, not a cosmological-X calibration",
+      "a complete initial thermal history, prefactor, wall transport and portal channels remain inputs"
+    ],
+    "metrics": {
+      "T_c_MeV": 177.12589073634206,
+      "phase_count": 2
+    },
+    "software_status": "PASS"
+  },
+  "P5_result": {
+    "evidence_status": "DIAGNOSTIC",
+    "limitations": [
+      "Action, prefactor, wall transport and their domain must be independently calibrated for a physical claim.",
+      "The matched finite-a donor is a diagnostic thin-wall control, not a continuum metastable EOS or calibrated transition history."
+    ],
+    "metrics": {
+      "flux_matching_cases": 0,
+      "temperatures": 2
+    },
+    "physical_input_status": "DIAGNOSTIC_ONLY",
+    "software_status": "PASS"
+  },
+  "P6_control_numbers": {
+    "coefficient_3to2_MeV_minus5": 2.722087390314386e-15,
+    "partial_gg_width_MeV": 9.478367619534742e-36,
+    "partial_width_not_in_decay_table": true
+  },
+  "P6_number_result": {
+    "evidence_status": "CONDITIONAL",
+    "limitations": [
+      "Portal coefficients, spectrum, matching and thermalization are external physical inputs",
+      "Thermal moment closure does not evolve nonthermal cascades",
+      "The sourced 3<->2 coefficient is an NDA sensitivity input for a single scalar MB closure; its kinetic relaxation and temperature domain must remain valid throughout P7."
+    ],
+    "metrics": {
+      "decay_channels": 0,
+      "donor_controls": 1,
+      "reaction_integrals": 0
+    },
+    "physical_input_status": "CONDITIONAL",
+    "software_status": "PASS"
+  },
+  "P6_partial_result": {
+    "evidence_status": "OPEN_INPUT",
+    "limitations": [
+      "Portal coefficients, spectrum, matching and thermalization are external physical inputs",
+      "Thermal moment closure does not evolve nonthermal cascades",
+      "The selected FMS gg helper supplies a partonic partial width only; complete decay channels, hadronic matching, inverse reactions and deposition remain OPEN_INPUT. Its width is not included in decay_table or Q.",
+      "The sourced 3<->2 coefficient is an NDA sensitivity input for a single scalar MB closure; its kinetic relaxation and temperature domain must remain valid throughout P7."
+    ],
+    "metrics": {
+      "decay_channels": 0,
+      "donor_controls": 2,
+      "reaction_integrals": 0
+    },
+    "physical_input_status": "OPEN_INPUT",
+    "software_status": "PASS"
+  },
+  "elapsed_seconds": 1.3447364080002444,
+  "limitations": [
+    "marginal entropy errors do not provide the measured joint covariance",
+    "pressure-anchor uncertainty and interpolation systematic require independent justification",
+    "stable phase domains do not provide a metastable transition history",
+    "scale routes are separate sensitivity alternatives, not independent repeated measurements",
+    "the published FMS mass is an external model parameter, not a cosmological-X calibration",
+    "a complete initial thermal history, prefactor, wall transport and portal channels remain inputs"
+  ],
+  "literature_boundaries": [
+    {
+      "R_post": 1e-09,
+      "T_X_MeV": 177.12589073634206,
+      "T_gamma_MeV": 34975.69557476148,
+      "m0_GeV": 1.0,
+      "neutrino_preparation_status": "OPEN_INPUT; entropy ratio does not specify neutrino spectra",
+      "point_id": "XB-FMS-top-left",
+      "surface": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
+      "xi": 0.005064256416508737
+    },
+    {
+      "R_post": 1e-09,
+      "T_X_MeV": 17712589.073634204,
+      "T_gamma_MeV": 3285939882.373682,
+      "m0_GeV": 100000.0,
+      "neutrino_preparation_status": "OPEN_INPUT; entropy ratio does not specify neutrino spectra",
+      "point_id": "XB-FMS-top-right",
+      "surface": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
+      "xi": 0.005390417873634093
+    },
+    {
+      "R_post": 0.001,
+      "T_X_MeV": 177.12589073634206,
+      "T_gamma_MeV": 404.27009134052753,
+      "m0_GeV": 1.0,
+      "neutrino_preparation_status": "OPEN_INPUT; entropy ratio does not specify neutrino spectra",
+      "point_id": "XB-FMS-bottom-left",
+      "surface": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
+      "xi": 0.4381375088842379
+    },
+    {
+      "R_post": 0.001,
+      "T_X_MeV": 17712589.073634204,
+      "T_gamma_MeV": 32882506.813216124,
+      "m0_GeV": 100000.0,
+      "neutrino_preparation_status": "OPEN_INPUT; entropy ratio does not specify neutrino spectra",
+      "point_id": "XB-FMS-bottom-right",
+      "surface": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
+      "xi": 0.5386629788978
+    }
+  ],
+  "physical_R135_run": false,
+  "production_precision_validated": false,
+  "same_pressure_anchor_at_transition": true,
+  "scale_routes": {
+    "flow_beta_6.117": {
+      "L_over_a": 26,
+      "absolute_sigma_range_unknown_correlations": [
+        0.002466533640854588,
+        0.00292547080426769
+      ],
+      "beta": 6.117,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.0027057501388792382,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.19714516252478326
+    },
+    "flow_beta_6.135": {
+      "L_over_a": 26,
+      "absolute_sigma_range_unknown_correlations": [
+        0.0011156229014228228,
+        0.0015667814594977909
+      ],
+      "beta": 6.135,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.001360040183230831,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.1938037150765143
+    },
+    "flow_beta_6.222": {
+      "L_over_a": 30,
+      "absolute_sigma_range_unknown_correlations": [
+        0.002139728371807364,
+        0.002598389882682491
+      ],
+      "beta": 6.222,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.002380133135724147,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.19702675074920314
+    },
+    "r0": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.001876202458799036,
+        0.0073797823302734706
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.006034598363953331,
+        0.026128266033254157,
+        0.009501187648456057
+      ],
+      "sigma": 0.005039146701204892,
+      "source": "Francis r0 Tc / Morningstar-Peardon r0 m0",
+      "uncertainty_assumption": "zero covariance sensitivity; statistical and anisotropy pieces retained",
+      "unit": "1",
+      "value": 0.17712589073634205
+    },
+    "string_tension": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.000289390440334569,
+        0.0020515049777795028
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.004642525533890437,
+        0.00616740088105727
+      ],
+      "sigma": 0.0014649947953510134,
+      "source": "Giusti et al. Tc/sqrt(sigma) divided by m0/sqrt(sigma)",
+      "uncertainty_assumption": "zero covariance sensitivity",
+      "unit": "1",
+      "value": 0.1897797356828194
+    }
+  },
+  "schema": "R135-donor-native-control-v1",
+  "selected_scale": {
+    "anchor": {
+      "origin": "external_model",
+      "sigma": 0.0,
+      "source": "Forestell-Morrissey-Sigurdson figure 3, XB-FMS-top-left",
+      "uncertainty_interpretation": "fixed published model parameter, not a measurement",
+      "unit": "MeV",
+      "value": 1000.0
+    },
+    "correlation": 0.0,
+    "correlation_assumption": "diagnostic zero covariance of chosen mass anchor and dimensionless ratio",
+    "ratio": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.001876202458799036,
+        0.0073797823302734706
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.006034598363953331,
+        0.026128266033254157,
+        0.009501187648456057
+      ],
+      "sigma": 0.005039146701204892,
+      "source": "Francis r0 Tc / Morningstar-Peardon r0 m0",
+      "uncertainty_assumption": "zero covariance sensitivity; statistical and anisotropy pieces retained",
+      "unit": "1",
+      "value": 0.17712589073634205
+    }
+  },
+  "source_sha256": {
+    "donor_reference/validate.py": "3348b2f042d933de65c0edeaf0b3a24fcc7b061ca6df5f036f93196e18a16cb4",
+    "donors/extract.py": "bf53ac65a8d750020b8ae24e0fccde3ca06960c88a877e1a459ed95449ec827a",
+    "donors/fetch.py": "0a89cc82742e0ed4f4c713d1479392f231261b77211d565f4d386067b3035ac9",
+    "donors/sources.json": "ee7f84d63614aa7a66848c444ebc88fa21ce39828274498cb1d09a7bad91e3c0",
+    "donors/uncertainties.py": "b4a9138d48f3f56293bb4fcfa54da2c1625028791c2b3588448df12c274db466",
+    "r135/collisions.py": "a6a9aab37a9bb686c14837cc0712bedab4b4a81e0531521e7784c652fa679878",
+    "r135/common.py": "6d275d0fc494135051e0872c5d793edb438f6e43599f99c7b1ad72c5ba425fe5",
+    "r135/donor_inputs.py": "8c2d9805523993178c72ccb661be37a3a61f47744e308c32202844ae29174d41",
+    "r135/gravitationalwaves.py": "84d70a6a78ae61615b07199fc8a816f88cf927d70b2282e58a987c2e6c260d12",
+    "r135/nucleation.py": "cdb3d3a4551c3d306a327ce63e3564436f522fca5e3acd9a4660c9d99daa3b9a",
+    "r135/thermodynamics.py": "2efa0d33737ada738896b5ef986bbd4401be5824dc66c1065f74b2c487686e38"
+  },
+  "stable_branch_checks": {
+    "cold": {
+      "T_MeV": [
+        141.70071258907365,
+        177.12589073634206
+      ],
+      "cs2_range": [
+        0.03619044641174628,
+        0.15378661489387158
+      ],
+      "minimum_cv_MeV3": 1747810.760419709
+    },
+    "hot": {
+      "T_MeV": [
+        177.12589073634206,
+        442.81472684085514
+      ],
+      "cs2_range": [
+        0.023092772256477313,
+        0.34257322737834484
+      ],
+      "minimum_cv_MeV3": 147735638.9070334
+    }
+  },
+  "status": "PASS"
+}

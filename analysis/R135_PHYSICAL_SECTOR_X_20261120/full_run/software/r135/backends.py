@@ -38,10 +38,12 @@ def capabilities():
     return {"implemented": ["time-indexed common-input LINX and PRIMAT kernels", "nonmonotone-temperature histories",
                             "supplied or computed six-process Born nonthermal weak rates bound to neutrino spectra", "native thermal weak integrals",
                             "all five histories at three precision levels", "actual input-consumption receipts",
-                            "lensed native CLASS spectra through ell=2508 in established free-streaming domain",
+                            "lensed native CLASS spectra with registered ell coverage (2508 Planck, 9000 ACT, 4095 SPT)",
                             "history-bound native CLASS ETHOS elastic cold IDM and thermal IDR perturbations",
                             "import of independently computed general-X spectra with execution provenance",
-                            "full frozen Planck and joint BBN likelihood", "fixed-cosmology nuisance profiling"],
+                            "full frozen Planck and joint BBN likelihood", "fixed-cosmology nuisance profiling",
+                            "separate pinned ACT DR6 CMB-only and SPT-3G D1 lite likelihoods of actual R135 spectra",
+                            "same-history GW energy, late transfer and separate conditional PTA/LVK responses"],
             "not_implemented_here": ["arbitrary interacting-X equations outside the selected ETHOS family",
                                      "simultaneous thermal BBN/hadronic cascade and fully coupled low-energy heat deposition",
                                      "precision radiative/recoil/finite-temperature corrections for arbitrary neutrino spectra"],
@@ -465,7 +467,8 @@ def run_class(class_input, source_root, output, *, YHe):
     pars["YHe"] = finite(YHe, "BBN helium mass fraction", positive=True)
     if pars["YHe"] >= 1:
         raise InputError("helium fraction must be below one")
-    pars.update({"N_ncdm": 0, "output": "tCl,pCl,lCl", "lensing": "yes", "l_max_scalars": 2508,
+    lmax=doc["l_max_scalars"]
+    pars.update({"N_ncdm": 0, "output": "tCl,pCl,lCl", "lensing": "yes", "l_max_scalars": lmax,
                  "root": str(out / "spectra_"), "headers": "yes", "format": "camb", "write background": "yes"})
     parameter_file = out / "parameters.ini"
     parameter_file.write_text("".join(f"{k} = {v}\n" for k, v in pars.items()))
@@ -474,15 +477,15 @@ def run_class(class_input, source_root, output, *, YHe):
                        stdout=log, stderr=subprocess.STDOUT, check=True)
     files = list(out.glob("*cl_lensed.dat"))
     if len(files) != 1:
-        raise RuntimeError("CLASS did not produce the lensed spectra required by Planck")
+        raise RuntimeError("CLASS did not produce the requested lensed CMB spectra")
     table = np.loadtxt(files[0])
     ell = table[:, 0]
-    if not np.array_equal(ell, np.arange(2, 2509)) or table.shape[1] < 5 or not np.isfinite(table).all():
+    if not np.array_equal(ell, np.arange(2, lmax+1)) or table.shape[1] < 5 or not np.isfinite(table).all():
         raise RuntimeError("CLASS output has invalid multipole coverage or nonfinite values")
     # In CAMB format CLASS writes l(l+1)Cl/(2pi) in microkelvin squared:
     # ell, TT, EE, BB, TE. Do not apply the (Tcmb*1e6)^2 conversion twice.
     factor = 2 * np.pi / (ell * (ell + 1))
-    spectra = {"ell": ell.astype(int).tolist(), "unit": "microK^2", "convention": "Cl",
+    spectra = {"ell": ell.astype(int).tolist(), "unit": "microK^2", "convention": "Cl", "lensed":True,
                **{name: (table[:, i] * factor).tolist() for i, name in enumerate(("TT", "EE", "BB", "TE"), 1)}}
     from .likelihood import validate_spectra
     validate_spectra(spectra)
@@ -610,12 +613,105 @@ def import_computed_spectra(entry, class_input, history, abundance, inputs, out)
     return spectra, result
 
 
+def prepare_gw_response(config, inputs, bbn_bundle, out):
+    """Use exactly the P7 history already consumed by BBN, including its GW energy."""
+    from .gravitationalwaves import detector_paths, responses_from_p7
+    path = inputs.get("channel_history")
+    key = config.get("_key")
+    if path is None:
+        result = {"schema": "R135-GW-response-bundle-v1", "status": "OPEN_INPUT", "key": key,
+                  "histories": {}, "physical_completion_status": "OPEN_INPUT",
+                  "missing": ["P9 needs the actual saved channel_history used by P8 for its GW response"]}
+    else:
+        if sha256(path) != bbn_bundle.get("source_P7_file_sha256"):
+            raise InputError("GW and BBN must consume the identical saved P7 channel_history")
+        channel = read_json(path)
+        if key is None:
+            key = channel.get("key")
+        if key is None:
+            result = {"schema": "R135-GW-response-bundle-v1", "status": "OPEN_INPUT", "key": None,
+                      "histories": {}, "physical_completion_status": "OPEN_INPUT",
+                      "missing": ["GW requires a registered point/model/thermal-path identity"]}
+        else:
+            if channel.get("key") and any(channel["key"].get(k) != key.get(k)
+                    for k in ("point_id", "model_id", "thermal_path")):
+                raise InputError("GW P7 file belongs to another registered physical point")
+            if "gw_response_policy" in inputs and "gw_response" in config:
+                raise InputError("supply one GW response policy")
+            policy = (read_json(inputs["gw_response_policy"]) if "gw_response_policy" in inputs
+                      else config.get("gw_response", {}))
+            paths = detector_paths(config["donor_cache"], offline=config.get("offline", True)) if config.get("donor_cache") else None
+            result = responses_from_p7(channel, key, policy, paths)
+        result["source_P7_file_sha256"] = sha256(path)
+    write_json(Path(out) / "gw_response.json", result)
+    return result
+
+
+def external_cmb_request(config, spectra_tasks):
+    """Bind each optional ACT/SPT task to the actual CLASS output and its cosmology."""
+    policy = config.get("external_cmb")
+    if policy is None:
+        return None
+    if not isinstance(policy, dict):
+        raise InputError("external_cmb must declare its data, runtime and likelihood prescription")
+    from .external_cmb import required_lmax, to_dl
+    required = required_lmax(policy.get("variants", []))
+    tasks = {}
+    for tag, item in spectra_tasks.items():
+        path = Path(item["path"])
+        receipt_path = path.with_name("receipt.json")
+        receipt = read_json(receipt_path)
+        parameters = receipt.get("input", {}).get("parameters", {})
+        if "tau_reio" not in parameters:
+            raise OpenInput("ACT/SPT require a producer receipt with the cosmology used to generate each spectrum")
+        to_dl(read_json(path), lmax=required)
+        tasks[tag] = {**item, "cosmology": {"tau_reio": parameters["tau_reio"]},
+                      "producer_receipt": {"path": str(receipt_path.resolve()), "sha256": sha256(receipt_path)}}
+    allowed = {"cache", "offline", "variants", "nuisance", "profile_nuisance", "profile_policy", "spt_tau_prior"}
+    if set(policy) - allowed - {"python", "python_sha256", "max_delta_logL"}:
+        raise InputError("unregistered external CMB policy key; joint Planck/ACT/SPT multiplication is not implemented")
+    if not policy.get("cache"):
+        raise OpenInput("ACT/SPT require the pinned donor cache")
+    return {**{k: v for k, v in policy.items() if k in allowed}, "spectra": tasks,
+            "adapter_sha256": sha256(Path(__file__).with_name("external_cmb.py")),
+            "mode": config.get("_mode", "conditional")}
+
+
+def run_external_cmb(config, spectra_tasks, accuracy_keys, out):
+    policy = config.get("external_cmb")
+    if policy is None:
+        return None, {}
+    from .external_cmb import evaluate_batch, isolated_batch
+    request = external_cmb_request(config, spectra_tasks)
+    write_json(Path(out) / "external_cmb_request.json", request)
+    if policy.get("python"):
+        result = isolated_batch(request, policy["python"], Path(out) / "external_cmb_worker",
+                                interpreter_sha256=policy.get("python_sha256"))
+    else:
+        result = evaluate_batch(request)
+    write_json(Path(out) / "external_cmb_evaluations.json", result)
+    gates = {}
+    for key, tags in accuracy_keys.items():
+        for variant in request["variants"]:
+            tolerance = policy.get("max_delta_logL", config.get("max_cmb_delta_logL"))
+            if isinstance(tolerance, dict):
+                tolerance = tolerance.get(variant)
+            gates[f"{key}/{variant}"] = class_refinement_gate(
+                [result["evaluations"][tag][variant]["log_posterior"] for tag in tags], tolerance)
+    write_json(Path(out) / "external_cmb_convergence.json", gates or {
+        "status": "NOT_VALIDATED", "reason": "no CLASS accuracy refinement was executed"})
+    return result, gates
+
+
 def run(config, inputs, out):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
     bundle_path = require_input(inputs, "bbn_inputs")
     bundle = read_json(bundle_path)
     if bundle.get("schema") != "R135-bbn-inputs-v1" or set(bundle.get("histories", {})) != set(CORNERS):
         raise OpenInput("P9 needs all five P8 histories")
     histories = bundle["histories"]
+    gw_response = prepare_gw_response(config, inputs, bundle, out)
     if len({canonical_hash(h["initial_abundances"]) for h in histories.values()}) != 1:
         raise InputError("five-corner runs must start from the same registered preparation")
     data_path = require_input(inputs, "data_release_lock")
@@ -681,6 +777,30 @@ def run(config, inputs, out):
     class_bundle = read_json(require_input(inputs, "class_inputs"))
     if set(class_bundle.get("histories", {})) != set(CORNERS):
         raise OpenInput("CLASS inputs must cover all five histories")
+    open_cmb = {corner: spec.get("missing", ["native CMB mapping is open"])
+                for corner, spec in class_bundle["histories"].items() if spec.get("status") == "OPEN_INPUT"}
+    if open_cmb:
+        # A missing scalar-perturbation proof must not discard a completed BBN
+        # integration or turn a conditional background match into a spectrum.
+        from .likelihood import bbn_loglike
+        bbn_rows = []
+        if "theory_covariance_logD_Yp" in config:
+            for engine in results:
+                for corner in CORNERS:
+                    abundance = results[engine][-1][corner]
+                    result = bbn_loglike(abundance["D_H"], abundance["Yp"], releases,
+                                         config["theory_covariance_logD_Yp"])
+                    bbn_rows.append({"engine": engine, "corner": corner, **result})
+        write_json(out / "bbn_likelihoods.json", {"evaluations": bbn_rows,
+                   "status": "CONDITIONAL" if bbn_rows else "OPEN_INPUT",
+                   "confidence_calibrated": False})
+        write_json(out / "cmb_spectra_manifest.json", {"state": "OPEN_INPUT", "histories": open_cmb})
+        write_csv(out / "likelihood_grid.csv", [], ["corner", "engine", "logL", "status"])
+        return {"software_status": "PASS", "evidence_status": "INCONCLUSIVE",
+                "metrics": {"bbn_integrations": 30, "class_integrations": 0,
+                            "open_CMB_histories": len(open_cmb)},
+                "limitations": ["BBN integrations are retained; the joint observational result remains partial because CMB mapping is OPEN_INPUT."]
+                    + [f"{corner}: {reason}" for corner, reasons in open_cmb.items() for reason in reasons]}
     cmb_mode = config.get("cmb_mode", "native_class")
     if cmb_mode not in ("native_class", "external_computed_spectra"):
         raise InputError("unknown CMB computation mode")
@@ -740,6 +860,7 @@ def run(config, inputs, out):
     else:
         evaluations = evaluate_batch(likelihood_request)
     write_json(out / "planck_evaluations.json", evaluations)
+    external_evaluations, external_gates = run_external_cmb(config, spectra_tasks, accuracy_keys, out)
     cmb_gates, cmb_gate_rows = {}, []
     for key in cmb_manifest:
         if key in accuracy_keys:
@@ -753,7 +874,7 @@ def run(config, inputs, out):
                               "registered_tolerance": gate.get("max_delta_logL")})
     write_json(out / "cmb_convergence.json", cmb_gates)
     write_csv(out / "cmb_convergence.csv", cmb_gate_rows)
-    if any(g["status"] == "FAIL_CMB_CONVERGENCE" for g in cmb_gates.values()):
+    if any(g["status"] == "FAIL_CMB_CONVERGENCE" for g in [*cmb_gates.values(), *external_gates.values()]):
         write_json(out / "cmb_spectra_manifest.json", {"spectra": cmb_manifest, "Planck": evaluations["receipt"]})
         write_csv(out / "likelihood_grid.csv", [], ["corner", "engine", "logL", "status"])
         return {"software_status": "FAIL_CMB_CONVERGENCE", "evidence_status": "INCONCLUSIVE",
@@ -776,7 +897,11 @@ def run(config, inputs, out):
                         "class_integrations": len(spectra_tasks) if cmb_mode == "native_class" else 0,
                         "new_class_integrations": sum(sum(not s.get("cache_reused", False) for s in r.get("refinements", [r])) for r in cmb_manifest.values()) if cmb_mode == "native_class" else 0,
                         "imported_computed_spectra": len(cmb_manifest) if external is not None else 0,
-                        "likelihood_evaluations": evaluations["receipt"]["actual_evaluations"]},
+                        "likelihood_evaluations": evaluations["receipt"]["actual_evaluations"],
+                        "external_CMB_evaluations": sum(r["actual_evaluations"] for r in external_evaluations["receipt"].values()) if external_evaluations else 0,
+                        "GW_physical_completion_status": gw_response["physical_completion_status"]},
             "limitations": ["Likelihood values require registered nuisance/cosmology treatment and calibrated decision thresholds before exclusion."]
+                            + (["ACT and SPT are separately evaluated alternatives at fixed cosmology; joint cosmological optimization, overlap covariance and confidence calibration remain open."] if external_evaluations else [])
+                            + ["GW source/transfer responses remain conditional and require complete observational inference before full physical acceptance."]
                             + (["CMB numerical accuracy is NOT_VALIDATED without registered CLASS refinement or external accuracy evidence."]
                                if any(g["status"] == "NOT_VALIDATED" for g in cmb_gates.values()) else [])}

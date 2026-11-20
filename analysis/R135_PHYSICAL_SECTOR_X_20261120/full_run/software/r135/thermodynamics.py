@@ -46,6 +46,15 @@ class PhaseEOS:
     polynomial coefficients[n] multiplies T**n, in units MeV**(4-n).
     """
     def __init__(self, spec):
+        self._entropy_delegate = None
+        if spec.get("kind") == "entropy_integral_table":
+            if any(name.startswith("pressure_offset") for name in spec):
+                raise InputError("entropy EOS pressure shifts and uncertainties must be included in its sourced common pressure anchor")
+            from .donor_inputs import EntropyTableEOS
+            self._entropy_delegate = EntropyTableEOS(spec)
+            for name in ("spec", "phase", "kind", "minimum", "maximum", "validation"):
+                setattr(self, name, getattr(self._entropy_delegate, name))
+            return
         self.spec = copy.deepcopy(spec)
         _source(spec)
         self.phase = str(spec.get("phase", "unnamed"))
@@ -108,6 +117,8 @@ class PhaseEOS:
         return cls(spec)
 
     def at(self, T_MeV):
+        if self._entropy_delegate is not None:
+            return self._entropy_delegate.at(T_MeV)
         t = _finite(T_MeV, "temperature", positive=True)
         if np.any(t < self.minimum) or np.any(t > self.maximum):
             raise EOSDomainError(f"{self.phase}: temperature outside [{self.minimum}, {self.maximum}] MeV")
@@ -162,6 +173,8 @@ class PhaseEOS:
                                            "max_allowed_residual": float(np.max(allowed))}
 
     def temperature_for_density(self, rho_MeV4):
+        if self._entropy_delegate is not None:
+            return self._entropy_delegate.temperature_for_density(rho_MeV4)
         rho = float(_finite(rho_MeV4, "density"))
         low, high = self.at(self.minimum)["rho_MeV4"], self.at(self.maximum)["rho_MeV4"]
         if not low <= rho <= high:
@@ -333,6 +346,14 @@ def _load(config, inputs, key):
 
 def run(config, inputs, out):
     out = Path(out); out.mkdir(parents=True, exist_ok=True)
+    donor = None
+    if "donor_inputs" in config or "donor_inputs" in inputs:
+        if any(name in config or name in inputs for name in ("eos", "scale")):
+            raise InputError("choose source-driven P1 inputs or explicit EOS/scale, not both")
+        from .donor_inputs import prepare
+        donor = prepare(_load(config, inputs, "donor_inputs"))
+        config = dict(config, eos=donor["eos"], scale=donor["scale"])
+        (out/"donor_inputs.json").write_text(json.dumps(donor,sort_keys=True,indent=2,allow_nan=False)+"\n")
     spec = _load(config,inputs,"eos")
     bundle = EOSBundle(spec)
     scale = scale_from_anchor(_load(config,inputs,"scale"))
@@ -362,8 +383,12 @@ def run(config, inputs, out):
                   "definition":spec,"transitions":bundle.transitions,
                   "validation":{k:v.validation for k,v in bundle.phases.items()},
                   "no_extrapolation":True}
+    if donor is not None:
+        eos_output["donor_provenance"]=donor["donor_provenance"]
+        scale["alternative_routes"]=donor["scale_alternatives"]
     for name,data in (("scale.json",scale),("eos_bundle.json",eos_output),("initial_history.json",initial)):
         (out/name).write_text(json.dumps(data,sort_keys=True,indent=2,allow_nan=False)+"\n")
     return {"software_status":"PASS","evidence_status":"CONDITIONAL",
             "metrics":{"phase_count":len(bundle.phases),"T_c_MeV":scale["T_c_MeV"]},
-            "limitations":["Thermodynamic consistency does not establish the origin of a model's energy scale."]}
+            "limitations":["Thermodynamic consistency does not establish the origin of a model's energy scale."]
+                           + (donor["limitations"] if donor is not None else [])}

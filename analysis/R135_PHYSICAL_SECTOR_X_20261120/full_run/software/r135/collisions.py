@@ -339,6 +339,27 @@ def cannibal_rate(n_MeV3, T_MeV, mass_MeV, coefficient_MeV_minus5, degeneracy=1.
 
 
 def run(config, inputs, out):
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    donor_controls = {}
+    selected = [name for name in ("donor_scalar_portal", "donor_3to2") if name in config]
+    if selected:
+        from .donor_inputs import load_prepared, scalar_partonic_width, nda_3to2
+        prepared, binding = load_prepared(inputs)
+        write_json(out / "donor_relic_spectrum.json", {
+            **prepared["relic_spectrum_control"], "prepared_input": binding})
+        if "donor_scalar_portal" in config:
+            partial = scalar_partonic_width(prepared, config["donor_scalar_portal"])
+            partial["prepared_input"] = binding
+            # This partial partonic result must never populate relic channels,
+            # a total lifetime, branching fractions, or thermal Q automatically.
+            write_json(out / "scalar_portal_partial_width.json", partial)
+            donor_controls["scalar_portal"] = partial
+        if "donor_3to2" in config:
+            number_model = nda_3to2(prepared, config["donor_3to2"])
+            number_model["prepared_input"] = binding
+            write_json(out / "number_changing_model.json", number_model)
+            donor_controls["number_changing"] = number_model
     definition = read_json(inputs["collision_definition"]) if "collision_definition" in inputs else config.get("model")
     if not definition:
         raise OpenInput("P6 requires matrix elements or independently matched collision moments")
@@ -372,12 +393,28 @@ def run(config, inputs, out):
         thermalization = {"status": "OPEN_INPUT", "reason": "scattering/cascade and thermalization model missing"}
     write_json(out / "collision_model.json", {"schema": "R135-collision-model-v1", "definition": definition,
                "quadratures": integrals, "controls": controls,
+               "donor_controls": donor_controls,
                "supplied_matching_refs": definition.get("matching_artifacts", []),
                "independent_matching_status": "REQUIRES_VALIDATION_OF_SUPPLIED_EVIDENCE"})
     write_csv(out / "decay_table.csv", decay, ["species", "channel", "recipient", "mass_MeV", "width_MeV",
                "total_width_MeV", "branching_fraction", "lifetime_s", "stable", "source"])
     write_json(out / "thermalization_model.json", thermalization)
-    return {"software_status": "PASS", "evidence_status": "CONDITIONAL",
-            "metrics": {"reaction_integrals": len(integrals), "decay_channels": len(decay)},
-            "limitations": ["Portal coefficients, spectrum, matching and thermalization are external physical inputs",
-                            "Thermal moment closure does not evolve nonthermal cascades"]}
+    partial_only = "scalar_portal" in donor_controls
+    limitations = ["Portal coefficients, spectrum, matching and thermalization are external physical inputs",
+                   "Thermal moment closure does not evolve nonthermal cascades"]
+    if partial_only:
+        limitations.append("The selected FMS gg helper supplies a partonic partial width only; complete decay channels, hadronic matching, inverse reactions and deposition remain OPEN_INPUT. Its width is not included in decay_table or Q.")
+    if "number_changing" in donor_controls:
+        limitations.append("The sourced 3<->2 coefficient is an NDA sensitivity input for a single scalar MB closure; its kinetic relaxation and temperature domain must remain valid throughout P7.")
+    acceptance = {"schema": "R135-P6-donor-acceptance-v1",
+                  "status": "OPEN_INPUT" if partial_only else "CONDITIONAL",
+                  "selected_donor_controls": selected,
+                  "partial_width_used_in_total_or_energy_source": False,
+                  "limitations": limitations}
+    if selected:
+        write_json(out / "donor_physical_acceptance.json", acceptance)
+    return {"software_status": "PASS", "evidence_status": acceptance["status"],
+            "physical_input_status": acceptance["status"],
+            "metrics": {"reaction_integrals": len(integrals), "decay_channels": len(decay),
+                        "donor_controls": len(donor_controls)},
+            "limitations": limitations}

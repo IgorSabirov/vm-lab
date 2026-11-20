@@ -1,0 +1,68 @@
+{
+  "definition": {
+    "applicability": {
+      "free_propagation_after_source": true,
+      "maximum_rho_GW_over_total": 0.01,
+      "source": "diagnostic isotropic weak-field subhorizon radiation",
+      "statistically_isotropic": true,
+      "subhorizon_geometric_optics": true
+    },
+    "kind": "comoving_frequency_power",
+    "omitted_frequency_energy_fraction_bound": 0.0,
+    "power_MeV4_s_per_logq": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1e-05,
+        5e-06,
+        2e-06,
+        1e-06
+      ],
+      [
+        1e-05,
+        5e-06,
+        2e-06,
+        1e-06
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "q_frequency_edges_Hz": [
+      2.0,
+      20.0,
+      20000.0,
+      200000000000.0,
+      200000000000000.0
+    ],
+    "scale_factor_convention": "a=1 on the initial P7 surface; q=a*f in Hz",
+    "source": "assigned diagnostic spectral power",
+    "support_source": "finite support chosen for a numerical control; zero outside",
+    "time_s": [
+      0.0,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "uncertainty_source": "fixed diagnostic coefficients; no physical confidence interval",
+    "zero_outside_time_support": true
+  },
+  "model_id": "XB-pureSU3",
+  "point_id": "gw-coupled-control",
+  "schema": "R135-GW-source-v1",
+  "source_derivation": "supplied independently; not inferred from latent heat",
+  "source_sha256": "68ef509e6b785e017cb06a1dcc8157b32bd984296627df3aeba9d68a718500af",
+  "status": "CONDITIONAL",
+  "thermal_path": "exchange_during_transition",
+  "units": {
+    "power": "MeV^4/s per d ln q",
+    "q": "a*f in Hz"
+  }
+}

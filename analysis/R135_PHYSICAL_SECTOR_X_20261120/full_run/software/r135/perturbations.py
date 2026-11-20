@@ -151,7 +151,8 @@ def _base_parameters(config):
 
 
 def _prepare(history, config, source_history_sha256):
-    from .observations import validate_history, validate_class_precision
+    from .observations import validate_history, validate_class_precision, validate_class_lmax, validate_gw_scalar_mapping
+    gw_mapping=validate_gw_scalar_mapping(history,config)
     h = validate_history(history)
     model, species_parameters = _model(config)
     parameters = _base_parameters(config)
@@ -261,9 +262,12 @@ def _prepare(history, config, source_history_sha256):
                 "scope": "conditional stable cold IDM + thermal massless IDR with sourced ETHOS continuation"}
     if species_parameters["idr_nature"] == "fluid":
         matching["minimum_fluid_self_scattering_over_k_or_aH"] = float(np.min(fluid_ratio))
+    if gw_mapping is not None:
+        matching["gw_scalar_mapping"] = gw_mapping
     return {"perturbation_model": model, "parameters": parameters,
             "precision": validate_class_precision(config.get("precision", {})),
-            "l_max_scalars": 2508, "spectra": "lensed TT,TE,EE,BB", "Cl_unit": "microK^2",
+            "l_max_scalars": validate_class_lmax(config.get("l_max_scalars",2508)),
+            "spectra": "lensed TT,TE,EE,BB", "Cl_unit": "microK^2",
             "matching": matching, "class_source_commit": CLASS_COMMIT}
 
 
@@ -291,7 +295,7 @@ def validate_ethos_input(doc):
     P9 is allowed to update omega_b from BBN and YHe from computed abundances;
     every X, primordial and expansion input remains bound to the matching record.
     """
-    from .observations import validate_class_precision
+    from .observations import validate_class_precision, validate_class_lmax
     evidence = doc.get("ethos_matching_evidence")
     if not isinstance(evidence, dict) or canonical_hash(evidence) != doc.get("ethos_matching_evidence_sha256"):
         raise OpenInput("ETHOS native input lacks intact P7 matching evidence")
@@ -333,4 +337,5 @@ def validate_ethos_input(doc):
             raise InputError(f"ETHOS {key} does not match its independently reconstructed evidence")
     result = deepcopy(doc)
     result["precision"] = validate_class_precision(doc.get("precision", {}))
+    result["l_max_scalars"] = validate_class_lmax(doc.get("l_max_scalars",2508))
     return result

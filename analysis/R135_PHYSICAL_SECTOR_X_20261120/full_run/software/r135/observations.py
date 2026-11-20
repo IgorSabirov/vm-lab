@@ -31,6 +31,26 @@ CLASS_PRECISION_DIRECTION = {"tol_background_integration": -1, "tol_thermo_integ
     "l_linstep": -1, "l_logstep": -1, "k_max_tau0_over_l_max": 1, "accurate_lensing": 1}
 
 
+def validate_class_lmax(value):
+    if type(value) is not int or value < 2508:
+        raise InputError("native CMB output must declare an integer l_max_scalars >= 2508")
+    return value
+
+
+def validate_gw_scalar_mapping(history, config):
+    """A tensor radiation background alone does not fix scalar CMB initial data."""
+    from .gravitationalwaves import has_gw_energy
+    if not has_gw_energy(history):
+        return None
+    proof=config.get("gw_scalar_mapping")
+    if (not isinstance(proof,dict) or not proof.get("source")
+            or proof.get("source_P7_history_sha256")!=bridge_hash(history)
+            or proof.get("native_model")!=config.get("perturbation_model",{}).get("kind")
+            or proof.get("adiabatic_free_scalar_reduction") is not True):
+        raise OpenInput("GW background is already in H; its native scalar CMB reduction needs a separate history-bound applicability calculation")
+    return deepcopy(proof)
+
+
 def validate_class_precision(values):
     if not isinstance(values, dict) or set(values) - set(CLASS_PRECISION_DIRECTION):
         raise InputError("unsupported CLASS precision parameter")
@@ -209,7 +229,8 @@ def validate_class_model(config):
         raise InputError("CLASS YHe must lie in (0,1)")
     return {"perturbation_model": deepcopy(model), "parameters": parameters,
             "precision": validate_class_precision(config.get("precision", {})),
-            "l_max_scalars": 2508, "spectra": "lensed TT,TE,EE,BB", "Cl_unit": "microK^2"}
+            "l_max_scalars": validate_class_lmax(config.get("l_max_scalars",2508)),
+            "spectra": "lensed TT,TE,EE,BB", "Cl_unit": "microK^2"}
 
 
 def match_class_history(history, config):
@@ -222,6 +243,7 @@ def match_class_history(history, config):
     """
     h = validate_history(history)
     result = validate_class_model(config)
+    gw_mapping=validate_gw_scalar_mapping(history,config)
     policy = config.get("matching")
     if not isinstance(policy, dict):
         raise OpenInput("CLASS requires a late matching policy bound to the P7 history")
@@ -253,6 +275,8 @@ def match_class_history(history, config):
                            "eta": eta, "N_ur": neff, "rho_nu_convention": "total_all_species",
                            "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
                            "source_policy": policy}
+    if gw_mapping is not None:
+        result["matching"]["gw_scalar_mapping"]=gw_mapping
     return result
 
 
@@ -269,7 +293,8 @@ def external_perturbation_input(history, config):
     return {"perturbation_model": deepcopy(model), "external_solver": deepcopy(producer),
             "source_P7_history_sha256": bridge_hash(history),
             "status": "AWAIT_COMPUTED_SPECTRA", "required_spectra": ["TT", "TE", "EE"],
-            "lmax": 2508, "unit": "microK^2", "convention": "Cl"}
+            "lmax": validate_class_lmax(config.get("l_max_scalars",2508)),
+            "unit": "microK^2", "convention": "Cl"}
 
 
 def run(config, inputs, out):
@@ -279,6 +304,10 @@ def run(config, inputs, out):
     if any(units.get(k) != v for k, v in {"time": "s", "temperature": "MeV", "density": "MeV^4", "rate": "s^-1"}.items()):
         raise InputError("P7 channel history must declare s, MeV, MeV^4, s^-1 units")
     histories = bundle.get("histories")
+    if bundle.get("key") and config.get("_key"):
+        for field in ("point_id","model_id","thermal_path"):
+            if bundle["key"].get(field)!=config["_key"].get(field):
+                raise InputError("P8 received a P7 history from another "+field)
     if not isinstance(histories, dict) or not histories or set(histories) - set(CORNERS):
         raise InputError("P7 histories must be keyed by registered five-corner names")
     if config.get("require_five_corners", True) and set(histories) != set(CORNERS):
@@ -327,23 +356,48 @@ def run(config, inputs, out):
     class_inputs, limitations = {}, []
     for corner in histories:
         class_config = config.get("class", {})
-        specification = class_config.get(corner, class_config)
-        if specification.get("perturbation_model", {}).get("kind") == "external_computed_perturbations":
-            class_inputs[corner] = external_perturbation_input(histories[corner], specification)
-            limitations.append("General X perturbations are supplied as an independently computed, hash-bound spectrum; native equations are not implemented here.")
-        elif specification.get("perturbation_model", {}).get("kind") == "class_ethos_idm_idr":
-            from .perturbations import match_ethos_history
-            class_inputs[corner] = match_ethos_history(histories[corner], specification)
-        else:
-            class_inputs[corner] = match_class_history(histories[corner], specification)
+        specification = deepcopy(class_config.get(corner, class_config))
+        if config.get("external_cmb_variants"):
+            from .external_cmb import required_lmax
+            specification["l_max_scalars"]=max(specification.get("l_max_scalars",2508),
+                required_lmax(config["external_cmb_variants"]))
+        try:
+            kind=specification.get("perturbation_model", {}).get("kind")
+            from .gravitationalwaves import has_gw_energy
+            if has_gw_energy(histories[corner]) and kind!="external_computed_perturbations":
+                name=specification.get("gw_scalar_mapping_input")
+                if name not in inputs:
+                    raise OpenInput("native CMB for a nonzero GW history needs its verified gw_scalar_mapping_input artifact")
+                proof=read_json(inputs[name])
+                specification["gw_scalar_mapping"]={**proof,"artifact_sha256":sha256(inputs[name])}
+                validate_gw_scalar_mapping(histories[corner],specification)
+            if kind == "external_computed_perturbations":
+                class_inputs[corner] = external_perturbation_input(histories[corner], specification)
+                limitations.append("General X perturbations are supplied as an independently computed, hash-bound spectrum; native equations are not implemented here.")
+            elif kind == "class_ethos_idm_idr":
+                from .perturbations import match_ethos_history
+                class_inputs[corner] = match_ethos_history(histories[corner], specification)
+            else:
+                class_inputs[corner] = match_class_history(histories[corner], specification)
+        except OpenInput as exc:
+            class_inputs[corner]={"status":"OPEN_INPUT","missing":[str(exc)]}
+            limitations.append("CMB "+corner+": "+str(exc))
         class_inputs[corner]["source_P7_history_sha256"] = bridge_hash(histories[corner])
     payload = {"schema": "R135-bbn-inputs-v1", "source_P7_file_sha256": sha256(source_path),
                "histories": prepared, "applicability": config.get("applicability", {})}
     write_json(out / "bbn_inputs.json", payload)
     write_json(out / "weak_rates_manifest.json", {"schema": "R135-weak-rate-manifest-v1", "histories": manifest})
     write_json(out / "class_inputs.json", {"schema": "R135-class-inputs-v1", "histories": class_inputs})
+    write_json(out / "gw_inputs.json", {"schema":"R135-GW-handoff-v1","key":config.get("_key"),
+        "source_P7_file_sha256":sha256(source_path),
+        "history_sha256":{c:canonical_hash(h) for c,h in histories.items()},
+        "GW_history_supplied":{c:isinstance(h.get("gw"),dict) for c,h in histories.items()},
+        "GW_energy_already_in_BBN_H":all(isinstance(h.get("gw"),dict) for h in histories.values()),
+        "no_second_GW_BBN_density_addition":True,
+        "P9_input":"channel_history must name the same saved P7 file; a missing spectrum is not zero"})
     if config.get("weak_rates_mode")=="born_spectrum_integrals":
         limitations.append("Computed nonthermal weak rates include all six Born/static-nucleon processes; radiative, recoil and finite-temperature corrections require a separate accuracy budget.")
     return {"software_status": "PASS", "evidence_status": "DIAGNOSTIC" if config.get("_mode") == "validation" else "CONDITIONAL",
-            "metrics": {"prepared_histories": len(prepared), "actual_solver_calls": 0},
+            "metrics": {"prepared_histories": len(prepared), "actual_solver_calls": 0,
+                        "open_CMB_histories":sum(x.get("status")=="OPEN_INPUT" for x in class_inputs.values())},
             "limitations": limitations + ["P8 prepares inputs; actual backend consumption is recorded by P9."]}

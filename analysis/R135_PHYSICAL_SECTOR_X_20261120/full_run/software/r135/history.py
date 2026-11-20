@@ -21,7 +21,7 @@ from scipy.special import kv, kve, zeta
 from .collisions import CORNERS, ThermalTransfer, cannibal_rate, decay_table
 from .common import (G_NEWTON_MEV_MINUS2, HBAR_MEV_S, HBARC_MEV_CM,
                      InputError, OpenInput, canonical_hash, finite, read_json,
-                     require_source, write_csv, write_json)
+                     require_source, sha256, write_csv, write_json)
 from .nucleation import FrictionWall, Kernel
 from .thermodynamics import EOSBundle, PhaseEOS
 
@@ -192,12 +192,14 @@ class CoupledModel:
         if config.get("neutrino_closure") not in {"thermal","momentum_grid"}:
             raise OpenInput("a nonthermal neutrino closure requires a supplied kinetic solver, not Tnu alone")
         if not config.get("thermal_closure_source"):
-            raise OpenInput("thermal neutrino approximation needs an applicability source")
+            raise OpenInput("remaining thermal reservoirs need an applicability source")
         self.baths = {s: BathEOS(config["recipient_eos"][s]) for s in SECTORS[1:4]}
         self.relic = config.get("relic")
         from .kinetic_history import KineticCollection
         self.kinetic=KineticCollection(kinetic_definitions,offset=NSTATE,a0=self.initial.get("scale_factor",1))
-        self.nstate=self.kinetic.size
+        from .gravitationalwaves import GWSource
+        self.gw=GWSource(config.get("gw_source"),offset=self.kinetic.size)
+        self.nstate=self.gw.size
         if ("nu" in self.kinetic.sectors)!=(config.get("neutrino_closure")=="momentum_grid"):
             raise InputError("momentum_grid closure and resolved nu species must be selected together")
         if self.relic and "relic" in self.kinetic.sectors:
@@ -215,6 +217,9 @@ class CoupledModel:
                 raise OpenInput("relic kinetic EOS must be specified")
             if self.dust and self.relic.get("cannibal_MeV_minus5", 0) != 0:
                 raise InputError("3<->2 releases kinetic energy and cannot use a dust EOS")
+            number_model = self.relic.get("number_changing_model")
+            if number_model is not None:
+                validate_number_changing_binding(self.relic, number_model)
             table = decay_table([self.relic])
             self.decay_rate = table[0]["total_width_MeV"]/HBAR_MEV_S
             self.branches = {s: sum(x["branching_fraction"] for x in table if x["recipient"] == s)
@@ -266,6 +271,7 @@ class CoupledModel:
                 raise OpenInput("nonzero relic decay is incompatible with exact isolation; specify a sourced late activation after the isolation interval")
         self.eta = finite(self.initial["eta_b_gamma"], "initial baryon photon ratio", positive=True)
         self.y0 = self.kinetic.initialize(np.zeros(self.nstate))
+        self.gw.initialize(self.y0)
         self.y0[1] = finite(self.initial["T_X_MeV"], "initial X temperature", positive=True)
         for i, s in enumerate(SECTORS[1:4], start=2):
             if s not in self.kinetic.sectors:
@@ -285,7 +291,8 @@ class CoupledModel:
             self.y0[6] = self.y0[5]*(self.mass if self.dust else relic_energy_per_particle(tr, self.mass))
         rho_x = self.eos.mixture(self.y0[1], self.f0)["rho_MeV4"]
         kinetic_rho,_,_=self.kinetic.moments(self.y0,self.a0)
-        total = rho_x+sum(self.y0[2:5])+self.y0[6]+kinetic_rho.sum()
+        gw_rho,_=self.gw.moments(self.y0)
+        total = rho_x+sum(self.y0[2:5])+self.y0[6]+kinetic_rho.sum()+gw_rho
         if total <= 0:
             raise InputError("nonpositive total initial energy density")
         self.H0 = math.sqrt(8*np.pi*G_NEWTON_MEV_MINUS2*total/3)/HBAR_MEV_S
@@ -293,6 +300,7 @@ class CoupledModel:
         if self.L <= 0:
             raise InputError("positive hot-to-cold latent heat required")
         self.initial_energy = (np.array([rho_x, *self.y0[2:5], self.y0[6]])+kinetic_rho)*self.a0**3
+        self.initial_energy[SECTORS.index("free")]+=gw_rho*self.a0**3
         self.initial_density=self.initial_energy/self.a0**3
         self.n_b0 = self.eta*2*zeta(3)/np.pi**2*self.initial["T_gamma_MeV"]**3/HBARC_MEV_CM**3
 
@@ -323,6 +331,9 @@ class CoupledModel:
         pressure = np.array([x["p_MeV4"], *[ps[s] for s in SECTORS[1:4]], pr])
         kinetic_rho,kinetic_pressure,kinetic_records=self.kinetic.moments(y,a)
         rho+=kinetic_rho;pressure+=kinetic_pressure
+        gw_rho,gw_pressure=self.gw.moments(y)
+        rho[SECTORS.index("free")]+=gw_rho
+        pressure[SECTORS.index("free")]+=gw_pressure
         # These temperatures are energy-equivalent diagnostics only. Thermal
         # transfer to these sectors was rejected above; weak rates use f(q).
         for s in self.kinetic.sectors & {"nu","free"}:
@@ -360,6 +371,9 @@ class CoupledModel:
         qarray = np.array([q[s] for s in SECTORS[:4]]+[0.])
         kinetic_derivative,kinetic_q=self.kinetic.rhs(physical_time,y,a,{"X":tx,"gamma":ts["gamma"]},corner,isolated=isolated)
         qarray+=kinetic_q
+        gw_derivative,gw_power,gw_record=self.gw.rhs(physical_time,y,a,hubble,corner)
+        qarray[0]-=gw_power
+        qarray[SECTORS.index("free")]+=gw_power
         ndot = 0.
         inverse_neglected_bound_fraction=0.
         if self.relic:
@@ -398,7 +412,12 @@ class CoupledModel:
                     decay_energy_by_bath[sector]=moments["recipient_energy_MeV4_s"]
             decay_energy=sum(decay_energy_by_bath.values())
             c32 = self.relic.get("cannibal_MeV_minus5", 0.)
-            if c32 and n > 0 and tr > 0:
+            if c32 and n > 0:
+                if tr <= 0:
+                    raise OpenInput("3<->2 requires a positive kinetic temperature in its sourced MB domain")
+                domain = self.relic.get("number_changing_model", {}).get("T_X_range_MeV")
+                if domain is not None and not domain[0] <= tr <= domain[1]:
+                    raise OpenInput("relic temperature left the sourced low-momentum 3<->2 domain")
                 ndot -= cannibal_rate(n, tr, self.mass, c32, self.relic.get("degeneracy", 1.))
             elastic = finite(self.relic.get("elastic_coefficient_MeV3_s", 0.), "relic elastic coefficient", nonnegative=True)*(tx-tr) if n > 0 else 0.
             qarray[0] -= produce_energy+elastic
@@ -409,10 +428,15 @@ class CoupledModel:
             raise RuntimeError("coupled sources violate sum Q=0")
         if not x.get("phase_derivative_available",True) and fdot!=0:
             raise OpenInput("phase conversion requires both EOS branches at the current temperature")
-        derivative = kinetic_derivative
+        derivative = np.zeros(self.nstate)
+        derivative[:self.kinetic.size]=kinetic_derivative
+        derivative[self.gw.slice]=gw_derivative
         derivative[0] = hubble/self.H0
         derivative[1] = (-3*hubble*(rho[0]+pressure[0])+qarray[0]-x["drho_df_MeV4"]*fdot)/x["cv_MeV3"]/self.H0
         derivative[2:5] = (-3*hubble*(rho[1:4]+pressure[1:4])+qarray[1:4])/self.H0
+        # The appended GW cells carry their own -4H rho + Q. The original
+        # free-radiation coordinate carries only its remaining thermal part.
+        derivative[4]-=(-4*hubble*gw_rho+gw_power)/self.H0
         for s in self.kinetic.sectors & {"nu","free"}:
             derivative[SECTORS.index(s)+1]=0.
         derivative[5] = ndot/self.H0
@@ -434,6 +458,7 @@ class CoupledModel:
             "wall_temperature_MeV": front,
             "wall_speed": v, "rho": rho, "pressure": pressure, "Q": qarray,
             "kinetic_species":kinetic_records,
+            "gw":gw_record,
             "f_dot_s_inv": fdot, "relic_T_MeV": tr,
             "old_volume_log_growth_s_inv":(3*hubble-4*np.pi*max(y[9],0)*v/(a/self.a0)*self.H0) if self.f0<1 else None,
             "isolation_active":isolated,
@@ -449,9 +474,12 @@ class CoupledModel:
         if samples < 33:
             raise InputError("at least 33 history samples are required")
         # Include science landmarks exactly; solve on time, never temperature.
-        sample_grid = np.unique(np.r_[np.linspace(0, end, samples), 1., 10.])
+        gw_knots=[(t-self.t0)*self.H0 for t in self.gw.time_knots_s
+                  if self.t0<=t<=self.t0+end/self.H0]
+        sample_grid = np.unique(np.r_[np.linspace(0, end, samples), 1., 10., gw_knots])
         interval_size=finite(self.config.get("checkpoint_interval_H0",1.),"checkpoint interval",positive=True)
         boundaries=[(x-self.t0)*self.H0 for x in (self.isolation_end_s,self.decay_activation_s) if x is not None and self.t0<x<self.t0+end/self.H0]
+        boundaries+=gw_knots
         intervals = np.unique(np.r_[np.arange(0, end, interval_size),boundaries,end])
         digest = canonical_hash({"config": {k: v for k, v in self.config.items() if not k.startswith("_")},
                                  "corner": corner, "initial": self.initial,
@@ -514,6 +542,7 @@ class CoupledModel:
         for tau, state in zip(saved_t, saved_y):
             state = np.asarray(state)
             self.kinetic.validate_accepted(state)
+            self.gw.validate_accepted(state)
             _, row = self.evaluate(tau, state, corner)
             row.update(time_s=self.t0+tau/self.H0, tau_H0=tau, corner=corner,
                        comoving_energy_sources_MeV4=state[ENERGY].tolist(),
@@ -532,6 +561,7 @@ class CoupledModel:
             "pocket_geometry_status":"SELECTED_GEOMETRY_PENDING" if self.config.get("pocket_geometry") else "OPEN_INPUT",
             "kinetic_species_count":len(self.kinetic.species),
             "nonthermal_sectors":sorted(self.kinetic.sectors),
+            "gw_energy_in_friedmann":self.gw.enabled,
             "isolation_model":{"path":self.path,"end_time_s":self.isolation_end_s,"decay_activation_s":self.decay_activation_s,
                                "continuous_portals_disabled_for_full_history":self.path=="isolated_during_transition" and self.isolation_end_s is None}}
 
@@ -586,6 +616,10 @@ def _payload(records):
     if any(r.get("kinetic_species") for r in records):
         hist["kinetic_species"]=[r["kinetic_species"] for r in records]
         hist["kinetic_temperature_interpretation"]="energy-equivalent diagnostics; use the saved occupations"
+    from .gravitationalwaves import payload_from_records
+    gw=payload_from_records(records)
+    if gw is not None:
+        hist["gw"]=gw
     return hist
 
 
@@ -689,6 +723,37 @@ def propagate_uncertainty(config,definitions,out):
     write_json(Path(out)/"summary.json",result)
     return result
 
+def validate_number_changing_binding(relic, model):
+    """A P6 NDA artifact may parameterize the declared scalar MB gas, not its lifetime."""
+    if model.get("schema") != "R135-FMS-NDA-3to2-v1" or model.get("N") != 3:
+        raise InputError("unsupported number-changing model; expected the sourced SU(3) scalar NDA artifact")
+    require_source(model, "number-changing model")
+    mass = finite(model.get("m0_MeV"), "NDA scalar mass", positive=True)
+    if not math.isclose(mass, relic.get("mass_MeV", 0), rel_tol=1e-12):
+        raise InputError("P6 3<->2 mass differs from the P7 relic")
+    if relic.get("kinetic_model") != "relativistic_MB" or relic.get("degeneracy", 1) != 1:
+        raise OpenInput("FMS scalar 3<->2 requires a single g=1 relativistic MB species")
+    coefficient = finite(model.get("coefficient_MeV_minus5"), "3<->2 coefficient", positive=True)
+    expected = finite(model.get("B"), "NDA multiplier", positive=True) * (4 * math.pi / 3) ** 6 / ((4 * math.pi) ** 3 * mass ** 5)
+    if not math.isclose(coefficient, expected, rel_tol=1e-12) or not math.isclose(
+            coefficient, relic.get("cannibal_MeV_minus5", 0), rel_tol=1e-12):
+        raise InputError("P7 number-changing coefficient or MeV^-5 normalization differs from P6")
+    closure = model.get("kinetic_equilibrium", {})
+    require_source(closure, "kinetic equilibrium")
+    threshold = finite(closure.get("required_ratio"), "relaxation margin", positive=True)
+    if (closure.get("rate_kind") != "momentum_relaxation" or threshold <= 1
+            or min(closure.get("minimum_rate_over_H", 0), closure.get("minimum_rate_over_chemical_rate", 0)) < threshold):
+        raise OpenInput("P6 momentum-relaxation hierarchy does not justify the MB closure")
+    domain = model.get("low_momentum_applicability", {})
+    require_source(domain, "3<->2 applicability")
+    limits = model.get("T_X_range_MeV", [])
+    maximum = finite(domain.get("maximum_T_X_over_m0"), "low-momentum ratio", positive=True)
+    if (len(limits) != 2 or not 0 < limits[0] < limits[1]
+            or maximum >= 1 or limits[1] / mass > maximum
+            or limits != domain.get("T_X_range_MeV")):
+        raise InputError("inconsistent P6 low-momentum temperature domain")
+
+
 def run(config, inputs, out):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     def get(name):
@@ -699,6 +764,36 @@ def run(config, inputs, out):
         raise OpenInput(f"P7 missing {name}")
     eos, kernel, wall, collisions, initial = [get(n) for n in ("eos_bundle", "nucleation_definition", "wall_transport", "collision_model", "initial_history")]
     config=dict(config)
+    if "number_changing_model" in inputs:
+        number_model = read_json(inputs["number_changing_model"])
+        if not isinstance(config.get("relic"), dict):
+            raise OpenInput("a P6 3<->2 coefficient needs a separately specified P7 relic state, EOS and decay channels")
+        config["relic"] = copy.deepcopy(config["relic"])
+        if "cannibal_MeV_minus5" in config["relic"] or "number_changing_model" in config["relic"]:
+            raise InputError("P7 cannot independently override a bound P6 number-changing coefficient")
+        config["relic"]["cannibal_MeV_minus5"] = number_model.get("coefficient_MeV_minus5")
+        config["relic"]["number_changing_model"] = number_model
+        config["relic"]["number_changing_model_sha256"] = sha256(inputs["number_changing_model"])
+        validate_number_changing_binding(config["relic"], number_model)
+    source_binding=None
+    if "gw_source" in inputs:
+        if "gw_source" in config:
+            raise InputError("select the P5 GW source artifact or an explicit source, not both")
+        declared=read_json(inputs["gw_source"])
+        if declared.get("schema")!="R135-GW-source-v1":
+            raise InputError("P7 GW source must be a P5 source artifact")
+        for field in ("point_id","model_id","thermal_path"):
+            if config.get("_key") and declared.get(field)!=config["_key"][field]:
+                raise InputError("P5 GW source belongs to another "+field)
+        if declared.get("status")!="OPEN_INPUT":
+            definition=declared.get("definition")
+            if canonical_hash(definition)!=declared.get("source_sha256"):
+                raise InputError("P5 GW source definition checksum differs")
+            config["gw_source"]=definition
+        source_binding=sha256(inputs["gw_source"])
+    from .gravitationalwaves import source_artifact
+    write_json(out/"gw_source.json",{**source_artifact(config.get("gw_source"),config.get("_key")),
+                                     "source_P5_file_sha256":source_binding})
     if "thermalization_model" in inputs:
         thermalization=read_json(inputs["thermalization_model"])
         if config.get("_mode","conditional")!="validation" and thermalization.get("status")=="OPEN_INPUT":
@@ -721,6 +816,9 @@ def run(config, inputs, out):
             write_json(out/f"pocket_geometry_{corner}.json",geometry)
             meta["pocket_geometry_status"]="CONDITIONAL_GEOMETRY_COMPUTED_SURFACE_FEEDBACK_OPEN"
         payload[corner] = _payload(records)
+        if config.get("_key"):
+            payload[corner].update({field:config["_key"][field] for field in
+                                   ("point_id","model_id","thermal_path")})
         summary = summarize(records, meta)
         summary.update(meta)
         balances[corner] = summary
@@ -745,6 +843,7 @@ def run(config, inputs, out):
     write_json(out / "channel_history.json", {"schema": "R135-channel-history-v1",
         "units": {"time": "s", "temperature": "MeV", "density": "MeV^4", "rate": "s^-1"},
         "histories": payload, "initial_history": initial,
+        "key":config.get("_key"), "source_GW_P5_file_sha256":source_binding,
         "history_model": "homogeneous_growth_with_quasistationary_boundary_layer",
         "thermalization_source": config["thermal_closure_source"],
         "physical_input_status": "CONDITIONAL", "scientific_acceptance": "owner_review"})

@@ -1,0 +1,197 @@
+[
+  {
+    "_mode": "validation",
+    "atol_relative": 1e-12,
+    "balance_rtol": 1e-06,
+    "duration_H0": 10,
+    "gw_source": {
+      "applicability": {
+        "free_propagation_after_source": true,
+        "maximum_rho_GW_over_total": 0.01,
+        "source": "diagnostic isotropic weak-field subhorizon radiation",
+        "statistically_isotropic": true,
+        "subhorizon_geometric_optics": true
+      },
+      "kind": "comoving_frequency_power",
+      "omitted_frequency_energy_fraction_bound": 0.0,
+      "power_MeV4_s_per_logq": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1e-05,
+          5e-06,
+          2e-06,
+          1e-06
+        ],
+        [
+          1e-05,
+          5e-06,
+          2e-06,
+          1e-06
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "q_frequency_edges_Hz": [
+        2.0,
+        20.0,
+        20000.0,
+        200000000000.0,
+        200000000000000.0
+      ],
+      "scale_factor_convention": "a=1 on the initial P7 surface; q=a*f in Hz",
+      "source": "assigned diagnostic spectral power",
+      "support_source": "finite support chosen for a numerical control; zero outside",
+      "time_s": [
+        0.0,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "uncertainty_source": "fixed diagnostic coefficients; no physical confidence interval",
+      "zero_outside_time_support": true
+    },
+    "max_step_H0": 0.0125,
+    "neutrino_closure": "thermal",
+    "phase_model": "homogeneous_growth",
+    "recipient_eos": {
+      "free": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      },
+      "gamma": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      },
+      "nu": {
+        "kind": "radiation",
+        "rho_over_T4": 1,
+        "source": "diagnostic radiation"
+      }
+    },
+    "rtol": 2e-10,
+    "samples": 513,
+    "thermal_closure_source": "diagnostic exact thermal reservoirs",
+    "thermal_path": "exchange_during_transition"
+  },
+  {
+    "phases": {
+      "cold": {
+        "T_range_MeV": [
+          0.005,
+          2
+        ],
+        "coefficients": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "kind": "pressure_polynomial",
+        "source": "diagnostic bag"
+      },
+      "hot": {
+        "T_range_MeV": [
+          0.005,
+          2
+        ],
+        "coefficients": [
+          -1,
+          0,
+          0,
+          0,
+          2
+        ],
+        "kind": "pressure_polynomial",
+        "source": "diagnostic bag"
+      }
+    },
+    "transitions": [
+      {
+        "T_c_MeV": 1,
+        "cold": "cold",
+        "hot": "hot",
+        "latent_heat_MeV4": 4
+      }
+    ]
+  },
+  {
+    "S3_over_T": [
+      20,
+      20
+    ],
+    "T_MeV": [
+      0.005,
+      1.01
+    ],
+    "prefactor_MeV4": [
+      7.780407614394064e-74,
+      7.780407614394064e-74
+    ],
+    "prefactor_source": "diagnostic rate",
+    "source": "diagnostic rate"
+  },
+  {
+    "T_range_MeV": [
+      0.005,
+      2
+    ],
+    "conductivity_MeV3": 20,
+    "conductivity_source": "diagnostic",
+    "domain_source": "diagnostic",
+    "friction_MeV4": 0.5,
+    "friction_source": "diagnostic",
+    "max_abs_speed": 0.999,
+    "max_relative_temperature_difference": 1,
+    "reference_temperature_MeV": 1
+  },
+  {
+    "source": "diagnostic transfer",
+    "thermal_channels": [
+      {
+        "T_range_MeV": [
+          0.001,
+          2
+        ],
+        "amplitudes": [
+          0,
+          0.31006746980213223,
+          0.21925081052244275
+        ],
+        "coefficient_unit": "MeV^0/s",
+        "id": "em",
+        "kind": "matched_power_law",
+        "phase_weights": {
+          "cold": 1,
+          "hot": 0.1
+        },
+        "power": 4,
+        "recipient": "gamma",
+        "source": "diagnostic independent transfer"
+      }
+    ]
+  },
+  {
+    "T_X_MeV": 1,
+    "T_free_MeV": 0.1,
+    "T_gamma_MeV": 0.5,
+    "T_nu_MeV": 0.5,
+    "eta_b_gamma": 6e-10,
+    "phase_fraction": 0,
+    "scale_factor": 1,
+    "source": "diagnostic initial surface",
+    "surface": "first_cooling_Tc",
+    "time_s": 0
+  }
+]

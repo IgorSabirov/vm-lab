@@ -32,6 +32,11 @@ PATHS = ("isolated_during_transition", "exchange_during_transition")
 def source_inventory() -> dict:
     paths = list((HERE / "r135").rglob("*.py")) + [HERE / "p0_register.py"]
     paths += list((HERE / "planck_pr3").glob("*.py"))
+    paths += [p for folder in ("donors", "gw") for p in (HERE/folder).glob("*.py")
+              if not p.name.startswith("test_")]
+    paths += [p for folder in ("donors", "gw") for p in (HERE/folder).glob("*sources*.json")]
+    paths += list(HERE.glob("*requirements*.lock"))
+    paths += [HERE.parent / "GW_AND_PHYSICAL_INPUTS.md"]
     paths += [HERE / "r135_stage.py"] if (HERE / "r135_stage.py").exists() else []
     paths += [HERE / "register_inputs.json", HERE.parent / "PLAN.json"]
     paths += list(HERE.glob("*_sources.lock.json"))
@@ -149,8 +154,12 @@ def validate_request(request: dict, stage: str, base: Path) -> tuple[dict, dict]
         if sha256(path) != rec.get("sha256"):
             raise InputError(f"input {name}: checksum mismatch")
         parent_stages = {"channel_history": "P7", "bbn_inputs": "P8", "class_inputs": "P8"}
+        if stage in {"P5", "P6"}:
+            parent_stages["donor_inputs"] = "P1"
         if stage == "P7":
             parent_stages["initial_history"] = "P1"
+            parent_stages["gw_source"] = "P5"
+            parent_stages["number_changing_model"] = "P6"
         if name in parent_stages:
             parent = path.parent / "MANIFEST.json"
             if parent.exists():
@@ -237,12 +246,26 @@ def verify_result(folder: Path, request: dict | None = None) -> dict:
 def _p0(config, inputs, out):
     mod = _p0_module()
     source = inputs.get("registry", HERE / "register_inputs.json")
-    built = mod.build(source)
+    cache = config.get("donor_cache")
+    offline = config.get("offline", True)
+    if type(offline) is not bool:
+        raise InputError("P0 offline policy must be a boolean")
+    built = mod.build(source, donor_cache=Path(cache) if cache else None, offline=offline)
     # Reuse the exact P0 encoder; do not alter the frozen design facts.
     for name in mod.FILES:
         (out / name).write_bytes(mod.encoded(built[name]))
+    if cache:
+        from donors.fetch import acquire
+        files = acquire(Path(cache), {"bbn_baseline", "planck", "planck_priors"}, True)
+        write_json(out / "donor_acquisition.json", {
+            "schema": "R135-P0-donor-consumption-v1", "offline": offline,
+            "source_lock_sha256": sha256(HERE / "donors/sources.json"),
+            "files": {name: {"sha256": sha256(path), "bytes": path.stat().st_size}
+                      for name, path in sorted(files.items())},
+            "observations_verified_against_registry": True})
     return {"software_status": "PASS", "evidence_status": "DESIGN_RECORDS",
-            "metrics": {}, "limitations": ["P0 is a design register, not physical calibration"]}
+            "metrics": {"live_donor_bytes_verified": bool(cache)},
+            "limitations": ["P0 is a design register, not physical calibration"]}
 
 
 def execute(stage: str, request_path: Path, out: Path) -> dict:

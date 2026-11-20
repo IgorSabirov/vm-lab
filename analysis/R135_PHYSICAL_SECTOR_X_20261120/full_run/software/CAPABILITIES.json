@@ -24,15 +24,18 @@
   },
   "implemented": {
     "P0": [
-      "freeze and verify unchanged P0 records",
-      "source and input content bindings"
+      "freeze and verify revision 1.1 P0 records with the same 48/4/0 physical-origin counts",
+      "source and input content bindings",
+      "optional actual pinned donor byte verification and consumption receipt"
     ],
     "P1": [
       "phase pressure EOS and covariance",
       "table overlap validation",
       "one-sided latent jump",
       "thermal ideal gas",
-      "explicit dimensional origin"
+      "explicit dimensional origin",
+      "primary-file donor extraction and five separate dimensional-scale routes",
+      "stable entropy-table integration with common pressure anchor and explicit covariance policy"
     ],
     "P2": [
       "named R130 dynamics and inverse",
@@ -60,14 +63,18 @@
       "imported nucleation kernel with explicit prefactor",
       "steady wall friction and conduction",
       "ideal-fluid wall flux matching",
-      "spherical curvature wall transport"
+      "spherical curvature wall transport",
+      "same-action same-volume finite-lattice thin-wall diagnostic with mandatory external prefactor",
+      "sourced time-frequency GW power artifact with explicit support and applicability"
     ],
     "P6": [
       "quantum 2-to-2 invariant phase-space moments including reverse process",
       "coherent polynomial amplitudes with unit checks",
       "two-body/imported widths and branching",
       "MB 3-to-2 inverse term",
-      "computed thermal moment tables and explicitly matched power laws"
+      "computed thermal moment tables and explicitly matched power laws",
+      "partial scalar gg width with EFT, energy-tail, running-alpha and flavour-threshold checks",
+      "sourced low-momentum scalar NDA coefficient and momentum-relaxation domain artifact"
     ],
     "P7": [
       "coupled FRW mixture-energy and five independent portal histories",
@@ -84,7 +91,9 @@
       "momentum-cell nu/free/relic distributions with FD/BE/MB statistics",
       "exact collision-energy transfer to thermal reservoirs and kinetic rho/P in Friedmann",
       "lossless time-dependent neutrino momentum-cell outputs",
-      "optional geometry from actual corner nucleation/a/v history"
+      "optional geometry from actual corner nucleation/a/v history",
+      "GW spectral cells in Friedmann with reciprocal X energy debit and source-knot segmentation",
+      "P6 scalar NDA artifact mass/unit/temperature-domain binding"
     ],
     "P8": [
       "physical-time weak-rate handoff including reheating",
@@ -92,7 +101,10 @@
       "canonical common-input BBN preparation",
       "late history matching for native CLASS or external computed spectra",
       "six-process Born weak integrals for arbitrary neutrino/antineutrino spectra",
-      "history-derived ETHOS IDM-IDR density and momentum-opacity matching"
+      "history-derived ETHOS IDM-IDR density and momentum-opacity matching",
+      "explicit CMB OPEN_INPUT preserves computed BBN inputs",
+      "registered high-multipole coverage for actual ACT/SPT spectra",
+      "separate native scalar applicability evidence for nonzero GW backgrounds"
     ],
     "P9": [
       "30 native BBN integrations with three refinements",
@@ -102,13 +114,19 @@
       "full Planck PR3 and nuisance profile",
       "BBN correlated likelihood and calibrated decision interface",
       "two-or-three CLASS accuracy refinements and delta logL gate",
-      "native CLASS elastic ETHOS fluid or radiation hierarchy with domain guards"
+      "native CLASS elastic ETHOS fluid or radiation hierarchy with domain guards",
+      "actual high-ell CLASS spectra into pinned independent ACT DR6 and SPT-3G D1 lite likelihoods",
+      "fixed-cosmology nuisance profiles and a same-policy baseline/X provider API",
+      "same-P7 GW transfer from supplied late H(a), BBN energy fractions and conditional PTA/LVK response",
+      "completed BBN solutions retained when CMB mapping remains open"
     ],
     "P10": [
       "independent raw-number reconstruction",
       "complete registered key matrix",
       "hash and source audit",
-      "scoped machine-checked necessary-condition witness"
+      "scoped machine-checked necessary-condition witness",
+      "independent GW energy/transfer reconstruction and complete registered-point coverage",
+      "independent ACT/SPT replay when pinned runtime and data are provided"
     ],
     "separate_conditional_extensions": [
       "pinned ACROPOLIS gamma/electron/positron cascade and 17 photoreaction rates",
@@ -124,7 +142,7 @@
     },
     {
       "item": "hadronic cascades and fully coupled thermal deposition",
-      "reason": "The pinned electromagnetic/photodisintegration solver is implemented for perturbative post-BBN injections. Simultaneous hadronic cascade+thermal BBN, meson conversion and low-energy heat/CMB deposition are not complete. The 2026 hadronic calculation is not a publicly reproducible solver; old donor alpha is not substituted."
+      "reason": "The pinned electromagnetic/photodisintegration solver is implemented for perturbative post-BBN injections. Simultaneous hadronic cascade plus thermal BBN, meson conversion and low-energy heat/CMB deposition are not integrated and validated. The old donor alpha does not replace missing transport."
     },
     {
       "item": "arbitrary-spectrum precision weak corrections",
@@ -137,6 +155,18 @@
     {
       "item": "global feedback of pocket population and surfaces",
       "reason": "Actual-history geometry and a pressure/cooling spherical pocket closure are implemented separately. Their simultaneous embedding into P7 with model-specific trapping, surface transport, emission spectra and no double-counted latent heat remains open."
+    },
+    {
+      "item": "GW physical source and full observational inference",
+      "reason": "The time-frequency transport and reciprocal energy budget run. A calibrated X source, source/transfer uncertainty propagation, tensor damping and superhorizon evolution, full PTA HD foreground likelihood and LVK systematic/foreground model remain open."
+    },
+    {
+      "item": "common cosmology and nuisance profile over actual X histories",
+      "reason": "The same-policy profile API requires providers that recalculate each model for every cosmology. P9 currently evaluates saved P7-bound spectra and profiles nuisance parameters; it does not recompute P7/BBN for a full cosmological optimization. ACT/SPT/Planck remain separate alternatives without overlap covariance."
+    },
+    {
+      "item": "metastable donor EOS and complete glueball/portal network",
+      "reason": "The donor EOS contains only stable one-sided phases and marginal node errors. Metastable continuation, joint EOS covariance, continuum nucleation, multiple C-even/C-odd modes, hadronic widths and thermalization are not supplied by the stable scalar controls."
     }
   ],
   "physical_inputs_not_inferred_by_software": [
@@ -145,8 +175,15 @@
     "independent production ensembles and real-time response",
     "effective action, prefactor, friction and transport coefficients",
     "portal amplitudes, relic spectrum, channels and thermalization domain",
-    "frozen physical uncertainty distributions and calibrated statistical exclusion thresholds"
+    "frozen physical uncertainty distributions and calibrated statistical exclusion thresholds",
+    "history-bound physical GW source, late transfer and source support",
+    "GW-to-native-scalar-perturbation applicability and complete foreground likelihoods"
   ],
   "completion_rule": "A passing numerical test, conditional benchmark or a green CI result is not completion of the full physical R135 project. Missing inputs and unsupported models remain explicit.",
-  "extension_revision": "literature_supported_nonthermal_cascades_ethos_pockets"
+  "extension_revision": "pr160_v1.1_donors_GW_ACT_SPT_stage_integration",
+  "integrated_design": {
+    "pull_request": 160,
+    "head_sha": "cfbf4cbcb0529078d42c0d104dcf2e9f26e4ccc8",
+    "physical_completion": false
+  }
 }

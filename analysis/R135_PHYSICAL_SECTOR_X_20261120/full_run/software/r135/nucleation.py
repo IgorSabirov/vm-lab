@@ -15,7 +15,7 @@ import json
 import math
 from pathlib import Path
 
-from .common import InputError, OpenInput, read_json
+from .common import InputError, OpenInput, read_json, write_json
 
 import numpy as np
 from numpy.polynomial import Polynomial
@@ -267,11 +267,25 @@ class FrictionWall:
 
 def run(config,inputs,out):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
-    if "nucleation" not in inputs and "nucleation" not in config:
+    from .gravitationalwaves import source_artifact
+    (out/"gw_source.json").write_text(json.dumps(
+        source_artifact(config.get("gw_source"),config.get("_key")),
+        indent=2,allow_nan=False)+"\n")
+    donor_selected="donor_thin_wall" in config
+    if donor_selected and ("nucleation" in inputs or "nucleation" in config):
+        raise InputError("choose donor_thin_wall or an independent nucleation definition, not both")
+    if not donor_selected and "nucleation" not in inputs and "nucleation" not in config:
         raise OpenInput("P5 requires an action/prefactor kernel or effective scalar action")
     if "wall" not in inputs and "wall" not in config:
         raise OpenInput("P5 requires independently specified wall transport coefficients")
-    spec=read_json(Path(inputs["nucleation"])) if "nucleation" in inputs else config["nucleation"]
+    if donor_selected:
+        from .donor_inputs import load_prepared, thin_wall_control
+        prepared,binding=load_prepared(inputs)
+        spec=thin_wall_control(prepared,config["donor_thin_wall"])
+        spec["prepared_input"]=binding
+        write_json(out/"donor_thin_wall_control.json",spec)
+    else:
+        spec=read_json(Path(inputs["nucleation"])) if "nucleation" in inputs else config["nucleation"]
     spec=dict(spec)
     kind=spec.get("kind","table")
     diagnostics=[]
@@ -312,6 +326,10 @@ def run(config,inputs,out):
             "surface_tension_source":config.get("surface_tension_source"),"flux_matching_checks":hydro,
             "nucleation_diagnostics":diagnostics}
     (out/"pocket_model.json").write_text(json.dumps(pocket,indent=2,allow_nan=False)+"\n")
-    return {"software_status":"PASS","evidence_status":"CONDITIONAL",
+    limitations=["Action, prefactor, wall transport and their domain must be independently calibrated for a physical claim."]
+    if donor_selected:
+        limitations.append("The matched finite-a donor is a diagnostic thin-wall control, not a continuum metastable EOS or calibrated transition history.")
+    return {"software_status":"PASS","evidence_status":"DIAGNOSTIC" if donor_selected else "CONDITIONAL",
+            "physical_input_status":"DIAGNOSTIC_ONLY" if donor_selected else "SUPPLIED_MODEL",
             "metrics":{"temperatures":len(kernel.T),"flux_matching_cases":len(hydro)},
-            "limitations":["Action, prefactor, wall transport and their domain must be independently calibrated for a physical claim."]}
+            "limitations":limitations}

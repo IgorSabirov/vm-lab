@@ -5,6 +5,7 @@ import hashlib
 from itertools import product
 import json
 import math
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -47,9 +48,9 @@ def compute(inputs, table):
     scale, mass, cold = (inputs["lattice"][key] for key in
                          ("r0_Tc", "r0_m0", "s_cold_over_Tc3"))
     ratio = scale["value"] / mass["value"]
-    frac = math.sqrt((scale["sigma"] / scale["value"])**2 +
-                     (mass["sigma_stat"] / mass["value"])**2 +
-                     (mass["sigma_anisotropy"] / mass["value"])**2)
+    pieces = [scale["sigma"]/scale["value"], mass["sigma_stat"]/mass["value"],
+              mass["sigma_anisotropy"]/mass["value"]]
+    frac = math.hypot(*pieces)
     points = []
     for point in inputs["preparations"]:
         m0 = point["m0_GeV"]
@@ -67,17 +68,36 @@ def compute(inputs, table):
         points.append(dict(point_id=point["point_id"], m0_GeV=m0, R_post=R,
                            T_X_MeV=1000*tx, T_gamma_MeV=1000*tg, xi=tx/tg,
                            input_shift_envelope=envelope))
-    return {"Tc_over_m0": ratio, "linear_sigma_assuming_independent_errors": ratio*frac,
+    return {"Tc_over_m0": ratio, "absolute_sigma_rss_zero_covariance": ratio*frac,
+            "relative_sigma_rss_zero_covariance": frac,
+            "absolute_sigma_range_unknown_correlations_first_order": [
+                ratio*max(0., 2*max(pieces)-sum(pieces)), ratio*sum(pieces)],
             "boundary": "confined equilibrium side at Tc; R=s_X/s_SM after confinement",
             "points": points}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("sm_table", type=Path)
+    parser.add_argument("sm_table", nargs="?", type=Path)
+    parser.add_argument("--cache", type=Path, help="Retrieve the preparations, scales and SM table from donors")
+    parser.add_argument("--offline", action="store_true")
     parser.add_argument("--verify", action="store_true")
     args = parser.parse_args()
     inputs = json.loads((HERE / "inputs.json").read_text())
+    if args.cache:
+        if args.sm_table:
+            parser.error("Specify --cache or a local SM table")
+        sys.path.insert(0, str(HERE.parent / "donors"))
+        from fetch import acquire
+        from extract import physics
+        files = acquire(args.cache, {"physics"}, args.offline)
+        donor = physics(files)
+        inputs["preparations"] = donor["preparations"]
+        inputs["lattice"] = {"r0_Tc": donor["r0_Tc"], "r0_m0": donor["r0_m0"],
+                             "s_cold_over_Tc3": donor["phase_entropy"]["cold"]}
+        args.sm_table = files["sm"]
+    elif not args.sm_table or args.offline:
+        parser.error("Specify --cache or a local SM table")
     table = entropy_table(args.sm_table, inputs["sources"]["SM_EOS"])
     result = compute(inputs, table)
     if args.verify:

@@ -618,6 +618,19 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
     payload = read_json(root / "channel_history.json")
     if set(balance["corners"]) != set(CORNERS) or set(payload["histories"]) != set(CORNERS):
         raise InputError("P7 must preserve all five independent histories")
+    source_path = root / "gw_source.json"
+    if source_path.is_file():
+        declared = read_json(source_path)
+        if declared.get("schema") != "R135-GW-source-v1":
+            raise InputError("P7 GW source artifact has an unsupported schema")
+        for channel in payload["histories"].values():
+            actual = channel.get("gw")
+            if declared.get("status") == "OPEN_INPUT":
+                if actual is not None:
+                    raise InputError("P7 contains GW energy for an OPEN_INPUT source")
+            elif (actual is None or declared.get("source_sha256") != canonical_hash(declared.get("definition"))
+                    or actual.get("source_sha256") != declared.get("source_sha256")):
+                raise InputError("P7 GW spectrum is not bound to its saved source artifact")
     answers, unresolved = {}, []
     for corner in CORNERS:
         history = [r for r in rows if r["corner"] == corner]
@@ -641,7 +654,16 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
         if not np.allclose(h, friedmann, rtol=1e-10, atol=1e-15):
             raise InputError("Saved expansion history violates the declared Friedmann equation")
         pressure = np.column_stack([column(f"p_{s}_MeV4") for s in SECTORS])
-        kinetic=payload["histories"][corner].get("kinetic_species")
+        channel = payload["histories"][corner]
+        gw_check = dict(status="OPEN_INPUT", missing=["coupled GW source/history"])
+        if channel.get("gw") is not None:
+            from .gravitationalwaves import audit_history
+            if channel["gw"].get("corner") != corner:
+                raise InputError("P7 GW corner does not match its enclosing history")
+            gw_check = audit_history(channel, quadrature_rtol=quadrature_rtol)
+            if gw_check["status"] != "RECONSTRUCTED":
+                unresolved.extend(f"{reason}:{corner}" for reason in gw_check.get("remaining", []))
+        kinetic=channel.get("kinetic_species")
         if kinetic is not None:
             from scipy.integrate import quad
             if len(kinetic)!=len(t):
@@ -667,6 +689,14 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
                     reconstructed_pressure[sector]=reconstructed_pressure.get(sector,0)+momentum
                     _close(energy,item["rho_MeV4"],"kinetic energy moment",rtol=1e-8,atol=1e-12)
                     _close(momentum,item["pressure_MeV4"],"kinetic pressure moment",rtol=1e-8,atol=1e-12)
+                # GW cells are additive to an independently resolved free
+                # distribution. Their energy was already included in H and
+                # the free-sector ledger; never compare kinetic rho alone
+                # with the combined value or add GW a second time to BBN.
+                if "free" in reconstructed_rho and channel.get("gw") is not None:
+                    gw_rho = gw_check["reconstructed_rho_GW_MeV4"][j]
+                    reconstructed_rho["free"] += gw_rho
+                    reconstructed_pressure["free"] += gw_rho / 3
                 for sector in reconstructed_rho:
                     _close(reconstructed_rho[sector],rho[j,SECTORS.index(sector)],"kinetic sector density",rtol=1e-8,atol=1e-12)
                     _close(reconstructed_pressure[sector],pressure[j,SECTORS.index(sector)],"kinetic sector pressure",rtol=1e-8,atol=1e-12)
@@ -744,20 +774,28 @@ def audit_p7(bundle, quadrature_rtol=1e-3):
                                          directly_integrated_energy_over_a0cubed_L=delivered)
         # Check adapter payload is exactly the same history rather than a
         # substituted prescribed heating curve.
-        channel = payload["histories"][corner]
-        for field, reference in (("time_s", t), ("scale_factor", a), ("phase_fraction", f)):
-            if not np.allclose(np.asarray(channel[field]), reference, rtol=0, atol=0):
+        for field, reference in (("time_s", t), ("scale_factor", a), ("phase_fraction", f),
+                                 ("H_s_inv", h)):
+            if field == "H_s_inv" and field not in channel and channel.get("gw") is None:
+                continue  # Historical analytic balance-only validation fixture.
+            if field not in channel or not np.array_equal(np.asarray(channel[field]), reference):
                 raise InputError("P7 canonical payload differs from archived raw history")
         for j, sector in enumerate(SECTORS):
             if not np.array_equal(np.asarray(channel["Q_MeV4_s"][sector]), q[:, j]):
                 raise InputError("Channel source payload does not match the integrated history")
+            for field, values in ((f"rho_{sector}_MeV4", rho[:, j]),
+                                  (f"p_{sector}_MeV4", pressure[:, j])):
+                if field not in channel and channel.get("gw") is None:
+                    continue  # No GW inference is made for this reduced fixture.
+                if field not in channel or not np.array_equal(np.asarray(channel[field]), values):
+                    raise InputError("Channel energy payload does not match the integrated history")
         answers[corner] = dict(landmarks=landmark_data, relative_sector_balance=relative_sector,
                                relative_total_balance=relative_total,
                                relative_energy_quadrature_error=relative_energy,
                                relative_work_quadrature_error=relative_work,
                                output_refinement_energy_delta=(numeric_energy[-1] - coarse_energy).tolist(),
                                output_refinement_work_delta=(numeric_work[-1] - coarse_work).tolist(),
-                               radiation_weighted_check=radiation)
+                               radiation_weighted_check=radiation, gw=gw_check)
     uncertainty = _audit_parameter_intervals(root, balance.get("uncertainty_ensemble"))
     if uncertainty["status"] == "INCOMPLETE_UNCERTAINTY":
         unresolved.append("INCOMPLETE_PARAMETER_UNCERTAINTY")
@@ -832,6 +870,16 @@ def audit_p8(bundle, artifact_index):
             accuracy_open.append("NONTHERMAL_WEAK_CORRECTION_BUDGET_OPEN:"+corner)
         if cmb["histories"][corner]["source_P7_history_sha256"] != _bridge_hash(source[corner]):
             raise InputError("CMB matching refers to a different P7 history")
+        if cmb["histories"][corner].get("status") == "OPEN_INPUT":
+            if not cmb["histories"][corner].get("missing"):
+                raise InputError("CMB OPEN_INPUT matching must identify its missing input")
+            accuracy_open.append("CMB_PERTURBATION_MAPPING_OPEN:" + corner)
+        from .gravitationalwaves import has_gw_energy
+        if has_gw_energy(source[corner]):
+            # A hash-bound assertion of an adiabatic scalar reduction is
+            # evidence for review, not an independently solved tensor/scalar
+            # perturbation problem. Background BBN use remains valid.
+            accuracy_open.append("GW_SCALAR_APPLICABILITY_REQUIRES_PHYSICAL_REVIEW:" + corner)
     return dict(status="PARTIAL" if accuracy_open else "RECONSTRUCTED", computed_histories_retained=5,
                 unresolved=accuracy_open,
                 distinction="prepared inputs; actual native reads independently verified at P9")
@@ -1016,6 +1064,70 @@ def _cmb_replay_plan(root, rows, precision, config):
     return batch, saved
 
 
+def audit_gw_p9(bundle, artifact_index, replay_config=None):
+    """Reconstruct GW numbers from the exact P7 file also consumed by P8.
+
+    Pinned detector data are read again when an offline cache is supplied.
+    A successful numerical replay remains a conditional projection, since it
+    does not supply a physical source calibration or a joint PTA likelihood.
+    """
+    from . import gravitationalwaves as gw
+    root = bundle["root"]
+    path = root / "gw_response.json"
+    if not path.is_file():
+        return dict(status="PARTIAL", remaining=["GW_RESPONSE_NOT_SUPPLIED"])
+    result = read_json(path)
+    identity = dict(zip(KEY_FIELDS, bundle["key"]))
+    declared = result.get("key") or result
+    if result.get("schema") != "R135-GW-response-bundle-v1":
+        raise InputError("P9 GW response has an unsupported schema")
+    if any(declared.get(k) != identity[k] for k in gw.KEYS):
+        raise InputError("P9 GW response belongs to another point/model/path")
+    histories = result.get("histories", {})
+    if not histories and result.get("status") == "OPEN_INPUT":
+        if not result.get("missing"):
+            raise InputError("P9 GW OPEN_INPUT record has no missing input")
+        return dict(status="PARTIAL", remaining=result["missing"],
+                    source_response_file_sha256=sha256(path))
+    if set(histories) != set(CORNERS):
+        raise InputError("P9 GW response must retain all five histories")
+    p7_path = _lookup_input(bundle, "channel_history", artifact_index)
+    p8_path = _lookup_input(bundle, "bbn_inputs", artifact_index)
+    if p7_path is None or p8_path is None:
+        return dict(status="PARTIAL", remaining=["GW_P7_OR_P8_PARENT_UNAVAILABLE_TO_AUDITOR"])
+    p7, p8 = read_json(p7_path), read_json(p8_path)
+    p7_sha = sha256(p7_path)
+    if p8.get("source_P7_file_sha256") != p7_sha or result.get("source_P7_file_sha256") != p7_sha:
+        raise InputError("GW and BBN responses do not consume the same exact P7 file")
+    if result.get("P7_channel_history_sha256") != canonical_hash(p7):
+        raise InputError("GW response channel history checksum differs from the actual P7 input")
+    if set(p7.get("histories", {})) != set(CORNERS):
+        raise InputError("GW source P7 omitted a required corner")
+    donor_paths, cache_reasons = None, []
+    policy = replay_config or {}
+    cache = policy.get("gw_donor_cache", policy.get("donor_cache"))
+    if cache is not None:
+        try:
+            donor_paths = gw.detector_paths(cache, offline=True)
+        except (ValueError, OSError) as exc:
+            cache_reasons.append("GW_PINNED_DETECTOR_CACHE_UNAVAILABLE: " + str(exc))
+    checked = {}
+    for corner in CORNERS:
+        response = histories[corner]
+        if response.get("corner") != corner:
+            raise InputError("GW response corner differs from its bundle key")
+        if p7["histories"][corner].get("gw") is not None and p7["histories"][corner]["gw"].get("corner") != corner:
+            raise InputError("GW source corner differs from its P7 bundle key")
+        checked[corner] = gw.audit_response(p7["histories"][corner], response, identity, donor_paths)
+    remaining = cache_reasons + [f"{corner}: {reason}" for corner, check in checked.items()
+                                 for reason in check.get("remaining", [])]
+    return dict(status="PARTIAL", histories=checked, remaining=remaining,
+                source_P7_file_sha256=p7_sha, source_response_file_sha256=sha256(path),
+                detector_data_replayed=donor_paths is not None,
+                scalar_CMB_mapping="supplied evidence, if any; no independent perturbation proof here",
+                physical_completion_status="OPEN_INPUT")
+
+
 def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
     root = bundle["root"]
     rows = _csv(root / "abundances.csv")
@@ -1103,7 +1215,8 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
     if prepared is None:
         reasons.append("P8_PARENT_NOT_AVAILABLE_TO_AUDITOR")
     data_file = bundle["files"].get("data_release_lock.json") or _lookup_input(bundle, "data_release_lock", artifact_index)
-    if likelihood_rows and data_file is None:
+    bbn_only_path = root / "bbn_likelihoods.json"
+    if (likelihood_rows or bbn_only_path.is_file()) and data_file is None:
         reasons.append("FROZEN_OBSERVATIONAL_RELEASE_NOT_AVAILABLE_TO_AUDITOR")
     data = read_json(data_file) if data_file is not None else {}
     releases = data.get("data_releases", data.get("releases", data.get("datasets", [])))
@@ -1160,10 +1273,33 @@ def audit_p9(bundle, artifact_index, replay_config=None, workdir=None):
         _close(bbn + cmb["logL"], summary["logL"], "joint likelihood")
         _close(bbn + cmb["logL"] + cmb["log_prior"], summary["log_posterior"], "joint posterior")
         likelihood_values[f"{engine}/{corner}"] = float(summary["logL"])
+    bbn_only = {}
+    if bbn_only_path.is_file():
+        bbn_rows = read_json(bbn_only_path).get("evaluations", [])
+        identities = [(r["engine"], r["corner"]) for r in bbn_rows]
+        if len(set(identities)) != len(identities) or (identities and set(identities) !=
+                set(itertools.product(("linx", "primat"), CORNERS))):
+            raise InputError("BBN-only likelihood omitted or duplicated a converged history")
+        for record in bbn_rows:
+            observed = reconstructed[record["engine"], 2, record["corner"]]
+            if releases:
+                logl = _bbn_likelihood(observed["D_H"], observed["Yp"], releases,
+                                      bundle["request"]["config"]["theory_covariance_logD_Yp"])
+                _close(logl, record["logL_BBN"], "BBN-only likelihood from raw final abundances")
+                bbn_only[f"{record['engine']}/{record['corner']}"] = logl
     if not likelihood_rows:
         reasons.append("OBSERVATIONAL_LIKELIHOOD_NOT_EVALUATED")
+    gw_audit = audit_gw_p9(bundle, artifact_index, replay_config)
+    reasons.extend("GW: " + reason for reason in gw_audit.get("remaining", []))
+    from .external_cmb_audit import audit_external_cmb
+    external_config = {**bundle["request"]["config"],
+                       "_mode": bundle["request"].get("mode", bundle.get("receipt", {}).get("mode", "conditional"))}
+    external_cmb = audit_external_cmb(root, external_config, replay_config or {}, workdir)
+    if external_cmb.get("status") in ("PARTIAL", "OPEN_INPUT"):
+        reasons.extend("EXTERNAL_CMB: " + reason for reason in external_cmb.get("remaining", []))
     return dict(status="PARTIAL" if reasons else "RECONSTRUCTED", native_runs=len(rows),
                 mixed_gates=reconstructed_gates, likelihood=likelihood_values,
+                bbn_only_likelihood=bbn_only, gw=gw_audit, external_cmb=external_cmb,
                 cmb_precision=cmb_precision, independently_replayed_spectra=len(replayed),
                 reasons=sorted(set(reasons)))
 
@@ -1214,6 +1350,15 @@ def _lineage_audit(bundle, bundles):
     required = {"P7": {"initial_history": "P1"},
                 "P8": {"channel_history": "P7"},
                 "P9": {"bbn_inputs": "P8", "class_inputs": "P8"}}.get(bundle["stage"], {})
+    if bundle["stage"] == "P7" and any(r.get("name") == "gw_source" for r in bundle["request"].get("inputs", [])):
+        required["gw_source"] = "P5"
+    optional = {"P5": {"donor_inputs": "P1"}, "P6": {"donor_inputs": "P1"},
+                "P7": {"number_changing_model": "P6"}}.get(bundle["stage"], {})
+    supplied = {record.get("name") for record in bundle["request"].get("inputs", [])}
+    required.update({name: stage for name, stage in optional.items() if name in supplied})
+    response_path = bundle["root"] / "gw_response.json"
+    if bundle["stage"] == "P9" and response_path.is_file() and read_json(response_path).get("histories"):
+        required["channel_history"] = "P7"
     reasons = []
     for name, parent_stage in required.items():
         records = [r for r in bundle["request"].get("inputs", []) if r.get("name") == name]
@@ -1228,6 +1373,61 @@ def _lineage_audit(bundle, bundles):
         elif not any(candidate["key"] == bundle["key"] for candidate in candidates):
             raise InputError(f"Point-specific {name} was taken from another claim/model/point/path")
     return reasons
+
+
+def _gw_coverage(inputs, expected_keys, bundles, audits, proof_results):
+    """Keep the frozen P0 GW matrix visible even for a selected claim subset.
+
+    A graph-marker measurement has no cosmological GW obligation. Its absent
+    GW row stays visible in the sidecar without falsifying that independent
+    measurement. Only a checked necessary-condition failure can exempt a
+    declared cosmological candidate from downstream source/response work.
+    """
+    from .gravitationalwaves import coverage_status
+    if "model_register" in inputs:
+        points = read_json(inputs["model_register"]).get("points", [])
+        registry_sha = sha256(inputs["model_register"])
+        scope = "all_frozen_P0_point_paths"
+    else:
+        point_map = {}
+        for key in expected_keys:
+            point = dict(zip(KEY_FIELDS, key))
+            point.pop("claim_id")
+            point["role"] = "validation_fixture"
+            if key[2] in point_map and point_map[key[2]] != point:
+                raise InputError("One GW point identity was reused for a different model/path")
+            point_map[key[2]] = point
+        points, registry_sha, scope = list(point_map.values()), None, "explicit_validation_points_only"
+    responses, response_checks = {}, {}
+    for bundle in bundles:
+        if bundle["stage"] != "P9":
+            continue
+        path = bundle["root"] / "gw_response.json"
+        if not path.is_file():
+            continue
+        point = bundle["key"][2]
+        response = read_json(path)
+        if point in responses and canonical_hash(responses[point]) != canonical_hash(response):
+            raise InputError("Conflicting GW responses for the same P0 point/path")
+        responses[point] = response
+        response_checks[point] = audits[bundle["input_name"]].get("gw", {})
+    report = coverage_status(points, responses)
+    for row in report["rows"]:
+        row["stage_evidence"] = [dict(stage=b["stage"], source_manifest_sha256=b["manifest_sha256"],
+                                     audit_status=audits[b["input_name"]]["status"])
+                                 for b in bundles if b["key"][2] == row["point_id"]
+                                 and b["stage"] in ("P5", "P7", "P9")]
+        if row["point_id"] in response_checks:
+            row["independent_response_audit"] = response_checks[row["point_id"]]
+        for key, proof in proof_results.items():
+            if key[2] != row["point_id"] or not {"P5", "P7", "P9"} <= set(proof["exempt_stages"]):
+                continue
+            row.update(status="EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE", missing=[],
+                       exemption=dict(key=dict(zip(KEY_FIELDS, key)), **proof))
+    report.update(scope=scope, model_register_file_sha256=registry_sha,
+                  selected_claim_keys=[dict(zip(KEY_FIELDS, key)) for key in expected_keys],
+                  status="OPEN_INPUT" if any(r["status"] == "OPEN_INPUT" for r in report["rows"]) else "CONDITIONAL")
+    return report
 
 
 def run(config, inputs, out):
@@ -1309,10 +1509,13 @@ def run(config, inputs, out):
         if len(candidates) != 1:
             raise InputError("Proof has no unique raw P2 witness bundle")
         parent = candidates[0]
-        proof_results[key] = _proof(proof, parent, audits[parent["input_name"]], key)
+        proof_results[key] = {**_proof(proof, parent, audits[parent["input_name"]], key),
+                              "proof_file_sha256": sha256(inputs[name])}
     requirements = config.get("required_stages", DEFAULT_REQUIREMENTS)
     if set(requirements) - set(DEFAULT_REQUIREMENTS):
         raise InputError("Required-stage map contains an unknown scientific claim")
+    gw_coverage = _gw_coverage(inputs, expected_keys, bundles, audits, proof_results)
+    gw_rows = {r["point_id"]: r for r in gw_coverage["rows"]}
     matrix = []
     for key in expected_keys:
         present = [b for b in bundles if b["key"] == key]
@@ -1327,6 +1530,14 @@ def run(config, inputs, out):
         stages = {b["stage"] for b in present}
         missing_stages = sorted(set(required) - stages - exempt, key=lambda x: int(x[1:]))
         partial = [b["input_name"] for b in present if audits[b["input_name"]]["status"] == "PARTIAL"]
+        gw_required = key[0] in ("XA_carrier", "XB_SU3_cosmology") and (
+            config.get("_mode") != "validation" or "P9" in required)
+        gw_row = gw_rows.get(key[2])
+        if gw_row is None:
+            raise InputError("Expected claim point is absent from the frozen GW coverage matrix")
+        gw_exempt = gw_row["status"] == "EXEMPT_VERIFIED_NECESSARY_CONDITION_FAILURE"
+        if gw_required and not gw_exempt and not gw_row["full_physical_completion"]:
+            partial.append("GW_PHYSICAL_INPUTS_OR_LIKELIHOOD_OPEN")
         unresolved = [b["input_name"] for b in present if b["receipt"]["result"].get("evidence_status") in
                       ("OPEN_INPUT", "INCONCLUSIVE", "TECHNICAL_FAILURE")
                       and not (key in proof_results and b["stage"] == "P2")]
@@ -1346,12 +1557,14 @@ def run(config, inputs, out):
                        "required_stages": ";".join(required), "present_stages": ";".join(sorted(stages, key=lambda s: int(s[1:]))),
                        "missing_stages": ";".join(missing_stages), "partial_audits": ";".join(partial),
                        "open_parent_evidence": ";".join(unresolved), "proof_checked": key in proof_results,
+                       "gw_required_for_this_claim": gw_required, "gw_status": gw_row["status"],
                        "independently_calibrated_mode": physical, "scientific_acceptance": "owner_review"})
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     write_csv(out / "claim_matrix.csv", matrix)
+    write_json(out / "gw_channel_status.json", gw_coverage)
     write_json(out / "audit_details.json", {"schema": "R135-independent-audit-v1", "stages": audits,
-               "coverage": coverage,
+               "coverage": coverage, "gw_coverage": gw_coverage,
                "proofs": [{"key": dict(zip(KEY_FIELDS, key)), **value} for key, value in proof_results.items()],
                "source_manifests": [{"input_name": b["input_name"], "sha256": b["manifest_sha256"],
                                      "execution_sha": b["receipt"]["execution_sha"]} for b in bundles]})
@@ -1365,6 +1578,8 @@ def run(config, inputs, out):
         report.append("| " + " | ".join(str(row[field]).replace("|", "\\|") for field in
                                          (*KEY_FIELDS, "status", "missing_stages")) + " |")
     report += ["", "Raw checks and exact manifest bindings are in audit_details.json.",
+               f"GW accounting: {gw_coverage['points']} point/path rows in gw_channel_status.json ({gw_coverage['scope']}).",
+               "GW source/likelihood gaps leave cosmological claims partial; graph-marker measurements keep their independent acceptance requirements.",
                "An external benchmark or validation fixture does not establish an independently calibrated cosmological X.",
                "Missing raw likelihood replay, an unresolved output quadrature, or an absent dependent stage leaves the corresponding row partial.", ""]
     (out / "FINAL_REPORT.md").write_text("\n".join(report), encoding="utf-8")
