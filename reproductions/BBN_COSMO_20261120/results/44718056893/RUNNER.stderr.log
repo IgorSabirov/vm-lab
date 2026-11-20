@@ -1,0 +1,273 @@
+[output] Time-evolution data (500 rows) written to /home/runner/work/_temp/bbn-copilot-task/results/output_tables.tsv
+[output] Background time-evolution data (500 rows) written to /home/runner/work/_temp/bbn-copilot-task/results/output_background.tsv
+pair_baseline Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_baseline_tight Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/equinox/_module.py", line 1201, in __call__
+    return self.func(*self.args, *args, **kwargs, **self.keywords)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EquinoxRuntimeError: Above is the stack outside of JIT. Below is the stack inside of JIT:
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 116, in <module>
+    status=main()
+           ^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 66, in main
+    add("baseline")
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 60, in add
+    value = run("pair_"+name,pair.case,name,**kw)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/vm-lab/vm-lab/vendor/linx/linx/abundances.py", line 317, in __call__
+    sol = diffeqsolve(
+          ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/diffrax/_integrate.py", line 1521, in diffeqsolve
+    sol = result.error_if(sol, jnp.invert(is_okay(result)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+equinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.
+
+-------------------
+
+An error occurred during the runtime of your JAX program.
+
+1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful
+way to debug such errors. This can be interacted with using most of the usual commands
+for the Python debugger: `u` and `d` to move up and down frames, the name of a variable
+to print its value, etc.
+
+2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can
+(mostly) inspect the state of your program as if it was normal Python.
+
+3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.
+
+
+pair_early Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_early_half Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_late Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_late_half Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddHe3n_+0.25 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddHe3n_-0.25 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddHe3n_+0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddHe3n_-0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddtp_+0.25 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddtp_-0.25 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddtp_+0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_ddtp_-0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+pair_tight_ddtp_+0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/equinox/_module.py", line 1201, in __call__
+    return self.func(*self.args, *args, **kwargs, **self.keywords)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EquinoxRuntimeError: Above is the stack outside of JIT. Below is the stack inside of JIT:
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 116, in <module>
+    status=main()
+           ^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 66, in main
+    add("baseline")
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 60, in add
+    value = run("pair_"+name,pair.case,name,**kw)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/vm-lab/vm-lab/vendor/linx/linx/abundances.py", line 317, in __call__
+    sol = diffeqsolve(
+          ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/diffrax/_integrate.py", line 1521, in diffeqsolve
+    sol = result.error_if(sol, jnp.invert(is_okay(result)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+equinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.
+
+-------------------
+
+An error occurred during the runtime of your JAX program.
+
+1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful
+way to debug such errors. This can be interacted with using most of the usual commands
+for the Python debugger: `u` and `d` to move up and down frames, the name of a variable
+to print its value, etc.
+
+2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can
+(mostly) inspect the state of your program as if it was normal Python.
+
+3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.
+
+
+pair_tight_ddtp_-0.125 Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/equinox/_module.py", line 1201, in __call__
+    return self.func(*self.args, *args, **kwargs, **self.keywords)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EquinoxRuntimeError: Above is the stack outside of JIT. Below is the stack inside of JIT:
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 116, in <module>
+    status=main()
+           ^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 66, in main
+    add("baseline")
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 60, in add
+    value = run("pair_"+name,pair.case,name,**kw)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 141, in case
+    solution = self.model(*map(jp.asarray,(rg,rn,rx,px)), a_vec=jp.asarray(a), t_vec=jp.asarray(t),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/vm-lab/vm-lab/vendor/linx/linx/abundances.py", line 317, in __call__
+    sol = diffeqsolve(
+          ^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/diffrax/_integrate.py", line 1521, in diffeqsolve
+    sol = result.error_if(sol, jnp.invert(is_okay(result)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+equinox.EquinoxRuntimeError: The maximum number of solver steps was reached. Try increasing `max_steps`.
+
+-------------------
+
+An error occurred during the runtime of your JAX program.
+
+1) Setting the environment variable `EQX_ON_ERROR=breakpoint` is usually the most useful
+way to debug such errors. This can be interacted with using most of the usual commands
+for the Python debugger: `u` and `d` to move up and down frames, the name of a variable
+to print its value, etc.
+
+2) You may also like to try setting `JAX_DISABLE_JIT=1`. This will mean that you can
+(mostly) inspect the state of your program as if it was normal Python.
+
+3) See `https://docs.kidger.site/equinox/api/debug/` for more suggestions.
+
+
+pair_extra Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 166, in case
+    raise RuntimeError(pr.message)
+RuntimeError: Required step size is less than spacing between numbers.
+
+DD_jacobian Traceback (most recent call last):
+  File "/home/runner/work/_temp/bbn-copilot-task/run_bbn.py", line 26, in run
+    return fn(*args, **kw)
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 204, in dd_summary
+    pos,neg = (cases[f"{channel}_{s*h:+g}"] for s in (1,-1))
+    ^^^^^^^
+  File "/home/runner/work/_temp/bbn-copilot-task/science.py", line 204, in <genexpr>
+    pos,neg = (cases[f"{channel}_{s*h:+g}"] for s in (1,-1))
+               ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'ddHe3n_+0.25'
+
