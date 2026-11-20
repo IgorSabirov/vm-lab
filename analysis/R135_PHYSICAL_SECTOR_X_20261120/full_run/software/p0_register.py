@@ -82,16 +82,57 @@ def build(source):
         require(set(model["thermal_paths"]) == set(plan["thermal_paths"]), "Thermal paths")
         require(model["required_inputs"] and all(isinstance(s, str) and s for s in model["required_inputs"]),
                 "Missing physical input declarations")
+    reference = reg.get("xb_reference")
+    if reference:
+        for item in (reference["inputs"], reference["coordinates"]):
+            validate_release_file(item, source.resolve().parent)
+        xb = load(source.parent / reference["inputs"]["path"])
+        preparations = indexed(xb["preparations"], "point_id")
+        coordinates = indexed(load(source.parent / reference["coordinates"]["path"])["points"], "point_id")
+        require(preparations.keys() == coordinates.keys() ==
+                {p["point_id"] for p in points if p["role"] == "literature_benchmark"},
+                "Incomplete published benchmark coverage")
     for point in points:
-        require(point["role"] in {"diagnostic", "physical_candidate"}, "Unknown point role")
+        require(point["role"] in {"diagnostic", "physical_candidate", "literature_benchmark"}, "Unknown point role")
         require(point["model_id"] in model_ids, "Unknown point model")
         require(point["thermal_path"] in model_ids[point["model_id"]]["thermal_paths"], "Unknown thermal path")
         require(isinstance(point["origin"], str) and point["origin"].strip(), "Missing point provenance")
         if point["role"] == "physical_candidate":
             require(point.get("initial_history_id"), "Physical candidate needs an initial-history reference")
+            for key in ("history_file", "calibration_file"):
+                require(key in point, f"Missing physical point evidence: {key}")
+                validate_release_file(point[key], source.resolve().parent)
+            history = load(source.parent / point["history_file"]["path"])
+            calibration = load(source.parent / point["calibration_file"]["path"])
+            require(history["history_id"] == point["initial_history_id"] and
+                    history["model_id"] == point["model_id"] and
+                    history["thermal_path"] == point["thermal_path"] and
+                    history["epoch"] and history["initial_conditions"], "Physical preparation mismatch")
+            require(calibration["model_id"] == point["model_id"] and
+                    calibration["kind"] in {"independent_measurement", "independent_model_prediction"} and
+                    calibration["independent_of_R135_BBN_CMB"] is True and
+                    number(calibration["scale_MeV"]) and calibration["scale_MeV"] > 0 and
+                    calibration["source_locator"] and calibration["uncertainty_budget"],
+                    "No independent scale evidence")
+            require(point["independent_parameters"] == calibration["parameters"],
+                    "Calibration values differ from cited evidence")
             for param in indexed(point["independent_parameters"], "name").values():
                 require(number(param["value"]) and param["unit"] and param["source"],
                         "Physical parameter needs value, unit and source")
+        elif point["role"] == "literature_benchmark":
+            require(reference and point["point_id"] in preparations, "Missing published preparation")
+            prep = preparations[point["point_id"]]
+            coord = coordinates[point["point_id"]]
+            history = xb["initial_history"]
+            require(point["model_id"] == history["model_id"] and
+                    point["thermal_path"] == history["thermal_path"] and
+                    point["initial_history_id"] == history["history_id"] == prep["history_id"] and
+                    point["origin"] == xb["sources"][prep["source"]]["url"] and
+                    point["m0_GeV"] == prep["m0_GeV"] == coord["m0_GeV"] > 0 and
+                    point["R_post"] == prep["R_post"] == coord["R_post"] > 0,
+                    "Published preparation differs from source inputs")
+            require(math.isclose(coord["xi"], coord["T_X_MeV"] / coord["T_gamma_MeV"],
+                                 rel_tol=1e-12), "Boundary temperature mismatch")
         else:
             require(number(point["T_gamma_event_MeV"]) and point["T_gamma_event_MeV"] > 0, "Invalid T_gamma")
             require(number(point["xi_event"]) and point["xi_event"] > 0, "Invalid xi")
@@ -103,18 +144,28 @@ def build(source):
             require(release["observable"] and release["units"], "Missing observable")
         elif release["state"] == "artifact_required":
             require(release["missing"], "Missing artifact requirements")
-        elif release["state"] == "verified_files":
+        elif release["state"] in {"verified_files", "verified_external_bundle"}:
             for item in indexed(release["files"], "path").values():
                 validate_release_file(item, source.resolve().parent)
+            if release["state"] == "verified_external_bundle":
+                require(release["bundle_manifest"] in {item["path"] for item in release["files"]},
+                        "External manifest itself must be locked")
+                manifest = load(source.parent / release["bundle_manifest"])
+                require(manifest["data_id"] == release["data_id"] and manifest["members"] and
+                        set(manifest["components"]) == {"Plik", "Commander", "SimAll"} and
+                        manifest["archive"]["bytes"] > 0 and len(manifest["archive"]["sha256"]) == 64,
+                        "Invalid Planck external bundle")
         else:
             raise ValueError("Unsupported release state: "+release["state"])
     require({p["model_id"] for p in point_ids.values()} == set(model_ids), "Point coverage")
     require({(p["model_id"],p["thermal_path"]) for p in points} ==
             {(m["model_id"],t) for m in models for t in m["thermal_paths"]}, "Point coverage by thermal path")
-    meta = dict(schema="R135-P0-design-v1", plan_sha256=sha(PLAN.read_bytes()),
+    meta = dict(schema="R135-P0-design-v2", plan_sha256=sha(PLAN.read_bytes()),
                 register_sha256=sha(encoded(reg)), freeze_scope="design_records")
+    counts = {role: sum(p["role"] == role for p in points)
+              for role in ("diagnostic", "literature_benchmark", "physical_candidate")}
     return {
-        FILES[0]: dict(**meta, models=models, points=points),
+        FILES[0]: dict(**meta, models=models, points=points, point_counts=counts, xb_reference=reference),
         FILES[1]: dict(**meta, data_releases=releases),
         FILES[2]: dict(**meta, rules=rules, physical_launch_authorized=False),
     }

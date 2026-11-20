@@ -1,0 +1,281 @@
+{
+  "repository": "https://github.com/CobayaSampler/cobaya",
+  "commit": "b76b6fed2a6c8c5594c6f92d5058bef10079746a",
+  "source_files": {
+    "cobaya/likelihoods/base_classes/planck_calib.yaml": {
+      "bytes": 201,
+      "sha256": "0e1a0bc0ad7ae18736f23ebce88d037cd1fb4e7648dffeaea2c2f65626477a14"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/params_calib_temp.yaml": {
+      "bytes": 429,
+      "sha256": "d80e997504c146c5543da6ae57551369fca1de99ca85f22a867ef8af57d178e0"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/params_calib_pol.yaml": {
+      "bytes": 150,
+      "sha256": "cce1092b1ceb152e1826ad1069278c7f46f9f4606cd5de75f2f86954ed16999f"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/params_TT.yaml": {
+      "bytes": 2651,
+      "sha256": "ff0bf348f31809781b7b4e7b271962f566f66d78fe5383905b6e6e22bdaeda71"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/params_TE.yaml": {
+      "bytes": 1425,
+      "sha256": "663d136eaf00f3b740c55296c854d4f5666a6a28e2108eb11bc1d7c9a2bc4e64"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/params_EE.yaml": {
+      "bytes": 1091,
+      "sha256": "09851b5775a77388a96639690db2fdccf267cbb8f54e10301a2021eaf6299bd8"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/prior_SZ.yaml": {
+      "bytes": 88,
+      "sha256": "a829e1bfaa6259dc2ea0e03722e4a24062f2ee2bf5c0b370b9a5be21158e7a3f"
+    },
+    "cobaya/likelihoods/planck_2018_highl_plik/TTTEEE.yaml": {
+      "bytes": 629,
+      "sha256": "536b2e2834dc6beb556edcecede8bd2edb1e98250a3647637bd0013dae29d60c"
+    },
+    "cobaya/likelihoods/planck_2018_lowl/TT_clik.yaml": {
+      "bytes": 511,
+      "sha256": "cf3b32982029d252025c4ecc59af5c40775f51a603fb675f2576fd195e8fd6d5"
+    },
+    "cobaya/likelihoods/planck_2018_lowl/EE_clik.yaml": {
+      "bytes": 524,
+      "sha256": "2fd258aebd231558ec7afb8a726254e6e2e05111c30303b7de8137b7b339e8d9"
+    }
+  },
+  "parameters": {
+    "A_planck": {
+      "prior": {
+        "dist": "norm",
+        "loc": 1,
+        "scale": 0.0025
+      }
+    },
+    "calib_100T": {
+      "prior": {
+        "dist": "norm",
+        "loc": 1.0002,
+        "scale": 0.0007
+      }
+    },
+    "calib_217T": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.99805,
+        "scale": 0.00065
+      }
+    },
+    "A_pol": {
+      "fixed": 1
+    },
+    "calib_100P": {
+      "fixed": 1.021
+    },
+    "calib_143P": {
+      "fixed": 0.966
+    },
+    "calib_217P": {
+      "fixed": 1.04
+    },
+    "cib_index": {
+      "fixed": -1.3
+    },
+    "A_cib_217": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 200
+      }
+    },
+    "xi_sz_cib": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 1
+      }
+    },
+    "A_sz": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 10
+      }
+    },
+    "ksz_norm": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 10
+      }
+    },
+    "gal545_A_100": {
+      "prior": {
+        "dist": "norm",
+        "loc": 8.6,
+        "scale": 2
+      }
+    },
+    "gal545_A_143": {
+      "prior": {
+        "dist": "norm",
+        "loc": 10.6,
+        "scale": 2
+      }
+    },
+    "gal545_A_143_217": {
+      "prior": {
+        "dist": "norm",
+        "loc": 23.5,
+        "scale": 8.5
+      }
+    },
+    "gal545_A_217": {
+      "prior": {
+        "dist": "norm",
+        "loc": 91.9,
+        "scale": 20
+      }
+    },
+    "A_sbpx_100_100_TT": {
+      "fixed": 1
+    },
+    "A_sbpx_143_143_TT": {
+      "fixed": 1
+    },
+    "A_sbpx_143_217_TT": {
+      "fixed": 1
+    },
+    "A_sbpx_217_217_TT": {
+      "fixed": 1
+    },
+    "ps_A_100_100": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 400
+      }
+    },
+    "ps_A_143_143": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 400
+      }
+    },
+    "ps_A_143_217": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 400
+      }
+    },
+    "ps_A_217_217": {
+      "prior": {
+        "dist": "uniform",
+        "min": 0,
+        "max": 400
+      }
+    },
+    "galf_TE_index": {
+      "fixed": -2.4
+    },
+    "galf_TE_A_100": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.13,
+        "scale": 0.042
+      }
+    },
+    "galf_TE_A_100_143": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.13,
+        "scale": 0.036
+      }
+    },
+    "galf_TE_A_100_217": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.46,
+        "scale": 0.09
+      }
+    },
+    "galf_TE_A_143": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.207,
+        "scale": 0.072
+      }
+    },
+    "galf_TE_A_143_217": {
+      "prior": {
+        "dist": "norm",
+        "loc": 0.69,
+        "scale": 0.09
+      }
+    },
+    "galf_TE_A_217": {
+      "prior": {
+        "dist": "norm",
+        "loc": 1.938,
+        "scale": 0.54
+      }
+    },
+    "galf_EE_index": {
+      "fixed": -2.4
+    },
+    "galf_EE_A_100": {
+      "fixed": 0.055
+    },
+    "galf_EE_A_100_143": {
+      "fixed": 0.04
+    },
+    "galf_EE_A_100_217": {
+      "fixed": 0.094
+    },
+    "galf_EE_A_143": {
+      "fixed": 0.086
+    },
+    "galf_EE_A_143_217": {
+      "fixed": 0.21
+    },
+    "galf_EE_A_217": {
+      "fixed": 0.7
+    },
+    "A_cnoise_e2e_100_100_EE": {
+      "fixed": 1
+    },
+    "A_cnoise_e2e_143_143_EE": {
+      "fixed": 1
+    },
+    "A_cnoise_e2e_217_217_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_100_100_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_100_143_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_100_217_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_143_143_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_143_217_EE": {
+      "fixed": 1
+    },
+    "A_sbpx_217_217_EE": {
+      "fixed": 1
+    }
+  },
+  "joint_SZ": {
+    "weights": {
+      "ksz_norm": 1,
+      "A_sz": 1.6
+    },
+    "mean": 9.5,
+    "sigma": 3
+  }
+}

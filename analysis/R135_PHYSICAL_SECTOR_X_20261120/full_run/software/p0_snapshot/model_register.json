@@ -33,6 +33,11 @@
     }
   ],
   "plan_sha256": "04e722f50b589b7d70b35b68d42ad9912d03459fde020afc224f3c830f7eff6d",
+  "point_counts": {
+    "diagnostic": 48,
+    "literature_benchmark": 4,
+    "physical_candidate": 0
+  },
   "points": [
     {
       "T_gamma_event_MeV": 0.02,
@@ -465,8 +470,64 @@
       "role": "diagnostic",
       "thermal_path": "exchange_during_transition",
       "xi_event": 1.0
+    },
+    {
+      "R_post": 1e-09,
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 1,
+      "model_id": "XB-pureSU3",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "point_id": "XB-FMS-top-left",
+      "role": "literature_benchmark",
+      "scope": "post-confinement equilibrium boundary only",
+      "thermal_path": "isolated_during_transition"
+    },
+    {
+      "R_post": 1e-09,
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 100000,
+      "model_id": "XB-pureSU3",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "point_id": "XB-FMS-top-right",
+      "role": "literature_benchmark",
+      "scope": "post-confinement equilibrium boundary only",
+      "thermal_path": "isolated_during_transition"
+    },
+    {
+      "R_post": 0.001,
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 1,
+      "model_id": "XB-pureSU3",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "point_id": "XB-FMS-bottom-left",
+      "role": "literature_benchmark",
+      "scope": "post-confinement equilibrium boundary only",
+      "thermal_path": "isolated_during_transition"
+    },
+    {
+      "R_post": 0.001,
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 100000,
+      "model_id": "XB-pureSU3",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "point_id": "XB-FMS-bottom-right",
+      "role": "literature_benchmark",
+      "scope": "post-confinement equilibrium boundary only",
+      "thermal_path": "isolated_during_transition"
     }
   ],
-  "register_sha256": "794abd18a83091e668af9014f50ee9cade776fc3afa0028283bf44772f192274",
-  "schema": "R135-P0-design-v1"
+  "register_sha256": "929af0afa5c118aab6f0b5a5dd8ea5d83bcaa08b440aff872fa63ee9586b8ca9",
+  "schema": "R135-P0-design-v2",
+  "xb_reference": {
+    "coordinates": {
+      "bytes": 2252,
+      "path": "xb_reference/coordinates.json",
+      "sha256": "b71105041fd0d3d3220ca2aa95dda32d5c255394ba973d50d9ac2bcd54a9e6a7"
+    },
+    "inputs": {
+      "bytes": 3575,
+      "path": "xb_reference/inputs.json",
+      "sha256": "580f6c6b528ba554d3d7ed4849b6014c3f93d09c6e5cea25c558e0cc5e2e0364"
+    }
+  }
 }
