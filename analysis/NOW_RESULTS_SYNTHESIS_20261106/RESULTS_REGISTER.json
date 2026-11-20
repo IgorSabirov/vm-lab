@@ -4897,9 +4897,9 @@
       "section": "24. Геометрические кандидаты и интеграция",
       "title": "Конн–ADD. Предел парных корреляций для прогноза длины кольца R130",
       "status": "ТОЧНЫЙ КОНЕЧНЫЙ КОНТРПРИМЕР НА ИМЕНОВАННОМ ОПЕРАТОРЕ R130",
-      "result": "Два восьмивершинных кольца с четырьмя частицами имеют одинаковые ориентированные попарные корреляции всех типов на всех сдвигах. После двух шагов их длины равны 7 и 8. Начальные состояния различает смешанный след с тремя вставками проектора занятости (184 и 186), а также счётчик занятых троек (0 и 1). На паре 01110212 и 01120211 совпадают также занятые вершины по отдельности и все 72 парных числа. Через два шага длины равны 8 и 7. Тройка 111 встречается один и ноль раз соответственно. На новом контроле совпадают даже все сортовые трёхточечные счётчики при всех сдвигах. Две длины 24 переходят в 19, затем в 23 и 24. При общей маске пустых вершин получены 120→105→115 и 120→105→116.",
+      "result": "Два восьмивершинных кольца с четырьмя частицами имеют одинаковые ориентированные попарные корреляции всех типов на всех сдвигах. После двух шагов их длины равны 7 и 8. Начальные состояния различает смешанный след с тремя вставками проектора занятости (184 и 186), а также счётчик занятых троек (0 и 1). На паре 01110212 и 01120211 совпадают также занятые вершины по отдельности и все 72 парных числа. Через два шага длины равны 8 и 7. Тройка 111 встречается один и ноль раз соответственно. На новом контроле совпадают даже все сортовые трёхточечные счётчики при всех сдвигах. Две длины 24 переходят в 19, затем в 23 и 24. При общей маске пустых вершин получены 120→105→115 и 120→105→116. При известной длине достаточны пять счётчиков 12, 21, 212, 121, 2121 на начальном алфавите {0,1,2}.",
       "inputs": "Именованный F=QI₂, ε=(+1,−1), возбуждён только первый канал. Слова 00012021 и 00100212 в порядке b→a. Лапласиан однородного цикла, диагональный проектор на занятые вершины, 72 целочисленных сравнения и точное обращение каждого исполненного перехода. В дополнении проверены также шестизначная пара соседей (длины 4 и 5), короткий контроль и совместная пара при тех же правилах.",
-      "limit": "Недостаточность относится к трансляционно-инвариантным парным наблюдаемым на начальном кольце. Достаточность выбранной трёхточечной величины установлена только для различения предъявленной пары. Физическая стрела, внутреннее чтение и перенос в BH1, BBN или CCC остаются открыты. Совместная пара исключает достаточность даже объединения точной занятости и однородных парных данных. На начальном алфавите {0,1,2} совокупность всех трансляционно-инвариантных сортовых троек недостаточна. Для L(2) достаточно локальных счётчиков до четвёртого порядка включительно. Расширение формулы на все 16 начальных меток остаётся открытым.",
+      "limit": "Недостаточность относится к трансляционно-инвариантным парным наблюдаемым на начальном кольце. Достаточность выбранной трёхточечной величины установлена только для различения предъявленной пары. Физическая стрела, внутреннее чтение и перенос в BH1, BBN или CCC остаются открыты. Совместная пара исключает достаточность даже объединения точной занятости и однородных парных данных. На начальном алфавите {0,1,2} совокупность всех трансляционно-инвариантных сортовых троек недостаточна. Для L(2) достаточно локальных счётчиков до четвёртого порядка включительно. Расширение формулы на все 16 начальных меток остаётся открытым. Для горизонта трёх шагов достаточность шестого порядка открыта. На старте 3 вне тернарного алфавита фактические длины равны 1→2→3.",
       "framework_role": "Проверяемая нижняя граница на данные для точного прогноза продолжения. Конн и Маджид дают математический контекст совместного измерения алгебры и оператора. Космологические связи имеют отдельные физические предпосылки.",
       "evidence_level": "ЦЕЛОЧИСЛЕННАЯ ПРОВЕРКА И ИСПОЛНЕНИЕ ИМЕНОВАННОГО R130 НА ЯВНЫХ ПАРАХ",
       "parent_result_ids": [
@@ -4924,7 +4924,8 @@
         "analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json",
         "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md",
         "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py",
-        "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json"
+        "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json",
+        "analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt"
       ],
       "managed_sources": [
         "analysis/R131_CONNES_ADD_20261119/REPORT.md",
@@ -4935,7 +4936,8 @@
         "analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json",
         "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md",
         "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py",
-        "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json"
+        "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json",
+        "analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt"
       ],
       "genealogy_note": "R130 задаёт оператор. Дополнение к прежней границе для окон фиксированной ширины проверяет полную парную статистику по сдвигам. Равновесная спектральная энтропия и другие модели обсуждаются как независимые направления переноса.",
       "scientific_acceptance": false
@@ -4945,9 +4947,9 @@
       "section": "24. Геометрические кандидаты и интеграция",
       "title": "Алгебра меток R130, калибровочные поля и спектральная энтропия",
       "status": "ТОЧНАЯ КЛАССИФИКАЦИЯ ЛОКАЛЬНОЙ АЛГЕБРЫ И ДОКАЗАННЫЙ ПРЕДЕЛ ЭНТРОПИЙНОЙ МОНОТОННОСТИ",
-      "result": "Все проекторы 16 меток и битовый реверс R порождают в каноническом представлении четыре скалярных блока и шесть полных матричных блоков размера 2. Цветовой фактор M₃(ℂ) в эту алгебру не вкладывается. При β=1 равновесная фермионная энтропия однородного кольца на шаге R130 падает с 6.138867 до 5.115842 для 120000 и возрастает до 7.161997 для 300000. Начальная длина и все шесть одноузловых аддитивных зарядов совпадают. Для каждой пары длин L, L+1 при L≥2 в том же секторе реализуются оба направления прямым шагом. При каждом фиксированном конечном β≥0 функция S_L(β) неограниченна по L. Поэтому у неё имеются шаги обоих знаков. На верном комплексном бимодуле минимум для KO-6, первого порядка и нетривиального коммутатора с D равен 24. Совместное требование невырожденного спаривания минимальных проекторов повышает минимум до 26, где проверен целочисленный свидетель с определителем 1. Полушаг Q допускает запись через два конца ребра градуированного кольца R132. Два секторных следа различают зеркальные порядки меток и дают точное изменение длины C2 за один шаг при заданном правиле взаимодействия. В секторе p=3 при β=8 прямой шаг 3100 увеличивает длину с 4 до 5 при уменьшении канонической энтропии на 0.00365665766 нат.",
+      "result": "Все проекторы 16 меток и битовый реверс R порождают в каноническом представлении четыре скалярных блока и шесть полных матричных блоков размера 2. Цветовой фактор M₃(ℂ) в эту алгебру не вкладывается. При β=1 равновесная фермионная энтропия однородного кольца на шаге R130 падает с 6.138867 до 5.115842 для 120000 и возрастает до 7.161997 для 300000. Начальная длина и все шесть одноузловых аддитивных зарядов совпадают. Для каждой пары длин L, L+1 при L≥2 в том же секторе реализуются оба направления прямым шагом. При каждом фиксированном конечном β≥0 функция S_L(β) неограниченна по L. Поэтому у неё имеются шаги обоих знаков. На верном комплексном бимодуле минимум для KO-6, первого порядка и нетривиального коммутатора с D равен 24. Совместное требование невырожденного спаривания минимальных проекторов повышает минимум до 26, где проверен целочисленный свидетель с определителем 1. Полушаг Q допускает запись через два конца ребра градуированного кольца R132. Два секторных следа различают зеркальные порядки меток и дают точное изменение длины C2 за один шаг при заданном правиле взаимодействия. В секторе p=3 при β=8 прямой шаг 3100 увеличивает длину с 4 до 5 при уменьшении канонической энтропии на 0.00365665766 нат. Для полной KMS-энтропии невзвешенного кольца при фиксированном 0<β<∞ знак изменения совпадает со знаком изменения длины. При фиксированном p и β каноническая энтропия растёт как p ln L + O(1); при β=L/8 и p=2 её предел равен 4,491667 нат.",
       "inputs": "Именованный шаг F=QI₂ при ε=(+1,−1), измеримые проекторы меток, битовая перестановка и матрица инцидентности кольца с единичными весами рёбер. Для энтропии выбраны фермионное вторичное квантование и β. Общая формула проверена на C₆ суммой по 4096 состояниям.",
-      "limit": "Классифицирована конкретная алгебра на пространстве одной метки. Происхождение цветового сектора из коллективных степеней свободы, локальных калибровочных полей, фермионов, масс, трёх поколений и типичной стрелы ADD остаётся открытым. Каждый граф получает собственное равновесное KMS-состояние. Выбор внутреннего бимодуля и его D законом R130 остаётся открытым. Секторные следы и перенос SU(2) на связях уточнены в дополнениях; перенос оператора первого порядка на меняющихся графах выделен в постановку R133.",
+      "limit": "Классифицирована конкретная алгебра на пространстве одной метки. Происхождение цветового сектора из коллективных степеней свободы, локальных калибровочных полей, фермионов, масс, трёх поколений и типичной стрелы ADD остаётся открытым. Каждый граф получает собственное равновесное KMS-состояние. Выбор внутреннего бимодуля и его D законом R130 остаётся открытым. Секторные следы и перенос SU(2) на связях уточнены в дополнениях; перенос оператора первого порядка на меняющихся графах выделен в постановку R133. На орбите (1,2,12) полная энтропия постоянна при росте имени. Эталон потока с поэлементным сопряжением зависит от выбора базиса.",
       "framework_role": "Сравнение конечной спектральной геометрии Стандартной модели и ADD. Связь спектрального действия с членом Янга–Миллса опирается на первичную литературу. Отображение в решёточное квантовое поле открыто.",
       "evidence_level": "АЛГЕБРАИЧЕСКОЕ ДОКАЗАТЕЛЬСТВО, ТОЧНЫЕ РАНГИ, ИМЕНОВАННЫЕ ТРАЕКТОРИИ, НЕЗАВИСИМАЯ СУММА ФОКА НА C₆ И ДОКАЗАТЕЛЬСТВО ДЛЯ ВСЕХ L≥2 И КОНЕЧНЫХ β≥0",
       "parent_result_ids": [
@@ -4978,7 +4980,8 @@
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
-        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json"
+        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md"
       ],
       "managed_sources": [
         "analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
@@ -4995,7 +4998,8 @@
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
         "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
-        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json"
+        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md"
       ],
       "genealogy_note": "R130 задаёт оператор, R131 — различение наблюдаемых и контрольные слова. CCM и теорема об энтропии служат внешними математическими основаниями.",
       "scientific_acceptance": false
@@ -5007,7 +5011,7 @@
       "status": "ПОСТАНОВКА · ЛОКАЛЬНЫЕ КОНТРОЛИ ПРОВЕРЕНЫ · СОГЛАСОВАННОСТЬ ПОЛНОГО ЦИКЛА ОТКРЫТА",
       "result": "При подразделении ребра коэффициенты скалярного Казимира аддитивны. Для G=h₁⋯hₙ обозначим через Aₖ произведение до звена k и через Bₖ произведение после него.\n\n| Вариация звена | Генератор на G | Звено с пустым сопрягающим произведением |\n|---|---|---|\n| hₖ exp(tT) | справа, Ad(Bₖ⁻¹)T | последнее |\n| exp(tT) hₖ | слева, Ad(Aₖ)T | первое |\n\nДля U_R=r2 на ℂ¹⁶ размерности алгебры и коммутанта равны 28 и 10. На атомарном старте (1,2,12) при постоянном L=3 размер имени узла 12 равен 2n+5 для n≥1. Два порядка заранее объявленных блоков дают один именованный конец и одинаковые связи. Полная фермионная KMS-энтропия невзвешенного кольца при фиксированном 0<β<∞ строго возрастает с L и постоянна на этой орбите.",
       "inputs": "Именованный двухканальный F=QI₂, нормированная мера Хаара SU(2), гладкие цилиндрические функции, объявленные рамки, действия на спиноре и условия сравнения конечных объектов.",
-      "limit": "Для T3 ещё требуется задать перенос полных операторных данных и сравнить его на общем конце. Фактор по именам допустим для наблюдаемых, спускающихся на него. T4 и физическая стрела открыты. При фиксированном числе частиц p=3 на шагах 4→5 при β=8 каноническая энтропия убывает.",
+      "limit": "Для T3 ещё требуется задать перенос полных операторных данных и сравнить его на общем конце. Фактор по именам допустим для наблюдаемых, спускающихся на него. T4 и физическая стрела открыты. При фиксированном числе частиц p=3 на шагах 4→5 при β=8 каноническая энтропия убывает. Космологический выход H(T) требует физических часов, объёма и материи; внешний закон G(a) с контролем c=0 пока не выведен из перестроек.",
       "framework_role": "Проверка представления одной геометрической операции в ADD и петлевой спектральной геометрии. Энтропийная граница проверяется отдельно на донорских данных Quantum Cosmos Lab и Guedes.",
       "evidence_level": "ПОСТАНОВКА; АНАЛИТИЧЕСКИЕ ТОЖДЕСТВА И НЕЗАВИСИМЫЕ ПРОВЕРКИ ИЗВЕСТНЫХ КОНТРОЛЕЙ",
       "parent_result_ids": [
@@ -5044,7 +5048,9 @@
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md",
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py",
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json",
-        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt"
+        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md"
       ],
       "managed_sources": [
         "analysis/R133_LOOP_CONNES_20261120/REPORT.md",
@@ -5061,7 +5067,9 @@
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md",
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py",
         "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json",
-        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt"
+        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md"
       ],
       "genealogy_note": "R130 поставляет именованный цикл, R131 — границы спектрального различения, R132 — графовую инцидентность, энтропию и контроль голономии. U010 относится к сохранению материального следа при слиянии.",
       "scientific_acceptance": false
@@ -5073,7 +5081,7 @@
       "status": "ПОСТАНОВКА · ДОНОРЫ И КОНЕЧНЫЕ КОНТРОЛИ ПРОВЕРЕНЫ · ФИЗИЧЕСКОЕ СООТВЕТСТВИЕ ОТКРЫТО",
       "result": "Формулы Cheung–Remmen–Sciotti–Tarquini и авторский блокнот Eberhardt–Mizera сопоставлены в общих переменных. Для открытой пятичастичной амплитуды получены 7/36 во всех пяти циклических порядках выбранной кинематики и π²/6 в симметричной точке. В D(10,6,25) 186 ненулевых двойных вычетов из 195 допустимых пар. Два одноимённых репозитория имеют общий коммит, их Coon-модуль теряет полюс. Тест достаточности одноканальных данных сохраняет обе оси и меняет первый смешанный коэффициент с 36 на 37.",
       "inputs": "Древесные скалярные амплитуды, объявленные кинематика и знак вычета, формулы (23) и (A6) arXiv:2508.09246v2. Отдельно заданы невзвешенный D кольца и именованная динамика ADD.",
-      "limit": "На фиксированном кольце L=3 резольвента имеет три различные точки спектра. Для сравнения вычетов требуются состояния, каналы и предсказание смешанного коэффициента из ADD–Конна. Продемонстрирован численный перенос формулы A5. Новый запуск авторского контурного интегратора и вывод физического словаря открыты.",
+      "limit": "На фиксированном кольце L=3 резольвента имеет три различные точки спектра. Для сравнения вычетов требуются состояния, каналы и предсказание смешанного коэффициента из ADD–Конна. Продемонстрирован численный перенос формулы A5. Новый запуск авторского контурного интегратора и вывод физического словаря открыты. Для позднего BBN-отклика ещё нужны производство/численность реликта, время жизни, спектр распада и согласованный состав ядер.",
       "framework_role": "Сопоставить полюс и спектральный проектор, затем проверить факторизацию и циклическое действие на заранее выбранных данных. Физическая энтропия и стрела времени требуют дополнительной постановки.",
       "evidence_level": "ПОСТАНОВКА · ПЕРВИЧНЫЕ ИСТОЧНИКИ, ТОЧНЫЕ КОЭФФИЦИЕНТЫ И ЧИСЛЕННЫЕ КОНТРОЛИ",
       "parent_result_ids": [
@@ -5095,13 +5103,17 @@
         "analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
         "analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py",
         "analysis/R134_STRINGS_CONNES_ADD_20261120/CHECKS.json",
-        "analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv"
+        "analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md"
       ],
       "managed_sources": [
         "analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
         "analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py",
         "analysis/R134_STRINGS_CONNES_ADD_20261120/CHECKS.json",
-        "analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv"
+        "analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md"
       ],
       "genealogy_note": "R130–R133 задают состояния, ограничения наблюдаемых и операторную сторону сравнения. Струнные нормировки и кинематика заимствованы из собственных источников R134.",
       "scientific_acceptance": false
@@ -9184,6 +9196,24 @@
         "U006"
       ],
       "note": "Доноры струнных данных и кода, вычислительные конвенции и контроль двух каналов."
+    },
+    {
+      "id": "SESSION_COVERAGE_20261120",
+      "date": "2026-11-20",
+      "base_commit": "22fefaaca7b8903d69c0fcbf557dc0c1b82da06a",
+      "report": "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
+      "updates": [
+        "R130",
+        "R131",
+        "R132",
+        "R133",
+        "R134",
+        "U006",
+        "U010",
+        "premise:C05"
+      ],
+      "new_records": [],
+      "scientific_status_promoted": false
     }
   ],
   "lineage_edges": [
@@ -15336,6 +15366,214 @@
           "evidence": "analysis/R133_LOOP_CONNES_20261120/REPORT.md#tests"
         }
       ]
+    },
+    {
+      "id": "ADD_SPECTRAL_SESSION_20261120",
+      "title": "R131–R133: порядок меток, именованная динамика и выбор ансамбля",
+      "status": "REVIEWED_WITH_SCOPE_LIMITS",
+      "date": "2026-11-20",
+      "base_commit": "22fefaaca7b8903d69c0fcbf557dc0c1b82da06a",
+      "report": "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
+      "managed_sources": [
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/SESSION.txt",
+        "analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt",
+        "analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md",
+        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md",
+        "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md",
+        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+        "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+        "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "Зеркальные слова продолжаются по-разному.",
+          "rationale": "Рёберный и вершинный следы считывают разные направления контакта.",
+          "evidence": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md#flux-control"
+        },
+        {
+          "target": "result:R131",
+          "relation": "scope_boundary",
+          "claim": "Три исходных фрагмента сверены с именованным шагом.",
+          "rationale": "Для L(2) на {0,1,2} хватает пяти счётчиков, максимальный порядок четыре.",
+          "evidence": "analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md#two-steps"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Проверен знак при смене базиса и разделены ансамбли.",
+          "rationale": "На фиксированном невзвешенном кольце полная KMS-энтропия определяется длиной.",
+          "evidence": "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md#kms-length"
+        },
+        {
+          "target": "result:R133",
+          "relation": "scope_boundary",
+          "claim": "Постоянная длина допускает бесконечную орбиту имён.",
+          "rationale": "Энтропия по длине не различает такие перестройки. Для T3/T4 требуется перенести оператор или спинор.",
+          "evidence": "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md#kms-length"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Доступное отношение несёт один бит о следующей длине.",
+          "rationale": "Проверка внутреннего читателя требует вмешательства в доступ к ориентированному контакту и регистрации действия.",
+          "evidence": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md#reader-bit"
+        },
+        {
+          "target": "premise:C05",
+          "relation": "premise_context_not_evidence",
+          "claim": "Ориентация контакта, ансамбль и физическая стрела различимы.",
+          "rationale": "Пример уточняет условие сравнения показаний до и после шага.",
+          "evidence": "analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md#kms-length"
+        }
+      ],
+      "new_production_runs": 0
+    },
+    {
+      "id": "BBN_DONORS_TRANSFER_20261120",
+      "title": "Доноры R131–R134, внешняя сверка S3 и наблюдаемые BH1",
+      "status": "REVIEWED_WITH_SCOPE_LIMITS",
+      "date": "2026-11-20",
+      "base_commit": "22fefaaca7b8903d69c0fcbf557dc0c1b82da06a",
+      "report": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md",
+      "managed_sources": [
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md",
+        "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "operational_requirement",
+          "claim": "Граф пока не задаёт тепловую историю.",
+          "rationale": "Шагу графа нужны физическое время, энергия и барионно-фотонный баланс.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs"
+        },
+        {
+          "target": "result:R131",
+          "relation": "scope_boundary",
+          "claim": "Область прогноза графа отделена от космологического отклика.",
+          "rationale": "Достаточность счётчиков для L(2) не даёт физического H(T).",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#expansion-history"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Результат о конечной алгебре не задаёт слабые скорости.",
+          "rationale": "Для передачи спектральных параметров нужны обоснованный переход к МэВ и выбор нормировки.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics"
+        },
+        {
+          "target": "result:R133",
+          "relation": "scope_boundary",
+          "claim": "Две истории могут дать равный гелий и различный дейтерий.",
+          "rationale": "Эффективное G(a) Bojowald–Das–Scherrer задаёт внешний контроль; его происхождение из R133 открыто.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#expansion-history"
+        },
+        {
+          "target": "result:R134",
+          "relation": "operational_requirement",
+          "claim": "Вычеты амплитуды не определяют историю энерговыделения.",
+          "rationale": "Для позднего каскада нужны численность, время жизни и спектр распада реликта.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics"
+        },
+        {
+          "target": "question:U006",
+          "relation": "operational_requirement",
+          "claim": "Гелий и дейтерий чувствительны к разным температурным окнам.",
+          "rationale": "Нужен вывод H(T) и часов из выбранной модели.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#expansion-history"
+        },
+        {
+          "target": "component:BBN_RESPONSE_BRIDGE",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для BBN_RESPONSE_BRIDGE.",
+          "rationale": "Внешний разброс чувствительности гелия 16,9% требует проверки d+d → t+p на общей реализации входов.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#s3-response"
+        },
+        {
+          "target": "component:NUCLEAR_RATE_INPUTS",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для NUCLEAR_RATE_INPUTS.",
+          "rationale": "Ковариация двух D+D-каналов требует совместных температурных профилей.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#joint-inference"
+        },
+        {
+          "target": "component:COSMOLOGICAL_BACKGROUND",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для COSMOLOGICAL_BACKGROUND.",
+          "rationale": "Совместные Yp и D/H различают окна расширения при одинаковом сдвиге гелия.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#expansion-history"
+        },
+        {
+          "target": "component:BH1_THERMODYNAMICS",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для BH1_THERMODYNAMICS.",
+          "rationale": "При сопоставлении эпох учитываются энергия источника и распределение тепла.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs"
+        },
+        {
+          "target": "component:PHOTON_THERMALIZATION",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для PHOTON_THERMALIZATION.",
+          "rationale": "Для тепловых фотонов изменение энергии меняет η при сохранении барионов.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs"
+        },
+        {
+          "target": "component:NEUTRINO_KINETIC_BRIDGE",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для NEUTRINO_KINETIC_BRIDGE.",
+          "rationale": "Спектральные и тепловые распределения сравнивают при одном фоне.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#neutrino-spectra"
+        },
+        {
+          "target": "component:WEAK_RATE_BRIDGE",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для WEAK_RATE_BRIDGE.",
+          "rationale": "Фундаментальная нормировка и измеренная τn дают разные отклики на GF.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics"
+        },
+        {
+          "target": "component:BBN_CMB_OBSERVATIONS",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для BBN_CMB_OBSERVATIONS.",
+          "rationale": "При одинаковом N_eff сохраняется чувствительность η между BBN и рекомбинацией.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs"
+        },
+        {
+          "target": "component:JOINT_INFERENCE",
+          "relation": "operational_requirement",
+          "claim": "Условие сравнения для JOINT_INFERENCE.",
+          "rationale": "Рассчитанный Yp передаётся в CLASS; совместный posterior нельзя повторно использовать как независимое наблюдение.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#joint-inference"
+        },
+        {
+          "target": "external:LINX",
+          "relation": "classification_only",
+          "claim": "Различены решатель, входная база и готовый выход.",
+          "rationale": "ABCMB в выбранном режиме запускает LINX с сетью key_PRIMAT_2023.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md#solver-or-tables"
+        },
+        {
+          "target": "external:PRIMAT",
+          "relation": "classification_only",
+          "claim": "Различены решатель, входная база и готовый выход.",
+          "rationale": "Прямое исполнение PRIMAT у Froustey–Pitrou–Volpe отличается от чтения таблицы предрассчитанных выходов.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md#solver-or-tables"
+        },
+        {
+          "target": "external:PRYMORDIAL",
+          "relation": "classification_only",
+          "claim": "Различены решатель, входная база и готовый выход.",
+          "rationale": "Атлас Burns и расчёт Dreyer–Martins указывают отдельно решатель PRyMordial и источник ядерных скоростей.",
+          "evidence": "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md#solver-or-tables"
+        }
+      ],
+      "new_production_runs": 0
     }
   ],
   "architecture_components": [

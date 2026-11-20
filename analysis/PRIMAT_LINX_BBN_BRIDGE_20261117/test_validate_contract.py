@@ -79,8 +79,7 @@ class BridgeContractTests(unittest.TestCase):
     def test_rejects_nonfinite_values(self):
         payload = fixture()
         payload["history"]["H_s_inv"][1] = float("nan")
-        payload["provenance"]["history_sha256"] = canonical_sha256(payload["history"])
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ContractError, r"history\.H_s_inv\[1\]: value must be finite"):
             validate_input(payload)
 
 

@@ -120,6 +120,8 @@
 <!-- generated:review-card-question-u006 -->
 **Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#mixed); `scope_boundary`. Происхождение причинной и метрической структур не выведено из правил кольца. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
+**Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#expansion-history); `operational_requirement`. Нужен вывод H(T) и часов из выбранной модели. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
 **Внешний разбор:** [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md#geometry); `scope_boundary`. CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn); `scope_boundary`. COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
@@ -257,6 +259,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 <!-- generated:review-card-question-u010 -->
 **Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#function); `scope_boundary`. Наличие геометрического следа и вечных взаимодействий не доказывает наследование способности продолжения. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
+**Внешний разбор:** [ADD_SPECTRAL_SESSION_20261120](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md#reader-bit); `operational_requirement`. Проверка внутреннего читателя требует вмешательства в доступ к ориентированному контакту и регистрации действия. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md#origin); `scope_boundary`. Ограниченный модуль фазовой организации не закрывает происхождение условий. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
@@ -402,7 +406,9 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U007](../REGISTRY_LINKS/INDEX.md#question-u007) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Обращение носителя C2 не реализует обращение аппарата, ресурсов, отходов и среды. |
 | [question:U009](../REGISTRY_LINKS/INDEX.md#question-u009) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Симметрия исправленной C2 не меняет секторную классификацию старого carrier и не устанавливает SSB. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md) | `scope_boundary` | Наличие геометрического следа и вечных взаимодействий не доказывает наследование способности продолжения. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ADD_SPECTRAL_SESSION_20261120](../../analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md) | `operational_requirement` | Проверка внутреннего читателя требует вмешательства в доступ к ориентированному контакту и регистрации действия. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `scope_boundary` | Ограниченный модуль фазовой организации не закрывает происхождение условий. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md) | `operational_requirement` | Нужен вывод H(T) и часов из выбранной модели. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `scope_boundary` | CCC/CBST начинают с заданной геометрии; динамика на ней не выводит причинную и метрическую структуру из организации. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. |

@@ -184,6 +184,7 @@ D003 сохраняет самостоятельность условного м
 
 | Карточка | Разбор | Тип связи | Смысл |
 |---|---|---|---|
+| [premise:C05](../REGISTRY_LINKS/INDEX.md#premise-c05) | [ADD_SPECTRAL_SESSION_20261120](../../analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md) | `premise_context_not_evidence` | Пример уточняет условие сравнения показаний до и после шага. |
 | [premise:F02](../REGISTRY_LINKS/INDEX.md#premise-f02) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `premise_context_not_evidence` | S³ и алгебра отношений заданы в исходной SYM, а не выведены нашим адаптером. |
 | [premise:F05](../REGISTRY_LINKS/INDEX.md#premise-f05) | [ANTHROPIC_BH_20261112](../../analysis/ANTHROPIC_BH_20261112/REPORT.md) | `premise_context_not_evidence` | Haar/тепловая мера остаётся входом, хотя её ограничения участвуют в фазовом эффекте. |
 | [premise:B01](../REGISTRY_LINKS/INDEX.md#premise-b01) | [CCC_TL_20261112](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md) | `premise_context_not_evidence` | Замкнутость, расширение описания и ресурсный учёт требуют явного закона обмена; готовый скалярный сектор не выводит основание целого. |

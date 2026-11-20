@@ -75,3 +75,7 @@ No R/C/L/U status is promoted by these documents.
 ## R130 joins the physical interface
 
 The [R130–BH1–BBN connection](../R130_BH1_BBN_CONNECTION_20261117/REPORT.md) links R126 → R130 evidence to the existing BH1/background input. R130 supplies dimensionless observables and C1/C2 controls; BH1 supplies conditional thermodynamic constraints. Neither is established as a physical realization of the other. The unimplemented physical map is explicit in [CONNECTION_CONTRACT.json](../R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json). Questions U006/U007/U010 stay OPEN; no new result number or scientific acceptance is assigned.
+
+## 20 ноября. Родители внешних контролей
+
+Burns → чувствительности D+D; Froustey–Pitrou–Volpe → спектры и слабые скорости; Bojowald–Das–Scherrer → внешний закон расширения; Bai–Korwar и Joseph–Kumar–Sandick → нагрев и совместные BBN/CMB-наблюдаемые. В качестве источников физического входа R132–R134 остаются условными. [Версии и границы применения](../NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md) · [Численные контроли](../NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md).
