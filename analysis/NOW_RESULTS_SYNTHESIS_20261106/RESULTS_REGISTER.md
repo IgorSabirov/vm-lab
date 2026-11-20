@@ -4134,17 +4134,24 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Статус:** ПОСТАНОВКА · ЛОКАЛЬНЫЕ КОНТРОЛИ ПРОВЕРЕНЫ · СОГЛАСОВАННОСТЬ ПОЛНОГО ЦИКЛА ОТКРЫТА
 
-**Результат.** На подразделении ребра доказана аддитивность коэффициентов скалярного Казимира. Выведено действие производной первого порядка через Ad обратной правой половины в выбранной тривиализации. Точная неклассовая проба различает две формулы. Для T3 зафиксирован кандидат на цикл с одновременным слиянием и расщеплением. Для исходных атомарных имён явно получено имя узла с меткой 12 на любом шаге. Литерально именованная орбита апериодична.
+**Результат.** При подразделении ребра коэффициенты скалярного Казимира аддитивны. Для G=h₁⋯hₙ обозначим через Aₖ произведение до звена k и через Bₖ произведение после него.
+
+| Вариация звена | Генератор на G | Звено с пустым сопрягающим произведением |
+|---|---|---|
+| hₖ exp(tT) | справа, Ad(Bₖ⁻¹)T | последнее |
+| exp(tT) hₖ | слева, Ad(Aₖ)T | первое |
+
+Для U_R=r2 на ℂ¹⁶ размерности алгебры и коммутанта равны 28 и 10. На атомарном старте (1,2,12) при постоянном L=3 размер имени узла 12 равен 2n+5 для n≥1. Два порядка заранее объявленных блоков дают один именованный конец и одинаковые связи. Полная фермионная KMS-энтропия невзвешенного кольца при фиксированном 0<β<∞ строго возрастает с L и постоянна на этой орбите.
 
 **Условия.** Именованный двухканальный F=QI₂, нормированная мера Хаара SU(2), гладкие цилиндрические функции, объявленные рамки, действия на спиноре и условия сравнения конечных объектов.
 
-**Граница.** Возврат по циклическому слову допускает сравнение на факторе по именам. Нужны отображение рамок, относительных переменных и проверка переноса оператора; физическая стрела остаётся открытой.
+**Граница.** Для T3 ещё требуется задать перенос полных операторных данных и сравнить его на общем конце. Фактор по именам допустим для наблюдаемых, спускающихся на него. T4 и физическая стрела открыты. При фиксированном числе частиц p=3 на шагах 4→5 при β=8 каноническая энтропия убывает.
 
 **Место в рамке.** Проверка представления одной геометрической операции в ADD и петлевой спектральной геометрии. Энтропийная граница проверяется отдельно на донорских данных Quantum Cosmos Lab и Guedes.
 
 **Родители:** R130, R131, R132. **Конструкции:** C037, C042. **Вопросы:** U006, U010.
 
-**Источники:** [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md); [check_controls.py](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt); [DONORS.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md); [check_review.py](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt).
+**Источники:** [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md); [check_controls.py](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt); [DONORS.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md); [check_review.py](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md); [verify.py](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R133 -->
