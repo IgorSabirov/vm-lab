@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "model": "H_X=h L + J N_4(a); eps_ij=h; eta_ijkl=J iff all four symbols have a-bit=1, else 0",
+  "normalization": {
+    "h": 1,
+    "J": 1,
+    "J_over_h": 1
+  },
+  "u0": {
+    "eps_00": 1,
+    "eta_0000": 0,
+    "u0": 1
+  },
+  "five_pair_region": {
+    "contrast_D": 1,
+    "region_condition": "D != 0",
+    "pairs_distinguished": 5,
+    "pairs_total": 5,
+    "pair_results": [
+      {
+        "pair": 1,
+        "N4_A": 1,
+        "N4_B": 0,
+        "delta_N4": 1,
+        "delta_E": 1,
+        "distinguishes": true
+      },
+      {
+        "pair": 2,
+        "N4_A": 1,
+        "N4_B": 0,
+        "delta_N4": 1,
+        "delta_E": 1,
+        "distinguishes": true
+      },
+      {
+        "pair": 3,
+        "N4_A": 1,
+        "N4_B": 0,
+        "delta_N4": 1,
+        "delta_E": 1,
+        "distinguishes": true
+      },
+      {
+        "pair": 4,
+        "N4_A": 1,
+        "N4_B": 0,
+        "delta_N4": 1,
+        "delta_E": 1,
+        "distinguishes": true
+      },
+      {
+        "pair": 5,
+        "N4_A": 0,
+        "N4_B": 1,
+        "delta_N4": -1,
+        "delta_E": -1,
+        "distinguishes": true
+      }
+    ]
+  },
+  "strict_contact_gap_compatibility": {
+    "status": "FAIL",
+    "reason": "The exact passive-Q plus context-independent 12<->3 gap classification forces D=0 on all five witnesses. This H_X has D=J!=0, so its event gap depends on local neighborhood.",
+    "scope": "Does not invalidate the relaxed neighbor-dependent Hamiltonian; excludes simultaneous imposition of a constant contact gap."
+  },
+  "verdict": "The H_X coefficient point is inside the 5/5 distinguishing region for J!=0. u0=h is independent of D. Gate A passes for the neighbor-dependent model."
+}
