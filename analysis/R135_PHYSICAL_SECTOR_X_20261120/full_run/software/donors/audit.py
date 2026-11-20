@@ -10,7 +10,7 @@ from scipy.integrate import quad
 from scipy.optimize import brentq
 from scipy.special import kv
 
-from extract import physics, observations, article, measurement, one, WITH_ERROR
+from extract import physics, observations, baseline_observations, article, measurement, one, WITH_ERROR
 from fetch import acquire, HERE, sources
 sys.path.insert(0, str(HERE.parent / 'xb_reference'))
 import compute as xb  # published cold-boundary calculation
@@ -174,7 +174,7 @@ def run(files):
     lock = sources()
     return dict(source_sha256={k:lock[k]['sha256'] for k in files},
                 dim8_portal=scalar_portal_control(files),finite_Nt_interfaces=thin_wall_controls(files,p['latent_heat']['value']),
-                source_physics=p, equilibrium_eos=equilibrium_eos(p), observations=observations(files), rows=rows,
+                source_physics=p, equilibrium_eos=equilibrium_eos(p), observations={**baseline_observations(files), **observations(files)}, rows=rows,
                 Tc_over_m0_string_tension_check=p['Tc_over_sqrt_sigma']['value']/p['m0_over_sqrt_sigma']['value'])
 
 
@@ -183,7 +183,7 @@ def main():
     parser.add_argument('--cache',type=Path,required=True)
     parser.add_argument('--offline',action='store_true')
     args=parser.parse_args()
-    files=acquire(args.cache,{'physics','observations','interface','portal'},args.offline)
+    files=acquire(args.cache,{'physics','observations','interface','portal','bbn_baseline'},args.offline)
     print(json.dumps(run(files),indent=2,allow_nan=False))
 
 

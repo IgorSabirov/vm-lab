@@ -112,3 +112,15 @@ def observations(files):
             'LBT_IV':row(paper_value('lbt',r'\\Yp'),'helium mass fraction','alternative to Aver'),
             'LBT_V':row(paper_value('lbtv',r'N_\\nu'),'N_nu','external joint-result check'),
             'Goldstein_Hill':row(paper_value('gold',r'N_\{\\rm eff\}'),'N_eff','external joint-result check')}
+
+
+def baseline_observations(files):
+    """Read the two primordial estimators used by the frozen P0 likelihood."""
+    cooke = article(files['cooke'], 'ms.tex', 'latin1')
+    aver = article(files['aver'], 'AOS4-8e.tex', 'latin1')
+    d = one(r'deduce that the primordial deuterium abundance is .*? = '+NUMBER+r'\\pm'+NUMBER,cooke)
+    y = one(r'From a regression to zero metallicity, we determine Y\$_\{p\}\$ \$=\$ '+NUMBER+r' \$\\pm\$ '+NUMBER,aver)
+    return {
+        'Cooke-DH': dict(value=float(d[0]),sigma=float(d[1]),observable='log10_D_over_H',units='log10 number ratio'),
+        'Aver-Yp': dict(value=float(y[0]),sigma=float(y[1]),observable='Y_p',units='mass fraction')
+    }
