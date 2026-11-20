@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "473eddfe994d7ab451c1ed390e39cfb6c050f991afcebac3082bb311732f9a16",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "7168431cce17d32218218bf454699caeee680b556ef6feb5b6fad88c70ec8a8c",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "e563722240e7d14d8a10c733de520a446b2d58c7f3de1b3f28ba5dcb76d34f01",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "e0994aecdd1e827b11a66c135fc6f03d10e1c76c8f20154da7f712d6829d1500",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "5dce18a73e5147073d5e89a5b18ef0f2ce49839f74195b818d604af8f6eb8ced",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -96,20 +96,24 @@
     "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/HNL_COSMOLOGY_MAPPING.json": "bcd7959fb4655a1bf8a87936fed67990388d0ab7b406d9e4001253688b28b67a",
     "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md": "0dfb6cadfb652f8f9f0bc9b9f1fc4ed4c9c87b7f62dd66fc6f6f3ea6ec023d99",
     "analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json": "6663b893120deee83618e6eacdfbae452619593ad85ae69c6641ab88d0b9f91d",
-    "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json": "028035e09c5972338ec6575b58f9d4a3e8bc00585d22ccc51b4c592ba1655976"
+    "analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json": "028035e09c5972338ec6575b58f9d4a3e8bc00585d22ccc51b4c592ba1655976",
+    "analysis/R133_LOOP_CONNES_20261120/REPORT.md": "b5e3b11d8269d69f104efe2df88e1941fde7c0b1a7b0418c00d1886d94d84c52",
+    "analysis/R133_LOOP_CONNES_20261120/check_controls.py": "ff7248324906d4962a3579880a3cae51e0a187004e39b811d72b40a7860b5984",
+    "analysis/R133_LOOP_CONNES_20261120/CHECKS.json": "839243d7371bc73bc5b2cfe623cae7e1b41e84705409f4d33dcbfb332e1206b0",
+    "analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt": "b983970d2881b41663e9d10edabaff6786f13306164903ab6210f6e3fbb77eab"
   },
   "counts": {
-    "result": 132,
+    "result": 133,
     "construct": 42,
     "link": 10,
     "question": 12,
     "premise": 66,
     "obligation": 9,
-    "review": 13,
+    "review": 14,
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 113
+    "source": 122
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3147,6 +3151,15 @@
       "fragment": "r132"
     },
     {
+      "key": "result:R133",
+      "id": "R133",
+      "kind": "result",
+      "title": "Петлевая геометрия и Конн на именованных перестройках ADD",
+      "status": "ПОСТАНОВКА · ЛОКАЛЬНЫЕ КОНТРОЛИ ПРОВЕРЕНЫ · СОГЛАСОВАННОСТЬ ПОЛНОГО ЦИКЛА ОТКРЫТА",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r133"
+    },
+    {
       "key": "review:ADD_BBN_SYMMETRY_20261115",
       "id": "ADD_BBN_SYMMETRY_20261115",
       "kind": "review",
@@ -3261,6 +3274,15 @@
       "title": "Общая интеграция NOW с гравитацией, ядерными и коллайдерными измерениями",
       "status": "DOCUMENTED_WITH_REPRODUCIBLE_PARTIAL_RESULTS",
       "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "fragment": ""
+    },
+    {
+      "key": "review:R133_LOOP_NEIGHBOR_20261120",
+      "id": "R133_LOOP_NEIGHBOR_20261120",
+      "kind": "review",
+      "title": "Проверка переноса при подразделении и условий замыкания цикла",
+      "status": "REVIEWED_WITH_FIRST_ORDER_CORRECTION",
+      "path": "analysis/R133_LOOP_CONNES_20261120/REPORT.md",
       "fragment": ""
     },
     {
@@ -3478,6 +3500,66 @@
       "sha256": "ae90a769cb6618e736921f83b72ee0ce2c61c6b33627cbb3cd01012568a90dab",
       "git_blob_sha": "ac8b747420ee8800399e495a168640b77af793e2",
       "size_bytes": 5563
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
+      "fragment": "",
+      "sha256": "566b5fe4a3d8370474fd851a6e00568c3b19ff328995820c68d05050d4002103",
+      "git_blob_sha": "4a6ec370b815542e8eaa46526e687361c2d183e2",
+      "size_bytes": 1758
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+      "fragment": "",
+      "sha256": "f08ea3a85f18a57c42ef0a2848ac517205bc0e942dc196c5a71928c19486857d",
+      "git_blob_sha": "198f124cfaacd43508540ef534e4b1c58138c9e7",
+      "size_bytes": 27948
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "fragment": "",
+      "sha256": "5d76cbec011d2aac951a08ee1975ee8f015107b81ff587c5fafc6218024f746e",
+      "git_blob_sha": "689ba917894651094a24b4cdec627d8c6d5e98c1",
+      "size_bytes": 921
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md",
+      "fragment": "",
+      "sha256": "3752ebd429f3c185bcf9c75e641b0086416ef6e45daf07e5098fc045fdba23eb",
+      "git_blob_sha": "003825e69d47198421ea0e7c8f5ee47051ffa6c5",
+      "size_bytes": 11871
+    },
+    {
+      "key": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+      "id": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+      "kind": "source",
+      "title": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+      "status": null,
+      "path": "analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+      "fragment": "",
+      "sha256": "df2fd46b0fc52927ad994320c09eb2c7d58267b4b00c9ac711a1104f23a5fc0f",
+      "git_blob_sha": "5bc09add33a7fbc832b758f01eecd816302b599b",
+      "size_bytes": 20590
     },
     {
       "key": "source:analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json",
@@ -4447,9 +4529,9 @@
       "status": null,
       "path": "analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
       "fragment": "",
-      "sha256": "d1214289c0518e6f1d6e61f23e8860658d36f722d738c51b1b306a6c49cc9819",
-      "git_blob_sha": "723093ad7ba16ed33a5800ffb68df639b75e2575",
-      "size_bytes": 29390
+      "sha256": "ffd55fccfb9db0e90ee3273f52f8073412c20ec89898f1f19b1011187f4f4e5e",
+      "git_blob_sha": "f0cc28d62e8e3de61bf587efc7a1bb9925ef6d7c",
+      "size_bytes": 29786
     },
     {
       "key": "source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md",
@@ -4522,6 +4604,54 @@
       "sha256": "e5c269bdfeab94406921927bbf6b4f8ebe71bebc2d7c46df68ce1ced8aedc0bd",
       "git_blob_sha": "a8bf42f0099cdcb705b94b8195e2ce2f965d3299",
       "size_bytes": 9178
+    },
+    {
+      "key": "source:analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "id": "analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "status": null,
+      "path": "analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "fragment": "",
+      "sha256": "839243d7371bc73bc5b2cfe623cae7e1b41e84705409f4d33dcbfb332e1206b0",
+      "git_blob_sha": "cb8672f9395fc15cfe76d61c6d29ff620ee528ea",
+      "size_bytes": 362
+    },
+    {
+      "key": "source:analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "id": "analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "kind": "source",
+      "title": "analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "status": null,
+      "path": "analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "fragment": "",
+      "sha256": "b983970d2881b41663e9d10edabaff6786f13306164903ab6210f6e3fbb77eab",
+      "git_blob_sha": "5f44b825b1badbdf24fad31e589ee619ddcbf457",
+      "size_bytes": 24661
+    },
+    {
+      "key": "source:analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "id": "analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "status": null,
+      "path": "analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "fragment": "",
+      "sha256": "b5e3b11d8269d69f104efe2df88e1941fde7c0b1a7b0418c00d1886d94d84c52",
+      "git_blob_sha": "c8aba6b1ed7779c17527215a328d5748bdc6df8e",
+      "size_bytes": 27353
+    },
+    {
+      "key": "source:analysis/R133_LOOP_CONNES_20261120/check_controls.py",
+      "id": "analysis/R133_LOOP_CONNES_20261120/check_controls.py",
+      "kind": "source",
+      "title": "analysis/R133_LOOP_CONNES_20261120/check_controls.py",
+      "status": null,
+      "path": "analysis/R133_LOOP_CONNES_20261120/check_controls.py",
+      "fragment": "",
+      "sha256": "ff7248324906d4962a3579880a3cae51e0a187004e39b811d72b40a7860b5984",
+      "git_blob_sha": "d1e993240878b3073aac166b0075e76fbcfa3581",
+      "size_bytes": 3906
     },
     {
       "key": "source:infra/external/README.md",
@@ -9579,6 +9709,11 @@
     },
     {
       "source": "result:R130",
+      "target": "result:R133",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R130",
       "target": "source:analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json",
       "relation": "managed_evidence_source"
     },
@@ -9732,6 +9867,11 @@
     },
     {
       "source": "result:R131",
+      "target": "result:R133",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R131",
       "target": "source:analysis/R131_CONNES_ADD_20261119/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -9795,6 +9935,11 @@
     },
     {
       "source": "result:R132",
+      "target": "result:R133",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R132",
       "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -9806,6 +9951,26 @@
     {
       "source": "result:R132",
       "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R132",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
       "relation": "managed_evidence_source"
     },
     {
@@ -9846,6 +10011,71 @@
     {
       "source": "result:R132",
       "target": "source:analysis/R132_ADD_YM_CCM_20261119/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "construct:C037",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R133",
+      "target": "construct:C042",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R133",
+      "target": "link:L09",
+      "relation": "boundary_open"
+    },
+    {
+      "source": "result:R133",
+      "target": "link:L10",
+      "relation": "boundary_open"
+    },
+    {
+      "source": "result:R133",
+      "target": "question:U006",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R133",
+      "target": "question:U010",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R133",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/check_controls.py",
       "relation": "managed_evidence_source"
     },
     {
@@ -11519,6 +11749,50 @@
     {
       "source": "review:NOW_PROJECT_INTEGRATION_20261119",
       "target": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "question:U006",
+      "relation": "operational_requirement",
+      "rationale": "Голономия цикла зависит от того, что считается одной геометрией.",
+      "evidence": "analysis/R133_LOOP_CONNES_20261120/REPORT.md#review",
+      "claim": "Проверяется совместимость отклика на общем уточнении."
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "question:U010",
+      "relation": "scope_boundary",
+      "rationale": "Перенос спинора через слияние сам по себе не даёт функционального наследования.",
+      "evidence": "analysis/R133_LOOP_CONNES_20261120/REPORT.md#tests",
+      "claim": "Материальная информация требует явной наблюдаемой."
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "result:R133",
+      "relation": "scope_boundary",
+      "rationale": "Цикл требует явного транспорта имён, связностей и рамок.",
+      "evidence": "analysis/R133_LOOP_CONNES_20261120/REPORT.md#tests",
+      "claim": "T1 и локальная производная проверены."
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/CHECKS.json",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/REPORT.md",
+      "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "review:R133_LOOP_NEIGHBOR_20261120",
+      "target": "source:analysis/R133_LOOP_CONNES_20261120/check_controls.py",
       "relation": "review_source_not_attestation"
     }
   ],

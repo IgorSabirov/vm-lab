@@ -1,0 +1,355 @@
+import numpy as np
+from mpmath import mp, mpf, exp, log, sin, pi, sqrt, matrix, eye, expm
+mp.dps = 40
+
+def sector_entropy(eps, p, beta):
+    """Canonical sector: exactly p fermions among modes eps (with degeneracy), inverse temp beta.
+    Z_p = [z^p] prod_j (1+z e^{-beta eps_j});  S = ln Z_p + beta<E>_p."""
+    A = [exp(-beta*e) for e in eps]
+    B = [beta*e for e in eps]           # beta*eps_j
+    M = len(A)
+    # prefix/suffix elementary-symmetric polynomials up to degree p
+    def espoly(vals):
+        c = [mpf(1)] + [mpf(0)]*p
+        for a in vals:
+            for k in range(p, 0, -1):
+                c[k] += a*c[k-1]
+        return c
+    pre = [espoly([])]
+    for j in range(M):
+        # incremental
+        c = pre[-1][:]
+        for k in range(p,0,-1):
+            c[k] += A[j]*c[k-1]
+        pre.append(c)
+    suf = [None]*(M+1)
+    suf[M] = [mpf(1)]+[mpf(0)]*p
+    for j in range(M-1,-1,-1):
+        c = suf[j+1][:]
+        for k in range(p,0,-1):
+            c[k] += A[j]*c[k-1]
+        suf[j] = c
+    Z = pre[M][p]
+    num = mpf(0)
+    for j in range(M):
+        # e_{p-1} of all modes except j
+        e = sum(pre[j][k]*suf[j+1][p-1-k] for k in range(p))
+        num += B[j]*A[j]*e
+    return log(Z) + num/Z, Z
+
+def ring_eps(L):
+    return [2*abs(sin(pi*k/L)) for k in range(L) for _ in range(2)]
+
+# --- 1) counterexample: p=3, beta=8, L=4 -> 5
+for L in (4,5):
+    S,_ = sector_entropy(ring_eps(L), 3, mpf(8))
+    print("L=",L,"p=3 beta=8  S =", mp.nstr(S,12), " uniform ln C(2L,p) =",
+          mp.nstr(log(mp.binomial(2*L,3)),12))
+
+# --- 2) scaling limit beta = L/x, p=2, x=8
+def limit_S(p, x, K=400):
+    eps_eff = [mpf(0), mpf(0)] + [2*pi*k/x for k in range(1,K+1) for _ in range(4)]
+    # here "beta*eps" = 2*pi*k/x  -> use beta=1 and eps=those values
+    return sector_entropy(eps_eff, p, mpf(1))[0]
+print("limit p=2,x=8 :", mp.nstr(limit_S(2, mpf(8)),12))
+for L in (100,800):
+    S,_ = sector_entropy(ring_eps(L), 2, mpf(L)/8)
+    print("L=",L,"beta=L/8,p=2  S =", mp.nstr(S,12))
+
+# Result
+L= 4 p=3 beta=8  S = 1.41285634202  uniform ln C(2L,p) = 4.02535169074
+L= 5 p=3 beta=8  S = 1.40919968436  uniform ln C(2L,p) = 4.78749174278
+limit p=2,x=8 : 4.49166701497
+L= 100 beta=L/8,p=2  S = 4.50191999924
+
+
+
+
+L= 800 beta=L/8,p=2  S = 4.49182348162
+
+
+from mpmath import mp, mpf, mpc, matrix, eye, cos, sin, diff, tr, sqrt
+mp.dps = 30
+I2 = eye(2)
+sx = matrix([[0,1],[1,0]]); sy = matrix([[0,-1j],[1j,0]]); sz = matrix([[1,0],[0,-1]])
+T = [1j*s/2 for s in (sx,sy,sz)]          # T_j = i sigma_j / 2
+def E(t,j): return cos(t/2)*I2 + 2*sin(t/2)*T[j]   # exp(t T_j), exact
+
+def rand_su2(seed):
+    rng = np.random.default_rng(seed)
+    q = rng.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3 = [mpf(float(v)) for v in q]
+    return a0*I2 + a1*(1j*sx) + a2*(1j*sy) + a3*(1j*sz)
+
+a,b,a1,a2 = rand_su2(1), rand_su2(2), rand_su2(3), rand_su2(4)
+
+# test functions on the group: character (class fn) and a NON-class function
+f_char = lambda g: tr(g)/2
+f_non  = lambda g: (tr(g)/2)**2 + g[0,0]      # not conjugation invariant
+
+def C_left(f, args, slot):      # -sum_j X_j^2 acting on variable 'slot' (left-invariant field)
+    def g_of(t,j):
+        A = list(args); A[slot] = A[slot]*E(t,j); return f(*A)
+    return -sum(diff(lambda t: g_of(t,j), 0, 2) for j in range(3))
+def X_left(f, args, slot, j):
+    def g_of(t):
+        A = list(args); A[slot] = A[slot]*E(t,j); return f(*A)
+    return diff(g_of, 0, 1)
+
+for name,f in (("character  f=1/2 tr g", f_char), ("non-class  f=(1/2 tr g)^2+g_11", f_non)):
+    Fc  = lambda a,b: f(a*b)                 # coarse: one link
+    Ff  = lambda a1,a2: f(a1*a2)             # fine: subdivided link
+    Cc  = C_left(Fc,(a,b),0) + C_left(Fc,(a,b),1)          # naive sum, 2 links
+    Cco = C_left(f,(a,),0)                                # single coarse link
+    Cf  = C_left(Ff,(a1,a2),0) + C_left(Ff,(a1,a2),1)
+    P_C = C_left(f,(a*b,),0)                              # P C f
+    print(name)
+    print("   (C_a+C_b)Pf =", mp.nstr(Cc,10), "   P C f =", mp.nstr(P_C,10),
+          "  ratio =", mp.nstr(Cc/P_C,10))
+    print("   share-weighted (1/2,1/2):", mp.nstr(Cf/2,10), " == P C f:",
+          mp.chop(Cf/2-P_C)==0)
+
+# mixed refinement: coarse circle of 2 links (a,b); split only a -> (a1,a2,b)
+Gc = lambda a,b: f_char(a*b); Gf = lambda a1,a2,b: f_char(a1*a2*b)
+coarse = C_left(Gc,(a,b),0)+C_left(Gc,(a,b),1)
+fine   = sum(C_left(Gf,(a1,a2,b),k) for k in range(3))
+print("\nmixed: coarse C_a+C_b =", mp.nstr(coarse,10),
+      "; fine naive sum =", mp.nstr(fine,10), " ratio =", mp.nstr(fine/coarse,8))
+print("   global 1/2 on fine  =", mp.nstr(fine/2,10), " (wrong)")
+print("   shares (1/2,1/2,1)  =",
+      mp.nstr(sum(w*C_left(Gf,(a1,a2,b),k) for w,k in ((mpf(1)/2,0),(mpf(1)/2,1),(mpf(1),2))),10),
+      " == coarse:", True)
+
+# FIRST ORDER: left-invariant derivative on the two halves of a split link
+print("\nfirst order, per generator j (character):")
+for j in range(3):
+    Lh = X_left(lambda x,y: f_char(x*y),(a1,a2),0,j)   # left half
+    Rh = X_left(lambda x,y: f_char(x*y),(a1,a2),1,j)   # right half
+    tgt= X_left(lambda g: f_char(g),(a1*a2,),0,j)      # P (X_j f)
+    print("  j=",j," X_left=",mp.nstr(Lh,8)," X_right=",mp.nstr(Rh,8)," P X_j f=",mp.nstr(tgt,8))
+# Ad(a1) rotation check:  X_left^{(j)} Pf = sum_k R_kj(a1) (X_k f)(a1 a2)
+def Ad(g,j):
+    v = g*T[j]*g**-1
+    return [mp.re(tr(v*T[k])/tr(T[k]*T[k])) for k in range(3)]
+R = [Ad(a1,j) for j in range(3)]
+ok = True
+for j in range(3):
+    lhs = X_left(lambda x,y: f_char(x*y),(a1,a2),0,j)
+    rhs = sum(R[j][k]*X_left(lambda g: f_char(g),(a1*a2,),0,k) for k in range(3))
+    ok &= (mp.chop(lhs-rhs)==0)
+print("  X_left = Ad(a1)-rotated coarse derivative:", ok)
+
+# Result
+execute error
+
+
+import numpy as np
+from mpmath import mp, mpf, matrix, eye, cos, sin, diff
+mp.dps = 30
+def tr(M): return M[0,0]+M[1,1]
+I2 = eye(2)
+sx = matrix([[0,1],[1,0]]); sy = matrix([[0,-1j],[1j,0]]); sz = matrix([[1,0],[0,-1]])
+T = [1j*s/2 for s in (sx,sy,sz)]
+def E(t,j): return cos(t/2)*I2 + 2*sin(t/2)*T[j]
+def rand_su2(seed):
+    rng = np.random.default_rng(seed); q = rng.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3 = [mpf(float(v)) for v in q]
+    return a0*I2 + a1*(1j*sx) + a2*(1j*sy) + a3*(1j*sz)
+a,b,a1,a2 = rand_su2(1), rand_su2(2), rand_su2(3), rand_su2(4)
+f_char = lambda g: tr(g)/2
+f_non  = lambda g: (tr(g)/2)**2 + g[0,0]
+def C_left(f,args,slot):
+    def g_of(t,j):
+        A=list(args); A[slot]=A[slot]*E(t,j); return f(*A)
+    return -sum(diff(lambda t: g_of(t,j),0,2) for j in range(3))
+def X_left(f,args,slot,j):
+    def g_of(t):
+        A=list(args); A[slot]=A[slot]*E(t,j); return f(*A)
+    return diff(g_of,0,1)
+tol=1e-12
+for name,f in (("character f=1/2 tr g",f_char),("non-class f=(1/2 tr g)^2+g_11",f_non)):
+    Fc=lambda x,y: f(x*y); Ff=lambda x,y: f(x*y)
+    Cc=C_left(Fc,(a,b),0)+C_left(Fc,(a,b),1)
+    PC=C_left(f,(a*b,),0)
+    Cf=C_left(Ff,(a1,a2),0)+C_left(Ff,(a1,a2),1)
+    print(name)
+    print("   naive (C_a+C_b)Pf =",mp.nstr(Cc,10),"  P C f =",mp.nstr(PC,10),"  ratio =",mp.nstr(Cc/PC,10))
+    print("   shares (1/2,1/2) ->",mp.nstr(Cf/2,10),"   intertwiner exact:",abs(Cf/2-PC)<tol)
+Gc=lambda x,y: f_char(x*y); Gf=lambda x,y,z: f_char(x*y*z)
+coarse=C_left(Gc,(a,b),0)+C_left(Gc,(a,b),1)
+fine=sum(C_left(Gf,(a1,a2,b),k) for k in range(3))
+w=sum(wt*C_left(Gf,(a1,a2,b),k) for wt,k in ((mpf(1)/2,0),(mpf(1)/2,1),(mpf(1),2)))
+print("\nMIXED (2 coarse links, split one): coarse =",mp.nstr(coarse,10),
+      " fine naive =",mp.nstr(fine,10)," ratio =",mp.nstr(fine/coarse,8))
+print("   global 1/2:",mp.nstr(fine/2,10),"  shares(1/2,1/2,1):",mp.nstr(w,10)," exact:",abs(w-coarse)<tol)
+print("\nFIRST ORDER on split link (character):")
+for j in range(3):
+    Lh=X_left(lambda x,y:f_char(x*y),(a1,a2),0,j)
+    Rh=X_left(lambda x,y:f_char(x*y),(a1,a2),1,j)
+    tg=X_left(lambda g:f_char(g),(a1*a2,),0,j)
+    print("  j=",j,"left=",mp.nstr(Lh,8)," right=",mp.nstr(Rh,8)," P X_j f=",mp.nstr(tg,8))
+def Ad(g,j):
+    v=g*T[j]*g**-1
+    return [mp.re(tr(v*T[k])/tr(T[k]*T[k])) for k in range(3)]
+R=[Ad(a1,j) for j in range(3)]
+ok=all(abs(X_left(lambda x,y:f_char(x*y),(a1,a2),0,j)
+        - sum(R[j][k]*X_left(lambda g:f_char(g),(a1*a2,),0,k) for k in range(3)))<tol for j in range(3))
+print("  left half = Ad(a1)-rotated coarse derivative:",ok)
+print("  ||Ad(a1)-I||_F =", mp.nstr(mp.fsum([ (R[j][k]-(1 if j==k else 0))**2 for j in range(3) for k in range(3)])**0.5,8))
+
+# Result
+character f=1/2 tr g
+   naive (C_a+C_b)Pf = (-0.9345019044 + 0.0j)   P C f = (-0.4672509522 + 0.0j)   ratio = (2.0 + 0.0j)
+   shares (1/2,1/2) -> (-0.2459185219 + 0.0j)    intertwiner exact: False
+non-class f=(1/2 tr g)^2+g_11
+   naive (C_a+C_b)Pf = (-0.3819795767 - 0.3383807373j)   P C f = (-0.1909897883 - 0.1691903686j)   ratio = (2.0 + 1.2813228e-31j)
+   shares (1/2,1/2) -> (-0.5308930306 + 0.6908510498j)    intertwiner exact: False
+
+MIXED (2 coarse links, split one): coarse = (-0.9345019044 + 0.0j)  fine naive = (2.022020351 + 0.0j)  ratio = (-2.1637413 + 0.0j)
+   global 1/2: (1.011010175 + 0.0j)   shares(1/2,1/2,1): (1.348013567 + 0.0j)  exact: False
+
+FIRST ORDER on split link (character):
+  j= 0 left= (-0.19764296 + 0.0j)  right= (-0.0069524297 + 0.0j)  P X_j f= (-0.0069524297 + 0.0j)
+  j= 1 left= (-0.3834103 + 0.0j)  right= (-0.10464788 + 0.0j)  P X_j f= (-0.10464788 + 0.0j)
+  j= 2 left= (0.19249835 + 0.0j)  right= (-0.46056737 + 0.0j)  P X_j f= (-0.46056737 + 0.0j)
+  left half = Ad(a1)-rotated coarse derivative: True
+  ||Ad(a1)-I||_F = 2.2412362
+
+
+import numpy as np
+from mpmath import mp, mpf, matrix, eye, cos, sin, diff
+mp.dps=30
+def tr(M): return M[0,0]+M[1,1]
+I2=eye(2); sx=matrix([[0,1],[1,0]]); sy=matrix([[0,-1j],[1j,0]]); sz=matrix([[1,0],[0,-1]])
+T=[1j*s/2 for s in (sx,sy,sz)]
+def E(t,j): return cos(t/2)*I2+2*sin(t/2)*T[j]
+def rs(seed):
+    r=np.random.default_rng(seed); q=r.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3=[mpf(float(v)) for v in q]; return a0*I2+a1*(1j*sx)+a2*(1j*sy)+a3*(1j*sz)
+a1,a2,b=rs(3),rs(4),rs(2)
+f_char=lambda g: tr(g)/2
+f_non =lambda g: (tr(g)/2)**2+g[0,0]
+f_non2=lambda g: g[0,0]*g[1,1]-g[0,1]*g[1,0]   # det = 1, trivial; use another
+f_non3=lambda g: (tr(g)/2)**3
+def C(f,args,slot):
+    def go(t,j):
+        A=list(args); A[slot]=A[slot]*E(t,j); return f(*A)
+    return -sum(diff(lambda t: go(t,j),0,2) for j in range(3))
+tol=1e-11
+print("=== single subdivision: coarse point = a1*a2 ===")
+for nm,f in (("character",f_char),("(1/2 tr)^2+g11",f_non),("(1/2 tr)^3",f_non3)):
+    Ff=lambda x,y: f(x*y)
+    fine=C(Ff,(a1,a2),0)+C(Ff,(a1,a2),1)
+    coarse=C(f,(a1*a2,),0)
+    print(f"  {nm:18s} naive fine={mp.nstr(fine,10)}  P C f={mp.nstr(coarse,10)}"
+          f"  ratio={mp.nstr(fine/coarse,8)}  shares(1/2,1/2) exact={abs(fine/2-coarse)<tol}")
+print("=== mixed: coarse circle 2 links (A,B)=(a1*a2, b); split only A ===")
+Gc=lambda x,y: f_char(x*y); Gf=lambda x,y,z: f_char(x*y*z)
+coarse=C(Gc,(a1*a2,b),0)+C(Gc,(a1*a2,b),1)
+fine=sum(C(Gf,(a1,a2,b),k) for k in range(3))
+sh=sum(w*C(Gf,(a1,a2,b),k) for w,k in ((mpf(1)/2,0),(mpf(1)/2,1),(mpf(1),2)))
+print("  coarse =",mp.nstr(coarse,10),"  fine naive =",mp.nstr(fine,10),
+      "  ratio =",mp.nstr(fine/coarse,8))
+print("  global 1/2 =",mp.nstr(fine/2,10)," (fails)   shares(1/2,1/2,1) =",mp.nstr(sh,10),
+      "  exact =",abs(sh-coarse)<tol)
+print("=== full circle L=2 -> Q-split both links: 4 halves, shares 1/2 each ===")
+c,d=rs(5),rs(6)
+G4=lambda w,x,y,z: f_char(w*x*y*z)
+fine4=sum(C(G4,(a1,a2,c,d),k) for k in range(4))
+coarse2=C(Gc,(a1*a2,c*d),0)+C(Gc,(a1*a2,c*d),1)
+print("  coarse(2 links) =",mp.nstr(coarse2,10)," fine(4 halves)/2 =",mp.nstr(fine4/2,10),
+      " exact =",abs(fine4/2-coarse2)<tol)
+
+# Result
+=== single subdivision: coarse point = a1*a2 ===
+  character          naive fine=(-0.4918370438 + 0.0j)  P C f=(-0.2459185219 + 0.0j)  ratio=(2.0 + 0.0j)  shares(1/2,1/2) exact=True
+  (1/2 tr)^2+g11     naive fine=(-1.061786061 + 1.3817021j)  P C f=(-0.5308930306 + 0.6908510498j)  ratio=(2.0 + 0.0j)  shares(1/2,1/2) exact=True
+  (1/2 tr)^3         naive fine=(0.7192803327 + 0.0j)  P C f=(0.3596401664 + 0.0j)  ratio=(2.0 + 0.0j)  shares(1/2,1/2) exact=True
+=== mixed: coarse circle 2 links (A,B)=(a1*a2, b); split only A ===
+  coarse = (1.348013567 + 0.0j)   fine naive = (2.022020351 + 0.0j)   ratio = (1.5 + 0.0j)
+  global 1/2 = (1.011010175 + 0.0j)  (fails)   shares(1/2,1/2,1) = (1.348013567 + 0.0j)   exact = True
+=== full circle L=2 -> Q-split both links: 4 halves, shares 1/2 each ===
+  coarse(2 links) = (0.7041111855 + 0.0j)  fine(4 halves)/2 = (0.7041111855 + 0.0j)  exact = True
+
+
+## 1. Решение принято, но с одной поправкой к реестру
+
+R132 закрываю по твоей формулировке. R133 открываю как **ПОСТАНОВКУ**, не как результат: родители R130/R131/R132, конструкции C037/C042, связи L09/L10, вопросы U006/U010.
+
+Целостность: в загруженном `RESULTS_REGISTER.md` **131 запись, карточки R132 нет**, хотя оба новых отчёта на неё ссылаются (`R132_ADD_YM_CCM_20261119`, `ADD_CONNES_PORT_TRANSPORT_20261120`). По правилу обслуживания сначала карточка R132, потом R133. Иначе连续性 R-ID рвётся именно на том месте, где ты объявляешь закрытие.
+
+## 2. Независимая перепроверка твоих трёх чисел
+
+Считал сам, из спектра \(2|\sin(\pi k/L)|\) двойной кратности, рекурсией по \(Z_p=[z^p]\prod_j(1+ze^{-\beta\varepsilon_j})\), mpmath 40 знаков. **Движок ADD не запускал** — шаг `3100`: \(4\to5\) взят из твоего отчёта как вход.
+
+| Величина | Твоё число | Мой повтор |
+|---|---|---|
+| Предел \(p=2,\ x=8\) | 4,491667 | **4,4916670150** |
+| \(L=100,\ \beta=L/8\) | 4,501920 | **4,5019199992** |
+| \(L=800\) | 4,491823 | **4,4918234816** |
+| \(L=4,\ p=3,\ \beta=8\) | 1,4128563420 | **1,41285634202** |
+| \(L=5\) | 1,4091996844 | **1,40919968436** |
+
+\(\Delta S=-0,00365665766\) нат. Равномерные: \(\ln56=4,0253516907\to\ln120=4,7874917428\). Оценка \(0\le\ln\binom{2L}{p}-S_{\beta,p}\le2\beta p\) здесь даёт 2,61 против 48 — она настолько слабая, что знак отдельного шага не ограничивает вовсе. Твоё объяснение контрпримера верно не только численно, но и структурно.
+
+## 3. Главное: критерий R133 в текущей формулировке надо менять
+
+Я прогнал оба уровня переноса на \(SU(2)\) точно (производные вдоль \(\exp(tT_j)\), \(T_j=i\sigma_j/2\), класс-функция и **не**класс-функция).
+
+**Второй порядок решён аналитически, и множитель 1/2 неверен уже на смешанном подразделении.**
+
+Казимир би-инвариантен, поэтому для *любой* \(f\), не только характера:
+\[
+(C_a+C_b)Pf=2\,PCf,\qquad Pf(a,b)=f(ab).
+\]
+Но если грубое кольцо — два линка \((A,B)\) и делится только \(A\):
+
+| Правило | Отклик на \(\chi\) | Верно? |
+|---|---|---|
+| Грубое \(C_A+C_B\) | \(2\cdot\tfrac34\chi\) | эталон |
+| Наивная сумма по трём линкам | \(3\cdot\tfrac34\chi\) | отношение **3/2**, не 2 |
+| Глобальный множитель 1/2 | \(1{,}125\chi\) | **FAIL** |
+| Доли пути \((\tfrac12,\tfrac12,1)\) | \(1{,}5\chi\) | **точное переплетение** |
+
+Проверено на \(\tfrac12\mathrm{tr}\,g\), \((\tfrac12\mathrm{tr}\,g)^2+g_{11}\), \((\tfrac12\mathrm{tr}\,g)^3\) — тождество \(\sum_l w_l C_l\,P=P\sum C\) выполняется как операторное, не только на характерах. Значит «простой кандидат, который проваливает следующую проверку» — это не 1/2 против правильного правила; **правильное правило для казимира уже есть: вес = доля линка в грубом пути.** Это готовое аналитическое решение, его нельзя предрегистрировать как будущий прогон.
+
+**Первый порядок — вот где настоящий остаток.** Для \(g=a_1a_2\):
+\[
+X^{(j)}_{a_2}Pf=P\,X_jf\ \text{(точно)},\qquad
+X^{(j)}_{a_1}Pf=\sum_k \mathrm{Ad}(a_1)_{kj}\,P\,X_kf .
+\]
+Половины **неравноправны**: правая даёт неповёрнутую производную, левая — повёрнутую на \(\mathrm{Ad}(a_1)\). Численно подтверждено для всех трёх генераторов; в случайной точке \(\|\mathrm{Ad}(a_1)-I\|_F=2{,}2412362\). Препятствие — **не нормировка, а зависящая от связности клиффордова рамка**. Никакой константой это не убирается.
+
+Отсюда дефект дизайна R132, который надо исправить до R133: у тебя в правиле расщепления «можно выбирать произвольное \(h\)». При \(h=I\) поворот тривиален и первый порядок вырождается в PASS. Требуй Haar-случайное \(h\) на каждое расщепление и неклассовые пробные функции.
+
+## 4. Литература: что уже закрыто у AGN, а что нет
+
+Прочитал AGN II адресно (§1.1, §2.1 пример 3, §4.5, лемма 4.3.1, §5.1–5.2), [arXiv:0802.1784](https://arxiv.org/pdf/0802.1784):
+
+- Система \(S_\triangle\) **направленная**, шаг \(\Gamma_n\to\Gamma_{n+1}\) содержит только два типа: добавление новых рёбер и деление ребра на два. **Огрублений нет.** Слияния ADD в их категорию не входят — это и есть непокрытый остаток, а не «повтор AGN».
+- Совместимость достигается тем, что \(D_p\) самосопряжён и **коммутирует с вложениями \(P^*_{k,k+1}\)**; после замены координат \(\Theta_n\) новый уровень действует только на относительные переменные (лемма 4.3.1: \(D^-_{n,p}\) тривиален на \(\mathcal H^1\)). То есть совместимость — **добавлением слагаемых, а не перенормировкой старых**.
+- Свобода — последовательность ненулевых \(\{a^{j,k}\}\) плюс ограниченные возмущения \(b_jP_j\); для \(SU(2)\) возмущения не нужны (§5.2). Для \(U(1)\) доказано: \(\tau\)-компактная резольвента ⟺ \(a_n\to\infty\). Веса **расходятся вверх**, что независимо отмечено и в разборе через тангентный группоид [[7]].
+
+**Это прямо конфликтует с твоим критерием.** Мои «доли» дают веса ↓ (сумма 1 на грубый линк) и фиксированный физический отклик. AGN требуют веса ↑, и отклик петли при уточнении **меняется** — именно так у них появляется длина/метрика из спектра. Требуя «одинаковый отклик после перестройки», ты замораживаешь тот самый механизм, ради которого оператор и нужен.
+
+Поэтому различай:
+- **(A) инвариантность отклика при уточнении** — слишком сильно, убивает геометрическую динамику;
+- **(B) независимость от пути** — два разных порядка допустимых перестроек, ведущих к **одному и тому же** графу, обязаны дать **один и тот же** оператор, плюс фильтрованная совместимость типа \(D_{\rm fine}P=P D_{\rm coarse}+(\text{члены, аннулирующие грубый сектор})\).
+
+R133 имеет содержание только как (B). Смежная рамка «цилиндрическая согласованность операторов, а не состояний» уже разрабатывается как гамильтонов РГ-поток [[11]] — это литературный якорь для (B), его надо процитировать до заявления новизны.
+
+## 5. Предрегистрация R133 (по правилу генеалогии)
+
+**Вопрос.** Существует ли правило переноса \((w_l,\) клиффордова рамка\()\), согласованное с именованным \(F=QI_2\), такое что на общем гладком ядре транспорт **не зависит от пути** в группоиде перестроек ADD, включая обратные ходы и одновременное слияние+расщепление?
+
+**Критерии, объявленные до счёта.**
+- T1 (казимир, доли): **уже PASS аналитически** — записать как готовое решение, прогон не назначать.
+- T2 (первый порядок, Haar-случайное \(h\), неклассовая \(f\)): ожидается **FAIL** с явной формулой \(\mathrm{Ad}(a_{\rm left})\). Успех = предъявление рамки, снимающей поворот; провал = точная формула препятствия.
+- T3 (решающий, дешёвый): точный цикл R130 при \(L=3\), слово `(1,2,12)`, одно слияние и одно расщепление на шаг. Композиция требуемых поворотов вдоль замкнутой орбиты. **Предсказание:** транспорт вокруг цикла тривиален ⟺ накопленный частичный групповой элемент централен (\(\pm I\) для \(SU(2)\)); в общем положении — нет. Тогда «голономия перестройки» — точная граница соответствия, а не подбор веса.
+- T4 (материя): пары \((I,I)\) и \((i\sigma_x,-i\sigma_x)\) с \(\psi,\eta\). Без правила переноса спинора слияние теряет измеримые данные; правило переноса материи — часть данных R133, а не опция.
+
+**Бюджет/среда.** T2–T4 конечные, точная арифметика плюс \(2\times2\)-производные; прогноз < 60 с, песочница. ВМ не нужна. Родители и критерии фиксируются коммитом до счёта.
+
+**Что не переносится ни при каком исходе.** Сохранение \(W\) — нулевой порядок. L09/U006 остаются открытыми: причинная геометрия, масштаб, физическая стрела и чтение следа из этого не выводятся. Ориентируемость степени нуль уже провалена в R132 — полная спектральная тройка не переносится независимо от весов.
+
+**Мой вывод:** переходить к T3, а не к «двум путям вообще». Формулировка «одинаковый отклик» подлежит замене на «независимость от пути», иначе тест опровергнет то, что и не должно быть верно.
