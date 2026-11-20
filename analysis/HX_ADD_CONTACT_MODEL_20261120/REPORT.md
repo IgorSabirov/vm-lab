@@ -10,6 +10,32 @@ The latest contact-balance classification gives:
 - Order sensitivity survives when the contact price depends on its local neighborhood. The simplest retained example is \(E_4=\sum_i a_i a_{i+1}a_{i+2}a_{i+3}\), invariant under passive \(Q\).
 - The ADD paper's Theorem 5 is a conserved **bit count**. It does not assign a dimensional energy in joules or MeV to a radiation bit. The parameter \(h\) below is the proposed physical energy per contact/radiation quantum, inherited from the contact-balance ansatz; its dimensional value remains open.
 
+## 2A. Gate A: locate the (u_0) point in the five-pair region
+
+For the explicit H_X embedding used here,
+
+[
+H_X=hL+JN_4(a),
+]
+
+choose (arepsilon_{ij}=h) for every pair of four-state symbols and (eta_{ijkl}=J) exactly when all four symbols have (a)-bit 1 (otherwise zero). Then
+
+[
+u_0=arepsilon_{00}+eta_{0000}=h.
+]
+
+At the normalized benchmark (h=J=1), this gives (u_0=1). The five-pair contrast coordinate is
+
+[
+D=sum_{vin{1,2}^4}(-1)^{#2(v)}eta_v=J=1.
+]
+
+The distinguishing region is (D
+e0). Exact recomputation of the five held-out words gives (Delta N_4=(+1,+1,+1,+1,-1)), hence (Delta E_X=JDelta N_4=(+1,+1,+1,+1,-1)). **Gate A: PASS (5/5).** The baseline (u_0=h) is independent of the order-sensitive coordinate (D); the full H_X coefficient point lies inside the 5/5 region for any (J
+e0).
+
+Important boundary: this is the neighbor-dependent contact model. The stricter simultaneous requirements of passive Q and a context-independent (12\leftrightarrow3) contact gap force (D=0), so that stricter model has no intersection with the 5/5 region. The H_X model deliberately relaxes context-independent contact price; its event energy is (h-JDelta N_4). See [GATE_A_U0_CHECK.json](GATE_A_U0_CHECK.json) and [reproducible check](GATE_A_U0_CHECK.py).
+
 ## 2. Effective Hamiltonian
 
 At fixed ring length \(L\), let \(a_i,b_i\in\{0,1\}\) be the matter-channel port bits and \(r_i^L,r_i^R\in\{0,1\}\) the two radiation-channel port bits. Define
