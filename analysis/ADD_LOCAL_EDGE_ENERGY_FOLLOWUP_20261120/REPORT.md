@@ -2,6 +2,8 @@
 
 Date: 20 November 2026. This report separates a finite combinatorial validation from the physical X/BH1/BBN gates.
 
+Subsequent exact classification: a passive Q and a context-independent gap force all five differences to vanish. A neighbor-dependent gap retains sensitivity to order. [Contact balance, proof and BBN target](contact_balance/REPORT.md).
+
 ## A. Five held-out matched pairs
 
 The local functional family is unchanged:
