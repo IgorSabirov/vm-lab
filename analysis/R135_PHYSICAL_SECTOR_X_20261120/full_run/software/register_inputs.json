@@ -463,6 +463,50 @@
       "T_gamma_event_MeV": 2,
       "xi_event": 1.0,
       "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
+    },
+    {
+      "point_id": "XB-FMS-top-left",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "literature_benchmark",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 1,
+      "R_post": 1e-09,
+      "scope": "post-confinement equilibrium boundary only"
+    },
+    {
+      "point_id": "XB-FMS-top-right",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "literature_benchmark",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 100000,
+      "R_post": 1e-09,
+      "scope": "post-confinement equilibrium boundary only"
+    },
+    {
+      "point_id": "XB-FMS-bottom-left",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "literature_benchmark",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 1,
+      "R_post": 0.001,
+      "scope": "post-confinement equilibrium boundary only"
+    },
+    {
+      "point_id": "XB-FMS-bottom-right",
+      "model_id": "XB-pureSU3",
+      "thermal_path": "isolated_during_transition",
+      "role": "literature_benchmark",
+      "origin": "https://arxiv.org/pdf/1605.08048v2",
+      "initial_history_id": "FMS-confined-boundary",
+      "m0_GeV": 100000,
+      "R_post": 0.001,
+      "scope": "post-confinement equilibrium boundary only"
     }
   ],
   "data_releases": [
@@ -488,13 +532,33 @@
     },
     {
       "data_id": "Planck2018-TTTEEE-lowE",
-      "version": "Planck 2018 baseline TT,TE,EE+lowE",
-      "source": "https://pla.esac.esa.int/",
-      "state": "artifact_required",
-      "missing": [
-        "exact released likelihood files, checksums and dependency version",
-        "nuisance definitions, priors, covariance and zero-source baseline"
-      ]
+      "version": "Planck PR3 baseline R3.00; base LCDM minimum theory R3.01",
+      "source": "https://pla.esac.esa.int/pla/aio/product-action?COSMOLOGY.FILE_ID=COM_Likelihood_Data-baseline_R3.00.tar.gz",
+      "state": "verified_external_bundle",
+      "bundle_manifest": "planck_pr3/release.json",
+      "files": [
+        {
+          "path": "planck_pr3/release.json",
+          "sha256": "b76dd56e555cfde7ef78579a4cb0c0140aacd4e3c0c7a8e0ba4509fd01a69947",
+          "bytes": 29686
+        },
+        {
+          "path": "planck_pr3/nuisance.json",
+          "sha256": "b618bbf3d2094246240f70b56db8d69836bbb629655bf2a10c89072b70f8ecd2",
+          "bytes": 5866
+        },
+        {
+          "path": "planck_pr3/wheels.lock",
+          "sha256": "3fc3623b1566c09c34a91e3a909be4c049412da97bd9c99232ee44783575b215",
+          "bytes": 862
+        },
+        {
+          "path": "planck_pr3/clipy.lock",
+          "sha256": "26ad4874f39b086641301ca1447475eea407ec4c4c4238c0d54f07c52ea302b4",
+          "bytes": 179
+        }
+      ],
+      "verification": "Archive and 134 individual members verified on acquisition; three component self-tests and a joint base-LCDM reference replayed. P0 offline verifies the compact locks. Re-run verify_planck.py for a local ESA payload."
     }
   ],
   "rules": [
@@ -512,7 +576,7 @@
         "XB-pureSU3"
       ],
       "test": "joint history to D/H, Yp and CMB; profile statistic with 95% calibrated threshold",
-      "pending": "freeze supported physical points, priors, likelihood files and threshold calibration",
+      "pending": "Independent cosmological X scale and early history, joint BBN/CMB history, joint likelihood threshold calibration.",
       "required_data_ids": [
         "Cooke-DH",
         "Aver-Yp",
@@ -528,5 +592,17 @@
       "test": "independent matched preparations and predicted fourth-order contrast",
       "pending": "freeze full operator map, sign or interval of prediction and lower-marginal matching precision"
     }
-  ]
+  ],
+  "xb_reference": {
+    "inputs": {
+      "path": "xb_reference/inputs.json",
+      "sha256": "580f6c6b528ba554d3d7ed4849b6014c3f93d09c6e5cea25c558e0cc5e2e0364",
+      "bytes": 3575
+    },
+    "coordinates": {
+      "path": "xb_reference/coordinates.json",
+      "sha256": "b71105041fd0d3d3220ca2aa95dda32d5c255394ba973d50d9ac2bcd54a9e6a7",
+      "bytes": 2252
+    }
+  }
 }

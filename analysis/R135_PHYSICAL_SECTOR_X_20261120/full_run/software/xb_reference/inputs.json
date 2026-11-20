@@ -1,0 +1,103 @@
+{
+  "sources": {
+    "FMS": {
+      "title": "Forestell, Morrissey & Sigurdson",
+      "url": "https://arxiv.org/pdf/1605.08048v2",
+      "locator": "Fig. 3 and Sec. IV B; Eq. (5) defines post-confinement R.",
+      "sha256": "6bffbc6fe51051a23602ce3a794ebb2482a2f1bb9b030db76c150175e49d6fe9",
+      "bytes": 1437945
+    },
+    "FRANCIS": {
+      "title": "Francis et al.",
+      "url": "https://arxiv.org/pdf/1503.05652v2",
+      "locator": "Eq. (6), continuum extrapolation with the Sommer scale; chi2/dof=6.7.",
+      "sha256": "59ee6246433cceffd3c5120f97cf5b18db2cd2de76effd8aa7c0afd355b7608f",
+      "bytes": 165674
+    },
+    "MP": {
+      "title": "Morningstar & Peardon",
+      "url": "https://arxiv.org/pdf/hep-lat/9901004v2",
+      "locator": "Table VII, column 3; separate extrapolation and anisotropy errors.",
+      "sha256": "96e322b86a350f07f9b63ca7194d4282135080804ae4a4ff2715eaa74408223f",
+      "bytes": 282781
+    },
+    "GIUSTI": {
+      "title": "Giusti, Hirasawa, Pepe & Virzi",
+      "url": "https://arxiv.org/pdf/2502.03875v1",
+      "locator": "Eq. (16) in arXiv v1, Eq. (17) in published article; confined side.",
+      "sha256": "3fc2c0fdbe249b8ebd1a26cabf0241505b7e6c38dd6ce96cd9fb317bc89439af",
+      "bytes": 2110759
+    },
+    "SM_EOS": {
+      "title": "Saikawa & Shirai, 2018",
+      "url": "https://arxiv.org/src/1803.01038v2/anc/standardmodel2018.dat",
+      "locator": "Appendix A of arXiv:1803.01038v2, columns 1, 4, 5. T in GeV.",
+      "sha256": "a4bf5f18dacb084a00e7202a29c689b4ae385950cfeb00be69c98aeb30e8014b",
+      "bytes": 545033
+    }
+  },
+  "lattice": {
+    "r0_Tc": {
+      "value": 0.7457,
+      "sigma": 0.0045,
+      "source": "FRANCIS"
+    },
+    "r0_m0": {
+      "value": 4.21,
+      "sigma_stat": 0.11,
+      "sigma_anisotropy": 0.04,
+      "source": "MP"
+    },
+    "s_cold_over_Tc3": {
+      "value": 0.2928,
+      "sigma": 0.0038,
+      "source": "GIUSTI"
+    }
+  },
+  "initial_history": {
+    "history_id": "FMS-confined-boundary",
+    "model_id": "XB-pureSU3",
+    "scope": "confined-side initial surface for the isolated reference; equilibrium at Tc minus, f=1, separate thermal baths, R=s_X/s_SM specified after conversion",
+    "source": "FMS",
+    "added_matching_assumptions": "Equilibrium cold-side EOS of GIUSTI and the SM plasma at a common visible temperature. Formal boundary only: no prediction for attaining this surface or for event start.",
+    "thermal_path": "isolated_during_transition"
+  },
+  "preparations": [
+    {
+      "point_id": "XB-FMS-top-left",
+      "m0_GeV": 1,
+      "R_post": 1e-09,
+      "source": "FMS",
+      "locator": "Figure 3 top-left",
+      "calibration_kind": "externally_specified_model_parameters",
+      "history_id": "FMS-confined-boundary"
+    },
+    {
+      "point_id": "XB-FMS-top-right",
+      "m0_GeV": 100000,
+      "R_post": 1e-09,
+      "source": "FMS",
+      "locator": "Figure 3 top-right",
+      "calibration_kind": "externally_specified_model_parameters",
+      "history_id": "FMS-confined-boundary"
+    },
+    {
+      "point_id": "XB-FMS-bottom-left",
+      "m0_GeV": 1,
+      "R_post": 0.001,
+      "source": "FMS",
+      "locator": "Figure 3 bottom-left",
+      "calibration_kind": "externally_specified_model_parameters",
+      "history_id": "FMS-confined-boundary"
+    },
+    {
+      "point_id": "XB-FMS-bottom-right",
+      "m0_GeV": 100000,
+      "R_post": 0.001,
+      "source": "FMS",
+      "locator": "Figure 3 bottom-right",
+      "calibration_kind": "externally_specified_model_parameters",
+      "history_id": "FMS-confined-boundary"
+    }
+  ]
+}

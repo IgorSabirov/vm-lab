@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
@@ -12,6 +13,8 @@ class RegisterTests(unittest.TestCase):
         self.addCleanup(self.area.cleanup)
         self.root = Path(self.area.name)
         self.source = self.root / "inputs.json"
+        for directory in ("xb_reference", "planck_pr3"):
+            shutil.copytree(p0.HERE / directory, self.root / directory)
         self.records = p0.load(p0.HERE / "register_inputs.json")
 
     def build(self):
@@ -47,7 +50,40 @@ class RegisterTests(unittest.TestCase):
             self.build()
         point.update(initial_history_id="test-history",
                      independent_parameters=[dict(name="scale",value=3,unit="MeV",source="test")])
-        self.assertEqual(self.build()[p0.FILES[0]]["points"][-1],point)
+        with self.assertRaisesRegex(ValueError, "Missing physical point evidence"):
+            self.build()
+        for key, record in [
+                ("history_file", dict(history_id="test-history", model_id="XA-graph",
+                                      thermal_path=point["thermal_path"], epoch="unit test",
+                                      initial_conditions={"temperature_MeV": 12})),
+                ("calibration_file", dict(model_id="XA-graph", kind="independent_measurement",
+                         independent_of_R135_BBN_CMB=True, source_locator="test only",
+                         uncertainty_budget={"sigma_MeV": 0.1}, scale_MeV=3,
+                         parameters=point["independent_parameters"]))]:
+            path = self.root / (key + ".json")
+            raw = p0.encoded(record)
+            path.write_bytes(raw)
+            point[key] = dict(path=path.name, bytes=len(raw), sha256=p0.sha(raw))
+        self.assertEqual(self.build()[p0.FILES[0]]["point_counts"]["physical_candidate"], 1)
+        point["initial_history_id"] = "wrong"
+        with self.assertRaisesRegex(ValueError, "preparation mismatch"):
+            self.build()
+
+    def test_benchmark_cannot_be_promoted_or_reassigned(self):
+        point = self.records["points"][-1]
+        point["role"] = "physical_candidate"
+        with self.assertRaisesRegex(ValueError, "benchmark coverage"):
+            self.build()
+        point["role"] = "literature_benchmark"
+        point["R_post"] *= 2
+        with self.assertRaisesRegex(ValueError, "Published preparation"):
+            self.build()
+
+    def test_planck_manifest_tamper(self):
+        (self.root / "planck_pr3/nuisance.json").write_text("{}")
+        with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+            self.build()
+
 
     def test_locked_release_bytes(self):
         raw = b"test dataset"
@@ -55,7 +91,7 @@ class RegisterTests(unittest.TestCase):
         release = self.records["data_releases"][-1]
         release.update(state="verified_files",files=[
             dict(path="sample.bin",bytes=len(raw),sha256=p0.sha(raw))])
-        release.pop("missing")
+        release.pop("missing", None)
         self.build()
         (self.root / "sample.bin").write_bytes(b"changed data")
         with self.assertRaisesRegex(ValueError,"SHA-256"):
