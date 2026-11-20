@@ -5,6 +5,7 @@ import hashlib
 from itertools import product
 import json
 import math
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -74,10 +75,26 @@ def compute(inputs, table):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("sm_table", type=Path)
+    parser.add_argument("sm_table", nargs="?", type=Path)
+    parser.add_argument("--cache", type=Path, help="Retrieve the preparations, scales and SM table from donors")
+    parser.add_argument("--offline", action="store_true")
     parser.add_argument("--verify", action="store_true")
     args = parser.parse_args()
     inputs = json.loads((HERE / "inputs.json").read_text())
+    if args.cache:
+        if args.sm_table:
+            parser.error("Specify --cache or a local SM table")
+        sys.path.insert(0, str(HERE.parent / "donors"))
+        from fetch import acquire
+        from extract import physics
+        files = acquire(args.cache, {"physics"}, args.offline)
+        donor = physics(files)
+        inputs["preparations"] = donor["preparations"]
+        inputs["lattice"] = {"r0_Tc": donor["r0_Tc"], "r0_m0": donor["r0_m0"],
+                             "s_cold_over_Tc3": donor["phase_entropy"]["cold"]}
+        args.sm_table = files["sm"]
+    elif not args.sm_table or args.offline:
+        parser.error("Specify --cache or a local SM table")
     table = entropy_table(args.sm_table, inputs["sources"]["SM_EOS"])
     result = compute(inputs, table)
     if args.verify:
