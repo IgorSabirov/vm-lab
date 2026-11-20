@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=134, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=140.
+Число записей: result=134, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=141.
 
 ## Предпосылка → результаты
 
@@ -169,7 +169,7 @@ ATLAS_TOP: отдельный HNL-анализ — [исходная карто�
 
 BBN: PRIMAT, LINX, PRyMordial — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_response_bridge).
 
-**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [LINX](#external-linx) `candidate_source_context_not_evidence`; [LINX](#external-linx) `implementation_candidate_not_execution`; [PRIMAT](#external-primat) `implementation_candidate_not_execution`; [PRYMORDIAL](#external-prymordial) `candidate_source_context_not_evidence`; [PRYMORDIAL](#external-prymordial) `implementation_candidate_not_execution`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](#review-neighbor_integration_followup_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `scope_boundary`.
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [LINX](#external-linx) `candidate_source_context_not_evidence`; [LINX](#external-linx) `input_contract_dependency`; [PRIMAT](#external-primat) `input_contract_dependency`; [PRYMORDIAL](#external-prymordial) `candidate_source_context_not_evidence`; [PRYMORDIAL](#external-prymordial) `implementation_candidate_not_execution`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](#review-neighbor_integration_followup_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `scope_boundary`.
 **Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="component-bh1_thermodynamics"></a>
@@ -1007,7 +1007,7 @@ FortEPiaNO: опубликованный QKE-эталон, code pin открыт
 LINX: дифференцируемая BBN-сеть — [исходная карточка](../../infra/external/contracts/LINX.json).
 
 **Входящие:** [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`.
-**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `candidate_source_context_not_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `implementation_candidate_not_execution`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `candidate_source_context_not_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md](#source-analysis-primat_linx_bbn_bridge_20261117-paired_run_20261120-md) `external_metadata_not_execution_evidence`.
 
 <a id="external-nudec_bsm_v2"></a>
 
@@ -1034,7 +1034,7 @@ nudec_BSM v2: моментум-осреднённая термодинамика
 PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
 
 **Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
-**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `implementation_candidate_not_execution`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md](#source-analysis-primat_linx_bbn_bridge_20261117-paired_run_20261120-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-prymordial"></a>
 
@@ -4421,6 +4421,15 @@ analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/SESSION.txt — [ис
 analysis/PRIMAT_INTEGRATION_20261113/REPORT.md — [исходная карточка](../../analysis/PRIMAT_INTEGRATION_20261113/REPORT.md).
 
 **Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
+**Исходящие:** нет.
+
+<a id="source-analysis-primat_linx_bbn_bridge_20261117-paired_run_20261120-md"></a>
+
+### source:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md
+
+analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md — [исходная карточка](../../analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md).
+
+**Входящие:** [LINX](#external-linx) `external_metadata_not_execution_evidence`; [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r130_bh1_bbn_connection_20261117-architecture-json"></a>

@@ -15838,7 +15838,7 @@
       "id": "BBN_RESPONSE_BRIDGE",
       "title": "BBN: PRIMAT, LINX, PRyMordial",
       "element_kind": "interface",
-      "status": "FORMAT_IMPLEMENTED_ADAPTERS_INCOMPLETE",
+      "status": "THERMAL_PAIRED_FORWARD_RUN",
       "path": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
       "fragment": "bbn_response_bridge",
       "source_catalog": "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json",
@@ -15869,13 +15869,13 @@
         },
         {
           "target": "external:PRIMAT",
-          "relation": "implementation_candidate_not_execution",
-          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+          "relation": "input_contract_dependency",
+          "rationale": "Реализация исполнила тепловую сеть на замороженных общих входах задания #140."
         },
         {
           "target": "external:LINX",
-          "relation": "implementation_candidate_not_execution",
-          "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
+          "relation": "input_contract_dependency",
+          "rationale": "Реализация исполнила тепловую сеть на замороженных общих входах задания #140."
         },
         {
           "target": "external:PRYMORDIAL",
@@ -15883,10 +15883,17 @@
           "rationale": "Необходимый вход следующего слоя; наличие связи не означает готовый адаптер."
         }
       ],
-      "boundary": "Нативный baseline, deterministic common-input comparison, UQ и observational fit имеют разные предпосылки. Ни один адаптер не объявлен завершённым; covariance не блокирует фиксированный контроль.",
-      "next_gate": "Закрепить общий допустимый thermal/weak режим, rates/units/interpolation/reverse mapping/constants/init; затем сравнить определения Yp и D/H.",
+      "boundary": "Парная тепловая сеть имеет 8 видов и 12 ядерных каналов. Здесь PRIMAT использует свои RHS и якобиан при общих скоростях LINX. Произвольные нейтринные спектры, модель X, совместная ядерная UQ и наблюдательный fit остаются открытыми.",
+      "next_gate": "Сопоставить температурную нормировку ядерных полос с внешним атласом, затем проверить кинетические входы и заданный источник.",
       "scientific_acceptance": false,
-      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
+      "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md",
+      "execution_evidence": {
+        "report": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md",
+        "run": "44719756079",
+        "result_commit": "d503ee0f1f89c99c8560803dc46277d544ef15ba",
+        "BBN_pairs": 17,
+        "CLASS_spectra": 6
+      }
     },
     {
       "id": "BBN_CMB_OBSERVATIONS",
