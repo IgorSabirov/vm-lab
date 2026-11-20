@@ -1,0 +1,138 @@
+{
+  "schema": "R135-implementation-capabilities-v1",
+  "delivery": "executable_conditional_numerical_package",
+  "stage_entrypoints": [
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P8",
+    "P9",
+    "P10"
+  ],
+  "all_design_modes_implemented": false,
+  "physical_production_started": false,
+  "scientific_acceptance": "owner_review",
+  "physical_preparations": {
+    "diagnostic": 48,
+    "literature_benchmark": 4,
+    "physical_candidate": 0
+  },
+  "implemented": {
+    "P0": [
+      "freeze and verify unchanged P0 records",
+      "source and input content bindings"
+    ],
+    "P1": [
+      "phase pressure EOS and covariance",
+      "table overlap validation",
+      "one-sided latent jump",
+      "thermal ideal gas",
+      "explicit dimensional origin"
+    ],
+    "P2": [
+      "named R130 dynamics and inverse",
+      "declared finite-range Hamiltonian",
+      "SU3 label-map coverage",
+      "independent finite-preparation predictions",
+      "finite Gibbs ensemble"
+    ],
+    "P3": [
+      "Wilson random-scan SU2-subgroup Metropolis",
+      "link/Polyakov import",
+      "independent gauge/plaquette checks",
+      "exact PRNG checkpoint",
+      "calibration-heldout separation",
+      "ACF ESS and block bootstrap D4"
+    ],
+    "P4": [
+      "declared row-generator response",
+      "stationary and two-time measured response",
+      "one-pole and integral relaxation with censored tails",
+      "physical clock and operator overlap checks"
+    ],
+    "P5": [
+      "single-field canonical O3 bounce",
+      "imported nucleation kernel with explicit prefactor",
+      "steady wall friction and conduction",
+      "ideal-fluid wall flux matching",
+      "spherical curvature wall transport"
+    ],
+    "P6": [
+      "quantum 2-to-2 invariant phase-space moments including reverse process",
+      "coherent polynomial amplitudes with unit checks",
+      "two-body/imported widths and branching",
+      "MB 3-to-2 inverse term",
+      "computed thermal moment tables and explicitly matched power laws"
+    ],
+    "P7": [
+      "coupled FRW mixture-energy and five independent portal histories",
+      "homogeneous nucleation growth moments",
+      "wall heat feedback",
+      "relativistic MB relic number and energy",
+      "signed comoving heat and pressure work",
+      "physical time landmarks and censored events",
+      "inverse MB decays with distinct number/energy moments",
+      "a^4 source and trace balance",
+      "explicit uncertainty samples and preserved failed draws",
+      "postconfinement event censoring",
+      "sourced isolation intervals without numerical phase switch"
+    ],
+    "P8": [
+      "physical-time weak-rate handoff including reheating",
+      "hashed neutrino spectra and rates",
+      "canonical common-input BBN preparation",
+      "late history matching for native CLASS or external computed spectra"
+    ],
+    "P9": [
+      "30 native BBN integrations with three refinements",
+      "all-five abundance and mixed-residual convergence gate",
+      "native free-radiation CLASS lensed Cl",
+      "hash-bound external calculated Cl import",
+      "full Planck PR3 and nuisance profile",
+      "BBN correlated likelihood and calibrated decision interface",
+      "two-or-three CLASS accuracy refinements and delta logL gate"
+    ],
+    "P10": [
+      "independent raw-number reconstruction",
+      "complete registered key matrix",
+      "hash and source audit",
+      "scoped machine-checked necessary-condition witness"
+    ]
+  },
+  "additional_implementation_for_other_physical_modes": [
+    {
+      "item": "nonthermal coupled distributions",
+      "reason": "The current P7 closure evolves thermal recipients. Nonthermal spectra can be imported and checked at P8, but a selected model still needs its full momentum-dependent coupled kinetic operator."
+    },
+    {
+      "item": "electromagnetic/hadronic cascade and photodisintegration sources",
+      "reason": "Native thermal small-network adapters reject these terms until a concrete cascade/network kernel is supplied and implemented."
+    },
+    {
+      "item": "general interacting X perturbations",
+      "reason": "The native CLASS branch has a checked free-streaming-radiation matching domain. Other equations require a pinned implementation; P9 accepts its computed spectra with provenance but does not derive those equations."
+    },
+    {
+      "item": "self-consistent old-pocket geometry",
+      "reason": "Homogeneous phase survival gives volume fraction, not a unique pocket-radius distribution. A geometry closure must be specified and verified before using pocket surfaces as dynamical sources."
+    },
+    {
+      "item": "arbitrary-neutrino-spectrum weak-rate integrals",
+      "reason": "The native pointwise generator computes thermal rates in an explicit domain. Nonthermal spectra require independently computed bound weak-rate tables; arbitrary spectra are not silently thermalized."
+    }
+  ],
+  "physical_inputs_not_inferred_by_software": [
+    "cosmological X absolute scale and thermal prehistory",
+    "XA Hamiltonian, complete observable map and physical clock",
+    "independent production ensembles and real-time response",
+    "effective action, prefactor, friction and transport coefficients",
+    "portal amplitudes, relic spectrum, channels and thermalization domain",
+    "frozen physical uncertainty distributions and calibrated statistical exclusion thresholds"
+  ],
+  "completion_rule": "A passing numerical test, conditional benchmark or a green CI result is not completion of the full physical R135 project. Missing inputs and unsupported models remain explicit."
+}

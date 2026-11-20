@@ -1,0 +1,15 @@
+{
+  "schema": "R135-observation-backends-v1",
+  "interface_donor": {
+    "repository": "IgorSabirov/vm-lab",
+    "commit": "d503ee0f1f89c99c8560803dc46277d544ef15ba",
+    "paths": ["reproductions/BBN_COSMO_20261120/runtime/science.py", "reproductions/BBN_COSMO_20261120/runtime/resume.py"],
+    "reused": "Native network APIs, common-input convention, support-boundary restart, baseline and CLASS interfaces",
+    "not_reused": "Externally prescribed heating histories or scientific conclusions"
+  },
+  "LINX": {"repository": "https://github.com/cgiovanetti/LINX", "commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8", "license": "MIT", "used_api": ["NuclearRates", "WeakRates.nTOp_rates", "BackgroundModel", "AbundanceModel"]},
+  "PRIMAT": {"repository": "https://github.com/CyrilPitrou/primat", "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e", "license": "GPL-3.0-or-later", "used_api": ["PRIMATConfig", "UpdateNuclearRates", "_K_LT.rhs", "_K_LT.jacobian", "backend.run_bbn"]},
+  "CLASS": {"repository": "https://github.com/lesgourg/class_public", "commit": "e85808324f51fc694d12e3ed7439552a3c3f9540", "used_api": "native class binary, lensed CAMB-format Cl output", "lmax": 2508},
+  "Planck": {"release": "../planck_pr3/release.json", "nuisance": "../planck_pr3/nuisance.json", "environment": ["../planck_pr3/wheels.lock", "../planck_pr3/clipy.lock"]},
+  "source_integrity": "Native modules require clean tracked source checkouts at these exact commits. Every actual calculation records tables, input/code hashes and binary provenance."
+}
