@@ -150,6 +150,8 @@ X нужен для нестандартной физической ветви; 
 <a id="x_microphysics"></a>
 ### X_MICROPHYSICS — Общая микрофизика сектора X
 
+[R135. Внутренний порядок, динамика фаз и источники X](../R135_PHYSICAL_SECTOR_X_20261120/REPORT.md#physics).
+
 **Статус:** `UNDEFINED`.
 
 **Родители:** `component:R130_PHYSICAL_EMBEDDING` (conceptual_parent_not_derivation): Необходимый вход следующего слоя; наличие связи не означает готовый адаптер.

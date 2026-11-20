@@ -6,6 +6,8 @@
 
 # Текущая работа — начать здесь
 
+[**R135 · Итоговый разбор физического сектора X**](analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md). R131–R134, центровые наблюдаемые SU(3), проверка четвёртого порядка, Gate D и перенос энергии в BBN.
+
 [Сверка сессии 20 ноября по R130–R134 и BBN](analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md) · [Обновлённая схема проектов](analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md#session-map) · [Четыре отклика S3 и главный открытый тест](analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#s3-response).
 
 [**R134 · Струнный bootstrap, Конн и ADD**](analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md). Доноры кода и данных, пять внешних частиц и точный контроль смешанного вычета.

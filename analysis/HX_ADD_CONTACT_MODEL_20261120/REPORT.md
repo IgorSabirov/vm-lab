@@ -191,3 +191,5 @@ The next task is no longer to invent more static potentials. It is to derive the
 The separate SU(3) latent-heat estimate selects \(\mathcal L/T_c^4=1.175(10)\). Under the explicit hypothesis \(m_X=T_c\), the BBN energy threshold gives \(T_c/T_\gamma=0.44118895\). Using the radiation-era Friedmann law \(H=1.66\sqrt{g_*}T_\gamma^2/M_{\rm Pl}\), the microscopic ratio is \(\tau_X/H^{-1}=8.71\times10^{-21}\) at the start of the paired BBN integration and \(2.92\times10^{-24}\) at its end. **Gate C passes conditionally for microscopic relaxation.**
 
 This is not a derivation of \(m_X=T_c\), nor a calculation of critical slowing down, bubble nucleation, phase-conversion completion, or portal transfer. Full method and reproducible values: [SU(3) relaxation Gate C report](../BH1_SU3_RELAXATION_GATE_20261120/REPORT.md) and [CHECKS.json](../BH1_SU3_RELAXATION_GATE_20261120/CHECKS.json).
+
+[R135. Границы Gate A–D и связь с четырёхточечной измеримой величиной](../R135_PHYSICAL_SECTOR_X_20261120/REPORT.md#physics).
