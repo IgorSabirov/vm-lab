@@ -135,19 +135,16 @@ The latest contact-balance file fixes
 \qquad g=h/T_X,\quad \xi=T_X/T_\gamma.
 \]
 
-At \(\xi=0.5\),
+At the declared comparison point \(\xi=0.5\),
 
 \[
-\chi\nu g=0.7122892066.
+\chi\nu g=\frac{0.0445180754118}{0.5^4}
+=0.7122892066.
 \]
 
-If the benchmark \(g=0.5\) is selected, this requires
+This matches the requested numerical threshold \(0.71229\) with relative difference \(1.11\times10^{-6}\). **The numerical B gate is therefore PASS** under the stated criterion, and the effective \(H_X\) construction may proceed. The reproducible gate record is [GATE_B_BBN_CHECK.json](GATE_B_BBN_CHECK.json).
 
-\[
-\chi\nu=1.4245784132.
-\]
-
-The Hamiltonian computes an equilibrium radiation-bit occupation fraction \(f_\gamma\), but that is **not** the event density \(\nu=(M-S)/(VT_X^3)\). This model does not yet determine the physical volume, event rate/density, transfer efficiency \(\chi\), or \(h/T_X\). Consequently it cannot yet claim to supply the BBN energy budget without fitting. It reproduces the required parameter combination, not its microscopic value.
+This is a conditional consistency check at the declared \(\xi=0.5\), not an independent microscopic prediction of \(\chi\nu g\): the Hamiltonian computes an equilibrium radiation-bit occupation fraction \(f_\gamma\), which is not the ADD event density \(\nu=(M-S)/(VT_X^3)\). The microscopic model still does not independently derive \(\chi\), \(\nu\), \(g=h/T_X\), or \(\xi\). Thus the threshold authorizes continuing the \(H_X\) program, but does not yet establish a parameter-free BBN energy-injection prediction.
 
 ## 6. Status and next physical closure
 
@@ -156,7 +153,8 @@ The Hamiltonian computes an equilibrium radiation-bit occupation fraction \(f_\g
 - Finite-size thermal relaxation: **computed for an explicitly chosen Glauber process**.
 - \(\tau_X/H^{-1}\): **not identified**, because \(\Gamma_0/H\) is unknown.
 - Exact local event energy ledger: **computed**; a fixed \(+h\) emission per merge fails in some environments.
-- BBN source sufficiency: **not yet established**; \(\chi,\nu,g\) remain independent physical inputs.
+- Numerical B gate at declared \(\xi=0.5\): **PASS**, \(\chi\nu g=0.7122892066\), see [GATE_B_BBN_CHECK.json](GATE_B_BBN_CHECK.json).
+- Microscopic BBN source sufficiency: **OPEN**; \(\chi,\nu,g,\xi\) are not yet independently derived.
 - Physical \(C_R\): **not yet available**, pending \(L\mapsto R\).
 
 The next task is no longer to invent more static potentials. It is to derive the port-level radiation update and the microscopic transition generator from the ADD \(I,Q\) rules, including the energy changes \(h-J\Delta N_4\), then identify \(h\), \(J\), \(\Gamma_0\), and the physical volume. Only that closes the route from this effective Hamiltonian to BH1 and BBN.
