@@ -38,25 +38,42 @@ argv = [shutil.which('copilot'), '-C', str(work), '--model', 'auto', '--max-ai-c
         '--no-custom-instructions', '--no-ask-user', '--no-auto-update', '--disable-client-telemetry',
         '--log-level', 'warning', '-s']
 started = time.perf_counter()
-p = subprocess.run(argv, cwd=work, env=env, input=prompt, capture_output=True, text=True)
-if (out/'COPILOT_TOOL_START.json').exists():
-    pid = json.loads((out/'COPILOT_TOOL_START.json').read_text())['pid']
-    while True:
-        rec = out/'EXECUTION_RECEIPT.json'
-        if rec.exists():
-            try:
-                if json.loads(rec.read_text()).get('status') != 'RUNNING':
-                    break
-            except json.JSONDecodeError:
-                pass
-        try:
-            os.kill(pid, 0)
-        except ProcessLookupError:
-            break
-        stat = Path(f"/proc/{pid}/stat")
-        if stat.exists() and stat.read_text().split(") ")[-1].startswith("Z "):
-            break
-        time.sleep(2)
+# Copilot may shut down its entire MCP process tree when a session ends. The
+# only launch authority is the no-argument request sent by its execute tool.
+# The Actions process owns the worker so its lifetime matches the job.
+worker_env = {k:v for k,v in os.environ.items()
+              if "TOKEN" not in k and "SECRET" not in k and not k.startswith(("COPILOT_", "GH_AW_"))}
+request = out/"COPILOT_EXECUTE_REQUEST.json"
+with (work/"cli.out").open("w") as cli_out, (work/"cli.err").open("w") as cli_err:
+    with subprocess.Popen(argv, cwd=work, env=env, stdin=subprocess.PIPE,
+                          stdout=cli_out, stderr=cli_err, text=True) as cli:
+        cli.stdin.write(prompt)
+        cli.stdin.close()
+        while not request.exists() and cli.poll() is None:
+            time.sleep(.2)
+        if request.exists():
+            with (out/"RUNNER.stdout.log").open("w") as sci_out, (out/"RUNNER.stderr.log").open("w") as sci_err:
+                with subprocess.Popen([sys.executable, "-u", str(work/"run_bbn.py")],
+                                      cwd=work, env=worker_env, stdout=sci_out, stderr=sci_err) as worker:
+                    (out/"COPILOT_TOOL_START.json").write_text(json.dumps({
+                        "tool":"bbn.execute", "pid":worker.pid, "command":["python","run_bbn.py"],
+                        "credentials_removed":True,"arbitrary_arguments_supported":False}))
+                    previous = None
+                    while worker.poll() is None:
+                        checkpoint = out/"PROGRESS.json"
+                        if checkpoint.exists():
+                            data = json.loads(checkpoint.read_text())
+                            completed = list(data["timings"])
+                            if completed != previous:
+                                print("Completed stages:", completed, "errors:", list(data["errors"]), flush=True)
+                                previous = completed
+                        time.sleep(2)
+                    if not (out/"EXECUTION_RECEIPT.json").exists():
+                        (out/"EXECUTION_RECEIPT.json").write_text(json.dumps({
+                            "status":"INCOMPLETE_WORKER_EXIT", "returncode":worker.returncode}))
+        cli.wait()
+p = subprocess.CompletedProcess(argv, cli.returncode,
+        (work/"cli.out").read_text(), (work/"cli.err").read_text())
 def redact(s):
     return re.sub(r'(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+', '[REDACTED]', s.replace(token, '[REDACTED]'))
 (out/'COPILOT_RESPONSE.txt').write_text(redact(p.stdout))

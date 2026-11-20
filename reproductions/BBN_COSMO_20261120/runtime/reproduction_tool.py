@@ -16,35 +16,28 @@ for key in list(os.environ):
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT/'results'
 OUT.mkdir(exist_ok=True)
-process = None
-streams = []
-
 def status(wait=False):
-    if process is None:
-        return {'status': 'NOT_STARTED'}
-    if wait and process.poll() is None:
-        try:
-            process.wait(timeout=15)
-        except subprocess.TimeoutExpired:
-            pass
-    receipt = OUT/'EXECUTION_RECEIPT.json'
-    value = json.loads(receipt.read_text()) if receipt.exists() else {}
-    return {'status': value.get('status', 'RUNNING'), 'exit_code': process.poll(),
-            'completed_commands': len(value.get('commands', [])),
-            'code_wall_seconds': value.get('code_wall_seconds'), 'error': value.get('error')}
+    request = OUT/"COPILOT_EXECUTE_REQUEST.json"
+    receipt = OUT/"EXECUTION_RECEIPT.json"
+    for _ in range(5 if wait else 1):
+        if receipt.exists():
+            value = json.loads(receipt.read_text())
+            return {"status":value["status"],"completed_pairs":value.get("completed_pairs")}
+        if not request.exists():
+            return {"status":"NOT_STARTED"}
+        if (OUT/"COPILOT_TOOL_START.json").exists():
+            return {"status":"RUNNING"}
+        if wait:
+            time.sleep(.2)
+    return {"status":"REQUESTED"}
 
 def execute():
-    global process
-    if process is not None or (OUT/'STARTED.json').exists():
-        return {'duplicate_refused': True, **status()}
-    stdout = (OUT/'RUNNER.stdout.log').open('w')
-    stderr = (OUT/'RUNNER.stderr.log').open('w')
-    streams.extend([stdout, stderr])
-    process = subprocess.Popen([sys.executable, str(ROOT/'run_bbn.py')], cwd=ROOT,
-                               env=dict(os.environ), stdout=stdout, stderr=stderr, start_new_session=True)
-    (OUT/'COPILOT_TOOL_START.json').write_text(json.dumps({'tool': 'bbn.execute', 'pid': process.pid,
-        'command': [sys.executable, 'run_bbn.py'], 'credentials_removed': True,
-        'arbitrary_arguments_supported': False})+'\n')
+    request = OUT/"COPILOT_EXECUTE_REQUEST.json"
+    try:
+        with request.open("x") as f:
+            json.dump({"tool":"bbn.execute","args":[]},f)
+    except FileExistsError:
+        return {"duplicate_refused":True, **status()}
     return status(wait=True)
 
 def answer(request):
