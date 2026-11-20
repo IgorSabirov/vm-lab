@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=132, construct=42, link=10, question=12, premise=66, obligation=9, review=13, component=45, external=18, decision=3, source=105.
+Число записей: result=132, construct=42, link=10, question=12, premise=66, obligation=9, review=13, component=45, external=18, decision=3, source=110.
 
 ## Предпосылка → результаты
 
@@ -3113,7 +3113,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Конн–ADD. Предел парных корреляций для прогноза длины кольца R130 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r131).
 
 **Входящие:** [R130](#result-r130) `parent`.
-**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R132](#result-r132) `parent`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json](#source-analysis-r131_connes_add_20261119-neighbor_review-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py](#source-analysis-r131_connes_add_20261119-neighbor_review-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R132](#result-r132) `parent`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json](#source-analysis-r131_connes_add_20261119-neighbor_review-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py](#source-analysis-r131_connes_add_20261119-neighbor_review-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`.
 
 <a id="result-r132"></a>
 
@@ -3122,7 +3122,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Алгебра меток R130, калибровочные поля и спектральная энтропия — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r132).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`.
-**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R132_ADD_YM_CCM_20261119/CHECKS.json](#source-analysis-r132_add_ym_ccm_20261119-checks-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/REPORT.md](#source-analysis-r132_add_ym_ccm_20261119-report-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/verify.py](#source-analysis-r132_add_ym_ccm_20261119-verify-py) `managed_evidence_source`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R132_ADD_YM_CCM_20261119/CHECKS.json](#source-analysis-r132_add_ym_ccm_20261119-checks-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/REPORT.md](#source-analysis-r132_add_ym_ccm_20261119-report-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/verify.py](#source-analysis-r132_add_ym_ccm_20261119-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4343,6 +4343,51 @@ analysis/R132_ADD_YM_CCM_20261119/CHECKS.json — [исходная карточ
 analysis/R132_ADD_YM_CCM_20261119/REPORT.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/REPORT.md).
 
 **Входящие:** [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md).
+
+**Входящие:** [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py).
+
+**Входящие:** [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r132_add_ym_ccm_20261119-verify-py"></a>
