@@ -1,0 +1,303 @@
+{
+  "version": "R135-design-1.0",
+  "base_commit": "365f489352e97c524e706263f265dfda5f69b8f9",
+  "scope": "fixed controls and proposed production protocol",
+  "issue": 151,
+  "authorization": "documentation and reference checks",
+  "scientific_acceptance": "owner_review",
+  "jobs": [
+    {
+      "id": "G6a",
+      "parents": [],
+      "mode": "reference_ready",
+      "outputs": [
+        "budget.json"
+      ],
+      "production_inputs": [
+        "matched_epoch_eos",
+        "fate_of_X",
+        "observational_likelihood"
+      ]
+    },
+    {
+      "id": "T2",
+      "parents": [],
+      "mode": "model_controls_ready",
+      "outputs": [
+        "spectrum.csv"
+      ],
+      "production_inputs": [
+        "independent_weight_law",
+        "energy_calibration"
+      ]
+    },
+    {
+      "id": "T1",
+      "parents": [],
+      "mode": "model_controls_ready",
+      "outputs": [
+        "trajectories.csv"
+      ],
+      "production_inputs": [
+        "physical_free_energy",
+        "clock",
+        "preparation"
+      ]
+    },
+    {
+      "id": "G3",
+      "parents": [],
+      "mode": "physical_input_open",
+      "outputs": [
+        "scale.json"
+      ],
+      "production_inputs": [
+        "scheme",
+        "Tc_over_Lambda",
+        "dimensionful_scale"
+      ]
+    },
+    {
+      "id": "G4",
+      "parents": [],
+      "mode": "field_reader_ready",
+      "outputs": [
+        "ym_config_counts.jsonl",
+        "ym_estimates.csv"
+      ],
+      "production_inputs": [
+        "independent_ensembles",
+        "configuration_manifest",
+        "blind_analysis_split"
+      ]
+    },
+    {
+      "id": "G5",
+      "parents": [
+        "G3"
+      ],
+      "mode": "physical_input_open",
+      "outputs": [
+        "phase_history.csv"
+      ],
+      "production_inputs": [
+        "nucleation_prefactor_action",
+        "wall_heat_transport",
+        "initial_history"
+      ]
+    },
+    {
+      "id": "T3",
+      "parents": [],
+      "mode": "surrogate_control_ready",
+      "outputs": [
+        "mixed_response.csv",
+        "energy_history.json"
+      ],
+      "production_inputs": [
+        "conservative_collision_terms",
+        "physical_amplitudes",
+        "matched_backend_manifest"
+      ]
+    },
+    {
+      "id": "G6b",
+      "parents": [
+        "G6a",
+        "G3",
+        "G5",
+        "T3"
+      ],
+      "mode": "physical_input_open",
+      "outputs": [
+        "transfer_balance.csv",
+        "bbn_class.json"
+      ],
+      "production_inputs": [
+        "consistent_event_history",
+        "thermalization_decay",
+        "dataset_likelihood"
+      ]
+    }
+  ],
+  "budget_control": {
+    "delta_rho_Tgamma4": 0.044518075411783944,
+    "latent_Tc4": 1.175,
+    "s_hot_Tc3": 1.471,
+    "p_Tc4": 0.01768,
+    "eps_grid": [
+      1,
+      0.5,
+      0.1,
+      0.01
+    ],
+    "illustrative_delta_N_cap": 0.5
+  },
+  "T1": {
+    "words_source": "../../R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json",
+    "orbit_steps": 8,
+    "eps": [
+      1,
+      -1
+    ],
+    "x0": 0.99,
+    "q0_model": -0.1,
+    "root_interval": [
+      0,
+      8
+    ],
+    "time_unit": "model tau",
+    "root_abs_tol": 1e-09
+  },
+  "T2": {
+    "alphabet": "integer port labels 0..15",
+    "u": 2,
+    "edge_weight": "1+(u-1)*((s>>1)&1)",
+    "exponents": [
+      1,
+      0
+    ],
+    "Rstar": 1,
+    "Estar": 1,
+    "finite_b": [
+      0.125,
+      0.5,
+      1,
+      2,
+      4
+    ],
+    "mu": 0,
+    "ensemble": "grand canonical free fermions, both signs",
+    "precision_digits": 80,
+    "high_precision_repeat": 100
+  },
+  "G4": {
+    "action": "Wilson plaquette pure SU(3), periodic",
+    "beta_c_Nt4": 5.69275,
+    "beta_c_Nt8": 6.06239,
+    "grids_Nt_Ns_stride": [
+      [
+        4,
+        24,
+        1
+      ],
+      [
+        8,
+        48,
+        2
+      ],
+      [
+        4,
+        32,
+        1
+      ],
+      [
+        8,
+        64,
+        2
+      ]
+    ],
+    "primary_grid": [
+      8,
+      48
+    ],
+    "seeds": [
+      13501,
+      13502,
+      13503,
+      13504,
+      13505,
+      13506,
+      13507,
+      13508
+    ],
+    "calibration_chains": [
+      13501,
+      13502,
+      13503,
+      13504
+    ],
+    "heldout_chains": [
+      13505,
+      13506,
+      13507,
+      13508
+    ],
+    "cut_rad": [
+      0,
+      0.10471975511965977
+    ],
+    "tie_margin_rad": 1e-12,
+    "bootstrap_seed": 13590,
+    "bootstrap_draws": 4000,
+    "equivalence_band": 0.001,
+    "min_phase_ESS": 100,
+    "min_blocks_per_phase": 20
+  },
+  "T3": {
+    "corners": [
+      "00",
+      "10",
+      "01",
+      "11-full",
+      "11-add"
+    ],
+    "prior_heating_relative_controls": [
+      0.0007557,
+      0.0091183
+    ],
+    "relative_energy_closure": 1e-08,
+    "relative_DH_floor": 1e-06,
+    "refinement_factors": [
+      1,
+      0.5,
+      0.25
+    ]
+  },
+  "G5": {
+    "f_targets": [
+      0.5,
+      0.9,
+      0.99
+    ],
+    "H0_dt": [
+      1,
+      10
+    ],
+    "percolation_I_reference": 0.34,
+    "grid_T_gamma_MeV": [
+      0.02,
+      0.2,
+      2
+    ],
+    "grid_xi": [
+      0.3,
+      0.44118895,
+      0.6,
+      1.0
+    ],
+    "completed_fraction": 0.99,
+    "persistent_fraction_ceiling_at_10H": 0.9
+  },
+  "G6b": {
+    "history_units": "natural units MeV, solver adapters explicit",
+    "count_latent_energy_once": true
+  },
+  "baseline_sha256": {
+    "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py": "d46a47443e610ffe42a0160aaae0487e6c0a9be9e6b96bf72ce39962cf7cf9a1",
+    "analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json": "6cb2600e689eb85b61f9fe47263951aade133b045acac1b854b0f6f5a4a2828f",
+    "analysis/BH1_YANG_MILLS_COMPARISON_20261119/check_r131_r134_sector.py": "a532cbf8fe39bb7b7c5d656167e148b765ee85e61323b3defc1a4ecfe307aa52",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json": "9bac6879421654469f6b65d74d99fc335bb1af5e34b2e81c284d9e04f11734ef",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py": "f1579aefd9bb0a3cddeaf16db34dc45c4a8c79f77f60d77c3f9c85ff60787c14",
+    "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json": "22af6fa704f9bf6872f54d953226bd01b89f01be4fe73358be2a74e1c5bb841b",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/LATE_TRANSFER.json": "0d3e6d4aab8e6abb2c43e6bacb0390cdd8b9f00b1c0c0b559e9c98afc258853c",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/measure_field.py": "9b807c66cc9c5a0c80edf39c2a258fecdab11955096bc2c71a32af64d53a9e4c",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/controls.py": "38d276d7c92e3b6b8f389c8f74cb1545a97aabdcc3f1f85799370e8c0464a149",
+    "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/cumulants.py": "8d1cfb0f7ebe9b93300e50113c6f41ff57ca40cef616ed5a29e6043d13cd75e7"
+  },
+  "review_provenance": {
+    "source": "Комментарии от 20 ноября 2026, вложение 164939",
+    "sha256": "b9213ae9ed331ce145b17a21c7f4ac5d07d3f369a666efacefdce6a53b526f4d",
+    "public_document": "REVIEW.md"
+  }
+}
