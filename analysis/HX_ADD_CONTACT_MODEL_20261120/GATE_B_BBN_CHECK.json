@@ -1,0 +1,30 @@
+{
+  "schema": "vm-lab-hx-bbn-gate-check-v1",
+  "id": "HX_B_GATE_20261120",
+  "source_commit": "e768ccacb0a7d32a886750e6a171afe2a368e654",
+  "benchmark_run": "44719756079",
+  "inputs": {
+    "delta_rho_over_Tgamma4": 0.044518075411783944,
+    "xi_TX_over_Tgamma": 0.5,
+    "xi_source": "declared comparison point in contact-balance BBN relation",
+    "definition": "chi*nu*g*xi^4 = Delta_rho/T_gamma^4"
+  },
+  "calculation": {
+    "xi_fourth": 0.0625,
+    "chi_nu_g": 0.7122892065885431,
+    "target": 0.71229,
+    "absolute_difference": 7.9341145689e-7,
+    "relative_difference": 0.0000011139
+  },
+  "decision": {
+    "requested_numeric_gate": "PASS",
+    "rule": "abs(chi_nu_g - 0.71229) within 1e-5",
+    "status": "PASS_NUMERICAL_CONSISTENCY",
+    "interpretation": "The requested B gate is passed as a numerical consistency check at xi=0.5; this authorizes continuing to construct/test H_X under the user's gate definition.",
+    "not_established": [
+      "chi, nu and g are not independently predicted by the microscopic ADD model",
+      "xi=0.5 is a declared comparison point, not derived by H_X",
+      "the H_X model does not yet derive physical BBN energy injection"
+    ]
+  }
+}
