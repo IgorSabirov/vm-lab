@@ -14,12 +14,12 @@ t = sp.Symbol("t", real=True)
 
 
 def insertion(links, slot, gen):
-    # Two-jet of exp(t gen) for a unit generator; gen**2 = -I/4.
+    # Two-jet of right multiplication by exp(t gen), including scaled generators.
     result = I
     for index, link in enumerate(links):
         result = result * link
         if index == slot:
-            result = result * (I + t * gen - t**2 * I / 8)
+            result = result * (I + t * gen + t**2 * (gen * gen) / 2)
     return result
 
 

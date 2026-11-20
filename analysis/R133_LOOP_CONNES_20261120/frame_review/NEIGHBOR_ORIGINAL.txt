@@ -1,0 +1,321 @@
+import numpy as np
+from mpmath import mp, mpf, matrix, eye, cos, sin, diff
+mp.dps=30
+def tr(M): return M[0,0]+M[1,1]
+I2=eye(2); sx=matrix([[0,1],[1,0]]); sy=matrix([[0,-1j],[1j,0]]); sz=matrix([[1,0],[0,-1]])
+T=[1j*s/2 for s in (sx,sy,sz)]
+def E(t,j): return cos(t/2)*I2+2*sin(t/2)*T[j]
+def rs(seed):
+    r=np.random.default_rng(seed); q=r.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3=[mpf(float(v)) for v in q]; return a0*I2+a1*(1j*sx)+a2*(1j*sy)+a3*(1j*sz)
+def Ad(g,j):                      # g T_j g^-1 = sum_k Ad_kj T_k
+    v=g*T[j]*g**-1
+    return [mp.re(tr(v*T[k])/tr(T[k]*T[k])) for k in range(3)]
+def L(f,g,j):                     # LEFT-invariant field: d/dt f(g e^{tT_j})
+    return diff(lambda t: f(g*E(t,j)),0,1)
+a,b=rs(11),rs(12); g=a*b
+tol=1e-11
+print("=== first order, split g = a b ; frame = LEFT-invariant at g ===")
+for nm,f in (("class  1/2 tr g", lambda M: tr(M)/2),
+             ("NON-class g_11", lambda M: M[0,0]),
+             ("NON-class (1/2tr)^2+g_11", lambda M: (tr(M)/2)**2+M[0,0])):
+    eA=eB=0
+    for j in range(3):
+        lhs = diff(lambda t: f(a*E(t,j)*b),0,1)          # derivative on LEFT half a
+        rA  = sum(Ad(a,j)[k]*L(f,g,k) for k in range(3))          # my earlier claim Ad(a)
+        rB  = sum(Ad(b**-1,j)[k]*L(f,g,k) for k in range(3))      # user's claim Ad(b^-1)
+        eA=max(eA,abs(lhs-rA)); eB=max(eB,abs(lhs-rB))
+    print(f"  {nm:26s} max|lhs-Ad(a)|={mp.nstr(eA,4)}   max|lhs-Ad(b^-1)|={mp.nstr(eB,4)}")
+print("\n=== right half b, same frame ===")
+f=lambda M:(tr(M)/2)**2+M[0,0]
+e=max(abs(diff(lambda t: f(a*b*E(t,j)),0,1)-L(f,g,j)) for j in range(3))
+print("  max|X_b - P X_j f| =",mp.nstr(e,4))
+print("\n=== general n-link path: rotation for slot k = Ad(suffix_k^-1) ===")
+hs=[rs(20+i) for i in range(5)]; G=hs[0]
+for h in hs[1:]: G=G*h
+def F(*args):
+    P=args[0]
+    for A in args[1:]: P=P*A
+    return f(P)
+for k in range(5):
+    suf=I2
+    for h in hs[k+1:]: suf=suf*h
+    err=max(abs(diff(lambda t: F(*(hs[:k]+[hs[k]*E(t,j)]+hs[k+1:])),0,1)
+               - sum(Ad(suf**-1,j)[m]*L(f,G,m) for m in range(3))) for j in range(3))
+    print(f"  slot {k}: max err = {mp.nstr(err,4)}")
+print("\n=== Casimir unaffected: sum_j (L_{Ad(u)T_j})^2 = -C for any fixed u ===")
+def C(f,g): return -sum(diff(lambda t: f(g*E(t,j)),0,2) for j in range(3))
+u=rs(33)
+val=-sum(diff(lambda t: sum(Ad(u,j)[k]*L(f,g*E(t,k),k)*0 for k in range(3)),0,2) for j in range(3)) # placeholder
+def Cu(f,g,u):
+    tot=0
+    for j in range(3):
+        vec=[Ad(u,j)[k] for k in range(3)]
+        def fld(x):
+            return sum(vec[k]*L(f,x,k) for k in range(3))
+        tot+=sum(vec[k]*diff(lambda t: fld(g*E(t,k)),0,1) for k in range(3))
+    return -tot
+print("  C f =",mp.nstr(C(f,g),10),"  C_rotated f =",mp.nstr(Cu(f,g,u),10),
+      "  equal:",abs(C(f,g)-Cu(f,g,u))<1e-9)
+
+# Result
+=== first order, split g = a b ; frame = LEFT-invariant at g ===
+  class  1/2 tr g            max|lhs-Ad(a)|=1.233e-32   max|lhs-Ad(b^-1)|=2.465e-32
+  NON-class g_11             max|lhs-Ad(a)|=0.4263   max|lhs-Ad(b^-1)|=5.512e-32
+  NON-class (1/2tr)^2+g_11   max|lhs-Ad(a)|=0.4263   max|lhs-Ad(b^-1)|=4.94e-32
+
+=== right half b, same frame ===
+  max|X_b - P X_j f| = 2.465e-32
+
+=== general n-link path: rotation for slot k = Ad(suffix_k^-1) ===
+  slot 0: max err = 2.465e-32
+  slot 1: max err = 5.082e-32
+  slot 2: max err = 4.954e-32
+  slot 3: max err = 2.756e-32
+  slot 4: max err = 3.486e-32
+
+=== Casimir unaffected: sum_j (L_{Ad(u)T_j})^2 = -C for any fixed u ===
+
+
+
+
+  C f = (-0.04290532978 + 0.08070629181j)   C_rotated f = (-0.04290532978 + 0.08070629181j)   equal: True
+
+
+import numpy as np
+from mpmath import mp, mpf, matrix, eye, cos, sin, diff
+mp.dps=30
+def tr(M): return M[0,0]+M[1,1]
+I2=eye(2); sx=matrix([[0,1],[1,0]]); sy=matrix([[0,-1j],[1j,0]]); sz=matrix([[1,0],[0,-1]])
+T=[1j*s/2 for s in (sx,sy,sz)]
+def E(t,j): return cos(t/2)*I2+2*sin(t/2)*T[j]
+def rs(s):
+    r=np.random.default_rng(s); q=r.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3=[mpf(float(v)) for v in q]; return a0*I2+a1*(1j*sx)+a2*(1j*sy)+a3*(1j*sz)
+def Ad(g,j):
+    v=g*T[j]*g**-1; return [mp.re(tr(v*T[k])/tr(T[k]*T[k])) for k in range(3)]
+f=lambda M:(tr(M)/2)**2+M[0,0]          # NON-class probe
+hs=[rs(40+i) for i in range(4)]
+G=hs[0]
+for h in hs[1:]: G=G*h
+def F(*A):
+    P=A[0]
+    for X in A[1:]: P=P*X
+    return f(P)
+def Lf(g,j): return diff(lambda t: f(g*E(t,j)),0,1)   # left-invariant  (right mult)
+def Rf(g,j): return diff(lambda t: f(E(t,j)*g),0,1)   # right-invariant (left mult)  <-- repo convention
+print("n=4 path, NON-class probe.  slot k + 1")
+print(" k | left-inv frame: Ad(suffix^-1) err | right-inv frame: Ad(prefix) err | clean slot?")
+for k in range(4):
+    suf=I2
+    for h in hs[k+1:]: suf=suf*h
+    pre=I2
+    for h in hs[:k]: pre=pre*h
+    eL=eR=0
+    for j in range(3):
+        dL=diff(lambda t: F(*(hs[:k]+[hs[k]*E(t,j)]+hs[k+1:])),0,1)
+        dR=diff(lambda t: F(*(hs[:k]+[E(t,j)*hs[k]]+hs[k+1:])),0,1)
+        eL=max(eL,abs(dL-sum(Ad(suf**-1,j)[m]*Lf(G,m) for m in range(3))))
+        eR=max(eR,abs(dR-sum(Ad(pre,j)[m]*Rf(G,m) for m in range(3))))
+    print(f" {k} | {mp.nstr(eL,3):>10} | {mp.nstr(eR,3):>10} | left-inv clean={k==3}, right-inv clean={k==0}")
+print("\nrepo convention check on 2 links (a,b), perturbation plus@a / plus@b:")
+a,b=rs(50),rs(51); g=a*b
+for j in range(3):
+    da=diff(lambda t: f(E(t,j)*a*b),0,1); db=diff(lambda t: f(a*E(t,j)*b),0,1)
+    print(f"  j={j}: |X_a - R_j f| = {mp.nstr(abs(da-Rf(g,j)),3)}   "
+          f"|X_b - Ad(a)R f| = {mp.nstr(abs(db-sum(Ad(a,j)[m]*Rf(g,m) for m in range(3))),3)}")
+
+# Result
+n=4 path, NON-class probe.  slot k + 1
+ k | left-inv frame: Ad(suffix^-1) err | right-inv frame: Ad(prefix) err | clean slot?
+ 0 |   5.51e-32 |   4.93e-32 | left-inv clean=False, right-inv clean=True
+ 1 |   9.88e-32 |   4.93e-32 | left-inv clean=False, right-inv clean=False
+ 2 |    1.1e-31 |   9.88e-32 | left-inv clean=False, right-inv clean=False
+ 3 |   4.93e-32 |   4.93e-32 | left-inv clean=True, right-inv clean=False
+
+repo convention check on 2 links (a,b), perturbation plus@a / plus@b:
+  j=0: |X_a - R_j f| = 4.93e-32   |X_b - Ad(a)R f| = 4.93e-32
+  j=1: |X_a - R_j f| = 0.0   |X_b - Ad(a)R f| = 0.0
+  j=2: |X_a - R_j f| = 4.93e-32   |X_b - Ad(a)R f| = 0.0
+
+
+## 1. Сходил. Что реально прочитал
+
+| Адрес | Что взято |
+|---|---|
+| `raw…/main/analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/verify.py` | **полный текст**: `su2`, `wilson`, `spectral_wilson`, `lifted_step`, `loop_checks`, `casimir_control`, `entropy_checks`, `grading_checks`, `split={3:(1,2),12:(8,4)}` |
+| `raw…/58003b5d…/loop_test/CHECKS.json` | все числа, включая `fixed_ratio_8_p2` для L=100/200/400/800 и `matter:[1,0,1]` |
+| `github…/blob/58003b5d…/loop_test/README.md` | текст целиком |
+| `api…/commits/a28ebd8` | патч нового `loop_test/DONORS.md` (61 строка) целиком; родитель — `58003b5d` |
+| `api…/Quantum-Cosmos-Lab/…/trees/HEAD` | дерево второго донорского репозитория |
+
+Не читал: `R132_ADD_YM_CCM_20261119/verify.py` (движок, `graph_operators`), содержимое `BulkBoundaryMap.ipynb`, ядро Wolfram не запускал. Это границы.
+
+## 2. Ошибка моя. Ты прав, и вот точная формулировка
+
+Мой код возмущал **правым** умножением: `A[slot]*E(t,j)`, то есть \(g\mapsto g e^{tT_j}\) — это **лево-инвариантный** репер. В нём для \(g=ab\)
+
+\[
+X^{(j)}_{a}Pf=\sum_k \mathrm{Ad}(b^{-1})_{kj}\,P\,X_kf,
+\qquad X^{(j)}_{b}Pf=P\,X_jf .
+\]
+
+Проверка на **неклассовой** пробе \(f(g)=g_{11}\):
+
+| Пробная функция | \(\max|lhs-\mathrm{Ad}(a)|\) | \(\max|lhs-\mathrm{Ad}(b^{-1})|\) |
+|---|---|---|
+| характер \(\tfrac12\mathrm{tr}\,g\) | 1,2·10⁻³² | 2,5·10⁻³² |
+| \(g_{11}\) | **0,4263** | 5,5·10⁻³² |
+| \((\tfrac12\mathrm{tr})^2+g_{11}\) | **0,4263** | 4,9·10⁻³² |
+
+Ровно тот вырожденный контроль, который ты назвал: на характере \(f(AB)=f(BA)\), поэтому лево- и право-инвариантные производные совпадают, и оба поворота проходят.
+
+Общая формула для пути \(h_1\cdots h_n\), проверена при n=4 на неклассовой пробе (невязки ≤1,1·10⁻³¹):
+
+| Репер | Поворот слота \(k\) | Чистый слот |
+|---|---|---|
+| лево-инвариантный, \(g e^{tT}\) | \(\mathrm{Ad}\big((h_{k+1}\cdots h_n)^{-1}\big)\) | последний |
+| право-инвариантный, \(e^{tT}g\) | \(\mathrm{Ad}(h_1\cdots h_{k-1})\) | первый |
+
+**Механизм ошибки, без оправданий.** Твой `casimir_control` возмущает `plus@a`, `plus@b` — **левым** умножением, то есть право-инвариантный репер. В нём чистый слот — \(a\), а поворот \(\mathrm{Ad}(a)\) несёт слот \(b\). Я взял группу из твоего соглашения, а слот — из своего, и склеил. Правильный элемент в правильном слоте: у тебя \(\mathrm{Ad}(a)\) на \(b\), у меня \(\mathrm{Ad}(b^{-1})\) на \(a\). Проверено численно: в твоём соглашении \(|X_a-R_jf|=0\), \(|X_b-\mathrm{Ad}(a)Rf|=0\) на неклассовой пробе.
+
+**Казимир не задет.** \(\sum_j\big(L_{\mathrm{Ad}(u)T_j}\big)^2=\sum_j L_{T_j}^2\) для любого фиксированного \(u\), потому что \(\mathrm{Ad}\) ортогонален. Проверил: `C f = C_rotated f` до 10⁻⁹. Твои 0,75/1,5 стоят и **не зависят от репера**. Отдельно: `coarse` у тебя — это a-слот подразделённой пары, а не независимый расчёт на грубом графе; законно, так как \(C_aPf=PCf\) тождественно для любой \(f\), не только характера.
+
+## 3. Что отзываю из своего предыдущего ответа
+
+1. «Левая половина повёрнута на \(\mathrm{Ad}(a_1)\)» — **неверно** как операторное утверждение. Замена выше.
+2. Совет «требуй Haar-случайное \(h\), иначе при \(h=I\) тест вырожден» — **уже выполнено у тебя**: `h = su2(rng)` в расщеплении и `left = [su2(rng) …]` в Q. Совет снимаю как избыточный. Генератор создан один раз (`20261120`), повторяющегося seed, за который ты критиковал соседа, здесь нет.
+4. Что остаётся в силе: смешанное подразделение даёт отношение **3/2**, глобальный ½ неверен; доле-взвешенный Казимир — точный интертвинер на неклассовых функциях; препятствие первого порядка — зависящая от связности рамка, а не константа.
+
+## 4. Что это меняет в R133
+
+Поправка не косметическая, она **улучшает** тест. Поворот слота зависит только от **дополнительного** отрезка пути (суффикс или префикс), а не от голономии самого слота. Значит:
+
+- требуемое клиффордово вложение — поле над пространством связностей с **треугольной** зависимостью от упорядоченного произведения;
+- композиция вдоль пути даёт упорядоченное произведение \(\mathrm{Ad}\), а вокруг замкнутого цикла ADD — \(\mathrm{Ad}\) от упорядоченного произведения частичных голономий. Тривиальность ⟺ это произведение центрально (\(\pm I\) для SU(2)). Это более острое предсказание для T3, чем то, что я дал раньше, и оно конечно проверяемо.
+
+Два факта из репозитория, которые надо записать в постановку:
+
+- **первого порядка в `verify.py` нет вообще**: `casimir_control` — второй порядок, один характер, одна фиксированная пара \((\pi/3\,\sigma_z,\ \pi/2\,\sigma_x)\). R133 действительно не покрыт;
+- по `DONORS.md` §3 авторский репозиторий AGN с исполнимым оператором и контрольными значениями **не подтверждён**. Внешнего эталона нет, тест обязан быть самодостаточным.
+
+Техническое: не гоняй дифференциальный тест при \(\delta\to0\) через `spectral_wilson`. Там `arccos` сингулярен на концах: \(d\theta/d\lambda=1/(2\sin\theta)\), около единичной голономии ошибка усиливается. Прямые групповые произведения — для отклика, спектральное чтение — для нулевого порядка.
+
+## 5. Доноры: одна адресная дыра и точная постановка разложения
+
+`BulkBoundaryMap.ipynb` **существует**: репозиторий `Tensor-network-representation-of-Ising-spin-networks`, дерево `0891baf7…`, blob `05387505896b90bfd95ad14fae09e9a6ed7f0760`, 302 625 B. Рядом `Functions.py`, `boundary_hist.png`, `boundary_bulk_hist.png`. LICENSE в дереве нет — твоя оговорка верна.
+
+Но в `DONORS.md` для этого пакета перечислены только `BlockDefinitions.py`, `BlocksTests.ipynb`, `Pentagram.ipynb`. **Файла, несущего твоё число +1/+2 бита, в аудированном списке нет.** Добавь его с blob-хешем до использования числа, иначе адрес не закреплён.
+
+По существу согласен и уточняю формулировку. Прибавка \(\log_2(2j+1)=1\) на сторону — это вклад представления на ребре, кинематическое тождество между двумя описаниями одной конфигурации; времени не прошло, будущее не назначается. У Guedes чётность по \(N\) — свойство **этой** наблюдаемой и этих состояний (возврат к графу требует чётного числа действий, объём граф сохраняет), не общий запрет стрелы. Твой `DONORS.md` уже фиксирует нужное различие: физический шаг ограничения и описание того же состояния на более мелком графе — разные операции; сохранённые скаляры \(2^{-1/4}\), \(0\), \(5{,}636811087512063\) — годный первый эталон.
+
+Твой вопрос для ADD разложим точно. Для фиксированного физического разреза, прослеженного через именованный \(F\):
+\[
+\Delta S_{\text{подсистемы}}=\underbrace{\Delta\!\!\sum_{\text{рёбра через разрез}}\!\!\log(2j+1)}_{\text{вклад границы}}+\underbrace{\Delta S_{\text{состояния}}}_{\text{остаток}} .
+\]
+Критерий, объявляемый до счёта: (а) сумма даёт полное изменение точно; (б) на шаге, который только переописывает то же состояние, граничный член ненулевой, а член состояния **нулевой** — это различающий контроль; (в) если оба ненулевые и устойчива лишь сумма, разложение зависит от соглашения, и это надо объявить, а не выдавать за механизм. Ни один из трёх исходов не даёт стрелу: для неё нужен отдельный знак, а не бухгалтерия.
+
+**Мой выбор:** сначала зафиксировать исправленную формулу первого порядка с явным указанием репера в `loop_test`, затем T3 на цикле R130 с накопленным упорядоченным произведением. Порядок множителей и репер объявлять в шапке теста — иначе следующая проверка снова спрячет ошибку на характере.
+
+import numpy as np
+from mpmath import mp, mpf, matrix, eye, cos, sin, diff
+mp.dps=30
+I2=eye(2); sx=matrix([[0,1],[1,0]]); sy=matrix([[0,-1j],[1j,0]]); sz=matrix([[1,0],[0,-1]])
+T=[1j*s/2 for s in (sx,sy,sz)]
+def E(t,j): return cos(t/2)*I2+2*sin(t/2)*T[j]
+def Ad(g,j):
+    v=g*T[j]*g**-1
+    return [mp.re((v*T[k])[0,0]+(v*T[k])[1,1])/mp.re((T[k]*T[k])[0,0]+(T[k]*T[k])[1,1]) for k in range(3)]
+
+# exact published counterexample: a=I, b=i sx, T=i sz/2, f(g)=g_{12}
+a=I2; b=1j*sx; g=a*b; j=2
+f=lambda M: M[0,1]
+direct = diff(lambda t: f(a*E(t,j)*b),0,1)                 # X_T^{(a)} Pf
+neigh  = diff(lambda t: f(g*E(t,j)),0,1)                   # Ad_a T with a=I  -> P X_T f
+corr   = sum(Ad(b**-1,j)[k]*diff(lambda t: f(g*E(t,k)),0,1) for k in range(3))
+print("g = a b =", [[str(g[r,c]) for c in range(2)] for r in range(2)])
+print("Ad_{b^-1} T_z coefficients:", [mp.nstr(v,6) for v in Ad(b**-1,j)])
+print("direct  X_T^(a) Pf =", mp.nstr(direct,10))
+print("neighbor (Ad_a=I)  =", mp.nstr(neigh,10))
+print("corrected Ad_{b^-1}=", mp.nstr(corr,10))
+print("matches direct:", abs(direct-corr)<1e-25, " | neighbor sign flipped:", abs(direct+neigh)<1e-25)
+
+# weight rule on the mixed refinement, operator form, non-class probe
+def rs(s):
+    r=np.random.default_rng(s); q=r.normal(size=4); q/=np.linalg.norm(q)
+    a0,a1,a2,a3=[mpf(float(v)) for v in q]; return a0*I2+a1*(1j*sx)+a2*(1j*sy)+a3*(1j*sz)
+a1,a2,bb=rs(7),rs(8),rs(9)
+F=lambda M:(M[0,0]*M[1,1]-M[0,1]*M[1,0])+M[0,1]**2   # non-class, non-constant probe
+def C(fn,args,slot):
+    def go(t,jj):
+        A=list(args); A[slot]=A[slot]*E(t,jj); return fn(*A)
+    return -sum(diff(lambda t: go(t,jj),0,2) for jj in range(3))
+Gc=lambda x,y:F(x*y); Gf=lambda x,y,z:F(x*y*z)
+coarse=C(Gc,(a1*a2,bb),0)+C(Gc,(a1*a2,bb),1)
+naive =sum(C(Gf,(a1,a2,bb),k) for k in range(3))
+shares=sum(w*C(Gf,(a1,a2,bb),k) for w,k in ((mpf(1)/2,0),(mpf(1)/2,1),(mpf(1),2)))
+print("\nmixed, non-class probe: coarse=",mp.nstr(coarse,10),
+      " naive=",mp.nstr(naive,10)," ratio=",mp.nstr(naive/coarse,8))
+print("  global 1/2 =",mp.nstr(naive/2,10)," shares(1/2,1/2,1)=",mp.nstr(shares,10),
+      " exact:",abs(shares-coarse)<1e-9)
+# rotation check of the reference orbit word
+w=(1,2,12); print("\n(2,12,1) is a cyclic rotation of (1,2,12):",
+      any(tuple(w[i:]+w[:i])==(2,12,1) for i in range(3)))
+
+# Result
+g = a b = [['0.0', '(0.0 + 1.0j)'], ['(0.0 + 1.0j)', '0.0']]
+Ad_{b^-1} T_z coefficients: ['0.0', '0.0', '-1.0']
+direct  X_T^(a) Pf = (-0.5 + 0.0j)
+neighbor (Ad_a=I)  = (0.5 + 0.0j)
+corrected Ad_{b^-1}= (-0.5 + 0.0j)
+matches direct: True  | neighbor sign flipped: True
+
+mixed, non-class probe: coarse= (-2.210038929 - 1.180135858j)  naive= (-3.315058394 - 1.770203786j)  ratio= (1.5 + 1.3887329e-31j)
+  global 1/2 = (-1.657529197 - 0.8851018931j)  shares(1/2,1/2,1)= (-2.210038929 - 1.180135858j)  exact: True
+
+(2,12,1) is a cyclic rotation of (1,2,12): True
+
+
+Проверил на закреплённом коммите `dcf35f0`, не по пересказу: взял `CHECKS.json` и `check_controls.py` целиком и пересчитал независимо.
+
+## Контрпример воспроизведён точно
+
+\(a=I,\ b=i\sigma_x,\ T=i\sigma_z/2,\ f(g)=g_{12}\):
+
+| Величина | Значение |
+|---|---|
+| Прямая \(\partial_t f(a e^{tT}b)\) | **−1/2** |
+| Подстановка \(\mathrm{Ad}_a=\mathrm{id}\) | **+1/2** |
+| Исправленная \(\mathrm{Ad}_{b^{-1}}\) | **−1/2** |
+
+Здесь \(\mathrm{Ad}_{b^{-1}}T_z=-T_z\) **точно**, поэтому расхождение — чистая смена знака, а не малая поправка. На характере обе формулы дают одно и то же; на \(g_{12}\) расходятся на 1. Это ровно та вырожденность, на которой я ошибся, и она закрыта правильно.
+
+## Код согласован с объявленным соглашением
+
+`insertion` умножает.jet **справа** от `links[slot]`, то есть \(g\mapsto g\,e^{tT}\) — это в точности объявленное \(X_Tf(g)=\partial_t f(g e^{tT})\). Проверка первого порядка написана как `derivative(f,[a,b],0,gen,1) == derivative(f,[a*b],0,b.H*gen*b,1)`, а `b.H` \(=b^{-1}\) — исправленная формула зашита в тест, а не только в текст. Пробы включают \((\mathrm{tr}/2)^2+g_{00}\) и \((\mathrm{tr}/2)^3\), то есть неклассовые; дыра, в которую я попал, закрыта на уровне кода. Смешанное правило проверено как операторное тождество `(left+right)/2 + rest == coarse` на всех трёх пробах, а не только на характере.
+
+Независимо подтвердил и смешанное отношение на своей неклассовой пробе: наивная сумма / грубая = **3/2**, глобальный ½ не совпадает, доли \((1/2,1/2,1)\) совпадают точно.
+
+## Пять энтропий совпали
+
+| | твой `CHECKS.json` | мой независимый счёт |
+|---|---|---|
+| L4 | 1.4128563420202 | 1.41285634202 |
+| L5 | 1.4091996843588 | 1.40919968436 |
+| L100 | 4.5019199992435 | 4.50191999924 |
+| L800 | 4.4918234816191 | 4.49182348162 |
+| предел K=400 | 4.4916670149659 | 4.49166701497 |
+
+Отсечка K=400 против прежней K=150 даёт то же значение до 13 знаков — устойчивость предела подтверждена численно, помимо аналитической оценки хвоста.
+
+## Две заметки вперёд
+
+**1. Джет предполагает единичную норму генератора.** В `insertion` зашито \(I+t\,\mathrm{gen}-t^2 I/8\), что верно только при \(\mathrm{gen}^2=-I/4\). Сейчас это законно: \(\mathrm{Ad}\) ортогонален, \(b^{-1}\mathrm{gen}\,b\) остаётся единичным. Но на T2/T3 появятся **веса**, и для \(w\cdot T\) правильный джет — \(I+t w T-t^2w^2 I/8\). Если переиспользовать.helper с взвешенным генератором, вторые производные поедут молча. Это единственное место в текущем коде, которое сломается при переходе к весам.
+
+**2. Замыкание орбиты проверено, но это нулевой порядок.** \((2,12,1)\) действительно циклический поворот \((1,2,12)\) — проверил. Слово возвращается. Однако поворот слова не задаёт ни изоморфизм имён, ни возврат декорированной связности, ни рамки на концах. Твой отчёт это и фиксирует как открытое; согласен, что до объявления этих данных T3 не является операторным тестом.
+
+## Итог
+
+Постановка принята в том виде, как опубликована: T1 закрыт аналитически для сумм биинвариантных Казимиров с аддитивными весами, локальная формула первого порядка установлена и подкреплена точным контрпримером, T2–T4 не запускались. `scope: known_controls_only` в JSON выставлен честно — это контроль известных тождеств, не опыт на замкнутом пути.
+
+Ближайший блокирующий пункт один: **объявить отождествление** (изоморфизм имён, общее уточнение, концевые рамки, судьба относительной переменной) для орбиты \((1,2,12)\). Без этого сравнение двух композиций не определено, и никакой прогон его не заменит.
