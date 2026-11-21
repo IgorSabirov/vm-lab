@@ -92,3 +92,5 @@ cmp /tmp/r135-offline.json evidence.json
 [rates]: https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nuclear_covariance.py
 
 [Разработка #174 после разбора доноров](GW_SOURCE_174.md) уточняет этап превращения. Из существующего ансамбля P7 выделены реальные центры и первые контакты. Проверены вход SU(3) в SNOBEX и временная тензорная свёртка, определены недостающие данные для первой подготовки XB.
+
+[Подробный разбор четырёх моделей и отрицательного контроля](NEIGHBOR_MODELS.md) связывает калибровку SU(3) и завершение перехода с #174, даёт точный SU(3)-пример для #164/#165 и проверку изотопной ковариации для #176/#179. [Числа](neighbor_model_checks.json) · [код](replay_neighbor_models.py)
