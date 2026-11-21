@@ -407,7 +407,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         for value in reversed(values):
             commit(value['sha'])
 
-    def body(item, kind, identifier, operation=None, baseline=False, event_revision=None):
+    def body(item, kind, identifier, operation=None, baseline=False, event_revision=None, parent_number=None):
         if own_comment(item):
             ignored.append({'kind': 'generated_comment', 'id': identifier})
             return
@@ -420,7 +420,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         revision = (event_revision or now) if kind == 'pull_request_review' else (
             item.get('updated_at') or item.get('submitted_at') or item.get('created_at'))
         add(identifier, kind, text, revision,
-            item.get('html_url') or '', state=item.get('state'), operation=operation or 'snapshot', baseline=baseline)
+            item.get('html_url') or '', state=item.get('state'), operation=operation or 'snapshot', baseline=baseline, number=item.get('number') or parent_number)
 
     def discussion(issue, force=False):
         number = int(issue['number'])
@@ -479,7 +479,8 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
                  'deleted' if event.get('action') == 'deleted' and event_name == 'issues' else None)
         if event_name == 'issue_comment' and not implementation:
             body(event['comment'], 'issue_comment', 'issue-comment:' + str(event['comment']['id']),
-                 'deleted' if event.get('action') == 'deleted' else None)
+                 'deleted' if event.get('action') == 'deleted' else None,
+                 parent_number=event.get('issue', {}).get('number'))
     elif event_name in {'pull_request', 'pull_request_review', 'pull_request_review_comment'}:
         pr = event['pull_request']
         if pr['head']['ref'] == IMPLEMENTATION_BRANCH:
