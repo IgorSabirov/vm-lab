@@ -1,0 +1,262 @@
+{
+  "status": "ARCHIVE_HANDOFF_AND_EXECUTION_AUDITED",
+  "archive_sha256": "9c8dbd35ed7bd868811157aec72f90cc200ddcd3a1571be7720e58dc4517bc2b",
+  "artifact_sha256": "4afd034c06145fdc270bf67663e4a3e1db3ee62e49ae62be17f758a660c06517",
+  "source_payload_commit": "9e53090e6f288d16adc692e57a22ab7326459bf9",
+  "executed_commit": "2c6f647ee4c9b87bc2918c6bf9a87e18b67a16a7",
+  "compared_result_commit": "d2d0252f4237087552e61cb69894ad3fd6dec0aa",
+  "run_id": 44082471150,
+  "artifact_id": 14328360959,
+  "archive_files": 161,
+  "archive_manifest_verified": 160,
+  "artifact_files_verified_against_committed_git_blobs": 144,
+  "executed_analysis_files": 117,
+  "unchanged_input_files": 11,
+  "copied_reference_files": 14,
+  "archive_coverage": {
+    "not_in_handoff": 40,
+    "output_regenerated": 106,
+    "input_copied": 11,
+    "reference_document_copied": 4
+  },
+  "omissions_by_class": {
+    "archive_packaging_and_historical_publication_status": 5,
+    "earlier_operator_package": 10,
+    "historical_execution_receipt_log_or_manifest": 14,
+    "duplicate_raw_container_or_manifest": 2,
+    "bibliography": 1,
+    "historical_registry_snapshot": 4,
+    "local_execution_wrapper_or_embedded_bundle": 4
+  },
+  "raw_decoded_equal": 91,
+  "raw_encoded_equal": 30,
+  "duplicate_tar_members_verified": 91,
+  "json_compared_files": 46,
+  "json_difference_counts": {
+    "runtime_environment_or_forecast": 80,
+    "derived_status_added": 15,
+    "execution_history": 1
+  },
+  "json_exact_comparison_no_tolerance": true,
+  "png_pixels_equal": true,
+  "png_size": [
+    2250,
+    1200
+  ],
+  "svg_equal_after_id_and_metadata_normalization": true,
+  "long_trajectory_csv_files": 30,
+  "long_transition_counts": {
+    "4096": 28,
+    "16384": 2
+  },
+  "long_transitions_including_extensions": 147456,
+  "exhaustive_csv_rows": 10920,
+  "bundle_rows": [
+    {
+      "name": "SPEC.json",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "PLAN.json",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "ring_engine.py",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "graph_engine.py",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "run_block1.py",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "SOURCE_MANIFEST.sha256",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    },
+    {
+      "name": "RESULTS.json",
+      "matches_earlier_author_package": true,
+      "matches_local_package": false
+    },
+    {
+      "name": "WITNESSES.json",
+      "matches_earlier_author_package": true,
+      "matches_local_package": true
+    }
+  ],
+  "embedded_payload_matches_json_bundle": true,
+  "earlier_author_results_differences": [
+    {
+      "path": "/elapsed_seconds",
+      "kind": "changed",
+      "old": 7.771495005000361,
+      "new": 7.7961218589989585
+    },
+    {
+      "path": "/environment/meminfo/1",
+      "kind": "changed",
+      "old": "MemFree:         9756260 kB",
+      "new": "MemFree:         9734460 kB"
+    },
+    {
+      "path": "/environment/meminfo/2",
+      "kind": "changed",
+      "old": "MemAvailable:    9619372 kB",
+      "new": "MemAvailable:    9601064 kB"
+    },
+    {
+      "path": "/measured_at_utc",
+      "kind": "changed",
+      "old": "2026-11-17T08:11:58.127545+00:00",
+      "new": "2026-11-17T09:32:51.730985+00:00"
+    },
+    {
+      "path": "/peak_rss_kib",
+      "kind": "changed",
+      "old": 17788,
+      "new": 17792
+    },
+    {
+      "path": "/runtime_plan_actual/actual_seconds",
+      "kind": "changed",
+      "old": 7.771495005000361,
+      "new": 7.7961218589989585
+    },
+    {
+      "path": "/runtime_plan_actual/forecast_seconds",
+      "kind": "changed",
+      "old": 10.120808919027468,
+      "new": 11.89711312727377
+    },
+    {
+      "path": "/runtime_plan_actual/range_seconds/0",
+      "kind": "changed",
+      "old": 5.060404459513734,
+      "new": 5.948556563636885
+    },
+    {
+      "path": "/runtime_plan_actual/range_seconds/1",
+      "kind": "changed",
+      "old": 30.362426757082403,
+      "new": 35.69133938182131
+    },
+    {
+      "path": "/runtime_plan_actual/ratio",
+      "kind": "changed",
+      "old": 0.7678729108687828,
+      "new": 0.6552952615980919
+    }
+  ],
+  "receipt": {
+    "status": "COMPLETE_REVIEW_DIFFERENCES",
+    "executor": "GitHub Actions, invoked by native Copilot CLI",
+    "source_commit": "2c6f647ee4c9b87bc2918c6bf9a87e18b67a16a7",
+    "source_payload_commit": "9e53090e6f288d16adc692e57a22ab7326459bf9",
+    "run_id": "44082471150",
+    "resume": false,
+    "environment": {
+      "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+      "numpy": "2.3.5",
+      "matplotlib": "3.10.7",
+      "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+      "machine": "x86_64",
+      "cpu_count": 4
+    },
+    "commands": [
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 1.6411293560000786,
+        "cpu_seconds": 1.640365
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_LOCAL_REPRO_20261117/run_block1.py",
+          "--calibrate"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.15929872200001682,
+        "cpu_seconds": 0.15901400000000004
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_LOCAL_REPRO_20261117/run_block1.py",
+          "--run"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 7.62504839099995,
+        "cpu_seconds": 7.623819999999999
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/run_science.py",
+          "--calibrate"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.7459124089999705,
+        "cpu_seconds": 1.0043490000000008
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/run_science.py",
+          "--run"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 49.760633295999924,
+        "cpu_seconds": 50.051891999999995
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/verify_results.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 0.6419324800000368,
+        "cpu_seconds": 0.6414020000000042
+      },
+      {
+        "argv": [
+          "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python",
+          "ADD_C1_SCIENCE_20261117/plot_results.py"
+        ],
+        "exit_code": 0,
+        "wall_seconds": 3.0521362119999367,
+        "cpu_seconds": 1.7872890000000003
+      }
+    ],
+    "historical_metadata_note": "Copied scientific scripts retain historical platform/timing strings; this receipt identifies the actual clean GitHub execution.",
+    "scope": {
+      "blocks": 3,
+      "operator_inputs": 6032,
+      "named_inputs": 5460,
+      "short_trajectories": 10920,
+      "short_steps": 1397760,
+      "long_trajectories_including_extensions": 30,
+      "long_steps_including_extensions": 147456
+    },
+    "orchestration_wall_seconds": 63.65999775099999,
+    "code_wall_seconds": 63.62609086599991,
+    "preparation_and_publication_excluded": true
+  },
+  "limits": [
+    "Compares the supplied final local archive; does not recover unrecorded original process state.",
+    "No new scientific execution or independent model implementation was performed.",
+    "Files absent from this handoff may exist elsewhere in repository history; this audit makes no repository-wide absence claim."
+  ]
+}
