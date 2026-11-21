@@ -1,0 +1,2049 @@
+{
+  "status": "TARGET_VM_CALIBRATION_PASS",
+  "manifest_digest": "ae6e6028c3ceec3ca743fc5b38418a5537f48d6d1ab69dbfd3b448535420ecd1",
+  "workload_digest": "3081a51a1676b4b9734ba3f20e5ac08c536aee0b7b193b9cfaf9d6a3a37f0f18",
+  "expected_seconds": 16.81260297169095,
+  "lower_seconds": 4.344119570664482,
+  "upper_seconds": 36.81260297169095,
+  "hard_wall_seconds": 1800,
+  "setup_seconds": 0.028795507998438552,
+  "task_seconds": 14.20161825747275,
+  "report_allowance_seconds": 2.394230769230769,
+  "range_reason": "Engineering interval: 0.25x lower catches gross early exit; upper max(2x,+20s) covers short-task I/O/solver variability. Not a confidence interval.",
+  "formula": "setup + sum(actual task counts times same-dimension measured costs) + report allowance; per-task timing includes state/JSON writes",
+  "terms": [
+    {
+      "task_id": "t0000",
+      "seconds": 0.05910582299111411,
+      "references": [
+        "t0000"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0001",
+      "seconds": 0.06992546399123967,
+      "references": [
+        "t0001"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0002",
+      "seconds": 0.08839109999826178,
+      "references": [
+        "t0002"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0003",
+      "seconds": 0.10361451801145449,
+      "references": [
+        "t0003"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0004",
+      "seconds": 0.2542423400154803,
+      "references": [
+        "t0004"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0005",
+      "seconds": 0.25904533799621277,
+      "references": [
+        "t0005"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0006",
+      "seconds": 0.053614222997566685,
+      "references": [
+        "t0006"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0007",
+      "seconds": 0.06361703400034457,
+      "references": [
+        "t0007"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0008",
+      "seconds": 0.08269362497958355,
+      "references": [
+        "t0008"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0009",
+      "seconds": 0.09374410900636576,
+      "references": [
+        "t0009"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0010",
+      "seconds": 0.2372666930023115,
+      "references": [
+        "t0010"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0011",
+      "seconds": 0.2536832749901805,
+      "references": [
+        "t0011"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0012",
+      "seconds": 0.05388294401927851,
+      "references": [
+        "t0012"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0013",
+      "seconds": 0.06403094698907807,
+      "references": [
+        "t0013"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0014",
+      "seconds": 0.08201338499202393,
+      "references": [
+        "t0014"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0015",
+      "seconds": 0.09383580999565311,
+      "references": [
+        "t0015"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0016",
+      "seconds": 0.23780924300081097,
+      "references": [
+        "t0016"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0017",
+      "seconds": 0.2540657799982,
+      "references": [
+        "t0017"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0018",
+      "seconds": 0.056611147010698915,
+      "references": [
+        "t0018"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0019",
+      "seconds": 0.0697794700099621,
+      "references": [
+        "t0019"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0020",
+      "seconds": 0.0840581720112823,
+      "references": [
+        "t0020"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0021",
+      "seconds": 0.09924833901459351,
+      "references": [
+        "t0021"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0022",
+      "seconds": 0.24209647098905407,
+      "references": [
+        "t0022"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0023",
+      "seconds": 0.2608251400233712,
+      "references": [
+        "t0023"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0024",
+      "seconds": 0.0008071939810179174,
+      "references": [
+        "t0024"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0025",
+      "seconds": 0.000704448000760749,
+      "references": [
+        "t0025"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0026",
+      "seconds": 0.0006572350102942437,
+      "references": [
+        "t0026"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0027",
+      "seconds": 0.0006369040056597441,
+      "references": [
+        "t0027"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0028",
+      "seconds": 0.0006563130009453744,
+      "references": [
+        "t0028"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0029",
+      "seconds": 0.0006700250087305903,
+      "references": [
+        "t0029"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0030",
+      "seconds": 0.06589336600154638,
+      "references": [
+        "t0030"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0031",
+      "seconds": 0.08384747098898515,
+      "references": [
+        "t0031"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0032",
+      "seconds": 0.09366231301100925,
+      "references": [
+        "t0032"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0033",
+      "seconds": 0.11158672298188321,
+      "references": [
+        "t0033"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0034",
+      "seconds": 0.22816559099010192,
+      "references": [
+        "t0034"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0035",
+      "seconds": 0.24878927902318537,
+      "references": [
+        "t0035"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0036",
+      "seconds": 0.06606951600406319,
+      "references": [
+        "t0036"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0037",
+      "seconds": 0.08419593301368877,
+      "references": [
+        "t0037"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0038",
+      "seconds": 0.09387715300545096,
+      "references": [
+        "t0038"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0039",
+      "seconds": 0.11171136301709339,
+      "references": [
+        "t0039"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0040",
+      "seconds": 0.22962718701455742,
+      "references": [
+        "t0040"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0041",
+      "seconds": 0.24996271397685632,
+      "references": [
+        "t0041"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0042",
+      "seconds": 0.0661706899991259,
+      "references": [
+        "t0042"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0043",
+      "seconds": 0.08416473597753793,
+      "references": [
+        "t0043"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0044",
+      "seconds": 0.0940433070063591,
+      "references": [
+        "t0044"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0045",
+      "seconds": 0.11152047201176174,
+      "references": [
+        "t0045"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0046",
+      "seconds": 0.2287241659942083,
+      "references": [
+        "t0046"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0047",
+      "seconds": 0.249667641997803,
+      "references": [
+        "t0047"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0048",
+      "seconds": 0.06614202598575503,
+      "references": [
+        "t0048"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0049",
+      "seconds": 0.0840136339829769,
+      "references": [
+        "t0049"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0050",
+      "seconds": 0.09430408600019291,
+      "references": [
+        "t0050"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0051",
+      "seconds": 0.11178773999563418,
+      "references": [
+        "t0051"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0052",
+      "seconds": 0.22932802900322713,
+      "references": [
+        "t0052"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0053",
+      "seconds": 0.2497104579815641,
+      "references": [
+        "t0053"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0054",
+      "seconds": 0.0008368199924007058,
+      "references": [
+        "t0054"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0055",
+      "seconds": 0.0006529689999297261,
+      "references": [
+        "t0055"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0056",
+      "seconds": 0.0006446059851441532,
+      "references": [
+        "t0056"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0057",
+      "seconds": 0.0006729899905622005,
+      "references": [
+        "t0057"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0058",
+      "seconds": 0.0007068809936754405,
+      "references": [
+        "t0058"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0059",
+      "seconds": 0.0007073220040183514,
+      "references": [
+        "t0059"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0060",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0061",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0062",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0063",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0064",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0065",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0066",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0067",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0068",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0069",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0070",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0071",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0072",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0073",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0074",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0075",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0076",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0077",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0078",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0079",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0080",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0081",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0082",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0083",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0084",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0085",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0086",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0087",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0088",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0089",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0090",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0091",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0092",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0093",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0094",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0095",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0096",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0097",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0098",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0099",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0100",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0101",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0102",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0103",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0104",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0105",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0106",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0107",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0108",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0109",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0110",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0111",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0112",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0113",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0114",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0115",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0116",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0117",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0118",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0119",
+      "seconds": 0.0004375689895823598,
+      "references": [
+        "t0060"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0120",
+      "seconds": 0.0596997601597449,
+      "references": [
+        "t0000"
+      ],
+      "multiplier": 1.0100487082079896
+    },
+    {
+      "task_id": "t0121",
+      "seconds": 0.07062812457519592,
+      "references": [
+        "t0001"
+      ],
+      "multiplier": 1.0100487082079896
+    },
+    {
+      "task_id": "t0122",
+      "seconds": 0.08927931637032754,
+      "references": [
+        "t0002"
+      ],
+      "multiplier": 1.0100487082079896
+    },
+    {
+      "task_id": "t0123",
+      "seconds": 0.10465571006906309,
+      "references": [
+        "t0003"
+      ],
+      "multiplier": 1.0100487082079896
+    },
+    {
+      "task_id": "t0124",
+      "seconds": 0.25679714710441237,
+      "references": [
+        "t0004"
+      ],
+      "multiplier": 1.0100487082079896
+    },
+    {
+      "task_id": "t0125",
+      "seconds": 0.2616484090103768,
+      "references": [
+        "t0125"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0126",
+      "seconds": 0.053663338302255954,
+      "references": [
+        "t0006"
+      ],
+      "multiplier": 1.0009160872235618
+    },
+    {
+      "task_id": "t0127",
+      "seconds": 0.06367531275239319,
+      "references": [
+        "t0007"
+      ],
+      "multiplier": 1.0009160872235618
+    },
+    {
+      "task_id": "t0128",
+      "seconds": 0.08276937955289736,
+      "references": [
+        "t0008"
+      ],
+      "multiplier": 1.0009160872235618
+    },
+    {
+      "task_id": "t0129",
+      "seconds": 0.09382998678691068,
+      "references": [
+        "t0009"
+      ],
+      "multiplier": 1.0009160872235618
+    },
+    {
+      "task_id": "t0130",
+      "seconds": 0.2374840499883477,
+      "references": [
+        "t0010"
+      ],
+      "multiplier": 1.0009160872235618
+    },
+    {
+      "task_id": "t0131",
+      "seconds": 0.25391567099723034,
+      "references": [
+        "t0131"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0132",
+      "seconds": 0.05374793157096861,
+      "references": [
+        "t0012"
+      ],
+      "multiplier": 0.9974943379437174
+    },
+    {
+      "task_id": "t0133",
+      "seconds": 0.0638705070747797,
+      "references": [
+        "t0013"
+      ],
+      "multiplier": 0.9974943379437174
+    },
+    {
+      "task_id": "t0134",
+      "seconds": 0.08180788716514212,
+      "references": [
+        "t0014"
+      ],
+      "multiplier": 0.9974943379437174
+    },
+    {
+      "task_id": "t0135",
+      "seconds": 0.09360068916702646,
+      "references": [
+        "t0015"
+      ],
+      "multiplier": 0.9974943379437174
+    },
+    {
+      "task_id": "t0136",
+      "seconds": 0.23721337340399057,
+      "references": [
+        "t0016"
+      ],
+      "multiplier": 0.9974943379437174
+    },
+    {
+      "task_id": "t0137",
+      "seconds": 0.2534291770134587,
+      "references": [
+        "t0137"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0138",
+      "seconds": 0.05637287807073353,
+      "references": [
+        "t0018"
+      ],
+      "multiplier": 0.9957911303242036
+    },
+    {
+      "task_id": "t0139",
+      "seconds": 0.06948577731464403,
+      "references": [
+        "t0019"
+      ],
+      "multiplier": 0.9957911303242036
+    },
+    {
+      "task_id": "t0140",
+      "seconds": 0.08370438212010113,
+      "references": [
+        "t0020"
+      ],
+      "multiplier": 0.9957911303242036
+    },
+    {
+      "task_id": "t0141",
+      "seconds": 0.09883061569014183,
+      "references": [
+        "t0021"
+      ],
+      "multiplier": 0.9957911303242036
+    },
+    {
+      "task_id": "t0142",
+      "seconds": 0.2410775184936909,
+      "references": [
+        "t0022"
+      ],
+      "multiplier": 0.9957911303242036
+    },
+    {
+      "task_id": "t0143",
+      "seconds": 0.2597273610008415,
+      "references": [
+        "t0143"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0144",
+      "seconds": 0.0009854048814606075,
+      "references": [
+        "t0024"
+      ],
+      "multiplier": 1.220778282090206
+    },
+    {
+      "task_id": "t0145",
+      "seconds": 0.0008599748201905873,
+      "references": [
+        "t0025"
+      ],
+      "multiplier": 1.220778282090206
+    },
+    {
+      "task_id": "t0146",
+      "seconds": 0.0008023382267965457,
+      "references": [
+        "t0026"
+      ],
+      "multiplier": 1.220778282090206
+    },
+    {
+      "task_id": "t0147",
+      "seconds": 0.0007775185778856733,
+      "references": [
+        "t0027"
+      ],
+      "multiplier": 1.220778282090206
+    },
+    {
+      "task_id": "t0148",
+      "seconds": 0.0008012126578075618,
+      "references": [
+        "t0028"
+      ],
+      "multiplier": 1.220778282090206
+    },
+    {
+      "task_id": "t0149",
+      "seconds": 0.0008179519791156054,
+      "references": [
+        "t0149"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0150",
+      "seconds": 0.06541667422153724,
+      "references": [
+        "t0030"
+      ],
+      "multiplier": 0.9927657090700457
+    },
+    {
+      "task_id": "t0151",
+      "seconds": 0.08324089399010993,
+      "references": [
+        "t0031"
+      ],
+      "multiplier": 0.9927657090700457
+    },
+    {
+      "task_id": "t0152",
+      "seconds": 0.09298473258951516,
+      "references": [
+        "t0032"
+      ],
+      "multiplier": 0.9927657090700457
+    },
+    {
+      "task_id": "t0153",
+      "seconds": 0.11077947216391205,
+      "references": [
+        "t0033"
+      ],
+      "multiplier": 0.9927657090700457
+    },
+    {
+      "task_id": "t0154",
+      "seconds": 0.22651497472467455,
+      "references": [
+        "t0034"
+      ],
+      "multiplier": 0.9927657090700457
+    },
+    {
+      "task_id": "t0155",
+      "seconds": 0.24698946499847807,
+      "references": [
+        "t0155"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0156",
+      "seconds": 0.06533127912326238,
+      "references": [
+        "t0036"
+      ],
+      "multiplier": 0.9888263616044136
+    },
+    {
+      "task_id": "t0157",
+      "seconds": 0.0832551581038148,
+      "references": [
+        "t0037"
+      ],
+      "multiplier": 0.9888263616044136
+    },
+    {
+      "task_id": "t0158",
+      "seconds": 0.09282820364416092,
+      "references": [
+        "t0038"
+      ],
+      "multiplier": 0.9888263616044136
+    },
+    {
+      "task_id": "t0159",
+      "seconds": 0.11046314064206231,
+      "references": [
+        "t0039"
+      ],
+      "multiplier": 0.9888263616044136
+    },
+    {
+      "task_id": "t0160",
+      "seconds": 0.22706141586106107,
+      "references": [
+        "t0040"
+      ],
+      "multiplier": 0.9888263616044136
+    },
+    {
+      "task_id": "t0161",
+      "seconds": 0.24716972099849954,
+      "references": [
+        "t0161"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0162",
+      "seconds": 0.06520216955663392,
+      "references": [
+        "t0042"
+      ],
+      "multiplier": 0.9853633014480465
+    },
+    {
+      "task_id": "t0163",
+      "seconds": 0.08293284210832995,
+      "references": [
+        "t0043"
+      ],
+      "multiplier": 0.9853633014480465
+    },
+    {
+      "task_id": "t0164",
+      "seconds": 0.0926668234708782,
+      "references": [
+        "t0044"
+      ],
+      "multiplier": 0.9853633014480465
+    },
+    {
+      "task_id": "t0165",
+      "seconds": 0.10988818048055402,
+      "references": [
+        "t0045"
+      ],
+      "multiplier": 0.9853633014480465
+    },
+    {
+      "task_id": "t0166",
+      "seconds": 0.2253763993250041,
+      "references": [
+        "t0046"
+      ],
+      "multiplier": 0.9853633014480465
+    },
+    {
+      "task_id": "t0167",
+      "seconds": 0.24601333198370412,
+      "references": [
+        "t0167"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0168",
+      "seconds": 0.06534983159591355,
+      "references": [
+        "t0048"
+      ],
+      "multiplier": 0.9880228284810615
+    },
+    {
+      "task_id": "t0169",
+      "seconds": 0.08300738827883346,
+      "references": [
+        "t0049"
+      ],
+      "multiplier": 0.9880228284810615
+    },
+    {
+      "task_id": "t0170",
+      "seconds": 0.09317458978723187,
+      "references": [
+        "t0050"
+      ],
+      "multiplier": 0.9880228284810615
+    },
+    {
+      "task_id": "t0171",
+      "seconds": 0.11044883905999198,
+      "references": [
+        "t0051"
+      ],
+      "multiplier": 0.9880228284810615
+    },
+    {
+      "task_id": "t0172",
+      "seconds": 0.22658132786575538,
+      "references": [
+        "t0052"
+      ],
+      "multiplier": 0.9880228284810615
+    },
+    {
+      "task_id": "t0173",
+      "seconds": 0.24671963299624622,
+      "references": [
+        "t0173"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0174",
+      "seconds": 0.0009451784656597327,
+      "references": [
+        "t0054"
+      ],
+      "multiplier": 1.1294883896692804
+    },
+    {
+      "task_id": "t0175",
+      "seconds": 0.0007375209042345868,
+      "references": [
+        "t0055"
+      ],
+      "multiplier": 1.1294883896692804
+    },
+    {
+      "task_id": "t0176",
+      "seconds": 0.0007280749761316498,
+      "references": [
+        "t0056"
+      ],
+      "multiplier": 1.1294883896692804
+    },
+    {
+      "task_id": "t0177",
+      "seconds": 0.0007601343807036442,
+      "references": [
+        "t0057"
+      ],
+      "multiplier": 1.1294883896692804
+    },
+    {
+      "task_id": "t0178",
+      "seconds": 0.0007984138752342942,
+      "references": [
+        "t0058"
+      ],
+      "multiplier": 1.1294883896692804
+    },
+    {
+      "task_id": "t0179",
+      "seconds": 0.0007989119912963361,
+      "references": [
+        "t0179"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0180",
+      "seconds": 0.040174833993660286,
+      "references": [
+        "t0180"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0181",
+      "seconds": 0.03630365300341509,
+      "references": [
+        "t0181"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0182",
+      "seconds": 0.03473002600367181,
+      "references": [
+        "t0182"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0183",
+      "seconds": 0.03260835100081749,
+      "references": [
+        "t0183"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0184",
+      "seconds": 0.03275764800491743,
+      "references": [
+        "t0184"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0185",
+      "seconds": 0.03204557902063243,
+      "references": [
+        "t0185"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0186",
+      "seconds": 0.036113982991082594,
+      "references": [
+        "t0186"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0187",
+      "seconds": 0.034126952989026904,
+      "references": [
+        "t0187"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0188",
+      "seconds": 0.03453322499990463,
+      "references": [
+        "t0188"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0189",
+      "seconds": 0.004239715985022485,
+      "references": [
+        "t0189"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0190",
+      "seconds": 0.0050140999956056476,
+      "references": [
+        "t0190"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0191",
+      "seconds": 0.004374190990347415,
+      "references": [
+        "t0191"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0192",
+      "seconds": 0.005531350994715467,
+      "references": [
+        "t0192"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0193",
+      "seconds": 0.005620698007987812,
+      "references": [
+        "t0193"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0194",
+      "seconds": 0.00699135399190709,
+      "references": [
+        "t0194"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0195",
+      "seconds": 0.005157055853245159,
+      "references": [
+        "t0189",
+        "t0213"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0196",
+      "seconds": 0.006541790863654267,
+      "references": [
+        "t0190",
+        "t0214"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0197",
+      "seconds": 0.005369715858250856,
+      "references": [
+        "t0191",
+        "t0215"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0198",
+      "seconds": 0.007161404462143158,
+      "references": [
+        "t0192",
+        "t0216"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0199",
+      "seconds": 0.006731144674510385,
+      "references": [
+        "t0193",
+        "t0217"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0200",
+      "seconds": 0.008799971257879709,
+      "references": [
+        "t0194",
+        "t0218"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0201",
+      "seconds": 0.006991735589690507,
+      "references": [
+        "t0189",
+        "t0213"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0202",
+      "seconds": 0.009597172599751503,
+      "references": [
+        "t0190",
+        "t0214"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0203",
+      "seconds": 0.007360765594057739,
+      "references": [
+        "t0191",
+        "t0215"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0204",
+      "seconds": 0.01042151139699854,
+      "references": [
+        "t0192",
+        "t0216"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0205",
+      "seconds": 0.00895203800755553,
+      "references": [
+        "t0193",
+        "t0217"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0206",
+      "seconds": 0.012417205789824949,
+      "references": [
+        "t0194",
+        "t0218"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0207",
+      "seconds": 0.010661095062581201,
+      "references": [
+        "t0189",
+        "t0213"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0208",
+      "seconds": 0.015707936071945976,
+      "references": [
+        "t0190",
+        "t0214"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0209",
+      "seconds": 0.011342865065671504,
+      "references": [
+        "t0191",
+        "t0215"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0210",
+      "seconds": 0.016941725266709305,
+      "references": [
+        "t0192",
+        "t0216"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0211",
+      "seconds": 0.013393824673645818,
+      "references": [
+        "t0193",
+        "t0217"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0212",
+      "seconds": 0.019651674853715422,
+      "references": [
+        "t0194",
+        "t0218"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0213",
+      "seconds": 0.01799981400836259,
+      "references": [
+        "t0213"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0214",
+      "seconds": 0.02792946301633492,
+      "references": [
+        "t0214"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0215",
+      "seconds": 0.019307064008899033,
+      "references": [
+        "t0215"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0216",
+      "seconds": 0.02998215300613083,
+      "references": [
+        "t0216"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0217",
+      "seconds": 0.0222773980058264,
+      "references": [
+        "t0217"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0218",
+      "seconds": 0.03412061298149638,
+      "references": [
+        "t0218"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0219",
+      "seconds": 0.004798109992407262,
+      "references": [
+        "t0219"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0220",
+      "seconds": 0.005512872012332082,
+      "references": [
+        "t0220"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0221",
+      "seconds": 0.005293717986205593,
+      "references": [
+        "t0221"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0222",
+      "seconds": 0.006291082972893491,
+      "references": [
+        "t0222"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0223",
+      "seconds": 0.00649193100980483,
+      "references": [
+        "t0223"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0224",
+      "seconds": 0.00758422099170275,
+      "references": [
+        "t0224"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0225",
+      "seconds": 0.005719113526477789,
+      "references": [
+        "t0219",
+        "t0243"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0226",
+      "seconds": 0.007091360678896308,
+      "references": [
+        "t0220",
+        "t0244"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0227",
+      "seconds": 0.006339127120251457,
+      "references": [
+        "t0221",
+        "t0245"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0228",
+      "seconds": 0.008015640374893943,
+      "references": [
+        "t0222",
+        "t0246"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0229",
+      "seconds": 0.0077645490081825605,
+      "references": [
+        "t0223",
+        "t0247"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0230",
+      "seconds": 0.009614395191116879,
+      "references": [
+        "t0224",
+        "t0248"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0231",
+      "seconds": 0.007561120594618842,
+      "references": [
+        "t0219",
+        "t0243"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0232",
+      "seconds": 0.01024833801202476,
+      "references": [
+        "t0220",
+        "t0244"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0233",
+      "seconds": 0.008429945388343185,
+      "references": [
+        "t0221",
+        "t0245"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0234",
+      "seconds": 0.011464755178894847,
+      "references": [
+        "t0222",
+        "t0246"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0235",
+      "seconds": 0.010309785004938022,
+      "references": [
+        "t0223",
+        "t0247"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0236",
+      "seconds": 0.013674743589945138,
+      "references": [
+        "t0224",
+        "t0248"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0237",
+      "seconds": 0.011245134730900948,
+      "references": [
+        "t0219",
+        "t0243"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0238",
+      "seconds": 0.016562292678281666,
+      "references": [
+        "t0220",
+        "t0244"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0239",
+      "seconds": 0.012611581924526641,
+      "references": [
+        "t0221",
+        "t0245"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0240",
+      "seconds": 0.018362984786896654,
+      "references": [
+        "t0222",
+        "t0246"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0241",
+      "seconds": 0.015400256998448944,
+      "references": [
+        "t0223",
+        "t0247"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0242",
+      "seconds": 0.021795440387601655,
+      "references": [
+        "t0224",
+        "t0248"
+      ],
+      "rule": "linear duration interpolation at fixed N/family/tolerance"
+    },
+    {
+      "task_id": "t0243",
+      "seconds": 0.01861316300346516,
+      "references": [
+        "t0243"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0244",
+      "seconds": 0.029190202010795474,
+      "references": [
+        "t0244"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0245",
+      "seconds": 0.020974854996893555,
+      "references": [
+        "t0245"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0246",
+      "seconds": 0.03215944400290027,
+      "references": [
+        "t0246"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0247",
+      "seconds": 0.025581200985470787,
+      "references": [
+        "t0247"
+      ],
+      "multiplier": 1.0
+    },
+    {
+      "task_id": "t0248",
+      "seconds": 0.038036833982914686,
+      "references": [
+        "t0248"
+      ],
+      "multiplier": 1.0
+    }
+  ],
+  "source_digest": "af59c4175e6ea99c95b4e9958a2bf032925132715b1779b92533ad961c12c57f",
+  "environment_fingerprint": "ac3e8f320f354c6dbdfbc75853d0e27c5998350a240727456791286a3a40d5ae",
+  "launcher_overhead_seconds": 0.18795843698899262,
+  "calibration_job_id": "x26_v3_cal_54f8e7d_20261109",
+  "calibration_sha256": "8043ebf64f7108caf2afd656739ac965223220373167a2f3e8ab0d0249270e21"
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "experiment": "X26_R040_ANALYTIC_BATH",
+  "model_class": "CONDITIONAL_R040_TRIMER_WITH_1D_TIGHT_BINDING_BATH",
+  "epistemic_status": "CONDITIONAL_MODEL_NOT_ADD_DERIVED",
+  "model_assumptions_accepted": false,
+  "energy_unit": null,
+  "model": {
+    "E_V": null,
+    "E_1": null,
+    "E_2": null,
+    "t_1": null,
+    "t_2": null,
+    "gamma_d": null,
+    "kappa": null,
+    "g": null,
+    "bath_onsite": 0.0
+  },
+  "provenance": {
+    "E_V": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "E_1": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "E_2": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "t_1": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "t_2": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "gamma_d": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "kappa": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "g": {
+      "source": "NOT_AVAILABLE",
+      "evidence_ref": null,
+      "assumption": null
+    },
+    "bath_onsite": {
+      "source": "MODEL_ASSUMPTION",
+      "evidence_ref": null,
+      "assumption": "Set the bath onsite energy to zero as the declared energy-origin convention; this is a model convention, not an ADD-derived value."
+    }
+  },
+  "continuum_scan": {
+    "ring_sizes": [
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "resolvent_test_points": [
+      [
+        0.23,
+        0.71
+      ],
+      [
+        -0.51,
+        0.43
+      ],
+      [
+        1.37,
+        0.62
+      ]
+    ]
+  },
+  "pole_search": {
+    "seeds": []
+  },
+  "diagnostics": {
+    "spectral_density_energies": []
+  },
+  "loading": {
+    "enabled": false,
+    "status": "SEPARATE_PROTOCOL_NOT_SPECIFIED",
+    "static_no_load_control": {
+      "enabled": true,
+      "bath_ring_sites": 32,
+      "times": [0.0, 1.0, 5.0, 10.0],
+      "initial_state": "one excitation on trimer node 2; bath initially empty; exactly orthogonal to D"
+    },
+    "control_model_ref": null,
+    "actuator_model_ref": null,
+    "resource_ledger_ref": null
+  },
+  "runtime_gate": {
+    "status": "NOT_EVALUABLE",
+    "calibration_ref": null,
+    "forecast_ref": null,
+    "hard_wall_seconds": null,
+    "memory_limit_mib": null,
+    "disk_limit_mib": null
+  },
+  "time_unit": "hbar/energy",
+  "numerics": {
+    "feshbach_test_points": [
+      [
+        0.23,
+        0.71
+      ],
+      [
+        -0.51,
+        0.43
+      ],
+      [
+        1.37,
+        0.62
+      ]
+    ],
+    "determinant_relative_tolerance": 1e-08,
+    "resolvent_relative_tolerance": 1e-08,
+    "pole_residual_tolerance": 1e-08,
+    "spectral_measure_quad_epsabs": 1e-09,
+    "spectral_measure_quad_epsrel": 1e-09,
+    "off_axis_green_abs_tolerance": 1e-08
+  },
+  "freeze_state": "UNFROZEN",
+  "freeze_record_ref": null,
+  "freeze_record_sha256": null
+}
