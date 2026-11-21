@@ -449,7 +449,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
                 body(review, 'pull_request_review', 'review:' + str(review['id']))
             for comment in api.pages(f'pulls/{number}/comments'):
                 if force or (comment.get('updated_at') or comment.get('created_at') or '') >= since:
-                    body(comment, 'pull_request_review_comment', 'review-comment:' + str(comment['id']))
+                    body(comment, 'pull_request_review_comment', 'review-comment:' + str(comment['id']), parent_number=number)
 
     # The triggering event is evidence even if a newer snapshot was reconciled.
     event_revision = now
@@ -546,7 +546,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
                 continue
             # Generated publisher comments have a checked author+marker. Other
             # bot comments remain evidence; never exclude all bot activity.
-            body(comment, kind, prefix + str(comment['id']))
+            body(comment, kind, prefix + str(comment['id']), parent_number=int(parent) if parent.isdigit() else None)
     state['observed_at'] = max(now, state.get('observed_at', now))
     material = sorted(changes.values(), key=lambda x: (x['id'], x['version_sha256']))
     package_id = digest([(x['id'], x['version_sha256']) for x in material]) if material else ''
