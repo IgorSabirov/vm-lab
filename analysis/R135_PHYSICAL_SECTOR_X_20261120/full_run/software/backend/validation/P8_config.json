@@ -1,0 +1,44 @@
+{
+  "_mode": "validation",
+  "applicability": {
+    "photodisintegration_or_nonthermal_nuclear_sources": false,
+    "scope": "SYNTHETIC_SOFTWARE_CONTROL"
+  },
+  "class": {
+    "matching": {
+      "electron_annihilation_finished": true,
+      "source": "Synthetic post-annihilation density relation",
+      "transfer_finished": true
+    },
+    "parameters": {
+      "A_s": 2.1e-09,
+      "H0": 67.4,
+      "N_ur": 3.044,
+      "T_cmb": 2.7255,
+      "n_s": 0.965,
+      "omega_b": 0.02242,
+      "omega_cdm": 0.12,
+      "tau_reio": 0.054
+    },
+    "perturbation_model": {
+      "adiabatic_initial_perturbations": true,
+      "all_transfer_finished_before_relevant_modes_enter": true,
+      "domain_proof_source": "No extra sector exists in this artificial fixture",
+      "kind": "standard_free_streaming_after_matching",
+      "massless_collisionless_extra_radiation": true,
+      "no_surviving_interacting_relic": true,
+      "source": "Manufactured radiation-only solver control"
+    }
+  },
+  "common_initial_abundances": [
+    0.1,
+    0.65998,
+    1e-05,
+    0.0,
+    0.0,
+    0.06,
+    0.0,
+    0.0
+  ],
+  "created_utc": "2026-11-20T00:00:00Z"
+}

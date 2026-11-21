@@ -1,0 +1,103 @@
+{
+  "complete_CLASS_or_P9_checkpoint": false,
+  "omitted_raw_or_duplicate_outputs": {
+    "class/As_plus_2_percent/spectra_00_background.dat": {
+      "bytes": 21080729,
+      "sha256": "958a39c15304950155a7d19b901401e57b40f1adfc56220b63641e14aa4a3f72"
+    },
+    "class/As_plus_2_percent/spectra_00_cl.dat": {
+      "bytes": 1729405,
+      "sha256": "a374f6efd419b03473f44fb10283ec35b25e696150ec54368707305ea3aa3cbf"
+    },
+    "class/As_plus_2_percent/spectra_00_cl_lensed.dat": {
+      "bytes": 1638412,
+      "sha256": "b62b0180aeb2d31e415160af073c1e14a8bbd47a057c83152e0c748c5555eddc"
+    },
+    "class/baseline/spectra_00_background.dat": {
+      "bytes": 21080729,
+      "sha256": "958a39c15304950155a7d19b901401e57b40f1adfc56220b63641e14aa4a3f72"
+    },
+    "class/baseline/spectra_00_cl.dat": {
+      "bytes": 1729405,
+      "sha256": "ff39cc4904d42b1202270a1f90ca8bc72f36c0dd0c5d5a210c169d32cfe19950"
+    },
+    "class/baseline/spectra_00_cl_lensed.dat": {
+      "bytes": 1638412,
+      "sha256": "7c09b71d51ff4c56dbea4f57a12cbb44d11baad2c6bbf673477a65da07c65f25"
+    }
+  },
+  "original_producer_receipts_preserved": true,
+  "purpose": "Consumed spectra, requests, evaluations, original native receipts and input parameters are published. Raw CLASS text outputs are omitted; their original hashes remain in unchanged producer receipts. Use validate_native.py with a fresh output path to regenerate a complete checkpoint.",
+  "reproduction": "python external_cmb_reference/validate_native.py --cache /path/to/verified/donors --class-source /path/to/pinned/CLASS --out /fresh/native-control",
+  "retained_files": {
+    "As_plus_2_percent_input.json": {
+      "bytes": 697,
+      "sha256": "3f592dee4b48514a053821be0ff3e5576ad0e3109e7c287568cb285dae050d82"
+    },
+    "SOURCE_CHECK.json": {
+      "bytes": 927,
+      "sha256": "a0d7a30b5736dc7dc327973c3aa0d37cef64e82f7d52ae7d1dbce9dfbf429f30"
+    },
+    "VALIDATION.json": {
+      "bytes": 3487,
+      "sha256": "2156a86e45215d830927584ceb18919cd91e57c545799bf1ebdc3c2c6d3c1769"
+    },
+    "baseline_input.json": {
+      "bytes": 682,
+      "sha256": "fbd7e937e500a14193d8a18c1d680cc35c73a5b4897a0fb9ecd2f1af7bc4cadd"
+    },
+    "class/As_plus_2_percent/CLASS.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class/As_plus_2_percent/parameters.ini": {
+      "bytes": 437,
+      "sha256": "769d81702e4915ae7748f60ed6bc84e241ac38745b8faff4e603cc6bb80805ca"
+    },
+    "class/As_plus_2_percent/receipt.json": {
+      "bytes": 2100,
+      "sha256": "d752519ccd4bdb1b4a2bb3b303e632dc258868e80f54b11844d905f53deee6cf"
+    },
+    "class/As_plus_2_percent/spectra.json": {
+      "bytes": 1078572,
+      "sha256": "592336380d4e80e134a68a83113cdf54b3e01a6ad5723da4ac76b3fd1ebd448b"
+    },
+    "class/baseline/CLASS.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "class/baseline/parameters.ini": {
+      "bytes": 413,
+      "sha256": "bdd3434363effbf170e2b659f9d851375c5ecfd9769827ef54b072d43d787072"
+    },
+    "class/baseline/receipt.json": {
+      "bytes": 2085,
+      "sha256": "d1affae45f1f6b71920f78fdeadbca974a76004db1125d450e7ec1aececb5d1d"
+    },
+    "class/baseline/spectra.json": {
+      "bytes": 1078770,
+      "sha256": "772f87d727260cbc7bee4df5ae64f164f27ba0e0523fc6ef20fdf1bcd40d9326"
+    },
+    "executed_run_class.py": {
+      "bytes": 4033,
+      "sha256": "e9fe829e37a085bee7bb832faa3d147b03e9d3babacb2bea483b119eb1a91d4b"
+    },
+    "fixed.json": {
+      "bytes": 13929,
+      "sha256": "ac4c9a2059e9e70f425c0077cd7bb46e7049a3d7d9064266cad260cb81828911"
+    },
+    "profiled.json": {
+      "bytes": 32233,
+      "sha256": "52a377617fbe57d5b89dd423a976c84544bfad09403df9e0d17920596bb45217"
+    },
+    "request_fixed.json": {
+      "bytes": 1993,
+      "sha256": "1a5f007d4bb0cb7de7050ed9c1e2338c40162789304872c32e7085cddb5f4453"
+    },
+    "request_profiled.json": {
+      "bytes": 2492,
+      "sha256": "45ba8a589c5d1456f0d89276c48e92f33ab09833337bc134bd9a89173903f485"
+    }
+  },
+  "schema": "R135-external-CMB-compact-publication-v1"
+}

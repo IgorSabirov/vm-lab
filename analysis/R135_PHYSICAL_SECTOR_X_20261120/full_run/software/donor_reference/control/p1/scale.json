@@ -1,0 +1,118 @@
+{
+  "T_c_MeV": 177.12589073634206,
+  "absolute_prediction": false,
+  "alternative_routes": {
+    "flow_beta_6.117": {
+      "L_over_a": 26,
+      "absolute_sigma_range_unknown_correlations": [
+        0.002466533640854588,
+        0.00292547080426769
+      ],
+      "beta": 6.117,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.0027057501388792382,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.19714516252478326
+    },
+    "flow_beta_6.135": {
+      "L_over_a": 26,
+      "absolute_sigma_range_unknown_correlations": [
+        0.0011156229014228228,
+        0.0015667814594977909
+      ],
+      "beta": 6.135,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.001360040183230831,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.1938037150765143
+    },
+    "flow_beta_6.222": {
+      "L_over_a": 30,
+      "absolute_sigma_range_unknown_correlations": [
+        0.002139728371807364,
+        0.002598389882682491
+      ],
+      "beta": 6.222,
+      "finite_a_mass": true,
+      "origin": "derived",
+      "sigma": 0.002380133135724147,
+      "source": "Giusti continuum Tc sqrt(t0) / Athenodorou et al. Wilson finite-a m0 sqrt(t0)",
+      "uncertainty_assumption": "mass-only denominator error; flow interpolation and finite-a/volume systematics open",
+      "unit": "1",
+      "value": 0.19702675074920314
+    },
+    "r0": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.001876202458799036,
+        0.0073797823302734706
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.006034598363953331,
+        0.026128266033254157,
+        0.009501187648456057
+      ],
+      "sigma": 0.005039146701204892,
+      "source": "Francis r0 Tc / Morningstar-Peardon r0 m0",
+      "uncertainty_assumption": "zero covariance sensitivity; statistical and anisotropy pieces retained",
+      "unit": "1",
+      "value": 0.17712589073634205
+    },
+    "string_tension": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.000289390440334569,
+        0.0020515049777795028
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.004642525533890437,
+        0.00616740088105727
+      ],
+      "sigma": 0.0014649947953510134,
+      "source": "Giusti et al. Tc/sqrt(sigma) divided by m0/sqrt(sigma)",
+      "uncertainty_assumption": "zero covariance sensitivity",
+      "unit": "1",
+      "value": 0.1897797356828194
+    }
+  },
+  "correlation_assumption": "provided",
+  "input": {
+    "anchor": {
+      "origin": "external_model",
+      "sigma": 0.0,
+      "source": "Forestell-Morrissey-Sigurdson figure 3, XB-FMS-top-left",
+      "uncertainty_interpretation": "fixed published model parameter, not a measurement",
+      "unit": "MeV",
+      "value": 1000.0
+    },
+    "correlation": 0.0,
+    "correlation_assumption": "diagnostic zero covariance of chosen mass anchor and dimensionless ratio",
+    "ratio": {
+      "absolute_sigma_range_unknown_correlations": [
+        0.001876202458799036,
+        0.0073797823302734706
+      ],
+      "finite_a_mass": false,
+      "origin": "derived",
+      "relative_uncertainty_components": [
+        0.006034598363953331,
+        0.026128266033254157,
+        0.009501187648456057
+      ],
+      "sigma": 0.005039146701204892,
+      "source": "Francis r0 Tc / Morningstar-Peardon r0 m0",
+      "uncertainty_assumption": "zero covariance sensitivity; statistical and anisotropy pieces retained",
+      "unit": "1",
+      "value": 0.17712589073634205
+    }
+  },
+  "sigma_T_c_MeV": 5.039146701204892
+}

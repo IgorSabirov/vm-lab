@@ -1,0 +1,322 @@
+{
+  "schema": "R135-runtime-gate-v1",
+  "created_at": "2026-11-20T23:10:50.949005+03:00",
+  "source_commit": "c6de11f925aa047c3eedcfaff6668ed9f54a493b",
+  "main_at_review": "aa2e6ba1538612b06505d392ec206b32fe6c025d",
+  "status": "NOT_EVALUABLE",
+  "scope": "full_physical_R135_P0_P10",
+  "central_seconds": null,
+  "lower_seconds": null,
+  "upper_seconds": null,
+  "forecast_range_is_stop_timer": false,
+  "physical_run_started": false,
+  "new_calibration_executed": false,
+  "reason": "No representative target-environment timing for P3/P4/P5/P6/P7 or full physical P8/P9; physical point matrix and uncertainty/profile workload are not frozen. The latest BBN execution is a checkpoint continuation and its hardware passport is incomplete.",
+  "time_definition": {
+    "quantity": "code process wall time, not cosmological time or sum of CPU times",
+    "included": [
+      "algorithm setup including in-process compilation",
+      "numerical stages",
+      "checks/checkpoint/I/O/report inside the process",
+      "independent raw-result audit"
+    ],
+    "excluded": [
+      "scientific/software development",
+      "environment installation and external solver build",
+      "data acquisition",
+      "queue",
+      "communication/publication"
+    ],
+    "calibration": "reported separately from the main corpus",
+    "execution_parallelism": "Current stage/chain/corner loops are serial; no division by nominal core count. Internal library threads need actual calibration."
+  },
+  "environment": {
+    "reference_run": 44719756079,
+    "reference_time_moscow": "2026-11-20T13:30:08+03:00",
+    "execution_commit": "7b26fd4a6cfa20d9768ee295917b10926537d60b",
+    "source_url": "https://github.com/IgorSabirov/vm-lab/blob/d503ee0f1f89c99c8560803dc46277d544ef15ba/reproductions/BBN_COSMO_20261120/results/44719756079/ENVIRONMENT.json",
+    "log_url": "https://github.com/IgorSabirov/vm-lab/actions/runs/44719756079/job/136232198362",
+    "observed_software": {
+      "os": "Ubuntu 24.04.5",
+      "image": "ubuntu-24.04",
+      "image_version": "20261111.370.1",
+      "python": "3.12.16",
+      "python_build_architecture": "x64",
+      "JAX_PLATFORMS": "cpu",
+      "JAX_ENABLE_X64": true,
+      "OMP_NUM_THREADS": 2,
+      "OPENBLAS_NUM_THREADS": 1
+    },
+    "packages": {
+      "opt_einsum": "3.4.0",
+      "jax": "0.4.38",
+      "attrs": "26.1.0",
+      "lineax": "0.0.8",
+      "wadler_lindig": "0.1.8",
+      "numpy": "2.2.6",
+      "Pygments": "2.21.0",
+      "mpmath": "1.4.1",
+      "optimistix": "0.0.11",
+      "gvar": "13.1.10",
+      "typing_extensions": "4.16.0",
+      "equinox": "0.12.2",
+      "referencing": "0.37.0",
+      "ml_dtypes": "0.6.0",
+      "pluggy": "1.7.0",
+      "pytest": "8.4.2",
+      "jaxlib": "0.4.38",
+      "diffrax": "0.7.1",
+      "iniconfig": "2.3.1",
+      "jsonschema-specifications": "2025.9.1",
+      "pip": "26.3",
+      "jsonschema": "4.25.1",
+      "vegas": "6.3",
+      "scipy": "1.15.3",
+      "packaging": "26.3",
+      "jaxtyping": "0.3.11",
+      "interpax": "0.3.8",
+      "rpds-py": "2026.9.1"
+    },
+    "upstream": {
+      "class": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+      "primat": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "linx": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8"
+    },
+    "hardware": {
+      "cpu_model": null,
+      "logical_cpus": null,
+      "affinity": null,
+      "cpu_quota": null,
+      "memory_limit_bytes": null,
+      "memory_available_bytes": null,
+      "peak_rss_bytes": null,
+      "free_disk_bytes": null,
+      "disk_write_bytes_per_second": null,
+      "observed_blas_threads": null
+    },
+    "hardware_null_reason": "Not recorded in this run passport or compute-job log. Other R130/VM machines are not substituted. Environment variables are requested thread settings, not measured utilization."
+  },
+  "historical_measurements": {
+    "latest_code_wall_seconds": 8.644211286999962,
+    "latest_status": "COMPLETE_CONTROL_DISCREPANCY",
+    "new_timed_operations": {
+      "pair_extra": 1.600856738999994,
+      "CLASS_extra": 1.6409229619999905,
+      "CLASS_compensated": 1.6498731710000243,
+      "DD_jacobian": 7.185100002971012e-05
+    },
+    "completed_after_resume": {
+      "bbn_pairs": 17,
+      "CLASS": 6
+    },
+    "loaded_checkpoints": {
+      "bbn_pairs": 16,
+      "CLASS": 4,
+      "verified_files": 151
+    },
+    "receipt_url": "https://github.com/IgorSabirov/vm-lab/blob/d503ee0f1f89c99c8560803dc46277d544ef15ba/reproductions/BBN_COSMO_20261120/results/44719756079/EXECUTION_RECEIPT.json",
+    "checkpoint_url": "https://github.com/IgorSabirov/vm-lab/blob/d503ee0f1f89c99c8560803dc46277d544ef15ba/reproductions/BBN_COSMO_20261120/results/44719756079/CHECKPOINT.json",
+    "prior_native_timings_s": {
+      "PRIMAT_native": 1.4318092159999765,
+      "CLASS_primat_native": 1.2937350029999948,
+      "LINX_native": 34.101814733
+    },
+    "previous_refined_pair_seconds": {
+      "pair_baseline_tight": 24.901653826000015,
+      "pair_tight_ddtp_+0.125": 24.50605415999999,
+      "pair_tight_ddtp_-0.125": 24.845480291
+    },
+    "previous_receipt_url": "https://github.com/IgorSabirov/vm-lab/blob/f30d500b16e699a1ab41778258b60b5b4097ffbb/reproductions/BBN_COSMO_20261120/results/44719121230/EXECUTION_RECEIPT.json",
+    "applicability": "Historical donor operations only. Cached/failed/resumed stages cannot be summed into a clean full run or transferred to R135 without representative calibration."
+  },
+  "registered_design": {
+    "preparations": 52,
+    "diagnostic": 48,
+    "literature_benchmark": 4,
+    "physical_candidate": 0,
+    "claims": {
+      "XA_carrier": 24,
+      "XB_SU3_cosmology": 28,
+      "graph_as_XB_marker": 52
+    },
+    "report_rows": 104,
+    "thermal_path_already_in_each_preparation": true,
+    "full_physical_preparation_count": null,
+    "note": "The 104 report rows are not 104 unique cosmological histories. Physical count 0 does not imply zero runtime for the intended full project."
+  },
+  "conditional_registered_corpus": {
+    "assumptions": [
+      "All 52 registered preparations are used as a conditional design, not calibrated physical points.",
+      "Both portals require all five corners.",
+      "Three BBN refinements and two BBN kernels.",
+      "Each BBN kernel/corner gives a distinct CLASS input; identical full input hashes may be reused.",
+      "Two or three CLASS precision levels; no uncertainty/statistical simulations included."
+    ],
+    "P7_nominal_histories": 260,
+    "BBN_integrations_per_preparation": 30,
+    "BBN_integrations": 1560,
+    "CLASS_integrations_per_preparation_at_2_or_3_levels": [
+      20,
+      30
+    ],
+    "CLASS_integrations_at_2_or_3_levels": [
+      1040,
+      1560
+    ],
+    "Planck_distinct_spectrum_inputs_at_2_or_3_levels": [
+      1040,
+      1560
+    ],
+    "Planck_profile_function_evaluations": null,
+    "P10_Planck_replay": "additional cost on stored spectra; no BBN/CLASS rerun",
+    "uncertainty_draws": null
+  },
+  "P3": {
+    "routes": [
+      "import suitable independent ensembles",
+      "generate new independent ensembles"
+    ],
+    "grids": [
+      {
+        "Nt": 4,
+        "Ns": 24,
+        "stride": 1,
+        "calibration_chains": 4,
+        "heldout_chains": 4,
+        "metropolis_proposals_per_sweep": 221184,
+        "conditional_initial_calibration_sweeps": 8192,
+        "conditional_initial_calibration_proposals": 1811939328,
+        "links_bytes_per_configuration": 31850496,
+        "conditional_initial_save_slots": 1024,
+        "conditional_initial_raw_links_bytes": 32614907904
+      },
+      {
+        "Nt": 4,
+        "Ns": 32,
+        "stride": 1,
+        "calibration_chains": 4,
+        "heldout_chains": 4,
+        "metropolis_proposals_per_sweep": 524288,
+        "conditional_initial_calibration_sweeps": 8192,
+        "conditional_initial_calibration_proposals": 4294967296,
+        "links_bytes_per_configuration": 75497472,
+        "conditional_initial_save_slots": 1024,
+        "conditional_initial_raw_links_bytes": 77309411328
+      },
+      {
+        "Nt": 8,
+        "Ns": 48,
+        "stride": 2,
+        "calibration_chains": 4,
+        "heldout_chains": 4,
+        "metropolis_proposals_per_sweep": 3538944,
+        "conditional_initial_calibration_sweeps": 8192,
+        "conditional_initial_calibration_proposals": 28991029248,
+        "links_bytes_per_configuration": 509607936,
+        "conditional_initial_save_slots": 1024,
+        "conditional_initial_raw_links_bytes": 521838526464
+      },
+      {
+        "Nt": 8,
+        "Ns": 64,
+        "stride": 2,
+        "calibration_chains": 4,
+        "heldout_chains": 4,
+        "metropolis_proposals_per_sweep": 8388608,
+        "conditional_initial_calibration_sweeps": 8192,
+        "conditional_initial_calibration_proposals": 68719476736,
+        "links_bytes_per_configuration": 1207959552,
+        "conditional_initial_save_slots": 1024,
+        "conditional_initial_raw_links_bytes": 1236950581248
+      }
+    ],
+    "initial_cycles_per_calibration_chain": 2048,
+    "save_every_cycles": 8,
+    "initial_cycle_assumption": "Counts below apply IF the initial 2048 cycles are registered as sweeps of the delivered random-scan Metropolis. The original heatbath plus four overrelaxation cycles are different units; their autocorrelation must not be transferred.",
+    "conditional_initial_proposals": 103817412608,
+    "conditional_initial_save_slots": 4096,
+    "conditional_initial_raw_links_bytes": 1868713426944,
+    "storage_assumption": "All nominal pre-discard slots retain uncompressed complex128 links, as in the current generator; no burn extension, doubling, heldout files or extra buffers included. This is disk payload, not RAM.",
+    "tau_int_per_geometry": null,
+    "production_chain_lengths": null,
+    "measured_sweep_seconds_per_geometry": null,
+    "measurement_seconds_per_geometry": null,
+    "checkpoint_seconds_per_geometry": null,
+    "statistical_bootstrap_draws": 4000,
+    "formula": "sum_g [N_sweeps_g*t_sweep_g + N_saves_g*(t_measure_g+t_checkpoint_g) + T_statistics_g]",
+    "calibration_formula": "sum_g 8192*t_sweep_g plus measured checkpoint/measurement/statistics, conditional on the stated cycle mapping",
+    "import_route": "No new Markov update cost; include source validation, link/field reading, measurement and statistics."
+  },
+  "full_forecast_formula": "T_code = T_algorithm_setup + T_P0_P1_P2 + T_P3 + T_P4 + T_P5_P6 + sum_distinct_points(T_P7 + T_P8 + T_BBN + T_CLASS + T_likelihood) + T_P10 + T_code_IO_not_already_counted",
+  "missing_calibration": [
+    "Actual target CPU/affinity/quota/RAM/disk and actual thread behavior.",
+    "Selected P3 algorithm/cycle definition, per-geometry sweep/measure/save cost and resolved tau_int.",
+    "Frozen unique physical points, domain, precision, uncertainty draws and statistical calibration simulations.",
+    "Representative P4/P5/P6/P7 and physical BBN/CLASS/likelihood cost per supported regime.",
+    "Nuisance-profile work, independent audit and retained-output I/O."
+  ],
+  "range_rule_after_calibration": "Project baseline engineering range +/- max(0.30*T,60 seconds), or separately justified stratified bounds; never use this to fill unknown stages. Bound is not an automatic stop.",
+  "post_run_rule": "Compare frozen forecast, source/config/environment, fresh versus resumed work, counts and wall time. PASS only if comparable complete work fits the justified range; otherwise REVIEW_REQUIRED, or NOT_EVALUABLE if necessary evidence is absent.",
+  "excluded_as_runtime_calibrations": [
+    {
+      "source": "validation/final/VALIDATION.json",
+      "seconds": 27.54061587599972,
+      "reason": "Mixed small software tests, different environment, no isolated production throughput."
+    },
+    {
+      "source": "backend/VALIDATION.json",
+      "seconds": 54.47148556800039,
+      "reason": "Synthetic zero-nuclear-rate software control on another environment; no production likelihood precision/profile workload."
+    }
+  ],
+  "source_files": [
+    {
+      "path": "RUNTIME_GATE.md",
+      "sha256": "e5da99a6a24c728b1d581824c413224d9281ca8773648596f10c64e84b8e21ca"
+    },
+    {
+      "path": "COMPUTE_AUTHORITY.md",
+      "sha256": "907e8ee8f80f5748466544f4ec88980145ed2cde14e541dc3ccce7451efde4cb"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/EXPERIMENT.md",
+      "sha256": "7d6b270fe677c3cc670db09e46341b40d2e60df174afec7fe220e2b749da8c9a"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/PROTOCOL.json",
+      "sha256": "4dddac4fb042b211c8be4637eb59f78f2b6a63dc0e904b7f4d80c232dcbe7a2a"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/EXECUTION.md",
+      "sha256": "e6659698440bd05921649e8899813b44f57ccccad64ba500df2de1e847381eaf"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/PLAN.json",
+      "sha256": "04e722f50b589b7d70b35b68d42ad9912d03459fde020afc224f3c830f7eff6d"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_snapshot/model_register.json",
+      "sha256": "1687bbd655e3b8d06d6688b3a7a96f3b444c95666f052dcc5764cd982b8244ac"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_snapshot/decision_rules.json",
+      "sha256": "3a190436784c57d015addad7a41fcac61a045762d8baeff27fea0e7c3207f5c5"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/lattice.py",
+      "sha256": "5a0c21b8c49a070ec7dbe85ea6097f7f569d27bb1f1d9d612e75c9aa68cbe44b"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/pipeline.py",
+      "sha256": "6c4dbde308a55074162b08877f20b3f4584eb1c66f8b9a2a88031135751601f3"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/backends.py",
+      "sha256": "c6741ae29ab922abe14e77747030e4216ab85669182fff3cf3b9fe9d134b7d70"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/history.py",
+      "sha256": "ad88230d206c5b4ffef4290c71b7303569797f122528da0b51fc5f83c67cfb70"
+    }
+  ]
+}

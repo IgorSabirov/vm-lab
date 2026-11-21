@@ -1,0 +1,137 @@
+{
+  "commit": "3bbbc243e0c101142ff1df81216638eb0d8e6d27",
+  "files": {
+    "LICENSE": {
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    "README.md": {
+      "bytes": 10319,
+      "sha256": "89663836c02cb059f2bd5b172a9fdf4df284a4c5f2f8d110eabbb8bad8846788"
+    },
+    "VERSION": {
+      "bytes": 6,
+      "sha256": "10e2e117b01523891ca271a615ae36e9d5e52348fd7d642f66727602c1b8dcbe"
+    },
+    "acropolis/__init__.py": {
+      "bytes": 2,
+      "sha256": "e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700"
+    },
+    "acropolis/cache.py": {
+      "bytes": 607,
+      "sha256": "4d8bb4a8f6e47ff1d1e9ea11779cf6ba622dee2498168fafcf3cd94dafc1094e"
+    },
+    "acropolis/cascade.py": {
+      "bytes": 28750,
+      "sha256": "737b29a4cf0d21d3178ffcd527141eca2e2ea25071a5bb8c08720017385ce680"
+    },
+    "acropolis/data/alterbbn_v2_2_failsafe_12.tar.gz": {
+      "bytes": 382172,
+      "sha256": "2b756fcdf4db11563a1c112edfef086dfa9cd4223bcde851f9220713031b68ae"
+    },
+    "acropolis/data/rates.db.gz": {
+      "bytes": 3851222,
+      "sha256": "a007d834fdaedadeb2dd693f15b22e8011bf44807c332b151a6d472dc0f0827e"
+    },
+    "acropolis/db.py": {
+      "bytes": 5422,
+      "sha256": "87d2dc918fccb4c265db8609f489c4054094fb9a2ea3e776d1abca8831a81700"
+    },
+    "acropolis/flags.py": {
+      "bytes": 951,
+      "sha256": "cd496678004873d0397afbaaa11607c811a3034514cc30a12603e811a8a569ca"
+    },
+    "acropolis/info.py": {
+      "bytes": 415,
+      "sha256": "2a9d4d8fdeeba2146c5bee20c694638ebacec7b8ec450a7b83b41b7c8de9c059"
+    },
+    "acropolis/input.py": {
+      "bytes": 8073,
+      "sha256": "c9aaff5eb8816b09f2660b8a5a74cfcdfa856f57c829b4b42a4578ac0d23dbd1"
+    },
+    "acropolis/jit.py": {
+      "bytes": 211,
+      "sha256": "53e5067e5a3f8e4736bc9f70f5d73e2213db6b5911c268bd0f4e9448d4c335e3"
+    },
+    "acropolis/models.py": {
+      "bytes": 11152,
+      "sha256": "3d1fa0a3462524755e572087364bfc7253a07ca017155504394ac51605083d3e"
+    },
+    "acropolis/nucl.py": {
+      "bytes": 20582,
+      "sha256": "47e7f8793735b75f1d900817f12565aa515a9b8ca3cf84f16e099bdcf3004319"
+    },
+    "acropolis/obs.py": {
+      "bytes": 1087,
+      "sha256": "e3b67fe266411fb770ae4eadad73fdc3d9f9581493b39996dc7017dbe5c38b13"
+    },
+    "acropolis/params.py": {
+      "bytes": 2844,
+      "sha256": "da770145f3bd575fb195bc656bf57e5bd151567e4de7c039097f13fcf55d299e"
+    },
+    "acropolis/plots.py": {
+      "bytes": 11874,
+      "sha256": "048dd3af5d4f0634c2863f553ce3af820476a88dc1b933d2b4d174366536abdc"
+    },
+    "acropolis/pprint.py": {
+      "bytes": 3872,
+      "sha256": "5be2dbb2056277cb44e0f58351a0de0009817251ec8a5d34638146c9b1ff0f6b"
+    },
+    "acropolis/scans.py": {
+      "bytes": 8059,
+      "sha256": "15ed7ea6a31828fa77a4c4f741664c4012255b3c308988a4fa2101c013ecd003"
+    },
+    "acropolis/utils.py": {
+      "bytes": 2040,
+      "sha256": "f20a3e0f2deb6d1971d16c93b025a722897aaf4433d2e6e308f3c4840b774515"
+    }
+  },
+  "license": "GPL-3.0",
+  "name": "ACROPOLIS",
+  "notes": [
+    "Official rate database read only after SHA-256 validation.",
+    "AlterBBN archive is a donor validation reference only; it is not substituted for a supplied R135 history.",
+    "Optional Numba accelerates kernels, never changes their physical definition."
+  ],
+  "reference": "https://arxiv.org/abs/2011.06518",
+  "repository": "https://github.com/hep-mh/acropolis",
+  "schema": "r135.external_source_lock.v1",
+  "validation_environment": {
+    "llvmlite": "0.44.0",
+    "numba": "0.61.2",
+    "numpy": "2.2.6",
+    "python": "3.12.14",
+    "scipy": "1.17.0"
+  },
+  "validation_wheels_cp312_linux_x86_64": {
+    "llvmlite": {
+      "filename": "llvmlite-0.44.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "pypi_metadata_url": "https://pypi.org/pypi/llvmlite/0.44.0/json",
+      "sha256": "c0143a5ef336da14deaa8ec26c5449ad5b6a2b564df82fcef4be040b9cacfea9",
+      "url": "https://files.pythonhosted.org/packages/cb/da/8341fd3056419441286c8e26bf436923021005ece0bff5f41906476ae514/llvmlite-0.44.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "version": "0.44.0"
+    },
+    "numba": {
+      "filename": "numba-0.61.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "pypi_metadata_url": "https://pypi.org/pypi/numba/0.61.2/json",
+      "sha256": "5b1bb509d01f23d70325d3a5a0e237cbc9544dd50e50588bc581ba860c213546",
+      "url": "https://files.pythonhosted.org/packages/9a/2d/e518df036feab381c23a624dac47f8445ac55686ec7f11083655eb707da3/numba-0.61.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "version": "0.61.2"
+    },
+    "numpy": {
+      "filename": "numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "pypi_metadata_url": "https://pypi.org/pypi/numpy/2.2.6/json",
+      "sha256": "fd83c01228a688733f1ded5201c678f0c53ecc1006ffbc404db9f7a899ac6249",
+      "url": "https://files.pythonhosted.org/packages/8c/3d/1e1db36cfd41f895d266b103df00ca5b3cbe965184df824dec5c08c6b803/numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "version": "2.2.6"
+    },
+    "scipy": {
+      "filename": "scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "pypi_metadata_url": "https://pypi.org/pypi/scipy/1.17.0/json",
+      "sha256": "9eeb9b5f5997f75507814ed9d298ab23f62cf79f5a3ef90031b1ee2506abdb5b",
+      "url": "https://files.pythonhosted.org/packages/d1/fe/66d73b76d378ba8cc2fe605920c0c75092e3a65ae746e1e767d9d020a75a/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "version": "1.17.0"
+    }
+  },
+  "version": "1.3.1"
+}

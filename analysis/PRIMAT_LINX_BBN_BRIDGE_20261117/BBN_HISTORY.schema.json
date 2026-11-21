@@ -224,31 +224,91 @@
       "minItems": 2
     },
     "spectralSeries": {
-      "type": "object",
-      "required": [
-        "energy_MeV",
-        "values"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "energy_MeV": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "number"
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "energy_MeV",
+            "values"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "energy_MeV": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2
             },
-            "minItems": 2
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 2
+              }
+            },
+            "low_energy": {
+              "enum": [
+                "constant",
+                "zero"
+              ]
+            },
+            "tail": {
+              "enum": [
+                "zero"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "energy_edges_MeV",
+            "values"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "energy_edges_MeV": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              ]
+            },
+            "values": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
           }
         }
-      }
+      ]
     }
   }
 }

@@ -1,0 +1,636 @@
+{
+  "D_over_H": 2.5234482561944505e-05,
+  "Y_p": 0.247,
+  "abundance_history": [
+    [
+      0.0,
+      0.75293796705994,
+      1.9e-05,
+      1e-08,
+      8e-06,
+      0.06175,
+      1e-14,
+      2e-11,
+      4e-10
+    ],
+    [
+      0.0,
+      0.75293796705994,
+      1.9e-05,
+      9.99955397961695e-09,
+      8.000000446020382e-06,
+      0.06175,
+      1e-14,
+      2e-11,
+      4e-10
+    ],
+    [
+      0.0,
+      0.75293796705994,
+      1.9e-05,
+      9.999107979127307e-09,
+      8.000000892020872e-06,
+      0.06175,
+      1e-14,
+      2e-11,
+      4e-10
+    ],
+    [
+      0.0,
+      0.75293796705994,
+      1.9e-05,
+      9.998661998530076e-09,
+      8.00000133800147e-06,
+      0.06175,
+      1e-14,
+      2e-11,
+      4e-10
+    ],
+    [
+      0.0,
+      0.75293796705994,
+      1.9e-05,
+      9.998216037824525e-09,
+      8.000001783962175e-06,
+      0.06175,
+      1e-14,
+      2e-11,
+      4e-10
+    ]
+  ],
+  "background_sha256": "97978f073a4d32dc15d75fc0aec52554ee77769690c895ed33e5f9ec45f0ba25",
+  "baryon_residual": 0.0,
+  "covariance_scope": "INITIAL_ABUNDANCES_ONLY_AT_FIXED_BACKGROUND_AND_RATES",
+  "cross_section_uncertainty": "NOT_PROPAGATED_DONOR_DEFAULTS_ARE_NOT_AN_ERROR_MODEL",
+  "domain_checks": {
+    "collision_to_evolution_ratios": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "expansion_integral_error": 4.519112381272394e-06,
+    "max_fractional_p_He4_change": 0.0,
+    "unresolved_baryon_fraction": 0.0
+  },
+  "donor": {
+    "commit": "3bbbc243e0c101142ff1df81216638eb0d8e6d27",
+    "environment": {
+      "llvmlite": "0.44.0",
+      "numba": "0.61.2",
+      "numpy": "2.2.6",
+      "python": "3.12.14",
+      "scipy": "1.17.0"
+    },
+    "files": [
+      {
+        "bytes": 35149,
+        "path": "LICENSE",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "bytes": 10319,
+        "path": "README.md",
+        "sha256": "89663836c02cb059f2bd5b172a9fdf4df284a4c5f2f8d110eabbb8bad8846788"
+      },
+      {
+        "bytes": 6,
+        "path": "VERSION",
+        "sha256": "10e2e117b01523891ca271a615ae36e9d5e52348fd7d642f66727602c1b8dcbe"
+      },
+      {
+        "bytes": 2,
+        "path": "acropolis/__init__.py",
+        "sha256": "e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700"
+      },
+      {
+        "bytes": 607,
+        "path": "acropolis/cache.py",
+        "sha256": "4d8bb4a8f6e47ff1d1e9ea11779cf6ba622dee2498168fafcf3cd94dafc1094e"
+      },
+      {
+        "bytes": 28750,
+        "path": "acropolis/cascade.py",
+        "sha256": "737b29a4cf0d21d3178ffcd527141eca2e2ea25071a5bb8c08720017385ce680"
+      },
+      {
+        "bytes": 382172,
+        "path": "acropolis/data/alterbbn_v2_2_failsafe_12.tar.gz",
+        "sha256": "2b756fcdf4db11563a1c112edfef086dfa9cd4223bcde851f9220713031b68ae"
+      },
+      {
+        "bytes": 3851222,
+        "path": "acropolis/data/rates.db.gz",
+        "sha256": "a007d834fdaedadeb2dd693f15b22e8011bf44807c332b151a6d472dc0f0827e"
+      },
+      {
+        "bytes": 5422,
+        "path": "acropolis/db.py",
+        "sha256": "87d2dc918fccb4c265db8609f489c4054094fb9a2ea3e776d1abca8831a81700"
+      },
+      {
+        "bytes": 951,
+        "path": "acropolis/flags.py",
+        "sha256": "cd496678004873d0397afbaaa11607c811a3034514cc30a12603e811a8a569ca"
+      },
+      {
+        "bytes": 415,
+        "path": "acropolis/info.py",
+        "sha256": "2a9d4d8fdeeba2146c5bee20c694638ebacec7b8ec450a7b83b41b7c8de9c059"
+      },
+      {
+        "bytes": 8073,
+        "path": "acropolis/input.py",
+        "sha256": "c9aaff5eb8816b09f2660b8a5a74cfcdfa856f57c829b4b42a4578ac0d23dbd1"
+      },
+      {
+        "bytes": 211,
+        "path": "acropolis/jit.py",
+        "sha256": "53e5067e5a3f8e4736bc9f70f5d73e2213db6b5911c268bd0f4e9448d4c335e3"
+      },
+      {
+        "bytes": 11152,
+        "path": "acropolis/models.py",
+        "sha256": "3d1fa0a3462524755e572087364bfc7253a07ca017155504394ac51605083d3e"
+      },
+      {
+        "bytes": 20582,
+        "path": "acropolis/nucl.py",
+        "sha256": "47e7f8793735b75f1d900817f12565aa515a9b8ca3cf84f16e099bdcf3004319"
+      },
+      {
+        "bytes": 1087,
+        "path": "acropolis/obs.py",
+        "sha256": "e3b67fe266411fb770ae4eadad73fdc3d9f9581493b39996dc7017dbe5c38b13"
+      },
+      {
+        "bytes": 2844,
+        "path": "acropolis/params.py",
+        "sha256": "da770145f3bd575fb195bc656bf57e5bd151567e4de7c039097f13fcf55d299e"
+      },
+      {
+        "bytes": 11874,
+        "path": "acropolis/plots.py",
+        "sha256": "048dd3af5d4f0634c2863f553ce3af820476a88dc1b933d2b4d174366536abdc"
+      },
+      {
+        "bytes": 3872,
+        "path": "acropolis/pprint.py",
+        "sha256": "5be2dbb2056277cb44e0f58351a0de0009817251ec8a5d34638146c9b1ff0f6b"
+      },
+      {
+        "bytes": 8059,
+        "path": "acropolis/scans.py",
+        "sha256": "15ed7ea6a31828fa77a4c4f741664c4012255b3c308988a4fa2101c013ecd003"
+      },
+      {
+        "bytes": 2040,
+        "path": "acropolis/utils.py",
+        "sha256": "f20a3e0f2deb6d1971d16c93b025a722897aaf4433d2e6e308f3c4840b774515"
+      }
+    ],
+    "license": "GPL-3.0",
+    "lock_sha256": "15dc07208df67d04141e539686cf69508818dad540267fb50bcb1597619c227b",
+    "name": "ACROPOLIS",
+    "source": "https://github.com/hep-mh/acropolis",
+    "version": "1.3.1"
+  },
+  "energy_ledger": {
+    "injected_comoving_energy_MeV4": 0.0,
+    "injected_power_MeV4_s": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "injected_radiation_fraction_max": 0.0,
+    "nonthermal_density_MeV4": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "nonthermal_density_fraction_max": 0.0,
+    "thermal_deposition_power_MeV4_s": null,
+    "thermal_deposition_status": "OPEN_BELOW_1P5_MEV_NOT_COMPUTED"
+  },
+  "final_Y": [
+    0.0,
+    0.75293796705994,
+    1.9e-05,
+    9.998216037824525e-09,
+    8.000001783962175e-06,
+    0.06175,
+    1e-14,
+    2e-11,
+    4e-10
+  ],
+  "final_covariance": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1e-14,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1e-10,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "hadronic_status": "NOT_INCLUDED_REQUIRES_EXCLUSIVE_INJECTION_AND_TRANSPORT",
+  "implementation": {
+    "adapter_sha256": "eb0ac1b839e6382166d1b77486ca37db7a57ad31391c4640c74bc9189963ff85",
+    "cascade_method": "ACROPOLIS_full_coupled_photon_electron_positron",
+    "network_method": "time_ordered_BDF_fundamental_matrix"
+  },
+  "initial_abundances_sha256": "abb8ad08f10a30093e991de73d40603778689fa47303bcde13d8a6b368a8e0a4",
+  "injection_sha256": "6ddcc135ae42b5d64a0a5d1b7ba1ec77bb8b0b87f0b9e541f9727c7baeb42ec0",
+  "input_sha256": "6ac436f97fac720da98058663c6e55d2f3acfb125034c96efb001795e09118f7",
+  "network_nfev": 662,
+  "nonthermal_species": [
+    "photon",
+    "electron",
+    "positron"
+  ],
+  "photodisintegration_rates_s_inv": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "physical_scope": "POST_BBN_PERTURBATIVE_EM_CASCADE",
+  "rate_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "schema": "r135.em_cascade_result.v1",
+  "software_status": "PASS",
+  "species": [
+    "n",
+    "p",
+    "d",
+    "t",
+    "He3",
+    "He4",
+    "Li6",
+    "Li7",
+    "Be7"
+  ],
+  "spectra": [
+    {
+      "T_gamma_MeV": 0.001,
+      "components": [],
+      "time_s": 1000000.0
+    },
+    {
+      "T_gamma_MeV": 0.0009877295966495897,
+      "components": [],
+      "time_s": 1025000.0
+    },
+    {
+      "T_gamma_MeV": 0.0009759000729485331,
+      "components": [],
+      "time_s": 1050000.0
+    },
+    {
+      "T_gamma_MeV": 0.0009644856443408244,
+      "components": [],
+      "time_s": 1075000.0
+    },
+    {
+      "T_gamma_MeV": 0.0009534625892455923,
+      "components": [],
+      "time_s": 1100000.0
+    }
+  ],
+  "spectrum_units": {
+    "continuous_dn_dE": "MeV^2",
+    "delta_number_density": "MeV^3",
+    "energy": "MeV_total_energy"
+  },
+  "stable_projection": false,
+  "time_s": [
+    1000000.0,
+    1025000.0,
+    1050000.0,
+    1075000.0,
+    1100000.0
+  ],
+  "transfer_matrix": [
+    [
+      4.436267025402281e-17,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      1.000000000000001,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.9998216037824526,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0001783962175483972,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "unresolved_Li6_history": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "unresolved_transfer_row": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

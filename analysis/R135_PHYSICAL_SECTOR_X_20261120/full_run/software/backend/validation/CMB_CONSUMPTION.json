@@ -1,0 +1,505 @@
+{
+  "Planck": {
+    "actual_evaluations": 10,
+    "clipy_source": {
+      "archive_sha256": "4dd11d8c1bae98f51d6f6444d7cb41c9bd2c2146e9fd1d3ab4cb158eb591e130",
+      "code_sha256": "1cd473996d749766fba042333b937846c2de4b583f3f3ee5800764e2d7adbd37"
+    },
+    "environment": {
+      "astropy": "8.0.3",
+      "astropy-iers-data": "0.2026.11.16.0.37.44",
+      "clipy-like": "0.15",
+      "flit-core": "3.12.0",
+      "numpy": "2.5.5",
+      "packaging": "26.3",
+      "pyerfa": "2.0.1.5",
+      "pyyaml": "6.0.3",
+      "scipy": "1.18.1"
+    },
+    "likelihood_id": "Planck2018-TTTEEE-lowE",
+    "nuisance_sha256": "b618bbf3d2094246240f70b56db8d69836bbb629655bf2a10c89072b70f8ecd2",
+    "release_sha256": "b76dd56e555cfde7ef78579a4cb0c0140aacd4e3c0c7a8e0ba4509fd01a69947",
+    "selfchecks": {
+      "Commander": -11.62574085746067,
+      "Plik": -1172.4654180056907,
+      "SimAll": -197.98979215822206
+    },
+    "verified_members": 134,
+    "worker_interpreter_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+    "worker_module_sha256": "9a12e85c8911d160dd5ca0688f591e708339e219c5a158f274ecd8ed19cd36d2"
+  },
+  "original_manifest_sha256": "6f9451d73ec6191c5dda293fe713f1ff9191f7a207adcb18eb94326464b29b70",
+  "original_worker_result_sha256": "75539e0e4769cfd70fbc96a65022ab33fe72a7cd97a8822cf5bb6a7b87dff953",
+  "scope": "SYNTHETIC_SOFTWARE_CONTROL",
+  "shared_nuisance": {
+    "A_cib_217": 46.05402,
+    "A_cnoise_e2e_100_100_EE": 1,
+    "A_cnoise_e2e_143_143_EE": 1,
+    "A_cnoise_e2e_217_217_EE": 1,
+    "A_planck": 1.000442,
+    "A_pol": 1,
+    "A_sbpx_100_100_EE": 1,
+    "A_sbpx_100_100_TT": 1,
+    "A_sbpx_100_143_EE": 1,
+    "A_sbpx_100_217_EE": 1,
+    "A_sbpx_143_143_EE": 1,
+    "A_sbpx_143_143_TT": 1,
+    "A_sbpx_143_217_EE": 1,
+    "A_sbpx_143_217_TT": 1,
+    "A_sbpx_217_217_EE": 1,
+    "A_sbpx_217_217_TT": 1,
+    "A_sz": 7.083803,
+    "calib_100P": 1.021,
+    "calib_100T": 0.9997421,
+    "calib_143P": 0.966,
+    "calib_217P": 1.04,
+    "calib_217T": 0.9981871,
+    "cib_index": -1.3,
+    "gal545_A_100": 8.802494,
+    "gal545_A_143": 11.00657,
+    "gal545_A_143_217": 20.15894,
+    "gal545_A_217": 95.45041,
+    "galf_EE_A_100": 0.055,
+    "galf_EE_A_100_143": 0.04,
+    "galf_EE_A_100_217": 0.094,
+    "galf_EE_A_143": 0.086,
+    "galf_EE_A_143_217": 0.21,
+    "galf_EE_A_217": 0.7,
+    "galf_EE_index": -2.4,
+    "galf_TE_A_100": 0.1138247,
+    "galf_TE_A_100_143": 0.1345639,
+    "galf_TE_A_100_217": 0.4787342,
+    "galf_TE_A_143": 0.2248485,
+    "galf_TE_A_143_217": 0.6649451,
+    "galf_TE_A_217": 2.082494,
+    "galf_TE_index": -2.4,
+    "ksz_norm": 0.00384693,
+    "ps_A_100_100": 248.2123,
+    "ps_A_143_143": 50.67985,
+    "ps_A_143_217": 53.30959,
+    "ps_A_217_217": 121.8608,
+    "xi_sz_cib": 0.6567009
+  },
+  "spectra": {
+    "linx/00": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722574722700728,
+        "Plik": -1185.0421026664783,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "3ded76f2fab45e583c3b65da5b0c8f42fc18f5f354722a2dede3e62c3a25db42",
+      "logL": -1394.8165519854451,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "22af05d1d73f12183304acee040ece736cd3917eb54c68dd6a9f0f678eaa1f22",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340615,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "bf283c233ba265bbbb64e243cdf1eaf2595bede4533a822e02c4496754585925",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "b9e312799be823a2cb20b925eaa79c8e921308f0cba8baf5811f9884dcbc5c55"
+    },
+    "linx/01": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722574722700728,
+        "Plik": -1185.0421026664783,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "3ded76f2fab45e583c3b65da5b0c8f42fc18f5f354722a2dede3e62c3a25db42",
+      "logL": -1394.8165519854451,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "22af05d1d73f12183304acee040ece736cd3917eb54c68dd6a9f0f678eaa1f22",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340615,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "446723ca8cf245fb97344bf190e4d1faf8347c6e2dc1df09b0781e2c0f487a3d",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "b9e312799be823a2cb20b925eaa79c8e921308f0cba8baf5811f9884dcbc5c55"
+    },
+    "linx/10": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722574722700728,
+        "Plik": -1185.0421026664783,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "3ded76f2fab45e583c3b65da5b0c8f42fc18f5f354722a2dede3e62c3a25db42",
+      "logL": -1394.8165519854451,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "22af05d1d73f12183304acee040ece736cd3917eb54c68dd6a9f0f678eaa1f22",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340615,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "fcc757b7fb877b9dd2e5ee5c8b50333fb1d486915e97fdf3fd140076810ac02b",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "b9e312799be823a2cb20b925eaa79c8e921308f0cba8baf5811f9884dcbc5c55"
+    },
+    "linx/11add": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722574722700728,
+        "Plik": -1185.0421026664783,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "3ded76f2fab45e583c3b65da5b0c8f42fc18f5f354722a2dede3e62c3a25db42",
+      "logL": -1394.8165519854451,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "22af05d1d73f12183304acee040ece736cd3917eb54c68dd6a9f0f678eaa1f22",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340615,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "d99668605cb30838c552d5f781ed7d535727039ab0f5ed9229bbec826318accd",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "b9e312799be823a2cb20b925eaa79c8e921308f0cba8baf5811f9884dcbc5c55"
+    },
+    "linx/11full": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722574722700728,
+        "Plik": -1185.0421026664783,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "3ded76f2fab45e583c3b65da5b0c8f42fc18f5f354722a2dede3e62c3a25db42",
+      "logL": -1394.8165519854451,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "22af05d1d73f12183304acee040ece736cd3917eb54c68dd6a9f0f678eaa1f22",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340615,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "e787d568b4179f0d19fd69dff4e206acf4821bccb5b606176f9906bf05a6bd2f",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "b9e312799be823a2cb20b925eaa79c8e921308f0cba8baf5811f9884dcbc5c55"
+    },
+    "primat/00": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722535583488678,
+        "Plik": -1185.0537536292343,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "5a7894faa2656b74b9ebf7ee3e63e250a129d529434d945c221d6f5e358282dc",
+      "logL": -1394.828163808989,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "f3b8b8700b34e725d3fdd748a6e78db0ec6ddc1ca89689b322840ea4880ea36a",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340646,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "a7a9ce63f11a86d75f4d31ed917bb6723e936429d3f801ef7bba7b88d9aa602d",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "a273021c8ae5207946a75430f04175ffb34f991f1d0278a60fefdb2d99016146"
+    },
+    "primat/01": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722535583488678,
+        "Plik": -1185.0537536292343,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "5a7894faa2656b74b9ebf7ee3e63e250a129d529434d945c221d6f5e358282dc",
+      "logL": -1394.828163808989,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "f3b8b8700b34e725d3fdd748a6e78db0ec6ddc1ca89689b322840ea4880ea36a",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340646,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "68a1c80d35e225094db84235a15432cd657e0d86fd85a871c3780213b3ffd7eb",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "a273021c8ae5207946a75430f04175ffb34f991f1d0278a60fefdb2d99016146"
+    },
+    "primat/10": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722535583488678,
+        "Plik": -1185.0537536292343,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "5a7894faa2656b74b9ebf7ee3e63e250a129d529434d945c221d6f5e358282dc",
+      "logL": -1394.828163808989,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "f3b8b8700b34e725d3fdd748a6e78db0ec6ddc1ca89689b322840ea4880ea36a",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340646,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "21600792a0378deadc3db72b64a860db5ab205879fadc2cc054ed289b4f81845",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "a273021c8ae5207946a75430f04175ffb34f991f1d0278a60fefdb2d99016146"
+    },
+    "primat/11add": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722535583488678,
+        "Plik": -1185.0537536292343,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "5a7894faa2656b74b9ebf7ee3e63e250a129d529434d945c221d6f5e358282dc",
+      "logL": -1394.828163808989,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "f3b8b8700b34e725d3fdd748a6e78db0ec6ddc1ca89689b322840ea4880ea36a",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340646,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "6e9f51873f27b3308838f01d26d76c18c71d6f2ab2801ef495dad7acc1d155c4",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "a273021c8ae5207946a75430f04175ffb34f991f1d0278a60fefdb2d99016146"
+    },
+    "primat/11full": {
+      "actual_model": "standard native CLASS free-streaming radiation after matching",
+      "binary_sha256": "d84d6ff7afa3c48491d816918ae5bfd6bc21f87cec10f458fa656f5577955cde",
+      "components": {
+        "Commander": -11.722535583488678,
+        "Plik": -1185.0537536292343,
+        "SimAll": -198.05187459626615
+      },
+      "input_cache_key": "5a7894faa2656b74b9ebf7ee3e63e250a129d529434d945c221d6f5e358282dc",
+      "logL": -1394.828163808989,
+      "log_prior": -19.97069279780534,
+      "matching": {
+        "N_ur": 3.044,
+        "T_gamma_MeV": 0.004,
+        "abundances_sha256": "f3b8b8700b34e725d3fdd748a6e78db0ec6ddc1ca89689b322840ea4880ea36a",
+        "eta": 6e-10,
+        "late_isotope_masses_g": [
+          1.6735328377636405e-24,
+          1.6735328377636405e-24,
+          3.344494686217972e-24,
+          5.0082345151408675e-24,
+          5.0082345151408675e-24,
+          6.6464790715846e-24,
+          1.1650347794645208e-23,
+          1.1650347794645208e-23
+        ],
+        "omega_b": 0.021919033055340646,
+        "omega_b_rule": "derived from eta, measured Tcmb and final nuclear composition in P9",
+        "rho_nu_convention": "total_all_species",
+        "source": "Synthetic post-annihilation density relation",
+        "source_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+        "source_policy": {
+          "electron_annihilation_finished": true,
+          "source": "Synthetic post-annihilation density relation",
+          "transfer_finished": true
+        },
+        "time_s": 2.0
+      },
+      "parameters_sha256": "817c38419fee778b7490fd1abcd1f3ba5df16602ea663709fd1a6d2dcc8b9d02",
+      "source_P7_history_sha256": "747f1824a5d6eb4244a9f89e68ef1b8e5c69814b037fb4077cda840ea85c3ee0",
+      "spectra_sha256": "a273021c8ae5207946a75430f04175ffb34f991f1d0278a60fefdb2d99016146"
+    }
+  }
+}
