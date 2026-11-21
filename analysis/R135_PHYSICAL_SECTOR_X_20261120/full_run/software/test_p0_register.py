@@ -37,6 +37,22 @@ class RegisterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate"):
             self.build()
 
+    def test_dominance_control_is_separate_from_grid_and_fms(self):
+        case = next(p for p in self.records["points"] if p["point_id"] == "XB-SU3-X1-DOMINANCE")
+        model_register = self.build()["model_register.json"]
+        self.assertIn(case, model_register["points"])
+        self.assertEqual(model_register["point_counts"],
+                         {"diagnostic": 49, "literature_benchmark": 4, "physical_candidate": 0})
+        for change in (dict(X=False), dict(X=0.1), dict(xi_event=1), dict(R_post=0.001),
+                       dict(role="physical_candidate"), dict(physical_launch_authorized=True)):
+            with self.subTest(change=change):
+                original = case.copy()
+                case.update(change)
+                with self.assertRaisesRegex(ValueError, "Dominance case"):
+                    self.build()
+                case.clear()
+                case.update(original)
+
     def test_missing_model(self):
         self.records["points"][0]["model_id"] = "unknown"
         with self.assertRaisesRegex(ValueError, "Unknown point model"):

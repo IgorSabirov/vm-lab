@@ -34,7 +34,7 @@
   ],
   "plan_sha256": "04e722f50b589b7d70b35b68d42ad9912d03459fde020afc224f3c830f7eff6d",
   "point_counts": {
-    "diagnostic": 48,
+    "diagnostic": 49,
     "literature_benchmark": 4,
     "physical_candidate": 0
   },
@@ -472,6 +472,38 @@
       "xi_event": 1.0
     },
     {
+      "X": 1,
+      "X_definition": "rho_d / rho_total at the modeled event",
+      "assumption_status": "FROZEN",
+      "comparison_scope": "Only this X=1, H=H_d case. For an FMS row, infer the energy share at its own surface and reconstruct the hot history before comparison.",
+      "diagnostic_kind": "dominance_control",
+      "dynamics_reference": "HPR, arXiv:2512.14530",
+      "expansion_closure": "H=H_d",
+      "metastable_EOS": "conditional linear continuation near coexistence",
+      "model_id": "XB-pureSU3",
+      "origin": "Owner-specified reproduction of the peer calculation, #161; physical interpretation and comparison in #168/#174.",
+      "peer_reported": {
+        "beta_tilde_range": [
+          24000,
+          600000
+        ],
+        "epsilon_n_approx": 0.0007,
+        "provenance": "Reported by peer and preserved by owner for reproduction. Values are conditional outputs only.",
+        "wall_speed_interpretation": "Peer label v_w. Local jump control gives fluid v_minus in the wall frame for imposed temperatures. Physical wall speed requires friction and boundary conditions.",
+        "wall_speed_label_vw_over_c_approx": 0.029
+      },
+      "physical_input_status": "OPEN_INPUT",
+      "physical_launch_authorized": false,
+      "point_id": "XB-SU3-X1-DOMINANCE",
+      "role": "diagnostic",
+      "sound_speed_squared_endpoints": {
+        "cold": "OPEN_INPUT",
+        "hot": "OPEN_INPUT"
+      },
+      "stable_EOS": "Giusti et al., arXiv:2501.10284",
+      "thermal_path": "isolated_during_transition"
+    },
+    {
       "R_post": 1e-09,
       "initial_history_id": "FMS-confined-boundary",
       "m0_GeV": 1,
@@ -516,7 +548,7 @@
       "thermal_path": "isolated_during_transition"
     }
   ],
-  "register_sha256": "929af0afa5c118aab6f0b5a5dd8ea5d83bcaa08b440aff872fa63ee9586b8ca9",
+  "register_sha256": "d922fcbb3cb9ab3eaeebb5f2e985602734a8e4925fc7cd3cf7107894aa39cabd",
   "schema": "R135-P0-design-v2",
   "xb_reference": {
     "coordinates": {
