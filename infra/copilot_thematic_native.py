@@ -106,8 +106,8 @@ def analyze(events_path: Path, output: Path) -> None:
     stdout, stderr = redact(result.stdout).strip(), redact(result.stderr).strip()
     if result.returncode:
         raise RuntimeError("COPILOT_FAILED: " + stderr[-2500:])
-    if not stdout or len(stdout.encode("utf-8")) > 80_000:
-        raise ValueError("Copilot returned empty or oversized report")
+    if not stdout or len(stdout.encode("utf-8")) > 80_000 or len(stdout.split()) > 350:
+        raise ValueError("Copilot report must be nonempty and at most 350 words / 80 KB")
     output.mkdir(parents=True, exist_ok=True)
     report = stdout + "\n"
     (output / "REPORT.md").write_text(report, encoding="utf-8")
