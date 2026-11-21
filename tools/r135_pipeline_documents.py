@@ -4,6 +4,11 @@ import argparse
 import json
 from pathlib import Path
 
+if __package__:
+    from . import r135_progress as progress
+else:
+    import r135_progress as progress
+
 ROOT = Path(__file__).resolve().parents[1]
 REPO_URL = 'https://github.com/IgorSabirov/vm-lab'
 MAP_PATH = 'infra/r135/PIPELINE.json'
@@ -24,7 +29,7 @@ def issue_body(task, plan):
                  or any(d['key'] == task['key'] for d in t['conditional_dependencies'])]
     onward = ', '.join(ref(t) for t in consumers) or '#155: итоговая приёмка заявленного объёма'
     responsibilities = '\n'.join('- ' + s for s in task['responsibility'].values())
-    return f"""<!-- r135-pipeline-task:{task['key']} -->
+    body = f"""<!-- r135-pipeline-task:{task['key']} -->
 ### Тип работы
 Аналитический вывод или аудит доказательства
 
@@ -69,7 +74,7 @@ R135; R131–R134; C037; U006. Этапы: {', '.join(task['stages'])}. Обла
 {onward}
 
 ### Ближайшее действие
-{task['next_action']}
+{progress.next_action(task) if 'focus_criterion' in task else task['next_action']}
 
 ### Ответственность
 {responsibilities}
@@ -88,6 +93,9 @@ R135; R131–R134; C037; U006. Этапы: {', '.join(task['stages'])}. Обла
 
 Полная карта работы: [R135 Development Pipeline]({REPO_URL}/blob/main/infra/r135/README.md). Аудит основан на #159 `{plan['source_commits']['implementation']}` и #160 `{plan['source_commits']['design']}`; это исходная точка данной задачи, а не будущий SHA её результата.
 """
+    if plan.get('schema') == progress.SCHEMA:
+        return progress.replace_section(body,progress.criterion_block(plan,task))
+    return body
 
 
 def tracker_body(plan):
@@ -99,7 +107,7 @@ def tracker_body(plan):
             f"- [ ] {ref(t)} — {t['title'].removeprefix('R135 · ')}" for t in group))
     lines = '\n\n'.join(groups)
     focus = '\n'.join(f"- **{ref(tasks[k])}**: {tasks[k]['next_action']}" for k in plan['current_focus'])
-    return f"""### Тип работы
+    body = f"""### Тип работы
 Аналитический вывод или аудит доказательства
 
 ### Рабочий блок R135
@@ -152,6 +160,9 @@ R130–R135; C037; U006; BH1. Действующая реализация #159, 
 ### История трекера
 [Исходное описание проектирования сохранено]({REPO_URL}/blob/main/infra/r135/review/tracker155_before.md). Прежние комментарии и PR остаются на месте. Эта редакция меняет операционную карту, не научные статусы.
 """
+    if plan.get('schema') == progress.SCHEMA:
+        return progress.replace_section(body,progress.summary(plan))
+    return body
 
 
 def main():
@@ -164,6 +175,8 @@ def main():
                  'body':issue_body(t,plan)} for t in plan['tasks']]
     (args.out/'issues.json').write_text(json.dumps(payloads,ensure_ascii=False,indent=2)+'\n')
     (args.out/'tracker155.md').write_text(tracker_body(plan))
+    if plan.get('schema') == progress.SCHEMA:
+        (args.out/'progress.md').write_text(progress.summary(plan)+'\n')
     print(json.dumps({'rendered_tasks':len(payloads),'out':str(args.out)}))
 
 

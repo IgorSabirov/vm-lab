@@ -1,0 +1,202 @@
+{
+  "scope": "input applicability and manufactured tensor controls",
+  "physical_X_source": false,
+  "inputs": {
+    "validation.json": [
+      "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/validation.json",
+      "b913bd500cb0025811a32f83dd4efd05ca7cfd6a723564e22d0eb50c7fb6401a"
+    ],
+    "eos.py": [
+      "https://raw.githubusercontent.com/pedrota2000/SNOBEX/098553176dcd4d2dc975c70fa2a22b7321ef27b1/snobex/eos.py",
+      "380b8f527e182f6ef45657f929a6b6332bf6d924efa9855b99f0df6ced3b1e5c"
+    ],
+    "r135geom/pockets.py": [
+      "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/pockets.py",
+      "7ced5b6a7df4bb8e0d54dc33fd5d54780b123ee64834a41504cf3f0346d85fa4"
+    ],
+    "r135geom/common.py": [
+      "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/common.py",
+      "6d275d0fc494135051e0872c5d793edb438f6e43599f99c7b1ad72c5ba425fe5"
+    ],
+    "p7.json": [
+      "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/gw/integrated_reference/source_on_refined_P7_history.json",
+      "701e44ee50414848ec0de83dc9d35d9b3f1bcbdb24678a70d71bdd7e0824526e"
+    ]
+  },
+  "eos": {
+    "rows": 25,
+    "T_over_Tc": [
+      0.8,
+      2.5
+    ],
+    "same_phase_secants": 23,
+    "same_phase_dp_de_range": [
+      0.05992499910543335,
+      0.31255311239299466
+    ],
+    "loader_result": "Custom EoS: could not find two c_s² = 0 turning points."
+  },
+  "controls": {
+    "xiao_y2": {
+      "0.0": 0.43096440627115085,
+      "0.3333333333333333": 0.5,
+      "0.5": 0.5405285899981859,
+      "0.99": 0.6895562389862069,
+      "1.0": 0.6931471805599453
+    },
+    "poisson_I": 0.9999999999999999,
+    "actual_over_phantom_births_at_I1": 0.8448385947571023,
+    "flat_mode_energy": {
+      "-1": 8.0,
+      "0": 4.0,
+      "1": 0.0
+    },
+    "positive_only_work_correlated": 2.0,
+    "HR_v_over_beta": [
+      6e-07,
+      1e-06,
+      1.8000000000000001e-06
+    ],
+    "HR_mean_spacing_exponential": [
+      1.7575102650738276e-06,
+      2.9291837751230463e-06,
+      5.272530795221483e-06
+    ]
+  },
+  "filtered_births": [
+    {
+      "event_index": 0,
+      "birth_time_s": 0.0,
+      "first_contact_time_s": 2.0,
+      "comoving_radius_at_contact_cm": 2.0
+    },
+    {
+      "event_index": 2,
+      "birth_time_s": 1.0,
+      "first_contact_time_s": 2.0,
+      "comoving_radius_at_contact_cm": 1.0
+    },
+    {
+      "event_index": 3,
+      "birth_time_s": 3.2,
+      "first_contact_time_s": null,
+      "comoving_radius_at_contact_cm": null
+    }
+  ],
+  "native_poisson": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "box_cm": 8.0,
+    "duration_s": 1.0,
+    "intensity_at_end": 1.0000999999999998,
+    "events_and_accepted_per_seed": [
+      [
+        498,
+        409
+      ],
+      [
+        490,
+        418
+      ],
+      [
+        473,
+        385
+      ],
+      [
+        452,
+        380
+      ],
+      [
+        535,
+        436
+      ],
+      [
+        510,
+        433
+      ],
+      [
+        491,
+        391
+      ],
+      [
+        497,
+        440
+      ],
+      [
+        477,
+        400
+      ],
+      [
+        518,
+        443
+      ],
+      [
+        543,
+        457
+      ],
+      [
+        460,
+        388
+      ],
+      [
+        467,
+        387
+      ],
+      [
+        517,
+        439
+      ],
+      [
+        513,
+        437
+      ],
+      [
+        502,
+        440
+      ]
+    ],
+    "mean_accepted": 417.6875,
+    "analytic_expected_accepted": 413.06185258107945,
+    "standard_error_over_seeds": 6.452208116864592
+  },
+  "p7_tensor_check": {
+    "point": "gw-coupled-control",
+    "k_over_aH_initial": 30,
+    "probes": [
+      {
+        "time_s": 0.375,
+        "ode_hdot_variance": 0.0003650354023063807,
+        "uetc_hdot_variance": 0.000365035397781752,
+        "relative_difference": 1.2395040688577811e-08
+      },
+      {
+        "time_s": 0.55,
+        "ode_hdot_variance": 0.001347849458233386,
+        "uetc_hdot_variance": 0.001347849512361302,
+        "relative_difference": 4.0158725128728663e-08
+      },
+      {
+        "time_s": 0.75,
+        "ode_hdot_variance": 0.002983850220740845,
+        "uetc_hdot_variance": 0.002983850183238432,
+        "relative_difference": 1.256846366036484e-08
+      }
+    ]
+  }
+}
