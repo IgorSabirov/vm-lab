@@ -91,7 +91,7 @@ class GitHub:
                    'User-Agent': 'vm-lab-thematic-review'}
         if self.token:
             headers['Authorization'] = 'Bearer ' + self.token
-        payload = None if data is None else json.dumps(data).encode()
+        payload = None if data is None else json.dumps(data, ensure_ascii=False).encode('utf-8')
         if payload is not None:
             headers['Content-Type'] = 'application/json'
         req = urllib.request.Request('https://api.github.com' + path, data=payload, headers=headers, method=method)

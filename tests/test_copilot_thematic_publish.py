@@ -163,6 +163,58 @@ class PublisherBoundary(unittest.TestCase):
             with self.assertRaises(ValueError):
                 p.write_commit(None, files, 'a' * 40, 'invalid')
 
+    def test_many_batch_outputs_are_published_in_bounded_api_groups(self):
+        class Writer:
+            def __init__(self):
+                self.current = None
+                self.calls = []
+            def get(self, path):
+                if path.startswith('git/ref/'):
+                    if self.current is None:
+                        error = RuntimeError('not found')
+                        error.code = 404
+                        raise error
+                    return {'object': {'sha': self.current}}
+                if path.startswith('git/commits/'):
+                    return {'tree': {'sha': 'b' * 40}}
+                raise AssertionError(path)
+            def request(self, method, path, data):
+                self.calls.append((path, data))
+                if path == 'git/blobs':
+                    return {'sha': p.blob_sha(data['content'])}
+                if path == 'git/trees':
+                    self_size = len(json.dumps(data, ensure_ascii=False).encode())
+                    if self_size > 3_001_000:
+                        raise AssertionError('Oversized tree request')
+                    return {'sha': 'd' * 40}
+                if path == 'git/commits':
+                    return {'sha': 'c' * 40}
+                if path == 'git/refs':
+                    self.current = data['sha']
+                    return {}
+                raise AssertionError(path)
+        api = Writer()
+        files = {p.PREFIX + '/' + 'e' * 64 + f'/batches/{i:04d}/RAW_RESPONSE.txt': 'Строка\n' * 10000
+                 for i in range(40)}
+        with patch.object(p, 'verify_written') as verify:
+            result = p.write_commit(api, files, 'a' * 40, 'report')
+        self.assertEqual(result, 'c' * 40)
+        self.assertFalse(any(path == 'git/blobs' for path, _ in api.calls))
+        self.assertLess(len(api.calls), 10)
+        verify.assert_called_once_with(api, result, files)
+
+    def test_subtree_readback_rejects_one_wrong_saved_file(self):
+        package = 'e' * 64
+        files = {p.STATE: '{}', p.PREFIX + '/' + package + '/REPORT.md': 'report'}
+        entries = [{'type': 'blob', 'path': 'MONITOR.json', 'sha': p.blob_sha('{}')},
+                   {'type': 'tree', 'path': package, 'sha': 'b' * 40}]
+        class Reader:
+            def tree(self, sha):
+                return [{'type': 'blob', 'path': 'REPORT.md', 'sha': p.blob_sha('wrong report')}]
+        with patch.object(p, 'report_entries', return_value=entries):
+            with self.assertRaisesRegex(ValueError, 'readback failed'):
+                p.verify_written(Reader(), 'a' * 40, files)
+
 
 if __name__ == '__main__':
     unittest.main()

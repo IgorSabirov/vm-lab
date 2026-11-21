@@ -72,6 +72,37 @@ def head(api):
     return item['object']['sha'] if item else None
 
 
+def report_entries(api, ref):
+    """Read only the report subtree, avoiding huge historical experiment trees."""
+    cursor = ref
+    for component in PREFIX.split('/'):
+        tree = api.get('git/trees/' + cursor)
+        row = next((x for x in tree['tree'] if x['path'] == component), None)
+        if not row or row.get('type') != 'tree':
+            raise ValueError('Published report tree is missing: ' + component)
+        cursor = row['sha']
+    tree = api.get('git/trees/' + cursor)
+    if tree.get('truncated'):
+        raise ValueError('Incomplete report directory listing')
+    return tree['tree']
+
+
+def verify_written(api, commit_sha, files):
+    entries = report_entries(api, commit_sha)
+    actual = {PREFIX + '/' + row['path']: row['sha'] for row in entries if row['type'] == 'blob'}
+    packages = {path[len(PREFIX) + 1:].split('/')[0] for path in files if path != STATE}
+    for package in packages:
+        row = next((x for x in entries if x['path'] == package and x['type'] == 'tree'), None)
+        if row is None:
+            raise ValueError('Missing published package directory')
+        for item in api.tree(row['sha']):
+            if item['type'] == 'blob':
+                actual[PREFIX + '/' + package + '/' + item['path']] = item['sha']
+    for path, value in files.items():
+        if actual.get(path) != blob_sha(value):
+            raise ValueError('Published file readback failed: ' + path)
+
+
 def write_commit(api, files, source_sha, message):
     """Only append report data. A changed parent is an error, never a force push."""
     if not HEX40.fullmatch(source_sha):
@@ -88,13 +119,28 @@ def write_commit(api, files, source_sha, message):
     commit = api.get('git/commits/' + parent)
     entries = []
     for path, value in sorted(files.items()):
-        # Git blobs avoid inline tree request limits for full context packages.
-        blob = api.request('POST', 'git/blobs', {'content': value, 'encoding': 'utf-8'})
-        if blob['sha'] != blob_sha(value):
-            raise ValueError('Created blob digest mismatch')
-        entries.append({'path': path, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']})
-    tree = api.request('POST', 'git/trees', {'base_tree': commit['tree']['sha'], 'tree': entries})
-    made = api.request('POST', 'git/commits', {'message': message, 'tree': tree['sha'], 'parents': [parent]})
+        entry = {'path': path, 'mode': '100644', 'type': 'blob'}
+        # Batch small outputs into trees. Only large frozen contexts require a
+        # separate blob: five files per model call must not cost ten API calls.
+        if len(encoded(value).encode()) > 2_000_000:
+            blob = api.request('POST', 'git/blobs', {'content': value, 'encoding': 'utf-8'})
+            if blob['sha'] != blob_sha(value):
+                raise ValueError('Created blob digest mismatch')
+            entry['sha'] = blob['sha']
+        else:
+            entry['content'] = value
+        entries.append(entry)
+    tree_sha, group, byte_count = commit['tree']['sha'], [], 0
+    for entry in entries:
+        size = len(json.dumps(entry, ensure_ascii=False).encode())
+        if group and byte_count + size > 3_000_000:
+            tree_sha = api.request('POST', 'git/trees', {'base_tree': tree_sha, 'tree': group})['sha']
+            group, byte_count = [], 0
+        group.append(entry)
+        byte_count += size
+    if group:
+        tree_sha = api.request('POST', 'git/trees', {'base_tree': tree_sha, 'tree': group})['sha']
+    made = api.request('POST', 'git/commits', {'message': message, 'tree': tree_sha, 'parents': [parent]})
     if previous is None:
         api.request('POST', 'git/refs', {'ref': 'refs/heads/' + BRANCH, 'sha': made['sha']})
     else:
@@ -103,10 +149,7 @@ def write_commit(api, files, source_sha, message):
         api.request('PATCH', 'git/refs/heads/' + BRANCH, {'sha': made['sha'], 'force': False})
     if head(api) != made['sha']:
         raise ValueError('Published branch readback failed')
-    for path, value in files.items():
-        row = api.get('contents/' + quote(path, safe='/') + '?ref=' + made['sha'])
-        if row.get('sha') != blob_sha(value):
-            raise ValueError('Published file readback failed: ' + path)
+    verify_written(api, made['sha'], files)
     return made['sha']
 
 
@@ -130,12 +173,14 @@ def archived_files(api, package):
     ref = head(api)
     if ref is None:
         raise ValueError('Reserved report branch is missing')
-    prefix = PREFIX + '/' + package + '/'
     files = {}
-    for item in api.tree(ref):
-        if item.get('type') != 'blob' or not item['path'].startswith(prefix):
+    row = next((x for x in report_entries(api, ref) if x['path'] == package and x['type'] == 'tree'), None)
+    if row is None:
+        raise ValueError('Reserved package directory is missing')
+    for item in api.tree(row['sha']):
+        if item.get('type') != 'blob':
             continue
-        name = item['path'][len(prefix):]
+        name = item['path']
         if name in ROOT_FILES or BATCH_FILE.fullmatch(name):
             files[name] = api.blob(item['sha'])
     return files
