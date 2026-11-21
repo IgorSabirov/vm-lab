@@ -442,7 +442,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         body(pr or issue, 'pull_request' if pr else 'issue', ('pr:' if pr else 'issue:') + str(number))
         for comment in api.pages(f'issues/{number}/comments'):
             if force or (comment.get('updated_at') or comment.get('created_at') or '') >= since:
-                body(comment, 'issue_comment', 'issue-comment:' + str(comment['id']))
+                body(comment, 'issue_comment', 'issue-comment:' + str(comment['id']), parent_number=number)
         if pr:
             for review in api.pages(f'pulls/{number}/reviews'):
                 # submitted_at does not advance when a review is dismissed/edited.
