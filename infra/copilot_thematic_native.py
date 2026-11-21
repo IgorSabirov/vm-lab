@@ -34,13 +34,13 @@ def analyze(events_path: Path, output: Path) -> None:
         raise ValueError("Invalid change list")
     output.mkdir(parents=True, exist_ok=True)
     if not changes:
-        report = "Научных обновлений не обнаружено. Copilot не запускался.\\n"
+        report = "Научных обновлений не обнаружено. Copilot не запускался.\n"
         receipt = {"schema": "vm-lab-repo-native-review-v1",
                    "package_id": events.get("package_id", ""),
                    "source_sha": events["source_sha"], "status": "NO_SCIENTIFIC_UPDATE",
                    "repository_corpus_prepacked": False, "scientific_acceptance": False}
         (output / "REPORT.md").write_text(report, encoding="utf-8")
-        (output / "DELIVERY.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        (output / "DELIVERY.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         return
     token = os.environ.get("COPILOT_GITHUB_TOKEN")
     if not token:
@@ -60,7 +60,9 @@ def analyze(events_path: Path, output: Path) -> None:
 ревью и истории. Не ограничивайся уже зарегистрированными соседями или совпадениями
 слов. Изучи файл события thematic-output/EVENTS.json и затем исследуй его последствия
 для всего корпуса. Учитывай частичные результаты, отрицательные результаты,
-изменённые предпосылки и закрытие вопросов.
+изменённые предпосылки и закрытие вопросов. Во входном событии каждый адрес имеет
+address_status: scientific или candidate. Оба статуса подлежат анализу. Адреса
+technical отфильтрованы до запуска и не передаются тебе.
 
 Идентификатор обновления: {package_id}
 Количество зарегистрированных изменений: {len(changes)}

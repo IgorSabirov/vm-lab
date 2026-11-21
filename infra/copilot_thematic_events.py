@@ -407,7 +407,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         for value in reversed(values):
             commit(value['sha'])
 
-    def body(item, kind, identifier, operation=None, baseline=False, event_revision=None):
+    def body(item, kind, identifier, operation=None, baseline=False, event_revision=None, parent_number=None):
         if own_comment(item):
             ignored.append({'kind': 'generated_comment', 'id': identifier})
             return
@@ -420,7 +420,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         revision = (event_revision or now) if kind == 'pull_request_review' else (
             item.get('updated_at') or item.get('submitted_at') or item.get('created_at'))
         add(identifier, kind, text, revision,
-            item.get('html_url') or '', state=item.get('state'), operation=operation or 'snapshot', baseline=baseline)
+            item.get('html_url') or '', state=item.get('state'), operation=operation or 'snapshot', baseline=baseline, number=item.get('number') or parent_number)
 
     def discussion(issue, force=False):
         number = int(issue['number'])
@@ -442,14 +442,14 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
         body(pr or issue, 'pull_request' if pr else 'issue', ('pr:' if pr else 'issue:') + str(number))
         for comment in api.pages(f'issues/{number}/comments'):
             if force or (comment.get('updated_at') or comment.get('created_at') or '') >= since:
-                body(comment, 'issue_comment', 'issue-comment:' + str(comment['id']))
+                body(comment, 'issue_comment', 'issue-comment:' + str(comment['id']), parent_number=number)
         if pr:
             for review in api.pages(f'pulls/{number}/reviews'):
                 # submitted_at does not advance when a review is dismissed/edited.
                 body(review, 'pull_request_review', 'review:' + str(review['id']))
             for comment in api.pages(f'pulls/{number}/comments'):
                 if force or (comment.get('updated_at') or comment.get('created_at') or '') >= since:
-                    body(comment, 'pull_request_review_comment', 'review-comment:' + str(comment['id']))
+                    body(comment, 'pull_request_review_comment', 'review-comment:' + str(comment['id']), parent_number=number)
 
     # The triggering event is evidence even if a newer snapshot was reconciled.
     event_revision = now
@@ -479,7 +479,8 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
                  'deleted' if event.get('action') == 'deleted' and event_name == 'issues' else None)
         if event_name == 'issue_comment' and not implementation:
             body(event['comment'], 'issue_comment', 'issue-comment:' + str(event['comment']['id']),
-                 'deleted' if event.get('action') == 'deleted' else None)
+                 'deleted' if event.get('action') == 'deleted' else None,
+                 parent_number=event.get('issue', {}).get('number'))
     elif event_name in {'pull_request', 'pull_request_review', 'pull_request_review_comment'}:
         pr = event['pull_request']
         if pr['head']['ref'] == IMPLEMENTATION_BRANCH:
@@ -545,7 +546,7 @@ def collect(api, event_name, event, source_sha, state=None, now=None, start_at=N
                 continue
             # Generated publisher comments have a checked author+marker. Other
             # bot comments remain evidence; never exclude all bot activity.
-            body(comment, kind, prefix + str(comment['id']))
+            body(comment, kind, prefix + str(comment['id']), parent_number=int(parent) if parent.isdigit() else None)
     state['observed_at'] = max(now, state.get('observed_at', now))
     material = sorted(changes.values(), key=lambda x: (x['id'], x['version_sha256']))
     package_id = digest([(x['id'], x['version_sha256']) for x in material]) if material else ''
@@ -581,6 +582,8 @@ def main():
         result = collect(api, os.environ.get('GITHUB_EVENT_NAME', 'schedule'), event,
                          os.environ['GITHUB_SHA'], state=state,
                          start_at=os.environ.get('THEMATIC_START_AT'))
+        from copilot_address_status import route_changes
+        result = route_changes(result)
         dump(args.output / 'EVENTS.json', result)
         if os.environ.get('GITHUB_OUTPUT'):
             with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
