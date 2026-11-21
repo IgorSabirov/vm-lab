@@ -1,7 +1,104 @@
 {
   "name": "XB_SU3_EOS_PAIR_v0.1",
   "status": "STABLE_EQUILIBRIUM_DONOR_CONTROL",
-  "input_sha256": "f62cb92e6a59dd83a08fdd725eee41ffaa8495a826f48651bc3a61aa3c9d8ec1",
+  "peer_review_controls": {
+    "max_absolute_pull_25_table_rows": 0.968695060848883,
+    "scale_author": 0.6462,
+    "mass_over_Tc": [
+      5.269266480965645,
+      7.573506654286599,
+      8.16465490560198,
+      9.780253791395854
+    ],
+    "gas_s_T3_on_author_scale": {
+      "0.8": 0.03080295876983391,
+      "0.9": 0.05973895871326541,
+      "0.95": 0.07919660404921311,
+      "1.0": 0.10220550581152593
+    },
+    "common_anchor_using_cold_fit": 0.017768694535385286,
+    "last_cold_fit_heat_capacity_zero_x": 0.9999982258825156,
+    "smooth_fit_scenarios": {
+      "0.0": {
+        "coef_sbar_quadratic_in_x_minus_1": [
+          0.27477172343324263,
+          3.5568697910561307,
+          11.38913349963926
+        ],
+        "conditional_coefficient_covariance": [
+          [
+            1.0115630681149036e-05,
+            0.00024432773324749193,
+            0.0009880349601838088
+          ],
+          [
+            0.0002443277332474919,
+            0.00993282971066789,
+            0.04548767000968909
+          ],
+          [
+            0.0009880349601838088,
+            0.04548767000968909,
+            0.2250111190073447
+          ]
+        ],
+        "endpoint_cs2": 0.07725099302880455,
+        "linearized_conditional_sigma": 0.001581501472652178,
+        "positive_slope_on_fitted_interval": false
+      },
+      "0.5": {
+        "coef_sbar_quadratic_in_x_minus_1": [
+          0.27070432390734867,
+          3.560616015258675,
+          11.374262500475934
+        ],
+        "conditional_coefficient_covariance": [
+          [
+            1.09315575781366e-05,
+            0.00011675393450623743,
+            0.0005154927286737884
+          ],
+          [
+            0.00011675393450623742,
+            0.004971397601312996,
+            0.02272405551294056
+          ],
+          [
+            0.0005154927286737884,
+            0.02272405551294056,
+            0.1125840761091011
+          ]
+        ],
+        "endpoint_cs2": 0.07602738479725742,
+        "linearized_conditional_sigma": 0.0013147289590007994,
+        "positive_slope_on_fitted_interval": false
+      }
+    },
+    "unweighted_sbar_refits": {
+      "2": {
+        "cs2_at_Tc": 0.08062863512932415,
+        "minimum_dsbar_dx_over_interval": -0.8384977090909085
+      },
+      "3": {
+        "cs2_at_Tc": 0.05539454704968803,
+        "minimum_dsbar_dx_over_interval": 0.08522667452970839
+      },
+      "4": {
+        "cs2_at_Tc": 0.039705847055132644,
+        "minimum_dsbar_dx_over_interval": -6.789742333333161
+      }
+    },
+    "rankine_hugoniot_example": {
+      "T_plus_Tc": 1,
+      "T_minus_Tc": 0.99931,
+      "v_minus_wall_frame": 0.029460937231122603,
+      "v_plus_wall_frame": 0.005655637141620307,
+      "out_minus_in_entropy_flux_Tc3": 2.26381211296256e-06,
+      "scope": "prescribed temperatures and planar flux conservation; no velocity-selection law or percolation"
+    },
+    "alpha_at_Tc_from_combined_L": 0.2662587808746884
+  },
+  "input_sha256": "361ced5906b7cb0aaccebd5034c22c46fd515dd5dbcc2baf7a665b98efb20820",
   "physical_launch_authorized": false,
   "x": "T/Tc",
   "source": {
@@ -20,7 +117,13 @@
     "entropy_table_and_scale": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/validation.json",
     "alternate_scale": "https://doi.org/10.1103/PhysRevLett.75.4169",
     "hpr": "https://arxiv.org/html/2512.14530v2",
-    "sf_tx": "https://arxiv.org/abs/2011.10292"
+    "sf_tx": "https://arxiv.org/abs/2011.10292",
+    "mass_scale_proceedings": "https://arxiv.org/abs/2502.03875 (Virzì et al.; four masses and Tc/sqrt(sigma_string)=0.6462(30))",
+    "flow_scale": {
+      "Tc_sqrt_t0": 0.24915,
+      "sigma": 0.00029,
+      "source": "Giusti et al., arXiv:2501.10284v1"
+    }
   },
   "domain": {
     "cold": [

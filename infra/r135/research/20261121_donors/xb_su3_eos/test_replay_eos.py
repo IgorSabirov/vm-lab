@@ -17,7 +17,7 @@ class StableEOS(unittest.TestCase):
 
     def test_domain_and_shape(self):
         for phase, good, bad in (("hot", 1.08, 0.99931), ("cold", 0.9, 1.001)):
-            self.assertEqual(eos.fits(self.data,phase,good)[0].shape, ())
+            self.assertIsInstance(eos.fits(self.data,phase,good)[0], float)
             result = eos.fits(self.data,phase,[[good],[good]])[0]
             self.assertEqual(result.shape, (2,1))
             for invalid in (bad, np.nan, np.inf):
@@ -57,6 +57,19 @@ class StableEOS(unittest.TestCase):
                         coeff = self.data["entropy_fit"]["hot"][j]
                         area += simpson(grid**3*eos.rational(np.log(grid),coeff)[0],x=grid)
                 self.assertAlmostEqual(pc+area,row["p_Tc4"],places=7)
+
+    def test_literature_scenarios(self):
+        checks = self.result["peer_review_controls"]
+        self.assertLess(checks["max_absolute_pull_25_table_rows"],1.0)
+        self.assertAlmostEqual(checks["common_anchor_using_cold_fit"],0.017769,places=6)
+        self.assertAlmostEqual(checks["rankine_hugoniot_example"]["v_minus_wall_frame"],0.02946,places=5)
+        self.assertAlmostEqual(checks["alpha_at_Tc_from_combined_L"],0.26626,places=5)
+        self.assertGreater(1-checks["last_cold_fit_heat_capacity_zero_x"],1e-6)
+        self.assertLess(1-checks["last_cold_fit_heat_capacity_zero_x"],2e-6)
+        for scenario in checks["smooth_fit_scenarios"].values():
+            self.assertTrue(np.all(np.linalg.eigvalsh(scenario["conditional_coefficient_covariance"])>0))
+        seam = self.result["diagnostics"]["hot_join_left_right"]
+        self.assertAlmostEqual(seam[1]["cs2_fit_diagnostic"]/seam[0]["cs2_fit_diagnostic"]-1,.0107,places=4)
 
     def test_common_anchor_and_sensitivity(self):
         for phase, x in (("cold", 0.95), ("hot", 1.05)):
