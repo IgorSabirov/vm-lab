@@ -5175,7 +5175,7 @@
       "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀.",
       "inputs": "Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.",
       "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта.",
-      "framework_role": "Независимая воспроизводимая проверка температурного входа EOS из R135 перед применением к метастабильным ветвям.",
+      "framework_role": "Independent calibration-consistency check for the Shirogane phase-resolved SU(3) EOS used by #167. R135 is contextual ancestry only; R136 does not supply a physical XB input or close #168/#174.",
       "evidence_level": "Векторные первоисточники, численная реконструкция и контроль другим оценивателем на связанных ансамблях.",
       "parent_result_ids": [
         "R135"
@@ -5201,7 +5201,7 @@
         "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
         "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
       ],
-      "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3).",
+      "genealogy_note": "R135 is the programmatic/contextual parent, not physical evidence for the Shirogane calibration. Workstream ancestry: #167 EOS task → donor audit in draft PR #185 (PHASE_FLOW_AND_SIGMA_AUDIT.md, commit 649c1d9) → U013 → R136 / #193 → draft PR #194. Direct scientific donors: Shirogane et al. 2016 (arXiv:1605.02997, Eq. 42/F(n) calibration) and Shirogane et al. 2021 (arXiv:2011.10292, volume-specific beta_c, phase jumps, flow-time and method controls). Data lineage: source EPS → extract.py → FIGURES.json → verify.py → CHECKS.json → REPORT.md. R136 informs but does not close U013. A partially complete (curve reconstruction done; exact Fig. 15 beta nodes/normalization absent), B open (joint jackknife covariance absent), C checked (shift sign on both volumes). #167 may consume the calibration after provenance/covariance closure; #168 hydro and #174 GW remain open. No publication error is established; scientific_acceptance=false.",
       "scientific_acceptance": false
     }
   ],
