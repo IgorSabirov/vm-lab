@@ -1,0 +1,476 @@
+{
+  "schema": "r135-physical-input-donor-audit-v1",
+  "date": "2026-11-21",
+  "repository": "IgorSabirov/vm-lab",
+  "issues": [
+    167,
+    168,
+    174
+  ],
+  "report": "infra/r135/research/20261121_donors/PHYSICAL_INPUT_DONORS_174.md",
+  "scope": "XB: autonomous pure SU(3); donor provenance and transfer conditions",
+  "evidence_level": "published",
+  "physical_calculations_run": false,
+  "donor_code_executed": false,
+  "physical_launch_authorized": false,
+  "scientific_acceptance": false,
+  "inputs_applied_to_executor": false,
+  "basis": {
+    "research": "53791cd3c5acac8ae9eec3cb49beb4f4d4db2ffa",
+    "implementation": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+    "design": "cfbf4cbcb0529078d42c0d104dcf2e9f26e4ccc8"
+  },
+  "nearest_output": "Admissible hydrodynamic profile of one autonomous XB on two consistently normalized phase branches.",
+  "donors": [
+    {
+      "id": "G25",
+      "source": "https://arxiv.org/html/2501.10284v1",
+      "locators": [
+        "Sections 4–5",
+        "Equations 17–18",
+        "Table 3"
+      ],
+      "system": "pure SU(3), equilibrium, continuum thermodynamics",
+      "observables": {
+        "latent_heat_over_Tc4": {
+          "value": 1.175,
+          "quoted_error": 0.01
+        },
+        "entropy_cold_at_Tc_over_Tc3": {
+          "value": 0.2928,
+          "quoted_error": 0.0038
+        },
+        "entropy_hot_at_Tc_over_Tc3": {
+          "value": 1.471,
+          "quoted_error": 0.016
+        }
+      },
+      "domain": {
+        "hot_fit_T_over_Tc": [
+          1,
+          3.433
+        ],
+        "cold_data_T_over_Tc": [
+          0.8,
+          1
+        ],
+        "below_0_8": "glueball gas model"
+      },
+      "uncertainty": "Published entropy/latent-heat errors; complete joint covariance for XB reconstruction not obtained.",
+      "use": "stable branch and coexistence anchor",
+      "open": [
+        "metastable branches",
+        "joint covariance",
+        "XB absolute scale"
+      ],
+      "criteria": [
+        "EOS-01",
+        "EOS-02",
+        "EOS-03"
+      ]
+    },
+    {
+      "id": "L23",
+      "source": "https://arxiv.org/abs/2305.07463",
+      "locators": [
+        "Section IV before equation 26",
+        "Equations 27–30",
+        "Section V.B",
+        "Table IV"
+      ],
+      "system": "pure SU(3), Nt=4, Ns=20",
+      "observables": [
+        "density of states",
+        "phase probabilities",
+        "plaquette jump",
+        "microcanonical branches"
+      ],
+      "physical_EOS_ready": false,
+      "uncertainty": "20 repeated reconstructions and energy-interval extrapolation; no continuum or infinite-volume extrapolation.",
+      "use": "method and finite-lattice phase structure",
+      "open": [
+        "mapping from Wilson-action variables to physical thermodynamics",
+        "scale setting and normalization",
+        "finite-a and finite-volume uncertainty"
+      ],
+      "criteria": [
+        "EOS-02",
+        "EOS-03",
+        "EOS-04"
+      ]
+    },
+    {
+      "id": "Z23",
+      "source": "https://zenodo.org/records/8124749",
+      "artifact": "LLRAnalysis.zip",
+      "files_read": [
+        "README.txt",
+        "LLRAnalysis/llranalysis/Thermo.py"
+      ],
+      "code_executed": false,
+      "manifest_checksum": {
+        "algorithm": "md5",
+        "value": "08a482d18e13716bce1a5419f2410fc9",
+        "independently_verified": false
+      },
+      "use": "published data and author analysis; interval counts are not volume scan",
+      "open": [
+        "reproducible physical-variable transformation",
+        "verified saved artifact checksum"
+      ],
+      "criteria": [
+        "EOS-02",
+        "EOS-03",
+        "EOS-04"
+      ]
+    },
+    {
+      "id": "S26",
+      "source": "https://arxiv.org/abs/2607.27874",
+      "repository": "https://github.com/pedrota2000/SNOBEX",
+      "commit": "098553176dcd4d2dc975c70fa2a22b7321ef27b1",
+      "loader_blob": "ec88e2a2ce550742ee1b1b72efc84665047b2fb6",
+      "pdf_sha256": "ec5ba9a62da6c6086475351bbe4a99242e9628999fe28c0521dc7bf08cf1fe31",
+      "pdf_bytes": 1846206,
+      "locators": [
+        "Section 2.1, printed page 4 / PDF page 5",
+        "Reference 59, printed page 46 / PDF page 47",
+        "Equations 2.11–2.12"
+      ],
+      "observable": "hydrodynamically admissible profiles for supplied QCD-like EOS",
+      "table_in_pinned_tree": false,
+      "referenced_table": "eos_pure_YM_final.text",
+      "use": "profile method, not microscopic wall speed",
+      "open": [
+        "exact EOS table",
+        "LLR transformation",
+        "private-communication input provenance",
+        "branch normalization and splice uncertainty"
+      ],
+      "criteria": [
+        "EOS-02",
+        "EOS-03",
+        "NUCLEATION-04",
+        "GW_SOURCE-01"
+      ]
+    },
+    {
+      "id": "LTW05",
+      "source": "https://arxiv.org/html/hep-lat/0502003",
+      "locators": [
+        "Section 8",
+        "Table 15 caption"
+      ],
+      "system": "pure SU(3), infinite spatial volume extrapolation at aTc=1/5",
+      "observables": {
+        "interface_tension_over_Tc3": {
+          "value": 0.02,
+          "quoted_error": 0.0006
+        }
+      },
+      "continuum_extrapolated": false,
+      "use": "finite-cutoff interface benchmark",
+      "open": [
+        "continuum systematic",
+        "temperature dependence"
+      ],
+      "criteria": [
+        "NUCLEATION-01",
+        "NUCLEATION-02"
+      ]
+    },
+    {
+      "id": "BKP96",
+      "source": "https://arxiv.org/abs/hep-lat/9608141",
+      "system": "pure SU(3), improved actions, Nt=3,4",
+      "observables": {
+        "interface_tension_over_Tc3": {
+          "value": 0.0155,
+          "quoted_error": 0.0016
+        },
+        "latent_heat_over_Tc4": {
+          "value": 1.4,
+          "quoted_error": 0.09
+        }
+      },
+      "use": "independent action/cutoff comparison",
+      "open": [
+        "common systematic model before comparison or averaging"
+      ],
+      "criteria": [
+        "NUCLEATION-01"
+      ]
+    },
+    {
+      "id": "RRS25",
+      "source": "https://arxiv.org/html/2506.15509v2",
+      "system": "pure SU(N), N=4,5,8,10",
+      "observables": [
+        "interface tension",
+        "large-N behavior"
+      ],
+      "su3_measured": false,
+      "use": "method and stated N-domain",
+      "open": [
+        "SU(3) continuum data"
+      ],
+      "criteria": [
+        "NUCLEATION-01"
+      ]
+    },
+    {
+      "id": "HPR26",
+      "source": "https://arxiv.org/html/2512.14530v2",
+      "locators": [
+        "Sections III–IV",
+        "Equation 31",
+        "Section V.3"
+      ],
+      "system": "pure SU(N), fitted Polyakov-loop effective action",
+      "observables": [
+        "static action and bounce",
+        "conditional wall/GW parameters"
+      ],
+      "su3_gradient_delta": 0.14,
+      "prefactor": "T^4 * (B / (2*pi))^(3/2)",
+      "prefactor_independently_measured": false,
+      "local_shock_reheating_in_wall_matching": true,
+      "full_reheating_feedback_closed": false,
+      "uncertainty": "Quoted bands do not cover potentially significant small-N error of the large-enthalpy wall approximation.",
+      "use": "candidate calibrated action and explicit conditional prefactor",
+      "open": [
+        "model uncertainty",
+        "physical dynamical prefactor",
+        "consistent thermal history"
+      ],
+      "criteria": [
+        "NUCLEATION-01",
+        "NUCLEATION-02",
+        "NUCLEATION-04"
+      ]
+    },
+    {
+      "id": "VV93",
+      "source": "https://arxiv.org/pdf/hep-ph/9307348",
+      "locators": [
+        "Equation 18"
+      ],
+      "system": "relativistic near-equilibrium fluid, thin-wall unstable bubble growth",
+      "observable": "dynamical growth coefficient",
+      "formula": "kappa = 2*sigma*(lambda*T + 2*(4*eta/3 + zeta))/((delta_w)^2*Rc^3)",
+      "use": "conditional mapping of thermodynamic and transport inputs to kappa_dyn",
+      "open": [
+        "transport at XB temperatures",
+        "hydrodynamic regime",
+        "static fluctuation prefactor"
+      ],
+      "criteria": [
+        "NUCLEATION-02"
+      ],
+      "assumptions": [
+        "Rc much larger than correlation length",
+        "local equilibrium",
+        "linear growth near the critical bubble"
+      ]
+    },
+    {
+      "id": "A23",
+      "source": "https://arxiv.org/html/2211.08230v2",
+      "system": "pure SU(3), T=1.5Tc",
+      "observables": {
+        "eta_over_s": [
+          0.15,
+          0.48
+        ],
+        "zeta_over_s": [
+          0.017,
+          0.059
+        ]
+      },
+      "uncertainty": "Spectral-reconstruction dependent estimates, not an assigned Gaussian interval.",
+      "use": "transport donor in its measured temperature domain",
+      "open": [
+        "near-Tc and metastable transport"
+      ],
+      "criteria": [
+        "NUCLEATION-02",
+        "NUCLEATION-04"
+      ]
+    },
+    {
+      "id": "BD",
+      "source": "https://bubbledet.readthedocs.io/en/stable/faq.html",
+      "observables": [
+        "functional determinant including zero modes",
+        "approximate dynamical factor with thermal=True"
+      ],
+      "use": "fluctuation method for a justified effective action",
+      "open": [
+        "EFT/coarse-graining consistency",
+        "XB dissipative dynamics",
+        "avoid double counting fluctuations and thermal dynamic factor"
+      ],
+      "criteria": [
+        "NUCLEATION-02"
+      ]
+    },
+    {
+      "id": "KZ25",
+      "source": "https://arxiv.org/html/2401.03849v3",
+      "locators": [
+        "Sections III–IV",
+        "Footnote 5"
+      ],
+      "system": "pure SU(N), N=3–8, quasigluon/Polyakov-loop model",
+      "observable": "conditional terminal wall speed",
+      "reported_typical_v_over_c": 0.04,
+      "uncertainty": "No complete uncertainty interval.",
+      "assumptions": [
+        "fluid thermalized at least far enough from the wall",
+        "equal temperatures across wall"
+      ],
+      "use": "candidate microscopic wall mechanism",
+      "open": [
+        "same XB EOS/action",
+        "heat transport",
+        "full error budget",
+        "terminal-regime validity",
+        "omitted reflected-particle contribution in microscopic estimate"
+      ],
+      "criteria": [
+        "NUCLEATION-04"
+      ]
+    },
+    {
+      "id": "SV24",
+      "source": "https://arxiv.org/html/2312.09964v2",
+      "system": "large enthalpy jump",
+      "observable": "hydrodynamic limiting wall matching",
+      "use": "conditional large-enthalpy approximation",
+      "open": [
+        "finite enthalpy-ratio corrections for SU(3)",
+        "same phase EOS"
+      ],
+      "criteria": [
+        "NUCLEATION-04"
+      ]
+    },
+    {
+      "id": "GKL24",
+      "source": "https://arxiv.org/html/2311.00029v1",
+      "locators": [
+        "Equation 40",
+        "Appendix A2"
+      ],
+      "system": "confining dark sector with a heat-transfer/expansion-limited regime",
+      "observable": "very slow phase conversion under stated thermal assumptions",
+      "assumptions": [
+        "rapid heat exchange, for example via kinetic equilibrium with SM"
+      ],
+      "use": "energy-conservation mechanism",
+      "open": [
+        "thermal conditions for autonomous XB",
+        "common-temperature approximation",
+        "own H and phase history"
+      ],
+      "criteria": [
+        "NUCLEATION-04"
+      ],
+      "velocity_is_constant": false,
+      "velocity_depends_on": [
+        "H",
+        "bubble radius",
+        "latent heat",
+        "thermal bath degrees of freedom",
+        "transition stage"
+      ],
+      "quoted_examples": [
+        "Abstract: below/order 1e-6; not universal over the paper",
+        "Section II.1: approximately 1e-5*(Lambda/(100 TeV))^0.1 at R approximately R0"
+      ]
+    },
+    {
+      "id": "TELOS26",
+      "source": "https://arxiv.org/abs/2509.19009",
+      "system": "Sp(4)",
+      "use": "LLR methodology and finite-volume/cutoff program",
+      "su3_numeric_input": false
+    },
+    {
+      "id": "RSW26",
+      "source": "https://arxiv.org/html/2603.22088v2",
+      "system": "SU(8), heating, Nt=6",
+      "observable": "static bubble free energy",
+      "physical_real_time_obtained": false,
+      "use": "method control",
+      "su3_numeric_input": false
+    },
+    {
+      "id": "ZB26",
+      "source": "https://arxiv.org/html/2611.18794v1",
+      "system": "scalar field with specified Langevin dynamics",
+      "observable": "direct nucleation rate in that model",
+      "quoted_comparison": "8.09% relative discrepancy of logarithms, not of Gamma",
+      "use": "method control",
+      "su3_numeric_input": false
+    },
+    {
+      "id": "W26_LEAD",
+      "source": "https://indico.global/event/16565/contributions/161833/",
+      "system": "SU(3), fixed-point action",
+      "status": "lead_only",
+      "numbers_validated": false,
+      "use": "future source retrieval; not an accepted input"
+    }
+  ],
+  "open_inputs": [
+    {
+      "id": "EOS_PHYSICAL_MAP",
+      "criteria": [
+        "EOS-02",
+        "EOS-04"
+      ],
+      "required": "Physically normalized metastable branches over the full XB temperature path, exact source transformations and domains."
+    },
+    {
+      "id": "EOS_JOINT_ERROR",
+      "criteria": [
+        "EOS-03"
+      ],
+      "required": "Common pressure/entropy anchors, correlated repeats, cutoff/volume and splice uncertainty."
+    },
+    {
+      "id": "SIGMA_CONTINUUM",
+      "criteria": [
+        "NUCLEATION-01",
+        "NUCLEATION-02"
+      ],
+      "required": "Compatible sigma, latent heat, pressure difference, gradient term and identified finite-cutoff/model error."
+    },
+    {
+      "id": "PREF_REAL_TIME",
+      "criteria": [
+        "NUCLEATION-02"
+      ],
+      "required": "Static fluctuation factor plus a justified real-time growth law/transport at the actual phase temperatures."
+    },
+    {
+      "id": "WALL_HEAT",
+      "criteria": [
+        "NUCLEATION-04",
+        "GW_SOURCE-01"
+      ],
+      "required": "Thermal boundary conditions, wall constitutive law, energy conservation and feedback in the same XB history."
+    }
+  ],
+  "forbidden_inferences": [
+    "Stable data are a measured metastable EOS.",
+    "LLR microcanonical t or E can be renamed to physical temperature or energy density.",
+    "Volume extrapolation of sigma is a continuum extrapolation.",
+    "Large-N data without N=3 measure SU(3).",
+    "An explicit T^4 prefactor or Euclidean sampling determines physical real time.",
+    "0.04c and 1e-6c form a probability/confidence interval.",
+    "Hydrodynamic admissibility selects a physical wall speed.",
+    "Published research or repository validation authorizes a physical run."
+  ]
+}
