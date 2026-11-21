@@ -22,6 +22,8 @@ def main(s):
         call(['tools/workflow_policy.py'])
         call(['tools/external_sources.py','validate'])
         call(['-m','unittest','discover','-s','tests','-p','test_project*.py'])
+        call(['tools/r135_pipeline.py','--check'])
+        call(['-m','unittest','discover','-s','tests','-p','test_r135_pipeline.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_dependency_evidence.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_external*.py'])
         call(['-m','unittest','discover','-s','tests','-p','test_registry_links.py'])

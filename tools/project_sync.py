@@ -91,6 +91,103 @@ def ensure_fields(pid, plan, graphql):
     return result
 
 
+def project_views(pid, graphql):
+    # ProjectV2View has no url field. Its API number and parent URL identify
+    # the canonical view link; do not guess an unobserved view number.
+    query = '''query BoardViews($id:ID!,$after:String){node(id:$id){... on ProjectV2{
+      views(first:100,after:$after){nodes{id name number layout filter project{id url}
+        configuration{visibleFields(first:100){nodes{... on ProjectV2FieldCommon{id name}} pageInfo{hasNextPage}}}}
+        pageInfo{hasNextPage endCursor}}}}}'''
+    rows = list(pages(lambda c: graphql(query, {'id':pid,'after':c})['node']['views']))
+    for row in rows:
+        visible = row['configuration']['visibleFields']
+        if visible['pageInfo']['hasNextPage']:
+            raise RuntimeError('Too many visible fields for complete view readback')
+        if (row['project']['id'] != pid or type(row['number']) is not int
+                or row['number'] < 1 or not row['project'].get('url')):
+            raise RuntimeError('Invalid project view identity')
+        row['visible_field_ids'] = [f['id'] for f in visible['nodes']]
+        row['visible_fields'] = [f['name'] for f in visible['nodes']]
+        row['url'] = row['project']['url'].rstrip('/') + '/views/' + str(row['number'])
+    return rows
+
+
+def ensure_views(pid, plan, fields, graphql):
+    """Reconcile only the explicitly named views; never reset other views.
+
+    The checked-in configuration owns layout/filter/visible fields of these
+    views. Card values, manual work status, sorts and grouping are not changed.
+    """
+    if not isinstance(plan, list):
+        raise ValueError('Project views must be a list')
+    if not plan:
+        return []
+    desired = {}
+    for spec in plan:
+        if not isinstance(spec, dict) or set(spec) != {'name','layout','filter','visible_fields'}:
+            raise ValueError('Invalid project view schema')
+        name, layout, selected = spec['name'], spec['layout'], spec['visible_fields']
+        if (not isinstance(name, str) or not name.strip() or name != name.strip()
+                or name in desired or layout not in {'TABLE_LAYOUT','BOARD_LAYOUT','ROADMAP_LAYOUT'}
+                or not isinstance(spec['filter'], str) or not isinstance(selected, list)
+                or not selected or any(not isinstance(f, str) or f not in fields for f in selected)
+                or len(set(selected)) != len(selected)):
+            raise ValueError('Invalid or ambiguous project view configuration: '+str(name))
+        desired[name] = {**spec, 'visible_field_ids':[fields[f]['id'] for f in selected]}
+    before = project_views(pid, graphql)
+    existing = {}
+    for name in desired:
+        matches = [row for row in before if row['name'] == name]
+        if len(matches) > 1:
+            raise RuntimeError('Ambiguous configured project view: '+name)
+        existing[name] = matches[0] if matches else None
+    expected = {}
+    for name, spec in desired.items():
+        old = existing[name]
+        config = {'visibleFieldIds':spec['visible_field_ids']}
+        if old is None:
+            created = graphql('mutation CreateWorkView($input:CreateProjectV2ViewInput!){createProjectV2View(input:$input){projectV2View{id}}}',
+                              {'input':{'projectId':pid, 'name':name, 'layout':spec['layout'], 'configuration':config}})
+            view_id = created['createProjectV2View']['projectV2View']['id']
+            # filter is supported by UpdateProjectV2ViewInput, not Create.
+            update = {'viewId':view_id, 'filter':spec['filter']}
+        else:
+            view_id = old['id']
+            update = {'viewId':view_id}
+            if old['layout'] != spec['layout']:
+                update['layout'] = spec['layout']
+            if (old.get('filter') or '') != spec['filter']:
+                update['filter'] = spec['filter']
+            if old['visible_field_ids'] != spec['visible_field_ids']:
+                update['configuration'] = config
+        if len(update) > 1:
+            graphql('mutation UpdateWorkView($input:UpdateProjectV2ViewInput!){updateProjectV2View(input:$input){projectV2View{id}}}', {'input':update})
+        expected[name] = {**spec, 'id':view_id}
+    # Only retry observations, never repeat a create after a delayed readback.
+    mismatches = []
+    verified = []
+    for delay in (0, 1, 2, 4, 8, 16):
+        if delay:
+            time.sleep(delay)
+        after = project_views(pid, graphql)
+        mismatches, verified = [], []
+        for name, spec in expected.items():
+            matches = [row for row in after if row['name'] == name]
+            if len(matches) != 1:
+                mismatches.append(name)
+                continue
+            row = matches[0]
+            if (row['id'] != spec['id'] or row['layout'] != spec['layout']
+                    or (row.get('filter') or '') != spec['filter']
+                    or row['visible_field_ids'] != spec['visible_field_ids']):
+                mismatches.append(name)
+                continue
+            verified.append({k:row[k] for k in ('id','number','name','url','layout','filter','visible_fields')})
+        if not mismatches:
+            return verified
+    raise RuntimeError('Project view readback failed: '+', '.join(mismatches))
+
+
 def project_items(pid, graphql):
     query = '''query BoardItems($id:ID!,$after:String){node(id:$id){... on ProjectV2{items(first:100,after:$after){nodes{id isArchived
       fieldValues(first:100){nodes{... on ProjectV2ItemFieldTextValue{text field{... on ProjectV2FieldCommon{name}}} ... on ProjectV2ItemFieldSingleSelectValue{name field{... on ProjectV2FieldCommon{name}}}} pageInfo{hasNextPage}}
@@ -126,14 +223,30 @@ KINDS = {'Научный вопрос или гипотеза':'Science','Ана
 PERMISSIONS = {'Только чтение и аудит':'Read-only','Редактирование документации/реестра':'Docs',
                'Изменение кода и тестов':'Code','Расчёт на выбранной владельцем площадке':'Owner-selected compute','Локальный расчёт в пределах действующего лимита':'Owner-selected compute',
                'Запуск на ВМ — только в пределах уже выданного разрешения':'VM-authorized'}
+R135_BLOCKS = {'A · Модель X', 'B · SU(3) и переход', 'C · Микрофизика',
+               'D · История X', 'E · Наблюдения', 'F · Исполнение и приёмка'}
 
 
-def proposed_values(issue, current):
+def proposed_values(issue, current, initial_statuses=None):
     s = sections(issue.get('body'))
     values = {'Status':work_status(issue,current.get('Status'))}
     candidate = {'Work kind':KINDS.get(s.get('Тип работы')), 'Permission':PERMISSIONS.get(s.get('Разрешённый объём действий')),
                  'Lineage':s.get('Генеалогия'), 'Acceptance':s.get('Критерий завершения'),
-                 'Budget':s.get('Бюджет и ограничения'), 'Next action':s.get('Ближайшее действие')}
+                 'Budget':s.get('Бюджет и ограничения'), 'Next action':s.get('Ближайшее действие'),
+                 'Decision IDs':s.get('Решения')}
+    source_sha = s.get('Исходный commit', '')
+    if re.fullmatch(r'[0-9a-fA-F]{40}', source_sha):
+        candidate['Exact source SHA'] = source_sha.lower()
+    block = s.get('Рабочий блок R135')
+    if block in R135_BLOCKS:
+        candidate['R135 block'] = block
+        initial = (initial_statuses or {}).get(str(issue.get('number')))
+        if (initial in ('Ready','Analysis') and issue['state']=='open'
+                and 'pull_request' not in issue and not current.get('R135 block')
+                and current.get('Status') in (None,'','Inbox')):
+            # First intake only. The filled block prevents later re-seeding an
+            # intentional move back to Inbox; all other manual states survive.
+            values['Status'] = initial
     if not candidate['Work kind'] and issue.get('title','').lower().startswith('[infra]'):
         candidate['Work kind'] = 'Infrastructure'
     for name, value in candidate.items():
@@ -155,9 +268,15 @@ def open_issues(request):
 
 
 def setup_and_sync(plan, *, request, graphql):
+    initial_statuses = plan.get('initial_statuses', {})
+    if (not isinstance(initial_statuses, dict) or any(
+            not isinstance(number, str) or not re.fullmatch(r'[1-9][0-9]*', number)
+            or state not in ('Ready','Analysis') for number,state in initial_statuses.items())):
+        raise ValueError('Invalid initial_statuses mapping')
     project = ensure_project(plan, graphql)
     pid = project['id']
     fields = ensure_fields(pid, plan['fields'], graphql)
+    views = ensure_views(pid, plan.get('views', []), fields, graphql)
     repo = request('/repos/'+REPO)
     graphql('mutation LinkBoard($project:ID!,$repo:ID!){linkProjectV2ToRepository(input:{projectId:$project,repositoryId:$repo}){repository{id}}}', {'project':pid,'repo':repo['node_id']})
     tracked = {i['content']['number']:i for i in project_items(pid,graphql)
@@ -178,7 +297,7 @@ def setup_and_sync(plan, *, request, graphql):
             item = graphql('mutation AddWork($project:ID!,$content:ID!){addProjectV2ItemById(input:{projectId:$project,contentId:$content}){item{id}}}', {'project':pid,'content':issue['node_id']})['addProjectV2ItemById']['item']
             item['values'] = {}
             added.append(number)
-        values = proposed_values(issue,item['values'])
+        values = proposed_values(issue,item['values'],initial_statuses)
         for name, value in values.items():
             field = fields[name]
             encoded = {'text':value}
@@ -204,6 +323,7 @@ def setup_and_sync(plan, *, request, graphql):
         raise RuntimeError('Project item readback failed: '+json.dumps(details,ensure_ascii=False))
     return {'schema':'vm-lab-project-sync-v1','project':project,'repository':REPO,
             'fields_verified':sorted(plan['fields']),'items_verified':len(expected),'added':added,'field_updates':updates,
+            'views_verified':views,
             'items':[{'number':(actual[i].get('content') or {}).get('number'),'status':actual[i]['values'].get('Status')} for i in expected],
             'verified':True,'scientific_status_modified':False,'permissions_are_descriptive_not_authorization':True,
             'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat()}
@@ -222,6 +342,8 @@ def main():
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
             f.write(f"Project: {result['project']['url']}\n\nReadback PASS: {result['items_verified']} items, {len(result['fields_verified'])} fields. Scientific registers unchanged.\n")
+            for view in result['views_verified']:
+                f.write(f"\nView: [{view['name']}]({view['url']}); {view['layout']}; filter `{view['filter']}`.\n")
 
 
 if __name__ == '__main__':

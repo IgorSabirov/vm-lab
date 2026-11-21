@@ -1,0 +1,1366 @@
+{
+  "schema": "vm-lab-r135-development-pipeline-v1",
+  "repository": "IgorSabirov/vm-lab",
+  "tracker": 155,
+  "source_commits": {
+    "implementation": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+    "design": "cfbf4cbcb0529078d42c0d104dcf2e9f26e4ccc8",
+    "main": "aa2e6ba1538612b06505d392ec206b32fe6c025d"
+  },
+  "project_url": "https://github.com/users/IgorSabirov/projects/2",
+  "view_name": "R135 — доведение физического конвейера",
+  "scientific_status_source": "analysis/NOW_RESULTS_SYNTHESIS_20261106/R135.md",
+  "scientific_acceptance": "OWNER_ONLY",
+  "status_semantics": "Operational delivery only. This file contains no scientific truth/status registry.",
+  "dependency_semantics": "depends_on blocks acceptance of this delivery, not parallel method/code development. conditional_dependencies apply only to the stated physical scope and require evidence to waive.",
+  "current_focus": [
+    "MODEL",
+    "EOS",
+    "NUCLEAR"
+  ],
+  "work_in_progress_policy": "Begin with MODEL; EOS and NUCLEAR are independent prepared parallel work. Ready is available work, not a running computation.",
+  "tasks": [
+    {
+      "key": "MODEL",
+      "issue_number": 161,
+      "title": "R135 · P0 — паспорт реализаций и состав проверяемых утверждений",
+      "block": "A · Модель X",
+      "stages": [
+        "P0"
+      ],
+      "claims": [
+        "XA",
+        "XB",
+        "MARKER"
+      ],
+      "goal": "Зафиксировать конечный состав заявленного опыта и происхождение параметров, чтобы результаты разных физических ветвей нельзя было смешать.",
+      "known": "Реестр P0, seal/verify, две реализации и три утверждения уже существуют. На аудированном SHA: 48 диагностических, 4 литературные, 0 независимо калиброванных точек X.",
+      "inputs": "P0 model_register, PLAN/EXECUTION/DEVELOPMENT, текущие вопросы R135/U006, опубликованные модели и их ограничения.",
+      "deliverable": "Версионированные паспорта XA, XB и графового маркера; оси и правила генерации точек, входы/выходы, применимость модулей и конечный перечень заявленных выводов.",
+      "acceptance_checks": [
+        {
+          "id": "MODEL-01",
+          "criterion": "Для каждого утверждения указаны уравнения или точный незакрытый физический вопрос, наблюдаемые и необходимые входы; неизвестный закон не считается выбранным по умолчанию."
+        },
+        {
+          "id": "MODEL-02",
+          "criterion": "Параметры разделены на измеренные, вычисленные, свободные параметры семейства и неизвестные. Паспорт сам по себе не переводит точку в physical_candidate."
+        },
+        {
+          "id": "MODEL-03",
+          "criterion": "Заданы начальная тепловая постановка, роль портала и xi: независимость осей обоснована предысторией; исключены физически недостижимые сочетания без универсального запрета двух осей."
+        },
+        {
+          "id": "MODEL-04",
+          "criterion": "До подтверждающего расчёта закреплены области скана, применимость каналов, политика ошибок/решения и происхождение каждой генерируемой точки; P0 seal/verify проходит."
+        }
+      ],
+      "next_action": "Сопоставить текущий P0 с CONFORMANCE и оформить три паспорта с открытыми вопросами и необходимыми проверками; не просить владельца придумывать недостающие числа.",
+      "depends_on": [],
+      "conditional_dependencies": [],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/PLAN.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/EXECUTION.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/register_inputs.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "SCALE",
+      "issue_number": 162,
+      "title": "R135 · P1 — размерный масштаб и начальная тепловая история",
+      "block": "A · Модель X",
+      "stages": [
+        "P1"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Определить физические единицы и эпоху перехода либо честно ограничить результат условной картой по масштабу.",
+      "known": "Пять донорских маршрутов масштаба и четыре FMS-подготовки уже разбираются; это не независимая калибровка космологического X.",
+      "inputs": "Паспорт модели, независимые размерные данные или свободная ось масштаба, источник начальных энтропий/распределений и SM EOS.",
+      "deliverable": "Согласованные Tc, массы, схема масштаба и их ошибки; начальная поверхность a, TX, Tgamma, fnu(p), eta и её происхождение.",
+      "acceptance_checks": [
+        {
+          "id": "SCALE-01",
+          "criterion": "Масштаб не получен подгонкой к целевому BBN-бюджету. Условная ось и независимо измеренный якорь имеют разные статусы."
+        },
+        {
+          "id": "SCALE-02",
+          "criterion": "Различные scale-setting маршруты сопоставлены в одной конвенции; перенос ошибок и общих корреляций прослеживается."
+        },
+        {
+          "id": "SCALE-03",
+          "criterion": "Температуры, энтропии и эпоха получены на одной исходной поверхности; предыстория портала согласована с её выбором."
+        },
+        {
+          "id": "SCALE-04",
+          "criterion": "Независимый повтор восстанавливает числа. Если абсолютный якорь не найден, сдана условная карта и доказанное ограничение, а абсолютный вопрос остаётся открытым в научном реестре."
+        }
+      ],
+      "next_action": "Переиспользовать текущие пять маршрутов и выделить недостающие размерные/начальные данные именно X, затем построить допустимую условную параметризацию.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "GRAPH",
+          "when": "Для размерной привязки XA: собственная энергетическая единица не выводится из донорских SU(3)-маршрутов."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/donor_inputs.py",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/README.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "GRAPH",
+      "issue_number": 163,
+      "title": "R135 · P2/P6 — закон графа, метка 3 и взаимодействия XA",
+      "block": "A · Модель X",
+      "stages": [
+        "P2",
+        "P6"
+      ],
+      "claims": [
+        "XA"
+      ],
+      "goal": "Определить физическую реализацию графового носителя и независимые предсказания полного достижимого алфавита.",
+      "known": "Орбиты, спектры и исполнитель объявленного графового закона есть; физическая энергия и смысл всех меток не выведены.",
+      "inputs": "R131–R134, фактические орбиты, симметрии, допустимый класс гамильтонианов/мер и независимые подготовки.",
+      "deliverable": "Закон энергии с единицами, операторы и контакт с физическим сектором, включая метку 3, либо воспроизводимое опровержение необходимого условия конкретного класса. Для продолжающейся XA-ветви — собственный оператор взаимодействия, амплитуды/скорости и энергетические моменты передачи.",
+      "acceptance_checks": [
+        {
+          "id": "GRAPH-01",
+          "criterion": "Все достижимые метки имеют определённое действие; необработанная метка 3 не заменяется нулём/пропуском."
+        },
+        {
+          "id": "GRAPH-02",
+          "criterion": "Проверены симметрии, энергетический баланс и измеримость предложенных операторов."
+        },
+        {
+          "id": "GRAPH-03",
+          "criterion": "Предсказания закреплены до раскрытия отложенных подготовок и воспроизведены независимо."
+        },
+        {
+          "id": "GRAPH-04",
+          "criterion": "Отрицательное решение указывает точный класс моделей и нарушенное необходимое условие; отсутствие отображения не исключает самостоятельный XB."
+        },
+        {
+          "id": "GRAPH-05",
+          "criterion": "Если XA продолжается как физический носитель, оператор взаимодействия даёт амплитуды/скорости и энергетические моменты с единицами, областью применимости, обратными реакциями и сохранением энергии. Термальное замыкание не освобождает от этой микрофизики."
+        }
+      ],
+      "next_action": "Сформировать список физических требований к энергии/операторам по существующим орбитам и проверить кандидаты на полном алфавите.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/DEVELOPMENT.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_P2_P6.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "SU3",
+      "issue_number": 164,
+      "title": "R135 · P3 — независимые SU(3)-ансамбли и измерение D4",
+      "block": "B · SU(3) и переход",
+      "stages": [
+        "P3"
+      ],
+      "claims": [
+        "MARKER",
+        "XB"
+      ],
+      "goal": "Получить первичные решёточные данные и измеренную статистическую мощность для четырёхточечного отклика.",
+      "known": "Wilson-генератор, импорт/манифест и измеритель есть. Производственный комплект требуемых независимых цепей не подтверждён.",
+      "inputs": "Закреплённые безразмерные параметры решёток (4,24), (8,48), (4,32), (8,64), архив либо план генерации; протокол calibration/held-out.",
+      "deliverable": "Сырые поля, плакетки, истории, seeds/checkpoints, tau_int/ESS и D4 с ошибкой и независимым подтверждением.",
+      "acceptance_checks": [
+        {
+          "id": "SU3-01",
+          "criterion": "Архив или собственные цепи имеют происхождение и независимость; прогрев/смешивание и автокорреляции измерены."
+        },
+        {
+          "id": "SU3-02",
+          "criterion": "Пилот до вскрытия held-out устанавливает достижимую ошибку и длину. Подтверждающая серия выполняет закреплённые в DEVELOPMENT требования 200 tau_int на цепь, ESS>=100, >=20 блоков и 4000 блочных повторов либо заранее обоснованную ревизию протокола."
+        },
+        {
+          "id": "SU3-03",
+          "criterion": "Проверены объём, шаг, маски и независимая плакетка/петля при тех же параметрах."
+        },
+        {
+          "id": "SU3-04",
+          "criterion": "Нехватка мощности даёт незавершённую поставку, а не опровержение гипотезы; масштаб в МэВ не требуется для начала безразмерных ансамблей."
+        }
+      ],
+      "next_action": "Проверить доступные архивы на конкретные параметры и независимость; при отсутствии подготовить собственный воспроизводимый пилот мощности.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/DEVELOPMENT.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_P2_P6.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "BRIDGE",
+      "issue_number": 165,
+      "title": "R135 · P3 — отложенный тест графа как маркера SU(3)",
+      "block": "A · Модель X",
+      "stages": [
+        "P2",
+        "P3"
+      ],
+      "claims": [
+        "MARKER"
+      ],
+      "goal": "Проверить совпадение измеримых операторов и предсказаний графа с независимым SU(3), сохраняя отдельный вывод о маркере.",
+      "known": "Структурные различия R131–R134 и D4-измеритель есть; физический мост ещё не подтверждён.",
+      "inputs": "Определённый операторный словарь, matched-подготовки, независимые SU(3)-ансамбли и заранее закреплённое различающее предсказание.",
+      "deliverable": "Таблица соответствия операторов и первичный held-out тест с ошибками, областью переносимости и возможным scoped отрицательным результатом.",
+      "acceptance_checks": [
+        {
+          "id": "BRIDGE-01",
+          "criterion": "Операторы и подготовки согласованы по симметриям и измеримому смыслу; совпадение названий/группы SU(3) не является мостом."
+        },
+        {
+          "id": "BRIDGE-02",
+          "criterion": "Калибровочные данные отделены от подтверждающих, предсказание и критерий фиксируются заранее."
+        },
+        {
+          "id": "BRIDGE-03",
+          "criterion": "Независимый анализ восстанавливает D4 и ошибку из сырых конфигураций."
+        },
+        {
+          "id": "BRIDGE-04",
+          "criterion": "Статический маркерный вывод не подразумевает физических часов; итог не меняет статус самостоятельного XB."
+        }
+      ],
+      "next_action": "Записать минимальный операторный словарь и matched-схему без подгонки по подтверждающим данным.",
+      "depends_on": [
+        "MODEL",
+        "SU3"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "GRAPH",
+          "when": "Только если маркерный тезис использует физический закон графового носителя XA; статический операторный тест сам по себе этого закона не требует."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/DEVELOPMENT.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_P2_P6.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "CLOCK",
+      "issue_number": 166,
+      "title": "R135 · P4 — физическое время и затухание координаты q",
+      "block": "A · Модель X",
+      "stages": [
+        "P4"
+      ],
+      "claims": [
+        "XA",
+        "XB",
+        "MARKER"
+      ],
+      "goal": "Различить локальное затухание, межфазное переключение и длительность перехода и получить H tau_q для заявленной моды.",
+      "known": "Исполнитель отклика/хвостов существует; физическое tau_X(Tc) остаётся открытым.",
+      "inputs": "Оператор q, независимо калиброванный real-time генератор или спектральная функция, единицы времени и область применения.",
+      "deliverable": "Отклик по обе стороны перехода, tau_q с ошибкой/цензурированием и проверенная привязка к физическим часам.",
+      "acceptance_checks": [
+        {
+          "id": "CLOCK-01",
+          "criterion": "Шаг евклидовой цепи и обратимый графовый шаг не объявляются физическим временем без отдельного вывода."
+        },
+        {
+          "id": "CLOCK-02",
+          "criterion": "Проверены амплитуда, конечный объём, окна аппроксимации и хвосты; локальная мода отделена от нуклеации."
+        },
+        {
+          "id": "CLOCK-03",
+          "criterion": "Источник часов и перекрытие q с модой независимы от целевого желаемого замедления."
+        },
+        {
+          "id": "CLOCK-04",
+          "criterion": "Независимый повтор воспроизводит физическое tau_q и безразмерное H tau_q. Ветвь XB без утверждения о q имеет свой объём приёмки, но требование времени не удаляется из общего R135."
+        }
+      ],
+      "next_action": "Определить измеримый q и доступный физический метод real-time отклика; перечислить нужные данные и пределы реконструкции.",
+      "depends_on": [
+        "MODEL",
+        "SCALE"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "SU3",
+          "when": "Если отклик получается из этих ансамблей."
+        },
+        {
+          "key": "BRIDGE",
+          "when": "Если заявлено отождествление q с графовым маркером."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_P1_P4_P5.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/DEVELOPMENT.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "EOS",
+      "issue_number": 167,
+      "title": "R135 · P1/P5 — метастабильная EOS и общая модель ошибок",
+      "block": "B · SU(3) и переход",
+      "stages": [
+        "P1",
+        "P5"
+      ],
+      "claims": [
+        "XB"
+      ],
+      "goal": "Получить термодинамику в фактически используемой полосе зарождения, роста и повторного нагрева.",
+      "known": "Согласованный интеграл измеренной энтропии и устойчивые холодная/горячая ветви есть; метастабильное продолжение и общая ковариация открыты.",
+      "inputs": "Первичные таблицы SU(3), общая нормировка давления, скрытая теплота, независимые данные о метастабильности и SM EOS.",
+      "deliverable": "p(T),s(T),rho(T), интервалы применимости, общие ошибки/корреляции и явные метастабильные ветви с происхождением.",
+      "acceptance_checks": [
+        {
+          "id": "EOS-01",
+          "criterion": "Выполнены s=dp/dT и rho=Ts-p, сшивка и односторонние скачки; устойчивость проверена в заявленных устойчивых областях."
+        },
+        {
+          "id": "EOS-02",
+          "criterion": "Устойчивые таблицы не объявлены метастабильными; пределы продолжения подтверждены источником или расчётом."
+        },
+        {
+          "id": "EOS-03",
+          "criterion": "Ошибка общего якоря и корреляции включены; неизвестная ковариация не заменена произвольным Gaussian prior."
+        },
+        {
+          "id": "EOS-04",
+          "criterion": "Независимая реконструкция и вариации схемы/интерполяции/ошибок переданы в расчёт динамики."
+        }
+      ],
+      "next_action": "Свести первичные EOS/якоря и точные пробелы метастабильной ветви; подобрать проверяемый путь её получения.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_DONOR_INPUTS.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/GW_AND_PHYSICAL_INPUTS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "NUCLEATION",
+      "issue_number": 168,
+      "title": "R135 · P5 — нуклеация, префактор, стенка и теплоотвод",
+      "block": "B · SU(3) и переход",
+      "stages": [
+        "P5"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить физические скорости превращения фаз и транспорт, определяющие длительность перехода.",
+      "known": "O(3) bounce для заданного действия, стеночный исполнитель и finite-a thin-wall контроль уже существуют.",
+      "inputs": "EOS/метастабильность, согласованные sigma и delta p, эффективное действие/область thin-wall, префактор, трение и условия переноса.",
+      "deliverable": "S3/T, A, Gamma(T), v_w, теплоотвод и их связанные ошибки во всей рабочей области.",
+      "acceptance_checks": [
+        {
+          "id": "NUCLEATION-01",
+          "criterion": "Thin-wall или эффективное действие независимо обоснованы; сшивка режимов и её ошибка проверены, а не переключены ради удобства."
+        },
+        {
+          "id": "NUCLEATION-02",
+          "criterion": "Префактор не молчаливое T^4; sigma, барьер и префактор имеют прослеживаемые совместные неопределённости либо открытый вход."
+        },
+        {
+          "id": "NUCLEATION-03",
+          "criterion": "Проверены единицы Gamma на объём, радиус/толщина, конечные шаг/объём и баланс энергии стенки."
+        },
+        {
+          "id": "NUCLEATION-04",
+          "criterion": "При теплоотводе изменяются температура у стенки и скорость; обратная связь согласована с P6/P7. Finite-a контроль не становится континуальным результатом."
+        }
+      ],
+      "next_action": "Составить физически согласованный набор sigma/delta p и карту области thin-wall; отдельно определить источник префактора/трения.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "GRAPH",
+          "when": "Для физической XA-нормировки."
+        },
+        {
+          "key": "RELIC",
+          "when": "Если перенос энергии определяется данным порталом/составом плазмы."
+        },
+        {
+          "key": "EOS",
+          "when": "Для SU(3)-термодинамики XB; XA требует термодинамику собственного физического закона."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_P1_P4_P5.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_DONOR_INPUTS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "RELIC",
+      "issue_number": 169,
+      "title": "R135 · P6 — полная сеть глюболов, порталы и распады",
+      "block": "C · Микрофизика",
+      "stages": [
+        "P6"
+      ],
+      "claims": [
+        "XB"
+      ],
+      "goal": "Вычислить судьбу остатка и источники энергии выбранной модели из амплитуд и полного состава.",
+      "known": "Спектральные доноры, scalar 3↔2 NDA и частичные портальные ширины есть; это не полная многокомпонентная сеть.",
+      "inputs": "Паспорт портала/симметрий, массы/населённости, матричные элементы, адронное сопоставление, обратные процессы и ошибки.",
+      "deliverable": "C-even/C-odd сеть, полные и частичные ширины/branching, collision kernels, инжекционные спектры и область EFT.",
+      "acceptance_checks": [
+        {
+          "id": "RELIC-01",
+          "criterion": "Определены заселение и реакции включённых состояний; отсутствие канала не трактуется как стабильность."
+        },
+        {
+          "id": "RELIC-02",
+          "criterion": "Проверены EFT, энергетическая поддержка и пороги; при низких массах выполнено нужное адронное сопоставление, включая C-нечётный остаток."
+        },
+        {
+          "id": "RELIC-03",
+          "criterion": "Сумма частичных ширин даёт полную, branching нормирован; отдельная gg-ширина не заменяет жизнь и тепло."
+        },
+        {
+          "id": "RELIC-04",
+          "criterion": "Прямые/обратные реакции дают равновесный нулевой обмен, положительность и энергетические моменты; неопределённости переданы дальше."
+        }
+      ],
+      "next_action": "По каждому зарегистрированному порталу составить полный список разрешённых/запрещённых каналов и первичных матричных элементов.",
+      "depends_on": [
+        "MODEL",
+        "SCALE"
+      ],
+      "conditional_dependencies": [],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_DONOR_INPUTS.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/GW_AND_PHYSICAL_INPUTS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "KINETIC",
+      "issue_number": 170,
+      "title": "R135 · P6/P7 — микроскопические нетермальные операторы",
+      "block": "C · Микрофизика",
+      "stages": [
+        "P6",
+        "P7"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Довести существующую импульсную эволюцию до collision operators конкретного X.",
+      "known": "FD/BE/MB ячейки и сопряжение энергии с P7 реализованы; произвольная микрофизика не возникает из самого интегратора.",
+      "inputs": "Амплитуды P6, состав видов, статистика, начальные распределения; при применимости осцилляции/ароматы и конденсат.",
+      "deliverable": "Обоснованные C_i[f], прямые/обратные kernels и совместная импульсная история с ошибками дискретизации.",
+      "acceptance_checks": [
+        {
+          "id": "KINETIC-01",
+          "criterion": "Каждый kernel имеет физическое происхождение, единицы, область и обратную реакцию; термальное замыкание используется только при доказанной применимости."
+        },
+        {
+          "id": "KINETIC-02",
+          "criterion": "Проверены равновесие, detailed balance, энергия/число в соответствующих пределах и положительность."
+        },
+        {
+          "id": "KINETIC-03",
+          "criterion": "Уточнены импульсная/временная сетки и хвосты, а при ароматной кинетике проверено её реальное решение."
+        },
+        {
+          "id": "KINETIC-04",
+          "criterion": "Моменты источников совпадают с полным P7-бюджетом; неподдержанные компоненты остаются явными OPEN_INPUT."
+        }
+      ],
+      "next_action": "Вывести минимальный полный набор операторов для паспортов модели и сравнить с уже поддержанными типами ячеек.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "GRAPH",
+          "when": "Для микрофизики XA."
+        },
+        {
+          "key": "RELIC",
+          "when": "Для микрофизики глюбольного остатка XB; для XA нужен собственный проверенный производитель амплитуд/спектров."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/EXTENSIONS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "CASCADE",
+      "issue_number": 171,
+      "title": "R135 · P6–P8 — каскады, активная BBN-сеть и возврат тепла",
+      "block": "C · Микрофизика",
+      "stages": [
+        "P6",
+        "P7",
+        "P8"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Замкнуть спектральную инжекцию, транспорт/ядерные реакции и тепловое осаждение на одной истории.",
+      "known": "ACROPOLIS gamma/e±, фотоканалы и пионное n↔p в активных LINX/PRIMAT есть; полный адронный транспорт и тепловой возврат открыты.",
+      "inputs": "Спектры и ветвления P6, сечения/торможение/поглощение, состав ядер и фактический P7-фон.",
+      "deliverable": "Транспорт применимых частиц, истощение популяций, ядерные источники и Q обратно в P7.",
+      "acceptance_checks": [
+        {
+          "id": "CASCADE-01",
+          "criterion": "Инжекция получена из рассчитанных каналов; интегральный Qgamma не подменяет спектр."
+        },
+        {
+          "id": "CASCADE-02",
+          "criterion": "Производство, торможение, поглощение и применимые ядерные реакции решены на общей временной сетке."
+        },
+        {
+          "id": "CASCADE-03",
+          "criterion": "Энергия осаждения/рассеяния/остатка учитывается один раз, активная сеть и фон сопряжены."
+        },
+        {
+          "id": "CASCADE-04",
+          "criterion": "Нулевой предел, сеточная сходимость и независимые эталоны проходят заранее обоснованные бюджеты; непокрытые каналы перечислены."
+        }
+      ],
+      "next_action": "Сопоставить каналы выбранного остатка с ACROPOLIS/пионным RHS и специфицировать недостающий транспорт и обратный тепловой источник.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "KINETIC",
+          "when": "Если требуется совместная эволюция нетермальных распределений."
+        },
+        {
+          "key": "RELIC",
+          "when": "Для микрофизики глюбольного остатка XB; для XA нужен собственный проверенный производитель амплитуд/спектров."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/EXTENSIONS.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/conformance/pions.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "WEAK",
+      "issue_number": 172,
+      "title": "R135 · P8 — точностные слабые скорости для нетермальных спектров",
+      "block": "C · Микрофизика",
+      "stages": [
+        "P8"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить точностной n↔p-отклик реальных нейтринных спектров и независимую оценку ошибки по Yp.",
+      "known": "Шесть Born-процессов и spectrum-bound weak precision gate уже реализованы; Born не объявлен полной точностью.",
+      "inputs": "Фактические nue/anti-nue, модель радиационных/конечномассовых/температурных поправок и независимый эталон.",
+      "deliverable": "Таблицы обеих слабых скоростей с полным перечнем поправок и независимым бюджетом ошибки в BBN.",
+      "acceptance_checks": [
+        {
+          "id": "WEAK-01",
+          "criterion": "Скорости/эталон связаны SHA с тем же полным BBN-входом и спектрами."
+        },
+        {
+          "id": "WEAK-02",
+          "criterion": "Кандидат и независимый эталон имеют разные расчёты; учтены все заявленные поправки."
+        },
+        {
+          "id": "WEAK-03",
+          "criterion": "На обоих BBN-решателях расхождение по Yp плюс ошибка эталона укладывается в заранее закреплённый бюджет."
+        },
+        {
+          "id": "WEAK-04",
+          "criterion": "Сохранены спектры, обе скорости, траектории и команда повтора; неподтверждённая точность остаётся открытой."
+        }
+      ],
+      "next_action": "Найти/воспроизвести независимые точностные скорости и сначала проверить эталонные спектры существующим weak precision gate.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "KINETIC",
+          "when": "Для окончательной оценки на фактических нетермальных спектрах X."
+        }
+      ],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/weak_precision.py"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "POCKETS",
+      "issue_number": 173,
+      "title": "R135 · P5/P7 — популяция старых карманов и обратная связь",
+      "block": "D · История X",
+      "stages": [
+        "P5",
+        "P7"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Включить распределение старых карманов и поверхности в общий энергетический и фазовый бюджет.",
+      "known": "Объёмная геометрия и отдельная сферическая pressure/cooling модель есть; глобальная популяционная обратная связь не закрыта.",
+      "inputs": "Нуклеация/рост, геометрическое распределение, trapping/leakage, поверхностный перенос и эмиссия.",
+      "deliverable": "Эволюция распределения размеров/состава и вклад всех карманов в P7, включая остаток.",
+      "acceptance_checks": [
+        {
+          "id": "POCKETS-01",
+          "criterion": "Размеры/геометрия получены из физической истории, а не назначены одним радиусом."
+        },
+        {
+          "id": "POCKETS-02",
+          "criterion": "Захват, утечка, поверхность и эмиссионные спектры имеют замыкания с обоснованной областью."
+        },
+        {
+          "id": "POCKETS-03",
+          "criterion": "Скрытая теплота, поверхность и остаток учитываются без дублирования; есть обратное действие на фон."
+        },
+        {
+          "id": "POCKETS-04",
+          "criterion": "Проверены пределы/положительность/сходимость по геометрии и популяции; неприменимость к ветви требует scoped доказательства."
+        }
+      ],
+      "next_action": "Вывести интерфейс популяционной модели к P7 и определить, какие поверхностные процессы обязательны для каждой заявленной ветви.",
+      "depends_on": [
+        "NUCLEATION"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "RELIC",
+          "when": "Если захват/утечка/эмиссия определяются глюбольным составом XB."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/EXTENSIONS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "GW_SOURCE",
+      "issue_number": 174,
+      "title": "R135 · P5/P7 — физический источник GW и поздняя передача",
+      "block": "D · История X",
+      "stages": [
+        "P5",
+        "P7"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить спектральную мощность конкретного X из динамики источника и согласовать её с полной историей.",
+      "known": "Сопряжённые частотные ячейки, дебет X, Friedmann и перенос существуют; 52 текущих источника открыты.",
+      "inputs": "P5-перколяция/стенка, стресс/кинетическая доля/длительность, история H(a), домен механизма и ошибки.",
+      "deliverable": "Источники для каждой точки/угла, частотные хвосты, энергетический бюджет и сегодняшние спектры.",
+      "acceptance_checks": [
+        {
+          "id": "GW_SOURCE-01",
+          "criterion": "Источник обусловлен вычисленными параметрами своей точки/угла; множитель или переименованная таблица не заменяет модель."
+        },
+        {
+          "id": "GW_SOURCE-02",
+          "criterion": "Для коллизий/звука/турбулентности отдельно проверены применимость и неопределённости; веса альтернатив не назначены как будто измерены."
+        },
+        {
+          "id": "GW_SOURCE-03",
+          "criterion": "Источник/перенос связаны с теми же P5/P7 по SHA, энергия списывается у X один раз; при заявленной обратной связи мощность реально пересчитывается."
+        },
+        {
+          "id": "GW_SOURCE-04",
+          "criterion": "Проверены частотные хвосты, горизонт, поздняя история и независимое восстановление. Выход за режим коротких волн требует отдельного tensor расчёта либо OPEN_INPUT."
+        }
+      ],
+      "next_action": "Сопоставить механизмы GW с термодинамикой выбранного X и сформировать проверяемый расчёт источника по точкам, без безусловного выбора литературного шаблона.",
+      "depends_on": [
+        "NUCLEATION",
+        "SCALE"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "POCKETS",
+          "when": "Если карманы/поверхности дают существенный источник."
+        },
+        {
+          "key": "RELIC",
+          "when": "Если состав/перенос определяет время жизни источника."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_GW.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/GW_AND_PHYSICAL_INPUTS.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "HISTORY",
+      "issue_number": 175,
+      "title": "R135 · P7 — физически замкнутая история X и получателей",
+      "block": "D · История X",
+      "stages": [
+        "P7"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить одну согласованную историю фаз, температур/распределений и остатка для каждой принятой реализации.",
+      "known": "Интегратор, пять углов, три разрешения и смешанные остатки проверены на контролях; физический состав входов не замкнут.",
+      "inputs": "Масштаб/предыстория, EOS, скорости перехода/портала и все существенные для данной ветви модули.",
+      "deliverable": "Изолированные и обменные истории пяти углов; фазовые доли/старый физический объём и энергия каждого получателя через 1 и 10 H0^-1.",
+      "acceptance_checks": [
+        {
+          "id": "HISTORY-01",
+          "criterion": "Все обязательные по паспорту источники получены; для каждого неиспользованного существенного модуля есть scoped доказательство неприменимости или открытый статус."
+        },
+        {
+          "id": "HISTORY-02",
+          "criterion": "Температура у стенки меняет скорость перехода, а фазовая доля возвращается в энергоисточник; полные балансы включают работу расширения."
+        },
+        {
+          "id": "HISTORY-03",
+          "criterion": "Три разрешения и две соседние разности проверены на всех пяти историях и смешанных эффектах; применяются существующие обоснованные допуски."
+        },
+        {
+          "id": "HISTORY-04",
+          "criterion": "Сохраняются неудачные uncertainty draws, цензурирование ненаступивших событий и неизменяемые первичные истории для всех получателей."
+        }
+      ],
+      "next_action": "Собрать таблицу обязательных источников по паспортам и связать каждый пробел с конкретной задачей; физический расчёт выполнять после их закрытия в своей области.",
+      "depends_on": [
+        "MODEL",
+        "SCALE",
+        "NUCLEATION"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "GRAPH",
+          "when": "Для XA."
+        },
+        {
+          "key": "CLOCK",
+          "when": "Если заявляется влияние медленной q."
+        },
+        {
+          "key": "KINETIC",
+          "when": "Если термальное замыкание неприменимо."
+        },
+        {
+          "key": "CASCADE",
+          "when": "Если транспорт существенно возвращает тепло."
+        },
+        {
+          "key": "POCKETS",
+          "when": "Если заявлена популяция карманов."
+        },
+        {
+          "key": "GW_SOURCE",
+          "when": "Если GW существенен/заявлен в выбранной ветви."
+        },
+        {
+          "key": "EOS",
+          "when": "Для термодинамики XB; XA использует собственную проверенную EOS."
+        },
+        {
+          "key": "RELIC",
+          "when": "Для полной сети глюболов/портала XB; XA требует собственную микрофизику."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/history_observables.py",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/conformance/history.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "NUCLEAR",
+      "issue_number": 176,
+      "title": "R135 · P8/P9 — лабораторные корреляции ядерных скоростей",
+      "block": "E · Наблюдения",
+      "stages": [
+        "P8",
+        "P9"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Перенести совместные лабораторные ошибки в распределения температурных скоростей и BBN-наблюдаемых.",
+      "known": "12-параметрический независимый приор LINX уже прогнан через оба решателя. Leonard/S3 и контракт совместного posterior есть, но это другой незавершённый физический перенос.",
+      "inputs": "Первичные лабораторные сечения/ковариации, нормировки/энергетические ошибки, положительная модель S-факторов и старые S3-чувствительности.",
+      "deliverable": "Совместные выборки R_i(T), сохранённые температурные корреляции и перенесённые распределения (log10 D/H,Yp).",
+      "acceptance_checks": [
+        {
+          "id": "NUCLEAR-01",
+          "criterion": "Лабораторная матрица преобразована через физически обоснованную интерполяцию/тепловой интеграл с единицами и экстраполяционной ошибкой."
+        },
+        {
+          "id": "NUCLEAR-02",
+          "criterion": "Сравнены совместный posterior и произведение тех же маргинальных функций; внутриканальные температурные корреляции сохранены."
+        },
+        {
+          "id": "NUCLEAR-03",
+          "criterion": "Одинаковые реализации читают LINX и PRIMAT; ансамблевый перенос сопоставлен с уточнённым Jacobian и проверена нелинейность."
+        },
+        {
+          "id": "NUCLEAR-04",
+          "criterion": "Наблюдательная ковариация не подменена ядерной; общие eta/CMB/weak параметры не учитываются дважды. Неподтверждённые корреляции не назначены произвольно."
+        },
+        {
+          "id": "NUCLEAR-05",
+          "criterion": "Число температурных мод определяется исходным posterior. Один q на реакцию допустим только после проверки ошибки функций и BBN-наблюдаемых; при необходимости реализован адаптер совместных таблиц/нескольких мод. Проверены узлы и междуузловые температуры, единицы и прямые/обратные реакции."
+        }
+      ],
+      "next_action": "Соединить Leonard/S3-контракт с ядерным исполнителем: сначала совместные D+D температурные функции, затем проверить достаточность scalar-q; при необходимости разработать многомодовый/табличный адаптер.",
+      "depends_on": [],
+      "conditional_dependencies": [],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/NEUTRINO_GW_ARCHITECTURE_20261118/NUCLEAR_RATE_COVARIANCE.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/conformance/nuclear_linx12.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "PERTURB",
+      "issue_number": 177,
+      "title": "R135 · P8/P9 — физические возмущения выбранного X",
+      "block": "E · Наблюдения",
+      "stages": [
+        "P8",
+        "P9"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить C_l из применимых к конкретной реализации уравнений возмущений.",
+      "known": "Настоящие CLASS free-radiation и упругий ETHOS IDM–IDR пути есть; общий взаимодействующий/распадающийся X ими не покрыт.",
+      "inputs": "Микрофизика модели, фоновая история, начальные условия и уравнения возмущённого переноса.",
+      "deliverable": "Обоснованное отображение на поддержанную ветвь либо новые уравнения/проверяемые внешние C_l.",
+      "acceptance_checks": [
+        {
+          "id": "PERTURB-01",
+          "criterion": "Уравнения и начальные условия привязаны к модели/точке/истории; отдельно учтены применимые распады, нетермальность, изокривизна и напряжения."
+        },
+        {
+          "id": "PERTURB-02",
+          "criterion": "Фоновая и возмущённая передача энергии согласованы; выполнены conservation и предел без связи."
+        },
+        {
+          "id": "PERTURB-03",
+          "criterion": "Независимые эталоны и уточнение C_l покрывают полный диапазон выбранного likelihood; проверяется также delta log L."
+        },
+        {
+          "id": "PERTURB-04",
+          "criterion": "Неподходящая ветвь CLASS не выдаётся за физическое отождествление X; внешний ответ требует первичных данных и происхождения."
+        }
+      ],
+      "next_action": "Сопоставить уравнения паспортов X с областью ETHOS/free-radiation и выписать недостающие члены переноса.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "RELIC",
+          "when": "Для микрофизических коэффициентов XB; не применяется к XA."
+        },
+        {
+          "key": "GRAPH",
+          "when": "Для собственных микрофизических коэффициентов и взаимодействий XA."
+        },
+        {
+          "key": "HISTORY",
+          "when": "Для окончательного расчёта на физическом фоне."
+        }
+      ],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/EXTENSIONS.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_EXTERNAL_CMB.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "GW_DATA",
+      "issue_number": 178,
+      "title": "R135 · P9 — PTA/LVK с фонами и систематикой",
+      "block": "E · Наблюдения",
+      "stages": [
+        "P9"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Получить корректное наблюдательное сравнение произвольного рассчитанного GW-спектра.",
+      "known": "Фактические PTA/LVK бины, условный Gaussian response и независимая реконструкция внешних маргиналов существуют.",
+      "inputs": "Полные likelihood/данные, foreground, систематика, приоры и политика перекрытия.",
+      "deliverable": "Воспроизводимые signal/null likelihood и marginal/profile результаты с областью применимости.",
+      "acceptance_checks": [
+        {
+          "id": "GW_DATA-01",
+          "criterion": "PTA включает необходимую HD/foreground модель; LVK включает заявленные систематики и маски."
+        },
+        {
+          "id": "GW_DATA-02",
+          "criterion": "Сохранены первичные массивы log L, приоры, данные/версии и политика пересечений."
+        },
+        {
+          "id": "GW_DATA-03",
+          "criterion": "Независимый повтор восстанавливает оценку; RMS и power-law upper limits не подменяют shape likelihood."
+        },
+        {
+          "id": "GW_DATA-04",
+          "criterion": "Для конкретной точки evidence связано с её источником; статистическая калибровка вывода сохранена, научная оценка передаётся в существующий D-реестр."
+        }
+      ],
+      "next_action": "Определить закрепляемые полные PTA/LVK likelihood и воспроизвести их штатные контроли до подачи источника X.",
+      "depends_on": [],
+      "conditional_dependencies": [
+        {
+          "key": "GW_SOURCE",
+          "when": "Для итоговой физической оценки конкретного X."
+        }
+      ],
+      "initial_status": "Ready",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gw_review.py",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/NUMERICS_GW.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "INFERENCE",
+      "issue_number": 179,
+      "title": "R135 · P9 — область параметров и калиброванный наблюдательный вывод",
+      "block": "E · Наблюдения",
+      "stages": [
+        "P9"
+      ],
+      "claims": [
+        "XA",
+        "XB"
+      ],
+      "goal": "Определить область совместимости/исключения физического или явно условного семейства X.",
+      "known": "Парная конечная сетка уже пересчитывает P7→P8→BBN→CLASS; confidence_calibrated=false, конечная сетка не является полной оптимизацией.",
+      "inputs": "Физические истории/спектры, ядерная модель ошибок, фиксированные данные, политика общих и модельных параметров.",
+      "deliverable": "Достаточно исследованная область параметров, baseline/X comparison, устойчивость и калиброванный статистический вывод.",
+      "acceptance_checks": [
+        {
+          "id": "INFERENCE-01",
+          "criterion": "Baseline и X имеют одинаковую политику общих параметров/данных; P7/P8 и ошибки пересчитываются при физической необходимости."
+        },
+        {
+          "id": "INFERENCE-02",
+          "criterion": "Проверены расширение/уточнение поиска и покрытие; кэш переиспользуется только при доказанной независимости от изменённого входа, включая влияние портала на переход."
+        },
+        {
+          "id": "INFERENCE-03",
+          "criterion": "Используется один CMB выпуск либо обоснованная общая covariance/overlap policy; priors, eta и общие данные учитываются один раз."
+        },
+        {
+          "id": "INFERENCE-04",
+          "criterion": "Статистический протокол и роль nuisance заранее определены; калибровка соответствует заявленному типу вывода. Условный масштаб и неопределённые приоры не повышаются до абсолютного предсказания."
+        }
+      ],
+      "next_action": "Расширить существующий joint_grid до проверяемого исследования выбранных параметров; сначала зафиксировать статистическую цель и политику данных.",
+      "depends_on": [
+        "MODEL",
+        "HISTORY",
+        "NUCLEAR",
+        "PERTURB"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "WEAK",
+          "when": "Если нужны нетермальные precision weak rates."
+        },
+        {
+          "key": "CASCADE",
+          "when": "Если применим каскадный BBN канал."
+        },
+        {
+          "key": "GW_DATA",
+          "when": "Если заявлен наблюдательный GW вывод."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/joint_grid.py",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/conformance/grid_audit.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "RESOURCES",
+      "issue_number": 180,
+      "title": "R135 · P0–P10 — измеренный ресурсный пилот и гейт полного состава",
+      "block": "F · Исполнение и приёмка",
+      "stages": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9",
+        "P10"
+      ],
+      "claims": [
+        "XA",
+        "XB",
+        "MARKER"
+      ],
+      "goal": "Определить стоимость фактически необходимого состава по реальной среде и измерениям; для полного продолжающегося опыта — полный прогноз.",
+      "known": "Диагностические измерения сохранены; полный runtime gate остаётся NOT_EVALUABLE, короткий контроль не прогнозирует всю физику.",
+      "inputs": "Фактическая среда, состав/размеры задач, число точек/повторов/uncertainty draws и статистической калибровки.",
+      "deliverable": "Паспорт среды, wall/CPU/RSS/disk по представительным режимам, диапазон прогноза и сохранённое сравнение план/факт.",
+      "acceptance_checks": [
+        {
+          "id": "RESOURCES-01",
+          "criterion": "CPU/квоты/RAM/диск и версии среды измерены; площадка определяется действующим решением владельца, не длительностью."
+        },
+        {
+          "id": "RESOURCES-02",
+          "criterion": "Пилоты покрывают дорогие этапы фактически продолжающихся ветвей, включая необходимые решётки, inference и независимый replay; стоимость кэша и новых вычислений разделена. Воспроизводимое scoped опровержение необходимого условия отменяет ненужных потомков: их пилоты не требуются, причина отмены сохраняется."
+        },
+        {
+          "id": "RESOURCES-03",
+          "criterion": "Неизвестные слагаемые не заменены нулём, прогноз содержит диапазон и явные зависимости от физического состава."
+        },
+        {
+          "id": "RESOURCES-04",
+          "criterion": "Прогноз сохранён до полного исполнения, нет искусственного проектного временного потолка; факт сопоставлен с исходным прогнозом."
+        }
+      ],
+      "next_action": "Собрать последние фактические характеристики среды и ведомость размеров по паспортам; измерять микропилоты только для конкретных неизвестных слагаемых.",
+      "depends_on": [
+        "MODEL"
+      ],
+      "conditional_dependencies": [],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/runtime_gate/README.md",
+        "RUNTIME_GATE.md",
+        "COMPUTE_AUTHORITY.md"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": false,
+      "completion_record": null
+    },
+    {
+      "key": "ACCEPT",
+      "issue_number": 181,
+      "title": "R135 · P10 — независимая приёмка заявленных ветвей R135",
+      "block": "F · Исполнение и приёмка",
+      "stages": [
+        "P10"
+      ],
+      "claims": [
+        "XA",
+        "XB",
+        "MARKER"
+      ],
+      "goal": "Довести каждую заявленную ветвь до проверенного результата и отдельного научного решения владельца.",
+      "known": "Независимый аудит ключей/историй/likelihood и scoped necessary-condition witness уже есть; полное физическое R135 не выполнено.",
+      "inputs": "Замороженный реестр ветвей/точек, первичные результаты и provenance всех обязательных поставок, свидетельства применимости и необходимые отрицательные результаты.",
+      "deliverable": "Итоговая матрица покрытия с первичными числами/ошибками и явным решением по XA, XB и маркеру в существующем научном реестре.",
+      "acceptance_checks": [
+        {
+          "id": "ACCEPT-01",
+          "criterion": "Независимый replay восстанавливает числа/likelihood/применимость и обнаруживает пропуск, дубликат, подмену истории или необоснованное исключение."
+        },
+        {
+          "id": "ACCEPT-02",
+          "criterion": "Каждая заявленная ветвь доведена до применимых наблюдений либо воспроизводимо опровергнуто необходимое условие именно этой ветви."
+        },
+        {
+          "id": "ACCEPT-03",
+          "criterion": "Открытый вход, недостаточная статистика и ошибка программы не выдаются за исключение; частичный результат остаётся частичным."
+        },
+        {
+          "id": "ACCEPT-04",
+          "criterion": "Научное решение владельца записано в существующих R/U/D-реестрах с источниками; закрытие Issue/PR/зелёный CI само по себе не меняет научный статус."
+        }
+      ],
+      "next_action": "Подготовить матрицу обязательных артефактов по трём утверждениям и проверять новые поставки по мере появления; итоговый статус сейчас не повышать.",
+      "depends_on": [
+        "MODEL",
+        "RESOURCES"
+      ],
+      "conditional_dependencies": [
+        {
+          "key": "INFERENCE",
+          "when": "Для заявленных космологических ветвей, если они не закрыты необходимым отрицательным результатом."
+        },
+        {
+          "key": "BRIDGE",
+          "when": "Для графового маркера."
+        },
+        {
+          "key": "CLOCK",
+          "when": "Для заявленного динамического q."
+        },
+        {
+          "key": "GRAPH",
+          "when": "Для физического носителя XA."
+        }
+      ],
+      "initial_status": "Analysis",
+      "sources": [
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CAPABILITIES.json",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/EXECUTION.md",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/conformance/grid_audit.json"
+      ],
+      "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "responsibility": {
+        "development": "Ассистент: поиск оснований, подготовка расчёта, код и доказательства в GitHub; GitHub-исполнитель отдельно не назначен.",
+        "independent_verification": "Независимый воспроизводимый расчёт/аудит; проверяющий и run ID назначаются до приёмки, сейчас UNASSIGNED.",
+        "scientific_acceptance": "IgorSabirov — научное решение в существующем реестре; не обязан подбирать неизвестные коэффициенты за исполнителя."
+      },
+      "requires_owner_decision": true,
+      "completion_record": null
+    }
+  ],
+  "tracker_completion_key": "ACCEPT",
+  "label": "r135:development",
+  "related_pull_requests": [
+    159,
+    160
+  ]
+}

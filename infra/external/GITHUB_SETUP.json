@@ -82,6 +82,30 @@
   "project": {
     "owner": "IgorSabirov",
     "title": "vm-lab — рабочая очередь",
+    "initial_statuses": {
+      "161": "Ready",
+      "162": "Analysis",
+      "163": "Ready",
+      "164": "Ready",
+      "165": "Analysis",
+      "166": "Analysis",
+      "167": "Ready",
+      "168": "Analysis",
+      "169": "Analysis",
+      "170": "Analysis",
+      "171": "Analysis",
+      "172": "Ready",
+      "173": "Analysis",
+      "174": "Analysis",
+      "175": "Analysis",
+      "176": "Ready",
+      "177": "Ready",
+      "178": "Ready",
+      "179": "Analysis",
+      "180": "Analysis",
+      "181": "Analysis",
+      "155": "Analysis"
+    },
     "fields": {
       "Status": [
         "Inbox",
@@ -103,8 +127,17 @@
         "Read-only",
         "Docs",
         "Code",
+        "Owner-selected compute",
         "Local compute",
         "VM-authorized"
+      ],
+      "R135 block": [
+        "A · Модель X",
+        "B · SU(3) и переход",
+        "C · Микрофизика",
+        "D · История X",
+        "E · Наблюдения",
+        "F · Исполнение и приёмка"
       ],
       "Lineage": null,
       "Next action": null,
@@ -113,6 +146,24 @@
       "Decision IDs": null,
       "Run ID": null,
       "Exact source SHA": null
-    }
+    },
+    "views": [
+      {
+        "name": "R135 — доведение физического конвейера",
+        "layout": "TABLE_LAYOUT",
+        "filter": "repo:IgorSabirov/vm-lab label:r135:development",
+        "visible_fields": [
+          "Title",
+          "Status",
+          "R135 block",
+          "Assignees",
+          "Lineage",
+          "Next action",
+          "Acceptance",
+          "Budget",
+          "Exact source SHA"
+        ]
+      }
+    ]
   }
 }
