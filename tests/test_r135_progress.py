@@ -109,9 +109,16 @@ class Criteria(unittest.TestCase):
 
     def test_current_completion_is_independent_of_old_partial_findings(self):
         plan,t,c=fixture()
+        model_finding = deepcopy(c['progress']['findings'][0])
+        model_finding['evidence'] = ['modeldata']
+        independent_finding = dict(model_finding, evidence=['contacts'])
+        c['progress']['findings'] = [model_finding]
         old_proof=completion_for(plan,t,c)
         plan['progress_inputs']['donor_models']='a'*40
         self.assertEqual(p.state(plan,t,c,old_proof),'open')
+        c['progress']['findings'].append(independent_finding)
+        self.assertFalse(p.stale(plan,t,independent_finding,c))
+        self.assertEqual(p.state(plan,t,c,old_proof),'control')
         proof=completion_for(plan,t,c)
         self.assertEqual(p.state(plan,t,c,proof),'accepted')
         self.assertTrue(p.stale(plan,t,c['progress']['findings'][0],c))
