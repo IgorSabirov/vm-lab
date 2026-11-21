@@ -1,0 +1,217 @@
+{
+  "source_sha": "bae188e4c32fc00ee4776fcb619381c46897d842",
+  "run_id": "43247986127",
+  "cli_version": "1.0.103",
+  "model_selector": "native auto",
+  "tools": [],
+  "repository_content_sent": true,
+  "max_ai_credits": 30,
+  "timeout_seconds": 180,
+  "timed_out": false,
+  "returncode": 0,
+  "elapsed_seconds": 48.227,
+  "stderr": "",
+  "recovery": {
+    "run_id": "43250221094",
+    "original_error": "Evidence must reference supplied paths",
+    "new_model_invocations": 0,
+    "original_response_sha256": "31e4e637fe6e215b91b000efeb91d51f5e16c8cdfc6949b5743846cd5542d8a3",
+    "failure_sha256": "41d4d30ee1634e3cc3264974bc3f3bf3d606537c7368a30351b0430643e7a943",
+    "change": "Accept registry pointers as explicitly uninspected references; model content unchanged."
+  },
+  "status": "NATIVE_REPORT_GENERATED",
+  "task_id": "six-models-v1",
+  "issue": 30,
+  "report_sha256": "092e0dda7393b1ad8ff9e3d71ba70c83d01764085aa1ab74edc68ea6e4e290a9",
+  "context_sha256": "627dbd9308052dac356d295283269097d0b9695af4170d884e966ea703fe0f93",
+  "analysis_sha256": "de26490fd3bea23c6e17282341571b2804243d36c2f7200eff1b19e0a9f5db9e",
+  "scientific_status_changed": false,
+  "links_accepted": false,
+  "checks": [
+    {
+      "id": "registry",
+      "returncode": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "stdout": "{\"status\": \"PASS\", \"counts\": {\"result\": 129, \"construct\": 42, \"link\": 10, \"question\": 12, \"premise\": 66, \"obligation\": 9, \"review\": 4, \"external\": 11, \"decision\": 2, \"source\": 21}, \"edges\": 832, \"stale\": []}\n",
+      "stderr": "",
+      "expected_seconds_upper": 5,
+      "limit_seconds": 30,
+      "elapsed_seconds": 0.320315
+    },
+    {
+      "id": "sources",
+      "returncode": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "stdout": "{\"status\": \"PASS\", \"sources\": 11, \"scientific_status_promoted\": false}\n",
+      "stderr": "",
+      "expected_seconds_upper": 5,
+      "limit_seconds": 30,
+      "elapsed_seconds": 0.069116
+    },
+    {
+      "id": "ccc_algebra",
+      "returncode": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "stdout": "{\"status\": \"SYMBOLIC_IDENTITIES_VERIFIED_NOT_PHYSICAL_VALIDATION\", \"residuals\": {\"hubble\": \"0\", \"friedmann\": \"0\", \"acceleration\": \"0\", \"continuity\": \"0\", \"common_factor\": \"0\"}, \"mean_hitting_time_scale_identity\": true, \"clock_counterexample_gradient_norm_minus_plus_signature\": 3, \"sympy_version\": \"1.14.0\", \"elapsed_seconds\": 0.40581978000000163, \"runtime_plan\": {\"expected_seconds_upper\": 5, \"route\": \"sandbox\", \"new_vm_jobs\": 0}, \"limitations\": [\"constant alpha in background identity\", \"common positive scaling of the entire vector field\", \"common constant lambda for the CTMC ratio\", \"no cosmological fit or production simulation\"]}\n",
+      "stderr": "",
+      "expected_seconds_upper": 5,
+      "limit_seconds": 20,
+      "elapsed_seconds": 0.774452,
+      "result": {
+        "status": "SYMBOLIC_IDENTITIES_VERIFIED_NOT_PHYSICAL_VALIDATION",
+        "residuals": {
+          "hubble": "0",
+          "friedmann": "0",
+          "acceleration": "0",
+          "continuity": "0",
+          "common_factor": "0"
+        },
+        "mean_hitting_time_scale_identity": true,
+        "clock_counterexample_gradient_norm_minus_plus_signature": 3,
+        "sympy_version": "1.14.0",
+        "elapsed_seconds": 0.40581978000000163,
+        "runtime_plan": {
+          "expected_seconds_upper": 5,
+          "route": "sandbox",
+          "new_vm_jobs": 0
+        },
+        "limitations": [
+          "constant alpha in background identity",
+          "common positive scaling of the entire vector field",
+          "common constant lambda for the CTMC ratio",
+          "no cosmological fit or production simulation"
+        ]
+      }
+    },
+    {
+      "id": "anthropic_formulas",
+      "returncode": 0,
+      "timed_out": false,
+      "status": "PASS",
+      "stdout": "{\"status\": \"SCOPED_CHECKS_PASS\", \"checks\": 13, \"wall_seconds\": 0.006514433999996072}\n",
+      "stderr": "",
+      "expected_seconds_upper": 1,
+      "limit_seconds": 20,
+      "elapsed_seconds": 0.052061,
+      "result": {
+        "schema": "vm-lab-anthropic-bh-formula-check-v1",
+        "status": "SCOPED_CHECKS_PASS",
+        "not_full_paper_replication": true,
+        "upstream_code_executed": false,
+        "new_physical_claim": false,
+        "checks": [
+          {
+            "id": "complete_square_0",
+            "passed": true
+          },
+          {
+            "id": "complete_square_1",
+            "passed": true
+          },
+          {
+            "id": "complete_square_2",
+            "passed": true
+          },
+          {
+            "id": "disabled_exchange",
+            "passed": true
+          },
+          {
+            "id": "reject_mass_0",
+            "passed": true
+          },
+          {
+            "id": "reject_mass_-1",
+            "passed": true
+          },
+          {
+            "id": "su2",
+            "passed": true
+          },
+          {
+            "id": "coefficient",
+            "passed": true
+          },
+          {
+            "id": "phase_birth",
+            "passed": true
+          },
+          {
+            "id": "phase_coexist",
+            "passed": true
+          },
+          {
+            "id": "phase_order",
+            "passed": true
+          },
+          {
+            "id": "positive_control",
+            "passed": true
+          },
+          {
+            "id": "bootstrap_constant",
+            "passed": true
+          }
+        ],
+        "su2_I_exact": "3/4",
+        "imported_literal_scheme_combination": {
+          "I": 1.1191831891411759,
+          "b_over_g4": -36.941557093091845,
+          "b_over_lambda2": -0.0014814115999144109,
+          "q4_sign_threshold": 11.791337139893326
+        },
+        "b_over_g4_printed_input_envelope": [
+          -36.953532849130404,
+          -36.92940433940061
+        ],
+        "envelope_scope": "Conditional on printed error magnitudes; not a statistical confidence interval or bound on unexamined systematic error.",
+        "illustrative_phase_landmarks": {
+          "b": -0.1,
+          "u_birth": 0.5261643349760321,
+          "a_birth": 0.05262397296202136,
+          "u_coexist": 0.5978874141652695,
+          "a_coexist": 0.031638521348029594,
+          "a_hagedorn": 0,
+          "coexistence_residual": -1.214306433183765e-17
+        },
+        "positive_b_control": [
+          {
+            "a": -0.01,
+            "b": 0.1,
+            "u_min": 0.22360679774997896
+          },
+          {
+            "a": -0.0001,
+            "b": 0.1,
+            "u_min": 0.022360679774997897
+          },
+          {
+            "a": -0.000001,
+            "b": 0.1,
+            "u_min": 0.0022360679774997894
+          }
+        ],
+        "bootstrap_constant_only": 9.126634025564686,
+        "plan_sha256": "fa3f6506914915da6c7ab6e8abf851e69431300e334bd3d8e73a5d595f7cc914",
+        "code_sha256": "f2af50d95560a4ff4996ba6f7e3159946aa0182e74d99e3561ee55a11c75f05d",
+        "python": "3.12.16",
+        "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+        "wall_seconds": 0.006514433999996072
+      }
+    }
+  ],
+  "evidence_scope": {
+    "analysis/ANTHROPIC_BH_20261112/REPORT.md": "SUPPLIED_CONTENT",
+    "analysis/CCC_TL_REVIEW_20261112/REPORT.md": "SUPPLIED_CONTENT",
+    "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "REGISTRY_POINTER_ONLY",
+    "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/RESULT.md": "SUPPLIED_CONTENT",
+    "analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md": "REGISTRY_POINTER_ONLY",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md": "REGISTRY_POINTER_ONLY",
+    "analysis/SERBIAN_CPP_ADOPTION_20261108/RESULT.md": "SUPPLIED_CONTENT",
+    "infra/external/contracts/CDT2D.json": "SUPPLIED_CONTENT",
+    "infra/external/contracts/ISINGCAUSET.json": "SUPPLIED_CONTENT"
+  }
+}
