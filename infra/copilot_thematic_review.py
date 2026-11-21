@@ -605,6 +605,8 @@ def run(directory, recovery=False):
     for batch in package['batches']:
         folder = directory / 'batches' / batch['id']
         existing = folder.exists() and any(folder.iterdir())
+        print(json.dumps({'batch_id': batch['id'], 'total_batches': len(package['batches']),
+                          'stage': 'recover' if recovery or existing else 'invoke'}, ensure_ascii=False), flush=True)
         try:
             if existing:
                 response = validate_and_save_batch(directory, package, batch, attempt)
@@ -630,9 +632,12 @@ def run(directory, recovery=False):
             # A returned but invalid/incomplete answer does not hide the rest
             # of the corpus. Only shared transport/auth failure stops new calls.
             if not recovery and not transport_succeeded:
+                print(json.dumps({'batch_id': batch['id'], 'stage': 'stopped_after_transport_failure'}, ensure_ascii=False), flush=True)
                 break
         # Persist a usable aggregate before moving to another paid batch.
-        finalize(directory, package, attempt)
+        progress = finalize(directory, package, attempt)
+        print(json.dumps({'batch_id': batch['id'], 'stage': 'saved',
+                          'complete': progress['complete']}, ensure_ascii=False), flush=True)
     return finalize(directory, package, attempt)
 
 

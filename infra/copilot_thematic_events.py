@@ -28,6 +28,7 @@ STATE_PATH = REPORT_PREFIX + 'MONITOR.json'
 SIGNAL_PATH = '.github/workflows/thematic-events.yml'
 SIGNAL_ARTIFACT = 'research-change-event'
 IMPLEMENTATION_BRANCH = 'infra/copilot-thematic-review-20261121'
+IMPLEMENTATION_REPAIR_BRANCH = 'infra/copilot-thematic-storage-20261121'
 IMPLEMENTATION_ISSUES = {186}
 IMPLEMENTATION_PATHS = {'.github/workflows/thematic-events.yml', '.github/workflows/copilot-thematic.yml',
     '.github/workflows/copilot-pr-validation.yml', 'infra/copilot/THEMATIC_REVIEW.md', 'infra/copilot/README.md'}
@@ -58,10 +59,15 @@ def dump(path, value):
 
 
 class APIError(RuntimeError):
-    def __init__(self, status, path):
+    def __init__(self, status, path, message=''):
         self.status = status
         self.code = status  # compatible with urllib HTTPError and publisher reads
-        super().__init__(f'GitHub API returned HTTP {status} for {path}')
+        # Only the bounded top-level diagnostic is retained, never an echoed
+        # request payload or the validation errors' arbitrary value fields.
+        message = re.sub(r'(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+', '[REDACTED]', str(message))
+        message = re.sub(r'(?i)bearer\s+\S+', 'Bearer [REDACTED]', message)
+        message = ' '.join(message.split())[:500]
+        super().__init__(f'GitHub API returned HTTP {status} for {path}' + (': ' + message if message else ''))
 
 
 class _SafeRedirect(urllib.request.HTTPRedirectHandler):
@@ -99,7 +105,12 @@ class GitHub:
             with self.opener.open(req, timeout=90) as response:
                 body = response.read()
         except urllib.error.HTTPError as error:
-            raise APIError(error.code, path) from None
+            try:
+                diagnostic = json.loads(error.read(4096))
+                message = diagnostic.get('message', '') if isinstance(diagnostic, dict) else ''
+            except (ValueError, OSError):
+                message = ''
+            raise APIError(error.code, path, message) from None
         return body if raw else (json.loads(body) if body else None)
 
     def get(self, path):
@@ -158,6 +169,11 @@ def load_state(api):
         raise
     raw = base64.b64decode(value['content']).decode('utf-8') if value.get('encoding') == 'base64' else api.blob(value['sha'])
     result = json.loads(raw)
+    if result.get('schema') == 'vm-lab-split-utf8-v1':
+        # Imported only after this module's API boundary is initialized: the
+        # publisher shares GitHub but owns the one exact storage format.
+        from copilot_thematic_publish import restore_stored
+        result = json.loads(restore_stored(api, STATE_PATH, raw))
     if result.get('schema') != 'vm-lab-thematic-monitor-v1' or result.get('repository') != api.repository:
         raise ValueError('Monitor state identity mismatch')
     return result
@@ -198,7 +214,7 @@ def own_path(path):
 
 
 def own_branch(branch):
-    return branch in {REPORT_BRANCH, IMPLEMENTATION_BRANCH} or branch.startswith('copilot/thematic-')
+    return branch in {REPORT_BRANCH, IMPLEMENTATION_BRANCH, IMPLEMENTATION_REPAIR_BRANCH} or branch.startswith('copilot/thematic-')
 
 
 def own_comment(comment):

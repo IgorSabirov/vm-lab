@@ -24,6 +24,9 @@ ROOT_FILES = {'EVENTS.json', 'CONTEXT.json', 'COVERAGE.json', 'ATTEMPT.json',
 BATCH_FILE = re.compile(r'batches/[0-9]{4,6}/(?:RAW_RESPONSE\.txt|RESPONSE\.json|RECEIPT\.json|PROMPT\.txt|STDERR\.txt)$')
 HEX40 = re.compile(r'[a-f0-9]{40}')
 HEX64 = re.compile(r'[a-f0-9]{64}')
+STORAGE_SCHEMA = 'vm-lab-split-utf8-v1'
+STORAGE_PART_BYTES = 1_000_000
+STORAGE_PART_WIRE_BYTES = 1_500_000
 
 
 def encoded(value):
@@ -43,10 +46,101 @@ def load(path):
     return json.loads(Path(path).read_text())
 
 
+def exact_text(path):
+    return Path(path).read_bytes().decode('utf-8')
+
+
 def save(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(encoded(value))
+
+
+def storage_parts(text):
+    """Split exact UTF-8 bytes, also bounding JSON escaping in API requests."""
+    raw = text.encode('utf-8')
+    start = 0
+    while start < len(raw):
+        end = min(start + STORAGE_PART_BYTES, len(raw))
+        while True:
+            while end < len(raw) and end > start and raw[end] & 0xC0 == 0x80:
+                end -= 1
+            if end <= start:
+                raise ValueError('Storage transport cannot fit one UTF-8 character')
+            part = raw[start:end].decode('utf-8')
+            if len(json.dumps(part, ensure_ascii=False).encode()) <= STORAGE_PART_WIRE_BYTES:
+                break
+            end = start + (end - start) // 2
+        yield part
+        start = end
+
+
+def storage_files(files):
+    """Map logical files to small physical files without changing logical bytes.
+
+The original path contains either its ordinary text or an explicit storage
+manifest. Replacing that same path makes small/large transitions unambiguous;
+old immutable parts can remain in history without shadowing the current file.
+"""
+    physical = {}
+    for path, text in sorted(files.items()):
+        raw = text.encode('utf-8')
+        if (len(raw) <= STORAGE_PART_BYTES and
+                len(json.dumps(text, ensure_ascii=False).encode()) <= STORAGE_PART_WIRE_BYTES and
+                not text.startswith('{\n  "schema": "' + STORAGE_SCHEMA + '"')):
+            physical[path] = text
+            continue
+        full_digest = digest(raw)
+        parts = []
+        for number, part in enumerate(storage_parts(text), 1):
+            part_path = path + '.parts/' + full_digest + f'/{number:06d}.txt'
+            if part_path in files:
+                raise ValueError('Logical file overlaps generated storage parts')
+            physical[part_path] = part
+            parts.append({'path': part_path, 'size_bytes': len(part.encode('utf-8')),
+                          'sha256': digest(part), 'git_blob_sha': blob_sha(part)})
+        # Keep schema first: readers identify the small manifest before parsing
+        # an ordinary (possibly historical and large) JSON document.
+        manifest = {'schema': STORAGE_SCHEMA, 'logical_path': path, 'encoding': 'utf-8',
+                    'size_bytes': len(raw), 'sha256': full_digest, 'git_blob_sha': blob_sha(text),
+                    'parts': parts}
+        physical[path] = json.dumps(manifest, ensure_ascii=False, indent=2) + '\n'
+    return physical
+
+
+def restore_stored(api, path, text):
+    """Verify every part and reconstruct the original logical file as UTF-8."""
+    if not text.startswith('{\n  "schema": "' + STORAGE_SCHEMA + '"'):
+        return text
+    manifest = json.loads(text)
+    if (manifest.get('schema') != STORAGE_SCHEMA or manifest.get('logical_path') != path or
+            manifest.get('encoding') != 'utf-8' or type(manifest.get('size_bytes')) is not int or
+            manifest['size_bytes'] < 0 or not HEX64.fullmatch(manifest.get('sha256', '')) or
+            not HEX40.fullmatch(manifest.get('git_blob_sha', '')) or
+            not isinstance(manifest.get('parts'), list) or not manifest['parts']):
+        raise ValueError('Invalid UTF-8 storage manifest: ' + path)
+    parts = []
+    total = 0
+    for number, item in enumerate(manifest['parts'], 1):
+        expected = path + '.parts/' + manifest['sha256'] + f'/{number:06d}.txt'
+        if (not isinstance(item, dict) or item.get('path') != expected or
+                type(item.get('size_bytes')) is not int or not 0 < item['size_bytes'] <= STORAGE_PART_BYTES or
+                not HEX40.fullmatch(item.get('git_blob_sha', '')) or not HEX64.fullmatch(item.get('sha256', ''))):
+            raise ValueError('Invalid UTF-8 storage part identity: ' + path)
+        part = api.blob(item['git_blob_sha'])
+        raw = part.encode('utf-8')
+        if (len(raw) != item['size_bytes'] or digest(raw) != item['sha256'] or
+                blob_sha(part) != item['git_blob_sha']):
+            raise ValueError('Stored UTF-8 part digest mismatch: ' + path)
+        parts.append(part)
+        total += len(raw)
+        if total > manifest['size_bytes']:
+            raise ValueError('Stored UTF-8 parts exceed logical size: ' + path)
+    result = ''.join(parts)
+    if (total != manifest['size_bytes'] or digest(result) != manifest['sha256'] or
+            blob_sha(result) != manifest['git_blob_sha']):
+        raise ValueError('Reconstructed logical file digest mismatch: ' + path)
+    return result
 
 
 def optional(api, path):
@@ -62,9 +156,9 @@ def file_at(api, ref, path):
     item = optional(api, 'contents/' + quote(path, safe='/') + '?ref=' + quote(ref, safe=''))
     if item is None:
         return None
-    if item.get('encoding') == 'base64':
-        return base64.b64decode(item['content']).decode('utf-8')
-    return api.blob(item['sha'])
+    text = (base64.b64decode(item['content']).decode('utf-8')
+            if item.get('encoding') == 'base64' else api.blob(item['sha']))
+    return restore_stored(api, path, text)
 
 
 def head(api):
@@ -88,9 +182,11 @@ def report_entries(api, ref):
 
 
 def verify_written(api, commit_sha, files):
+    physical = storage_files(files)
     entries = report_entries(api, commit_sha)
     actual = {PREFIX + '/' + row['path']: row['sha'] for row in entries if row['type'] == 'blob'}
-    packages = {path[len(PREFIX) + 1:].split('/')[0] for path in files if path != STATE}
+    packages = {path[len(PREFIX) + 1:].split('/')[0] for path in physical
+                if path != STATE and not path.startswith(STATE + '.parts/')}
     for package in packages:
         row = next((x for x in entries if x['path'] == package and x['type'] == 'tree'), None)
         if row is None:
@@ -98,7 +194,16 @@ def verify_written(api, commit_sha, files):
         for item in api.tree(row['sha']):
             if item['type'] == 'blob':
                 actual[PREFIX + '/' + package + '/' + item['path']] = item['sha']
-    for path, value in files.items():
+    # MONITOR may eventually need parts too. It is directly under PREFIX rather
+    # than inside an immutable package directory.
+    if any(path.startswith(STATE + '.parts/') for path in physical):
+        row = next((x for x in entries if x['path'] == 'MONITOR.json.parts' and x['type'] == 'tree'), None)
+        if row is None:
+            raise ValueError('Missing published monitor parts')
+        for item in api.tree(row['sha']):
+            if item['type'] == 'blob':
+                actual[STATE + '.parts/' + item['path']] = item['sha']
+    for path, value in physical.items():
         if actual.get(path) != blob_sha(value):
             raise ValueError('Published file readback failed: ' + path)
 
@@ -118,17 +223,11 @@ def write_commit(api, files, source_sha, message):
     parent = previous or source_sha
     commit = api.get('git/commits/' + parent)
     entries = []
-    for path, value in sorted(files.items()):
+    for path, value in sorted(storage_files(files).items()):
         entry = {'path': path, 'mode': '100644', 'type': 'blob'}
-        # Batch small outputs into trees. Only large frozen contexts require a
-        # separate blob: five files per model call must not cost ten API calls.
-        if len(encoded(value).encode()) > 2_000_000:
-            blob = api.request('POST', 'git/blobs', {'content': value, 'encoding': 'utf-8'})
-            if blob['sha'] != blob_sha(value):
-                raise ValueError('Created blob digest mismatch')
-            entry['sha'] = blob['sha']
-        else:
-            entry['content'] = value
+        # Both ordinary small files and storage parts fit bounded tree requests;
+        # never send a large logical CONTEXT through POST /git/blobs again.
+        entry['content'] = value
         entries.append(entry)
     tree_sha, group, byte_count = commit['tree']['sha'], [], 0
     for entry in entries:
@@ -182,7 +281,7 @@ def archived_files(api, package):
             continue
         name = item['path']
         if name in ROOT_FILES or BATCH_FILE.fullmatch(name):
-            files[name] = api.blob(item['sha'])
+            files[name] = restore_stored(api, PREFIX + '/' + package + '/' + name, api.blob(item['sha']))
     return files
 
 
@@ -194,7 +293,7 @@ def restore_inputs(api, package, directory):
     for name, raw in files.items():
         path = directory / name
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(raw)
+        path.write_bytes(raw.encode('utf-8'))
 
 
 def reserve(api, directory, run_id, source_sha):
@@ -241,10 +340,10 @@ def reserve(api, directory, run_id, source_sha):
         attempt['manifest_sha256'] = digest((directory / 'CORPUS_MANIFEST.json').read_bytes())
     save(directory / 'ATTEMPT.json', attempt)
     next_state['attempts'][package] = {key: attempt[key] for key in ('run_id', 'source_sha', 'status')}
-    files = {PREFIX + '/' + package + '/' + name: (directory / name).read_text()
+    files = {PREFIX + '/' + package + '/' + name: exact_text(directory / name)
              for name in ('EVENTS.json', 'CONTEXT.json', 'ATTEMPT.json')}
     if 'manifest_sha256' in attempt:
-        files[PREFIX + '/' + package + '/CORPUS_MANIFEST.json'] = (directory / 'CORPUS_MANIFEST.json').read_text()
+        files[PREFIX + '/' + package + '/CORPUS_MANIFEST.json'] = exact_text(directory / 'CORPUS_MANIFEST.json')
     files[STATE] = encoded(next_state)
     write_commit(api, files, source_sha, 'Copilot thematic review: reserve ' + package[:16] + ' before inference')
     return {'mode': 'generate', 'package_id': package, 'original_run_id': str(run_id), 'base_sha': source_sha}
@@ -259,7 +358,7 @@ def collected_files(directory):
             continue
         name = path.relative_to(directory).as_posix()
         if name in ROOT_FILES or BATCH_FILE.fullmatch(name):
-            files[name] = path.read_text(encoding='utf-8')
+            files[name] = exact_text(path)
     return files
 
 
