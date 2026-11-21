@@ -163,6 +163,17 @@ class WorkingBoard(unittest.TestCase):
         self.assertEqual(mutations.count('mutation UpdateWork'),1)
         sleep.assert_called_once_with(1)
 
+    def test_pipeline_permissions_cover_configured_issue_and_pr_targets(self):
+        import yaml
+        pipeline = json.loads((ROOT/'infra/r135/PIPELINE.json').read_text())
+        workflow = yaml.safe_load((ROOT/'.github/workflows/projects-sync.yml').read_text())
+        permissions = workflow['jobs']['r135-pipeline']['permissions']
+        self.assertEqual(permissions.get('issues'), 'write',
+                         'Issue relationships, reopening and label creation require issues: write')
+        if pipeline.get('label') and pipeline.get('related_pull_requests'):
+            self.assertEqual(permissions.get('pull-requests'), 'write',
+                             'Configured related PRs require pull-requests: write for label assignment')
+
     def test_workflow_never_checks_out_pr_code_with_project_secret(self):
         import yaml
         d=yaml.safe_load((ROOT/'.github/workflows/projects-sync.yml').read_text())

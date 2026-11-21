@@ -86,7 +86,7 @@ Workflow переоткрывает закрытую управляемую Issu
 
 ## Автоматизация и проверка развёртывания
 
-[Projects working board](../../.github/workflows/projects-sync.yml) запускает trusted-main обработку карты, затем существующую синхронизацию Projects. Репозиторный токен получает только необходимые права на Issues; отдельный Projects credential остаётся в шаге работы с доской. Код веток PR и текст задач не исполняются с этими правами.
+[Projects working board](../../.github/workflows/projects-sync.yml) запускает trusted-main обработку карты, затем существующую синхронизацию Projects. Задание `r135-pipeline` получает `issues: write` для метки, Issues и их связей, а также `pull-requests: write` для назначения той же метки связанным PR: одно право на Issues не разрешает эту операцию для PR. Отдельный Projects credential остаётся в шаге работы с доской. Код веток PR и текст задач не исполняются с этими правами.
 
 Квитанции Actions:
 
