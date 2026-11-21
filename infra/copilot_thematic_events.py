@@ -581,6 +581,8 @@ def main():
         result = collect(api, os.environ.get('GITHUB_EVENT_NAME', 'schedule'), event,
                          os.environ['GITHUB_SHA'], state=state,
                          start_at=os.environ.get('THEMATIC_START_AT'))
+        from copilot_address_status import route_changes
+        result = route_changes(result)
         dump(args.output / 'EVENTS.json', result)
         if os.environ.get('GITHUB_OUTPUT'):
             with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
