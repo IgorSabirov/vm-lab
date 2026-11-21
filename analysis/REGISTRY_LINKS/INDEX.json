@@ -5074,9 +5074,9 @@
       "status": null,
       "path": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
       "fragment": "",
-      "sha256": "94c35ca5d2bf3a711afc15b219c6f6d119f830ee6b7925fd4a698492abc20f17",
-      "git_blob_sha": "97d1582d1d3a9d07cad1dbac1e0bd6287ffbc551",
-      "size_bytes": 13321
+      "sha256": "17066dab8b946fbef151bebebdb364586caa0e527c97d6a7a3a82c0dc9553ce8",
+      "git_blob_sha": "944da2c55f31b897aa2a27ca5a69c2d9caac98b4",
+      "size_bytes": 22761
     },
     {
       "key": "source:analysis/R136_SHIROGANE_CALIBRATION/extract.py",
@@ -10758,7 +10758,10 @@
     {
       "source": "result:R135",
       "target": "result:R136",
-      "relation": "parent"
+      "relation": "parent",
+      "rationale": "Workstream ancestry: R135 opened the physical SU(3)/EOS donor route from which #167 and the Shirogane audit emerged. This is programmatic context, not a claim that R135's own numerical result proves the Shirogane calibration.",
+      "evidence": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md#genealogy-r136",
+      "claim": "R136"
     },
     {
       "source": "result:R135",
@@ -10783,7 +10786,10 @@
     {
       "source": "result:R136",
       "target": "question:U013",
-      "relation": "informs_not_closes"
+      "relation": "informs_not_closes",
+      "rationale": "R136 supplies an independent reconstruction of the calibration and checks the shift sign, but exact Fig. 15 beta nodes and joint jackknife covariance remain unavailable; U013 therefore stays OPEN.",
+      "evidence": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md#genealogy-r136",
+      "claim": "U013"
     },
     {
       "source": "result:R136",
