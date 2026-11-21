@@ -1,0 +1,163 @@
+{
+  "schema": "add-c1-block1-plan-v1",
+  "date": "2026-11-17",
+  "scope": "phase 0, G1-G4, two-engine finite differential audit; direct theorem replication not in this block",
+  "execution_location": "assistant_local_environment",
+  "owner_instruction": "Гони первый блок на себе который 5 минут, резы на гит.",
+  "time_is_estimate_not_project_ceiling": true,
+  "new_VM_jobs": 0,
+  "new_Actions_science_jobs": 0,
+  "corpus": {
+    "simple_lengths": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "simple_inputs": 5440,
+    "small_lengths": [
+      1,
+      2
+    ],
+    "small_inputs": 20,
+    "seed": 20261117,
+    "random_initials": 128,
+    "random_L_range_inclusive": [
+      7,
+      24
+    ],
+    "random_reached_states_per_initial": 4,
+    "adversarial_words": [
+      [
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        2,
+        0,
+        3,
+        3
+      ],
+      [
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      [
+        3,
+        0,
+        3,
+        0,
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "adversarial_reached_states_per_initial": 6,
+    "total_case_inputs": 6032
+  },
+  "calibration": "128 deterministic atomic ring inputs; exact same per-input operations as main; forecast saved before main",
+  "expected_outcomes": {
+    "A": "no failing finite operator contracts",
+    "P_ring": "Q2=tau and bit-only TQT=Qi may fail; record witnesses without changing rules",
+    "P_raw": "unrestricted edge formula and unbound bit destination are checked as printed; no total-dynamics result fabricated"
+  },
+  "stop_on": "unexpected implementation disagreement or A structural failure; preserve evidence and revise code/spec openly before rerun; no stop solely for elapsed time",
+  "source_files": [
+    "SPEC.json",
+    "PLAN.json",
+    "ring_engine.py",
+    "graph_engine.py",
+    "run_block1.py"
+  ]
+}
