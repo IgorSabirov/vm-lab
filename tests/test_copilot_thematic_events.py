@@ -327,7 +327,7 @@ class WorkflowBoundary(unittest.TestCase):
         self.assertIn('copilot_thematic_native.py publish',
                       json.dumps(workflow['jobs']['publish']))
         self.assertEqual(workflow['jobs']['publish']['permissions']['contents'], 'write')
-        self.assertIn('if: needs.collect.result', workflow['jobs']['publish'])
+        self.assertIn('needs.collect.result', workflow['jobs']['publish']['if'])
         signal = yaml.safe_load((ROOT / '.github/workflows/thematic-events.yml').read_text())
         self.assertIn('pull_request_review_comment', signal.get('on', signal.get(True)))
         self.assertNotIn('checkout', json.dumps(signal))
