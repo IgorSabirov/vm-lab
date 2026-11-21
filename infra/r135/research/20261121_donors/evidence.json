@@ -1,0 +1,113 @@
+{
+  "sources": {
+    "data.tar.gz": {
+      "url": "https://zenodo.org/api/records/18395360/files/data.tar.gz/content",
+      "sha256": "1e6d6f61c4bbf535785021a4f4f5ec154280c0056a74c7ba497ff5c8c58a8244"
+    },
+    "8.zip": {
+      "url": "https://zenodo.org/api/records/8124749/files/8.zip/content",
+      "sha256": "87e7c3a7a6b96f4334fa7636c090144ca28fa71b0e802e48eee27937f64fed19"
+    },
+    "hpr.src": {
+      "url": "https://arxiv.org/src/2512.14530v2",
+      "sha256": "82044e31b143856fbf5ccaf32fc5c77a5b08d65ef2e5547e97983fcc71a72205"
+    },
+    "leonard.v2": {
+      "url": "https://arxiv.org/src/nucl-ex/0601035v2",
+      "sha256": "32ed1c1dab730aa1028f12aaa8acf5ef0fd9663f89cee899f9b597801d05e2f7"
+    },
+    "ism.src": {
+      "url": "https://arxiv.org/src/hep-lat/0206020v3",
+      "sha256": "86ee497e70cf63415000de318cc6cf1cb04c7fbafc640cd195b77830053a139e"
+    },
+    "DataDescription.txt": {
+      "url": "https://zenodo.org/records/8124749/files/DataDescription.txt",
+      "sha256": "b0b7d205417d97dfdcc332d4f5314c3c6d02f0ef389d710caccf03151242a986"
+    }
+  },
+  "leonard": {
+    "Ecm_window_keV": [
+      56.1,
+      323.05
+    ],
+    "covariance_order": 16,
+    "max_error_diagonal_mb": 0.00428562,
+    "scope": "linear interpolation of sigma inside measured window; fit covariance only; common 1% normalization excluded",
+    "projected": [
+      {
+        "kT_MeV": 0.06,
+        "channel_correlation": 0.98636631,
+        "rms_channel_sum_over_same_marginals_independent": 1.4056233,
+        "rms_channel_sum_percent": 1.47663239
+      },
+      {
+        "kT_MeV": 0.08,
+        "channel_correlation": 0.98195261,
+        "rms_channel_sum_over_same_marginals_independent": 1.40363664,
+        "rms_channel_sum_percent": 1.29093697
+      },
+      {
+        "kT_MeV": 0.1,
+        "channel_correlation": 0.97736055,
+        "rms_channel_sum_over_same_marginals_independent": 1.40168888,
+        "rms_channel_sum_percent": 1.1838476
+      }
+    ]
+  },
+  "ishii": {
+    "operator": "smeared scalar 0++",
+    "Tc_MeV_approx_donor": 280,
+    "rows": [
+      {
+        "T_MeV_donor": 275,
+        "Gamma_MeV": 357,
+        "fit_error_MeV": 69,
+        "T_over_Gamma": 0.770308
+      },
+      {
+        "T_MeV_donor": 284,
+        "Gamma_MeV": 484,
+        "fit_error_MeV": 52,
+        "T_over_Gamma": 0.586777
+      }
+    ]
+  },
+  "llr": {
+    "source_file_bytes": 168680987,
+    "reconstructions": 20,
+    "beta_grid_points_per_reconstruction": 1000,
+    "Nt": 4,
+    "Ns": 20,
+    "beta_at_Cu_grid_max_mean": 5.69155731,
+    "beta_at_Cu_grid_max_sample_sd": 0.00075614,
+    "scope": "finite-volume grid maximum of Cu, eight LLR intervals; SD across 20 author reconstructions"
+  },
+  "simplicity": {
+    "Nt": 4,
+    "Ns": 20,
+    "rows": [
+      {
+        "beta": 5.66,
+        "configurations": 600,
+        "mean_b0_over_b1": 0.05400861
+      },
+      {
+        "beta": 5.69,
+        "configurations": 600,
+        "mean_b0_over_b1": 0.09526503
+      },
+      {
+        "beta": 5.72,
+        "configurations": 600,
+        "mean_b0_over_b1": 0.24397047
+      }
+    ],
+    "scope": "sample means of the published projected-current graph observable, no D4 or independent error assessment"
+  },
+  "HPR_thin_wall": {
+    "L_over_Tc4": 1.175,
+    "sigma_over_Tc3": 0.02,
+    "lim_delta_squared_S3_over_T": 9.7087396e-05,
+    "scope": "leading thin-wall limit, delta=1-T/Tc, delta_p=L*delta; no prefactor or percolation"
+  }
+}
