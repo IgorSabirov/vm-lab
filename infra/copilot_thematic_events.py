@@ -11,15 +11,18 @@ import copy
 import hashlib
 import io
 import json
+import math
 import os
 from pathlib import Path
 import re
 import shutil
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
 import zipfile
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 
 REPOSITORY = 'IgorSabirov/vm-lab'
 REPORT_BRANCH = 'copilot/thematic-reports'
@@ -34,6 +37,9 @@ IMPLEMENTATION_PATHS = {'.github/workflows/thematic-events.yml', '.github/workfl
     '.github/workflows/copilot-pr-validation.yml', 'infra/copilot/THEMATIC_REVIEW.md', 'infra/copilot/README.md'}
 SHA = re.compile(r'^[0-9a-f]{40}$')
 MAX_RAW_TEXT_BYTES = 10_000_000
+MAX_RATE_RETRIES = 2
+MAX_RATE_WAIT_SECONDS = 2 * 3600 + 60
+MUTATION_INTERVAL_SECONDS = 1.0
 BINARY_EXTENSIONS = {'.zip', '.gz', '.xz', '.bz2', '.7z', '.tar', '.npy', '.npz',
                      '.h5', '.hdf5', '.parquet', '.fits', '.bin', '.png', '.jpg',
                      '.jpeg', '.gif', '.webp', '.ico', '.pdf', '.mp4', '.sqlite',
@@ -80,14 +86,83 @@ class _SafeRedirect(urllib.request.HTTPRedirectHandler):
 
 class GitHub:
     """Small injectable API boundary shared with preparation and publication."""
-    def __init__(self, repository, token=None):
+    def __init__(self, repository, token=None, *, clock=None, monotonic=None, sleep=None, progress=None):
         if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
             raise ValueError('Invalid repository')
         self.repository = repository
         self.token = token if token is not None else os.environ.get('GITHUB_TOKEN', os.environ.get('GH_TOKEN', ''))
         self.opener = urllib.request.build_opener(_SafeRedirect())
+        self._clock = clock or time.time
+        self._monotonic = monotonic or time.monotonic
+        self._sleep = sleep or time.sleep
+        self._progress = progress or (lambda record: print(json.dumps(record, ensure_ascii=False), flush=True))
+        self._last_mutation = None
         self._trees = {}
         self._blobs = {}
+
+    def _rate_deadline(self, status, headers, message, retry):
+        """Return a server-respecting retry deadline only for explicit limits."""
+        if status not in {403, 429}:
+            return None
+        values = {str(key).lower(): str(value).strip() for key, value in (headers or {}).items()}
+        explicit = bool(re.search(
+            r'rate\s+limit(?:\s+has\s+been)?\s+exceeded|exceeded\b.{0,160}\brate\s+limit|'
+            r'(?:secondary|primary)\s+rate\s+limit|abuse\s+detection\s+mechanism',
+            message, re.I))
+        exhausted = values.get('x-ratelimit-remaining') == '0'
+        # HTTP 429 is itself the explicit "Too Many Requests" rejection. A 403
+        # requires the rate-limit diagnostic/header evidence checked below.
+        # A zero remaining header is explicit evidence when GitHub's error body
+        # is absent. An ordinary permission/auth diagnostic is never retried just
+        # because that same response also happens to carry a zero quota header.
+        if status == 403 and not explicit and not (exhausted and not message):
+            return None
+        now = self._clock()
+        deadlines = []
+        retry_after = values.get('retry-after')
+        if retry_after is not None:
+            try:
+                delay = float(retry_after)
+                if math.isfinite(delay) and delay >= 0:
+                    deadlines.append(now + delay)
+            except ValueError:
+                try:
+                    date = parsedate_to_datetime(retry_after)
+                    if date.tzinfo is None:
+                        date = date.replace(tzinfo=timezone.utc)
+                    deadlines.append(date.timestamp())
+                except (TypeError, ValueError, OverflowError):
+                    pass
+        if exhausted and 'x-ratelimit-reset' in values:
+            try:
+                reset = float(values['x-ratelimit-reset'])
+                if math.isfinite(reset):
+                    deadlines.append(reset + 1)  # cross the server's reset second
+            except ValueError:
+                pass
+        future = [deadline for deadline in deadlines if deadline >= now]
+        # GitHub advises >=60 seconds when no usable server deadline exists;
+        # successive secondary-limit waits grow, with a finite retry budget.
+        return max(now + 1, *future) if future else now + 60 * (2 ** retry)
+
+    def _wait_for_rate(self, deadline, method, path, status, retry):
+        seconds = max(0.0, deadline - self._clock())
+        until = self._monotonic() + seconds
+        # Logs contain the API path, timing and attempt count, never headers,
+        # request bodies, query parameters or authentication tokens.
+        safe_path = urllib.parse.urlsplit(path).path
+        if self.token:
+            safe_path = safe_path.replace(self.token, '[REDACTED]')
+        while True:
+            remaining = until - self._monotonic()
+            if remaining <= 0:
+                return seconds
+            self._progress({'stage': 'github_rate_limit_wait', 'method': method,
+                            'path': safe_path, 'status': status, 'retry': retry + 1,
+                            'max_retries': MAX_RATE_RETRIES,
+                            'retry_at_utc': datetime.fromtimestamp(deadline, timezone.utc).isoformat(),
+                            'remaining_seconds': math.ceil(remaining)})
+            self._sleep(min(60.0, remaining))
 
     def request(self, method, path, data=None, raw=False):
         if '://' in path or path.startswith('//') or '\\' in path:
@@ -101,17 +176,45 @@ class GitHub:
         if payload is not None:
             headers['Content-Type'] = 'application/json'
         req = urllib.request.Request('https://api.github.com' + path, data=payload, headers=headers, method=method)
-        try:
-            with self.opener.open(req, timeout=90) as response:
-                body = response.read()
-        except urllib.error.HTTPError as error:
+        mutation = method.upper() in {'POST', 'PATCH', 'PUT', 'DELETE'}
+        waited = 0.0
+        for retry in range(MAX_RATE_RETRIES + 1):
+            if mutation and self._last_mutation is not None:
+                pause = MUTATION_INTERVAL_SECONDS - (self._monotonic() - self._last_mutation)
+                if pause > 0:
+                    self._sleep(pause)
             try:
-                diagnostic = json.loads(error.read(4096))
-                message = diagnostic.get('message', '') if isinstance(diagnostic, dict) else ''
-            except (ValueError, OSError):
-                message = ''
-            raise APIError(error.code, path, message) from None
-        return body if raw else (json.loads(body) if body else None)
+                try:
+                    with self.opener.open(req, timeout=90) as response:
+                        body = response.read()
+                finally:
+                    if mutation:
+                        self._last_mutation = self._monotonic()
+            except urllib.error.HTTPError as error:
+                try:
+                    diagnostic = json.loads(error.read(4096))
+                    message = diagnostic.get('message', '') if isinstance(diagnostic, dict) else ''
+                    message = message if isinstance(message, str) else ''
+                except (ValueError, OSError):
+                    message = ''
+                finally:
+                    error.close()
+                deadline = self._rate_deadline(error.code, error.headers, message, retry)
+                if deadline is None:
+                    raise APIError(error.code, path, message) from None
+                if retry == MAX_RATE_RETRIES:
+                    raise APIError(error.code, path, f'{message}; rate-limit retry budget exhausted after {retry} waits') from None
+                delay = max(0.0, deadline - self._clock())
+                if delay > MAX_RATE_WAIT_SECONDS - waited:
+                    # Do not shorten a server-requested deadline to fit a local
+                    # budget and then issue a request earlier than GitHub permits.
+                    raise APIError(error.code, path,
+                        f'{message}; server wait {math.ceil(delay)}s exceeds remaining retry wait budget') from None
+                waited += self._wait_for_rate(deadline, method, path, error.code, retry)
+                continue
+            # Connection errors, timeouts and ambiguous write failures propagate;
+            # only a received explicit rate-limit rejection can repeat a mutation.
+            return body if raw else (json.loads(body) if body else None)
 
     def get(self, path):
         return self.request('GET', path)
@@ -573,11 +676,18 @@ def main():
     if args.command == 'recover-batches':
         print(json.dumps(restore_recovery_batches(args.saved, args.output)))
         return
+    source_event_saved = False
     try:
+        # Capture the exact delivered event before the first network request.
+        # Even a load_state rate-limit failure retains it in the always-uploaded
+        # input artifact; this file is not sent to the model as another source.
+        event_path = os.environ.get('GITHUB_EVENT_PATH')
+        event_raw = Path(event_path).read_bytes() if event_path else b'{}'
+        (args.output / 'SOURCE_EVENT.json').write_bytes(event_raw)
+        source_event_saved = True
+        event = json.loads(event_raw)
         api = GitHub(os.environ.get('GITHUB_REPOSITORY', REPOSITORY))
         state = json.loads(args.state.read_text()) if args.state else load_state(api)
-        event_path = os.environ.get('GITHUB_EVENT_PATH')
-        event = json.loads(Path(event_path).read_text()) if event_path else {}
         result = collect(api, os.environ.get('GITHUB_EVENT_NAME', 'schedule'), event,
                          os.environ['GITHUB_SHA'], state=state,
                          start_at=os.environ.get('THEMATIC_START_AT'))
@@ -588,7 +698,9 @@ def main():
         print(f"Collected {len(result['changes'])} changed versions; {len(result['coverage']['omitted_contents'])} contents explicitly unavailable.")
     except Exception as error:
         dump(args.output / 'COLLECTION_FAILURE.json', {'schema': 'vm-lab-thematic-collection-failure-v1',
-             'error': str(error), 'scientific_status_changed': False})
+             'error': str(error), 'source_event': 'SOURCE_EVENT.json' if source_event_saved else None,
+             'event_name': os.environ.get('GITHUB_EVENT_NAME', 'schedule'),
+             'scientific_status_changed': False})
         raise
 
 
