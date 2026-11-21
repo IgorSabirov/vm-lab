@@ -1,0 +1,62 @@
+{
+  "ACT": {
+    "bins": {
+      "cl_00": 45,
+      "cl_0e": 40,
+      "cl_ee": 42
+    },
+    "covariance": [
+      127,
+      127
+    ]
+  },
+  "SPT": {
+    "bins": {
+      "TT": 52,
+      "TE": 72,
+      "EE": 72
+    },
+    "covariance": [
+      196,
+      196
+    ],
+    "windows": {
+      "TT": [
+        4094,
+        53
+      ],
+      "TE": [
+        4094,
+        73
+      ],
+      "EE": [
+        4094,
+        73
+      ]
+    },
+    "priors": [
+      {
+        "par_names": "tau",
+        "central_value": 0.051,
+        "prior_std": 0.006
+      },
+      {
+        "par_names": "Tcal",
+        "central_value": 1.0,
+        "prior_std": 0.0036
+      }
+    ]
+  },
+  "Planck": {
+    "varied": 21,
+    "fixed": 26,
+    "joint_SZ": {
+      "weights": {
+        "ksz_norm": 1,
+        "A_sz": 1.6
+      },
+      "mean": 9.5,
+      "sigma": 3.0
+    }
+  }
+}

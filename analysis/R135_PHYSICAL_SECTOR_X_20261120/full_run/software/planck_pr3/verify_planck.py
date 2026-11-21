@@ -5,6 +5,7 @@ import json
 import math
 import os
 from pathlib import Path
+import sys
 import tarfile
 import tempfile
 
@@ -148,9 +149,22 @@ def evaluate(root, lock, policy, theory_file=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("archive", type=Path)
-    parser.add_argument("theory", type=Path, help="ESA R3.01 minimum-theory spectrum")
+    parser.add_argument("archive", nargs="?", type=Path)
+    parser.add_argument("theory", nargs="?", type=Path, help="ESA R3.01 minimum-theory spectrum")
+    parser.add_argument("--cache", type=Path, help="Fetch and verify the pinned ESA archive and spectrum")
+    parser.add_argument("--offline", action="store_true", help="Use verified cache entries only")
     args = parser.parse_args()
+    if args.cache:
+        if args.archive or args.theory:
+            parser.error("Specify --cache or the two local files")
+        sys.path.insert(0, str(HERE.parent / "donors"))
+        from fetch import acquire
+        from cmb import planck_policy
+        paths = acquire(args.cache, {"planck", "planck_priors"}, args.offline)
+        planck_policy(paths)
+        args.archive, args.theory = paths["planck-archive"], paths["planck-zero_X_theory"]
+    elif not args.archive or not args.theory or args.offline:
+        parser.error("Specify --cache or the two local files")
     lock = json.loads((HERE / "release.json").read_text())
     policy = json.loads((HERE / "nuisance.json").read_text())
     with tempfile.TemporaryDirectory() as tmp:
