@@ -313,11 +313,21 @@ class WorkflowBoundary(unittest.TestCase):
                 if step.get('uses', '').startswith('actions/checkout@'):
                     self.assertEqual(step['with']['ref'], '${{ github.sha }}')
                     self.assertFalse(step['with']['persist-credentials'])
-        tokens = [step for job in workflow['jobs'].values() for step in job['steps']
-                  if 'COPILOT_GITHUB_TOKEN' in step.get('env', {})]
+        self.assertEqual(set(workflow['jobs']), {'collect', 'analyze', 'publish'})
+        analyze = workflow['jobs']['analyze']
+        self.assertIn('contents', analyze['permissions'])
+        self.assertEqual(analyze['permissions']['contents'], 'read')
+        self.assertEqual(analyze['permissions']['issues'], 'read')
+        self.assertEqual(analyze['permissions']['pull-requests'], 'read')
+        tokens = [step for step in analyze['steps'] if 'COPILOT_GITHUB_TOKEN' in step.get('env', {})]
         self.assertEqual(len(tokens), 1)
-        self.assertIn("== 'generate'", tokens[0]['if'])
-        self.assertIn('always()', workflow['jobs']['publish']['if'])
+        self.assertIn('copilot_thematic_native.py analyze', tokens[0]['run'])
+        self.assertNotIn('copilot_thematic_corpus.py prepare', json.dumps(workflow))
+        self.assertNotIn('copilot_thematic_review.py generate', json.dumps(workflow))
+        self.assertIn('copilot_thematic_native.py publish',
+                      json.dumps(workflow['jobs']['publish']))
+        self.assertEqual(workflow['jobs']['publish']['permissions']['contents'], 'write')
+        self.assertIn('if: needs.collect.result', workflow['jobs']['publish'])
         signal = yaml.safe_load((ROOT / '.github/workflows/thematic-events.yml').read_text())
         self.assertIn('pull_request_review_comment', signal.get('on', signal.get(True)))
         self.assertNotIn('checkout', json.dumps(signal))
