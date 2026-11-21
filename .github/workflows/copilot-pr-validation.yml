@@ -1,7 +1,7 @@
 name: Validate Copilot proposal
 on:
   workflow_run:
-    workflows: ['Copilot repository operator', 'Copilot native report pilot', 'Copilot six-model review', 'Copilot link catalog']
+    workflows: ['Copilot repository operator', 'Copilot native report pilot', 'Copilot six-model review', 'Copilot link catalog', 'Copilot thematic review']
     types: [completed]
 permissions:
   contents: read
@@ -53,3 +53,4 @@ jobs:
           CHECK_STATUS: ${{ job.status }}
         run: |
           printf 'PR #%s at `%s`: %s. Technical validation only; no merge or scientific acceptance.\n' "$PR_NUMBER" "$TARGET_SHA" "$CHECK_STATUS" >> "$GITHUB_STEP_SUMMARY"
+
