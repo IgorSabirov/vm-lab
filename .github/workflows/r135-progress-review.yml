@@ -3,7 +3,10 @@ on:
   pull_request:
     paths:
       - 'infra/r135/**'
+      - 'analysis/R135_PHYSICAL_SECTOR_X_20261120/**'
+      - 'RUNTIME_GATE.md'
       - 'tools/r135_progress.py'
+      - 'tools/r135_progress_review.py'
       - 'tools/r135_pipeline*.py'
       - 'tools/project_sync.py'
       - 'infra/external/GITHUB_SETUP.json'
@@ -23,26 +26,7 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          mkdir -p project-evidence
-          git show "${BASE_SHA}:infra/r135/PIPELINE.json" > "$RUNNER_TEMP/r135-before.json"
-          git diff --name-only --diff-filter=AM "$BASE_SHA" HEAD -- infra/r135/research > "$RUNNER_TEMP/r135-research.txt"
-          python3 tools/r135_pipeline.py --check --compare "$RUNNER_TEMP/r135-before.json" > project-evidence/R135_CRITERION_DELTA.json
-          python3 - <<'PY'
-          import json, os
-          from pathlib import Path
-          data = json.loads(Path('project-evidence/R135_CRITERION_DELTA.json').read_bytes())
-          changes = data['changes']
-          with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a') as summary:
-              print(f"Changed criterion records: {len(changes)} / {data['criteria']}", file=summary)
-              for row in changes:
-                  print(f"- #{row['issue']} / {row['criterion']} ({', '.join(row['changes'])})", file=summary)
-              if data['needs_review']:
-                  print('Evidence requiring recheck: '+', '.join(data['needs_review']), file=summary)
-              reports = Path(os.environ['RUNNER_TEMP'],'r135-research.txt').read_text().splitlines()
-              if reports and not changes:
-                  print('::warning::Research changed without a criterion delta. Review its effect or record why the edit is editorial.')
-                  print('Research changed without a criterion delta. Check the affected addresses.', file=summary)
-          PY
+          python3 tools/r135_progress_review.py --base "$BASE_SHA" --output project-evidence/R135_CRITERION_DELTA.json
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: r135-criterion-delta

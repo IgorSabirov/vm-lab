@@ -104,7 +104,7 @@ class API:
         return rows[(page-1)*100:page*100]
 
 
-def completion(api, selected_task):
+def completion(api, selected_task, contexts=None):
     scope = {k:selected_task[k] for k in ('stages','claims')}
     inputs = api.put('evidence/inputs.json', {'chosen':'inputs'})
     evidence, runs = [], {}
@@ -113,15 +113,36 @@ def completion(api, selected_task):
                   'role':role,'run_id':role+'-run','source_sha':SHA,'input_manifest_sha256':inputs['sha256'],
                   'checks':[{'id':'balance','status':'PASS'}],'result':'PASS','exit_code':0,
                   'method':'Declared numerical check','environment':{'python':'3.12'}}
+        if contexts is not None:
+            report['progress_context'] = contexts
         ref = api.put('evidence/'+role+'.json',report)
         evidence.append({'id':role,**ref})
         runs[role] = {'provider':'manifest','run_id':report['run_id'],'report_evidence_id':role}
     record = {'schema':'vm-lab-r135-completion-v1','task_key':selected_task['key'],'source_sha':SHA,
               'scope':scope,'input_manifest':inputs,'evidence':evidence,
               'checks':[{'id':'balance','status':'PASS','evidence_ids':['producer','independent_replay']}],**runs}
+    if contexts is not None:
+        record['progress_context'] = contexts
     selected_task['completion_record']='infra/r135/completions/'+selected_task['key']+'.json'
     api.put(selected_task['completion_record'], record)
     return record
+
+
+def progress_plan(api):
+    value = plan()
+    value['schema'] = p.progress.SCHEMA
+    artifact = api.put('evidence/control.json', {'input':'A','output':1})
+    value.update(progress_inputs={},progress_evidence={'test':{
+        'commit':SHA,'path':artifact['path'],'sha256':artifact['sha256'],'basis':{'implementation':SHA}}})
+    for issue in api.issues.values():
+        issue['body'] = 'Ручное примечание'
+    for task_row in value['tasks']:
+        task_row.update(progress_target='test',focus_criterion='balance')
+        for c in task_row['acceptance_checks']:
+            c['progress'] = {'remaining':'physical input','next_output':'one trace','needs':[],'findings':[
+                {'level':'control','obtained':'unit control','scope':'synthetic','reviewed_for':'test',
+                 'reviewed_criterion':p.progress.criterion_digest(task_row,c),'evidence':['test']}]}
+    return value, artifact
 
 
 class ManifestValidation(unittest.TestCase):
@@ -164,26 +185,18 @@ class Relationships(unittest.TestCase):
 
     def test_criterion_records_reconcile_without_closing_whole_task(self):
         api=API()
-        value=plan()
-        value['schema']=p.progress.SCHEMA
-        artifact=api.put('evidence/control.json',{'input':'A','output':1})
-        value.update(progress_inputs={},progress_evidence={'test':{
-            'commit':SHA,'path':artifact['path'],'sha256':artifact['sha256'],'basis':{'implementation':SHA}}})
-        for issue in api.issues.values():
-            issue['body']='Ручное примечание'
+        value,artifact=progress_plan(api)
         api.issues[161]['state']='closed'
-        for task_row in value['tasks']:
-            task_row.update(progress_target='test',focus_criterion='balance')
-            for c in task_row['acceptance_checks']:
-                c['progress']={'remaining':'physical input','next_output':'one trace','needs':[],'findings':[
-                    {'level':'control','obtained':'unit control','scope':'synthetic','reviewed_for':'test','evidence':['test']}]}
         task_row=value['tasks'][0]
-        completion(api,task_row)
+        check=task_row['acceptance_checks'][0]
+        context={check['id']:p.progress.acceptance_context(value,task_row,check)}
+        completion(api,task_row,context)
         task_row['acceptance_checks'][0]['progress']['criterion_record']=task_row['completion_record']
         task_row['completion_record']=None
         second=deepcopy(task_row['acceptance_checks'][0])
         second['id']='second'
         del second['progress']['criterion_record']
+        second['progress']['findings'][0]['reviewed_criterion']=p.progress.criterion_digest(task_row,second)
         task_row['acceptance_checks'].append(second)
         result=p.apply_pipeline(value,request=api,source_sha=SHA)
         self.assertEqual(result['criterion_verified_checks']['A'],['balance'])
@@ -193,6 +206,8 @@ class Relationships(unittest.TestCase):
         self.assertIn('#### second · проверен контроль',api.issues[161]['body'])
         self.assertIn('Ручное примечание',api.issues[161]['body'])
         self.assertEqual(result['criterion_sections_expected'],3)
+        self.assertEqual(result['pipeline_sha256'],p.progress.plan_digest(value))
+        self.assertEqual(result['criterion_completion_evidence']['A']['contexts'],context)
         self.assertEqual(p.apply_pipeline(value,request=api,source_sha=SHA)['criterion_sections_updated'],[])
         api.files[SHA,artifact['path']]=b'changed'
         with self.assertRaisesRegex(ValueError,'SHA256'):
@@ -321,6 +336,46 @@ class Relationships(unittest.TestCase):
 
 
 class CompletionEvidence(unittest.TestCase):
+    def test_progress_completion_binds_target_even_without_partial_findings(self):
+        api=API();value,_=progress_plan(api);selected=value['tasks'][0]
+        check=selected['acceptance_checks'][0]
+        check['progress']['findings']=[]
+        contexts={check['id']:p.progress.acceptance_context(value,selected,check)}
+        completion(api,selected,contexts)
+        api.issues[161]['state']='closed'
+        first=p.apply_pipeline(value,request=api,source_sha=SHA)
+        self.assertEqual(first['criterion_verified_checks']['A'],['balance'])
+        selected['progress_target']='another physical preparation'
+        second=p.apply_pipeline(value,request=api,source_sha=SHA)
+        self.assertEqual(second['criterion_verified_checks']['A'],[])
+        self.assertIn('context changed',second['completion_evidence']['A']['reason'])
+        self.assertEqual(api.issues[161]['state'],'open')
+
+    def test_rebinding_record_alone_does_not_rebind_saved_replays(self):
+        api=API();value,_=progress_plan(api);selected=value['tasks'][0]
+        check=selected['acceptance_checks'][0]
+        contexts={check['id']:p.progress.acceptance_context(value,selected,check)}
+        record=completion(api,selected,contexts)
+        check['criterion']+=' and a different physical regime'
+        expected={check['id']:p.progress.acceptance_context(value,selected,check)}
+        record['progress_context']=expected
+        with self.assertRaisesRegex(ValueError,'Replay criterion/scope/input context'):
+            p.verify_completion(selected,record,api,expected_contexts=expected)
+
+    def test_stale_single_criterion_record_is_visible_without_halting_other_tasks(self):
+        api=API();value,_=progress_plan(api);selected=value['tasks'][0]
+        check=selected['acceptance_checks'][0]
+        contexts={check['id']:p.progress.acceptance_context(value,selected,check)}
+        completion(api,selected,contexts)
+        check['progress']['criterion_record']=selected['completion_record']
+        selected['completion_record']=None
+        value['source_commits']['implementation']='12'*20
+        result=p.apply_pipeline(value,request=api,source_sha=SHA)
+        self.assertTrue(result['verified'])
+        self.assertEqual(result['criterion_verified_checks']['A'],[])
+        self.assertIn('context changed',result['criterion_completion_evidence']['A']['record_errors']['balance'])
+        self.assertIn('Прогресс и остаток',api.issues[162]['body'])
+
     def test_manifest_replay_valid_but_does_not_close_open_issue_or_infer_science(self):
         value=plan();api=API();completion(api,value['tasks'][0])
         result=p.apply_pipeline(value,request=api,source_sha=SHA)

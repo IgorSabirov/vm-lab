@@ -272,33 +272,110 @@ def open_issues(request):
     raise RuntimeError('Issue pagination budget exceeded')
 
 
-def setup_and_sync(plan, *, request, graphql, pipeline=None):
+def verified_criterion_evidence(pipeline, status, source_sha):
+    """Consume only the same-revision receipt from the trusted pipeline job.
+
+    Library callers without a receipt get no accepted criteria. Editable Issue
+    prose is never a substitute for this transport of already checked evidence.
+    """
+    if status is None:
+        return {}
+    if (pipeline is None or not isinstance(status, dict) or status.get('verified') is not True
+            or status.get('repository') != REPO or status.get('source_sha') != source_sha
+            or not re.fullmatch(r'[0-9a-f]{40}', source_sha)
+            or status.get('pipeline_sha256') != progress.plan_digest(pipeline)):
+        raise ValueError('Pipeline receipt does not match this verified source and map')
+    evidence = status.get('criterion_completion_evidence')
+    tasks = {t['key']: t for t in pipeline['tasks']}
+    if not isinstance(evidence, dict) or set(evidence) != set(tasks):
+        raise ValueError('Pipeline receipt has incomplete task coverage')
+    for key, item in evidence.items():
+        checks = item.get('checks') if isinstance(item, dict) else None
+        contexts = item.get('contexts') if isinstance(item, dict) else None
+        known = {c['id'] for c in tasks[key]['acceptance_checks']}
+        if (not isinstance(item, dict)
+                or item.get('status') not in ('VERIFIED_STRUCTURAL_EVIDENCE', 'OPEN_EVIDENCE')
+                or not isinstance(checks, list) or not all(isinstance(c, str) for c in checks)
+                or len(checks) != len(set(checks)) or not set(checks) <= known
+                or not isinstance(contexts, dict) or set(contexts) != set(checks)
+                or not all(isinstance(v, str) and re.fullmatch(r'[0-9a-f]{64}', v)
+                           for v in contexts.values())):
+            raise ValueError('Pipeline receipt has invalid criterion evidence')
+    return evidence
+
+
+def record_failure(report, error):
+    # API error text can contain response data or credentials. Keep a stable
+    # diagnostic fingerprint and operation names, never raw exception text.
+    report.update(verified=False, error_type=type(error).__name__,
+                  error_sha256=hashlib.sha256(str(error).encode()).hexdigest())
+
+
+def setup_and_sync(plan, *, request, graphql, pipeline=None, pipeline_status=None, report=None):
+    result = report if report is not None else {}
+    result.update(schema='vm-lab-project-sync-v1', repository=REPO, verified=False,
+                  scientific_status_modified=False, permissions_are_descriptive_not_authorization=True,
+                  checked_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                  added=[], field_updates=[], successful_mutations=[], stage='checkout')
+    try:
+        source_sha = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        result['source_sha'] = source_sha
+        def audited_graphql(query, variables):
+            operation = re.match(r'\s*mutation(?:\s+([A-Za-z_][A-Za-z_0-9]*))?', query)
+            if operation:
+                result['last_mutation'] = operation.group(1) or 'anonymous'
+            value = graphql(query, variables)
+            if operation:
+                result['successful_mutations'].append(operation.group(1) or 'anonymous')
+            return value
+        return _setup_and_sync(plan, request=request, graphql=audited_graphql, pipeline=pipeline,
+                               pipeline_status=pipeline_status, source_sha=source_sha, result=result)
+    except Exception as error:
+        record_failure(result, error)
+        raise
+
+
+def _setup_and_sync(plan, *, request, graphql, pipeline, pipeline_status, source_sha, result):
+    result['stage'] = 'validate_receipt'
     if pipeline is None and 'R135 continuation' in plan.get('fields', {}):
         pipeline = json.loads((ROOT/'infra/r135/PIPELINE.json').read_bytes())
     if pipeline is not None:
         progress.validate(pipeline)
+    completions = verified_criterion_evidence(pipeline, pipeline_status, source_sha)
+    if pipeline is not None:
+        result['pipeline_sha256'] = progress.plan_digest(pipeline)
+        result['criterion_receipt_verified'] = pipeline_status is not None
     initial_statuses = plan.get('initial_statuses', {})
     if (not isinstance(initial_statuses, dict) or any(
             not isinstance(number, str) or not re.fullmatch(r'[1-9][0-9]*', number)
             or state not in ('Ready','Analysis') for number,state in initial_statuses.items())):
         raise ValueError('Invalid initial_statuses mapping')
+    result['stage'] = 'project_setup'
     project = ensure_project(plan, graphql)
+    result['project'] = project
     pid = project['id']
+    result['stage'] = 'field_setup'
     fields = ensure_fields(pid, plan['fields'], graphql)
+    result['stage'] = 'view_setup'
     views = ensure_views(pid, plan.get('views', []), fields, graphql)
+    result['stage'] = 'repository_link'
     repo = request('/repos/'+REPO)
     graphql('mutation LinkBoard($project:ID!,$repo:ID!){linkProjectV2ToRepository(input:{projectId:$project,repositoryId:$repo}){repository{id}}}', {'project':pid,'repo':repo['node_id']})
+    result['stage'] = 'load_items'
     tracked = {i['content']['number']:i for i in project_items(pid,graphql)
                if i.get('content') and i['content'].get('repository',{}).get('nameWithOwner') == REPO}
     active = {i['number']:i for i in open_issues(request)}
     for number, item in tracked.items():
         if not item['isArchived'] and number not in active:
             active[number] = request('/repos/'+REPO+'/issues/'+str(number))
-    added, updates, expected = [], [], {}
+    added, updates, expected = result['added'], result['field_updates'], {}
     managed = {t['issue_number']:t for t in pipeline['tasks']} if pipeline else {}
     manual_conflicts = []
+    result['manual_next_action_differences'] = manual_conflicts
     required_board_values = {}
     for number, issue in sorted(active.items()):
+        result['stage'] = 'sync_item'
+        result['current_issue'] = number
         item = tracked.get(number)
         if item and item['isArchived']:
             continue
@@ -312,7 +389,7 @@ def setup_and_sync(plan, *, request, graphql, pipeline=None):
         values = proposed_values(issue,item['values'],initial_statuses)
         if number in managed and issue['state']=='open' and 'pull_request' not in issue:
             task = managed[number]
-            action = progress.next_action(task,progress.visible_passed(issue.get('body') or ''))
+            action = progress.next_action(task, progress.accepted_ids(pipeline, task, completions.get(task['key'])))
             current = item['values'].get('Next action','')
             required = {'R135 continuation':action}
             legacy = task['next_action'][:1024]
@@ -333,6 +410,7 @@ def setup_and_sync(plan, *, request, graphql, pipeline=None):
             updates.append({'number':number,'field':name})
         expected[item['id']] = {'Status':work_status(issue,item['values'].get('Status')),**values,**required_board_values.get(number,{})}
     # Projects may expose new items/field values after the mutation response.
+    result['stage'] = 'readback'
     mismatches = []
     for delay in (0, 1, 2, 4, 8, 16):
         if delay:
@@ -347,23 +425,37 @@ def setup_and_sync(plan, *, request, graphql, pipeline=None):
         safe = [{**m, **({} if m['field']=='Status' else {k:hashlib.sha256(str(m[k]).encode()).hexdigest() for k in ('expected','observed')})} for m in mismatches]
         details = {'project_url':project.get('url'),'mismatches':safe}
         raise RuntimeError('Project item readback failed: '+json.dumps(details,ensure_ascii=False))
-    return {'schema':'vm-lab-project-sync-v1','project':project,'repository':REPO,
+    result.update({'schema':'vm-lab-project-sync-v1','project':project,'repository':REPO,
             'fields_verified':sorted(plan['fields']),'items_verified':len(expected),'added':added,'field_updates':updates,
             'views_verified':views,'continuations_verified':len(required_board_values),'manual_next_action_differences':manual_conflicts,
             'items':[{'number':(actual[i].get('content') or {}).get('number'),'status':actual[i]['values'].get('Status')} for i in expected],
             'verified':True,'scientific_status_modified':False,'permissions_are_descriptive_not_authorization':True,
-            'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+            'source_sha':source_sha,'stage':'complete'})
+    return result
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path,default=Path('project-evidence/PROJECTS_STATUS.json'));args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path,default=Path('project-evidence/PROJECTS_STATUS.json'))
+    p.add_argument('--pipeline-status',type=Path,help='Verified same-run R135 pipeline receipt on this exact checkout')
+    args=p.parse_args()
     plan=json.loads((ROOT/'infra/external/GITHUB_SETUP.json').read_text())['project']
     if not args.apply:
         print(json.dumps(plan,ensure_ascii=False,indent=2));return
-    from github_setup import request, graphql
-    result=setup_and_sync(plan,request=request,graphql=graphql)
+    result={'schema':'vm-lab-project-sync-v1','repository':REPO,'verified':False,
+            'scientific_status_modified':False,'added':[],'field_updates':[],'successful_mutations':[]}
     args.output.parent.mkdir(parents=True,exist_ok=True)
-    args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    try:
+        result['source_sha']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+        if 'R135 continuation' in plan.get('fields', {}) and args.pipeline_status is None:
+            raise ValueError('Production R135 sync requires a verified pipeline receipt')
+        status=json.loads(args.pipeline_status.read_bytes()) if args.pipeline_status else None
+        from github_setup import request, graphql
+        setup_and_sync(plan,request=request,graphql=graphql,pipeline_status=status,report=result)
+    except Exception as error:
+        record_failure(result,error)
+        raise RuntimeError('Project sync failed; diagnostic receipt saved ('+type(error).__name__+')') from None
+    finally:
+        args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(result,ensure_ascii=False))
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:

@@ -1,6 +1,7 @@
 """Criterion-level evidence, remaining work and projections of the R135 map."""
 from collections import Counter
 from hashlib import sha256
+import json
 import re
 
 SCHEMA = 'vm-lab-r135-development-pipeline-v2'
@@ -23,6 +24,25 @@ def nonempty(value):
 
 def version_map(plan):
     return {**plan['source_commits'], **plan['progress_inputs']}
+
+
+def plan_digest(plan):
+    """Hash a JSON snapshot independently of formatting and object-key order."""
+    raw = json.dumps(plan, sort_keys=True, ensure_ascii=False, separators=(',', ':'), allow_nan=False)
+    return sha256(raw.encode('utf-8')).hexdigest()
+
+
+def criterion_digest(task, check):
+    """Bind a finding to the exact requirement and the task's declared scope."""
+    return plan_digest({'task_key':task['key'], 'criterion_id':check['id'],
+                        'criterion':check['criterion'], 'stages':sorted(task['stages']),
+                        'claims':sorted(task['claims'])})
+
+
+def acceptance_context(plan, task, check):
+    """Snapshot required for receipt applicability, not a scientific judgement."""
+    return plan_digest({'criterion_digest':criterion_digest(task, check),
+                        'progress_target':task['progress_target'], 'inputs':version_map(plan)})
 
 
 def validate(plan):
@@ -50,7 +70,8 @@ def validate(plan):
             where = '#%s / %s' % (t['issue_number'], c['id'])
             need(nonempty(p.get('remaining')) and nonempty(p.get('next_output')), 'missing remainder/output: '+where)
             deps = p.get('needs')
-            need(isinstance(deps,list) and all(d.get('task') in tasks and nonempty(d.get('input'))
+            need(isinstance(deps,list) and all(isinstance(d,dict) and d.get('task') in tasks and nonempty(d.get('input'))
+                 and ('after' not in d or type(d['after']) is bool)
                  for d in deps), 'invalid next-output input: '+where)
             record = p.get('criterion_record')
             need(record is None or isinstance(record,str) and re.fullmatch(
@@ -61,28 +82,33 @@ def validate(plan):
             for f in findings:
                 need(f.get('level') in ('published','control','applied') and all(nonempty(f.get(x))
                      for x in ('obtained','scope','reviewed_for')), 'invalid finding or scope: '+where)
+                need(isinstance(f.get('reviewed_criterion'),str) and re.fullmatch(
+                    '[0-9a-f]{64}',f['reviewed_criterion']), 'missing/invalid reviewed criterion: '+where)
                 if f['level']=='applied':
                     need(nonempty(f.get('preparation')), 'missing preparation identifier: '+where)
                 ev = f.get('evidence')
                 need(isinstance(ev,list) and ev and all(k in refs for k in ev), 'missing evidence: '+where)
 
 
-def stale(plan, task, finding):
+def stale(plan, task, finding, check):
     versions = version_map(plan)
     changes = {k for ref in finding['evidence'] for k,v in plan['progress_evidence'][ref]['basis'].items()
                if versions[k] != v}
     if finding['reviewed_for'] != task['progress_target']:
         changes.add('область подготовки')
+    if finding.get('reviewed_criterion') != criterion_digest(task, check):
+        changes.add('критерий')
     return sorted(changes)
 
 
 def state(plan, task, check, completion=None):
-    if (completion and not any(stale(plan,task,f) for f in check['progress']['findings'])
-            and completion.get('status') == 'VERIFIED_STRUCTURAL_EVIDENCE'
-            and check['id'] in completion['checks']):
+    if (completion and completion.get('status') == 'VERIFIED_STRUCTURAL_EVIDENCE'
+            and check['id'] in completion.get('checks',[])
+            and isinstance(completion.get('contexts'),dict)
+            and completion['contexts'].get(check['id']) == acceptance_context(plan,task,check)):
         return 'accepted'
     findings = check['progress']['findings']
-    return max((f['level'] for f in findings if not stale(plan,task,f)), key=LEVELS.index, default='open')
+    return max((f['level'] for f in findings if not stale(plan,task,f,check)), key=LEVELS.index, default='open')
 
 
 def next_action(task, passed=()):
@@ -124,6 +150,9 @@ def criterion_block(plan, task, completion=None):
     for check in task['acceptance_checks']:
         p = check['progress']
         lines += ['', '#### '+check['id']+' · '+LABEL[state(plan,task,check,completion)], '']
+        record_error = (completion or {}).get('record_errors',{}).get(check['id'])
+        if record_error:
+            lines.append('- Приёмочная запись требует сверки: '+' '.join(str(record_error).split())[:400]+'.')
         for f in p['findings']:
             links = []
             for key in f['evidence']:
@@ -132,7 +161,7 @@ def criterion_block(plan, task, completion=None):
             lines.append('- '+LABEL[f['level']].capitalize()+'. '+f['obtained']+' Область: '+f['scope']+' '+' · '.join(links))
             if f.get('preparation'):
                 lines.append('- Идентификатор подготовки: '+f['preparation'])
-            changed = stale(plan,task,f)
+            changed = stale(plan,task,f,check)
             if changed:
                 lines.append('- Требует сверки после изменения: '+', '.join(changed)+'. Прежняя область сохранена.')
         if state(plan,task,check,completion)=='accepted':
@@ -153,13 +182,15 @@ def summary(plan, completions=None):
     for task in plan['tasks']:
         ct = counts(plan, task, completions.get(task['key']))
         total.update(ct)
-        stale_count = sum(any(stale(plan,task,f) for f in c['progress']['findings']) for c in task['acceptance_checks'])
+        errors = (completions.get(task['key']) or {}).get('record_errors',{})
+        stale_count = sum(bool(errors.get(c['id'])) or any(stale(plan,task,f,c)
+                          for f in c['progress']['findings']) for c in task['acceptance_checks'])
         review_total += stale_count
         action = next_action(task,accepted_ids(plan,task,completions.get(task['key']))).replace('|', r'\|')
         rows.append(f"| #{task['issue_number']} {task['key']} | "+' | '.join(str(ct[k]) for k in LEVELS)
                     +f' | {stale_count} | {action} |')
     return '\n'.join(['### Прогресс по критериям R135', '',
-        f"**Поставок: {len(plan['tasks'])}. Критериев: {total.total()}.** В каждой строке критерий учтён один раз по самому глубокому актуальному основанию. «Сверить» — число критериев с прежними свидетельствами после изменения входов или области. Счётчики описывают основания, трудозатраты остаются отдельной оценкой #180.",
+        f"**Поставок: {len(plan['tasks'])}. Критериев: {total.total()}.** В каждой строке критерий учтён один раз по самому глубокому актуальному основанию. «Сверить» — число критериев со свидетельствами или приёмочными записями, требующими сверки после изменения требования, входов или области. Счётчики описывают основания, трудозатраты остаются отдельной оценкой #180.",
         '', '| Поставка | Без свидетельства | Опубликовано | Контроль | На подготовке | По приёмочной записи | Сверить | Следующий выход |',
         '|---|---:|---:|---:|---:|---:|---:|---|', *rows,
         '| **Всего** | '+' | '.join(str(total[k]) for k in LEVELS)+' | '+str(review_total)+' | |',
@@ -196,20 +227,33 @@ def blocks(plan, completions=None):
 
 def changed(old, new):
     """Compare per-address outputs, including re-scoping and changes in referenced evidence."""
-    def snapshot(plan):
+    def snapshot(plan, historical=False):
         result = {}
         for t in plan['tasks']:
             for c in t['acceptance_checks']:
                 if 'progress' not in c:
                     continue
                 fs = c['progress']['findings']
+                reasons = []
+                for f in fs:
+                    changes = stale(plan,t,f,c)
+                    # Legacy snapshots predate requirement bindings. Preserve only
+                    # their historical level semantics so migration cannot invent
+                    # open -> control progress. Current state/validation stay strict.
+                    if historical and 'reviewed_criterion' not in f:
+                        changes = [x for x in changes if x != 'критерий']
+                    reasons.append(changes)
+                historical_level = max((f['level'] for f,why in zip(fs,reasons) if not why),
+                                       key=LEVELS.index,default='open')
                 result[c['id'],t['issue_number']] = {
-                    'state':state(plan,t,c), 'scope':t['progress_target'], 'criterion':c['criterion'],
+                    'state':historical_level if historical else state(plan,t,c),
+                    'scope':t['progress_target'], 'criterion':c['criterion'],
                     'focus':c['id']==t['focus_criterion'], **c['progress'],
-                    'needs_review':sorted({k for f in fs for k in stale(plan,t,f)}),
+                    'legacy_unbound':any('reviewed_criterion' not in f for f in fs),
+                    'needs_review':sorted({k for why in reasons for k in why}),
                     'artifacts':{e:plan['progress_evidence'][e] for f in fs for e in f['evidence']}}
         return result
-    a,b = snapshot(old),snapshot(new)
+    a,b = snapshot(old,historical=True),snapshot(new)
     results = []
     for key in sorted(a.keys() | b.keys(), key=lambda k:(k[1],k[0])):
         before, after = a.get(key,{}), b.get(key,{})

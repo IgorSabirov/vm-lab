@@ -14,11 +14,15 @@ completion_record is null or infra/r135/completions/<name>.json. Record shape:
   producer / independent_replay:
     {provider: manifest|github_actions, run_id, report_evidence_id}
   owner_decision_ref: {ref, path, sha256} when requires_owner_decision is true
+  progress_context: {criterion_id: <context SHA-256>} for a v2 progress map
 
 Both referenced run reports are immutable JSON with schema
 vm-lab-r135-run-evidence-v1, task_key, role (producer|independent_replay), run_id,
 source_sha, input_manifest_sha256, scope, checks [{id,status:PASS}], result:PASS,
 exit_code:0, method (description), and environment (nonempty object).
+For a v2 progress map, both run reports also carry the same progress_context:
+the criterion definition, declared scope and input revisions must match the
+current task, independently of any partial or historical findings.
 Run IDs and report artifacts must differ. A manifest provider supports the
 owner's chosen compute environment; github_actions additionally verifies the
 live completed/success run and its source SHA. Records declare independent
@@ -211,7 +215,7 @@ def same_scope(scope, task):
     return True
 
 
-def verify_completion(task, record, request):
+def verify_completion(task, record, request, *, expected_contexts=None):
     require(isinstance(record,dict) and record.get('schema') == 'vm-lab-r135-completion-v1', 'Completion schema')
     require(record.get('task_key') == task['key'] and same_scope(record.get('scope'),task), 'Completion scope mismatch')
     require(hex_digest(record.get('source_sha'),40), 'Completion source SHA')
@@ -226,6 +230,11 @@ def verify_completion(task, record, request):
                 and item['id'] not in artifacts, 'Duplicate/invalid evidence id')
         artifacts[item['id']] = pinned_bytes(request,item)
     required = {check['id'] for check in task['acceptance_checks']}
+    if expected_contexts is not None:
+        require(set(expected_contexts) == required and all(hex_digest(v,64)
+                for v in expected_contexts.values()), 'Expected criterion contexts')
+        require(record.get('progress_context') == expected_contexts,
+                'Completion criterion/scope/input context changed or missing')
     checks = record.get('checks')
     require(isinstance(checks,list) and len(checks)==len(required)
             and all(isinstance(c,dict) and c.get('status')=='PASS' for c in checks)
@@ -246,6 +255,9 @@ def verify_completion(task, record, request):
                 and str(report.get('run_id'))==str(run_id) and same_scope(report.get('scope'),task), 'Run report scope/identity mismatch')
         require(report.get('source_sha')==record['source_sha']
                 and report.get('input_manifest_sha256')==record['input_manifest']['sha256'], 'Run report source/input mismatch')
+        if expected_contexts is not None:
+            require(report.get('progress_context') == expected_contexts,
+                    'Replay criterion/scope/input context changed or missing')
         require(report.get('result')=='PASS' and type(report.get('exit_code')) is int and report['exit_code']==0
                 and isinstance(report.get('method'),str) and report['method'].strip()
                 and isinstance(report.get('environment'),dict) and report['environment'], 'Replay report missing result/environment')
@@ -267,7 +279,7 @@ def verify_completion(task, record, request):
         pinned_bytes(request,record.get('owner_decision_ref'))
     return {'status':'VERIFIED_STRUCTURAL_EVIDENCE', 'source_sha':record['source_sha'],
             'checks':sorted(required), 'scientific_acceptance_inferred':False,
-            'method_independence_proven':False}
+            'method_independence_proven':False, 'contexts':expected_contexts or {}}
 
 
 def apply_pipeline(plan, *, request, source_sha, report=None):
@@ -289,6 +301,7 @@ def apply_pipeline(plan, *, request, source_sha, report=None):
     completions, reopened = {}, []
     result = report if report is not None else {}
     result.update({'schema':'vm-lab-r135-pipeline-status-v1', 'source_sha':source_sha,
+                   'pipeline_sha256':progress.plan_digest(plan),
                    'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat(), 'repository':REPO,
                    'tracker':plan['tracker'], 'verified':False, 'reopened':reopened,
                    'completion_evidence':completions, 'scientific_status_modified':False,
@@ -298,7 +311,9 @@ def apply_pipeline(plan, *, request, source_sha, report=None):
         try:
             require(record_path is not None, 'No reviewed-main completion record')
             record = json.loads(read_file_at(request,source_sha,record_path))
-            completions[key] = verify_completion(task,record,request)
+            contexts = ({c['id']:progress.acceptance_context(plan,task,c)
+                         for c in task['acceptance_checks']} if plan['schema']==progress.SCHEMA else None)
+            completions[key] = verify_completion(task,record,request,expected_contexts=contexts)
         except (ValueError, TypeError, KeyError) as error:
             completions[key] = {'status':'OPEN_EVIDENCE', 'reason':str(error), 'scientific_acceptance_inferred':False}
         if issues[key]['state']=='closed' and completions[key]['status']!='VERIFIED_STRUCTURAL_EVIDENCE':
@@ -319,14 +334,24 @@ def apply_pipeline(plan, *, request, source_sha, report=None):
         progress_checks = {}
         for key, task in tasks.items():
             passed = set(completions[key].get('checks',[]))
+            contexts = dict(completions[key].get('contexts',{}))
+            record_errors = {}
             for check in task['acceptance_checks']:
                 record_path = check['progress'].get('criterion_record')
                 if record_path and check['id'] not in passed:
-                    record = json.loads(read_file_at(request,source_sha,record_path))
-                    single = {**task,'acceptance_checks':[check]}
-                    passed.update(verify_completion(single, record, request)['checks'])
-            progress_checks[key] = {'status':'VERIFIED_STRUCTURAL_EVIDENCE','checks':sorted(passed)}
+                    try:
+                        record = json.loads(read_file_at(request,source_sha,record_path))
+                        single = {**task,'acceptance_checks':[check]}
+                        expected = {check['id']:progress.acceptance_context(plan,task,check)}
+                        verified = verify_completion(single,record,request,expected_contexts=expected)
+                        passed.update(verified['checks'])
+                        contexts.update(verified['contexts'])
+                    except (ValueError, TypeError, KeyError) as error:
+                        record_errors[check['id']] = str(error)
+            progress_checks[key] = {'status':'VERIFIED_STRUCTURAL_EVIDENCE','checks':sorted(passed),
+                                    'contexts':contexts,'record_errors':record_errors}
         result['criterion_verified_checks'] = {k:v['checks'] for k,v in progress_checks.items()}
+        result['criterion_completion_evidence'] = progress_checks
         sections = progress.blocks(plan, progress_checks)
         written = []
         result['criterion_sections_updated'] = written
@@ -439,7 +464,7 @@ def main():
         if plan['schema'] == progress.SCHEMA:
             report['criteria'] = sum(len(t['acceptance_checks']) for t in tasks.values())
             report['needs_review'] = [c['id'] for t in tasks.values() for c in t['acceptance_checks']
-                                      if any(progress.stale(plan,t,f) for f in c['progress']['findings'])]
+                                      if any(progress.stale(plan,t,f,c) for f in c['progress']['findings'])]
         if args.compare:
             report['changes'] = progress.changed(json.loads(args.compare.read_bytes()), plan)
         print(json.dumps(report,ensure_ascii=False))
