@@ -1,0 +1,26 @@
+{
+  "schema": "XB_SU3_MODEL_PASSPORT_v0.1",
+  "issue": 161,
+  "status": "DESIGN_DRAFT",
+  "preparation_id": "XB-pure-SU3-isolated-EOS-study",
+  "claim": "autonomous, thermally populated pure SU(3) Yang–Mills, no thermally active additional fields near Tc",
+  "question": "Which phase-resolved inputs are defensible for the source history of this isolated transition?",
+  "observable": "spectral GW power per log comoving frequency and per time on the same P7 history",
+  "thermal_branch": "isolated_during_transition; subject to checking portal heat exchange and the Hubble history",
+  "temperature": "dimensionless x=T_X/Tc; no absolute Tc assigned",
+  "physical_point_registered": false,
+  "initial_surface": {
+    "hot_pre_transition": "OPEN_INPUT #162: T_X/T_SM, phase fraction, chemical state, expansion and provenance",
+    "cold_reference": "FMS R_post refers to post-confinement; connecting surfaces requires entropy production and energy transfer"
+  },
+  "inputs": {
+    "stable_EOS": "eos_pair_su3.json",
+    "metastable_EOS": "OPEN_INPUT #167",
+    "action_prefactor_wall_heat": "OPEN_INPUT #168",
+    "bubble_births_contacts": "OPEN_INPUT #173 on this history",
+    "history": "OPEN_INPUT #175",
+    "TT_source": "OPEN_INPUT #174"
+  },
+  "roles": "Literature measurements and reconstruction choices are recorded in donor_inputs.json and in the EOS package. Scope excludes XA and the graph-marker claim.",
+  "physical_launch_authorized": false
+}
