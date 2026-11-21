@@ -27,7 +27,7 @@ class ResearchContextTests(unittest.TestCase):
         self.assertTrue({'result', 'construct', 'link', 'question', 'premise', 'obligation', 'decision'} <= {x['key'].split(':')[0] for x in cards})
         self.assertTrue(all(len(x['source_sha256']) == 64 and x['required_by'] for x in cards))
         self.assertIn('unknown', next(x['data'] for x in cards if x['key'] == 'question:U010'))
-        self.assertLess(len(json.dumps(c, ensure_ascii=False).encode()), 600000)
+        self.assertLessEqual(len(review.evidence_json(c).encode()), 600000)
         self.assertTrue(c['context_contract']['frontier_not_expanded'])
 
     def test_missing_definition_or_stale_graph_stops_before_inference(self):
@@ -74,6 +74,8 @@ class ResearchContextTests(unittest.TestCase):
             'next_tests': [{'question': 'Effect?', 'observable': 'Action', 'control': 'Changed record',
                 'discrimination': 'Different action', 'missing': 'Mapping', 'evidence': [path]}]}
         def fake(prompt, timeout):
+            self.assertEqual(json.loads(prompt.split('EVIDENCE_JSON:\n', 1)[1]), c)
+            self.assertLessEqual(len(prompt.encode()), 600000)
             self.assertIn('## 12. Балансы', prompt)
             self.assertIn('rho_genesis_specification', prompt)
             self.assertGreater(len(prompt.encode()), 131072)
@@ -85,6 +87,15 @@ class ResearchContextTests(unittest.TestCase):
             self.assertEqual(p['receipt']['task_id'], 'six-models-v2')
             self.assertEqual(p['receipt']['review_stages']['scientific_acceptance'], 'NOT_GRANTED')
             self.assertEqual(p['receipt']['proposal_assessment']['counts']['EXISTING_ENDPOINT_PAIR_DIFFERENT_TYPE'], 1)
+
+    def test_oversized_v2_context_stops_before_invocation(self):
+        c = {**self.package, 'extra': 'я' * 300001}
+        with tempfile.TemporaryDirectory() as tmp, patch.object(review, 'invoke_native') as invoke:
+            output = Path(tmp)
+            review.dump(output / 'CONTEXT.json', c)
+            with self.assertRaisesRegex(ValueError, 'Context exceeds bound'):
+                review.generate(output)
+            invoke.assert_not_called()
 
 
 if __name__ == '__main__':
