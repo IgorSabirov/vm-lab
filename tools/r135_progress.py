@@ -102,7 +102,7 @@ def visible_passed(body):
     if START not in body or END not in body:
         return ()
     section = body.split(START,1)[1].split(END,1)[0]
-    return re.findall(r'^#### ([A-Z_]+-\d+) · по приёмочной записи$',section,flags=re.M)
+    return re.findall(r'^#### (\S+) · по приёмочной записи$',section,flags=re.M)
 
 
 def counts(plan, task, completion=None):

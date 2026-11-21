@@ -58,6 +58,7 @@ class Criteria(unittest.TestCase):
         self.assertIsNone(t['completion_record'])
         block=p.replace_section('',p.criterion_block(plan,t,proof))
         self.assertEqual(p.visible_passed(block),[c['id']])
+        self.assertEqual(p.visible_passed(block.replace(c['id'],'SU3-03')),['SU3-03'])
         self.assertNotIn(c['id'],p.next_action(t,p.visible_passed(block)))
 
     def test_readback_includes_manual_override_and_owned_continuation(self):
