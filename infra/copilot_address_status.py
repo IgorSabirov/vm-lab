@@ -29,6 +29,8 @@ def load_registry():
     registered = set(index.get("sources", {})) | set(index.get("managed_review_sources", {}))
     issue_numbers = {int(task["issue_number"]) for task in pipeline.get("tasks", [])
                      if isinstance(task.get("issue_number"), int)}
+    if isinstance(pipeline.get("tracker"), int):
+        issue_numbers.add(pipeline["tracker"])
     return registered, issue_numbers
 
 
