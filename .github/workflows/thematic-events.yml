@@ -11,6 +11,42 @@ on:
 permissions:
   contents: read
 jobs:
+  retire_obsolete_initial_runs:
+    # One-time repair of four known pre-inference runs from before #188.
+    # The immutable before SHA makes this job inert on subsequent pushes.
+    if: github.repository == 'IgorSabirov/vm-lab' && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.before == '21515b7f35337fc3b8154b9075dbc98e5e9b829a'
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: write
+    steps:
+      - name: Retire only the four obsolete runs before model analysis
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          root = 'https://api.github.com/repos/IgorSabirov/vm-lab/'
+          headers = {'Accept': 'application/vnd.github+json',
+                     'Authorization': 'Bearer ' + os.environ['GITHUB_TOKEN'],
+                     'User-Agent': 'vm-lab-one-time-thematic-repair'}
+          def request(path, method='GET'):
+              with urllib.request.urlopen(urllib.request.Request(root + path, headers=headers, method=method), timeout=30) as response:
+                  data = response.read()
+              return json.loads(data) if data else None
+          # Pending runs first; this avoids starting another obsolete collector.
+          for run_id in (44904749559, 44904708257, 44904467409, 44904417387):
+              run = request(f'actions/runs/{run_id}')
+              if run['head_sha'] != '1ceacf16078d8f1370d761df9f82c0e03f86614a' or run['path'] != '.github/workflows/copilot-thematic.yml':
+                  raise ValueError('Unexpected target identity')
+              if run['status'] == 'completed':
+                  print(run_id, 'already completed', flush=True)
+                  continue
+              jobs = request(f'actions/runs/{run_id}/jobs?per_page=100')['jobs']
+              if any(job['name'] in ('analyze', 'publish') and job['status'] != 'queued' and job.get('conclusion') != 'skipped' for job in jobs):
+                  raise ValueError('Refusing to cancel a run that reached model analysis')
+              request(f'actions/runs/{run_id}/cancel', 'POST')
+              print(run_id, 'cancellation requested before analysis', flush=True)
+          PY
   signal:
     runs-on: ubuntu-24.04
     steps:
