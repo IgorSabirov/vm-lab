@@ -160,7 +160,7 @@ def publish(output: Path) -> None:
         STATE: encoded(state),
     }
     commit = write_commit(api, files, events["source_sha"], "Copilot repository-native thematic review " + package[:16])
-    ensure_pr(api, api.repository, os.environ.get("GITHUB_RUN_ID", "0"), package, commit, True)
+    ensure_pr(api, api.repository, os.environ.get("GITHUB_RUN_ID", "0"), package, commit, False)
     print(json.dumps({"status": "PUBLISHED", "package_id": package,
                       "commit": commit, "report_sha256": receipt["report_sha256"]}))
 
