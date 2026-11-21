@@ -116,3 +116,12 @@ rho=(sigma_+²+sigma_-²-sigma_h²)/(2 sigma_+ sigma_-).
 - [#174 GW_SOURCE — целевой объект](https://github.com/IgorSabirov/vm-lab/issues/174)
 - [FMS/Giusti EOS research package](https://github.com/IgorSabirov/vm-lab/tree/main/infra/r135/research/20261121_donors/xb_su3_eos)
 - [Первичные входы четырёх FMS-подготовок](https://github.com/IgorSabirov/vm-lab/blob/main/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/inputs.json)
+
+
+---
+
+## Корректировка от 2026-11-21 — см. addendum
+
+Этот первоначальный отчёт частично superseded: ветви poly3/polyq3 были ошибочно продублированы из-за порядка dispatch; сценарий rho=1 с общим множителем абсолютных ошибок не является физически обоснованной моделью общей нормировки и отозван. Дополнительно установлена точная инвариантность c_s² к общей мультипликативной нормировке и выявлен пробел температурного покрытия непосредственно у обеих границ Tc. Поэтому старые таблицы коррелированного сценария и утверждение о пяти независимых реконструкциях не использовать.
+
+Полная корректировка, включая исправленные значения, семейство реконструкций, структурный пробел и адресные действия для #167/#168/#174: [CS2_ENDPOINT_COVERAGE_AND_CORRELATION_ERRATA_20261121.md](CS2_ENDPOINT_COVERAGE_AND_CORRELATION_ERRATA_20261121.md).
