@@ -1,0 +1,90 @@
+name: R130 full reproduction through native Copilot
+on:
+  push:
+    branches: [work/r130-copilot-reproduction-20261117]
+    paths: [reproductions/R130_COPILOT_20261117/runtime/**, .github/workflows/r130-copilot-reproduction.yml]
+permissions:
+  contents: read
+concurrency:
+  group: r130-copilot-reproduction-20261117
+  cancel-in-progress: false
+jobs:
+  reproduce:
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: reproductions/R130_COPILOT_20261117
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Install declared numerical dependencies
+        run: python -m pip install --disable-pip-version-check numpy==2.3.5 matplotlib==3.10.7
+      - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
+        with:
+          destination: ${{ runner.temp }}/gh-aw/actions
+      - name: Install the repository's pinned native Copilot CLI
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_HOST: github.com
+          GH_AW_COPILOT_MIN_VERSION: 1.0.35
+        run: bash "$RUNNER_TEMP/gh-aw/actions/install_copilot_cli.sh" 1.0.103 --checksums-sha256 26cd3e4b32cde498e4961fb4d48e7b85d7859fc69af1a645a19201fdd577bdb2 --cooldown-days 3
+      - name: Copilot executes the complete frozen reproduction
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: python reproductions/R130_COPILOT_20261117/runtime/invoke_copilot.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: r130-copilot-reproduction
+          path: ${{ runner.temp }}/r130-copilot-task/results/
+          if-no-files-found: error
+          retention-days: 30
+  publish:
+    needs: reproduce
+    if: always()
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: reproductions/R130_COPILOT_20261117
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: r130-copilot-reproduction
+          path: reproductions/R130_COPILOT_20261117/results/${{ github.run_id }}
+      - name: Verify artifact manifest and commit all raw results
+        env:
+          RUN_NUMBER: ${{ github.run_id }}
+          GH_TOKEN: ${{ github.token }}
+          REPRO_RESULT: ${{ needs.reproduce.result }}
+        run: |
+          set -euo pipefail
+          result_path="reproductions/R130_COPILOT_20261117/results/$RUN_NUMBER"
+          (cd "$result_path" && sha256sum --check MANIFEST.sha256)
+          branch="copilot/r130-reproduction-$RUN_NUMBER"
+          git switch -c "$branch"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$result_path"
+          git commit -m "Save R130 Copilot reproduction $RUN_NUMBER and all raw evidence"
+          git push --set-upstream origin "$branch"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          run = os.environ['RUN_NUMBER']
+          root = Path('reproductions/R130_COPILOT_20261117/results')/run
+          p = root/'EXECUTION_RECEIPT.json'
+          receipt = json.loads(p.read_text()) if p.exists() else {'status':'COPILOT_DID_NOT_EXECUTE'}
+          body = f"Issue #85. Frozen full R130 reproduction through native Copilot CLI.\n\nObserved status: **{receipt['status']}**. Runner job: {os.environ['REPRO_RESULT']}.\n\nRun: https://github.com/IgorSabirov/vm-lab/actions/runs/{run}\n\nAll raw files, code, logs, manifest, comparison and execution/Copilot receipts are committed under `{root}`. Inspect the actual receipts; an opened PR is not a scientific PASS. Original sources and reference data remain intact. Owner retains scientific acceptance.\n"
+          Path(os.environ['RUNNER_TEMP'],'r130-pr-body.md').write_text(body)
+          PY
+          pr_url=$(gh pr create --draft --base main --head "$branch" --title "R130: Copilot reproduction $RUN_NUMBER and raw results" --body-file "$RUNNER_TEMP/r130-pr-body.md")
+          gh issue comment 85 --body "Native Copilot execution and result publication: $pr_url ; run https://github.com/IgorSabirov/vm-lab/actions/runs/$RUN_NUMBER . Read the committed receipts for the actual outcome."
