@@ -1,0 +1,40 @@
+name: Research change events
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    types: [opened, reopened, synchronize, edited, closed, ready_for_review, converted_to_draft]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+permissions:
+  contents: read
+jobs:
+  signal:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Preserve event data without checking out or executing branch code
+        env:
+          SIGNAL_EVENT: ${{ github.event_name }}
+          SIGNAL_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, shutil
+          root = pathlib.Path('thematic-event')
+          root.mkdir()
+          shutil.copyfile(os.environ['GITHUB_EVENT_PATH'], root / 'EVENT.json')
+          (root / 'META.json').write_text(json.dumps({
+              'repository': os.environ['GITHUB_REPOSITORY'],
+              'run_id': os.environ['GITHUB_RUN_ID'],
+              'source_sha': os.environ['SIGNAL_SOURCE_SHA'],
+              'execution_sha': os.environ['GITHUB_SHA'],
+              'event_name': os.environ['SIGNAL_EVENT'],
+          }))
+          PY
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: research-change-event
+          path: thematic-event/
+          retention-days: 30
+          if-no-files-found: error
