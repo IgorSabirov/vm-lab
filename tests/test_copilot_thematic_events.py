@@ -11,8 +11,12 @@ import unittest
 from unittest.mock import patch
 import tempfile
 import urllib.parse
+import urllib.error
 import urllib.request
 import zipfile
+from email.message import Message
+from email.utils import format_datetime
+from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('thematic_events', ROOT / 'infra/copilot_thematic_events.py')
@@ -358,6 +362,181 @@ class APIBoundary(unittest.TestCase):
         api = events.GitHub(events.REPOSITORY, token='')
         with self.assertRaisesRegex(ValueError, 'Only GitHub API'):
             api.get('https://storage.example/untrusted')
+
+
+class RateRuntime:
+    def __init__(self):
+        self.epoch = 1_800_000_000.0
+        self.elapsed = 0.0
+        self.sleeps = []
+        self.progress = []
+
+    def clock(self):
+        return self.epoch + self.elapsed
+
+    def monotonic(self):
+        return self.elapsed
+
+    def sleep(self, seconds):
+        if not 0 < seconds <= 60:
+            raise AssertionError('Sleep must be a positive chunk of at most 60 seconds')
+        self.sleeps.append(seconds)
+        self.elapsed += seconds
+
+
+def rate_error(status=403, message='API rate limit exceeded for installation', headers=None):
+    response_headers = Message()
+    for name, value in (headers or {}).items():
+        response_headers[name] = str(value)
+    return urllib.error.HTTPError('https://api.github.com/repos/example/repo/test', status, 'failure',
+        response_headers, io.BytesIO(json.dumps({'message': message}).encode()))
+
+
+class RateBackoff(unittest.TestCase):
+    def client(self, outcomes, runtime=None):
+        runtime = runtime or RateRuntime()
+        api = events.GitHub(events.REPOSITORY, token='synthetic-rate-token',
+            clock=runtime.clock, monotonic=runtime.monotonic, sleep=runtime.sleep,
+            progress=runtime.progress.append)
+        class Opener:
+            def __init__(self):
+                self.outcomes = list(outcomes)
+                self.calls = []
+            def open(self, request, timeout):
+                self.calls.append({'method': request.get_method(), 'time': runtime.elapsed, 'data': request.data})
+                if not self.outcomes:
+                    raise AssertionError('Unexpected extra request')
+                value = self.outcomes.pop(0)
+                if isinstance(value, BaseException):
+                    raise value
+                return io.BytesIO(json.dumps(value).encode())
+        api.opener = Opener()
+        return api, runtime
+
+    def test_primary_limit_waits_for_reset_in_short_chunks_without_secrets(self):
+        runtime = RateRuntime()
+        api, runtime = self.client([rate_error(headers={
+            'X-RateLimit-Remaining': 0, 'X-RateLimit-Reset': runtime.epoch + 125,
+            'private-header': 'synthetic-rate-token'}), {'ok': True}], runtime)
+        self.assertEqual(api.get('contents/state?ref=branch&unused=synthetic-rate-token'), {'ok': True})
+        self.assertEqual(runtime.sleeps, [60, 60, 6])
+        self.assertEqual([call['time'] for call in api.opener.calls], [0, 126])
+        log = json.dumps(runtime.progress)
+        self.assertNotIn('synthetic-rate-token', log)
+        self.assertNotIn('private-header', log)
+        self.assertNotIn('?ref=', log)
+        self.assertTrue(all(row['retry'] == 1 and row['max_retries'] == 2 for row in runtime.progress))
+
+    def test_explicit_secondary_rejection_retries_same_mutation_after_retry_after(self):
+        runtime = RateRuntime()
+        api, runtime = self.client([rate_error(message='You have exceeded a secondary rate limit.',
+            headers={'Retry-After': 125, 'X-RateLimit-Remaining': 900, 'X-RateLimit-Reset': runtime.epoch + 3600}),
+            {'sha': MAIN}], runtime)
+        result = api.request('POST', 'git/trees', {'tree': [], 'context': 'private-input'})
+        self.assertEqual(result['sha'], MAIN)
+        self.assertEqual(runtime.sleeps, [60, 60, 5])
+        self.assertEqual(api.opener.calls[0]['data'], api.opener.calls[1]['data'])
+        self.assertEqual(api.opener.calls[1]['time'], 125)
+        self.assertNotIn('private-input', json.dumps(runtime.progress))
+
+    def test_combined_server_deadlines_are_never_shortened(self):
+        runtime = RateRuntime()
+        api, runtime = self.client([rate_error(headers={'Retry-After': 30,
+            'X-RateLimit-Remaining': 0, 'X-RateLimit-Reset': runtime.epoch + 120}), {}], runtime)
+        api.get('contents/state')
+        self.assertEqual(api.opener.calls[1]['time'], 121)
+
+    def test_429_without_deadline_uses_finite_exponential_waits(self):
+        api, runtime = self.client([rate_error(429, 'Too many requests'),
+                                   rate_error(429, 'Too many requests'), {'ok': True}])
+        self.assertEqual(api.get('contents/state'), {'ok': True})
+        self.assertEqual(runtime.sleeps, [60, 60, 60])
+        self.assertEqual([call['time'] for call in api.opener.calls], [0, 60, 180])
+
+    def test_retry_exhaustion_keeps_original_diagnostic(self):
+        api, runtime = self.client([rate_error() for _ in range(3)])
+        with self.assertRaises(events.APIError) as failure:
+            api.get('contents/state')
+        self.assertEqual(len(api.opener.calls), 3)
+        self.assertEqual(runtime.elapsed, 180)
+        self.assertIn('API rate limit exceeded for installation', str(failure.exception))
+        self.assertIn('retry budget exhausted after 2 waits', str(failure.exception))
+
+    def test_permission_auth_validation_and_unknown_write_failures_do_not_retry(self):
+        failures = [rate_error(403, 'Resource not accessible by integration',
+                              {'X-RateLimit-Remaining': 0, 'X-RateLimit-Reset': 1_800_000_100, 'Retry-After': 60}),
+                    rate_error(403, 'Forbidden'), rate_error(401, 'Bad credentials'),
+                    rate_error(422, 'Validation failed'), rate_error(503, 'Unavailable'),
+                    urllib.error.URLError('Connection ended before a response')]
+        for failure in failures:
+            with self.subTest(error=str(failure)):
+                api, runtime = self.client([failure])
+                with self.assertRaises((events.APIError, urllib.error.URLError)):
+                    api.request('POST', 'git/refs', {'ref': 'refs/heads/example', 'sha': MAIN})
+                self.assertEqual(len(api.opener.calls), 1)
+                self.assertEqual(runtime.sleeps, [])
+                self.assertEqual(runtime.progress, [])
+
+    def test_over_budget_server_wait_fails_visibly_instead_of_shortening(self):
+        api, runtime = self.client([rate_error(headers={'Retry-After': events.MAX_RATE_WAIT_SECONDS + 1})])
+        with self.assertRaisesRegex(events.APIError, 'exceeds remaining retry wait budget'):
+            api.get('contents/state')
+        self.assertEqual(len(api.opener.calls), 1)
+        self.assertEqual(runtime.sleeps, [])
+        with patch.object(events, 'MAX_RATE_WAIT_SECONDS', 180):
+            api, runtime = self.client([rate_error(headers={'Retry-After': 100}),
+                                       rate_error(headers={'Retry-After': 100})])
+            with self.assertRaisesRegex(events.APIError, 'exceeds remaining retry wait budget'):
+                api.get('contents/state')
+            self.assertEqual(runtime.elapsed, 100)
+            self.assertEqual(len(api.opener.calls), 2)
+
+    def test_http_date_retry_after_is_honored(self):
+        runtime = RateRuntime()
+        date = format_datetime(datetime.fromtimestamp(runtime.epoch + 90, timezone.utc), usegmt=True)
+        api, runtime = self.client([rate_error(429, 'Too many requests', {'Retry-After': date}), {}], runtime)
+        api.get('contents/state')
+        self.assertEqual(runtime.elapsed, 90)
+
+    def test_mutations_are_spaced_by_at_least_one_second(self):
+        api, runtime = self.client([{}, {}, {}, {}, {}])
+        for method in ['POST', 'GET', 'PATCH', 'PUT', 'DELETE']:
+            api.request(method, 'git/refs', {} if method != 'GET' else None)
+        self.assertEqual([call['time'] for call in api.opener.calls], [0, 0, 1, 2, 3])
+        self.assertEqual(runtime.sleeps, [1, 1, 1])
+
+    def test_default_progress_flushes_output(self):
+        runtime = RateRuntime()
+        api = events.GitHub(events.REPOSITORY, token='', clock=runtime.clock,
+                            monotonic=runtime.monotonic, sleep=runtime.sleep)
+        with patch('builtins.print') as output:
+            api._wait_for_rate(runtime.epoch + 1, 'GET', '/repos/example/repo/state', 403, 0)
+        self.assertTrue(output.call_args.kwargs['flush'])
+
+
+class SourceEventPreservation(unittest.TestCase):
+    def test_original_event_is_saved_before_load_state_can_fail(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            original = root / 'original-event.json'
+            raw = ('{\r\n  "issue": {"number":174,"body":"Новый частичный результат"}\r\n}\r\n').encode('utf-8')
+            original.write_bytes(raw)
+            output = root / 'output'
+            def fail_state(api):
+                self.assertEqual((output / 'SOURCE_EVENT.json').read_bytes(), raw)
+                raise events.APIError(403, '/contents/state', 'API rate limit exceeded for installation')
+            environment = {'GITHUB_EVENT_PATH': str(original), 'GITHUB_EVENT_NAME': 'issues',
+                           'GITHUB_REPOSITORY': events.REPOSITORY, 'GITHUB_SHA': MAIN}
+            with patch.dict(events.os.environ, environment, clear=True), patch.object(sys, 'argv',
+                    ['copilot_thematic_events.py', 'collect', '--output', str(output)]), \
+                    patch.object(events, 'GitHub', return_value=object()), patch.object(events, 'load_state', side_effect=fail_state):
+                with self.assertRaises(events.APIError):
+                    events.main()
+            self.assertEqual((output / 'SOURCE_EVENT.json').read_bytes(), raw)
+            failure = json.loads((output / 'COLLECTION_FAILURE.json').read_text())
+            self.assertEqual(failure['source_event'], 'SOURCE_EVENT.json')
+            self.assertEqual(failure['event_name'], 'issues')
+            self.assertIn('API rate limit exceeded for installation', failure['error'])
 
 
 class RecoveryArtifact(unittest.TestCase):
