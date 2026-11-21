@@ -37,6 +37,11 @@ import time
 from urllib.error import HTTPError
 from urllib.parse import quote
 
+if __package__:
+    from . import r135_progress as progress
+else:
+    import r135_progress as progress
+
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'IgorSabirov/vm-lab'
 BASE = '/repos/' + REPO
@@ -67,7 +72,7 @@ def unique_strings(values, label, nonempty=True):
 
 
 def validate_plan(plan):
-    require(isinstance(plan,dict) and plan.get('schema') == SCHEMA, 'Pipeline schema')
+    require(isinstance(plan,dict) and plan.get('schema') in (SCHEMA,progress.SCHEMA), 'Pipeline schema')
     require(plan.get('repository') == REPO, 'Unexpected repository')
     require(type(plan.get('tracker')) is int and plan['tracker'] == 155, 'Unexpected R135 tracker')
     sources = plan.get('source_commits',{})
@@ -130,6 +135,8 @@ def validate_plan(plan):
         finished.add(key)
     for key in by_key:
         visit(key)
+    if plan['schema'] == progress.SCHEMA:
+        progress.validate(plan)
     return by_key
 
 
@@ -304,6 +311,34 @@ def apply_pipeline(plan, *, request, source_sha, report=None):
         if tracker['state']=='closed' and completions[tracker_key]['status']!='VERIFIED_STRUCTURAL_EVIDENCE':
             request(tracker_path,'PATCH',{'state':'open'})
             reopened.append(plan['tracker'])
+    if plan['schema'] == progress.SCHEMA:
+        for ref in plan['progress_evidence'].values():
+            pinned_bytes(request, {'ref':ref['commit'], 'path':ref['path'], 'sha256':ref['sha256']})
+        # A reviewed record may cover one criterion before the other criteria in its Issue.
+        # The original all-criteria closure check above continues to own reopening/closure.
+        progress_checks = {}
+        for key, task in tasks.items():
+            passed = set(completions[key].get('checks',[]))
+            for check in task['acceptance_checks']:
+                record_path = check['progress'].get('criterion_record')
+                if record_path and check['id'] not in passed:
+                    record = json.loads(read_file_at(request,source_sha,record_path))
+                    single = {**task,'acceptance_checks':[check]}
+                    passed.update(verify_completion(single, record, request)['checks'])
+            progress_checks[key] = {'status':'VERIFIED_STRUCTURAL_EVIDENCE','checks':sorted(passed)}
+        result['criterion_verified_checks'] = {k:v['checks'] for k,v in progress_checks.items()}
+        sections = progress.blocks(plan, progress_checks)
+        written = []
+        result['criterion_sections_updated'] = written
+        for number, block in sections.items():
+            path = BASE+'/issues/'+str(number)
+            current = request(path)['body']
+            updated = progress.replace_section(current, block)
+            if updated != current:
+                request(path,'PATCH',{'body':updated})
+                written.append(number)
+        result['criterion_sections_expected'] = len(sections)
+        result['criterion_evidence_files_verified'] = len(plan['progress_evidence'])
     children = paginated(request,tracker_path+'/sub_issues')
     child_ids = {row['id'] for row in children}
     # Check parents before relationship mutations; never steal a child.
@@ -370,6 +405,11 @@ def apply_pipeline(plan, *, request, source_sha, report=None):
                 names = {row['name'] for row in paginated(request,BASE+'/issues/'+str(number)+'/labels')}
                 if label not in names:
                     mismatches.append('label '+str(number))
+        if plan['schema'] == progress.SCHEMA:
+            for number,block in sections.items():
+                body = request(BASE+'/issues/'+str(number))['body']
+                if progress.replace_section(body,block) != body:
+                    mismatches.append('progress section #'+str(number))
         if not mismatches:
             break
     require(not mismatches, 'Pipeline readback failed: '+', '.join(mismatches))
@@ -383,6 +423,7 @@ def main():
     mode.add_argument('--check',action='store_true')
     mode.add_argument('--apply',action='store_true')
     parser.add_argument('--output',type=Path,default=Path('project-evidence/R135_PIPELINE_STATUS.json'))
+    parser.add_argument('--compare',type=Path,help='Compare criterion evidence and remaining work with an earlier PIPELINE.json')
     args = parser.parse_args()
     raw = (ROOT/MANIFEST_PATH).read_bytes()
     plan = json.loads(raw)
@@ -394,7 +435,14 @@ def main():
                 record = json.loads((ROOT/task['completion_record']).read_bytes())
                 require(isinstance(record,dict) and record.get('schema')=='vm-lab-r135-completion-v1'
                         and record.get('task_key')==task['key'] and same_scope(record.get('scope'),task), 'Completion scope/schema')
-        print(json.dumps({'status':'PASS','tasks':len(tasks),'live_evidence_checked':False,'scientific_status_modified':False}))
+        report = {'status':'PASS','tasks':len(tasks),'live_evidence_checked':False,'scientific_status_modified':False}
+        if plan['schema'] == progress.SCHEMA:
+            report['criteria'] = sum(len(t['acceptance_checks']) for t in tasks.values())
+            report['needs_review'] = [c['id'] for t in tasks.values() for c in t['acceptance_checks']
+                                      if any(progress.stale(plan,t,f) for f in c['progress']['findings'])]
+        if args.compare:
+            report['changes'] = progress.changed(json.loads(args.compare.read_bytes()), plan)
+        print(json.dumps(report,ensure_ascii=False))
         return
     from github_setup import request
     source_sha = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()

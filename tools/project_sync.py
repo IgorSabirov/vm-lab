@@ -14,6 +14,11 @@ import subprocess
 import time
 from pathlib import Path
 
+if __package__:
+    from . import r135_progress as progress
+else:
+    import r135_progress as progress
+
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'IgorSabirov/vm-lab'
 OWNER = 'IgorSabirov'
@@ -267,7 +272,11 @@ def open_issues(request):
     raise RuntimeError('Issue pagination budget exceeded')
 
 
-def setup_and_sync(plan, *, request, graphql):
+def setup_and_sync(plan, *, request, graphql, pipeline=None):
+    if pipeline is None and 'R135 continuation' in plan.get('fields', {}):
+        pipeline = json.loads((ROOT/'infra/r135/PIPELINE.json').read_bytes())
+    if pipeline is not None:
+        progress.validate(pipeline)
     initial_statuses = plan.get('initial_statuses', {})
     if (not isinstance(initial_statuses, dict) or any(
             not isinstance(number, str) or not re.fullmatch(r'[1-9][0-9]*', number)
@@ -286,6 +295,9 @@ def setup_and_sync(plan, *, request, graphql):
         if not item['isArchived'] and number not in active:
             active[number] = request('/repos/'+REPO+'/issues/'+str(number))
     added, updates, expected = [], [], {}
+    managed = {t['issue_number']:t for t in pipeline['tasks']} if pipeline else {}
+    manual_conflicts = []
+    required_board_values = {}
     for number, issue in sorted(active.items()):
         item = tracked.get(number)
         if item and item['isArchived']:
@@ -298,6 +310,20 @@ def setup_and_sync(plan, *, request, graphql):
             item['values'] = {}
             added.append(number)
         values = proposed_values(issue,item['values'],initial_statuses)
+        if number in managed and issue['state']=='open' and 'pull_request' not in issue:
+            task = managed[number]
+            action = progress.next_action(task,progress.visible_passed(issue.get('body') or ''))
+            current = item['values'].get('Next action','')
+            required = {'R135 continuation':action}
+            legacy = task['next_action'][:1024]
+            if not current or current == legacy or progress.own_board_value(current):
+                required['Next action'] = progress.board_value(action)
+            else:
+                required['Next action'] = current
+            if current and current not in (legacy,action) and not progress.own_board_value(current):
+                manual_conflicts.append({'number':number,'expected':action,'observed':current})
+            required_board_values[number] = required
+            values.update({k:v for k,v in required.items() if item['values'].get(k)!=v})
         for name, value in values.items():
             field = fields[name]
             encoded = {'text':value}
@@ -305,7 +331,7 @@ def setup_and_sync(plan, *, request, graphql):
                 encoded = {'singleSelectOptionId':next(o['id'] for o in field['options'] if o['name'] == value)}
             graphql('mutation UpdateWork($input:UpdateProjectV2ItemFieldValueInput!){updateProjectV2ItemFieldValue(input:$input){projectV2Item{id}}}', {'input':{'projectId':pid,'itemId':item['id'],'fieldId':field['id'],'value':encoded}})
             updates.append({'number':number,'field':name})
-        expected[item['id']] = {'Status':work_status(issue,item['values'].get('Status')),**values}
+        expected[item['id']] = {'Status':work_status(issue,item['values'].get('Status')),**values,**required_board_values.get(number,{})}
     # Projects may expose new items/field values after the mutation response.
     mismatches = []
     for delay in (0, 1, 2, 4, 8, 16):
@@ -323,7 +349,7 @@ def setup_and_sync(plan, *, request, graphql):
         raise RuntimeError('Project item readback failed: '+json.dumps(details,ensure_ascii=False))
     return {'schema':'vm-lab-project-sync-v1','project':project,'repository':REPO,
             'fields_verified':sorted(plan['fields']),'items_verified':len(expected),'added':added,'field_updates':updates,
-            'views_verified':views,
+            'views_verified':views,'continuations_verified':len(required_board_values),'manual_next_action_differences':manual_conflicts,
             'items':[{'number':(actual[i].get('content') or {}).get('number'),'status':actual[i]['values'].get('Status')} for i in expected],
             'verified':True,'scientific_status_modified':False,'permissions_are_descriptive_not_authorization':True,
             'source_sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat()}

@@ -2,7 +2,7 @@ name: Projects working board
 on:
   push:
     branches: [main]
-    paths: ['tools/project_sync.py', 'tools/r135_pipeline.py', 'tools/github_setup.py', 'tools/research_operations.py', 'infra/OPERATIONS.json', 'infra/r135/**', 'infra/external/GITHUB_SETUP.json', '.github/workflows/projects-sync.yml']
+    paths: ['tools/project_sync.py', 'tools/r135_pipeline.py', 'tools/r135_progress.py', 'tools/r135_pipeline_documents.py', 'tools/github_setup.py', 'tools/research_operations.py', 'infra/OPERATIONS.json', 'infra/r135/**', 'infra/external/GITHUB_SETUP.json', '.github/workflows/projects-sync.yml']
   issues:
     types: [opened, reopened, closed, edited, deleted, transferred, labeled, unlabeled]
   workflow_run:

@@ -70,8 +70,8 @@ class API:
         number, suffix = int(match[1]), match[2]
         if suffix=='':
             if method=='PATCH':
-                assert data=={'state':'open'}
-                self.issues[number]['state']='open'
+                assert data=={'state':'open'} or set(data)=={'body'}
+                self.issues[number].update(data)
             return deepcopy(self.issues[number])
         if suffix=='/parent':
             if number in self.parents:
@@ -161,6 +161,42 @@ class Relationships(unittest.TestCase):
         for number in (159,160):
             api.issues[number]={'id':number+1000,'number':number,'state':'open','pull_request':{}}
         return value
+
+    def test_criterion_records_reconcile_without_closing_whole_task(self):
+        api=API()
+        value=plan()
+        value['schema']=p.progress.SCHEMA
+        artifact=api.put('evidence/control.json',{'input':'A','output':1})
+        value.update(progress_inputs={},progress_evidence={'test':{
+            'commit':SHA,'path':artifact['path'],'sha256':artifact['sha256'],'basis':{'implementation':SHA}}})
+        for issue in api.issues.values():
+            issue['body']='Ручное примечание'
+        api.issues[161]['state']='closed'
+        for task_row in value['tasks']:
+            task_row.update(progress_target='test',focus_criterion='balance')
+            for c in task_row['acceptance_checks']:
+                c['progress']={'remaining':'physical input','next_output':'one trace','needs':[],'findings':[
+                    {'level':'control','obtained':'unit control','scope':'synthetic','reviewed_for':'test','evidence':['test']}]}
+        task_row=value['tasks'][0]
+        completion(api,task_row)
+        task_row['acceptance_checks'][0]['progress']['criterion_record']=task_row['completion_record']
+        task_row['completion_record']=None
+        second=deepcopy(task_row['acceptance_checks'][0])
+        second['id']='second'
+        del second['progress']['criterion_record']
+        task_row['acceptance_checks'].append(second)
+        result=p.apply_pipeline(value,request=api,source_sha=SHA)
+        self.assertEqual(result['criterion_verified_checks']['A'],['balance'])
+        self.assertEqual(result['completion_evidence']['A']['status'],'OPEN_EVIDENCE')
+        self.assertEqual(api.issues[161]['state'],'open')
+        self.assertIn('#### balance · по приёмочной записи',api.issues[161]['body'])
+        self.assertIn('#### second · проверен контроль',api.issues[161]['body'])
+        self.assertIn('Ручное примечание',api.issues[161]['body'])
+        self.assertEqual(result['criterion_sections_expected'],3)
+        self.assertEqual(p.apply_pipeline(value,request=api,source_sha=SHA)['criterion_sections_updated'],[])
+        api.files[SHA,artifact['path']]=b'changed'
+        with self.assertRaisesRegex(ValueError,'SHA256'):
+            p.apply_pipeline(value,request=api,source_sha=SHA)
 
     def test_pipeline_label_created_and_added_without_removing_other_labels(self):
         api=API();value=self.labeled_plan(api)
