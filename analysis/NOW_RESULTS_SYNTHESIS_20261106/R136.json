@@ -1,0 +1,37 @@
+{
+  "id": "R136",
+  "section": "25. Проверка температурной калибровки SU(3)",
+  "title": "Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных",
+  "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ",
+  "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀.",
+  "inputs": "Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.",
+  "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта.",
+  "framework_role": "Независимая воспроизводимая проверка температурного входа EOS из R135 перед применением к метастабильным ветвям.",
+  "evidence_level": "Векторные первоисточники, численная реконструкция и контроль другим оценивателем на связанных ансамблях.",
+  "parent_result_ids": [
+    "R135"
+  ],
+  "construct_ids": [],
+  "open_link_ids": [],
+  "open_question_ids": [
+    "U013"
+  ],
+  "premise_ids": [],
+  "managed_card": true,
+  "sources": [
+    "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+    "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+    "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+    "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
+  ],
+  "managed_sources": [
+    "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+    "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+    "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+    "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
+  ],
+  "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3).",
+  "scientific_acceptance": false
+}

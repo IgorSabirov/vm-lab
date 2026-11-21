@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 6,
-  "date": "2026-11-12",
+  "version": 7,
+  "date": "2026-11-21",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
   "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
-  "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы. 12.11: CCC_TL_20261112 добавляет граничную ссылку к U006; статусы и условия закрытия сохранены.",
+  "coverage": "U001–U013. К U013 добавлен первый контроль по опубликованным данным.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
   "workflow": [
     "Сразу записывать вопрос и точное место возникновения: результат/поле/вмешательство, коммит и источник; рядом с исходным наблюдением ставить ссылку на U-ID.",
@@ -1088,6 +1088,41 @@
       "resolution_source": null,
       "user_answer_required_now": false,
       "genealogy_note": "Ретроспективная адресация прежнего предложения, не новая пререгистрация; связи L08/L10 не закрываются одним локальным тестом."
+    },
+    {
+      "id": "U013",
+      "title": "Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β?",
+      "kind": "NOT_ESTIMATED",
+      "status": "OPEN",
+      "origin_kind": "numerical_reproduction",
+      "records": [
+        "R135",
+        "R136"
+      ],
+      "construct_ids": [],
+      "open_links": [],
+      "origin": {
+        "commit": "649c1d987acdcf227a15ca7d41fd29fb455c7b08",
+        "path": "infra/r135/research/20261121_donors/PHASE_FLOW_AND_SIGMA_AUDIT.md",
+        "locator": "§1, контроль на фиксированном времени потока"
+      },
+      "evidence_sources": [
+        "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
+      ],
+      "known": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀.",
+      "unknown": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта.",
+      "next_step": "Восстановить точную β-сетку от авторов или из первичных данных и повторить совместный тест на коррелированных выборках.",
+      "closure": "Либо восстановлена согласованность на двух объёмах с совместной ошибкой, либо воспроизведён устойчивый остаток при совпадающих условиях и локализован источник. При недостаточной мощности сохранять открытую границу.",
+      "decision": "Открыто отдельное исследование #193.",
+      "registered_date": "2026-11-21",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3)."
     }
   ],
   "existing_open_links": [
@@ -1284,6 +1319,11 @@
       "action": "Сверка протокола и возврат результатов в U006/U010.",
       "source": "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
       "new_production_runs": 0
+    },
+    {
+      "date": "2026-11-21",
+      "action": "Зарегистрирован U013 для R136.",
+      "source": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md"
     }
   ],
   "pre_parent_link_completion_20261109": {

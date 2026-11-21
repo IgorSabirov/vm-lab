@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=135, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=149.
+Число записей: result=136, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=154.
 
 ## Предпосылка → результаты
 
@@ -1936,6 +1936,15 @@ PRyMordial: дополнительный BBN-приёмник — [исходн�
 **Входящие:** [R112](#result-r112) `informs_not_closes`; [R113](#result-r113) `informs_not_closes`.
 **Исходящие:** [L08](#link-l08) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
+<a id="question-u013"></a>
+
+### question:U013
+
+Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u013).
+
+**Входящие:** [R135](#result-r135) `informs_not_closes`; [R136](#result-r136) `informs_not_closes`.
+**Исходящие:** нет.
+
 <a id="result-r001"></a>
 
 ### result:R001
@@ -3149,7 +3158,16 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Физический сектор X и многоконтурная различимость — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r135).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`.
-**Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`.
+**Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U013](#question-u013) `informs_not_closes`; [R136](#result-r136) `parent`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`.
+
+<a id="result-r136"></a>
+
+### result:R136
+
+Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r136).
+
+**Входящие:** [R135](#result-r135) `parent`.
+**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4844,6 +4862,51 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md — [исходная кар�
 analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная карточка](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py).
 
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-checks-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json
+
+analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-figures-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json
+
+analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-report-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md
+
+analysis/R136_SHIROGANE_CALIBRATION/REPORT.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-extract-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/extract.py
+
+analysis/R136_SHIROGANE_CALIBRATION/extract.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-verify-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/verify.py
+
+analysis/R136_SHIROGANE_CALIBRATION/verify.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/verify.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-readme-md"></a>
