@@ -214,7 +214,7 @@ def own_path(path):
 
 
 def own_branch(branch):
-    return branch in {REPORT_BRANCH, IMPLEMENTATION_BRANCH, IMPLEMENTATION_REPAIR_BRANCH} or branch.startswith('copilot/thematic-')
+    return branch in {REPORT_BRANCH, IMPLEMENTATION_BRANCH, IMPLEMENTATION_REPAIR_BRANCH, 'infra/copilot-repo-native-review-20261121'} or branch.startswith('copilot/thematic-')
 
 
 def own_comment(comment):
