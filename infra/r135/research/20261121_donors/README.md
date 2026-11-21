@@ -90,3 +90,5 @@ cmp /tmp/r135-offline.json evidence.json
 [planck]: https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/README.md
 [science]: https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/NOW_RESULTS_SYNTHESIS_20261106/R135.md
 [rates]: https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nuclear_covariance.py
+
+[Разработка #174 после разбора доноров](GW_SOURCE_174.md) уточняет этап превращения. Из существующего ансамбля P7 выделены реальные центры и первые контакты. Проверены вход SU(3) в SNOBEX и временная тензорная свёртка, определены недостающие данные для первой подготовки XB.

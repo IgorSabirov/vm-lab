@@ -65,3 +65,5 @@ $$
 [pipeline]: https://github.com/IgorSabirov/vm-lab/blob/a282f0134b09488b09bc502f285dbf1375b4c3b4/infra/r135/PIPELINE.json
 [bridge]: https://github.com/IgorSabirov/vm-lab/blob/a282f0134b09488b09bc502f285dbf1375b4c3b4/analysis/NEUTRINO_GW_ARCHITECTURE_20261118/GW_RESPONSE_BRIDGE.json
 [science]: https://github.com/IgorSabirov/vm-lab/blob/a282f0134b09488b09bc502f285dbf1375b4c3b4/analysis/NOW_RESULTS_SYNTHESIS_20261106/R135.md
+
+[Продолжение по физическому производителю #174](GW_SOURCE_174.md) содержит проверку кода SNOBEX, HydróDex и PTtools, формулы и численные контроли для реальных рождений, UETC и сопряжения с P7.
