@@ -51,6 +51,8 @@ R136 открыт из [#167](https://github.com/IgorSabirov/vm-lab/issues/167) 
 [Исходники 2021 v2](https://arxiv.org/e-print/2011.10292v2) · [Исходники 2016 v1](https://arxiv.org/e-print/1605.02997v1) · [Извлечение](extract.py) · [Точки и нарисованные ошибки](FIGURES.json) · [Расчёт](verify.py) · [Числа](CHECKS.json)
 
 
+<a id="genealogy-r136"></a>
+
 ## Генеалогия R136 и границы наследования
 
 ### 1. Происхождение задачи
