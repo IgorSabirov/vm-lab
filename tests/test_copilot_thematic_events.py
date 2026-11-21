@@ -1,10 +1,14 @@
 import copy
+import base64
+import importlib
 import importlib.util
 import io
 import json
+import sys
 import hashlib
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 import tempfile
 import urllib.parse
 import urllib.request
@@ -263,6 +267,16 @@ class Collection(unittest.TestCase):
                              if x['reason'] == 'thematic_automation_implementation']), 2)
         technical = events.collect(api, 'issues', {'issue': issue(number=186)}, MAIN, now=NOW)
         self.assertEqual(technical['changes'], [])
+        self.assertTrue(events.own_branch('infra/copilot-thematic-storage-20261121'))
+        self.assertFalse(events.own_branch('infra/physical-source-repair'))
+
+    def test_api_error_retains_bounded_diagnostic_without_credentials(self):
+        credential = 'github_pat_' + 'not_a_real_credential'
+        error = events.APIError(422, '/git/blobs', 'Invalid request\n' + credential + ' Bearer example')
+        self.assertEqual(error.status, 422)
+        self.assertIn('Invalid request', str(error))
+        self.assertNotIn(credential, str(error))
+        self.assertNotIn('Bearer example', str(error))
 
     def test_signal_checks_origin_and_supports_pr_merge_sha(self):
         api = FakeGitHub()
@@ -311,6 +325,20 @@ class WorkflowBoundary(unittest.TestCase):
 
 
 class APIBoundary(unittest.TestCase):
+    def test_collector_restores_a_split_monitor_without_losing_deduplication_state(self):
+        with patch.object(sys, 'path', [str(ROOT / 'infra')] + sys.path):
+            publisher = importlib.import_module('copilot_thematic_publish')
+            state = {'schema': 'vm-lab-thematic-monitor-v1', 'repository': events.REPOSITORY,
+                     'source_versions': {'issue:155': ['previous-content-version']}}
+            original = json.dumps(state, ensure_ascii=False) + '\n'
+            with patch.object(publisher, 'STORAGE_PART_BYTES', 40):
+                physical = publisher.storage_files({events.STATE_PATH: original})
+                api = FakeGitHub()
+                api.gets['contents/' + events.STATE_PATH + '?ref=' + events.encoded(events.REPORT_BRANCH)] = {
+                    'encoding': 'base64', 'content': base64.b64encode(physical[events.STATE_PATH].encode()).decode()}
+                api.blobs = {publisher.blob_sha(text): text for text in physical.values()}
+                self.assertEqual(events.load_state(api), state)
+
     def test_pagination_is_complete_and_missing_fields_fail(self):
         api = events.GitHub(events.REPOSITORY, token='')
         def page(path):

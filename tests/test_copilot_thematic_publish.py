@@ -1,4 +1,5 @@
 import copy
+import base64
 import hashlib
 import importlib.util
 import json
@@ -67,6 +68,14 @@ class Delivery(unittest.TestCase):
         self.assertEqual(attempt['context_sha256'], p.digest((self.out / 'CONTEXT.json').read_bytes()))
         state = self.mem.state(None)
         self.assertEqual(state['attempts'][self.package]['status'], 'RESERVED')
+
+    def test_frozen_input_preserves_original_line_ending_bytes(self):
+        raw = json.dumps({'package_id': self.package, 'source_sha': self.source}, indent=2).replace('\n', '\r\n').encode()
+        (self.out / 'CONTEXT.json').write_bytes(raw)
+        p.reserve(None, self.out, '101', self.source)
+        prefix = p.PREFIX + '/' + self.package + '/'
+        self.assertEqual(self.mem.files[prefix + 'CONTEXT.json'].encode(), raw)
+        self.assertEqual(p.collected_files(self.out)['CONTEXT.json'].encode(), raw)
 
     def test_repeated_unfinished_package_recovers_without_new_attempt(self):
         p.reserve(None, self.out, '101', self.source)
@@ -205,6 +214,18 @@ class PublisherBoundary(unittest.TestCase):
         self.assertFalse(any(path == 'git/blobs' for path, _ in api.calls))
         self.assertLess(len(api.calls), 10)
         verify.assert_called_once_with(api, result, files)
+        # The former first-run failure: one large frozen JSON must never become
+        # a single large POST /git/blobs, even though it is below Git's file cap.
+        api = Writer()
+        logical = {p.PREFIX + '/' + 'e' * 64 + '/CONTEXT.json': 'Кириллица и вложенный JSON\\n\n' * 150000}
+        with patch.object(p, 'verify_written'):
+            p.write_commit(api, logical, 'a' * 40, 'large context')
+        self.assertFalse(any(path == 'git/blobs' for path, _ in api.calls))
+        physical = {row['path']: row['content'] for path, data in api.calls if path == 'git/trees' for row in data['tree']}
+        manifest = json.loads(physical[next(iter(logical))])
+        self.assertEqual(manifest['schema'], p.STORAGE_SCHEMA)
+        self.assertGreater(len(manifest['parts']), 1)
+        self.assertEqual(manifest['sha256'], p.digest(next(iter(logical.values()))))
 
     def test_subtree_readback_rejects_one_wrong_saved_file(self):
         package = 'e' * 64
@@ -217,6 +238,100 @@ class PublisherBoundary(unittest.TestCase):
         with patch.object(p, 'report_entries', return_value=entries):
             with self.assertRaisesRegex(ValueError, 'readback failed'):
                 p.verify_written(Reader(), 'a' * 40, files)
+
+
+class StorageTransport(unittest.TestCase):
+    def setUp(self):
+        self.package = 'e' * 64
+        self.path = p.PREFIX + '/' + self.package + '/CONTEXT.json'
+        self.text = ('Русский текст 🧪\\n\r\n"quoted"\t' + '\x01' * 8) * 40
+
+    def packed(self, files):
+        with patch.object(p, 'STORAGE_PART_BYTES', 64), patch.object(p, 'STORAGE_PART_WIRE_BYTES', 100):
+            return p.storage_files(files)
+
+    def reader(self, physical):
+        class Reader:
+            def blob(self, sha):
+                return self.by_sha[sha]
+            def get(self, path):
+                name = path.removeprefix('contents/').split('?')[0]
+                text = self.physical[name]
+                return {'encoding': 'base64', 'content': base64.b64encode(text.encode()).decode(), 'sha': p.blob_sha(text)}
+            def tree(self, sha):
+                return [{'type': 'blob', 'path': name.removeprefix(p.PREFIX + '/' + self.package + '/'),
+                         'sha': p.blob_sha(value)} for name, value in self.physical.items()]
+        api = Reader()
+        api.physical = physical
+        api.by_sha = {p.blob_sha(value): value for value in physical.values()}
+        api.package = self.package
+        return api
+
+    def test_utf8_bytes_and_escaped_controls_roundtrip_exactly(self):
+        physical = self.packed({self.path: self.text})
+        manifest = json.loads(physical[self.path])
+        self.assertEqual(manifest['size_bytes'], len(self.text.encode()))
+        self.assertEqual(manifest['sha256'], p.digest(self.text))
+        self.assertGreater(len(manifest['parts']), 1)
+        for item in manifest['parts']:
+            self.assertLessEqual(item['size_bytes'], 64)
+            self.assertLessEqual(len(json.dumps(physical[item['path']], ensure_ascii=False).encode()), 100)
+        api = self.reader(physical)
+        self.assertEqual(p.restore_stored(api, self.path, physical[self.path]).encode(), self.text.encode())
+        self.assertEqual(p.file_at(api, 'a' * 40, self.path), self.text)
+
+    def test_missing_corrupt_reordered_or_outside_parts_are_rejected(self):
+        physical = self.packed({self.path: self.text})
+        manifest = json.loads(physical[self.path])
+        api = self.reader(physical)
+        api.by_sha[manifest['parts'][0]['git_blob_sha']] = 'damaged'
+        with self.assertRaisesRegex(ValueError, 'digest mismatch'):
+            p.restore_stored(api, self.path, physical[self.path])
+        for change in ('reverse', 'outside', 'missing'):
+            bad = copy.deepcopy(manifest)
+            if change == 'reverse':
+                bad['parts'].reverse()
+            elif change == 'outside':
+                bad['parts'][0]['path'] = 'analysis/RESULTS_REGISTER.json'
+            else:
+                bad['parts'].pop()
+            with self.assertRaises(ValueError):
+                p.restore_stored(self.reader(physical), self.path, json.dumps(bad, ensure_ascii=False, indent=2) + '\n')
+
+    def test_archive_reconstructs_inputs_before_attempt_validation(self):
+        files = {self.path: self.text, p.PREFIX + '/' + self.package + '/EVENTS.json': '{"events":[]}',
+                 p.PREFIX + '/' + self.package + '/batches/0001/RAW_RESPONSE.txt': self.text[::-1]}
+        physical = self.packed(files)
+        api = self.reader(physical)
+        with patch.object(p, 'head', return_value='a' * 40), patch.object(p, 'report_entries', return_value=[
+                {'type': 'tree', 'path': self.package, 'sha': 'b' * 40}]):
+            restored = p.archived_files(api, self.package)
+        expected = {path.removeprefix(p.PREFIX + '/' + self.package + '/'): value for path, value in files.items()}
+        self.assertEqual(restored, expected)
+
+    def test_manifest_shaped_plaintext_and_small_large_transitions_are_unambiguous(self):
+        literal = '{\n  "schema": "' + p.STORAGE_SCHEMA + '",\n  "example": true\n}\n'
+        physical = p.storage_files({self.path: literal})
+        self.assertEqual(p.restore_stored(self.reader(physical), self.path, physical[self.path]), literal)
+        # Old immutable parts may remain in the Git tree. Only the current
+        # original-path value decides whether reconstruction is needed.
+        physical = self.packed({self.path: self.text})
+        physical.update(p.storage_files({self.path: '{"small":true}'}))
+        self.assertEqual(p.file_at(self.reader(physical), 'a' * 40, self.path), '{"small":true}')
+
+    def test_readback_verifies_all_physical_parts(self):
+        logical = {self.path: self.text}
+        # Match the production deterministic layout for readback verification.
+        with patch.object(p, 'STORAGE_PART_BYTES', 64), patch.object(p, 'STORAGE_PART_WIRE_BYTES', 100):
+            physical = p.storage_files(logical)
+            api = self.reader(physical)
+            entries = [{'type': 'tree', 'path': self.package, 'sha': 'b' * 40}]
+            with patch.object(p, 'report_entries', return_value=entries):
+                p.verify_written(api, 'a' * 40, logical)
+                part_path = next(path for path in physical if '.parts/' in path)
+                api.physical[part_path] = 'damaged'
+                with self.assertRaisesRegex(ValueError, 'readback failed'):
+                    p.verify_written(api, 'a' * 40, logical)
 
 
 if __name__ == '__main__':

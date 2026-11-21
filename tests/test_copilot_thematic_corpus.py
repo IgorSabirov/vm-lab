@@ -231,6 +231,45 @@ class CorpusTests(unittest.TestCase):
                             for row in coverage['inventory']))
         self.assertTrue(corpus.validate_context(context)['complete'])
 
+    def test_best_fit_keeps_exact_sources_and_cartesian_coverage_with_fewer_batches(self):
+        files = snapshot({
+            'adversarial/large-a.schema.txt': 'L' * 5000,
+            'adversarial/large-b.schema.txt': 'M' * 5000,
+            'adversarial/small-a.schema.txt': 'S' * 2500,
+            'adversarial/small-b.schema.txt': 'T' * 2500,
+        })
+        updates = events('First partial result.')
+        updates['changes'].append({**updates['changes'][0], 'id': 'issue:175',
+                                   'text': 'Second partial result.'})
+        progress = []
+        context = corpus.prepare(FakeGitHub({MAIN: files}), updates,
+                                 max_payload_bytes=60_000, progress=progress.append)
+        all_parts = {d['id']: d for batch in context['batches'] for d in batch['documents']}
+        event_parts = {e['id']: e for batch in context['batches'] for e in batch['events']}
+        selected = [d for d in all_parts.values() if d['path'].startswith('adversarial/')]
+        other = [d for d in all_parts.values() if not d['path'].startswith('adversarial/')]
+        small = sorted((d for d in selected if '/small-' in d['path']), key=lambda d: d['id'])
+        large = sorted((d for d in selected if '/large-' in d['path']), key=lambda d: d['id'])
+        weight = lambda d: len(corpus.compact(d).encode()) + 1
+        budget = max(map(weight, small)) + max(map(weight, large)) + 1
+        old = corpus.pack(small + large, budget)
+        packed = corpus.pack_corpus(small + large, budget)
+        self.assertEqual((len(old), len(packed)), (3, 2))
+        self.assertTrue(all(len(corpus.compact(group).encode()) <= budget for group in packed))
+        context['batches'] = []
+        for event in event_parts.values():
+            for group in packed + [other]:
+                context['batches'].append({'id': f'{len(context["batches"]) + 1:04d}',
+                                          'events': [event], 'documents': group})
+        result = corpus.validate_context(context)
+        self.assertEqual(result['pairs'], len(event_parts) * len(all_parts))
+        self.assertEqual({d['id']: corpus.compact(d) for batch in context['batches']
+                          for d in batch['documents']},
+                         {key: corpus.compact(d) for key, d in all_parts.items()})
+        self.assertTrue(any(line.startswith('Corpus tree ') for line in progress))
+        self.assertTrue(any(line.startswith('Corpus scan ') for line in progress))
+        self.assertTrue(progress[-1].startswith('Corpus ready:'))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -181,10 +181,15 @@ def source_refs(events):
             for i, sha in enumerate(sorted(refs, key=lambda x: (x != primary, x)))]
 
 
-def inventory(api, events, local_root=None):
+def inventory(api, events, local_root=None, progress=None):
     """Fetch all tree entries, scan structural candidates, deduplicate exact blobs."""
     refs = source_refs(events)
     blobs, documents, audit_rows, graphs, trees = {}, {}, {}, {}, {}
+    remote_reads = 0
+
+    def report(message):
+        if progress is not None:
+            progress(message)
 
     def record(row, ref):
         row = {k: v for k, v in row.items() if k not in {'source_sha', 'labels'}}
@@ -194,6 +199,7 @@ def inventory(api, events, local_root=None):
         audit_rows[key]['refs'].add(ref['id'])
 
     def read(entry):
+        nonlocal remote_reads
         blob_sha = entry['sha']
         if blob_sha not in blobs:
             value = None
@@ -210,6 +216,10 @@ def inventory(api, events, local_root=None):
                         if hasattr(api, '_blobs'):
                             api._blobs[blob_sha] = value
             if value is None:
+                remote_reads += 1
+                if remote_reads % 25 == 1:
+                    report(f'Corpus remote blob {remote_reads}: {entry["path"]!r}; '
+                           f'{len(blobs)} verified unique blobs already available.')
                 value = api.blob(blob_sha)
             if not isinstance(value, str) or git_blob_sha(value) != blob_sha:
                 raise ValueError('Blob identity mismatch: ' + entry['path'])
@@ -218,7 +228,8 @@ def inventory(api, events, local_root=None):
             blobs[blob_sha] = value
         return blobs[blob_sha]
 
-    for ref in refs:
+    for number, ref in enumerate(refs, 1):
+        report(f'Corpus tree {number}/{len(refs)}: {ref["sha"]} ({", ".join(ref["labels"])}).')
         rows = api.tree(ref['sha'])
         if not isinstance(rows, list):
             raise ValueError('Expected complete recursive Git tree')
@@ -229,6 +240,7 @@ def inventory(api, events, local_root=None):
                 raise ValueError('Duplicate Git tree path: ' + path)
             tree[path] = row
         trees[ref['sha']] = tree
+        report(f'Corpus tree {number}/{len(refs)} complete: {len(tree)} entries.')
 
     main_tree = trees[events['source_sha']]
     if INDEX not in main_tree or POLICY not in main_tree:
@@ -243,7 +255,9 @@ def inventory(api, events, local_root=None):
         if any(marker not in text for marker in row.get('required_markers', [])):
             raise ValueError('Missing mandatory definition section: ' + row['path'])
 
-    for ref in refs:
+    for number, ref in enumerate(refs, 1):
+        report(f'Corpus scan {number}/{len(refs)}: {ref["sha"]}; '
+               f'{len(documents)} complete unique documents collected.')
         tree = trees[ref['sha']]
         declared = set()
         if INDEX in tree:
@@ -314,6 +328,8 @@ def inventory(api, events, local_root=None):
                     'sha256': sha256(text), 'size_bytes': len(text.encode()), 'text': text,
                     'origins': [], 'start_line': 1, 'end_line': max(1, len(text.splitlines()))}
             documents[doc_id]['origins'].append(origin)
+        report(f'Corpus scan {number}/{len(refs)} complete: {len(documents)} unique documents; '
+               f'{remote_reads} remote blob reads in total.')
     shared_ids = {'doc:' + main_tree[path]['sha'] for path in core_paths}
     shared = [documents[k] for k in sorted(shared_ids)]
     ordinary = [documents[k] for k in sorted(documents) if k not in shared_ids]
@@ -399,7 +415,31 @@ def pack(items, byte_budget):
     return groups or [[]]
 
 
-def prepare(api, events, max_payload_bytes=DEFAULT_PAYLOAD_BYTES, local_root=None):
+def pack_corpus(items, byte_budget):
+    """Deterministic best-fit decreasing; only move intact source segments.
+
+    Item JSON bytes plus one separator are additive. Reserving the final list
+    bracket gives the exact list size, including escaped text and UTF-8 bytes.
+    Reordering changes neither source text nor the exhaustive Cartesian pairs.
+    """
+    capacity = byte_budget - 1
+    weighted = [(len(compact(item).encode()) + 1, item) for item in items]
+    groups, loads = [], []
+    for size, item in sorted(weighted, key=lambda pair: (-pair[0], pair[1]['id'])):
+        if size > capacity:
+            raise ValueError('A source segment cannot fit its declared budget')
+        fitting = [i for i, load in enumerate(loads) if load + size <= capacity]
+        if fitting:
+            index = max(fitting, key=lambda i: loads[i])
+            groups[index].append(item)
+            loads[index] += size
+        else:
+            groups.append([item])
+            loads.append(size)
+    return groups or [[]]
+
+
+def prepare(api, events, max_payload_bytes=DEFAULT_PAYLOAD_BYTES, local_root=None, progress=None):
     if events.get('schema') != 'vm-lab-thematic-events-v1' or events.get('repository') != api.repository:
         raise ValueError('Event package identity mismatch')
     if not isinstance(max_payload_bytes, int) or max_payload_bytes < 4096:
@@ -416,7 +456,7 @@ def prepare(api, events, max_payload_bytes=DEFAULT_PAYLOAD_BYTES, local_root=Non
                          'planned_model_calls': 0, 'model_payload_bytes': [],
                          'event_collection': events.get('coverage', {}),
                          'scientific_acceptance': 'NOT_GRANTED'}}
-    shared, documents, audit, graphs, refs, ref_sets = inventory(api, events, local_root)
+    shared, documents, audit, graphs, refs, ref_sets = inventory(api, events, local_root, progress)
     updates = event_documents(events)
     context = {'schema': SCHEMA, 'repository': api.repository, 'source_sha': events['source_sha'],
         'package_id': events['package_id'], 'source_refs': refs,
@@ -459,7 +499,7 @@ def prepare(api, events, max_payload_bytes=DEFAULT_PAYLOAD_BYTES, local_root=Non
                        max(largest_event + 2, available // 3))
     event_groups = pack(event_parts, event_budget)
     doc_budget = available - max(len(compact(g).encode()) for g in event_groups) - 8
-    doc_groups = pack(doc_parts, doc_budget)
+    doc_groups = pack_corpus(doc_parts, doc_budget)
     if updates:
         for event_group in event_groups:
             for doc_group in doc_groups:
@@ -484,6 +524,16 @@ def prepare(api, events, max_payload_bytes=DEFAULT_PAYLOAD_BYTES, local_root=Non
             (json.dumps(context, ensure_ascii=False, indent=2) + '\n').encode())
     if context['coverage']['context_json_bytes'] > MAX_CONTEXT_BYTES:
         raise ValueError('Frozen CONTEXT.json exceeds publication size budget; no sources were truncated')
+    if progress is not None:
+        coverage = context['coverage']
+        sizes = coverage['model_payload_bytes']
+        progress(f'Corpus ready: {coverage["corpus_documents"]} complete documents, '
+                 f'{coverage["corpus_bytes"]} source bytes, {len(refs)} pinned refs, '
+                 f'{coverage["unique_corpus_segments"]} corpus segments, '
+                 f'{coverage["unique_event_segments"]} update segments, '
+                 f'{coverage["planned_model_calls"]} planned model calls; '
+                 f'payload bytes {min(sizes, default=0)}..{max(sizes, default=0)}; '
+                 f'CONTEXT.json {coverage["context_json_bytes"]} bytes.')
     return context
 
 
@@ -595,7 +645,8 @@ def main():
     try:
         events = json.loads((args.output / 'EVENTS.json').read_text())
         context = prepare(GitHub(events.get('repository', REPOSITORY)), events, args.max_payload_bytes,
-                          local_root=Path(__file__).resolve().parents[1])
+                          local_root=Path(__file__).resolve().parents[1],
+                          progress=lambda message: print(message, flush=True))
         dump(args.output / 'CONTEXT.json', context)
         dump(args.output / 'CORPUS_MANIFEST.json', {
             'schema': 'vm-lab-thematic-corpus-manifest-v1', 'package_id': context['package_id'],
