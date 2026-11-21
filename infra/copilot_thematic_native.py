@@ -30,8 +30,18 @@ def analyze(events_path: Path, output: Path) -> None:
     if events.get("schema") != "vm-lab-thematic-events-v1":
         raise ValueError("Invalid event envelope")
     changes = events.get("changes")
-    if not isinstance(changes, list) or not changes:
-        raise ValueError("No scientific changes to review")
+    if not isinstance(changes, list):
+        raise ValueError("Invalid change list")
+    output.mkdir(parents=True, exist_ok=True)
+    if not changes:
+        report = "Научных обновлений не обнаружено. Copilot не запускался.\\n"
+        receipt = {"schema": "vm-lab-repo-native-review-v1",
+                   "package_id": events.get("package_id", ""),
+                   "source_sha": events["source_sha"], "status": "NO_SCIENTIFIC_UPDATE",
+                   "repository_corpus_prepacked": False, "scientific_acceptance": False}
+        (output / "REPORT.md").write_text(report, encoding="utf-8")
+        (output / "DELIVERY.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        return
     token = os.environ.get("COPILOT_GITHUB_TOKEN")
     if not token:
         raise RuntimeError("COPILOT_AUTH_MISSING")
@@ -103,6 +113,7 @@ def analyze(events_path: Path, output: Path) -> None:
     (output / "REPORT.md").write_text(report, encoding="utf-8")
     receipt = {
         "schema": "vm-lab-repo-native-review-v1",
+        "status": "COPILOT_COMPLETED",
         "package_id": package_id,
         "source_sha": events["source_sha"],
         "model": "native Copilot Auto",
@@ -125,6 +136,15 @@ def publish(output: Path) -> None:
     report = (output / "REPORT.md").read_text(encoding="utf-8")
     receipt = json.loads((output / "DELIVERY.json").read_text(encoding="utf-8"))
     package = events["package_id"]
+    if receipt.get("status") == "NO_SCIENTIFIC_UPDATE":
+        api = GitHub(os.environ.get("GITHUB_REPOSITORY", REPOSITORY))
+        state = events.get("next_state")
+        if not isinstance(state, dict):
+            raise ValueError("Missing monitor state")
+        commit = write_commit(api, {STATE: encoded(state)}, events["source_sha"],
+                              "Copilot thematic monitor: no scientific update")
+        print(json.dumps({"status": "NO_SCIENTIFIC_UPDATE", "commit": commit}))
+        return
     if receipt.get("package_id") != package or receipt.get("source_sha") != events.get("source_sha"):
         raise ValueError("Event/report identity mismatch")
     if hashlib.sha256(report.encode()).hexdigest() != receipt.get("report_sha256"):
@@ -136,6 +156,7 @@ def publish(output: Path) -> None:
     files = {
         f"{REPORT_ROOT}/{package}/REPORT.md": report,
         f"{REPORT_ROOT}/{package}/DELIVERY.json": json.dumps(receipt, ensure_ascii=False, indent=2) + "\n",
+        f"{REPORT_ROOT}/{package}/RECEIPT.json": json.dumps(receipt, ensure_ascii=False, indent=2) + "\n",
         STATE: encoded(state),
     }
     commit = write_commit(api, files, events["source_sha"], "Copilot repository-native thematic review " + package[:16])
