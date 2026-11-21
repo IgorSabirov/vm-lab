@@ -61,6 +61,9 @@ jobs:
         with:
           name: thematic-event
           path: thematic-output
+      - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
+        with:
+          destination: ${{ runner.temp }}/gh-aw/actions
       - name: Install the verified native Copilot CLI
         env:
           GITHUB_TOKEN: ${{ github.token }}
