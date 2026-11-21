@@ -36,6 +36,9 @@ class Memory:
 
 class Delivery(unittest.TestCase):
     def setUp(self):
+        environment = patch.dict(p.os.environ, {'GITHUB_RUN_ID': '101'}, clear=True)
+        environment.start()
+        self.addCleanup(environment.stop)
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.out = Path(self.tmp.name)
