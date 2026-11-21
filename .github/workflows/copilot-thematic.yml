@@ -1,4 +1,4 @@
-name: Copilot thematic review
+name: Copilot repository-native thematic review
 on:
   workflow_run:
     workflows: [Research change events]
@@ -30,110 +30,65 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: Collect exact delivered updates and reconcile durable GitHub changes
+      - name: Collect the exact triggering update and reconcile missed GitHub events
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 infra/copilot_thematic_events.py collect --output thematic-output
-      - name: Prepare the complete declared registry and schema corpus as data
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python3 infra/copilot_thematic_corpus.py prepare --output thematic-output
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
-          name: thematic-input
-          path: thematic-output/
+          name: thematic-event
+          path: thematic-output/EVENTS.json
           retention-days: 30
           if-no-files-found: error
-  reserve:
-    needs: collect
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-      pull-requests: read
-    outputs:
-      mode: ${{ steps.reserve.outputs.mode }}
-      package_id: ${{ steps.reserve.outputs.package_id }}
-      original_run_id: ${{ steps.reserve.outputs.original_run_id }}
-      base_sha: ${{ steps.reserve.outputs.base_sha }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          ref: ${{ github.sha }}
-          persist-credentials: false
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
-          name: thematic-input
-          path: thematic-output
-      - name: Reserve content identity durably before any model call
-        id: reserve
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python3 infra/copilot_thematic_publish.py reserve --output thematic-output
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
-        if: always()
-        with:
-          name: thematic-reserved
-          path: thematic-output/
-          retention-days: 30
-          if-no-files-found: error
+
   analyze:
-    needs: reserve
-    if: needs.reserve.outputs.mode == 'generate' || needs.reserve.outputs.mode == 'recover'
+    needs: collect
+    if: needs.collect.result == 'success'
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+      issues: read
+      pull-requests: read
       actions: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: thematic-reserved
+          name: thematic-event
           path: thematic-output
-      - name: Retrieve the original saved response without invoking Copilot
-        if: needs.reserve.outputs.mode == 'recover'
-        continue-on-error: true
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
-          name: thematic-review
-          run-id: ${{ needs.reserve.outputs.original_run_id }}
-          github-token: ${{ github.token }}
-          path: thematic-recovery
-      - name: Reuse only saved batch data belonging to the frozen input
-        if: needs.reserve.outputs.mode == 'recover'
-        run: python3 infra/copilot_thematic_events.py recover-batches --saved thematic-recovery --output thematic-output
-      - uses: github/gh-aw/actions/setup@399a445fe2d8926c616b54b1b82a16b5b2be4445
-        if: needs.reserve.outputs.mode == 'generate'
-        with:
-          destination: ${{ runner.temp }}/gh-aw/actions
-      - name: Install the reviewed native CLI
-        if: needs.reserve.outputs.mode == 'generate'
+      - name: Install the verified native Copilot CLI
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GH_HOST: github.com
           GH_AW_COPILOT_MIN_VERSION: 1.0.35
         run: bash "$RUNNER_TEMP/gh-aw/actions/install_copilot_cli.sh" 1.0.103 --checksums-sha256 26cd3e4b32cde498e4961fb4d48e7b85d7859fc69af1a645a19201fdd577bdb2 --cooldown-days 3
-      - name: Analyze all prepared batches with no execution tools or write token
-        if: needs.reserve.outputs.mode == 'generate'
+      - name: Let Copilot explore the checked-out repository itself
         env:
           COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
-        run: python3 infra/copilot_thematic_review.py generate --output thematic-output
-      - name: Validate and recover saved responses without a model token
-        if: needs.reserve.outputs.mode == 'recover'
-        run: python3 infra/copilot_thematic_review.py recover --output thematic-output
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          COPILOT_MAX_AI_CREDITS: '60'
+          COPILOT_TIMEOUT_SECONDS: '900'
+        run: python3 infra/copilot_thematic_native.py analyze --events thematic-output/EVENTS.json --output thematic-output
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: thematic-review
-          path: thematic-output/
+          path: |
+            thematic-output/EVENTS.json
+            thematic-output/REPORT.md
+            thematic-output/DELIVERY.json
           retention-days: 30
-          if-no-files-found: error
+          if-no-files-found: warn
+
   publish:
-    needs: [reserve, analyze]
-    if: always() && needs.reserve.result == 'success' && (needs.reserve.outputs.mode == 'generate' || needs.reserve.outputs.mode == 'recover')
+    needs: [collect, analyze]
+    if: needs.collect.result == 'success' && needs.analyze.result == 'success'
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -145,15 +100,9 @@ jobs:
           persist-credentials: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: thematic-reserved
-          path: thematic-output
-      - name: Include complete or partial saved model output
-        continue-on-error: true
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
           name: thematic-review
           path: thematic-output
-      - name: Preserve fixed report files and verify the published PR
+      - name: Publish the concise report and delivery receipt
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 infra/copilot_thematic_publish.py publish --output thematic-output
+        run: python3 infra/copilot_thematic_native.py publish --output thematic-output
