@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "purpose": "Reproducible mathematical checks of an external review",
+  "generated_at_utc": "2026-11-21T06:16:23.356604+00:00",
+  "source_file": {
+    "filename": "20261121_test_architecture_source.txt",
+    "sha256": "57206e8ecc8abde18ac4494bc9c7b6f8522f0f68d58be3dfd4ad0c47ff07d67a",
+    "bytes": 73644,
+    "line_count": 432
+  },
+  "script_file": {
+    "filename": "20261121_test_architecture_checks.py",
+    "sha256": "08d572be6583fbbfa1ab891952a7a39343bb81014af6bc20b4bdbf9ce76676c9",
+    "bytes": 13158
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "python_implementation": "CPython",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "numpy_build_configuration": {
+      "Compilers": {
+        "c": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "14.2.1",
+          "commands": "cc"
+        },
+        "cython": {
+          "name": "cython",
+          "linker": "cython",
+          "version": "3.2.1",
+          "commands": "cython"
+        },
+        "c++": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "14.2.1",
+          "commands": "c++"
+        }
+      },
+      "Machine Information": {
+        "host": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        },
+        "build": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        }
+      },
+      "Build Dependencies": {
+        "blas": {
+          "name": "scipy-openblas",
+          "found": true,
+          "version": "0.3.30",
+          "detection method": "pkgconfig",
+          "include directory": "/opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include",
+          "lib directory": "/opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib",
+          "openblas configuration": "OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+          "pc file directory": "/project/.openblas"
+        },
+        "lapack": {
+          "name": "scipy-openblas",
+          "found": true,
+          "version": "0.3.30",
+          "detection method": "pkgconfig",
+          "include directory": "/opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include",
+          "lib directory": "/opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib",
+          "openblas configuration": "OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+          "pc file directory": "/project/.openblas"
+        }
+      },
+      "Python Information": {
+        "path": "/tmp/build-env-aw1mwcap/bin/python",
+        "version": "3.12"
+      },
+      "SIMD Extensions": {
+        "baseline": [
+          "SSE",
+          "SSE2",
+          "SSE3"
+        ],
+        "found": [
+          "SSSE3",
+          "SSE41",
+          "POPCNT",
+          "SSE42",
+          "AVX",
+          "F16C",
+          "FMA3",
+          "AVX2",
+          "AVX512F",
+          "AVX512CD",
+          "AVX512_SKX",
+          "AVX512_CLX",
+          "AVX512_CNL",
+          "AVX512_ICL"
+        ],
+        "not found": [
+          "AVX512_KNL",
+          "AVX512_KNM",
+          "AVX512_SPR"
+        ]
+      }
+    },
+    "scipy_build_configuration": {
+      "Compilers": {
+        "c": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "14.2.1",
+          "commands": "cc"
+        },
+        "cython": {
+          "name": "cython",
+          "linker": "cython",
+          "version": "3.2.4",
+          "commands": "cython"
+        },
+        "c++": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "14.2.1",
+          "commands": "c++"
+        },
+        "fortran": {
+          "name": "gcc",
+          "linker": "ld.bfd",
+          "version": "14.2.1",
+          "commands": "gfortran"
+        },
+        "pythran": {
+          "version": "0.18.1",
+          "include directory": "../../tmp/build-env-h6rtuvfe/lib/python3.12/site-packages/pythran"
+        }
+      },
+      "Machine Information": {
+        "host": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        },
+        "build": {
+          "cpu": "x86_64",
+          "family": "x86_64",
+          "endian": "little",
+          "system": "linux"
+        },
+        "cross-compiled": false
+      },
+      "Build Dependencies": {
+        "blas": {
+          "name": "scipy-openblas",
+          "found": true,
+          "version": "0.3.30",
+          "detection method": "pkgconfig",
+          "include directory": "/opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include",
+          "lib directory": "/opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib",
+          "openblas configuration": "OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+          "pc file directory": "/project/",
+          "has ilp64": false
+        },
+        "lapack": {
+          "name": "scipy-openblas",
+          "found": true,
+          "version": "0.3.30",
+          "detection method": "pkgconfig",
+          "include directory": "/opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include",
+          "lib directory": "/opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib",
+          "openblas configuration": "OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+          "pc file directory": "/project/",
+          "has ilp64": false
+        },
+        "pybind11": {
+          "name": "pybind11",
+          "version": "3.0.1",
+          "detection method": "config-tool",
+          "include directory": "unknown"
+        }
+      },
+      "Python Information": {
+        "path": "/tmp/build-env-h6rtuvfe/bin/python",
+        "version": "3.12"
+      }
+    }
+  },
+  "monte_carlo_reproduction": {
+    "source_lines": [
+      313,
+      350
+    ],
+    "seed": 20261121,
+    "N": 400000,
+    "rng_constructor": "numpy.random.default_rng(20261121)",
+    "bit_generator": "PCG64",
+    "sampling_call": "rng.multivariate_normal([0, 0], C_true, size=400_000)",
+    "sampling_method": "NumPy default multivariate_normal method: svd",
+    "L": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.6,
+        0.8
+      ]
+    ],
+    "L_times_L_transpose": [
+      [
+        1.0,
+        0.6
+      ],
+      [
+        0.6,
+        1.0
+      ]
+    ],
+    "C_true": [
+      [
+        1.0,
+        0.8
+      ],
+      [
+        0.8,
+        1.0
+      ]
+    ],
+    "C_wrong": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "eigenvalues_C_true": [
+      0.19999999999999996,
+      1.8
+    ],
+    "nominal_coverage": 0.95,
+    "chi2_df": 2,
+    "region_radius_squared": 5.991464547107979,
+    "covered_wrong_region": 370631,
+    "covered_correct_region": 380207,
+    "coverage_wrong_region": 0.9265775,
+    "coverage_correct_region": 0.9505175,
+    "coverage_deficit_wrong_region": 0.0234224999999999,
+    "mc_standard_error_wrong_plugin": 0.00041240646361856995,
+    "mc_standard_error_correct_plugin": 0.00034290662793882385,
+    "standardized_deficit_using_plugin_se_not_power": 56.79469665553813,
+    "standardized_deficit_using_null_se_not_power": 67.96986987280668,
+    "source_reported_rounded_outputs": {
+      "coverage_wrong_region": 0.9266,
+      "coverage_correct_region": 0.9505,
+      "coverage_deficit_wrong_region": 0.0234,
+      "mc_standard_error_wrong_plugin": 0.00041
+    },
+    "observed_rounded_outputs": {
+      "coverage_wrong_region": 0.9266,
+      "coverage_correct_region": 0.9505,
+      "coverage_deficit_wrong_region": 0.0234,
+      "mc_standard_error_wrong_plugin": 0.00041
+    },
+    "interpretation": "These are one-sample Monte Carlo coverage estimates. A standardized coverage deficit is not power and is not automatically a calibrated Gaussian tail significance. The source reports no software versions; bitwise reproduction across different numeric builds is not assumed.",
+    "coverage_wrong_minus_quadrature": -0.00015875747701810106,
+    "mc_standard_error_wrong_using_reference": 0.000411995650931257,
+    "mc_error_in_reference_standard_errors": -0.3853377497050092,
+    "source_rounded_outputs_match_current_environment": true
+  },
+  "independent_polar_quadrature": {
+    "method": "scipy.integrate.quad of polar-coordinate survival probability",
+    "independent_of_monte_carlo_samples": true,
+    "eigenvalues_used": [
+      1.8,
+      0.2
+    ],
+    "formula": "1 - integral_0^(2*pi) exp(-q / (2*(1.8*cos(phi)^2 + 0.2*sin(phi)^2))) dphi / (2*pi)",
+    "quadrature_options": {
+      "epsabs": 1e-13,
+      "epsrel": 1e-13,
+      "limit": 200
+    },
+    "coverage_wrong_region": 0.9267362574770182,
+    "quadrature_absolute_error_ESTIMATE": 8.535591342439957e-16,
+    "error_interpretation": "The quadrature algorithm's estimated absolute error, not a rigorous bound and not Monte Carlo error; it excludes uncertainty in the model.",
+    "coverage_correct_region_analytic": 0.95
+  },
+  "illustrative_power": {
+    "status": "illustration_only_not_an_adopted_project_requirement",
+    "null_hypothesis": "p >= 0.95",
+    "alternative_hypothesis_p": 0.9267362574770182,
+    "sampling_model": "K ~ Binomial(N,p), independent identically distributed toys",
+    "test": "Reject H0 when K <= k; choose largest k with size <= alpha",
+    "alpha": 0.01,
+    "power_definition": "Probability of rejection under the specified alternative",
+    "evaluation": "Binomial CDF, not an additional Monte Carlo experiment",
+    "rows": [
+      {
+        "N": 100,
+        "reject_when_K_at_most": 88,
+        "actual_size_at_null_boundary": 0.0042741824663659524,
+        "size_for_next_integer_cutoff": 0.011472410067484739,
+        "largest_cutoff_condition_verified": true,
+        "power_at_specified_alternative": 0.06203745109584114
+      },
+      {
+        "N": 1000,
+        "reject_when_K_at_most": 932,
+        "actual_size_at_null_boundary": 0.007407716199192093,
+        "size_for_next_integer_cutoff": 0.010591310429653025,
+        "largest_cutoff_condition_verified": true,
+        "power_at_specified_alternative": 0.7551109402954963
+      },
+      {
+        "N": 2000,
+        "reject_when_K_at_most": 1876,
+        "actual_size_at_null_boundary": 0.009532581961571236,
+        "size_for_next_integer_cutoff": 0.012281650199717546,
+        "largest_cutoff_condition_verified": true,
+        "power_at_specified_alternative": 0.9780292500371878
+      }
+    ]
+  },
+  "domain_measure_example": {
+    "T_support": [
+      1.0,
+      100.0
+    ],
+    "valid_domain_in_T": [
+      1.0,
+      10.0
+    ],
+    "coordinate_change": "u = natural_log(T)",
+    "uniform_T_density": "1/99 on [1,100]",
+    "uniform_T_valid_fraction": 0.09090909090909091,
+    "same_measure_pushforward_density_in_u": "exp(u)/99 on [0,log(100)]",
+    "same_measure_pushforward_valid_mass_quadrature": 0.09090909090909094,
+    "same_measure_pushforward_total_mass_quadrature": 1.0000000000000002,
+    "same_measure_pushforward_valid_fraction": 0.09090909090909093,
+    "same_measure_fraction_difference": 1.3877787807814457e-17,
+    "pushforward_valid_mass_quadrature_error_ESTIMATE": 1.0092936587501426e-15,
+    "pushforward_total_mass_quadrature_error_ESTIMATE": 1.1102230246251569e-14,
+    "new_uniform_log_density_in_u": "1/log(100) on [0,log(100)]",
+    "new_uniform_log_density_in_T": "1/(T*log(100)) on [1,100]",
+    "new_uniform_log_valid_fraction": 0.5,
+    "interpretation": "Uniform T and its Jacobian-correct pushforward are the same measure and give the same domain fraction up to numerical rounding. Choosing a new uniform-log prior changes the measure and gives a different fraction. This is a mathematical example, not an adopted physical prior."
+  },
+  "limitations": [
+    "Synthetic mathematical covariance; no measured lattice or nuclear covariance.",
+    "No LINX, PRIMAT, physical R135 run, or physical calibration is performed.",
+    "No inference implementation or physical uncertainty model is qualified.",
+    "The reported power belongs only to the explicit iid binomial test and alternative.",
+    "Quadrature errors are algorithmic estimates, not rigorous error bounds.",
+    "No architecture, power threshold, resource rule, or prior is adopted as policy.",
+    "No project scientific status, CI configuration, or task definition is modified."
+  ],
+  "calculation_seconds_excluding_imports_and_json_write": 0.05976930499991795
+}

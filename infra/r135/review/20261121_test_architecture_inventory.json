@@ -1,0 +1,723 @@
+{
+  "artifact_type": "source_review_evidence_inventory",
+  "review_date_utc": "2026-11-21",
+  "repository": "IgorSabirov/vm-lab",
+  "pinned_refs": {
+    "executor_pr": {
+      "number": 159,
+      "head_sha": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "state_observed": "OPEN"
+    },
+    "main": "9bb0c69e234e68a9a44aecd8549572e88a874f23",
+    "software_root": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+    "frozen_software_url": "https://github.com/IgorSabirov/vm-lab/tree/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software"
+  },
+  "scope": {
+    "static_source_review_only": true,
+    "scientific_tests_rerun": false,
+    "runtime_collection_performed": false,
+    "architecture_adopted": false,
+    "production_or_ci_changes": false,
+    "meaning_of_checks": "Записано, какие утверждения закодированы в просмотренных существующих тестах. Их прохождение в текущей сессии не перепроверялось; название теста или размер suite не являются физической квалификацией.",
+    "main_vs_pr": "Подсчёт 22 инфраструктурных + 9 P0 тестов в отзыве явно ограничен main. Исполнитель открытого PR159 содержит отдельный научный корпус; отсутствие на main не означает отсутствие в PR159."
+  },
+  "static_test_corpus": {
+    "source_ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+    "directory": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests",
+    "selection": "Все 26 test_*.py из просмотренного каталога software/tests на закреплённом HEAD PR159.",
+    "count_method": "UTF-8 исходники разобраны стандартным Python ast.parse без импорта. Через ast.walk подсчитаны узлы FunctionDef/AsyncFunctionDef, чьё имя начинается с test_. Это определения в исходниках, не число runtime cases, assertions, независимых оракулов или пройденных тестов.",
+    "module_count": 26,
+    "test_definition_count": 221,
+    "excluded_from_count": [
+      "отдельные P0 tests",
+      "donor tests",
+      "legacy GW-interface tests",
+      "инфраструктурный tests/test_r135_pipeline.py"
+    ],
+    "sha256_definition": "SHA-256 байтов просмотренной UTF-8 копии исходника, полученной с pinned ref; не Git blob OID.",
+    "modules": [
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_audit.py",
+        "definitions": 11,
+        "sha256_utf8_snapshot": "a9557c479cec3abf7a55410b69572eda08578ec7b0cddf11065a845ab24bf5ce"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_backends.py",
+        "definitions": 12,
+        "sha256_utf8_snapshot": "962c7ba1bab027fa80b26b6d1af41bd8127e0d21f601b98ff8eb1bfe7713a238"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_cascades.py",
+        "definitions": 15,
+        "sha256_utf8_snapshot": "8b0423513f92ba744c61e03f19e6fa2ace08269df95dbfb4b8fd4ba3139ceb95"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_collisions.py",
+        "definitions": 7,
+        "sha256_utf8_snapshot": "125bea96917fea2bd7bb4ba4729ab9860eb92023c352abb0fe51e533bf63e995"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+        "definitions": 11,
+        "sha256_utf8_snapshot": "6b47ee4266bda5feb8993b1fa3807654cd3810d26b5b81e85c99c440dce30988"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+        "definitions": 9,
+        "sha256_utf8_snapshot": "abe2b40eb9c9d599ac37c5003647a1518ce132c8f880fdaca1220a7dc1bf7de9"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+        "definitions": 15,
+        "sha256_utf8_snapshot": "763edb14437bb52875a14dd8373b4a6f0a3827ab23a9fc054187034a2442085e"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_external_cmb.py",
+        "definitions": 10,
+        "sha256_utf8_snapshot": "574939fd5cf1905752048a9aa63cdcfc24f019d1404ab59c6970a2335622a121"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_external_cmb_audit.py",
+        "definitions": 6,
+        "sha256_utf8_snapshot": "46c97f0723d7bf11142d398bb80ddfb0a08a5b3f44cc2dac2144de0765400ceb"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_graph.py",
+        "definitions": 4,
+        "sha256_utf8_snapshot": "c945c9bd8cde8901acfa6db5eee1b30995a7e587103c757455285dcb417543b1"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+        "definitions": 13,
+        "sha256_utf8_snapshot": "2f823e07a2b0d79fbe6bae37826488ea91ad8571623ad15865de914e23ad25b1"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+        "definitions": 10,
+        "sha256_utf8_snapshot": "7a0158a9e2acf7b534441f63e238cb8ad2b1ad7936cf6341a5b599303b63278b"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetic_history.py",
+        "definitions": 5,
+        "sha256_utf8_snapshot": "3d235d375dd84c327bc0a2fe6f44e2601bdeddbb3df350afee009801784f9b49"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetics.py",
+        "definitions": 8,
+        "sha256_utf8_snapshot": "f6e510d0c68f9f7ea9481a38a81c1779e8531e24e218061a459bc821be884023"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_lattice.py",
+        "definitions": 7,
+        "sha256_utf8_snapshot": "c2aedc3951bb4a262f0b1badc9b9884c35a0ee77a06da0a1d6f15001ad863e63"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+        "definitions": 4,
+        "sha256_utf8_snapshot": "a1758e7e423b45251f719dcee30f81ac7c1014085ba4e35d262fe1a5d176808b"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_neutrino_rates.py",
+        "definitions": 8,
+        "sha256_utf8_snapshot": "d5ba3256dfb413da564740e69abeba8dcedd7cef2388c624238a4bf68502aa68"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_nucleation.py",
+        "definitions": 6,
+        "sha256_utf8_snapshot": "c33b9818a5c36488ad53f1bca75ad7fb68933d00fcb4b381bba98b32780af227"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_observations.py",
+        "definitions": 7,
+        "sha256_utf8_snapshot": "ef49a110b4814dba4ab5b1faadb94608194daf798602cbc04af956b253159979"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_perturbations.py",
+        "definitions": 13,
+        "sha256_utf8_snapshot": "5ac3e5838e7002ef091e3554d8e87e4487fabb8f497e1eead1d178d2d62236c9"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pipeline.py",
+        "definitions": 3,
+        "sha256_utf8_snapshot": "56ae505d22e1d50bffc3995e2ef8703ebe882282ae958af65fd6c574448df89c"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pockets.py",
+        "definitions": 8,
+        "sha256_utf8_snapshot": "08fa6f37c31d29616a8a78d50dfa846dd160666e2ae4bcdf22cf5b26984e41d5"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pr160_integration.py",
+        "definitions": 10,
+        "sha256_utf8_snapshot": "1a5d7d61976703871a00249384f252062cad88ab1bb796783549cf548fba46d6"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_response.py",
+        "definitions": 5,
+        "sha256_utf8_snapshot": "90f70d44f7808570bd5277877e939bae193653d6ab1bb7e1c010322ca7c842e4"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_statistics.py",
+        "definitions": 7,
+        "sha256_utf8_snapshot": "172ac089402a6b2705b31268152e41491a9ca4652845c0e9ee966a1dbdc0f97d"
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_thermodynamics.py",
+        "definitions": 7,
+        "sha256_utf8_snapshot": "ccec7326e8ec3255c57052bd6c786d9a8d5097573033b987f84076c27c13762c"
+      }
+    ],
+    "reported_execution_not_reverified": {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+      "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/CONFORMANCE.md",
+      "report": "Поставка сообщает 208 из 221 основных тестов в общей среде и 13 поимённо сопоставленных успешных тестов закреплённых нативных сред. Дополнительно: 9 P0, 4 donor, 4 legacy GW. Это сообщение поставки, а не новый запуск этого аудита."
+    }
+  },
+  "seven_directions": [
+    {
+      "id": 1,
+      "direction": "Типы оракулов и независимость",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "selected_test_names": [
+            "test_diagnostic_never_becomes_physical_candidate",
+            "test_p0_claim_model_pairing_is_registered"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "selected_test_names": [
+            "test_complete_gw_grid_still_needs_point_decision",
+            "test_gw_ordinary_matrix_reads_scoped_argument"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Диагностическое происхождение не переименовывается в physical candidate.",
+        "Численный GW evidence и scoped argument сохраняют собственный статус; полное численное evidence не заменяет связанное с точкой решение владельца."
+      ],
+      "not_established_by_these_checks": [
+        "Общий per-claim реестр типов оракулов и граф общих физических предпосылок.",
+        "Число независимых физических свидетельств: число тестов его не определяет."
+      ]
+    },
+    {
+      "id": 2,
+      "direction": "Статистические мета-тесты и квалификация вывода",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_statistics.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_statistics.py",
+          "selected_test_names": [
+            "test_vectorized_cumulant_matches_existing_independent_estimator",
+            "test_known_ar1_autocorrelation",
+            "test_block_bootstrap_recomputes_pooled_window_cumulant",
+            "test_tampering_or_identity_leak_is_rejected",
+            "test_unverified_or_underpowered_input_cannot_pass_science",
+            "test_chronology_and_coverage_are_validated"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "selected_test_names": [
+            "test_gw_marginal_likelihood_and_raw_readback",
+            "test_weighted_nuclear_population",
+            "test_unfinished_grid_never_reports_an_optimum"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+          "selected_test_names": [
+            "test_bbn_likelihood_at_frozen_mean",
+            "test_no_double_cmb_constraint_or_uncalibrated_exclusion"
+          ]
+        }
+      ],
+      "existing_implementation": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gw_review.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gw_review.py",
+          "selected_functions": [
+            "marginalize"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nuclear_covariance.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nuclear_covariance.py",
+          "selected_functions": [
+            "validate_design",
+            "covariance",
+            "propagate",
+            "reconstruct"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/likelihood.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/likelihood.py",
+          "selected_functions": [
+            "bbn_loglike",
+            "joint_loglike",
+            "calibrated_decision"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Known-answer AR(1), согласованность кумулянта и pooled bootstrap, блокировка утечки идентичностей/seed и недостаточно подтверждённых входов.",
+        "Двухузловой взвешенный log-sum-exp и readback из raw log L; известная взвешенная ковариация; неполная сетка не сообщает оптимум.",
+        "Перенос фактических вариаций ядерных таблиц и реконструкция по сохранённым данным существуют в реализации.",
+        "Coverage в test_chronology_and_coverage_are_validated означает полноту пространственных окон, а не coverage доверительной области."
+      ],
+      "not_established_by_these_checks": [
+        "Coverage и power итогового космологического inference, корректировка адаптивного скана и квалификация при misspecification.",
+        "Физическая обоснованность весов prior и ядерной модели ошибок, даже если математическая маргинализация корректна.",
+        "Общий сквозной nuisance ensemble P5→P9, перепараметризация при зарегистрированной мере и сертификат квалификации на точный SHA."
+      ]
+    },
+    {
+      "id": 3,
+      "direction": "Метаморфные отношения",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_collisions.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_collisions.py",
+          "selected_test_names": [
+            "test_interference_is_added_before_squaring",
+            "test_thermal_mixed_moment_uses_identical_state",
+            "test_quantum_detailed_balance_and_energy_conservation"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "selected_test_names": [
+            "test_source_alternatives_rescale_MeV_dimensions_without_changing_the_model_origin",
+            "test_NDA_is_linear_in_B_dimensionful_and_requires_kinetic_relaxation"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+          "selected_test_names": [
+            "test_exact_isolation_does_not_reactivate_at_a_numerical_fraction",
+            "test_numerical_refinement_preserves_delivered_energy"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "selected_test_names": [
+            "test_mixed_convergence_checks_factorial_response"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Интерференция амплитуд до квадрата, mixed moment на одном и том же состоянии, detailed balance, размерное масштабирование и предельное выключение связи.",
+        "Уточнение проверяет также факториальную смешанную разность."
+      ],
+      "not_established_by_these_checks": [
+        "Полный зарегистрированный набор отношений для каждого модуля и диапазона входов.",
+        "Тождество интерференции на фиксированном состоянии не является автоматически тождеством для каждой конечной наблюдаемой разных нелинейных историй."
+      ]
+    },
+    {
+      "id": 4,
+      "direction": "Именованные негативные сценарии и защита статуса",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "selected_test_names": [
+            "test_diagnostic_never_becomes_physical_candidate",
+            "test_semantic_tamper_rejected_even_with_refreshed_manifest",
+            "test_changed_input_during_calculation_downgrades_pass"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_conformance.py",
+          "selected_test_names": [
+            "test_free_flags_do_not_certify_nonthermal_histories",
+            "test_complete_gw_grid_still_needs_point_decision"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "selected_test_names": [
+            "test_P5_consumes_P1_artifact_without_relabelling_finite_a_as_physical",
+            "test_P6_partial_width_never_creates_a_total_decay_or_energy_source"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "selected_test_names": [
+            "test_missing_source_never_becomes_a_zero_prediction",
+            "test_all_frozen_P0_paths_remain_open_and_reject_wrong_corner"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Подмена смысла не легализуется новым checksum, произвольный флаг precision не закрывает численную точность, отсутствие источника не заменяется нулевым прогнозом.",
+        "Парциальный канал не превращается в полную ширину/источник; диагностический finite-a контроль не становится физической точкой."
+      ],
+      "not_established_by_these_checks": [
+        "Единый именованный mutation inventory с измеренной долей обнаруженных мутаций.",
+        "Полный P0→P10 сценарий исходного coupled_control с проверкой итогового непродвижения статуса.",
+        "Bag-EOS, назначенный S3/T и prefactor допустимы как явно диагностические fixtures; запрет должен касаться физического продвижения, а не самого наличия таких контролей."
+      ]
+    },
+    {
+      "id": 5,
+      "direction": "Границы применимости",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "selected_test_names": [
+            "test_no_phase_extrapolation_or_invalid_thermodynamic_branch",
+            "test_unknown_or_inconsistent_covariance_is_not_silently_zeroed",
+            "test_scalar_partial_width_respects_EFT_running_coupling_and_hadronic_gap"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "selected_test_names": [
+            "test_source_support_and_weak_field_domain_are_enforced",
+            "test_horizon_between_late_nodes_is_checked",
+            "test_late_expansion_cannot_hide_GW_domination"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_backends.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_backends.py",
+          "selected_test_names": [
+            "test_thermal_weak_domain_requires_numeric_bounds_and_rejects_hot_X",
+            "test_all_rate_support_crossings_found"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_neutrino_rates.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_neutrino_rates.py",
+          "selected_test_names": [
+            "test_unknown_support_and_invalid_occupancy_are_rejected"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Уже существуют негативные проверки EOS/phase extrapolation, covariance, EFT/hadronic gap, source support, weak-field, subhorizon, weak-rate support и occupancy.",
+        "Выход за горизонт проверяется также между сохранёнными поздними узлами."
+      ],
+      "not_established_by_these_checks": [
+        "Полнота покрытия всех объявленных доменов тройками just-inside/on/outside и зарегистрированными ошибками сшивки.",
+        "Domain-valid fraction под явно зарегистрированной мерой; выход за область применимости не является физическим исключением точки."
+      ]
+    },
+    {
+      "id": 6,
+      "direction": "Совместный энергетический баланс и handoff",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+          "selected_test_names": [
+            "test_all_five_independent_histories_and_both_energy_measures"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetic_history.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetic_history.py",
+          "selected_test_names": [
+            "test_joint_p7_conservation_and_lossless_spectra_to_weak_rates",
+            "test_kinetic_density_is_not_double_counted_and_bath_gets_reciprocal_source",
+            "test_auditor_reconstructs_kinetic_density_from_saved_occupations"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+          "selected_test_names": [
+            "test_joint_friedmann_energy_exchange_and_free_redshift",
+            "test_transfer_is_derived_from_actual_density_not_a_second_energy_source",
+            "test_P7_auditor_combines_GW_with_resolved_free_particles",
+            "test_P9_auditor_reconstructs_same_P7_as_BBN_and_rejects_freshly_hashed_corruption"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pr160_integration.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pr160_integration.py",
+          "selected_test_names": [
+            "test_resolved_free_particles_and_GW_are_additive_not_double_counted",
+            "test_P5_source_identity_and_checksum_are_checked_before_P7",
+            "test_P9_GW_requires_identical_BBN_source_history"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_audit.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_audit.py",
+          "selected_test_names": [
+            "test_energy_flux_and_hubble_landmarks_from_analytic_radiation"
+          ]
+        }
+      ],
+      "existing_implementation": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/audit.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/audit.py",
+          "selected_functions": [
+            "audit_p7",
+            "audit_gw_p9"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Истории P7 строятся с артефактами P1/P5/P6; проверяются пять историй, сумма межсекторных Q и обе меры энергетического баланса.",
+        "Проверяются общий Friedmann, взаимный энергетический обмен, свободное красное смещение, реальные спектры на weak-rate handoff и отсутствие двойного счёта GW/частиц.",
+        "audit_p7 независимо интегрирует a^3 Q и 3 H a^3 p по сохранённым данным, сверяет работу и comoving energy; кинетическая плотность восстанавливается из occupations."
+      ],
+      "not_established_by_these_checks": [
+        "Замыкание всех физических каналов полной модели X, включая остающиеся открытыми микрофизические входы.",
+        "Общий статистический nuisance lineage и сохранение корреляций: это отдельный от энергетического баланса инвариант."
+      ]
+    },
+    {
+      "id": 7,
+      "direction": "Обусловленность lnGamma и готовность входов",
+      "existing_tests": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_nucleation.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_nucleation.py",
+          "selected_test_names": [
+            "test_bounce_converges_towards_thin_wall_limit",
+            "test_bounce_mesh_and_radius_convergence",
+            "test_prefactor_is_mandatory_and_no_extrapolation"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+          "selected_test_names": [
+            "test_missing_uncertainty_and_undeclared_source_identity_are_rejected",
+            "test_thin_wall_finite_a_control_retains_its_own_latent_heat_and_needs_prefactor"
+          ]
+        },
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+          "selected_test_names": [
+            "test_diagnostic_never_becomes_physical_candidate"
+          ]
+        }
+      ],
+      "existing_implementation": [
+        {
+          "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nucleation.py",
+          "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+          "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nucleation.py",
+          "selected_functions": [
+            "Kernel.at"
+          ]
+        }
+      ],
+      "what_existing_assertions_check": [
+        "Аналитический thin-wall предел, mesh/radius convergence, обязательность prefactor, запрет экстраполяции и необходимость provenance/uncertainty.",
+        "Kernel.at уже сохраняет log_Gamma_MeV4 = logA - action; численное обнуление Gamma при слишком малом logGamma не уничтожает сохранённый логарифм."
+      ],
+      "not_established_by_these_checks": [
+        "Абсолютный бюджет ошибки B и lnGamma при больших барьерах, совместная чувствительность к A/B/sigma и conditioning по входам.",
+        "Общий per-input readiness certificate и отчёт готовности, отделённый от численного прохождения и научного решения владельца."
+      ]
+    }
+  ],
+  "calibrated_decision_scope": {
+    "definition": {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/likelihood.py",
+      "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/likelihood.py",
+      "selected_functions": [
+        "calibrated_decision"
+      ]
+    },
+    "unit_test": {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+      "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+      "selected_test_names": [
+        "test_no_double_cmb_constraint_or_uncalibrated_exclusion"
+      ]
+    },
+    "production_reference_scan": {
+      "directory": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135",
+      "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+      "module_count": 34,
+      "modules": [
+        "__init__.py",
+        "audit.py",
+        "backends.py",
+        "cascades.py",
+        "cli.py",
+        "collisions.py",
+        "common.py",
+        "contracts.py",
+        "donor_inputs.py",
+        "external_cmb.py",
+        "external_cmb_audit.py",
+        "graph.py",
+        "gravitationalwaves.py",
+        "gw_review.py",
+        "history.py",
+        "history_observables.py",
+        "history_refinement.py",
+        "joint_grid.py",
+        "kinetic_history.py",
+        "kinetics.py",
+        "lattice.py",
+        "likelihood.py",
+        "meson_conversion.py",
+        "neutrino_rates.py",
+        "nuclear_covariance.py",
+        "nucleation.py",
+        "observations.py",
+        "perturbations.py",
+        "pipeline.py",
+        "pockets.py",
+        "response.py",
+        "statistics.py",
+        "thermodynamics.py",
+        "weak_precision.py"
+      ],
+      "searched_symbols": [
+        "calibrated_decision",
+        "sampling_distribution_sha256",
+        "confidence_calibrated",
+        "cosmological_optimization"
+      ],
+      "observation": "В просмотренных 34 production-модулях нет вызовов calibrated_decision; найдено определение. Обнаруженный вызов helper находится в unit-test. Вывод не расширяется на непроверенные ветви или весь Git history."
+    },
+    "helper_behavior": "Проверяет непустые source/sampling_distribution_sha256 и конечный положительный threshold, затем сравнивает statistic с threshold. Не читает sampling distribution, не верифицирует её байты по SHA и не измеряет coverage. Unit-test использует синтетический hash a*64.",
+    "active_output_guards": [
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/backends.py",
+        "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/backends.py",
+        "observation": "P9 сохраняет CONDITIONAL_LIKELIHOOD и confidence_calibrated:false."
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/joint_grid.py",
+        "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/joint_grid.py",
+        "observation": "Итог сетки сохраняет confidence_calibrated:false и scientific_acceptance:owner_review."
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb.py",
+        "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb.py",
+        "observation": "External-CMB путь сохраняет cosmological_optimization:NOT_PERFORMED и confidence_calibrated:false."
+      },
+      {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb_audit.py",
+        "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb_audit.py",
+        "observation": "Независимый audit требует сохранения NOT_PERFORMED/false у результата и профилей."
+      }
+    ],
+    "conclusion": "Не обнаружен путь, по которому текущий просмотренный pipeline использует этот helper для автоматического физического исключения. Будущая квалификация полного inference остаётся открытой; отсутствие такой квалификации не объявляется воспроизведённым дефектом текущего pipeline."
+  },
+  "scoped_negative_findings": [
+    {
+      "claim_checked": "marginalize и domain_guard уже находятся в tools/r135_pipeline.py",
+      "searched_source": {
+        "path": "tools/r135_pipeline.py",
+        "ref": "9bb0c69e234e68a9a44aecd8549572e88a874f23",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/9bb0c69e234e68a9a44aecd8549572e88a874f23/tools/r135_pipeline.py"
+      },
+      "method": "Поиск literal identifiers в прочитанном файле.",
+      "observation": "Не найдены marginalize и domain_guard в этом файле.",
+      "positive_location": {
+        "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gw_review.py",
+        "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gw_review.py",
+        "selected_functions": [
+          "marginalize"
+        ]
+      },
+      "limit": "Отрицание относится к указанному инфраструктурному файлу; физические guards в scientific package существуют."
+    },
+    {
+      "claim_checked": "MODEL-05 уже принят в PIPELINE.json",
+      "searched_source": {
+        "path": "infra/r135/PIPELINE.json",
+        "ref": "9bb0c69e234e68a9a44aecd8549572e88a874f23",
+        "url": "https://github.com/IgorSabirov/vm-lab/blob/9bb0c69e234e68a9a44aecd8549572e88a874f23/infra/r135/PIPELINE.json"
+      },
+      "method": "Поиск буквального идентификатора MODEL-05 в прочитанном JSON.",
+      "observation": "MODEL-05 не найден.",
+      "limit": "Не относится к позднейшим непроверенным refs или текстам предложений."
+    },
+    {
+      "claim_checked": "R130_local_energy.py и готовый GLOBAL_THEORY_ENSEMBLE можно использовать как существующее основание",
+      "search_terms": [
+        "R130_local_energy.py",
+        "check_r135_statistics.py",
+        "GLOBAL_THEORY_ENSEMBLE"
+      ],
+      "search_scope": "Подключённый GitHub code search основной ветки при инспекции. Наблюдённый main SHA указан в pinned_refs; сам поиск не является исчерпывающим обходом frozen tree или истории.",
+      "observation": "Результатов не найдено.",
+      "limit": "Это ограниченное отрицательное наблюдение поиска, не доказательство отсутствия во всём репозитории и не аудит научного содержания источников Giusti."
+    },
+    {
+      "claim_checked": "В просмотренном scientific package уже есть систематическая квалификация итогового inference по coverage/power",
+      "search_scope": "26 перечисленных test-модулей и просмотренные 34 r135-модуля на pinned PR159.",
+      "observation": "Не обнаружены сквозная квалификация frequentist coverage/power, общий oracle/mutation registry и полный P0→P10 anti-promotion fixture исходного coupled_control.",
+      "limit": "Положительные статистические known-answer, boundary, tamper и системные энергетические проверки перечислены выше; отрицание не означает отсутствие этих проверок."
+    }
+  ],
+  "fixture_scope_note": {
+    "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/examples/coupled_control.json",
+    "ref": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+    "url": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/examples/coupled_control.json",
+    "observation": "Это существующий диагностический конфиг истории с bag-EOS, назначенным барьером и prefactor, не готовая спецификация всего P0→P10 DAG. Полный anti-promotion сценарий потребует явной обвязки и входных артефактов."
+  },
+  "verification_of_this_inventory": {
+    "json_parse": "checked after serialization",
+    "selected_test_names": "every selected name checked against AST definitions in its fetched test file",
+    "module_counts": "sum checked: 26 modules, 221 definitions",
+    "scientific_execution": "not performed"
+  }
+}
