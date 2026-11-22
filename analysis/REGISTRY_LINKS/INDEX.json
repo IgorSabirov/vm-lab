@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "dc1c8c7825cae74ebb3cd562755fd5e919230765b0b9983dc42a8c657e8aab38",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "063fb65c7a5842fb7bf341f7f12eee86e525173e3fe6ccacb322896389bd0a98",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "deab3ecd197cea43c84aa04318fd4b26589202d13a650f1703b5e95dc24b56c4",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "26a09bde271b40686b0c2e2d0ab29e510a1a527dcd247591da048b527d4b5849",
@@ -114,7 +114,7 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 135,
+    "result": 136,
     "construct": 42,
     "link": 10,
     "question": 12,
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 149
+    "source": 152
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3189,6 +3189,15 @@
       "fragment": "r135"
     },
     {
+      "key": "result:R139",
+      "id": "R139",
+      "kind": "result",
+      "title": "Когерентный калибровочный перенос при именованной перестройке ADD",
+      "status": "OPEN · ПРОВЕРЕН ОДИН ЛОКАЛЬНЫЙ КВАНТОВЫЙ ХОД",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r139"
+    },
+    {
       "key": "review:ADD_BBN_SYMMETRY_20261115",
       "id": "ADD_BBN_SYMMETRY_20261115",
       "kind": "review",
@@ -5023,6 +5032,42 @@
       "sha256": "f1579aefd9bb0a3cddeaf16db34dc45c4a8c79f77f60d77c3f9c85ff60787c14",
       "git_blob_sha": "648acd2e635530fbfba957620ea94d2d88aee7ab",
       "size_bytes": 6902
+    },
+    {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "fragment": "",
+      "sha256": "975fad104553a94f2f957a774bae49fe06575e6febcbf63e3a5f0e4e49567fb3",
+      "git_blob_sha": "1cbf80dd3e8a6f0e9e94558daee395626e96c670",
+      "size_bytes": 815
+    },
+    {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "fragment": "",
+      "sha256": "342dc9afba6326117b89681b4753aefef5928cf18694a1f7896f3c110f5bbbaf",
+      "git_blob_sha": "9aa6398304d08378a70192f97cf3bc6974f20842",
+      "size_bytes": 18953
+    },
+    {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "fragment": "",
+      "sha256": "130927d3b96e0c5f623081107103cbc9dd63d689dedfc8951ea148dca318c101",
+      "git_blob_sha": "61ea7ff3b56dda24928e7a4bf934a9f746660dcb",
+      "size_bytes": 8106
     },
     {
       "key": "source:infra/external/README.md",
@@ -10135,6 +10180,11 @@
     },
     {
       "source": "result:R130",
+      "target": "result:R139",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R130",
       "target": "source:analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json",
       "relation": "managed_evidence_source"
     },
@@ -10406,6 +10456,11 @@
     },
     {
       "source": "result:R132",
+      "target": "result:R139",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R132",
       "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -10522,6 +10577,11 @@
     {
       "source": "result:R133",
       "target": "result:R135",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R133",
+      "target": "result:R139",
       "relation": "parent"
     },
     {
@@ -10690,6 +10750,31 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "construct:C037",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R139",
+      "target": "question:U006",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
       "relation": "managed_evidence_source"
     },
     {
