@@ -43,9 +43,11 @@ def main():
     roots = list(first)
     brackets = [{"a": mp.nstr(g-mp.mpf("1e-5"), 35), "b": mp.nstr(g+mp.mpf("1e-5"), 35),
                  "method": "mpmath.zetazero", "index": i+1} for i, g in enumerate(first)]
-    scan_start = roots[-1]
+    # Start strictly to the right of the 60th seeded zero. Starting at
+    # gamma_60 itself re-detects the seed because zetazero() and siegelz()
+    # evaluate the same root with different finite-precision residuals.
     step = mp.mpf("0.1")
-    left = scan_start
+    left = roots[-1] + mp.mpf("1e-4")
     fleft = mp.siegelz(left)
     scan_intervals = 0
     scan_limit = mp.mpf("1200")
