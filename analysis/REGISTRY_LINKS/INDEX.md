@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=136, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=154.
+Число записей: result=136, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=161.
 
 ## Предпосылка → результаты
 
@@ -3167,7 +3167,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r136).
 
 **Входящие:** [R135](#result-r135) `parent`.
-**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
+**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg](#source-analysis-r136_shirogane_calibration-correlation_map-svg) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json](#source-analysis-r136_shirogane_calibration-extended_checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md](#source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json](#source-analysis-r136_shirogane_calibration-statistical_budget-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py](#source-analysis-r136_shirogane_calibration-audit_invariant_d-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py](#source-analysis-r136_shirogane_calibration-audit_statistical_budget-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py](#source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4873,11 +4873,38 @@ analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json — [исходная карто
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r136_shirogane_calibration-correlation_map-svg"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg
+
+analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-extended_checks-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json
+
+analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r136_shirogane_calibration-figures-json"></a>
 
 ### source:analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json
 
 analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md
+
+analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md).
 
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4891,11 +4918,47 @@ analysis/R136_SHIROGANE_CALIBRATION/REPORT.md — [исходная карточ
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r136_shirogane_calibration-statistical_budget-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json
+
+analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_invariant_d-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_statistical_budget-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r136_shirogane_calibration-extract-py"></a>
 
 ### source:analysis/R136_SHIROGANE_CALIBRATION/extract.py
 
 analysis/R136_SHIROGANE_CALIBRATION/extract.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py
+
+analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py).
 
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4979,13 +5042,4 @@ infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md — [исходная кар�
 infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt — [исходная карточка](../../infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt).
 
 **Входящие:** [METHOD_20261112](#review-method_20261112) `review_source_not_attestation`.
-**Исходящие:** нет.
-
-
-<a id="source-analysis-r136_shirogane_calibration-extended_checks-json"></a>
-### source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json
-
-Машинные результаты расширенного аудита устойчивости R136 — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json).
-
-**Входящие:** [R136](#result-r136) managed_evidence_source.
 **Исходящие:** нет.

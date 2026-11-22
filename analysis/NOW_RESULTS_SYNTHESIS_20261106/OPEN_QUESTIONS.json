@@ -1113,11 +1113,15 @@
         "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
         "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
         "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
-        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py"
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+        "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py"
       ],
-      "known": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. R136.1 выделил D=β₀(48)−β₀(64)=0.0006229, инвариантный к общему аддитивному якорю F(8), но чувствительный к локальному наклону и объёмно-зависимой разнице оценивателей Fig.15/Fig.3.",
-      "unknown": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. Не ограничена объёмно-зависимая методная систематика: ΔJ≈0.02–0.05 может индуцировать δD масштаба 2.9×10⁻⁴–7.3×10⁻⁴. Неизвестная joint jackknife covariance остаётся отдельной границей; D и GLS — один контраст, не независимые тесты.",
-      "next_step": "Сначала выполнить методные контроли: (i) извлечь полную t-серию Fig.3 из EPS как условную скобку при явном допущении одинакового flow-time drift двух оценивателей; (ii) независимо сверить Fig.13 vs Fig.3 при βc без температурной оси; (iii) повторно оцифровать подозрительную последнюю cold-точку Fig.16 на 64³. Затем запросить у авторов точные β-узлы Fig.15, совместные jackknife-реплики/ковариацию и сведения об общих ансамблях/reweighting. Не интерпретировать D как ошибку оси, пока методная систематика не ограничена.",
+      "known": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. D=0.000622844634102 по неокруглённой реконструкции. Архивная разность двух округлённых якорей 0.000622900 сохраняется для повтора. На рис. 15 раздельный сдвиг восьми локальных координат на ±½ единицы EPS дал максимальное |δD|=3.46×10⁻⁶. При локальных якобианах диагональный порог z=1.96 достигается при ρ=0.787 для ρ_β=0 и при ρ=0.540 для ρ_β=1.",
+      "unknown": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. Не ограничена объёмно-зависимая методная систематика: ΔJ≈0.02–0.05 может индуцировать δD масштаба 2.9×10⁻⁴–7.3×10⁻⁴. Неизвестная joint jackknife covariance остаётся отдельной границей; D и GLS — один контраст, не независимые тесты. Точность горизонтального округления EPS проверена отдельно от неизвестной авторской шкалы.",
+      "next_step": "Запросить β-сетку/нормировку рис. 15 и совместные реплики по фазам, J₃ и βc. Уточнить соответствие маркеров рис. 13: легенда и табл. VI поддерживают зелёные треугольники Nt=8. Доступные независимо проверки полной t-серии рис. 3 и последней холодной точки рис. 16 сохраняются.",
       "closure": "Либо восстановлена согласованность на двух объёмах с совместной ошибкой, либо воспроизведён устойчивый остаток при совпадающих условиях и локализован источник. При недостаточной мощности сохранять открытую границу.",
       "decision": "Открыто отдельное исследование #193.",
       "registered_date": "2026-11-21",
@@ -1125,7 +1129,7 @@
       "resolution_source": null,
       "user_answer_required_now": false,
       "genealogy_note": "Origin: #167 EOS phase-input work and the Shirogane donor audit in draft PR #185 (commit 649c1d9). R135 is the programmatic context, not physical evidence for the calibration. R136 is the independent response track, tracked by #193 and implemented for review in draft PR #194. Direct scientific sources are Shirogane 2016 (arXiv:1605.02997, calibration F(n)) and Shirogane 2021 (arXiv:2011.10292, phase-resolved jumps and beta_c values). R136 has reconstructed the calibration curve and checked the sign on both volumes, but exact Fig. 15 beta nodes/normalization and joint jackknife covariance remain missing. U013 remains OPEN; no publication error is yet established. Extended R136 audit (2026-11-22): fixed exploratory polynomial domain/window loss; signs of residuals stable across fit/interpolation variants; Figure-3 flow-time drift negative on both volumes, difference 0.54 sigma. Covariance/GLS significance remains scenario-dependent (rho threshold about 0.79 under one illustrative common-rho model); no measured joint jackknife covariance. Full clean-VM replay of all extension blocks not confirmed. U013 remains OPEN; no publication error established.",
-      "limit": " Exact Fig. 15 beta nodes and joint jackknife covariance remain unavailable; exploratory covariance scenarios are not measurements. R136.1: D=0.0006229 отменяет только общий аддитивный якорь; локальный наклон и volume-dependent estimator systematics remain. GLS and D are the same 1D contrast. Covariance rho scenarios are not measurements. No publication error established."
+      "limit": "Совместная ковариация фаз, J₃ и βc, фактическая сетка β рис. 15 и неопределённость калибровки остаются открытыми. Разность оценивателей и конечное время потока сохраняются как возможные методные вклады."
     }
   ],
   "existing_open_links": [

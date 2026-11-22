@@ -15,8 +15,8 @@ EC = np.array([0.0092617872, 0.0071178013])
 E3 = np.array([0.022559457, 0.014992044])
 EBC = np.array([0.00018, 0.00014])
 E_INF = 0.00028
-D_EXACT = 0.0006229000000006479
 BETA0 = np.array([6.0636007, 6.0629778])
+D_ROUNDED_ANCHORS = BETA0[0] - BETA0[1]
 EXACT_ANCHOR = 6.0632464
 R_EXACT = S * (BETA0 - EXACT_ANCHOR)
 D_RESID = R[0] / S[0] - R[1] / S[1]
@@ -49,9 +49,9 @@ def gls_chi2_min(residuals, covariance):
 
 
 def main():
-    print(f"D_exact = {D_EXACT:.16g}")
+    print(f"D_rounded_anchors = {D_ROUNDED_ANCHORS:.16g}")
     print(f"D_resid = {D_RESID:.16g}")
-    print(f"relative difference = {(D_RESID / D_EXACT - 1) * 100:.9f}%")
+    print(f"relative difference = {(D_RESID / D_ROUNDED_ANCHORS - 1) * 100:.9f}%")
     assert abs(W @ S) < 1e-14
 
     for rho in (0.0, 0.9):
@@ -60,26 +60,26 @@ def main():
         chi2_gls = gls_chi2_min(R, covariance)
         chi2_exact_anchor = gls_chi2_min(R_EXACT, covariance)
         z2_resid = D_RESID**2 / var_d
-        z2_exact = D_EXACT**2 / var_d
+        z2_exact = D_ROUNDED_ANCHORS**2 / var_d
         print(f"rho={rho:.1f}: varD={var_d:.12e}")
         print(f"  GLS chi2_min       = {chi2_gls:.10f}")
         print(f"  z2(D_resid)        = {z2_resid:.10f}")
-        print(f"  z2(D_exact)        = {z2_exact:.10f}")
+        print(f"  z2(D_rounded_anchors)        = {z2_exact:.10f}")
         print(f"  GLS exact-anchor   = {chi2_exact_anchor:.10f}")
         assert np.isclose(chi2_gls, z2_resid, rtol=1e-9, atol=1e-12)
         assert np.isclose(chi2_exact_anchor, z2_exact, rtol=1e-9, atol=1e-12)
         assert np.isclose(W @ covariance @ W, var_d, rtol=1e-12)
         print("  GLS archived-r == z2(D_resid): PASS")
-        print("  GLS exact-anchor == z2(D_exact): PASS")
+        print("  GLS exact-anchor == z2(D_rounded_anchors): PASS")
         print("  w.T C w == varD:              PASS")
 
     sigma0 = np.sqrt(variance_of_contrast(0.0))
     print("Hierarchy (beta units):")
-    print(f"  0.94% linearization scale = {0.0094 * D_EXACT:.12e}")
+    print(f"  0.94% linearization scale = {0.0094 * D_ROUNDED_ANCHORS:.12e}")
     print(f"  sigma_D(rho=0) = {sigma0:.12e}")
-    print(f"  linearization / sigma_D = {0.0094 * D_EXACT / sigma0 * 100:.6f}%")
+    print(f"  linearization / sigma_D = {0.0094 * D_ROUNDED_ANCHORS / sigma0 * 100:.6f}%")
     print(f"  method deltaD range = {0.02 / 68.96:.12e} .. {0.05 / 68.96:.12e}")
-    print(f"  sigma compression to 1.96 sigma = {(1 - (D_EXACT / 1.96) / sigma0) * 100:.6f}%")
+    print(f"  sigma compression to 1.96 sigma = {(1 - (D_ROUNDED_ANCHORS / 1.96) / sigma0) * 100:.6f}%")
 
     # Guard against the unit error: multiplying vJ by S^2 a second time.
     rho = 0.0

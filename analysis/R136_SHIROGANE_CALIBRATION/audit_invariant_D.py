@@ -20,7 +20,7 @@ def contrast_errors(rho_hc, rho_153, rho_x=0.0):
     varD = a*a + b*b - 2*rho_x*a*b + V['48']['ebc']**2 + V['64']['ebc']**2
     return phase, np.sqrt(varD)
 
-print('D_beta =', D)
+print('D_beta (rounded-anchor replay) =', D)
 for rhc, r153, rx in [(0,0,0),(.5,.5,0),(.7,.7,0),(.9,.9,0),(.9,.9,.3),(.5,.9,0),(.9,.5,0)]:
     _, sd = contrast_errors(rhc, r153, rx)
     z = D/sd
@@ -50,8 +50,8 @@ x48,x64 = 0.99678487,0.99918332
 slope8 = 0.62168433
 D_lin = (6.06160-6.06247)+slope8*(x64-x48)
 print('D linearized =',D_lin,'archived D =',D,'difference =',D-D_lin)
-print('D curve-anchor =',0.036564317/68.96+0.01009902/106.78)
-print('D table-anchor =',0.024438471/68.96+0.029300048/106.78)
+print('D table-anchor =',0.036564317/68.96+0.01009902/106.78)
+print('D curve-anchor =',0.024438471/68.96+0.029300048/106.78)
 print('slope error contribution =',0.0008*(x64-x48))
 
 # Flow-time and finite-volume controls.
