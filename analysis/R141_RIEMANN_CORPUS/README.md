@@ -65,3 +65,5 @@ OPENBLAS_NUM_THREADS=1 python /path/to/R141/bbn/signal_check.py --primat primat 
 [Протокол и код интегрированного прогона](../../reproductions/R141_INTEGRATED_20261122/README.md) связывают два измеренных спектра ⁵⁶Fe, конечные окна нулей ζ, операторные проверки R132/R140 и нелинейный контроль часов на архивной истории BBN.
 
 [Проверенный отчёт запуска 45044020368](../../reproductions/R141_INTEGRATED_20261122/results/45044020368-1/REPORT.md) · [Манифест девяти выходных файлов](../../reproductions/R141_INTEGRATED_20261122/results/45044020368-1/MANIFEST.sha256).
+
+[Фибоначчи в R132/R141. Доказательство, точный перебор и разбор отзыва](spectral/FIBONACCI.md)

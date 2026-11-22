@@ -8,7 +8,8 @@ from scipy.stats import rankdata
 
 
 def ring_block_det(length):
-    # Gram block for a run of ones: diagonal 1,2,...,2 and off-diagonals -1.
+    """Leading minor of I+BB* for one positive-length run, equal to F_(2L+1)."""
+    # The Gram block has diagonal 1,2,...,2 and off-diagonals -1.
     last, current = 1,2
     for _ in range(1,length):
         last,current = current,3*current-last
