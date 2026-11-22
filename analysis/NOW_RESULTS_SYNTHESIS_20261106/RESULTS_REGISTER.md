@@ -4001,6 +4001,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md) | `scope_boundary` | Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт. |
 | [result:R140](../REGISTRY_LINKS/INDEX.md#result-r140) | [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md) | `scope_boundary` | Все чистые и смешанные состояния удовлетворяют точной нижней границе. |
 | [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md) | `operational_requirement` | Два разных эффекта дают опубликованные P₀ и q₁. |
+| [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [R141_SPECTRAL_BBN_CCC_TL_20261122](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md) | `scope_boundary` | Математическая и ядерная линии встречаются при проверке переноса спектральных корреляций в измеряемую величину. |
 <!-- /generated:external-review-links -->
 
 <!-- generated:R130 -->
@@ -4341,22 +4342,24 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#connes); `scope_boundary`. Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
 
 **Внешний разбор:** [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#events); `operational_requirement`. Два разных эффекта дают опубликованные P₀ и q₁. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
+
+**Внешний разбор:** [R141_SPECTRAL_BBN_CCC_TL_20261122](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#genealogy); `scope_boundary`. Математическая и ядерная линии встречаются при проверке переноса спектральных корреляций в измеряемую величину. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
 <!-- /generated:review-card-result-r141 -->
 
 
 **Статус:** OPEN · КОНЕЧНЫЕ СВИДЕТЕЛИ И ГРАНИЦЫ ПРОВЕРЕНЫ
 
-**Результат.** Два кольца с одинаковыми частотами пар и первыми двумя степенными следами различаются по det(I+K): 26 и 25. В R140 за восемь шагов длина позволяет восстановить три координаты логического кубита. Полная запись длины на седьмом шаге удаляет одно направление. Для конечной длины 1 доказана нижняя граница (31−√377)/256. В исходной таблице смеси P₀=5/128 относится к графу №0 длины 3, q₁=31/256. При двух разрешённых приготовлениях первым шагом нижняя граница q₁ равна 3/64. До циклического усреднения разность det(I+tK) равна t³, после усреднения матрицы совпадают. Три взвешенных чтения длин дают ранги 3 и 2 по переменным состояния до и после записи на шаге 7.
+**Результат.** Два кольца с одинаковыми частотами пар и первыми двумя степенными следами различаются по det(I+K): 26 и 25. В R140 за восемь шагов длина позволяет восстановить три координаты логического кубита. Полная запись длины на седьмом шаге удаляет одно направление. Для конечной длины 1 доказана нижняя граница (31−√377)/256. В исходной таблице смеси P₀=5/128 относится к графу №0 длины 3, q₁=31/256. При двух разрешённых приготовлениях первым шагом нижняя граница q₁ равна 3/64. До циклического усреднения разность det(I+tK) равна t³, после усреднения матрицы совпадают. Три взвешенных чтения длин дают ранги 3 и 2 по переменным состояния до и после записи на шаге 7. Для ³He(d,p)⁴He пересчёт одноуровневой R-матрицы даёт табличные скорости в пределах 0,22% в пяти точках. При модельных 10% спектрального вклада и шаге 10 кэВ разброс D/H составляет 0,105 и 0,076 наблюдательной ошибки для GOE и GUE.
 
-**Условия.** Ревизия Lean, пять целевых утверждений, конструкции R132, 92 истории R140, 40 именованных выходов, известные операторы событий и протокол записи.
+**Условия.** Ревизия Lean, пять целевых утверждений, конструкции R132, 92 истории R140, 40 именованных выходов, известные операторы событий и протокол записи. Нативные таблицы 12 каналов PRIMAT/LINX, параметры де Соузы, S-фактор LUNA и архивная общая траектория BBN.
 
-**Граница.** Формальные проверки RH и GRH для характеров Дирихле выполнены внешними группами. Корпус проверяет перенос математических приёмов на конечные модели. Физическое соответствие нулей и спектра ADD, генезис подготовки и единственность физического носителя остаются открытыми.
+**Граница.** Формальные проверки RH и GRH для характеров Дирихле выполнены внешними группами. Корпус проверяет перенос математических приёмов на конечные модели. Физическое соответствие нулей и спектра ADD, генезис подготовки и единственность физического носителя остаются открытыми. Параметры гипотетических линий не определены из данных. Для общего механизма ζ → ядра → BBN нужна независимо предсказанная спектроскопия с каналами и физическим масштабом энергии.
 
 **Место в рамке.** Сравнить достаточность локального описания для будущих измерений, область допустимых таблиц и множество приготовлений от известного старта.
 
 **Родители:** R132, R140. **Конструкции:** C012, C037. **Вопросы:** U010.
 
-**Источники:** [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/REPORT.md); [REVIEW.md](../../analysis/R141_RIEMANN_CORPUS/REVIEW.md); [reproduce.py](../../analysis/R141_RIEMANN_CORPUS/reproduce.py); [CHECKS.json](../../analysis/R141_RIEMANN_CORPUS/CHECKS.json); [SCHEDULES.json](../../analysis/R141_RIEMANN_CORPUS/SCHEDULES.json); [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md); [lean_sources.json](../../analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json); [HILBERT_POLYA.md](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md); [ARITHMETIC.md](../../analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md).
+**Источники:** [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/REPORT.md); [REVIEW.md](../../analysis/R141_RIEMANN_CORPUS/REVIEW.md); [reproduce.py](../../analysis/R141_RIEMANN_CORPUS/reproduce.py); [CHECKS.json](../../analysis/R141_RIEMANN_CORPUS/CHECKS.json); [SCHEDULES.json](../../analysis/R141_RIEMANN_CORPUS/SCHEDULES.json); [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md); [lean_sources.json](../../analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json); [HILBERT_POLYA.md](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md); [ARITHMETIC.md](../../analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md); [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md); [CHECKS.json](../../analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R141 -->
