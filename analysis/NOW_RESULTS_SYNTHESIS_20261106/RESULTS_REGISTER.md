@@ -4263,3 +4263,25 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R142 -->
+
+<!-- generated:R143 -->
+<a id="r143"></a>
+
+### R143. Физическая генеалогия корпуса по представителям R142
+
+**Статус:** OPEN · адресное обследование зафиксированного корпуса
+
+**Результат.** 76 утверждений, 31 область. Вне R142 аттестованы адреса 14 областей. Матрица содержит 1759 адресов. 39 записей фиксируют носитель, донора или предмет задания; 15 проверок описывают предел переноса.
+
+**Условия.** R142 как классификатор; срез вершин 164 веток, объединённые R/C/L/U, зарегистрированные задания, документы, расчёты, экспериментальные и модельные данные.
+
+**Граница.** Наличие носителя не устанавливает числовое утверждение об этом носителе. Неразрешённые поисковые совпадения и неполные архивы явно обозначены.
+
+**Место в рамке.** Результат адресует физический носитель, наблюдаемую и вид свидетельства по всему корпусу. C028 и L07 служат методическими адресами для границы переноса.
+
+**Родители:** R142. **Конструкции:** C028. **Вопросы:** .
+
+**Источники:** [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/README.md); [CATALOG.md](../../analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md); [EVIDENCE.md](../../analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md); [matrix.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv); [addresses.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv); [network.graphml](../../analysis/R143_PHYSICAL_GENEALOGY/network.graphml); [GAPS.md](../../analysis/R143_PHYSICAL_GENEALOGY/GAPS.md); [DONORS.md](../../analysis/R143_PHYSICAL_GENEALOGY/DONORS.md); [screening.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/screening.tsv); [run_tasks.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv); [run_sources.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv); [catalog.json](../../analysis/R143_PHYSICAL_GENEALOGY/catalog.json); [evidence.json](../../analysis/R143_PHYSICAL_GENEALOGY/evidence.json); [snapshot.json](../../analysis/R143_PHYSICAL_GENEALOGY/snapshot.json); [reuse_checks.json](../../analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/verify.py); [search_snapshot.py](../../analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R143 -->
