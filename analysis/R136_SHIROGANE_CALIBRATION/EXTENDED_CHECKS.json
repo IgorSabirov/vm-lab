@@ -268,11 +268,17 @@
       "error": 0.027086722,
       "z": 1.75
     },
-    "interpretation": "No resolved volume dependence of the flow-time drift at current precision. The Figure-3 volume difference is a separate finite-volume control."
+    "interpretation": "No resolved volume dependence of the flow-time drift at current precision. The Figure-3 volume difference is a separate finite-volume control.",
+    "temporal_covariance_caveat": {
+      "assumption": "Existing drift errors use hypot(err_t0, err_t14), equivalent to rho_time=0.",
+      "data_structure": "t=0 and t=1.4 measurements use the same configurations.",
+      "implication": "Positive cross-time covariance reduces the variance of the drift; therefore z=1.645 and 1.356 are conditional rho_time=0 values and conservative lower estimates of significance if the correlation is positive, not upper bounds.",
+      "status": "Cross-time covariance is unmeasured; obtain joint jackknife/block replicas."
+    }
   },
   "execution_provenance": {
     "canonical_r136_replay": "Previously recorded REPLAY == ARCHIVE: True; canonical verify.py and CHECKS.json unchanged.",
-    "extended_covariance_gls_flow_calculations": "Recomputed from archived numeric inputs in this conversation.",
+    "extended_covariance_gls_flow_calculations": "Independently recomputed from archived numeric inputs in a clean execution for this conversation; the algebraic GLS/contrast identities were checked at relative tolerance 1e-12. This is not a full clean-VM replay of all extended blocks.",
     "polynomial_sensitivity_and_pdf_vertex_jackknife": "Values transcribed from the attached execution log; not independently re-run in a clean VM during this update.",
     "full_clean_vm_replay": "NOT_CONFIRMED; VM compute connection unavailable.",
     "arxiv_source_archive_download": "Timed out in the weak sandbox; no result inferred from the timeout."
@@ -372,7 +378,32 @@
     "rho_grid_proposal": "Pre-register full 2D grid rho_hc x rho_153 at rho_x=0; do not select rho by resulting significance; account for look-elsewhere if scanning.",
     "interpretation": "All rho are illustrative, not measured. rho_153 may be substantial if Fig.15 and Fig.3 share ensembles/reweighting; rho_hc=0.9 is an aggressive bracket if phase samples are separated.",
     "non_independence": "D contrast and one-parameter GLS common-shift residual are the same one-dimensional contrast when built from the same covariance matrix; do not count as independent evidence.",
-    "numeric_consistency_note": "Displayed values are close but not identical: zD^2=1.218 vs GLS chi2_min=1.241 (rho=0); 4.460 vs 4.545 (rho=0.9). Recompute both from one unrounded covariance matrix before asserting exact numerical identity."
+    "numeric_consistency_note": "Resolved: with archived residuals r, GLS chi2_min equals (D_lin/sigma_D)^2, where D_lin=r48/s48-r64/s64=0.0006287826. The earlier comparison used D_exact=0.0006229 in z_D, producing the ~1.8977% squared ratio. This is a numerator mismatch, not covariance rounding. Canonical contrast is D_exact; retain D_lin as a linearized proxy. Recomputed with the same unrounded C: archived-r GLS matches z^2(D_lin); GLS built from exact-anchor residuals r_exact=s*(beta0-anchor) matches z^2(D_exact): 1.218060 at rho=0 and 4.460366 at rho=0.9. w.s=0 and the one-dimensional identity pass at relative tolerance 1e-12.",
+    "canonical_contrast": {
+      "definition": "D_exact=beta0(48)-beta0(64)",
+      "value": 0.0006229,
+      "linearized_proxy": 0.0006287826,
+      "relative_proxy_difference": 0.009443,
+      "squared_ratio": 1.018977,
+      "exact_anchor": "a=6.0632464; r_exact=s*(beta0-a)",
+      "regression": {
+        "rho_0": {
+          "z_exact_squared": 1.21806,
+          "gls_chi2_exact_anchor": 1.21806,
+          "gls_chi2_archived_residuals": 1.241175,
+          "z_linearized_squared": 1.241175
+        },
+        "rho_0_9": {
+          "z_exact_squared": 4.460366,
+          "gls_chi2_exact_anchor": 4.460366,
+          "gls_chi2_archived_residuals": 4.54501,
+          "z_linearized_squared": 4.54501
+        },
+        "relative_tolerance": 1e-12,
+        "w_dot_s_absolute": 6e-17
+      },
+      "rule": "Use D_exact as canonical numerator. Keep D_lin only as a separately labelled linearized proxy. Never compare z(D_exact) with GLS built from archived residuals r unless the residuals are first rebuilt from exact anchors."
+    }
   },
   "method_systematics": {
     "concern": "D is anchor-free but not free of volume-dependent difference between Fig.15 phase-resolved estimator and Fig.3 peak/reweighting estimator.",
@@ -417,7 +448,8 @@
     "regression_tests": [
       "D(F+c)=D",
       "common-anchor swap leaves D unchanged",
-      "canonical replay equals archived CHECKS.json"
+      "canonical replay equals archived CHECKS.json",
+      "With archived residuals r and one unrounded C, GLS chi2_min equals (D_lin/sigma_D)^2; with exact-anchor residuals r_exact=s*(beta0-anchor), it equals (D_exact/sigma_D)^2 (relative tolerance 1e-12)."
     ],
     "secant_slope_64_range": [
       106.8,
