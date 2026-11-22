@@ -1,0 +1,288 @@
+{
+  "schema": "R136_EXTENDED_AUDIT_V1",
+  "date": "2026-11-22",
+  "scope": "Exploratory extension of R136 calibration, covariance and flow-time controls; not a new scientific result or full canonical replay.",
+  "polynomial_domain_bug": {
+    "faulty_expression": "Polynomial(poly.coef)",
+    "effect": "Drops fitted domain/window after Polynomial.fit; produced nonsensical Delta beta about 12.2056.",
+    "correct_expression": "Polynomial(poly.coef.copy(), domain=poly.domain, window=poly.window)",
+    "corrected_delta_beta": 0.00062284463,
+    "constant_shift_invariance": [
+      {
+        "shift": -0.000242,
+        "delta_beta": 0.00062284463
+      },
+      {
+        "shift": 0.000242,
+        "delta_beta": 0.00062284463
+      },
+      {
+        "shift": 0.001,
+        "delta_beta": 0.00062284463
+      }
+    ],
+    "scope_note": "Defect is in exploratory Phase-1 snippet, not canonical R136 verify.py."
+  },
+  "calibration_sensitivity": {
+    "global_polynomial": {
+      "degree_3": {
+        "x48": 0.997583,
+        "x64": 0.998961,
+        "residual48": 0.0343,
+        "residual64": -0.0151,
+        "delta_beta": 0.0006446
+      },
+      "degree_4": {
+        "x48": 0.997581,
+        "x64": 0.998959,
+        "residual48": 0.0342,
+        "residual64": -0.0153,
+        "delta_beta": 0.0006445
+      },
+      "degree_5": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0244,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006228
+      },
+      "degree_6": {
+        "x48": 0.997363,
+        "x64": 0.998761,
+        "residual48": 0.0249,
+        "residual64": -0.0287,
+        "delta_beta": 0.0006228
+      },
+      "degree_7": {
+        "x48": 0.997319,
+        "x64": 0.998717,
+        "residual48": 0.0229,
+        "residual64": -0.0316,
+        "delta_beta": 0.0006226
+      }
+    },
+    "local_and_interpolation": {
+      "local_deg2_n6_10": {
+        "x48": 0.997312,
+        "x64": 0.998704,
+        "residual48": 0.0227,
+        "residual64": -0.0325,
+        "delta_beta": 0.0006297
+      },
+      "local_deg3_n6_10": {
+        "x48": 0.997303,
+        "x64": 0.998699,
+        "residual48": 0.0223,
+        "residual64": -0.0328,
+        "delta_beta": 0.0006247
+      },
+      "local_deg2_n5_11": {
+        "x48": 0.997206,
+        "x64": 0.998588,
+        "residual48": 0.0181,
+        "residual64": -0.0401,
+        "delta_beta": 0.0006394
+      },
+      "local_deg3_n5_11": {
+        "x48": 0.997176,
+        "x64": 0.998574,
+        "residual48": 0.0168,
+        "residual64": -0.0411,
+        "delta_beta": 0.000623
+      },
+      "local_deg2_n7_9": {
+        "x48": 0.997306,
+        "x64": 0.998701,
+        "residual48": 0.0224,
+        "residual64": -0.0327,
+        "delta_beta": 0.0006262
+      },
+      "local_deg3_n7_9": {
+        "x48": 0.997313,
+        "x64": 0.998704,
+        "residual48": 0.0227,
+        "residual64": -0.0325,
+        "delta_beta": 0.0006306
+      },
+      "pchip": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0245,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006251
+      },
+      "cubic": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0245,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006257
+      }
+    },
+    "pdf_vertex_jackknife": {
+      "delete_one": {
+        "sigma_F8": 0.0000254,
+        "sigma_x48": 0.0000409,
+        "sigma_x64": 0.0000409,
+        "sigma_delta_beta": 2.49e-7
+      },
+      "block_10": {
+        "sigma_F8": 0.0000304,
+        "sigma_x48": 0.0000487,
+        "sigma_x64": 0.0000488,
+        "sigma_delta_beta": 2.24e-7
+      },
+      "interpretation": "Digitized-curve fit stability only; not uncertainty of source measurements and not a substitute for configuration jackknife."
+    }
+  },
+  "covariance_sensitivity": {
+    "scenarios": [
+      {
+        "rho_hc": 0,
+        "rho_153": 0,
+        "rho_x": 0,
+        "sigma_D": 0.000567,
+        "z": 1.1,
+        "p": 0.272,
+        "one_sigma_overlap": true
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "sigma_D": 0.000403,
+        "z": 1.55,
+        "p": 0.122,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.7,
+        "rho_153": 0.7,
+        "rho_x": 0,
+        "sigma_D": 0.000342,
+        "z": 1.82,
+        "p": 0.069,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "sigma_D": 0.000293,
+        "z": 2.13,
+        "p": 0.034,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0.3,
+        "sigma_D": 0.00028,
+        "z": 2.22,
+        "p": 0.026,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "sigma_D": 0.000277,
+        "z": 2.25,
+        "p": 0.024,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "sigma_D": 0.000386,
+        "z": 1.61,
+        "p": 0.107,
+        "one_sigma_overlap": false
+      }
+    ],
+    "rho_threshold_z_1_96": 0.79,
+    "rho_threshold_no_1sigma_overlap": 0.323,
+    "gls_common_shift": [
+      {
+        "rho": 0,
+        "delta_beta": -0.000144,
+        "error": 0.000362,
+        "chi2_min": 1.23,
+        "dof": 1,
+        "p_min": 0.267,
+        "chi2_zero": 1.387,
+        "dof_zero": 2,
+        "p_zero": 0.5
+      },
+      {
+        "rho": 0.9,
+        "delta_beta": -0.000093,
+        "error": 0.00031,
+        "chi2_min": 4.605,
+        "dof": 1,
+        "p_min": 0.032,
+        "chi2_zero": 4.695,
+        "dof_zero": 2,
+        "p_zero": 0.096
+      }
+    ],
+    "grid": {
+      "z_min": 1.1,
+      "z_max": 2.45,
+      "fraction_z_gt_1_96": 0.18,
+      "fraction_z_gt_3": 0
+    },
+    "interpretation": "All rho values are illustrative scenarios, not measured covariances. Statistical compatibility remains unresolved."
+  },
+  "flow_time_and_finite_volume": {
+    "48": {
+      "J0": 1.20218387,
+      "err0": 0.025700647,
+      "J14": 1.145928009,
+      "err14": 0.022559457,
+      "drift": -0.056255861,
+      "drift_error": 0.034197257,
+      "z": 1.645,
+      "mean_rate_abs_per_t": 0.040182758,
+      "dt_equiv_for_R136_residual": 0.6082
+    },
+    "64": {
+      "J0": 1.131935434,
+      "err0": 0.019561048,
+      "J14": 1.098524592,
+      "err14": 0.014992044,
+      "drift": -0.033410842,
+      "drift_error": 0.024645405,
+      "z": 1.356,
+      "mean_rate_abs_per_t": 0.023864887,
+      "dt_equiv_for_R136_residual": 1.2277
+    },
+    "difference_of_drifts_48_minus_64": {
+      "value": -0.022845019,
+      "error": 0.042152679,
+      "z": 0.542
+    },
+    "fig3_jump_finite_volume_difference_48_minus_64": {
+      "value": 0.047403417,
+      "error": 0.027086722,
+      "z": 1.75
+    },
+    "interpretation": "No resolved volume dependence of the flow-time drift at current precision. The Figure-3 volume difference is a separate finite-volume control."
+  },
+  "execution_provenance": {
+    "canonical_r136_replay": "Previously recorded REPLAY == ARCHIVE: True; canonical verify.py and CHECKS.json unchanged.",
+    "extended_covariance_gls_flow_calculations": "Recomputed from archived numeric inputs in this conversation.",
+    "polynomial_sensitivity_and_pdf_vertex_jackknife": "Values transcribed from the attached execution log; not independently re-run in a clean VM during this update.",
+    "full_clean_vm_replay": "NOT_CONFIRMED; VM compute connection unavailable.",
+    "arxiv_source_archive_download": "Timed out in the weak sandbox; no result inferred from the timeout."
+  },
+  "decision": {
+    "R136": "OPEN",
+    "U013": "OPEN",
+    "publication_error_established": false,
+    "scientific_acceptance": false,
+    "downstream_167_168_174_closed": false,
+    "physical_launch_authorized": false
+  }
+}
