@@ -4980,3 +4980,12 @@ infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt — [исходная карто
 
 **Входящие:** [METHOD_20261112](#review-method_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
+
+
+<a id="source-analysis-r136_shirogane_calibration-extended_checks-json"></a>
+### source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json
+
+Машинные результаты расширенного аудита устойчивости R136 — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json).
+
+**Входящие:** [R136](#result-r136) managed_evidence_source.
+**Исходящие:** нет.
