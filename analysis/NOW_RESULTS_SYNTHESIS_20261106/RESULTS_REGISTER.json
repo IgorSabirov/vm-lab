@@ -5172,9 +5172,9 @@
       "section": "25. Проверка температурной калибровки SU(3)",
       "title": "Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных",
       "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ",
-      "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит: знаки остатков устойчивы к степени/окну полинома и способу интерполяции; Δbeta-origin≈6.23×10^-4. Flow-time drift Figure 3 отрицателен на обеих решётках; различие дрейфов 0.54σ. Значимость общего сдвига зависит от неизвестной ковариации.",
+      "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит: знаки остатков устойчивы к степени/окну полинома и способу интерполяции; Δbeta-origin≈6.23×10^-4. Flow-time drift Figure 3 отрицателен на обеих решётках; различие дрейфов 0.54σ. Значимость общего сдвига зависит от неизвестной ковариации. R136.1: anchor-free contrast D=0.0006229; common additive F(8) cancels analytically. D remains sensitive to local calibration slope and volume-dependent estimator systematics; ΔJ≈0.02–0.05 may induce δD comparable to D. D and GLS common-shift are one contrast. Correlations remain illustrative scenarios; 2D rho_hc×rho_153 grid and author joint jackknife covariance required.",
       "inputs": "Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.",
-      "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. В exploratory Phase 1 Polynomial(poly.coef) терял domain/window; исправлено в Phase 2, канонический verify.py не затронут. Чувствительности к rho — сценарии, не измеренная ковариация. Полный чистый VM replay расширенных блоков не подтверждён.",
+      "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. В exploratory Phase 1 Polynomial(poly.coef) терял domain/window; исправлено в Phase 2, канонический verify.py не затронут. Чувствительности к rho — сценарии, не измеренная ковариация. Полный чистый VM replay расширенных блоков не подтверждён. D is not free of local-slope or volume-dependent estimator systematics. Fig.13/Fig.3 cross-check and full Fig.3 flow-time series are proposals pending independent extraction; Fig.16 cold point is only a re-digitization candidate. z² and GLS χ²min must be recomputed from one unrounded covariance matrix before claiming exact equality. Full clean-VM replay of R136.1 is not claimed.",
       "framework_role": "Independent calibration-consistency check for the Shirogane phase-resolved SU(3) EOS used by #167. R135 is contextual ancestry only; R136 does not supply a physical XB input or close #168/#174.",
       "evidence_level": "Векторные первоисточники, численная реконструкция и контроль другим оценивателем на связанных ансамблях.",
       "parent_result_ids": [
@@ -5193,7 +5193,9 @@
         "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
         "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
         "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
-        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json"
+        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py"
       ],
       "managed_sources": [
         "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
@@ -5201,7 +5203,9 @@
         "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
         "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
         "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
-        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json"
+        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py"
       ],
       "genealogy_note": "R135 is the programmatic/contextual parent, not physical evidence for the Shirogane calibration. Workstream ancestry: #167 EOS task → donor audit in draft PR #185 (PHASE_FLOW_AND_SIGMA_AUDIT.md, commit 649c1d9) → U013 → R136 / #193 → draft PR #194. Direct scientific donors: Shirogane et al. 2016 (arXiv:1605.02997, Eq. 42/F(n) calibration) and Shirogane et al. 2021 (arXiv:2011.10292, volume-specific beta_c, phase jumps, flow-time and method controls). Data lineage: source EPS → extract.py → FIGURES.json → verify.py → CHECKS.json → REPORT.md. R136 informs but does not close U013. A partially complete (curve reconstruction done; exact Fig. 15 beta nodes/normalization absent), B open (joint jackknife covariance absent), C checked (shift sign on both volumes). #167 may consume the calibration after provenance/covariance closure; #168 hydro and #174 GW remain open. No publication error is established; scientific_acceptance=false. Extended audit added 2026-11-22: exploratory polynomial domain/window bug corrected (not in canonical verify.py); calibration/interpolation sensitivity, illustrative covariance/GLS scenarios and Figure-3 flow-time/finite-volume separation recorded in REPORT.md#extended-audit-followup and EXTENDED_CHECKS.json. R136/U013 remain OPEN; no publication error established; full clean-VM replay of all extension blocks not confirmed.",
       "scientific_acceptance": false
