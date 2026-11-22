@@ -4251,11 +4251,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Статус:** ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ
 
-**Результат.** Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀.
+**Результат.** Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит подтверждает знаки остатков при вариантах аппроксимации; подразумеваемая разность beta-origin ≈6.23×10⁻⁴.
 
 **Условия.** Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.
 
-**Граница.** Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта.
+**Граница.** Точная β-сетка рис. 15 и совместная ковариация не установлены. В exploratory Phase 1 найден дефект: Polynomial(poly.coef) терял domain/window; исправленная конструкция сохраняет их и даёт Δβ=0.0006228446. Канонический verify.py не затронут. Flow-time drift Figure 3: −0.05626±0.03420 (48³) и −0.03341±0.02465 (64³); различие между объёмами 0.54σ. Значимость общего сдвига зависит от неизвестной корреляции. Ошибка публикации не установлена.
 
 **Место в рамке.** Независимая воспроизводимая проверка температурного входа EOS из R135 перед применением к метастабильным ветвям.
 
@@ -4263,7 +4263,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Прямые научные доноры:** Shirogane et al. 2016, arXiv:1605.02997 (калибровка F(n), Eq. 42); Shirogane et al. 2021, arXiv:2011.10292 (объёмные βc, фазовые скачки, flow-time controls). Цепочка данных: EPS → extract.py → FIGURES.json → verify.py → CHECKS.json → REPORT.md. R135 не является источником численного доказательства; PR #185 — предшествующий черновой донорский аудит, не научная приёмка. R136 информирует, но не закрывает U013. A частично выполнен; B открыт из-за отсутствия совместной jackknife-ковариации; C проверен на обеих решётках. Ошибка публикации не установлена; #167/#168/#174 не закрыты.
 
-**Источники:** [REPORT.md](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md); [verify.py](../../analysis/R136_SHIROGANE_CALIBRATION/verify.py); [CHECKS.json](../../analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json); [extract.py](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py); [FIGURES.json](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json).
+**Источники:** [REPORT.md](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md); [verify.py](../../analysis/R136_SHIROGANE_CALIBRATION/verify.py); [CHECKS.json](../../analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json); [EXTENDED_CHECKS.json](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json); [extract.py](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py); [FIGURES.json](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json).
 
-**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+**Расширенный аудит:** [отчёт](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md#extended-audit-followup); полный чистый VM replay расширенных блоков не подтверждён. R136/U013 остаются OPEN.\n\n**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R136 -->
