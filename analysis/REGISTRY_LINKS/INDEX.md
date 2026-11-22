@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=152.
+Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=156.
 
 ## Предпосылка → результаты
 
@@ -3155,10 +3155,10 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 
 ### result:R142
 
-Магические числа в физике — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r142).
+происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки. — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r142).
 
 **Входящие:** нет.
-**Исходящие:** [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`.
+**Исходящие:** [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DONORS.md](#source-analysis-r142_magic_numbers-donors-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt](#source-analysis-r142_magic_numbers-origin_checks-txt) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/README.md](#source-analysis-r142_magic_numbers-readme-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/origin_audit.py](#source-analysis-r142_magic_numbers-origin_audit-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4873,11 +4873,47 @@ analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md — [исходная карточк
 **Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r142_magic_numbers-donors-md"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/DONORS.md
+
+analysis/R142_MAGIC_NUMBERS/DONORS.md — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/DONORS.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-origin_checks-txt"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt
+
+analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-readme-md"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/README.md
+
+analysis/R142_MAGIC_NUMBERS/README.md — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/README.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r142_magic_numbers-calibrate-py"></a>
 
 ### source:analysis/R142_MAGIC_NUMBERS/calibrate.py
 
 analysis/R142_MAGIC_NUMBERS/calibrate.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/calibrate.py).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-origin_audit-py"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/origin_audit.py
+
+analysis/R142_MAGIC_NUMBERS/origin_audit.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py).
 
 **Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.

@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "b6aed13443175566b5e031945ed48b3ad7565820f701c41de8633345caa55613",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "36a8795f31a572490138370ca2c6e2a075a6e91e55e673ede33cbc408b775fc6",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "deab3ecd197cea43c84aa04318fd4b26589202d13a650f1703b5e95dc24b56c4",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "26a09bde271b40686b0c2e2d0ab29e510a1a527dcd247591da048b527d4b5849",
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 152
+    "source": 156
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3192,8 +3192,8 @@
       "key": "result:R142",
       "id": "R142",
       "kind": "result",
-      "title": "Магические числа в физике",
-      "status": "DESIGN_DRAFT · ретроспективная калибровка",
+      "title": "происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки.",
+      "status": "OPEN · ретроспективный аудит",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
       "fragment": "r142"
     },
@@ -5058,6 +5058,42 @@
       "size_bytes": 8075
     },
     {
+      "key": "source:analysis/R142_MAGIC_NUMBERS/DONORS.md",
+      "id": "analysis/R142_MAGIC_NUMBERS/DONORS.md",
+      "kind": "source",
+      "title": "analysis/R142_MAGIC_NUMBERS/DONORS.md",
+      "status": null,
+      "path": "analysis/R142_MAGIC_NUMBERS/DONORS.md",
+      "fragment": "",
+      "sha256": "ac3c8302af026716f9b95e1d7a432b23de649ab1f4aea30dea96d0025e994197",
+      "git_blob_sha": "a91b684e0309f0520c3201eb5bd1b7bf7d71bf8c",
+      "size_bytes": 18518
+    },
+    {
+      "key": "source:analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt",
+      "id": "analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt",
+      "kind": "source",
+      "title": "analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt",
+      "status": null,
+      "path": "analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt",
+      "fragment": "",
+      "sha256": "f05bc21c1419bddd4770861d7a754600457ac6c4a45a9848844a6d7deb03cbe0",
+      "git_blob_sha": "fbe6f291cd7c9c0755098bc027999913130a5537",
+      "size_bytes": 4131
+    },
+    {
+      "key": "source:analysis/R142_MAGIC_NUMBERS/README.md",
+      "id": "analysis/R142_MAGIC_NUMBERS/README.md",
+      "kind": "source",
+      "title": "analysis/R142_MAGIC_NUMBERS/README.md",
+      "status": null,
+      "path": "analysis/R142_MAGIC_NUMBERS/README.md",
+      "fragment": "",
+      "sha256": "70105db3774ef638393edd2483300d03cb0c3cec7c86616a20fd4f5931263dd4",
+      "git_blob_sha": "394f09ab13b424ec86c049fee619a90851fbc25f",
+      "size_bytes": 31040
+    },
+    {
       "key": "source:analysis/R142_MAGIC_NUMBERS/calibrate.py",
       "id": "analysis/R142_MAGIC_NUMBERS/calibrate.py",
       "kind": "source",
@@ -5068,6 +5104,18 @@
       "sha256": "7801a72715eb668f5a2d39413c3a99bb5e2fd00ee2b5c6a8f013fee0d11d9857",
       "git_blob_sha": "ad40238dc7e25ea372fa4c49180add2dfab37b7f",
       "size_bytes": 1059
+    },
+    {
+      "key": "source:analysis/R142_MAGIC_NUMBERS/origin_audit.py",
+      "id": "analysis/R142_MAGIC_NUMBERS/origin_audit.py",
+      "kind": "source",
+      "title": "analysis/R142_MAGIC_NUMBERS/origin_audit.py",
+      "status": null,
+      "path": "analysis/R142_MAGIC_NUMBERS/origin_audit.py",
+      "fragment": "",
+      "sha256": "85d0745e528ee133d426ddeb3df11dbe985411988c555d0c13b922b5c07acba2",
+      "git_blob_sha": "552dc1a8da48d9660916d12f7b4eed41b593ae08",
+      "size_bytes": 9427
     },
     {
       "key": "source:infra/external/README.md",
@@ -10749,7 +10797,27 @@
     },
     {
       "source": "result:R142",
+      "target": "source:analysis/R142_MAGIC_NUMBERS/DONORS.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
+      "target": "source:analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
+      "target": "source:analysis/R142_MAGIC_NUMBERS/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
       "target": "source:analysis/R142_MAGIC_NUMBERS/calibrate.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
+      "target": "source:analysis/R142_MAGIC_NUMBERS/origin_audit.py",
       "relation": "managed_evidence_source"
     },
     {
