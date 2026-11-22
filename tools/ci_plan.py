@@ -3,7 +3,10 @@
 import argparse,json,subprocess
 SUITES=('integrity','infra','e002','now','x27_043','x27_051')
 def select(paths):
-    picked={'integrity'}
+    paths = [p for p in paths if p]
+    evidence_only = paths and all(p.startswith(('analysis/', 'reproductions/', 'results/',
+                                               'infra/external/contracts/')) for p in paths)
+    picked = {'evidence'} if evidence_only else {'integrity'}
     for p in paths:
         if p.startswith(('.github/','tools/')) or p in {'requirements-ci.txt','pyproject.toml'}:picked.update(SUITES)
         if p.startswith('infra/') and p.endswith('.py') or p=='reporting.py':picked.add('infra')
@@ -11,7 +14,7 @@ def select(paths):
         if p.startswith('experiments/now_integrated_v1/'):picked.add('now')
         if p.startswith('experiments/X27_PACKAGES_20261110/v043/'):picked.add('x27_043')
         if p.startswith('experiments/X27_PACKAGES_20261110/v051/'):picked.add('x27_051')
-    return [s for s in SUITES if s in picked]
+    return [s for s in ('evidence', *SUITES) if s in picked]
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--base');ap.add_argument('--head',default='HEAD');ap.add_argument('--all',action='store_true');ap.add_argument('--output');a=ap.parse_args()
     paths=[] if a.all else subprocess.check_output(['git','diff','--name-only','-z',a.base,a.head]).decode().split('\0')
