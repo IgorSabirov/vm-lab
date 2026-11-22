@@ -280,9 +280,153 @@
   "decision": {
     "R136": "OPEN",
     "U013": "OPEN",
-    "publication_error_established": false,
     "scientific_acceptance": false,
+    "publication_error_established": false,
+    "clean_vm_replay_of_this_addendum": "NOT_CLAIMED",
     "downstream_167_168_174_closed": false,
     "physical_launch_authorized": false
+  },
+  "invariant_D": {
+    "definition": "D=beta0(48)-beta0(64), beta0(V)=beta_c(V)+F(8)-F(8*x_match,V), with x_match defined by J15(x)=J3 independently of the Fig.15 temperature axis.",
+    "exact_identity": "D=[beta_c(48)-beta_c(64)]+[F(8*x64)-F(8*x48)]; common F(8) cancels analytically.",
+    "value": 0.0006229,
+    "inputs": {
+      "beta_c_48": 6.0616,
+      "beta_c_64": 6.06247,
+      "x_match_48": 0.99678487,
+      "x_match_64": 0.99918332,
+      "local_slope_8Fprime8": 0.62168433,
+      "beta0_48": 6.0636007,
+      "beta0_64": 6.0629778
+    },
+    "linearized_crosscheck": 0.0006210787813,
+    "curve_anchor_crosscheck": 0.0006287825842,
+    "table_anchor_crosscheck": 0.0006248028381,
+    "slope_uncertainty_contribution": 0.00000191876,
+    "invariance_scope": "Invariant to common additive F->F+c and common anchor changes; not invariant to local calibration slope/shape, volume-dependent estimator systematics, or unknown covariance."
+  },
+  "common_anchor": {
+    "gls_rho0": 6.0631061,
+    "table_anchor": 6.06307,
+    "difference_sigma": 0.129,
+    "quintic_F8": 6.06325,
+    "interpretation": "Three anchor handles agree within about 1 sigma under the illustrative rho=0 GLS error model. This reduces concern about a common additive anchor, but does not establish the authors' exact Fig.15 convention."
+  },
+  "covariance_refinement": {
+    "model": "rho_hc correlates hot/cold Fig.15; rho_153 correlates Fig.15 and Fig.3; rho_x correlates the volumes.",
+    "scenarios": [
+      {
+        "rho_hc": 0,
+        "rho_153": 0,
+        "rho_x": 0,
+        "z": 1.104,
+        "p": 0.27
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "z": 1.55,
+        "p": 0.121
+      },
+      {
+        "rho_hc": 0.7,
+        "rho_153": 0.7,
+        "rho_x": 0,
+        "z": 1.821,
+        "p": 0.069
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "z": 2.112,
+        "p": 0.035
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0.3,
+        "z": 2.202,
+        "p": 0.028
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "z": 2.244,
+        "p": 0.025
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "z": 1.615,
+        "p": 0.106
+      }
+    ],
+    "rho_common_threshold_1_96": 0.7931,
+    "sigmaD_rho0": 0.000564,
+    "sigmaD_needed_for_1_96": 0.0003178061,
+    "required_sigma_compression_percent": 43.7,
+    "rho_grid_proposal": "Pre-register full 2D grid rho_hc x rho_153 at rho_x=0; do not select rho by resulting significance; account for look-elsewhere if scanning.",
+    "interpretation": "All rho are illustrative, not measured. rho_153 may be substantial if Fig.15 and Fig.3 share ensembles/reweighting; rho_hc=0.9 is an aggressive bracket if phase samples are separated.",
+    "non_independence": "D contrast and one-parameter GLS common-shift residual are the same one-dimensional contrast when built from the same covariance matrix; do not count as independent evidence.",
+    "numeric_consistency_note": "Displayed values are close but not identical: zD^2=1.218 vs GLS chi2_min=1.241 (rho=0); 4.460 vs 4.545 (rho=0.9). Recompute both from one unrounded covariance matrix before asserting exact numerical identity."
+  },
+  "method_systematics": {
+    "concern": "D is anchor-free but not free of volume-dependent difference between Fig.15 phase-resolved estimator and Fig.3 peak/reweighting estimator.",
+    "illustrative_deltaJ": [
+      0.02,
+      0.05
+    ],
+    "induced_deltaD_order": [
+      0.00029,
+      0.0007251
+    ],
+    "comparison": "This is comparable to D=0.0006229.",
+    "consequence": "Flow-time/finite-volume and estimator cross-checks logically precede interpreting D as a temperature-calibration discrepancy. Even author covariance alone does not isolate calibration error until estimator systematics are bounded."
+  },
+  "additional_controls": {
+    "fig3_full_flow_series": "FIGURES.json currently has Fig.15 hot/cold 30+30 nodes per volume at t/a^2=1.4, while Fig.3 is digitized only at t=0 and 1.4. Proposed: digitize full Fig.3 t-series from EPS and form a bracket under explicit assumption of equal flow-time correction for both estimators; not a direct D(t) measurement.",
+    "fig13_vs_fig3": {
+      "preliminary_48": {
+        "value": 0.374,
+        "error": 0.211,
+        "z": 1.77
+      },
+      "preliminary_64": {
+        "value": -0.129,
+        "error": 0.121,
+        "z": -1.07
+      },
+      "status": "Preliminary; verify triangle markers, matching, flow time and scheme before use. Potential axis-free estimator cross-check."
+    },
+    "fig16_cold64_last_point": {
+      "x": 1.00878,
+      "J": 0.397,
+      "error": 0.358,
+      "neighbor_trend_approx": 0.584,
+      "status": "Digitization-review candidate only; not established artifact."
+    },
+    "calibration_curve_quantization": "Repeated identical beta coordinates at different n and global fit residual ~0.000242 may reflect vector rendering/quantization rather than physical noise. Degree-5 form is the published Eq.(42) central form; other degrees are sensitivity brackets. Local slope near n=8 is more relevant to D than a high-order global fit."
+  },
+  "programming_controls": {
+    "preserve_failed_phase1": "Archive exploratory Phase-1 Delta-beta=12.2056 as a corrected negative result; cause: Polynomial(poly.coef) discarded domain/window from Polynomial.fit.",
+    "corrected_phase2": "Preserve domain and window or convert polynomial before coefficient manipulation.",
+    "regression_tests": [
+      "D(F+c)=D",
+      "common-anchor swap leaves D unchanged",
+      "canonical replay equals archived CHECKS.json"
+    ],
+    "secant_slope_64_range": [
+      106.8,
+      111
+    ],
+    "z_rho09_sensitivity": [
+      2.112,
+      2.116
+    ],
+    "pdf_vertex_jackknife": "Fit stability only; not ensemble statistical uncertainty."
   }
 }
