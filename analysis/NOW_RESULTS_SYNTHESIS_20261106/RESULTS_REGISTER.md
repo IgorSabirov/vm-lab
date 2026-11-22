@@ -3996,6 +3996,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NEUTRINO_GW_ARCHITECTURE_20261118](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md) | `scope_boundary` | Новый мост не выводится из воспроизведения R130. |
 | [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [NOW_PROJECT_INTEGRATION_20261119](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md) | `scope_boundary` | Одинаковые числа блоков до k допускают разные длины на шаге k+1. Отображение в физический объём открыто. |
 | [result:R133](../REGISTRY_LINKS/INDEX.md#result-r133) | [R133_LOOP_NEIGHBOR_20261120](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md) | `scope_boundary` | Цикл требует явного транспорта имён, связностей и рамок. |
+| [result:R132](../REGISTRY_LINKS/INDEX.md#result-r132) | [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md) | `operational_requirement` | Циклическое усреднение отождествляет два слова, у которых до усреднения разность детерминантов t³. |
+| [result:R140](../REGISTRY_LINKS/INDEX.md#result-r140) | [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md) | `operational_requirement` | Для тех же трёх весов ранг по состоянию падает с трёх до двух. |
+| [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md) | `scope_boundary` | Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт. |
+| [result:R140](../REGISTRY_LINKS/INDEX.md#result-r140) | [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md) | `scope_boundary` | Все чистые и смешанные состояния удовлетворяют точной нижней границе. |
+| [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md) | `operational_requirement` | Два разных эффекта дают опубликованные P₀ и q₁. |
 <!-- /generated:external-review-links -->
 
 <!-- generated:R130 -->
@@ -4137,6 +4142,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [ADD_SPECTRAL_SESSION_20261120](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md#kms-length); `scope_boundary`. На фиксированном невзвешенном кольце полная KMS-энтропия определяется длиной. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 
 **Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics); `scope_boundary`. Для передачи спектральных параметров нужны обоснованный переход к МэВ и выбор нормировки. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
+
+**Внешний разбор:** [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#rings); `operational_requirement`. Циклическое усреднение отождествляет два слова, у которых до усреднения разность детерминантов t³. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 <!-- /generated:review-card-result-r132 -->
 
 
@@ -4297,6 +4304,15 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 ### R140. Мера Хаара и квантовые истории Соркина на именованных кольцах ADD
 
+
+
+<!-- generated:review-card-result-r140 -->
+**Внешний разбор:** [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#lengths); `operational_requirement`. Для тех же трёх весов ранг по состоянию падает с трёх до двух. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r140).
+
+**Внешний разбор:** [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#reachability); `scope_boundary`. Все чистые и смешанные состояния удовлетворяют точной нижней границе. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r140).
+<!-- /generated:review-card-result-r140 -->
+
+
 **Статус:** OPEN · ПОСТРОЕН НЕЙТРАЛЬНЫЙ СЕКТОР U(1) И КОНЕЧНЫЙ СВИДЕТЕЛЬ ИНТЕРФЕРЕНЦИИ
 
 **Результат.** Полный детерминированный F унитарен на прямой сумме нейтральных кольцевых U(1)-секторов при сохранении голономии. Для историй геометрии он даёт I₂=0. Локальное когерентное семейство содержит исходный F при θ=π/2. При θ=π/4 две истории длин из 120 за восемь прямых шагов дают μ(A)=μ(B)=1/128, μ(A∪B)=0, I₂=−1/64. Полная различимая запись обнуляет I₂. Совместное событие с единичной голономией на ℤ₃ даёт I₂=−1/96 при явно выбранном состоянии. Смешанный шаг на сырых связях ℤ₃ имеет ранг 9 из 27. Для выбранного разбиения I₃=0 и I₄=0 проверены как grade-2 регрессионные тождества; сильная положительность следует из Gram-формы и проверена численно. Это не дополнительные дискриминаторы квантовости.
@@ -4313,3 +4329,34 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R140 -->
+
+<!-- generated:R141 -->
+<a id="r141"></a>
+
+### R141. Гипотеза Римана, Гильберт–Пойа и корпус. Спектральная различимость и достижимость
+
+
+
+<!-- generated:review-card-result-r141 -->
+**Внешний разбор:** [R141_HILBERT_POLYA_CONNES_20261122](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#connes); `scope_boundary`. Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
+
+**Внешний разбор:** [R141_REACHABILITY_20261122](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#events); `operational_requirement`. Два разных эффекта дают опубликованные P₀ и q₁. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
+<!-- /generated:review-card-result-r141 -->
+
+
+**Статус:** OPEN · КОНЕЧНЫЕ СВИДЕТЕЛИ И ГРАНИЦЫ ПРОВЕРЕНЫ
+
+**Результат.** Два кольца с одинаковыми частотами пар и первыми двумя степенными следами различаются по det(I+K): 26 и 25. В R140 за восемь шагов длина позволяет восстановить три координаты логического кубита. Полная запись длины на седьмом шаге удаляет одно направление. Для конечной длины 1 доказана нижняя граница (31−√377)/256. В исходной таблице смеси P₀=5/128 относится к графу №0 длины 3, q₁=31/256. При двух разрешённых приготовлениях первым шагом нижняя граница q₁ равна 3/64. До циклического усреднения разность det(I+tK) равна t³, после усреднения матрицы совпадают. Три взвешенных чтения длин дают ранги 3 и 2 по переменным состояния до и после записи на шаге 7.
+
+**Условия.** Ревизия Lean, пять целевых утверждений, конструкции R132, 92 истории R140, 40 именованных выходов, известные операторы событий и протокол записи.
+
+**Граница.** Формальные проверки RH и GRH для характеров Дирихле выполнены внешними группами. Корпус проверяет перенос математических приёмов на конечные модели. Физическое соответствие нулей и спектра ADD, генезис подготовки и единственность физического носителя остаются открытыми.
+
+**Место в рамке.** Сравнить достаточность локального описания для будущих измерений, область допустимых таблиц и множество приготовлений от известного старта.
+
+**Родители:** R132, R140. **Конструкции:** C012, C037. **Вопросы:** U010.
+
+**Источники:** [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/REPORT.md); [REVIEW.md](../../analysis/R141_RIEMANN_CORPUS/REVIEW.md); [reproduce.py](../../analysis/R141_RIEMANN_CORPUS/reproduce.py); [CHECKS.json](../../analysis/R141_RIEMANN_CORPUS/CHECKS.json); [SCHEDULES.json](../../analysis/R141_RIEMANN_CORPUS/SCHEDULES.json); [REPORT.md](../../analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md); [lean_sources.json](../../analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json); [HILBERT_POLYA.md](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md); [ARITHMETIC.md](../../analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R141 -->

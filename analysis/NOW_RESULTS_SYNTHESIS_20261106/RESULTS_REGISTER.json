@@ -5339,6 +5339,67 @@
           "role": "external_review_not_execution_evidence"
         }
       ]
+    },
+    {
+      "id": "R141",
+      "section": "24. Геометрические кандидаты и интеграция",
+      "title": "Гипотеза Римана, Гильберт–Пойа и корпус. Спектральная различимость и достижимость",
+      "status": "OPEN · КОНЕЧНЫЕ СВИДЕТЕЛИ И ГРАНИЦЫ ПРОВЕРЕНЫ",
+      "result": "Два кольца с одинаковыми частотами пар и первыми двумя степенными следами различаются по det(I+K): 26 и 25. В R140 за восемь шагов длина позволяет восстановить три координаты логического кубита. Полная запись длины на седьмом шаге удаляет одно направление. Для конечной длины 1 доказана нижняя граница (31−√377)/256. В исходной таблице смеси P₀=5/128 относится к графу №0 длины 3, q₁=31/256. При двух разрешённых приготовлениях первым шагом нижняя граница q₁ равна 3/64. До циклического усреднения разность det(I+tK) равна t³, после усреднения матрицы совпадают. Три взвешенных чтения длин дают ранги 3 и 2 по переменным состояния до и после записи на шаге 7.",
+      "inputs": "Ревизия Lean, пять целевых утверждений, конструкции R132, 92 истории R140, 40 именованных выходов, известные операторы событий и протокол записи.",
+      "limit": "Формальные проверки RH и GRH для характеров Дирихле выполнены внешними группами. Корпус проверяет перенос математических приёмов на конечные модели. Физическое соответствие нулей и спектра ADD, генезис подготовки и единственность физического носителя остаются открытыми.",
+      "framework_role": "Сравнить достаточность локального описания для будущих измерений, область допустимых таблиц и множество приготовлений от известного старта.",
+      "evidence_level": "Сверка избранных формальных зависимостей, точная арифметика, прямое распространение амплитуд, полный перебор 256 двоичных расписаний и отрицательные контроли.",
+      "parent_result_ids": [
+        "R132",
+        "R140"
+      ],
+      "construct_ids": [
+        "C012",
+        "C037"
+      ],
+      "open_link_ids": [],
+      "open_question_ids": [
+        "U010"
+      ],
+      "premise_ids": [],
+      "managed_card": true,
+      "sources": [
+        "analysis/R141_RIEMANN_CORPUS/REPORT.md",
+        "analysis/R141_RIEMANN_CORPUS/REVIEW.md",
+        "analysis/R141_RIEMANN_CORPUS/reproduce.py",
+        "analysis/R141_RIEMANN_CORPUS/CHECKS.json",
+        "analysis/R141_RIEMANN_CORPUS/SCHEDULES.json",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json",
+        "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md",
+        "analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md"
+      ],
+      "managed_sources": [
+        "analysis/R141_RIEMANN_CORPUS/REPORT.md",
+        "analysis/R141_RIEMANN_CORPUS/REVIEW.md",
+        "analysis/R141_RIEMANN_CORPUS/reproduce.py",
+        "analysis/R141_RIEMANN_CORPUS/CHECKS.json",
+        "analysis/R141_RIEMANN_CORPUS/SCHEDULES.json",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/results.json",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json",
+        "analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+        "analysis/R141_RIEMANN_CORPUS/review/evidence.json",
+        "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md",
+        "analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md",
+        "analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py",
+        "analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json",
+        "analysis/R141_RIEMANN_CORPUS/spectral/corpus.py",
+        "analysis/R141_RIEMANN_CORPUS/spectral/corpus.json"
+      ],
+      "genealogy_note": "R132 и R140 поставляют объекты вычисления. R131, R049 и R053 задают контроль достаточности. R128.1/U010 касается происхождения настройки. R136 служит сравнением протоколов. Внешний донор ALPOGE_RH даёт методологию. Риман–Гинан–Вейль → арифметическая линия Конна → семейство Конна–Консани–Московичи. Ветвь Шамседдина–Конна–Марколи предоставляет язык R132. Перенос конечной леммы Тёплица проверен на паре колец. Соответствие предельных операторов открыто.",
+      "scientific_acceptance": false,
+      "work_issue": "https://github.com/IgorSabirov/vm-lab/issues/207"
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт. 22 ноября 2026: сводная регистрация R136 вместе с R139/R140. R136: канонический curve reconstruction D₁₃₆=0.000622844634102; округлённый replay 0.000622900, секущие proxies 0.000628782584 и 0.000624802838; точность EPS-осей проверена стресс-тестом до |δD|=3.46×10⁻⁶, но авторские β-узлы и joint jackknife covariance отсутствуют. #201 открыт для объёмной зависимости разности derivative−SFtX. R140: нейтральный U(1)-сектор, Haar-перенос голономии и выбранный grade-2 интерференционный свидетель; исходное состояние и θ заданы, raw charged/multicycle перенос и физическое обоснование смешивания открыты. Связь R136↔R140 методологическая; D₁₃₆ не идентифицируется из текущих ADD length histories. Научная приёмка R136/R139/R140=false.",
@@ -5659,7 +5720,8 @@
         "R009",
         "R010",
         "R011",
-        "R140"
+        "R140",
+        "R141"
       ],
       "sources": [
         "analysis/FOUNDATIONS_LITERATURE_20261103/BRIDGES.md",
@@ -6383,7 +6445,8 @@
         "R133",
         "R134",
         "R135",
-        "R139"
+        "R139",
+        "R141"
       ],
       "sources": [
         "analysis/INVARIANT_ATTACHMENTS_20261105/RESULT.md",
@@ -7144,6 +7207,10 @@
     ],
     "R140": [
       "C012"
+    ],
+    "R141": [
+      "C012",
+      "C037"
     ]
   },
   "open_links": [
@@ -8602,7 +8669,7 @@
       "meaning": "Навигационное соответствие; исходный статус не изменён"
     }
   ],
-  "revision": "R136_R140_REGISTRY_SYNC_20261122_METHOD_VOLUME",
+  "revision": "R141_HILBERT_POLYA_CONNES_20261122",
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
     "adopted_date": "2026-11-06",
@@ -9486,6 +9553,25 @@
       ],
       "note": "Merged the R136 source record and U013 into the R139/R140 registry lineage; documented the non-identifiability of D136 from current ADD histories. No scientific status promoted; this is a registry synchronization.",
       "scientific_status_promoted": false
+    },
+    {
+      "id": "R141_RIEMANN_CORPUS_20261122",
+      "date": "2026-11-22",
+      "base_commit": "440c08ccd1cd0125aa46c25e7a276cced1c83f5c",
+      "new_records": [
+        "R141"
+      ],
+      "note": "Регистрация математического донора и аудита достижимости. Научный статус R141 OPEN."
+    },
+    {
+      "id": "R141_HILBERT_POLYA_CONNES_20261122",
+      "date": "2026-11-22",
+      "base_commit": "4112577138ef9c820867b9cd4b35ebac28710159",
+      "new_records": [],
+      "updated_records": [
+        "R141"
+      ],
+      "note": "Два внешних входа и контроль переноса через Конна. Прямые родители R132, R140."
     }
   ],
   "lineage_edges": [
@@ -10730,6 +10816,18 @@
       "child": "R140",
       "relation": "direct_mathematical_input",
       "note": "Конечная локальная изометрия, унитарная рекомбинация и контроль декогеренции."
+    },
+    {
+      "parent": "R132",
+      "child": "R141",
+      "relation": "direct_mathematical_input",
+      "note": "Портовый оператор и спектральные наблюдаемые."
+    },
+    {
+      "parent": "R140",
+      "child": "R141",
+      "relation": "direct_mathematical_input",
+      "note": "Именованные истории, динамика и выбор события."
     }
   ],
   "historical_chains": [
@@ -11099,7 +11197,8 @@
       "R133",
       "R134",
       "R135",
-      "R139"
+      "R139",
+      "R141"
     ],
     "R133": [
       "R134",
@@ -11121,6 +11220,9 @@
     ],
     "R139": [
       "R140"
+    ],
+    "R140": [
+      "R141"
     ]
   },
   "attachment_coverage": {
@@ -15961,6 +16063,87 @@
         }
       ],
       "new_production_runs": 0
+    },
+    {
+      "id": "R141_REACHABILITY_20261122",
+      "title": "Отзыв о достижимости совместных распределений",
+      "status": "REVIEWED_WITH_SCOPE_LIMITS",
+      "date": "2026-11-22",
+      "base_commit": "440c08ccd1cd0125aa46c25e7a276cced1c83f5c",
+      "report": "analysis/R141_RIEMANN_CORPUS/REPORT.md",
+      "managed_sources": [
+        "analysis/R141_RIEMANN_CORPUS/REPORT.md",
+        "analysis/R141_RIEMANN_CORPUS/REVIEW.md",
+        "analysis/R141_RIEMANN_CORPUS/review/peer_input.txt",
+        "analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R141",
+          "relation": "operational_requirement",
+          "claim": "Сравнению требуется точное определение события.",
+          "rationale": "Два разных эффекта дают опубликованные P₀ и q₁.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/REPORT.md#events"
+        },
+        {
+          "target": "result:R140",
+          "relation": "scope_boundary",
+          "claim": "Спектр E₁ ограничивает вероятность конечной длины 1.",
+          "rationale": "Все чистые и смешанные состояния удовлетворяют точной нижней границе.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/REPORT.md#reachability"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "Допустимость таблицы и восстановление состояния оставляют открытым генезис.",
+          "rationale": "Для двух допустимых первых шагов установлено точное множество приготовлений.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/REPORT.md#preparation"
+        }
+      ]
+    },
+    {
+      "id": "R141_HILBERT_POLYA_CONNES_20261122",
+      "title": "Доноры ГР и ГП и генеалогия через Конна",
+      "status": "REVIEWED_WITH_EXACT_AND_INTERVAL_CONTROLS",
+      "date": "2026-11-22",
+      "base_commit": "4112577138ef9c820867b9cd4b35ebac28710159",
+      "report": "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md",
+      "managed_sources": [
+        "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md",
+        "analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R141",
+          "relation": "scope_boundary",
+          "claim": "Происхождение спектра независимо от списка нулей.",
+          "rationale": "Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#connes"
+        },
+        {
+          "target": "result:R132",
+          "relation": "operational_requirement",
+          "claim": "Порядок усреднения и вычисления детерминанта существен.",
+          "rationale": "Циклическое усреднение отождествляет два слова, у которых до усреднения разность детерминантов t³.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#rings"
+        },
+        {
+          "target": "result:R140",
+          "relation": "operational_requirement",
+          "claim": "Промежуточная запись имеет операционные последствия.",
+          "rationale": "Для тех же трёх весов ранг по состоянию падает с трёх до двух.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#lengths"
+        },
+        {
+          "target": "question:U010",
+          "relation": "scope_boundary",
+          "claim": "Восстановление состояния оставляет генезис открытым.",
+          "rationale": "Нужно независимо задать правило приготовления и вмешательство в содержательный след.",
+          "evidence": "analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#admission"
+        }
+      ]
     }
   ],
   "architecture_components": [
