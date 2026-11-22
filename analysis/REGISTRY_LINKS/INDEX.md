@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=135, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=149.
+Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=152.
 
 ## Предпосылка → результаты
 
@@ -3151,6 +3151,15 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`.
 **Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`.
 
+<a id="result-r142"></a>
+
+### result:R142
+
+Магические числа в физике — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r142).
+
+**Входящие:** нет.
+**Исходящие:** [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`.
+
 <a id="review-add_bbn_symmetry_20261115"></a>
 
 ### review:ADD_BBN_SYMMETRY_20261115
@@ -4844,6 +4853,33 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md — [исходная кар�
 analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная карточка](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py).
 
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-checks-json"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/CHECKS.json
+
+analysis/R142_MAGIC_NUMBERS/CHECKS.json — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-design_draft-md"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md
+
+analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-calibrate-py"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/calibrate.py
+
+analysis/R142_MAGIC_NUMBERS/calibrate.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/calibrate.py).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-readme-md"></a>
