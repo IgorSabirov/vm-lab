@@ -16,6 +16,9 @@ E3 = np.array([0.022559457, 0.014992044])
 EBC = np.array([0.00018, 0.00014])
 E_INF = 0.00028
 D_EXACT = 0.0006229000000006479
+BETA0 = np.array([6.0636007, 6.0629778])
+EXACT_ANCHOR = 6.0632464
+R_EXACT = S * (BETA0 - EXACT_ANCHOR)
 D_RESID = R[0] / S[0] - R[1] / S[1]
 W = np.array([1.0 / S[0], -1.0 / S[1]])
 
@@ -55,16 +58,20 @@ def main():
         covariance = build_covariance(rho)
         var_d = variance_of_contrast(rho)
         chi2_gls = gls_chi2_min(R, covariance)
+        chi2_exact_anchor = gls_chi2_min(R_EXACT, covariance)
         z2_resid = D_RESID**2 / var_d
         z2_exact = D_EXACT**2 / var_d
         print(f"rho={rho:.1f}: varD={var_d:.12e}")
         print(f"  GLS chi2_min       = {chi2_gls:.10f}")
         print(f"  z2(D_resid)        = {z2_resid:.10f}")
         print(f"  z2(D_exact)        = {z2_exact:.10f}")
+        print(f"  GLS exact-anchor   = {chi2_exact_anchor:.10f}")
         assert np.isclose(chi2_gls, z2_resid, rtol=1e-9, atol=1e-12)
+        assert np.isclose(chi2_exact_anchor, z2_exact, rtol=1e-9, atol=1e-12)
         assert np.isclose(W @ covariance @ W, var_d, rtol=1e-12)
-        print("  GLS == z2(D_resid): PASS")
-        print("  w.T C w == varD:    PASS")
+        print("  GLS archived-r == z2(D_resid): PASS")
+        print("  GLS exact-anchor == z2(D_exact): PASS")
+        print("  w.T C w == varD:              PASS")
 
     sigma0 = np.sqrt(variance_of_contrast(0.0))
     print("Hierarchy (beta units):")
