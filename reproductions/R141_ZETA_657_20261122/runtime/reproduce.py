@@ -171,9 +171,38 @@ def main():
                       "first_rel": first_rel, "seconds": results["timing"]["calculation_seconds"]}), flush=True)
 
 if __name__ == "__main__":
+    final_status = "FAILED"
     try:
         main()
+        final_status = "PASS_NUMERICAL_REPLAY" if (OUT / "CHECKS.json").exists() else "INCOMPLETE"
     except Exception:
         write("FAILURE.json", {"status": "FAILED", "traceback": traceback.format_exc(),
                                "elapsed_seconds": time.perf_counter()-START})
         raise
+    finally:
+        write("RUNNER_RECEIPT.json", {
+            "status": final_status,
+            "elapsed_seconds": time.perf_counter()-START,
+            "python": sys.version,
+            "mpmath": mp.__version__,
+            "platform": platform.platform(),
+            "machine": platform.machine(),
+            "run_id": os.environ.get("GITHUB_RUN_ID"),
+            "source_sha": os.environ.get("GITHUB_SHA"),
+            "executor": "GitHub Actions direct Python; Copilot not used"
+        })
+        report = [
+            "# R141 full 657-zero replay",
+            "",
+            f"- Status: {final_status}",
+            f"- Run ID: {os.environ.get('GITHUB_RUN_ID', 'local')}",
+            f"- Elapsed seconds: {time.perf_counter()-START:.3f}",
+            "- Execution: direct Python on GitHub Actions; no Copilot quota involved.",
+            "- Numerical checks and limitations are recorded in results.json and CHECKS.json.",
+        ]
+        (OUT / "REPORT.md").write_text("\\n".join(report) + "\\n", encoding="utf-8")
+        files = sorted(p for p in OUT.rglob("*") if p.is_file() and p.name != "MANIFEST.sha256")
+        (OUT / "MANIFEST.sha256").write_text(
+            "".join(hashlib.sha256(p.read_bytes()).hexdigest()+"  "+p.relative_to(OUT).as_posix()+"\\n" for p in files),
+            encoding="utf-8"
+        )
