@@ -8,7 +8,7 @@ from scipy.interpolate import PchipInterpolator
 from scipy.linalg import expm
 
 
-def trajectory_response(primat, archive, subdivisions, max_t9):
+def trajectory_grid(primat, archive, subdivisions, max_t9):
     sys.path.insert(0, str(Path(primat).resolve() / 'primat'))
     from network_builder import compile_network, NetworkKernels
     archive = Path(archive)
@@ -55,11 +55,19 @@ def trajectory_response(primat, archive, subdivisions, max_t9):
             # Derivative through LINX's linear interpolation of the shifted ordinates.
             derivative = np.interp(t9,r['T9'],r['values']*np.log(parameters[names[i]]))
             logsigma[:,selected.index(i)] = derivative/forward
+    plasma.close()
+    parameters.close()
+    return t9, y_mid, density, rates, steps, abundances[-1], kernel, selected, logsigma
+
+
+def trajectory_response(primat, archive, subdivisions, max_t9):
+    t9, y_mid, density, rates, steps, final, kernel, selected, logsigma = trajectory_grid(
+        primat, archive, subdivisions, max_t9)
+    n = len(final)
     sensitivity = np.zeros((2,len(t9),len(selected)))
-    adjoint = np.zeros((2,len(species)))
-    adjoint[0,2],adjoint[0,1] = 1/abundances[-1,2],-1/abundances[-1,1]
-    adjoint[1,5] = 1/abundances[-1,5]
-    n = len(species)
+    adjoint = np.zeros((2,n))
+    adjoint[0,2],adjoint[0,1] = 1/final[2],-1/final[1]
+    adjoint[1,5] = 1/final[5]
     for k in reversed(range(len(t9))):
         # Exact propagation for the local constant Jacobian and the selected reaction fluxes.
         block = np.zeros((n+len(selected),n+len(selected)))
@@ -71,6 +79,4 @@ def trajectory_response(primat, archive, subdivisions, max_t9):
         step = expm(steps[k]*block)
         sensitivity[:,k,:] = adjoint @ step[:n,n:]
         adjoint = adjoint @ step[:n,:n]
-    plasma.close()
-    parameters.close()
     return t9, sensitivity, logsigma

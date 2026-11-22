@@ -42,12 +42,17 @@ def archive_baseline(repo, target):
         (target/name).write_bytes(raw)
 
 
+MOSSA = dict(coefficients_ascending=[0.2121, 0.005973, 5.449e-6, -1.656e-9],
+             energy_unit='keV', S_unit='eV barn', valid_keV=[2, 2000],
+             measured_keV=[32, 263], source='https://doi.org/10.1038/s41586-020-2878-4')
+
+
 def thermal(t9, energy):
     # Bare p,d masses and the Mossa et al. Eq. (2) S factor, valid from 2 to 2000 keV.
     mp = constants.physical_constants['proton mass energy equivalent in MeV'][0]
     md = constants.physical_constants['deuteron mass energy equivalent in MeV'][0]
     mu = 1000*mp*md/(mp+md)
-    sf = np.polynomial.polynomial.polyval(energy,[0.2121,0.005973,5.449e-6,-1.656e-9])*1e-3
+    sf = np.polynomial.polynomial.polyval(energy,MOSSA['coefficients_ascending'])*1e-3
     kt = constants.Boltzmann/constants.electron_volt*1e6*t9[:,None]
     w = sf*np.exp(-energy/kt-2*np.pi*constants.alpha*np.sqrt(mu/(2*energy)))
     de = energy[1]-energy[0]
@@ -202,7 +207,7 @@ def main():
     ratios = {spacing: {ensemble: (example_fraction * base * np.array(record['sd_unit_fraction'][2:]) / obs_sigma).tolist()
                         for ensemble, record in group.items()} for spacing, group in shape.items()}
     result = dict(trajectory_commit=BASE, donor_commits={name: MAP['sources'][name]['commit'] for name in ('primat', 'linx')},
-        atlas_commit=PDF_PIN, example_fraction=example_fraction, observational_sigma=obs_sigma.tolist(),
+        atlas_commit=PDF_PIN, Mossa_S_factor=MOSSA, example_fraction=example_fraction, observational_sigma=obs_sigma.tolist(),
         example_sd_over_observational_sigma=ratios, T9=RATE_T.tolist(),table_audit=audit,
         He3dap_paper=SOUZA.tolist(), He3dap_point_Rmatrix=point_rates.tolist(),
         He3dap_point_quadrature_change=quadrature_error.tolist(),dp_Mossa_rates=empirical.tolist(),

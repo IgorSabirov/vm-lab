@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=139, construct=42, link=10, question=13, premise=66, obligation=9, review=19, component=45, external=20, decision=3, source=201.
+Число записей: result=139, construct=42, link=10, question=13, premise=66, obligation=9, review=19, component=45, external=20, decision=3, source=207.
 
 ## Предпосылка → результаты
 
@@ -3212,7 +3212,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Гипотеза Римана, Гильберт–Пойа и корпус. Спектральная различимость и достижимость — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r141).
 
 **Входящие:** [ALPOGE_RH](#external-alpoge_rh) `candidate_source_context_not_evidence`; [HILBERT_POLYA](#external-hilbert_polya) `candidate_source_context_not_evidence`; [R132](#result-r132) `parent`; [R140](#result-r140) `parent`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `scope_boundary`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `operational_requirement`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `scope_boundary`.
-**Исходящие:** [C012](#construct-c012) `addresses`; [C037](#construct-c037) `addresses`; [U010](#question-u010) `informs_not_closes`; [analysis/R141_RIEMANN_CORPUS/CHECKS.json](#source-analysis-r141_riemann_corpus-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md](#source-analysis-r141_riemann_corpus-hilbert_polya-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REPORT.md](#source-analysis-r141_riemann_corpus-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REVIEW.md](#source-analysis-r141_riemann_corpus-review-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/SCHEDULES.json](#source-analysis-r141_riemann_corpus-schedules-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/replay.py](#source-analysis-r141_riemann_corpus-bbn-replay-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/resonance.py](#source-analysis-r141_riemann_corpus-bbn-resonance-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/response.py](#source-analysis-r141_riemann_corpus-bbn-response-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md](#source-analysis-r141_riemann_corpus-donor_replay-design-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json](#source-analysis-r141_riemann_corpus-donor_replay-histories-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md](#source-analysis-r141_riemann_corpus-donor_replay-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py](#source-analysis-r141_riemann_corpus-donor_replay-experiments-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json](#source-analysis-r141_riemann_corpus-donor_replay-followup-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py](#source-analysis-r141_riemann_corpus-donor_replay-followup-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json](#source-analysis-r141_riemann_corpus-donor_replay-lean_sources-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/results.json](#source-analysis-r141_riemann_corpus-donor_replay-results-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/reproduce.py](#source-analysis-r141_riemann_corpus-reproduce-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/review/evidence.json](#source-analysis-r141_riemann_corpus-review-evidence-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md](#source-analysis-r141_riemann_corpus-spectral-arithmetic-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json](#source-analysis-r141_riemann_corpus-spectral-arithmetic-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py](#source-analysis-r141_riemann_corpus-spectral-arithmetic-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.json](#source-analysis-r141_riemann_corpus-spectral-corpus-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.py](#source-analysis-r141_riemann_corpus-spectral-corpus-py) `managed_evidence_source`.
+**Исходящие:** [C012](#construct-c012) `addresses`; [C037](#construct-c037) `addresses`; [U010](#question-u010) `informs_not_closes`; [analysis/R141_RIEMANN_CORPUS/CHECKS.json](#source-analysis-r141_riemann_corpus-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md](#source-analysis-r141_riemann_corpus-hilbert_polya-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REPORT.md](#source-analysis-r141_riemann_corpus-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REVIEW.md](#source-analysis-r141_riemann_corpus-review-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/SCHEDULES.json](#source-analysis-r141_riemann_corpus-schedules-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md](#source-analysis-r141_riemann_corpus-bbn-averaging-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-signal_checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/averaging.py](#source-analysis-r141_riemann_corpus-bbn-averaging-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/curvature.py](#source-analysis-r141_riemann_corpus-bbn-curvature-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py](#source-analysis-r141_riemann_corpus-bbn-finite_controls-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/replay.py](#source-analysis-r141_riemann_corpus-bbn-replay-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/resonance.py](#source-analysis-r141_riemann_corpus-bbn-resonance-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/response.py](#source-analysis-r141_riemann_corpus-bbn-response-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py](#source-analysis-r141_riemann_corpus-bbn-signal_check-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md](#source-analysis-r141_riemann_corpus-donor_replay-design-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json](#source-analysis-r141_riemann_corpus-donor_replay-histories-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md](#source-analysis-r141_riemann_corpus-donor_replay-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py](#source-analysis-r141_riemann_corpus-donor_replay-experiments-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json](#source-analysis-r141_riemann_corpus-donor_replay-followup-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py](#source-analysis-r141_riemann_corpus-donor_replay-followup-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json](#source-analysis-r141_riemann_corpus-donor_replay-lean_sources-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/results.json](#source-analysis-r141_riemann_corpus-donor_replay-results-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/reproduce.py](#source-analysis-r141_riemann_corpus-reproduce-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/review/evidence.json](#source-analysis-r141_riemann_corpus-review-evidence-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md](#source-analysis-r141_riemann_corpus-spectral-arithmetic-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json](#source-analysis-r141_riemann_corpus-spectral-arithmetic-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py](#source-analysis-r141_riemann_corpus-spectral-arithmetic-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.json](#source-analysis-r141_riemann_corpus-spectral-corpus-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.py](#source-analysis-r141_riemann_corpus-spectral-corpus-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -3682,7 +3682,7 @@ R130–BH1–BBN: нейтрино, GW и экспериментальные о�
 От спектральных корреляций до BBN и часов CCC+TL — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md).
 
 **Входящие:** нет.
-**Исходящие:** [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `scope_boundary`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `operational_requirement`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `clock_comparison`; [HILBERT_POLYA](#external-hilbert_polya) `scope_boundary`; [LINX](#external-linx) `operational_requirement`; [PRIMAT](#external-primat) `operational_requirement`; [R141](#result-r141) `scope_boundary`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `review_source_not_attestation`.
+**Исходящие:** [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `scope_boundary`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `operational_requirement`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `clock_comparison`; [HILBERT_POLYA](#external-hilbert_polya) `scope_boundary`; [LINX](#external-linx) `operational_requirement`; [PRIMAT](#external-primat) `operational_requirement`; [R141](#result-r141) `scope_boundary`; [analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md](#source-analysis-r141_riemann_corpus-bbn-averaging-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-signal_checks-json) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -5226,6 +5226,15 @@ analysis/R141_RIEMANN_CORPUS/SCHEDULES.json — [исходная карточк
 **Входящие:** [R141](#result-r141) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r141_riemann_corpus-bbn-averaging-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md
+
+analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r141_riemann_corpus-bbn-checks-json"></a>
 
 ### source:analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json
@@ -5242,6 +5251,42 @@ analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json — [исходная карточ�
 analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md).
 
 **Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-signal_checks-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json
+
+analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-averaging-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/averaging.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/averaging.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/averaging.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-curvature-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/curvature.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/curvature.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/curvature.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-finite_controls-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r141_riemann_corpus-bbn-replay-py"></a>
@@ -5267,6 +5312,15 @@ analysis/R141_RIEMANN_CORPUS/bbn/resonance.py — [исходная карточ
 ### source:analysis/R141_RIEMANN_CORPUS/bbn/response.py
 
 analysis/R141_RIEMANN_CORPUS/bbn/response.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/response.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-signal_check-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py).
 
 **Входящие:** [R141](#result-r141) `managed_evidence_source`.
 **Исходящие:** нет.
