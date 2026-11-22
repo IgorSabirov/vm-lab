@@ -281,7 +281,8 @@
     "extended_covariance_gls_flow_calculations": "Independently recomputed from archived numeric inputs in a clean execution for this conversation; the algebraic GLS/contrast identities were checked at relative tolerance 1e-12. This is not a full clean-VM replay of all extended blocks.",
     "polynomial_sensitivity_and_pdf_vertex_jackknife": "Values transcribed from the attached execution log; not independently re-run in a clean VM during this update.",
     "full_clean_vm_replay": "NOT_CONFIRMED; VM compute connection unavailable.",
-    "arxiv_source_archive_download": "Timed out in the weak sandbox; no result inferred from the timeout."
+    "arxiv_source_archive_download": "Timed out in the weak sandbox; no result inferred from the timeout.",
+    "gls_covariance_unit_regression": "Executed in a clean Python process on 2026-11-22; archived-residual and exact-anchor identities, w^T C w, and double-scaling negative control passed. Not a full clean-VM replay."
   },
   "decision": {
     "R136": "OPEN",
@@ -460,5 +461,49 @@
       2.116
     ],
     "pdf_vertex_jackknife": "Fit stability only; not ensemble statistical uncertainty."
+  },
+  "covariance_unit_regression": {
+    "date": "2026-11-22",
+    "script": "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+    "covariance_units": "vJ is already in J^2. Correct C_J=diag(vJ+(s*sigma_beta_c)^2)+E_INF^2*s*s^T. Do not multiply vJ by s^2 again.",
+    "archived_residuals": {
+      "D_exact": 0.0006229000000006479,
+      "D_resid": 0.0006287825842153719,
+      "relative_difference_percent": 0.9443866133757923,
+      "rho_0": {
+        "varD": 3.185429095098051e-7,
+        "gls_chi2": 1.241175133425443,
+        "z2_D_resid": 1.241175133425443,
+        "z2_D_exact": 1.2180601056162075
+      },
+      "rho_0_9": {
+        "varD": 8.698936467908326e-8,
+        "gls_chi2": 4.545010067278118,
+        "z2_D_resid": 4.54501006727812,
+        "z2_D_exact": 4.460366062359615
+      }
+    },
+    "exact_anchor_residuals": {
+      "anchor": 6.0632464,
+      "definition": "r_exact=s*(beta0-anchor)",
+      "rho_0_chi2": 1.2180601056162075,
+      "rho_0_9_chi2": 4.460366062359615
+    },
+    "hierarchy_beta_units": {
+      "linearization_scale_0_94_percent": 0.00000585526000000609,
+      "sigma_D_rho0": 0.0005643960573124205,
+      "linearization_percent_of_sigma_D": 1.0374381472273326,
+      "method_systematic_deltaD_range": [
+        0.00029002320185614853,
+        0.0007250580046403713
+      ],
+      "sigma_compression_to_1_96_percent": 43.69093860034017
+    },
+    "negative_control": {
+      "error": "Multiply vJ by s^2 although vJ is already in J^2",
+      "rho_0_gls_chi2": 0.0002488339,
+      "expected": "Must differ from correct GLS; catches double scaling."
+    },
+    "execution": "Executed in a clean Python process; all regression assertions passed. Not a full clean-VM replay of the R136 experiment."
   }
 }
