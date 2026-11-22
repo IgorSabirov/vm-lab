@@ -1,20 +1,1205 @@
 {
-  "dot_2d": [
-    2,
-    6,
-    12,
-    20
+  "schema": "R142-audit-v2",
+  "coverage": {
+    "original": 40,
+    "additional": 3
+  },
+  "claims": [
+    {
+      "id": "nuclear.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.2",
+      "value": 8,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.3",
+      "value": 20,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.4",
+      "value": 28,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.5",
+      "value": 50,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.6",
+      "value": 82,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "nuclear.7",
+      "value": 126,
+      "units": "1",
+      "tier": "T1",
+      "formula": "sum(2j+1) across gap",
+      "inputs": "ordered levels in origin_audit",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "fixed interaction: separation gaps and 2+",
+      "status": "literature; ordering assumed"
+    },
+    {
+      "id": "local.1",
+      "value": 16,
+      "units": "1",
+      "tier": "T1",
+      "formula": "isotopic shell gap",
+      "inputs": "O, K/Ca, Ca respectively",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vary Z at fixed N; removal and mass data",
+      "status": "donor observations"
+    },
+    {
+      "id": "local.2",
+      "value": 32,
+      "units": "1",
+      "tier": "T1",
+      "formula": "isotopic shell gap",
+      "inputs": "O, K/Ca, Ca respectively",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vary Z at fixed N; removal and mass data",
+      "status": "donor observations"
+    },
+    {
+      "id": "local.3",
+      "value": 34,
+      "units": "1",
+      "tier": "T1",
+      "formula": "isotopic shell gap",
+      "inputs": "O, K/Ca, Ca respectively",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vary Z at fixed N; removal and mass data",
+      "status": "donor observations"
+    },
+    {
+      "id": "osc3.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.2",
+      "value": 8,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.3",
+      "value": 20,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.4",
+      "value": 40,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.5",
+      "value": 70,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.6",
+      "value": 112,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "osc3.7",
+      "value": 168,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)(K+3)/3",
+      "inputs": "K=0..6, spin 1/2",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate triples",
+      "status": "computed"
+    },
+    {
+      "id": "noble.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.2",
+      "value": 10,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.3",
+      "value": 18,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.4",
+      "value": 36,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.5",
+      "value": 54,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.6",
+      "value": 86,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "noble.7",
+      "value": 118,
+      "units": "1",
+      "tier": "T1",
+      "formula": "group 18 electron filling",
+      "inputs": "neutral atoms; IUPAC",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "ionization energy vs neighbours; Og spectroscopy separate",
+      "status": "tabulated"
+    },
+    {
+      "id": "sodium.1",
+      "value": 8,
+      "units": "1",
+      "tier": "T1",
+      "formula": "electronic shell closure",
+      "inputs": "Knight 1984, N=4..100",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change charge at fixed atom count",
+      "status": "reported features"
+    },
+    {
+      "id": "sodium.2",
+      "value": 20,
+      "units": "1",
+      "tier": "T1",
+      "formula": "electronic shell closure",
+      "inputs": "Knight 1984, N=4..100",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change charge at fixed atom count",
+      "status": "reported features"
+    },
+    {
+      "id": "sodium.3",
+      "value": 40,
+      "units": "1",
+      "tier": "T1",
+      "formula": "electronic shell closure",
+      "inputs": "Knight 1984, N=4..100",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change charge at fixed atom count",
+      "status": "reported features"
+    },
+    {
+      "id": "sodium.4",
+      "value": 58,
+      "units": "1",
+      "tier": "T1",
+      "formula": "electronic shell closure",
+      "inputs": "Knight 1984, N=4..100",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change charge at fixed atom count",
+      "status": "reported features"
+    },
+    {
+      "id": "sodium.5",
+      "value": 92,
+      "units": "1",
+      "tier": "T1",
+      "formula": "electronic shell closure",
+      "inputs": "Knight 1984, N=4..100",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change charge at fixed atom count",
+      "status": "reported features"
+    },
+    {
+      "id": "sodium_low.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T1",
+      "formula": "lowest shell capacity",
+      "inputs": "jellium; outside Knight range",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "test small clusters",
+      "status": "model only"
+    },
+    {
+      "id": "dot.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "dot.2",
+      "value": 6,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "dot.3",
+      "value": 12,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "dot.4",
+      "value": 20,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "dot.5",
+      "value": 30,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "dot.6",
+      "value": 42,
+      "units": "1",
+      "tier": "T0",
+      "formula": "(K+1)(K+2)",
+      "inputs": "K=0..5 spin-degenerate 2D oscillator",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate pairs; device deformation for applicability",
+      "status": "computed model"
+    },
+    {
+      "id": "atomic.1",
+      "value": 2,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "atomic.2",
+      "value": 8,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "atomic.3",
+      "value": 18,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "atomic.4",
+      "value": 32,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "atomic.5",
+      "value": 50,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "atomic.6",
+      "value": 72,
+      "units": "1",
+      "tier": "T0",
+      "formula": "2n²",
+      "inputs": "n=1..6",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "sum 2(2l+1)",
+      "status": "computed"
+    },
+    {
+      "id": "string.1",
+      "value": 26,
+      "units": "1",
+      "tier": "T1",
+      "formula": "D-26=0; 3D/2-15=0 respectively",
+      "inputs": "critical flat bosonic / RNS matter",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vary worldsheet matter",
+      "status": "conditional deduction"
+    },
+    {
+      "id": "string.2",
+      "value": 10,
+      "units": "1",
+      "tier": "T1",
+      "formula": "D-26=0; 3D/2-15=0 respectively",
+      "inputs": "critical flat bosonic / RNS matter",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vary worldsheet matter",
+      "status": "conditional deduction"
+    },
+    {
+      "id": "anomaly.1",
+      "value": 496,
+      "units": "1",
+      "tier": "T1",
+      "formula": "dim(g)=496",
+      "inputs": "10D chiral supergravity and vectors",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "full I12 factorization",
+      "status": "necessary condition"
+    },
+    {
+      "id": "color.1",
+      "value": 8,
+      "units": "1",
+      "tier": "T0",
+      "formula": "3²-1",
+      "inputs": "SU(3)",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "count generators",
+      "status": "exact"
+    },
+    {
+      "id": "space.1",
+      "value": 230,
+      "units": "1",
+      "tier": "T0",
+      "formula": "3D space group classification",
+      "inputs": "ordinary crystallographic equivalence",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "enumerate types",
+      "status": "literature"
+    },
+    {
+      "id": "kissing.1",
+      "value": 12,
+      "units": "1",
+      "tier": "T0",
+      "formula": "3D kissing number",
+      "inputs": "equal spheres",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "upper bound and construction",
+      "status": "literature"
+    },
+    {
+      "id": "alpha136.1",
+      "value": 136,
+      "units": "1",
+      "tier": "T4 candidate; selection history separate",
+      "formula": "fixed inverse alpha",
+      "inputs": "137.035999177",
+      "vintage": "CODATA 2022",
+      "tolerance": 2.1e-08,
+      "falsifier": "compare fixed prediction with measured inverse alpha",
+      "status": "rejected",
+      "residual_u": -49333294.14285752
+    },
+    {
+      "id": "alpha137.1",
+      "value": 137,
+      "units": "1",
+      "tier": "T4 candidate; selection history separate",
+      "formula": "fixed inverse alpha",
+      "inputs": "137.035999177",
+      "vintage": "CODATA 2022",
+      "tolerance": 2.1e-08,
+      "falsifier": "compare fixed prediction with measured inverse alpha",
+      "status": "rejected",
+      "residual_u": -1714246.5238098989
+    },
+    {
+      "id": "alpha137.03608.1",
+      "value": 137.0360824481643,
+      "units": "1",
+      "tier": "T4 candidate; selection history separate",
+      "formula": "fixed inverse alpha",
+      "inputs": "137.035999177",
+      "vintage": "CODATA 2022",
+      "tolerance": 2.1e-08,
+      "falsifier": "compare fixed prediction with measured inverse alpha",
+      "status": "rejected",
+      "residual_u": 3965.293538093257
+    },
+    {
+      "id": "Koide.1",
+      "value": 0.6666666666666666,
+      "units": "1",
+      "tier": "T3",
+      "formula": "Σm/(Σ√m)²",
+      "inputs": {
+        "e": 0.51099895,
+        "mu": 105.6583755,
+        "tau": 1777.09
+      },
+      "vintage": "Belle II 2023; reference masses in MeV",
+      "tolerance": 7.677689375358384e-06,
+      "falsifier": "remeasure tau with total uncertainty 0.0242 MeV at unchanged centre",
+      "status": "compatible",
+      "branches_MeV": [
+        3.317356546467999,
+        1776.9690270830154
+      ]
+    },
+    {
+      "id": "phi.1",
+      "value": 1.618033988749895,
+      "units": "1",
+      "tier": "T0",
+      "formula": "dominant eigenvalue",
+      "inputs": "Fibonacci substitution",
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "change substitution; check gap labels separately",
+      "status": "exact"
+    },
+    {
+      "id": "logistic.1",
+      "value": 4.6692011246997795,
+      "units": "1",
+      "tier": "T1",
+      "formula": "successive interval ratio",
+      "inputs": "logistic",
+      "vintage": "модель или точный счёт",
+      "tolerance": 0.001,
+      "falsifier": "change maximum order",
+      "status": "computed finite period"
+    },
+    {
+      "id": "sine.1",
+      "value": 4.669199300085443,
+      "units": "1",
+      "tier": "T1",
+      "formula": "successive interval ratio",
+      "inputs": "sine",
+      "vintage": "модель или точный счёт",
+      "tolerance": 0.001,
+      "falsifier": "change maximum order",
+      "status": "computed finite period"
+    },
+    {
+      "id": "quartic.1",
+      "value": 7.284724598524132,
+      "units": "1",
+      "tier": "T1",
+      "formula": "successive interval ratio",
+      "inputs": "quartic",
+      "vintage": "модель или точный счёт",
+      "tolerance": 0.001,
+      "falsifier": "change maximum order",
+      "status": "computed finite period"
+    },
+    {
+      "id": "angle.1",
+      "value": 1.1,
+      "units": "deg",
+      "tier": "T2 device / T1 conditional prediction",
+      "formula": "alpha=w/(hv k_theta)",
+      "inputs": "w=.11 eV, hv=.596,.658 eV nm",
+      "vintage": "w=.11 eV, hv=.596,.658 eV nm",
+      "tolerance": null,
+      "falsifier": "measure geometry and bandwidth",
+      "status": "donor; parameter dependent"
+    },
+    {
+      "id": "Dirac.1",
+      "value": 1e+39,
+      "units": "1",
+      "tier": "T3",
+      "formula": "F_em/F_grav",
+      "inputs": "electron and proton",
+      "vintage": "electron and proton",
+      "tolerance": null,
+      "falsifier": "LLR tests extra G proportional to 1/t",
+      "status": "order only"
+    },
+    {
+      "id": "Lambda.1",
+      "value": 2.848515862040189e-122,
+      "units": "1",
+      "tier": "T3",
+      "formula": "3 Omega_L H0² lp²/c²",
+      "inputs": "67.4 km/s/Mpc; Omega_L=.6847",
+      "vintage": "67.4 km/s/Mpc; Omega_L=.6847",
+      "tolerance": null,
+      "falsifier": "specify normalization; compare independent background",
+      "status": "computed scale"
+    },
+    {
+      "id": "MOND.1",
+      "value": 0.15915494309189535,
+      "units": "1",
+      "tier": "T3",
+      "formula": "a0/(cH0)",
+      "inputs": "a0=1.2e-10 m/s²; H0=67.4,73",
+      "vintage": "a0=1.2e-10 m/s²; H0=67.4,73",
+      "tolerance": null,
+      "falsifier": "held-out galaxies and alternative scales",
+      "status": "open"
+    },
+    {
+      "id": "Efimov.1",
+      "value": 22.69422945019774,
+      "units": "1",
+      "tier": "T1",
+      "formula": "exp(pi/s0)",
+      "inputs": "s0=1.00624; Huang 21.0(1.3)",
+      "vintage": "s0=1.00624; Huang 21.0(1.3)",
+      "tolerance": null,
+      "falsifier": "next resonance length ratio",
+      "status": "compatible"
+    },
+    {
+      "id": "BKT.1",
+      "value": 0.6366197723675814,
+      "units": "1",
+      "tier": "T1",
+      "formula": "Υ/(kBT)",
+      "inputs": "low-temperature side; Bishop–Reppy",
+      "vintage": "low-temperature side; Bishop–Reppy",
+      "tolerance": null,
+      "falsifier": "measure stiffness near transition",
+      "status": "literature"
+    },
+    {
+      "id": "Haldane.1",
+      "value": 0.41,
+      "units": "1",
+      "tier": "T1",
+      "formula": "gap/J",
+      "inputs": "spin-1 nearest-neighbour isotropic chain",
+      "vintage": "spin-1 nearest-neighbour isotropic chain",
+      "tolerance": null,
+      "falsifier": "neutron data with independent J",
+      "status": "numerical donor"
+    },
+    {
+      "id": "Hall.1",
+      "value": "C",
+      "units": "e²/h",
+      "tier": "T1",
+      "formula": "sigma_xy=C e²/h",
+      "inputs": "gapped integer phase",
+      "vintage": "gapped integer phase",
+      "tolerance": null,
+      "falsifier": "measure plateau; fractional charge separate",
+      "status": "conditional"
+    },
+    {
+      "id": "mixing.1",
+      "value": 0,
+      "units": "1",
+      "tier": "T1",
+      "formula": "Ue3=0",
+      "inputs": "exact tribimaximal matrix",
+      "vintage": "exact tribimaximal matrix",
+      "tolerance": null,
+      "falsifier": "Daya Bay theta13",
+      "status": "rejected"
+    },
+    {
+      "id": "mass_ratio.1",
+      "value": 1836.15,
+      "units": "1",
+      "tier": "T2 input",
+      "formula": "mp/me",
+      "inputs": "reference low-energy masses",
+      "vintage": "reference low-energy masses",
+      "tolerance": null,
+      "falsifier": "independent mass determination",
+      "status": "measured input"
+    },
+    {
+      "id": "Omega.1",
+      "value": 1678.6,
+      "units": "MeV",
+      "tier": "T1 approximate",
+      "formula": "2 M_Xi - M_Sigma",
+      "inputs": "1531.8 and 1385 MeV",
+      "vintage": "1531.8 and 1385 MeV",
+      "tolerance": null,
+      "falsifier": "Omega mass",
+      "status": "retrospective"
+    },
+    {
+      "id": "alpha_input.1",
+      "value": 137.035999177,
+      "units": "1",
+      "tier": "T2",
+      "formula": "alpha(0)^-1",
+      "inputs": "CODATA 2022",
+      "vintage": "CODATA 2022",
+      "tolerance": null,
+      "falsifier": "independent determination",
+      "status": "measured input"
+    },
+    {
+      "id": "a0.1",
+      "value": 1.2e-10,
+      "units": "m/s²",
+      "tier": "T2",
+      "formula": "acceleration scale",
+      "inputs": "galactic rotation curves",
+      "vintage": "galactic rotation curves",
+      "tolerance": null,
+      "falsifier": "hold out galaxies",
+      "status": "calibration"
+    },
+    {
+      "id": "Balmer3.1",
+      "value": 656.4696063382917,
+      "units": "nm",
+      "tier": "T1",
+      "formula": "1/(RH*(1/4-1/n²))",
+      "inputs": 3,
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vacuum hydrogen line",
+      "status": "computed"
+    },
+    {
+      "id": "Balmer4.1",
+      "value": 486.2737824728087,
+      "units": "nm",
+      "tier": "T1",
+      "formula": "1/(RH*(1/4-1/n²))",
+      "inputs": 4,
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vacuum hydrogen line",
+      "status": "computed"
+    },
+    {
+      "id": "Balmer5.1",
+      "value": 434.1730200650078,
+      "units": "nm",
+      "tier": "T1",
+      "formula": "1/(RH*(1/4-1/n²))",
+      "inputs": 5,
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vacuum hydrogen line",
+      "status": "computed"
+    },
+    {
+      "id": "Balmer6.1",
+      "value": 410.2935039614324,
+      "units": "nm",
+      "tier": "T1",
+      "formula": "1/(RH*(1/4-1/n²))",
+      "inputs": 6,
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "vacuum hydrogen line",
+      "status": "computed"
+    },
+    {
+      "id": "Uranus.1",
+      "value": 19.599999999999998,
+      "units": "AU",
+      "tier": "T4 if indices selected post hoc",
+      "formula": "0.4+0.3*2^n",
+      "inputs": {
+        "actual": 19.19
+      },
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "next occupied orbit",
+      "status": "retrospective"
+    },
+    {
+      "id": "Neptune.1",
+      "value": 38.8,
+      "units": "AU",
+      "tier": "T4 if indices selected post hoc",
+      "formula": "0.4+0.3*2^n",
+      "inputs": {
+        "actual": 30.07
+      },
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "next occupied orbit",
+      "status": "retrospective"
+    },
+    {
+      "id": "Pluto.1",
+      "value": 77.2,
+      "units": "AU",
+      "tier": "T4 if indices selected post hoc",
+      "formula": "0.4+0.3*2^n",
+      "inputs": {
+        "actual": 39.48
+      },
+      "vintage": "модель или точный счёт",
+      "tolerance": null,
+      "falsifier": "next occupied orbit",
+      "status": "retrospective"
+    }
   ],
-  "oscillator_3d": [
-    2,
-    8,
-    20,
-    40,
-    70,
-    112
+  "cascades": {
+    "logistic": {
+      "roots": [
+        2,
+        3.23606797749979,
+        3.4985616993277016,
+        3.5546408627688253,
+        3.5666673798562685,
+        3.5692435316371114,
+        3.569795293749944,
+        3.569913465422346,
+        3.569938774233308,
+        3.569944194608058,
+        3.569945355486462
+      ],
+      "ratios": [
+        4.708943013540505,
+        4.6807709980106615,
+        4.662959611114317,
+        4.668403925916237,
+        4.668953740983945,
+        4.669157181384046,
+        4.669191001473924,
+        4.669199479684817,
+        4.6692011246997795
+      ]
+    },
+    "sine": {
+      "roots": [
+        0.5,
+        0.7777337661716062,
+        0.8463821717066794,
+        0.8614503508826323,
+        0.8646941807458697,
+        0.8653896734050149,
+        0.8655386616045189,
+        0.8655705719197593,
+        0.8655774062056828,
+        0.8655788699038189,
+        0.865579183383292
+      ],
+      "ratios": [
+        4.045742417567279,
+        4.555852749921379,
+        4.64518171767334,
+        4.664074912341888,
+        4.6681056718650575,
+        4.668966708145898,
+        4.669151334538575,
+        4.669190835717249,
+        4.669199300085443
+      ]
+    },
+    "quartic": {
+      "roots": [
+        0,
+        1,
+        1.5039344078545593,
+        1.582253045172379,
+        1.5931648633351174,
+        1.5946630462483027,
+        1.5948686474115559,
+        1.5948968663722503,
+        1.5949007398969144,
+        1.5949012716227073,
+        1.594901344614594
+      ],
+      "ratios": [
+        1.9843852382642033,
+        6.434412358447659,
+        7.177414079833377,
+        7.2833684503442155,
+        7.286840645645182,
+        7.285922592256316,
+        7.285086101471237,
+        7.2848161881171,
+        7.284724598524132
+      ]
+    }
+  },
+  "calibration": {
+    "dot_2d": [
+      2,
+      6,
+      12,
+      20
+    ],
+    "oscillator_3d": [
+      2,
+      8,
+      20,
+      40,
+      70,
+      112
+    ],
+    "inverse_alpha": "137.035999177",
+    "uncertainty": "21/1000000000",
+    "residual_of_exact_137": "35999177/1000000000",
+    "residual_in_uncertainties": 1714246.5238095238
+  },
+  "farey": {
+    "10": {
+      "prior": [
+        0.5,
+        0.9
+      ],
+      "clipped_length": 0.0006909920437836448,
+      "probability": 0.001727480109459112
+    },
+    "20": {
+      "prior": [
+        0.5,
+        0.9
+      ],
+      "clipped_length": 0.002441505221368878,
+      "probability": 0.006103763053422195
+    }
+  },
+  "efimov_residual": -1.3032534232290296,
+  "koide": {
+    "mass_roots_MeV": [
+      3.317356546467999,
+      1776.9690270830154
+    ],
+    "Q_belle": 0.6666734958050056,
+    "sigma_Q": 7.677689375358384e-06,
+    "derivative_per_MeV": 5.645e-05,
+    "stress_5sigma_MeV": 0.024194583396911183
+  },
+  "rydberg_per_m": {
+    "infinite_mass": 10973731.568072576,
+    "hydrogen": 10967758.340192977
+  },
+  "nuclear_partial_sums": [
+    [
+      2,
+      "1s1/2",
+      true
+    ],
+    [
+      6,
+      "1p3/2",
+      false
+    ],
+    [
+      8,
+      "1p1/2",
+      true
+    ],
+    [
+      14,
+      "1d5/2",
+      false
+    ],
+    [
+      16,
+      "2s1/2",
+      false
+    ],
+    [
+      20,
+      "1d3/2",
+      true
+    ],
+    [
+      28,
+      "1f7/2",
+      true
+    ],
+    [
+      32,
+      "2p3/2",
+      false
+    ],
+    [
+      38,
+      "1f5/2",
+      false
+    ],
+    [
+      40,
+      "2p1/2",
+      false
+    ],
+    [
+      50,
+      "1g9/2",
+      true
+    ],
+    [
+      58,
+      "1g7/2",
+      false
+    ],
+    [
+      64,
+      "2d5/2",
+      false
+    ],
+    [
+      68,
+      "2d3/2",
+      false
+    ],
+    [
+      70,
+      "3s1/2",
+      false
+    ],
+    [
+      82,
+      "1h11/2",
+      true
+    ],
+    [
+      92,
+      "1h9/2",
+      false
+    ],
+    [
+      100,
+      "2f7/2",
+      false
+    ],
+    [
+      106,
+      "2f5/2",
+      false
+    ],
+    [
+      110,
+      "3p3/2",
+      false
+    ],
+    [
+      112,
+      "3p1/2",
+      false
+    ],
+    [
+      126,
+      "1i13/2",
+      true
+    ]
   ],
-  "inverse_alpha": "137.035999177",
-  "uncertainty": "21/1000000000",
-  "residual_of_exact_137": "35999177/1000000000",
-  "residual_in_uncertainties": 1714246.5238095238
+  "lambda_m_inv2": 1.090432731814952e-52,
+  "rho_lambda_over_planck": 1.1333884497984187e-123,
+  "mond_ratio_by_H0": {
+    "67.4": 1.1514128187269888,
+    "73.0": 1.063085260030124
+  },
+  "graphene_deg_by_hv": {
+    "0.596": 1.0598005262877621,
+    "0.658": 0.9599384447753981
+  },
+  "efimov_reference": 22.69422945019774,
+  "repeats": {
+    "2": 6,
+    "8": 5,
+    "50": 2,
+    "20": 4,
+    "32": 2,
+    "40": 2,
+    "10": 2,
+    "18": 2,
+    "12": 2
+  }
 }

@@ -77,7 +77,7 @@ for hv in (0.596,0.658):
     print(f"hv_F={hv} eV nm, w=110 meV: alpha=0.586 -> theta={th:.3f} deg ; theta=1.1deg -> alpha={a_at_11:.4f}")
 
 # ---------- 9. Efimov, BKT, dims, Titius-Bode ----------
-s0=1.00624; print(f"\nEfimov e^(pi/s0)={math.exp(pi/s0):.4f} ; residual (21.0-22.7)/1.3={(21.0-22.7)/1.3:.4f}")
+s0=1.00624; print(f"\nEfimov e^(pi/s0)={math.exp(pi/s0):.4f} ; residual={(21.0-math.exp(pi/s0))/1.3:.4f}")
 print(f"BKT 2/pi={2/pi:.6f} ; dim so(32)={32*31//2} ; 2*dim(e8)={2*248}")
 print("Titius-Bode vs actual:")
 for name,n,act in [("Uranus",6,19.19),("Neptune",7,30.07),("Pluto",8,39.48)]:
@@ -142,7 +142,7 @@ print("Lambda=%.4e m^-2  Lambda*lp^2=%.4e  /8pi=%.4e"%(Lam,Lam*lp*lp,Lam*lp*lp/(
 a0=1.2e-10
 for H in (67.4,73.0):
     Hs=H/3.0856775814913673e19; print("  MOND H0=%.1f: a0/(cH0/2pi)=%.4f  a0/(cH0)=%.4f"%(H,a0/(c*Hs/(2*math.pi)),a0/(c*Hs)))
-s0=1.00624; print("Efimov e^(pi/s0)=%.4f  residual(21.0)=%.4f"%(math.exp(math.pi/s0),(21.0-22.6942)/1.3))
+s0=1.00624; print("Efimov e^(pi/s0)=%.4f  residual(21.0)=%.4f"%(math.exp(math.pi/s0),(21.0-math.exp(math.pi/s0))/1.3))
 print("dim so(32)=",32*31//2," 2*dim E8=",2*248)
 # ---- null model: Farey fractions in [0.5,0.9] ----
 for qmax in (10,20):
@@ -176,6 +176,7 @@ print("m_tau precision to resolve dev at 5sigma: %.4f MeV (Belle II uncertainty 
 print("Koide-exact m_tau=1776.969 vs BelleII 1777.09: separation %.2f sigma_now, %.1f sigma_at_0.0136MeV"%((1777.09-1776.969)/0.136,(1777.09-1776.969)/0.0136))
 
 # Exact union of clipped intervals under a uniform control distribution.
+farey_results = {}
 for qmax in (10, 20):
     targets = sorted({Fraction(p,q) for q in range(1,qmax+1)
                       for p in range(q+1) if 0.5 <= p/q <= 0.9})
@@ -186,7 +187,10 @@ for qmax in (10, 20):
         hi = min(0.9, float(target)+3*sigK)
         length += max(0., hi-lo)
         end = max(end, hi)
+    farey_results[qmax] = dict(prior=[0.5,0.9], clipped_length=length, probability=length/0.4)
     print(f'Farey q<={qmax}: union length {length:.8g}, uniform probability {length/0.4:.8g}')
 assert len(seen)==40 and len(uniq)==31
 assert {x for x,v in mult.items() if v>1} == {2,8,10,12,18,20,32,40,50}
 assert abs(Q(roots[-1])-2/3)<1e-14
+from checks_export import export
+export(globals())

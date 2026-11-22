@@ -4249,17 +4249,17 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Статус:** OPEN · ретроспективный аудит
 
-**Результат.** 40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде.
+**Результат.** 40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде. Выполнена проверка каскадов двух квадратичных карт и квартичного контроля до периода 1024.
 
 **Условия.** Реестр доноров, матрица происхождения и локальный повтор численных контролей.
 
 **Граница.** Историческая независимость выбора формы, глобальная значимость и слепые физические прогнозы остаются открытыми.
 
-**Место в рамке.** Проверка физического происхождения числовых закономерностей.
+**Место в рамке.** Происхождение различимости ограничивает поиск минимального наблюдаемого. C028, L07 и U010 задают проверку переноса на другой носитель.
 
-**Родители:** . **Конструкции:** . **Вопросы:** .
+**Родители:** R132, [R140](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md), [R141](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R141.md). **Конструкции:** C028. **Вопросы:** U010.
 
-**Источники:** [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py).
+**Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R142 -->
