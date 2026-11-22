@@ -3,9 +3,9 @@
   "section": "25. Проверка температурной калибровки SU(3)",
   "title": "Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных",
   "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ",
-  "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀.",
+  "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит подтверждает устойчивость знаков остатков к выбору аппроксимации; Δbeta-origin≈6.23×10^-4. Flow-time drift Figure 3 отрицателен на обеих решётках; различие drift между объёмами 0.54σ. Статистическая значимость общего сдвига зависит от неизвестной ковариации.",
   "inputs": "Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.",
-  "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта.",
+  "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. В exploratory Phase 1 Polynomial(poly.coef) терял domain/window; исправлено в Phase 2, канонический verify.py не затронут. Сценарии rho не являются измеренной ковариацией. Полный чистый VM replay расширенных блоков не подтверждён.",
   "framework_role": "Независимая воспроизводимая проверка температурного входа EOS из R135 перед применением к метастабильным ветвям.",
   "evidence_level": "Векторные первоисточники, численная реконструкция и контроль другим оценивателем на связанных ансамблях.",
   "parent_result_ids": [
@@ -23,15 +23,17 @@
     "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
     "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
     "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
-    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
+    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+    "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json"
   ],
   "managed_sources": [
     "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
     "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
     "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
     "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
-    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json"
+    "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+    "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json"
   ],
-  "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3).",
+  "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3). Extended audit (2026-11-22) records the exploratory domain/window bug fix, polynomial/interpolation stability, illustrative covariance/GLS scenarios and Figure-3 flow-time/finite-volume separation. See REPORT.md#extended-audit-followup and EXTENDED_CHECKS.json. U013 remains OPEN; no publication error established.",
   "scientific_acceptance": false
 }
