@@ -4258,9 +4258,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Место в рамке.** Самостоятельная проверка поздней радиационно-гидродинамической истории Lumina и условий её возможного сопряжения с выбранной ранней космологией.
 
-**Родители:** нет. **Конструкции:** нет. **Вопросы:** U014.
+**Родители:** . **Конструкции:** . **Вопросы:** U014.
 
 **Источники:** [REPORT.md](../../analysis/R137_LUMINA/REPORT.md); [verify.py](../../analysis/R137_LUMINA/verify.py); [CHECKS.json](../../analysis/R137_LUMINA/CHECKS.json); [DATA_REQUEST.md](../../analysis/R137_LUMINA/DATA_REQUEST.md).
 
-**Предпосылки:** нет новых прямых предпосылок; [реестр условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R137 -->
