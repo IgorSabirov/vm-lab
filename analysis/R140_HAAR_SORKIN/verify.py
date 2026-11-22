@@ -1,4 +1,5 @@
 """Haar transport and length-history operators on the named ADD ring (R140)."""
+import argparse
 from collections import defaultdict
 from functools import lru_cache
 from hashlib import sha256
@@ -220,7 +221,7 @@ def histories(initial, steps, coherent):
     vectors = np.zeros((len(records), len(endpoints)), dtype=complex)
     for (r, g), a in paths.items():
         vectors[by_record[r], by_graph[g]] += a
-    return records, vectors, 2**steps if coherent else 1
+    return records, endpoints, vectors, 2**steps if coherent else 1
 
 
 def projected_vectors(initial, record, angle=np.pi/4):
@@ -256,12 +257,21 @@ def interference(gram, events):
     return value
 
 
-def history_checks():
+def history_checks(export_path=None):
     x = E['named']((1,2,0))
     # One a-bit and one b-bit throughout imply at most one active tile.
     # The two branches below differ from the local-coin convention only by
     # one common phase per step, including when the interaction is idle.
-    records, vectors, denominator = histories(x, 8, True)
+    records, endpoints, vectors, denominator = histories(x, 8, True)
+    if export_path is not None:
+        data = {"initial_word":[1,2,0], "angle_pi_units":"1/4", "steps":8,
+                "amplitude_denominator":"sqrt(256)", "index_base":0,
+                "entry_format":["endpoint_index", "gaussian_integer_real", "gaussian_integer_imag"],
+                "named_endpoints":endpoints,
+                "branches":[{"lengths":record, "amplitudes":[[j,int(z.real),int(z.imag)]
+                             for j,z in enumerate(row) if z != 0]}
+                            for record,row in zip(records,vectors)]}
+        export_path.write_text(json.dumps(data, ensure_ascii=False, separators=(",",":"))+"\n")
     gram = vectors @ vectors.conj().T
     near(gram, gram.conj().T)
     assert gram.sum().real == gram.trace().real == denominator and gram.sum().imag == 0
@@ -297,7 +307,7 @@ def history_checks():
     psi = (1+h)/np.sqrt(2*N)
     near((abs(psi)**2).sum(), 1)
     near((2*gram[i,j].real / denominator)*abs(psi[0])**2, -1/96)
-    records_det, deterministic, _ = histories(x,8,False)
+    records_det, _, deterministic, _ = histories(x,8,False)
     assert deterministic.shape == (1,1) and deterministic[0,0] == 1
     return dict(word=[1,2,0], steps=8, length_histories=len(records), endpoints=vectors.shape[1],
                 selected=[a,b], numerator_diag=[int(gram[i,i].real),int(gram[j,j].real)],
@@ -331,6 +341,9 @@ def peer_controls():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--histories', type=Path, help='Export all exact finite branch amplitudes')
+    args = parser.parse_args()
     print(json.dumps(dict(R130_sha256=sha256(ENGINE.read_bytes()).hexdigest(), finite_group='Z3',
-                          H0_H3=geometry_checks(), local_coins=local_coins(), H4_H5=history_checks(),
+                          H0_H3=geometry_checks(), local_coins=local_coins(), H4_H5=history_checks(args.histories),
                           reviewer_baselines=peer_controls()), indent=2))
