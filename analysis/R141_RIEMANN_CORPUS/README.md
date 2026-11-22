@@ -59,3 +59,7 @@ OPENBLAS_NUM_THREADS=1 python /path/to/R141/bbn/signal_check.py --primat primat 
 ```
 
 [Скачать код и эталоны проверки усреднения](bbn/R141_signal_replay.zip) · [отчёт](bbn/AVERAGING.md) · [числа](bbn/SIGNAL_CHECKS.json). В отдельном ZIP все скрипты лежат в корне. После распаковки используйте путь к signal_check.py в этом каталоге. Для повторной отрисовки рисунка из этих чисел выполните `python /path/to/R141/bbn/plot_signal.py` с Matplotlib.
+
+## Проверка по измеренным резонансам
+
+[Протокол и код интегрированного прогона](../../reproductions/R141_INTEGRATED_20261122/README.md) связывают два измеренных спектра ⁵⁶Fe, конечные окна нулей ζ, операторные проверки R132/R140 и нелинейный контроль часов на архивной истории BBN.

@@ -1,0 +1,107 @@
+name: R141 measured spectra and BBN
+on:
+  push:
+    branches: [work/r141-integrated-20261122]
+    paths:
+      - '.github/workflows/r141-integrated.yml'
+      - 'reproductions/R141_INTEGRATED_20261122/*.py'
+      - 'reproductions/R141_INTEGRATED_20261122/README.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  ROOT: reproductions/R141_INTEGRATED_20261122
+  OPENBLAS_NUM_THREADS: '1'
+  OMP_NUM_THREADS: '1'
+  PYTHONUNBUFFERED: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+jobs:
+  compute:
+    if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/work/r141-integrated-20261122'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            reproductions/R141_INTEGRATED_20261122
+            analysis/R141_RIEMANN_CORPUS
+            analysis/PRIMAT_LINX_BBN_BRIDGE_20261117
+      - name: Load measured neutron-width tables
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: IAEA-NDS/exfor_master
+          ref: 2efecedd83bd22133350a3e1b15bf74839a1c0c7
+          path: inputs/exfor
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /exforall/218/21803.x4
+            /exforall/101/10172.x4
+      - name: Load published zero ordinates
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 52c7910a95b5dea26ee9363996ea9d831393063c
+          path: inputs/zeta
+          sparse-checkout: reproductions/R141_ZETA_657_20261122/results/45038065048
+          persist-credentials: false
+      - name: Load archived BBN trajectory
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: d503ee0f1f89c99c8560803dc46277d544ef15ba
+          path: inputs/history
+          sparse-checkout: reproductions/BBN_COSMO_20261120/results/44719756079/cases/baseline
+          persist-credentials: false
+      - name: Load PRIMAT network
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: CyrilPitrou/primat
+          ref: 6f7e5680614fb119d65a6c9c65a292240b27c61e
+          path: inputs/primat
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /primat/network_builder.py
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Install numerical libraries
+        run: python -m pip install numpy==2.3.5 scipy==1.17.0 mpmath==1.3.0 sympy==1.14.0
+      - name: Compute and verify the R141 experiment
+        run: |
+          python "$ROOT/run.py" --exfor inputs/exfor --primat inputs/primat --history inputs/history \
+            --zeros inputs/zeta/reproductions/R141_ZETA_657_20261122/results/45038065048/zeros657.json \
+            --out "$RUNNER_TEMP/r141-results"
+          (cd "$RUNNER_TEMP/r141-results" && sha256sum -c MANIFEST.sha256)
+          cat "$RUNNER_TEMP/r141-results/REPORT.md" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: r141-integrated
+          path: ${{ runner.temp }}/r141-results
+          if-no-files-found: warn
+          retention-days: 30
+  publish:
+    needs: compute
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: reproductions/R141_INTEGRATED_20261122
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: r141-integrated
+          path: reproductions/R141_INTEGRATED_20261122/results/${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Verify and preserve the results
+        run: |
+          set -euo pipefail
+          dest="$ROOT/results/$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          (cd "$dest" && sha256sum --check MANIFEST.sha256)
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$dest"
+          git commit -m "Preserve R141 spectrum and BBN run $GITHUB_RUN_ID attempt $GITHUB_RUN_ATTEMPT"
+          git push origin "HEAD:refs/heads/actions/r141-integrated-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
