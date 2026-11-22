@@ -1,7 +1,7 @@
 {
   "source_commit": "dcf21d06831547982ea4835b86420f949b35bcd0",
-  "date": "2026-11-12",
-  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.\n\nАктуализация 11 ноября: R128.1 включена как спецификация в R128; X27 — только программная валидация. Исправлены устаревшие текущие поля исполнения NOW и правило 600 секунд. U011/U012 адресуют старые долги; R=128, C=42, L=10. Новых научных прогонов и повышения статусов нет.\n\nРазбор отзыва 11 ноября: R013 дополнена точной условной зависимостью взаимодействия и критерием неунитарности; нормировки R034/R035 и область тождества R036 раскрыты. Две короткие локальные проверки, новых производственных прогонов нет. Основные статусы R/C/L/U сохранены; R129 не создавалась.",
+  "date": "2026-11-22",
+  "status_note": "Статусы относятся к сохранённым источникам, а не к новой независимой репликации в этой сессии.\n«АНАЛИТИКА» означает условный вывод с указанными предпосылками; известные литературные конструкции не приписываются проекту как новые теоремы.\n«ЧИСЛЕННО: АРХИВ» означает опубликованный результат прежнего расчёта и его проверок. Отрицательный научный исход, технический FAIL, открытый вопрос и непроверенное число — разные статусы.\nСоседские предложения и литературные сопоставления не становятся принятыми компонентами модели от включения в этот реестр.\n Дополнение 8 ноября: R126 — аудит реконструкции ADD, R127 — завершённая спецификация интеграции четырёх кандидатов; совместный научный прогон не исполнен. Ревизия 1.1: R126/R127 уточнены по соседскому аддендуму; четыре кандидата включены в проект патча прежнего NOW, не новый эксперимент.\n\nДополнение 8 ноября: пользователь разрешил основной прогон без технического аудита при обязательном полном временном гейте. R127: на source SHA 7c55308… исполнены 413 задач; runtime_gate PASS. Научные статусы не повышены, L01-L10 открыты.\n\nДополнение 10 ноября: R128 — аналитические поправки, контрпримеры и кандидат спецификации генезиса ρ; не новая физическая реализация и не запуск. Действующий итог R127 указан в его карточке; прежние датированные сообщения выше сохранены как история.\n\nАктуализация 11 ноября: R128.1 включена как спецификация в R128; X27 — только программная валидация. Исправлены устаревшие текущие поля исполнения NOW и правило 600 секунд. U011/U012 адресуют старые долги; R=128, C=42, L=10. Новых научных прогонов и повышения статусов нет.\n\nРазбор отзыва 11 ноября: R013 дополнена точной условной зависимостью взаимодействия и критерием неунитарности; нормировки R034/R035 и область тождества R036 раскрыты. Две короткие локальные проверки, новых производственных прогонов нет. Основные статусы R/C/L/U сохранены; R129 не создавалась.\n\n22 ноября 2026: объединённый срез веток R136 и R140. R136 и U013 перенесены из ветки research/r136-shirogane-calibration; R139/R140 и их связи сохранены из research/r140-haar-sorkin. R140 не вычисляет D₁₃₆ и не задаёт отображение истории ADD в ансамблевые оценки Shirogane. Научные статусы не повышены.",
   "results": [
     {
       "id": "R001",
@@ -5168,6 +5168,86 @@
       "scientific_acceptance": false
     },
     {
+      "id": "R136",
+      "section": "25. Проверка температурной калибровки SU(3)",
+      "title": "Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных",
+      "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ",
+      "result": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит: знаки остатков устойчивы к степени/окну полинома и способу интерполяции; Δbeta-origin≈6.23×10^-4. Flow-time drift Figure 3 отрицателен на обеих решётках; различие дрейфов 0.54σ. Значимость общего сдвига зависит от неизвестной ковариации. D=0.000622844634102 по неокруглённой реконструкции. Архивная разность двух округлённых якорей 0.000622900 сохраняется для повтора. На рис. 15 раздельный сдвиг восьми локальных координат на ±½ единицы EPS дал максимальное |δD|=3.46×10⁻⁶. При локальных якобианах диагональный порог z=1.96 достигается при ρ=0.787 для ρ_β=0 и при ρ=0.540 для ρ_β=1. Отдельный открытый вопрос #201 в генеалогии R136/U013: объёмная зависимость разности метода производных и SFtX. При t→0 I=+0.47968±0.24411, средний остаток +0.07788±0.12206 в диагональном сценарии.",
+      "inputs": "Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.",
+      "limit": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. В exploratory Phase 1 Polynomial(poly.coef) терял domain/window; исправлено в Phase 2, канонический verify.py не затронут. Чувствительности к rho — сценарии, не измеренная ковариация. Полный чистый VM replay расширенных блоков не подтверждён. Совместная ковариация фаз, J₃ и βc, фактическая сетка β рис. 15 и неопределённость калибровки остаются открытыми.",
+      "framework_role": "Independent calibration-consistency check for the Shirogane phase-resolved SU(3) EOS used by #167. R135 is contextual ancestry only; R136 does not supply a physical XB input or close #168/#174. D₁₃₆ определён на двух ансамблевых оценках при Nₜ=8. Общий сдвиг F→F+c сокращается точно, общий сдвиг горизонтальных координат имеет линейный коэффициент −0.0008770.",
+      "evidence_level": "Векторные первоисточники, численная реконструкция и контроль другим оценивателем на связанных ансамблях.",
+      "parent_result_ids": [
+        "R135"
+      ],
+      "construct_ids": [],
+      "open_link_ids": [],
+      "open_question_ids": [
+        "U013"
+      ],
+      "premise_ids": [],
+      "managed_card": true,
+      "sources": [
+        "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+        "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md"
+      ],
+      "managed_sources": [
+        "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+        "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md"
+      ],
+      "genealogy_note": "R135 is the programmatic/contextual parent, not physical evidence for the Shirogane calibration. Workstream ancestry: #167 EOS task → donor audit in draft PR #185 (PHASE_FLOW_AND_SIGMA_AUDIT.md, commit 649c1d9) → U013 → R136 / #193 → draft PR #194. Direct scientific donors: Shirogane et al. 2016 (arXiv:1605.02997, Eq. 42/F(n) calibration) and Shirogane et al. 2021 (arXiv:2011.10292, volume-specific beta_c, phase jumps, flow-time and method controls). Data lineage: source EPS → extract.py → FIGURES.json → verify.py → CHECKS.json → REPORT.md. R136 informs but does not close U013. A partially complete (curve reconstruction done; exact Fig. 15 beta nodes/normalization absent), B open (joint jackknife covariance absent), C checked (shift sign on both volumes). #167 may consume the calibration after provenance/covariance closure; #168 hydro and #174 GW remain open. No publication error is established; scientific_acceptance=false. Extended audit added 2026-11-22: exploratory polynomial domain/window bug corrected (not in canonical verify.py); calibration/interpolation sensitivity, illustrative covariance/GLS scenarios and Figure-3 flow-time/finite-volume separation recorded in REPORT.md#extended-audit-followup and EXTENDED_CHECKS.json. R136/U013 remain OPEN; no publication error established; full clean-VM replay of all extension blocks not confirmed.",
+      "scientific_acceptance": false,
+      "invariant_D": {
+        "value": 0.0006228446341021154,
+        "role": "canonical_curve_reconstruction",
+        "provenance": "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json#provenance",
+        "rounded_anchor_replay": 0.0006229000000006479,
+        "domain": "paired ensemble estimates, Nt=8, Ns=48 and 64",
+        "common_horizontal_shift_first_order": -0.000877
+      },
+      "method_volume_question": {
+        "issue": 201,
+        "url": "https://github.com/IgorSabirov/vm-lab/issues/201",
+        "status": "OPEN",
+        "source": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md"
+      },
+      "archived_peer_audit": {
+        "path": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit_20261122.zip",
+        "sha256": "465e2b58a3db25048003556a444360f90716d5240ee295de175738c02a499203",
+        "role": "historical replay with separate covariance assumptions"
+      }
+    },
+    {
       "id": "R139",
       "section": "24. Геометрические кандидаты и интеграция",
       "title": "Когерентный калибровочный перенос при именованной перестройке ADD",
@@ -5261,7 +5341,7 @@
       ]
     }
   ],
-  "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
+  "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт. 22 ноября 2026: сводная регистрация R136 вместе с R139/R140. R136: канонический curve reconstruction D₁₃₆=0.000622844634102; округлённый replay 0.000622900, секущие proxies 0.000628782584 и 0.000624802838; точность EPS-осей проверена стресс-тестом до |δD|=3.46×10⁻⁶, но авторские β-узлы и joint jackknife covariance отсутствуют. #201 открыт для объёмной зависимости разности derivative−SFtX. R140: нейтральный U(1)-сектор, Haar-перенос голономии и выбранный grade-2 интерференционный свидетель; исходное состояние и θ заданы, raw charged/multicycle перенос и физическое обоснование смешивания открыты. Связь R136↔R140 методологическая; D₁₃₆ не идентифицируется из текущих ADD length histories. Научная приёмка R136/R139/R140=false.",
   "constructs": [
     {
       "id": "C001",
@@ -8522,7 +8602,7 @@
       "meaning": "Навигационное соответствие; исходный статус не изменён"
     }
   ],
-  "revision": "R140_HAAR_SORKIN_20261122",
+  "revision": "R136_R140_REGISTRY_SYNC_20261122",
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
     "adopted_date": "2026-11-06",
@@ -9389,6 +9469,22 @@
         "R140"
       ],
       "updates": [],
+      "scientific_status_promoted": false
+    },
+    {
+      "id": "R136_R140_REGISTRY_SYNC_20261122",
+      "date": "2026-11-22",
+      "base_branch": "research/r140-haar-sorkin",
+      "imported_branch": "research/r136-shirogane-calibration",
+      "new_records": [
+        "R136"
+      ],
+      "updated_questions": [
+        "U003",
+        "U006",
+        "U013"
+      ],
+      "note": "Merged the R136 source record and U013 into the R139/R140 registry lineage; documented the non-identifiability of D136 from current ADD histories. No scientific status promoted; this is a registry synchronization.",
       "scientific_status_promoted": false
     }
   ],
@@ -17211,5 +17307,21 @@
       "scientific_acceptance": false,
       "followup_review": "analysis/NEIGHBOR_INTEGRATION_FOLLOWUP_20261118/REPORT.md"
     }
-  ]
+  ],
+  "cross_registry_synthesis_20261122": {
+    "invariant_observable_bridge": {
+      "R136": "D136=beta0(48)-beta0(64) is a scalar contrast of paired ensemble estimators, invariant to a common additive F->F+c shift.",
+      "R140": "Haar measure is a kinematic measure on U(1) link variables; Sorkin decoherence functional is a state- and dynamics-dependent grade-2 functional on history events.",
+      "distinction": "D136 is not the Sorkin decoherence functional and is not a Wilson holonomy. Current R140 histories contain no Shirogane beta scans, paired 48/64 ensembles or matching protocol; D136 is not identifiable from them.",
+      "bridge_requirement": "A physical bridge would require a map from each graph history to paired estimator outcomes, the same beta/matching protocol, joint ensemble covariance and a specified record/binning map before evaluating a Sorkin functional on D136-defined events."
+    },
+    "limitations": [
+      "R136: exact Fig.15 beta nodes/normalization and joint jackknife covariance for Fig.15/Fig.3/beta_c remain unavailable; covariance scenarios are not measured.",
+      "R136 #201: derivative-minus-SFtX volume contrast is exploratory; diagonal-covariance z=1.965 at t->0 is selection-sensitive and its cross-volume covariance is unknown; two volumes cannot identify a finite-volume law.",
+      "R140: neutral U(1) ring with one preserved holonomy and selected state f(h)=(1+h)/sqrt(2), theta=pi/4; this is not a derivation of rho or theta.",
+      "R140: raw-link split/merge can lose relative degrees of freedom (rank 9/27 in the mixed Z3 diagnostic); charged vertices, multiple independent cycles, curvature dynamics and physical continuum remain open.",
+      "R140: Haar invariance does not imply unitarity on the full raw-link space and does not generate Sorkin interference by itself; deterministic geometry histories have I2=0 in the tested lift."
+    ],
+    "scientific_acceptance": false
+  }
 }
