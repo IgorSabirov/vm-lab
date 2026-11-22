@@ -202,9 +202,9 @@ if __name__ == "__main__":
             "- Execution: direct Python on GitHub Actions; no Copilot quota involved.",
             "- Numerical checks and limitations are recorded in results.json and CHECKS.json.",
         ]
-        (OUT / "REPORT.md").write_text("\\n".join(report) + "\\n", encoding="utf-8")
+        (OUT / "REPORT.md").write_text("\n".join(report) + "\n", encoding="utf-8")
         files = sorted(p for p in OUT.rglob("*") if p.is_file() and p.name != "MANIFEST.sha256")
         (OUT / "MANIFEST.sha256").write_text(
-            "".join(hashlib.sha256(p.read_bytes()).hexdigest()+"  "+p.relative_to(OUT).as_posix()+"\\n" for p in files),
+            "".join(hashlib.sha256(p.read_bytes()).hexdigest()+"  "+p.relative_to(OUT).as_posix()+"\n" for p in files),
             encoding="utf-8"
         )
