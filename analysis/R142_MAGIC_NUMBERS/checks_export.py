@@ -42,8 +42,14 @@ def export(g):
                                formula=formula, inputs=inputs, vintage=vintage, tolerance=tolerance,
                                falsifier=test, status=status, **extra))
 
+    ordered = list(g['lv'])
+    from itertools import accumulate
+    shell_counts = list(accumulate(degeneracy for _, degeneracy in ordered))
+    boundaries = ['1s1/2','1p1/2','1d3/2','1f7/2','1g9/2','1h11/2','1i13/2']
+    closures = [n for (orbital, _), n in zip(ordered,shell_counts) if orbital in boundaries]
+    assert closures == g['groups'][0]
     for key, vals, tier, form, inp, test, status in [
-        ('nuclear',g['groups'][0],'T1','sum(2j+1) across gap','ordered levels in origin_audit','fixed interaction: separation gaps and 2+','literature; ordering assumed'),
+        ('nuclear',closures,'T1','sum(2j+1) across gap',dict(ordered_levels=ordered, assumed_boundaries=boundaries),'fixed interaction: separation gaps and 2+','computed conditional count; energy gaps not evaluated'),
         ('local', [16,32,34],'T1','isotopic shell gap','O, K/Ca, Ca respectively','vary Z at fixed N; removal and mass data','donor observations'),
         ('osc3',g['osc'],'T0','(K+1)(K+2)(K+3)/3','K=0..6, spin 1/2','enumerate triples','computed'),
         ('noble',g['groups'][3],'T1','group 18 electron filling','neutral atoms; IUPAC','ionization energy vs neighbours; Og spectroscopy separate','tabulated'),
@@ -66,10 +72,10 @@ def export(g):
         'logistic':cascade(lambda r,x:r*x*(1-x),2,1+math.sqrt(5),.5),
         'sine':cascade(lambda r,x:r*math.sin(math.pi*x),.5,brentq(lambda r:r*math.sin(math.pi*r)-.5,.7,.9),.5),
         'quartic':cascade(lambda r,x:1-r*x**4,0,1,0)}
-    for name, ref in [('logistic',4.6692),('sine',4.6692),('quartic',7.2846)]:
+    for name, ref in [('logistic',4.6692),('sine',4.6692),('quartic',7.2846862)]:
         val=maps[name]['ratios'][-1]
         assert abs(val-ref)<0.001
-        add(name,[val],'T1','successive interval ratio',name,'change maximum order','computed finite period',tolerance=.001)
+        add(name,[val],'T1','successive interval ratio',name,'change maximum order','computed finite period',tolerance=.001,asymptotic_reference=ref,period=1024,absolute_error=abs(val-ref))
     for key,val,tier,formula,inputs,test,status,unit in [
         ('angle',1.1,'T2 device / T1 conditional prediction','alpha=w/(hv k_theta)','w=.11 eV, hv=.596,.658 eV nm','measure geometry and bandwidth','donor; parameter dependent','deg'),
         ('Dirac',1e39,'T3','F_em/F_grav','electron and proton','LLR tests extra G proportional to 1/t','order only','1'),
@@ -92,6 +98,8 @@ def export(g):
     data=dict(schema='R142-audit-v2', coverage={'original':len(g['seen']),'additional':3}, claims=claims, cascades=maps,
               calibration=json.loads((HERE/'CALIBRATION.json').read_text()),farey=g['farey_results'],
               efimov_residual=(21-math.exp(math.pi/1.00624))/1.3)
+    from fibonacci import audit as fibonacci_audit
+    data['fibonacci_approximants'] = fibonacci_audit()
     data.update(
         koide=dict(mass_roots_MeV=list(g['roots']), Q_belle=g['Q'](1777.09),
                    sigma_Q=g['sigK'], derivative_per_MeV=g['dQ'],

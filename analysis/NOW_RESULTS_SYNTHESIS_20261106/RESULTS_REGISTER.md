@@ -4249,7 +4249,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Статус:** OPEN · ретроспективный аудит
 
-**Результат.** 40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде. Выполнена проверка каскадов двух квадратичных карт и квартичного контроля до периода 1024.
+**Результат.** 40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде. Выполнена проверка каскадов двух квадратичных карт и квартичного контроля до периода 1024. Отложенные проверки Ti→Ca (7 целей) и SPARC (35 галактик); проверена метка Фибоначчи 1/φ² с выключением контраста.
 
 **Условия.** Реестр доноров, матрица происхождения и локальный повтор численных контролей.
 
@@ -4259,7 +4259,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R132, [R140](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md), [R141](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R141.md). **Конструкции:** C028. **Вопросы:** U010.
 
-**Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py).
+**Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py); [EXECUTED.md](../../analysis/R142_MAGIC_NUMBERS/EXECUTED.md); [HOLDOUT_RESULTS.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json); [HOLDOUT_LOCK.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json); [NUCLEAR_INPUT.json](../../analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json); [holdout.py](../../analysis/R142_MAGIC_NUMBERS/holdout.py); [fibonacci.py](../../analysis/R142_MAGIC_NUMBERS/fibonacci.py).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R142 -->

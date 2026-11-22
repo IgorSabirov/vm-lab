@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=159.
+Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=165.
 
 ## Предпосылка → результаты
 
@@ -3158,7 +3158,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки. — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r142).
 
 **Входящие:** [R132](#result-r132) `parent`.
-**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [analysis/R142_MAGIC_NUMBERS/CALIBRATION.json](#source-analysis-r142_magic_numbers-calibration-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DONORS.md](#source-analysis-r142_magic_numbers-donors-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/GENEALOGY.md](#source-analysis-r142_magic_numbers-genealogy-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt](#source-analysis-r142_magic_numbers-origin_checks-txt) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/README.md](#source-analysis-r142_magic_numbers-readme-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/checks_export.py](#source-analysis-r142_magic_numbers-checks_export-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/origin_audit.py](#source-analysis-r142_magic_numbers-origin_audit-py) `managed_evidence_source`.
+**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [analysis/R142_MAGIC_NUMBERS/CALIBRATION.json](#source-analysis-r142_magic_numbers-calibration-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DONORS.md](#source-analysis-r142_magic_numbers-donors-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/EXECUTED.md](#source-analysis-r142_magic_numbers-executed-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/GENEALOGY.md](#source-analysis-r142_magic_numbers-genealogy-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json](#source-analysis-r142_magic_numbers-holdout_lock-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json](#source-analysis-r142_magic_numbers-holdout_results-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json](#source-analysis-r142_magic_numbers-nuclear_input-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt](#source-analysis-r142_magic_numbers-origin_checks-txt) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/README.md](#source-analysis-r142_magic_numbers-readme-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/checks_export.py](#source-analysis-r142_magic_numbers-checks_export-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/fibonacci.py](#source-analysis-r142_magic_numbers-fibonacci-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/holdout.py](#source-analysis-r142_magic_numbers-holdout-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/origin_audit.py](#source-analysis-r142_magic_numbers-origin_audit-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4891,11 +4891,47 @@ analysis/R142_MAGIC_NUMBERS/DONORS.md — [исходная карточка](..
 **Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r142_magic_numbers-executed-md"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/EXECUTED.md
+
+analysis/R142_MAGIC_NUMBERS/EXECUTED.md — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/EXECUTED.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r142_magic_numbers-genealogy-md"></a>
 
 ### source:analysis/R142_MAGIC_NUMBERS/GENEALOGY.md
 
 analysis/R142_MAGIC_NUMBERS/GENEALOGY.md — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-holdout_lock-json"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json
+
+analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-holdout_results-json"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json
+
+analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-nuclear_input-json"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json
+
+analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json).
 
 **Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4932,6 +4968,24 @@ analysis/R142_MAGIC_NUMBERS/calibrate.py — [исходная карточка]
 ### source:analysis/R142_MAGIC_NUMBERS/checks_export.py
 
 analysis/R142_MAGIC_NUMBERS/checks_export.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/checks_export.py).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-fibonacci-py"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/fibonacci.py
+
+analysis/R142_MAGIC_NUMBERS/fibonacci.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/fibonacci.py).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r142_magic_numbers-holdout-py"></a>
+
+### source:analysis/R142_MAGIC_NUMBERS/holdout.py
+
+analysis/R142_MAGIC_NUMBERS/holdout.py — [исходная карточка](../../analysis/R142_MAGIC_NUMBERS/holdout.py).
 
 **Входящие:** [R142](#result-r142) `managed_evidence_source`.
 **Исходящие:** нет.

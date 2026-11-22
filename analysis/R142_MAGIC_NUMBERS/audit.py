@@ -39,6 +39,7 @@ results = {
     "Koide_tau_branches_MeV": tau_roots,
     "Wyler_inverse_alpha": 1/wyler,
     "Wyler_residual_in_CODATA2022_u": (1/wyler-137.035999177)/0.000000021,
+    "cascade_scope": {"map":"logistic","max_level":6,"max_period":64,"purpose":"independent subset of period-1024 audit"},
     "Feigenbaum_parameters": roots,
     "Feigenbaum_ratios": [(y-x)/(z-y) for x,y,z in zip(roots,roots[1:],roots[2:])],
     "Mackay_closed_sizes": [(10*k**3+15*k**2+11*k+3)//3 for k in range(1,5)],
