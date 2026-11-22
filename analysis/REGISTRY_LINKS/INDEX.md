@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=135, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=149.
+Число записей: result=136, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=153.
 
 ## Предпосылка → результаты
 
@@ -3151,6 +3151,15 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`.
 **Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`.
 
+<a id="result-r138"></a>
+
+### result:R138
+
+Доноры эволюции от BBN через рекомбинацию и тёмные века до a=1/50 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r138).
+
+**Входящие:** нет.
+**Исходящие:** [analysis/R138_POST_BBN_DONORS/CHECKS.json](#source-analysis-r138_post_bbn_donors-checks-json) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/DONORS.json](#source-analysis-r138_post_bbn_donors-donors-json) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/REPORT.md](#source-analysis-r138_post_bbn_donors-report-md) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/check_tables.py](#source-analysis-r138_post_bbn_donors-check_tables-py) `managed_evidence_source`.
+
 <a id="review-add_bbn_symmetry_20261115"></a>
 
 ### review:ADD_BBN_SYMMETRY_20261115
@@ -4844,6 +4853,42 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md — [исходная кар�
 analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная карточка](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py).
 
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-checks-json"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/CHECKS.json
+
+analysis/R138_POST_BBN_DONORS/CHECKS.json — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/CHECKS.json).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-donors-json"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/DONORS.json
+
+analysis/R138_POST_BBN_DONORS/DONORS.json — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/DONORS.json).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-report-md"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/REPORT.md
+
+analysis/R138_POST_BBN_DONORS/REPORT.md — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/REPORT.md).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-check_tables-py"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/check_tables.py
+
+analysis/R138_POST_BBN_DONORS/check_tables.py — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/check_tables.py).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-readme-md"></a>
