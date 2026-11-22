@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 7,
-  "date": "2026-11-21",
+  "version": 8,
+  "date": "2026-11-22",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
   "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
-  "coverage": "U001–U013. К U013 добавлен первый контроль по опубликованным данным.",
+  "coverage": "U001–U014. U014 относится к космологическому сопряжению R137.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
   "workflow": [
     "Сразу записывать вопрос и точное место возникновения: результат/поле/вмешательство, коммит и источник; рядом с исходным наблюдением ставить ссылку на U-ID.",
@@ -1123,6 +1123,35 @@
       "resolution_source": null,
       "user_answer_required_now": false,
       "genealogy_note": "Origin: #167 EOS phase-input work and the Shirogane donor audit in draft PR #185 (commit 649c1d9). R135 is the programmatic context, not physical evidence for the calibration. R136 is the independent response track, tracked by #193 and implemented for review in draft PR #194. Direct scientific sources are Shirogane 2016 (arXiv:1605.02997, calibration F(n)) and Shirogane 2021 (arXiv:2011.10292, phase-resolved jumps and beta_c values). R136 has reconstructed the calibration curve and checked the sign on both volumes, but exact Fig. 15 beta nodes/normalization and joint jackknife covariance remain missing. U013 remains OPEN; no publication error is yet established."
+    },
+    {
+      "id": "U014",
+      "title": "Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции?",
+      "kind": "NOT_ESTIMATED",
+      "status": "OPEN",
+      "origin_kind": "cosmological_matching",
+      "records": [
+        "R137"
+      ],
+      "construct_ids": [],
+      "open_links": [],
+      "origin": "Предложение сопоставить раннюю CCC+TL/BBN с поздней гидродинамикой донора из PR #195. Разработка в #196.",
+      "evidence_sources": [
+        "analysis/R137_LUMINA/REPORT.md",
+        "analysis/R137_LUMINA/verify.py",
+        "analysis/R137_LUMINA/CHECKS.json",
+        "analysis/R137_LUMINA/DATA_REQUEST.md"
+      ],
+      "known": "Четыре открытые таблицы проверены. Δτ(3,49)=0,03906762. Полностью ионизованное продолжение ниже z=3 даёт 28,15% общей τ. Независимое интегрирование даёт 0,01530341 против 0,01530663 в таблице.",
+      "unknown": "Таблица nₑ для z≥3 и точные начальные передаточные функции запрошены в проекте письма. Физическое сопряжение CCC+TL требует собственного решения для рекомбинации, гравитационного потенциала и роста.",
+      "next_step": "Сверить точные передаточные функции стандартной модели и воспроизвести Δτ из истории электронов. Зафиксировать уравнения выбранной версии CCC+TL и реляции между наблюдаемым z, масштабным фактором и временем.",
+      "closure": "Явно определён тёмный сектор либо его замена. Проверены остатки по фону, газу и возмущениям на общей сетке с заданной точностью. Проверена совместимость последующей эволюции либо локализовано конкретное физическое расхождение. При нехватке уравнений или данных вопрос открыт.",
+      "decision": "Самостоятельное исследование R137 в #196.",
+      "registered_date": "2026-11-22",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "CCC+TL review → карточка донора в #195 → самостоятельная задача #196. R130/R132 дают метод проверки переноса и соглашений. R135 задаёт контекст вопроса о фронтах."
     }
   ],
   "existing_open_links": [
@@ -1324,6 +1353,11 @@
       "date": "2026-11-21",
       "action": "Зарегистрирован U013 для R136.",
       "source": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md"
+    },
+    {
+      "date": "2026-11-22",
+      "action": "Зарегистрирован U014 для R137.",
+      "source": "analysis/R137_LUMINA/REPORT.md"
     }
   ],
   "pre_parent_link_completion_20261109": {

@@ -5203,6 +5203,43 @@
       ],
       "genealogy_note": "R135 is the programmatic/contextual parent, not physical evidence for the Shirogane calibration. Workstream ancestry: #167 EOS task → donor audit in draft PR #185 (PHASE_FLOW_AND_SIGMA_AUDIT.md, commit 649c1d9) → U013 → R136 / #193 → draft PR #194. Direct scientific donors: Shirogane et al. 2016 (arXiv:1605.02997, Eq. 42/F(n) calibration) and Shirogane et al. 2021 (arXiv:2011.10292, volume-specific beta_c, phase jumps, flow-time and method controls). Data lineage: source EPS → extract.py → FIGURES.json → verify.py → CHECKS.json → REPORT.md. R136 informs but does not close U013. A partially complete (curve reconstruction done; exact Fig. 15 beta nodes/normalization absent), B open (joint jackknife covariance absent), C checked (shift sign on both volumes). #167 may consume the calibration after provenance/covariance closure; #168 hydro and #174 GW remain open. No publication error is established; scientific_acceptance=false.",
       "scientific_acceptance": false
+    },
+    {
+      "id": "R137",
+      "section": "26. Сопряжение ранней и поздней космологии",
+      "title": "Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50",
+      "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · СТАНДАРТНЫЙ НИЗКОКРАСНОСМЕЩЁННЫЙ ВКЛАД В τ ПРОВЕРЕН",
+      "result": "Четыре открытые таблицы проверены. Δτ(3,49)=0,03906762. Полностью ионизованное продолжение ниже z=3 даёт 28,15% общей τ. Независимое интегрирование даёт 0,01530341 против 0,01530663 в таблице.",
+      "inputs": "Zier et al., рис. 9/17/22/26, табл. 2, ур. (34). Для интеграла ниже z=3 приняты Yp=0,24, H II и He III.",
+      "limit": "Таблица nₑ для z≥3 и точные начальные передаточные функции запрошены в проекте письма. Физическое сопряжение CCC+TL требует собственного решения для рекомбинации, гравитационного потенциала и роста.",
+      "framework_role": "Поздний радиационно-гидродинамический контроль для сравнения двух космологических историй. Для #168/#174 выделен только способ измерения скорости фронта.",
+      "evidence_level": "Проверка публичных чисел, контроль интеграла ниже z=3 и критерии открытого сравнения.",
+      "parent_result_ids": [
+        "R130",
+        "R132",
+        "R135"
+      ],
+      "construct_ids": [],
+      "open_link_ids": [],
+      "open_question_ids": [
+        "U014"
+      ],
+      "premise_ids": [],
+      "managed_card": true,
+      "sources": [
+        "analysis/R137_LUMINA/REPORT.md",
+        "analysis/R137_LUMINA/verify.py",
+        "analysis/R137_LUMINA/CHECKS.json",
+        "analysis/R137_LUMINA/DATA_REQUEST.md"
+      ],
+      "managed_sources": [
+        "analysis/R137_LUMINA/REPORT.md",
+        "analysis/R137_LUMINA/verify.py",
+        "analysis/R137_LUMINA/CHECKS.json",
+        "analysis/R137_LUMINA/DATA_REQUEST.md"
+      ],
+      "genealogy_note": "CCC+TL review → карточка донора в #195 → самостоятельная задача #196. R130/R132 дают метод проверки переноса и соглашений. R135 задаёт контекст вопроса о фронтах.",
+      "scientific_acceptance": false
     }
   ],
   "supplement_note": "R091–R095 добавлены 6 ноября 2026 из восстановленных ранних файлов и первичных публикаций; исходный source_commit относится к первоначальным 128 документам. Новых научных прогонов нет. R096 — прямое уточнение пользователя: больцмановская флуктуация целого с согласованным прошлым. R097 — восстановлена гипотеза ядерных спинов, электронных дырок и протонных дефектов/туннелирования; единая реализация не проверена. R098–R100 восстановлены при завершении единого реестра; C001–C039, L01–L10 и соответствие 107 старым строкам добавлены как навигация. N01–N09 сохраняются в исходном реестре, не закрыты данной сборкой. R101–R115 и C040 добавлены из Неадитивность(4).txt с адресной сверкой трёх архивов и литературы; R001–R100 не изменены. R116–R118 связывают Я/Мысль, виды инварианта и метафизические значения Бога; прежние115 записей сохранены. См. отдельный разбор SELF_THOUGHT_INVARIANT_GOD_20261106. R119 связывает физического посредника с памятью/PW и фиксирует судьбу информации; исходная оговорка о потере отдельной диагностики R восстановлена. R120/C041 сохраняют критический разбор профиля продолжения; L07 открыта. R121: генетика, эпигенетическая и структурная преемственность; R120 уточнена по указанию пользователя о статусе его результатов. R122: предоставленный G8-пилот воспроизведён; выделены локальное восстановление из окружения и фиксированный пространственный шаблон. R123/C042: причинность, одновременность и механизм типа 2; релятивистская совместимость обязательна, онтология открыта. R124: конечный причинный корректор восстановлен; ресурсные скорость/положительность и критерий случайных перестановок исправлены. R125: независимая проверка предпрогона v2; причинная отмена и цена возврата исправлены; полный событийный тест открыт.",
@@ -7001,7 +7038,8 @@
     "R135": [
       "C037"
     ],
-    "R136": []
+    "R136": [],
+    "R137": []
   },
   "open_links": [
     {
@@ -8459,7 +8497,7 @@
       "meaning": "Навигационное соответствие; исходный статус не изменён"
     }
   ],
-  "revision": "R136_SHIROGANE_CALIBRATION_20261121",
+  "revision": "R137_LUMINA_20261122",
   "work_policy": {
     "source": "RESEARCH_LINEAGE.md",
     "adopted_date": "2026-11-06",
@@ -9317,6 +9355,17 @@
       "new_records": [
         "R136",
         "U013"
+      ]
+    },
+    {
+      "id": "R137_LUMINA_20261122",
+      "date": "2026-11-22",
+      "base_commit": "39cda04b6e1c1ed124a1f8092f50e7f88d087ffc",
+      "report": "analysis/R137_LUMINA/REPORT.md",
+      "updates": [],
+      "new_records": [
+        "R137",
+        "U014"
       ]
     }
   ],
@@ -10508,6 +10557,24 @@
       "child": "R136",
       "relation": "temperature_calibration_audit",
       "note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3)."
+    },
+    {
+      "parent": "R130",
+      "child": "R137",
+      "relation": "methodological_parent",
+      "note": "Авторские уточнения конца ребра и переноса битов."
+    },
+    {
+      "parent": "R132",
+      "child": "R137",
+      "relation": "methodological_parent",
+      "note": "Спектральная проверка переноса портов."
+    },
+    {
+      "parent": "R135",
+      "child": "R137",
+      "relation": "research_context",
+      "note": "Постановка открытого вопроса о методах извлечения скорости фронта."
     }
   ],
   "historical_chains": [
@@ -10862,7 +10929,8 @@
       "R132",
       "R133",
       "R134",
-      "R135"
+      "R135",
+      "R137"
     ],
     "R131": [
       "R132",
@@ -10873,7 +10941,8 @@
     "R132": [
       "R133",
       "R134",
-      "R135"
+      "R135",
+      "R137"
     ],
     "R133": [
       "R134",
@@ -10883,7 +10952,8 @@
       "R135"
     ],
     "R135": [
-      "R136"
+      "R136",
+      "R137"
     ]
   },
   "attachment_coverage": {
@@ -13404,8 +13474,8 @@
   "open_questions_register": {
     "markdown": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
     "json": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
-    "version": 7,
-    "date": "2026-11-21",
+    "version": 8,
+    "date": "2026-11-22",
     "question_ids": [
       "U001",
       "U002",
@@ -13419,9 +13489,10 @@
       "U010",
       "U011",
       "U012",
-      "U013"
+      "U013",
+      "U014"
     ],
-    "scope": "U001–U013. U013 проверяет согласованность фазовых данных при одинаковой β на обеих решётках.",
+    "scope": "U001–U013. U013 проверяет согласованность фазовых данных при одинаковой β на обеих решётках. U014 проверяет сопряжение CCC+TL и Lumina.",
     "u010": {
       "id": "U010",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json",
