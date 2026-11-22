@@ -1,0 +1,158 @@
+{
+  "21803002": {
+    "split": 16,
+    "energy_keV": [
+      244.92,
+      838.99
+    ],
+    "heldout_starts_keV": 693.3,
+    "tests": {
+      "0.0": {
+        "cut_eV": 0.0,
+        "train": 16,
+        "test": 8,
+        "scale_eV": [
+          13.99168844194214,
+          6.99584422097107
+        ],
+        "mean_log_PT_minus_exp": -0.03486536976041807,
+        "conditional_interval": [
+          -0.2138006816674243,
+          0.14974902913985763
+        ]
+      },
+      "0.1": {
+        "cut_eV": 0.4374937030685991,
+        "train": 14,
+        "test": 8,
+        "scale_eV": [
+          12.687549983586925,
+          7.525985203261963
+        ],
+        "mean_log_PT_minus_exp": 0.164335876998284,
+        "conditional_interval": [
+          0.008519963540930466,
+          0.3350358785340594
+        ]
+      },
+      "0.25": {
+        "cut_eV": 1.5812940816038674,
+        "train": 12,
+        "test": 6,
+        "scale_eV": [
+          11.382458203512662,
+          7.592764399448912
+        ],
+        "mean_log_PT_minus_exp": 0.10156740676245957,
+        "conditional_interval": [
+          0.0012820414220933534,
+          0.1933450234932437
+        ]
+      }
+    },
+    "cv2_train": 1.822636380151658,
+    "pt_ks": 0.15239006035494135,
+    "pt_parametric_bootstrap_p": 0.425,
+    "gap_left_width": {
+      "rho": 0.08498023715415019,
+      "conditional_p": 0.705,
+      "pairs": 23,
+      "block_sizes": [
+        6,
+        6,
+        6,
+        5
+      ]
+    },
+    "injected_monotonic_control": {
+      "rho": 1.0,
+      "conditional_p": 0.00025,
+      "pairs": 23,
+      "block_sizes": [
+        6,
+        6,
+        6,
+        5
+      ]
+    },
+    "error_scenario_uncut_score_interval": [
+      -0.07215423992700232,
+      0.012282676987736022
+    ]
+  },
+  "10172047": {
+    "split": 5,
+    "energy_keV": [
+      27.66,
+      187.0
+    ],
+    "heldout_starts_keV": 139.9,
+    "tests": {
+      "0.0": {
+        "cut_eV": 0.0,
+        "train": 5,
+        "test": 3,
+        "scale_eV": [
+          6.624592413674321,
+          3.3122962068371606
+        ],
+        "mean_log_PT_minus_exp": -0.2859617628661845,
+        "conditional_interval": [
+          -0.33418824582426626,
+          -0.23773527990810273
+        ]
+      },
+      "0.1": {
+        "cut_eV": 0.7573333333333334,
+        "train": 4,
+        "test": 3,
+        "scale_eV": [
+          5.015278312557845,
+          3.373031323381791
+        ],
+        "mean_log_PT_minus_exp": -0.08806088598986934,
+        "conditional_interval": [
+          -0.14951679598189363,
+          -0.02660497599784506
+        ]
+      },
+      "0.25": {
+        "cut_eV": 1.8333333333333333,
+        "train": 4,
+        "test": 3,
+        "scale_eV": [
+          2.9426370426920947,
+          2.2970371916902876
+        ],
+        "mean_log_PT_minus_exp": 0.00316261506706809,
+        "conditional_interval": [
+          -0.060495894626669745,
+          0.06682112476080593
+        ]
+      }
+    },
+    "cv2_train": 1.1090476574022978,
+    "pt_ks": 0.37739802928496224,
+    "pt_parametric_bootstrap_p": 0.0598,
+    "gap_left_width": {
+      "rho": 0.857142857142857,
+      "conditional_p": 0.02625,
+      "pairs": 7,
+      "block_sizes": [
+        7
+      ]
+    },
+    "injected_monotonic_control": {
+      "rho": 0.9999999999999999,
+      "conditional_p": 0.00025,
+      "pairs": 7,
+      "block_sizes": [
+        7
+      ]
+    },
+    "error_scenario_uncut_score_interval": [
+      -0.32483918565699943,
+      -0.2284844996114968
+    ]
+  }
+}
