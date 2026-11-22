@@ -4917,3 +4917,20 @@ infra/reviews/GITHUB_20261112/METHOD_REVIEW.txt — [исходная карто
 
 **Входящие:** [METHOD_20261112](#review-method_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
+
+
+<a id="result-r137"></a>
+### result:R137
+
+Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50 — [карточка](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r137).
+
+**Входящие:** нет.
+**Исходящие:** [U014](#question-u014) `informs_not_closes`; источники R137.
+
+<a id="question-u014"></a>
+### question:U014
+
+Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции? — [карточка](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014).
+
+**Входящие:** [R137](#result-r137) `informs_not_closes`.
+**Исходящие:** нет.
