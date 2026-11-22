@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "bdfa721e97a5eed868922a84e902f703ace885d3dadd18c2b5b30726ee6991bd",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "42d0fcd4def2f05fc803308b127642ae67afc66d5616ad925d434ab3a5e5a8ec",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "41b7eb61899d8763fce911566f81eb120e5cb15a1659502f314a761cf1c25507",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "26a09bde271b40686b0c2e2d0ab29e510a1a527dcd247591da048b527d4b5849",
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 164
+    "source": 166
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -5067,6 +5067,18 @@
       "size_bytes": 106436
     },
     {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "fragment": "",
+      "sha256": "033e11678ab89b1def029d5ec3ee77bf7832c81b4a64a1dca7b818953d156e66",
+      "git_blob_sha": "3972e3415bf9f32c77b793c10f6dc6b5dec3e179",
+      "size_bytes": 4676
+    },
+    {
       "key": "source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
       "id": "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
       "kind": "source",
@@ -5122,9 +5134,9 @@
       "status": null,
       "path": "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
       "fragment": "",
-      "sha256": "d5340ae66de95d3e8ee63db62371c61f5a0b297a5c3fa649dfb949d4bea94ba9",
-      "git_blob_sha": "09806ed61c6e6a343a869484a0caba33b7c9a94a",
-      "size_bytes": 20520
+      "sha256": "9336d7719ebf4ebf807fcf4a87486559e5e97ac03e34036735b4460954a9d2a6",
+      "git_blob_sha": "dfdefe2b06761d66bd578098194bb5ca762f3734",
+      "size_bytes": 20686
     },
     {
       "key": "source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
@@ -5134,9 +5146,9 @@
       "status": null,
       "path": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
       "fragment": "",
-      "sha256": "2cdaab39f0c1672984626b91124d22de1b95018fe48fdaad0a2b103da108ec7b",
-      "git_blob_sha": "6b3ae853bb1f82776c44a4b47d2e6d050ccf3286",
-      "size_bytes": 49131
+      "sha256": "fcc137cde6a29b1d1b4787109f616cc786abb1fab99bb82e4e92cb2eae4f59d8",
+      "git_blob_sha": "d858453b0d25c1c1c83fc557db9e2366d03dd210",
+      "size_bytes": 49585
     },
     {
       "key": "source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
@@ -5149,6 +5161,18 @@
       "sha256": "0c35ba7308fd6325f5f3fb950927e3faf9cee2a056ad5d5959e06fe2b7e0194a",
       "git_blob_sha": "8e8b13c6605d2868f13579caf3df15dbafef11b6",
       "size_bytes": 5756
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "fragment": "",
+      "sha256": "dac773c56abe800189edead32dc4ee9613319164070e98c086f83e519b176073",
+      "git_blob_sha": "0318df61b06765545d9bda3729a6051452e02529",
+      "size_bytes": 16739
     },
     {
       "key": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
@@ -10917,6 +10941,11 @@
     },
     {
       "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
       "target": "source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -10948,6 +10977,11 @@
     {
       "source": "result:R136",
       "target": "source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
       "relation": "managed_evidence_source"
     },
     {

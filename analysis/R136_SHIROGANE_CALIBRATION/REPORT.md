@@ -320,3 +320,5 @@ python audit_statistical_budget.py paper2021.tar paper2016.tar --output STATISTI
 ```
 
 **Продолжение в [#201](https://github.com/IgorSabirov/vm-lab/issues/201).** [Согласие методов на двух объёмах](METHOD_VOLUME.md), включая общий и объёмно-зависимый контрасты, уточнённый порог 0.828534 для всего диапазона ρhc и контроль по следу. Научная приёмка остаётся открытой.
+
+**Полный комплект обновления.** [Область определения D₁₃₆ и порог корреляции](ESTIMATOR_DOMAIN.md) · [Архивный аудит с исходными таблицами](archived_peer_audit/R136_1_audit.md) · [Единый архив с R140 и команды повтора](https://github.com/IgorSabirov/vm-lab/tree/research/r140-haar-sorkin/analysis/R140_HAAR_SORKIN/publication).
