@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=136, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=153.
+Число записей: result=135, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=149.
 
 ## Предпосылка → результаты
 
