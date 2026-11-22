@@ -9,7 +9,7 @@ permissions:
   contents: read
 concurrency:
   group: r141-zeta-657-actions-direct
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   reproduce:
     if: github.actor == github.repository_owner
