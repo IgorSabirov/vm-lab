@@ -7,3 +7,7 @@ Copilot instruction embedded in runtime/invoke_copilot.py:
 > Call zeta.execute exactly once with no arguments. It runs the fixed, complete 657-zero mpmath replay, Siegel-Z sign checks, indexed spot checks, Hadamard partial products, Gaussian sums and separate CCC+TL clock integral. If status is RUNNING, call zeta.status repeatedly until exit_code is not null. Do not stop after the first response. Do not ask questions, change code, invoke shell, browse, edit, delegate or launch another process. Report actual status, exit code, root count, threshold crossings and any failed check.
 
 Do not assign the issue to @copilot or use the registry-only /vm-lab operator. The Actions workflow is the executor.
+
+## Trigger revision
+
+The publish job uses the authenticated checkout so the trusted runner can commit the artifact-backed result branch. The scientific package is unchanged.
