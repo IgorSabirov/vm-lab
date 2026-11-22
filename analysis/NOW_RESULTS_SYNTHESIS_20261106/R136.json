@@ -35,5 +35,27 @@
     "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json"
   ],
   "genealogy_note": "Исходный разбор в #167 и PR #185. Прецедент Арриги методологический. Научная постановка R136 принадлежит термодинамике SU(3). Extended audit (2026-11-22) records the exploratory domain/window bug fix, polynomial/interpolation stability, illustrative covariance/GLS scenarios and Figure-3 flow-time/finite-volume separation. See REPORT.md#extended-audit-followup and EXTENDED_CHECKS.json. U013 remains OPEN; no publication error established.",
-  "scientific_acceptance": false
+  "scientific_acceptance": false,
+  "genealogy": {
+    "r136_1": {
+      "parent": "R136",
+      "issue": 193,
+      "question": "U013",
+      "pr": 194,
+      "report": "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "code": "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "relation": "extension_no_new_R_number"
+    }
+  },
+  "invariant_D": {
+    "value": 0.0006229,
+    "anchor_invariant": true,
+    "local_slope_dependent": true,
+    "estimator_systematics_unbounded": true,
+    "statistical_covariance_measured": false
+  },
+  "decision": {
+    "scientific_acceptance": false,
+    "U013": "OPEN"
+  }
 }
