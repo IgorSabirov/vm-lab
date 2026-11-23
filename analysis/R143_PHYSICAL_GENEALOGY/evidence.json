@@ -1,0 +1,1339 @@
+[
+  {
+    "id": "E01",
+    "group": "dot",
+    "status": "D",
+    "addresses": [
+      "R022",
+      "C016",
+      "E002c",
+      "dir:analysis/E002c_literature_review_20261029",
+      "file:analysis/E002c_literature_review_20261029/REVIEW.md",
+      "file:E002c_REVIEW.md"
+    ],
+    "system": "Связанные квантовые точки с двумя электронами",
+    "role": "донор",
+    "observation": "В R022 разобраны две связанные тройные точки со спин-запутанным двухэлектронным тёмным состоянием Pöltl–Emary–Brandes (2013); в E002c рассмотрен одноэлектронный магнитотранспорт одной тройной точки Emary (2007). В R143 добавлены одиночные точки Tarucha–Austing с энергией добавления и деформацией.",
+    "implementation": "Для R143 выполнены спектральный контроль при четырёх деформациях, проверка δ=L/S по трём приборам, четырёхмерный стационарный расчёт донора Emary и контроль закреплённых операторов E002c. Собственная E002c остаётся сетью размерности 216 с числом возбуждений 0–3.",
+    "data": "Сохранены геометрия приборов, опубликованные значения Δ₂(4) и ранги пар W/X/Y/Z; экспериментальные оболочечные максимумы Tarucha 1996 — 2,6,12. 168 модельных значений Δ₂−U не являются оцифровкой экспериментальных кривых.",
+    "limit": "Ряд 2,6,12,20,30,42 относится к круглой идеальной точке; при δ=2 расчёт даёт 2,4,8,12,18,24,32,40. Подстановка δ=L/S не согласуется с рангами Y/Z. У определённого заряда E002c нет секторов N=6,12; N=2 не устанавливает физическую электронную оболочку. Спектр добавления Tarucha моделью E002c не воспроизведён.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/E002c_literature_review_20261029/REVIEW.md#L133",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/E002c_REVIEW.md#L89"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "У транспортных адресатов остаётся донорская связь; R143 воспроизводит отдельный идеальный спектральный контроль, но не устанавливает числовые оболочки в E002c.",
+    "r143_followup": "analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/README.md",
+    "r143_followup_status": "SOURCE_MAP_AND_BOUNDED_CONTROLS_EXECUTED; scientific_acceptance=false"
+  },
+  {
+    "id": "E02",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "R141",
+      "BBN-Rmatrix",
+      "source:analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md",
+      "dir:analysis/R141_RIEMANN_CORPUS",
+      "file:analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md",
+      "source:analysis/R141_RIEMANN_CORPUS/bbn/resonance.py",
+      "file:analysis/R141_RIEMANN_CORPUS/bbn/resonance.py"
+    ],
+    "system": "⁴He в выходном канале ³He(d,p)⁴He",
+    "role": "компонент",
+    "observation": "Идентифицировано ядро с Z=N=2. Скорость пересчитана по одному уровню ⁵Li и двум каналам.",
+    "implementation": "resonance.py и таблица пяти температур.",
+    "data": "Опубликованные параметры анализа сечений и табличные скорости; отдельного фитирования 214 исходных точек здесь нет.",
+    "limit": "Ни ширина уровня ⁵Li, ни выход ⁴He не измеряют щель ⁴He; совпадение касается только nuclear.1.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#L25",
+      "https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/R141_RIEMANN_CORPUS/bbn/resonance.py#L1"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E03",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "BBN-pair",
+      "#140",
+      "PR144",
+      "source:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md",
+      "dir:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117",
+      "file:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md"
+    ],
+    "system": "⁴He в парных траекториях LINX/PRIMAT",
+    "role": "основной выход",
+    "observation": "В двух сетях вычислен Yp, сохранены траектории восьми содержаний и передача в CLASS.",
+    "implementation": "17 пар с общими скоростями, два собственных эталона; отдельно шесть расчётов CLASS.",
+    "data": "Табличные скорости и численные траектории. Yp здесь расчётный.",
+    "limit": "Yp не проверяет замыкания остальных ядер и не измеряет собственный спектр ⁴He.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md#L7"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E04",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "R135",
+      "#171",
+      "task:CASCADE",
+      "dir:analysis/R135_PHYSICAL_SECTOR_X_20261120",
+      "file:analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/extensions_reference/p7_bbn_control/linx/0/observables.json"
+    ],
+    "system": "Лёгкие ядра в сети BBN, выход гелия",
+    "role": "компонент",
+    "observation": "В программной поставке P7/P8 сохранены контрольные содержания при переданной истории.",
+    "implementation": "Нативные адаптеры и контроль с фиксированными входами.",
+    "data": "Сохранённые выходы модели; независимая оценка оболочечной щели отсутствует.",
+    "limit": "Остаток #171 включает физику каскадов и возврат энергии.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/extensions_reference/p7_bbn_control/linx/0/observables.json#L1"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E05",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "R137",
+      "U014",
+      "#196",
+      "source:analysis/R137_LUMINA/REPORT.md",
+      "dir:analysis/R137_LUMINA",
+      "file:analysis/R137_LUMINA/REPORT.md",
+      "source:analysis/R137_LUMINA/verify.py",
+      "file:analysis/R137_LUMINA/verify.py"
+    ],
+    "system": "Первичный ⁴He как массовая доля Yp в газе",
+    "role": "компонент",
+    "observation": "Yp входит в подсчёт электронов при полной ионизации и проверку оптической толщины.",
+    "implementation": "verify.py, интеграл τ при z<3.",
+    "data": "Параметр симуляции и таблица Lumina; лабораторного измерения ядра здесь нет.",
+    "limit": "Проверена роль количества ядер, а не их внутренний спектр.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/REPORT.md#L27",
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/verify.py#L1"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E06",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "R138",
+      "U014",
+      "#199",
+      "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "dir:analysis/R138_POST_BBN_DONORS",
+      "file:analysis/R138_POST_BBN_DONORS/REPORT.md"
+    ],
+    "system": "Первичный гелий на входе рекомбинации",
+    "role": "компонент",
+    "observation": "При заданном Yp=0,24 состав гелия передан в два рекомбинационных решателя с общими nH0 и fHe; одинаковая барионная нормировка реализована явно.",
+    "implementation": "После контроля таблиц drft/RECFAST в R143 выполнены прямой HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 на общем H(z). При z=49 получены Tgas=48,76953742/48,75966648 K соответственно.",
+    "data": "Два вычисленных однородных ряда xₑ=n_e/n_H и Tgas на общей сетке; общий вход Yp=0,24. Исходные параметры и граничные значения сохранены в LOCK.json и SUMMARY.json.",
+    "limit": "Yp=0,24 задан на входе. Нового расчёта BBN и проверки оболочечной щели нет. Сходимость граничной точки z=49 проверена отдельно; глобальная сходимость истории и полная стыковка с начальными условиями Lumina остаются открыты; U014 — OPEN.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
+  },
+  {
+    "id": "E07",
+    "group": "noble",
+    "status": "D",
+    "addresses": [
+      "R138",
+      "U014",
+      "#199",
+      "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "dir:analysis/R138_POST_BBN_DONORS",
+      "file:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "file:analysis/R138_POST_BBN_DONORS/check_tables.py"
+    ],
+    "system": "Гелий в атомной рекомбинации",
+    "role": "донор",
+    "observation": "Атомная рекомбинация H/He участвует в выполненных историях HYREC-2 и RECFAST; сравниваются суммарная свободноэлектронная доля xₑ=n_e/n_H и Tgas при одинаковом составе.",
+    "implementation": "В R143 исполнены HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 с Yp=0,24 и общими H(z), nH0, fHe; сохранены основные истории и отдельные контроли численного шага.",
+    "data": "Вычисленные модельные истории на 6023 общих узлах и контрольные ряды; исходный контроль таблиц RECFAST/drft сохранён в R138. Лабораторные энергии ионизации не использованы.",
+    "limit": "Расчёт уровней He, ряд благородных газов и скачки энергии ионизации не проверяются этой парой историй. Сходимость всей истории не установлена: в одном контроле HYREC-2 обнаружены локальные выбросы. Граница z=49 проверена отдельно.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11",
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L11"
+    ],
+    "claim_scope": "noble.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
+  },
+  {
+    "id": "E08",
+    "group": "noble",
+    "status": "A",
+    "addresses": [
+      "R137",
+      "source:analysis/R137_LUMINA/REPORT.md",
+      "dir:analysis/R137_LUMINA",
+      "file:analysis/R137_LUMINA/REPORT.md"
+    ],
+    "system": "He III в расчёте ионизации газа Lumina",
+    "role": "контроль границы",
+    "observation": "Для He III у ядра нет связанных электронов. Это отдельно размеченный контроль ошибочного переноса атомной оболочки.",
+    "implementation": "Прочитана история объёмной доли He III.",
+    "data": "Таблица расчёта газа Lumina.",
+    "limit": "Для замкнутой электронной оболочки He требуется нейтральное основное состояние и соответствующая наблюдаемая.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/REPORT.md#L14"
+    ],
+    "claim_scope": "noble.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E09",
+    "group": "balmer",
+    "status": "S",
+    "addresses": [
+      "R137",
+      "#196",
+      "source:analysis/R137_LUMINA/REPORT.md",
+      "dir:analysis/R137_LUMINA",
+      "file:analysis/R137_LUMINA/REPORT.md"
+    ],
+    "system": "Нейтральный атомарный H в симуляции Lumina",
+    "role": "компонент",
+    "observation": "Таблица H I даёт эволюцию нейтральной доли; в отчёте определено пересечение 0,5.",
+    "implementation": "Обработка опубликованных таблиц и вычисление τ.",
+    "data": "Симуляция, без спектров линий Бальмера.",
+    "limit": "Прямой проверки переходов n→2 в этом блоке нет.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/REPORT.md#L13"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E10",
+    "group": "balmer",
+    "status": "D",
+    "addresses": [
+      "R138",
+      "U014",
+      "#199",
+      "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "dir:analysis/R138_POST_BBN_DONORS",
+      "file:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "file:analysis/R138_POST_BBN_DONORS/check_tables.py"
+    ],
+    "system": "Рекомбинирующий водород",
+    "role": "донор",
+    "observation": "Выполнено сравнение однородных историй рекомбинирующего H/He; при z=49 HYREC-2 даёт xₑ=0,0002347812744, RECFAST — 0,0002352123960.",
+    "implementation": "HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 исполнены на общем фоне Lumina при Yp=0,24. В замороженной основной паре при z=49 Δxₑ=−0,183290% и ΔTgas=+0,020244% относительно RECFAST; контроли шага сохранены отдельно.",
+    "data": "Численные истории xₑ и Tgas, общие нормировки и граничная точка a=1/50; спектры Hα–Hδ не входят.",
+    "limit": "Переходы n→2 и шкала длин волн не проверяются этим опытом. Глобальная сходимость истории не установлена; возмущения, относительные скорости компонентов и полные начальные условия Lumina не переданы. U014 остаётся OPEN.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11",
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L34"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
+  },
+  {
+    "id": "E11",
+    "group": "atomic",
+    "status": "A",
+    "addresses": [
+      "R138",
+      "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "dir:analysis/R138_POST_BBN_DONORS",
+      "file:analysis/R138_POST_BBN_DONORS/check_tables.py"
+    ],
+    "system": "Эффективная рекомбинационная модель и полная ёмкость слоя",
+    "role": "контроль границы",
+    "observation": "Наличие связанных состояний атома само по себе не устанавливает полный набор n,l,m,s в используемой таблице.",
+    "implementation": "Считываются xₑ и Tgas.",
+    "data": "Контрольная таблица drft.",
+    "limit": "Нужно явное перечисление подуровней и вырождений для утверждения о 2n².",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L34"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E12",
+    "group": "bosonic",
+    "status": "D",
+    "addresses": [
+      "R134",
+      "source:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
+      "dir:analysis/R134_STRINGS_CONNES_ADD_20261120",
+      "file:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
+      "source:analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py",
+      "file:analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py"
+    ],
+    "system": "Четырёх- и пятиточечные струнные амплитуды",
+    "role": "донор",
+    "observation": "Рассчитаны полюса и вычеты амплитуд семейства Венциано. Это содержательное присутствие струнной теории.",
+    "implementation": "verify.py; таблица пятиточечных вычетов.",
+    "data": "Аналитические и численные результаты; экспериментальных событий нет.",
+    "limit": "Мироволистовый баланс c_mat+c_gh в R134 не вычислен; вычет не подтверждает D=26.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md#L19",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py#L1"
+    ],
+    "claim_scope": "string.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "worldsheet/README.md",
+      "fields": "worldsheet/FIELDS.json",
+      "checks": "worldsheet/CHECKS.json",
+      "date": "2026-11-23"
+    }
+  },
+  {
+    "id": "E13",
+    "group": "super",
+    "status": "A",
+    "addresses": [
+      "R134",
+      "source:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
+      "dir:analysis/R134_STRINGS_CONNES_ADD_20261120",
+      "file:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md"
+    ],
+    "system": "Амплитуда Вирасоро–Шапиро и вопрос о секторе",
+    "role": "контроль границы",
+    "observation": "Сверка отношения гамма-функций не устанавливает RNS-содержание материи и духов.",
+    "implementation": "Проверены девять вычетов в принятой кинематике.",
+    "data": "Расчёт.",
+    "limit": "Для прямой идентификации D=10 отделить кинематический множитель и сектор, задать мироволистовые поля.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md#L20"
+    ],
+    "claim_scope": "string.2",
+    "r142_target_at_address": "отклонён перенос",
+    "followup": {
+      "path": "worldsheet/README.md",
+      "fields": "worldsheet/FIELDS.json",
+      "checks": "worldsheet/CHECKS.json",
+      "date": "2026-11-23"
+    }
+  },
+  {
+    "id": "E14",
+    "group": "anomaly",
+    "status": "A",
+    "addresses": [
+      "R132",
+      "R134",
+      "source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "dir:analysis/R132_ADD_YM_CCM_20261119",
+      "file:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "source:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md",
+      "dir:analysis/R134_STRINGS_CONNES_ADD_20261120",
+      "file:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md"
+    ],
+    "system": "Четырёхмерная группа СМ и струнное рассеяние",
+    "role": "контроль границы",
+    "observation": "В R132 задано представление СМ; в R134 рассчитаны амплитуды. Ни одна операция не задаёт хиральный десятимерный спектр.",
+    "implementation": "Сохранены разные расчёты обоих блоков.",
+    "data": "Теоретические.",
+    "limit": "Нужно построить I₁₂ и его факторизацию для указанной алгебры.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L1",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md#L20"
+    ],
+    "claim_scope": "anomaly.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E15",
+    "group": "color",
+    "status": "P",
+    "addresses": [
+      "R132",
+      "source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "dir:analysis/R132_ADD_YM_CCM_20261119",
+      "file:analysis/R132_ADD_YM_CCM_20261119/REPORT.md"
+    ],
+    "system": "Цвет SU(3) в спектральной геометрии Стандартной модели",
+    "role": "донор",
+    "observation": "У донора CCM явно заданы SU(3), цветовой триплет кварков и цветовые синглеты лептонов. Размерность присоединённой алгебры фиксирована этой группой.",
+    "implementation": "В корпусе проверено препятствие для представления M₃(C) в собственной алгебре меток. Отдельного детекторного счёта глюонов нет.",
+    "data": "Теоретический вывод при заданной алгебре.",
+    "limit": "Графовый сектор R130 сам группу цвета не вывел.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L1",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L20"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "величина в заданной модели/эталонный вход"
+  },
+  {
+    "id": "E16",
+    "group": "color",
+    "status": "S",
+    "addresses": [
+      "BH1-sphere",
+      "dir:analysis/ADD_BH1_CCC_PENROSE_20261119",
+      "file:analysis/ADD_BH1_CCC_PENROSE_20261119/REPORT.md"
+    ],
+    "system": "Свободная чистая SU(3) на компактной сфере",
+    "role": "контроль",
+    "observation": "Проинтегрирована голономия; наблюдаемая — восприимчивость следа U. Присоединённый характер выражается через фундаментальный след.",
+    "implementation": "В отчёте заданы интеграл, мера и численная проверка конечного N.",
+    "data": "Теоретический численный эталон.",
+    "limit": "Свободная конечная система имеет свою область применимости относительно взаимодействующей макроскопической плазмы.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/ADD_BH1_CCC_PENROSE_20261119/REPORT.md#L3"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E17",
+    "group": "color",
+    "status": "S",
+    "addresses": [
+      "R135",
+      "#161",
+      "#167",
+      "task:MODEL",
+      "task:EOS",
+      "PR159",
+      "PR185",
+      "file:infra/r135/research/20261121_donors/xb_su3_eos/README.md",
+      "file:infra/r135/research/20261121_donors/xb_su3_eos/replay_eos.py"
+    ],
+    "system": "Равновесные фазы чистой SU(3), эталон XB",
+    "role": "компонент",
+    "observation": "По опубликованным решёточным энтропиям восстановлены p,e,w и тепловой скачок. Для скрытого X отождествление условно.",
+    "implementation": "replay_eos.py и готовый результат для двух устойчивых фаз.",
+    "data": "Решёточные данные Giusti и др., вычислительные; детекторного измерения нет.",
+    "limit": "Ветви заданы совместно при Tc; метастабильное перекрытие для Δp(T) остаётся открытым.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/research/20261121_donors/xb_su3_eos/README.md#L1",
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/research/20261121_donors/xb_su3_eos/replay_eos.py#L1"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E18",
+    "group": "color",
+    "status": "T",
+    "addresses": [
+      "#164",
+      "#165",
+      "task:SU3",
+      "task:BRIDGE",
+      "file:infra/r135/PIPELINE.json"
+    ],
+    "system": "Независимые решёточные поля SU(3)",
+    "role": "основной объект задания",
+    "observation": "Требуются ансамбли, четырёхточечный отклик и отложенная проверка маркера графа.",
+    "implementation": "Зарегистрированы критерии #164 и #165.",
+    "data": "Предусмотрены первичные решёточные конфигурации; результат термометрии #193 их не заменяет.",
+    "limit": "Нужно измерение оператора на независимой выборке и проверка мощности, затем перенос.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L518",
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L664"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E19",
+    "group": "color",
+    "status": "T",
+    "addresses": [
+      "#169",
+      "task:RELIC",
+      "file:infra/r135/PIPELINE.json"
+    ],
+    "system": "Глюболы в условной чистой теории SU(3)",
+    "role": "основной объект задания",
+    "observation": "Поставлена задача о сети состояний, порталах и распадах; одних восьми цветовых компонент недостаточно для скоростей.",
+    "implementation": "Имеются контрольные входы; полное замыкание сети записано в критериях.",
+    "data": "Требуются матричные элементы и коррелированные скорости.",
+    "limit": "Нужны реакции, ширины и баланс энергии заявленного сектора.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L1533"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E20",
+    "group": "color",
+    "status": "S",
+    "addresses": [
+      "R136",
+      "U013",
+      "#193",
+      "#201",
+      "PR194",
+      "source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "dir:analysis/R136_SHIROGANE_CALIBRATION",
+      "file:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "source:analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "file:analysis/R136_SHIROGANE_CALIBRATION/extract.py"
+    ],
+    "system": "Деконфайнмент чистой SU(3), решётки Shirogane",
+    "role": "основной объект",
+    "observation": "На векторных материалах восстановлены шкала температуры и фазовые скачки при общей β.",
+    "implementation": "extract.py и проверки температурного отображения, межобъёмного контраста и ошибок.",
+    "data": "Опубликованные результаты решёточного Монте-Карло, EPS и таблицы. Это не физический детектор.",
+    "limit": "Для строгой совместной значимости нужны корреляции и детали реализации калибровки.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/414be6e3dc2d294e693689a8cbc506374a735ae1/analysis/R136_SHIROGANE_CALIBRATION/REPORT.md#L5",
+      "https://github.com/IgorSabirov/vm-lab/blob/414be6e3dc2d294e693689a8cbc506374a735ae1/analysis/R136_SHIROGANE_CALIBRATION/extract.py#L1"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E21",
+    "group": "mond",
+    "status": "D",
+    "addresses": [
+      "CCC-SPARC",
+      "review:CCC_TL_20261112",
+      "external:CCC_SPARC",
+      "source:analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+      "dir:analysis/CCC_TL_REVIEW_20261112",
+      "file:analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+      "file:infra/external/contracts/CCC_SPARC.json",
+      "dir:analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119",
+      "file:analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md"
+    ],
+    "system": "Дисковые галактики с измеренными кривыми вращения SPARC",
+    "role": "общий донор данных",
+    "observation": "CCC разбирает обратную реконструкцию с Vobs, а R142 оценивает a₀ на калибровке и отложенных галактиках.",
+    "implementation": "Исполнены обратный расчёт авторов, прямой оператор CCC и MOND, проверка 130/35 и парный bootstrap по галактикам.",
+    "data": "По идентификатору и радиусу совпали 3 391 строка исходного каталога. Авторская выборка содержит 165 галактик и 3 345 общих точек.",
+    "limit": "Прямой прогноз условен относительно фиксированных D, i, M/L, сферической геометрии и переноса единого порога плотности.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_TL_REVIEW_20261112/REPORT.md#L83",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/CCC_SPARC.json#L6",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md#L74"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": "analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md",
+    "followup_tests": "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md",
+    "external_threshold_group_scale": "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/README.md"
+  },
+  {
+    "id": "E22",
+    "group": "mass",
+    "status": "P",
+    "addresses": [
+      "S2",
+      "#45",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json",
+      "file:analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md"
+    ],
+    "system": "Свободные протон и электрон, отношение масс в S2",
+    "role": "компонент",
+    "observation": "В диагностическом базисе записан измеренный m_p/m_e. Указана собственная граница вариации по квазару.",
+    "implementation": "Численная опора сохранена в JSON; S2 имеет статус проекта.",
+    "data": "CODATA 2022 и опубликованное ограничение, без нового фитирования спектра.",
+    "limit": "Для дрейфа нужна модель измерения во времени; число в паспортe служит входом.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json#L27",
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/S2_MICROPHYSICS_AND_ANTHROPIC.md#L371"
+    ],
+    "claim_scope": "mass_ratio.1",
+    "r142_target_at_address": "величина в заданной модели/эталонный вход"
+  },
+  {
+    "id": "E23",
+    "group": "alpha",
+    "status": "P",
+    "addresses": [
+      "S2",
+      "#45",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json",
+      "file:analysis/CCC_BBN_NETWORK_20261114/SPEC.md"
+    ],
+    "system": "α_EM в микрофизике первичного нуклеосинтеза",
+    "role": "компонент",
+    "observation": "В базисе S2 отдельно задана постоянная тонкой структуры; в спецификации названы связанные с ней поправки захвата.",
+    "implementation": "Проверен путь параметра в спецификации PRIMAT; автоматический override покрывает не все поправки.",
+    "data": "CODATA и опубликованные агрегированные ограничения разных эпох.",
+    "limit": "Для физического отклика требуется пересчитать согласованный набор скоростей.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json#L19",
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/SPEC.md#L216"
+    ],
+    "claim_scope": "alpha_input.1",
+    "r142_target_at_address": "величина в заданной модели/эталонный вход"
+  },
+  {
+    "id": "E24",
+    "group": "alpha_hist",
+    "status": "A",
+    "addresses": [
+      "S2",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json"
+    ],
+    "system": "Измеренная α_EM и исторические формулы для неё",
+    "role": "контроль границы",
+    "observation": "Использование α_EM как входа не реализует гипотезу Эддингтона или формулу Уайлера.",
+    "implementation": "Есть диагностические поля.",
+    "data": "CODATA.",
+    "limit": "У исторических гипотез свой прогноз и история выбора.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json#L19"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E25",
+    "group": "dirac",
+    "status": "S",
+    "addresses": [
+      "S2",
+      "#45",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json"
+    ],
+    "system": "Электрон-протонная пара и гравитационная связь",
+    "role": "компонент",
+    "observation": "Реестр S2 задаёт α_EM, μ=m_p/m_e и α_G,p. Они определяют отношение сил α_EM μ/α_G,p. В R143 выполнена подстановка.",
+    "implementation": "Вычисление по сохранённому базису и низкоэнергетической α из R142.",
+    "data": "Производная величина из табличных констант.",
+    "limit": "Отношение сил не задаёт закон G(t); общая масса входит в две переменные.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/S2_PARAMETER_BASIS.json#L33"
+    ],
+    "claim_scope": "Dirac.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E26",
+    "group": "dirac",
+    "status": "A",
+    "addresses": [
+      "CCC-drift",
+      "#37",
+      "review:CCC_TL_20261112",
+      "source:analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+      "dir:analysis/CCC_BBN_DRIFT_20261113",
+      "file:analysis/CCC_BBN_DRIFT_20261113/REPORT.md",
+      "source:analysis/CCC_BBN_DRIFT_20261113/calculate.py",
+      "file:analysis/CCC_BBN_DRIFT_20261113/calculate.py"
+    ],
+    "system": "Дрейф G в модели Gupta и гипотеза G∝1/t",
+    "role": "контроль двух законов",
+    "observation": "CCC вычисляет G/G₀=f³ при экспоненциальном f. Можно сопоставить безразмерные производные при заданных часах.",
+    "implementation": "calculate.py, интеграл часов и дрейф за окно BBN.",
+    "data": "Расчёт из параметров донора; локального измерения Ġ/G здесь нет.",
+    "limit": "Требуются отдельный перенос к локальным часам и данные лунной локации.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_BBN_DRIFT_20261113/REPORT.md#L22",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_BBN_DRIFT_20261113/calculate.py#L1"
+    ],
+    "claim_scope": "Dirac.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E27",
+    "group": "lambda",
+    "status": "S",
+    "addresses": [
+      "R137",
+      "#196",
+      "source:analysis/R137_LUMINA/verify.py",
+      "dir:analysis/R137_LUMINA",
+      "file:analysis/R137_LUMINA/verify.py"
+    ],
+    "system": "Λ в опубликованном фоне космологической симуляции Lumina",
+    "role": "компонент",
+    "observation": "В интеграле τ заданы H₀ и ΩΛ; из них в R143 получены Λℓₚ² и ρΛ/ρₚ.",
+    "implementation": "verify.py задаёт параметры фона и интеграл τ.",
+    "data": "Параметры референсной космологии, таблицы симуляции; отсутствует независимое измерение Λ из τ этим расчётом.",
+    "limit": "Указать конвенцию и общий вход H₀; микроскопический механизм величины остаётся открытым.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/verify.py#L48",
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/verify.py#L56"
+    ],
+    "claim_scope": "Lambda.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E28",
+    "group": "mix",
+    "status": "D",
+    "addresses": [
+      "R132",
+      "source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "dir:analysis/R132_ADD_YM_CCM_20261119",
+      "file:analysis/R132_ADD_YM_CCM_20261119/REPORT.md"
+    ],
+    "system": "Матрицы Юкавы и смешивание нейтрино в донорской СМ",
+    "role": "донор",
+    "observation": "Состав конечного оператора CCM допускает массы и смешивание; значения углов требуют входов.",
+    "implementation": "R132 исследует представления; реакторный фит в нём отсутствует.",
+    "data": "Математическая модель.",
+    "limit": "Нужны конкретные PMNS, θ₁₃ и статистика для проверки точного Ue3=0.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L17"
+    ],
+    "claim_scope": "mixing.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E29",
+    "group": "koide",
+    "status": "D",
+    "addresses": [
+      "R132",
+      "source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "dir:analysis/R132_ADD_YM_CCM_20261119",
+      "file:analysis/R132_ADD_YM_CCM_20261119/REPORT.md"
+    ],
+    "system": "Заряженные лептоны в фермионном секторе CCM",
+    "role": "донор",
+    "observation": "Лептонные представления и параметры масс входят в модель; отношение трёх масс не навязано.",
+    "implementation": "R132 проверяет алгебру представлений. Прогноза массы τ здесь нет.",
+    "data": "Теоретическая модель.",
+    "limit": "Для проверки Коиде нужны три массы в одной схеме, датировка входов и правило выбора решения.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L17",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L20"
+    ],
+    "claim_scope": "Koide.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E30",
+    "group": "mix",
+    "status": "D",
+    "addresses": [
+      "R135",
+      "component:NEUTRINO_KINETIC_BRIDGE",
+      "dir:analysis/R135_PHYSICAL_SECTOR_X_20261120",
+      "file:analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/neutrino_reference/sources.json",
+      "file:analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/extensions_reference/validate_p7_bbn.py"
+    ],
+    "system": "Активные ароматы реликтовых нейтрино",
+    "role": "донор",
+    "observation": "Mangano et al. решают задачу с осцилляциями; пакет заимствует оператор Лиувилля, множители Паули и баланс энергии.",
+    "implementation": "В sources.json явно ограничен перенос полной матрицы; контроль слабых скоростей отдельно исключает осцилляции.",
+    "data": "Донорский расчёт; реакторных событий Daya Bay здесь нет.",
+    "limit": "Реализовать или подключить полный flavour-оператор прежде чем испытывать гипотезу смешивания.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/neutrino_reference/sources.json#L15",
+      "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/extensions_reference/validate_p7_bbn.py#L4"
+    ],
+    "claim_scope": "mixing.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E31",
+    "group": "mix",
+    "status": "D",
+    "addresses": [
+      "component:KM3NET_NEUTRINO_CONSTRAINTS",
+      "review:NEUTRINO_GW_ARCHITECTURE_20261118",
+      "#100",
+      "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "dir:analysis/NEUTRINO_GW_ARCHITECTURE_20261118",
+      "file:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md",
+      "source:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json",
+      "file:analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json"
+    ],
+    "system": "Осциллирующие атмосферные нейтрино в KM3NeT/ORCA",
+    "role": "донор наблюдений",
+    "observation": "Зарегистрированы зависимые анализы одной выборки ORCA, измеряющие параметры расширений осцилляционной модели.",
+    "implementation": "Сохранены паспорта пределов; полное правдоподобие не восстановлено.",
+    "data": "Опубликованные экспериментальные пределы; сырые события и реакторные спектры отсутствуют.",
+    "limit": "Для TBM нужна собственная измерительная модель θ₁₃; предел NSI её не заменяет.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#L70",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEUTRINO_GW_ARCHITECTURE_20261118/KM3NET_NEUTRINO_CONSTRAINTS.json#L7"
+    ],
+    "claim_scope": "mixing.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E32",
+    "group": "phi",
+    "status": "A",
+    "addresses": [
+      "R141",
+      "C028",
+      "L07",
+      "U010",
+      "source:analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md",
+      "dir:analysis/R141_RIEMANN_CORPUS",
+      "file:analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md"
+    ],
+    "system": "Двоичные кольца и определитель на сериях единиц",
+    "role": "методический контроль",
+    "observation": "Рекурсия трёхдиагонального блока даёт F(2l+1). В R142 порядок двух типов узлов задаётся подстановкой; проверяется спектральная щель.",
+    "implementation": "Точный расчёт в обоих блоках, роли операторов различны.",
+    "data": "Численные и алгебраические результаты; эксперимент поляритонной цепи к R141 не отнесён.",
+    "limit": "Перенос потребовал бы физического отображения узлов, связей и измерительной процедуры.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md#L7",
+      "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/GENEALOGY.md#L11"
+    ],
+    "claim_scope": "phi.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E33",
+    "group": "feig",
+    "status": "A",
+    "addresses": [
+      "R027",
+      "C017",
+      "dir:analysis/DTL_MODEL_REVIEW_20261031",
+      "file:analysis/DTL_MODEL_REVIEW_20261031/REVIEW.md"
+    ],
+    "system": "Локальное удвоение периода спинов у донора DTL",
+    "role": "контроль границы",
+    "observation": "Обнаружен конкретный донор удвоения периода, но у него описаны локальные переключения фазы. Последовательность порогов каскада не извлечена.",
+    "implementation": "Прочитан препринт; E002d рассчитывает другие временные корреляции.",
+    "data": "Модель донора и численные пробы E002d.",
+    "limit": "Нужны семейство карт и последовательные бифуркации одного максимума.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/DTL_MODEL_REVIEW_20261031/REVIEW.md#L15"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E34",
+    "group": "feig",
+    "status": "A",
+    "addresses": [
+      "historical-excerpts",
+      "dir:analysis/NOW_RESULTS_SYNTHESIS_20261106",
+      "file:analysis/NOW_RESULTS_SYNTHESIS_20261106/RECOVERED_SOURCE_EXCERPTS.md"
+    ],
+    "system": "Табличная ссылка на δ в исторической выписке",
+    "role": "методическая аналогия",
+    "observation": "Ссылка сопоставляет δ с монотонностью N2; карты и параметры бифуркации отсутствуют.",
+    "implementation": "Текстовая гипотеза.",
+    "data": "Отсутствуют.",
+    "limit": "На таком основании адрес физического каскада не добавляется.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NOW_RESULTS_SYNTHESIS_20261106/RECOVERED_SOURCE_EXCERPTS.md#L562"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E35",
+    "group": "osc3",
+    "status": "A",
+    "addresses": [
+      "X26",
+      "dir:analysis/X26_NEIGHBOR_REVIEW_20261109",
+      "file:analysis/X26_NEIGHBOR_REVIEW_20261109/NEIGHBOR_SOURCE.txt"
+    ],
+    "system": "Предложенная осцилляторная ванна для континуума",
+    "role": "контроль границы",
+    "observation": "Донор предлагает описать резервуар набором гармонических осцилляторов. Структура трёхмерной оболочки с заполнением не задана.",
+    "implementation": "Это предложение в отзыве.",
+    "data": "Отсутствуют.",
+    "limit": "Требуются изотропная ловушка, тройки квантовых чисел и заполнение по спину.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/b919e64ad89a5afe2c395a0218895c856088c57d/analysis/X26_NEIGHBOR_REVIEW_20261109/NEIGHBOR_SOURCE.txt#L349"
+    ],
+    "claim_scope": "семейство",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E36",
+    "group": "haldane",
+    "status": "A",
+    "addresses": [
+      "C021",
+      "L05",
+      "dir:analysis/NOW_RESULTS_SYNTHESIS_20261106",
+      "file:analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json"
+    ],
+    "system": "Ядерные спины, дырки и протонные дефекты",
+    "role": "контроль границы",
+    "observation": "Карточка C021 обсуждает многочастичную организацию. Наличие спинов не задаёт антиферромагнитную цепь S=1.",
+    "implementation": "В карточке нет измерения щели Холдейна.",
+    "data": "Для этой щели данных нет.",
+    "limit": "Нужны гамильтониан, спин узла, геометрия, J и предел длины.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json#L5689"
+    ],
+    "claim_scope": "Haldane.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E37",
+    "group": "omega",
+    "status": "A",
+    "addresses": [
+      "R132",
+      "R136",
+      "source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md",
+      "dir:analysis/R132_ADD_YM_CCM_20261119",
+      "file:analysis/R132_ADD_YM_CCM_20261119/REPORT.md"
+    ],
+    "system": "Цветовая SU(3) и ароматная SU(3) барионного декуплета",
+    "role": "контроль границы",
+    "observation": "Действие цветовой алгебры и чистая глюодинамика не образуют декуплет u,d,s. Для Ω⁻ нужны аромат и барионные операторы.",
+    "implementation": "Решёточная EOS и отчёт о представлениях.",
+    "data": "Нет измерения массы Ω⁻ в этих работах.",
+    "limit": "Установить оператор бариона и данные спектроскопии.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R132_ADD_YM_CCM_20261119/REPORT.md#L20"
+    ],
+    "claim_scope": "Omega.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E38",
+    "group": "bkt",
+    "status": "A",
+    "addresses": [
+      "BBN-pair",
+      "source:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md",
+      "dir:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117",
+      "file:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md"
+    ],
+    "system": "⁴He как ядро в BBN и как вещество двумерной плёнки",
+    "role": "контроль границы",
+    "observation": "В таблице BBN записана массовая доля гелия; температура плёнки, вихри и её жёсткость отсутствуют.",
+    "implementation": "Вычислены содержания.",
+    "data": "Численные выходы BBN.",
+    "limit": "Для БКТ нужны плёнка и Υ(T) при подходящих частоте и размере.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md#L7"
+    ],
+    "claim_scope": "BKT.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E39",
+    "group": "mix",
+    "status": "D",
+    "addresses": [
+      "external:FORTEPIANO_QKE",
+      "file:infra/external/contracts/FORTEPIANO_QKE.json"
+    ],
+    "system": "Активные ароматы нейтрино в FortEPiaNO",
+    "role": "донор программного пакета",
+    "observation": "Контракт задаёт полный эталон Стандартной модели с импульсной и ароматной матрицей.",
+    "implementation": "Контракт поставлен в draft, запуск по этому паспорту отключён.",
+    "data": "Теоретический пакет.",
+    "limit": "Для вывода о Ue3 нужен отдельный осцилляционный тест и соответствующее экспериментальное правдоподобие.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/FORTEPIANO_QKE.json#L8"
+    ],
+    "claim_scope": "mixing.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E40",
+    "group": "nuclear",
+    "status": "D",
+    "addresses": [
+      "external:PRIMAT",
+      "external:LINX",
+      "component:BBN_RESPONSE_BRIDGE",
+      "source:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md",
+      "dir:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117",
+      "file:analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md",
+      "file:infra/external/contracts/LINX.json",
+      "source:infra/external/contracts/PRIMAT.json",
+      "file:infra/external/contracts/PRIMAT.json"
+    ],
+    "system": "⁴He как продукт двух BBN-сетей",
+    "role": "программные доноры",
+    "observation": "Реализации независимо адресованы в реестре пакетов, фактическое исполнение засвидетельствовано парным отчётом.",
+    "implementation": "PRIMAT, LINX, сравнение общих и нативных входов.",
+    "data": "Массивы численного выхода и ядерные скорости.",
+    "limit": "Одинаковые скорости в 17 парах надо считать общим входом.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md#L10",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/LINX.json#L8",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/PRIMAT.json#L8"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E41",
+    "group": "efimov",
+    "status": "A",
+    "addresses": [
+      "R040",
+      "X26",
+      "dir:analysis/BIC_SMOKE_AUDIT_20261103",
+      "file:analysis/BIC_SMOKE_AUDIT_20261103/PEER_CLAIMS.json"
+    ],
+    "system": "Дискретный тример и защита тёмного состояния",
+    "role": "контроль границы",
+    "observation": "Трёхузельная система рассмотрена в контексте BIC. Для неё не заданы три резонансных бозона и последовательность длин рассеяния.",
+    "implementation": "Имеется таблица тримера в аудите и отдельный вычислительный прототип X26.",
+    "data": "Модельные результаты.",
+    "limit": "Требуются резонансный короткодействующий потенциал и минимум два трёхчастичных масштаба.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/BIC_SMOKE_AUDIT_20261103/PEER_CLAIMS.json#L29"
+    ],
+    "claim_scope": "Efimov.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E42",
+    "group": "kissing",
+    "status": "A",
+    "addresses": [
+      "R135",
+      "dir:analysis/R135_PHYSICAL_SECTOR_X_20261120",
+      "file:analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/README.md"
+    ],
+    "system": "Четырёхконтактный отклик графа",
+    "role": "контроль границы",
+    "observation": "Физический смысл контакта в графовом контроле задаётся операциями на графе. Геометрия равных касающихся сфер в нём не задана.",
+    "implementation": "Имеется программный контроль отклика графа.",
+    "data": "Расчёт.",
+    "limit": "Для числа касаний требуется упаковка неперекрывающихся равных сфер в евклидовом пространстве.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/README.md#L16"
+    ],
+    "claim_scope": "kissing.1",
+    "r142_target_at_address": "отклонён перенос"
+  },
+  {
+    "id": "E43",
+    "group": "super",
+    "status": "S",
+    "addresses": [
+      "BH1-A∞",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/AINF_KK_GAS_CONTRACT.md",
+      "file:analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/REPORT.md"
+    ],
+    "system": "Супергравитация типа IIB на глобальном AdS₅×S⁵",
+    "role": "основной объект",
+    "observation": "В контракте тепловой ветви явно заданы десятимерный фон и спектр Калуцы–Клейна типа IIB. Это собственный адрес именно десятимерного сектора за пределами R142.",
+    "implementation": "Контракт и действующее A14/A15c-исправление разрешают учёт k=2. В дополнении R143 предъявлены 14 записей, 128B+128F и точное S1=S2; полный тепловой прогон остаётся невоспроизведённым.",
+    "data": "Теоретический первоисточник и точная сверка низшего KK-мультиплета; нового расчёта полной тепловой суммы нет.",
+    "limit": "Десять измерений заданы выбором фона. Вывод критической размерности из мироволистовой аномалии — другая операция.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/AINF_KK_GAS_CONTRACT.md#L5",
+      "https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/REPORT.md#L4",
+      "https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/A14_A15C_RECONCILIATION_20261116.md#L4"
+    ],
+    "claim_scope": "string.2",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "worldsheet/README.md",
+      "fields": "worldsheet/FIELDS.json",
+      "checks": "worldsheet/CHECKS.json",
+      "date": "2026-11-23"
+    }
+  },
+  {
+    "id": "E44",
+    "group": "lambda",
+    "status": "D",
+    "addresses": [
+      "R135",
+      "Planck-PR3",
+      "dir:analysis/R135_PHYSICAL_SECTOR_X_20261120",
+      "file:analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/README.md"
+    ],
+    "system": "Фон base-ΛCDM наблюдательного контроля Planck",
+    "role": "донор данных",
+    "observation": "Проверены опубликованный опорный спектр и компоненты правдоподобия TT/TE/EE. Наличие Λ в модели засвидетельствовано выбором эталона.",
+    "implementation": "Сверены файлы ESA/IRSA, манифест и значения ln L на контрольных векторах.",
+    "data": "Наблюдательные продукты Planck и ковариации; эталонный теоретический спектр отмечен отдельно.",
+    "limit": "Одно значение ln L на эталоне не даёт собственной оценки Λ или её планковского масштаба.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/README.md#L13"
+    ],
+    "claim_scope": "Lambda.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E45",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "review:BBN_DONORS_TRANSFER_20261120",
+      "component:BBN_CMB_OBSERVATIONS",
+      "ACT-CAMB",
+      "dir:analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119",
+      "file:analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md"
+    ],
+    "system": "⁴He как связующее звено BBN и CMB у доноров ACT/CAMB",
+    "role": "компонент",
+    "observation": "Сверено 1300 координат двух таблиц. В опубликованном интерфейсе раздельны 4nHe/nb и массовая доля; они передают ядерный результат к расчёту CMB.",
+    "implementation": "Корпус сравнил файлы двух версий PRIMAT из CAMB; наблюдательный анализ ACT приведён по публикации.",
+    "data": "Таблицы теоретических выходов; данные CMB относятся к последующему анализу доноров.",
+    "limit": "Нужно сохранять определение Yp при межпакетной передаче. Оболочечный гамильтониан здесь не восстанавливался.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md#L28",
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md#L30"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E46",
+    "group": "color",
+    "status": "S",
+    "addresses": [
+      "BH1-relaxation",
+      "dir:analysis/BH1_SU3_RELAXATION_GATE_20261120",
+      "file:analysis/BH1_SU3_RELAXATION_GATE_20261120/REPORT.md"
+    ],
+    "system": "Скрытый сектор на основе чистой SU(3), условная шкала релаксации",
+    "role": "контроль",
+    "observation": "Рассчитано отношение микроскопического времени к времени расширения при mX=Tc и отсутствии критического замедления.",
+    "implementation": "Сохранён расчёт и явно ограниченный вывод о времени.",
+    "data": "Публикационные решёточные входы и теоретическая подстановка.",
+    "limit": "Микроскопический контроль не задаёт затухания коллективной координаты, нуклеации и роста.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/BH1_SU3_RELAXATION_GATE_20261120/REPORT.md#L65"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E47",
+    "group": "color",
+    "status": "T",
+    "addresses": [
+      "#174",
+      "task:GW_SOURCE",
+      "file:infra/r135/research/20261121_donors/xb_su3_eos/README.md"
+    ],
+    "system": "Чистая SU(3) как возможный физический источник в задаче GW",
+    "role": "компонент задания",
+    "observation": "В поставке #174 явно указан вариант XB с данными двух фаз. Это реальный выбор донора для построения источника.",
+    "implementation": "EOS и численная передача существуют раздельно; весь спектр из пузырей и плазмы не выведен.",
+    "data": "Термодинамические данные решёточных расчётов, без независимого наблюдения GW от этого X.",
+    "limit": "Нужны метастабильные ветви, динамика превращения и стресс источника.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/research/20261121_donors/xb_su3_eos/README.md#L3"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E48",
+    "group": "nuclear",
+    "status": "T",
+    "addresses": [
+      "#55",
+      "#172",
+      "task:WEAK",
+      "file:infra/r135/PIPELINE.json"
+    ],
+    "system": "Массовая доля ⁴He как тест переноса слабых скоростей",
+    "role": "контроль задания",
+    "observation": "В #172 критерий WEAK-03 задаёт проверку Yp в двух решателях. В #55 та же наблюдаемая входит в постановку ковариации.",
+    "implementation": "Контроль задан в работе с BBN-сетями; точностное требование проверяется отдельно.",
+    "data": "Модельный выход, которому передаётся неопределённость микрофизики.",
+    "limit": "Нужны независимая ошибка эталона и исполнение критерия WEAK-03.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L2085"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E49",
+    "group": "nuclear",
+    "status": "T",
+    "addresses": [
+      "#176",
+      "task:NUCLEAR",
+      "file:infra/r135/PIPELINE.json"
+    ],
+    "system": "⁴He как выход распространения лабораторных ошибок ядерных реакций",
+    "role": "контроль задания",
+    "observation": "В конечном совместном распределении явно заданы Yp и D/H. Источниками ошибок служат связанные скорости, а не магичность ⁴He.",
+    "implementation": "Для прежнего приора имеются прогоны; целевому ковариационному переносу нужны новые расчёты.",
+    "data": "Лабораторные сечения и ошибки по реакциям; Yp здесь предсказывается.",
+    "limit": "Сохранить совместные выборки и температурные корреляции, провести через обе сети.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L2756"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E50",
+    "group": "color",
+    "status": "T",
+    "addresses": [
+      "#162",
+      "#166",
+      "#168",
+      "task:SCALE",
+      "task:CLOCK",
+      "task:NUCLEATION",
+      "file:infra/r135/PIPELINE.json"
+    ],
+    "system": "Размерная шкала, часы и нуклеация в варианте XB чистой SU(3)",
+    "role": "компонент заданий",
+    "observation": "В задачах определены разные физические выходы: абсолютный масштаб, динамическая релаксация и образование пузырей. Решёточная термодинамика выступает входом или ограничением.",
+    "implementation": "Есть паспорт EOS и отдельные условные контроли. Полный расчёт всех трёх выходов не предъявлен.",
+    "data": "Решёточные доноры, вычислительные результаты.",
+    "limit": "Раздельно получить масштаб, кинетический коэффициент и префактор нуклеации. Один статический скачок их не определяет.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L203",
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L821",
+      "https://github.com/IgorSabirov/vm-lab/blob/e10e02021a06916aaca3eaa3e767b44bb31d4d2e/infra/r135/PIPELINE.json#L1276"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E51",
+    "group": "color",
+    "status": "D",
+    "addresses": [
+      "R141",
+      "Gattringer",
+      "source:analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md",
+      "dir:analysis/R141_RIEMANN_CORPUS",
+      "file:analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md"
+    ],
+    "system": "Чистые решёточные поля SU(3) у спектрального донора R141",
+    "role": "донор",
+    "observation": "Gattringer выражает петлю Полякова спектральной суммой; в первичной работе явно проверены quenched SU(3) конфигурации. На ADD воспроизведена техника выделения по фазе границы.",
+    "implementation": "В R141 проверена конечная графовая операция. Полный измеренный SU(3) ансамбль донора в неё не перенесён.",
+    "data": "Численный эксперимент первоисточника; собственный контроль ADD теоретический.",
+    "limit": "Для проверки переноса нужна одна и та же физическая наблюдаемая на независимых решёточных полях.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md#L131"
+    ],
+    "claim_scope": "color.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E52",
+    "group": "noble",
+    "status": "D",
+    "addresses": [
+      "R137",
+      "external:LUMINA",
+      "review:CCC_TL_20261112",
+      "source:analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+      "dir:analysis/CCC_TL_REVIEW_20261112",
+      "file:analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+      "source:analysis/R137_LUMINA/REPORT.md",
+      "dir:analysis/R137_LUMINA",
+      "file:analysis/R137_LUMINA/REPORT.md"
+    ],
+    "system": "Нейтральный He I в химической сети симуляции Lumina",
+    "role": "донор",
+    "observation": "В описании использованного физического донора явно указана реионизация He I и He II. Для отдельной собственной проверки R137 извлечена доля He III; эти объекты размечены раздельно.",
+    "implementation": "Сеть H/He работает у донора. Корпус повторил интеграл τ и обработал несколько опубликованных таблиц.",
+    "data": "Численная радиационная гидродинамика и её открытые агрегаты.",
+    "limit": "Показать спектральную подпись электронной оболочки нейтрального He из сетевой доли нельзя.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/a8cb47fd47a1597c115b8afda7dfac9a8403590f/analysis/CCC_TL_REVIEW_20261112/REPORT.md#L121",
+      "https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/R137_LUMINA/REPORT.md#L14"
+    ],
+    "claim_scope": "noble.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E53",
+    "group": "nuclear",
+    "status": "S",
+    "addresses": [
+      "CCC-S1",
+      "#50",
+      "dir:analysis/CCC_BBN_NETWORK_20261114",
+      "file:analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/results/S1_FULLNET_20261114_r1/REPORT.md"
+    ],
+    "system": "Первичный ⁴He в полном контрольном прогоне CCC–BBN S1",
+    "role": "основной выход",
+    "observation": "Сопоставлены Yp в контрольном, общем масштабировании часов и отрицательном контроле только охлаждения.",
+    "implementation": "В опубликованной таблице Yp=0,2470017859, 0,2470017863 и 0,0560519871 соответственно.",
+    "data": "Три результата интегрирования; экспериментальной таблицы оболочечных уровней нет.",
+    "limit": "Общий масштаб времени проверен условно. Для происхождения ядерной щели нужен отдельный гамильтониан.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/6a42f7ebed1b00df878b4f9d21d97f47ee958ba0/analysis/CCC_BBN_NETWORK_20261114/s1_fullnet/results/S1_FULLNET_20261114_r1/REPORT.md#L3"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+  },
+  {
+    "id": "E54",
+    "group": "nuclear",
+    "status": "T",
+    "addresses": [
+      "BH1-BBN",
+      "#92",
+      "source:analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md",
+      "dir:analysis/R130_BH1_BBN_CONNECTION_20261117",
+      "file:analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md"
+    ],
+    "system": "Первичный гелий как предполагаемая наблюдаемая сопряжения BH1–BBN",
+    "role": "компонент задания",
+    "observation": "В контракте явно задана пара Yp и D/H, необходимая для различения тепловых историй. Это отдельная постановка на стыке блоков.",
+    "implementation": "У собственного автомата ADD нет опубликованного вывода этих содержаний из шага графа.",
+    "data": "Контракт опирается на существующие BBN-пакеты.",
+    "limit": "Требуются физические часы, энергия и закон передачи в плазму. Этот адрес не приписывает ядерный гамильтониан R130.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md#L69"
+    ],
+    "claim_scope": "nuclear.1",
+    "r142_target_at_address": "планируемая операция"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "id": "R143-E21-LT14-v1",
+  "parent": "c209d14eff7722c1e64415f4a8ef07909bbe0642",
+  "information": "External to SPARC. Old constant CCC and MOND scores for all 14 and selection flags already public. Individual predictor never evaluated here at freeze. This is a frozen external transfer with previously exposed outcomes.",
+  "ids": [
+    "CVnIdwA",
+    "DDO_101",
+    "DDO_133",
+    "DDO_210",
+    "DDO_216",
+    "DDO_52",
+    "DDO_53",
+    "DDO_70",
+    "HARO_36",
+    "IC_10",
+    "IC_1613",
+    "NGC_1569",
+    "NGC_3738",
+    "UGC_8508"
+  ],
+  "input_sha256": {
+    "LOCK.json": "c609526edd0ece15eedbf95eb46c7825fbc424d89a79d9d83de99a546ad57b73",
+    "predictor_parameters.json": "6ec7fa1a2564e73b492161121abe9ea697635d834ee6cfdaa13ab9242b01ae65",
+    "little_radial.csv": "31a475b745ebb586680c9ce05a39fe69eaf5fd66df2b35435be668bb7592dfb2",
+    "little_sample.csv": "fd426671eabec11013a67c4bc6dbe56904a49f943563482ed71eff5e088316b3",
+    "../freeze.json": "964517f5742b928cb36774202314ff799a0393daf39dbc5e5dbc085a663e4ce7"
+  },
+  "parameters": {
+    "b0": 7.3707023274082895,
+    "b1": 0.1148297162809256,
+    "train_loss": 59.95745457020677,
+    "n_train": 130
+  },
+  "formula": "log10 rho_t = clip(b0+b1*log10(Sigma/100),3,12); Sigma=(0.5*L36 + 1.33*MHI)/(2*pi*(1000*Re_kpc)^2). No refits, no galaxy removals.",
+  "external_photometry": "Hunter et al. 2012 global HI adjusted to photometric distance. Integrate published Herrmann et al. 2013 3.6 micron Vega surface brightness fits in projected elliptical annuli to infinity. Major-axis half-light radius. If absent, use Oh et al. 2015 stellar surface density / photometric M/L, central constant to first point, linear interpolation of intensity, exponential tail scaled to last point using panel (a) slope. No use of target velocities for photometry. Preserve raw inputs and mark differences from direct SPARC growth curves.",
+  "comparison": "Same published 265 radii, components and common error floor 1 km/s. Equal galaxy weights. Primary new minus fixed CCC mean chi2/N; separate new minus frozen forward MOND. Paired galaxy percentile bootstrap 10000 seed 143, 95%; upper <0 required separately. Exact one- and two-sided equal-sign tests excluding ties; descriptive leave-one-out, Re x 0.8/1.2, L x 0.8/1.2. No selection on these."
+}

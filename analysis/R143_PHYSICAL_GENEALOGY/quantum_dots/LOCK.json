@@ -1,0 +1,96 @@
+{
+  "id": "R143-E01-TARUCHA-E002c-v1",
+  "frozen_date": "2026-11-23",
+  "repository_base": "9b23c3c31681ec6af44c61dfd4833eaf34b27d02",
+  "parent_ids": [
+    "R143",
+    "R142",
+    "R022",
+    "C016"
+  ],
+  "task": "Разобрать спектры добавления и деформацию Tarucha; сопоставить носители и наблюдаемые с донорами E002c, предъявить различающий расчёт.",
+  "prior_state": "E01 фиксирует только транспортных доноров; энергия добавления и геометрия приборов не сопоставлены.",
+  "expected_change": "Адресная таблица приборов, конкретная граница переноса и воспроизводимые малые контроли. Это не повтор производства E002c и не экспериментальная приёмка оболочечной модели.",
+  "preparation": "Primary papers and existing code read before this freeze; prior operator probe0.054436557s. This is a retrospective replay, not a blind validation.",
+  "oscillator": {
+    "delta_values": [
+      1.0,
+      1.5,
+      2.0,
+      3.2
+    ],
+    "energy_scale_meV": 3.0,
+    "N_max": 42,
+    "basis_cutoff": 24,
+    "B_T": 0,
+    "spin_degeneracy": 2,
+    "charging_energy": "Constant U is symbolic and subtracted; no fit.",
+    "exchange": "Excluded; Hund-rule peaks cannot be predicted by this control."
+  },
+  "emary": {
+    "t12": 1.0,
+    "t13": 1.0,
+    "t23": 1.0,
+    "Gamma": 1.0,
+    "Delta": 0.0,
+    "epsilon": 0.0,
+    "dephasing": 0.0,
+    "phi_over_pi": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "unit": "e=1, hbar=1, model time/energy units",
+    "charge_support": [
+      0,
+      1
+    ],
+    "source_sites": [
+      1,
+      2
+    ],
+    "drain_site": 3
+  },
+  "negative_control": {
+    "surrogate": "delta=nominal mesa L/S",
+    "observable": "first upmoving pair rank for orbital(0,1)",
+    "rule": "count lower spatial orbitals; noninteger delta rank=floor(delta)+2",
+    "parameter_fit": "none",
+    "data": "published Fig5 ranks X3,Y5,Z4; separate from geometry inputs",
+    "classification": "retrospective model falsifier, not a statistical significance test"
+  },
+  "acceptance_checks": [
+    "2D spin-degenerate shell sequence at delta1",
+    "area-preserving anisotropic single-particle splitting; delta2 altered sequence",
+    "second ground-energy difference agrees with adjacent spin-level spacing",
+    "increase orbital cutoff and verify retained spectrum unchanged",
+    "Emary stationary state trace/positivity/uniqueness/residual and independent Eq7 current",
+    "E002c charge sectors and source/sink continuity equation from pinned operators",
+    "24 frozen one-excitation mask controls; dark-vector pump leakage",
+    "replay saved results without mutation"
+  ],
+  "numerical_tolerance": 1e-12,
+  "energy_second_difference_tolerance_meV": 1e-09,
+  "plan_runtime": {
+    "kind": "local bounded arithmetic/operator replay authorised by current user instruction",
+    "numerical_point_seconds": 2.0,
+    "numerical_range_seconds": [
+      0.05,
+      10.0
+    ],
+    "basis": "existing pinned operator probe0.0544s; finite small spectra and4state stationary solves added",
+    "plot_and_publication": "accounted separately",
+    "new_E002c_trajectories": 0
+  },
+  "scientific_acceptance": false,
+  "frozen_sha256": {
+    "DEVICES.json": "5433f6d6b046da922bb59beb07cc07261f7453309c695113ca191eecf4627c7c",
+    "SOURCES.json": "c6096d14ffb83a13a410bd99e618ff2adcb8a777a5c829abc31d073362c73493",
+    "replay.py": "dc1498dd66c8416efe5461bdde1afebd5d81b5adb3c64a2edb130e4702fbce0a",
+    "operator_control.py": "3fe2088150b46a53eb7d930cbed9fe018ea238043569f4ac2105382897363ec9",
+    "inputs/e002_exp/model.py": "9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2",
+    "inputs/e002c_exp/model.py": "fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "R143-U013-COMMON-BETA-v1",
+  "status": "CENTRAL_CURVES_REPLAYED",
+  "scientific_acceptance": false,
+  "question": "U013 / R136 / GitHub issue #201",
+  "definition": "DeltaJ_V(beta)=J_hot,V(beta)-J_cold,V(beta), with the same beta mapped through the shared Nt=8 calibration beta=F(n), n=8*T/Tc.",
+  "sources": {
+    "fig15_csv_commit": "6b6e0a5ed0cb98058c3ee901601ad5f88afbf7c3",
+    "fig15_csv_blob_sha": "7abefdf63f1314b9c540e28afe72ea59022b5b3b",
+    "calibration_figures_ref": "research/r136-shirogane-calibration",
+    "calibration_figures_blob_sha": "90200fd8179d186232ab284245950255303d1077"
+  },
+  "common_domain": {
+    "T_over_Tc": [
+      0.992776,
+      1.005785
+    ],
+    "beta": [
+      6.058659215503939,
+      6.066796810044935
+    ]
+  },
+  "common_beta_points": [
+    {
+      "beta": 6.0616,
+      "tag": "beta_c_48",
+      "T_over_Tc": 0.9975142439,
+      "deltaJ_48": 1.1772493027,
+      "deltaJ_64": 0.983619298,
+      "volume_contrast": 0.1936300047
+    },
+    {
+      "beta": 6.06247,
+      "tag": "beta_c_64",
+      "T_over_Tc": 0.9989160032,
+      "deltaJ_48": 1.23449151397,
+      "deltaJ_64": 1.08026740019,
+      "volume_contrast": 0.1542241138
+    },
+    {
+      "beta": 6.06307,
+      "tag": "beta_c_infinity_table",
+      "T_over_Tc": 0.9998827338,
+      "deltaJ_48": 1.2720023417,
+      "deltaJ_64": 1.1479118838,
+      "volume_contrast": 0.124090458
+    },
+    {
+      "beta": 6.063172936,
+      "tag": "F8_anchor",
+      "T_over_Tc": 1.0000485861,
+      "deltaJ_48": 1.2784582492,
+      "deltaJ_64": 1.1606010568,
+      "volume_contrast": 0.1178571924
+    }
+  ],
+  "crossing": {
+    "beta": 6.0651136234,
+    "T_over_Tc": 1.0031205986,
+    "number_of_roots_in_common_domain": 1
+  },
+  "interpretation": "Central digitized phase-jump curves differ with beta and cross once within their common domain. This is descriptive, not a statistically established finite-volume effect.",
+  "covariance": {
+    "available": false,
+    "missing": [
+      "hot/cold within-volume covariance",
+      "cross-volume covariance",
+      "covariance with beta_c",
+      "shared calibration covariance",
+      "common configuration/block identities"
+    ],
+    "rule": "Do not interpret diagonal combinations of plotted marginal error bars as a confidence interval or significance."
+  },
+  "confounding": "48^3x8 has LT=6; 64^3x8 has LT=8. Spatial size and aspect ratio change together.",
+  "criteria": {
+    "common_beta_central_phase_jump": true,
+    "joint_covariance": false,
+    "matched_configuration_phase_masks": false,
+    "independent_volume_or_external_discriminator": false
+  },
+  "status_U013": "OPEN"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "R143-HYREC2-NUMERICAL-FOLLOWUP-v1",
+  "declared_UTC": "2026-11-23T05:31:18.889743+00:00",
+  "parent_frozen_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+  "reason": "The existing dlna=0.004 versus 0.002 control shows a local gas-temperature change of 0.6075020605308055 K around z=807.596 and maximum relative change 0.00028849364923788466 near z=769.452. Resolve the visible numerical oscillation with exactly two further steps; retain the robust z=49 comparison separately.",
+  "new_steps_dlna": [
+    0.001,
+    0.0005
+  ],
+  "maximum_new_HYREC_runs": 2,
+  "background": "One service repetition of the original compiled_base CAMB background, separately timed. Same H(z), no tabulated interpolation.",
+  "grid": "Exact nodes read from the existing histories.csv; no regenerated/adapted output grid.",
+  "grid_points": 6023,
+  "composition": "Identical frozen Yp=.24 and common CAMB nH0/fHe. All physics and source versions unchanged.",
+  "metrics": [
+    "Consecutive 0.002 -> 0.001 -> 0.0005 changes in xe and Tm over z>=49 and at z=49",
+    "Signed ranges and maxima by original frozen epoch",
+    "Each HYREC resolution versus existing refined RECFAST",
+    "Report unresolved numerical structure if the final two steps do not settle it; no additional adaptive calculations"
+  ],
+  "input_sha256": {
+    "LOCK.json": "ea042542cbc74785a11f9f521c204bd30d2e33a4258aa7706236f58d8fc3a832",
+    "results/SUMMARY.json": "e325198e704bc9abae54b70390ce2d9b20e8680159373f7df6afe9a458620c77",
+    "results/histories.csv": "78de13a2daa81b4a28c3c045ae22acf583406b4a44d0c020da0fd8f1585469eb",
+    "results/RUN_RECEIPT.json": "a15de4f284c11c35382ca15ddf09cbea86e72740c22e860bb6f08fb73aec7091",
+    "results/recfast_internal_refined.csv": "01439c76ddb8f7f544da6508f65ab93f2c272c9eb1a4c256b88cc00f90f67ed4",
+    "results/recfast_internal_refined_receipt.json": "70c4ba6df5363f6081518dabd12bfce99c6c25de28536bd0f343a855402a6c42",
+    "results/hyrec_input.dat": "836d62e746703f777072ba4669826339121d7a813aa6e718e0620147f959bbe4",
+    "hyrec_adapter.py": "2e6609c3df3c6435c667a3efa8734408521eb87860f388840bb3363f7cc85e76",
+    "hyrec_adapter.c": "d14c62d773b62eeafcbdf066261465eee38286cf757408431051daf05aee9d34",
+    "recfast_adapter.py": "670bb93e37334b0df16733284c10c11cb0633299b0a0085afc55b8d783824d91"
+  },
+  "convergence_script_sha256": "abfe17615058af1f084e92d207c5df33a96bfc91940aa346bbf7075c02730773",
+  "CAMB_baseline_library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad",
+  "HYREC_library_sha256": "dc8d8f84b36321fad8cd344d63f283f856bdf649975b3337386b0fde809d98b2",
+  "original_LOCK_modified": false,
+  "runtime_forecast": "Two new HYREC histories expected below 1 second total; one CAMB background repeat expected below 1 second, separately measured."
+}
