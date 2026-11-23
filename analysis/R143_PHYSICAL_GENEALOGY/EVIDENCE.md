@@ -345,6 +345,8 @@ Yp связывает состав BBN с числом атомов и своб�
 <a id="e21"></a>
 ## E21. Дисковые галактики с измеренными кривыми вращения SPARC
 
+Продолжение E21 фиксирует раздельные оценки a₀ и H₀, тест низкопараметрического порога, независимые оценки окружения и внешние профили. [Расчёт](sparc/followup/README.md)
+
 **Галактические ускорения и MOND** · представитель в донорском исследовании, пакете или данных · общий донор данных.
 
 **Адреса.** [CCC-SPARC](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_TL_REVIEW_20261112/REPORT.md#L83) · [review:CCC_TL_20261112](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_TL_REVIEW_20261112/REPORT.md) · [external:CCC_SPARC](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/CCC_SPARC.json).

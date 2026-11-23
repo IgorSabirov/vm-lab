@@ -5172,7 +5172,7 @@
       "section": "Самостоятельные исследования",
       "title": "происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки.",
       "status": "OPEN · ретроспективный аудит",
-      "result": "40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде. Выполнена проверка каскадов двух квадратичных карт и квартичного контроля до периода 1024. Отложенные проверки Ti→Ca (7 целей) и SPARC (35 галактик); проверена метка Фибоначчи 1/φ² с выключением контраста.",
+      "result": "40 исходных ориентиров и 3 дополнительных. Матрица T0–T4 по утверждениям. Девять повторяющихся позиций; оценён условный стресс точности для отношения Коиде. Выполнена проверка каскадов двух квадратичных карт и квартичного контроля до периода 1024. Отложенные проверки Ti→Ca (7 целей) и SPARC (35 галактик); проверена метка Фибоначчи 1/φ² с выключением контраста. Галактический a₀ R142 даёт Q=0,682/0,629 при двух H₀. Раздельная проверка формы BTFR и RAR на исходном holdout зарегистрирована в E21.",
       "inputs": "Реестр доноров, матрица происхождения и локальный повтор численных контролей.",
       "limit": "Историческая независимость выбора формы, глобальная значимость и слепые физические прогнозы остаются открытыми.",
       "framework_role": "Происхождение различимости ограничивает поиск минимального наблюдаемого. C028, L07 и U010 задают проверку переноса на другой носитель.",
@@ -5207,7 +5207,11 @@
         "analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json",
         "analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json",
         "analysis/R142_MAGIC_NUMBERS/holdout.py",
-        "analysis/R142_MAGIC_NUMBERS/fibonacci.py"
+        "analysis/R142_MAGIC_NUMBERS/fibonacci.py",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json"
       ],
       "managed_sources": [
         "analysis/R142_MAGIC_NUMBERS/GENEALOGY.md",
@@ -5225,7 +5229,11 @@
         "analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json",
         "analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json",
         "analysis/R142_MAGIC_NUMBERS/holdout.py",
-        "analysis/R142_MAGIC_NUMBERS/fibonacci.py"
+        "analysis/R142_MAGIC_NUMBERS/fibonacci.py",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json"
       ],
       "genealogy_note": "R132, R140 и R141 — методические родители. Для двух карточек вне этой базовой ветки указаны версии источников.",
       "scientific_acceptance": false,
@@ -5247,7 +5255,7 @@
       "section": "Самостоятельные исследования",
       "title": "Физическая генеалогия корпуса по представителям R142",
       "status": "OPEN · адресное обследование зафиксированного корпуса",
-      "result": "76 утверждений, 31 область. Вне R142 аттестованы адреса 14 областей. Матрица содержит 1759 адресов. 39 записей фиксируют носитель, донора или предмет задания; 15 проверок описывают предел переноса. В E21 пересечены 165 галактик SPARC и 3 345 радиусов. На 35 отложенных галактиках прямой оператор CCC с единым порогом выиграл у MOND в 3 случаях.",
+      "result": "76 утверждений, 31 область. Вне R142 аттестованы адреса 14 областей. Матрица содержит 1759 адресов. 39 записей фиксируют носитель, донора или предмет задания; 15 проверок описывают предел переноса. В E21 пересечены 165 галактик SPARC и 3 345 радиусов. На 35 отложенных галактиках прямой оператор CCC с единым порогом выиграл у MOND в 3 случаях. Предиктор порога по поверхностной плотности выиграл у постоянного в 18/35 и не прошёл критерий улучшения. На 14 самостоятельных LITTLE THINGS постоянная CCC выиграла в 6 случаях. На пяти X-COP при 0,5 R500 её масса выше гидростатической в 2,09–3,49 раза.",
       "inputs": "R142 как классификатор; срез вершин 164 веток, объединённые R/C/L/U, зарегистрированные задания, документы, расчёты, экспериментальные и модельные данные.",
       "limit": "Наличие носителя не устанавливает числовое утверждение об этом носителе. Неразрешённые поисковые совпадения и неполные архивы явно обозначены.",
       "framework_role": "Результат адресует физический носитель, наблюдаемую и вид свидетельства по всему корпусу. C028 и L07 служат методическими адресами для границы переноса.",
@@ -5290,7 +5298,13 @@
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py",
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py",
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py",
-        "analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py"
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv"
       ],
       "managed_sources": [
         "analysis/R143_PHYSICAL_GENEALOGY/README.md",
@@ -5318,7 +5332,13 @@
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py",
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py",
         "analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py",
-        "analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py"
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv",
+        "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv"
       ],
       "scientific_acceptance": false
     }

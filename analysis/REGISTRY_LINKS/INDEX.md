@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=137, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=191.
+Число записей: result=137, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=200.
 
 ## Предпосылка → результаты
 
@@ -3158,7 +3158,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки. — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r142).
 
 **Входящие:** [R132](#result-r132) `parent`.
-**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R143](#result-r143) `parent`; [analysis/R142_MAGIC_NUMBERS/CALIBRATION.json](#source-analysis-r142_magic_numbers-calibration-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DONORS.md](#source-analysis-r142_magic_numbers-donors-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/EXECUTED.md](#source-analysis-r142_magic_numbers-executed-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/GENEALOGY.md](#source-analysis-r142_magic_numbers-genealogy-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json](#source-analysis-r142_magic_numbers-holdout_lock-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json](#source-analysis-r142_magic_numbers-holdout_results-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json](#source-analysis-r142_magic_numbers-nuclear_input-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt](#source-analysis-r142_magic_numbers-origin_checks-txt) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/README.md](#source-analysis-r142_magic_numbers-readme-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/checks_export.py](#source-analysis-r142_magic_numbers-checks_export-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/fibonacci.py](#source-analysis-r142_magic_numbers-fibonacci-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/holdout.py](#source-analysis-r142_magic_numbers-holdout-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/origin_audit.py](#source-analysis-r142_magic_numbers-origin_audit-py) `managed_evidence_source`.
+**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [U010](#question-u010) `informs_not_closes`; [R143](#result-r143) `parent`; [analysis/R142_MAGIC_NUMBERS/CALIBRATION.json](#source-analysis-r142_magic_numbers-calibration-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/CHECKS.json](#source-analysis-r142_magic_numbers-checks-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md](#source-analysis-r142_magic_numbers-design_draft-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/DONORS.md](#source-analysis-r142_magic_numbers-donors-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/EXECUTED.md](#source-analysis-r142_magic_numbers-executed-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/GENEALOGY.md](#source-analysis-r142_magic_numbers-genealogy-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json](#source-analysis-r142_magic_numbers-holdout_lock-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json](#source-analysis-r142_magic_numbers-holdout_results-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json](#source-analysis-r142_magic_numbers-nuclear_input-json) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt](#source-analysis-r142_magic_numbers-origin_checks-txt) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/README.md](#source-analysis-r142_magic_numbers-readme-md) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/calibrate.py](#source-analysis-r142_magic_numbers-calibrate-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/checks_export.py](#source-analysis-r142_magic_numbers-checks_export-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/fibonacci.py](#source-analysis-r142_magic_numbers-fibonacci-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/holdout.py](#source-analysis-r142_magic_numbers-holdout-py) `managed_evidence_source`; [analysis/R142_MAGIC_NUMBERS/origin_audit.py](#source-analysis-r142_magic_numbers-origin_audit-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md](#source-analysis-r143_physical_genealogy-sparc-followup-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv](#source-analysis-r143_physical_genealogy-sparc-followup-btfr-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json](#source-analysis-r143_physical_genealogy-sparc-followup-rar_shape-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json](#source-analysis-r143_physical_genealogy-sparc-followup-scale_uncertainty-json) `managed_evidence_source`.
 
 <a id="result-r143"></a>
 
@@ -3167,7 +3167,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Физическая генеалогия корпуса по представителям R142 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r143).
 
 **Входящие:** [R142](#result-r142) `parent`.
-**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md](#source-analysis-r143_physical_genealogy-catalog-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/DONORS.md](#source-analysis-r143_physical_genealogy-donors-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md](#source-analysis-r143_physical_genealogy-evidence-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/GAPS.md](#source-analysis-r143_physical_genealogy-gaps-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/README.md](#source-analysis-r143_physical_genealogy-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv](#source-analysis-r143_physical_genealogy-addresses-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/catalog.json](#source-analysis-r143_physical_genealogy-catalog-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/evidence.json](#source-analysis-r143_physical_genealogy-evidence-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv](#source-analysis-r143_physical_genealogy-matrix-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/network.graphml](#source-analysis-r143_physical_genealogy-network-graphml) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json](#source-analysis-r143_physical_genealogy-reuse_checks-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv](#source-analysis-r143_physical_genealogy-run_sources-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv](#source-analysis-r143_physical_genealogy-run_tasks-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/screening.tsv](#source-analysis-r143_physical_genealogy-screening-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py](#source-analysis-r143_physical_genealogy-search_snapshot-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/snapshot.json](#source-analysis-r143_physical_genealogy-snapshot-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md](#source-analysis-r143_physical_genealogy-sparc-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py](#source-analysis-r143_physical_genealogy-sparc-check_forward-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py](#source-analysis-r143_physical_genealogy-sparc-experiment-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json](#source-analysis-r143_physical_genealogy-sparc-freeze-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv](#source-analysis-r143_physical_genealogy-sparc-galaxy_scores-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py](#source-analysis-r143_physical_genealogy-sparc-replay-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv](#source-analysis-r143_physical_genealogy-sparc-samples-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json](#source-analysis-r143_physical_genealogy-sparc-statistics-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py](#source-analysis-r143_physical_genealogy-sparc-statistics-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/verify.py](#source-analysis-r143_physical_genealogy-verify-py) `managed_evidence_source`.
+**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md](#source-analysis-r143_physical_genealogy-catalog-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/DONORS.md](#source-analysis-r143_physical_genealogy-donors-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md](#source-analysis-r143_physical_genealogy-evidence-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/GAPS.md](#source-analysis-r143_physical_genealogy-gaps-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/README.md](#source-analysis-r143_physical_genealogy-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv](#source-analysis-r143_physical_genealogy-addresses-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/catalog.json](#source-analysis-r143_physical_genealogy-catalog-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/evidence.json](#source-analysis-r143_physical_genealogy-evidence-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv](#source-analysis-r143_physical_genealogy-matrix-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/network.graphml](#source-analysis-r143_physical_genealogy-network-graphml) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json](#source-analysis-r143_physical_genealogy-reuse_checks-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv](#source-analysis-r143_physical_genealogy-run_sources-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv](#source-analysis-r143_physical_genealogy-run_tasks-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/screening.tsv](#source-analysis-r143_physical_genealogy-screening-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py](#source-analysis-r143_physical_genealogy-search_snapshot-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/snapshot.json](#source-analysis-r143_physical_genealogy-snapshot-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md](#source-analysis-r143_physical_genealogy-sparc-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py](#source-analysis-r143_physical_genealogy-sparc-check_forward-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py](#source-analysis-r143_physical_genealogy-sparc-experiment-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json](#source-analysis-r143_physical_genealogy-sparc-followup-lock-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md](#source-analysis-r143_physical_genealogy-sparc-followup-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv](#source-analysis-r143_physical_genealogy-sparc-followup-cluster_scores-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json](#source-analysis-r143_physical_genealogy-sparc-followup-external_summary-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv](#source-analysis-r143_physical_genealogy-sparc-followup-little_sample-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json](#source-analysis-r143_physical_genealogy-sparc-followup-sparc_results-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json](#source-analysis-r143_physical_genealogy-sparc-freeze-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv](#source-analysis-r143_physical_genealogy-sparc-galaxy_scores-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py](#source-analysis-r143_physical_genealogy-sparc-replay-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv](#source-analysis-r143_physical_genealogy-sparc-samples-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json](#source-analysis-r143_physical_genealogy-sparc-statistics-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py](#source-analysis-r143_physical_genealogy-sparc-statistics-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/verify.py](#source-analysis-r143_physical_genealogy-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -5175,6 +5175,87 @@ analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py — [исходная к
 ### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py
 
 analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-lock-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-readme-md"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`; [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-btfr-csv"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-cluster_scores-csv"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-external_summary-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-little_sample-csv"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-rar_shape-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-scale_uncertainty-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json).
+
+**Входящие:** [R142](#result-r142) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-followup-sparc_results-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json).
 
 **Входящие:** [R143](#result-r143) `managed_evidence_source`.
 **Исходящие:** нет.
