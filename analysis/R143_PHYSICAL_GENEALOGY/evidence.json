@@ -138,15 +138,25 @@
     ],
     "system": "Первичный гелий на входе рекомбинации",
     "role": "компонент",
-    "observation": "Yp связывает состав BBN с числом атомов и свободных электронов; указано требование одинаковых входов.",
-    "implementation": "Контроль готовых таблиц drft/RECFAST выполнен; отдельный запуск HYREC-2 указан в плане.",
-    "data": "Референсная вычислительная таблица.",
-    "limit": "Для передачи Yp нужна единая барионная нормировка.",
+    "observation": "При заданном Yp=0,24 состав гелия передан в два рекомбинационных решателя с общими nH0 и fHe; одинаковая барионная нормировка реализована явно.",
+    "implementation": "После контроля таблиц drft/RECFAST в R143 выполнены прямой HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 на общем H(z). При z=49 получены Tgas=48,76953742/48,75966648 K соответственно.",
+    "data": "Два вычисленных однородных ряда xₑ=n_e/n_H и Tgas на общей сетке; общий вход Yp=0,24. Исходные параметры и граничные значения сохранены в LOCK.json и SUMMARY.json.",
+    "limit": "Yp=0,24 задан на входе. Нового расчёта BBN и проверки оболочечной щели нет. Сходимость граничной точки z=49 проверена отдельно; глобальная сходимость истории и полная стыковка с начальными условиями Lumina остаются открыты; U014 — OPEN.",
     "evidence": [
       "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11"
     ],
     "claim_scope": "nuclear.1",
-    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
   },
   {
     "id": "E07",
@@ -164,16 +174,26 @@
     ],
     "system": "Гелий в атомной рекомбинации",
     "role": "донор",
-    "observation": "Физический переход ионов к связанным состояниям He входит в задачу HYREC-2; xₑ и Tgas рассматриваются как выходы.",
-    "implementation": "Из drft считана таблица RECFAST; новый расчёт уровней He отсутствует.",
-    "data": "Опубликованная модельная таблица; лабораторные энергии ионизации не использованы.",
-    "limit": "Ряд благородных газов и скачок ионизации вне этого опыта; возможен только He.",
+    "observation": "Атомная рекомбинация H/He участвует в выполненных историях HYREC-2 и RECFAST; сравниваются суммарная свободноэлектронная доля xₑ=n_e/n_H и Tgas при одинаковом составе.",
+    "implementation": "В R143 исполнены HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 с Yp=0,24 и общими H(z), nH0, fHe; сохранены основные истории и отдельные контроли численного шага.",
+    "data": "Вычисленные модельные истории на 6023 общих узлах и контрольные ряды; исходный контроль таблиц RECFAST/drft сохранён в R138. Лабораторные энергии ионизации не использованы.",
+    "limit": "Расчёт уровней He, ряд благородных газов и скачки энергии ионизации не проверяются этой парой историй. Сходимость всей истории не установлена: в одном контроле HYREC-2 обнаружены локальные выбросы. Граница z=49 проверена отдельно.",
     "evidence": [
       "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11",
       "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L11"
     ],
     "claim_scope": "noble.1",
-    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
   },
   {
     "id": "E08",
@@ -236,16 +256,26 @@
     ],
     "system": "Рекомбинирующий водород",
     "role": "донор",
-    "observation": "В постановке HYREC-2 присутствует связанный водород; контрольный расчёт читает xₑ, Tgas.",
-    "implementation": "check_tables.py на контрольных таблицах RECFAST/drft.",
-    "data": "Численные таблицы; спектры Hα–Hδ не входят.",
-    "limit": "Для проверки серии нужны разрешённые переходы и шкала длин волн.",
+    "observation": "Выполнено сравнение однородных историй рекомбинирующего H/He; при z=49 HYREC-2 даёт xₑ=0,0002347812744, RECFAST — 0,0002352123960.",
+    "implementation": "HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 исполнены на общем фоне Lumina при Yp=0,24. В замороженной основной паре при z=49 Δxₑ=−0,183290% и ΔTgas=+0,020244% относительно RECFAST; контроли шага сохранены отдельно.",
+    "data": "Численные истории xₑ и Tgas, общие нормировки и граничная точка a=1/50; спектры Hα–Hδ не входят.",
+    "limit": "Переходы n→2 и шкала длин волн не проверяются этим опытом. Глобальная сходимость истории не установлена; возмущения, относительные скорости компонентов и полные начальные условия Lumina не переданы. U014 остаётся OPEN.",
     "evidence": [
       "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11",
       "https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L34"
     ],
     "claim_scope": "семейство",
-    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": {
+      "path": "recombination/README.md",
+      "summary": "recombination/results/SUMMARY.json",
+      "histories": "recombination/results/histories.csv",
+      "numerical_controls": "recombination/results/CONVERGENCE.json",
+      "freeze": "recombination/LOCK.json",
+      "freeze_commit": "ce7d57962c287c30bc8d591d2c558aa2ea78be5d",
+      "date": "2026-11-23",
+      "scope": "Executed homogeneous comparison; z=49 checked separately; U014 OPEN and global convergence not established."
+    }
   },
   {
     "id": "E11",

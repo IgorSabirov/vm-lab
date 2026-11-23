@@ -94,15 +94,17 @@ Yp входит в подсчёт электронов при полной ио�
 
 **Адреса.** [R138](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r138) · [U014](https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014) · [#199](https://github.com/IgorSabirov/vm-lab/issues/199).
 
-Yp связывает состав BBN с числом атомов и свободных электронов; указано требование одинаковых входов.
+При заданном Yp=0,24 состав гелия передан в два рекомбинационных решателя с общими nH0 и fHe; одинаковая барионная нормировка реализована явно.
 
-**Реализация.** Контроль готовых таблиц drft/RECFAST выполнен; отдельный запуск HYREC-2 указан в плане.
+**Реализация.** После контроля таблиц drft/RECFAST в R143 выполнены прямой HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 на общем H(z). При z=49 получены Tgas=48,76953742/48,75966648 K соответственно.
 
-**Данные.** Референсная вычислительная таблица.
+**Данные.** Два вычисленных однородных ряда xₑ=n_e/n_H и Tgas на общей сетке; общий вход Yp=0,24. Исходные параметры и граничные значения сохранены в LOCK.json и SUMMARY.json.
 
-**Область вывода.** nuclear.1. Для передачи Yp нужна единая барионная нормировка.
+**Область вывода.** nuclear.1. Yp=0,24 задан на входе. Нового расчёта BBN и проверки оболочечной щели нет. Сходимость граничной точки z=49 проверена отдельно; глобальная сходимость истории и полная стыковка с начальными условиями Lumina остаются открыты; U014 — OPEN.
 
 [источник 1](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11)
+
+Продолжение R143: [расчёт и границы](recombination/README.md) · [машинная сводка](recombination/results/SUMMARY.json) · [истории](recombination/results/histories.csv) · [численные контроли](recombination/results/CONVERGENCE.json) · [замороженные входы](https://github.com/IgorSabirov/vm-lab/blob/ce7d57962c287c30bc8d591d2c558aa2ea78be5d/analysis/R143_PHYSICAL_GENEALOGY/recombination/LOCK.json).
 
 <a id="e07"></a>
 ## E07. Гелий в атомной рекомбинации
@@ -111,15 +113,17 @@ Yp связывает состав BBN с числом атомов и своб�
 
 **Адреса.** [R138](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r138) · [U014](https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014) · [#199](https://github.com/IgorSabirov/vm-lab/issues/199).
 
-Физический переход ионов к связанным состояниям He входит в задачу HYREC-2; xₑ и Tgas рассматриваются как выходы.
+Атомная рекомбинация H/He участвует в выполненных историях HYREC-2 и RECFAST; сравниваются суммарная свободноэлектронная доля xₑ=n_e/n_H и Tgas при одинаковом составе.
 
-**Реализация.** Из drft считана таблица RECFAST; новый расчёт уровней He отсутствует.
+**Реализация.** В R143 исполнены HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 с Yp=0,24 и общими H(z), nH0, fHe; сохранены основные истории и отдельные контроли численного шага.
 
-**Данные.** Опубликованная модельная таблица; лабораторные энергии ионизации не использованы.
+**Данные.** Вычисленные модельные истории на 6023 общих узлах и контрольные ряды; исходный контроль таблиц RECFAST/drft сохранён в R138. Лабораторные энергии ионизации не использованы.
 
-**Область вывода.** noble.1. Ряд благородных газов и скачок ионизации вне этого опыта; возможен только He.
+**Область вывода.** noble.1. Расчёт уровней He, ряд благородных газов и скачки энергии ионизации не проверяются этой парой историй. Сходимость всей истории не установлена: в одном контроле HYREC-2 обнаружены локальные выбросы. Граница z=49 проверена отдельно.
 
 [источник 1](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11) · [источник 2](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L11)
+
+Продолжение R143: [расчёт и границы](recombination/README.md) · [машинная сводка](recombination/results/SUMMARY.json) · [истории](recombination/results/histories.csv) · [численные контроли](recombination/results/CONVERGENCE.json) · [замороженные входы](https://github.com/IgorSabirov/vm-lab/blob/ce7d57962c287c30bc8d591d2c558aa2ea78be5d/analysis/R143_PHYSICAL_GENEALOGY/recombination/LOCK.json).
 
 <a id="e08"></a>
 ## E08. He III в расчёте ионизации газа Lumina
@@ -162,15 +166,17 @@ Yp связывает состав BBN с числом атомов и своб�
 
 **Адреса.** [R138](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r138) · [U014](https://github.com/IgorSabirov/vm-lab/blob/873480d376f20e304a1d9649c22cc88be6fef975/analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014) · [#199](https://github.com/IgorSabirov/vm-lab/issues/199).
 
-В постановке HYREC-2 присутствует связанный водород; контрольный расчёт читает xₑ, Tgas.
+Выполнено сравнение однородных историй рекомбинирующего H/He; при z=49 HYREC-2 даёт xₑ=0,0002347812744, RECFAST — 0,0002352123960.
 
-**Реализация.** check_tables.py на контрольных таблицах RECFAST/drft.
+**Реализация.** HYREC-2 (SWIFT=4) и RECFAST 1.5.2 из CAMB 1.6.5 исполнены на общем фоне Lumina при Yp=0,24. В замороженной основной паре при z=49 Δxₑ=−0,183290% и ΔTgas=+0,020244% относительно RECFAST; контроли шага сохранены отдельно.
 
-**Данные.** Численные таблицы; спектры Hα–Hδ не входят.
+**Данные.** Численные истории xₑ и Tgas, общие нормировки и граничная точка a=1/50; спектры Hα–Hδ не входят.
 
-**Область вывода.** семейство. Для проверки серии нужны разрешённые переходы и шкала длин волн.
+**Область вывода.** семейство. Переходы n→2 и шкала длин волн не проверяются этим опытом. Глобальная сходимость истории не установлена; возмущения, относительные скорости компонентов и полные начальные условия Lumina не переданы. U014 остаётся OPEN.
 
 [источник 1](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/REPORT.md#L11) · [источник 2](https://github.com/IgorSabirov/vm-lab/blob/0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a/analysis/R138_POST_BBN_DONORS/check_tables.py#L34)
+
+Продолжение R143: [расчёт и границы](recombination/README.md) · [машинная сводка](recombination/results/SUMMARY.json) · [истории](recombination/results/histories.csv) · [численные контроли](recombination/results/CONVERGENCE.json) · [замороженные входы](https://github.com/IgorSabirov/vm-lab/blob/ce7d57962c287c30bc8d591d2c558aa2ea78be5d/analysis/R143_PHYSICAL_GENEALOGY/recombination/LOCK.json).
 
 <a id="e11"></a>
 ## E11. Эффективная рекомбинационная модель и полная ёмкость слоя
