@@ -206,6 +206,8 @@ Yp связывает состав BBN с числом атомов и своб�
 
 [источник 1](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md#L19) · [источник 2](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py#L1)
 
+**Дополнение 23 ноября.** [Содержание полей, роль D и точные проверки](worldsheet/README.md); [карта](worldsheet/FIELDS.json) · [выходы](worldsheet/CHECKS.json). Граница исходного числового утверждения сохранена.
+
 <a id="e13"></a>
 ## E13. Амплитуда Вирасоро–Шапиро и вопрос о секторе
 
@@ -222,6 +224,8 @@ Yp связывает состав BBN с числом атомов и своб�
 **Область вывода.** string.2. Для прямой идентификации D=10 отделить кинематический множитель и сектор, задать мироволистовые поля.
 
 [источник 1](https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md#L20)
+
+**Дополнение 23 ноября.** [Содержание полей, роль D и точные проверки](worldsheet/README.md); [карта](worldsheet/FIELDS.json) · [выходы](worldsheet/CHECKS.json). Граница исходного числового утверждения сохранена.
 
 <a id="e14"></a>
 ## E14. Четырёхмерная группа СМ и струнное рассеяние
@@ -729,13 +733,15 @@ Mangano et al. решают задачу с осцилляциями; пакет
 
 В контракте тепловой ветви явно заданы десятимерный фон и спектр Калуцы–Клейна типа IIB. Это собственный адрес именно десятимерного сектора за пределами R142.
 
-**Реализация.** Аналитический контракт и проверка каталога; полная тепловая сумма приостановлена до разбора характера k=2.
+**Реализация.** Контракт и действующее A14/A15c-исправление разрешают учёт k=2. В дополнении R143 предъявлены 14 записей, 128B+128F и точное S1=S2; полный тепловой прогон остаётся невоспроизведённым.
 
-**Данные.** Теоретический донор; нового машинного или физического эксперимента в этой поставке нет.
+**Данные.** Теоретический первоисточник и точная сверка низшего KK-мультиплета; нового расчёта полной тепловой суммы нет.
 
 **Область вывода.** string.2. Десять измерений заданы выбором фона. Вывод критической размерности из мироволистовой аномалии — другая операция.
 
-[источник 1](https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/AINF_KK_GAS_CONTRACT.md#L5) · [источник 2](https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/REPORT.md#L4)
+[источник 1](https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/AINF_KK_GAS_CONTRACT.md#L5) · [источник 2](https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/REPORT.md#L4) · [действующее исправление](https://github.com/IgorSabirov/vm-lab/blob/98c101bc9621d99439a462140980166cd9610378/analysis/CCC_BBN_NETWORK_20261114/s3_standard/BH1_AINF_K1_20261116/A14_A15C_RECONCILIATION_20261116.md#L4)
+
+**Дополнение 23 ноября.** [Содержание полей, роль D и точные проверки](worldsheet/README.md); [карта](worldsheet/FIELDS.json) · [выходы](worldsheet/CHECKS.json). Граница исходного числового утверждения сохранена.
 
 <a id="e44"></a>
 ## E44. Фон base-ΛCDM наблюдательного контроля Planck

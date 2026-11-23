@@ -1,0 +1,61 @@
+{
+  "schema": "r143-worldsheet-field-content-v1",
+  "scope": "Сопоставление полей и роли размерности; конечные точные проверки, без нового теплового или динамического прогона.",
+  "parent_commit": "c209d14eff7722c1e64415f4a8ef07909bbe0642",
+  "worldsheet_fields": [
+    {"id":"X", "field":"X^mu", "kind":"real_scalar", "multiplicity":"D", "central_charge_each":"1", "physical_spacetime_particle_count":false},
+    {"id":"psi", "field":"psi^mu", "kind":"chiral_real_majorana", "multiplicity":"D", "central_charge_each":"1/2", "physical_spacetime_particle_count":false},
+    {"id":"bc", "field":"b,c", "kind":"first_order_ghost_pair", "weights":["2","-1"], "epsilon":1, "statistics":"anticommuting", "physical_spacetime_particle_count":false},
+    {"id":"beta_gamma", "field":"beta,gamma", "kind":"first_order_ghost_pair", "weights":["3/2","-1/2"], "epsilon":-1, "statistics":"commuting", "physical_spacetime_particle_count":false}
+  ],
+  "worldsheet_models": [
+    {"id":"bosonic", "fields":["X","bc"], "additional_c":"0", "expected_critical_D":26},
+    {"id":"RNS", "fields":["X","psi","bc","beta_gamma"], "additional_c":"0", "expected_critical_D":10}
+  ],
+  "sectors": [
+    {"id":"R142-bosonic-reference", "fields":"D вещественных X^mu и антикоммутирующие b,c; дополнительного внутреннего CFT и фонового дилатона нет.", "D_input":"Переменная D; плоское целевое пространство и свободное полевое содержание заданы.", "theory_constraint":"По каждому киральному сектору c_total=D-26=0.", "computed_consequence":"Точное решение D=26 из объявленных центральных зарядов; контроли со сменой состава.", "limit":"Не идентифицирует содержание R134 по одному виду амплитуды.", "sources":["r142_readme","r142_checks","kiritsis","weigand"]},
+    {"id":"R142-RNS-reference", "fields":"D X^mu, D psi^mu, b,c и коммутирующие beta,gamma; левый и правый секторы замкнутой струны проверяются отдельно.", "D_input":"Переменная D; свободный плоский RNS-набор задан.", "theory_constraint":"c_total=3D/2-15=0 при отсутствии дополнительных вкладов.", "computed_consequence":"D=10; при d=4 необходим c_internal=9. Бозонному варианту при d=4 нужен c_internal=22.", "limit":"Баланс не выбирает GSO, IIA/IIB и не вычисляет beta-функции искривлённого RR-фона.", "sources":["r142_readme","kiritsis","weigand","metsaev_tseytlin"]},
+    {"id":"R134-open-four", "fields":"Скалярное color-ordered ядро B(-S,-T). Демодонор отдельно объявляет открытую бозонную струну: alpha_prime=alpha_0=1, m_n^2=n-1. Мироволистовые корреляторы код не реализует.", "D_input":"В beta-функции D отсутствует. В прежней проекции Legendre D=4 и m_external^2=0 заданы. В новом контроле задано m_external^2=-1, D оставлена переменной.", "theory_constraint":"Для полного стандартного бозонного мироволиста D=26; неотрицательность одной тахионной частичной волны даёт необходимое D<=26.", "computed_consequence":"Воспроизведён прежний полином; для согласованной тахионной кинематики a0=(26-D)/(8(D-1)), a2=25(D-2)/(8(D-1)).",
+     "limit":"Один уровень не доказывает унитарность всей башни и не выделяет D=26 среди D<26.", "sources":["r134_report","r134_code","r134_checks","demo_open","demo_partial","crst","maity"]},
+    {"id":"R134-closed-four", "fields":"Гамма-множитель product Gamma(-v)/Gamma(1+v), v=(S,T,-S-T); безмассовая кинематика. Поляризации, NSNS/RR, вершины и GSO не заданы.", "D_input":"D не параметризована. Название Virasoro-Shapiro не определяет мироволистовый сектор.", "theory_constraint":"При отдельно заданном RNS-завершении критический баланс даёт D=10.", "computed_consequence":"Сохранённые девять вычетов относятся к скалярному гамма-отношению; в этом сопоставлении они не переименованы в проверку IIB.", "limit":"Выбор IIA/IIB и соответствие гравитону/дилатону по этому ядру не установлены.", "sources":["r134_report","r134_code","r134_checks","demo_closed","crst"]},
+    {"id":"R134-five-scalar", "fields":"Упорядоченный скалярный Euler/3F2-интеграл, пять объявленных инвариантов. Полные внешние вершины и поляризации не восстановлены.", "D_input":"D отсутствует. D(10,6,25) в отчёте обозначает область пар уровней, а не размерность пространства.", "theory_constraint":"Полный струнный сектор потребует вершин и меры, совместимых с его мироволистом.", "computed_consequence":"Сохранены 195 допустимых пар, 186 ненулевых и смешанный контроль 36->37; они проверяют структуру каналов.", "limit":"Совпадение скалярного интеграла не восстанавливает полный спектр полей и не выводит D.", "sources":["r134_report","r134_code","r134_checks","crst","eberhardt_mizera"]},
+    {"id":"BH1-IIB-parent", "fields":"NSNS: g_MN,B2,Phi; RR: C0,C2,C4 с F5=*F5; две Majorana-Weyl gravitini одинаковой киральности, два dilatini противоположной им киральности.", "D_input":"D=10 задана выбором IIB и AdS5 x S5.", "theory_constraint":"Выбранный IIB-сектор совместим с критическим суперструнным плоским пределом; самодуальность F5 обязательна.", "computed_consequence":"Локальные физические поляризации: 128B+128F; без самодуальности ошибочно получилось бы 163B+128F.", "limit":"Это не число всех KK-состояний и не новый вывод D из BH1.", "sources":["bh1_contract","weigand","metsaev_tseytlin"]},
+    {"id":"BH1-Ainf-KK", "fields":"Супергравитационная KK-башня на S5, physical bulk k>=2; k=1 doubleton исключён из bulk. Массивные струнные осцилляторы не входят.", "D_input":"5D AdS после редукции; исходный фон 5+5=10; граница S1 x S3 имеет размерность 4.", "theory_constraint":"Калибровочные null-модули учитываются ровно один раз. S1: positive primaries + short characters; S2: signed terms + long characters.", "computed_consequence":"14 положительных записей k=2, 291 формальных компонент, 35 null-компонент; 128B+128F. S1=S2 как рациональные функции, BAD отличается.", "limit":"Новая проверка ограничена k=2. Тепловой результат lnZ_HP~2.63 и k=3,4 остаются ранее сообщёнными результатами, без нового standalone-прогона.", "sources":["bh1_contract","bh1_reconciliation","bh1_readme","kk_table"]},
+    {"id":"BH1-Binf", "fields":"Классический AdS5-Schwarzschild в контексте IIB, общий вычтенный вакуум thermal AdS.", "D_input":"В гравитационных формулах D_effective=5 задана; parent D=10, boundary d=4.", "theory_constraint":"Термодинамика выбранного решения и соответствующий ансамбль; мироволистовый баланс здесь не вычисляется.", "computed_consequence":"По сохранённому контракту chi_HP=3/(2pi), u_HP=1. В текущей работе новых гравитационных прогонов нет.", "limit":"HP-температура не выводит критическую размерность.", "sources":["bh1_black_hole","bh1_k1"]},
+    {"id":"BH1-free-N4-boundary", "fields":"N=4 SYM: один вектор, шесть вещественных скаляров, четыре Weyl-фермиона в adjoint. Свободная ветвь lambda=0 отделена от strong-coupling Ainf.", "D_input":"Четырёхмерная граничная теория на S1 x S3; это не target D=4 RNS без внутреннего сектора.", "theory_constraint":"Групповая singlet-проекция и выбранный ансамбль. По одному цветовому генератору локальный состав 8B+8F.", "computed_consequence":"Для отдельного boundary doubleton 8B+8F=16; вклад в bulk-газ по его определению нулевой.", "limit":"Счёт поляризаций не является полным числом singlet-состояний тепловой статсуммы.", "sources":["bh1_contract","bh1_reconciliation","aharony"]},
+    {"id":"BH1-pure-SU3-control", "fields":"Только чистое калибровочное поле SU(3), без шести скаляров и четырёх Weyl-фермионов; конечный групповой интеграл с мерой Хаара.", "D_input":"d=4 и N=3 заданы. 8=N^2-1 — размерность цветовой алгебры.", "theory_constraint":"В используемом коде single-letter z_V=(6x^2-2x^3)/(1-x)^3; этот состав отличен от N=4.", "computed_consequence":"16 локальных поперечных бозонных поляризаций и 0 фермионных. Совпадение общего числа 16 с doubleton не совпадает по статистике или теории.", "limit":"Не переносить мироволистовые D=10, IIB-состав или N=1 anomaly condition 496 на эту теорию.", "sources":["pure_su3_code","pure_su3_report","bh1_thermal_sectors"]}
+  ],
+  "iib_fields": [
+    {"field":"g_MN", "sector":"NSNS", "kind":"graviton", "multiplicity":1},
+    {"field":"B2", "sector":"NSNS", "kind":"p_form", "rank":2, "multiplicity":1},
+    {"field":"Phi", "sector":"NSNS", "kind":"scalar", "multiplicity":1},
+    {"field":"C0", "sector":"RR", "kind":"scalar", "multiplicity":1},
+    {"field":"C2", "sector":"RR", "kind":"p_form", "rank":2, "multiplicity":1},
+    {"field":"C4; F5=*F5", "sector":"RR", "kind":"self_dual_form", "rank":4, "multiplicity":1},
+    {"field":"gravitini", "sector":"NSR/RNS", "kind":"majorana_weyl_gravitino", "multiplicity":2},
+    {"field":"dilatini", "sector":"NSR/RNS", "kind":"majorana_weyl_spinor", "multiplicity":2}
+  ],
+  "kk_k2_source": "kk_table; Table 1 before Z3 projection, p=2; E0=Delta, SU4 Dynkin labels, pairwise conjugates separate; phi3 multiplicity 2.",
+  "kk_k2_primaries": [
+    {"id":"phi1", "Delta":"2", "j1":"0", "j2":"0", "su4":[0,2,0], "multiplicity":1, "statistics":"B", "short":false},
+    {"id":"psi1", "Delta":"5/2", "j1":"1/2", "j2":"0", "su4":[0,1,1], "multiplicity":1, "statistics":"F", "short":false},
+    {"id":"psi1_conjugate", "Delta":"5/2", "j1":"0", "j2":"1/2", "su4":[1,1,0], "multiplicity":1, "statistics":"F", "short":false},
+    {"id":"twoform1", "Delta":"3", "j1":"1", "j2":"0", "su4":[0,1,0], "multiplicity":1, "statistics":"B", "short":false},
+    {"id":"twoform1_conjugate", "Delta":"3", "j1":"0", "j2":"1", "su4":[0,1,0], "multiplicity":1, "statistics":"B", "short":false},
+    {"id":"phi2", "Delta":"3", "j1":"0", "j2":"0", "su4":[0,0,2], "multiplicity":1, "statistics":"B", "short":false},
+    {"id":"phi2_conjugate", "Delta":"3", "j1":"0", "j2":"0", "su4":[2,0,0], "multiplicity":1, "statistics":"B", "short":false},
+    {"id":"phi3", "Delta":"4", "j1":"0", "j2":"0", "su4":[0,0,0], "multiplicity":2, "statistics":"B", "short":false},
+    {"id":"psi2", "Delta":"7/2", "j1":"1/2", "j2":"0", "su4":[0,0,1], "multiplicity":1, "statistics":"F", "short":false},
+    {"id":"psi2_conjugate", "Delta":"7/2", "j1":"0", "j2":"1/2", "su4":[1,0,0], "multiplicity":1, "statistics":"F", "short":false},
+    {"id":"current", "Delta":"3", "j1":"1/2", "j2":"1/2", "su4":[1,0,1], "multiplicity":1, "statistics":"B", "short":true},
+    {"id":"supercurrent", "Delta":"7/2", "j1":"1", "j2":"1/2", "su4":[1,0,0], "multiplicity":1, "statistics":"F", "short":true},
+    {"id":"supercurrent_conjugate", "Delta":"7/2", "j1":"1/2", "j2":"1", "su4":[0,0,1], "multiplicity":1, "statistics":"F", "short":true},
+    {"id":"stress_tensor", "Delta":"4", "j1":"1", "j2":"1", "su4":[0,0,0], "multiplicity":1, "statistics":"B", "short":true}
+  ],
+  "kk_k2_signed_nulls": [
+    {"id":"current_null", "Delta":"4", "j1":"0", "j2":"0", "su4":[1,0,1], "multiplicity":-1, "statistics":"B"},
+    {"id":"supercurrent_null", "Delta":"9/2", "j1":"1/2", "j2":"0", "su4":[1,0,0], "multiplicity":-1, "statistics":"F"},
+    {"id":"supercurrent_conjugate_null", "Delta":"9/2", "j1":"0", "j2":"1/2", "su4":[0,0,1], "multiplicity":-1, "statistics":"F"},
+    {"id":"stress_tensor_null", "Delta":"5", "j1":"1/2", "j2":"1/2", "su4":[0,0,0], "multiplicity":-1, "statistics":"B"}
+  ]
+}
