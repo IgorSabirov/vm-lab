@@ -1,0 +1,1662 @@
+{
+  "schema": "R144-position-symmetry-passport-v0.1",
+  "title": "R144 — паспорта симметрий 43 числовых позиций R142",
+  "status": "DESIGN_DRAFT",
+  "scientific_acceptance": false,
+  "language": "ru",
+  "scope": "Только 43 канонические позиции: 40 исходных уникальных числовых позиций плюс три дополнительные позиции R142. Это не универсальный каталог всех групп физики и не попытка вывести все числа из одной симметрии.",
+  "provenance": {
+    "repository": "IgorSabirov/vm-lab",
+    "source_result": "R142",
+    "source_pr": 213,
+    "source_pr_url": "https://github.com/IgorSabirov/vm-lab/pull/213",
+    "source_branch": "research/r142-magic-numbers",
+    "source_commit": "15052f12371f1366e8e51f5d251033b1376739c0",
+    "source_files": [
+      {
+        "path": "analysis/R142_MAGIC_NUMBERS/DONORS.md",
+        "blob_sha": "580a2e48d99b1fc63259115b86d21d8b04730193"
+      },
+      {
+        "path": "analysis/R142_MAGIC_NUMBERS/CHECKS.json",
+        "blob_sha": "cd39bdb15d5ccb182246290afbe58add04940eb9"
+      },
+      {
+        "path": "analysis/R142_MAGIC_NUMBERS/README.md",
+        "blob_sha": "2bf734262be90f4b094761bb97f6f75cac231345"
+      }
+    ],
+    "count_rule": "P001–P040 сформированы в порядке первого появления каждой уникальной числовой/именованной позиции в последовательности групп DONORS.md; повторяющиеся числовые значения объединены в одну позицию, но их физические реализации перечислены раздельно. P041–P043 — три дополнительные позиции в порядке их перечисления в DONORS.md.",
+    "count_check": {
+      "base_unique_positions": 40,
+      "additional_positions": 3,
+      "total_positions": 43,
+      "claims_in_checks_json": 76,
+      "claims_mapped_to_positions": 62,
+      "auxiliary_claims_not_in_43": 14
+    }
+  },
+  "rules": {
+    "no_numeric_identity_inference": "Равенство числовых значений не означает тождество физических систем, симметрий или механизмов.",
+    "no_group_by_name_only": "Название группы не назначается без конкретного пространства действия, представления и физического Hamiltonian/оператора.",
+    "symmetry_vs_origin": "Наличие симметрии в теории не означает, что именно она выводит численное значение; роль фиксируется отдельно.",
+    "gauge_vs_global": "Калибровочные симметрии отмечаются отдельно от глобальных физических симметрий.",
+    "exact_vs_approximate": "Идеальная симметрия модели не переносится автоматически на реальный объект.",
+    "missing_evidence": "При отсутствии подтверждённой группы используется NOT_ESTABLISHED или NOT_A_GROUP_SYMMETRY; гипотетические группы не подставляются.",
+    "claim_preservation": "Статусы T0–T4 и статусы claims R142 не повышаются этим файлом."
+  },
+  "status_vocabulary": {
+    "ESTABLISHED_IN_ROTATION_INVARIANT_MODEL": "Группа действия установлена в сферической/вращательно-инвариантной модели; численное замыкание отдельно требует щели.",
+    "EXACT_IN_IDEAL_MODEL": "Точная симметрия выбранного идеального Hamiltonian или математической модели.",
+    "CONDITIONAL_MODEL_REALIZATION": "Симметрия верна при явно указанном приближении/режиме.",
+    "ESTABLISHED_IN_ATOMIC_HAMILTONIAN": "Вращательная симметрия атомного Hamiltonian; сама по себе не определяет порядок заполнения.",
+    "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY": "Симметрия относится к чистому одночастичному кулоновскому эталону, не к полному многоэлектронному атому.",
+    "ESTABLISHED_IN_QCD": "Установленная калибровочная структура QCD.",
+    "NO_SYMMETRY_DERIVATION": "В R142 нет физически обоснованной симметрии, выводящей число.",
+    "NOT_A_GROUP_SYMMETRY": "Свойство связано с инфляцией/ренормгруппой/масштабированием, но не является обычной группой симметрий.",
+    "CONTEXT_ONLY": "Симметрия присутствует в теории, но не объясняет исследуемое число.",
+    "NOT_UNIQUE_GROUP_ORIGIN": "Геометрический максимум/классификация не задаёт единственную группу как причину."
+  },
+  "conventions": [
+    "SO(3) — пространственные вращения; SU(2) — двойное накрытие, необходимое для полуцелых угловых моментов. Для ядерных оболочек указывается SU(2)_J полного момента, а не независимые SU(2)_L и SU(2)_S при сильной spin-orbit связи.",
+    "U(3) и U(2) в осцилляторных задачах — динамические/спектрогенерирующие структуры идеальных изотропных осцилляторов; они не являются утверждением о точной симметрии реальных ядер или устройств.",
+    "SO(4) для атомной ёмкости относится к динамической симметрии чистого водородоподобного кулоновского одночастичного Hamiltonian. Многоэлектронные атомы в общем случае не обладают точной SO(4)-симметрией.",
+    "SU(3)_c в позиции 8 глюонов — локальная калибровочная группа; восемь глюонов образуют присоединённое представление, а не восемь независимых групп.",
+    "230 — число типов кристаллографических пространственных групп в 3D, а не порядок одной группы.",
+    "Симметрия, защищающая фазу, не обязана фиксировать численную амплитуду наблюдаемой (пример: щель Холдейна)."
+  ],
+  "positions": [
+    {
+      "position_id": "P001",
+      "position_key": "n=2",
+      "value": 2,
+      "description": "Первое появление в R142: 2. Число встречается в шести независимых моделях/системах.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N2",
+          "physical_system": "Ядерное замыкание N или Z=2 (1s1/2)",
+          "source_claim_ids": [
+            "nuclear.1"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3) пространственных вращений",
+            "SU(2)_J полного углового момента",
+            "T — обращение времени"
+          ],
+          "status": "ESTABLISHED_IN_ROTATION_INVARIANT_MODEL",
+          "physical_role": "SU(2)_J-ирреп j=1/2 имеет размерность 2; сферическая симметрия даёт магнитную кратность 2j+1.",
+          "boundary": "Из одной кратности не следует энергетическая щель; CHECKS прямо отмечает, что щели в этом подсчёте не вычислены.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        },
+        {
+          "realization_id": "osc3.K0",
+          "physical_system": "Изотропный трёхмерный гармонический осциллятор, заполнение до K=0",
+          "source_claim_ids": [
+            "osc3.1"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3) спектрогенерирующая/динамическая симметрия",
+            "SO(3) подгруппа вращений",
+            "SU(2)_S спина"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Первая оболочка имеет одну пространственную орбиталь и два спиновых состояния.",
+          "boundary": "Точная кратность идеального осциллятора; это не физическое объяснение ядерной последовательности за пределами заданного потенциала.",
+          "references": []
+        },
+        {
+          "realization_id": "noble.He",
+          "physical_system": "Атом He, замкнутая оболочка",
+          "source_claim_ids": [
+            "noble.1"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращательная симметрия",
+            "SU(2)_J полного момента; SU(2)_S отдельно лишь в нерелятивистском пределе",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Атомный гамильтониан без внешнего поля вращательно-инвариантен; основное состояние He — сферическое закрытооболочечное состояние.",
+          "boundary": "Симметрия допускает квантовые числа и J=0 замкнутой оболочки, но не выводит сама по себе последовательность благородных газов.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        },
+        {
+          "realization_id": "sodium.low",
+          "physical_system": "Нижнее модельное заполнение сферического jellium-кластера",
+          "source_claim_ids": [
+            "sodium_low.1"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) сферической модели",
+            "SU(2)_S при пренебрежении спин-зависимыми членами"
+          ],
+          "status": "MODEL_ONLY",
+          "physical_role": "Двукратное спиновое заполнение нижнего уровня в идеализированной модели.",
+          "boundary": "R142 отмечает, что N=2 находится вне экспериментального диапазона Knight N=4–100; это не наблюдённое замыкание.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        },
+        {
+          "realization_id": "dot2d.K0",
+          "physical_system": "Круглая двумерная квантовая точка, первый осцилляторный слой",
+          "source_claim_ids": [
+            "dot.1"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия изотропного 2D-осциллятора",
+            "SO(2) пространственные вращения",
+            "SU(2)_S спина"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Первый пространственный уровень имеет одну орбиталь с двумя спиновыми состояниями.",
+          "boundary": "В реальной точке взаимодействия и несферичность/анизотропия снимают идеальную кратность.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.77.3613"
+          ]
+        },
+        {
+          "realization_id": "atomic.capacity.n1",
+          "physical_system": "Ёмкость главного атомного слоя n=1",
+          "source_claim_ids": [
+            "atomic.1"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) динамическая симметрия чисто кулоновской одночастичной задачи — общий контекст",
+            "SO(3) вращения",
+            "SU(2)_S спина"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Формула 2n² даёт два состояния при n=1; для n=1 имеется только l=0, а двукратность — спиновая.",
+          "boundary": "Для многоэлектронного He SO(4) не является точной симметрией полного взаимодействующего атома; ёмкость слоя не равна механизму атомного замыкания.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P002",
+      "position_key": "n=8",
+      "value": 8,
+      "description": "Повторяющееся число: разные позиции физически независимы.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N8",
+          "physical_system": "Классическое ядерное замыкание N или Z=8",
+          "source_claim_ids": [
+            "nuclear.2"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "Сферическая модель группирует уровни по j; 8 — сумма заполненных кратностей в заданном порядке.",
+          "boundary": "Требуются независимые данные об энергетическом разрыве; подсчёт кратностей сам по себе не измеряет щель.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        },
+        {
+          "realization_id": "osc3.K1",
+          "physical_system": "3D изотропный осциллятор, заполнение до K=1",
+          "source_claim_ids": [
+            "osc3.2"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Два пространственных осцилляторных слоя дают 2+6=8 с учётом спина.",
+          "boundary": "Точная формула осциллятора; не переносить на реальные ядра без независимого спектрального расчёта.",
+          "references": []
+        },
+        {
+          "realization_id": "sodium.N8",
+          "physical_system": "Сферический jellium в натриевом кластере",
+          "source_claim_ids": [
+            "sodium.1"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) сферического среднего поля",
+            "SU(2)_S приближённо"
+          ],
+          "status": "CONDITIONAL_MODEL_REALIZATION",
+          "physical_role": "Сферический потенциал даёт орбитальные оболочки и спиновую кратность.",
+          "boundary": "Экспериментальный сигнал масс-спектра зависит также от заряда, испарения, ионизации и регистрации.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        },
+        {
+          "realization_id": "atomic.capacity.n2",
+          "physical_system": "Ёмкость главного атомного слоя n=2",
+          "source_claim_ids": [
+            "atomic.2"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) динамическая симметрия водородоподобного кулоновского предела",
+            "SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Сумма l=0,1 даёт 2+6=8 состояний с учётом спина.",
+          "boundary": "В многоэлектронном атоме экранирование и спин-орбитальные эффекты нарушают точную кулоновскую SO(4)-дегенерацию.",
+          "references": []
+        },
+        {
+          "realization_id": "qcd.color",
+          "physical_system": "Восемь глюонных цветовых состояний",
+          "source_claim_ids": [
+            "color.1"
+          ],
+          "symmetry_class": "GAUGE_GROUP_ADJOINT_REPRESENTATION",
+          "groups_or_structures": [
+            "SU(3)_c локальная калибровочная группа цвета",
+            "8 — размерность присоединённого представления adj(SU(3))"
+          ],
+          "status": "EXACT_IN_QCD",
+          "physical_role": "dim SU(3)=3²−1=8; глюонное поле преобразуется в присоединённом представлении.",
+          "boundary": "Это калибровочная структура КХД, не та же физическая реализация, что ядерное/атомное число 8; калибровочная избыточность не является обычной глобальной симметрией.",
+          "references": [
+            "https://pdg.lbl.gov/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P003",
+      "position_key": "n=20",
+      "value": 20,
+      "description": "Повторяется в ядерном, осцилляторном, кластерном и квантово-точечном контекстах.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N20",
+          "physical_system": "Классическое ядерное замыкание N или Z=20",
+          "source_claim_ids": [
+            "nuclear.3"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "Сумма кратностей заполненных орбиталей в spin-orbit shell ordering.",
+          "boundary": "Физическая устойчивость замыкания требует энергетических щелей и независимого взаимодействия.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        },
+        {
+          "realization_id": "osc3.K2",
+          "physical_system": "3D осциллятор, заполнение до K=2",
+          "source_claim_ids": [
+            "osc3.3"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Кумулятивная кратность (K+1)(K+2)(K+3)/3 при K=2 равна 20.",
+          "boundary": "Модельный счёт; R142 специально отмечает первое расхождение с классическим ядерным рядом после 20.",
+          "references": []
+        },
+        {
+          "realization_id": "sodium.N20",
+          "physical_system": "Сферический jellium-кластер Na",
+          "source_claim_ids": [
+            "sodium.2"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) сферического среднего поля",
+            "SU(2)_S приближённо"
+          ],
+          "status": "CONDITIONAL_MODEL_REALIZATION",
+          "physical_role": "Электронное оболочечное заполнение сферического кластера.",
+          "boundary": "Зарядовая зависимость пиков и возможная несферичность должны быть учтены отдельно.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        },
+        {
+          "realization_id": "dot2d.K2",
+          "physical_system": "Круглая 2D квантовая точка, заполнение до k=2",
+          "source_claim_ids": [
+            "dot.4"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия",
+            "SO(2)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Кумулятивная ёмкость (k+1)(k+2) при k=2 равна 12? Нет: R142 sequence uses cumulative closed-shell values 2,6,12,20, so k=3 gives 20.",
+          "boundary": "Для устранения двусмысленности здесь используется именно заявленная позиция R142 dot.4=20; её k-индексация зависит от принятого нулевого/единичного соглашения.",
+          "references": "[Tarucha et al.](https://doi.org/10.1103/PhysRevLett.77.3613)"
+        }
+      ]
+    },
+    {
+      "position_id": "P004",
+      "position_key": "n=28",
+      "value": 28,
+      "description": "Классическое ядерное замыкание после заполнения орбитали 1f7/2.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N28",
+          "physical_system": "Ядерное замыкание N или Z=28",
+          "source_claim_ids": [
+            "nuclear.4"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J; j=7/2 для 1f7/2",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "Орбиталь 1f7/2 имеет кратность 2j+1=8; после N=20 получается 28.",
+          "boundary": "Именно спин-орбитальное упорядочение и энергетическое отделение уровня, а не группа SU(2) сама по себе, создают оболочечное замыкание.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P005",
+      "position_key": "n=50",
+      "value": 50,
+      "description": "Встречается как ядерное замыкание и как ёмкость атомного слоя n=5.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N50",
+          "physical_system": "Ядерное замыкание N или Z=50",
+          "source_claim_ids": [
+            "nuclear.5"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J; орбиталь 1g9/2",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "Порядок уровней и кратность j=9/2 участвуют в достижении закрытия 50.",
+          "boundary": "Симметрия задаёт квантовые числа; величина щели и устойчивость требуют расчёта/измерения.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        },
+        {
+          "realization_id": "atomic.capacity.n5",
+          "physical_system": "Ёмкость главного атомного слоя n=5",
+          "source_claim_ids": [
+            "atomic.5"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) водородоподобная динамическая симметрия — только идеальный кулоновский предел",
+            "SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Сумма 2(2l+1) по l=0…4 равна 2n²=50.",
+          "boundary": "Это ёмкость одного главного слоя, а не атомное замыкание Z=50; R142 подчёркивает, что Kr замыкается при 36, а не при 32/50 по формуле ёмкости.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P006",
+      "position_key": "n=82",
+      "value": 82,
+      "description": "Классическое ядерное замыкание N или Z=82.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N82",
+          "physical_system": "Ядерное замыкание N или Z=82",
+          "source_claim_ids": [
+            "nuclear.6"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J; сферические j-орбитали",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "Сферический shell-model порядок, включая spin-orbit расщепления, формирует замыкание.",
+          "boundary": "Не назначать отдельную новую группу числу 82; физический критерий — независимая щель.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P007",
+      "position_key": "n=126",
+      "value": 126,
+      "description": "Классическое ядерное замыкание N или Z=126.",
+      "realizations": [
+        {
+          "realization_id": "nuclear.N126",
+          "physical_system": "Ядерное замыкание N или Z=126",
+          "source_claim_ids": [
+            "nuclear.7"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J; 1i13/2 имеет кратность 14",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_SPHERICAL_SHELL_MODEL",
+          "physical_role": "В модели с заданным порядком орбиталей завершение 1i13/2 даёт 126.",
+          "boundary": "Модельный счёт не доказывает равную силу замыкания во всех ядрах и не фиксирует размер щели.",
+          "references": [
+            "https://doi.org/10.1103/PhysRev.75.1969"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P008",
+      "position_key": "n=16",
+      "value": 16,
+      "description": "Локальное нейтронное замыкание в конкретных изотопических цепочках.",
+      "realizations": [
+        {
+          "realization_id": "local.N16",
+          "physical_system": "Локальное замыкание N=16, прежде всего кислород-24",
+          "source_claim_ids": [
+            "local.1"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "CONDITIONAL_ISOTOPE_SPECIFIC",
+          "physical_role": "Квантовые числа орбиталей задаются вращательной инвариантностью; shell gap формируется их изотоп-зависимым энергетическим порядком.",
+          "boundary": "Не универсальное закрытие для всех ядер: донор относится к определённой цепочке и взаимодействию.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.102.152501"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P009",
+      "position_key": "n=32",
+      "value": 32,
+      "description": "Одна числовая позиция с двумя разными значениями: локальное ядерное замыкание N=32 и атомная ёмкость слоя n=4.",
+      "realizations": [
+        {
+          "realization_id": "local.N32",
+          "physical_system": "Локальное ядерное замыкание N=32 в изотопах калия/кальция",
+          "source_claim_ids": [
+            "local.2"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "CONDITIONAL_ISOTOPE_SPECIFIC",
+          "physical_role": "Ротационные квантовые числа и изотоп-зависимая перестройка нейтронных уровней.",
+          "boundary": "Это не тождественно формуле 2n²=32; зависимость от Z и орбитального состава — существенная часть физики.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.114.202501"
+          ]
+        },
+        {
+          "realization_id": "atomic.capacity.n4",
+          "physical_system": "Ёмкость атомного слоя n=4",
+          "source_claim_ids": [
+            "atomic.4"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) кулоновская динамическая симметрия — идеальный одноэлектронный предел",
+            "SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Сумма по l=0…3 даёт 2n²=32.",
+          "boundary": "Ёмкость не равна фактическому атомному закрытию: криптон имеет Z=36; не переносить эту формулу на Aufbau-замыкания.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P010",
+      "position_key": "n=34",
+      "value": 34,
+      "description": "Локальное нейтронное замыкание N=34 в конкретной цепочке кальция.",
+      "realizations": [
+        {
+          "realization_id": "local.N34",
+          "physical_system": "Локальное замыкание N=34, кальций-54",
+          "source_claim_ids": [
+            "local.3"
+          ],
+          "symmetry_class": "ROTATIONAL_SHELL_STRUCTURE",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "CONDITIONAL_ISOTOPE_SPECIFIC",
+          "physical_role": "Сферические угловые квантовые числа сохраняются; сила щели определяется эволюцией уровней в конкретном изотопе.",
+          "boundary": "Не является универсальным ядерным замыканием без указания Z, взаимодействия и наблюдаемой.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.123.142501"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P011",
+      "position_key": "n=40",
+      "value": 40,
+      "description": "Совпадает у 3D осциллятора и натриевых кластеров, но механизмы различны.",
+      "realizations": [
+        {
+          "realization_id": "osc3.K3",
+          "physical_system": "3D изотропный осциллятор, заполнение до K=3",
+          "source_claim_ids": [
+            "osc3.4"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Кумулятивная кратность идеального 3D-осциллятора равна 40.",
+          "boundary": "Это не классическое ядерное замыкание 40; R142 использует расхождение как контроль.",
+          "references": []
+        },
+        {
+          "realization_id": "sodium.N40",
+          "physical_system": "Сферический jellium-кластер Na с числом электронов 40",
+          "source_claim_ids": [
+            "sodium.3"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) в сферическом среднем поле",
+            "SU(2)_S приближённо"
+          ],
+          "status": "CONDITIONAL_MODEL_REALIZATION",
+          "physical_role": "Шелловая структура электронов в приблизительно сферическом металлическом кластере.",
+          "boundary": "Кластерная геометрия и заряд могут нарушать сферическую симметрию; донорный сигнал не является чистой мерой симметрии.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P012",
+      "position_key": "n=70",
+      "value": 70,
+      "description": "Точная кумулятивная ёмкость 3D изотропного осциллятора; не ядерное замыкание в R142.",
+      "realizations": [
+        {
+          "realization_id": "osc3.K4",
+          "physical_system": "3D изотропный осциллятор, заполнение до K=4",
+          "source_claim_ids": [
+            "osc3.5"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Формула (K+1)(K+2)(K+3)/3 даёт 70.",
+          "boundary": "В CHECKS ядерная частичная сумма 70 помечена как промежуточная, не закрытая; одинаковое число не превращает её в ядерное magic number.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P013",
+      "position_key": "n=112",
+      "value": 112,
+      "description": "Точная кумулятивная ёмкость 3D изотропного осциллятора; не ядерное замыкание.",
+      "realizations": [
+        {
+          "realization_id": "osc3.K5",
+          "physical_system": "3D изотропный осциллятор, заполнение до K=5",
+          "source_claim_ids": [
+            "osc3.6"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Аналитическая кумулятивная кратность равна 112.",
+          "boundary": "Ядерная частичная сумма 112 в R142 не является закрытием оболочки; это отдельная проверочная запись.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P014",
+      "position_key": "n=168",
+      "value": 168,
+      "description": "Продолжение аналитического ряда 3D изотропного осциллятора.",
+      "realizations": [
+        {
+          "realization_id": "osc3.K6",
+          "physical_system": "3D изотропный осциллятор, заполнение до K=6",
+          "source_claim_ids": [
+            "osc3.7"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(3)",
+            "SU(3)⊃SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Кумулятивная формула осциллятора даёт 168.",
+          "boundary": "Не является эмпирическим ядерным закрытием; это точная модельная кратность.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P015",
+      "position_key": "n=10",
+      "value": 10,
+      "description": "Повторяется как замыкание Ne и как критическая размерность RNS суперструны.",
+      "realizations": [
+        {
+          "realization_id": "noble.Ne",
+          "physical_system": "Атом Ne, благородный газ",
+          "source_claim_ids": [
+            "noble.2"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращения",
+            "SU(2)_J полного момента",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Вращательная инвариантность атомного гамильтониана; замкнутая оболочка имеет J=0.",
+          "boundary": "Не путать атомный номер 10 с размерностью пространства-времени струны.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        },
+        {
+          "realization_id": "string.RNS.D10",
+          "physical_system": "Критическая размерность 10 в RNS суперструне",
+          "source_claim_ids": [
+            "string.2"
+          ],
+          "symmetry_class": "WORLD_SHEET_SUPERCONFORMAL_SYMMETRY",
+          "groups_or_structures": [
+            "2D суперконформная симметрия на мировом листе",
+            "алгебра супер-Вирасоро",
+            "BRST/Weyl gauge consistency"
+          ],
+          "status": "EXACT_IN_CONSISTENT_RNS_FRAMEWORK",
+          "physical_role": "Критичность следует из баланса центральных зарядов и согласованности квантования суперструны.",
+          "boundary": "Это не обычная пространственная вращательная симметрия и не объяснение атомного числа 10.",
+          "references": [
+            "https://www.damtp.cam.ac.uk/user/tong/string.html",
+            "https://doi.org/10.1016/0370-2693(84)91565-X"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P016",
+      "position_key": "n=18",
+      "value": 18,
+      "description": "Одно число — атомное замыкание Ar и ёмкость главного слоя n=3.",
+      "realizations": [
+        {
+          "realization_id": "noble.Ar",
+          "physical_system": "Атом Ar, благородный газ",
+          "source_claim_ids": [
+            "noble.3"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3)",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Сферический закрытооболочечный атом имеет суммарный J=0.",
+          "boundary": "Периодическое заполнение зависит от межоболочечного порядка, а не только от вырождения.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        },
+        {
+          "realization_id": "atomic.capacity.n3",
+          "physical_system": "Ёмкость атомного слоя n=3",
+          "source_claim_ids": [
+            "atomic.3"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) динамическая симметрия чистого кулоновского одноэлектронного предела",
+            "SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Сумма l=0,1,2 даёт 2n²=18.",
+          "boundary": "В реальном многоэлектронном атоме кулоновская SO(4) не точна; здесь речь о комбинаторной ёмкости слоя.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P017",
+      "position_key": "n=36",
+      "value": 36,
+      "description": "Замыкание криптона в атомной периодической таблице.",
+      "realizations": [
+        {
+          "realization_id": "noble.Kr",
+          "physical_system": "Атом Kr, благородный газ",
+          "source_claim_ids": [
+            "noble.4"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращения",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Вращательно-инвариантный атомный Hamiltonian и закрытооболочечное состояние.",
+          "boundary": "Это наглядно показывает, что число 32 как ёмкость n=4 не равно реальному замыканию Kr=36.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P018",
+      "position_key": "n=54",
+      "value": 54,
+      "description": "Замыкание ксенона в атомной последовательности.",
+      "realizations": [
+        {
+          "realization_id": "noble.Xe",
+          "physical_system": "Атом Xe, благородный газ",
+          "source_claim_ids": [
+            "noble.5"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращения",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Сферическая атомная симметрия и закрытая оболочка.",
+          "boundary": "Порядок заполнения и релятивистские сдвиги необходимы для предсказания именно Z=54.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P019",
+      "position_key": "n=86",
+      "value": 86,
+      "description": "Замыкание радона; спектроскопическая детализация отличается от более лёгких атомов.",
+      "realizations": [
+        {
+          "realization_id": "noble.Rn",
+          "physical_system": "Атом Rn, благородный газ",
+          "source_claim_ids": [
+            "noble.6"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращения",
+            "SU(2)_J",
+            "T"
+          ],
+          "status": "ESTABLISHED_IN_ATOMIC_HAMILTONIAN",
+          "physical_role": "Полный атомный Hamiltonian сохраняет вращательную симметрию; сильное spin-orbit взаимодействие объединяется в полный J.",
+          "boundary": "Нельзя предполагать независимую SU(2)_S при сильной релятивистской связи.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P020",
+      "position_key": "n=118",
+      "value": 118,
+      "description": "Оганесон: положение в периодической таблице установлено; прямые спектроскопические данные ограничены.",
+      "realizations": [
+        {
+          "realization_id": "noble.Og",
+          "physical_system": "Атом Og, Z=118",
+          "source_claim_ids": [
+            "noble.7"
+          ],
+          "symmetry_class": "ATOMIC_ROTATIONAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(3) вращательная симметрия",
+            "SU(2)_J полного момента",
+            "T"
+          ],
+          "status": "THEORY_SUPPORTED_WITH_LIMITED_DIRECT_SPECTROSCOPY",
+          "physical_role": "Симметрия атомного Hamiltonian задаёт полные угловые квантовые числа.",
+          "boundary": "Не превращать периодическую позицию в утверждение о полноте прямой спектроскопии; R142 отдельно отмечает этот предел.",
+          "references": [
+            "https://physics.nist.gov/asd",
+            "https://iupac.org/what-we-do/periodic-table-of-elements/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P021",
+      "position_key": "n=58",
+      "value": 58,
+      "description": "Экспериментально сообщаемый оболочечный ориентир электронных натриевых кластеров.",
+      "realizations": [
+        {
+          "realization_id": "sodium.N58",
+          "physical_system": "Натриевый кластер, электронное число 58",
+          "source_claim_ids": [
+            "sodium.4"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) сферического jellium-приближения",
+            "SU(2)_S при спин-независимом среднем поле"
+          ],
+          "status": "CONDITIONAL_MODEL_REALIZATION",
+          "physical_role": "Сферическая jellium-модель организует электронные уровни по орбитальному моменту.",
+          "boundary": "Реальные кластеры могут деформироваться; изменение заряда и условия испарения могут сдвигать наблюдаемые пики.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P022",
+      "position_key": "n=92",
+      "value": 92,
+      "description": "Экспериментально сообщаемый оболочечный ориентир электронных натриевых кластеров.",
+      "realizations": [
+        {
+          "realization_id": "sodium.N92",
+          "physical_system": "Натриевый кластер, электронное число 92",
+          "source_claim_ids": [
+            "sodium.5"
+          ],
+          "symmetry_class": "APPROXIMATE_ROTATIONAL_SHELL_MODEL",
+          "groups_or_structures": [
+            "SO(3) сферического jellium-приближения",
+            "SU(2)_S при спин-независимом среднем поле"
+          ],
+          "status": "CONDITIONAL_MODEL_REALIZATION",
+          "physical_role": "Электронная оболочечная организация сферического среднего поля.",
+          "boundary": "Нужна различающая проверка зарядовой зависимостью и контроль геометрии кластеров.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.52.2141"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P023",
+      "position_key": "n=6",
+      "value": 6,
+      "description": "Второе закрытие идеальной круглой двумерной квантовой точки.",
+      "realizations": [
+        {
+          "realization_id": "dot2d.k1",
+          "physical_system": "Круглая 2D квантовая точка, закрытие k=1",
+          "source_claim_ids": [
+            "dot.2"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия",
+            "SO(2) вращения",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Суммарная ёмкость первых двух пространственных слоёв с учётом спина равна 2+4=6.",
+          "boundary": "Для реальных точек кулоновские взаимодействия и деформация могут менять интервалы и расщепления.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.77.3613"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P024",
+      "position_key": "n=12",
+      "value": 12,
+      "description": "Одна числовая позиция, две несвязанные задачи: закрытие 2D-точки и kissing number в 3D.",
+      "realizations": [
+        {
+          "realization_id": "dot2d.k2",
+          "physical_system": "Круглая 2D квантовая точка, закрытие k=2",
+          "source_claim_ids": [
+            "dot.3"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия",
+            "SO(2)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_IN_IDEAL_MODEL",
+          "physical_role": "Идеальная формула закрытий круглой 2D-точки даёт 12.",
+          "boundary": "Это не имеет отношения к трёхмерному числу касающихся сфер; R142 указывает, что эксперимент Tarucha измерял 2,6,12,20.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.77.3613"
+          ]
+        },
+        {
+          "realization_id": "kissing3d",
+          "physical_system": "Контактное число одинаковых сфер в трёх измерениях",
+          "source_claim_ids": [
+            "kissing.1"
+          ],
+          "symmetry_class": "GEOMETRIC_OPTIMIZATION_NOT_UNIQUE_GROUP_ORIGIN",
+          "groups_or_structures": [
+            "SO(3) действует на конфигурации как общая пространственная группа",
+            "в отдельных экстремальных конфигурациях возможна икосаэдрическая или меньшая симметрия"
+          ],
+          "status": "GEOMETRIC_BOUND_ESTABLISHED_SYMMETRY_NOT_CAUSAL",
+          "physical_role": "Геометрическая задача даёт максимальное число соседей 12 при непересекающихся равных сферах.",
+          "boundary": "Не существует основания приписывать максимум 12 одной единственной группе: конфигурационная симметрия не является доказанным источником самого максимума.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P025",
+      "position_key": "n=30",
+      "value": 30,
+      "description": "Теоретическое продолжение идеального ряда закрытий круглой 2D-точки.",
+      "realizations": [
+        {
+          "realization_id": "dot2d.k4",
+          "physical_system": "Идеальная круглая 2D квантовая точка, закрытие k=4",
+          "source_claim_ids": [
+            "dot.5"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия",
+            "SO(2)",
+            "SU(2)_S"
+          ],
+          "status": "MODEL_PREDICTION_NOT_DONOR_MEASUREMENT",
+          "physical_role": "Формула (k+1)(k+2) при k=4 даёт 30.",
+          "boundary": "R142 прямо указывает: 30 не измерено в статье Tarucha; перенос на деформированную точку условен.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.77.3613"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P026",
+      "position_key": "n=42",
+      "value": 42,
+      "description": "Теоретическое продолжение идеального ряда закрытий круглой 2D-точки.",
+      "realizations": [
+        {
+          "realization_id": "dot2d.k5",
+          "physical_system": "Идеальная круглая 2D квантовая точка, закрытие k=5",
+          "source_claim_ids": [
+            "dot.6"
+          ],
+          "symmetry_class": "DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "U(2) динамическая симметрия",
+            "SO(2)",
+            "SU(2)_S"
+          ],
+          "status": "MODEL_PREDICTION_NOT_DONOR_MEASUREMENT",
+          "physical_role": "Формула (k+1)(k+2) при k=5 даёт 42.",
+          "boundary": "R142 прямо указывает: 42 не измерено в статье Tarucha; не обозначать как экспериментально подтверждённое закрытие.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.77.3613"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P027",
+      "position_key": "n=72",
+      "value": 72,
+      "description": "Ёмкость главного атомного слоя n=6 по формуле 2n².",
+      "realizations": [
+        {
+          "realization_id": "atomic.capacity.n6",
+          "physical_system": "Ёмкость атомного слоя n=6",
+          "source_claim_ids": [
+            "atomic.6"
+          ],
+          "symmetry_class": "COULOMB_DYNAMICAL_SYMMETRY",
+          "groups_or_structures": [
+            "SO(4) динамическая симметрия только чистого кулоновского одноэлектронного эталона",
+            "SO(3)",
+            "SU(2)_S"
+          ],
+          "status": "EXACT_FOR_HYDROGENIC_REFERENCE_ONLY",
+          "physical_role": "Суммирование 2(2l+1), l=0…5, даёт 72.",
+          "boundary": "Реальная многоэлектронная структура и периодическое заполнение не обладают точной SO(4)-симметрией водородоподобного Hamiltonian.",
+          "references": []
+        }
+      ]
+    },
+    {
+      "position_id": "P028",
+      "position_key": "D=26",
+      "value": 26,
+      "description": "Критическая размерность бозонной струны.",
+      "realizations": [
+        {
+          "realization_id": "string.bosonic.D26",
+          "physical_system": "Бозонная струна",
+          "source_claim_ids": [
+            "string.1"
+          ],
+          "symmetry_class": "WORLD_SHEET_CONFORMAL_SYMMETRY",
+          "groups_or_structures": [
+            "2D конформная симметрия мирового листа",
+            "алгебра Вирасоро",
+            "Weyl/diffeomorphism gauge symmetry",
+            "BRST"
+          ],
+          "status": "EXACT_IN_CONSISTENT_BOSONIC_STRING_FRAMEWORK",
+          "physical_role": "Критическая размерность следует из отмены конформной аномалии/баланса центрального заряда при квантовании.",
+          "boundary": "Это не группа вращений 26-мерного пространства; размерность фиксируется согласованностью квантовой теории.",
+          "references": [
+            "https://www.damtp.cam.ac.uk/user/tong/string.html",
+            "https://doi.org/10.1016/0370-2693(84)91565-X"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P029",
+      "position_key": "dim(gauge algebra)=496",
+      "value": 496,
+      "description": "Размерность алгебры, допускающая требуемую факторизацию аномалий в соответствующей 10D конструкции.",
+      "realizations": [
+        {
+          "realization_id": "string.anomaly.496",
+          "physical_system": "10D супергравитация/суперструнная аномалия",
+          "source_claim_ids": [
+            "anomaly.1"
+          ],
+          "symmetry_class": "GAUGE_ALGEBRA_AND_ANOMALY_CANCELLATION",
+          "groups_or_structures": [
+            "so(32) с dim=496",
+            "e8⊕e8 с dim=248+248=496",
+            "локальная калибровочная симметрия"
+          ],
+          "status": "NECESSARY_CONDITION_NOT_UNIQUE_IDENTIFICATION",
+          "physical_role": "Аномальная согласованность и факторизация полинома выделяют допустимые калибровочные реализации; две алгебры имеют одинаковую размерность.",
+          "boundary": "496 само по себе не определяет группу и не доказывает полную согласованность теории; нужно проверить полный полином аномалий и глобальные условия.",
+          "references": [
+            "https://doi.org/10.1016/0370-2693(84)91565-X",
+            "https://www.damtp.cam.ac.uk/user/tong/string.html",
+            "https://arxiv.org/abs/1006.1352"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P030",
+      "position_key": "230",
+      "value": 230,
+      "description": "Число типов трёхмерных кристаллографических пространственных групп.",
+      "realizations": [
+        {
+          "realization_id": "crystal.spacegroups.3d",
+          "physical_system": "Кристаллографическая классификация в трёх измерениях",
+          "source_claim_ids": [
+            "space.1"
+          ],
+          "symmetry_class": "DISCRETE_SPACE_GROUP_CLASSIFICATION",
+          "groups_or_structures": [
+            "230 классов пространственных групп с точностью до принятой кристаллографической эквивалентности",
+            "решётчатые трансляции и точечные операции",
+            "возможны nonsymmorphic extensions"
+          ],
+          "status": "CLASSIFICATION_THEOREM_NOT_SINGLE_GROUP",
+          "physical_role": "230 — число типов в классификации пространственных групп трёхмерных периодических кристаллов.",
+          "boundary": "Это не одна группа Ли и не спектральное магическое число; для конкретного кристалла выбирается одна пространственная группа и её представления.",
+          "references": [
+            "https://www.iucr.org/what-we-do/education/pamphlets/matrices-mappings-and-crystallographic-symmetry"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P031",
+      "position_key": "136",
+      "value": 136,
+      "description": "Историческое точное значение в гипотезе Эддингтона для обратной постоянной тонкой структуры; R142 отвергает точное равенство.",
+      "realizations": [
+        {
+          "realization_id": "alpha.eddington.136",
+          "physical_system": "Гипотеза Эддингтона 136",
+          "source_claim_ids": [
+            "alpha136.1"
+          ],
+          "symmetry_class": "NO_SYMMETRY_DERIVATION",
+          "groups_or_structures": [
+            "U(1)_em — калибровочная симметрия электромагнитного взаимодействия как контекст QED"
+          ],
+          "status": "EXACT_NUMERICAL_CLAIM_REJECTED",
+          "physical_role": "U(1)_em описывает структуру электромагнитного взаимодействия; не выводит число 136.",
+          "boundary": "Не подменять контекст теории объяснением константы. R142 помечает точную гипотезу отвергнутой по CODATA.",
+          "references": [
+            "https://doi.org/10.1103/RevModPhys.97.025002",
+            "https://pdg.lbl.gov/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P032",
+      "position_key": "137",
+      "value": 137,
+      "description": "Историческое точное значение в гипотезе Эддингтона; R142 отвергает равенство α⁻¹=137.",
+      "realizations": [
+        {
+          "realization_id": "alpha.eddington.137",
+          "physical_system": "Гипотеза Эддингтона 137",
+          "source_claim_ids": [
+            "alpha137.1"
+          ],
+          "symmetry_class": "NO_SYMMETRY_DERIVATION",
+          "groups_or_structures": [
+            "U(1)_em — контекст QED, не происхождение числа"
+          ],
+          "status": "EXACT_NUMERICAL_CLAIM_REJECTED",
+          "physical_role": "Электромагнитная калибровочная группа в QED не фиксирует наблюдаемое значение α.",
+          "boundary": "CODATA 2022 даёт α(0)⁻¹=137.035999177(21); точное целое равенство не выдерживает сравнение.",
+          "references": [
+            "https://doi.org/10.1103/RevModPhys.97.025002"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P033",
+      "position_key": "137.036082448…",
+      "value": 137.0360824481643,
+      "description": "Число Уайлера; точная формула не проходит численное сопоставление R142.",
+      "realizations": [
+        {
+          "realization_id": "alpha.wyler",
+          "physical_system": "Формула Уайлера для обратной α",
+          "source_claim_ids": [
+            "alpha137.03608.1"
+          ],
+          "symmetry_class": "NO_SYMMETRY_DERIVATION",
+          "groups_or_structures": [
+            "U(1)_em — только симметрия электромагнитного сектора"
+          ],
+          "status": "EXACT_FORMULA_REJECTED_BY_R142_AUDIT",
+          "physical_role": "Ни одна установленная симметрия не выводит именно это числовое значение.",
+          "boundary": "R142 сообщает остаток +3965,3 стандартной неопределённости CODATA 2022; числовое совпадение не превращает формулу в симметрийный вывод.",
+          "references": [
+            "https://doi.org/10.1103/RevModPhys.97.025002"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P034",
+      "position_key": "2/3",
+      "value": "2/3",
+      "description": "Феноменологическое отношение Коиде для масс заряженных лептонов.",
+      "realizations": [
+        {
+          "realization_id": "lepton.koide",
+          "physical_system": "Отношение масс e, μ, τ",
+          "source_claim_ids": [
+            "Koide.1"
+          ],
+          "symmetry_class": "NO_ESTABLISHED_FLAVOR_SYMMETRY",
+          "groups_or_structures": [
+            "Стандартная калибровочная группа SU(2)_L×U(1)_Y — контекст модели, не известный источник соотношения",
+            "семейная/ароматовая симметрия: NOT_ESTABLISHED"
+          ],
+          "status": "EMPIRICAL_RELATION_SYMMETRY_ORIGIN_OPEN",
+          "physical_role": "Соотношение Коиде является геометрическим отношением масс; R142 рассматривает две ветви решения для τ.",
+          "boundary": "Нельзя назначать SU(3)_F, S3 или иную flavor-группу без независимого вывода и предсказаний; правило выбора корня и историческая датировка остаются отдельными вопросами.",
+          "references": [
+            "https://doi.org/10.1016/0370-2693(83)91244-5",
+            "https://pdg.lbl.gov/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P035",
+      "position_key": "φ",
+      "value": 1.618033988749895,
+      "description": "Золотое сечение как собственное значение подстановки Фибоначчи и метка квазипериодической щели.",
+      "realizations": [
+        {
+          "realization_id": "fibonacci.substitution",
+          "physical_system": "Квазипериодическая цепочка Фибоначчи",
+          "source_claim_ids": [
+            "phi.1"
+          ],
+          "symmetry_class": "SUBSTITUTIONAL_INFLATION_AND_QUASICRYSTALLINE_ORDER",
+          "groups_or_structures": [
+            "подстановка A→AB, B→A",
+            "матрица подстановки [[1,1],[1,0]]",
+            "инфляционная самоподобность; не обычная группа Ли"
+          ],
+          "status": "EXACT_ALGEBRAIC_PROPERTY_MODEL_DEPENDENT_SPECTRAL_USE",
+          "physical_role": "φ — положительное собственное значение матрицы подстановки; доля B стремится к 1/φ².",
+          "boundary": "Подстановка — эндоморфизм/правило инфляции, а не установленная непрерывная симметрийная группа. Метка gap-labelling и ширина щели — отдельные утверждения.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.112.146404"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P036",
+      "position_key": "δ≈4.6692016",
+      "value": 4.66920160910299,
+      "description": "Универсальное отношение каскада удвоения периода для класса квадратичных критических отображений.",
+      "realizations": [
+        {
+          "realization_id": "feigenbaum.period_doubling",
+          "physical_system": "Каскад удвоения периода в логистической и другой гладкой карте с квадратичным максимумом",
+          "source_claim_ids": [
+            "logistic.1",
+            "sine.1"
+          ],
+          "symmetry_class": "RENORMALIZATION_GROUP_UNIVERSALITY",
+          "groups_or_structures": [
+            "оператор ренормгруппы period-doubling",
+            "фиксированная точка РГ и её релевантное собственное значение δ",
+            "не обычная пространственная/внутренняя группа симметрии"
+          ],
+          "status": "UNIVERSAL_SCALING_CONSTANT_NOT_GROUP_SYMMETRY",
+          "physical_role": "δ — собственное значение линеаризованного оператора перенормировки в классе отображений.",
+          "boundary": "Не трактовать δ как размерность группы или число физических степеней свободы; универсальность условна по классу гладкости и квадратичному максимуму.",
+          "references": [
+            "https://doi.org/10.1007/BF01020332"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P037",
+      "position_key": "θ≈1.1°",
+      "value": 1.1,
+      "description": "Магический угол твистового двуслойного графена; число зависит от безразмерного параметра модели и параметров устройства.",
+      "realizations": [
+        {
+          "realization_id": "tbg.magic_angle",
+          "physical_system": "Твистовый двуслойный графен в континуальной moiré-модели",
+          "source_claim_ids": [
+            "angle.1"
+          ],
+          "symmetry_class": "MOIRE_SPACE_GROUP_AND_ANTIUNITARY_SYMMETRIES",
+          "groups_or_structures": [
+            "C3z вращательная симметрия moiré-структуры",
+            "C2zT комбинированная антиунитарная симметрия",
+            "U(1)_valley в valley-conserving continuum model",
+            "SU(2)_spin при пренебрежении spin-orbit"
+          ],
+          "status": "MODEL_SYMMETRY_ESTABLISHED_ANGLE_NOT_SYMMETRY_FIXED",
+          "physical_role": "Симметрии организуют зонную структуру и защищают некоторые вырождения/узлы; условие magic angle связано с α=w/(ℏv_F kθ), а не выводится из C3/C2zT.",
+          "boundary": "1.1° — значение для заданных/типичных параметров; R142 отдельно подчёркивает зависимость от w и v_F и отделяет транспорт от ширины полос.",
+          "references": [
+            "https://doi.org/10.1073/pnas.1108174108",
+            "https://doi.org/10.1038/nature26160",
+            "https://doi.org/10.1103/PhysRevLett.122.106405"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P038",
+      "position_key": "≈10^39",
+      "value": 1e+39,
+      "description": "Большое отношение электромагнитной и гравитационной сил в сюжете больших чисел Дирака.",
+      "realizations": [
+        {
+          "realization_id": "dirac.large_number",
+          "physical_system": "Сравнение электромагнитной и гравитационной сил для протона и электрона",
+          "source_claim_ids": [
+            "Dirac.1"
+          ],
+          "symmetry_class": "NO_COMMON_SYMMETRY_ESTABLISHED",
+          "groups_or_structures": [
+            "U(1)_em в электромагнитном секторе",
+            "Diff(M) / общая ковариантность в гравитационном секторе"
+          ],
+          "status": "NUMERICAL_COINCIDENCE_OR_HYPOTHESIS",
+          "physical_role": "Эти две симметрийные структуры принадлежат разным секторам; R142 рассматривает модель G∝1/t через локальную скорость изменения G.",
+          "boundary": "Нет установленной общей группы, выводящей отношение порядка 10³⁹; LLR ограничивает конкретную временную эволюцию G.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.93.261101",
+            "https://pdg.lbl.gov/"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P039",
+      "position_key": "ΛℓP²≈2.8485×10⁻¹²²",
+      "value": 2.848515862040189e-122,
+      "description": "Безразмерный масштаб космологической постоянной в одной явно заданной нормировке.",
+      "realizations": [
+        {
+          "realization_id": "cosmological.constant",
+          "physical_system": "Космологическая постоянная в общей теории относительности и ΛCDM",
+          "source_claim_ids": [
+            "Lambda.1"
+          ],
+          "symmetry_class": "GENERAL_COVARIANCE_AND_BACKGROUND_ISOMETRIES",
+          "groups_or_structures": [
+            "Diff(M) диффеоморфизм-инвариантность ОТО",
+            "SO(1,3) локальная группа Лоренца в тетрадной формулировке",
+            "SO(1,4) симметрия точного de Sitter вакуума при Λ>0"
+          ],
+          "status": "THEORY_SYMMETRY_ESTABLISHED_VALUE_ORIGIN_OPEN",
+          "physical_role": "Diff(M) — калибровочная избыточность/общая ковариантность; de Sitter группа относится к точному максимальному вакуумному фону.",
+          "boundary": "Ни одна из этих симметрий не выводит наблюдаемую величину Λ. Реальная ΛCDM-история с материей не является точным de Sitter пространством; нормировку ΛℓP² нужно отличать от ρΛ/ρP.",
+          "references": [
+            "https://doi.org/10.1103/RevModPhys.61.1",
+            "https://doi.org/10.1051/0004-6361/201833910"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P040",
+      "position_key": "a0/(cH0)≈1/(2π)",
+      "value": 0.15915494309189535,
+      "description": "Эмпирически обсуждаемое отношение масштаба ускорения MOND к космологической шкале.",
+      "realizations": [
+        {
+          "realization_id": "mond.acceleration_scale",
+          "physical_system": "MOND и радиальное ускорение галактик",
+          "source_claim_ids": [
+            "MOND.1"
+          ],
+          "symmetry_class": "DEEP_MOND_SCALING_WITH_OPEN_COSMOLOGICAL_RELATION",
+          "groups_or_structures": [
+            "глубокий MOND: масштабная инвариантность в определённых формулировках",
+            "нет установленной симметрии, связывающей a0 с H0"
+          ],
+          "status": "FORMULATION_DEPENDENT_SCALING_SYMMETRY_RELATION_UNEXPLAINED",
+          "physical_role": "В глубоком пределе некоторые формулировки MOND обладают пространственно-временной масштабной инвариантностью.",
+          "boundary": "Эта инвариантность не выводит численное отношение a0/(cH0)=1/(2π); a0 и H0 должны извлекаться независимо и с учётом ковариаций.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.117.201101"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P041",
+      "position_key": "exp(π/s0)≈22.6942",
+      "value": 22.69422945019774,
+      "description": "Первая из трёх дополнительных позиций R142: универсальный масштабный коэффициент Эфимова.",
+      "realizations": [
+        {
+          "realization_id": "efimov.limit_cycle",
+          "physical_system": "Три одинаковых бозона с резонансным короткодействующим взаимодействием",
+          "source_claim_ids": [
+            "Efimov.1"
+          ],
+          "symmetry_class": "DISCRETE_SCALE_INVARIANCE",
+          "groups_or_structures": [
+            "дискретная масштабная инвариантность",
+            "RG limit cycle",
+            "группа дискретных масштабирований, изоморфная ℤ в идеальном пределе",
+            "SO(3) для s-wave сектора"
+          ],
+          "status": "EXACT_IN_ZERO_RANGE_UNIVERSAL_LIMIT_APPROXIMATE_IN_EXPERIMENT",
+          "physical_role": "Ряд трёхчастичных состояний связан дискретным масштабным множителем exp(π/s0); непрерывная масштабная инвариантность редуцируется к дискретной.",
+          "boundary": "Конечная дальность взаимодействия, температура и размер системы дают поправки; экспериментальное отношение R142 21.0±1.3 имеет остаток −1.30σ относительно идеального значения.",
+          "references": [
+            "https://doi.org/10.1038/nature04626",
+            "https://arxiv.org/abs/1402.6161"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P042",
+      "position_key": "2/π≈0.636620",
+      "value": 0.6366197723675814,
+      "description": "Вторая дополнительная позиция R142: универсальный скачок фазовой жёсткости при переходе BKT.",
+      "realizations": [
+        {
+          "realization_id": "bkt.universal_jump",
+          "physical_system": "Двумерная XY/сверхтекучая система при BKT-переходе",
+          "source_claim_ids": [
+            "BKT.1"
+          ],
+          "symmetry_class": "U1_TOPOLOGICAL_DEFECT_UNBINDING",
+          "groups_or_structures": [
+            "U(1) глобальная фазовая симметрия",
+            "π1(U(1))=ℤ — целочисленный вихревой заряд",
+            "RG-поток Костерлица"
+          ],
+          "status": "UNIVERSAL_JUMP_WITHIN_BKT_FRAMEWORK",
+          "physical_role": "Развязывание вихревых пар приводит к универсальному отношению Υ(Tc−)/(kBTc)=2/π.",
+          "boundary": "2/π — не размерность группы и не кратность представления; значение следует из механизма вихревого разупорядочения при заданной нормировке жёсткости.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevLett.39.1201",
+            "https://doi.org/10.1103/PhysRevLett.40.1727"
+          ]
+        }
+      ]
+    },
+    {
+      "position_id": "P043",
+      "position_key": "Δ/J≈0.41",
+      "value": 0.41,
+      "description": "Третья дополнительная позиция R142: амплитуда щели спин-1 цепочки Гейзенберга.",
+      "realizations": [
+        {
+          "realization_id": "haldane.spin1_chain",
+          "physical_system": "Бесконечная изотропная антиферромагнитная цепочка спина 1 с ближайшими соседями",
+          "source_claim_ids": [
+            "Haldane.1"
+          ],
+          "symmetry_class": "SPIN_ROTATION_AND_SPT_PROTECTION",
+          "groups_or_structures": [
+            "SO(3) глобальная спиновая вращательная симметрия (локальные целые спины)",
+            "SU(2) алгебра полного спина; центр действует тривиально на целых спинах",
+            "T — обращение времени",
+            "пространственная инверсия"
+          ],
+          "status": "SYMMETRY_PROTECTED_PHASE_GAP_AMPLITUDE_NOT_FIXED_BY_SYMMETRY",
+          "physical_role": "Изотропный Heisenberg Hamiltonian имеет спиновую SO(3)-симметрию; Haldane-фаза — SPT-фаза, защищаемая подходящими симметриями.",
+          "boundary": "Положительность щели и её численная амплитуда Δ/J≈0.41 — разные утверждения; симметрия защищает фазовый класс, но не фиксирует 0.41. Эксперимент CsNiCl3 требует учёта межцепочечной связи.",
+          "references": [
+            "https://doi.org/10.1103/PhysRevB.48.3844",
+            "https://doi.org/10.1103/PhysRevLett.56.371"
+          ]
+        }
+      ]
+    }
+  ],
+  "auxiliary_claims_not_in_43": [
+    {
+      "id": "quartic.1",
+      "value": 7.284724598524132,
+      "units": "1",
+      "status": "computed finite period",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Hall.1",
+      "value": "C",
+      "units": "e²/h",
+      "status": "conditional",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "mixing.1",
+      "value": 0,
+      "units": "1",
+      "status": "rejected",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "mass_ratio.1",
+      "value": 1836.15,
+      "units": "1",
+      "status": "measured input",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Omega.1",
+      "value": 1678.6,
+      "units": "MeV",
+      "status": "retrospective",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "alpha_input.1",
+      "value": 137.035999177,
+      "units": "1",
+      "status": "measured input",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "a0.1",
+      "value": 1.2e-10,
+      "units": "m/s²",
+      "status": "calibration",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Balmer3.1",
+      "value": 656.4696063382917,
+      "units": "nm",
+      "status": "computed",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Balmer4.1",
+      "value": 486.2737824728087,
+      "units": "nm",
+      "status": "computed",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Balmer5.1",
+      "value": 434.1730200650078,
+      "units": "nm",
+      "status": "computed",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Balmer6.1",
+      "value": 410.2935039614324,
+      "units": "nm",
+      "status": "computed",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Uranus.1",
+      "value": 19.599999999999998,
+      "units": "AU",
+      "status": "retrospective",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Neptune.1",
+      "value": 38.8,
+      "units": "AU",
+      "status": "retrospective",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    },
+    {
+      "id": "Pluto.1",
+      "value": 77.2,
+      "units": "AU",
+      "status": "retrospective",
+      "reason": "Вспомогательный расчёт, контроль, входной параметр или соседний сюжет; не входит в канонический перечень 40+3 из DONORS.md."
+    }
+  ],
+  "initial_audit": {
+    "warning": "Данный паспорт — классификация роли симметрий, а не доказательство общего объединяющего механизма. Для следующих версий следует добавлять точные представления/генераторы и независимые первичные ссылки там, где текущий паспорт фиксирует лишь симметрийный класс.",
+    "unresolved": "Для ряда R142-позиций симметрия является свойством идеализированной модели, тогда как эмпирическая сила оболочки/щель требует отдельного экспериментального аудита. Особенно это относится к ядерным, кластерным и квантово-точечным закрытиям.",
+    "deliberate_nonunification": [
+      "Число 8: ядерное заполнение, осцилляторная кратность, атомная ёмкость, натриевый кластер и dim(adj SU(3)_c) — разные физические реализации.",
+      "Число 10: атом Ne и критическая размерность RNS-струны не имеют общего физического механизма.",
+      "Число 12: заполнение 2D-квантовой точки и kissing number — независимые задачи.",
+      "Число 32: ядерное локальное замыкание и ёмкость атомного слоя n=4 — не одно утверждение.",
+      "Число 50: ядерное замыкание и ёмкость атомного слоя n=5 — не одно утверждение."
+    ]
+  }
+}
