@@ -1,0 +1,53 @@
+{
+  "upstream_repository": "https://github.com/nanoomlee/HYREC-2",
+  "upstream_commit": "038dc8d71baed5c30a4fdd55576b97637ba5b879",
+  "upstream_clean": true,
+  "upstream_sha256": {
+    "hyrectools.c": "868a4f5104e90c18b84948843cb2090b22732e54d88b5f658323a38394275ce4",
+    "hyrectools.h": "00e71fdbaef4831f41822e00750a24e03c9954175b6a9680c67fb0ffc1be5715",
+    "helium.c": "cc113cdc4b2d4ffa0762ab82d5485816bbbb3bbf63cd3441be5206c4c3bf6587",
+    "helium.h": "ca5cbebf2ad0c256c55ad425bce2c26da7d56463f7e7a5fa9112d7cb6970619c",
+    "hydrogen.c": "734800ccd69b41d60b519f200003ce27c3b7640f76a70353499424842ba19616",
+    "hydrogen.h": "1b2c64d108078722dd546f4e8b9bddca2cbe6abdf4b63e44e76fe0e9d58f4e52",
+    "history.c": "d1f06c951a3db3d62bb64c6767d70213f19eae084fa904c58a88016b81a6deda",
+    "history.h": "b1331aed246610d2b1d598f8bedfa951974da0d2845b5c8f3d672bf33bf316f1",
+    "energy_injection.c": "3c72ef3b47e055e62e37ebb9c698bcfbde8f9507e960cd2d6492a321fd6274c4",
+    "energy_injection.h": "e2f0603b2bfe730814bdd57d46eff9f53d8bb1e10315524b395aa4dde97de2ea",
+    "Alpha_inf.dat": "357101049c9382e90e5e1e896961407d3b465b61b78de9750b852c05ea4d1023",
+    "R_inf.dat": "ce914f4b552ba55ba00f7916f36b0986f19adfdb638e5aefae91f7b2d05a8112",
+    "fit_swift.dat": "46a644d7d2633b8f13080f9062df9b72a2e5adfa956d70d32ad1d7f4ec0a4641",
+    "two_photon_tables.dat": "93d23871e21c40f5b72a6ef9acf3eb7be054735c8aee9401e455736c1d9d8cf9",
+    "LICENSE": "c83c644f3d9d50bad47ae34f118f7ad738e947bd907a759332cbfef88ccb4750"
+  },
+  "adapter_sha256": {
+    "hyrec_adapter.c": "d14c62d773b62eeafcbdf066261465eee38286cf757408431051daf05aee9d34",
+    "hyrec_adapter.py": "2ddff0a73754d1c6c7f7519d0263247890de928e6836c49d23cfa6dfb536acf3"
+  },
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "mode": "MODEL=SWIFT=4",
+  "default_dlna": 0.004,
+  "physics_runs_performed": 0,
+  "H_input": "existing CAMB callback branch of unmodified history.c, driven by Python-supplied physical H(z) in s^-1",
+  "abundance_overrides": "optional nH0 and fHe after rec_get_cosmoparam; native values retained in output metadata",
+  "step_control": "runtime cosmo->dlna and matching Nz/output-array allocation; equivalent to supported DLNA_SWIFT decrease",
+  "build_argv": [
+    "gcc",
+    "-O2",
+    "-std=gnu99",
+    "-shared",
+    "-fPIC",
+    "-DCAMB",
+    "-DHYRECPATH=\"./\"",
+    "-I",
+    "UPSTREAM",
+    "UPSTREAM/hyrectools.c",
+    "UPSTREAM/helium.c",
+    "UPSTREAM/hydrogen.c",
+    "UPSTREAM/history.c",
+    "UPSTREAM/energy_injection.c",
+    "hyrec_adapter.c",
+    "-lm",
+    "-o",
+    "libhyrec_r143.so"
+  ]
+}
