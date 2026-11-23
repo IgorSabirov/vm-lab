@@ -507,16 +507,17 @@
     "system": "Дисковые галактики с измеренными кривыми вращения SPARC",
     "role": "общий донор данных",
     "observation": "CCC разбирает обратную реконструкцию с Vobs, а R142 оценивает a₀ на калибровке и отложенных галактиках.",
-    "implementation": "Для CCC сохранён контракт будущего повтора; в R142 есть собственный holdout.py.",
-    "data": "Наблюдения SPARC. Пересечение конкретных галактик и радиальных точек между двумя обработками здесь не посчитано.",
-    "limit": "Сверить идентификаторы и вход Vobs до интерпретации разницы метрик.",
+    "implementation": "Исполнены обратный расчёт авторов, прямой оператор CCC и MOND, проверка 130/35 и парный bootstrap по галактикам.",
+    "data": "По идентификатору и радиусу совпали 3 391 строка исходного каталога. Авторская выборка содержит 165 галактик и 3 345 общих точек.",
+    "limit": "Прямой прогноз условен относительно фиксированных D, i, M/L, сферической геометрии и переноса единого порога плотности.",
     "evidence": [
       "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/CCC_TL_REVIEW_20261112/REPORT.md#L83",
       "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/infra/external/contracts/CCC_SPARC.json#L6",
       "https://github.com/IgorSabirov/vm-lab/blob/fd94fd351f1cef2b269529ad07d3116b3040385d/analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/REPORT.md#L74"
     ],
     "claim_scope": "семейство",
-    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена"
+    "r142_target_at_address": "представлен носитель или донор, числовая цель отдельно не установлена",
+    "followup": "analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md"
   },
   {
     "id": "E22",

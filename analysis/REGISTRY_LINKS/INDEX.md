@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=137, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=182.
+Число записей: result=137, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=191.
 
 ## Предпосылка → результаты
 
@@ -3167,7 +3167,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Физическая генеалогия корпуса по представителям R142 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r143).
 
 **Входящие:** [R142](#result-r142) `parent`.
-**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md](#source-analysis-r143_physical_genealogy-catalog-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/DONORS.md](#source-analysis-r143_physical_genealogy-donors-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md](#source-analysis-r143_physical_genealogy-evidence-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/GAPS.md](#source-analysis-r143_physical_genealogy-gaps-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/README.md](#source-analysis-r143_physical_genealogy-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv](#source-analysis-r143_physical_genealogy-addresses-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/catalog.json](#source-analysis-r143_physical_genealogy-catalog-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/evidence.json](#source-analysis-r143_physical_genealogy-evidence-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv](#source-analysis-r143_physical_genealogy-matrix-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/network.graphml](#source-analysis-r143_physical_genealogy-network-graphml) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json](#source-analysis-r143_physical_genealogy-reuse_checks-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv](#source-analysis-r143_physical_genealogy-run_sources-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv](#source-analysis-r143_physical_genealogy-run_tasks-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/screening.tsv](#source-analysis-r143_physical_genealogy-screening-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py](#source-analysis-r143_physical_genealogy-search_snapshot-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/snapshot.json](#source-analysis-r143_physical_genealogy-snapshot-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/verify.py](#source-analysis-r143_physical_genealogy-verify-py) `managed_evidence_source`.
+**Исходящие:** [C028](#construct-c028) `addresses`; [L07](#link-l07) `boundary_open`; [analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md](#source-analysis-r143_physical_genealogy-catalog-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/DONORS.md](#source-analysis-r143_physical_genealogy-donors-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md](#source-analysis-r143_physical_genealogy-evidence-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/GAPS.md](#source-analysis-r143_physical_genealogy-gaps-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/README.md](#source-analysis-r143_physical_genealogy-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv](#source-analysis-r143_physical_genealogy-addresses-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/catalog.json](#source-analysis-r143_physical_genealogy-catalog-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/evidence.json](#source-analysis-r143_physical_genealogy-evidence-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv](#source-analysis-r143_physical_genealogy-matrix-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/network.graphml](#source-analysis-r143_physical_genealogy-network-graphml) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json](#source-analysis-r143_physical_genealogy-reuse_checks-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv](#source-analysis-r143_physical_genealogy-run_sources-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv](#source-analysis-r143_physical_genealogy-run_tasks-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/screening.tsv](#source-analysis-r143_physical_genealogy-screening-tsv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py](#source-analysis-r143_physical_genealogy-search_snapshot-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/snapshot.json](#source-analysis-r143_physical_genealogy-snapshot-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md](#source-analysis-r143_physical_genealogy-sparc-readme-md) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py](#source-analysis-r143_physical_genealogy-sparc-check_forward-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py](#source-analysis-r143_physical_genealogy-sparc-experiment-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json](#source-analysis-r143_physical_genealogy-sparc-freeze-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv](#source-analysis-r143_physical_genealogy-sparc-galaxy_scores-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py](#source-analysis-r143_physical_genealogy-sparc-replay-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv](#source-analysis-r143_physical_genealogy-sparc-samples-csv) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json](#source-analysis-r143_physical_genealogy-sparc-statistics-json) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py](#source-analysis-r143_physical_genealogy-sparc-statistics-py) `managed_evidence_source`; [analysis/R143_PHYSICAL_GENEALOGY/verify.py](#source-analysis-r143_physical_genealogy-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -5148,6 +5148,87 @@ analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py — [исходная кар
 ### source:analysis/R143_PHYSICAL_GENEALOGY/snapshot.json
 
 analysis/R143_PHYSICAL_GENEALOGY/snapshot.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/snapshot.json).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-readme-md"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-check_forward-py"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-experiment-py"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-freeze-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-galaxy_scores-csv"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-replay-py"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-samples-csv"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-statistics-json"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json).
+
+**Входящие:** [R143](#result-r143) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r143_physical_genealogy-sparc-statistics-py"></a>
+
+### source:analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py
+
+analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py — [исходная карточка](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py).
 
 **Входящие:** [R143](#result-r143) `managed_evidence_source`.
 **Исходящие:** нет.
