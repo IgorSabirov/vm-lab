@@ -1,0 +1,27 @@
+{
+  "id": "R143-E21-Sigma-v1",
+  "parent": "a32d21e11c4283e45b999bb428e1becce8ff70a8",
+  "known": "SPARC/Fig6 ratios and scatters, original 140/35 split and previous model comparisons are public. No new blind sample. This lock precedes disk inversions and covariate fits.",
+  "input_hashes": {
+    "freeze.json": "964517f5742b928cb36774202314ff799a0393daf39dbc5e5dbc085a663e4ce7",
+    "samples.csv": "af1140217286229d180b58e7b325b2d2bb13340549c9d3980d3000f1ecfe791e",
+    "followup/external14/scale_by_galaxy.csv": "4ce78296e8f47ed67ad74e47aee47a22bfe604375b5b1dfcccd756effe43d38b",
+    "native_replay.csv": "bc5c059ebaebbd718f49ec5ff2f0b26591c38a4772fe2b0d33a5530c048ef220"
+  },
+  "SPARC": {
+    "donor": "0a1b208227def246b43c691569adb2ae88b44231",
+    "rotmod": "84b581a5a197975ee7b21314a82e843d1e748a07",
+    "table1": "5aa0501f6b0d881fa579030e315e7b5b6ef561a5bd3a07472f9929c7e5728243",
+    "table2": "9108994b12cc401b94a1768beca61c53ec354779385c9c9cc571049f3043244c"
+  },
+  "thresholds": {
+    "canonical": 1.2e-10,
+    "R142": 7.10562995086401e-11
+  },
+  "surface": "Primary local effective dynamical surface density of a Newtonian axisymmetric razor-thin disk from Toomre inversion of Vobs squared. Same inverse input as the spherical CCC reconstruction. G=6.67430e-11 SI; pc=3.085677581491367e16 m; Msun=1.98847e30 kg. Fixed Sigma0=a0/G at both calibrations. No fitted normalization or per-galaxy threshold.",
+  "curve": "Author weighted V spline s=0.1*N on measured radii, inner V proportional to R, matched to spline; primary continuation flat at last spline value. Sensitivities: exterior Kepler, shape-preserving signed V^2 interpolation without donor smoothing, alternate Sigma0=a0/(2*pi*G) fixed from an exact flat Mestel disk. All diagnostics kept distinct.",
+  "radius": "From first measured radius: require starting above threshold, take first downward crossing at or before the last measured radius, log-radius mesh with >=8 subintervals per observed gap and linear root interpolation. Mark no crossing, first radius already below (including central holes), no flat speed, multiple crossings and negative reconstructed densities. No extension counts as a measured crossing. Report both catalogue coverage (165) and resolved intersection with the pre-existing 91. Historical spherical baseline fixed; matched IDs for all paired comparisons.",
+  "additional_geometry": "Control isolating geometry at fixed surface threshold: Abel project spherical density recovered from the identical V spline, compare with the effective thin disk. Separate baryonic disk diagnostic: 0.5*SPARC SBdisk plus gas surface density reconstructed from signed Vgas*abs(Vgas) with shape-preserving interpolation, solid-body centre and Kepler exterior. Tabulated Vgas already accounts for helium; exclude spherical bulge from this disk. Report coverage and role of assumptions. Verify inversion on known analytic disks.",
+  "decision": "Primary q=Vflat^2/(Rt*a0) on matched galaxies. Separate tests for both fixed a0. Paired galaxy bootstrap, 10000 seed 143, for median log10 q, and |median log10 q_disk| minus |median log10 q_sphere|. Near unity operationally requires entire 95% median-log interval within +/-0.10 dex and shrinkage CI upper <0. Disclose censorship, cohort, correlation and convention dependences. No fit to unity.",
+  "regression": "Historical 91: y=log10(at_sph / native individual MOND a0). Recompute scatter and log-log OLS residual. Use SPARC RHI at 1 Msun/pc2 as gas-radius observable; fgas=1.33 MHI/(1.33 MHI+0.5 L36). Main requested descriptive model y~1+fgas+log10(Rt/RHI), with HC3 intervals; same split for train/test, no refit on test. Test useful predictive structure separately using only fgas and log10(RHI/Rdisk), controls fgas only and log(Vflat^2/(a0native*RHI)) without Rt. Baseline training intercept; sensitivity linear log(a0_native) baseline. Compare held-out mean squared log error, paired bootstrap 10000 seed 143, whole galaxies. Keep common complete sample and exclusions. Diagnose algebraic coupling via log(Rt/RHI)=log(Vflat^2/(a0native RHI))-y, and a shuffled y preserving the identity. Evidence for transferable independent residual structure requires upper 95% bound of error difference <0 for the exogenous two-feature model. Failure limits this test only."
+}
