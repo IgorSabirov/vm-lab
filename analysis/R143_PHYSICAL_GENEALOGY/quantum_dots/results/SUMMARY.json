@@ -1,0 +1,442 @@
+{
+  "id": "R143-E01-TARUCHA-E002c-v1",
+  "scientific_acceptance": false,
+  "status": "SOURCE_MAP_AND_BOUNDED_CONTROLS_EXECUTED",
+  "oscillator": {
+    "conditions": {
+      "delta_values": [
+        1.0,
+        1.5,
+        2.0,
+        3.2
+      ],
+      "energy_scale_meV": 3.0,
+      "N_max": 42,
+      "basis_cutoff": 24,
+      "B_T": 0,
+      "spin_degeneracy": 2,
+      "charging_energy": "Constant U is symbolic and subtracted; no fit.",
+      "exchange": "Excluded; Hund-rule peaks cannot be predicted by this control."
+    },
+    "positive_orbital_gap_N": {
+      "1.0": [
+        2,
+        6,
+        12,
+        20,
+        30,
+        42
+      ],
+      "1.5": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        14,
+        16,
+        20,
+        24,
+        28,
+        32,
+        38,
+        42
+      ],
+      "2.0": [
+        2,
+        4,
+        8,
+        12,
+        18,
+        24,
+        32,
+        40
+      ],
+      "3.2": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        26,
+        28,
+        30,
+        32,
+        34,
+        36,
+        38,
+        40,
+        42
+      ]
+    },
+    "published_1996_enhanced_N": [
+      2,
+      6,
+      12
+    ],
+    "ideal_extensions_not_measurements_in_1996": [
+      20,
+      30,
+      42
+    ],
+    "at_N4_isotropic_gap_meV": 0.0,
+    "scope": "Spin-degenerate constant-interaction control; exchange, Hund-rule peaks, N-dependent capacitance and confinement are excluded. No experimental fit."
+  },
+  "mesa_equals_confinement_negative_control": [
+    {
+      "device": "X",
+      "delta_surrogate_L_over_S": 1.375,
+      "predicted_first_upmoving_pair": 3,
+      "published_first_upmoving_pair": 3,
+      "matches": true
+    },
+    {
+      "device": "Y",
+      "delta_surrogate_L_over_S": 1.4444444444444444,
+      "predicted_first_upmoving_pair": 3,
+      "published_first_upmoving_pair": 5,
+      "matches": false
+    },
+    {
+      "device": "Z",
+      "delta_surrogate_L_over_S": 1.4999999999999998,
+      "predicted_first_upmoving_pair": 3,
+      "published_first_upmoving_pair": 4,
+      "matches": false
+    }
+  ],
+  "emary_donor_stationary_current": [
+    {
+      "phi_over_pi": 0.0,
+      "I_over_e": -2.7755575615628914e-17,
+      "analytic_I_over_e": 0.0,
+      "absolute_error": 2.7755575615628914e-17,
+      "stationarity_residual": 6.397064707770508e-16,
+      "minimum_density_eigenvalue": -3.630787314319536e-16
+    },
+    {
+      "phi_over_pi": 0.25,
+      "I_over_e": 0.2500000000000001,
+      "analytic_I_over_e": 0.25,
+      "absolute_error": 1.1102230246251565e-16,
+      "stationarity_residual": 4.207625341422364e-16,
+      "minimum_density_eigenvalue": 0.12499999999999996
+    },
+    {
+      "phi_over_pi": 0.5,
+      "I_over_e": 0.2666666666666669,
+      "analytic_I_over_e": 0.26666666666666666,
+      "absolute_error": 2.220446049250313e-16,
+      "stationarity_residual": 3.334052795327781e-16,
+      "minimum_density_eigenvalue": 0.1333333333333334
+    },
+    {
+      "phi_over_pi": 0.75,
+      "I_over_e": 0.24999999999999972,
+      "analytic_I_over_e": 0.25,
+      "absolute_error": 2.7755575615628914e-16,
+      "stationarity_residual": 5.859258055839299e-16,
+      "minimum_density_eigenvalue": 0.12499999999999971
+    },
+    {
+      "phi_over_pi": 1.0,
+      "I_over_e": -2.220446049250313e-16,
+      "analytic_I_over_e": 5.99903913064743e-32,
+      "absolute_error": 2.2204460492503136e-16,
+      "stationarity_residual": 6.049946074558973e-15,
+      "minimum_density_eigenvalue": -7.565346811398228e-16
+    }
+  ],
+  "E002c_operator_control": {
+    "source_commit": "acb401f9972e064779a7c7345938cb1aea2997f6",
+    "identical_calibration_commit": "ca15a197834bc3193f3da87d1bbd9ab1a538bf90",
+    "source_files": {
+      "e002_exp/model.py": {
+        "sha256": "9b19bb41e031b50ada0c1acd81df8a1ce3deddfc78e5a6dbfb56e048772f28f2",
+        "git_blob": "272309e9921912ce08b1e2a6498edf6980f3fa55"
+      },
+      "e002c_exp/model.py": {
+        "sha256": "fc8fa406319f2a58aa872109c340dc40d01447cafb210773cb63893d0e3b9491",
+        "git_blob": "972fe5318977181650f8c63009839ebb57aa916d"
+      }
+    },
+    "dimension": 216,
+    "subsystem_dimensions": [
+      2,
+      2,
+      2,
+      3,
+      3,
+      3
+    ],
+    "node_charge_sectors": [
+      {
+        "N": 0,
+        "rank": 27
+      },
+      {
+        "N": 1,
+        "rank": 81
+      },
+      {
+        "N": 2,
+        "rank": 81
+      },
+      {
+        "N": 3,
+        "rank": 27
+      }
+    ],
+    "tarucha_closure_support": {
+      "2": true,
+      "6": false,
+      "12": false,
+      "20": false,
+      "30": false,
+      "42": false
+    },
+    "support_caveat": "N=2 is an excitation-number sector, not a calibrated two-electron shell or spinful orbital model. The defined charge operator has no N=6 or N=12 sector.",
+    "algebra": {
+      "H_charge_commutator_max_abs": 0.0,
+      "source_charge_shift_plus_one_residual": 1.1102230246251565e-16,
+      "sink_charge_shift_minus_one_residual": 1.1102230246251565e-16,
+      "open_charge_balance_residual": 4.440892098500626e-16,
+      "local_double_raising_residual": 0.0,
+      "cross_site_raising_commutator": 0.0,
+      "cross_site_raising_anticommutator": 2.0
+    },
+    "frozen_LLL_D": {
+      "source_rate_on_D": 0.25,
+      "sink_rate_on_D": 0.0,
+      "interpretation": "An H-hop dark vector is not an absorbing state under the full E002c pump. No stationary-state or spectral-gap claim."
+    },
+    "one_excitation_mask_checks": [
+      {
+        "phi_over_pi": 0.0,
+        "mask": 0,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 1,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 2,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 3,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 4,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 5,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 6,
+        "dark_dimension": 1,
+        "isolated_dimension": 0,
+        "interference_dimension": 1,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.0,
+        "mask": 7,
+        "dark_dimension": 1,
+        "isolated_dimension": 0,
+        "interference_dimension": 1,
+        "H_invariance_residual": 3.277349490253052e-16,
+        "observability_residual": 3.155539606784109e-16
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 0,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 1,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 2,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 3,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 4,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 5,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 6,
+        "dark_dimension": 1,
+        "isolated_dimension": 0,
+        "interference_dimension": 1,
+        "H_invariance_residual": 4.329780281177466e-17,
+        "observability_residual": 4.329780281177466e-17
+      },
+      {
+        "phi_over_pi": 0.5,
+        "mask": 7,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 0,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 1,
+        "dark_dimension": 2,
+        "isolated_dimension": 2,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 2,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 3,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 4,
+        "dark_dimension": 1,
+        "isolated_dimension": 1,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 5,
+        "dark_dimension": 0,
+        "isolated_dimension": 0,
+        "interference_dimension": 0,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 6,
+        "dark_dimension": 1,
+        "isolated_dimension": 0,
+        "interference_dimension": 1,
+        "H_invariance_residual": 0.0,
+        "observability_residual": 0.0
+      },
+      {
+        "phi_over_pi": 1.0,
+        "mask": 7,
+        "dark_dimension": 1,
+        "isolated_dimension": 0,
+        "interference_dimension": 1,
+        "H_invariance_residual": 3.38982294118629e-16,
+        "observability_residual": 3.233782636099273e-16
+      }
+    ],
+    "scientific_acceptance": false
+  },
+  "remaining_gap": "A calibrated multi-orbital spinful charging Hamiltonian and measured gate/energy map are needed to predict Tarucha addition spectra from a new model. Existing E002c has no such electron-number support or calibration.",
+  "statistical_scope": "Published text values and model identities. No covariance, significance test or blind experimental validation is claimed."
+}
