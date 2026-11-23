@@ -1,0 +1,102 @@
+{
+  "result_id": "R143",
+  "evidence_id": "E21",
+  "physical_system": "SPARC disk galaxies, native inverse CCC and MOND",
+  "report": "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/README.md",
+  "protocols": [
+    "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/LOCK.json",
+    "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/AMENDMENT.json",
+    "analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/RG_DEFINITION.json"
+  ],
+  "source": "SPARC Tables 1/2 and 3.6 um profiles, donor CCC_SPARC at 0a1b208227def246b43c691569adb2ae88b44231",
+  "disk": [
+    {
+      "cal": "R142",
+      "norm": "mestel",
+      "n": 75,
+      "Sigma0": 81.1332814911694,
+      "q_disk": 0.9684695674080028,
+      "disk_low": 0.9422390598813688,
+      "disk_high": 0.9979869501643291,
+      "q_spherical": 2.923426354496817,
+      "passes": true
+    },
+    {
+      "cal": "canonical",
+      "norm": "mestel",
+      "n": 73,
+      "Sigma0": 137.01802438721816,
+      "q_disk": 0.940396277545146,
+      "disk_low": 0.9171919475425544,
+      "disk_high": 0.9828597197399314,
+      "q_spherical": 1.7831174022179694,
+      "passes": true
+    },
+    {
+      "cal": "R142",
+      "norm": "unit",
+      "n": 45,
+      "Sigma0": 509.77544218858105,
+      "q_disk": 5.684107518485064,
+      "disk_low": 5.448432641797651,
+      "disk_high": 6.353799903832175,
+      "q_spherical": 3.3264944961194427,
+      "passes": false
+    },
+    {
+      "cal": "canonical",
+      "norm": "unit",
+      "n": 29,
+      "Sigma0": 860.9096376485434,
+      "q_disk": 5.846433534345286,
+      "disk_low": 4.913120167985883,
+      "disk_high": 6.3599709942316425,
+      "q_spherical": 2.460972915502159,
+      "passes": false
+    }
+  ],
+  "native91": {
+    "n": 91,
+    "pearson": 0.8691681542053886,
+    "spearman": 0.8343844561235867,
+    "sd_identity_pearson": 0.15900131973037976,
+    "plug_in_spearman": 0.17864868134981218,
+    "sd_measured": 0.15900131973037973
+  },
+  "local": {
+    "flat": {
+      "median_paired": 2.1180393914543885,
+      "paired95": [
+        1.9805704866183094,
+        2.298343802354323
+      ],
+      "sd_log_paired": 0.15900131973037965,
+      "ratio_of_medians": 2.249177267083395
+    },
+    "local": {
+      "median_paired": 1.4519368703165554,
+      "paired95": [
+        0.9570410784798208,
+        1.9713032277674483
+      ],
+      "sd_log_paired": 0.41533297204172387,
+      "ratio_of_medians": 1.3417004083354767
+    },
+    "linear": {
+      "median_paired": 1.4351617475998537,
+      "paired95": [
+        0.9602098035785025,
+        1.924186523370029
+      ],
+      "sd_log_paired": 0.42413660963132327,
+      "ratio_of_medians": 1.3400178185511207
+    }
+  },
+  "Rg": "Vflat^2/a0",
+  "max_identity_error_dex": 2.220446049250313e-16,
+  "independent_HI_concentration": [
+    -0.002574430009290445,
+    0.004369632904324891
+  ],
+  "limit": "Conditional geometric reconstruction on previously inspected SPARC galaxies. No gain demonstrated in predicting independent residuals on the retained test split."
+}
