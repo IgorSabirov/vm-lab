@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "2d7496d0816437ae872650856c6dd405567b57efb04ab26cefa1d372795234e4",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "cfd00eaeeb031fe38a33f2dc3a9eb99f1f9493317c08ca00fbb7656758612875",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "cd6f0dd0a8c1d8d5586224e31869fa9ef86c2cdef12216d4db49623566d9aa83",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 266
+    "source": 269
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -5212,9 +5212,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/ATLAS.json",
       "fragment": "",
-      "sha256": "2a504281aff695273de9a271b06f9bf2e33e29c41450d07b1b9076f431ced369",
-      "git_blob_sha": "4273426b4d011f2ec5ef7e497304bab92c2994b6",
-      "size_bytes": 271406
+      "sha256": "be9dc1851d7264ddc0ef30022856c06799abc9ed76e1fdb01aec3349c6037707",
+      "git_blob_sha": "3df2c848ff840e59c3aca7973decbbe81679b979",
+      "size_bytes": 276593
     },
     {
       "key": "source:analysis/R141_R148_MODEL/PAIRS.md",
@@ -5236,9 +5236,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/R141-R148.html",
       "fragment": "",
-      "sha256": "bbf6137899b517c962b020902371666c86daf30ba0a44a83a7345414000f0706",
-      "git_blob_sha": "c0a1a361c5c0d89314e654a5a92840a11a87ed62",
-      "size_bytes": 12551400
+      "sha256": "9c0d4b87de58bfe322e9606e229beddf50304a1474ff53ca580c6ac4c7161664",
+      "git_blob_sha": "c038e6b89922f3ad1fc094e9ec7aebf3ef4b1ef4",
+      "size_bytes": 12666851
     },
     {
       "key": "source:analysis/R141_R148_MODEL/code/audit_extensions.py",
@@ -5275,6 +5275,42 @@
       "sha256": "6d47d380c0615797319bc28b2b7ea94c4d0ef055fe9a6335bc5187ea0c244d48",
       "git_blob_sha": "179b46ceeea9dabe383acd75dbbf8a6450bd1c4d",
       "size_bytes": 3808
+    },
+    {
+      "key": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "id": "analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "kind": "source",
+      "title": "analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "status": null,
+      "path": "analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "fragment": "",
+      "sha256": "c2aa9c16ff176cfc99a32d829de5f228917a8f5de14ce029be0efcda82f1bcc3",
+      "git_blob_sha": "ef6c6964be917dc5e9cfb26c5143a74c85fa1e6d",
+      "size_bytes": 33949
+    },
+    {
+      "key": "source:analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "id": "analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "kind": "source",
+      "title": "analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "status": null,
+      "path": "analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "fragment": "",
+      "sha256": "b37e019e4ad905f1f62b01b17c51e9dbd59cf18915df90ded5a41b62dea1ba45",
+      "git_blob_sha": "9243ee989f8d12bdaf96062a3f5ffad79c2f8bad",
+      "size_bytes": 13350
+    },
+    {
+      "key": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "id": "analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "kind": "source",
+      "title": "analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "status": null,
+      "path": "analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "fragment": "",
+      "sha256": "2056a96f023d02dcbd48d316e519953dc660744b2415983108443d1304b56c92",
+      "git_blob_sha": "e534d477aed80935130705bfe4d3799f36efd542",
+      "size_bytes": 5934
     },
     {
       "key": "source:analysis/R141_R148_MODEL/results/extensions.json",
@@ -11745,6 +11781,21 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R130",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R131",
       "target": "component:R130_PHYSICAL_EMBEDDING",
       "relation": "methodological_parent_not_physical_evidence",
@@ -12329,6 +12380,21 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R141",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R141",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R141",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R142",
       "target": "construct:C028",
       "relation": "addresses"
@@ -12431,6 +12497,16 @@
     {
       "source": "result:R142",
       "target": "source:analysis/R141_R148_MODEL/ATLAS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R142",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
       "relation": "managed_evidence_source"
     },
     {
@@ -12616,6 +12692,16 @@
     {
       "source": "result:R143",
       "target": "source:analysis/R141_R148_MODEL/ATLAS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R143",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R143",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
       "relation": "managed_evidence_source"
     },
     {
@@ -13099,6 +13185,16 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R144",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R144",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R145",
       "target": "result:R146",
       "relation": "model_comparison",
@@ -13169,6 +13265,16 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R145",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R145",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R146",
       "target": "result:R147",
       "relation": "model_comparison",
@@ -13229,6 +13335,16 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R146",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R146",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R147",
       "target": "result:R148",
       "relation": "model_comparison",
@@ -13271,6 +13387,16 @@
     {
       "source": "result:R147",
       "target": "source:analysis/R141_R148_MODEL/ATLAS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R147",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R147",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
       "relation": "managed_evidence_source"
     },
     {
@@ -13346,6 +13472,21 @@
     {
       "source": "result:R148",
       "target": "source:analysis/R141_R148_MODEL/code/temporal.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R148",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R148",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/replay.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R148",
+      "target": "source:analysis/R141_R148_MODEL/name_arithmetic/results.json",
       "relation": "managed_evidence_source"
     },
     {

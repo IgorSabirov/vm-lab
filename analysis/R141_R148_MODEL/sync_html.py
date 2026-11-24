@@ -120,16 +120,32 @@ def extract():
     record["task_boundaries"] = [
         [plain(c) for c in row.xpath("./td")]
         for row in doc.xpath('//*[@id="limits"]/following-sibling::div[1]//tr[td]')]
-    attachment = doc.xpath('//a[@download="R148_temporal_and_controls.zip"]/@href')
-    if len(attachment)!=1:
-        raise ValueError("Expected one R148 reproduction archive")
-    archive = base64.b64decode(attachment[0].split(",",1)[1], validate=True)
-    members = ("code/temporal.py", "code/r130_reference.py", "code/audit_extensions.py",
-               "results/temporal.json", "results/extensions.json")
-    with zipfile.ZipFile(io.BytesIO(archive)) as package:
-        if set(package.namelist())!=set(members) or len(package.infolist())!=len(members):
-            raise ValueError("R148 archive members changed; review their destination paths")
-        evidence = {HERE / name:package.read(name).decode("utf-8") for name in members}
+    archives = {
+        "R148_temporal_and_controls.zip": (
+            "code/temporal.py", "code/r130_reference.py", "code/audit_extensions.py",
+            "results/temporal.json", "results/extensions.json",
+        ),
+        "R130_R141_R148_names.zip": (
+            "code/r130_reference.py", "name_arithmetic/README.md", "name_arithmetic/results.json",
+            "name_arithmetic/replay.py", "name_arithmetic/fibonacci.py",
+            "name_arithmetic/names.py", "name_arithmetic/logic.py",
+        ),
+    }
+    evidence = {}
+    for filename, members in archives.items():
+        links = doc.xpath('//a[@download=$name]/@href', name=filename)
+        if len(links) != 1 or not links[0].startswith("data:application/zip;base64,"):
+            raise ValueError(f"Expected one embedded archive for {filename}")
+        archive = base64.b64decode(links[0].split(",", 1)[1], validate=True)
+        with zipfile.ZipFile(io.BytesIO(archive)) as package:
+            if sorted(package.namelist()) != sorted(members):
+                raise ValueError(f"Unexpected members in {filename}")
+            for name in members:
+                path = HERE / name
+                text = package.read(name).decode("utf-8")
+                if path in evidence and evidence[path] != text:
+                    raise ValueError(f"Archives disagree about {name}")
+                evidence[path] = text
     return record, evidence
 
 
