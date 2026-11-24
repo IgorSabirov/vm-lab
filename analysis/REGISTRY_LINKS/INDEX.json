@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "f5a270434ad81cf758845203b4cef799df2ea0b14dbd351679fdbcc576b752c6",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "ecedd910c30895b360715ff1d9cc585372baec376905b59fd1091de8ed253d58",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "ea4daa430d8992e3f2325c4f216c9da5814d63fd888fb7d51374ac6b3c32dc78",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
@@ -125,7 +125,7 @@
     "component": 45,
     "external": 18,
     "decision": 4,
-    "source": 300
+    "source": 303
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -6898,6 +6898,42 @@
       "size_bytes": 5588
     },
     {
+      "key": "source:analysis/R149/yang_mills/README.md",
+      "id": "analysis/R149/yang_mills/README.md",
+      "kind": "source",
+      "title": "analysis/R149/yang_mills/README.md",
+      "status": null,
+      "path": "analysis/R149/yang_mills/README.md",
+      "fragment": "",
+      "sha256": "94d801bc27196a01412f98bab517fb6b32be804991c07667490bfe9a69c6667b",
+      "git_blob_sha": "31fbfca0bc78802f3060e0d463740ee89f817875",
+      "size_bytes": 15030
+    },
+    {
+      "key": "source:analysis/R149/yang_mills/checks.json",
+      "id": "analysis/R149/yang_mills/checks.json",
+      "kind": "source",
+      "title": "analysis/R149/yang_mills/checks.json",
+      "status": null,
+      "path": "analysis/R149/yang_mills/checks.json",
+      "fragment": "",
+      "sha256": "be2ee8631dead72602b86bfaf3b3fa71910356b2ad1038957982bc1025400fae",
+      "git_blob_sha": "05a66186541fece9d1a35f92a4a806ebb7061730",
+      "size_bytes": 664
+    },
+    {
+      "key": "source:analysis/R149/yang_mills/verify.py",
+      "id": "analysis/R149/yang_mills/verify.py",
+      "kind": "source",
+      "title": "analysis/R149/yang_mills/verify.py",
+      "status": null,
+      "path": "analysis/R149/yang_mills/verify.py",
+      "fragment": "",
+      "sha256": "acc133d8434059811e64306d1f50cbe48b9797c8c30e0946630c1fd3e49c6491",
+      "git_blob_sha": "e5447b5c9330ecb3b35483166fbc91b7d60716e1",
+      "size_bytes": 5682
+    },
+    {
       "key": "source:analysis/R149_DEFECT_ATLAS/CHECKS.json",
       "id": "analysis/R149_DEFECT_ATLAS/CHECKS.json",
       "kind": "source",
@@ -6929,9 +6965,9 @@
       "status": null,
       "path": "analysis/R149_DEFECT_ATLAS/REPORT.md",
       "fragment": "",
-      "sha256": "4a3101ddd79460adffe663d8d0b6002f8764255551cbb6b3d0425900ccbe8190",
-      "git_blob_sha": "8fe943fd5431c26c55e3dc0184b6cb8c5b6148ec",
-      "size_bytes": 15987
+      "sha256": "0dca3d3068de1847fe9ee0953d90f744c42314066b8b8fdea8f5526e3ca48d6f",
+      "git_blob_sha": "e1358d469993a8adc978ffa66457c0ed09eb7dbe",
+      "size_bytes": 17104
     },
     {
       "key": "source:analysis/R149_DEFECT_ATLAS/verify.py",
@@ -12541,6 +12577,11 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R132",
+      "target": "source:analysis/R149/yang_mills/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R133",
       "target": "construct:C037",
       "relation": "addresses"
@@ -12750,6 +12791,11 @@
     },
     {
       "source": "result:R135",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R135",
       "target": "source:analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -12786,6 +12832,11 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R141_R148_MODEL/ym_graph/step5/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R135",
+      "target": "source:analysis/R149/yang_mills/README.md",
       "relation": "managed_evidence_source"
     },
     {
@@ -14346,6 +14397,21 @@
     {
       "source": "result:R149",
       "target": "source:analysis/R149/seam/replay.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/yang_mills/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/yang_mills/checks.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/yang_mills/verify.py",
       "relation": "managed_evidence_source"
     },
     {
