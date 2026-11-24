@@ -130,22 +130,30 @@ def extract():
             "name_arithmetic/replay.py", "name_arithmetic/fibonacci.py",
             "name_arithmetic/names.py", "name_arithmetic/logic.py",
         ),
+        "YM_R130_R148_pilot.zip": ("README.md", "register.tsv", "replay.py", "results.json"),
+        "R130_step5_13_14.zip": ("README.md", "check.py", "results.json", "r130_reference.py"),
     }
+    study_dirs = {"YM_R130_R148_pilot.zip": "ym_graph/pilot",
+                  "R130_step5_13_14.zip": "ym_graph/step5"}
     evidence = {}
     for filename, members in archives.items():
         links = doc.xpath('//a[@download=$name]/@href', name=filename)
         if len(links) != 1 or not links[0].startswith("data:application/zip;base64,"):
             raise ValueError(f"Expected one embedded archive for {filename}")
         archive = base64.b64decode(links[0].split(",", 1)[1], validate=True)
+        if filename in study_dirs and (HERE / "ym_graph" / filename).read_bytes() != archive:
+            raise ValueError(f"Embedded and downloadable copies differ for {filename}")
         with zipfile.ZipFile(io.BytesIO(archive)) as package:
             if sorted(package.namelist()) != sorted(members):
                 raise ValueError(f"Unexpected members in {filename}")
             for name in members:
-                path = HERE / name
+                path = HERE / study_dirs.get(filename, "") / name
                 text = package.read(name).decode("utf-8")
                 if path in evidence and evidence[path] != text:
                     raise ValueError(f"Archives disagree about {name}")
                 evidence[path] = text
+    if evidence[HERE / "ym_graph/step5/r130_reference.py"] != evidence[HERE / "code/r130_reference.py"]:
+        raise ValueError("The fifth-step experiment needs the same R130 reference as the atlas")
     return record, evidence
 
 
