@@ -1,0 +1,130 @@
+{
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests",
+        "-v"
+      ],
+      "elapsed_seconds": 28.624207764999483,
+      "exit_code": 0,
+      "label": "core",
+      "log_sha256": "e30a994a31acd67232a5140c9452c8f66179dc0becb612604a7bffc0e403df9b",
+      "skipped": 6,
+      "tests": 98
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+        "-p",
+        "test_p0_register.py",
+        "-v"
+      ],
+      "elapsed_seconds": 0.14803684600065026,
+      "exit_code": 0,
+      "label": "p0",
+      "log_sha256": "6738d3ffc39f48ddb082d2de5f3bd37b4950b9c285961f30343b9b7c9f0371d7",
+      "skipped": 0,
+      "tests": 9
+    }
+  ],
+  "elapsed_seconds": 28.77252420500008,
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scipy": "1.17.0"
+  },
+  "execution_sha": "aa2e6ba1538612b06505d392ec206b32fe6c025d",
+  "native_backend_validation": {
+    "path": "backend/VALIDATION.json",
+    "sha256": "2be5325404653c2d7de2415ba8953ab42d565e8582979f39d1508734d9cb82a5"
+  },
+  "physical_R135_run": false,
+  "schema": "R135-software-validation-v1",
+  "scientific_acceptance": "owner_review",
+  "scope": "DEVELOPMENT_TESTS",
+  "source_sha256": "419360ddcd4e7b77bcec81f9840ed9fa15aba5a248b82c8bc8b9487f8db2fca8",
+  "source_unchanged_during_validation": true,
+  "status": "PASS",
+  "test_sources": [
+    {
+      "bytes": 25204,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_audit.py",
+      "sha256": "a9557c479cec3abf7a55410b69572eda08578ec7b0cddf11065a845ab24bf5ce"
+    },
+    {
+      "bytes": 11289,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_backends.py",
+      "sha256": "962c7ba1bab027fa80b26b6d1af41bd8127e0d21f601b98ff8eb1bfe7713a238"
+    },
+    {
+      "bytes": 5578,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_collisions.py",
+      "sha256": "125bea96917fea2bd7bb4ba4729ab9860eb92023c352abb0fe51e533bf63e995"
+    },
+    {
+      "bytes": 6822,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+      "sha256": "3d82139afb529ac82b7235695384582ad1b67418feb3f467e551440ae1f380b3"
+    },
+    {
+      "bytes": 2646,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_graph.py",
+      "sha256": "c945c9bd8cde8901acfa6db5eee1b30995a7e587103c757455285dcb417543b1"
+    },
+    {
+      "bytes": 13557,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+      "sha256": "7a0158a9e2acf7b534441f63e238cb8ad2b1ad7936cf6341a5b599303b63278b"
+    },
+    {
+      "bytes": 5499,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_lattice.py",
+      "sha256": "c2aedc3951bb4a262f0b1badc9b9884c35a0ee77a06da0a1d6f15001ad863e63"
+    },
+    {
+      "bytes": 3335,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+      "sha256": "a1758e7e423b45251f719dcee30f81ac7c1014085ba4e35d262fe1a5d176808b"
+    },
+    {
+      "bytes": 4282,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_nucleation.py",
+      "sha256": "c33b9818a5c36488ad53f1bca75ad7fb68933d00fcb4b381bba98b32780af227"
+    },
+    {
+      "bytes": 5652,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_observations.py",
+      "sha256": "ef49a110b4814dba4ab5b1faadb94608194daf798602cbc04af956b253159979"
+    },
+    {
+      "bytes": 3272,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pipeline.py",
+      "sha256": "56ae505d22e1d50bffc3995e2ef8703ebe882282ae958af65fd6c574448df89c"
+    },
+    {
+      "bytes": 2952,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_response.py",
+      "sha256": "90f70d44f7808570bd5277877e939bae193653d6ab1bb7e1c010322ca7c842e4"
+    },
+    {
+      "bytes": 5816,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_statistics.py",
+      "sha256": "172ac089402a6b2705b31268152e41491a9ca4652845c0e9ee966a1dbdc0f97d"
+    },
+    {
+      "bytes": 5149,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_thermodynamics.py",
+      "sha256": "ccec7326e8ec3255c57052bd6c786d9a8d5097573033b987f84076c27c13762c"
+    }
+  ]
+}

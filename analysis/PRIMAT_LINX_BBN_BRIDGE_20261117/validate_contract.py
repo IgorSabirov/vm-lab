@@ -33,9 +33,9 @@ def _finite_number(value: Any, label: str) -> float:
     return number
 
 
-def _series(value: Any, label: str, n: int | None = None) -> list[float]:
-    if not isinstance(value, list) or len(value) < 2:
-        raise ContractError(f"{label}: expected array with at least two values")
+def _series(value: Any, label: str, n: int | None = None, *, minimum: int = 2) -> list[float]:
+    if not isinstance(value, list) or len(value) < minimum:
+        raise ContractError(f"{label}: expected array with at least {minimum} values")
     out = [_finite_number(v, f"{label}[{i}]") for i, v in enumerate(value)]
     if n is not None and len(out) != n:
         raise ContractError(f"{label}: length {len(out)} != history length {n}")
@@ -74,16 +74,33 @@ def validate_input(payload: dict[str, Any]) -> dict[str, Any]:
             spec = history[key]
             if not isinstance(spec, dict):
                 raise ContractError(f"history.{key}: expected object")
-            energy = _series(spec.get("energy_MeV"), f"history.{key}.energy_MeV")
+            if "energy_edges_MeV" in spec:
+                if "energy_MeV" in spec:
+                    raise ContractError("mixed neutrino spectral representations")
+                edges=spec["energy_edges_MeV"]
+                if not isinstance(edges,list) or not edges:
+                    raise ContractError("empty neutrino cell-edge grid")
+                rows=edges if isinstance(edges[0],list) else [edges]*n
+                if len(rows)!=n:
+                    raise ContractError("time-dependent neutrino edges must match history")
+                for grid in rows:
+                    edge=_series(grid,f"history.{key}.energy_edges_MeV")
+                    if edge[0]!=0 or any(b<=a for a,b in zip(edge,edge[1:])) or len(edge)!=len(rows[0]):
+                        raise ContractError("neutrino cell edges must start at zero and increase")
+                width=len(rows[0])-1
+                energy=None
+            else:
+                energy = _series(spec.get("energy_MeV"), f"history.{key}.energy_MeV")
+                width=len(energy)
             values = spec.get("values")
             if not isinstance(values, list) or len(values) != n:
                 raise ContractError(f"history.{key}.values must have {n} time rows")
             for i, row in enumerate(values):
                 row_values = _series(row, f"history.{key}.values[{i}]",
-                                     len(energy))
-                if any(v < 0 for v in row_values):
-                    raise ContractError(f"history.{key}.values[{i}] must be nonnegative")
-            if any(b <= a for a, b in zip(energy, energy[1:])):
+                                     width,minimum=1 if energy is None else 2)
+                if any(v < 0 or v > 1 for v in row_values):
+                    raise ContractError(f"history.{key}.values[{i}] must be in [0,1]")
+            if energy is not None and any(b <= a for a, b in zip(energy, energy[1:])):
                 raise ContractError(f"history.{key}.energy_MeV must be strictly increasing")
 
     phase = history.get("phase_state")

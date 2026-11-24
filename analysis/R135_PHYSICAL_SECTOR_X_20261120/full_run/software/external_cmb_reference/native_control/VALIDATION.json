@@ -1,0 +1,104 @@
+{
+  "actual_CLASS_solves": 2,
+  "adapter_sha256": "b3ecdf56697356c76e297b5cfd0060956d71f32764f2825830e3c987428f272c",
+  "backends_module_sha256_at_launch": "f771033438dca84f872bd9c4d04dd81f6a16c039896daa6142b43d4cbaf383d5",
+  "elapsed_seconds": 54.090601007999794,
+  "fixed": {
+    "As_plus_2_percent": {
+      "ACT_DR6_CMBONLY": {
+        "logL": -121.89969220580355,
+        "log_posterior": -121.89969220580355,
+        "log_prior": 0.0
+      },
+      "SPT3G_D1_LITE": {
+        "logL": -97.43292220249003,
+        "log_posterior": -97.55792220249003,
+        "log_prior": -0.12500000000000022
+      }
+    },
+    "baseline": {
+      "ACT_DR6_CMBONLY": {
+        "logL": -91.4119411001435,
+        "log_posterior": -91.4119411001435,
+        "log_prior": 0.0
+      },
+      "SPT3G_D1_LITE": {
+        "logL": -85.38488837426311,
+        "log_posterior": -85.50988837426311,
+        "log_prior": -0.12500000000000022
+      }
+    }
+  },
+  "fixed_result_sha256": "ac4c9a2059e9e70f425c0077cd7bb46e7049a3d7d9064266cad260cb81828911",
+  "limitations": [
+    "assigned zero-X cosmologies; no R135 physical preparation",
+    "fixed-cosmology nuisance fits, not a common cosmological baseline/X fit",
+    "no CLASS precision refinement or calibrated exclusion follows from this control",
+    "ACT, SPT and Planck remain separate alternatives"
+  ],
+  "native": [
+    {
+      "label": "baseline",
+      "lmax": 9000,
+      "receipt_sha256": "d1affae45f1f6b71920f78fdeadbca974a76004db1125d450e7ec1aececb5d1d",
+      "spectra_sha256": "772f87d727260cbc7bee4df5ae64f164f27ba0e0523fc6ef20fdf1bcd40d9326"
+    },
+    {
+      "label": "As_plus_2_percent",
+      "lmax": 9000,
+      "receipt_sha256": "d752519ccd4bdb1b4a2bb3b303e632dc258868e80f54b11844d905f53deee6cf",
+      "spectra_sha256": "592336380d4e80e134a68a83113cdf54b3e01a6ad5723da4ac76b3fd1ebd448b"
+    }
+  ],
+  "physical_R135_run": false,
+  "profiled": {
+    "As_plus_2_percent": {
+      "ACT_DR6_CMBONLY": {
+        "logL": -90.19570722916423,
+        "log_posterior": -90.19570722916423,
+        "log_prior": 0.0,
+        "nuisance": {
+          "A_act": 1.0109340808840295,
+          "P_act": 1.0018021173566134
+        }
+      },
+      "SPT3G_D1_LITE": {
+        "logL": -83.16929135892215,
+        "log_posterior": -84.12687157373036,
+        "log_prior": -0.9575802148082103,
+        "nuisance": {
+          "Ecal": 1.0109909245226576,
+          "Tcal": 1.0046454794335815
+        }
+      }
+    },
+    "baseline": {
+      "ACT_DR6_CMBONLY": {
+        "logL": -90.69309704904641,
+        "log_posterior": -90.69309704904641,
+        "log_prior": 0.0,
+        "nuisance": {
+          "A_act": 1.0010185936325076,
+          "P_act": 1.0018507442159637
+        }
+      },
+      "SPT3G_D1_LITE": {
+        "logL": -83.17933066910355,
+        "log_posterior": -83.42938080871777,
+        "log_prior": -0.2500501396142105,
+        "nuisance": {
+          "Ecal": 1.0077948953771902,
+          "Tcal": 0.9981996390309718
+        }
+      }
+    }
+  },
+  "profiled_result_sha256": "52a377617fbe57d5b89dd423a976c84544bfad09403df9e0d17920596bb45217",
+  "runner_sha256": "76d4c8b61df567b989990f4ffbcffedbc6c8709b157a246308b0b75e6972bb0d",
+  "runtime_lock_sha256": "e09bba69fda2a87d19d5d78d47b62b19814a165564c2a0bea63f5f19c615b685",
+  "scope": "REAL_CLASS_TO_ACT_SPT_AND_NUISANCE_PROFILE_CONTROL",
+  "source_function_sha256": {
+    "r135.backends.run_class": "e9fe829e37a085bee7bb832faa3d147b03e9d3babacb2bea483b119eb1a91d4b"
+  },
+  "status": "PASS"
+}

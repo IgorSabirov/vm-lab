@@ -1,0 +1,120 @@
+{
+  "Born_comparison_threshold": 5e-05,
+  "constants": {
+    "electron_mass_MeV": 0.51099895,
+    "neutron_lifetime_s": 879.4,
+    "neutron_proton_gap_MeV": 1.2933323600000222
+  },
+  "donor_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+  "donor_file_sha256": {
+    "LICENSE.txt": "8f1ee40b1b13d0c5710438ae9db3bfde4f61582c75cfa744ddf90439a5a35f92",
+    "linx/const.py": "f5c27241a683a48b9cb46dea7fdd381e9b959cc6a7e3b02bc4e8023e9fcb3ca8",
+    "linx/weak_rates.py": "140ee415dfda1a985100a2afc7c21ff9603c611241e25e649ea5d5fb74cc1bbc"
+  },
+  "interpretation": "Independent 1000-point LINX Born quadrature compared with adaptive six-process integration. Selected correction differences are a diagnostic, not an uncertainty bound for arbitrary spectra. Thermal radiative corrections are off in both donor runs.",
+  "maximum_Born_relative_difference": 2.4779433909771775e-05,
+  "production_precision_validated": false,
+  "python": "3.12.14",
+  "r135_source_sha256": {
+    "r135/neutrino_rates.py": "0012f32b8cc0ba9d5e925baf86ae176d099cba33dbd02b494bad0408823311e2"
+  },
+  "rate_order": [
+    "n_to_p",
+    "p_to_n"
+  ],
+  "rows": [
+    {
+      "LINX_Born_s_inv": [
+        0.009740500875540634,
+        0.0001307046180538358
+      ],
+      "LINX_Coulomb_RC_FM_WM_no_thermal_s_inv": [
+        0.00950939338206921,
+        0.00012786865129144192
+      ],
+      "R135_Born_s_inv": [
+        0.009740259716576953,
+        0.00013070138202001772
+      ],
+      "R135_quadrature_abs_error_s_inv": {
+        "n_to_p": 3.573711372282656e-11,
+        "p_to_n": 4.79544709061185e-13
+      },
+      "T_gamma_MeV": 0.3,
+      "T_nu_MeV": 0.3,
+      "relative_Born_difference": [
+        -2.475837400583991e-05,
+        -2.4758374005950934e-05
+      ],
+      "selected_correction_fraction": [
+        -0.02370227706709227,
+        -0.021673303562635193
+      ]
+    },
+    {
+      "LINX_Born_s_inv": [
+        1.6017436068059114,
+        0.4394463807573308
+      ],
+      "LINX_Coulomb_RC_FM_WM_no_thermal_s_inv": [
+        1.540262245574978,
+        0.4234682624143378
+      ],
+      "R135_Born_s_inv": [
+        1.6017039180846027,
+        0.43943549195786136
+      ],
+      "R135_quadrature_abs_error_s_inv": {
+        "n_to_p": 5.758613044387719e-09,
+        "p_to_n": 1.5799043892883496e-09
+      },
+      "T_gamma_MeV": 1.0,
+      "T_nu_MeV": 1.0,
+      "relative_Born_difference": [
+        -2.4778448398432573e-05,
+        -2.477844839832155e-05
+      ],
+      "selected_correction_fraction": [
+        -0.03836019367618193,
+        -0.03633577586640335
+      ]
+    },
+    {
+      "LINX_Born_s_inv": [
+        270.97511228437696,
+        176.07608335324377
+      ],
+      "LINX_Coulomb_RC_FM_WM_no_thermal_s_inv": [
+        253.6825651578157,
+        165.19886661556248
+      ],
+      "R135_Born_s_inv": [
+        270.9683976744909,
+        176.07172028757324
+      ],
+      "R135_quadrature_abs_error_s_inv": {
+        "n_to_p": 1.1534265817225022e-06,
+        "p_to_n": 7.494815181828573e-07
+      },
+      "T_gamma_MeV": 3.0,
+      "T_nu_MeV": 3.0,
+      "relative_Born_difference": [
+        -2.4779433909771775e-05,
+        -2.4779433909660753e-05
+      ],
+      "selected_correction_fraction": [
+        -0.06379279895746492,
+        -0.06175241347248961
+      ]
+    }
+  ],
+  "schema": "r135-native-born-comparison-v1",
+  "status": "PASS_BORN_COMPARISON",
+  "versions": {
+    "equinox": "0.12.2",
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  }
+}

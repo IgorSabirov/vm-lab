@@ -1,0 +1,52 @@
+{
+  "schema": "r135-neutrino-kinetics-sources-v1",
+  "implementation": "Original implementation of published equations; no upstream source copied or vendored.",
+  "papers": [
+    {
+      "id": "Pitrou2018",
+      "title": "Precision big bang nucleosynthesis with improved Helium-4 predictions",
+      "doi": "10.1016/j.physrep.2018.04.005",
+      "arxiv": "1801.08023v3",
+      "url": "https://arxiv.org/html/1801.08023v3",
+      "used": "Sections II.1, III.1-III.3; six crossed processes, infinite-nucleon-mass integrals, detailed balance, free-neutron normalization",
+      "license": "arXiv perpetual non-exclusive distribution license; equations referenced, article not redistributed"
+    },
+    {
+      "id": "Mangano2005",
+      "title": "Relic neutrino decoupling including flavour oscillations",
+      "doi": "10.1016/j.nuclphysb.2005.09.041",
+      "arxiv": "hep-ph/0506164v1",
+      "url": "https://arxiv.org/html/hep-ph/0506164v1",
+      "used": "Equations 4,7-9: homogeneous Liouville operator, inverse/Pauli collision factors, energy continuity and comoving momentum",
+      "license": "arXiv perpetual non-exclusive distribution license; equations referenced, article not redistributed",
+      "scope_warning": "The full flavour-matrix and SM collision calculation in this paper is not reproduced by the generic supplied-kernel solver."
+    }
+  ],
+  "donors": [
+    {
+      "id": "LINX",
+      "repository": "https://github.com/cgiovanetti/LINX",
+      "commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "license": "MIT",
+      "role": "Independent numerical comparison of Born thermal rates and selected omitted corrections; existing backend donor reused",
+      "files": {
+        "LICENSE.txt": "8f1ee40b1b13d0c5710438ae9db3bfde4f61582c75cfa744ddf90439a5a35f92",
+        "linx/weak_rates.py": "140ee415dfda1a985100a2afc7c21ff9603c611241e25e649ea5d5fb74cc1bbc",
+        "linx/const.py": "f5c27241a683a48b9cb46dea7fdd381e9b959cc6a7e3b02bc4e8023e9fcb3ca8"
+      }
+    },
+    {
+      "id": "PRIMAT",
+      "repository": "https://github.com/CyrilPitrou/primat",
+      "commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "license": "GPL-3.0-or-later",
+      "role": "Read-only equations/API audit and precision-correction reference; no GPL source copied into these original modules",
+      "files": {
+        "LICENCE": "5af9d2ca9c33d3fc93cb1cb70a83a551ff9f09504b01d432aa99eacc26773adc",
+        "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "primat/weak_rates/corrections.py": "8516573b46579a451bc5dc5e9dea34eea7b417c1318f724d7891948aa26abc94",
+        "primat/weak_rates/api.py": "f168f3a2e80069fadd8147c00e008bd97b3e42564959bb81871328d0b0cce3b4"
+      }
+    }
+  ]
+}

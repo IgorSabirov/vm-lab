@@ -1,0 +1,48 @@
+{
+  "actual_kernel": "LINX.NuclearRates",
+  "cache_reused": false,
+  "engine": "linx",
+  "files": {
+    "input.json": "315f387f41c7da8e078eed5d85c47c53c875d20cd6a07043b8fb071d018260bd",
+    "observables.json": "88eb1324679c068351b08b8d0bf985750fe965bc8976e2b3bae893244645d7bb",
+    "segment_diagnostics.json": "f6112b1b12d83bd3d0c67f12e593b6c7d3e94c7440aba05388320b0c091b963b",
+    "trajectory.npz": "e18d17646d64264e0aaa2f137dab52d4c440fe61517358c00953e38c6036101e"
+  },
+  "first_rhs_input": {
+    "T_gamma_MeV": 0.49999999961299285,
+    "lambda_n_to_p_s_inv": 0.06470196411534512,
+    "lambda_p_to_n_s_inv": 0.005640442344930329,
+    "n_b_cm3": 2.3777003959840334e+21,
+    "time_s": 0.0
+  },
+  "history_reads": 25808,
+  "history_sha256": "0f3598a52b4d86d47f8e1554c275933cffa07104d31ecf6e0dbda5127fee0d34",
+  "input_cache_key": "315f387f41c7da8e078eed5d85c47c53c875d20cd6a07043b8fb071d018260bd",
+  "integrator": "scipy.solve_ivp:BDF",
+  "interpolation": "log-positive and linear-weak in physical time",
+  "last_rhs_input": {
+    "T_gamma_MeV": 0.03324688582026687,
+    "lambda_n_to_p_s_inv": 0.0011371386189426625,
+    "lambda_p_to_n_s_inv": 3.0573054962234665e-21,
+    "n_b_cm3": 6.990367895948867e+17,
+    "time_s": 103.73292125471201
+  },
+  "neutrino_spectra_read_by": "upstream weak-rate producer; native kernels consume bound rates",
+  "nuclear_rates_sha256": "23cdd7fdda55e1629a596469050f96dba8f4be6dda1e99d040d53f5476f65e8d",
+  "reverse_coefficients_sha256": "282d8c3f2a6e8111b906bd4bdf8f00f9853b6ac53db7e304b2d03759dbe4b9e9",
+  "schema": "R135-native-consumption-v1",
+  "segments": 1,
+  "sources": {
+    "linx": {
+      "source_commit": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8",
+      "source_root": "/tmp/r135-backend-dev/LINX",
+      "tracked_sources_clean": true
+    },
+    "primat": {
+      "source_commit": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+      "source_root": "/tmp/r135-backend-dev/primat",
+      "tracked_sources_clean": true
+    }
+  },
+  "weak_rates_sha256": "7e59e1cc005b9b10b1811f972295402ddbf96659539da5013f5c9f961293c4ef"
+}

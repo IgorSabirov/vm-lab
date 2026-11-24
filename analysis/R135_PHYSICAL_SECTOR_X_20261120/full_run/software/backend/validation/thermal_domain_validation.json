@@ -1,0 +1,21 @@
+{
+  "affected_native_thermal_test": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 R135_NATIVE_TESTS=1 PYTHONPATH=/tmp/r135-backend-dev/LINX:/tmp/r135-backend-dev/primat:/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests /tmp/r135-backend-dev/env/bin/python -m unittest test_backends.NativeConsumptionTests.test_thermal_weak_integral_keeps_two_times_at_same_temperature -v",
+    "elapsed_seconds": 5.896,
+    "passed": 1
+  },
+  "change": "Require sourced T_gamma, T_nu and xi_nu ranges; reject native thermal-table extrapolation and temperatures beyond the pinned LINX BBN envelope. Full P7-to-BBN integration was not rerun.",
+  "core_tests": {
+    "command": "python -m unittest discover -s analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests -p test_backends.py -v",
+    "elapsed_seconds": 0.162,
+    "passed": 7,
+    "skipped_optional": 5
+  },
+  "existing_full_integration_preserved": true,
+  "new_BBN_network_or_CLASS_integrations": 0,
+  "physical_R135_run": false,
+  "scope": "POST_VALIDATION_APPLICABILITY_GUARD",
+  "source_module_sha256": {
+    "r135/backends.py": "c6741ae29ab922abe14e77747030e4216ab85669182fff3cf3b9fe9d134b7d70"
+  }
+}

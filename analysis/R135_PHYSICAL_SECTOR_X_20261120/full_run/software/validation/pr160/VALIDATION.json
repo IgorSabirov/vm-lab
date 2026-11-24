@@ -1,0 +1,691 @@
+{
+  "base_executable_commit": "317d34ebf9c7882a9abdc6741cd1b7a44a937317",
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 72.18191990600099,
+      "exit_code": 0,
+      "label": "core",
+      "log_sha256": "13937d5d2987cb82f5dd30f3572fa5bd837024d8ed2b0029f1dea58f129104b6",
+      "skipped": 13,
+      "tests": 210
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        ".",
+        "-p",
+        "test_p0_register.py",
+        "-v"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 0.13352230000054988,
+      "exit_code": 0,
+      "label": "p0",
+      "log_sha256": "4b056d5a32035aa5c2919846a36796bca93053c478c17d354fcf47a04a86dc5e",
+      "skipped": 0,
+      "tests": 9
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "donors",
+        "-v"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 17.31742790000135,
+      "exit_code": 0,
+      "label": "donors",
+      "log_sha256": "0c8a7ef98092e25e30512d55e196792f8951a88fbb0dc9001bd1c6971786d490",
+      "skipped": 0,
+      "tests": 4
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "gw",
+        "-v"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 0.19761356600065483,
+      "exit_code": 0,
+      "label": "gw",
+      "log_sha256": "4947985bc9f99cf3fe4f6e5042ad1611d33ade4d35dad0996fec9eb5c9fcfe7f",
+      "skipped": 0,
+      "tests": 4
+    },
+    {
+      "command": [
+        "/workspace/scratch/79bdd1c76d05/peer_tmp/env/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_external_cmb*.py",
+        "-v"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 12.75693309000053,
+      "exit_code": 0,
+      "label": "native_cmb",
+      "log_sha256": "a717497e89cc09434b44a8dde6df6f15199043ee7d5c126a37f0103afa28bd06",
+      "skipped": 0,
+      "tests": 16
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tools/registry_links.py",
+        "--summary",
+        "/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/validation/pr160/registry.json"
+      ],
+      "cwd": ".",
+      "elapsed_seconds": 0.4491420710000966,
+      "exit_code": 0,
+      "label": "registry",
+      "log_sha256": "e1a73a727797a05e66099ac8023bfde2ed52a7393fd0a290e9cd6eac7bcdc6cd",
+      "skipped": 0,
+      "tests": null
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135_stage.py",
+        "--seal",
+        "--stage",
+        "P0",
+        "--config",
+        "/tmp/r135-pr160-p0-wnjcdce3/config.json",
+        "--template",
+        "/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/examples/request.validation.json",
+        "--out",
+        "/tmp/r135-pr160-p0-wnjcdce3/request.json"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 0.0784386879986414,
+      "exit_code": 0,
+      "label": "p0_seal_with_donors",
+      "log_sha256": "ebc4b202634b45743c1f0536083facdd8dc8590e78adfccc8e9cecfa71fc1727",
+      "skipped": 0,
+      "tests": null
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135_stage.py",
+        "--stage",
+        "P0",
+        "--request",
+        "/tmp/r135-pr160-p0-wnjcdce3/request.json",
+        "--out",
+        "/tmp/r135-pr160-p0-wnjcdce3/result"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 0.40602810900054465,
+      "exit_code": 0,
+      "label": "p0_run_with_donors",
+      "log_sha256": "ff996703d8b536c2b4b5ae58cc28730339552e94d031e23fd96656a985e2fe7c",
+      "skipped": 0,
+      "tests": null
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "/workspace/scratch/2f076a3ea5f5/vm-lab/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135_stage.py",
+        "--verify",
+        "/tmp/r135-pr160-p0-wnjcdce3/result"
+      ],
+      "cwd": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software",
+      "elapsed_seconds": 0.05374892000145337,
+      "exit_code": 0,
+      "label": "p0_verify_with_donors",
+      "log_sha256": "c40e9afb5317fc5d436d74edda9d5ce08851724b8e4222bf2cf7f93eebdbf8e5",
+      "skipped": 0,
+      "tests": null
+    }
+  ],
+  "elapsed_seconds": 103.68634309700064,
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scipy": "1.17.0"
+  },
+  "execution_identity": "exact source bytes and tests; changes uncommitted during this series",
+  "full_physical_runtime_gate": "NOT_EVALUABLE",
+  "integrated_PR160_sha": "cfbf4cbcb0529078d42c0d104dcf2e9f26e4ccc8",
+  "limitations": [
+    "Optional native tests require their independently pinned environments.",
+    "Dedicated native/GW controls have their own executors, source hashes and scope.",
+    "These development measurements do not forecast a full physical R135 scan."
+  ],
+  "native_CMB_interpreter_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "native_CMB_tests_executed": true,
+  "native_controls_reexecuted_by_this_command": false,
+  "physical_R135_run": false,
+  "recorded_utc": "2026-11-20T21:56:18.101615+00:00",
+  "saved_native_controls": [
+    {
+      "bytes": 10838,
+      "path": "donor_reference/control/VALIDATION.json",
+      "sha256": "9604ba02d978afe04d4933b20d9a621c99f77b970b64110866ce171036b783dc"
+    },
+    {
+      "bytes": 24245,
+      "path": "gw/integrated_reference/VALIDATION.json",
+      "sha256": "541ade1473a41fe2b914157c19c9f70adcbfa94a172f5fe6fbcfa689fc4a302f"
+    },
+    {
+      "bytes": 3487,
+      "path": "external_cmb_reference/native_control/VALIDATION.json",
+      "sha256": "2156a86e45215d830927584ceb18919cd91e57c545799bf1ebdc3c2c6d3c1769"
+    },
+    {
+      "bytes": 2234,
+      "path": "external_cmb_reference/audit_control/VALIDATION.json",
+      "sha256": "22a33aa06a37e8efd3924b59c4231dd9697049e6898f25dc20357149748a88e7"
+    }
+  ],
+  "schema": "R135-PR160-integration-validation-v1",
+  "scientific_acceptance": "owner_review",
+  "scope": "DEVELOPMENT_TESTS_AND_CONDITIONAL_NUMERICAL_CONTROLS",
+  "source_files": [
+    {
+      "bytes": 9561,
+      "path": "analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py",
+      "sha256": "d46a47443e610ffe42a0160aaae0487e6c0a9be9e6b96bf72ce39962cf7cf9a1"
+    },
+    {
+      "bytes": 7319,
+      "path": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/BBN_HISTORY.schema.json",
+      "sha256": "2508a64ed28a30e3308b02d52feb7f24555d031ce5bae3be9a55d9f9dbf17409"
+    },
+    {
+      "bytes": 4338,
+      "path": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/NETWORK_MAP.json",
+      "sha256": "a2fc38d769b70377506b7c630fbd31220671ca6f701f8846ec75a0fe4105e9fc"
+    },
+    {
+      "bytes": 8725,
+      "path": "analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/validate_contract.py",
+      "sha256": "a94abadb4faf4e9106217371e5264545e0428e5a886c3da82b2c643b3eef56be"
+    },
+    {
+      "bytes": 20888,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/GW_AND_PHYSICAL_INPUTS.md",
+      "sha256": "ad9fc80478f368968ea1d3393291d1582ee53f0870e07a0e830cb93db0cf7556"
+    },
+    {
+      "bytes": 14108,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/PLAN.json",
+      "sha256": "5fffbb0bfee2c894081cf339310272215d6dbee013f1d6c630dfec04a1c26477"
+    },
+    {
+      "bytes": 464,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/cascade_requirements.lock",
+      "sha256": "0f0955530ef55a4f7b42f17b2c58463e036f05065706222fcff169528d67d663"
+    },
+    {
+      "bytes": 5671,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/cascade_sources.lock.json",
+      "sha256": "15dc07208df67d04141e539686cf69508818dad540267fb50bcb1597619c227b"
+    },
+    {
+      "bytes": 78,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/__init__.py",
+      "sha256": "b8d4fd9d33607f2becff607daf9150b456892ca208033bee3d79d44e4e82a0c2"
+    },
+    {
+      "bytes": 8871,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/audit.py",
+      "sha256": "48182fcede389b523d8cb93be48ba6fa8e4973d05a704db4a5fc3b3ffecf6a56"
+    },
+    {
+      "bytes": 3418,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/cmb.py",
+      "sha256": "dc39c67f62ffe880a9e6f7cd7ea48e51104d698e46b89acc7703a818f3808c9e"
+    },
+    {
+      "bytes": 4244,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/cmb_likelihood_controls.py",
+      "sha256": "e90b947255e0aad8c53fb710fb90a2960e2bfe470a8fae6ee44df5be981c1c1e"
+    },
+    {
+      "bytes": 8123,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/extract.py",
+      "sha256": "bf53ac65a8d750020b8ae24e0fccde3ca06960c88a877e1a459ed95449ec827a"
+    },
+    {
+      "bytes": 3270,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/fetch.py",
+      "sha256": "0a89cc82742e0ed4f4c713d1479392f231261b77211d565f4d386067b3035ac9"
+    },
+    {
+      "bytes": 3857,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/kinetic_control.py",
+      "sha256": "b42df31b9683ad31bf08fbe15e75132df6853d3f6a7581924656ffc365e47050"
+    },
+    {
+      "bytes": 8207,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/sources.json",
+      "sha256": "ee7f84d63614aa7a66848c444ebc88fa21ce39828274498cb1d09a7bad91e3c0"
+    },
+    {
+      "bytes": 3876,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/uncertainties.py",
+      "sha256": "b4a9138d48f3f56293bb4fcfa54da2c1625028791c2b3588448df12c274db466"
+    },
+    {
+      "bytes": 1421,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/external_cmb_sources.lock.json",
+      "sha256": "e09bba69fda2a87d19d5d78d47b62b19814a165564c2a0bea63f5f19c615b685"
+    },
+    {
+      "bytes": 8154,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/gw/response.py",
+      "sha256": "ac96b96d5d0c834473f3a3c85c4120fd56d728483eacc6772c69153b1dcc2e5d"
+    },
+    {
+      "bytes": 4542,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/gw/status.py",
+      "sha256": "223d95a6067e3febd1aab9e5136848501bcb08441a252e8a84f898cc91b6864e"
+    },
+    {
+      "bytes": 7310,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/gw/validate_integrated.py",
+      "sha256": "db8d8be4f6f7bde8332d9f393ba78fd09228229325e2a0fdfcdb77bf84307cf6"
+    },
+    {
+      "bytes": 2738,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/neutrino_reference/sources.json",
+      "sha256": "5d38d3a112f76409f059555db5a186df5280b3f65867abf7835f594a60d3486b"
+    },
+    {
+      "bytes": 12372,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_register.py",
+      "sha256": "2bfe4c6e26be1026ed6d0b81c2bf0280a8a7523d40ee71236d7471613796a015"
+    },
+    {
+      "bytes": 1380,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/perturbations_reference/SOURCES.lock.json",
+      "sha256": "26bb3e78ac5bca4e5aec5c93d6cccbac2acca3e8607d621226fde4cddc5aa196"
+    },
+    {
+      "bytes": 179,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/clipy.lock",
+      "sha256": "26ad4874f39b086641301ca1447475eea407ec4c4c4238c0d54f07c52ea302b4"
+    },
+    {
+      "bytes": 5866,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/nuisance.json",
+      "sha256": "b618bbf3d2094246240f70b56db8d69836bbb629655bf2a10c89072b70f8ecd2"
+    },
+    {
+      "bytes": 29686,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/release.json",
+      "sha256": "b76dd56e555cfde7ef78579a4cb0c0140aacd4e3c0c7a8e0ba4509fd01a69947"
+    },
+    {
+      "bytes": 8090,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/verify_planck.py",
+      "sha256": "6f50b262a14efc698cf3bb21f343d5d2da166099746e9dda93b41c7f9b60d42e"
+    },
+    {
+      "bytes": 862,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/planck_pr3/wheels.lock",
+      "sha256": "3fc3623b1566c09c34a91e3a909be4c049412da97bd9c99232ee44783575b215"
+    },
+    {
+      "bytes": 100,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/__init__.py",
+      "sha256": "a06d50a63914a50ddb538616046caab310cef595badbd5c128c0aa6f07230564"
+    },
+    {
+      "bytes": 98098,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/audit.py",
+      "sha256": "574ab46f725878d92e09004645b6ff715d46ee5919da19d1e3e3f18cb32b2c3f"
+    },
+    {
+      "bytes": 57444,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/backends.py",
+      "sha256": "f771033438dca84f872bd9c4d04dd81f6a16c039896daa6142b43d4cbaf383d5"
+    },
+    {
+      "bytes": 35606,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/cascades.py",
+      "sha256": "eb0ac1b839e6382166d1b77486ca37db7a57ad31391c4640c74bc9189963ff85"
+    },
+    {
+      "bytes": 2915,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/cli.py",
+      "sha256": "8a61fd5344bacbb725c52ef02d758a65df5458daf5ec77504d1a4caeedd1d513"
+    },
+    {
+      "bytes": 23248,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/collisions.py",
+      "sha256": "a6a9aab37a9bb686c14837cc0712bedab4b4a81e0531521e7784c652fa679878"
+    },
+    {
+      "bytes": 3487,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/common.py",
+      "sha256": "6d275d0fc494135051e0872c5d793edb438f6e43599f99c7b1ad72c5ba425fe5"
+    },
+    {
+      "bytes": 19736,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/contracts.py",
+      "sha256": "4fde815028333b4a39e1c423948c135cac44a01805951203e7d1d304eca766ad"
+    },
+    {
+      "bytes": 36116,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/donor_inputs.py",
+      "sha256": "8c2d9805523993178c72ccb661be37a3a61f47744e308c32202844ae29174d41"
+    },
+    {
+      "bytes": 27821,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb.py",
+      "sha256": "b3ecdf56697356c76e297b5cfd0060956d71f32764f2825830e3c987428f272c"
+    },
+    {
+      "bytes": 22612,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/external_cmb_audit.py",
+      "sha256": "3ccfa512db38070c99bcbcb9e0adfeb16599b772aed754a4c1002a715d6b880b"
+    },
+    {
+      "bytes": 12020,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/graph.py",
+      "sha256": "d2b6370eb3746f888d8f54a28d1e23c25d856dec24b0aee90b4fa5cde15583e6"
+    },
+    {
+      "bytes": 31563,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/gravitationalwaves.py",
+      "sha256": "84d70a6a78ae61615b07199fc8a816f88cf927d70b2282e58a987c2e6c260d12"
+    },
+    {
+      "bytes": 56752,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/history.py",
+      "sha256": "064add69a9cd60575b7586420f06cb36e8de1cd7194d73d5298318bc4318a970"
+    },
+    {
+      "bytes": 8181,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/kinetic_history.py",
+      "sha256": "963343f5a8e2d490c5a00ddd13322d49290a3493a4fba6ec996f26a28dcc2087"
+    },
+    {
+      "bytes": 16354,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/kinetics.py",
+      "sha256": "4107440229ce365b5dafdb39c3342680554e924a030667064ce477c02055dc99"
+    },
+    {
+      "bytes": 30198,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/lattice.py",
+      "sha256": "5a0c21b8c49a070ec7dbe85ea6097f7f569d27bb1f1d9d612e75c9aa68cbe44b"
+    },
+    {
+      "bytes": 17397,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/likelihood.py",
+      "sha256": "9a12e85c8911d160dd5ca0688f591e708339e219c5a158f274ecd8ed19cd36d2"
+    },
+    {
+      "bytes": 15184,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/neutrino_rates.py",
+      "sha256": "0012f32b8cc0ba9d5e925baf86ae176d099cba33dbd02b494bad0408823311e2"
+    },
+    {
+      "bytes": 18626,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/nucleation.py",
+      "sha256": "cdb3d3a4551c3d306a327ce63e3564436f522fca5e3acd9a4660c9d99daa3b9a"
+    },
+    {
+      "bytes": 24424,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/observations.py",
+      "sha256": "34d64310b960ffb3ef3a0ff82525216c965e199d569d2d7aa2d5b0ae345f74b5"
+    },
+    {
+      "bytes": 20515,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/perturbations.py",
+      "sha256": "d50d692ba7ec1640cdb935cf2e698b20b4c0a4dc4dae322b85e4cba8f0029a88"
+    },
+    {
+      "bytes": 7394,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/pipeline.py",
+      "sha256": "6c4dbde308a55074162b08877f20b3f4584eb1c66f8b9a2a88031135751601f3"
+    },
+    {
+      "bytes": 18876,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/pockets.py",
+      "sha256": "7ced5b6a7df4bb8e0d54dc33fd5d54780b123ee64834a41504cf3f0346d85fa4"
+    },
+    {
+      "bytes": 13492,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/response.py",
+      "sha256": "b723bd6ec9a2b6d868bd6dc1070de4563a263a07604e845c58281b1b59afbd8f"
+    },
+    {
+      "bytes": 33413,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/statistics.py",
+      "sha256": "7599ff3f901bc84163e0fb02831b17b3977f07fa2703e28d2e164cd0b9143ab9"
+    },
+    {
+      "bytes": 22498,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/thermodynamics.py",
+      "sha256": "2efa0d33737ada738896b5ef986bbd4401be5824dc66c1065f74b2c487686e38"
+    },
+    {
+      "bytes": 183,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135_stage.py",
+      "sha256": "499cd8dd0cf77e0b8a8c138c000f9a631efda12b7000d698f810a9485b49e9d3"
+    },
+    {
+      "bytes": 19970,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/register_inputs.json",
+      "sha256": "72b1fd5e0e6b89c2cd5d47fac47c233bafae514270fe3c5cb5942b12d8874a10"
+    },
+    {
+      "bytes": 186,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/requirements-core.lock",
+      "sha256": "669f79f635a6a46f1f004f7c2932f78cdbbe5a7b2d16e719a7eb0d0a0ac7f967"
+    },
+    {
+      "bytes": 2433,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/coordinates.json",
+      "sha256": "c9bebefd93c153331e826b1ab3b073fc5f35a75a09bc7d424bc94ffab01ce956"
+    },
+    {
+      "bytes": 3878,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/inputs.json",
+      "sha256": "fc1f28db062687a10cdf236b6ed6513cc411f3a2355d233fda7c1b5f49a7008d"
+    },
+    {
+      "bytes": 6943,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/PROTOCOL.json",
+      "sha256": "4dddac4fb042b211c8be4637eb59f78f2b6a63dc0e904b7f4d80c232dcbe7a2a"
+    },
+    {
+      "bytes": 2605,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/cumulants.py",
+      "sha256": "8d1cfb0f7ebe9b93300e50113c6f41ff57ca40cef616ed5a29e6043d13cd75e7"
+    },
+    {
+      "bytes": 2256,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/run_design/measure_field.py",
+      "sha256": "9b807c66cc9c5a0c80edf39c2a258fecdab11955096bc2c71a32af64d53a9e4c"
+    }
+  ],
+  "source_sha256": "285184fea4f428da01a7d71def0d9a30745155b3ad04cd542e24e282d0c169ee",
+  "source_unchanged_during_validation": true,
+  "status": "PASS",
+  "test_sources": [
+    {
+      "bytes": 25204,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_audit.py",
+      "sha256": "a9557c479cec3abf7a55410b69572eda08578ec7b0cddf11065a845ab24bf5ce"
+    },
+    {
+      "bytes": 11289,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_backends.py",
+      "sha256": "962c7ba1bab027fa80b26b6d1af41bd8127e0d21f601b98ff8eb1bfe7713a238"
+    },
+    {
+      "bytes": 13335,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_cascades.py",
+      "sha256": "8b0423513f92ba744c61e03f19e6fa2ace08269df95dbfb4b8fd4ba3139ceb95"
+    },
+    {
+      "bytes": 5578,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_collisions.py",
+      "sha256": "125bea96917fea2bd7bb4ba4729ab9860eb92023c352abb0fe51e533bf63e995"
+    },
+    {
+      "bytes": 7084,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_contracts.py",
+      "sha256": "abe2b40eb9c9d599ac37c5003647a1518ce132c8f880fdaca1220a7dc1bf7de9"
+    },
+    {
+      "bytes": 18023,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_donor_inputs.py",
+      "sha256": "763edb14437bb52875a14dd8373b4a6f0a3827ab23a9fc054187034a2442085e"
+    },
+    {
+      "bytes": 9014,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_external_cmb.py",
+      "sha256": "574939fd5cf1905752048a9aa63cdcfc24f019d1404ab59c6970a2335622a121"
+    },
+    {
+      "bytes": 10255,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_external_cmb_audit.py",
+      "sha256": "46c97f0723d7bf11142d398bb80ddfb0a08a5b3f44cc2dac2144de0765400ceb"
+    },
+    {
+      "bytes": 2646,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_graph.py",
+      "sha256": "c945c9bd8cde8901acfa6db5eee1b30995a7e587103c757455285dcb417543b1"
+    },
+    {
+      "bytes": 14349,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_gravitationalwaves.py",
+      "sha256": "2f823e07a2b0d79fbe6bae37826488ea91ad8571623ad15865de914e23ad25b1"
+    },
+    {
+      "bytes": 13557,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_history.py",
+      "sha256": "7a0158a9e2acf7b534441f63e238cb8ad2b1ad7936cf6341a5b599303b63278b"
+    },
+    {
+      "bytes": 6029,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetic_history.py",
+      "sha256": "3d235d375dd84c327bc0a2fe6f44e2601bdeddbb3df350afee009801784f9b49"
+    },
+    {
+      "bytes": 6973,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_kinetics.py",
+      "sha256": "f6e510d0c68f9f7ea9481a38a81c1779e8531e24e218061a459bc821be884023"
+    },
+    {
+      "bytes": 5499,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_lattice.py",
+      "sha256": "c2aedc3951bb4a262f0b1badc9b9884c35a0ee77a06da0a1d6f15001ad863e63"
+    },
+    {
+      "bytes": 3335,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_likelihood.py",
+      "sha256": "a1758e7e423b45251f719dcee30f81ac7c1014085ba4e35d262fe1a5d176808b"
+    },
+    {
+      "bytes": 5943,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_neutrino_rates.py",
+      "sha256": "d5ba3256dfb413da564740e69abeba8dcedd7cef2388c624238a4bf68502aa68"
+    },
+    {
+      "bytes": 4282,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_nucleation.py",
+      "sha256": "c33b9818a5c36488ad53f1bca75ad7fb68933d00fcb4b381bba98b32780af227"
+    },
+    {
+      "bytes": 5652,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_observations.py",
+      "sha256": "ef49a110b4814dba4ab5b1faadb94608194daf798602cbc04af956b253159979"
+    },
+    {
+      "bytes": 7020,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_perturbations.py",
+      "sha256": "5ac3e5838e7002ef091e3554d8e87e4487fabb8f497e1eead1d178d2d62236c9"
+    },
+    {
+      "bytes": 3272,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pipeline.py",
+      "sha256": "56ae505d22e1d50bffc3995e2ef8703ebe882282ae958af65fd6c574448df89c"
+    },
+    {
+      "bytes": 5720,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pockets.py",
+      "sha256": "08fa6f37c31d29616a8a78d50dfa846dd160666e2ae4bcdf22cf5b26984e41d5"
+    },
+    {
+      "bytes": 15533,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_pr160_integration.py",
+      "sha256": "1a5d7d61976703871a00249384f252062cad88ab1bb796783549cf548fba46d6"
+    },
+    {
+      "bytes": 2952,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_response.py",
+      "sha256": "90f70d44f7808570bd5277877e939bae193653d6ab1bb7e1c010322ca7c842e4"
+    },
+    {
+      "bytes": 5816,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_statistics.py",
+      "sha256": "172ac089402a6b2705b31268152e41491a9ca4652845c0e9ee966a1dbdc0f97d"
+    },
+    {
+      "bytes": 5149,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/tests/test_thermodynamics.py",
+      "sha256": "ccec7326e8ec3255c57052bd6c786d9a8d5097573033b987f84076c27c13762c"
+    },
+    {
+      "bytes": 1154,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/test_fetch.py",
+      "sha256": "b106698a112f435a34775e5837b38ae332d50ac5186dcff11da7f1033e1b7c27"
+    },
+    {
+      "bytes": 4154,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/test_peer_review.py",
+      "sha256": "a4e3ce34991f578a5b57803fa43b0d58e839e4adc94c75d019deab5d85973956"
+    },
+    {
+      "bytes": 3971,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/gw/test_response.py",
+      "sha256": "5a5b11805188dd5a47975ba101551e8b614711fadb58f856902f9e6a9ff63a74"
+    },
+    {
+      "bytes": 4815,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/test_p0_register.py",
+      "sha256": "1bf01db4c161c9014a8081ec0576f03e966c0cca9b75066aedfc513190017935"
+    },
+    {
+      "bytes": 7323,
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/pr160_reference/validate_package.py",
+      "sha256": "8a0753c5268da15518f5cc5b61aad7ad3ce722003728c00a6de87aecf4c08252"
+    }
+  ]
+}

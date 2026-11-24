@@ -27,3 +27,11 @@
 curl -fL --retry 2 'https://arxiv.org/src/1803.01038v2/anc/standardmodel2018.dat' -o /tmp/standardmodel2018.dat
 python compute.py /tmp/standardmodel2018.dat --verify
 ```
+
+## Прямое получение данных
+
+Из этой директории команда загружает и проверяет закреплённые файлы авторов. Повтор с флагом `--offline` проверяет те же байты без сети. [Источники и физический смысл проверок](../donors/README.md).
+
+```sh
+python compute.py --cache /tmp/r135-donors --verify
+```

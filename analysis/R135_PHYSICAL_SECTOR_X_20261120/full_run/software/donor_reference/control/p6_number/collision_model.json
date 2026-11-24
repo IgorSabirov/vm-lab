@@ -1,0 +1,68 @@
+{
+  "controls": [],
+  "definition": {
+    "source": "explicit isolated diagnostic transfer",
+    "thermal_channels": [],
+    "thermalization": {
+      "source": "diagnostic reservoir",
+      "status": "EXPLICIT_DIAGNOSTIC_THERMAL_LIMIT"
+    }
+  },
+  "donor_controls": {
+    "number_changing": {
+      "B": 1.0,
+      "B_probability_measure": null,
+      "N": 3,
+      "T_X_range_MeV": [
+        1.0,
+        180.0
+      ],
+      "coefficient_MeV_minus5": 2.722087390314386e-15,
+      "donor_sha256": "a946f7c910ecb03ffc2622cd15cabc070478036a23bf7df5586d9d98c5b57303",
+      "energy_source_convention": "3<->2 conserves total isolated species energy; solve number and energy together",
+      "kinetic_equilibrium": {
+        "minimum_rate_over_H": 100.0,
+        "minimum_rate_over_chemical_rate": 100.0,
+        "rate_kind": "momentum_relaxation",
+        "required_ratio": 10.0,
+        "source": "assumed diagnostic hierarchy; independent measurement remains open"
+      },
+      "limitations": [
+        "single scalar MB gas in kinetic equilibrium",
+        "NDA is not a calibrated energy-dependent multi-species collision kernel"
+      ],
+      "low_momentum_applicability": {
+        "T_X_range_MeV": [
+          1.0,
+          180.0
+        ],
+        "maximum_T_X_over_m0": 0.2,
+        "source": "explicitly assigned diagnostic low-momentum range"
+      },
+      "m0_MeV": 1000.0,
+      "mass_source": {
+        "origin": "external_model",
+        "sigma": 0.0,
+        "source": "Forestell-Morrissey-Sigurdson figure 3, XB-FMS-top-left",
+        "uncertainty_interpretation": "fixed published model parameter, not a measurement",
+        "unit": "MeV",
+        "value": 1000.0
+      },
+      "number_source_convention": "dn/dt + 3Hn = - coefficient_MeV_minus5 / hbar_MeV_s * n^2 * (n - n_eq)",
+      "prepared_input": {
+        "artifact": "donor_inputs.json",
+        "schema": "R135-donor-stage-inputs-v1",
+        "sha256": "15b2560a3e96231dd7c78c3e1376fc4d467479968c42469dd527d62e0f6ae243",
+        "source_lock_sha256": "ee7f84d63614aa7a66848c444ebc88fa21ce39828274498cb1d09a7bad91e3c0"
+      },
+      "production_precision_validated": false,
+      "schema": "R135-FMS-NDA-3to2-v1",
+      "source": "diagnostic FMS sensitivity preparation",
+      "status": "NDA_SENSITIVITY"
+    }
+  },
+  "independent_matching_status": "REQUIRES_VALIDATION_OF_SUPPLIED_EVIDENCE",
+  "quadratures": [],
+  "schema": "R135-collision-model-v1",
+  "supplied_matching_refs": []
+}

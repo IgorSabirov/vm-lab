@@ -1,0 +1,51 @@
+{
+  "limitations": [
+    "finite-box/grid geometry controls do not establish a physical X pocket spectrum",
+    "local spherical thermal closure is not global P7 feedback or general hydrodynamics"
+  ],
+  "physical_R135_run": false,
+  "pockets": {
+    "cooling": {
+      "max_compactness": 2.0264333414528592e-12,
+      "max_relative_energy_balance": 6.110807567305426e-11,
+      "radius_final_cm": 16345238485.147503,
+      "termination": "REQUESTED_TIME"
+    },
+    "cutoff": {
+      "max_compactness": 1.7736569370780686e-12,
+      "max_relative_energy_balance": 7.798827633287281e-10,
+      "radius_final_cm": 2997924.579332137,
+      "termination": "SMALL_RADIUS_REQUIRES_NEW_PHYSICS"
+    },
+    "no_cooling": {
+      "max_compactness": 2.194399165870245e-12,
+      "max_relative_energy_balance": 6.351166366833634e-11,
+      "radius_final_cm": 19495376011.886375,
+      "termination": "REQUESTED_TIME"
+    }
+  },
+  "poisson": {
+    "24": {
+      "mean": 0.3722873263888889,
+      "standard_error": 0.016025605350686353
+    },
+    "48": {
+      "mean": 0.37239696361400465,
+      "standard_error": 0.016103616548339982
+    }
+  },
+  "poisson_expected_old_fraction": 0.350919807178411,
+  "projection": {
+    "mean_radius_cm": 2.2435995355035856,
+    "number_density_cm3": 0.003574915317403107,
+    "old_fraction": 0.2900000001623388,
+    "volume_shape_factor_required": 1.1495189746110108
+  },
+  "same_seed_max_grid_fraction_shift": 0.0033817997685184897,
+  "scope": "ANALYTIC_AND_STOCHASTIC_DEVELOPMENT_CONTROLS",
+  "source_sha256": {
+    "pockets_reference/validate.py": "33e50310aa058af4838ba61e345526618acf0dcb91f63e1e024ea5ce17e6d0f4",
+    "r135/pockets.py": "7ced5b6a7df4bb8e0d54dc33fd5d54780b123ee64834a41504cf3f0346d85fa4",
+    "tests/test_pockets.py": "08fa6f37c31d29616a8a78d50dfa846dd160666e2ae4bcdf22cf5b26984e41d5"
+  }
+}

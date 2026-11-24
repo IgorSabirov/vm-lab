@@ -1,0 +1,54 @@
+{
+  "schema": "R135-smoke-resource-reservation-v1",
+  "scope": "fixed diagnostic P0/P3/P7/P8/P9 software smoke",
+  "reference": "smoke_reference/RESOURCES.json",
+  "physical_run": false,
+  "full_R135_runtime_calibrated": false,
+  "observed": {
+    "wall_seconds": 64.52836551699875,
+    "peak_group_RSS_bytes": 660819968,
+    "peak_group_PSS_bytes": 654878720,
+    "complete_output_bytes": 276411137,
+    "complete_output_files": 290
+  },
+  "recommended_with_ready_environment": {
+    "indicative_time_seconds": [
+      60,
+      180
+    ],
+    "RAM_bytes": 2147483648,
+    "additional_free_disk_bytes": 1073741824,
+    "time_is_automatic_stop": false
+  },
+  "basis": {
+    "time": "Engineering allowance from one complete 64.53-second measurement, with headroom for startup/cache/load. It is not a statistical interval or a measured remote-runner forecast.",
+    "memory": "2 GiB reservation exceeds 3 times the observed simultaneous group RSS; sampled transients and interpreter/library differences require headroom.",
+    "disk": "1 GiB extra is over 3 times the 276 MB newly generated files; preinstalled data, dependencies, repository and archives are separate.",
+    "measured_memory_basis_bytes": 660819968
+  },
+  "environment_comparison": {
+    "latest_GitHub_run": 44719756079,
+    "shared_numerical_versions": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "jax": "0.4.38",
+      "jaxlib": "0.4.38",
+      "diffrax": "0.7.1"
+    },
+    "shared_thread_settings": {
+      "OMP_NUM_THREADS": 2,
+      "OPENBLAS_NUM_THREADS": 1
+    },
+    "measured_host": "INTEL(R) XEON(R) PLATINUM 8573C, current execution environment",
+    "measured_python": "3.12.14",
+    "latest_GitHub_python": "3.12.16",
+    "GitHub_CPU_RAM_quota": "not recorded in historical environment",
+    "transfer_status": "PRELIMINARY_RESOURCE_ALLOWANCE_ONLY; no target-runner timing measurement"
+  },
+  "excluded": [
+    "installation/download/build of dependencies and Planck data",
+    "production SU3 geometry or equilibrium mixing pilot",
+    "physical R135 histories",
+    "nuisance profile or CMB precision campaign"
+  ]
+}
