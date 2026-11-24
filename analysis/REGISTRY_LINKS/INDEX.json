@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "18e6df81b16dce9fa5c66ef90276b88c62676d33797ab26856a78e4685ec4434",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "967fb60f9e0be83fbe9d5ca276b6b9cb91950d34f481399ea47365a32078afa8",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "38192100890bbf404e64b607b11e3d2fd97264b42b627418a75e9563aa3b959b",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "ea4daa430d8992e3f2325c4f216c9da5814d63fd888fb7d51374ac6b3c32dc78",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -115,7 +115,7 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 145,
+    "result": 146,
     "construct": 42,
     "link": 10,
     "question": 12,
@@ -125,7 +125,7 @@
     "component": 45,
     "external": 18,
     "decision": 4,
-    "source": 294
+    "source": 298
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3287,6 +3287,15 @@
       "status": "OPEN · точные математические и конечные динамические результаты в указанных областях",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
       "fragment": "r148"
+    },
+    {
+      "key": "result:R149",
+      "id": "R149",
+      "kind": "result",
+      "title": "Атлас дефектов. Различающие наблюдаемые в словах, историях и спектрах",
+      "status": "РАБОЧИЙ ПРОТОТИП v0.3 · точные конечные результаты и проверенные частные случаи · G7 и U010 открыты",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r149"
     },
     {
       "key": "review:ADD_BBN_SYMMETRY_20261115",
@@ -6863,6 +6872,54 @@
       "sha256": "9572bc7e6b485172616ce043571ab4d1939ad70ca5e37b367ea18edea302c3b1",
       "git_blob_sha": "b0712dc03f36c55b111d1fd94f457cf95dceae9e",
       "size_bytes": 13770
+    },
+    {
+      "key": "source:analysis/R149_DEFECT_ATLAS/CHECKS.json",
+      "id": "analysis/R149_DEFECT_ATLAS/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R149_DEFECT_ATLAS/CHECKS.json",
+      "status": null,
+      "path": "analysis/R149_DEFECT_ATLAS/CHECKS.json",
+      "fragment": "",
+      "sha256": "8ab151322894109c0fa084a90b9963a38af615597b0b93094035dbffe8d239f1",
+      "git_blob_sha": "8069d861f61451c43b4405a049dd2f125be98561",
+      "size_bytes": 57248
+    },
+    {
+      "key": "source:analysis/R149_DEFECT_ATLAS/R149.html",
+      "id": "analysis/R149_DEFECT_ATLAS/R149.html",
+      "kind": "source",
+      "title": "analysis/R149_DEFECT_ATLAS/R149.html",
+      "status": null,
+      "path": "analysis/R149_DEFECT_ATLAS/R149.html",
+      "fragment": "",
+      "sha256": "61e4471ea2198b5d9587587bc77a0daed80e1e343f814d1788f64091f057ddbb",
+      "git_blob_sha": "14bcf70556d004ed2c67e10c80a8a3926f93b7b4",
+      "size_bytes": 1920318
+    },
+    {
+      "key": "source:analysis/R149_DEFECT_ATLAS/REPORT.md",
+      "id": "analysis/R149_DEFECT_ATLAS/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R149_DEFECT_ATLAS/REPORT.md",
+      "status": null,
+      "path": "analysis/R149_DEFECT_ATLAS/REPORT.md",
+      "fragment": "",
+      "sha256": "317c8e8f9cb5aa6517593c8353be9a5c7fffecb5179241606c9c2daca0cd7780",
+      "git_blob_sha": "af45e56a5733fa013527db39bae3abd692870516",
+      "size_bytes": 15086
+    },
+    {
+      "key": "source:analysis/R149_DEFECT_ATLAS/verify.py",
+      "id": "analysis/R149_DEFECT_ATLAS/verify.py",
+      "kind": "source",
+      "title": "analysis/R149_DEFECT_ATLAS/verify.py",
+      "status": null,
+      "path": "analysis/R149_DEFECT_ATLAS/verify.py",
+      "fragment": "",
+      "sha256": "8d068fc799fd5d1ebb8364aa55724bbd03c449177b0439601ca0ee3d0e4b4692",
+      "git_blob_sha": "2f78fcf4e2eaccfac34e209182e1115bbc0714ad",
+      "size_bytes": 8584
     },
     {
       "key": "source:infra/external/README.md",
@@ -11728,6 +11785,11 @@
       "relation": "parent"
     },
     {
+      "source": "result:R128",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
       "source": "result:R129",
       "target": "construct:C022",
       "relation": "addresses"
@@ -12021,6 +12083,11 @@
     {
       "source": "result:R130",
       "target": "result:R148",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R130",
+      "target": "result:R149",
       "relation": "parent"
     },
     {
@@ -12346,6 +12413,11 @@
     },
     {
       "source": "result:R132",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R132",
       "target": "source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -12487,6 +12559,11 @@
     {
       "source": "result:R133",
       "target": "result:R140",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R133",
+      "target": "result:R149",
       "relation": "parent"
     },
     {
@@ -12749,6 +12826,11 @@
     },
     {
       "source": "result:R140",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R140",
       "target": "source:analysis/R140_HAAR_SORKIN/CHECKS.json",
       "relation": "managed_evidence_source"
     },
@@ -12949,6 +13031,11 @@
     },
     {
       "source": "result:R141",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R141",
       "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
       "relation": "managed_evidence_source"
     },
@@ -13105,6 +13192,11 @@
     {
       "source": "result:R142",
       "target": "result:R148",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R142",
+      "target": "result:R149",
       "relation": "parent"
     },
     {
@@ -13804,6 +13896,11 @@
     },
     {
       "source": "result:R144",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R144",
       "target": "source:analysis/R141_R147_MODEL/README.md",
       "relation": "managed_evidence_source"
     },
@@ -14009,6 +14106,11 @@
     },
     {
       "source": "result:R147",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R147",
       "target": "source:analysis/R141_R147_MODEL/README.md",
       "relation": "managed_evidence_source"
     },
@@ -14094,6 +14196,11 @@
     },
     {
       "source": "result:R148",
+      "target": "result:R149",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R148",
       "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
       "relation": "managed_evidence_source"
     },
@@ -14175,6 +14282,41 @@
     {
       "source": "result:R148",
       "target": "source:analysis/R141_R148_MODEL/ym_graph/step5/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "construct:C003",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R149",
+      "target": "construct:C012",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R149",
+      "target": "question:U010",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149_DEFECT_ATLAS/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149_DEFECT_ATLAS/R149.html",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149_DEFECT_ATLAS/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149_DEFECT_ATLAS/verify.py",
       "relation": "managed_evidence_source"
     },
     {
