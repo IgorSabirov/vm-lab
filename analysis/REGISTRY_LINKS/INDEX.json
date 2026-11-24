@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "6db387358fc9d08145ebf68956cc58f38c25829a08d30f46c751fa4a12be0a61",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "216bd58e559f6a4cc7fe8d73352c113d797ab1bf32cf1fe840a936d052abeb11",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "967fb60f9e0be83fbe9d5ca276b6b9cb91950d34f481399ea47365a32078afa8",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
@@ -25,7 +25,8 @@
     "infra/external/contracts/FORTEPIANO_QKE.json": "1bb06d69388cecb65cc70dacb13400d360413831537bac8a7e3373bbdc2f1dd4",
     "decisions/D001.json": "73304f4e5f7144a5f64754e005624436370215b920c5d325791ccf17833541b8",
     "decisions/D002.json": "08afabe7d63c2dd1f296f243722111844fb31784d2ef575a681f63c3be0d504d",
-    "decisions/D003.json": "8c475357673ec79bb21474000d154f8a44f83223732b404a288a0336458ceb2c"
+    "decisions/D003.json": "8c475357673ec79bb21474000d154f8a44f83223732b404a288a0336458ceb2c",
+    "decisions/D004.json": "6d8c3fae86ba4644337c9fd42dd1be79b92e163a2a2154253d2933cbd34f054c"
   },
   "managed_review_sources": {
     "analysis/CCC_TL_REVIEW_20261112/REPORT.md": "01fabff1d23853fe5b1f4df9b666405d8a468d8eb6d3e564a49a2599f741dd9d",
@@ -123,7 +124,7 @@
     "review": 16,
     "component": 45,
     "external": 18,
-    "decision": 3,
+    "decision": 4,
     "source": 294
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
@@ -936,6 +937,15 @@
       "title": "Разделить причинную интеграцию и теорию дрейфа безразмерных параметров S2",
       "status": "RATIFIED",
       "path": "decisions/D003.md",
+      "fragment": ""
+    },
+    {
+      "key": "decision:D004",
+      "id": "D004",
+      "kind": "decision",
+      "title": "Проверять различимость второй звуковой моды на двух спектрах БКТ общей моделью отклика",
+      "status": "RATIFIED",
+      "path": "decisions/D004.md",
       "fragment": ""
     },
     {
@@ -5362,9 +5372,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/ATLAS.json",
       "fragment": "",
-      "sha256": "bcaacf7ec8d61a36c281c5c27082ed91fe70425c4554efb687c6bb67b0c89386",
-      "git_blob_sha": "98dfba7ab5acf7cafd5cc81b2b88f308ed2044ac",
-      "size_bytes": 280568
+      "sha256": "caf61e6e16a164ae674412ffc7c9532dcf1a5686d9a0dc856126acaa4a58dd9e",
+      "git_blob_sha": "d88b4b61770f4a81f63540196d89303edef6093b",
+      "size_bytes": 280764
     },
     {
       "key": "source:analysis/R141_R148_MODEL/PAIRS.md",
@@ -5386,9 +5396,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/R141-R148.html",
       "fragment": "",
-      "sha256": "67ed55940e618b1cc1bcaab6e011cd2476d12c361357ade52b56940e712e9541",
-      "git_blob_sha": "71d9b090314ec412cebddc6aa8ec906bb6aa94d1",
-      "size_bytes": 19833052
+      "sha256": "930359229e6a45007078b1eede16c9125c26c40f281f5cd4ab60df38517f3163",
+      "git_blob_sha": "1ff077c9f200b93aed91e364fdf78e30212af86e",
+      "size_bytes": 20084406
     },
     {
       "key": "source:analysis/R141_R148_MODEL/code/audit_extensions.py",
@@ -7935,6 +7945,16 @@
     {
       "source": "decision:D003",
       "target": "result:R129",
+      "relation": "decision_scope_not_scientific_evidence"
+    },
+    {
+      "source": "decision:D004",
+      "target": "result:R143",
+      "relation": "decision_constrains"
+    },
+    {
+      "source": "decision:D004",
+      "target": "result:R143",
       "relation": "decision_scope_not_scientific_evidence"
     },
     {
