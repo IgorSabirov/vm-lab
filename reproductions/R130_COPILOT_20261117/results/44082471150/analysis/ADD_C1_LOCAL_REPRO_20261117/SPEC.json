@@ -1,0 +1,62 @@
+{
+  "schema": "add-c1-operator-spec-v1",
+  "base_commit": "4fd844c3141a98551f818790fe3235fdff7498e4",
+  "source": "https://arxiv.org/html/2306.07121v2",
+  "source_locator": [
+    "Definition 4",
+    "Step I / Fig.2(b)",
+    "Appendix A Definition 9"
+  ],
+  "author_sources": [
+    {
+      "date": "2026-11-12",
+      "rule": "xprime=u.r join x.l; yprime=x.r join y.l"
+    },
+    {
+      "date": "2026-11-16",
+      "rule": "a(xprime)=a(x) when xprime.r=x.l; b(xprime)=b(u) when xprime.l=u.r"
+    }
+  ],
+  "author_record": "analysis/ADD_PABLO_CORRESPONDENCE_20261116/REPORT.md",
+  "name_algebra": [
+    "left(join(x,y))=x",
+    "right(join(x,y))=y",
+    "join(left(u),right(u))=u"
+  ],
+  "bit_encoding": "s=a+2*b",
+  "input_edges": "u_i:b -> u_(i+1):a",
+  "T": "swap a,b bits; names and edges unchanged",
+  "tau": "same names and edges; a_i <- a_(i+1), b_i <- b_(i-1)",
+  "P_raw": {
+    "vertices": "R(u_i) join L(u_(i+1))",
+    "edges": "for all u,x,y in old V: (R(u) join L(x)):b -> (R(y) join L(u)):a; no printed adjacency guards",
+    "bits": "printed LHS a_i(x),b_i(x) uses unbound x rather than quantified xprime",
+    "evaluation": "evaluate structural formula in both engines; do not invent bit assignment or inverse for an incomplete specification"
+  },
+  "P_ring": {
+    "role": "explicit historical ring completion for executable control, not a silently repaired P_raw",
+    "completions": [
+      "restrict triples to consecutive y,u,x on the old directed ring",
+      "replace unbound bit destination x by xprime"
+    ],
+    "vertices": "w_i=R(u_i) join L(u_(i+1))",
+    "edges": "w_i:b -> w_(i-1):a",
+    "bits": "a(w_i)=a(u_i); b(w_i)=b(u_(i+1))",
+    "inverse": "for edge u:b -> v:a: z=R(v) join L(u), a(z)=a(u), b(z)=b(v); reverse midpoint incidence"
+  },
+  "A": {
+    "role": "ring normalization of both author clarifications",
+    "vertices": "w_i=R(u_i) join L(u_(i+1))",
+    "edges": "w_i:b -> w_(i+1):a",
+    "bits": "a(w_i)=a(u_(i+1)); b(w_i)=b(u_i)",
+    "inverse": "same midpoint names and incidence as Q_A; a from u_i,b from u_(i+1)"
+  },
+  "I": {
+    "split": "(u,3) -> (L(u),1),(R(u),2) with old a attached left, old b attached right",
+    "merge": "adjacent (u,1),(v,2) -> (join(u,v),3); remove their internal edge",
+    "application": "simultaneous disjoint input redexes"
+  },
+  "G1_A1_method": "Finite name terms decompose into atomic binary-prefix cylinders. Pairwise prefix overlap (including inside one name) is exactly a shared descendant; reject it. Ordered-ring engine uses pairwise comparison; explicit graph engine uses tries.",
+  "scope": "main initial simple cycles L3..6; small 1/2 vertex port cycles explicitly separated and allowed as outputs; reachable finite canonical terms; no arbitrary graph/topology or theorem attestation",
+  "independence": "ring engine: tuple terms, index scan, cyclic sequence; graph engine: string terms, incidence maps, simultaneous boundary rewrites; neither imports the other; direct tau oracle imports neither transition rule"
+}
