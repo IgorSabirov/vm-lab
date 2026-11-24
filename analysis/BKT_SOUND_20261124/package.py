@@ -11,7 +11,9 @@ FILES=['REPORT.md','model.py','lm.cpp','power.py','replay.py','verify.py','figur
        'results/THERMO_INPUTS.csv','results/spectra.png','tests/test_eos.py',
        'eos/DESIGN.md','eos/REPORT.md','eos/theta.csv','eos/inversion.py','eos/joint.py',
        'eos/run.py','eos/resolution.py','eos/theta_sensitivity.py','eos/figure.py',
-       'eos/results.json','eos/summary.csv','eos/resolution.json','eos/theta_sensitivity.json','eos/density.png']
+       'eos/results.json','eos/summary.csv','eos/resolution.json','eos/theta_sensitivity.json','eos/density.png',
+       'paired/REPORT.md','paired/pair.py','paired/results.json','paired/publisher.py',
+       'paired/publisher.json','tests/test_pair.py']
 if __name__=='__main__':
     with ZipFile(ROOT/'bkt-sound.zip','w') as z:
         for file in sorted(FILES):
