@@ -54,24 +54,40 @@ def main():
                 present.add((key, row["address"]))
     expected = {(r["id"], a) for r in records for a in r["addresses"]}
     assert present == expected
-    roots = load(HERE / "snapshot.json")["branches"]
+    snapshot = load(HERE / "snapshot.json")
+    revisions = set(snapshot["branches"].values()) | set(load(HERE / "evidence_revisions.json").values())
+    methods = set()
     for r in records:
         assert r["addresses"] and set(r["addresses"]) <= addresses
         assert all(r[k] for k in ("system", "role", "observation", "implementation", "data", "limit", "claim_scope"))
         assert r["status"] in {"P", "S", "D", "T", "A"} and r["evidence"]
-        for u in r["evidence"]:
+        if "boundary_case" in r:
+            boundary = by_id[r["boundary_case"]]
+            assert boundary["status"] == "A" and boundary["group"] == r["group"]
+        for method in r.get("methods", []):
+            assert method["source"] in r["addresses"] and method["target"] in addresses
+            methods.add((r["id"], method["source"], method["target"], method["evidence"]))
+        for u in r["evidence"] + [m["evidence"] for m in r.get("methods", [])]:
             m = re.fullmatch(r"https://github.com/IgorSabirov/vm-lab/blob/([0-9a-f]{40})/(.+)#L([1-9][0-9]*)",u)
-            assert m and m[1] in roots.values(), u
+            assert m and m[1] in revisions, u
             if args.sources:
                 s = subprocess.check_output(["git", "show", m[1]+":"+unquote(m[2])], cwd=ROOT)
                 assert len(s.splitlines()) >= int(m[3]), u
     graph = ET.parse(HERE / "network.graphml")
     nodes = {n.attrib["id"]: n.find("g:data[@key='label']", NS).text for n in graph.findall(".//g:node", NS)}
     actual = []
+    graph_methods = []
     for edge in graph.findall(".//g:edge", NS):
         key = edge.find("g:data[@key='case']", NS).text
+        relation = edge.find("g:data[@key='relation']", NS).text
+        if relation == "M":
+            evidence = edge.find("g:data[@key='evidence']", NS).text
+            graph_methods.append((key, nodes[edge.attrib["source"]], nodes[edge.attrib["target"]], evidence))
+            continue
+        assert relation == by_id[key]["status"]
         assert nodes[edge.attrib["source"]] == next(g["title"] for g in groups if g["id"] == by_id[key]["group"])
         actual.append((key, nodes[edge.attrib["target"]]))
+    assert set(graph_methods) == methods and len(graph_methods) == len(methods)
     assert len(actual) == len(set(actual))
     assert set(actual) == {(k,a) for k,a in expected if by_id[k]["status"] != "A"}
     leads = {(row["address"], group) for row in matrix for group in ids if row[group] == "?"}
@@ -93,7 +109,7 @@ def main():
     assert math.isclose(lam, v["Lambda_m_inv2"], rel_tol=1e-14)
     assert math.isclose(lam*lp2, v["Lambda_lp2"], rel_tol=1e-14)
     assert math.isclose(lam*lp2/(8*math.pi), v["rhoLambda_over_rhoPlanck"], rel_tol=1e-14)
-    print(f"{len(raw)} claims, {len(ids)} groups, {len(addresses)} addresses, {len(records)} cases, {len(actual)} graph edges")
+    print(f"{len(raw)} claims, {len(ids)} groups, {len(addresses)} addresses, {len(records)} cases, {len(actual)} domain edges, {len(methods)} method edges")
     print(dict(Counter(r["status"] for r in records)))
 if __name__ == "__main__":
     main()

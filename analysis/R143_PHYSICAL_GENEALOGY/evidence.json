@@ -1335,5 +1335,55 @@
     ],
     "claim_scope": "nuclear.1",
     "r142_target_at_address": "планируемая операция"
+  },
+  {
+    "id": "E55",
+    "group": "bkt",
+    "status": "D",
+    "addresses": [
+      "R143",
+      "BKT_SOUND",
+      "file:analysis/BKT_SOUND_20261124/REPORT.md",
+      "file:analysis/BKT_SOUND_20261124/eos/REPORT.md",
+      "file:analysis/BKT_SOUND_20261124/paired/REPORT.md",
+      "file:analysis/BKT_SOUND_20261124/results/THERMO_INPUTS.csv"
+    ],
+    "system": "Двумерный однородный газ ³⁹K в конечной коробке",
+    "role": "донор наблюдений",
+    "observation": "Два спектра отклика, девять температурных условий, шесть пар скоростей для оценки сверхтекучей плотности.",
+    "implementation": "Спектральный анализ, инверсия EOS и парный бюджет ошибок при конечных размере и частоте.",
+    "data": "Открытый набор Cambridge и издательские Source Data. Диссертации описывают термометрию.",
+    "limit": "Парная независимая термометрия и контролируемый статический предел для универсального скачка открыты.",
+    "evidence": [
+      "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/REPORT.md#L13",
+      "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/eos/REPORT.md#L3",
+      "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/paired/REPORT.md#L3",
+      "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/results/THERMO_INPUTS.csv#L2"
+    ],
+    "claim_scope": "BKT.1",
+    "r142_target_at_address": "измерены динамические наблюдаемые, статический предел открыт",
+    "methods": [
+      {
+        "source": "BKT_SOUND",
+        "target": "R135",
+        "evidence": "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/preregistration/ANCESTOR_CONTRACTS.json#L5"
+      },
+      {
+        "source": "BKT_SOUND",
+        "target": "E002e",
+        "evidence": "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/BKT_SOUND_20261124/preregistration/ANCESTOR_CONTRACTS.json#L6"
+      },
+      {
+        "source": "BKT_SOUND",
+        "target": "R136",
+        "evidence": "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/R143_PHYSICAL_GENEALOGY/phase_jump/README.md#L12"
+      },
+      {
+        "source": "BKT_SOUND",
+        "target": "U013",
+        "evidence": "https://github.com/IgorSabirov/vm-lab/blob/48d933bd8ea68baaad7d1556c7a2a04573335947/analysis/R143_PHYSICAL_GENEALOGY/phase_jump/README.md#L12"
+      }
+    ],
+    "boundary_case": "E38"
   }
 ]

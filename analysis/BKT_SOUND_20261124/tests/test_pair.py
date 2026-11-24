@@ -6,6 +6,7 @@ import unittest
 
 PAIR=Path(__file__).resolve().parents[1]/'paired'
 sys.path.insert(0,str(PAIR))
+from six_rows import compare
 from pair import audit, measured_blocks
 
 class PairedThermometry(unittest.TestCase):
@@ -17,6 +18,13 @@ class PairedThermometry(unittest.TestCase):
         self.assertAlmostEqual(data['crossing_density_ratio']*data['common_g_t_ratio'],1)
         self.assertGreater(data['examples_TB_over_TA']['1.0'],1)
         self.assertLess(data['examples_TB_over_TA']['0.98'],1)
+
+    def test_six_resolved_rows_and_covariance_bounds(self):
+        data = compare()
+        self.assertEqual(data, json.loads((PAIR/'six_rows.json').read_text()))
+        self.assertEqual(len(data['rows']), 6)
+        self.assertLess(data['mode_ratio_min_z_linear'], 1.96)
+        self.assertGreater(data['mode_ratio_min_z_first_last_linear'], 1.96)
 
     def test_block_covariance_and_common_scales(self):
         header='block_id,T_A_nK,n_A_per_um2,T_B_nK,n_B_per_um2\n'
