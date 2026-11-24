@@ -1,3 +1,5 @@
+> **21 ноября 2026 · [R136](#r136).** Открыта независимая проверка температурной шкалы Shirogane. [Паспорт опыта и результаты](../R136_SHIROGANE_CALIBRATION/REPORT.md).
+
 > **20 ноября 2026 · R133.** [Петлевая геометрия, Конн и ADD](#r133). В реестре 133 записи. [Постановка, поправки и эталоны](../R133_LOOP_CONNES_20261120/REPORT.md)
 
 > **19 ноября 2026 · R132.** [Алгебра меток и проверка энтропии кольца](#r132). В реестре 132 результата. [Доказательство и расчёт](../R132_ADD_YM_CCM_20261119/REPORT.md)
@@ -4241,3 +4243,25 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R135 -->
+
+<!-- generated:R136 -->
+<a id="r136"></a>
+
+### R136. Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных
+
+**Статус:** ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ
+
+**Результат.** Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. Расширенный аудит: знаки остатков устойчивы к степени/окну полинома и способу интерполяции; Δbeta-origin≈6.23×10^-4. Flow-time drift Figure 3 отрицателен на обеих решётках; различие дрейфов 0.54σ. Значимость общего сдвига зависит от неизвестной ковариации. D=0.000622844634102 по неокруглённой реконструкции. Архивная разность двух округлённых якорей 0.000622900 сохраняется для повтора. На рис. 15 раздельный сдвиг восьми локальных координат на ±½ единицы EPS дал максимальное |δD|=3.46×10⁻⁶. При локальных якобианах диагональный порог z=1.96 достигается при ρ=0.787 для ρ_β=0 и при ρ=0.540 для ρ_β=1. Отдельный открытый вопрос #201 в генеалогии R136/U013: объёмная зависимость разности метода производных и SFtX. При t→0 I=+0.47968±0.24411, средний остаток +0.07788±0.12206 в диагональном сценарии.
+
+**Условия.** Исходные EPS Shirogane 2016 и 2021 годов, табличные βc и локальная β-функция, фазовые ряды на 48³ и 64³.
+
+**Граница.** Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. В exploratory Phase 1 Polynomial(poly.coef) терял domain/window; исправлено в Phase 2, канонический verify.py не затронут. Чувствительности к rho — сценарии, не измеренная ковариация. Полный чистый VM replay расширенных блоков не подтверждён. Совместная ковариация фаз, J₃ и βc, фактическая сетка β рис. 15 и неопределённость калибровки остаются открытыми.
+
+**Место в рамке.** Independent calibration-consistency check for the Shirogane phase-resolved SU(3) EOS used by #167. R135 is contextual ancestry only; R136 does not supply a physical XB input or close #168/#174. D₁₃₆ определён на двух ансамблевых оценках при Nₜ=8. Общий сдвиг F→F+c сокращается точно, общий сдвиг горизонтальных координат имеет линейный коэффициент −0.0008770.
+
+**Родители:** R135. **Конструкции:** . **Вопросы:** U013.
+
+**Источники:** [REPORT.md](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md); [verify.py](../../analysis/R136_SHIROGANE_CALIBRATION/verify.py); [CHECKS.json](../../analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json); [extract.py](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py); [FIGURES.json](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json); [EXTENDED_CHECKS.json](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json); [R136_1_INVARIANT_D_AUDIT_20261122.md](../../analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md); [audit_invariant_D.py](../../analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py); [audit_statistical_budget.py](../../analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py); [STATISTICAL_BUDGET.json](../../analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json); [CORRELATION_MAP.svg](../../analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg); [test_gls_contrast_units.py](../../analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py); [METHOD_VOLUME.md](../../analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md); [audit_method_volume.py](../../analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py); [METHOD_VOLUME.json](../../analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json); [ESTIMATOR_DOMAIN.md](../../analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md); [R136_1_audit.md](../../analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R136 -->
