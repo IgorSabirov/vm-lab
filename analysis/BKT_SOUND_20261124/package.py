@@ -19,7 +19,8 @@ FILES=['REPORT.md','model.py','lm.cpp','power.py','replay.py','verify.py','figur
        'eos/scale_audit.py','eos/scale_audit.json','eos/geometry.csv','eos/read_diffusivity.py',
        'eos/figure_5_10.json','eos/figure_4_9.json','tests/test_scale_audit.py',
        'eos/DYNAMIC_BRIDGE.md','eos/dynamic_bridge.py','eos/dynamic_bridge.json',
-       'tests/test_dynamic_bridge.py']
+       'tests/test_dynamic_bridge.py','paired/REPEAT_BOXES.md','paired/repeat_boxes.py',
+       'paired/repeat_boxes_figures.json','paired/repeat_boxes.json','tests/test_repeat_boxes.py']
 if __name__=='__main__':
     with ZipFile(ROOT/'bkt-sound.zip','w') as z:
         for file in sorted(FILES):
