@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "38192100890bbf404e64b607b11e3d2fd97264b42b627418a75e9563aa3b959b",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "f5a270434ad81cf758845203b4cef799df2ea0b14dbd351679fdbcc576b752c6",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "ea4daa430d8992e3f2325c4f216c9da5814d63fd888fb7d51374ac6b3c32dc78",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
@@ -125,7 +125,7 @@
     "component": 45,
     "external": 18,
     "decision": 4,
-    "source": 298
+    "source": 300
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3293,7 +3293,7 @@
       "id": "R149",
       "kind": "result",
       "title": "Атлас дефектов. Различающие наблюдаемые в словах, историях и спектрах",
-      "status": "РАБОЧИЙ ПРОТОТИП v0.3 · точные конечные результаты и проверенные частные случаи · G7 и U010 открыты",
+      "status": "РАБОЧИЙ ПРОТОТИП v0.5 · точные конечные результаты и проверенные частные случаи · G7 и U010 открыты",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
       "fragment": "r149"
     },
@@ -6874,6 +6874,30 @@
       "size_bytes": 13770
     },
     {
+      "key": "source:analysis/R149/seam/README.md",
+      "id": "analysis/R149/seam/README.md",
+      "kind": "source",
+      "title": "analysis/R149/seam/README.md",
+      "status": null,
+      "path": "analysis/R149/seam/README.md",
+      "fragment": "",
+      "sha256": "0311bb37c1a7cd69807e8c27b88e2a7434deeb42121cee3918ae2707431d646d",
+      "git_blob_sha": "373861397a85b1fbc1a4c7a7629e037c967f38ff",
+      "size_bytes": 7416
+    },
+    {
+      "key": "source:analysis/R149/seam/replay.py",
+      "id": "analysis/R149/seam/replay.py",
+      "kind": "source",
+      "title": "analysis/R149/seam/replay.py",
+      "status": null,
+      "path": "analysis/R149/seam/replay.py",
+      "fragment": "",
+      "sha256": "2b189d11db6dd2cc8641d3f96aec590958c172231c362b982f5efcfbcadfbcd1",
+      "git_blob_sha": "5971d639cf7c55c1920ca96cee83697fdbd1a08a",
+      "size_bytes": 5588
+    },
+    {
       "key": "source:analysis/R149_DEFECT_ATLAS/CHECKS.json",
       "id": "analysis/R149_DEFECT_ATLAS/CHECKS.json",
       "kind": "source",
@@ -6893,9 +6917,9 @@
       "status": null,
       "path": "analysis/R149_DEFECT_ATLAS/R149.html",
       "fragment": "",
-      "sha256": "61e4471ea2198b5d9587587bc77a0daed80e1e343f814d1788f64091f057ddbb",
-      "git_blob_sha": "14bcf70556d004ed2c67e10c80a8a3926f93b7b4",
-      "size_bytes": 1920318
+      "sha256": "27fa2e6155adeed80842dabaa15572626076255ea86e176eae3ac71286d56e57",
+      "git_blob_sha": "b39b15f6b8fb63241b8decac948748b48bdedcd6",
+      "size_bytes": 1933945
     },
     {
       "key": "source:analysis/R149_DEFECT_ATLAS/REPORT.md",
@@ -6905,9 +6929,9 @@
       "status": null,
       "path": "analysis/R149_DEFECT_ATLAS/REPORT.md",
       "fragment": "",
-      "sha256": "317c8e8f9cb5aa6517593c8353be9a5c7fffecb5179241606c9c2daca0cd7780",
-      "git_blob_sha": "af45e56a5733fa013527db39bae3abd692870516",
-      "size_bytes": 15086
+      "sha256": "4a3101ddd79460adffe663d8d0b6002f8764255551cbb6b3d0425900ccbe8190",
+      "git_blob_sha": "8fe943fd5431c26c55e3dc0184b6cb8c5b6148ec",
+      "size_bytes": 15987
     },
     {
       "key": "source:analysis/R149_DEFECT_ATLAS/verify.py",
@@ -12251,6 +12275,11 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R130",
+      "target": "source:analysis/R149/seam/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R131",
       "target": "component:R130_PHYSICAL_EMBEDDING",
       "relation": "methodological_parent_not_physical_evidence",
@@ -12915,6 +12944,11 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R140",
+      "target": "source:analysis/R149/seam/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R141",
       "target": "construct:C012",
       "relation": "addresses"
@@ -13097,6 +13131,11 @@
     {
       "source": "result:R141",
       "target": "source:analysis/R141_R148_MODEL/ym_graph/pilot/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R141",
+      "target": "source:analysis/R149/seam/README.md",
       "relation": "managed_evidence_source"
     },
     {
@@ -14298,6 +14337,16 @@
       "source": "result:R149",
       "target": "question:U010",
       "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/seam/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/seam/replay.py",
+      "relation": "managed_evidence_source"
     },
     {
       "source": "result:R149",
