@@ -142,11 +142,13 @@ def parse_premises(text):
 
 
 def render_card(r):
+    parents = list(r.get('parent_result_ids', []))
+    parents.extend(f"[{p['id']}]({p['url']})" for p in r.get('versioned_parent_results', []))
     return (f"<a id=\"{r['id'].lower()}\"></a>\n\n### {r['id']}. {r['title']}\n\n"
             f"**Статус:** {r['status']}\n\n**Результат.** {r['result']}\n\n"
             f"**Условия.** {r['inputs']}\n\n**Граница.** {r['limit']}\n\n"
             f"**Место в рамке.** {r['framework_role']}\n\n"
-            f"**Родители:** {', '.join(r.get('parent_result_ids', []))}. "
+            f"**Родители:** {', '.join(parents)}. "
             f"**Конструкции:** {', '.join(r.get('construct_ids', []))}. "
             f"**Вопросы:** {', '.join(r.get('open_question_ids', []))}.\n\n"
             "**Источники:** " + "; ".join(f"[{Path(p).name}](../../{p})" for p in r['sources']) + ".\n\n"
