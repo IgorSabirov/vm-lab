@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "dc1c8c7825cae74ebb3cd562755fd5e919230765b0b9983dc42a8c657e8aab38",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "deab3ecd197cea43c84aa04318fd4b26589202d13a650f1703b5e95dc24b56c4",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "08240644c6037a617d69a33952975d32213eede04a10eef31329e685970cfa4d",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "63d4a3d86b9ce461274cc01775136864910c76a064de03b6a30d15262cf33db0",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "26a09bde271b40686b0c2e2d0ab29e510a1a527dcd247591da048b527d4b5849",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -114,17 +114,17 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 135,
+    "result": 136,
     "construct": 42,
     "link": 10,
-    "question": 12,
+    "question": 13,
     "premise": 66,
     "obligation": 9,
     "review": 16,
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 149
+    "source": 153
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -1974,6 +1974,15 @@
       "fragment": "u012"
     },
     {
+      "key": "question:U014",
+      "id": "U014",
+      "kind": "question",
+      "title": "Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции?",
+      "status": "OPEN",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
+      "fragment": "u014"
+    },
+    {
       "key": "result:R001",
       "id": "R001",
       "kind": "result",
@@ -3187,6 +3196,15 @@
       "status": "КОНЕЧНЫЕ ТОЖДЕСТВА И СВИДЕТЕЛИ ПРОВЕРЕНЫ · ФИЗИЧЕСКАЯ ИДЕНТИФИКАЦИЯ И GATE D ОТКРЫТЫ",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
       "fragment": "r135"
+    },
+    {
+      "key": "result:R137",
+      "id": "R137",
+      "kind": "result",
+      "title": "Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50",
+      "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · СТАНДАРТНЫЙ НИЗКОКРАСНОСМЕЩЁННЫЙ ВКЛАД В τ ПРОВЕРЕН",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r137"
     },
     {
       "key": "review:ADD_BBN_SYMMETRY_20261115",
@@ -5023,6 +5041,54 @@
       "sha256": "f1579aefd9bb0a3cddeaf16db34dc45c4a8c79f77f60d77c3f9c85ff60787c14",
       "git_blob_sha": "648acd2e635530fbfba957620ea94d2d88aee7ab",
       "size_bytes": 6902
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/CHECKS.json",
+      "id": "analysis/R137_LUMINA/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/CHECKS.json",
+      "status": null,
+      "path": "analysis/R137_LUMINA/CHECKS.json",
+      "fragment": "",
+      "sha256": "5a0e4477a475fab78e22a1cdc3ebbb398e412bfe452d9c2ea72bece508da769a",
+      "git_blob_sha": "993b50f2db2e8bb2fe78c50b0a0fdc9ef7c8d6a7",
+      "size_bytes": 2444
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/DATA_REQUEST.md",
+      "id": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "status": null,
+      "path": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "fragment": "",
+      "sha256": "c59b114e45e8cf135ade1b9d9b2ebef0fb556a2f0b1d420c043668175a4df95a",
+      "git_blob_sha": "c9ee6161421e31d8e3299841c31743a298aff59f",
+      "size_bytes": 2404
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/REPORT.md",
+      "id": "analysis/R137_LUMINA/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/REPORT.md",
+      "status": null,
+      "path": "analysis/R137_LUMINA/REPORT.md",
+      "fragment": "",
+      "sha256": "674b6bf3d22c7bfd7a66d96653f7ec3c15bbfbb1af5da63f3927870f44d57d4f",
+      "git_blob_sha": "81f8e91ffeb1141e5e5c771d96164a38010a81a4",
+      "size_bytes": 16492
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/verify.py",
+      "id": "analysis/R137_LUMINA/verify.py",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/verify.py",
+      "status": null,
+      "path": "analysis/R137_LUMINA/verify.py",
+      "fragment": "",
+      "sha256": "52a5ac0920dbb683cdcde591b3c315844d97475ee326d192ee4c856e529e0df8",
+      "git_blob_sha": "685d68f3b9c0b6ded441bc923a633a0249cd17b9",
+      "size_bytes": 4424
     },
     {
       "key": "source:infra/external/README.md",
@@ -10690,6 +10756,31 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "question:U014",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/DATA_REQUEST.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/verify.py",
       "relation": "managed_evidence_source"
     },
     {

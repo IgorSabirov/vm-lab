@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=135, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=149.
+Число записей: result=136, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=153.
 
 ## Предпосылка → результаты
 
@@ -1936,6 +1936,15 @@ PRyMordial: дополнительный BBN-приёмник — [исходн�
 **Входящие:** [R112](#result-r112) `informs_not_closes`; [R113](#result-r113) `informs_not_closes`.
 **Исходящие:** [L08](#link-l08) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
+<a id="question-u014"></a>
+
+### question:U014
+
+Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014).
+
+**Входящие:** [R137](#result-r137) `informs_not_closes`.
+**Исходящие:** нет.
+
 <a id="result-r001"></a>
 
 ### result:R001
@@ -3150,6 +3159,15 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`.
 **Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`.
+
+<a id="result-r137"></a>
+
+### result:R137
+
+Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r137).
+
+**Входящие:** нет.
+**Исходящие:** [U014](#question-u014) `informs_not_closes`; [analysis/R137_LUMINA/CHECKS.json](#source-analysis-r137_lumina-checks-json) `managed_evidence_source`; [analysis/R137_LUMINA/DATA_REQUEST.md](#source-analysis-r137_lumina-data_request-md) `managed_evidence_source`; [analysis/R137_LUMINA/REPORT.md](#source-analysis-r137_lumina-report-md) `managed_evidence_source`; [analysis/R137_LUMINA/verify.py](#source-analysis-r137_lumina-verify-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -4844,6 +4862,42 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md — [исходная кар�
 analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная карточка](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py).
 
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-checks-json"></a>
+
+### source:analysis/R137_LUMINA/CHECKS.json
+
+analysis/R137_LUMINA/CHECKS.json — [исходная карточка](../../analysis/R137_LUMINA/CHECKS.json).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-data_request-md"></a>
+
+### source:analysis/R137_LUMINA/DATA_REQUEST.md
+
+analysis/R137_LUMINA/DATA_REQUEST.md — [исходная карточка](../../analysis/R137_LUMINA/DATA_REQUEST.md).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-report-md"></a>
+
+### source:analysis/R137_LUMINA/REPORT.md
+
+analysis/R137_LUMINA/REPORT.md — [исходная карточка](../../analysis/R137_LUMINA/REPORT.md).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-verify-py"></a>
+
+### source:analysis/R137_LUMINA/verify.py
+
+analysis/R137_LUMINA/verify.py — [исходная карточка](../../analysis/R137_LUMINA/verify.py).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-readme-md"></a>
