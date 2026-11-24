@@ -9,3 +9,9 @@
 [Скачать полный комплект обновления R136 и R140](publication/R136_R140_update.zip) · [Состав и проверка](publication/README.md).
 
 [Машиночитаемая карточка полного обновления](PUBLICATION_RECORD.json).
+
+## R140 в общей схеме вероятности и возникновения
+
+В двух историях восьмишагового кольца порядок событий даёт относительный оператор M. Выход № 19 имеет вероятность 1/64 как при ортогональных полях путей, так и при двух одинаковых смешанных состояниях I/3. Различимость проверяется отдельным измерением поля. При отборе h=1 совместный дефект равен −1/96, а после условной нормировки −1/64. Для U010 открыта проверка создания и чтения следа следующим носителем.
+
+[Общий отчёт](https://github.com/IgorSabirov/vm-lab/blob/c425c839a28efc4539b498302eb33a9000a5c74e/analysis/R140_HAAR_SORKIN/emergence/REPORT.md) · [код](https://github.com/IgorSabirov/vm-lab/blob/c425c839a28efc4539b498302eb33a9000a5c74e/analysis/R140_HAAR_SORKIN/emergence/replay.py) · [точные результаты](https://github.com/IgorSabirov/vm-lab/blob/c425c839a28efc4539b498302eb33a9000a5c74e/analysis/R140_HAAR_SORKIN/emergence/results.json).
