@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 6,
-  "date": "2026-11-12",
+  "version": 7,
+  "date": "2026-11-22",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
-  "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
+  "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром. Дополнение 22 ноября: R140 добавлена как условная конструкция к U003/U006; U013 импортирован из ветки R136 вместе с открытым дочерним #201. Статусы OPEN сохранены.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
   "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы. 12.11: CCC_TL_20261112 добавляет граничную ссылку к U006; статусы и условия закрытия сохранены.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
@@ -122,7 +122,8 @@
       "kind": "NOT_ESTIMATED",
       "origin_kind": "retrospective_from_saved_boundary",
       "records": [
-        "R127"
+        "R127",
+        "R140"
       ],
       "open_links": [
         "L01",
@@ -149,6 +150,12 @@
         "report": "analysis/R128_RHO_GENESIS_20261110/R128_1_SPECIFICATION_20261111.md",
         "role": "PROPOSED_BOUNDARY_REFERENCE_NOT_NEW_PARENT_OR_RESOLUTION",
         "status_changed": false
+      },
+      "r140_followup_20261122": {
+        "result": "R140",
+        "known": "A finite neutral U(1) ring example uses normalized Haar measure on links, preserves one holonomy and defines a grade-2 history functional for a selected initial state and theta. It demonstrates a concrete history measure on one chosen carrier, not a general ensemble measure.",
+        "unknown": "No physically justified distribution over initial graphs, states or mixing angles is derived. Haar on link variables does not by itself select the initial graph measure or density matrix; cylindrical consistency for general graph refinement remains open.",
+        "boundary": "R140 does not close U003 and does not derive the probability measure of the overall project."
       }
     },
     {
@@ -250,7 +257,9 @@
         "R132",
         "R133",
         "R134",
-        "R135"
+        "R135",
+        "R139",
+        "R140"
       ],
       "open_links": [
         "L09"
@@ -348,6 +357,15 @@
         "report": "analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md",
         "status": "OPEN",
         "scope": "Фиксировать физические состояния, геометрию и масштаб времени X. На отложенных состояниях проверить четырёхточечный отклик SU(3), затем вклад медленной координаты в фазовую границу и раздельные потоки энергии."
+      },
+      "r139_r140_followup_20261122": {
+        "results": [
+          "R139",
+          "R140"
+        ],
+        "known": "R139 checks a local coherent gauge-covariant move on named graph sectors. R140 constructs a neutral U(1) ring sector with one preserved holonomy and a selected grade-2 interference witness.",
+        "unknown": "Causal and metric geometry are not derived. R140 does not extend the full physical transport to charged vertices, raw-link mixed sectors or multiple independent cycles; the continuum and curvature dynamics are open.",
+        "boundary": "These are conditional discrete constructions, not a derivation of spacetime geometry or a physical metric."
       }
     },
     {
@@ -1088,6 +1106,93 @@
       "resolution_source": null,
       "user_answer_required_now": false,
       "genealogy_note": "Ретроспективная адресация прежнего предложения, не новая пререгистрация; связи L08/L10 не закрываются одним локальным тестом."
+    },
+    {
+      "id": "U013",
+      "title": "Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β?",
+      "kind": "NOT_ESTIMATED",
+      "status": "OPEN",
+      "origin_kind": "numerical_reproduction",
+      "records": [
+        "R135",
+        "R136"
+      ],
+      "construct_ids": [],
+      "open_links": [],
+      "origin": {
+        "commit": "649c1d987acdcf227a15ca7d41fd29fb455c7b08",
+        "path": "infra/r135/research/20261121_donors/PHASE_FLOW_AND_SIGMA_AUDIT.md",
+        "locator": "§1, контроль на фиксированном времени потока"
+      },
+      "evidence_sources": [
+        "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+        "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json"
+      ],
+      "known": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. D=0.000622844634102 по неокруглённой реконструкции. Архивная разность двух округлённых якорей 0.000622900 сохраняется для повтора. На рис. 15 раздельный сдвиг восьми локальных координат на ±½ единицы EPS дал максимальное |δD|=3.46×10⁻⁶. При локальных якобианах диагональный порог z=1.96 достигается при ρ=0.787 для ρ_β=0 и при ρ=0.540 для ρ_β=1. Отдельный #201: при t→0 межобъёмная разность остатков derivative−SFtX равна +0.47968±0.24411 (z=1.965 при ρₓ=0), а средний остаток +0.07788±0.12206 (z≈0.64); это объёмная зависимость разности методов, не общий методный сдвиг. При t/a²=1.4 контраст +0.50252±0.24348 (z=2.064), но временные варианты используют общую информацию. Контроль по следу I_trace=+0.355±0.09612 номинален и выбран после просмотра энтальпии.",
+      "unknown": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. Не ограничена объёмно-зависимая методная систематика: ΔJ≈0.02–0.05 может индуцировать δD масштаба 2.9×10⁻⁴–7.3×10⁻⁴. Неизвестная joint jackknife covariance остаётся отдельной границей; D и GLS — один контраст, не независимые тесты. Точность горизонтального округления EPS проверена отдельно от неизвестной авторской шкалы. Для #201 не измерена межобъёмная ковариация ρₓ; 1.965σ — условное значение при независимости, подверженное отбору из нескольких контрастов. Два объёма не проверяют закон c+b/N_s^q. Следовый контроль не является независимым подтверждением.",
+      "next_step": "Сначала получить совместные реплики рис. 15/3, включая βc в каждой реплике. Отдельно получить точные β-узлы и нормировку. Для #201 нужны парные блоки метода производных и SFtX на пересечении конфигураций, общая маска фаз, реплики двух времён и межобъёмные общие входы. Для проверки закона масштабирования нужен дополнительный сопоставимый объём или внешний контроль. Доступные независимо проверки полной t-серии рис. 3 и последней холодной точки рис. 16 сохраняются.",
+      "closure": "Либо восстановлена согласованность на двух объёмах с совместной ошибкой, либо воспроизведён устойчивый остаток при совпадающих условиях и локализован источник. При недостаточной мощности сохранять открытую границу.",
+      "decision": "Открыто отдельное исследование #193.",
+      "registered_date": "2026-11-21",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Origin: #167 EOS phase-input work and the Shirogane donor audit in draft PR #185 (commit 649c1d9). R135 is the programmatic context, not physical evidence for the calibration. R136 is the independent response track, tracked by #193 and implemented for review in draft PR #194. Direct scientific sources are Shirogane 2016 (arXiv:1605.02997, calibration F(n)) and Shirogane 2021 (arXiv:2011.10292, phase-resolved jumps and beta_c values). R136 has reconstructed the calibration curve and checked the sign on both volumes, but exact Fig. 15 beta nodes/normalization and joint jackknife covariance remain missing. U013 remains OPEN; no publication error is yet established. Extended R136 audit (2026-11-22): fixed exploratory polynomial domain/window loss; signs of residuals stable across fit/interpolation variants; Figure-3 flow-time drift negative on both volumes, difference 0.54 sigma. Covariance/GLS significance remains scenario-dependent (rho threshold about 0.79 under one illustrative common-rho model); no measured joint jackknife covariance. Full clean-VM replay of all extension blocks not confirmed. U013 remains OPEN; no publication error established.",
+      "limit": "Совместная ковариация фаз, J₃ и βc, фактическая сетка β рис. 15 и неопределённость калибровки остаются открытыми. Разность оценивателей и конечное время потока сохраняются как возможные методные вклады.",
+      "subquestions": [
+        {
+          "issue": 201,
+          "url": "https://github.com/IgorSabirov/vm-lab/issues/201",
+          "parent_question": "U013",
+          "parent_result": "R136",
+          "status": "OPEN",
+          "question": "Меняется ли на фиксированном Nt разность оценок скачка энтальпии методом производных и SFtX с пространственным объёмом?",
+          "primary_contrast": "(derivative−SFtX)_48−(derivative−SFtX)_64 at Nt=8, t→0, NNLO mu0",
+          "answer_criterion": "Estimate the paired contrast with joint uncertainties and matched phase selection; test any proposed volume law on an additional geometry or external prediction.",
+          "sources": [
+            "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+            "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+            "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json"
+          ],
+          "current_exploratory": {
+            "t_to_zero": {
+              "mean_residual": 0.07788,
+              "mean_sigma_diagonal": 0.12206,
+              "mean_z": 0.638,
+              "volume_interaction": 0.47968,
+              "interaction_sigma_rho_x_zero": 0.24411,
+              "interaction_z_rho_x_zero": 1.965
+            },
+            "finite_flow_time": {
+              "volume_interaction": 0.50252,
+              "interaction_sigma_rho_x_zero": 0.24348,
+              "interaction_z_rho_x_zero": 2.064,
+              "shared_information_with_t_to_zero": true
+            },
+            "trace_control": {
+              "volume_interaction": 0.355,
+              "interaction_sigma_diagonal": 0.09612,
+              "nominal_z": 3.693,
+              "independent_confirmation": false,
+              "selection_note": "Selected after viewing enthalpy; same ensembles/operators; rounding and systematics weaken interpretation."
+            },
+            "interpretation": "Volume dependence of the difference between derivative and SFtX estimators; not evidence of a common method offset. Cross-volume covariance and multiplicity remain unresolved."
+          },
+          "next_step": "Obtain paired blocks/replicas on intersecting configurations for derivative and SFtX, common phase mask, both flow times and both volumes; estimate the full 4-vector covariance. Obtain a third comparable volume or an external prediction before fitting a finite-volume law."
+        }
+      ]
     }
   ],
   "existing_open_links": [
@@ -1284,6 +1389,28 @@
       "action": "Сверка протокола и возврат результатов в U006/U010.",
       "source": "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
       "new_production_runs": 0
+    },
+    {
+      "date": "2026-11-22",
+      "action": "R136_R140_COMMON_REGISTRY_SYNC",
+      "branches": [
+        "research/r136-shirogane-calibration",
+        "research/r140-haar-sorkin"
+      ],
+      "records": [
+        "R136",
+        "R139",
+        "R140"
+      ],
+      "questions": [
+        "U003",
+        "U006",
+        "U013"
+      ],
+      "new_scientific_runs": 0,
+      "status_changes": [],
+      "scientific_status_promoted": false,
+      "note": "Сведены результаты и границы двух веток. D136 отделён от декогеренционного функционала Соркина; физическое отображение R136-наблюдаемой в ADD histories отсутствует."
     }
   ],
   "pre_parent_link_completion_20261109": {

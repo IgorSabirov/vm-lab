@@ -1,0 +1,179 @@
+{
+  "question": "R136 / U013 / #201",
+  "scientific_status": "OPEN",
+  "assumptions": "First-order Gaussian sensitivity; diagonal errors unless varied. Times and observables share data. Tables and EPS carry published marginal errors only.",
+  "source_files": [
+    "FIGURES.json",
+    "CHECKS.json",
+    "STATISTICAL_BUDGET.json"
+  ],
+  "axis": {
+    "common_k": -0.0008769723883126357,
+    "opposite_k": -1.2448415837381124,
+    "differential_coordinate": "dx48=+h, dx64=-h"
+  },
+  "D_scenarios": {
+    "hc_endpoints_thresholds": [
+      0.8187390590584142,
+      0.8285337591391202
+    ],
+    "uniform_threshold": 0.8285337591391202,
+    "z_hc1_r153_082": 1.948598997077381,
+    "z_hc1_r153_1": 2.242098373072384,
+    "beta_c_scenarios": [
+      {
+        "rho_beta": 0,
+        "sigma_D": 0.0005646031043814837,
+        "z_uncorrelated_J": 1.1031548166644154,
+        "z_hc09_r15309": 2.129085276344003
+      },
+      {
+        "rho_beta": 0.5,
+        "sigma_D": 0.0005418271546140971,
+        "z_uncorrelated_J": 1.1495264288585187,
+        "z_hc09_r15309": 2.5347341865127646
+      },
+      {
+        "rho_beta": 1,
+        "sigma_D": 0.0005180508329085174,
+        "z_uncorrelated_J": 1.2022847846904314,
+        "z_hc09_r15309": 3.3207067226192084
+      }
+    ]
+  },
+  "method_enthalpy": {
+    "0": {
+      "method_minus_sftx": [
+        0.3177175539999999,
+        -0.16196226000000002
+      ],
+      "sigma_diagonal": [
+        0.21165115041672017,
+        0.12163176918585519
+      ],
+      "individual_z": [
+        1.501137855260628,
+        -1.3315785923702157
+      ],
+      "equal_weight_mean": 0.07787764699999994,
+      "mean_sigma_diagonal": 0.12205582406014293,
+      "mean_z": 0.6380494138618554,
+      "largest_mean_sigma_at_fixed_residual_errors": 0.1666414598012877,
+      "inverse_variance_constant_fit": -0.04287412756708259,
+      "constant_fit_sigma": 0.10545790859894622,
+      "interaction": 0.4796798139999999,
+      "interaction_sigma_diagonal": 0.24411164812028585,
+      "interaction_z": 1.9650017428239968,
+      "nominal_two_sided_p": 0.04941403582986894,
+      "both_residuals_zero_nominal_p_df2": 0.1335528226556351,
+      "interaction_z_by_residual_correlation": {
+        "-0.5": 1.6420651703703752,
+        "0": 1.9650017428239968,
+        "0.3": 2.283040738086219,
+        "0.5": 2.60730236027151
+      },
+      "residual_correlation_at_1_96": -0.005914641440675587
+    },
+    "1.4": {
+      "method_minus_sftx": [
+        0.37397341500000003,
+        -0.12855141799999992
+      ],
+      "sigma_diagonal": [
+        0.21129272423970813,
+        0.12098104834940382
+      ],
+      "individual_z": [
+        1.7699303955953227,
+        -1.0625748392321102
+      ],
+      "equal_weight_mean": 0.12271099850000006,
+      "mean_sigma_diagonal": 0.1217384793074463,
+      "mean_z": 1.0079885932376211,
+      "largest_mean_sigma_at_fixed_residual_errors": 0.16613688629455597,
+      "inverse_variance_constant_fit": -0.004478647866670372,
+      "constant_fit_sigma": 0.10498905289659642,
+      "interaction": 0.502524833,
+      "interaction_sigma_diagonal": 0.2434769586148926,
+      "interaction_z": 2.0639523175367214,
+      "nominal_two_sided_p": 0.039022237571066085,
+      "both_residuals_zero_nominal_p_df2": 0.11873520336054037,
+      "interaction_z_by_residual_correlation": {
+        "-0.5": 1.7252354824825527,
+        "0": 2.0639523175367214,
+        "0.3": 2.397230581310487,
+        "0.5": 2.7366715036309004
+      },
+      "residual_correlation_at_1_96": -0.12625794420653075
+    }
+  },
+  "method_trace_t0": {
+    "method_minus_sftx": [
+      0.22399999999999998,
+      -0.131
+    ],
+    "sigma_diagonal": [
+      0.08692525524840293,
+      0.041036569057366384
+    ],
+    "individual_z": [
+      2.576926571683728,
+      -3.1922746713271946
+    ],
+    "equal_weight_mean": 0.046499999999999986,
+    "mean_sigma_diagonal": 0.04806245936279167,
+    "mean_z": 0.9674910650951565,
+    "largest_mean_sigma_at_fixed_residual_errors": 0.06398091215288465,
+    "inverse_variance_constant_fit": -0.06630086580086582,
+    "constant_fit_sigma": 0.037109152206553815,
+    "interaction": 0.355,
+    "interaction_sigma_diagonal": 0.09612491872558333,
+    "interaction_z": 3.693111054933125,
+    "nominal_two_sided_p": 0.0002215272218944697,
+    "both_residuals_zero_nominal_p_df2": 0.00022139014153572153,
+    "interaction_z_by_residual_correlation": {
+      "-0.5": 3.136914714032882,
+      "0": 3.693111054933125,
+      "0.3": 4.213154564591629,
+      "0.5": 4.713313574350532
+    },
+    "residual_correlation_at_1_96": -3.3031380466085136,
+    "derivative_inputs": [
+      [
+        1.48,
+        0.08
+      ],
+      [
+        1.04,
+        0.03
+      ]
+    ],
+    "sftx_inputs": [
+      [
+        1.256,
+        0.034
+      ],
+      [
+        1.171,
+        0.028
+      ]
+    ],
+    "upper_sigma_all_PSD_for_displayed_marginals": 0.17200000000000001,
+    "min_abs_z_displayed": 2.0639534883720927,
+    "conservative_rounding_sensitivity": 1.879781420765027
+  },
+  "shared_data": {
+    "fig15_minus_fig3_at_predicted_beta": 0.053738519,
+    "ratio_t0_to_fig15": 8.92618224182918,
+    "ratio_t14_to_fig15": 9.35129665557028,
+    "enthalpy_interaction_time_difference": 0.022845019000000022,
+    "fig13_minus_fig15_volume_contrast_t14": 0.44878631399999996
+  },
+  "two_point_extrapolation": {
+    "intercepts": {
+      "2": -0.7786934494285714,
+      "3": -0.5119988810270271
+    },
+    "degrees_of_freedom": 0
+  }
+}

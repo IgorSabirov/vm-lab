@@ -1,0 +1,548 @@
+{
+  "schema": "R136_EXTENDED_AUDIT_V1",
+  "date": "2026-11-22",
+  "scope": "Exploratory extension of R136 calibration, covariance and flow-time controls; not a new scientific result or full canonical replay.",
+  "polynomial_domain_bug": {
+    "faulty_expression": "Polynomial(poly.coef)",
+    "effect": "Drops fitted domain/window after Polynomial.fit; produced nonsensical Delta beta about 12.2056.",
+    "correct_expression": "Polynomial(poly.coef.copy(), domain=poly.domain, window=poly.window)",
+    "corrected_delta_beta": 0.00062284463,
+    "constant_shift_invariance": [
+      {
+        "shift": -0.000242,
+        "delta_beta": 0.00062284463
+      },
+      {
+        "shift": 0.000242,
+        "delta_beta": 0.00062284463
+      },
+      {
+        "shift": 0.001,
+        "delta_beta": 0.00062284463
+      }
+    ],
+    "scope_note": "Defect is in exploratory Phase-1 snippet, not canonical R136 verify.py."
+  },
+  "calibration_sensitivity": {
+    "global_polynomial": {
+      "degree_3": {
+        "x48": 0.997583,
+        "x64": 0.998961,
+        "residual48": 0.0343,
+        "residual64": -0.0151,
+        "delta_beta": 0.0006446
+      },
+      "degree_4": {
+        "x48": 0.997581,
+        "x64": 0.998959,
+        "residual48": 0.0342,
+        "residual64": -0.0153,
+        "delta_beta": 0.0006445
+      },
+      "degree_5": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0244,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006228
+      },
+      "degree_6": {
+        "x48": 0.997363,
+        "x64": 0.998761,
+        "residual48": 0.0249,
+        "residual64": -0.0287,
+        "delta_beta": 0.0006228
+      },
+      "degree_7": {
+        "x48": 0.997319,
+        "x64": 0.998717,
+        "residual48": 0.0229,
+        "residual64": -0.0316,
+        "delta_beta": 0.0006226
+      }
+    },
+    "local_and_interpolation": {
+      "local_deg2_n6_10": {
+        "x48": 0.997312,
+        "x64": 0.998704,
+        "residual48": 0.0227,
+        "residual64": -0.0325,
+        "delta_beta": 0.0006297
+      },
+      "local_deg3_n6_10": {
+        "x48": 0.997303,
+        "x64": 0.998699,
+        "residual48": 0.0223,
+        "residual64": -0.0328,
+        "delta_beta": 0.0006247
+      },
+      "local_deg2_n5_11": {
+        "x48": 0.997206,
+        "x64": 0.998588,
+        "residual48": 0.0181,
+        "residual64": -0.0401,
+        "delta_beta": 0.0006394
+      },
+      "local_deg3_n5_11": {
+        "x48": 0.997176,
+        "x64": 0.998574,
+        "residual48": 0.0168,
+        "residual64": -0.0411,
+        "delta_beta": 0.000623
+      },
+      "local_deg2_n7_9": {
+        "x48": 0.997306,
+        "x64": 0.998701,
+        "residual48": 0.0224,
+        "residual64": -0.0327,
+        "delta_beta": 0.0006262
+      },
+      "local_deg3_n7_9": {
+        "x48": 0.997313,
+        "x64": 0.998704,
+        "residual48": 0.0227,
+        "residual64": -0.0325,
+        "delta_beta": 0.0006306
+      },
+      "pchip": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0245,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006251
+      },
+      "cubic": {
+        "x48": 0.997354,
+        "x64": 0.998752,
+        "residual48": 0.0245,
+        "residual64": -0.0293,
+        "delta_beta": 0.0006257
+      }
+    },
+    "pdf_vertex_jackknife": {
+      "delete_one": {
+        "sigma_F8": 2.54e-05,
+        "sigma_x48": 4.09e-05,
+        "sigma_x64": 4.09e-05,
+        "sigma_delta_beta": 2.49e-07
+      },
+      "block_10": {
+        "sigma_F8": 3.04e-05,
+        "sigma_x48": 4.87e-05,
+        "sigma_x64": 4.88e-05,
+        "sigma_delta_beta": 2.24e-07
+      },
+      "interpretation": "Digitized-curve fit stability only; not uncertainty of source measurements and not a substitute for configuration jackknife."
+    }
+  },
+  "covariance_sensitivity": {
+    "scenarios": [
+      {
+        "rho_hc": 0,
+        "rho_153": 0,
+        "rho_x": 0,
+        "sigma_D": 0.000567,
+        "z": 1.1,
+        "p": 0.272,
+        "one_sigma_overlap": true
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "sigma_D": 0.000403,
+        "z": 1.55,
+        "p": 0.122,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.7,
+        "rho_153": 0.7,
+        "rho_x": 0,
+        "sigma_D": 0.000342,
+        "z": 1.82,
+        "p": 0.069,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "sigma_D": 0.000293,
+        "z": 2.13,
+        "p": 0.034,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0.3,
+        "sigma_D": 0.00028,
+        "z": 2.22,
+        "p": 0.026,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "sigma_D": 0.000277,
+        "z": 2.25,
+        "p": 0.024,
+        "one_sigma_overlap": false
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "sigma_D": 0.000386,
+        "z": 1.61,
+        "p": 0.107,
+        "one_sigma_overlap": false
+      }
+    ],
+    "rho_threshold_z_1_96": 0.79,
+    "rho_threshold_no_1sigma_overlap": 0.323,
+    "gls_common_shift": [
+      {
+        "rho": 0,
+        "delta_beta": -0.000144,
+        "error": 0.000362,
+        "chi2_min": 1.23,
+        "dof": 1,
+        "p_min": 0.267,
+        "chi2_zero": 1.387,
+        "dof_zero": 2,
+        "p_zero": 0.5
+      },
+      {
+        "rho": 0.9,
+        "delta_beta": -9.3e-05,
+        "error": 0.00031,
+        "chi2_min": 4.605,
+        "dof": 1,
+        "p_min": 0.032,
+        "chi2_zero": 4.695,
+        "dof_zero": 2,
+        "p_zero": 0.096
+      }
+    ],
+    "grid": {
+      "z_min": 1.1,
+      "z_max": 2.45,
+      "fraction_z_gt_1_96": 0.18,
+      "fraction_z_gt_3": 0
+    },
+    "interpretation": "All rho values are illustrative scenarios, not measured covariances. Statistical compatibility remains unresolved."
+  },
+  "flow_time_and_finite_volume": {
+    "48": {
+      "J0": 1.20218387,
+      "err0": 0.025700647,
+      "J14": 1.145928009,
+      "err14": 0.022559457,
+      "drift": -0.056255861,
+      "drift_error": 0.034197257,
+      "z": 1.645,
+      "mean_rate_abs_per_t": 0.040182758,
+      "dt_equiv_for_R136_residual": 0.6082
+    },
+    "64": {
+      "J0": 1.131935434,
+      "err0": 0.019561048,
+      "J14": 1.098524592,
+      "err14": 0.014992044,
+      "drift": -0.033410842,
+      "drift_error": 0.024645405,
+      "z": 1.356,
+      "mean_rate_abs_per_t": 0.023864887,
+      "dt_equiv_for_R136_residual": 1.2277
+    },
+    "difference_of_drifts_48_minus_64": {
+      "value": -0.022845019,
+      "error": 0.042152679,
+      "z": 0.542
+    },
+    "fig3_jump_finite_volume_difference_48_minus_64": {
+      "value": 0.047403417,
+      "error": 0.027086722,
+      "z": 1.75
+    },
+    "interpretation": "No resolved volume dependence of the flow-time drift at current precision. The Figure-3 volume difference is a separate finite-volume control.",
+    "temporal_covariance_caveat": {
+      "assumption": "Existing drift errors use hypot(err_t0, err_t14), equivalent to rho_time=0.",
+      "data_structure": "t=0 and t=1.4 measurements use the same configurations.",
+      "implication": "Positive cross-time covariance reduces the variance of the drift; therefore z=1.645 and 1.356 are conditional rho_time=0 values and conservative lower estimates of significance if the correlation is positive, not upper bounds.",
+      "status": "Cross-time covariance is unmeasured; obtain joint jackknife/block replicas."
+    }
+  },
+  "execution_provenance": {
+    "canonical_r136_replay": "Previously recorded REPLAY == ARCHIVE: True; canonical verify.py and CHECKS.json unchanged.",
+    "extended_covariance_gls_flow_calculations": "Independently recomputed from archived numeric inputs in a clean execution for this conversation; the algebraic GLS/contrast identities were checked at relative tolerance 1e-12. This is not a full clean-VM replay of all extended blocks.",
+    "polynomial_sensitivity_and_pdf_vertex_jackknife": "Values transcribed from the attached execution log; not independently re-run in a clean VM during this update.",
+    "full_clean_vm_replay": "NOT_CONFIRMED; VM compute connection unavailable.",
+    "arxiv_source_archive_download": "Timed out in the weak sandbox; no result inferred from the timeout.",
+    "gls_covariance_unit_regression": "Executed in a clean Python process on 2026-11-22; archived-residual and exact-anchor identities, w^T C w, and double-scaling negative control passed. Not a full clean-VM replay."
+  },
+  "decision": {
+    "R136": "OPEN",
+    "U013": "OPEN",
+    "scientific_acceptance": false,
+    "publication_error_established": false,
+    "clean_vm_replay_of_this_addendum": "NOT_CLAIMED",
+    "downstream_167_168_174_closed": false,
+    "physical_launch_authorized": false
+  },
+  "invariant_D": {
+    "definition": "D=beta0(48)-beta0(64), beta0(V)=beta_c(V)+F(8)-F(8*x_match,V), with x_match defined by J15(x)=J3 independently of the Fig.15 temperature axis.",
+    "exact_identity": "D=[beta_c(48)-beta_c(64)]+[F(8*x64)-F(8*x48)]; common F(8) cancels analytically.",
+    "value": 0.0006229,
+    "inputs": {
+      "beta_c_48": 6.0616,
+      "beta_c_64": 6.06247,
+      "x_match_48": 0.99678487,
+      "x_match_64": 0.99918332,
+      "local_slope_8Fprime8": 0.62168433,
+      "beta0_48": 6.0636007,
+      "beta0_64": 6.0629778
+    },
+    "linearized_crosscheck": 0.0006210787813,
+    "curve_anchor_crosscheck": 0.0006287825842,
+    "table_anchor_crosscheck": 0.0006248028381,
+    "slope_uncertainty_contribution": 1.91876e-06,
+    "invariance_scope": "Invariant to common additive F->F+c and common anchor changes; not invariant to local calibration slope/shape, volume-dependent estimator systematics, or unknown covariance.",
+    "numerator_role": "rounded_anchor_replay"
+  },
+  "common_anchor": {
+    "gls_rho0": 6.0631061,
+    "table_anchor": 6.06307,
+    "difference_sigma": 0.129,
+    "quintic_F8": 6.06325,
+    "interpretation": "Three anchor handles agree within about 1 sigma under the illustrative rho=0 GLS error model. This reduces concern about a common additive anchor, but does not establish the authors' exact Fig.15 convention."
+  },
+  "covariance_refinement": {
+    "model": "rho_hc correlates hot/cold Fig.15; rho_153 correlates Fig.15 and Fig.3; rho_x correlates the volumes.",
+    "scenarios": [
+      {
+        "rho_hc": 0,
+        "rho_153": 0,
+        "rho_x": 0,
+        "z": 1.104,
+        "p": 0.27
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "z": 1.55,
+        "p": 0.121
+      },
+      {
+        "rho_hc": 0.7,
+        "rho_153": 0.7,
+        "rho_x": 0,
+        "z": 1.821,
+        "p": 0.069
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "z": 2.112,
+        "p": 0.035
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.9,
+        "rho_x": 0.3,
+        "z": 2.202,
+        "p": 0.028
+      },
+      {
+        "rho_hc": 0.5,
+        "rho_153": 0.9,
+        "rho_x": 0,
+        "z": 2.244,
+        "p": 0.025
+      },
+      {
+        "rho_hc": 0.9,
+        "rho_153": 0.5,
+        "rho_x": 0,
+        "z": 1.615,
+        "p": 0.106
+      }
+    ],
+    "rho_common_threshold_1_96": 0.7931,
+    "sigmaD_rho0": 0.000564,
+    "sigmaD_needed_for_1_96": 0.0003178061,
+    "required_sigma_compression_percent": 43.7,
+    "rho_grid_proposal": "Pre-register full 2D grid rho_hc x rho_153 at rho_x=0; do not select rho by resulting significance; account for look-elsewhere if scanning.",
+    "interpretation": "All rho are illustrative, not measured. rho_153 may be substantial if Fig.15 and Fig.3 share ensembles/reweighting; rho_hc=0.9 is an aggressive bracket if phase samples are separated.",
+    "non_independence": "D contrast and one-parameter GLS common-shift residual are the same one-dimensional contrast when built from the same covariance matrix; do not count as independent evidence.",
+    "numeric_consistency_note": "Resolved: with archived residuals r, GLS chi2_min equals (D_lin/sigma_D)^2, where D_lin=r48/s48-r64/s64=0.0006287826. The earlier comparison used D_exact=0.0006229 in z_D, producing the ~1.8977% squared ratio. This is a numerator mismatch, not covariance rounding. Canonical contrast is D_exact; retain D_lin as a linearized proxy. Recomputed with the same unrounded C: archived-r GLS matches z^2(D_lin); GLS built from exact-anchor residuals r_exact=s*(beta0-anchor) matches z^2(D_exact): 1.218060 at rho=0 and 4.460366 at rho=0.9. w.s=0 and the one-dimensional identity pass at relative tolerance 1e-12.",
+    "canonical_contrast": {
+      "definition": "D_exact=beta0(48)-beta0(64)",
+      "value": 0.0006229,
+      "linearized_proxy": 0.0006287826,
+      "relative_proxy_difference": 0.009443,
+      "squared_ratio": 1.018977,
+      "exact_anchor": "a=6.0632464; r_exact=s*(beta0-a)",
+      "regression": {
+        "rho_0": {
+          "z_exact_squared": 1.21806,
+          "gls_chi2_exact_anchor": 1.21806,
+          "gls_chi2_archived_residuals": 1.241175,
+          "z_linearized_squared": 1.241175
+        },
+        "rho_0_9": {
+          "z_exact_squared": 4.460366,
+          "gls_chi2_exact_anchor": 4.460366,
+          "gls_chi2_archived_residuals": 4.54501,
+          "z_linearized_squared": 4.54501
+        },
+        "relative_tolerance": 1e-12,
+        "w_dot_s_absolute": 6e-17
+      },
+      "rule": "Use matching numerators and one covariance. The values retained in this historical block reproduce the rounded-anchor regression.",
+      "provenance": "Archived rounded-anchor GLS replay; canonical_curve_reconstruction is in current_statistical_budget."
+    },
+    "numerator_role": "rounded_anchor_replay"
+  },
+  "method_systematics": {
+    "concern": "D is anchor-free but not free of volume-dependent difference between Fig.15 phase-resolved estimator and Fig.3 peak/reweighting estimator.",
+    "illustrative_deltaJ": [
+      0.02,
+      0.05
+    ],
+    "induced_deltaD_order": [
+      0.00029,
+      0.0007251
+    ],
+    "comparison": "This is comparable to D=0.0006229.",
+    "consequence": "Flow-time/finite-volume and estimator cross-checks logically precede interpreting D as a temperature-calibration discrepancy. Even author covariance alone does not isolate calibration error until estimator systematics are bounded."
+  },
+  "additional_controls": {
+    "fig3_full_flow_series": "FIGURES.json currently has Fig.15 hot/cold 30+30 nodes per volume at t/a^2=1.4, while Fig.3 is digitized only at t=0 and 1.4. Proposed: digitize full Fig.3 t-series from EPS and form a bracket under explicit assumption of equal flow-time correction for both estimators; not a direct D(t) measurement.",
+    "fig13_vs_fig3": {
+      "preliminary_48": {
+        "value": 0.374,
+        "error": 0.211,
+        "z": 1.77
+      },
+      "preliminary_64": {
+        "value": -0.129,
+        "error": 0.121,
+        "z": -1.07
+      },
+      "status": "Preliminary; verify triangle markers, matching, flow time and scheme before use. Potential axis-free estimator cross-check."
+    },
+    "fig16_cold64_last_point": {
+      "x": 1.00878,
+      "J": 0.397,
+      "error": 0.358,
+      "neighbor_trend_approx": 0.584,
+      "status": "Digitization-review candidate only; not established artifact."
+    },
+    "calibration_curve_quantization": "Repeated identical beta coordinates at different n and global fit residual ~0.000242 may reflect vector rendering/quantization rather than physical noise. Degree-5 form is the published Eq.(42) central form; other degrees are sensitivity brackets. Local slope near n=8 is more relevant to D than a high-order global fit."
+  },
+  "programming_controls": {
+    "preserve_failed_phase1": "Archive exploratory Phase-1 Delta-beta=12.2056 as a corrected negative result; cause: Polynomial(poly.coef) discarded domain/window from Polynomial.fit.",
+    "corrected_phase2": "Preserve domain and window or convert polynomial before coefficient manipulation.",
+    "regression_tests": [
+      "D(F+c)=D",
+      "common-anchor swap leaves D unchanged",
+      "canonical replay equals archived CHECKS.json",
+      "With archived residuals r and one unrounded C, GLS chi2_min equals (D_lin/sigma_D)^2; with exact-anchor residuals r_exact=s*(beta0-anchor), it equals (D_exact/sigma_D)^2 (relative tolerance 1e-12)."
+    ],
+    "secant_slope_64_range": [
+      106.8,
+      111
+    ],
+    "z_rho09_sensitivity": [
+      2.112,
+      2.116
+    ],
+    "pdf_vertex_jackknife": "Fit stability only; not ensemble statistical uncertainty."
+  },
+  "covariance_unit_regression": {
+    "date": "2026-11-22",
+    "script": "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+    "covariance_units": "vJ is already in J^2. Correct C_J=diag(vJ+(s*sigma_beta_c)^2)+E_INF^2*s*s^T. Do not multiply vJ by s^2 again.",
+    "archived_residuals": {
+      "D_exact": 0.0006229000000006479,
+      "D_resid": 0.0006287825842153719,
+      "relative_difference_percent": 0.9443866133757923,
+      "rho_0": {
+        "varD": 3.185429095098051e-07,
+        "gls_chi2": 1.241175133425443,
+        "z2_D_resid": 1.241175133425443,
+        "z2_D_exact": 1.2180601056162075
+      },
+      "rho_0_9": {
+        "varD": 8.698936467908326e-08,
+        "gls_chi2": 4.545010067278118,
+        "z2_D_resid": 4.54501006727812,
+        "z2_D_exact": 4.460366062359615
+      }
+    },
+    "exact_anchor_residuals": {
+      "anchor": 6.0632464,
+      "definition": "r_exact=s*(beta0-anchor)",
+      "rho_0_chi2": 1.2180601056162075,
+      "rho_0_9_chi2": 4.460366062359615
+    },
+    "hierarchy_beta_units": {
+      "linearization_scale_0_94_percent": 5.85526000000609e-06,
+      "sigma_D_rho0": 0.0005643960573124205,
+      "linearization_percent_of_sigma_D": 1.0374381472273326,
+      "method_systematic_deltaD_range": [
+        0.00029002320185614853,
+        0.0007250580046403713
+      ],
+      "sigma_compression_to_1_96_percent": 43.69093860034017
+    },
+    "negative_control": {
+      "error": "Multiply vJ by s^2 although vJ is already in J^2",
+      "rho_0_gls_chi2": 0.0002488339,
+      "expected": "Must differ from correct GLS; catches double scaling."
+    },
+    "execution": "Executed in a clean Python process; all regression assertions passed. Not a full clean-VM replay of the R136 experiment.",
+    "numerator_role": "rounded_anchor_replay"
+  },
+  "current_statistical_budget": {
+    "source": "STATISTICAL_BUDGET.json",
+    "roles": {
+      "canonical_curve_reconstruction": {
+        "value": 0.0006228446341021154,
+        "source": "verify.run(FIGURES.json): implied_origin_difference_48_minus_64"
+      },
+      "rounded_anchor_replay": {
+        "value": 0.0006229000000006479,
+        "inputs": [
+          6.0636007,
+          6.0629778
+        ],
+        "source": "CHECKS.json: per-volume beta_origin_implied_by_J; rounded before subtraction"
+      },
+      "curve_secant_proxy": {
+        "value": 0.0006287825842153719,
+        "inputs": [
+          0.024438471,
+          -0.029300048
+        ],
+        "source": "CHECKS.json: fig15_fig3_curve.residual and archived secants"
+      },
+      "table_secant_proxy": {
+        "value": 0.0006248028380636249,
+        "inputs": [
+          0.036564317,
+          -0.01009902
+        ],
+        "source": "CHECKS.json: fig15_fig3_table_local.residual and archived secants"
+      }
+    },
+    "status": "OPEN",
+    "correlation_map": "CORRELATION_MAP.svg"
+  }
+}
