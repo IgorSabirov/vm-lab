@@ -27,7 +27,7 @@ jobs:
               await core.summary.addRaw('Native Dependency Review: **NOT_EVALUATED**; repository capability/access unavailable. PyPA audit below covers pinned CI Python requirements, not all repository dependency changes.\n').write();
             }
       - if: steps.availability.outputs.available == 'true'
-        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294
+        uses: actions/dependency-review-action@bbc44d14a204704ccc493733616cd1e93a0321ec
         with:
           fail-on-severity: high
           comment-summary-in-pr: never
