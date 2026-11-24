@@ -108,6 +108,8 @@ def read():
         raise ValueError("Expected exactly R141–R148")
     updates = {}
     state = {"cards": {}, "pairs": {}, "live_materials": dict(old["live_materials"])}
+    if "r144_full_replay_sha256" in old:
+        state["r144_full_replay_sha256"] = old["r144_full_replay_sha256"]
     for node in atlas["nodes"]:
         ident = node["id"]
         reg = rows[ident]

@@ -155,6 +155,27 @@ def replays():
         print(f"PASS {script}", flush=True)
 
 
+def replay_review_kit(updates):
+    state = json.loads(updates[native.STATE])
+    raw = KIT.read_bytes()
+    sha = hashlib.sha256(raw).hexdigest()
+    args = [] if state.get("r144_full_replay_sha256") == sha else ["--full"]
+    with tempfile.TemporaryDirectory() as scratch:
+        root = Path(scratch)
+        for name, data in contents(raw).items():
+            target = (root/name).resolve()
+            if not target.is_relative_to(root) or target == root:
+                raise ValueError(f"Invalid R144 member: {name}")
+            if name.endswith("/"):
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(data)
+        subprocess.run([sys.executable, "verify_r144.py", *args], cwd=root, check=True)
+    state["r144_full_replay_sha256"] = sha
+    updates[native.STATE] = sync.encode(state).encode()
+
+
 def atomic_write(path, raw):
     with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as f:
         tmp = Path(f.name)
@@ -168,9 +189,10 @@ def atomic_write(path, raw):
 
 def run(write, replay):
     updates = plan()
-    changed = {p:v for p,v in updates.items() if not p.exists() or p.read_bytes() != v}
     if replay:
         replays()
+        replay_review_kit(updates)
+    changed = {p:v for p,v in updates.items() if not p.exists() or p.read_bytes() != v}
     if changed and not write:
         for path in changed:
             print(f"Stale: {path.relative_to(sync.ROOT)}")
