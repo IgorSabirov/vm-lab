@@ -60,7 +60,7 @@ def validate_release_file(item, root):
             f"Release size mismatch: {relative}")
 
 
-def build(source):
+def build(source, donor_cache=None, offline=False):
     reg = load(source)
     plan = load(PLAN)
     models = reg["models"]
@@ -70,6 +70,16 @@ def build(source):
     model_ids = indexed(models, "model_id")
     point_ids = indexed(points, "point_id")
     data_ids = indexed(releases, "data_id")
+    if donor_cache is not None:
+        from donors.fetch import acquire
+        from donors.extract import baseline_observations
+        files = acquire(donor_cache, {"bbn_baseline", "planck", "planck_priors"}, offline)
+        for data_id, result in baseline_observations(files).items():
+            require(data_id in data_ids, "Donor missing from P0: " + data_id)
+            release = data_ids[data_id]
+            require(all(release.get(k) == v for k, v in result.items()),
+                    "P0 release differs from upstream: " + data_id)
+            release.update(result)
     rule_ids = indexed(rules, "claim")
     require(set(rule_ids) == set(plan["claims"]), "Claim coverage differs from PLAN")
     require({r["architecture"] for r in models} == set(plan["architectures"]), "Architecture coverage")
@@ -212,8 +222,12 @@ def main():
     parser.add_argument("action",choices=["freeze","verify"])
     parser.add_argument("--registry",type=Path,default=HERE/"register_inputs.json")
     parser.add_argument("--out",type=Path,required=True)
+    parser.add_argument("--cache", type=Path, help="Acquire and verify the upstream BBN and Planck releases")
+    parser.add_argument("--offline", action="store_true", help="Use verified cache entries only")
     args = parser.parse_args()
-    expected = build(args.registry)
+    if args.offline and args.cache is None:
+        parser.error("--offline requires --cache")
+    expected = build(args.registry, args.cache, args.offline)
     hashes = (freeze if args.action=="freeze" else verify)(args.out,expected)
     print(json.dumps({"status":"DESIGN_RECORDS_VERIFIED","artifacts":hashes},indent=2))
 

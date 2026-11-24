@@ -27,3 +27,11 @@ curl -fL --retry 2 "https://pla.esac.esa.int/pla/aio/product-action?COSMOLOGY.FI
 curl -fL --retry 2 "https://irsa.ipac.caltech.edu/data/Planck/release_3/ancillary-data/cosmoparams/$S" -o "/tmp/$S"
 OPENBLAS_NUM_THREADS=1 "$P" verify_planck.py "/tmp/$A" "/tmp/$S"
 ```
+
+## Прямое получение данных
+
+Из этой директории команда загружает и проверяет закреплённые файлы авторов. Повтор с флагом `--offline` проверяет те же байты без сети. [Источники и физический смысл проверок](../donors/README.md).
+
+```sh
+OPENBLAS_NUM_THREADS=1 "$P" verify_planck.py --cache /tmp/r135-donors
+```

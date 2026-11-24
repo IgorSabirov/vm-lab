@@ -1,6 +1,6 @@
 {
   "project": "R135",
-  "revision": "1.0",
+  "revision": "1.1",
   "state": "DESIGN_ONLY",
   "parent_commit": "d8d11cb2214bb3dcba861715e1c5bfc37968b4be",
   "tracker": "https://github.com/IgorSabirov/vm-lab/issues/155",
@@ -39,7 +39,8 @@
       "requires_for_claim": {},
       "development": [
         "Заморозить X-A, X-B, гипотезу маркера, ветви теплообмена и набор физических точек",
-        "Зафиксировать наблюдательные releases, пороги, тестовые подготовки и бюджет"
+        "Зафиксировать наблюдательные releases, пороги, тестовые подготовки и бюджет",
+        "Закрепить доноры GW, классы наблюдательных данных и систематик до оценки спектров X."
       ],
       "deliverables": [
         "model_register.json",
@@ -64,7 +65,8 @@
       "requires_for_claim": {},
       "development": [
         "Получить безразмерную калибровку и независимый размерный якорь либо объявить внешний скан",
-        "Сшить EOS X и видимого сектора, зарегистрировать начальные условия и неопределённости"
+        "Сшить EOS X и видимого сектора, зарегистрировать начальные условия и неопределённости",
+        "Различать прямые finite-a данные t₀, перевод r₀, ковариации EOS и диапазон положительной теплоёмкости."
       ],
       "deliverables": [
         "scale.json",
@@ -178,7 +180,8 @@
         ]
       },
       "development": [
-        "Рассчитать действие, префактор, трение, гидродинамику и стадии карманов"
+        "Рассчитать действие, префактор, трение, гидродинамику и стадии карманов",
+        "Оценить σ и L в согласованной схеме и определить спектр источника GW, его длительность и диапазон применимости по истории перколяции."
       ],
       "deliverables": [
         "nucleation_kernel.csv",
@@ -204,7 +207,8 @@
       },
       "development": [
         "Специфицировать лагранжиан и амплитуды по фазам",
-        "Получить ширины, каналы, матричные элементы и суррогат на общем состоянии"
+        "Получить ширины, каналы, матричные элементы и суррогат на общем состоянии",
+        "Проверить адронный порог, применимость EFT и C-нечётный остаток; распространить область неизвестных амплитуд."
       ],
       "deliverables": [
         "collision_model.json",
@@ -232,7 +236,8 @@
       },
       "development": [
         "Итерировать расширение, нуклеацию, стенки, перенос и остаток в одной задаче",
-        "Вычислить самосогласованные истории пяти углов при применимости"
+        "Вычислить самосогласованные истории пяти углов при применимости",
+        "Вычислить распределение энергии в источнике GW относительно полной плотности и его долю на общей истории расширения, согласовав обратную связь."
       ],
       "deliverables": [
         "phase_history.csv",
@@ -279,7 +284,8 @@
       "requires_for_claim": {},
       "development": [
         "Выполнить PRIMAT, LINX, CLASS и выбранный likelihood",
-        "Профилировать неопределённости и оценить в том числе отрицательные исходы"
+        "Профилировать неопределённости и оценить в том числе отрицательные исходы",
+        "Перенести GW к настоящему и BBN; применить соответствующие полосы PTA и LVK. Проверить официальные ACT/SPT likelihood."
       ],
       "deliverables": [
         "abundances.csv",
@@ -305,7 +311,8 @@
       "requires_for_claim": {},
       "development": [
         "Сопоставить каждое утверждение и каждую тепловую ветвь с результатом или обоснованным исключением",
-        "Восстановить ключевые числа из сырья и передать владельцу"
+        "Восстановить ключевые числа из сырья и передать владельцу",
+        "Для каждой точки приложить статус GW и физическую достаточность источников отдельно от численной воспроизводимости."
       ],
       "deliverables": [
         "claim_matrix.csv",
@@ -326,5 +333,29 @@
     "TECHNICAL_FAILURE": "Отказ вычисления либо повреждение данных",
     "NOT_APPLICABLE_BY_PROOF": "Есть ссылка на достаточное доказательство отсечения данного пути"
   },
-  "completion": "Every declared branch and point has complete physical evidence or a verified sufficient exclusion. An unmeasured required input is never a completed physical run; conditional scans do not establish an absolute scale or identify a carrier."
+  "completion": "Every declared branch and point has complete physical evidence or a verified sufficient exclusion. An unmeasured required input is never a completed physical run; conditional scans do not establish an absolute scale or identify a carrier.",
+  "required_channels": {
+    "GW": {
+      "applies_to": "each candidate, point and thermal path with a first-order transition; document missing source or prove inapplicability",
+      "producer_stages": [
+        "P5",
+        "P7"
+      ],
+      "observing_stage": "P9",
+      "audit_stage": "P10",
+      "specification": "GW_AND_PHYSICAL_INPUTS.md",
+      "outputs": [
+        "gw_source.json",
+        "gw_response.json",
+        "gw_channel_status.json"
+      ],
+      "required_evidence": [
+        "same point and P5/P7 history hash",
+        "source, support, uncertainty and energy budget",
+        "BBN epoch fractions counted once",
+        "PTA and LVK response with release and foreground policy"
+      ],
+      "completion": "OPEN_INPUT prevents full physical completion on an applicable path; an absent spectrum is not zero"
+    }
+  }
 }

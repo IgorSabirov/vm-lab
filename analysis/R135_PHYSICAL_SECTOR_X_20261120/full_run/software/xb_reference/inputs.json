@@ -99,5 +99,12 @@
       "calibration_kind": "externally_specified_model_parameters",
       "history_id": "FMS-confined-boundary"
     }
-  ]
+  ],
+  "additional_scale_checks": {
+    "reader": "../donors/uncertainties.py",
+    "source_lock": "../donors/sources.json",
+    "flow_release": "flow-su3",
+    "primary": "r0",
+    "role": "finite-spacing flow measurements, r0 identity, and string tension cross-check; no independent hidden MeV scale"
+  }
 }
