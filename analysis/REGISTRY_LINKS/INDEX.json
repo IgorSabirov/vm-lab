@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "cfd00eaeeb031fe38a33f2dc3a9eb99f1f9493317c08ca00fbb7656758612875",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "cd6f0dd0a8c1d8d5586224e31869fa9ef86c2cdef12216d4db49623566d9aa83",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "88fdfdf98adbda0330401a8c32bc36ca864fab2eac2fabaa9d5a15b5006472cd",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "967fb60f9e0be83fbe9d5ca276b6b9cb91950d34f481399ea47365a32078afa8",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -114,7 +114,7 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 143,
+    "result": 145,
     "construct": 42,
     "link": 10,
     "question": 12,
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 269
+    "source": 287
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3189,6 +3189,24 @@
       "fragment": "r135"
     },
     {
+      "key": "result:R139",
+      "id": "R139",
+      "kind": "result",
+      "title": "Когерентный калибровочный перенос при именованной перестройке ADD",
+      "status": "OPEN · ПРОВЕРЕН ОДИН ЛОКАЛЬНЫЙ КВАНТОВЫЙ ХОД",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r139"
+    },
+    {
+      "key": "result:R140",
+      "id": "R140",
+      "kind": "result",
+      "title": "Мера Хаара и квантовые истории Соркина на именованных кольцах ADD",
+      "status": "OPEN · ПОСТРОЕН НЕЙТРАЛЬНЫЙ СЕКТОР U(1) И КОНЕЧНЫЙ СВИДЕТЕЛЬ ИНТЕРФЕРЕНЦИИ",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r140"
+    },
+    {
       "key": "result:R141",
       "id": "R141",
       "kind": "result",
@@ -5109,6 +5127,138 @@
       "size_bytes": 6902
     },
     {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "fragment": "",
+      "sha256": "975fad104553a94f2f957a774bae49fe06575e6febcbf63e3a5f0e4e49567fb3",
+      "git_blob_sha": "1cbf80dd3e8a6f0e9e94558daee395626e96c670",
+      "size_bytes": 815
+    },
+    {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "fragment": "",
+      "sha256": "342dc9afba6326117b89681b4753aefef5928cf18694a1f7896f3c110f5bbbaf",
+      "git_blob_sha": "9aa6398304d08378a70192f97cf3bc6974f20842",
+      "size_bytes": 18953
+    },
+    {
+      "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "id": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "kind": "source",
+      "title": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "status": null,
+      "path": "analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "fragment": "",
+      "sha256": "130927d3b96e0c5f623081107103cbc9dd63d689dedfc8951ea148dca318c101",
+      "git_blob_sha": "61ea7ff3b56dda24928e7a4bf934a9f746660dcb",
+      "size_bytes": 8106
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/CHECKS.json",
+      "id": "analysis/R140_HAAR_SORKIN/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/CHECKS.json",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/CHECKS.json",
+      "fragment": "",
+      "sha256": "880da433951624e2182fcf2165d4cc89075ccc7f24f1f599930e66789a6ff04d",
+      "git_blob_sha": "a05621759bccfc7303426367403de13eaaaad44d",
+      "size_bytes": 1740
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/HISTORIES.json",
+      "id": "analysis/R140_HAAR_SORKIN/HISTORIES.json",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/HISTORIES.json",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/HISTORIES.json",
+      "fragment": "",
+      "sha256": "67c8173473211d84e3e68a8bdf5b464bad4bd5a6551c28e2214ba8f7a3dc6f82",
+      "git_blob_sha": "6b0c85bf5cc008cf21442dcd6fb4777155dc079f",
+      "size_bytes": 10527
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/REPORT.md",
+      "id": "analysis/R140_HAAR_SORKIN/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/REPORT.md",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/REPORT.md",
+      "fragment": "",
+      "sha256": "5ba5dd0232812376cb4bf4d177916857c376f2f084f8325487f52c5bcaaa9ee4",
+      "git_blob_sha": "11679244c18186d972a517420f1ea9206d2f4858",
+      "size_bytes": 27507
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "id": "analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "fragment": "",
+      "sha256": "e3ce9f58e068b28f8d5b7939d48e070840ad9670008ff91c44e1a9f3e2fcac45",
+      "git_blob_sha": "bd9b346743bed11f7f746cc6b040dab9b2e1835e",
+      "size_bytes": 15814
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/emergence/replay.py",
+      "id": "analysis/R140_HAAR_SORKIN/emergence/replay.py",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/emergence/replay.py",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/emergence/replay.py",
+      "fragment": "",
+      "sha256": "09abea4d2b71b4f0913116e263ef874b49de0b20e4d3226b5d4ec32d331962ff",
+      "git_blob_sha": "ac36afc0628bafacdf83e3c47313fc9a34bcd71c",
+      "size_bytes": 6193
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "id": "analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "fragment": "",
+      "sha256": "7ca4eed26cab5b94299cc79e128216e23e9f35e5fd940088fd102c4aaba19afc",
+      "git_blob_sha": "b6a324ff18f54f18c16b3fd087828e2828c89cdc",
+      "size_bytes": 2138
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md",
+      "id": "analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md",
+      "fragment": "",
+      "sha256": "f525dfe66b27f85e4d00f48739b08093a2252ede4f3b6c64d364ff6b01b7e89d",
+      "git_blob_sha": "98e918e165f89cb97b44a64185896992806180b5",
+      "size_bytes": 15193
+    },
+    {
+      "key": "source:analysis/R140_HAAR_SORKIN/verify.py",
+      "id": "analysis/R140_HAAR_SORKIN/verify.py",
+      "kind": "source",
+      "title": "analysis/R140_HAAR_SORKIN/verify.py",
+      "status": null,
+      "path": "analysis/R140_HAAR_SORKIN/verify.py",
+      "fragment": "",
+      "sha256": "10e23dfe02552df03bde1bae7944b27ae4b3230d2b594e3680f3cbd00c6182d5",
+      "git_blob_sha": "8a8f593380b28772a4ef2a172047ce930dca8494",
+      "size_bytes": 15635
+    },
+    {
       "key": "source:analysis/R141_R147_MODEL/README.md",
       "id": "analysis/R141_R147_MODEL/README.md",
       "kind": "source",
@@ -5212,9 +5362,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/ATLAS.json",
       "fragment": "",
-      "sha256": "be9dc1851d7264ddc0ef30022856c06799abc9ed76e1fdb01aec3349c6037707",
-      "git_blob_sha": "3df2c848ff840e59c3aca7973decbbe81679b979",
-      "size_bytes": 276593
+      "sha256": "2994754fd01bcf0c83e5c24383e41787282858a6ef4a115709a7cc7a7ca1b0da",
+      "git_blob_sha": "71dd110b0c86f19f1da4dfee4f40b4cc389c7027",
+      "size_bytes": 277611
     },
     {
       "key": "source:analysis/R141_R148_MODEL/PAIRS.md",
@@ -5236,9 +5386,9 @@
       "status": null,
       "path": "analysis/R141_R148_MODEL/R141-R148.html",
       "fragment": "",
-      "sha256": "9c0d4b87de58bfe322e9606e229beddf50304a1474ff53ca580c6ac4c7161664",
-      "git_blob_sha": "c038e6b89922f3ad1fc094e9ec7aebf3ef4b1ef4",
-      "size_bytes": 12666851
+      "sha256": "17b18d45ee1481b63d387de9c110fa945f5b5ca16a63685a40ec4cf6e906efeb",
+      "git_blob_sha": "5d5d1f218303d0d435140b7a959d89adceaa1971",
+      "size_bytes": 12669845
     },
     {
       "key": "source:analysis/R141_R148_MODEL/code/audit_extensions.py",
@@ -5335,6 +5485,90 @@
       "sha256": "d25e374a9d981047186a1f077b12cf74194b4d9b3ee613d26d11dbbd89c7e6c9",
       "git_blob_sha": "2e8e6b8bf41b75358dcad20820081f3e5e07cff8",
       "size_bytes": 28902
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+      "fragment": "",
+      "sha256": "67c8173473211d84e3e68a8bdf5b464bad4bd5a6551c28e2214ba8f7a3dc6f82",
+      "git_blob_sha": "6b0c85bf5cc008cf21442dcd6fb4777155dc079f",
+      "size_bytes": 10527
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py",
+      "fragment": "",
+      "sha256": "13379fbe08c0ac90510e575a326e606d4830594922bb727d3fddc5f8c2916741",
+      "git_blob_sha": "533c56c1fd4309f51b8c022270fc73ca4dab3179",
+      "size_bytes": 10375
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+      "fragment": "",
+      "sha256": "ba02a87ca8cf14c3e0e83212853de391876d4d607e79af3201efedffaed21212",
+      "git_blob_sha": "282e13ad58b7d710f4a24b0b6271b96a900833a5",
+      "size_bytes": 1512
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+      "fragment": "",
+      "sha256": "0d97b2681b207ad29f3cd939e69c64a0363b27616044bbec207d7ef69f356c39",
+      "git_blob_sha": "38979aba2be814766ecb9c50789b4a3384fa62ae",
+      "size_bytes": 3478
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py",
+      "fragment": "",
+      "sha256": "d46a47443e610ffe42a0160aaae0487e6c0a9be9e6b96bf72ce39962cf7cf9a1",
+      "git_blob_sha": "f60f2f07bdedaac5ecd8557bb4b85b08d9d7b951",
+      "size_bytes": 9561
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py",
+      "id": "analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py",
+      "fragment": "",
+      "sha256": "9f8e0854ab418c04db9b449a1892cbfdda78cacb06224bb83460d13aaed059c5",
+      "git_blob_sha": "9ea68b768afdc9652f6bb0ef4256646a75f6b998",
+      "size_bytes": 8089
+    },
+    {
+      "key": "source:analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
+      "id": "analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
+      "kind": "source",
+      "title": "analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
+      "status": null,
+      "path": "analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
+      "fragment": "",
+      "sha256": "6effaef6c6288dd6cb254b2e3f456fb200e201e94f6ee19d45801fb1712fa26e",
+      "git_blob_sha": "e8ea8bd193c2ea37cf7531aa24a5b93b1683dfe5",
+      "size_bytes": 25522
     },
     {
       "key": "source:analysis/R142_MAGIC_NUMBERS/CALIBRATION.json",
@@ -8780,9 +9014,19 @@
       "relation": "addresses"
     },
     {
+      "source": "result:R007",
+      "target": "result:R140",
+      "relation": "parent"
+    },
+    {
       "source": "result:R008",
       "target": "construct:C012",
       "relation": "addresses"
+    },
+    {
+      "source": "result:R008",
+      "target": "result:R140",
+      "relation": "parent"
     },
     {
       "source": "result:R009",
@@ -8798,6 +9042,11 @@
       "source": "result:R011",
       "target": "construct:C012",
       "relation": "addresses"
+    },
+    {
+      "source": "result:R011",
+      "target": "result:R140",
+      "relation": "parent"
     },
     {
       "source": "result:R012",
@@ -9157,6 +9406,11 @@
     {
       "source": "result:R047",
       "target": "result:R120",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R047",
+      "target": "result:R140",
       "relation": "parent"
     },
     {
@@ -11652,6 +11906,16 @@
     },
     {
       "source": "result:R130",
+      "target": "result:R139",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R130",
+      "target": "result:R140",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R130",
       "target": "result:R148",
       "relation": "parent"
     },
@@ -11943,6 +12207,11 @@
     },
     {
       "source": "result:R132",
+      "target": "result:R139",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R132",
       "target": "result:R141",
       "relation": "parent"
     },
@@ -12032,6 +12301,11 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R132",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R133",
       "target": "construct:C037",
       "relation": "addresses"
@@ -12069,6 +12343,16 @@
     {
       "source": "result:R133",
       "target": "result:R135",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R133",
+      "target": "result:R139",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R133",
+      "target": "result:R140",
       "relation": "parent"
     },
     {
@@ -12157,6 +12441,11 @@
       "relation": "managed_evidence_source"
     },
     {
+      "source": "result:R133",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
       "source": "result:R134",
       "target": "construct:C037",
       "relation": "addresses"
@@ -12237,6 +12526,151 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R135",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "construct:C037",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R139",
+      "target": "question:U006",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R139",
+      "target": "result:R140",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R139",
+      "target": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "construct:C012",
+      "relation": "addresses"
+    },
+    {
+      "source": "result:R140",
+      "target": "question:U003",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R140",
+      "target": "question:U006",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R140",
+      "target": "question:U010",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R140",
+      "target": "result:R141",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R140",
+      "target": "result:R142",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R140",
+      "target": "result:R148",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/HISTORIES.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/replay.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R140_HAAR_SORKIN/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
       "relation": "managed_evidence_source"
     },
     {
@@ -12353,6 +12787,16 @@
       "source": "result:R141",
       "target": "result:R148",
       "relation": "parent"
+    },
+    {
+      "source": "result:R141",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R141",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "relation": "managed_evidence_source"
     },
     {
       "source": "result:R141",
@@ -13443,6 +13887,16 @@
       "source": "result:R148",
       "target": "question:U010",
       "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R148",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R148",
+      "target": "source:analysis/R140_HAAR_SORKIN/emergence/results.json",
+      "relation": "managed_evidence_source"
     },
     {
       "source": "result:R148",

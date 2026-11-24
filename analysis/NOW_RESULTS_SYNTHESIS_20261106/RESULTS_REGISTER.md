@@ -4142,11 +4142,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Граница.** Классифицирована конкретная алгебра на пространстве одной метки. Происхождение цветового сектора из коллективных степеней свободы, локальных калибровочных полей, фермионов, масс, трёх поколений и типичной стрелы ADD остаётся открытым. Каждый граф получает собственное равновесное KMS-состояние. Выбор внутреннего бимодуля и его D законом R130 остаётся открытым. Секторные следы и перенос SU(2) на связях уточнены в дополнениях; перенос оператора первого порядка на меняющихся графах выделен в постановку R133. На орбите (1,2,12) полная энтропия постоянна при росте имени. Эталон потока с поэлементным сопряжением зависит от выбора базиса.
 
-**Место в рамке.** Сравнение конечной спектральной геометрии Стандартной модели и ADD. Связь спектрального действия с членом Янга–Миллса опирается на первичную литературу. Отображение в решёточное квантовое поле открыто.
+**Место в рамке.** Сравнение конечной спектральной геометрии Стандартной модели и ADD. Связь спектрального действия с членом Янга–Миллса опирается на первичную литературу. Отображение в решёточное квантовое поле открыто. В R140 направленный перенос даёт плоский контроль. На нём измеряется эффект изменения порядка двух операций в H6.
 
 **Родители:** R130, R131. **Конструкции:** C037. **Вопросы:** U006.
 
-**Источники:** [REPORT.md](../../analysis/R132_ADD_YM_CCM_20261119/REPORT.md); [verify.py](../../analysis/R132_ADD_YM_CCM_20261119/verify.py); [CHECKS.json](../../analysis/R132_ADD_YM_CCM_20261119/CHECKS.json); [README.md](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md); [check.py](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py); [DUALITY_AND_PREDICTION.md](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md); [duality_prediction.py](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py); [duality_prediction.json](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json); [REPORT.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md); [check.py](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json); [REPORT.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md).
+**Источники:** [REPORT.md](../../analysis/R132_ADD_YM_CCM_20261119/REPORT.md); [verify.py](../../analysis/R132_ADD_YM_CCM_20261119/verify.py); [CHECKS.json](../../analysis/R132_ADD_YM_CCM_20261119/CHECKS.json); [README.md](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md); [check.py](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py); [DUALITY_AND_PREDICTION.md](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md); [duality_prediction.py](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py); [duality_prediction.json](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json); [REPORT.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md); [check.py](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json); [REPORT.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R132 -->
@@ -4182,11 +4182,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Граница.** Для T3 ещё требуется задать перенос полных операторных данных и сравнить его на общем конце. Фактор по именам допустим для наблюдаемых, спускающихся на него. T4 и физическая стрела открыты. При фиксированном числе частиц p=3 на шагах 4→5 при β=8 каноническая энтропия убывает. Космологический выход H(T) требует физических часов, объёма и материи; внешний закон G(a) с контролем c=0 пока не выведен из перестроек.
 
-**Место в рамке.** Проверка представления одной геометрической операции в ADD и петлевой спектральной геометрии. Энтропийная граница проверяется отдельно на донорских данных Quantum Cosmos Lab и Guedes.
+**Место в рамке.** Проверка представления одной геометрической операции в ADD и петлевой спектральной геометрии. Энтропийная граница проверяется отдельно на донорских данных Quantum Cosmos Lab и Guedes. Для двух путей с общими концами след относительного оператора сохраняется при согласованных изменениях реперов. В нейтральном подъёме R140 оператор телескопируется.
 
 **Родители:** R130, R131, R132. **Конструкции:** C037, C042. **Вопросы:** U006, U010.
 
-**Источники:** [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md); [check_controls.py](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt); [DONORS.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md); [check_review.py](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md); [verify.py](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt); [BBN_DONORS_R131_R134.md](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md); [BBN_METHOD_TRANSFER.md](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md).
+**Источники:** [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md); [check_controls.py](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt); [DONORS.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md); [README.md](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md); [CHECKS.json](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md); [check_review.py](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt); [REPORT.md](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md); [verify.py](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py); [CHECKS.json](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt); [BBN_DONORS_R131_R134.md](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md); [BBN_METHOD_TRANSFER.md](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R133 -->
@@ -4233,11 +4233,11 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Граница.** Независимая физическая подготовка YM-состояний, энергия и реальное время X, завершение фазового перехода и портальные источники остаются открытыми. Равновесная длительность 0.96667 H₀⁻¹ относится к изолированной обратимой смешанной фазе во внешнем радиационном фоне.
 
-**Место в рамке.** Сверить, какие свойства внутреннего порядка переживают смену представления и достаточны для прогноза. Закрытие физической модели требует независимого фазового и космологического отклика.
+**Место в рамке.** Сверить, какие свойства внутреннего порядка переживают смену представления и достаточны для прогноза. Закрытие физической модели требует независимого фазового и космологического отклика. Для сравнения с H6 фиксированный коммутатор двух петель даёт нормированный след ω при следе 0 у относительного переноса порядка. Оба результата условны по выбранным операторам.
 
 **Родители:** R130, R131, R132, R133, R134. **Конструкции:** C037. **Вопросы:** U006.
 
-**Источники:** [REPORT.md](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md); [verify.py](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py); [CHECKS.json](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt).
+**Источники:** [REPORT.md](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md); [verify.py](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py); [CHECKS.json](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json); [NEIGHBOR_ORIGINAL.txt](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 <!-- /generated:R135 -->
@@ -4257,7 +4257,7 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Место в рамке.** Происхождение различимости ограничивает поиск минимального наблюдаемого. C028, L07 и U010 задают проверку переноса на другой носитель.
 
-**Родители:** R132, R141, [R140](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md). **Конструкции:** C028. **Вопросы:** U010.
+**Родители:** R132, R140, R141. **Конструкции:** C028. **Вопросы:** U010.
 
 **Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py); [EXECUTED.md](../../analysis/R142_MAGIC_NUMBERS/EXECUTED.md); [HOLDOUT_RESULTS.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json); [HOLDOUT_LOCK.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json); [NUCLEAR_INPUT.json](../../analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json); [holdout.py](../../analysis/R142_MAGIC_NUMBERS/holdout.py); [fibonacci.py](../../analysis/R142_MAGIC_NUMBERS/fibonacci.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md); [btfr.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv); [rar_shape.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json); [scale_uncertainty.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json); [README.md](../../analysis/R141_R147_MODEL/README.md); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [README.md](../../analysis/R141_R148_MODEL/name_arithmetic/README.md); [results.json](../../analysis/R141_R148_MODEL/name_arithmetic/results.json).
 
@@ -4349,9 +4349,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Место в рамке.** Сравнить достаточность локального описания для будущих измерений, область допустимых таблиц и множество приготовлений от известного старта.
 
-**Родители:** R132, [R140](https://github.com/IgorSabirov/vm-lab/blob/0b138473ae72675b4ff2a4d4491c4c769083a0fa/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md). **Конструкции:** C012, C037. **Вопросы:** U010.
+**Родители:** R132, R140. **Конструкции:** C012, C037. **Вопросы:** U010.
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R141_origin.json](../../analysis/R141_R147_MODEL/evidence/R141_origin.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [README.md](../../analysis/R141_R148_MODEL/name_arithmetic/README.md); [results.json](../../analysis/R141_R148_MODEL/name_arithmetic/results.json); [replay.py](../../analysis/R141_R148_MODEL/name_arithmetic/replay.py).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R141_origin.json](../../analysis/R141_R147_MODEL/evidence/R141_origin.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [README.md](../../analysis/R141_R148_MODEL/name_arithmetic/README.md); [results.json](../../analysis/R141_R148_MODEL/name_arithmetic/results.json); [replay.py](../../analysis/R141_R148_MODEL/name_arithmetic/replay.py); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md); [results.json](../../analysis/R140_HAAR_SORKIN/emergence/results.json).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 
@@ -4362,6 +4362,10 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 В арифметической ветви те же корни характеристического уравнения появляются в подсчёте идеалов и периодических точек тора. У динамической дзета-функции тора $\zeta_{B_q}(t)=(1-t)^2/(1-qt+t^2)$, так как $\#\mathrm{Fix}(B_q^n)=V_n-2$ при $q>2$. Для сдвига исходных слов без пары числитель равен 1, для золотого языка масок знаменатель уже $1-t-t^2$. У дзета-функции Дедекинда аргумент $s$, а коэффициент на $n^{-s}$ считает идеалы нормы $n$. Совпадение слова «дзета» не даёт отображения между полюсами и нулями этих функций.
 
 В исходном R141 также исследованы 657 табличных нулей, перестановки промежутков, явная формула, конечные операторы Конна и спектральные статистики физических доноров. Кольцо при фиксированном $q$ имеет спектр в $[q-2,q+2]$. Чтобы связать его со всеми ординатами нулей, понадобится новая независимо выведенная шкала или иной оператор, а также контроль кратностей. Внешняя формальная проверка RH и внутренняя операторная задача имеют разные результаты. Отчёт R141 · Заявление Lean FRO и Mathlib.
+
+**Вероятностная связь с R140**
+
+У подготовленного логического кубита H6 ранг распределения конечной длины по нормированным координатам равен 3. Если записать длину на шаге 7 и читать только конечную длину, ранг равен 2 и теряется координата x.
 
 **Как отличить разрыв маски от разрыва оператора**
 
@@ -4559,9 +4563,9 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Место в рамке.** Связывает масштаб Кантора, закон наблюдаемого процесса и контракт свидетеля R128 с явными вмешательствами и границами наблюдения.
 
-**Родители:** R128, R130, R141, R142, R143, R144, R145, R146, R147. **Конструкции:** C010, C026, C033, C039, C012. **Вопросы:** U010.
+**Родители:** R128, R130, R140, R141, R142, R143, R144, R145, R146, R147. **Конструкции:** C010, C026, C033, C039, C012. **Вопросы:** U010.
 
-**Источники:** [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [temporal.json](../../analysis/R141_R148_MODEL/results/temporal.json); [extensions.json](../../analysis/R141_R148_MODEL/results/extensions.json); [temporal.py](../../analysis/R141_R148_MODEL/code/temporal.py); [audit_extensions.py](../../analysis/R141_R148_MODEL/code/audit_extensions.py); [r130_reference.py](../../analysis/R141_R148_MODEL/code/r130_reference.py); [README.md](../../analysis/R141_R148_MODEL/name_arithmetic/README.md); [results.json](../../analysis/R141_R148_MODEL/name_arithmetic/results.json); [replay.py](../../analysis/R141_R148_MODEL/name_arithmetic/replay.py).
+**Источники:** [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [temporal.json](../../analysis/R141_R148_MODEL/results/temporal.json); [extensions.json](../../analysis/R141_R148_MODEL/results/extensions.json); [temporal.py](../../analysis/R141_R148_MODEL/code/temporal.py); [audit_extensions.py](../../analysis/R141_R148_MODEL/code/audit_extensions.py); [r130_reference.py](../../analysis/R141_R148_MODEL/code/r130_reference.py); [README.md](../../analysis/R141_R148_MODEL/name_arithmetic/README.md); [results.json](../../analysis/R141_R148_MODEL/name_arithmetic/results.json); [replay.py](../../analysis/R141_R148_MODEL/name_arithmetic/replay.py); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md); [results.json](../../analysis/R140_HAAR_SORKIN/emergence/results.json).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
 
@@ -4580,6 +4584,10 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | Эффективное описание | Запрет 11 разрешим на конечном окне, $X_G$ эффективно замкнуто. Программная маска остаётся нулевой до остановки машины и затем выдаёт допустимое чередование. Свойство наличия единицы для индексов этого семейства $\Sigma^0_1$-полно. Это сведение не устанавливает внутреннюю универсальность полного $F=QI$. |
 
 Гёдель требует фиксированной формальной теории с нужной выразительностью и эффективной аксиоматизацией, Тарский — заданного языка и понятия истины. Чёрч и Тьюринг дают конкретную границу алгоритмического решения, когда точно задано представление входа. По теореме Брудно сложность префикса на символ у почти каждой истории эргодической меры равна её энтропийной скорости; на одном $X_G$ типичные значения двух мер — 0,69424 и 0,33126 бит/символ. Обе меры безатомны, так что счётные семейства вычислимых точек и программных примеров остановки имеют меру нуль. Модель корпуса пока не зафиксировала эндогенную процедуру выбора типичных временных историй. Теорема Брудно для сдвигов.
+
+**Вероятностная связь с R140**
+
+В H6 правило по длине записывает порядок двух историй в поле. При e₀ и при I/3 выход № 19 имеет вероятность 1/64 в обоих опытах. Следовое расстояние между полевыми состояниями путей равно 1 и 0 соответственно. Для U010 требуется физический обмен содержанием и повторение записи новым носителем.
 
 **Мера на масках и контроль по нулям**
 
@@ -4600,3 +4608,47 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 Исследование R130 и код воспроизведения
 <!-- /generated:R148 -->
+
+<!-- generated:R139 -->
+<a id="r139"></a>
+
+### R139. Когерентный калибровочный перенос при именованной перестройке ADD
+
+**Статус:** OPEN · ПРОВЕРЕН ОДИН ЛОКАЛЬНЫЙ КВАНТОВЫЙ ХОД
+
+**Результат.** На паре именованных колец 3↔4 построена унитарная инволюция в локальном пространстве размерности 8+64 для Q₈. Все 512 троек реперов сохраняют ковариантность. При фиксированном произведении и нейтральном внутреннем узле изометрия определена с точностью до общей фазы. На 768 назначениях совпал матричный перенос между сохранившимися концами и полный обход кольца. Два когерентных шага выбранного интерферометра дают вероятность уточнённой геометрии 1, стирание относительной фазы даёт 1/2.
+
+**Условия.** Именованный I₂ и классический полушаг Q R130, операторы концов ребра R132, изометрия Хаара R133. Введены группа Q₈, наследование рамки левым потомком, различимые графовые секторы и операция рекомбинации.
+
+**Граница.** Размер квантового носителя и типы проб фиксированы. Полный закон для квантовых связей на F=QI₂, причинность на произвольных графах, обратное действие материи, динамика кривизны и физический предел открыты.
+
+**Место в рамке.** Самостоятельная проверка совместимости изменения именованной геометрии, унитарного переноса и точной локальной симметрии на одном носителе.
+
+**Родители:** R130, R132, R133. **Конструкции:** C037. **Вопросы:** U006.
+
+**Источники:** [REPORT.md](../../analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/REPORT.md); [verify.py](../../analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py); [CHECKS.json](../../analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R139 -->
+
+<!-- generated:R140 -->
+<a id="r140"></a>
+
+### R140. Мера Хаара и квантовые истории Соркина на именованных кольцах ADD
+
+**Статус:** OPEN · ПОСТРОЕН НЕЙТРАЛЬНЫЙ СЕКТОР U(1) И КОНЕЧНЫЙ СВИДЕТЕЛЬ ИНТЕРФЕРЕНЦИИ
+
+**Результат.** Полный детерминированный F унитарен на прямой сумме нейтральных кольцевых U(1)-секторов при сохранении голономии. Для историй геометрии он даёт I₂=0. Локальное когерентное семейство содержит исходный F при θ=π/2. При θ=π/4 две истории длин из 120 за восемь прямых шагов дают μ(A)=μ(B)=1/128, μ(A∪B)=0, I₂=−1/64. Полная различимая запись обнуляет I₂. Совместное событие с единичной голономией на ℤ₃ даёт I₂=−1/96 при явно выбранном состоянии. Смешанный шаг на сырых связях ℤ₃ имеет ранг 9 из 27. Для выбранного разбиения I₃=0 и I₄=0 проверены как grade-2 регрессионные тождества; сильная положительность следует из Gram-формы и проверена численно. Это не дополнительные дискриминаторы квантовости.
+
+**Условия.** Нейтральное ориентированное кольцо, нормированный Хаар, именованные I и Q, конвенция о наследовании рамки, начальный граф, состояние (1+h)/√2, проекции на длину и локальный угол смешивания.
+
+**Граница.** Нейтральный сектор несёт одну сохраняемую голономию. На сырых связях, при зарядах или нескольких независимых циклах полный физический перенос остаётся открытым. Выбор состояния, угла и роль измерительной записи требуют физических оснований. D₁₃₆ из R136 не вычисляется и не идентифицируется по текущим историям длин ADD: в них нет β-сканирования, парных ансамблей 48³/64³ и matching-протокола Shirogane. Связь пока методологическая, не физическое объединение. Теорема pushforward Хаара для группового умножения не является автоматическим доказательством для произвольного меточного ADD-переписывания; результат относится к указанному подъёму на нейтральном кольце. I₃/I₄ и PSD — структурные regression controls; квантовую неклассичность несёт выбранный I₂, зависящий от заданных ρ и θ. Правила H6 и подготовка поля заданы. Эндогенный выбор правила, чтение локального следа и воспроизводство условий следующей структурой открыты в U010.
+
+**Место в рамке.** Явный динамический пример для C012. Два разных закона эволюции на одном носителе разделяют сохранение Хаара и вклад интерференции в веса историй. В общей схеме R140 даёт проверяемый переход от порядка перестроек через состояние поля к вероятности общего конечного графа. При начальных e₀ и I/3 один P₁₉=1/64 совместим со следовыми расстояниями 1 и 0 между полями двух историй.
+
+**Родители:** R007, R008, R011, R047, R130, R133, R139. **Конструкции:** C012. **Вопросы:** U003, U006, U010.
+
+**Источники:** [REPORT.md](../../analysis/R140_HAAR_SORKIN/REPORT.md); [verify.py](../../analysis/R140_HAAR_SORKIN/verify.py); [CHECKS.json](../../analysis/R140_HAAR_SORKIN/CHECKS.json); [HISTORIES.json](../../analysis/R140_HAAR_SORKIN/HISTORIES.json); [REPORT.md](../../analysis/R140_HAAR_SORKIN/emergence/REPORT.md); [replay.py](../../analysis/R140_HAAR_SORKIN/emergence/replay.py); [results.json](../../analysis/R140_HAAR_SORKIN/emergence/results.json); [REPORT.md](../../analysis/R140_HAAR_SORKIN/peer_audit/REPORT.md); [R140_H6_table.md](../../analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md); [previous.py](../../analysis/R141_RIEMANN_CORPUS/donor_replay/previous.py); [check_h6.py](../../analysis/R141_RIEMANN_CORPUS/donor_replay/check_h6.py); [graph_engine.py](../../analysis/R141_RIEMANN_CORPUS/donor_replay/graph_engine.py); [HISTORIES.json](../../analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json); [followup.py](../../analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py); [followup.json](../../analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+<!-- /generated:R140 -->

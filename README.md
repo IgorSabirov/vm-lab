@@ -6,6 +6,8 @@
 
 # Текущая работа — начать здесь
 
+[**R140 · Порядок событий, вероятность и возникновение записи**](analysis/R140_HAAR_SORKIN/emergence/REPORT.md) · [расчёт](analysis/R140_HAAR_SORKIN/emergence/replay.py) · [точные результаты](analysis/R140_HAAR_SORKIN/emergence/results.json).
+
 [**R141–R148 · Актуальная модель, карточки и воспроизведение**](analysis/R141_R148_MODEL/README.md) · [28 связей с контролями](analysis/R141_R148_MODEL/PAIRS.md) · [R148 в реестре](analysis/NOW_RESULTS_SYNTHESIS_20261106/R148.md).
 
 [**R141–R147 · Общая модель. От локального правила к геометрии и арифметике спектра**](analysis/R141_R147_MODEL/README.md). Ланглендс, поток Риччи, два волновых канала и проверка кандидата Гильберта–Пойа.
