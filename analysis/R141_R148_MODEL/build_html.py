@@ -111,6 +111,8 @@ def plan():
     render.boundaries(doc, atlas["task_boundaries"])
     old = json.loads(native.STATE.read_text())
     published = archives(doc, updates, old.get("archives", {}), state)
+    if "r144_full_replay_sha256" in old:
+        state["r144_full_replay_sha256"] = old["r144_full_replay_sha256"]
     render.materials(doc, atlas, rows, updates, state)
     record = {k:v for k,v in atlas.items() if k not in ("html_sha256","html_path")}
     doc.get_element_by_id("machine-record").find("pre").text = sync.encode(record).rstrip("\n")
