@@ -1,0 +1,231 @@
+## 1. Решение и граница MVP
+
+**MVP — продолжить существующий `research_pipeline` и общий admission/ledger из PR #61, не создавать второй диспетчер.** Сначала наследовать PR #61 (`0c2a88268ede88909b81b04998dd91af57ddc447`) отдельным PR, затем добавить versioned контракт эксперимента, два адаптера — конечный ADD F2 и Serbian `SignatureKernel` — и общий маршрут до независимой проверки и draft PR. #61 не находится в активной опорной ветке: его исправления допуска и маршрутизации здесь **не считаются развёрнутыми**. Не трогать активные `CONTROL`, `RUN_REQUEST`, `CURRENT`, persistent webhook и научные статусы.
+
+Один пакет содержит обе независимые секции с общими `package_id`, матрицей, source SHA и пререгистрированными критериями. Совместное исполнение проверяет только инженерную среду; **оно не устанавливает физическую связь ADD с гравитацией**. Остальные направления остаются записями возможностей в существующих `SOURCE_INDEX` и `infra/external/contracts`; никакого выдуманного `READY`.
+
+## 2. Шесть направлений
+
+| Направление | Закреплённый источник и имеющийся исполнитель | Что отсутствует; первый конкретный путь |
+|---|---|---|
+| **CCC+TL** | `CCC_SPARC`: commit `0a1b208227def246b43c691569adb2ae88b44231`, tree `7a15c486ed4131c044ae618341c022916bc91750`; только часть CCC, не BBN. Отдельно BBN-зависимость PRIMAT: `6f7e5680614fb119d65a6c9c65a292240b27c61e`, GPL-3.0-or-later. Текущие `s1_fullnet`/`s_eta` в PR #61 исполняют BBN через PRIMAT, не полный CCC+TL. | Для полного CCC+TL нет исполняемого контракта/маршрута. Существующий контракт `CCC_SPARC.json` — DRAFT; BBN не объявлять его исполнителем. Первый путь — оставить оба источника в реестре возможностей; отдельный `infra/adapters/ccc_sparc.py` допустим только после определения конкретного вычислимого контракта. |
+| **Anthropic** | Hawking–Page: публикация `2611.00175v1`, hash записи `d003d79b76e6359e5d04d14eae502fa6a234ca2f6f4084791c1358b49ecf44f1`; Bootstrap: `2611.00174v1`, hash записи `ae7590571590ba6af72821f6ce144a639ef8c2da72cf5732e90b8f420c6276d0`. Это версии публикаций, не Git SHA. Выполнены наши ограниченные проверки редуцированных формул. | Нет авторского полноценного solver; нет трёхпетлевого движка, доказательства bootstrap или кинетики. Существующие контракты `ANTHROPIC_HP.json`, `ANTHROPIC_BOOTSTRAP.json` остаются DRAFT. Первый адаптер — только для уже описанных bounded checks; путь `infra/adapters/anthropic_reduced.py`, **не включать в allowlist MVP**. |
+| **Serbian piecewise-flat QG** | Авторский архив `third_party/piecewise_flat_qg/upstream_cpp.tar.xz`, SHA-256 `38d0aeb4bcd5dc662363d5ebc8498f30df9a5d837111134e52d173f0c678f646`, версия 1.0.0, GPL-3.0-or-later; RapidXML сохраняет свою лицензию. Есть C ABI, `SignatureKernel`, `build_and_check.py`; сохранены исторические авторские/адаптерные проверки. | Новый общий lifecycle не подключён; `SERBIAN_CPP.json` остаётся инженерным контрактом, не научным результатом. MVP: `infra/adapters/serbian_signature.py`, использовать существующий `SignatureKernel.classify` и добавить kernel-only режим к существующей сборке, не запускать весь исторический набор. |
+| **IsingCauset** | `LisaGlaser/IsingCauset`, commit `ebcca8bfd06ff61c11b8b84cc4abe9eb5a7dea17`, tree `b7911f3b9c1419df683249e441f137b957402340`, MIT по SOURCE_INDEX. Имеется контракт-кандидат; авторский ансамбль не исполнен. | Не закреплены исполнимый ансамбль, полный вход/выход и контрольный verifier. Оставить DRAFT; `infra/adapters/isingcauset.py` — будущий путь, не allowlist. |
+| **CDT2D** | `JorenB/2d-cdt`, commit `412d0b887532c46e4445581b1a2bd509f65aaaec`, tree `8dc9c17b90ed1c9ec714c5333532eee1886cf439`, MIT по SOURCE_INDEX. Имеется DRAFT-контракт. | Нет исполнимого ансамблевого контракта, фикстуры и verifier. Оставить DRAFT; будущий путь `infra/adapters/cdt2d.py`, не allowlist. |
+| **ADD** | Передан локальный файл `analysis/ADD_DICHOTOMY_AUDIT_20261108/source/add_backend_smoke_v1.py`, SHA-256 `ee607902b61b28328affc9ca3474ee8881b610aac9b8ec1773081abe3d585e27`; исходная работа — arXiv `2306.07121v2`. Это наша реконструкция, не код авторов. В файле уже есть `sample_trajectory`, `f_sym`, `ring_graph`, `local_observables`. | Smoke по умолчанию запускает широкий конечный набор проверок и иллюстративный ансамбль; это не надо использовать как адаптерный прогон. MVP: `infra/adapters/add_f2.py`, вызвать `sample_trajectory(..., seed=..., initial_vertices=..., steps=..., bit_probability=...)`; зафиксировать, что вариант оператора — **симметричный F2: `f_sym`**, а не неопределённое «ADD вообще». Один конечный запуск не аттестует закон статьи или полный ансамбль. |
+
+Пины, лицензии и статусы выше взяты только из переданных FULL_TEXT. Другие файлы, на которые ведут ссылки, **NOT_INSPECTED**; фиктивной аттестации авторского кода нет.
+
+## 3. Дерево и точные изменения
+
+Предлагаемое дерево первого PR; всё новое ниже **UNEXECUTED**:
+
+```text
+infra/
+  experiment_contract.py              # схема, preflight, матрица/хеши
+  adapters/
+    __init__.py
+    add_f2.py                          # только фиксированный модуль ADD и F2
+    serbian_signature.py               # только SignatureKernel
+  result_verifier.py                   # полнота секций, manifest, независимая проверка
+  autonomy/
+    wake_queue.py                      # проверка окна и readiness, без LLM
+    ...                                # PR #61: наследуем, не копируем
+tests/
+  test_research_adapters.py            # тесты нового контракта и двух маршрутов
+```
+
+| Существующий файл / функция | Предлагаемое изменение | Зачем |
+|---|---|---|
+| `infra/research_pipeline.py`: `IMPLEMENTATIONS`, `validate_definition`, `execution_admission`, `bounded_process`, `evaluate`, `save_state`, `publish` | После наследования PR #61 добавить **фиксированные** ID `add_f2`, `serbian_signature`; валидировать типизированные jobs/секции; сохранить старые пути CCC; диспетчер вызывать только заранее зарегистрированные entrypoint. Многосекционное исполнение включить для нового package path, не разрешая его legacy CCC runner. | Один контроллер/allowlist. JSON задаёт параметры, но не команду или произвольный путь исполнения. |
+| `infra/autonomy/{admit.py,execution_policy.py,finish.py,LEDGER.json,CONTROL.json}` — код PR #61 | Наследовать как основу отдельным PR. Затем: один CAS reservation на `package_id`, список section/job IDs; общий учёт local/Actions/VM; зафиксировать `PUBLISH_PENDING` отдельно от вычислительного результата. Существующие лимиты не повышать. | Не переписывать допускающую логику #61; не допускать второго резерва для двух секций. В репозитории эти изменения пока не развёрнуты. |
+| `infra/run_contract.py`, `infra/RUN_CONTRACT.md` | Совместимо расширить проверку run-plan: включить версионированный experiment contract, pinned inputs/environment, секционные квитанции и общий result envelope. Оставить приём v1. | Использовать существующие plan/receipt-проверки, не вводить отдельный реестр статусов. |
+| `tools/piecewise_flat_qg/build_and_check.py` | Добавить `--kernel-only`: проверка архивных и source-file SHA остаётся; собрать только библиотеку и C ABI. Не выполнять восемь тестовых наборов, генераторы, mesh probe и 4096-матрицный benchmark в новом демонстрационном запуске. | Повторно использовать закреплённый исходник/сборку без исторического пакета. |
+| `tools/piecewise_flat_qg/signature_kernel.py`, `third_party/piecewise_flat_qg/UPSTREAM.json` | Переиспользовать без переписывания алгоритма; адаптер вызывает строгий `classify`. Лицензии/хеши остаются неизменными. | C++-интеграция через имеющиеся C ABI и Python-обёртку. |
+| `analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json`, `infra/external/contracts/*.json` | Зафиксировать новый проверенный **инженерный** receipt и путь адаптера только после теста; не переводить другие источники в READY и не менять научные статусы. Для остальных направлений сохранить существующие DRAFT/candidate записи. | SOURCE_INDEX остаётся реестром происхождения, а не новым статусным реестром. |
+| `.github/workflows/research-pipeline.yml` из PR #61; `infra/copilot_publish.cjs` | В существующем workflow: общий admission один раз, фиксированные секционные jobs, общий агрегатор, тот же concurrency group `ccc-bbn-research-pipeline`; `always()` сохраняет receipts. Расширить publisher фиксированным result mode: публикация только проверенного конверта, идемпотентная draft PR из сохранённых artifacts. | Нет второго диспетчера и нет повторного расчёта при ошибке публикации. |
+
+Experiment contract — versioned JSON, а не разрешение исполнять команды из него. До admission он фиксирует: `package_id/revision`; неизменяемые `source.commit/tree_sha`; пины каждого backend; manifest SHA-256 входов; вопрос и родителей; матрицу `task_id/seed/adapter`; observable contract (имя, смысл, единицы, модельный шаг/порядок событий, мера или `NOT_DEFINED`, интервенции); predeclared controls/criteria и версию verifier; разбиение на **независимые целые** секции; бюджет package/section/process/job/VM и предварительную калибровку. Каждая секция несёт provenance адаптера и lock/image digest. Для MVP задаются явно: ADD — `time_index` как индекс модельного шага, не физические часы; Serbian — пачка симметричных матриц, результат `inertia=(positive, negative, zero)`, не время. Общего `z=(G,Q,M,A,R,C)` нет.
+
+**Не установлены в переданных данных** подходящие калибровки и digest образов для нового маршрута. Их нельзя заменить историческим timing чужой задачи, версией runner label или вымышленным хешем: preflight обязан отказать до вычислений, пока фиксированные environment lock/digest и калибровка не приложены. Использовать утверждённые лимиты, не увеличивая память/выходы: 4 GiB и 2 GiB из `CONTROL` PR #61; один активный пакет, не более одного нового на событие и двух за скользящие 24 часа.
+
+## 4. Контракт и примеры
+
+Минимальные методы нужны для регистрации возможностей и полного прохождения пакета. Не поддерживаемое действие возвращает явное `UNSUPPORTED`/`NOT_IMPLEMENTED`, не нулевое наблюдение. Все адаптеры остаются изолированными и владеют собственными параметрами и состоянием.
+
+**Предлагаемый код — UNEXECUTED:**
+
+```python
+from typing import Protocol, TypedDict, Literal
+
+Status = Literal["OK", "UNSUPPORTED", "NOT_IMPLEMENTED", "FAIL"]
+
+class Receipt(TypedDict):
+    status: Status
+    artifacts: list[str]
+    provenance: dict[str, str]
+
+class Adapter(Protocol):
+    def describe(self) -> dict: ...
+    def prepare(self, job: dict, workdir: str) -> Receipt: ...
+    def calibrate(self, job: dict, environment: dict) -> dict: ...
+    def run(self, job: dict, workdir: str, deadline_utc: str) -> Receipt: ...
+    def extract(self, job: dict, workdir: str) -> Receipt: ...
+    def verify(self, job: dict, workdir: str) -> Receipt: ...
+```
+
+`describe()` перечисляет поддерживаемые операции и контракт observable. `prepare()` проверяет входы/пины и фиксирует подготовленное состояние; `calibrate()` только записывает измерение для выбора маршрута; `run()` выполняет одну заранее разрешённую секцию; `extract()` формирует raw/summary/manifest; `verify()` независимо пересчитывает hash/полноту/предъявленные controls, не меняя scientific acceptance. Если операция не реализована, например продолжение/checkpoint, adapter указывает `NOT_IMPLEMENTED`; controller не подменяет это пустым результатом.
+
+**Экспериментный фрагмент, UNEXECUTED** (идентификаторы и hashes — шаблонные значения; они должны быть заменены фактическими, иначе admission отклоняется):
+
+```json
+{
+  "schema": "vm-lab-experiment-v1",
+  "package_id": "adapter-lifecycle-r1",
+  "revision": 1,
+  "source": {"commit": "<40-hex>", "tree_sha": "<40-hex>"},
+  "parents": ["review:issue-58", "review:pr-62"],
+  "question": "Проходят ли оба фиксированных адаптера один lifecycle с полными, проверяемыми evidence receipts?",
+  "inputs": [{"path": "fixtures/serbian-matrices.json", "sha256": "<64-hex>"}],
+  "environment": {
+    "image_digest": "sha256:<actual-pinned-digest>",
+    "lock_sha256": "<64-hex>"
+  },
+  "criteria": {
+    "before_execution": true,
+    "engineering": "Обе секции завершены, raw/manifest/verifier receipts валидны",
+    "scientific_acceptance": false
+  },
+  "verifier_version": "vm-lab-result-verifier-v1",
+  "sections": [
+    {
+      "id": "add-f2",
+      "adapter": "add_f2",
+      "task_matrix": [{"id": "fixed-seed-small", "seed": 20261115}],
+      "observable_contract": {
+        "name": "local_observables",
+        "time": "integer F2 step index; not physical time",
+        "measure": "NOT_DEFINED",
+        "units": "counts and fractions as reported by adapter"
+      }
+    },
+    {
+      "id": "serbian-signature",
+      "adapter": "serbian_signature",
+      "task_matrix": [{"id": "fixed-inertia-control", "seed": 20261115}],
+      "observable_contract": {
+        "name": "inertia",
+        "order": ["positive", "negative", "zero"],
+        "units": "counts; not a physical measure"
+      }
+    }
+  ],
+  "budget": {
+    "calibration_ref": "<path-and-sha256-of-measured-calibration>",
+    "package_seconds": "<measured>",
+    "section_seconds": "<measured>",
+    "process_seconds": "<measured>",
+    "job_seconds": "<measured>",
+    "vm_seconds": null
+  }
+}
+```
+
+ADD-адаптер загружает только закреплённый модуль по allowlist-пути и вызывает:
+
+```python
+sample_trajectory(
+    seed=job["seed"],
+    initial_vertices=job["initial_vertices"],
+    steps=job["steps"],
+    bit_probability=job["bit_probability"],
+)
+```
+
+Это вызывает существующий конечный путь: формирует `ring_graph`, затем на каждом шаге применяет `f_sym` и вычисляет `local_observables`. В первом engineering control — один seed, малый заранее заданный носитель/число шагов, без `sample_ensemble` и без запуска `main()` с exhaustive-пакетом. Raw содержит строку, входы, seed и все возвращённые `rows`; verifier проверяет соответствие параметров, индексы/количество строк, конечность значений и согласованность полей, но не выводит физическую интерпретацию. Численный вывод для научного вопроса — `NOT_EVALUABLE`, scientific acceptance — `false`.
+
+Serbian-адаптер вызывает существующую сборку в kernel-only режиме, затем:
+
+```python
+kernel = SignatureKernel(library_path)
+result = kernel.classify(input_matrices, strict=True)
+```
+
+Минимальный контроль — заранее сохранённые диагональные симметричные матрицы с известными инерциями; verifier сравнивает counts с fixtures и требует надёжные результаты. Команда нового build path: `python tools/piecewise_flat_qg/build_and_check.py --kernel-only --build <workdir>/build --report <workdir>/build.json`. Эти опции **предлагаются**, их ещё нет. Здесь инженерная численная проверка — control classification, не QG-симуляция. Сборка не меняет лицензии и исходники архивного ядра.
+
+**Конверт результата, UNEXECUTED:**
+
+```json
+{
+  "schema": "vm-lab-result-v1",
+  "package_id": "adapter-lifecycle-r1",
+  "source_sha": "<frozen-source-commit>",
+  "execution_status": "COMPLETE",
+  "evidence_completeness": "COMPLETE",
+  "numerical_status": "CONTROL_PASS",
+  "scientific_acceptance": false,
+  "sections": {
+    "add-f2": {"status": "COMPLETE", "raw": "sections/add-f2/raw.json"},
+    "serbian-signature": {"status": "COMPLETE", "raw": "sections/serbian-signature/raw.json"}
+  },
+  "environment": {"image_digest": "<actual-pinned-digest>", "lock_sha256": "<actual-lock-hash>"},
+  "resources": {"elapsed_seconds": "<measured>", "peak_memory_bytes": "<measured>"},
+  "artifacts_manifest": "ARTIFACTS.json",
+  "verifier_receipt": "VERIFIER_RECEIPT.json"
+}
+```
+
+Манифест содержит path/size/SHA-256 каждого файла, кроме самого себя, а отдельная receipt фиксирует его hash. Raw, summary, environment, resource facts и verifier receipt связываются с `source_sha`, `package_id`, `section_id`, plan hash и execution lineage. Engineering status, полнота доказательств, численный исход и научная приёмка — отдельные поля. Научные `FAIL/REVIEW` не скрываются под инженерным PASS.
+
+## 5. Очередь, исполнение и надёжность
+
+**Статусы исполнения**: `DRAFT → READY → BUDGET_WAIT | RESERVED → SUBMITTED → QUEUED → RUNNING → VERIFYING → COMPUTE_COMPLETE → PUBLISHED`. Ошибка секции даёт `PARTIAL` или `FAILED`, не стирая успешные секции. Параллельные оси: evidence `COMPLETE/INCOMPLETE/INVALID`, численный вывод `CONTROL_PASS/FAIL/NOT_EVALUABLE`, научная приёмка `false/REVIEW/ACCEPTED` — только решение владельца. `COMPLETE` нельзя выставить, пока обязательные процессы завершились, полная матрица покрыта без дублей и независимый verifier подтвердил доказательства.
+
+- Idempotency key: `(package_id, section_id, source_sha, plan_sha256)`. Перед submit все исполнители проходят один admission и один ledger CAS. Повтор события видит существующую reservation/result и не запускает науку повторно; CAS conflict означает перечитать ledger и снова решить. Неопределённый ответ записи/submit означает сверить live Actions/VM, не повторять запрос.
+- Новый пакет маршрутизируется по **предварительной применимой калибровке**: целиком до 600 секунд включительно — local; независимые целые секции длиннее — Actions, каждая не более 6 часов **с подготовкой, верификацией и выгрузкой**; непрерывная задача, которая с запасом не укладывается в job, — ВМ по GitHub на фиксированном SHA. Одна траектория не дробится. Различать package sum, section wall, process, Actions job и VM budgets; ограничения `memory/output` и единая группа конкуренции PR #61 сохраняются.
+- Не допускать двух диспетчеров: после наследования PR #61 вычислительное решение остаётся в `research_pipeline`/общем admission. Новый scheduled workflow на default branch — **только сигнал пробуждения** существующему controller, не второй runner и не источник исполнения; он не вызывает LLM. Controller повторно читает `not_before`, readiness, активный ledger и live inflight, затем проходит тот же CAS. До `not_before` — no-op; после окна допускается только готовый пакет. Расписание может задержаться и не обещает запуск в точную секунду.
+- Скользящее окно объединяет local, Actions и VM через ledger; незарегистрированные live Actions учитываются консервативно. Ровно в момент истечения старейшего из двух reservations пересчитывается окно по правилу `started_utc > now - 24h`, но активная reservation блокирует новый пакет независимо от возраста. Лимиты — не более одного нового пакета на событие, двух за 24 часа, одновременно одного вычислительного пакета.
+- Сбой секции сохраняет её failure receipt и raw другой секции; без обязательной секции агрегатор ставит `PARTIAL/FAIL`. **Научного retry нет.** Publisher после `COMPUTE_COMPLETE` может восстановить публикацию из сохранённого проверенного bundle; это не повторная reservation/научный запуск. Ledger хранит отдельно compute-terminal и `publication_pending`, чтобы публикационный сбой не выдавался за новый вычислительный результат и не переписывал первую квитанцию.
+- Публиковать только после независимой проверки. Версионированная папка результата неизменяема; новый result не заменяет прошлый. `CURRENT.json` — только указатель на последний полностью проверенный опубликованный bundle, не статусный реестр. В одном Git commit создать новую папку и обновить pointer; branch ref обновляется fast-forward, без force. Повтор publisher использует тот же publication key и hashes: существующая ветка должна совпадать по дереву и родителю, иначе остановка с ошибкой. Проверить commit/tree, manifest hashes и наличие draft PR. Publisher публикует draft, не merge; изменение научных статусов запрещено.
+- При изменении HEAD после freeze `source_check` отвергает запуск; публикационный commit сохраняет исходный SHA эксперимента. Если публикация не удалась после расчёта, workflow сохраняет bundle как Actions artifact и запускает только фиксированный recovery mode для уже проверенного bundle. Дубли событий и смена HEAD не легитимизируют новый расчёт.
+
+Общий API не даёт сопоставимости. Для сравнения нужна заранее заданная семантика observable, единиц, времени/порядка, меры и интервенций. Для физической композиции требуется отдельное явное отображение выход→вход с областью применимости и проверкой нужных сохраняемых наблюдаемых/динамики. Coarse-graining допустим, если заявлены и проверены его условия; биекция не обязательна. Хассе/замыкание не переносить на ADD или R129 без заданных носителя и `K`. Не вводить общий инвариант, меру, закон S2, сектор X или мост BH1. Стандартный S3 не зависит от neutt/BH1.
+
+## 6. Приёмка и порядок PR
+
+| Тест: вход | Ожидаемый исход | Артефакт |
+|---|---|---|
+| Оба разрешённых job проходят `describe → prepare → calibrate → run → extract → verify` | Оба проходят один lifecycle; raw раздельны, manifest и verifier receipts связывают source/plan/section | `sections/*/raw.json`, `ARTIFACTS.json`, `VERIFIER_RECEIPT.json` |
+| Ошибочный upstream archive SHA или input hash | Admission отвергает до подготовки/исполнения | `PREFLIGHT.json`, без raw процесса |
+| Неизвестный adapter ID либо request с произвольной командой | Отказ до запуска; командный запуск из JSON невозможен | Failure receipt `UNKNOWN_ADAPTER`/`UNDECLARED_COMMAND` |
+| Capability `UNSUPPORTED`/`NOT_IMPLEMENTED` требуется как обязательная операция | Отказ до запуска, не нулевое наблюдение | Preflight receipt с именем операции |
+| Два одинаковых webhook/event или конкурирующие admission | Одна reservation, один submit; второй запрос перечитывает CAS/live state и не создаёт дубликат | Ledger CAS receipt, единый workflow/run ID |
+| В ledger local + Actions записи двух пакетов; старейшая ещё в окне, затем ровно 24h boundary | До границы — `BUDGET_WAIT`; на границе старейшая выходит из окна, но active inflight всё равно блокирует | Decision receipt с package IDs/`not_before` |
+| Две секции: одна успешна, другая падает | Первая сохранена; итог `PARTIAL/FAIL`, не `COMPLETE`; повтор события не пересчитывает науку | Оба section receipts, manifest частичного результата |
+| Все процессы успешны, затем publisher падает; recovery получает сохранённый bundle | Draft publication восстанавливается без adapter invocation | Публикационный receipt с теми же source/manifest hashes |
+| Wakeup раньше `not_before`; затем позже, с неготовым/готовым пакетом; active inflight | Раньше — no-op; позже допускается только готовый; active блокирует повтор | Wakeup/admission receipts |
+| Цепь plan → admission → run → raw → независимый verifier → draft publication | Все lineage сохраняют frozen source SHA; `scientific_acceptance=false` даже при зелёном CI | План, reservation, bundle, verifier и draft PR receipt |
+| Тесты издателя: тот же publication key и неизменённые байты; затем изменённый bundle | Идемпотентное восстановление для тех же байтов; изменённые байты отвергнуты | Существующий draft PR/публикационный отказ |
+
+Порядок работ:
+
+1. **PR A — один вертикальный срез.** Основа — ветка PR #61 или его merge, не переносить вручную в main и не дублировать. Добавить контракт, два allowlist-адаптера, kernel-only сборку, агрегатор/verifier, общий result envelope и draft publication/recovery; тестировать оба независимых job одним package ID. Source pins и критерии фиксируются до прогона.
+2. **PR B — очередь/пробуждение.** Подключить schedule-only сигнал к уже единственному controller, добавить boundary/inflight/idempotency тесты; не менять активный webhook или текущие научные файлы до отдельного deploy.
+3. **Будущие PR — один источник за раз.** Начинать только после исполнимого контракта, pin/environment, входов, контроля и применимой калибровки; Anthropic/CCC/IsingCauset/CDT не становятся исполняемыми из-за одного общего API.
+
+В первом PR сразу можно выполнить ограниченные инженерные изменения: allowlist, два lifecycle, проверку receipts и восстановление публикации, а также малую калибровку маршрутов. **Заблокированы только реальные исполнения до фиксации пригодных environment digest/lock и предварительной калибровки**: переданные сведения не дают подходящей оценки времени или digest для нового kernel-only и ADD-маршрута. Это техническая блокировка, не запрос нового согласия владельца. Смена цели, меры, закона или носителя остаётся отдельным содержательным решением.
+
+Первый конкретный diff — наследуемая ветка PR #61 с `infra/adapters/{add_f2,serbian_signature}.py`, расширением `research_pipeline.py`, `run_contract.py`, kernel-only режимом `build_and_check.py` и тестом `tests/test_research_adapters.py`. Предлагаемые команды проверки после применения (здесь **не запускались**):
+
+```sh
+python tools/piecewise_flat_qg/build_and_check.py --kernel-only --build /tmp/vm-lab-kernel --report /tmp/vm-lab-kernel/build.json
+python -m unittest discover -s tests -p 'test_research_adapters.py'
+python -m unittest discover -s infra -p 'test_autonomy.py'
+```
+
+## 7. Ограничения и основные риски
+
+Нет полного author solver для CCC+TL/Anthropic и нет исполнимых ансамблей IsingCauset/CDT; общая оболочка этого не исправляет. Исторический Serbian отчёт не является доказательством нового маршрута. ADD smoke — наша реконструкция конечного F2-варианта, не аттестация авторского закона. Активные исходники и очередь не изменены; сборка, тесты, публикация и C++ **не выполнялись**.
+
+Главные риски: (1) неподходящая калибровка или плавающая среда даст неверный маршрут — закрывать фактическим lock/digest и измерением до допуска; (2) гонка между CAS, live Actions и внешним VM/local исполнителем — один shared ledger и консервативная reservation при неопределённости; (3) публикация частичного bundle может создать ложное `COMPLETE` — независимая полнота секций до атомарного commit/pointer и отдельный recover-only publisher.
