@@ -34,7 +34,10 @@ class BuildTests(unittest.TestCase):
         native_card = sync.MAIN.parent / "R141.md"
         result = json.loads(native_card.with_suffix(".json").read_text())["result"]
         pair = atlas["edges"][0]
-        pairs = native.PAIRS.read_text().replace(pair["control"], pair["control"]+" Pair test.", 1)
+        from copy import deepcopy
+        edges = deepcopy(atlas["edges"])
+        edges[0]["control"] += " Pair test."
+        pairs = native.pairs_md(edges)
         script = MODEL / "ym_graph/step5/check.py"
         code = script.read_bytes()+b"\n# ZIP propagation test\n"
         self.overlay({sync.ATLAS:sync.encode(atlas).encode(), native.PAIRS:pairs.encode(),
@@ -45,7 +48,7 @@ class BuildTests(unittest.TestCase):
         self.assertIn("Card test.",doc.xpath('//*[@id="peer-R141"]/following-sibling::details[1]')[0].text_content())
         self.assertIn("Card test.",json.loads(updates[native_card.with_suffix(".json")])["result"])
         self.assertIn("Pair test.",doc.get_element_by_id(pair["anchor"]).text_content())
-        for n in (141,142):
+        for n in (pair["a"],pair["b"]):
             self.assertIn("Pair test.",doc.get_element_by_id(f"relations-{n}").text_content())
         self.assertIn("Passport test.",doc.get_element_by_id(passport["id"]).text_content())
         z = "R130_step5_13_14.zip"
@@ -55,6 +58,17 @@ class BuildTests(unittest.TestCase):
             self.assertEqual(archive.read("check.py"),code)
         source = next(m for m in atlas["materials"] if m["path"].endswith("/R141.md") and "NOW_RESULTS" in m["path"])
         self.assertIn("Card test.",doc.get_element_by_id(source["anchor"]).text_content())
+
+    def test_metadata_only_edit_reaches_offline_card(self):
+        path = sync.MAIN.parent / "R147.json"
+        card = json.loads(path.read_text())
+        card["source_revision"] = "metadata-only-test"
+        self.overlay({path:sync.encode(card).encode()})
+        updates = build.plan()
+        doc = html.fromstring(updates[sync.MODEL].decode())
+        panel = doc.get_element_by_id("peer-R147").getnext()
+        embedded = json.loads(panel.findtext("./details/pre"))
+        self.assertEqual(embedded,card)
 
     def test_invalid_anchor_preserves_published_bytes(self):
         before = sync.MODEL.read_bytes()

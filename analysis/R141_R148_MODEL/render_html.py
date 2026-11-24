@@ -81,6 +81,9 @@ def cards(doc, atlas, rows):
                            ("limit","Граница"), ("framework_role","Место в общей модели")):
             el(dl, "dt", label)
             el(dl, "dd", row[key])
+        machine = el(current, "details")
+        el(machine, "summary", "Полная запись реестра · JSON")
+        el(machine, "pre", sync.encode(row), **{"class":"raw-content"})
 
 
 def pairs(doc, edges):
