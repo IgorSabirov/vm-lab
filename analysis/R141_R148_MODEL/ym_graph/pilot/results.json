@@ -1,0 +1,1198 @@
+{
+  "words": {
+    "cyclic_words": {
+      "000000": {
+        "pairs": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "det": 1,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      },
+      "000001": {
+        "pairs": [
+          4,
+          1,
+          1,
+          0
+        ],
+        "det": 2,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "000011": {
+        "pairs": [
+          3,
+          1,
+          1,
+          1
+        ],
+        "det": 5,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          5,
+          5,
+          7,
+          8
+        ]
+      },
+      "000101": {
+        "pairs": [
+          2,
+          2,
+          2,
+          0
+        ],
+        "det": 4,
+        "four_contacts": [
+          2,
+          0
+        ],
+        "lengths": [
+          6,
+          4,
+          6,
+          8,
+          9
+        ]
+      },
+      "000111": {
+        "pairs": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "det": 13,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          5,
+          5,
+          6,
+          8
+        ]
+      },
+      "001001": {
+        "pairs": [
+          2,
+          2,
+          2,
+          0
+        ],
+        "det": 4,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "001011": {
+        "pairs": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "det": 10,
+        "four_contacts": [
+          1,
+          1
+        ],
+        "lengths": [
+          6,
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "001101": {
+        "pairs": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "det": 10,
+        "four_contacts": [
+          1,
+          -1
+        ],
+        "lengths": [
+          6,
+          4,
+          5,
+          8,
+          9
+        ]
+      },
+      "001111": {
+        "pairs": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "det": 34,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          5,
+          5,
+          7,
+          8
+        ]
+      },
+      "010101": {
+        "pairs": [
+          0,
+          3,
+          3,
+          0
+        ],
+        "det": 8,
+        "four_contacts": [
+          6,
+          0
+        ],
+        "lengths": [
+          6,
+          3,
+          6,
+          9,
+          9
+        ]
+      },
+      "010111": {
+        "pairs": [
+          0,
+          2,
+          2,
+          2
+        ],
+        "det": 26,
+        "four_contacts": [
+          2,
+          0
+        ],
+        "lengths": [
+          6,
+          4,
+          6,
+          8,
+          9
+        ]
+      },
+      "011011": {
+        "pairs": [
+          0,
+          2,
+          2,
+          2
+        ],
+        "det": 25,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "011111": {
+        "pairs": [
+          0,
+          1,
+          1,
+          4
+        ],
+        "det": 89,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "111111": {
+        "pairs": [
+          0,
+          0,
+          0,
+          6
+        ],
+        "det": 320,
+        "four_contacts": [
+          0,
+          0
+        ],
+        "lengths": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      }
+    },
+    "pairs_with_equal_pair_counts": [
+      {
+        "words": [
+          "000101",
+          "001001"
+        ],
+        "det_equal": true,
+        "length4_equal": false
+      },
+      {
+        "words": [
+          "001011",
+          "001101"
+        ],
+        "det_equal": true,
+        "length4_equal": false
+      },
+      {
+        "words": [
+          "010111",
+          "011011"
+        ],
+        "det_equal": false,
+        "length4_equal": false
+      }
+    ]
+  },
+  "length_extension": [
+    {
+      "length": 6,
+      "horizon": 4,
+      "necklaces": 14,
+      "features": "pairs",
+      "classes": 11,
+      "conflicting_pairs": 3,
+      "first_failure": [
+        [
+          "000101",
+          9
+        ],
+        [
+          "001001",
+          10
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "horizon": 5,
+      "necklaces": 14,
+      "features": "pairs",
+      "classes": 11,
+      "conflicting_pairs": 2,
+      "first_failure": [
+        [
+          "000101",
+          11
+        ],
+        [
+          "001001",
+          10
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "horizon": 4,
+      "necklaces": 14,
+      "features": "pairs_det",
+      "classes": 12,
+      "conflicting_pairs": 2,
+      "first_failure": [
+        [
+          "000101",
+          9
+        ],
+        [
+          "001001",
+          10
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "horizon": 5,
+      "necklaces": 14,
+      "features": "pairs_det",
+      "classes": 12,
+      "conflicting_pairs": 1,
+      "first_failure": [
+        [
+          "000101",
+          11
+        ],
+        [
+          "001001",
+          10
+        ]
+      ]
+    },
+    {
+      "length": 6,
+      "horizon": 4,
+      "necklaces": 14,
+      "features": "pairs_contacts",
+      "classes": 14,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 6,
+      "horizon": 5,
+      "necklaces": 14,
+      "features": "pairs_contacts",
+      "classes": 14,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 6,
+      "horizon": 4,
+      "necklaces": 14,
+      "features": "all",
+      "classes": 14,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 6,
+      "horizon": 5,
+      "necklaces": 14,
+      "features": "all",
+      "classes": 14,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 7,
+      "horizon": 4,
+      "necklaces": 20,
+      "features": "pairs",
+      "classes": 14,
+      "conflicting_pairs": 6,
+      "first_failure": [
+        [
+          "0000101",
+          10
+        ],
+        [
+          "0001001",
+          11
+        ]
+      ]
+    },
+    {
+      "length": 7,
+      "horizon": 5,
+      "necklaces": 20,
+      "features": "pairs",
+      "classes": 14,
+      "conflicting_pairs": 4,
+      "first_failure": [
+        [
+          "0001011",
+          13
+        ],
+        [
+          "0010011",
+          12
+        ]
+      ]
+    },
+    {
+      "length": 7,
+      "horizon": 4,
+      "necklaces": 20,
+      "features": "pairs_det",
+      "classes": 16,
+      "conflicting_pairs": 4,
+      "first_failure": [
+        [
+          "0000101",
+          10
+        ],
+        [
+          "0001001",
+          11
+        ]
+      ]
+    },
+    {
+      "length": 7,
+      "horizon": 5,
+      "necklaces": 20,
+      "features": "pairs_det",
+      "classes": 16,
+      "conflicting_pairs": 2,
+      "first_failure": [
+        [
+          "0001011",
+          13
+        ],
+        [
+          "0010011",
+          12
+        ]
+      ]
+    },
+    {
+      "length": 7,
+      "horizon": 4,
+      "necklaces": 20,
+      "features": "pairs_contacts",
+      "classes": 20,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 7,
+      "horizon": 5,
+      "necklaces": 20,
+      "features": "pairs_contacts",
+      "classes": 20,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 7,
+      "horizon": 4,
+      "necklaces": 20,
+      "features": "all",
+      "classes": 20,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 7,
+      "horizon": 5,
+      "necklaces": 20,
+      "features": "all",
+      "classes": 20,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 8,
+      "horizon": 4,
+      "necklaces": 36,
+      "features": "pairs",
+      "classes": 18,
+      "conflicting_pairs": 18,
+      "first_failure": [
+        [
+          "00000101",
+          11
+        ],
+        [
+          "00001001",
+          12
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "horizon": 5,
+      "necklaces": 36,
+      "features": "pairs",
+      "classes": 18,
+      "conflicting_pairs": 12,
+      "first_failure": [
+        [
+          "00000101",
+          13
+        ],
+        [
+          "00010001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "horizon": 4,
+      "necklaces": 36,
+      "features": "pairs_det",
+      "classes": 23,
+      "conflicting_pairs": 11,
+      "first_failure": [
+        [
+          "00000101",
+          11
+        ],
+        [
+          "00001001",
+          12
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "horizon": 5,
+      "necklaces": 36,
+      "features": "pairs_det",
+      "classes": 23,
+      "conflicting_pairs": 7,
+      "first_failure": [
+        [
+          "00000101",
+          13
+        ],
+        [
+          "00010001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "horizon": 4,
+      "necklaces": 36,
+      "features": "pairs_contacts",
+      "classes": 30,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 8,
+      "horizon": 5,
+      "necklaces": 36,
+      "features": "pairs_contacts",
+      "classes": 30,
+      "conflicting_pairs": 2,
+      "first_failure": [
+        [
+          "00001001",
+          13
+        ],
+        [
+          "00010001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 8,
+      "horizon": 4,
+      "necklaces": 36,
+      "features": "all",
+      "classes": 32,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 8,
+      "horizon": 5,
+      "necklaces": 36,
+      "features": "all",
+      "classes": 32,
+      "conflicting_pairs": 1,
+      "first_failure": [
+        [
+          "00001001",
+          13
+        ],
+        [
+          "00010001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 4,
+      "necklaces": 60,
+      "features": "pairs",
+      "classes": 22,
+      "conflicting_pairs": 50,
+      "first_failure": [
+        [
+          "000000101",
+          12
+        ],
+        [
+          "000001001",
+          13
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 5,
+      "necklaces": 60,
+      "features": "pairs",
+      "classes": 22,
+      "conflicting_pairs": 52,
+      "first_failure": [
+        [
+          "000000101",
+          14
+        ],
+        [
+          "000010001",
+          15
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 4,
+      "necklaces": 60,
+      "features": "pairs_det",
+      "classes": 31,
+      "conflicting_pairs": 30,
+      "first_failure": [
+        [
+          "000000101",
+          12
+        ],
+        [
+          "000001001",
+          13
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 5,
+      "necklaces": 60,
+      "features": "pairs_det",
+      "classes": 31,
+      "conflicting_pairs": 28,
+      "first_failure": [
+        [
+          "000000101",
+          14
+        ],
+        [
+          "000010001",
+          15
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 4,
+      "necklaces": 60,
+      "features": "pairs_contacts",
+      "classes": 44,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 9,
+      "horizon": 5,
+      "necklaces": 60,
+      "features": "pairs_contacts",
+      "classes": 44,
+      "conflicting_pairs": 16,
+      "first_failure": [
+        [
+          "000001001",
+          14
+        ],
+        [
+          "000010001",
+          15
+        ]
+      ]
+    },
+    {
+      "length": 9,
+      "horizon": 4,
+      "necklaces": 60,
+      "features": "all",
+      "classes": 49,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 9,
+      "horizon": 5,
+      "necklaces": 60,
+      "features": "all",
+      "classes": 49,
+      "conflicting_pairs": 8,
+      "first_failure": [
+        [
+          "000001001",
+          14
+        ],
+        [
+          "000010001",
+          15
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 4,
+      "necklaces": 108,
+      "features": "pairs",
+      "classes": 27,
+      "conflicting_pairs": 151,
+      "first_failure": [
+        [
+          "0000000101",
+          13
+        ],
+        [
+          "0000001001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 5,
+      "necklaces": 108,
+      "features": "pairs",
+      "classes": 27,
+      "conflicting_pairs": 150,
+      "first_failure": [
+        [
+          "0000000101",
+          15
+        ],
+        [
+          "0000010001",
+          16
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 4,
+      "necklaces": 108,
+      "features": "pairs_det",
+      "classes": 43,
+      "conflicting_pairs": 85,
+      "first_failure": [
+        [
+          "0000000101",
+          13
+        ],
+        [
+          "0000001001",
+          14
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 5,
+      "necklaces": 108,
+      "features": "pairs_det",
+      "classes": 43,
+      "conflicting_pairs": 73,
+      "first_failure": [
+        [
+          "0000000101",
+          15
+        ],
+        [
+          "0000010001",
+          16
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 4,
+      "necklaces": 108,
+      "features": "pairs_contacts",
+      "classes": 62,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 10,
+      "horizon": 5,
+      "necklaces": 108,
+      "features": "pairs_contacts",
+      "classes": 62,
+      "conflicting_pairs": 52,
+      "first_failure": [
+        [
+          "0000001001",
+          15
+        ],
+        [
+          "0000010001",
+          16
+        ]
+      ]
+    },
+    {
+      "length": 10,
+      "horizon": 4,
+      "necklaces": 108,
+      "features": "all",
+      "classes": 74,
+      "conflicting_pairs": 0,
+      "first_failure": null
+    },
+    {
+      "length": 10,
+      "horizon": 5,
+      "necklaces": 108,
+      "features": "all",
+      "classes": 74,
+      "conflicting_pairs": 24,
+      "first_failure": [
+        [
+          "0000001001",
+          15
+        ],
+        [
+          "0000010001",
+          16
+        ]
+      ]
+    }
+  ],
+  "twisted_rings": [
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 0,
+      "V_n": 18,
+      "determinant": 4096
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 1,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 2,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 0,
+      "V_n": 18,
+      "determinant": 5776
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 1,
+      "V_n": 18,
+      "determinant": 5776
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 2,
+      "V_n": 18,
+      "determinant": 5776
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 0,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 1,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 2,
+      "V_n": 18,
+      "determinant": 4096
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 0,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 1,
+      "V_n": 18,
+      "determinant": 4096
+    },
+    {
+      "n": 3,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 2,
+      "V_n": 18,
+      "determinant": 6859
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 0,
+      "V_n": 322,
+      "determinant": 32768000
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 1,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "I",
+      "probe_power": 2,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 0,
+      "V_n": 322,
+      "determinant": 33385280
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 1,
+      "V_n": 322,
+      "determinant": 33385280
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "M",
+      "probe_power": 2,
+      "V_n": 322,
+      "determinant": 33385280
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 0,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 1,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "omega_I",
+      "probe_power": 2,
+      "V_n": 322,
+      "determinant": 32768000
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 0,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 1,
+      "V_n": 322,
+      "determinant": 32768000
+    },
+    {
+      "n": 6,
+      "q": 3,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 2,
+      "V_n": 322,
+      "determinant": 33698267
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "I",
+      "probe_power": 0,
+      "V_n": 2702,
+      "determinant": 19683000000
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "I",
+      "probe_power": 1,
+      "V_n": 2702,
+      "determinant": 19748682927
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "I",
+      "probe_power": 2,
+      "V_n": 2702,
+      "determinant": 19748682927
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "M",
+      "probe_power": 0,
+      "V_n": 2702,
+      "determinant": 19726764300
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "M",
+      "probe_power": 1,
+      "V_n": 2702,
+      "determinant": 19726764300
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "M",
+      "probe_power": 2,
+      "V_n": 2702,
+      "determinant": 19726764300
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "omega_I",
+      "probe_power": 0,
+      "V_n": 2702,
+      "determinant": 19748682927
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "omega_I",
+      "probe_power": 1,
+      "V_n": 2702,
+      "determinant": 19748682927
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "omega_I",
+      "probe_power": 2,
+      "V_n": 2702,
+      "determinant": 19683000000
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 0,
+      "V_n": 2702,
+      "determinant": 19748682927
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 1,
+      "V_n": 2702,
+      "determinant": 19683000000
+    },
+    {
+      "n": 6,
+      "q": 4,
+      "holonomy": "inverse_omega_I",
+      "probe_power": 2,
+      "V_n": 2702,
+      "determinant": 19748682927
+    }
+  ]
+}
