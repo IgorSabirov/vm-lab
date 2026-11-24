@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from itertools import combinations
 import re
 from pathlib import Path
 
@@ -153,7 +154,8 @@ def render_card(r):
             f"**Вопросы:** {', '.join(r.get('open_question_ids', []))}.\n\n"
             "**Источники:** " + "; ".join(f"[{Path(p).name}](../../{p})" for p in r['sources']) + ".\n\n"
             "**Предпосылки:** " + ", ".join(r.get('premise_ids', [])) +
-            "; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).\n")
+            "; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).\n"
+            + ("\n"+r["model_review"]+"\n" if r.get("model_review") else ""))
 
 
 def replace_block(text, key, body):
@@ -279,6 +281,29 @@ def build(root):
         for p in r.get('premise_ids',[]): add('result',ident,'premise',p,'direct_conditional_evidence')
         for l in r.get('open_link_ids',[]): add('result',ident,'link',l,'boundary_open')
         for q in r.get('open_question_ids',[]): add('result',ident,'question',q,'informs_not_closes')
+    comparison_details = {}
+    if main.get("model_atlas"):
+        atlas_path = main["model_atlas"]
+        if atlas_path not in source_rows:
+            raise ValueError("Model atlas must be a managed source")
+        atlas = json.loads((root / atlas_path).read_text())
+        model = atlas["html_path"]
+        if source_rows.get(model, {}).get("sha256") != atlas["html_sha256"]:
+            raise ValueError("Model atlas is stale for this HTML")
+        ids = [node["id"] for node in atlas["nodes"]]
+        expected = set(combinations(ids, 2))
+        for pair in atlas["edges"]:
+            a, b = f"R{pair['a']}", f"R{pair['b']}"
+            if (a, b) not in expected or not all(pair.get(k) for k in ("map", "control", "type", "anchor")):
+                raise ValueError("Duplicate, unknown or incomplete model comparison")
+            expected.remove((a, b))
+            relation = "model_comparison"
+            add("result", a, "result", b, relation)
+            comparison_details[("result:"+a, "result:"+b, relation)] = {
+                "symmetric": True, "comparison_type": pair["type"], "mapping": pair["map"],
+                "control": pair["control"], "evidence": model+"#"+pair["anchor"]}
+        if expected:
+            raise ValueError("Missing model comparisons")
     for r, cs in main.get('result_to_constructs',{}).items():
         for c in cs: add('result',r,'construct',c,'addresses')
     for c, item in groups['construct'].items():
@@ -345,7 +370,7 @@ def build(root):
              "counts": {k:len(v) for k,v in groups.items()},
              "semantics":"Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
              "nodes": sorted(nodes,key=lambda x:x['key']),
-             "edges": [{"source":a,"target":b,"relation":r, **component_details.get((a,b,r),{}), **review_details.get((a,b,r),{})} for a,b,r in sorted(edges)],
+             "edges": [{"source":a,"target":b,"relation":r, **comparison_details.get((a,b,r),{}), **component_details.get((a,b,r),{}), **review_details.get((a,b,r),{})} for a,b,r in sorted(edges)],
              "excluded_review_links": exclusions}
     bykey = {x['key']: x for x in nodes}
     def mdlink(key):

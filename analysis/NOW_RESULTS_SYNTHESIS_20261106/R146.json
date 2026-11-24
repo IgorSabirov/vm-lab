@@ -22,14 +22,19 @@
     "analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py",
     "analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json",
     "analysis/R141_R147_MODEL/replay.py",
-    "analysis/R141_R147_MODEL/RESULTS.json"
+    "analysis/R141_R147_MODEL/RESULTS.json",
+    "analysis/R141_R148_MODEL/R141-R148.html",
+    "analysis/R141_R148_MODEL/ATLAS.json",
+    "analysis/R141_R148_MODEL/PAIRS.md"
   ],
   "managed_sources": [
     "analysis/R141_R147_MODEL/README.md",
     "analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py",
     "analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json",
     "analysis/R141_R147_MODEL/replay.py",
-    "analysis/R141_R147_MODEL/RESULTS.json"
+    "analysis/R141_R147_MODEL/RESULTS.json",
+    "analysis/R141_R148_MODEL/ATLAS.json"
   ],
-  "scientific_acceptance": false
+  "scientific_acceptance": false,
+  "model_review": "#### Гомология тора и поток Риччи · общая модель\n\nДля целого $q\\ge3$ склейка $B_q$ на двумерном торе даёт трёхмерный отображающий тор $Y$. Абелианизация $\\mathbb Z^2\\rtimes_{B_q^n}\\mathbb Z$ даёт $H_1(Y_{B_q^n})=\\mathbb Z\\oplus\\mathrm{coker}(B_q^n-I)$. При знаке −1 вдоль базы ядро на $H_0$ исчезает и $H_1(Y;\\mathbb Z_-)\\cong\\mathrm{coker}(B_q^n+I)$ для соответствующего накрытия. Одни и те же группы вычисляются на конечном графе с граничным знаком.\n\nВ собственных координатах монодромии положим $g=e^{-2z}dx^2+e^{2z}dy^2+b\\,dz^2$. При нормировке статьи корпуса $b(t)=b_0+4t$, скалярная кривизна $-2/b(t)$. Координатный период $\\ell=\\log\\lambda$, метрическая длина вертикального обхода $\\sqrt b\\,\\ell$. Для функций одной координаты $z$ спектр $E_k^z=(2\\pi k/\\ell)^2/b$. При $b_0=1$, $t=0,1,5$ получены для $q=3$ значения 42,62135 → 8,52427 → 2,02959, для $q=4$ — 22,76229 → 4,55246 → 1,08392. Индекс $k=1$ означает первый положительный уровень вертикального сектора; глобальный порядок уровней полного трёхмерного лапласиана из этого не следует.\n\n**Что меняется со знаком шва**\n\nДля H = qI−U−U* на шести вершинах перечислены определители при U⁶ = uI. В скобках — нетривиальные инвариантные множители коядра над ℤ для вещественных знаков.\n\n| q | u = +1 | u = i | u = −1 |\n| --- | --- | --- | --- |\n| 3 | 320 (8, 40) | 322 | 324 (18, 18) |\n| 4 | 2700 (30, 90) | 2702 | 2704 (52, 52) |\n\nПри B₄ = ((2,1),(3,2)) след B₄³ равен 52, B₄⁶+I = 52B₄³. Матрица B₄³ унимодулярна, что объясняет пару (52,52). Для B₄⁶−I определитель равен −2700, порядок конечной группы равен 2700. При q = 3 для колёс с 3–8 вершинами обода отдельно сопоставлены формы Смита графа и M²ⁿ−I, где M — матрица Фибоначчи."
 }

@@ -4259,9 +4259,27 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R132, R141, [R140](https://github.com/IgorSabirov/vm-lab/blob/da82cff22e5a791ea06e04393917bfa062e0af6e/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md). **Конструкции:** C028. **Вопросы:** U010.
 
-**Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py); [EXECUTED.md](../../analysis/R142_MAGIC_NUMBERS/EXECUTED.md); [HOLDOUT_RESULTS.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json); [HOLDOUT_LOCK.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json); [NUCLEAR_INPUT.json](../../analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json); [holdout.py](../../analysis/R142_MAGIC_NUMBERS/holdout.py); [fibonacci.py](../../analysis/R142_MAGIC_NUMBERS/fibonacci.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md); [btfr.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv); [rar_shape.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json); [scale_uncertainty.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json); [README.md](../../analysis/R141_R147_MODEL/README.md).
+**Источники:** [GENEALOGY.md](../../analysis/R142_MAGIC_NUMBERS/GENEALOGY.md); [CHECKS.json](../../analysis/R142_MAGIC_NUMBERS/CHECKS.json); [checks_export.py](../../analysis/R142_MAGIC_NUMBERS/checks_export.py); [CALIBRATION.json](../../analysis/R142_MAGIC_NUMBERS/CALIBRATION.json); [README.md](../../analysis/R142_MAGIC_NUMBERS/README.md); [DONORS.md](../../analysis/R142_MAGIC_NUMBERS/DONORS.md); [origin_audit.py](../../analysis/R142_MAGIC_NUMBERS/origin_audit.py); [ORIGIN_CHECKS.txt](../../analysis/R142_MAGIC_NUMBERS/ORIGIN_CHECKS.txt); [DESIGN_DRAFT.md](../../analysis/R142_MAGIC_NUMBERS/DESIGN_DRAFT.md); [calibrate.py](../../analysis/R142_MAGIC_NUMBERS/calibrate.py); [EXECUTED.md](../../analysis/R142_MAGIC_NUMBERS/EXECUTED.md); [HOLDOUT_RESULTS.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_RESULTS.json); [HOLDOUT_LOCK.json](../../analysis/R142_MAGIC_NUMBERS/HOLDOUT_LOCK.json); [NUCLEAR_INPUT.json](../../analysis/R142_MAGIC_NUMBERS/NUCLEAR_INPUT.json); [holdout.py](../../analysis/R142_MAGIC_NUMBERS/holdout.py); [fibonacci.py](../../analysis/R142_MAGIC_NUMBERS/fibonacci.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md); [btfr.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/btfr.csv); [rar_shape.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/rar_shape.json); [scale_uncertainty.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/scale_uncertainty.json); [README.md](../../analysis/R141_R147_MODEL/README.md); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Происхождение инвариантов с явным разделением тождества, вынужденного значения, свободного параметра, необъяснённого отношения и подгонки · общая модель
+
+Единица регистрации — утверждение об объекте. В зафиксированной редакции 40 исходных позиций и три дополнительные, в матрице 76 исходных утверждений. Один и тот же целочисленный результат получает разное происхождение в разных конструкциях. Для новой ветви это особенно видно по пяти классам.
+
+| Класс | Что означает в сборке |
+| --- | --- |
+| T0 · тождество | $\det(B_q)=1$, $\mathrm{tr}(B_q)=q$ и $\Pr(X_0=1)=p_a p_b$ следуют из определений. |
+| T1 · вынуждено условиями | Для равномерной независимой подготовки $\mathbb E G=q^2$. В выбранной решётке при $q=4,n=6$ вынуждены множители $(30,90)$. |
+| T2 · свободный вход | Выбор подготовки, граничной фазы, $b_0$ и положительного дополнения формы. В R130 четыре символа заданы правилом; в обобщённом семействе $q$ выбирает исследователь. |
+| T3 · необъяснённое отношение | Наблюдаемое отношение можно зарегистрировать, пока динамическое отображение между носителями отсутствует. Пример исходной карточки — эмпирическое отношение масс Коиде с указанной ветвью. |
+| T4 · подгонка | Выбор геометрии, энергетического сдвига или масштаба после просмотра целевых нулей расходует свободу параметров. Доказательство тождества после выбора не превращает его в прогноз. |
+
+При $u=i$ детерминант полного кольца точно равен числу входов без метки. Это следствие заданной границы. Предсказание физического потока потребовало бы закона, фиксирующего угол до сравнения.
+
+**Паспорт числа 2702**
+
+При q = 4, n = 6 и запрете ориентированной пары (1,2) число 2702 вынуждено правилом подсчёта слов. Оно равно следу B₄⁶. У оператора со швом eⁱᶿ значение равно 2702 − 2 cos θ. Здесь θ остаётся параметром, а равенство детерминанта числу слов выполняется при cos θ = 0. Это две разные причины одной величины. Три значения шва и группы.
 <!-- /generated:R142 -->
 
 <!-- generated:R143 -->
@@ -4281,9 +4299,27 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R142. **Конструкции:** C028. **Вопросы:** .
 
-**Источники:** [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/README.md); [CATALOG.md](../../analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md); [EVIDENCE.md](../../analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md); [matrix.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv); [addresses.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv); [network.graphml](../../analysis/R143_PHYSICAL_GENEALOGY/network.graphml); [GAPS.md](../../analysis/R143_PHYSICAL_GENEALOGY/GAPS.md); [DONORS.md](../../analysis/R143_PHYSICAL_GENEALOGY/DONORS.md); [screening.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/screening.tsv); [run_tasks.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv); [run_sources.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv); [catalog.json](../../analysis/R143_PHYSICAL_GENEALOGY/catalog.json); [evidence.json](../../analysis/R143_PHYSICAL_GENEALOGY/evidence.json); [snapshot.json](../../analysis/R143_PHYSICAL_GENEALOGY/snapshot.json); [reuse_checks.json](../../analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/verify.py); [search_snapshot.py](../../analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md); [samples.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv); [freeze.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json); [statistics.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json); [galaxy_scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv); [experiment.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py); [statistics.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py); [check_forward.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json); [sparc_results.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json); [external_summary.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json); [cluster_scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv); [little_sample.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/LOCK.json); [scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scores.csv); [summary.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/summary.json); [photometry.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/photometry.csv); [scale_environment.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scale_environment.json); [scale_by_galaxy.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scale_by_galaxy.csv); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/README.md); [FIELDS.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/FIELDS.json); [SOURCES.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/SOURCES.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/verify.py); [CHECKS.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/CHECKS.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/LOCK.json); [HYREC_BUILD.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/HYREC_BUILD.json); [CAMB_BUILD.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/CAMB_BUILD.json); [build.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/build.py); [hyrec_adapter.c](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/hyrec_adapter.c); [hyrec_adapter.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/hyrec_adapter.py); [recfast_adapter.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/recfast_adapter.py); [recfast_refinement.patch](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/recfast_refinement.patch); [experiment.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/experiment.py); [analyze.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/analyze.py); [NUMERICAL_FOLLOWUP.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/NUMERICAL_FOLLOWUP.json); [convergence.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/convergence.py); [SUMMARY.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/SUMMARY.json); [RUN_RECEIPT.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/RUN_RECEIPT.json); [CONVERGENCE.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/CONVERGENCE.json); [histories.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/histories.csv); [hyrec_additional_steps.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/hyrec_additional_steps.csv); [recfast_internal_refined.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/recfast_internal_refined.csv); [recfast_internal_refined_receipt.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/recfast_internal_refined_receipt.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/verify.py); [CHECKS.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/CHECKS.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/README.md); [R143_E21_DISK.json](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/R143_E21_DISK.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/README.md); [COMMON_BETA.json](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/COMMON_BETA.json); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/replay.py); [DEVICES.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/DEVICES.json); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/LOCK.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/README.md); [SOURCES.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/SOURCES.json); [model.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/inputs/e002_exp/model.py); [model.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/inputs/e002c_exp/model.py); [operator_control.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/operator_control.py); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/replay.py); [RUN_RECEIPT.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/RUN_RECEIPT.json); [SUMMARY.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/SUMMARY.json); [addition_spectra.csv](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/addition_spectra.csv); [README.md](../../analysis/R141_R147_MODEL/README.md).
+**Источники:** [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/README.md); [CATALOG.md](../../analysis/R143_PHYSICAL_GENEALOGY/CATALOG.md); [EVIDENCE.md](../../analysis/R143_PHYSICAL_GENEALOGY/EVIDENCE.md); [matrix.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/matrix.tsv); [addresses.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/addresses.tsv); [network.graphml](../../analysis/R143_PHYSICAL_GENEALOGY/network.graphml); [GAPS.md](../../analysis/R143_PHYSICAL_GENEALOGY/GAPS.md); [DONORS.md](../../analysis/R143_PHYSICAL_GENEALOGY/DONORS.md); [screening.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/screening.tsv); [run_tasks.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_tasks.tsv); [run_sources.tsv](../../analysis/R143_PHYSICAL_GENEALOGY/run_sources.tsv); [catalog.json](../../analysis/R143_PHYSICAL_GENEALOGY/catalog.json); [evidence.json](../../analysis/R143_PHYSICAL_GENEALOGY/evidence.json); [snapshot.json](../../analysis/R143_PHYSICAL_GENEALOGY/snapshot.json); [reuse_checks.json](../../analysis/R143_PHYSICAL_GENEALOGY/reuse_checks.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/verify.py); [search_snapshot.py](../../analysis/R143_PHYSICAL_GENEALOGY/search_snapshot.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/README.md); [samples.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/samples.csv); [freeze.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/freeze.json); [statistics.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.json); [galaxy_scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/galaxy_scores.csv); [experiment.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/experiment.py); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/replay.py); [statistics.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/statistics.py); [check_forward.py](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/check_forward.py); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/LOCK.json); [sparc_results.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/sparc_results.json); [external_summary.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external_summary.json); [cluster_scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/cluster_scores.csv); [little_sample.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/little_sample.csv); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/LOCK.json); [scores.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scores.csv); [summary.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/summary.json); [photometry.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/photometry.csv); [scale_environment.json](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scale_environment.json); [scale_by_galaxy.csv](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/external14/scale_by_galaxy.csv); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/README.md); [FIELDS.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/FIELDS.json); [SOURCES.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/SOURCES.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/verify.py); [CHECKS.json](../../analysis/R143_PHYSICAL_GENEALOGY/worldsheet/CHECKS.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/README.md); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/LOCK.json); [HYREC_BUILD.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/HYREC_BUILD.json); [CAMB_BUILD.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/CAMB_BUILD.json); [build.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/build.py); [hyrec_adapter.c](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/hyrec_adapter.c); [hyrec_adapter.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/hyrec_adapter.py); [recfast_adapter.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/recfast_adapter.py); [recfast_refinement.patch](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/recfast_refinement.patch); [experiment.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/experiment.py); [analyze.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/analyze.py); [NUMERICAL_FOLLOWUP.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/NUMERICAL_FOLLOWUP.json); [convergence.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/convergence.py); [SUMMARY.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/SUMMARY.json); [RUN_RECEIPT.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/RUN_RECEIPT.json); [CONVERGENCE.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/CONVERGENCE.json); [histories.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/histories.csv); [hyrec_additional_steps.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/hyrec_additional_steps.csv); [recfast_internal_refined.csv](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/recfast_internal_refined.csv); [recfast_internal_refined_receipt.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/results/recfast_internal_refined_receipt.json); [verify.py](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/verify.py); [CHECKS.json](../../analysis/R143_PHYSICAL_GENEALOGY/recombination/CHECKS.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/sparc/followup/disk_surface/README.md); [R143_E21_DISK.json](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/R143_E21_DISK.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/README.md); [COMMON_BETA.json](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/COMMON_BETA.json); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/phase_jump/replay.py); [DEVICES.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/DEVICES.json); [LOCK.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/LOCK.json); [README.md](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/README.md); [SOURCES.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/SOURCES.json); [model.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/inputs/e002_exp/model.py); [model.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/inputs/e002c_exp/model.py); [operator_control.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/operator_control.py); [replay.py](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/replay.py); [RUN_RECEIPT.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/RUN_RECEIPT.json); [SUMMARY.json](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/SUMMARY.json); [addition_spectra.csv](../../analysis/R143_PHYSICAL_GENEALOGY/quantum_dots/results/addition_spectra.csv); [README.md](../../analysis/R141_R147_MODEL/README.md); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Носитель, подготовка, наблюдаемая · общая модель
+
+Карточка охватывает 31 физическую область. Её адресная матрица содержит 1759 адресов по методике исходной ревизии. Для 14 областей аттестованы адреса вне R142; из 54 записей 39 фиксируют носитель, донора или предмет задачи, 15 фиксируют границу переноса. Ниже приведены места, где выбор оператора реально меняет вывод.
+
+| Система | Что можно сопоставить | Что показал контроль |
+| --- | --- | --- |
+| Когерентное кольцо | $H=\epsilon I-J(U_u+U_u^*)$, $E_k=\epsilon-2J\cos((2\pi k+\theta)/n)$ | В нормировке $J=1$, $\epsilon=q$. Переход $q=3\to4$ сдвигает все уровни на 1. Спектр одних разностей этот выбор не идентифицирует. |
+| Точка Tarucha и E002c | Энергия добавления при заданном числе электронов, против транспортного тока при собственных операторах источника и стока | У Tarucha выделены 2, 6, 12. 20 принадлежит продолжению идеального круглого ряда. При $\delta=2$ модель даёт 2,4,8,12,18,24,32,40. В E002c определённый заряд ограничен секторами 0–3. Уточнение E01 имеет приоритет перед общей строкой старого README R142. |
+| Квазипериодическая цепь Фибоначчи | При ненулевом контрасте — энергетический спектр, метки щелей и интегральная плотность состояний (IDS) | На конечном приближении из 144 узлов в материалах корпуса щель после 55 полос около 0,485592, при выключении контраста схлопывается. В поляритонном опыте Tanese наблюдались минищели и логопериодические осцилляции IDS. |
+| SPARC, E21 | Предсказание с заранее заданным ускорением и радиусом $R_g=V_{flat}^2/a_0$ | На 35 отложенных галактиках прямой оператор CCC с единым порогом выиграл у MOND в 3 случаях. Это пример проверки свободного масштаба вне выборки выбора. Перенос $q$ или $h_\infty$ сюда пока лишён оператора. |
+| U013, HYREC-2/RECFAST, мироволист | Общая $\beta$, общие $Y_p,H(z),n_{H0},f_{He}$, фиксированное полевое содержание соответственно | Для U013 знак контраста двух объёмов меняется около 6,065114 при отсутствующей совместной ковариации. Для рекомбинации при $z=49$ записаны 48,76954 и 48,75967 K. Для выбранного мультиплета вычитание 35 нулевых компонент из 291 даёт 256. У каждого сравнения собственные условия. |
+
+Каталог и E01 · Tarucha et al. · Tanese et al. · теоремы о гамильтониане Фибоначчи.
+
+**Что наблюдает контроль порядка зазоров**
+
+Вход — ординаты нулей с номерами 61–657. После развёртки наблюдаемая равна min(gᵢ,gᵢ₊₁)/max(gᵢ,gᵢ₊₁). При равновероятной перестановке тех же зазоров её ожидание точно равно среднему по всем различным парам. Знак отклонения сохранился при перестановках внутри четырёх блоков. Для физического переноса нужны собственный оператор системы, измеряемый спектр и контроль на новых данных. Размеры выборок и значения.
 <!-- /generated:R143 -->
 
 <!-- generated:R141 -->
@@ -4303,9 +4339,28 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R132, [R140](https://github.com/IgorSabirov/vm-lab/blob/0b138473ae72675b4ff2a4d4491c4c769083a0fa/analysis/NOW_RESULTS_SYNTHESIS_20261106/R140.md). **Конструкции:** C012, C037. **Вопросы:** U010.
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R141_origin.json](../../analysis/R141_R147_MODEL/evidence/R141_origin.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R141_origin.json](../../analysis/R141_R147_MODEL/evidence/R141_origin.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Спектральная различимость и арифметика · общая модель
+
+Пусть $U$ — циклический сдвиг, $P$ — проектор на единицы бинарного слова, $B=P(U-I)P$, $K=BB^*$. На циклическом кольце, где хотя бы один ноль разрывает активную часть, независимые серии единиц длины $\ell_j$ дают $\det(I+K)=\prod_j F_{2\ell_j+1}$. Для 010111 серии $1+3$ дают $2\cdot13=26$, для 011011 серии $2+2$ дают $5^2=25$. Разность полиномов $\det(I+tK)$ равна $t^3$. При фиксированном циклическом сдвиге U и усреднении самих матриц $K$ по поворотам обе усреднённые матрицы совпадают, оба детерминанта при $t=1$ равны $39200/729$. Усреднение уже вычисленных детерминантов по тем же поворотам сохранило бы 26 и 25. Это конкретная потеря информации от порядка операций. Порядок следования серий и длины отдельных разделяющих промежутков не кодируются их произведением.
+
+В арифметической ветви те же корни характеристического уравнения появляются в подсчёте идеалов и периодических точек тора. У динамической дзета-функции тора $\zeta_{B_q}(t)=(1-t)^2/(1-qt+t^2)$, так как $\#\mathrm{Fix}(B_q^n)=V_n-2$ при $q>2$. Для сдвига исходных слов без пары числитель равен 1, для золотого языка масок знаменатель уже $1-t-t^2$. У дзета-функции Дедекинда аргумент $s$, а коэффициент на $n^{-s}$ считает идеалы нормы $n$. Совпадение слова «дзета» не даёт отображения между полюсами и нулями этих функций.
+
+В исходном R141 также исследованы 657 табличных нулей, перестановки промежутков, явная формула, конечные операторы Конна и спектральные статистики физических доноров. Кольцо при фиксированном $q$ имеет спектр в $[q-2,q+2]$. Чтобы связать его со всеми ординатами нулей, понадобится новая независимо выведенная шкала или иной оператор, а также контроль кратностей. Внешняя формальная проверка RH и внутренняя операторная задача имеют разные результаты. Отчёт R141 · Заявление Lean FRO и Mathlib.
+
+**Как отличить разрыв маски от разрыва оператора**
+
+Возьмём в указанной нумерации A = 010111 и B = 011011. В обеих строках ниже P выбирает единицы, K = P(U−I)P · [P(U−I)P]*. Черта означает среднее по шести циклическим сдвигам слова при одном фиксированном U. Шов расположен между последней и первой позициями.
+
+| Оператор U | det(I+K̄), A и B | Среднее det(I+K), A | Среднее det(I+K), B |
+| --- | --- | --- | --- |
+| Кольцо, переход 6 → 1 есть | 39200/729 | 26 | 25 |
+| Открытая цепь, перехода 6 → 1 нет | 33461/729 | 24 | 70/3 |
+
+В исходном расположении первый бит обоих слов равен нулю. Проектор уже убрал ребро шва, поэтому обе версии U дают те же D(t) = det(I+tK). Для A коэффициенты при 1, t, t², t³, t⁴ равны (1, 6, 11, 7, 1), для B — (1, 6, 11, 6, 1). Различие впервые видно при t³. Вращение слова на кольце сопрягает матрицу перестановкой. На цепи активная серия при вращении может пересечь фиксированный разрез. Этим объясняется, почему разница возникает после усреднения.
 <!-- /generated:R141 -->
 
 <!-- generated:R144 -->
@@ -4325,9 +4380,21 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R141, R142, R143. **Конструкции:** . **Вопросы:** .
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R144_review_kit.zip](../../analysis/R141_R147_MODEL/evidence/R144_review_kit.zip); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [R144_review_kit.zip](../../analysis/R141_R147_MODEL/evidence/R144_review_kit.zip); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Симметрии конструкций · общая модель
+
+Вложенная редакция v0.4 содержит 43 позиции, 76 исходных утверждений, 122 детализированных высказывания, 63 действия и 28 собственных отношений. Эти 28 отношений действуют внутри классификатора R144. Ниже в атласе отдельно разобраны все 28 неупорядоченных пар между восемью карточками. Числа совпали по разным причинам.
+
+Локальная смена фаз на вершинах пути убирает фазу каждого ребра. На замкнутом пути сохраняется произведение фаз $u$. Поэтому в R141 для целиком активного кольца $\det(I+BB^*)=|J|-2\cos\theta$; при разрыве поправка исчезает. Вклад полного минора равен $|1-u|^2$. Остальные ненулевые миноры в комбинаторном разложении имеют единичный модуль. Новый перенос на $H_{q,u}$ даёт формулу по всем энергиям ниже. Исходный тест прошёл на 504 словах при четырёх фазах.
+
+У иных систем действие выбирается содержательно: у каскада удвоений смена порядка критической точки меняет класс универсальности, у осциллятора анизотропия расщепляет уровни. Квадратичная logistic и sine при конечном уровне дают близкие оценки 4,6692, квартичный контроль около 7,2847. Число 2 в блокаде пар, спиновом вырождении и удвоении периода отвечает различным действиям.
+
+**Какая симметрия переживает разрез**
+
+Циклическое вращение букв и одновременное перенумерование всего графа совпадают для кольца. На цепи с закреплённым концом вращение только букв меняет их положение относительно границы. Полиномы двух исходных слов различаются на t³ при обеих границах, но среднее по вращениям зависит от того, какая операция вращалась. Четыре точных средних.
 <!-- /generated:R144 -->
 
 <!-- generated:R145 -->
@@ -4347,9 +4414,21 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R141, R142. **Конструкции:** . **Вопросы:** .
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_hyperbolic_clifford_audit.py](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_audit.py); [r147_hyperbolic_clifford_results.json](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_results.json); [r147_sol_scattering_extension.py](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py); [r147_sol_scattering_results.json](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_hyperbolic_clifford_audit.py](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_audit.py); [r147_hyperbolic_clifford_results.json](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_results.json); [r147_sol_scattering_extension.py](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py); [r147_sol_scattering_results.json](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Локальные факторы и классовые характеры · общая модель
+
+На вещественной стороне матрица есть умножение единицей на квадратичном порядке. При $q=3$ и 4 он максимален, поэтому число инвариантных подрешёток индекса $n$ равно $\sum_{d\mid n}\chi_D(d)$ при $D=5$ и 12 соответственно. При 13 знаки характеров равны −1 и +1, при 19 наоборот. Для биквадратичного поля $\mathbb Q(\sqrt5,\sqrt3)$ третий квадратичный характер есть $\chi_{60}=\chi_5\chi_{12}$; дзета раскладывается в $\zeta L_5L_{12}L_{60}$. Это отдельный объект от исходного поля классов.
+
+На мнимой стороне исходного R147 поле $K^-=\mathbb Q(\sqrt{-5})$ имеет два класса. Поле классов Гильберта $\mathbb Q(i,\sqrt5)$ имеет дискриминант 400. Разложение дзета по характерам класса даёт $L_{K^-}(s,\eta)=L(s,\chi_5)L(s,\chi_{-4})$. Сверены 109 простых до 600 и коэффициенты двух квадратичных форм на нормах до 5000. Этот конкретный абелев случай имеет явное отображение между обеими сторонами.
+
+**Два независимых счёта**
+
+Для дискриминанта −20 берём формы Q₁ = x²+5y² и Q₂ = 2x²+2xy+3y². Для положительного n величина rⱼ(n) — половина числа всех целых пар (x,y), дающих Qⱼ = n. Деление учитывает одновременную замену (x,y) на (−x,−y). Перебор обеих форм подтвердил r₁−r₂ = χ₅ * χ₋₄ по каждому n от 1 до 1000. Неполный учёт знаков в первой версии скрипта дал ложные расхождения уже при n = 5.
+
+Для вещественного поля ℚ(√5) выполнен отдельный перебор базисов Эрмита со столбцами (a,0),(b,d), ad ≤ 500 и 0 ≤ b < a. Оба столбца проверялись на сохранение решётки при (x,y) ↦ (y,x+y), умножении на φ в базисе (1,φ). Из 205 883 решёток сохранились 218. Для каждого индекса количество совпало с суммой χ₅ по его делителям. Тем самым воспроизведён исходный HNF-результат корпуса. В первом скрипте соседей вычислялись арифметические суммы и корни сравнений, без такого перебора базисов.
 <!-- /generated:R145 -->
 
 <!-- generated:R146 -->
@@ -4369,9 +4448,26 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R141, R144. **Конструкции:** . **Вопросы:** .
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_sol_scattering_extension.py](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py); [r147_sol_scattering_results.json](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_sol_scattering_extension.py](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_extension.py); [r147_sol_scattering_results.json](../../analysis/R141_R147_MODEL/evidence/r147_sol_scattering_results.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Гомология тора и поток Риччи · общая модель
+
+Для целого $q\ge3$ склейка $B_q$ на двумерном торе даёт трёхмерный отображающий тор $Y$. Абелианизация $\mathbb Z^2\rtimes_{B_q^n}\mathbb Z$ даёт $H_1(Y_{B_q^n})=\mathbb Z\oplus\mathrm{coker}(B_q^n-I)$. При знаке −1 вдоль базы ядро на $H_0$ исчезает и $H_1(Y;\mathbb Z_-)\cong\mathrm{coker}(B_q^n+I)$ для соответствующего накрытия. Одни и те же группы вычисляются на конечном графе с граничным знаком.
+
+В собственных координатах монодромии положим $g=e^{-2z}dx^2+e^{2z}dy^2+b\,dz^2$. При нормировке статьи корпуса $b(t)=b_0+4t$, скалярная кривизна $-2/b(t)$. Координатный период $\ell=\log\lambda$, метрическая длина вертикального обхода $\sqrt b\,\ell$. Для функций одной координаты $z$ спектр $E_k^z=(2\pi k/\ell)^2/b$. При $b_0=1$, $t=0,1,5$ получены для $q=3$ значения 42,62135 → 8,52427 → 2,02959, для $q=4$ — 22,76229 → 4,55246 → 1,08392. Индекс $k=1$ означает первый положительный уровень вертикального сектора; глобальный порядок уровней полного трёхмерного лапласиана из этого не следует.
+
+**Что меняется со знаком шва**
+
+Для H = qI−U−U* на шести вершинах перечислены определители при U⁶ = uI. В скобках — нетривиальные инвариантные множители коядра над ℤ для вещественных знаков.
+
+| q | u = +1 | u = i | u = −1 |
+| --- | --- | --- | --- |
+| 3 | 320 (8, 40) | 322 | 324 (18, 18) |
+| 4 | 2700 (30, 90) | 2702 | 2704 (52, 52) |
+
+При B₄ = ((2,1),(3,2)) след B₄³ равен 52, B₄⁶+I = 52B₄³. Матрица B₄³ унимодулярна, что объясняет пару (52,52). Для B₄⁶−I определитель равен −2700, порядок конечной группы равен 2700. При q = 3 для колёс с 3–8 вершинами обода отдельно сопоставлены формы Смита графа и M²ⁿ−I, где M — матрица Фибоначчи.
 <!-- /generated:R146 -->
 
 <!-- generated:R147 -->
@@ -4391,7 +4487,68 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 
 **Родители:** R141, R144, R145, R146. **Конструкции:** . **Вопросы:** .
 
-**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_hyperbolic_clifford_audit.py](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_audit.py); [r147_hyperbolic_clifford_results.json](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_results.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json).
+**Источники:** [README.md](../../analysis/R141_R147_MODEL/README.md); [r147_hyperbolic_clifford_audit.py](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_audit.py); [r147_hyperbolic_clifford_results.json](../../analysis/R141_R147_MODEL/evidence/r147_hyperbolic_clifford_results.json); [replay.py](../../analysis/R141_R147_MODEL/replay.py); [RESULTS.json](../../analysis/R141_R147_MODEL/RESULTS.json); [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md).
 
 **Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Клиффорд и рассеяние · общая модель
+
+В исходном случае $S_3=\left(\begin{smallmatrix}-2&1\\1&2\end{smallmatrix}\right)$. После положительного дополнения $I_2$ получаем сигнатуру $(3,1)$ и центр чётной алгебры Клиффорда $\mathbb Q(\sqrt{-5})$. Для полной группы Бьянки $\mathrm{PSL}_2(\mathcal O_{K^-})$ классовые характеры дают два канала. При $w=1+2i$ их фазы равны +2,9546326624 и −0,6525249472 радиана. Повторены тета-суммы решёток и независимое вычисление отношений завершённых функций Дирихле. Решение исходной геометрической краевой задачи без подстановки формулы рассеяния остаётся открытым.
+
+Что меняет $q=4$. Примитивная форма $S_4=\left(\begin{smallmatrix}-2&1\\1&1\end{smallmatrix}\right)$ имеет определитель −3. С тем же дополнением центр становится $\mathbb Q(\sqrt{-3})$. Приведённые положительные формы дискриминанта −20 представлены $(1,0,5),(2,2,3)$, а дискриминанта −3 — единственной $(1,1,1)$. Для полной группы Бьянки число каспов равно числу классов. Значит, у нового полного аналога один касп и один скалярный канал постоянных по сечению функций. Это определяет размер матрицы такого рассеяния; амплитуда при $q=4$ в этой сборке не вычислялась. Определитель бинарной формы зависит от масштаба квадратом, а изменение положительного дополнения может сменить поле. Для подгруппы число каспов может увеличиться. Теорема 2.6 о каспах · поле дискриминанта −3.
+
+**Какой вход проверен для двух каналов**
+
+Разность коэффициентов двух форм дискриминанта −20 проверяет арифметический вход нетривиального классового характера для группы Бьянки. При n ≤ 1000 согласовались все коэффициенты. Для фазы рассеяния требуется ещё нормировка непрерывного спектра и решение краевой задачи. Статус этого геометрического шага остаётся открытым. Формы, знаки и определение коэффициента.
 <!-- /generated:R147 -->
+
+<!-- generated:R148 -->
+<a id="r148"></a>
+
+### R148. Кантор, вероятность, вычислимость и свидетель
+
+**Статус:** OPEN · точные математические и конечные динамические результаты в указанных областях
+
+**Результат.** На одном пространстве масок допустимость, вероятность цилиндров и вычислимость требуют разных условий. На 4096 исходных словах получены 18 масок. Для равномерной подготовки на кольцах длины 3–7 три полных шага F дают положительную I(N₁;N₃ | N₂) на каждой длине. При добавлении текущих чисел слияний и расщеплений остаток равен нулю. Для нынешней конфигурации длины 8 перестановка двух символов изменила следующую длину с 8 на 7 при том же мультимножестве.
+
+**Условия.** Одноканальное правило R130, выбранный iid-ансамбль букв, конечные начальные длины, наблюдаемая Nⱼ = |Fʲx|. В римановском контроле используется Ξ(t) = ξ(½+it).
+
+**Граница.** Вмешательство обнаруживает причинную роль текущего соседства. Генезис содержательной записи, её последующее чтение, самовоспроизведение ансамбля и универсальность полного ADD остаются открытыми. Статусы всех девяти задач даны в ATLAS.json.
+
+**Место в рамке.** Связывает масштаб Кантора, закон наблюдаемого процесса и контракт свидетеля R128 с явными вмешательствами и границами наблюдения.
+
+**Родители:** R128, R130, R141, R142, R143, R144, R145, R146, R147. **Конструкции:** C010, C026, C033, C039, C012. **Вопросы:** U010.
+
+**Источники:** [R141-R148.html](../../analysis/R141_R148_MODEL/R141-R148.html); [ATLAS.json](../../analysis/R141_R148_MODEL/ATLAS.json); [PAIRS.md](../../analysis/R141_R148_MODEL/PAIRS.md); [temporal.json](../../analysis/R141_R148_MODEL/results/temporal.json); [extensions.json](../../analysis/R141_R148_MODEL/results/extensions.json); [temporal.py](../../analysis/R141_R148_MODEL/code/temporal.py); [audit_extensions.py](../../analysis/R141_R148_MODEL/code/audit_extensions.py); [r130_reference.py](../../analysis/R141_R148_MODEL/code/r130_reference.py).
+
+**Предпосылки:** ; [реестр 66 условий](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md).
+
+#### Кантор, вероятность, вычислимость и свидетель · общая модель
+
+Конечные допустимые префиксы и цилиндры образуют счётное семейство. Пространство бесконечных совместимых масок $X_G$ имеет мощность $\mathfrak c=2^{\aleph_0}$: инъекция из двоичных последовательностей вставляет ноль между соседними битами, обратная инъекция — включение. Каждый непустой цилиндр здесь континуален. Борелевских множеств континуум, всех подмножеств $2^{\mathfrak c}$. Отождествление $\mathfrak c$ с $\aleph_1$ требует отдельного утверждения CH. Одни и те же мощности встречаются у пространств с различными языками, мерами и спектральными типами.
+
+| Объект Кантора | Что отличает его в блоке |
+| --- | --- |
+| Золотой сдвиг и подстановочный сдвиг Фибоначчи | При длине 16 у первого 2584 открытых слов и топологическая энтропия $\log\varphi$, у второго 17 факторов и энтропия 0. Циклических размеченных масок первого типа 2207. |
+| Тернарный образ $C_G$ | Блоки 0 и 10 дают масштабы 1/3 и 1/9, $D=\log\varphi/\log3$, первая щель длины 5/12. Множество единственности для тригонометрических рядов получается включением в стандартный тернарный Кантор. |
+| Энергетический спектр, DOS и IDS | Носитель спектра при ненулевом контрасте канторов, DOS есть мера, IDS её функция распределения. Размерности спектра и меры зависят от контраста; размерность тернарного образа относится к иной метрике. |
+| Производные Кантора–Бендиксона | Замкнутая серия Бальмера даёт тип $\omega+1$. Для масок с ≤k единицами производная снижает k на один. Составной пример Y имеет последнюю непустую производную на $\omega$ и тип $\omega^\omega+1$. |
+| Арифметический предел | Для $I_n=(\lambda^n-1)$, $n\mid m$, имеем $I_m\subseteq I_n$. Любой ненулевой идеал конечного индекса содержит одну такую степень, поскольку единица имеет конечный порядок в конечном факторе. Аддитивный предел изоморфен $\widehat{\mathbb Z}^2$. |
+| Предиктивное разбиение | Множество историй континуально. Для равномерной подготовки возраст со времени последней единицы даёт счётно много причинных состояний почти наверное; для каждого конечного возраста соответствующий класс историй имеет мощность континуума. |
+| Эффективное описание | Запрет 11 разрешим на конечном окне, $X_G$ эффективно замкнуто. Программная маска остаётся нулевой до остановки машины и затем выдаёт допустимое чередование. Свойство наличия единицы для индексов этого семейства $\Sigma^0_1$-полно. Это сведение не устанавливает внутреннюю универсальность полного $F=QI$. |
+
+Гёдель требует фиксированной формальной теории с нужной выразительностью и эффективной аксиоматизацией, Тарский — заданного языка и понятия истины. Чёрч и Тьюринг дают конкретную границу алгоритмического решения, когда точно задано представление входа. По теореме Брудно сложность префикса на символ у почти каждой истории эргодической меры равна её энтропийной скорости; на одном $X_G$ типичные значения двух мер — 0,69424 и 0,33126 бит/символ. Обе меры безатомны, так что счётные семейства вычислимых точек и программных примеров остановки имеют меру нуль. Модель корпуса пока не зафиксировала эндогенную процедуру выбора типичных временных историй. Теорема Брудно для сдвигов.
+
+**Мера на масках и контроль по нулям**
+
+У 4096 равновероятных слов длины 6 ровно 18 различных циклических масок. По числу меток распределение слов равно 2702 + 1254z + 138z² + 2z³. Сумма коэффициентов даёт 4096. Маска без меток имеет вероятность 2702/4096, каждая из двух чередующихся масок с тремя метками имеет вероятность 1/4096. Отдельный счёт исключает также букву 3 и даёт 322 слова без локального изменения.
+
+В спектральном контроле фиксируем Ξ(t) = ξ(½+it). Тогда Ξ(1)/Ξ(0) = ξ(½+i)/ξ(½) = 0,9771416745871240. Обе подписи обозначают одну нормировку. Для Pₙ = ∏ₖ₌₁ⁿ(1−1/γₖ²) пересчитаны первые 657 положительных ординат с рабочей точностью 20 десятичных знаков. P₆₅₇ = 0,9780779846321494, абсолютная ошибка 0,0009363100450254, относительная 0,0958213 %. Первые пересечения порогов 0,001 и 0,1 % произошли при n = 596 и 617 соответственно.
+
+| После развёртки θ(γ)/π+1 | Соседних пар | Соседние | Ожидание при перестановке | Разность |
+| --- | --- | --- | --- | --- |
+| Все 596 зазоров | 595 | 0,615123 | 0,669155 | −0,054032 |
+| 4 блока по 149 зазоров | 592 | 0,614358 | 0,668049 | −0,053690 |
+
+Это две проверки конечной выборки. Конечное произведение Pₙ приближает значение функции в одной точке. Статистика соседства чувствительна к порядку зазоров. Для проверки закона GUE/GOE нужна отдельная модель сравнения; вывод о гипотезе Римана из этих тестов не следует.
+<!-- /generated:R148 -->
