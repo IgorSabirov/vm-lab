@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "dc1c8c7825cae74ebb3cd562755fd5e919230765b0b9983dc42a8c657e8aab38",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "2fbed1a40c61d093793961ce1d8fd7742d97a6d8044958ab09791a5ab75b54cb",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "deab3ecd197cea43c84aa04318fd4b26589202d13a650f1703b5e95dc24b56c4",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "26a09bde271b40686b0c2e2d0ab29e510a1a527dcd247591da048b527d4b5849",
@@ -114,7 +114,7 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 135,
+    "result": 136,
     "construct": 42,
     "link": 10,
     "question": 12,
@@ -124,7 +124,7 @@
     "component": 45,
     "external": 18,
     "decision": 3,
-    "source": 149
+    "source": 153
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -3189,6 +3189,15 @@
       "fragment": "r135"
     },
     {
+      "key": "result:R138",
+      "id": "R138",
+      "kind": "result",
+      "title": "Доноры эволюции от BBN через рекомбинацию и тёмные века до a=1/50",
+      "status": "СИНТЕЗ ДОНОРОВ И ПРОВЕРКА ТАБЛИЦ · ФИЗИЧЕСКОЕ СОПРЯЖЕНИЕ ОТКРЫТО",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r138"
+    },
+    {
       "key": "review:ADD_BBN_SYMMETRY_20261115",
       "id": "ADD_BBN_SYMMETRY_20261115",
       "kind": "review",
@@ -5023,6 +5032,54 @@
       "sha256": "f1579aefd9bb0a3cddeaf16db34dc45c4a8c79f77f60d77c3f9c85ff60787c14",
       "git_blob_sha": "648acd2e635530fbfba957620ea94d2d88aee7ab",
       "size_bytes": 6902
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "id": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "fragment": "",
+      "sha256": "02609c765b786311a8acb107c649d20a682e8371caff3e2ea030f6d20c7931bc",
+      "git_blob_sha": "01c5eb78f4055be3fa96f0d8bdc42aba6b28f5a3",
+      "size_bytes": 1472
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "id": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "fragment": "",
+      "sha256": "fbeb97d1162161685543a19368f656081af803d6af4d413930db65e969393b7c",
+      "git_blob_sha": "7aeadc727af47c7456a3e38cd1c573a5f6a7f1b0",
+      "size_bytes": 2554
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "id": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "fragment": "",
+      "sha256": "8f646618a7d65af6f8528290d9d9cd4b455562369bdc1b7371655c14533e91be",
+      "git_blob_sha": "57e7099a66b70397593def8382ad9562878b2e87",
+      "size_bytes": 15626
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "id": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "fragment": "",
+      "sha256": "d1e2d001c957193e047260fb303ae927483e92282e058e885067636ac16d9f03",
+      "git_blob_sha": "f85b95f6fa6a0a031759ac4129174847f6c8f587",
+      "size_bytes": 2882
     },
     {
       "key": "source:infra/external/README.md",
@@ -10690,6 +10747,26 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
       "relation": "managed_evidence_source"
     },
     {
