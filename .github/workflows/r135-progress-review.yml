@@ -1,0 +1,33 @@
+name: R135 criterion progress
+on:
+  pull_request:
+    paths:
+      - 'infra/r135/**'
+      - 'analysis/R135_PHYSICAL_SECTOR_X_20261120/**'
+      - 'RUNTIME_GATE.md'
+      - 'tools/r135_progress.py'
+      - 'tools/r135_progress_review.py'
+      - 'tools/r135_pipeline*.py'
+      - 'tools/project_sync.py'
+      - 'infra/external/GITHUB_SETUP.json'
+      - 'tests/test_r135*.py'
+      - '.github/workflows/r135-progress-review.yml'
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compare criterion records with the base revision
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python3 tools/r135_progress_review.py --base "$BASE_SHA" --output project-evidence/R135_CRITERION_DELTA.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: r135-criterion-delta
+          path: project-evidence/R135_CRITERION_DELTA.json

@@ -465,6 +465,38 @@
       "origin": "R135 projected event grid; xi=0.44118895 is a late-budget benchmark"
     },
     {
+      "point_id": "XB-SU3-X1-DOMINANCE",
+      "model_id": "XB-pureSU3",
+      "role": "diagnostic",
+      "thermal_path": "isolated_during_transition",
+      "origin": "Owner-specified reproduction of the peer calculation, #161; physical interpretation and comparison in #168/#174.",
+      "diagnostic_kind": "dominance_control",
+      "assumption_status": "FROZEN",
+      "physical_input_status": "OPEN_INPUT",
+      "X": 1,
+      "X_definition": "rho_d / rho_total at the modeled event",
+      "expansion_closure": "H=H_d",
+      "stable_EOS": "Giusti et al., arXiv:2501.10284",
+      "dynamics_reference": "HPR, arXiv:2512.14530",
+      "metastable_EOS": "conditional linear continuation near coexistence",
+      "sound_speed_squared_endpoints": {
+        "hot": "OPEN_INPUT",
+        "cold": "OPEN_INPUT"
+      },
+      "peer_reported": {
+        "provenance": "Reported by peer and preserved by owner for reproduction. Values are conditional outputs only.",
+        "epsilon_n_approx": 0.0007,
+        "wall_speed_label_vw_over_c_approx": 0.029,
+        "wall_speed_interpretation": "Peer label v_w. Local jump control gives fluid v_minus in the wall frame for imposed temperatures. Physical wall speed requires friction and boundary conditions.",
+        "beta_tilde_range": [
+          24000,
+          600000
+        ]
+      },
+      "comparison_scope": "Only this X=1, H=H_d case. For an FMS row, infer the energy share at its own surface and reconstruct the hot history before comparison.",
+      "physical_launch_authorized": false
+    },
+    {
       "point_id": "XB-FMS-top-left",
       "model_id": "XB-pureSU3",
       "thermal_path": "isolated_during_transition",

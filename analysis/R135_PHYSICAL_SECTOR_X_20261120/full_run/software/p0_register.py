@@ -60,6 +60,17 @@ def validate_release_file(item, root):
             f"Release size mismatch: {relative}")
 
 
+def validate_dominance_case(point):
+    require(point["role"] == "diagnostic" and point["model_id"] == "XB-pureSU3"
+            and point["thermal_path"] == "isolated_during_transition", "Dominance case role or model")
+    require(number(point.get("X")) and point["X"] == 1 and point.get("expansion_closure") == "H=H_d",
+            "Dominance case requires X=1 and H=H_d")
+    require(not ({"xi_event", "T_gamma_event_MeV", "R_post", "m0_GeV"} & point.keys()),
+            "Dominance case has no FMS or event-grid coordinates")
+    require(point.get("physical_launch_authorized") is False and point.get("assumption_status") == "FROZEN"
+            and point.get("physical_input_status") == "OPEN_INPUT", "Dominance case is diagnostic only")
+
+
 def build(source):
     reg = load(source)
     plan = load(PLAN)
@@ -97,7 +108,9 @@ def build(source):
         require(point["model_id"] in model_ids, "Unknown point model")
         require(point["thermal_path"] in model_ids[point["model_id"]]["thermal_paths"], "Unknown thermal path")
         require(isinstance(point["origin"], str) and point["origin"].strip(), "Missing point provenance")
-        if point["role"] == "physical_candidate":
+        if point.get("diagnostic_kind") == "dominance_control":
+            validate_dominance_case(point)
+        elif point["role"] == "physical_candidate":
             require(point.get("initial_history_id"), "Physical candidate needs an initial-history reference")
             for key in ("history_file", "calibration_file"):
                 require(key in point, f"Missing physical point evidence: {key}")

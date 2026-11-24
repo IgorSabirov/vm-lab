@@ -1,0 +1,133 @@
+{
+  "schema": "xb-p0-role-mode-review-v1",
+  "source_commit": "c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92",
+  "sources": [
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/PLAN.json",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/PLAN.json",
+      "sha256": "5fffbb0bfee2c894081cf339310272215d6dbee013f1d6c630dfec04a1c26477"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_register.py",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_register.py",
+      "sha256": "2bfe4c6e26be1026ed6d0b81c2bf0280a8a7523d40ee71236d7471613796a015"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_snapshot/model_register.json",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/p0_snapshot/model_register.json",
+      "sha256": "5891651c5a3bbe53fb8c8baa88d3082f1cf254782c770a84000e3f573fad548d"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/common.py",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/common.py",
+      "sha256": "6d275d0fc494135051e0872c5d793edb438f6e43599f99c7b1ad72c5ba425fe5"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/contracts.py",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/r135/contracts.py",
+      "sha256": "4fde815028333b4a39e1c423948c135cac44a01805951203e7d1d304eca766ad"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/coordinates.json",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/coordinates.json",
+      "sha256": "c9bebefd93c153331e826b1ab3b073fc5f35a75a09bc7d424bc94ffab01ce956"
+    },
+    {
+      "path": "analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/inputs.json",
+      "url": "https://raw.githubusercontent.com/IgorSabirov/vm-lab/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/xb_reference/inputs.json",
+      "sha256": "fc1f28db062687a10cdf236b6ed6513cc411f3a2355d233fda7c1b5f49a7008d"
+    }
+  ],
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "published_point_rows_pass_P0_build_with_fixture_observations",
+      "result": "PASS",
+      "observed": "accepted"
+    },
+    {
+      "case": "diagnostic_validation_request",
+      "result": "PASS",
+      "observed": "accepted"
+    },
+    {
+      "case": "diagnostic_conditional_request",
+      "result": "PASS",
+      "observed": "rejected",
+      "exception": "OpenInput",
+      "message": "diagnostic P0 points require validation mode"
+    },
+    {
+      "case": "published_FMS_conditional_request",
+      "result": "PASS",
+      "observed": "accepted"
+    },
+    {
+      "case": "published_FMS_physical_request",
+      "result": "PASS",
+      "observed": "rejected",
+      "exception": "OpenInput",
+      "message": "physical mode requires an independently calibrated P0 physical_candidate"
+    },
+    {
+      "case": "new_conditional_scan_role",
+      "result": "PASS",
+      "observed": "rejected",
+      "exception": "ValueError",
+      "message": "Unknown point role"
+    },
+    {
+      "case": "FMS_role_with_changed_mass",
+      "result": "PASS",
+      "observed": "rejected",
+      "exception": "ValueError",
+      "message": "Published preparation differs from source inputs"
+    },
+    {
+      "case": "seal_does_not_execute_P0_registry_build",
+      "result": "PASS",
+      "observed": "accepted"
+    },
+    {
+      "case": "P0_build_after_seal_rejects_bad_registry",
+      "result": "PASS",
+      "observed": "rejected",
+      "exception": "ValueError",
+      "message": "Unknown point role"
+    },
+    {
+      "case": "P0_result_is_design_evidence",
+      "result": "PASS",
+      "software_status": "PASS",
+      "evidence_status": "DESIGN_RECORDS",
+      "limitations": [
+        "P0 is a design register, not physical calibration"
+      ]
+    }
+  ],
+  "published_point_counts": {
+    "diagnostic": 48,
+    "literature_benchmark": 4,
+    "physical_candidate": 0
+  },
+  "published_XB_diagnostic_count": 24,
+  "scope": "Narrow existing validator checks; no physical calculation or scientific promotion",
+  "isolated_dependencies": [
+    "synthetic observational release and rule table",
+    "full checkout source inventory and Git attribution mechanics"
+  ],
+  "unmodified_real_checks": [
+    "p0_register.build",
+    "p0_register.freeze/verify",
+    "contracts.verified_registry",
+    "contracts.validate_request role/mode guards",
+    "contracts.seal",
+    "contracts._p0"
+  ],
+  "not_claimed": [
+    "full original P0 replay",
+    "source-calibration truth or independence",
+    "P1-P10 execution",
+    "authorization to launch physics"
+  ]
+}

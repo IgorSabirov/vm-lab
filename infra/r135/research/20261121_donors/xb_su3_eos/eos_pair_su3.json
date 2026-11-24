@@ -1,0 +1,513 @@
+{
+  "name": "XB_SU3_EOS_PAIR_v0.1",
+  "status": "STABLE_EQUILIBRIUM_DONOR_CONTROL",
+  "peer_review_controls": {
+    "max_absolute_pull_25_table_rows": 0.968695060848883,
+    "scale_author": 0.6462,
+    "mass_over_Tc": [
+      5.269266480965645,
+      7.573506654286599,
+      8.16465490560198,
+      9.780253791395854
+    ],
+    "gas_s_T3_on_author_scale": {
+      "0.8": 0.03080295876983391,
+      "0.9": 0.05973895871326541,
+      "0.95": 0.07919660404921311,
+      "1.0": 0.10220550581152593
+    },
+    "common_anchor_using_cold_fit": 0.017768694535385286,
+    "last_cold_fit_heat_capacity_zero_x": 0.9999982258825156,
+    "smooth_fit_scenarios": {
+      "0.0": {
+        "coef_sbar_quadratic_in_x_minus_1": [
+          0.27477172343324263,
+          3.5568697910561307,
+          11.38913349963926
+        ],
+        "conditional_coefficient_covariance": [
+          [
+            1.0115630681149036e-05,
+            0.00024432773324749193,
+            0.0009880349601838088
+          ],
+          [
+            0.0002443277332474919,
+            0.00993282971066789,
+            0.04548767000968909
+          ],
+          [
+            0.0009880349601838088,
+            0.04548767000968909,
+            0.2250111190073447
+          ]
+        ],
+        "endpoint_cs2": 0.07725099302880455,
+        "linearized_conditional_sigma": 0.001581501472652178,
+        "positive_slope_on_fitted_interval": false
+      },
+      "0.5": {
+        "coef_sbar_quadratic_in_x_minus_1": [
+          0.27070432390734867,
+          3.560616015258675,
+          11.374262500475934
+        ],
+        "conditional_coefficient_covariance": [
+          [
+            1.09315575781366e-05,
+            0.00011675393450623743,
+            0.0005154927286737884
+          ],
+          [
+            0.00011675393450623742,
+            0.004971397601312996,
+            0.02272405551294056
+          ],
+          [
+            0.0005154927286737884,
+            0.02272405551294056,
+            0.1125840761091011
+          ]
+        ],
+        "endpoint_cs2": 0.07602738479725742,
+        "linearized_conditional_sigma": 0.0013147289590007994,
+        "positive_slope_on_fitted_interval": false
+      }
+    },
+    "unweighted_sbar_refits": {
+      "2": {
+        "cs2_at_Tc": 0.08062863512932415,
+        "minimum_dsbar_dx_over_interval": -0.8384977090909085
+      },
+      "3": {
+        "cs2_at_Tc": 0.05539454704968803,
+        "minimum_dsbar_dx_over_interval": 0.08522667452970839
+      },
+      "4": {
+        "cs2_at_Tc": 0.039705847055132644,
+        "minimum_dsbar_dx_over_interval": -6.789742333333161
+      }
+    },
+    "rankine_hugoniot_example": {
+      "T_plus_Tc": 1,
+      "T_minus_Tc": 0.99931,
+      "v_minus_wall_frame": 0.029460937231122603,
+      "v_plus_wall_frame": 0.005655637141620307,
+      "out_minus_in_entropy_flux_Tc3": 2.26381211296256e-06,
+      "scope": "prescribed temperatures and planar flux conservation; no velocity-selection law or percolation"
+    },
+    "alpha_at_Tc_from_combined_L": 0.2662587808746884
+  },
+  "input_sha256": "361ced5906b7cb0aaccebd5034c22c46fd515dd5dbcc2baf7a665b98efb20820",
+  "physical_launch_authorized": false,
+  "x": "T/Tc",
+  "source": {
+    "giusti": {
+      "group": "physics",
+      "url": "https://arxiv.org/e-print/2501.10284v1",
+      "bytes": 1298035,
+      "sha256": "92f3e5d6f76005b48a1cc508315e43f3d74f7b513b02d4321c5fe98d78ab3796",
+      "section": "arXiv v1 §5, Table 3; published PLB 868 (2025) 139775 §5 Eqs.20–23. Signs and units as in source.",
+      "publication": "https://doi.org/10.1016/j.physletb.2025.139775"
+    },
+    "masses": {
+      "paper": "https://doi.org/10.1007/JHEP12(2021)082",
+      "locator": "Table 34, SU(3) ground states, also Table 39; cited by Giusti as [29]."
+    },
+    "entropy_table_and_scale": "https://github.com/IgorSabirov/vm-lab/blob/c3bc771d1daa292d5d9fd3e1d17bf4d3d6d01c92/analysis/R135_PHYSICAL_SECTOR_X_20261120/full_run/software/donors/validation.json",
+    "alternate_scale": "https://doi.org/10.1103/PhysRevLett.75.4169",
+    "hpr": "https://arxiv.org/html/2512.14530v2",
+    "sf_tx": "https://arxiv.org/abs/2011.10292",
+    "mass_scale_proceedings": "https://arxiv.org/abs/2502.03875 (Virzì et al.; four masses and Tc/sqrt(sigma_string)=0.6462(30))",
+    "flow_scale": {
+      "Tc_sqrt_t0": 0.24915,
+      "sigma": 0.00029,
+      "source": "Giusti et al., arXiv:2501.10284v1"
+    }
+  },
+  "domain": {
+    "cold": [
+      0.8,
+      1.0
+    ],
+    "hot": [
+      1.0,
+      3.433
+    ]
+  },
+  "stable": {
+    "cold": [
+      {
+        "x": 0.8,
+        "s_Tc3": 0.01409340929855856,
+        "p_Tc4": 0.0012182681396177598,
+        "rho_Tc4": 0.010056459299229088,
+        "w_Tc4": 0.011274727438846848,
+        "p_fit_residual_Tc4": -9.840535561775679e-05,
+        "cs2_fit_diagnostic": 0.08336776511164674,
+        "cs2_table_pchip_diagnostic": null
+      },
+      {
+        "x": 0.9,
+        "s_Tc3": 0.05961825089551186,
+        "p_Tc4": 0.0044081479500480275,
+        "rho_Tc4": 0.049248277855912646,
+        "w_Tc4": 0.053656425805960674,
+        "p_fit_residual_Tc4": -7.815695104802442e-05,
+        "cs2_fit_diagnostic": 0.08034298189295783,
+        "cs2_table_pchip_diagnostic": 0.09386771622427328
+      },
+      {
+        "x": 0.95,
+        "s_Tc3": 0.11935069462741889,
+        "p_Tc4": 0.008704326247004023,
+        "rho_Tc4": 0.10467883364904391,
+        "w_Tc4": 0.11338315989604794,
+        "p_fit_residual_Tc4": -0.00015788932086340315,
+        "cs2_fit_diagnostic": 0.0739753068241252,
+        "cs2_table_pchip_diagnostic": 0.07597943365224516
+      },
+      {
+        "x": 0.98,
+        "s_Tc3": 0.1876873907872304,
+        "p_Tc4": 0.01320735833933855,
+        "rho_Tc4": 0.17072628463214723,
+        "w_Tc4": 0.1839336429714858,
+        "p_fit_residual_Tc4": 5.958880337155435e-05,
+        "cs2_fit_diagnostic": 0.06145789455024307,
+        "cs2_table_pchip_diagnostic": 0.06020647420462958
+      },
+      {
+        "x": 0.99931,
+        "s_Tc3": 0.2823476659378311,
+        "p_Tc4": 0.017576562817503107,
+        "rho_Tc4": 0.26457628323083093,
+        "w_Tc4": 0.282152846048334,
+        "p_fit_residual_Tc4": 8.246379889029903e-05,
+        "cs2_fit_diagnostic": 0.02429113229868394,
+        "cs2_table_pchip_diagnostic": 0.04397406838025685
+      },
+      {
+        "x": 1.0,
+        "s_Tc3": 0.2927,
+        "p_Tc4": 0.01777461597146629,
+        "rho_Tc4": 0.2749253840285337,
+        "w_Tc4": 0.2927,
+        "p_fit_residual_Tc4": 6.538402853371178e-05,
+        "cs2_fit_diagnostic": null,
+        "cs2_table_pchip_diagnostic": 0.044441169370411475
+      }
+    ],
+    "hot": [
+      {
+        "x": 1.0,
+        "s_Tc3": 1.471,
+        "p_Tc4": 0.01777461597146629,
+        "rho_Tc4": 1.4532253840285339,
+        "w_Tc4": 1.471,
+        "p_fit_residual_Tc4": -9.461597146628864e-05,
+        "cs2_fit_diagnostic": 0.013396841587584925,
+        "cs2_table_pchip_diagnostic": 0.019249791926892225
+      },
+      {
+        "x": 1.01,
+        "s_Tc3": 2.108822839196142,
+        "p_Tc4": 0.03615240796463331,
+        "rho_Tc4": 2.0937586596234703,
+        "w_Tc4": 2.1299110675881034,
+        "p_fit_residual_Tc4": 0.00017986422635867666,
+        "cs2_fit_diagnostic": 0.047688074568343466,
+        "cs2_table_pchip_diagnostic": 0.04365387519342305
+      },
+      {
+        "x": 1.02,
+        "s_Tc3": 2.4880781560669116,
+        "p_Tc4": 0.059215477618477556,
+        "rho_Tc4": 2.478624241569772,
+        "w_Tc4": 2.53783971918825,
+        "p_fit_residual_Tc4": 9.887491356977418e-05,
+        "cs2_fit_diagnostic": 0.0717151684188245,
+        "cs2_table_pchip_diagnostic": 0.07020943738625501
+      },
+      {
+        "x": 1.03,
+        "s_Tc3": 2.8076367746039375,
+        "p_Tc4": 0.08572416219085859,
+        "rho_Tc4": 2.806141715651197,
+        "w_Tc4": 2.8918658778420556,
+        "p_fit_residual_Tc4": 0.00010119654546172918,
+        "cs2_fit_diagnostic": 0.08981810224547082,
+        "cs2_table_pchip_diagnostic": 0.09258632587559706
+      },
+      {
+        "x": 1.04,
+        "s_Tc3": 3.1005157899398257,
+        "p_Tc4": 0.11528107994106873,
+        "rho_Tc4": 3.10925534159635,
+        "w_Tc4": 3.224536421537419,
+        "p_fit_residual_Tc4": 0.00014100726264677788,
+        "cs2_fit_diagnostic": 0.10498733520756497,
+        "cs2_table_pchip_diagnostic": 0.10365116964621443
+      },
+      {
+        "x": 1.05,
+        "s_Tc3": 3.3779310256929076,
+        "p_Tc4": 0.14768348550515314,
+        "rho_Tc4": 3.3991440914724,
+        "w_Tc4": 3.5468275769775532,
+        "p_fit_residual_Tc4": 0.00016811044265277464,
+        "cs2_fit_diagnostic": 0.11840173535868384,
+        "cs2_table_pchip_diagnostic": 0.11212620998952294
+      },
+      {
+        "x": 1.06,
+        "s_Tc3": 3.645222558462808,
+        "p_Tc4": 0.18280617903280982,
+        "rho_Tc4": 3.681129732937767,
+        "w_Tc4": 3.8639359119705765,
+        "p_fit_residual_Tc4": 0.00016379975633637467,
+        "cs2_fit_diagnostic": 0.13056994266646482,
+        "cs2_table_pchip_diagnostic": 0.13084704607717904
+      },
+      {
+        "x": 1.08,
+        "s_Tc3": 4.160799089812539,
+        "p_Tc4": 0.26089958857634543,
+        "rho_Tc4": 4.232763428421197,
+        "w_Tc4": 4.493663016997542,
+        "p_fit_residual_Tc4": 0.0001058268066350676,
+        "cs2_fit_diagnostic": 0.15207040457875104,
+        "cs2_table_pchip_diagnostic": 0.15426330213333128
+      },
+      {
+        "x": 1.1,
+        "s_Tc3": 4.662011066720696,
+        "p_Tc4": 0.34914365395882474,
+        "rho_Tc4": 4.779068519433942,
+        "w_Tc4": 5.128212173392766,
+        "p_fit_residual_Tc4": 0.0001932251219672887,
+        "cs2_fit_diagnostic": 0.1705355107400804,
+        "cs2_table_pchip_diagnostic": 0.17047213968175032
+      },
+      {
+        "x": 1.15,
+        "s_Tc3": 5.8896618881472005,
+        "p_Tc4": 0.6128816339699119,
+        "rho_Tc4": 6.160229537399368,
+        "w_Tc4": 6.77311117136928,
+        "p_fit_residual_Tc4": 0.00031033131188618057,
+        "cs2_fit_diagnostic": 0.2066385717550616,
+        "cs2_table_pchip_diagnostic": 0.20439894624412003
+      },
+      {
+        "x": 1.2,
+        "s_Tc3": 7.156827208284505,
+        "p_Tc4": 0.938786188530575,
+        "rho_Tc4": 7.64940646141083,
+        "w_Tc4": 8.588192649941405,
+        "p_fit_residual_Tc4": -4.586228970671069e-05,
+        "cs2_fit_diagnostic": 0.2292645416245522,
+        "cs2_table_pchip_diagnostic": 0.23019929003036904
+      },
+      {
+        "x": 1.25,
+        "s_Tc3": 8.499265195427158,
+        "p_Tc4": 1.3298269940891754,
+        "rho_Tc4": 9.294254500194771,
+        "w_Tc4": 10.624081494283947,
+        "p_fit_residual_Tc4": -0.0003561026537666212,
+        "cs2_fit_diagnostic": 0.24505992080493008,
+        "cs2_table_pchip_diagnostic": 0.2377035707653153
+      },
+      {
+        "x": 1.278,
+        "s_Tc3": 9.291493361107204,
+        "p_Tc4": 1.578825088038885,
+        "rho_Tc4": 10.295703427456122,
+        "w_Tc4": 11.874528515495006,
+        "p_fit_residual_Tc4": -0.00040728014725410766,
+        "cs2_fit_diagnostic": 0.25195483875000185,
+        "cs2_table_pchip_diagnostic": 0.25921444004610944
+      },
+      {
+        "x": 1.3,
+        "s_Tc3": 9.936425701907861,
+        "p_Tc4": 1.7902948435012258,
+        "rho_Tc4": 11.127058568978995,
+        "w_Tc4": 12.917353412480221,
+        "p_fit_residual_Tc4": -0.0003811621084599537,
+        "cs2_fit_diagnostic": 0.2566471218629148,
+        "cs2_table_pchip_diagnostic": 0.2698902990127928
+      },
+      {
+        "x": 1.4,
+        "s_Tc3": 13.142499757634779,
+        "p_Tc4": 2.9403444809878025,
+        "rho_Tc4": 15.459155179700888,
+        "w_Tc4": 18.39949966068869,
+        "p_fit_residual_Tc4": 0.00029802676039913933,
+        "cs2_fit_diagnostic": 0.2724688447128194,
+        "cs2_table_pchip_diagnostic": 0.2697328199152085
+      },
+      {
+        "x": 1.5,
+        "s_Tc3": 16.846741672366804,
+        "p_Tc4": 4.4354171979745045,
+        "rho_Tc4": 20.8346953105757,
+        "w_Tc4": 25.270112508550206,
+        "p_fit_residual_Tc4": 0.0013795455129441692,
+        "cs2_fit_diagnostic": 0.2827637224380203,
+        "cs2_table_pchip_diagnostic": 0.2856741247421527
+      },
+      {
+        "x": 1.6,
+        "s_Tc3": 21.102789354093947,
+        "p_Tc4": 6.3280926826374895,
+        "rho_Tc4": 27.43637028391283,
+        "w_Tc4": 33.76446296655032,
+        "p_fit_residual_Tc4": 0.002375709061895215,
+        "cs2_fit_diagnostic": 0.2900014990240312,
+        "cs2_table_pchip_diagnostic": 0.29173644479629957
+      },
+      {
+        "x": 1.8,
+        "s_Tc3": 31.456481138884097,
+        "p_Tc4": 11.541119711843852,
+        "rho_Tc4": 45.08054633814753,
+        "w_Tc4": 56.621666049991376,
+        "p_fit_residual_Tc4": 0.003602618609225061,
+        "cs2_fit_diagnostic": 0.2995090619705698,
+        "cs2_table_pchip_diagnostic": 0.30109930450764544
+      },
+      {
+        "x": 2.0,
+        "s_Tc3": 44.5561484459028,
+        "p_Tc4": 19.093775500694598,
+        "rho_Tc4": 70.018521391111,
+        "w_Tc4": 89.1122968918056,
+        "p_fit_residual_Tc4": 0.004425381742390044,
+        "cs2_fit_diagnostic": 0.30547256819886115,
+        "cs2_table_pchip_diagnostic": 0.3073909943481029
+      },
+      {
+        "x": 2.15,
+        "s_Tc3": 56.3867385188328,
+        "p_Tc4": 26.641920405793254,
+        "rho_Tc4": 94.58956740969725,
+        "w_Tc4": 121.23148781549051,
+        "p_fit_residual_Tc4": 0.005509467878670904,
+        "cs2_fit_diagnostic": 0.3086620389728699,
+        "cs2_table_pchip_diagnostic": 0.30728432150512325
+      },
+      {
+        "x": 2.3,
+        "s_Tc3": 70.0934351698255,
+        "p_Tc4": 36.103603255207815,
+        "rho_Tc4": 125.11129763539083,
+        "w_Tc4": 161.21490089059864,
+        "p_fit_residual_Tc4": 0.007428571189549871,
+        "cs2_fit_diagnostic": 0.31115122167191483,
+        "cs2_table_pchip_diagnostic": 0.3090358910373618
+      },
+      {
+        "x": 2.5,
+        "s_Tc3": 91.53019152333722,
+        "p_Tc4": 52.20344436590638,
+        "rho_Tc4": 176.6220344424367,
+        "w_Tc4": 228.82547880834306,
+        "p_fit_residual_Tc4": 0.011480664409461383,
+        "cs2_fit_diagnostic": 0.3137268925832133,
+        "cs2_table_pchip_diagnostic": 0.3177876967457391
+      },
+      {
+        "x": 3.433,
+        "s_Tc3": 248.65941905388445,
+        "p_Tc4": 202.96216821465168,
+        "rho_Tc4": 650.6856173973335,
+        "w_Tc4": 853.6477856119852,
+        "p_fit_residual_Tc4": 0.012572921506517787,
+        "cs2_fit_diagnostic": 0.3202775337653055,
+        "cs2_table_pchip_diagnostic": null
+      }
+    ]
+  },
+  "anchor": {
+    "p_Tc4": 0.01777461597146629,
+    "method": "four-state gas at 0.8, then linear log(s/T^3) in x at cold knots; integrate x^3 q_s",
+    "by_scale": {
+      "repository": 0.01777461597146629,
+      "Boyd": 0.01758025249300088
+    },
+    "simultaneous_one_marginal_error_lower_upper_at_fixed_scale": [
+      0.016801511095263552,
+      0.018721968389740475
+    ],
+    "scope": "scale choices and cold-node envelope; partial sensitivity only"
+  },
+  "cold_gas_control": {
+    "repository": {
+      "0.8": {
+        "p_T4": 0.0029598302128439062,
+        "s_T3": 0.03080295876983391
+      },
+      "1.0": {
+        "p_T4": 0.010945042005621748,
+        "s_T3": 0.10220550581152593
+      }
+    },
+    "Boyd": {
+      "0.8": {
+        "p_T4": 0.002485310001746718,
+        "s_T3": 0.026213710212685853
+      },
+      "1.0": {
+        "p_T4": 0.009461516539726222,
+        "s_T3": 0.089508419833164
+      }
+    }
+  },
+  "diagnostics": {
+    "nearest_hot_fit_pole_x": 0.992596373496847,
+    "nearest_hot_fit_numerator_zero_x": 0.9948754806894426,
+    "hot_join_left_right": [
+      {
+        "s_T3": 3.5026379163942107,
+        "cs2_fit_diagnostic": 0.1705355107400804
+      },
+      {
+        "s_T3": 3.502400156386575,
+        "cs2_fit_diagnostic": 0.17235429440266842
+      }
+    ],
+    "entropy_from_pressure_fit_at_Tc": {
+      "hot": 1.6067896000000002,
+      "cold": 0.26358000000000004
+    }
+  },
+  "covariance": {
+    "status": "OPEN_INPUT",
+    "matrix": null,
+    "available": "marginal Table 3 / phase errors in donor_inputs.json; the combined latent heat shares inputs",
+    "cs2": "interpolation sensitivity; endpoint and knot estimates have no calibrated joint uncertainty"
+  },
+  "metastability": {
+    "status": "OPEN_INPUT",
+    "hot_below_Tc": null,
+    "cold_above_Tc": null,
+    "candidates": [
+      "SFtX figure 15; finite-volume phase-resolved enthalpy",
+      "HPR effective potential; test phase-wise thermodynamics and common background",
+      "LLR/SNOBEX; require physical conversion or source table and systematics"
+    ]
+  },
+  "delta_p_Tc4": {
+    "at_coexistence": 0.0,
+    "off_coexistence": null
+  },
+  "handoff": {
+    "hydro_ready": false,
+    "A_T": null,
+    "physical_v_wall": null,
+    "GW_source": null
+  }
+}

@@ -1,5 +1,9 @@
 import json
 from copy import deepcopy
+from contextlib import ExitStack
+import sys
+import tempfile
+from types import SimpleNamespace
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -180,14 +184,150 @@ class WorkingBoard(unittest.TestCase):
         job=d['jobs']['sync']
         self.assertIn("github.ref == 'refs/heads/main'",job['if'])
         checkout=job['steps'][0]
-        self.assertEqual(checkout['with']['ref'],'main')
+        self.assertEqual(checkout['with']['ref'],'${{ needs.r135-pipeline.outputs.source_sha }}')
         self.assertFalse(checkout['with']['persist-credentials'])
+        self.assertEqual(job['needs'],'r135-pipeline')
+        upstream=d['jobs']['r135-pipeline']
+        self.assertEqual(upstream['outputs']['source_sha'],'${{ steps.verified-receipt.outputs.source_sha }}')
+        self.assertEqual(upstream['steps'][0]['with']['ref'],'main')
         steps=job['steps']
         self.assertEqual(sum('PROJECTS_TOKEN' in str(s) for s in steps),1)
         events=(ROOT/'.github/workflows/project-events.yml').read_text()
         self.assertNotIn('secrets.',events)
         self.assertNotIn('uses:',events)
-        self.assertNotIn('download-artifact',str(steps))
+        downloads=[s for s in steps if s.get('uses','').startswith('actions/download-artifact@')]
+        self.assertEqual(len(downloads),1)
+        # Omitting run-id/repository/github-token constrains this to the current
+        # workflow's artifact, not a caller-selected earlier run or repository.
+        self.assertEqual(downloads[0]['with'],{'name':'r135-pipeline-readback',
+                                             'path':'project-evidence/pipeline-receipt'})
+        apply=next(s for s in steps if 'PROJECTS_TOKEN' in str(s))
+        self.assertIn('--pipeline-status project-evidence/pipeline-receipt/R135_PIPELINE_STATUS.json',apply['run'])
+
+
+class CriterionReceipt(unittest.TestCase):
+    SHA = 'a' * 40
+
+    def setUp(self):
+        self.pipeline=json.loads((ROOT/'infra/r135/PIPELINE.json').read_text())
+        self.task=next(t for t in self.pipeline['tasks'] if t['key']=='GW_SOURCE')
+        self.receipt={'verified':True,'source_sha':self.SHA,'repository':p.REPO,
+                      'pipeline_sha256':p.progress.plan_digest(self.pipeline),
+                      'criterion_completion_evidence':{
+                          t['key']:{'status':'VERIFIED_STRUCTURAL_EVIDENCE','checks':[],'contexts':{}}
+                          for t in self.pipeline['tasks']}}
+
+    def sync(self, body='', status=None, report=None, fail_second_field=False):
+        item={'id':'one','isArchived':False,
+              'content':{'number':174,'repository':{'nameWithOwner':p.REPO}},
+              'values':{'Status':'Analysis','Next action':p.progress.board_value('Old')}}
+        fields={k:{'id':k,'dataType':'TEXT'} for k in ('Next action','R135 continuation')}
+        writes=[]
+        def graphql(query, variables):
+            if 'UpdateWork(' in query:
+                value=variables['input']
+                if fail_second_field and writes:
+                    raise RuntimeError('temporary API failure with sensitive-test-value')
+                item['values'][value['fieldId']]=value['value']['text']
+                writes.append(value['fieldId'])
+            return {}
+        with ExitStack() as stack:
+            stack.enter_context(patch.object(p,'ensure_project',return_value={'id':'project'}))
+            stack.enter_context(patch.object(p,'ensure_fields',return_value=fields))
+            stack.enter_context(patch.object(p,'project_items',side_effect=lambda *_:[deepcopy(item)]))
+            stack.enter_context(patch.object(p,'open_issues',return_value=[{'number':174,'state':'open','body':body}]))
+            stack.enter_context(patch.object(p.subprocess,'check_output',return_value=self.SHA))
+            result=p.setup_and_sync({'fields':{}},request=lambda _: {'node_id':'repo'},
+                                    graphql=graphql,pipeline=self.pipeline,
+                                    pipeline_status=status,report=report)
+        return result,item
+
+    def test_editable_or_old_issue_heading_cannot_skip_criterion(self):
+        body=p.progress.START+'\n#### GW_SOURCE-01 · по приёмочной записи\n'+p.progress.END
+        for receipt in (None,self.receipt):
+            result,item=self.sync(body=body,status=receipt)
+            self.assertTrue(item['values']['R135 continuation'].startswith('GW_SOURCE-01 — '))
+            self.assertTrue(result['verified'])
+            self.assertEqual(result['criterion_receipt_verified'],receipt is not None)
+
+    def test_matching_checked_receipt_advances_only_its_criterion(self):
+        check=self.task['acceptance_checks'][0]
+        evidence=self.receipt['criterion_completion_evidence']['GW_SOURCE']
+        evidence['checks']=[check['id']]
+        evidence['contexts']={check['id']:p.progress.acceptance_context(self.pipeline,self.task,check)}
+        result,item=self.sync(status=self.receipt)
+        self.assertTrue(item['values']['R135 continuation'].startswith('GW_SOURCE-02 — '))
+        self.assertTrue(result['criterion_receipt_verified'])
+
+    def test_receipt_revision_or_map_mismatch_stops_before_api(self):
+        variants=[('source_sha','b'*40),('pipeline_sha256','b'*64),
+                  ('repository','someone/else'),('verified',False),
+                  ('criterion_completion_evidence',{})]
+        for field,value in variants:
+            receipt={**self.receipt,field:value}
+            def forbidden(*args,**kwargs):
+                self.fail('Receipt mismatch must fail before API calls or mutations')
+            report={}
+            with self.subTest(field=field), patch.object(p.subprocess,'check_output',return_value=self.SHA), \
+                    patch.object(p,'ensure_project',side_effect=forbidden), self.assertRaises(ValueError):
+                p.setup_and_sync({'fields':{}},request=forbidden,graphql=forbidden,
+                                 pipeline=self.pipeline,pipeline_status=receipt,report=report)
+            self.assertFalse(report['verified'])
+            self.assertEqual(report['stage'],'validate_receipt')
+            self.assertEqual(report['successful_mutations'],[])
+
+    def test_partial_field_failure_retains_successful_first_write(self):
+        report={}
+        with self.assertRaises(RuntimeError):
+            self.sync(status=self.receipt,report=report,fail_second_field=True)
+        self.assertFalse(report['verified'])
+        self.assertEqual(report['source_sha'],self.SHA)
+        self.assertEqual(report['field_updates'],[{'number':174,'field':'R135 continuation'}])
+        self.assertEqual(report['successful_mutations'].count('UpdateWork'),1)
+        self.assertEqual(report['stage'],'sync_item')
+        self.assertEqual(report['error_type'],'RuntimeError')
+        self.assertNotIn('sensitive-test-value',json.dumps(report))
+
+    def test_cli_saves_failure_receipt_after_partial_work(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            config=root/'infra/external/GITHUB_SETUP.json'
+            config.parent.mkdir(parents=True)
+            config.write_text(json.dumps({'project':{'fields':{}}}))
+            output=root/'out/PROJECTS_STATUS.json'
+            def fail(*args,report,**kwargs):
+                report.update(stage='sync_item',field_updates=[{'number':174,'field':'R135 continuation'}])
+                raise RuntimeError('sensitive-test-value')
+            module=SimpleNamespace(request=lambda *_:None,graphql=lambda *_:None)
+            with patch.object(p,'ROOT',root), patch.object(p,'setup_and_sync',side_effect=fail), \
+                    patch.object(p.subprocess,'check_output',return_value=self.SHA), \
+                    patch.dict(sys.modules,{'github_setup':module}), \
+                    patch.object(sys,'argv',['project_sync.py','--apply','--output',str(output)]), \
+                    self.assertRaisesRegex(RuntimeError,'diagnostic receipt saved'):
+                p.main()
+            saved=json.loads(output.read_text())
+            self.assertFalse(saved['verified'])
+            self.assertEqual(saved['source_sha'],self.SHA)
+            self.assertEqual(len(saved['field_updates']),1)
+            self.assertEqual(saved['stage'],'sync_item')
+            self.assertNotIn('sensitive-test-value',output.read_text())
+
+    def test_production_cli_requires_receipt_before_api(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            config=root/'infra/external/GITHUB_SETUP.json'
+            config.parent.mkdir(parents=True)
+            config.write_text(json.dumps({'project':{'fields':{'R135 continuation':[]}}}))
+            output=root/'out/PROJECTS_STATUS.json'
+            with patch.object(p,'ROOT',root), patch.object(p,'setup_and_sync') as sync, \
+                    patch.object(p.subprocess,'check_output',return_value=self.SHA), \
+                    patch.object(sys,'argv',['project_sync.py','--apply','--output',str(output)]), \
+                    self.assertRaisesRegex(RuntimeError,'diagnostic receipt saved'):
+                p.main()
+            sync.assert_not_called()
+            saved=json.loads(output.read_text())
+            self.assertFalse(saved['verified'])
+            self.assertEqual(saved['error_type'],'ValueError')
 
 
 class ViewAPI:
