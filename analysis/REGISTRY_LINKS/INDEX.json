@@ -3880,9 +3880,9 @@
       "status": null,
       "path": "analysis/CCC_TL_REVIEW_20261112/REPORT.md",
       "fragment": "",
-      "sha256": "01fabff1d23853fe5b1f4df9b666405d8a468d8eb6d3e564a49a2599f741dd9d",
-      "git_blob_sha": "cc93815ef32a48fc6da335a0f47e644f30985d86",
-      "size_bytes": 20806
+      "sha256": "507d2d0968246818220cd33d3d7f5f23c35e5c7ba1900688255b5ce8d1be03ca",
+      "git_blob_sha": "6dda4b6a608ab3a8dc22585463b8daaca0a29fbd",
+      "size_bytes": 23331
     },
     {
       "key": "source:analysis/CCC_TL_REVIEW_20261112/SOURCES.json",
@@ -3892,9 +3892,9 @@
       "status": null,
       "path": "analysis/CCC_TL_REVIEW_20261112/SOURCES.json",
       "fragment": "",
-      "sha256": "f625f56df40eb956dc2e10ba239a78053040c741c33204253771256c341bde77",
-      "git_blob_sha": "41eea31833bb61f41f364c8b5ca5350d8e606ca7",
-      "size_bytes": 2406
+      "sha256": "a419b3570558b52c34974f856e6016ae73de98ac0cd82c04c4c989b520f63f03",
+      "git_blob_sha": "be58d7141f57beb9fc16b36aef20ddf1a43387b4",
+      "size_bytes": 3415
     },
     {
       "key": "source:analysis/CCC_TL_REVIEW_20261112/verify_algebra.py",
@@ -4468,9 +4468,9 @@
       "status": null,
       "path": "analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
       "fragment": "",
-      "sha256": "053aaafe686722adefdece50790dc7d9090f980664b7b044f2a4ad1b423cf340",
-      "git_blob_sha": "467ac49925eabe96060cbcb417000fa651d9c42e",
-      "size_bytes": 34515
+      "sha256": "9411cf3a13d173a20e3c347e80404905468853b2305c7f44db8b8d22445d6315",
+      "git_blob_sha": "9ec7484e4f925d7b6bfbd09cfe62d4c363b44270",
+      "size_bytes": 35901
     },
     {
       "key": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json",
@@ -5119,6 +5119,63 @@
       "sha256": "ada06e3fe553b799e27674534b855062755b587d9fbab820fb51638229b0ec5d",
       "git_blob_sha": "de0c0b7aeb994d3d1f84b9ca22d2e36c647204e7",
       "size_bytes": 32604
+    },
+    {
+      "key": "external:LUMINA",
+      "id": "LUMINA",
+      "kind": "external",
+      "title": "Lumina: поздняя radiation-hydrodynamic симуляция H/He reionization",
+      "status": "CANDIDATE_NOT_EXECUTED",
+      "path": "infra/external/contracts/LUMINA.json",
+      "fragment": ""
+    },
+    {
+      "key": "source:analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "id": "analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "kind": "source",
+      "title": "analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "status": null,
+      "path": "analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "fragment": "",
+      "sha256": "d509e2365c979bb9be27032f22933d49e8201d07a8e1f32058e2dfd2bf3cfce3",
+      "git_blob_sha": "563ad2d830078ba6d6348f605999f64c6d21d8a3",
+      "size_bytes": 12533
+    },
+    {
+      "key": "source:infra/external/sources/LUMINA.json",
+      "id": "infra/external/sources/LUMINA.json",
+      "kind": "source",
+      "title": "infra/external/sources/LUMINA.json",
+      "status": null,
+      "path": "infra/external/sources/LUMINA.json",
+      "fragment": "",
+      "sha256": "d013d48a34a0d2a7a7a1830762ef62c04d9349e33b2099ef79d6862c240879a6",
+      "git_blob_sha": "ff196ba8bdc97debddfb552cee4022029705af2d",
+      "size_bytes": 3291
+    },
+    {
+      "key": "source:infra/external/contracts/LUMINA.json",
+      "id": "infra/external/contracts/LUMINA.json",
+      "kind": "source",
+      "title": "infra/external/contracts/LUMINA.json",
+      "status": null,
+      "path": "infra/external/contracts/LUMINA.json",
+      "fragment": "",
+      "sha256": "0043b804d8c3ddb079ed5ce7384cc0055037b2149f7c76103f10a8b07ed07cbb",
+      "git_blob_sha": "a37a782148c7bcdc25c3590ad5265f25fbdbfd92",
+      "size_bytes": 2373
+    },
+    {
+      "key": "source:infra/external/COMPENDIUM.json",
+      "id": "infra/external/COMPENDIUM.json",
+      "kind": "source",
+      "title": "infra/external/COMPENDIUM.json",
+      "status": null,
+      "path": "infra/external/COMPENDIUM.json",
+      "fragment": "",
+      "sha256": "58edac5b979072523a61ac109abaa991196e74e0ae75864c77dcbd2663bbeace",
+      "git_blob_sha": "8de4610faf668cc20a68fd41daf81dc37aa2c67f",
+      "size_bytes": 4768
     }
   ],
   "edges": [
@@ -12660,6 +12717,44 @@
       "source": "review:R133_LOOP_NEIGHBOR_20261120",
       "target": "source:analysis/R133_LOOP_CONNES_20261120/check_controls.py",
       "relation": "review_source_not_attestation"
+    },
+    {
+      "source": "external:LUMINA",
+      "target": "review:CCC_TL_20261112",
+      "relation": "candidate_source_context_not_evidence",
+      "rationale": "Lumina is a standard Planck-2018 radiation-hydrodynamic late-epoch baseline (z=49→3). It can inform a post-BBN thermal/ionization and light-cone comparison, but it is not CCC+TL and does not validate variable-c/G physics.",
+      "evidence": "analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "claim": "late_epoch_baseline"
+    },
+    {
+      "source": "external:LUMINA",
+      "target": "source:infra/external/sources/LUMINA.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "external:LUMINA",
+      "target": "source:infra/external/contracts/LUMINA.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "source:analysis/CCC_TL_REVIEW_20261112/LUMINA_DONOR.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "source:analysis/CCC_TL_REVIEW_20261112/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "source:analysis/CCC_TL_REVIEW_20261112/SOURCES.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "review:CCC_TL_20261112",
+      "target": "source:analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md",
+      "relation": "managed_evidence_source"
     }
   ],
   "excluded_review_links": [

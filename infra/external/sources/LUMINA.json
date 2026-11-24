@@ -1,0 +1,108 @@
+{
+  "schema": "vm-lab-external-resources-v1",
+  "source_id": "LUMINA",
+  "project": "Lumina cosmological radiation-hydrodynamic simulation",
+  "principal_investigator": "Oliver Zier",
+  "publication": {
+    "title": "Introducing the Lumina project: large-volume radiation-hydrodynamic simulations of the epochs of hydrogen and helium reionization",
+    "doi": "10.1093/mnras/stag1469",
+    "arxiv": "2605.15310",
+    "journal": "MNRAS 552 (2026)",
+    "published": "2026-10-26"
+  },
+  "observed_date": "2026-11-22",
+  "storage_policy": "UPSTREAM_LINKS_ONLY_NO_VENDORED_CODE_OR_DATA",
+  "access": {
+    "full_data_public_release_planned": 2028,
+    "partial_figure_data": "Some figure data already available on project website; additional data by reasonable request",
+    "full_snapshots": "Not publicly available at registration date; described by data-access page",
+    "code": "Base AREPO public distribution; GPU AREPO-RT and Lumina HIP implementation on request; no public pinned Lumina code commit verified"
+  },
+  "resources": [
+    {
+      "id": "paper",
+      "url": "https://doi.org/10.1093/mnras/stag1469",
+      "role": "Reference publication and scientific setup"
+    },
+    {
+      "id": "arxiv",
+      "url": "https://arxiv.org/abs/2605.15310",
+      "role": "Preprint and full paper text"
+    },
+    {
+      "id": "project",
+      "url": "https://lumina-simulation.com/",
+      "role": "Official project"
+    },
+    {
+      "id": "data_access",
+      "url": "https://lumina-simulation.com/data-access",
+      "role": "Data products, formats, output cadence and access policy"
+    },
+    {
+      "id": "publications",
+      "url": "https://lumina-simulation.com/publications",
+      "role": "Companion papers"
+    },
+    {
+      "id": "pi_project",
+      "url": "https://oliverzier.com/research/high-redshift/lumina/",
+      "role": "PI description, simulation parameters and availability"
+    },
+    {
+      "id": "gpu_arepo_rt",
+      "url": "https://oliverzier.com/research/high-redshift/arepo-rt/",
+      "role": "GPU radiation transport method and code access"
+    },
+    {
+      "id": "arepo",
+      "url": "https://arepo-code.org/",
+      "role": "Public base code distribution"
+    }
+  ],
+  "products": [
+    {
+      "id": "global_statistics",
+      "files": [
+        "sfrd_lumina.txt",
+        "HI_reion_lumina.txt",
+        "HeIII_reion_lumina.txt",
+        "tau_cmb_vs_z_lumina.txt"
+      ],
+      "availability": "Some figure data available; exact download availability to be checked"
+    },
+    {
+      "id": "snapshots",
+      "format": "HDF5",
+      "availability": "Request; full public release planned 2028"
+    },
+    {
+      "id": "igrid",
+      "outputs": 709,
+      "format": "HDF5 Cartesian grids",
+      "availability": "Request"
+    },
+    {
+      "id": "black_holes",
+      "outputs": 910,
+      "format": "HDF5",
+      "availability": "Request"
+    },
+    {
+      "id": "lightcones",
+      "format": "HDF5",
+      "availability": "Request"
+    },
+    {
+      "id": "catalogues",
+      "format": "FoF/SUBFIND HDF5",
+      "availability": "Request"
+    }
+  ],
+  "interface": {
+    "status": "DOCUMENTED_NOT_EXECUTED",
+    "model": "AREPO + GPU AREPO-RT (Lumina HIP variant)",
+    "execution_enabled": false
+  },
+  "scientific_status_promoted": false
+}

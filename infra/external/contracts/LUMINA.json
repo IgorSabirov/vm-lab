@@ -1,0 +1,49 @@
+{
+  "schema": "vm-lab-external-contract-v1",
+  "id": "CONTROL_LUMINA",
+  "source_id": "LUMINA",
+  "state": "CANDIDATE_NOT_EXECUTED",
+  "execution_enabled": false,
+  "analysis_mode": "donor_mapping",
+  "question": "Можно ли использовать Lumina как поздний стандартный radiation-hydrodynamic baseline для проверки CCC+TL после BBN: thermal/ionization history, optical depth and light-cone observables?",
+  "scope_limit": "Lumina is a Planck-2018 cosmological simulation from z=49 to 3. It is not CCC+TL, does not cover BBN, and its published outputs do not validate variable-c/G physics. Registration is metadata and donor mapping only; no code/data execution or scientific acceptance is claimed.",
+  "outcomes_already_inspected": true,
+  "pre_execution_receipt_required": true,
+  "acm_badge_awarded": false,
+  "independence": {
+    "team_relation": "EXTERNAL_AUTHOR_TEAM",
+    "artifact_relation": "UPSTREAM_PUBLICATION_AND_PROJECT_DATA",
+    "implementation_independence": "NOT_CLAIMED"
+  },
+  "decision_points": [
+    {
+      "choice": "Data access",
+      "state": "REQUEST_REQUIRED",
+      "rationale": "Some figure products are available on the project site; full data release is planned for 2028; other data by reasonable request."
+    },
+    {
+      "choice": "Code access",
+      "state": "REQUEST_REQUIRED",
+      "rationale": "Base AREPO is public; GPU AREPO-RT and the Lumina HIP implementation are on request; no pinned public Lumina code commit verified."
+    },
+    {
+      "choice": "CCC+TL mapping",
+      "state": "MAPPING_REQUIRED",
+      "rationale": "Need common a(z), H(z), t(z), clock convention, radiation sources, chemistry and light-cone observable mapping before any comparison."
+    },
+    {
+      "choice": "Scientific use",
+      "state": "NOT_ACCEPTED",
+      "rationale": "Lumina is a standard Planck-2018 baseline and does not by itself support or refute CCC+TL."
+    }
+  ],
+  "criteria": [],
+  "numerical_configurations": [],
+  "budget": {
+    "max_seconds": null,
+    "executor": null
+  },
+  "resource_manifest": "infra/external/sources/LUMINA.json",
+  "next_action": "Inspect accessible global statistics; request a targeted subset of IGM grids/lightcones and the GPU AREPO-RT/HIP access conditions; prepare a late-epoch CCC+TL mapping contract.",
+  "scientific_acceptance": false
+}
