@@ -1,0 +1,42 @@
+{
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "cpu_count": 8,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "cpu_max": null,
+    "memory_max": null,
+    "rlimit_as": [
+      2147483648,
+      2147483648
+    ],
+    "blas_build": "Build Dependencies:\n  blas:\n    detection method: system\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: blas\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: unknown\n  lapack:\n    detection method: internal\n    found: true\n    include directory: unknown\n    lib directory: unknown\n    name: dep140228583157936\n    openblas configuration: unknown\n    pc file directory: unknown\n    version: 1.26.4\nCompilers:\n  c:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: cc\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  c++:\n    args: -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    commands: c++\n    linker: ld.bfd\n    linker args: -Wl,-Bsymbolic-functions, -flto=auto, -ffat-lto-objects, -Wl,-z,relro,\n      -g, -O2, -fno-omit-frame-pointer, -mno-omit-leaf-frame-pointer, -ffile-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=.,\n      -flto=auto, -ffat-lto-objects, -fstack-protector-strong, -fstack-clash-protection,\n      -Wformat, -Werror=format-security, -fcf-protection, -fdebug-prefix-map=/build/numpy-VpSPb5/numpy-1.26.4+ds=/usr/src/numpy-1:1.26.4+ds-6ubuntu1,\n      -Wdate-time, -D_FORTIFY_SOURCE=3\n    name: gcc\n    version: 13.2.0\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.0.8\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /usr/bin/python3.12\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\n",
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "actual_threads": 1
+  },
+  "fingerprint": "ac3e8f320f354c6dbdfbc75853d0e27c5998350a240727456791286a3a40d5ae",
+  "load_average": [
+    0.00341796875,
+    0.02490234375,
+    0.0
+  ],
+  "observed_epoch": 1794229127.0722203,
+  "available_memory_proc": "MemTotal:       16374616 kB\nMemFree:        13522724 kB\nMemAvailable:   15656256 kB\nBuffers:          116028 kB\nCached:          2220780 kB\nSwapCached:            0 kB\nActive:           612908 kB\nInactive:        1895480 kB\nActive(anon):     181584 kB\nInactive(anon):        0 kB\nActive(file):     431324 kB\nInactive(file):  1895480 kB\nUnevictable:       27292 kB\nMlocked:           27292 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               636 kB\nWriteback:             0 kB\nAnonPages:        198884 kB\nMapped:           208960 kB\nShmem:              1232 kB\nKReclaimable:     127884 kB\nSlab:             240340 kB\nSReclaimable:     127884 kB\nSUnreclaim:       112456 kB\nKernelStack:        3984 kB\nPageTables:         4348 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     8187308 kB\nCommitted_AS:    1254616 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:       16792 kB\nVmallocChunk:          0 kB\nPercpu:            10240 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      128884 kB\nDirectMap2M:     4065280 kB\nDirectMap1G:    14680064 kB\n",
+  "free_disk_bytes": 4092948480
+}

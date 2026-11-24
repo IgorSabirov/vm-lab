@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "experiment": "X26_ADD_R040_LOADING_INTEGRATED",
+  "epistemic_status": "CONDITIONAL_PHI_PSI_MODEL_NOT_ADD_DERIVED",
+  "carrier": {
+    "path": null,
+    "expected_git_blob_sha1": "6e44c12cd1f27aadc9e2c73c1f82222944cd2e7b",
+    "word": null,
+    "anchors": null,
+    "interaction": true,
+    "tick": 0
+  },
+  "phi": {
+    "source": "MODEL_ASSUMPTION",
+    "accepted": false,
+    "assumption": null,
+    "radius": null,
+    "E_pair_0": null,
+    "E_2_0": null,
+    "lambda_pair": null,
+    "lambda_2": null,
+    "t0": null,
+    "barrier_0": null,
+    "barrier_contrast": null,
+    "alpha": null,
+    "kappa": null,
+    "g": null,
+    "bath_onsite": 0.0,
+    "feature_tolerance": 1e-14
+  },
+  "transfer": {
+    "enabled": true,
+    "source": "MODEL_ASSUMPTION",
+    "accepted": false,
+    "assumption": null,
+    "operator_real_imag": null,
+    "tolerance": 1e-09
+  },
+  "loading": {
+    "enabled": true,
+    "psi": {
+      "source": "MODEL_ASSUMPTION",
+      "accepted": false,
+      "assumption": null,
+      "mode": null,
+      "radius": null,
+      "activity_scale": null,
+      "initial_state_real_imag": null,
+      "times": null,
+      "duration": null,
+      "coupling_strength": null,
+      "envelope_peak": 1.0,
+      "beta": null,
+      "gamma_down_base": null,
+      "loading_reservoir_id": null
+    },
+    "resource_model": {
+      "source": "MODEL_ASSUMPTION",
+      "accepted": false,
+      "assumption": null,
+      "fuel_units_available": null,
+      "energy_per_fuel_unit_model_units": null,
+      "drive_efficiency": null,
+      "actuator_switch_energy_model_units": null,
+      "loading_gate_actuator_work_model_units": null,
+      "controller_reset_bits": null,
+      "k_B_model_units_per_temperature": null,
+      "temperature_model_units": null,
+      "precursor_units_available": null,
+      "precursor_units_per_activation": null,
+      "initial_packet_preparation_energy_model_units": null,
+      "reservoir_energy_capacity_model_units": null,
+      "reservoir_entropy_capacity_kB": null
+    }
+  },
+  "spectral": {
+    "schema": 1,
+    "experiment": "X26_R040_ANALYTIC_BATH",
+    "model_class": "CONDITIONAL_R040_TRIMER_WITH_1D_TIGHT_BINDING_BATH",
+    "epistemic_status": "CONDITIONAL_MODEL_NOT_ADD_DERIVED",
+    "model_assumptions_accepted": false,
+    "energy_unit": null,
+    "model": {
+      "E_V": null,
+      "E_1": null,
+      "E_2": null,
+      "t_1": null,
+      "t_2": null,
+      "gamma_d": null,
+      "kappa": null,
+      "g": null,
+      "bath_onsite": 0.0
+    },
+    "provenance": {
+      "E_V": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "E_1": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "E_2": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "t_1": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "t_2": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "gamma_d": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "kappa": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "g": {
+        "source": "NOT_AVAILABLE",
+        "evidence_ref": null,
+        "assumption": null
+      },
+      "bath_onsite": {
+        "source": "MODEL_ASSUMPTION",
+        "evidence_ref": null,
+        "assumption": "Set the bath onsite energy to zero as the declared energy-origin convention; this is a model convention, not an ADD-derived value."
+      }
+    },
+    "continuum_scan": {
+      "ring_sizes": [
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "resolvent_test_points": [
+        [
+          0.23,
+          0.71
+        ],
+        [
+          -0.51,
+          0.43
+        ],
+        [
+          1.37,
+          0.62
+        ]
+      ]
+    },
+    "pole_search": {
+      "seeds": []
+    },
+    "diagnostics": {
+      "spectral_density_energies": []
+    },
+    "loading": {
+      "enabled": false,
+      "status": "SEPARATE_PROTOCOL_NOT_SPECIFIED",
+      "static_no_load_control": {
+        "enabled": true,
+        "bath_ring_sites": 32,
+        "times": [
+          0.0,
+          1.0,
+          5.0,
+          10.0
+        ],
+        "initial_state": "one excitation on trimer node 2; bath initially empty; exactly orthogonal to D"
+      },
+      "control_model_ref": null,
+      "actuator_model_ref": null,
+      "resource_ledger_ref": null
+    },
+    "runtime_gate": {
+      "status": "NOT_EVALUABLE",
+      "calibration_ref": null,
+      "forecast_ref": null,
+      "hard_wall_seconds": null,
+      "memory_limit_mib": null,
+      "disk_limit_mib": null
+    },
+    "time_unit": "hbar/energy",
+    "numerics": {
+      "feshbach_test_points": [
+        [
+          0.23,
+          0.71
+        ],
+        [
+          -0.51,
+          0.43
+        ],
+        [
+          1.37,
+          0.62
+        ]
+      ],
+      "determinant_relative_tolerance": 1e-08,
+      "resolvent_relative_tolerance": 1e-08,
+      "pole_residual_tolerance": 1e-08,
+      "spectral_measure_quad_epsabs": 1e-09,
+      "spectral_measure_quad_epsrel": 1e-09,
+      "off_axis_green_abs_tolerance": 1e-08
+    },
+    "freeze_state": "UNFROZEN",
+    "freeze_record_ref": null,
+    "freeze_record_sha256": null
+  }
+}

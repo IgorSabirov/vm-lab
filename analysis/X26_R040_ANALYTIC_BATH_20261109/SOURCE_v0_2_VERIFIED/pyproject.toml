@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "x26-r040-analytic-bath"
+version = "0.2.0"
+description = "Conditional R040 trimer with analytic 1D tight-binding bath"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "scipy>=1.11"]
+
+[project.scripts]
+x26-r040 = "x26r040.cli:main"
+x26-r040-full = "x26r040.full_cli:main"
+
+[tool.setuptools]
+packages = ["x26r040"]

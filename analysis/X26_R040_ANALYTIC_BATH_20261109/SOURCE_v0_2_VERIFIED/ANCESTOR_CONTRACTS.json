@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "artifact": "X26_R040_ANALYTIC_BATH",
+  "epistemic_status": "DESIGN_AND_EXECUTABLE_CONDITIONAL_MODEL; NO_ANCESTOR_STATUS_PROMOTED",
+  "contracts": [
+    {
+      "ancestor": "R040",
+      "can_return": "Exact dark-state and Feshbach identities for the explicitly declared R040 trimer plus the imported analytic 1D bath.",
+      "cannot_return": "A tuned state as an independently discovered mechanism, or derivation of R040 parameters from ADD."
+    },
+    {
+      "ancestor": "R041",
+      "can_return": "A full finite-ring static no-loading control consistent with projector conservation.",
+      "cannot_return": "A loading protocol under constant H, or a physical actuator implementation."
+    },
+    {
+      "ancestor": "R042",
+      "can_return": "Analytic bath normalization, continuous-plus-point spectral-measure sum rule, and finite-ring resolvent convergence diagnostics.",
+      "cannot_return": "Confirmation of archived coefficients, old fitted widths, or finite-N irreversible decay widths."
+    },
+    {
+      "ancestor": "R105",
+      "can_return": "A clean distinction between a specified symmetry-protected dark state and a specified common-channel interference model.",
+      "cannot_return": "Reproduction of archived |c_W|^2 values or a new FW sector."
+    },
+    {
+      "ancestor": "R115",
+      "can_return": "Independent code paths for direct BIC conditions, second-sheet poles, and a phenomenological Fano zero control.",
+      "cannot_return": "Identity of Fano zero, transport zero, and BIC. Full transport needs separately specified ports/background."
+    },
+    {
+      "ancestor": "C020",
+      "can_return": "Operational separation of spectral protection, resonance leakage, and controlled loading interface.",
+      "cannot_return": "A global claim of protection in a changing carrier."
+    },
+    {
+      "ancestor": "L05/R097",
+      "can_return": "No result; the package does not instantiate the spin-hole-proton candidate or an admissible carrier coupling.",
+      "cannot_return": "Any relation between this 1D bath and the L05/R097 carrier."
+    },
+    {
+      "ancestor": "B09/X10/R125",
+      "can_return": "The external control-work integral for a user-specified finite-dimensional protocol.",
+      "cannot_return": "Total actuator/reset/reservoir cost, Resp closure, or net resource gain without a complete physical resource model."
+    }
+  ],
+  "register_policy": "No result-register edits and no status changes are performed by this package commit."
+}

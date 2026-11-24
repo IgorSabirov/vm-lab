@@ -1,0 +1,262 @@
+{
+  "schema": 3,
+  "version": "0.3.0",
+  "freeze_state": "FROZEN",
+  "epistemic_class": "CONDITIONAL_MODEL_NOT_ADD_DERIVED",
+  "authorization": {
+    "date_moscow": "2026-11-09",
+    "instruction": "Изучи мнение соседей и замораживай физику, запускай прогон на ВМ.",
+    "scope": "X26 conditional Phi/Psi model, review repairs, frozen numeric benchmark and VM main run"
+  },
+  "units": {
+    "hbar": 1.0,
+    "k_B": 1.0,
+    "energy": "kappa",
+    "time": "hbar/kappa"
+  },
+  "carrier": {
+    "path": "carrier.py",
+    "expected_git_blob_sha1": "6e44c12cd1f27aadc9e2c73c1f82222944cd2e7b",
+    "semantics": "FIG2A_FULL_CONDITIONAL_U009_OPEN",
+    "anchors": {
+      "V": 0,
+      "1": 4,
+      "2": 2
+    },
+    "merge_law": "THREE_DISTINCT_INTERNAL_ROLE_MODES"
+  },
+  "cases": [
+    {
+      "id": "active_word",
+      "word": [
+        9,
+        6,
+        0,
+        0,
+        9,
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "permuted_word",
+      "word": [
+        9,
+        9,
+        6,
+        6,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "quiet_word",
+      "word": [
+        5,
+        10,
+        0,
+        0,
+        5,
+        10,
+        0,
+        0
+      ]
+    }
+  ],
+  "permutation": [
+    0,
+    4,
+    1,
+    5,
+    2,
+    3,
+    6,
+    7
+  ],
+  "phi": {
+    "source": "MODEL_ASSUMPTION",
+    "accepted": true,
+    "assumption": "Local density and barrier law frozen as conditional hypothesis, not derived from ADD. Fixed common coefficients; no tuning after outcomes.",
+    "radius": 1,
+    "E_pair_0": 0.1,
+    "E_2_0": 0.2,
+    "lambda_pair": 0.6,
+    "lambda_2": 0.4,
+    "t0": 0.3,
+    "barrier_0": 0.2,
+    "barrier_contrast": 1.0,
+    "alpha": 1.0,
+    "kappa": 1.0,
+    "g": 0.25,
+    "bath_onsite": 0.0,
+    "feature_tolerance": 1e-14
+  },
+  "transport": "IDENTITY_ON_ROLE_AND_BATH_BASIS",
+  "psi": {
+    "duration": 8.0,
+    "hold_duration": 8.0,
+    "latency": 1.0,
+    "activity_scale": 1.0,
+    "omega": 0.6,
+    "beta": 4.0,
+    "gamma_down": 0.5,
+    "initial_state": "UPPER_BRIGHT_EIGENVECTOR_OF_H1",
+    "thermal_contact": "OFF_DURING_LOADING_ON_FOR_HOLD"
+  },
+  "routes": [
+    "coherent",
+    "thermal"
+  ],
+  "controls": [
+    "active",
+    "loader_off",
+    "trigger_off",
+    "bad_transport",
+    "no_resource"
+  ],
+  "ring_sizes": [
+    64,
+    128,
+    256
+  ],
+  "accuracy": [
+    {
+      "rtol": 1e-08,
+      "atol": 1e-10,
+      "max_step": 0.2
+    },
+    {
+      "rtol": 2e-10,
+      "atol": 2e-12,
+      "max_step": 0.1
+    }
+  ],
+  "samples": 41,
+  "ramp": {
+    "families": [
+      "g_only",
+      "moving_dark"
+    ],
+    "durations": [
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0
+    ],
+    "g_start": 0.1,
+    "g_end": 0.5,
+    "ratio_end": 1.4
+  },
+  "resources": {
+    "fuel": 20.0,
+    "efficiency": 0.8,
+    "precursors": 2,
+    "packet_cost": 2.0,
+    "switch_cost": 0.1,
+    "readout_cost": 0.1,
+    "memory_bits": 128,
+    "controller_temperature": 0.01,
+    "reset_work_per_bit": 0.02,
+    "thermal_gate_cost": 0.1,
+    "reservoir": "IDEAL_ISOTHERMAL_EXTERNAL_LOADING_RESERVOIR"
+  },
+  "thresholds": {
+    "trace": 1e-06,
+    "positivity": 1e-07,
+    "energy": 2e-06,
+    "N_convergence": 0.0001,
+    "refinement": 2e-05,
+    "null_leak": 1e-07,
+    "loaded_population": 0.1,
+    "retained_fraction": 0.95,
+    "contrast": 0.05,
+    "fit_floor": 1e-10,
+    "fit_R2": 0.9
+  },
+  "limits": {
+    "hard_wall_seconds": 1800,
+    "calibration_cap_seconds": 300,
+    "memory_mib": 2048,
+    "disk_mib": 512
+  },
+  "spectral": {
+    "continuum_scan": {
+      "ring_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "resolvent_test_points": [
+        [
+          0.23,
+          0.71
+        ],
+        [
+          -0.51,
+          0.43
+        ],
+        [
+          1.37,
+          0.62
+        ]
+      ]
+    },
+    "pole_search": {
+      "seeds": [
+        [
+          -0.3,
+          -0.03
+        ]
+      ]
+    },
+    "diagnostics": {
+      "spectral_density_energies": [
+        -1.9,
+        -1.0,
+        0.0,
+        1.0,
+        1.9
+      ]
+    },
+    "numerics": {
+      "feshbach_test_points": [
+        [
+          0.23,
+          0.71
+        ],
+        [
+          -0.51,
+          0.43
+        ],
+        [
+          1.37,
+          0.62
+        ]
+      ],
+      "determinant_relative_tolerance": 1e-08,
+      "resolvent_relative_tolerance": 1e-08,
+      "pole_residual_tolerance": 1e-08,
+      "spectral_measure_quad_epsabs": 1e-09,
+      "spectral_measure_quad_epsrel": 1e-09,
+      "off_axis_green_abs_tolerance": 1e-08
+    },
+    "loading": {
+      "static_no_load_control": {
+        "enabled": true,
+        "bath_ring_sites": 32,
+        "times": [
+          0.0,
+          1.0,
+          5.0,
+          10.0
+        ],
+        "initial_state": "one excitation on trimer node 2; bath initially empty; exactly orthogonal to D"
+      }
+    }
+  }
+}
