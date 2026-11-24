@@ -22,6 +22,22 @@ MAIN = ROOT / registry.MAIN
 IDS = [f"R{n}" for n in range(141, 149)]
 
 
+ARCHIVES = {
+    "R148_temporal_and_controls.zip": (
+        "code/temporal.py", "code/r130_reference.py", "code/audit_extensions.py",
+        "results/temporal.json", "results/extensions.json",
+    ),
+    "R130_R141_R148_names.zip": (
+        "code/r130_reference.py", "name_arithmetic/README.md", "name_arithmetic/results.json",
+        "name_arithmetic/replay.py", "name_arithmetic/fibonacci.py",
+        "name_arithmetic/names.py", "name_arithmetic/logic.py",
+    ),
+    "YM_R130_R148_pilot.zip": ("README.md", "register.tsv", "replay.py", "results.json"),
+    "R130_step5_13_14.zip": ("README.md", "check.py", "results.json", "r130_reference.py"),
+}
+STUDY_DIRS = {"YM_R130_R148_pilot.zip": "ym_graph/pilot",
+              "R130_step5_13_14.zip": "ym_graph/step5"}
+
 def encode(value):
     return json.dumps(value, ensure_ascii=False, indent=2) + "\n"
 
@@ -54,8 +70,11 @@ def review_text(section):
     return "\n\n".join(lines)
 
 
-def extract():
-    content = MODEL.read_bytes()
+def extract(content=None, published_archives=None):
+    if content is None:
+        content = MODEL.read_bytes()
+    if published_archives is None:
+        published_archives = {}
     doc = html.fromstring(content.decode("utf-8"))
     record = json.loads(doc.get_element_by_id("machine-record").findtext("pre"))
     ids = [r["id"] for r in record["nodes"]]
@@ -120,34 +139,23 @@ def extract():
     record["task_boundaries"] = [
         [plain(c) for c in row.xpath("./td")]
         for row in doc.xpath('//*[@id="limits"]/following-sibling::div[1]//tr[td]')]
-    archives = {
-        "R148_temporal_and_controls.zip": (
-            "code/temporal.py", "code/r130_reference.py", "code/audit_extensions.py",
-            "results/temporal.json", "results/extensions.json",
-        ),
-        "R130_R141_R148_names.zip": (
-            "code/r130_reference.py", "name_arithmetic/README.md", "name_arithmetic/results.json",
-            "name_arithmetic/replay.py", "name_arithmetic/fibonacci.py",
-            "name_arithmetic/names.py", "name_arithmetic/logic.py",
-        ),
-        "YM_R130_R148_pilot.zip": ("README.md", "register.tsv", "replay.py", "results.json"),
-        "R130_step5_13_14.zip": ("README.md", "check.py", "results.json", "r130_reference.py"),
-    }
-    study_dirs = {"YM_R130_R148_pilot.zip": "ym_graph/pilot",
-                  "R130_step5_13_14.zip": "ym_graph/step5"}
     evidence = {}
-    for filename, members in archives.items():
+    for filename, members in ARCHIVES.items():
         links = doc.xpath('//a[@download=$name]/@href', name=filename)
         if len(links) != 1 or not links[0].startswith("data:application/zip;base64,"):
             raise ValueError(f"Expected one embedded archive for {filename}")
         archive = base64.b64decode(links[0].split(",", 1)[1], validate=True)
-        if filename in study_dirs and (HERE / "ym_graph" / filename).read_bytes() != archive:
-            raise ValueError(f"Embedded and downloadable copies differ for {filename}")
+        if filename in STUDY_DIRS:
+            copy = published_archives.get(filename)
+            if copy is None:
+                copy = (HERE / "ym_graph" / filename).read_bytes()
+            if copy != archive:
+                raise ValueError(f"Embedded and downloadable copies differ for {filename}")
         with zipfile.ZipFile(io.BytesIO(archive)) as package:
             if sorted(package.namelist()) != sorted(members):
                 raise ValueError(f"Unexpected members in {filename}")
             for name in members:
-                path = HERE / study_dirs.get(filename, "") / name
+                path = HERE / STUDY_DIRS.get(filename, "") / name
                 text = package.read(name).decode("utf-8")
                 if path in evidence and evidence[path] != text:
                     raise ValueError(f"Archives disagree about {name}")
@@ -184,8 +192,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write",action="store_true")
     args = parser.parse_args()
+    files = outputs()
+    if args.write:
+        import build_html
+        build_html.guard_import()
+        if hashlib.sha256(MODEL.read_bytes()).hexdigest() != json.loads(ATLAS.read_text())["html_sha256"]:
+            files[build_html.EDITION] = build_html.editorial_source(MODEL.read_bytes()).decode()
     changed = []
-    for path, text in outputs().items():
+    for path, text in files.items():
         if not path.exists() or path.read_bytes()!=text.encode():
             changed.append(str(path.relative_to(ROOT)))
             if args.write:
