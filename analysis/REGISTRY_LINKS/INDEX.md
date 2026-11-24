@@ -4,25 +4,25 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=138, construct=42, link=10, question=13, premise=66, obligation=9, review=16, component=45, external=18, decision=3, source=173.
+Число записей: result=139, construct=42, link=10, question=13, premise=66, obligation=9, review=19, component=45, external=20, decision=3, source=214.
 
 ## Предпосылка → результаты
 
 | ID | Прямое адресное свидетельство | Историческая навигация через конструкции |
 |---|---|---|
-| A01 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| A02 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| A03 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| A04 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| A05 | Нет новой прямой аттестации | [C012](#construct-c012), [C014](#construct-c014); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R013](#result-r013), [R140](#result-r140) |
+| A01 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| A02 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| A03 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| A04 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| A05 | Нет новой прямой аттестации | [C012](#construct-c012), [C014](#construct-c014); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R013](#result-r013), [R140](#result-r140), [R141](#result-r141) |
 | A06 | Нет новой прямой аттестации | [C023](#construct-c023), [C024](#construct-c024); [R045](#result-r045), [R046](#result-r046), [R047](#result-r047), [R079](#result-r079), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R127](#result-r127) |
-| A07 | Нет новой прямой аттестации | [C001](#construct-c001), [C012](#construct-c012); [R001](#result-r001), [R002](#result-r002), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R118](#result-r118), [R127](#result-r127), [R128](#result-r128), [R140](#result-r140) |
+| A07 | Нет новой прямой аттестации | [C001](#construct-c001), [C012](#construct-c012); [R001](#result-r001), [R002](#result-r002), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R118](#result-r118), [R127](#result-r127), [R128](#result-r128), [R140](#result-r140), [R141](#result-r141) |
 | B01 | Нет новой прямой аттестации | [C023](#construct-c023); [R045](#result-r045), [R046](#result-r046), [R079](#result-r079), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | B02 | Нет новой прямой аттестации | [C014](#construct-c014), [C023](#construct-c023); [R013](#result-r013), [R045](#result-r045), [R046](#result-r046), [R079](#result-r079), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | B03 | [R129](#result-r129) | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | B04 | [R129](#result-r129) | [C023](#construct-c023), [C025](#construct-c025), [C026](#construct-c026); [R045](#result-r045), [R046](#result-r046), [R048](#result-r048), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R079](#result-r079), [R114](#result-r114), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | B05 | [R129](#result-r129) | [C025](#construct-c025); [R048](#result-r048) |
-| B06 | [R129](#result-r129) | [C024](#construct-c024), [C037](#construct-c037); [R047](#result-r047), [R058](#result-r058), [R083](#result-r083), [R084](#result-r084), [R085](#result-r085), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130), [R131](#result-r131), [R132](#result-r132), [R133](#result-r133), [R134](#result-r134), [R135](#result-r135), [R139](#result-r139) |
+| B06 | [R129](#result-r129) | [C024](#construct-c024), [C037](#construct-c037); [R047](#result-r047), [R058](#result-r058), [R083](#result-r083), [R084](#result-r084), [R085](#result-r085), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130), [R131](#result-r131), [R132](#result-r132), [R133](#result-r133), [R134](#result-r134), [R135](#result-r135), [R139](#result-r139), [R141](#result-r141) |
 | B07 | Нет новой прямой аттестации | [C024](#construct-c024), [C033](#construct-c033); [R047](#result-r047), [R074](#result-r074), [R075](#result-r075), [R095](#result-r095), [R116](#result-r116), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128) |
 | B08 | Нет новой прямой аттестации | [C025](#construct-c025), [C030](#construct-c030); [R048](#result-r048), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R117](#result-r117), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | C01 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
@@ -32,7 +32,7 @@
 | C05 | Нет новой прямой аттестации | [C024](#construct-c024), [C035](#construct-c035); [R047](#result-r047), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R095](#result-r095), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R130](#result-r130) |
 | C06 | Нет новой прямой аттестации | [C024](#construct-c024), [C026](#construct-c026); [R047](#result-r047), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R095](#result-r095), [R114](#result-r114), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R127](#result-r127) |
 | C07 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
-| C08 | Нет новой прямой аттестации | [C011](#construct-c011), [C012](#construct-c012), [C026](#construct-c026); [R003](#result-r003), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R037](#result-r037), [R038](#result-r038), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R116](#result-r116), [R127](#result-r127), [R140](#result-r140) |
+| C08 | Нет новой прямой аттестации | [C011](#construct-c011), [C012](#construct-c012), [C026](#construct-c026); [R003](#result-r003), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R037](#result-r037), [R038](#result-r038), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R116](#result-r116), [R127](#result-r127), [R140](#result-r140), [R141](#result-r141) |
 | C09 | [R129](#result-r129) | [C023](#construct-c023), [C025](#construct-c025); [R045](#result-r045), [R046](#result-r046), [R048](#result-r048), [R079](#result-r079), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | C10 | Нет новой прямой аттестации | [C023](#construct-c023), [C025](#construct-c025); [R045](#result-r045), [R046](#result-r046), [R048](#result-r048), [R079](#result-r079), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127) |
 | D01 | Нет новой прямой аттестации | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
@@ -48,23 +48,23 @@
 | E01 | [R129](#result-r129) | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | E02 | Нет новой прямой аттестации | [C026](#construct-c026); [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127) |
 | E03 | [R129](#result-r129) | [C039](#construct-c039); [R090](#result-r090), [R100](#result-r100), [R117](#result-r117), [R118](#result-r118), [R120](#result-r120), [R127](#result-r127) |
-| E04 | [R129](#result-r129) | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140) |
+| E04 | [R129](#result-r129) | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140), [R141](#result-r141) |
 | E05 | [R129](#result-r129) | [C005](#construct-c005), [C020](#construct-c020), [C022](#construct-c022); [R038](#result-r038), [R039](#result-r039), [R040](#result-r040), [R041](#result-r041), [R042](#result-r042), [R043](#result-r043), [R044](#result-r044), [R094](#result-r094), [R102](#result-r102), [R103](#result-r103), [R105](#result-r105), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R115](#result-r115), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | E06 | Нет новой прямой аттестации | [C011](#construct-c011), [C026](#construct-c026); [R003](#result-r003), [R037](#result-r037), [R038](#result-r038), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R116](#result-r116), [R127](#result-r127) |
 | E07 | [R129](#result-r129) | [C005](#construct-c005), [C025](#construct-c025), [C035](#construct-c035); [R038](#result-r038), [R039](#result-r039), [R043](#result-r043), [R048](#result-r048), [R077](#result-r077), [R078](#result-r078), [R079](#result-r079), [R094](#result-r094), [R111](#result-r111), [R112](#result-r112), [R113](#result-r113), [R118](#result-r118), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R123](#result-r123), [R126](#result-r126), [R127](#result-r127), [R128](#result-r128), [R130](#result-r130) |
-| E08 | Нет новой прямой аттестации | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140) |
+| E08 | Нет новой прямой аттестации | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140), [R141](#result-r141) |
 | E09 | Нет новой прямой аттестации | [C024](#construct-c024); [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123) |
 | E10 | Нет новой прямой аттестации | [C001](#construct-c001), [C039](#construct-c039); [R001](#result-r001), [R002](#result-r002), [R090](#result-r090), [R100](#result-r100), [R117](#result-r117), [R118](#result-r118), [R120](#result-r120), [R127](#result-r127), [R128](#result-r128) |
 | F01 | Нет новой прямой аттестации | [C001](#construct-c001), [C003](#construct-c003); [R001](#result-r001), [R002](#result-r002), [R004](#result-r004), [R005](#result-r005), [R039](#result-r039), [R118](#result-r118), [R127](#result-r127), [R128](#result-r128) |
 | F02 | [R129](#result-r129) | [C031](#construct-c031), [C036](#construct-c036), [C038](#construct-c038); [R004](#result-r004), [R006](#result-r006), [R067](#result-r067), [R068](#result-r068), [R069](#result-r069), [R086](#result-r086), [R087](#result-r087), [R088](#result-r088), [R089](#result-r089), [R101](#result-r101), [R118](#result-r118), [R127](#result-r127) |
-| F03 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| F04 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| F05 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| F06 | Нет новой прямой аттестации | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140) |
+| F03 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| F04 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| F05 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| F06 | Нет новой прямой аттестации | [C012](#construct-c012), [C026](#construct-c026); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R049](#result-r049), [R050](#result-r050), [R051](#result-r051), [R052](#result-r052), [R053](#result-r053), [R054](#result-r054), [R055](#result-r055), [R114](#result-r114), [R127](#result-r127), [R140](#result-r140), [R141](#result-r141) |
 | F07 | Нет новой прямой аттестации | [C039](#construct-c039); [R090](#result-r090), [R100](#result-r100), [R117](#result-r117), [R118](#result-r118), [R120](#result-r120), [R127](#result-r127) |
-| F08 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140) |
-| F09 | Нет новой прямой аттестации | [C012](#construct-c012), [C024](#construct-c024); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R140](#result-r140) |
-| F10 | Нет новой прямой аттестации | [C001](#construct-c001), [C012](#construct-c012); [R001](#result-r001), [R002](#result-r002), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R118](#result-r118), [R127](#result-r127), [R128](#result-r128), [R140](#result-r140) |
+| F08 | Нет новой прямой аттестации | [C012](#construct-c012); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R140](#result-r140), [R141](#result-r141) |
+| F09 | Нет новой прямой аттестации | [C012](#construct-c012), [C024](#construct-c024); [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R047](#result-r047), [R095](#result-r095), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R123](#result-r123), [R140](#result-r140), [R141](#result-r141) |
+| F10 | Нет новой прямой аттестации | [C001](#construct-c001), [C012](#construct-c012); [R001](#result-r001), [R002](#result-r002), [R007](#result-r007), [R008](#result-r008), [R009](#result-r009), [R010](#result-r010), [R011](#result-r011), [R118](#result-r118), [R127](#result-r127), [R128](#result-r128), [R140](#result-r140), [R141](#result-r141) |
 | F11 | [R129](#result-r129) | [C023](#construct-c023), [C030](#construct-c030); [R045](#result-r045), [R046](#result-r046), [R062](#result-r062), [R063](#result-r063), [R064](#result-r064), [R065](#result-r065), [R066](#result-r066), [R079](#result-r079), [R117](#result-r117), [R119](#result-r119), [R120](#result-r120), [R121](#result-r121), [R122](#result-r122), [R127](#result-r127), [R128](#result-r128), [R129](#result-r129) |
 | F12 | Нет новой прямой аттестации | [C013](#construct-c013); [R012](#result-r012), [R083](#result-r083), [R123](#result-r123) |
 | F13 | Нет новой прямой аттестации | [C001](#construct-c001), [C004](#construct-c004); [R001](#result-r001), [R002](#result-r002), [R096](#result-r096), [R118](#result-r118), [R123](#result-r123), [R127](#result-r127), [R128](#result-r128) |
@@ -160,7 +160,7 @@ ATLAS_TOP: отдельный HNL-анализ — [исходная карто�
 
 Наблюдения abundances и CMB — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_cmb_observations).
 
-**Входящие:** [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`.
+**Входящие:** [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `scope_boundary`.
 **Исходящие:** [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `derived_consistency_not_independent`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="component-bbn_response_bridge"></a>
@@ -169,7 +169,7 @@ ATLAS_TOP: отдельный HNL-анализ — [исходная карто�
 
 BBN: PRIMAT, LINX, PRyMordial — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#bbn_response_bridge).
 
-**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [LINX](#external-linx) `candidate_source_context_not_evidence`; [LINX](#external-linx) `input_contract_dependency`; [PRIMAT](#external-primat) `input_contract_dependency`; [PRYMORDIAL](#external-prymordial) `candidate_source_context_not_evidence`; [PRYMORDIAL](#external-prymordial) `implementation_candidate_not_execution`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](#review-neighbor_integration_followup_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `scope_boundary`.
+**Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [LINX](#external-linx) `candidate_source_context_not_evidence`; [LINX](#external-linx) `input_contract_dependency`; [PRIMAT](#external-primat) `input_contract_dependency`; [PRYMORDIAL](#external-prymordial) `candidate_source_context_not_evidence`; [PRYMORDIAL](#external-prymordial) `implementation_candidate_not_execution`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](#review-neighbor_integration_followup_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `scope_boundary`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `operational_requirement`.
 **Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="component-bh1_thermodynamics"></a>
@@ -232,7 +232,7 @@ GPT → Copilot → GitHub → проверка — [исходная карто
 
 Совместная история X, em, ν и расширения — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#cosmological_background).
 
-**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `joint_model_requirement`.
+**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `input_contract_dependency`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `joint_model_requirement`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `clock_comparison`.
 **Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `input_contract_dependency`; [HNL_COSMOLOGY_MAPPING](#component-hnl_cosmology_mapping) `input_contract_dependency`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [PHOTON_THERMALIZATION](#component-photon_thermalization) `input_contract_dependency`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `input_contract_dependency`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="component-faser_electronic_2025"></a>
@@ -343,15 +343,6 @@ KM3NeT: вспышки сверхновых — [исходная карточк
 **Входящие:** [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [CLASS_NEUTRINOPHILIC](#external-class_neutrinophilic) `candidate_source_context_not_evidence`; [CLASS_NEUTRINOPHILIC](#external-class_neutrinophilic) `implementation_candidate_not_execution`.
 **Исходящие:** [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
-<a id="component-lhc_forward_neutrino_data"></a>
-
-### component:LHC_FORWARD_NEUTRINO_DATA
-
-LHC forward: отдельные сечения/потоки — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lhc_forward_neutrino_data).
-
-**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`.
-**Исходящие:** [FASER_ELECTRONIC_2025](#component-faser_electronic_2025) `context_not_evidence`; [FASER_ELECTRONIC_2026](#component-faser_electronic_2026) `context_not_evidence`; [FASER_EMULSION_2026](#component-faser_emulsion_2026) `context_not_evidence`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [SND_CC_2026](#component-snd_cc_2026) `context_not_evidence`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
-
 <a id="component-lhcb_hnl_b_decays"></a>
 
 ### component:LHCB_HNL_B_DECAYS
@@ -360,6 +351,15 @@ LHCB_B: отдельный HNL-анализ — [исходная карточк
 
 **Входящие:** [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `context_not_evidence`; [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`.
 **Исходящие:** [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+
+<a id="component-lhc_forward_neutrino_data"></a>
+
+### component:LHC_FORWARD_NEUTRINO_DATA
+
+LHC forward: отдельные сечения/потоки — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#lhc_forward_neutrino_data).
+
+**Входящие:** [X_MICROPHYSICS](#component-x_microphysics) `observational_constraint_requires_mapping`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`.
+**Исходящие:** [FASER_ELECTRONIC_2025](#component-faser_electronic_2025) `context_not_evidence`; [FASER_ELECTRONIC_2026](#component-faser_electronic_2026) `context_not_evidence`; [FASER_EMULSION_2026](#component-faser_emulsion_2026) `context_not_evidence`; [JOINT_INFERENCE](#component-joint_inference) `input_contract_dependency`; [SND_CC_2026](#component-snd_cc_2026) `context_not_evidence`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="component-lvk_constraints"></a>
 
@@ -494,7 +494,7 @@ SND_CC: измерительный паспорт — [исходная карт
 Общая микрофизика сектора X — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md#x_microphysics).
 
 **Входящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`; [R135](#result-r135) `methodological_parent_not_physical_evidence`.
-**Исходящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `input_contract_dependency`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `conceptual_parent_not_derivation`; [ATLAS_HNL_DISPLACED](#component-atlas_hnl_displaced) `observational_constraint_requires_mapping`; [ATLAS_HNL_PROMPT](#component-atlas_hnl_prompt) `observational_constraint_requires_mapping`; [ATLAS_HNL_TOP](#component-atlas_hnl_top) `observational_constraint_requires_mapping`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `observational_constraint_requires_mapping`; [CMS_HNL_DISPLACED](#component-cms_hnl_displaced) `observational_constraint_requires_mapping`; [CMS_HNL_TOP](#component-cms_hnl_top) `observational_constraint_requires_mapping`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [GW_SOURCE_MODEL](#component-gw_source_model) `input_contract_dependency`; [HNL_COSMOLOGY_MAPPING](#component-hnl_cosmology_mapping) `input_contract_dependency`; [LHC_FORWARD_NEUTRINO_DATA](#component-lhc_forward_neutrino_data) `observational_constraint_requires_mapping`; [LHCB_HNL_B_DECAYS](#component-lhcb_hnl_b_decays) `observational_constraint_requires_mapping`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [ORCA_DECAY](#component-orca_decay) `observational_constraint_requires_mapping`; [ORCA_DECOHERENCE](#component-orca_decoherence) `observational_constraint_requires_mapping`; [ORCA_NSI](#component-orca_nsi) `observational_constraint_requires_mapping`; [ORCA_STERILE](#component-orca_sterile) `observational_constraint_requires_mapping`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
+**Исходящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `input_contract_dependency`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `conceptual_parent_not_derivation`; [ATLAS_HNL_DISPLACED](#component-atlas_hnl_displaced) `observational_constraint_requires_mapping`; [ATLAS_HNL_PROMPT](#component-atlas_hnl_prompt) `observational_constraint_requires_mapping`; [ATLAS_HNL_TOP](#component-atlas_hnl_top) `observational_constraint_requires_mapping`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `observational_constraint_requires_mapping`; [CMS_HNL_DISPLACED](#component-cms_hnl_displaced) `observational_constraint_requires_mapping`; [CMS_HNL_TOP](#component-cms_hnl_top) `observational_constraint_requires_mapping`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `input_contract_dependency`; [GW_SOURCE_MODEL](#component-gw_source_model) `input_contract_dependency`; [HNL_COSMOLOGY_MAPPING](#component-hnl_cosmology_mapping) `input_contract_dependency`; [LHCB_HNL_B_DECAYS](#component-lhcb_hnl_b_decays) `observational_constraint_requires_mapping`; [LHC_FORWARD_NEUTRINO_DATA](#component-lhc_forward_neutrino_data) `observational_constraint_requires_mapping`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `input_contract_dependency`; [ORCA_DECAY](#component-orca_decay) `observational_constraint_requires_mapping`; [ORCA_DECOHERENCE](#component-orca_decoherence) `observational_constraint_requires_mapping`; [ORCA_NSI](#component-orca_nsi) `observational_constraint_requires_mapping`; [ORCA_STERILE](#component-orca_sterile) `observational_constraint_requires_mapping`; [analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json](#source-analysis-neutrino_gw_architecture_20261118-sources-json) `source_catalog_not_execution_evidence`.
 
 <a id="construct-c001"></a>
 
@@ -601,7 +601,7 @@ GLORIA и ранняя геометрия — [исходная карточка
 
 Положительные ядра, мера и квантовое представление — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c012).
 
-**Входящие:** [A01](#premise-a01) `historical_navigation_not_proof`; [A02](#premise-a02) `historical_navigation_not_proof`; [A03](#premise-a03) `historical_navigation_not_proof`; [A04](#premise-a04) `historical_navigation_not_proof`; [A05](#premise-a05) `historical_navigation_not_proof`; [A07](#premise-a07) `historical_navigation_not_proof`; [C08](#premise-c08) `historical_navigation_not_proof`; [E04](#premise-e04) `historical_navigation_not_proof`; [E08](#premise-e08) `historical_navigation_not_proof`; [F03](#premise-f03) `historical_navigation_not_proof`; [F04](#premise-f04) `historical_navigation_not_proof`; [F05](#premise-f05) `historical_navigation_not_proof`; [F06](#premise-f06) `historical_navigation_not_proof`; [F08](#premise-f08) `historical_navigation_not_proof`; [F09](#premise-f09) `historical_navigation_not_proof`; [F10](#premise-f10) `historical_navigation_not_proof`; [R007](#result-r007) `addresses`; [R008](#result-r008) `addresses`; [R009](#result-r009) `addresses`; [R010](#result-r010) `addresses`; [R011](#result-r011) `addresses`; [R140](#result-r140) `addresses`.
+**Входящие:** [A01](#premise-a01) `historical_navigation_not_proof`; [A02](#premise-a02) `historical_navigation_not_proof`; [A03](#premise-a03) `historical_navigation_not_proof`; [A04](#premise-a04) `historical_navigation_not_proof`; [A05](#premise-a05) `historical_navigation_not_proof`; [A07](#premise-a07) `historical_navigation_not_proof`; [C08](#premise-c08) `historical_navigation_not_proof`; [E04](#premise-e04) `historical_navigation_not_proof`; [E08](#premise-e08) `historical_navigation_not_proof`; [F03](#premise-f03) `historical_navigation_not_proof`; [F04](#premise-f04) `historical_navigation_not_proof`; [F05](#premise-f05) `historical_navigation_not_proof`; [F06](#premise-f06) `historical_navigation_not_proof`; [F08](#premise-f08) `historical_navigation_not_proof`; [F09](#premise-f09) `historical_navigation_not_proof`; [F10](#premise-f10) `historical_navigation_not_proof`; [R007](#result-r007) `addresses`; [R008](#result-r008) `addresses`; [R009](#result-r009) `addresses`; [R010](#result-r010) `addresses`; [R011](#result-r011) `addresses`; [R140](#result-r140) `addresses`; [R141](#result-r141) `addresses`.
 **Исходящие:** нет.
 
 <a id="construct-c013"></a>
@@ -826,7 +826,7 @@ M4, ремонт доступа, перезарядка и ресурс повт
 
 Миньковский, СТО/ОТО и организация «сейчас» — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#c037).
 
-**Входящие:** [B06](#premise-b06) `historical_navigation_not_proof`; [R058](#result-r058) `addresses`; [R083](#result-r083) `addresses`; [R084](#result-r084) `addresses`; [R085](#result-r085) `addresses`; [R123](#result-r123) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [R131](#result-r131) `addresses`; [R132](#result-r132) `addresses`; [R133](#result-r133) `addresses`; [R134](#result-r134) `addresses`; [R135](#result-r135) `addresses`; [R139](#result-r139) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
+**Входящие:** [B06](#premise-b06) `historical_navigation_not_proof`; [R058](#result-r058) `addresses`; [R083](#result-r083) `addresses`; [R084](#result-r084) `addresses`; [R085](#result-r085) `addresses`; [R123](#result-r123) `addresses`; [R126](#result-r126) `addresses`; [R127](#result-r127) `addresses`; [R130](#result-r130) `addresses`; [R131](#result-r131) `addresses`; [R132](#result-r132) `addresses`; [R133](#result-r133) `addresses`; [R134](#result-r134) `addresses`; [R135](#result-r135) `addresses`; [R139](#result-r139) `addresses`; [R141](#result-r141) `addresses`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `operational_requirement`.
 **Исходящие:** нет.
 
 <a id="construct-c038"></a>
@@ -900,6 +900,15 @@ CSG / TP и отмеченное будущее — [исходная карто
 
 **Входящие:** нет.
 **Исходящие:** [L04](#link-l04) `decision_scope_not_scientific_evidence`; [L06](#link-l06) `decision_scope_not_scientific_evidence`; [L07](#link-l07) `decision_scope_not_scientific_evidence`; [L09](#link-l09) `decision_constrains`; [L09](#link-l09) `decision_scope_not_scientific_evidence`; [L10](#link-l10) `decision_constrains`; [L10](#link-l10) `decision_scope_not_scientific_evidence`; [U010](#question-u010) `decision_constrains`; [U010](#question-u010) `decision_scope_not_scientific_evidence`; [R126](#result-r126) `decision_scope_not_scientific_evidence`; [R127](#result-r127) `decision_scope_not_scientific_evidence`; [R128](#result-r128) `decision_scope_not_scientific_evidence`; [R129](#result-r129) `decision_scope_not_scientific_evidence`.
+
+<a id="external-alpoge_rh"></a>
+
+### external:ALPOGE_RH
+
+Альпёге–Claude · ГР и характеры Дирихле — [исходная карточка](../../infra/external/contracts/ALPOGE_RH.json).
+
+**Входящие:** нет.
+**Исходящие:** [R141](#result-r141) `candidate_source_context_not_evidence`; [analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json](#source-analysis-r141_riemann_corpus-donor_replay-lean_sources-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-anthropic_bootstrap"></a>
 
@@ -982,6 +991,15 @@ FortEPiaNO: опубликованный QKE-эталон, code pin открыт
 **Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`.
 **Исходящие:** [N02](#obligation-n02) `candidate_source_context_not_evidence`; [U010](#question-u010) `candidate_source_context_not_evidence`; [R128](#result-r128) `candidate_source_context_not_evidence`.
 
+<a id="external-hilbert_polya"></a>
+
+### external:HILBERT_POLYA
+
+Гильберт–Пойа · спектральные тройки Конна–Консани–Московичи — [исходная карточка](../../infra/external/contracts/HILBERT_POLYA.json).
+
+**Входящие:** [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `scope_boundary`.
+**Исходящие:** [R132](#result-r132) `candidate_source_context_not_evidence`; [R141](#result-r141) `candidate_source_context_not_evidence`; [analysis/R141_RIEMANN_CORPUS/spectral/HILBERT_POLYA.json](#source-analysis-r141_riemann_corpus-spectral-hilbert_polya-json) `external_metadata_not_execution_evidence`.
+
 <a id="external-isingcauset"></a>
 
 ### external:ISINGCAUSET
@@ -1006,7 +1024,7 @@ FortEPiaNO: опубликованный QKE-эталон, code pin открыт
 
 LINX: дифференцируемая BBN-сеть — [исходная карточка](../../infra/external/contracts/LINX.json).
 
-**Входящие:** [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`.
+**Входящие:** [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `operational_requirement`.
 **Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `candidate_source_context_not_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md](#source-analysis-primat_linx_bbn_bridge_20261117-paired_run_20261120-md) `external_metadata_not_execution_evidence`.
 
 <a id="external-nudec_bsm_v2"></a>
@@ -1033,7 +1051,7 @@ nudec_BSM v2: моментум-осреднённая термодинамика
 
 PRIMAT: авторская сеть первичного нуклеосинтеза — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
 
-**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`.
+**Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `classification_only`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `operational_requirement`.
 **Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `input_contract_dependency`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `implementation_candidate_not_execution`; [L10](#link-l10) `candidate_source_context_not_evidence`; [CCC_TL_20261112](#review-ccc_tl_20261112) `candidate_source_context_not_evidence`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `candidate_source_context_not_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `external_metadata_not_execution_evidence`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_INTEGRATION_20261113/REPORT.md](#source-analysis-primat_integration_20261113-report-md) `external_metadata_not_execution_evidence`; [analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md](#source-analysis-primat_linx_bbn_bridge_20261117-paired_run_20261120-md) `external_metadata_not_execution_evidence`; [infra/external/contracts/PRIMAT.json](#source-infra-external-contracts-primat-json) `external_metadata_not_execution_evidence`; [infra/external/sources/PRIMAT.json](#source-infra-external-sources-primat-json) `external_metadata_not_execution_evidence`.
 
 <a id="external-prymordial"></a>
@@ -1915,7 +1933,7 @@ PRyMordial: дополнительный BBN-приёмник — [исходн�
 
 Как передать следующему носителю способность воспроизводить условия дальнейшего действия? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u010).
 
-**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [R131](#result-r131) `informs_not_closes`; [R133](#result-r133) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `operational_requirement`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `operational_requirement`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `scope_boundary`.
+**Входящие:** [D003](#decision-d003) `decision_constrains`; [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `candidate_source_context_not_evidence`; [ANTHROPIC_HP](#external-anthropic_hp) `candidate_source_context_not_evidence`; [BFSS_BMN](#external-bfss_bmn) `candidate_source_context_not_evidence`; [GORDION](#external-gordion) `candidate_source_context_not_evidence`; [HAGEDORN_QSC](#external-hagedorn_qsc) `candidate_source_context_not_evidence`; [LARGEN_YM](#external-largen_ym) `candidate_source_context_not_evidence`; [QSC_OPERATORS](#external-qsc_operators) `candidate_source_context_not_evidence`; [R064](#result-r064) `informs_not_closes`; [R066](#result-r066) `informs_not_closes`; [R075](#result-r075) `informs_not_closes`; [R079](#result-r079) `informs_not_closes`; [R094](#result-r094) `informs_not_closes`; [R119](#result-r119) `informs_not_closes`; [R120](#result-r120) `informs_not_closes`; [R121](#result-r121) `informs_not_closes`; [R122](#result-r122) `informs_not_closes`; [R127](#result-r127) `informs_not_closes`; [R128](#result-r128) `informs_not_closes`; [R129](#result-r129) `informs_not_closes`; [R130](#result-r130) `informs_not_closes`; [R131](#result-r131) `informs_not_closes`; [R133](#result-r133) `informs_not_closes`; [R141](#result-r141) `informs_not_closes`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `operational_requirement`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `operational_requirement`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `scope_boundary`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `scope_boundary`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `scope_boundary`.
 **Исходящие:** [L04](#link-l04) `related_open_link`; [L06](#link-l06) `related_open_link`; [L07](#link-l07) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
 <a id="question-u011"></a>
@@ -3104,7 +3122,7 @@ ADD: четыре семантики транспорта, периодично�
 Контактная организация: доминирование без конкуренции и преимущество при ограниченной ёмкости — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r129).
 
 **Входящие:** [D003](#decision-d003) `decision_scope_not_scientific_evidence`; [R044](#result-r044) `parent`; [R064](#result-r064) `parent`; [R122](#result-r122) `parent`; [R128](#result-r128) `parent`; [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `scope_boundary`; [CCC_TL_20261112](#review-ccc_tl_20261112) `time_scale_analogy`; [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `scope_boundary`; [EXTERNAL_20261112](#review-external_20261112) `scope_boundary`; [HP_BRANCH_BALANCE_20261115](#review-hp_branch_balance_20261115) `scope_boundary`; [METHOD_20261112](#review-method_20261112) `scope_boundary`.
-**Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`.
+**Исходящие:** [C022](#construct-c022) `addresses`; [C030](#construct-c030) `addresses`; [C041](#construct-c041) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L07](#link-l07) `boundary_open`; [L10](#link-l10) `boundary_open`; [N02](#obligation-n02) `updates_not_closes`; [N06](#obligation-n06) `updates_not_closes`; [B03](#premise-b03) `direct_conditional_evidence`; [B04](#premise-b04) `direct_conditional_evidence`; [B05](#premise-b05) `direct_conditional_evidence`; [B06](#premise-b06) `direct_conditional_evidence`; [C09](#premise-c09) `direct_conditional_evidence`; [D04](#premise-d04) `direct_conditional_evidence`; [D05](#premise-d05) `direct_conditional_evidence`; [E01](#premise-e01) `direct_conditional_evidence`; [E03](#premise-e03) `direct_conditional_evidence`; [E04](#premise-e04) `direct_conditional_evidence`; [E05](#premise-e05) `direct_conditional_evidence`; [E07](#premise-e07) `direct_conditional_evidence`; [F02](#premise-f02) `direct_conditional_evidence`; [F11](#premise-f11) `direct_conditional_evidence`; [G01](#premise-g01) `direct_conditional_evidence`; [G02](#premise-g02) `direct_conditional_evidence`; [G03](#premise-g03) `direct_conditional_evidence`; [G04](#premise-g04) `direct_conditional_evidence`; [G06](#premise-g06) `direct_conditional_evidence`; [G07](#premise-g07) `direct_conditional_evidence`; [G08](#premise-g08) `direct_conditional_evidence`; [U010](#question-u010) `informs_not_closes`; [analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md](#source-analysis-g3_contact_capacity_20261111-report-md) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json](#source-analysis-g3_contact_capacity_20261111-results-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json](#source-analysis-g3_contact_capacity_20261111-source_manifest-json) `managed_evidence_source`; [analysis/G3_CONTACT_CAPACITY_20261111/compute.py](#source-analysis-g3_contact_capacity_20261111-compute-py) `managed_evidence_source`.
 
 <a id="result-r130"></a>
 
@@ -3113,7 +3131,7 @@ ADD: четыре семантики транспорта, периодично�
 ADD: воспроизведение C1/A, симметрия C2 и активный цикл без роста — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r130).
 
 **Входящие:** [R077](#result-r077) `parent`; [R078](#result-r078) `parent`; [R126](#result-r126) `parent`; [ADD_NEIGHBOR_20261117](#review-add_neighbor_20261117) `scope_boundary`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`; [NEIGHBOR_CERN_20261118](#review-neighbor_cern_20261118) `scope_boundary`; [NEIGHBOR_COLLIDER_20261118](#review-neighbor_collider_20261118) `scope_boundary`; [NEIGHBOR_INTEGRATION_FOLLOWUP_20261118](#review-neighbor_integration_followup_20261118) `scope_boundary`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `scope_boundary`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `scope_boundary`.
-**Исходящие:** [COPILOT_REPRODUCTION](#component-copilot_reproduction) `methodological_parent_not_physical_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`; [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [R140](#result-r140) `parent`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py](#source-analysis-add_c1_author_repro_20261116-graph_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json](#source-analysis-add_c1_author_repro_20261116-plan-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json](#source-analysis-add_c1_author_repro_20261116-preflight-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md](#source-analysis-add_c1_author_repro_20261116-report_block1-md) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json](#source-analysis-add_c1_author_repro_20261116-results-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py](#source-analysis-add_c1_author_repro_20261116-ring_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py](#source-analysis-add_c1_author_repro_20261116-run_block1-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256](#source-analysis-add_c1_author_repro_20261116-source_manifest-sha256) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json](#source-analysis-add_c1_author_repro_20261116-spec-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json](#source-analysis-add_c1_author_repro_20261116-witnesses-json) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json](#source-analysis-add_c1_reproduction_status_20261117-evidence-json) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md](#source-analysis-add_c1_reproduction_status_20261117-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py](#source-analysis-add_connes_port_transport_20261120-check-py) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json](#source-analysis-add_neighbor_synthesis_20261117-checks-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py](#source-analysis-add_neighbor_synthesis_20261117-verify-py) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_checks-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_review-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json](#source-analysis-r130_bh1_bbn_connection_20261117-connection_contract-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md](#source-analysis-r130_bh1_bbn_connection_20261117-report-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py](#source-analysis-r130_bh1_bbn_connection_20261117-verify_architecture-py) `managed_evidence_source`.
+**Исходящие:** [COPILOT_REPRODUCTION](#component-copilot_reproduction) `methodological_parent_not_physical_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `conceptual_parent_not_derivation`; [C035](#construct-c035) `addresses`; [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L04](#link-l04) `boundary_open`; [L06](#link-l06) `boundary_open`; [L08](#link-l08) `boundary_open`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U005](#question-u005) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [U007](#question-u007) `informs_not_closes`; [U009](#question-u009) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [R140](#result-r140) `parent`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PLAN.json](#source-analysis-add_c1_author_repro_20261116-plan-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/PREFLIGHT.json](#source-analysis-add_c1_author_repro_20261116-preflight-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/REPORT_BLOCK1.md](#source-analysis-add_c1_author_repro_20261116-report_block1-md) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json](#source-analysis-add_c1_author_repro_20261116-results-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256](#source-analysis-add_c1_author_repro_20261116-source_manifest-sha256) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/SPEC.json](#source-analysis-add_c1_author_repro_20261116-spec-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json](#source-analysis-add_c1_author_repro_20261116-witnesses-json) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py](#source-analysis-add_c1_author_repro_20261116-graph_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py](#source-analysis-add_c1_author_repro_20261116-ring_engine-py) `managed_evidence_source`; [analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py](#source-analysis-add_c1_author_repro_20261116-run_block1-py) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json](#source-analysis-add_c1_reproduction_status_20261117-evidence-json) `managed_evidence_source`; [analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md](#source-analysis-add_c1_reproduction_status_20261117-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py](#source-analysis-add_connes_port_transport_20261120-check-py) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/CHECKS.json](#source-analysis-add_neighbor_synthesis_20261117-checks-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/SOURCES.json](#source-analysis-add_neighbor_synthesis_20261117-sources-json) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py](#source-analysis-add_neighbor_synthesis_20261117-verify-py) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_checks-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md](#source-analysis-r130_bh1_bbn_connection_20261117-architecture_review-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/CONNECTION_CONTRACT.json](#source-analysis-r130_bh1_bbn_connection_20261117-connection_contract-json) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/REPORT.md](#source-analysis-r130_bh1_bbn_connection_20261117-report-md) `managed_evidence_source`; [analysis/R130_BH1_BBN_CONNECTION_20261117/verify_architecture.py](#source-analysis-r130_bh1_bbn_connection_20261117-verify_architecture-py) `managed_evidence_source`.
 
 <a id="result-r131"></a>
 
@@ -3122,7 +3140,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Конн–ADD. Предел парных корреляций для прогноза длины кольца R130 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r131).
 
 **Входящие:** [R130](#result-r130) `parent`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `scope_boundary`.
-**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/CHECKS.json](#source-analysis-add_local_edge_energy_followup_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/CHECKS.json](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-checks-json) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/REPORT.md](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-report-md) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/verify.py](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json](#source-analysis-r131_connes_add_20261119-neighbor_review-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt](#source-analysis-r131_connes_add_20261119-neighbor_review-two_step_review-txt) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py](#source-analysis-r131_connes_add_20261119-neighbor_review-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/CHECKS.json](#source-analysis-add_local_edge_energy_followup_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/CHECKS.json](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-checks-json) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/REPORT.md](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-report-md) `managed_evidence_source`; [analysis/ADD_LOCAL_EDGE_ENERGY_FOLLOWUP_20261120/contact_balance/verify.py](#source-analysis-add_local_edge_energy_followup_20261120-contact_balance-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/CHECKS.json](#source-analysis-r131_connes_add_20261119-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/REPORT.md](#source-analysis-r131_connes_add_20261119-report-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json](#source-analysis-r131_connes_add_20261119-neighbor_review-checks-json) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt](#source-analysis-r131_connes_add_20261119-neighbor_review-two_step_review-txt) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py](#source-analysis-r131_connes_add_20261119-neighbor_review-verify-py) `managed_evidence_source`; [analysis/R131_CONNES_ADD_20261119/verify.py](#source-analysis-r131_connes_add_20261119-verify-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`.
 
 <a id="result-r132"></a>
 
@@ -3130,8 +3148,8 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 
 Алгебра меток R130, калибровочные поля и спектральная энтропия — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r132).
 
-**Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `scope_boundary`.
-**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py](#source-analysis-add_connes_port_transport_20261120-check-py) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-critique-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md](#source-analysis-add_connes_port_transport_20261120-critique-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/CHECKS.json](#source-analysis-r132_add_ym_ccm_20261119-checks-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/REPORT.md](#source-analysis-r132_add_ym_ccm_20261119-report-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/verify.py](#source-analysis-r132_add_ym_ccm_20261119-verify-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `managed_evidence_source`.
+**Входящие:** [HILBERT_POLYA](#external-hilbert_polya) `candidate_source_context_not_evidence`; [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `scope_boundary`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `operational_requirement`.
+**Исходящие:** [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [R141](#result-r141) `parent`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py](#source-analysis-add_connes_port_transport_20261120-check-py) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-critique-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md](#source-analysis-add_connes_port_transport_20261120-critique-report-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/CHECKS.json](#source-analysis-r132_add_ym_ccm_20261119-checks-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/REPORT.md](#source-analysis-r132_add_ym_ccm_20261119-report-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_and_prediction-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.json](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py](#source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-py) `managed_evidence_source`; [analysis/R132_ADD_YM_CCM_20261119/verify.py](#source-analysis-r132_add_ym_ccm_20261119-verify-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `managed_evidence_source`.
 
 <a id="result-r133"></a>
 
@@ -3140,7 +3158,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Петлевая геометрия и Конн на именованных перестройках ADD — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r133).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `scope_boundary`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `scope_boundary`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `scope_boundary`.
-**Исходящие:** [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [R140](#result-r140) `parent`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md](#source-analysis-add_connes_port_transport_20261120-loop_test-donors-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-entropy_block_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-entropy_block_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py](#source-analysis-r133_loop_connes_20261120-entropy_block_review-verify-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py](#source-analysis-r133_loop_connes_20261120-frame_review-check_review-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-frame_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-frame_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-frame_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `managed_evidence_source`.
+**Исходящие:** [C037](#construct-c037) `addresses`; [C042](#construct-c042) `addresses`; [L09](#link-l09) `boundary_open`; [L10](#link-l10) `boundary_open`; [U006](#question-u006) `informs_not_closes`; [U010](#question-u010) `informs_not_closes`; [R134](#result-r134) `parent`; [R135](#result-r135) `parent`; [R139](#result-r139) `parent`; [R140](#result-r140) `parent`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/CHECKS.json](#source-analysis-add_connes_port_transport_20261120-loop_test-checks-json) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md](#source-analysis-add_connes_port_transport_20261120-loop_test-donors-md) `managed_evidence_source`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-entropy_block_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-entropy_block_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py](#source-analysis-r133_loop_connes_20261120-entropy_block_review-verify-py) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json](#source-analysis-r133_loop_connes_20261120-frame_review-checks-json) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-frame_review-neighbor_original-txt) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-frame_review-report-md) `managed_evidence_source`; [analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py](#source-analysis-r133_loop_connes_20261120-frame_review-check_review-py) `managed_evidence_source`.
 
 <a id="result-r134"></a>
 
@@ -3149,7 +3167,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Струнный bootstrap, Конн и ADD — доноры и проверка двух каналов — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r134).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [BBN_DONORS_TRANSFER_20261120](#review-bbn_donors_transfer_20261120) `operational_requirement`.
-**Исходящие:** [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [R135](#result-r135) `parent`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/CHECKS.json](#source-analysis-r134_strings_connes_add_20261120-checks-json) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv](#source-analysis-r134_strings_connes_add_20261120-five_point_residues-csv) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md](#source-analysis-r134_strings_connes_add_20261120-report-md) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py](#source-analysis-r134_strings_connes_add_20261120-verify-py) `managed_evidence_source`.
+**Исходящие:** [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [R135](#result-r135) `parent`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_DONORS_R131_R134.md](#source-analysis-neighbor_external_data_use_20261119-bbn_donors_r131_r134-md) `managed_evidence_source`; [analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md](#source-analysis-neighbor_external_data_use_20261119-bbn_method_transfer-md) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/CHECKS.json](#source-analysis-r134_strings_connes_add_20261120-checks-json) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md](#source-analysis-r134_strings_connes_add_20261120-report-md) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv](#source-analysis-r134_strings_connes_add_20261120-five_point_residues-csv) `managed_evidence_source`; [analysis/R134_STRINGS_CONNES_ADD_20261120/verify.py](#source-analysis-r134_strings_connes_add_20261120-verify-py) `managed_evidence_source`.
 
 <a id="result-r135"></a>
 
@@ -3167,7 +3185,7 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r136).
 
 **Входящие:** [R135](#result-r135) `parent`.
-**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md](#source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py](#source-analysis-r136_shirogane_calibration-audit_invariant_d-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py](#source-analysis-r136_shirogane_calibration-audit_method_volume-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py](#source-analysis-r136_shirogane_calibration-audit_statistical_budget-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg](#source-analysis-r136_shirogane_calibration-correlation_map-svg) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md](#source-analysis-r136_shirogane_calibration-estimator_domain-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json](#source-analysis-r136_shirogane_calibration-extended_checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json](#source-analysis-r136_shirogane_calibration-method_volume-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md](#source-analysis-r136_shirogane_calibration-method_volume-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md](#source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json](#source-analysis-r136_shirogane_calibration-statistical_budget-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py](#source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
+**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg](#source-analysis-r136_shirogane_calibration-correlation_map-svg) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md](#source-analysis-r136_shirogane_calibration-estimator_domain-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json](#source-analysis-r136_shirogane_calibration-extended_checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json](#source-analysis-r136_shirogane_calibration-method_volume-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md](#source-analysis-r136_shirogane_calibration-method_volume-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md](#source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json](#source-analysis-r136_shirogane_calibration-statistical_budget-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md](#source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py](#source-analysis-r136_shirogane_calibration-audit_invariant_d-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py](#source-analysis-r136_shirogane_calibration-audit_method_volume-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py](#source-analysis-r136_shirogane_calibration-audit_statistical_budget-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py](#source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
 
 <a id="result-r139"></a>
 
@@ -3184,8 +3202,17 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 
 Мера Хаара и квантовые истории Соркина на именованных кольцах ADD — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r140).
 
-**Входящие:** [R007](#result-r007) `parent`; [R008](#result-r008) `parent`; [R011](#result-r011) `parent`; [R047](#result-r047) `parent`; [R130](#result-r130) `parent`; [R133](#result-r133) `parent`; [R139](#result-r139) `parent`.
-**Исходящие:** [C012](#construct-c012) `addresses`; [U003](#question-u003) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [analysis/R140_HAAR_SORKIN/CHECKS.json](#source-analysis-r140_haar_sorkin-checks-json) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/HISTORIES.json](#source-analysis-r140_haar_sorkin-histories-json) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/REPORT.md](#source-analysis-r140_haar_sorkin-report-md) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/verify.py](#source-analysis-r140_haar_sorkin-verify-py) `managed_evidence_source`.
+**Входящие:** [R007](#result-r007) `parent`; [R008](#result-r008) `parent`; [R011](#result-r011) `parent`; [R047](#result-r047) `parent`; [R130](#result-r130) `parent`; [R133](#result-r133) `parent`; [R139](#result-r139) `parent`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `operational_requirement`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `scope_boundary`.
+**Исходящие:** [C012](#construct-c012) `addresses`; [U003](#question-u003) `informs_not_closes`; [U006](#question-u006) `informs_not_closes`; [R141](#result-r141) `parent`; [analysis/R140_HAAR_SORKIN/CHECKS.json](#source-analysis-r140_haar_sorkin-checks-json) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/HISTORIES.json](#source-analysis-r140_haar_sorkin-histories-json) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/REPORT.md](#source-analysis-r140_haar_sorkin-report-md) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/verify.py](#source-analysis-r140_haar_sorkin-verify-py) `managed_evidence_source`.
+
+<a id="result-r141"></a>
+
+### result:R141
+
+Гипотеза Римана, Гильберт–Пойа и корпус. Спектральная различимость и достижимость — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r141).
+
+**Входящие:** [ALPOGE_RH](#external-alpoge_rh) `candidate_source_context_not_evidence`; [HILBERT_POLYA](#external-hilbert_polya) `candidate_source_context_not_evidence`; [R132](#result-r132) `parent`; [R140](#result-r140) `parent`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `scope_boundary`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `operational_requirement`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `scope_boundary`.
+**Исходящие:** [C012](#construct-c012) `addresses`; [C037](#construct-c037) `addresses`; [U010](#question-u010) `informs_not_closes`; [analysis/R141_RIEMANN_CORPUS/CHECKS.json](#source-analysis-r141_riemann_corpus-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md](#source-analysis-r141_riemann_corpus-hilbert_polya-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REPORT.md](#source-analysis-r141_riemann_corpus-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/REVIEW.md](#source-analysis-r141_riemann_corpus-review-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/SCHEDULES.json](#source-analysis-r141_riemann_corpus-schedules-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md](#source-analysis-r141_riemann_corpus-bbn-averaging-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-signal_checks-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/averaging.py](#source-analysis-r141_riemann_corpus-bbn-averaging-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/curvature.py](#source-analysis-r141_riemann_corpus-bbn-curvature-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py](#source-analysis-r141_riemann_corpus-bbn-finite_controls-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/local_replay.json](#source-analysis-r141_riemann_corpus-bbn-local_replay-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/replay.py](#source-analysis-r141_riemann_corpus-bbn-replay-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/resonance.py](#source-analysis-r141_riemann_corpus-bbn-resonance-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/response.py](#source-analysis-r141_riemann_corpus-bbn-response-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py](#source-analysis-r141_riemann_corpus-bbn-signal_check-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md](#source-analysis-r141_riemann_corpus-donor_replay-design-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json](#source-analysis-r141_riemann_corpus-donor_replay-histories-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md](#source-analysis-r141_riemann_corpus-donor_replay-report-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py](#source-analysis-r141_riemann_corpus-donor_replay-experiments-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json](#source-analysis-r141_riemann_corpus-donor_replay-followup-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py](#source-analysis-r141_riemann_corpus-donor_replay-followup-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json](#source-analysis-r141_riemann_corpus-donor_replay-lean_sources-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/donor_replay/results.json](#source-analysis-r141_riemann_corpus-donor_replay-results-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/reproduce.py](#source-analysis-r141_riemann_corpus-reproduce-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/review/evidence.json](#source-analysis-r141_riemann_corpus-review-evidence-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md](#source-analysis-r141_riemann_corpus-spectral-arithmetic-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md](#source-analysis-r141_riemann_corpus-spectral-fibonacci-md) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json](#source-analysis-r141_riemann_corpus-spectral-arithmetic-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py](#source-analysis-r141_riemann_corpus-spectral-arithmetic-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.json](#source-analysis-r141_riemann_corpus-spectral-corpus-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/corpus.py](#source-analysis-r141_riemann_corpus-spectral-corpus-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.json](#source-analysis-r141_riemann_corpus-spectral-fibonacci-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.py](#source-analysis-r141_riemann_corpus-spectral-fibonacci-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/fibonacci_review.py](#source-analysis-r141_riemann_corpus-spectral-fibonacci_review-py) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.json](#source-analysis-r141_riemann_corpus-spectral-run_partition_readout-json) `managed_evidence_source`; [analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.py](#source-analysis-r141_riemann_corpus-spectral-run_partition_readout-py) `managed_evidence_source`.
 
 <a id="review-add_bbn_symmetry_20261115"></a>
 
@@ -3242,7 +3269,7 @@ ADD: сводка двух разборов, исправления C1/C2 и а�
 R131–R133: порядок меток, именованная динамика и выбор ансамбля — [исходная карточка](../../analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md).
 
 **Входящие:** нет.
-**Исходящие:** [C05](#premise-c05) `premise_context_not_evidence`; [U010](#question-u010) `operational_requirement`; [R130](#result-r130) `scope_boundary`; [R131](#result-r131) `scope_boundary`; [R132](#result-r132) `scope_boundary`; [R133](#result-r133) `scope_boundary`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md](#source-analysis-add_connes_port_transport_20261120-critique-report-md) `review_source_not_attestation`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `review_source_not_attestation`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md](#source-analysis-now_project_integration_20261119-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md](#source-analysis-now_project_integration_20261119-session_20261120-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/SESSION.txt](#source-analysis-now_project_integration_20261119-session_20261120-session-txt) `review_source_not_attestation`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `review_source_not_attestation`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt](#source-analysis-r131_connes_add_20261119-neighbor_review-two_step_review-txt) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `review_source_not_attestation`.
+**Исходящие:** [C05](#premise-c05) `premise_context_not_evidence`; [U010](#question-u010) `operational_requirement`; [R130](#result-r130) `scope_boundary`; [R131](#result-r131) `scope_boundary`; [R132](#result-r132) `scope_boundary`; [R133](#result-r133) `scope_boundary`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md](#source-analysis-add_connes_port_transport_20261120-report-md) `review_source_not_attestation`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/critique/REPORT.md](#source-analysis-add_connes_port_transport_20261120-critique-report-md) `review_source_not_attestation`; [analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md](#source-analysis-add_connes_port_transport_20261120-loop_test-readme-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md](#source-analysis-now_project_integration_20261119-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md](#source-analysis-now_project_integration_20261119-session_20261120-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/SESSION.txt](#source-analysis-now_project_integration_20261119-session_20261120-session-txt) `review_source_not_attestation`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/README.md](#source-analysis-r131_connes_add_20261119-neighbor_review-readme-md) `review_source_not_attestation`; [analysis/R131_CONNES_ADD_20261119/neighbor_review/TWO_STEP_REVIEW.txt](#source-analysis-r131_connes_add_20261119-neighbor_review-two_step_review-txt) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md](#source-analysis-r133_loop_connes_20261120-entropy_block_review-report-md) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -3262,7 +3289,7 @@ R131–R133: порядок меток, именованная динамика 
 Anthropic: эффективный модуль Хокинга—Пейджа, проверки и баланс предпосылок — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/REPORT.md).
 
 **Входящие:** нет.
-**Исходящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `scope_boundary`; [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement`; [HAGEDORN_QSC](#external-hagedorn_qsc) `scope_boundary`; [N02](#obligation-n02) `scope_boundary`; [N06](#obligation-n06) `scope_boundary`; [F02](#premise-f02) `premise_context_not_evidence`; [F05](#premise-f05) `premise_context_not_evidence`; [U010](#question-u010) `scope_boundary`; [R127](#result-r127) `joint_model_requirement`; [R128](#result-r128) `scope_boundary`; [R129](#result-r129) `scope_boundary`; [analysis/ANTHROPIC_BH_20261112/adapter.py](#source-analysis-anthropic_bh_20261112-adapter-py) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/CHECKS.json](#source-analysis-anthropic_bh_20261112-checks-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/PLAN.json](#source-analysis-anthropic_bh_20261112-plan-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/REPORT.md](#source-analysis-anthropic_bh_20261112-report-md) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_bootstrap-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_hp-json) `review_source_not_attestation`.
+**Исходящие:** [ANTHROPIC_BOOTSTRAP](#external-anthropic_bootstrap) `scope_boundary`; [ANTHROPIC_HP](#external-anthropic_hp) `joint_model_requirement`; [HAGEDORN_QSC](#external-hagedorn_qsc) `scope_boundary`; [N02](#obligation-n02) `scope_boundary`; [N06](#obligation-n06) `scope_boundary`; [F02](#premise-f02) `premise_context_not_evidence`; [F05](#premise-f05) `premise_context_not_evidence`; [U010](#question-u010) `scope_boundary`; [R127](#result-r127) `joint_model_requirement`; [R128](#result-r128) `scope_boundary`; [R129](#result-r129) `scope_boundary`; [analysis/ANTHROPIC_BH_20261112/CHECKS.json](#source-analysis-anthropic_bh_20261112-checks-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/PLAN.json](#source-analysis-anthropic_bh_20261112-plan-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/REPORT.md](#source-analysis-anthropic_bh_20261112-report-md) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/adapter.py](#source-analysis-anthropic_bh_20261112-adapter-py) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_bootstrap-json) `review_source_not_attestation`; [analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json](#source-analysis-anthropic_bh_20261112-sources-anthropic_hp-json) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -3320,7 +3347,7 @@ Anthropic: эффективный модуль Хокинга—Пейджа, п
 CCC+TL/CBST: геометрия, часы и границы общего закона — [исходная карточка](../../analysis/CCC_TL_REVIEW_20261112/REPORT.md).
 
 **Входящие:** [CCC_SPARC](#external-ccc_sparc) `candidate_source_context_not_evidence`; [PRIMAT](#external-primat) `candidate_source_context_not_evidence`.
-**Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_BBN_DRIFT_20261113/calculate.py](#source-analysis-ccc_bbn_drift_20261113-calculate-py) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/PLAN.json](#source-analysis-ccc_bbn_drift_20261113-plan-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json](#source-analysis-ccc_bbn_drift_20261113-provenance-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/RESULTS.json](#source-analysis-ccc_bbn_drift_20261113-results-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json](#source-analysis-ccc_bbn_drift_20261113-validation-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
+**Исходящие:** [C001](#construct-c001) `scope_boundary`; [C024](#construct-c024) `clock_comparison`; [C037](#construct-c037) `operational_requirement`; [C042](#construct-c042) `operational_requirement`; [L09](#link-l09) `scope_boundary`; [L10](#link-l10) `joint_model_requirement`; [B01](#premise-b01) `premise_context_not_evidence`; [B06](#premise-b06) `premise_context_not_evidence`; [C03](#premise-c03) `premise_context_not_evidence`; [C04](#premise-c04) `premise_context_not_evidence`; [C05](#premise-c05) `premise_context_not_evidence`; [D03](#premise-d03) `premise_context_not_evidence`; [F02](#premise-f02) `premise_context_not_evidence`; [F07](#premise-f07) `premise_context_not_evidence`; [F11](#premise-f11) `premise_context_not_evidence`; [G03](#premise-g03) `premise_context_not_evidence`; [G07](#premise-g07) `premise_context_not_evidence`; [G08](#premise-g08) `premise_context_not_evidence`; [U006](#question-u006) `scope_boundary`; [R001](#result-r001) `scope_boundary`; [R047](#result-r047) `clock_comparison`; [R076](#result-r076) `classification_only`; [R079](#result-r079) `conditional_open_system_constraint`; [R084](#result-r084) `operational_requirement`; [R085](#result-r085) `scope_boundary`; [R090](#result-r090) `joint_model_requirement`; [R095](#result-r095) `clock_comparison`; [R100](#result-r100) `joint_model_requirement`; [R123](#result-r123) `operational_requirement`; [R129](#result-r129) `time_scale_analogy`; [analysis/CCC_BBN_DRIFT_20261113/PLAN.json](#source-analysis-ccc_bbn_drift_20261113-plan-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/PROVENANCE.json](#source-analysis-ccc_bbn_drift_20261113-provenance-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/REPORT.md](#source-analysis-ccc_bbn_drift_20261113-report-md) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/RESULTS.json](#source-analysis-ccc_bbn_drift_20261113-results-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json](#source-analysis-ccc_bbn_drift_20261113-validation-json) `review_source_not_attestation`; [analysis/CCC_BBN_DRIFT_20261113/calculate.py](#source-analysis-ccc_bbn_drift_20261113-calculate-py) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/ALGEBRA_CHECK.json](#source-analysis-ccc_tl_review_20261112-algebra_check-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/NEIGHBOR_REVIEW.txt](#source-analysis-ccc_tl_review_20261112-neighbor_review-txt) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/REPORT.md](#source-analysis-ccc_tl_review_20261112-report-md) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/SOURCES.json](#source-analysis-ccc_tl_review_20261112-sources-json) `review_source_not_attestation`; [analysis/CCC_TL_REVIEW_20261112/verify_algebra.py](#source-analysis-ccc_tl_review_20261112-verify_algebra-py) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -3579,7 +3606,7 @@ R130–BH1–BBN: нейтрино, GW и экспериментальные о�
 Общая интеграция NOW с гравитацией, ядерными и коллайдерными измерениями — [исходная карточка](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md).
 
 **Входящие:** нет.
-**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `scope_boundary`; [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `scope_boundary`; [CERN_NTOF_RATES](#component-cern_ntof_rates) `classification_only`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `scope_boundary`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `joint_model_requirement`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `joint_model_requirement`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `scope_boundary`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `scope_boundary`; [U010](#question-u010) `operational_requirement`; [R130](#result-r130) `scope_boundary`; [analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json](#source-analysis-now_project_integration_20261119-evidence-json) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json](#source-analysis-now_project_integration_20261119-evidence-c2_s3_checks-json) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md](#source-analysis-now_project_integration_20261119-report-md) `review_source_not_attestation`.
+**Исходящие:** [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `scope_boundary`; [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `scope_boundary`; [CERN_NTOF_RATES](#component-cern_ntof_rates) `classification_only`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `scope_boundary`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `joint_model_requirement`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `joint_model_requirement`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `scope_boundary`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `scope_boundary`; [U010](#question-u010) `operational_requirement`; [R130](#result-r130) `scope_boundary`; [analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json](#source-analysis-now_project_integration_20261119-evidence-json) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md](#source-analysis-now_project_integration_20261119-report-md) `review_source_not_attestation`; [analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json](#source-analysis-now_project_integration_20261119-evidence-c2_s3_checks-json) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
@@ -3603,13 +3630,69 @@ R130–BH1–BBN: нейтрино, GW и экспериментальные о�
 Проверка переноса при подразделении и условий замыкания цикла — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md).
 
 **Входящие:** нет.
-**Исходящие:** [U006](#question-u006) `operational_requirement`; [U010](#question-u010) `scope_boundary`; [R133](#result-r133) `scope_boundary`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `review_source_not_attestation`.
+**Исходящие:** [U006](#question-u006) `operational_requirement`; [U010](#question-u010) `scope_boundary`; [R133](#result-r133) `scope_boundary`; [analysis/R133_LOOP_CONNES_20261120/CHECKS.json](#source-analysis-r133_loop_connes_20261120-checks-json) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r133_loop_connes_20261120-neighbor_original-txt) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/REPORT.md](#source-analysis-r133_loop_connes_20261120-report-md) `review_source_not_attestation`; [analysis/R133_LOOP_CONNES_20261120/check_controls.py](#source-analysis-r133_loop_connes_20261120-check_controls-py) `review_source_not_attestation`.
 
 | Связь | Смысл и граница | Основание |
 |---|---|---|
 | [U006](#question-u006) `operational_requirement` | Голономия цикла зависит от того, что считается одной геометрией. | [разбор](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md#review) |
 | [U010](#question-u010) `scope_boundary` | Перенос спинора через слияние сам по себе не даёт функционального наследования. | [разбор](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md#tests) |
 | [R133](#result-r133) `scope_boundary` | Цикл требует явного транспорта имён, связностей и рамок. | [разбор](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md#tests) |
+
+**Не включены в положительные связи:**
+
+<a id="review-r141_hilbert_polya_connes_20261122"></a>
+
+### review:R141_HILBERT_POLYA_CONNES_20261122
+
+Доноры ГР и ГП и генеалогия через Конна — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md).
+
+**Входящие:** нет.
+**Исходящие:** [U010](#question-u010) `scope_boundary`; [R132](#result-r132) `operational_requirement`; [R140](#result-r140) `operational_requirement`; [R141](#result-r141) `scope_boundary`; [analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md](#source-analysis-r141_riemann_corpus-hilbert_polya-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md](#source-analysis-r141_riemann_corpus-spectral-arithmetic-md) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [U010](#question-u010) `scope_boundary` | Нужно независимо задать правило приготовления и вмешательство в содержательный след. | [разбор](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#admission) |
+| [R132](#result-r132) `operational_requirement` | Циклическое усреднение отождествляет два слова, у которых до усреднения разность детерминантов t³. | [разбор](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#rings) |
+| [R140](#result-r140) `operational_requirement` | Для тех же трёх весов ранг по состоянию падает с трёх до двух. | [разбор](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#lengths) |
+| [R141](#result-r141) `scope_boundary` | Дзета-тройки имеют арифметический вход и проверяемые конечные свойства. Полный операторный предел открыт. | [разбор](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md#connes) |
+
+**Не включены в положительные связи:**
+
+<a id="review-r141_reachability_20261122"></a>
+
+### review:R141_REACHABILITY_20261122
+
+Отзыв о достижимости совместных распределений — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [U010](#question-u010) `scope_boundary`; [R140](#result-r140) `scope_boundary`; [R141](#result-r141) `operational_requirement`; [analysis/R141_RIEMANN_CORPUS/REPORT.md](#source-analysis-r141_riemann_corpus-report-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/REVIEW.md](#source-analysis-r141_riemann_corpus-review-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md](#source-analysis-r141_riemann_corpus-review-r140_h6_table-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/review/peer_input.txt](#source-analysis-r141_riemann_corpus-review-peer_input-txt) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [U010](#question-u010) `scope_boundary` | Для двух допустимых первых шагов установлено точное множество приготовлений. | [разбор](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#preparation) |
+| [R140](#result-r140) `scope_boundary` | Все чистые и смешанные состояния удовлетворяют точной нижней границе. | [разбор](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#reachability) |
+| [R141](#result-r141) `operational_requirement` | Два разных эффекта дают опубликованные P₀ и q₁. | [разбор](../../analysis/R141_RIEMANN_CORPUS/REPORT.md#events) |
+
+**Не включены в положительные связи:**
+
+<a id="review-r141_spectral_bbn_ccc_tl_20261122"></a>
+
+### review:R141_SPECTRAL_BBN_CCC_TL_20261122
+
+От спектральных корреляций до BBN и часов CCC+TL — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md).
+
+**Входящие:** нет.
+**Исходящие:** [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `scope_boundary`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `operational_requirement`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `clock_comparison`; [HILBERT_POLYA](#external-hilbert_polya) `scope_boundary`; [LINX](#external-linx) `operational_requirement`; [PRIMAT](#external-primat) `operational_requirement`; [R141](#result-r141) `scope_boundary`; [analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md](#source-analysis-r141_riemann_corpus-bbn-averaging-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-checks-json) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md](#source-analysis-r141_riemann_corpus-bbn-report-md) `review_source_not_attestation`; [analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json](#source-analysis-r141_riemann_corpus-bbn-signal_checks-json) `review_source_not_attestation`.
+
+| Связь | Смысл и граница | Основание |
+|---|---|---|
+| [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `scope_boundary` | Одного измерения выходов и выбранных модельных параметров недостаточно для идентификации класса уровней. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#ensemble) |
+| [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `operational_requirement` | Линейный отклик по обоим D+D-каналам сверен с прямыми архивными интегрированиями. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#response) |
+| [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `clock_comparison` | Отдельное возмущение H и совместная перенормировка скоростей дают разные опыты. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#clocks) |
+| [HILBERT_POLYA](#external-hilbert_polya) `scope_boundary` | Для переноса нужны масштаб энергии, симметрия, пороги и силы связи с физическими каналами. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#genealogy) |
+| [LINX](#external-linx) `operational_requirement` | Одна реализация спектра согласованно меняет целый температурный профиль прямой и обратной скорости. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#rates) |
+| [PRIMAT](#external-primat) `operational_requirement` | Для двух каналов значения сравнили с исходными физическими моделями на пяти температурах. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#rates) |
+| [R141](#result-r141) `scope_boundary` | Математическая и ядерная линии встречаются при проверке переноса спектральных корреляций в измеряемую величину. | [разбор](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#genealogy) |
 
 **Не включены в положительные связи:**
 
@@ -3638,15 +3721,6 @@ analysis/ADD_BBN_SYMMETRY_20261115/REPORT.md — [исходная карточ�
 analysis/ADD_BBN_SYMMETRY_20261115/verify.py — [исходная карточка](../../analysis/ADD_BBN_SYMMETRY_20261115/verify.py).
 
 **Входящие:** [ADD_BBN_SYMMETRY_20261115](#review-add_bbn_symmetry_20261115) `review_source_not_attestation`.
-**Исходящие:** нет.
-
-<a id="source-analysis-add_c1_author_repro_20261116-graph_engine-py"></a>
-
-### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py
-
-analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-add_c1_author_repro_20261116-plan-json"></a>
@@ -3685,24 +3759,6 @@ analysis/ADD_C1_AUTHOR_REPRO_20261116/RESULTS.json — [исходная кар�
 **Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-add_c1_author_repro_20261116-ring_engine-py"></a>
-
-### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py
-
-analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-add_c1_author_repro_20261116-run_block1-py"></a>
-
-### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py
-
-analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-add_c1_author_repro_20261116-source_manifest-sha256"></a>
 
 ### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/SOURCE_MANIFEST.sha256
@@ -3730,6 +3786,33 @@ analysis/ADD_C1_AUTHOR_REPRO_20261116/WITNESSES.json — [исходная ка�
 **Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-add_c1_author_repro_20261116-graph_engine-py"></a>
+
+### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py
+
+analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/graph_engine.py).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_c1_author_repro_20261116-ring_engine-py"></a>
+
+### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py
+
+analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/ring_engine.py).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_c1_author_repro_20261116-run_block1-py"></a>
+
+### source:analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py
+
+analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py — [исходная карточка](../../analysis/ADD_C1_AUTHOR_REPRO_20261116/run_block1.py).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-add_c1_reproduction_status_20261117-evidence-json"></a>
 
 ### source:analysis/ADD_C1_REPRODUCTION_STATUS_20261117/EVIDENCE.json
@@ -3748,20 +3831,29 @@ analysis/ADD_C1_REPRODUCTION_STATUS_20261117/REPORT.md — [исходная к�
 **Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-add_connes_port_transport_20261120-check-py"></a>
-
-### source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py
-
-analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-add_connes_port_transport_20261120-checks-json"></a>
 
 ### source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json
 
 analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/CHECKS.json).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_connes_port_transport_20261120-report-md"></a>
+
+### source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md
+
+analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-add_connes_port_transport_20261120-check-py"></a>
+
+### source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py
+
+analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/check.py).
 
 **Входящие:** [R130](#result-r130) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -3809,15 +3901,6 @@ analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/DONORS.md — [исход�
 analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/loop_test/README.md).
 
 **Входящие:** [R132](#result-r132) `managed_evidence_source`; [R133](#result-r133) `managed_evidence_source`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `review_source_not_attestation`.
-**Исходящие:** нет.
-
-<a id="source-analysis-add_connes_port_transport_20261120-report-md"></a>
-
-### source:analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md
-
-analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md — [исходная карточка](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`; [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-add_local_edge_energy_followup_20261120-checks-json"></a>
@@ -3892,15 +3975,6 @@ analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py — [исходная кар�
 **Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-anthropic_bh_20261112-adapter-py"></a>
-
-### source:analysis/ANTHROPIC_BH_20261112/adapter.py
-
-analysis/ANTHROPIC_BH_20261112/adapter.py — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/adapter.py).
-
-**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
-**Исходящие:** нет.
-
 <a id="source-analysis-anthropic_bh_20261112-checks-json"></a>
 
 ### source:analysis/ANTHROPIC_BH_20261112/CHECKS.json
@@ -3928,6 +4002,15 @@ analysis/ANTHROPIC_BH_20261112/REPORT.md — [исходная карточка]
 **Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
 
+<a id="source-analysis-anthropic_bh_20261112-adapter-py"></a>
+
+### source:analysis/ANTHROPIC_BH_20261112/adapter.py
+
+analysis/ANTHROPIC_BH_20261112/adapter.py — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/adapter.py).
+
+**Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
 <a id="source-analysis-anthropic_bh_20261112-sources-anthropic_bootstrap-json"></a>
 
 ### source:analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json
@@ -3944,15 +4027,6 @@ analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_BOOTSTRAP.json — [исход�
 analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json — [исходная карточка](../../analysis/ANTHROPIC_BH_20261112/sources/ANTHROPIC_HP.json).
 
 **Входящие:** [ANTHROPIC_BH_20261112](#review-anthropic_bh_20261112) `review_source_not_attestation`.
-**Исходящие:** нет.
-
-<a id="source-analysis-ccc_bbn_drift_20261113-calculate-py"></a>
-
-### source:analysis/CCC_BBN_DRIFT_20261113/calculate.py
-
-analysis/CCC_BBN_DRIFT_20261113/calculate.py — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/calculate.py).
-
-**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-ccc_bbn_drift_20261113-plan-json"></a>
@@ -3996,6 +4070,15 @@ analysis/CCC_BBN_DRIFT_20261113/RESULTS.json — [исходная карточ�
 ### source:analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json
 
 analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/VALIDATION.json).
+
+**Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-ccc_bbn_drift_20261113-calculate-py"></a>
+
+### source:analysis/CCC_BBN_DRIFT_20261113/calculate.py
+
+analysis/CCC_BBN_DRIFT_20261113/calculate.py — [исходная карточка](../../analysis/CCC_BBN_DRIFT_20261113/calculate.py).
 
 **Входящие:** [CCC_TL_20261112](#review-ccc_tl_20261112) `review_source_not_attestation`.
 **Исходящие:** нет.
@@ -4090,15 +4173,6 @@ analysis/CORPUS_RECONCILIATION_20261115/WORK_LOG.md — [исходная кар
 **Входящие:** [CORPUS_RECONCILIATION_20261115](#review-corpus_reconciliation_20261115) `review_source_not_attestation`.
 **Исходящие:** нет.
 
-<a id="source-analysis-g3_contact_capacity_20261111-compute-py"></a>
-
-### source:analysis/G3_CONTACT_CAPACITY_20261111/compute.py
-
-analysis/G3_CONTACT_CAPACITY_20261111/compute.py — [исходная карточка](../../analysis/G3_CONTACT_CAPACITY_20261111/compute.py).
-
-**Входящие:** [R129](#result-r129) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-g3_contact_capacity_20261111-report-md"></a>
 
 ### source:analysis/G3_CONTACT_CAPACITY_20261111/REPORT.md
@@ -4122,6 +4196,15 @@ analysis/G3_CONTACT_CAPACITY_20261111/RESULTS.json — [исходная кар�
 ### source:analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json
 
 analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json — [исходная карточка](../../analysis/G3_CONTACT_CAPACITY_20261111/SOURCE_MANIFEST.json).
+
+**Входящие:** [R129](#result-r129) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-g3_contact_capacity_20261111-compute-py"></a>
+
+### source:analysis/G3_CONTACT_CAPACITY_20261111/compute.py
+
+analysis/G3_CONTACT_CAPACITY_20261111/compute.py — [исходная карточка](../../analysis/G3_CONTACT_CAPACITY_20261111/compute.py).
 
 **Входящие:** [R129](#result-r129) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4438,7 +4521,7 @@ analysis/NEUTRINO_GW_ARCHITECTURE_20261118/REPORT.md — [исходная ка�
 
 analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json — [исходная карточка](../../analysis/NEUTRINO_GW_ARCHITECTURE_20261118/SOURCES.json).
 
-**Входящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `source_catalog_not_execution_evidence`; [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `source_catalog_not_execution_evidence`; [ARCA_FLUX_RESPONSE](#component-arca_flux_response) `source_catalog_not_execution_evidence`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `source_catalog_not_execution_evidence`; [ATLAS_HNL_DISPLACED](#component-atlas_hnl_displaced) `source_catalog_not_execution_evidence`; [ATLAS_HNL_PROMPT](#component-atlas_hnl_prompt) `source_catalog_not_execution_evidence`; [ATLAS_HNL_TOP](#component-atlas_hnl_top) `source_catalog_not_execution_evidence`; [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `source_catalog_not_execution_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `source_catalog_not_execution_evidence`; [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `source_catalog_not_execution_evidence`; [CERN_NTOF_RATES](#component-cern_ntof_rates) `source_catalog_not_execution_evidence`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `source_catalog_not_execution_evidence`; [CMS_HNL_DISPLACED](#component-cms_hnl_displaced) `source_catalog_not_execution_evidence`; [CMS_HNL_TOP](#component-cms_hnl_top) `source_catalog_not_execution_evidence`; [COPILOT_REPRODUCTION](#component-copilot_reproduction) `source_catalog_not_execution_evidence`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `source_catalog_not_execution_evidence`; [FASER_ELECTRONIC_2025](#component-faser_electronic_2025) `source_catalog_not_execution_evidence`; [FASER_ELECTRONIC_2026](#component-faser_electronic_2026) `source_catalog_not_execution_evidence`; [FASER_EMULSION_2026](#component-faser_emulsion_2026) `source_catalog_not_execution_evidence`; [FIRAS_CONSTRAINTS](#component-firas_constraints) `source_catalog_not_execution_evidence`; [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `source_catalog_not_execution_evidence`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `source_catalog_not_execution_evidence`; [GW_SOURCE_MODEL](#component-gw_source_model) `source_catalog_not_execution_evidence`; [HNL_COSMOLOGY_MAPPING](#component-hnl_cosmology_mapping) `source_catalog_not_execution_evidence`; [JOINT_INFERENCE](#component-joint_inference) `source_catalog_not_execution_evidence`; [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `source_catalog_not_execution_evidence`; [KM3NET_SUPERNOVA](#component-km3net_supernova) `source_catalog_not_execution_evidence`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `source_catalog_not_execution_evidence`; [LHC_FORWARD_NEUTRINO_DATA](#component-lhc_forward_neutrino_data) `source_catalog_not_execution_evidence`; [LHCB_HNL_B_DECAYS](#component-lhcb_hnl_b_decays) `source_catalog_not_execution_evidence`; [LVK_CONSTRAINTS](#component-lvk_constraints) `source_catalog_not_execution_evidence`; [MULTIMESSENGER_LVK_ICECUBE](#component-multimessenger_lvk_icecube) `source_catalog_not_execution_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `source_catalog_not_execution_evidence`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `source_catalog_not_execution_evidence`; [ORCA_DECAY](#component-orca_decay) `source_catalog_not_execution_evidence`; [ORCA_DECOHERENCE](#component-orca_decoherence) `source_catalog_not_execution_evidence`; [ORCA_NSI](#component-orca_nsi) `source_catalog_not_execution_evidence`; [ORCA_STERILE](#component-orca_sterile) `source_catalog_not_execution_evidence`; [PHOTON_THERMALIZATION](#component-photon_thermalization) `source_catalog_not_execution_evidence`; [PTA_CONSTRAINTS](#component-pta_constraints) `source_catalog_not_execution_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `source_catalog_not_execution_evidence`; [SND_CC_2026](#component-snd_cc_2026) `source_catalog_not_execution_evidence`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `source_catalog_not_execution_evidence`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `source_catalog_not_execution_evidence`; [X_MICROPHYSICS](#component-x_microphysics) `source_catalog_not_execution_evidence`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
+**Входящие:** [ARCA_DM_INTERPRETATION](#component-arca_dm_interpretation) `source_catalog_not_execution_evidence`; [ARCA_EVENT_CONSTRAINTS](#component-arca_event_constraints) `source_catalog_not_execution_evidence`; [ARCA_FLUX_RESPONSE](#component-arca_flux_response) `source_catalog_not_execution_evidence`; [ASTROPHYSICAL_SOURCE_MODEL](#component-astrophysical_source_model) `source_catalog_not_execution_evidence`; [ATLAS_HNL_DISPLACED](#component-atlas_hnl_displaced) `source_catalog_not_execution_evidence`; [ATLAS_HNL_PROMPT](#component-atlas_hnl_prompt) `source_catalog_not_execution_evidence`; [ATLAS_HNL_TOP](#component-atlas_hnl_top) `source_catalog_not_execution_evidence`; [BBN_CMB_OBSERVATIONS](#component-bbn_cmb_observations) `source_catalog_not_execution_evidence`; [BBN_RESPONSE_BRIDGE](#component-bbn_response_bridge) `source_catalog_not_execution_evidence`; [BH1_THERMODYNAMICS](#component-bh1_thermodynamics) `source_catalog_not_execution_evidence`; [CERN_NTOF_RATES](#component-cern_ntof_rates) `source_catalog_not_execution_evidence`; [CERN_PARTICLE_CONSTRAINTS](#component-cern_particle_constraints) `source_catalog_not_execution_evidence`; [CMS_HNL_DISPLACED](#component-cms_hnl_displaced) `source_catalog_not_execution_evidence`; [CMS_HNL_TOP](#component-cms_hnl_top) `source_catalog_not_execution_evidence`; [COPILOT_REPRODUCTION](#component-copilot_reproduction) `source_catalog_not_execution_evidence`; [COSMOLOGICAL_BACKGROUND](#component-cosmological_background) `source_catalog_not_execution_evidence`; [FASER_ELECTRONIC_2025](#component-faser_electronic_2025) `source_catalog_not_execution_evidence`; [FASER_ELECTRONIC_2026](#component-faser_electronic_2026) `source_catalog_not_execution_evidence`; [FASER_EMULSION_2026](#component-faser_emulsion_2026) `source_catalog_not_execution_evidence`; [FIRAS_CONSTRAINTS](#component-firas_constraints) `source_catalog_not_execution_evidence`; [GW_BBN_ENERGY_CONSISTENCY](#component-gw_bbn_energy_consistency) `source_catalog_not_execution_evidence`; [GW_RESPONSE_BRIDGE](#component-gw_response_bridge) `source_catalog_not_execution_evidence`; [GW_SOURCE_MODEL](#component-gw_source_model) `source_catalog_not_execution_evidence`; [HNL_COSMOLOGY_MAPPING](#component-hnl_cosmology_mapping) `source_catalog_not_execution_evidence`; [JOINT_INFERENCE](#component-joint_inference) `source_catalog_not_execution_evidence`; [KM3NET_NEUTRINO_CONSTRAINTS](#component-km3net_neutrino_constraints) `source_catalog_not_execution_evidence`; [KM3NET_SUPERNOVA](#component-km3net_supernova) `source_catalog_not_execution_evidence`; [LATE_COSMOLOGY_RESPONSE](#component-late_cosmology_response) `source_catalog_not_execution_evidence`; [LHCB_HNL_B_DECAYS](#component-lhcb_hnl_b_decays) `source_catalog_not_execution_evidence`; [LHC_FORWARD_NEUTRINO_DATA](#component-lhc_forward_neutrino_data) `source_catalog_not_execution_evidence`; [LVK_CONSTRAINTS](#component-lvk_constraints) `source_catalog_not_execution_evidence`; [MULTIMESSENGER_LVK_ICECUBE](#component-multimessenger_lvk_icecube) `source_catalog_not_execution_evidence`; [NEUTRINO_KINETIC_BRIDGE](#component-neutrino_kinetic_bridge) `source_catalog_not_execution_evidence`; [NUCLEAR_RATE_INPUTS](#component-nuclear_rate_inputs) `source_catalog_not_execution_evidence`; [ORCA_DECAY](#component-orca_decay) `source_catalog_not_execution_evidence`; [ORCA_DECOHERENCE](#component-orca_decoherence) `source_catalog_not_execution_evidence`; [ORCA_NSI](#component-orca_nsi) `source_catalog_not_execution_evidence`; [ORCA_STERILE](#component-orca_sterile) `source_catalog_not_execution_evidence`; [PHOTON_THERMALIZATION](#component-photon_thermalization) `source_catalog_not_execution_evidence`; [PTA_CONSTRAINTS](#component-pta_constraints) `source_catalog_not_execution_evidence`; [R130_PHYSICAL_EMBEDDING](#component-r130_physical_embedding) `source_catalog_not_execution_evidence`; [SND_CC_2026](#component-snd_cc_2026) `source_catalog_not_execution_evidence`; [TENSOR_NEUTRINO_RESPONSE](#component-tensor_neutrino_response) `source_catalog_not_execution_evidence`; [WEAK_RATE_BRIDGE](#component-weak_rate_bridge) `source_catalog_not_execution_evidence`; [X_MICROPHYSICS](#component-x_microphysics) `source_catalog_not_execution_evidence`; [NEUTRINO_GW_ARCHITECTURE_20261118](#review-neutrino_gw_architecture_20261118) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-neutrino_gw_architecture_20261118-validation_plan-json"></a>
@@ -4459,15 +4542,6 @@ analysis/NOW_PROJECT_INTEGRATION_20261119/EVIDENCE.json — [исходная к
 **Входящие:** [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `review_source_not_attestation`.
 **Исходящие:** нет.
 
-<a id="source-analysis-now_project_integration_20261119-evidence-c2_s3_checks-json"></a>
-
-### source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json
-
-analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json — [исходная карточка](../../analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json).
-
-**Входящие:** [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `review_source_not_attestation`.
-**Исходящие:** нет.
-
 <a id="source-analysis-now_project_integration_20261119-report-md"></a>
 
 ### source:analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md
@@ -4475,6 +4549,15 @@ analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json — [исх
 analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md — [исходная карточка](../../analysis/NOW_PROJECT_INTEGRATION_20261119/REPORT.md).
 
 **Входящие:** [ADD_SPECTRAL_SESSION_20261120](#review-add_spectral_session_20261120) `review_source_not_attestation`; [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-now_project_integration_20261119-evidence-c2_s3_checks-json"></a>
+
+### source:analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json
+
+analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json — [исходная карточка](../../analysis/NOW_PROJECT_INTEGRATION_20261119/evidence/C2_S3_CHECKS.json).
+
+**Входящие:** [NOW_PROJECT_INTEGRATION_20261119](#review-now_project_integration_20261119) `review_source_not_attestation`.
 **Исходящие:** нет.
 
 <a id="source-analysis-now_project_integration_20261119-session_20261120-report-md"></a>
@@ -4513,6 +4596,15 @@ analysis/PRIMAT_LINX_BBN_BRIDGE_20261117/PAIRED_RUN_20261120.md — [исход�
 **Входящие:** [LINX](#external-linx) `external_metadata_not_execution_evidence`; [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r130_bh1_bbn_connection_20261117-architecture-json"></a>
+
+### source:analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json
+
+analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json — [исходная карточка](../../analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json).
+
+**Входящие:** [R130](#result-r130) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r130_bh1_bbn_connection_20261117-architecture_checks-json"></a>
 
 ### source:analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json
@@ -4527,15 +4619,6 @@ analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_CHECKS.json — [исхо
 ### source:analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md
 
 analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md — [исходная карточка](../../analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE_REVIEW.md).
-
-**Входящие:** [R130](#result-r130) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r130_bh1_bbn_connection_20261117-architecture-json"></a>
-
-### source:analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json
-
-analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json — [исходная карточка](../../analysis/R130_BH1_BBN_CONNECTION_20261117/ARCHITECTURE.json).
 
 **Входящие:** [R130](#result-r130) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4576,6 +4659,15 @@ analysis/R131_CONNES_ADD_20261119/CHECKS.json — [исходная карточ
 **Входящие:** [R131](#result-r131) `managed_evidence_source`.
 **Исходящие:** нет.
 
+<a id="source-analysis-r131_connes_add_20261119-report-md"></a>
+
+### source:analysis/R131_CONNES_ADD_20261119/REPORT.md
+
+analysis/R131_CONNES_ADD_20261119/REPORT.md — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/REPORT.md).
+
+**Входящие:** [R131](#result-r131) `managed_evidence_source`.
+**Исходящие:** нет.
+
 <a id="source-analysis-r131_connes_add_20261119-neighbor_review-checks-json"></a>
 
 ### source:analysis/R131_CONNES_ADD_20261119/neighbor_review/CHECKS.json
@@ -4612,15 +4704,6 @@ analysis/R131_CONNES_ADD_20261119/neighbor_review/verify.py — [исходна�
 **Входящие:** [R131](#result-r131) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r131_connes_add_20261119-report-md"></a>
-
-### source:analysis/R131_CONNES_ADD_20261119/REPORT.md
-
-analysis/R131_CONNES_ADD_20261119/REPORT.md — [исходная карточка](../../analysis/R131_CONNES_ADD_20261119/REPORT.md).
-
-**Входящие:** [R131](#result-r131) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r131_connes_add_20261119-verify-py"></a>
 
 ### source:analysis/R131_CONNES_ADD_20261119/verify.py
@@ -4639,11 +4722,11 @@ analysis/R132_ADD_YM_CCM_20261119/CHECKS.json — [исходная карточ
 **Входящие:** [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py"></a>
+<a id="source-analysis-r132_add_ym_ccm_20261119-report-md"></a>
 
-### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py
+### source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md
 
-analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py).
+analysis/R132_ADD_YM_CCM_20261119/REPORT.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/REPORT.md).
 
 **Входящие:** [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4655,6 +4738,24 @@ analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py — [исходная
 analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/DUALITY_AND_PREDICTION.md).
 
 **Входящие:** [R131](#result-r131) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md).
+
+**Входящие:** [R132](#result-r132) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-check-py"></a>
+
+### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py
+
+analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/check.py).
+
+**Входящие:** [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-duality_prediction-json"></a>
@@ -4675,24 +4776,6 @@ analysis/R132_ADD_YM_CCM_20261119/neighbor_review/duality_prediction.py — [и�
 **Входящие:** [R131](#result-r131) `managed_evidence_source`; [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r132_add_ym_ccm_20261119-neighbor_review-readme-md"></a>
-
-### source:analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md
-
-analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/neighbor_review/README.md).
-
-**Входящие:** [R132](#result-r132) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r132_add_ym_ccm_20261119-report-md"></a>
-
-### source:analysis/R132_ADD_YM_CCM_20261119/REPORT.md
-
-analysis/R132_ADD_YM_CCM_20261119/REPORT.md — [исходная карточка](../../analysis/R132_ADD_YM_CCM_20261119/REPORT.md).
-
-**Входящие:** [R132](#result-r132) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r132_add_ym_ccm_20261119-verify-py"></a>
 
 ### source:analysis/R132_ADD_YM_CCM_20261119/verify.py
@@ -4702,20 +4785,38 @@ analysis/R132_ADD_YM_CCM_20261119/verify.py — [исходная карточк
 **Входящие:** [R132](#result-r132) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r133_loop_connes_20261120-check_controls-py"></a>
-
-### source:analysis/R133_LOOP_CONNES_20261120/check_controls.py
-
-analysis/R133_LOOP_CONNES_20261120/check_controls.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py).
-
-**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r133_loop_connes_20261120-checks-json"></a>
 
 ### source:analysis/R133_LOOP_CONNES_20261120/CHECKS.json
 
 analysis/R133_LOOP_CONNES_20261120/CHECKS.json — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/CHECKS.json).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-neighbor_original-txt"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt
+
+analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-report-md"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/REPORT.md
+
+analysis/R133_LOOP_CONNES_20261120/REPORT.md — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md).
+
+**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r133_loop_connes_20261120-check_controls-py"></a>
+
+### source:analysis/R133_LOOP_CONNES_20261120/check_controls.py
+
+analysis/R133_LOOP_CONNES_20261120/check_controls.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/check_controls.py).
 
 **Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
 **Исходящие:** нет.
@@ -4756,15 +4857,6 @@ analysis/R133_LOOP_CONNES_20261120/entropy_block_review/verify.py — [исхо�
 **Входящие:** [R133](#result-r133) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r133_loop_connes_20261120-frame_review-check_review-py"></a>
-
-### source:analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py
-
-analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py).
-
-**Входящие:** [R133](#result-r133) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r133_loop_connes_20261120-frame_review-checks-json"></a>
 
 ### source:analysis/R133_LOOP_CONNES_20261120/frame_review/CHECKS.json
@@ -4792,22 +4884,13 @@ analysis/R133_LOOP_CONNES_20261120/frame_review/REPORT.md — [исходная 
 **Входящие:** [R133](#result-r133) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r133_loop_connes_20261120-neighbor_original-txt"></a>
+<a id="source-analysis-r133_loop_connes_20261120-frame_review-check_review-py"></a>
 
-### source:analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt
+### source:analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py
 
-analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/NEIGHBOR_ORIGINAL.txt).
+analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/frame_review/check_review.py).
 
-**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r133_loop_connes_20261120-report-md"></a>
-
-### source:analysis/R133_LOOP_CONNES_20261120/REPORT.md
-
-analysis/R133_LOOP_CONNES_20261120/REPORT.md — [исходная карточка](../../analysis/R133_LOOP_CONNES_20261120/REPORT.md).
-
-**Входящие:** [R133](#result-r133) `managed_evidence_source`; [R133_LOOP_NEIGHBOR_20261120](#review-r133_loop_neighbor_20261120) `review_source_not_attestation`.
+**Входящие:** [R133](#result-r133) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r134_strings_connes_add_20261120-checks-json"></a>
@@ -4819,20 +4902,20 @@ analysis/R134_STRINGS_CONNES_ADD_20261120/CHECKS.json — [исходная ка
 **Входящие:** [R134](#result-r134) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r134_strings_connes_add_20261120-five_point_residues-csv"></a>
-
-### source:analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv
-
-analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv — [исходная карточка](../../analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv).
-
-**Входящие:** [R134](#result-r134) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r134_strings_connes_add_20261120-report-md"></a>
 
 ### source:analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md
 
 analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md — [исходная карточка](../../analysis/R134_STRINGS_CONNES_ADD_20261120/REPORT.md).
+
+**Входящие:** [R134](#result-r134) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r134_strings_connes_add_20261120-five_point_residues-csv"></a>
+
+### source:analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv
+
+analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv — [исходная карточка](../../analysis/R134_STRINGS_CONNES_ADD_20261120/five_point_residues.csv).
 
 **Входящие:** [R134](#result-r134) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -4882,42 +4965,6 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная кар�
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md"></a>
-
-### source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md
-
-analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md).
-
-**Входящие:** [R136](#result-r136) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r136_shirogane_calibration-audit_invariant_d-py"></a>
-
-### source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py
-
-analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py).
-
-**Входящие:** [R136](#result-r136) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r136_shirogane_calibration-audit_method_volume-py"></a>
-
-### source:analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py
-
-analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py).
-
-**Входящие:** [R136](#result-r136) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r136_shirogane_calibration-audit_statistical_budget-py"></a>
-
-### source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py
-
-analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py).
-
-**Входящие:** [R136](#result-r136) `managed_evidence_source`.
-**Исходящие:** нет.
-
 <a id="source-analysis-r136_shirogane_calibration-checks-json"></a>
 
 ### source:analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json
@@ -4950,15 +4997,6 @@ analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md — [исходная к
 ### source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json
 
 analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json).
-
-**Входящие:** [R136](#result-r136) `managed_evidence_source`.
-**Исходящие:** нет.
-
-<a id="source-analysis-r136_shirogane_calibration-extract-py"></a>
-
-### source:analysis/R136_SHIROGANE_CALIBRATION/extract.py
-
-analysis/R136_SHIROGANE_CALIBRATION/extract.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py).
 
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -5013,6 +5051,51 @@ analysis/R136_SHIROGANE_CALIBRATION/REPORT.md — [исходная карточ
 ### source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json
 
 analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md
+
+analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_invariant_d-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_method_volume-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_statistical_budget-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-extract-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/extract.py
+
+analysis/R136_SHIROGANE_CALIBRATION/extract.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py).
 
 **Входящие:** [R136](#result-r136) `managed_evidence_source`.
 **Исходящие:** нет.
@@ -5098,13 +5181,373 @@ analysis/R140_HAAR_SORKIN/verify.py — [исходная карточка](../.
 **Входящие:** [R140](#result-r140) `managed_evidence_source`.
 **Исходящие:** нет.
 
-<a id="source-infra-external-contracts-primat-json"></a>
+<a id="source-analysis-r141_riemann_corpus-checks-json"></a>
 
-### source:infra/external/contracts/PRIMAT.json
+### source:analysis/R141_RIEMANN_CORPUS/CHECKS.json
 
-infra/external/contracts/PRIMAT.json — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
+analysis/R141_RIEMANN_CORPUS/CHECKS.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/CHECKS.json).
 
-**Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-hilbert_polya-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md
+
+analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/HILBERT_POLYA.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-report-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/REPORT.md
+
+analysis/R141_RIEMANN_CORPUS/REPORT.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/REPORT.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-review-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/REVIEW.md
+
+analysis/R141_RIEMANN_CORPUS/REVIEW.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/REVIEW.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-schedules-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/SCHEDULES.json
+
+analysis/R141_RIEMANN_CORPUS/SCHEDULES.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/SCHEDULES.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-averaging-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md
+
+analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/AVERAGING.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-checks-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json
+
+analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-report-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md
+
+analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-signal_checks-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json
+
+analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/SIGNAL_CHECKS.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_SPECTRAL_BBN_CCC_TL_20261122](#review-r141_spectral_bbn_ccc_tl_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-averaging-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/averaging.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/averaging.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/averaging.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-curvature-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/curvature.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/curvature.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/curvature.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-finite_controls-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-local_replay-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/local_replay.json
+
+analysis/R141_RIEMANN_CORPUS/bbn/local_replay.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/local_replay.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-replay-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/replay.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/replay.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/replay.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-resonance-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/resonance.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/resonance.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/resonance.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-response-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/response.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/response.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/response.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-bbn-signal_check-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py
+
+analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/bbn/signal_check.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-design-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/DESIGN.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-histories-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/HISTORIES.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-report-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/REPORT.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-experiments-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/experiments.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-followup-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/followup.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-followup-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/followup.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-lean_sources-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/lean_sources.json).
+
+**Входящие:** [ALPOGE_RH](#external-alpoge_rh) `external_metadata_not_execution_evidence`; [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-donor_replay-results-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/donor_replay/results.json
+
+analysis/R141_RIEMANN_CORPUS/donor_replay/results.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/donor_replay/results.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-reproduce-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/reproduce.py
+
+analysis/R141_RIEMANN_CORPUS/reproduce.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/reproduce.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-review-r140_h6_table-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md
+
+analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md).
+
+**Входящие:** [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-review-evidence-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/review/evidence.json
+
+analysis/R141_RIEMANN_CORPUS/review/evidence.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/review/evidence.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-review-peer_input-txt"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/review/peer_input.txt
+
+analysis/R141_RIEMANN_CORPUS/review/peer_input.txt — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/review/peer_input.txt).
+
+**Входящие:** [R141_REACHABILITY_20261122](#review-r141_reachability_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-arithmetic-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md
+
+analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/ARITHMETIC.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`; [R141_HILBERT_POLYA_CONNES_20261122](#review-r141_hilbert_polya_connes_20261122) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-fibonacci-md"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md
+
+analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/FIBONACCI.md).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-hilbert_polya-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/HILBERT_POLYA.json
+
+analysis/R141_RIEMANN_CORPUS/spectral/HILBERT_POLYA.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/HILBERT_POLYA.json).
+
+**Входящие:** [HILBERT_POLYA](#external-hilbert_polya) `external_metadata_not_execution_evidence`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-arithmetic-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json
+
+analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-arithmetic-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py
+
+analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/arithmetic.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-corpus-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/corpus.json
+
+analysis/R141_RIEMANN_CORPUS/spectral/corpus.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/corpus.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-corpus-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/corpus.py
+
+analysis/R141_RIEMANN_CORPUS/spectral/corpus.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/corpus.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-fibonacci-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.json
+
+analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-fibonacci-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.py
+
+analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-fibonacci_review-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/fibonacci_review.py
+
+analysis/R141_RIEMANN_CORPUS/spectral/fibonacci_review.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/fibonacci_review.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-run_partition_readout-json"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.json
+
+analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.json — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.json).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r141_riemann_corpus-spectral-run_partition_readout-py"></a>
+
+### source:analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.py
+
+analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.py — [исходная карточка](../../analysis/R141_RIEMANN_CORPUS/spectral/run_partition_readout.py).
+
+**Входящие:** [R141](#result-r141) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-readme-md"></a>
@@ -5114,6 +5557,15 @@ infra/external/contracts/PRIMAT.json — [исходная карточка](../
 infra/external/README.md — [исходная карточка](../../infra/external/README.md).
 
 **Входящие:** [EXTERNAL_20261112](#review-external_20261112) `review_source_not_attestation`.
+**Исходящие:** нет.
+
+<a id="source-infra-external-contracts-primat-json"></a>
+
+### source:infra/external/contracts/PRIMAT.json
+
+infra/external/contracts/PRIMAT.json — [исходная карточка](../../infra/external/contracts/PRIMAT.json).
+
+**Входящие:** [PRIMAT](#external-primat) `external_metadata_not_execution_evidence`.
 **Исходящие:** нет.
 
 <a id="source-infra-external-sources-primat-json"></a>

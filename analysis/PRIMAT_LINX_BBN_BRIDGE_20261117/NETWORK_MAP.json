@@ -192,8 +192,24 @@
     "status": "NAME_AND_STOICHIOMETRY_MAP_FROM_PINNED_NETWORK_FILES"
   },
   "rates": {
-    "status": "NUMERICAL_RATE_ARRAY_IDENTITY_NOT_YET_CHECKED",
-    "warning": "Matching reaction topology does not establish identical rate arrays, units, interpolation, uncertainty model, or reverse-rate implementation."
+    "status": "TWO_NATIVE_RATE_PAIRS_COMPARED_AT_FIVE_T9",
+    "warning": "Matching reaction topology does not establish identical rate arrays, units, interpolation, uncertainty model, or reverse-rate implementation.",
+    "r141_audit": {
+      "native_table_provenance_checked": 12,
+      "quantitative_channels": [
+        "dpHe3g",
+        "He3dap"
+      ],
+      "T9": [
+        0.2,
+        0.3,
+        0.5,
+        0.8,
+        1.0
+      ],
+      "evidence": "analysis/R141_RIEMANN_CORPUS/bbn/CHECKS.json",
+      "interpretation": "analysis/R141_RIEMANN_CORPUS/bbn/REPORT.md#rates"
+    }
   },
   "neutrino_weak_sector": {
     "status": "NOT_MAPPED",

@@ -1,0 +1,696 @@
+{
+  "trajectory_commit": "d503ee0f1f89c99c8560803dc46277d544ef15ba",
+  "donor_commits": {
+    "primat": "6f7e5680614fb119d65a6c9c65a292240b27c61e",
+    "linx": "bfba07c77a5fcba1cc772d42f2d9e9be8a542df8"
+  },
+  "atlas_commit": "c658d7c5e007cdf2862f177b922c03362fd8603f",
+  "Mossa_S_factor": {
+    "coefficients_ascending": [
+      0.2121,
+      0.005973,
+      5.449e-06,
+      -1.656e-09
+    ],
+    "energy_unit": "keV",
+    "S_unit": "eV barn",
+    "valid_keV": [
+      2,
+      2000
+    ],
+    "measured_keV": [
+      32,
+      263
+    ],
+    "source": "https://doi.org/10.1038/s41586-020-2878-4"
+  },
+  "example_fraction": 0.1,
+  "observational_sigma": [
+    2.9e-07,
+    0.003
+  ],
+  "example_sd_over_observational_sigma": {
+    "5": {
+      "GOE": [
+        0.053103253719615426,
+        2.131605985452071e-05
+      ],
+      "GUE": [
+        0.03784391493913949,
+        1.5142295864351056e-05
+      ],
+      "Poisson": [
+        0.42258692989103636,
+        0.00021680111083792215
+      ]
+    },
+    "10": {
+      "GOE": [
+        0.10540807456816838,
+        4.244004692860494e-05
+      ],
+      "GUE": [
+        0.07568782886565957,
+        3.0284591722991545e-05
+      ],
+      "Poisson": [
+        0.5976281675335119,
+        0.00030660307128454214
+      ]
+    },
+    "20": {
+      "GOE": [
+        0.207790936935089,
+        8.413694533203082e-05
+      ],
+      "GUE": [
+        0.15137538118820623,
+        6.056918113908557e-05
+      ],
+      "Poisson": [
+        0.8451738597820727,
+        0.0004336022216758443
+      ]
+    }
+  },
+  "T9": [
+    0.2,
+    0.3,
+    0.5,
+    0.8,
+    1.0
+  ],
+  "table_audit": {
+    "npdg": {
+      "references": [
+        [
+          "n + p > d + g   [n_p__d_g]   ref=Ando et al. 2006",
+          "detailed balance: alpha=4.71614e+09 beta=1.5 gamma=-25.815  Q=2.22457",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Ando et al. PRC 74 (2006) 025809 A. Coc 12/09/06 -> 20/07/07",
+          "arXiv:nucl-th/0511074"
+        ]
+      ],
+      "table_blobs": [
+        "d2329d4500be24cb21e5320e82b3ce3228c282ac",
+        "2f45dc2cbd52ebd30f13d05676f212a0c1d6971e"
+      ]
+    },
+    "dpHe3g": {
+      "references": [
+        [
+          "d + p > He3 + g   [d_p__He3_g]   ref=Moscoso et al. 2021",
+          "detailed balance: alpha=1.6349e+10 beta=1.5 gamma=-63.7518  Q=5.493",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Moscoso et al. ApJ  923 (2021) 49 Table 4 for T9=<4",
+          "arXiv:2109.00049",
+          "Coc et al. PRD 92 (2015) 123526 for T9 > 4",
+          "arXiv:1511.03843"
+        ]
+      ],
+      "table_blobs": [
+        "9d14aefeb301c1ba0a036c4cce5cc3e241638558",
+        "55f92299e196d14a293541cfde8654e2a6c0b72e"
+      ],
+      "rates": [
+        [
+          25.66031293350717,
+          54.670508681294805,
+          129.00020994339053,
+          264.2001730642004,
+          364.000909563693
+        ],
+        [
+          25.66,
+          54.67,
+          129.0,
+          264.2,
+          364.0
+        ]
+      ],
+      "uncertainty_factors": [
+        [
+          1.022,
+          1.021001019986965,
+          1.0210004048658226,
+          1.022,
+          1.0220007473704713
+        ],
+        [
+          1.022,
+          1.021,
+          1.021,
+          1.022,
+          1.022
+        ]
+      ]
+    },
+    "ddHe3n": {
+      "references": [
+        [
+          "d + d > He3 + n   [d_d__He3_n]   ref=G\u00f3mez et al. 2017",
+          "detailed balance: alpha=1.73183 beta=0 gamma=-37.9341  Q=3.2689",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "G\u00f3mez I\u00f1esta et al. Astrophys. J. 849 (2017) 2, 134",
+          "arXiv:1710.01647"
+        ]
+      ],
+      "table_blobs": [
+        "534ed4de314297e97a03a8922d5ec3a074b55aa6",
+        "7a8f384a01d0e71d2b30e24d85f3cc6ba33ba83e"
+      ]
+    },
+    "ddtp": {
+      "references": [
+        [
+          "d + d > t + p   [d_d__t_p]   ref=G\u00f3mez et al. 2017",
+          "detailed balance: alpha=1.73492 beta=0 gamma=-46.7971  Q=4.03266",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "G\u00f3mez I\u00f1esta et al. Astrophys. J. 849 (2017) 2, 134",
+          "arXiv:1710.01647"
+        ]
+      ],
+      "table_blobs": [
+        "d3273f61e60513867c4d87abc198d28430d97a21",
+        "565fb4ef4c592b256f3ad93a3285bd1eedd49d69"
+      ]
+    },
+    "tpag": {
+      "references": [
+        [
+          "t + p > a + g   [t_p__a_g]   ref=Serpico et al. 2004",
+          "detailed balance: alpha=2.61058e+10 beta=1.5 gamma=-229.93  Q=19.8139",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Serpico et al. JCAP 12 (2004) 010",
+          "arXiv:astro-ph/0408076"
+        ]
+      ],
+      "table_blobs": [
+        "9a4ce4475387e255bf0e9bf8dd4d4fd0e64520e5",
+        "e27e5955b7bc3749f5cec4ae85ef5cfa03b19b20"
+      ]
+    },
+    "tdan": {
+      "references": [
+        [
+          "t + d > a + n   [t_d__a_n]   ref=de Souza et al. 2019",
+          "detailed balance: alpha=5.5369 beta=0 gamma=-204.124  Q=17.589",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "de Souza, Reece Boston, Coc, and Iliadis, PRC C 99, 014619 (2019)",
+          "arXiv:1901.04857"
+        ]
+      ],
+      "table_blobs": [
+        "a19047e53d042d12acb58ff260e2e3bb112b57d6",
+        "5894c0f2d324d7b1e2c4eb79662dc5b509535970"
+      ]
+    },
+    "taLi7g": {
+      "references": [
+        [
+          "t + a > Li7 + g   [t_a__Li7_g]   ref=Descouvemont et al. 2004",
+          "detailed balance: alpha=1.1133e+10 beta=1.5 gamma=-28.6355  Q=2.46762",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Descouvemont et al., Atomic Data and Nuclear Data Tables 88 (2004), 203",
+          "arXiv:astro-ph/0407101"
+        ]
+      ],
+      "table_blobs": [
+        "5280aebcb8af4313a12e1a6098f6eec1a649de11",
+        "23d046ebabe14b6dd46fdb6fd0bf1dac55535efb"
+      ]
+    },
+    "He3ntp": {
+      "references": [
+        [
+          "He3 + n > t + p   [He3_n__t_p]   ref=Descouvemont et al. 2004",
+          "detailed balance: alpha=1.00178 beta=0 gamma=-8.863  Q=0.763754",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Descouvemont et al., Atomic Data and Nuclear Data Tables 88 (2004), 203",
+          "arXiv:astro-ph/0407101"
+        ]
+      ],
+      "table_blobs": [
+        "407aec4b05eee8d2868f8721101c6afc345ef4ea",
+        "1e9f57e10eaa5d2519dbeaf52f360655fa78541e"
+      ]
+    },
+    "He3dap": {
+      "references": [
+        [
+          "He3 + d > a + p   [He3_d__a_p]   ref=de Souza et al. 2019",
+          "detailed balance: alpha=5.5438 beta=0 gamma=-212.987  Q=18.35",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "de Souza et al., ApJ  872 (2019) 75",
+          "arXiv:1809.06966"
+        ]
+      ],
+      "table_blobs": [
+        "cf9105aaba92f6b21a1d7d0c8c4217ef47e2b93f",
+        "f4ad30b0e6b43aaf778dc067a8f6df5f6fa5763e"
+      ],
+      "rates": [
+        [
+          1278113.866362451,
+          5493332.929828372,
+          24480125.66138023,
+          64129886.384257086,
+          87988332.66069342
+        ],
+        [
+          1278000.0,
+          5493000.0,
+          24480000.0,
+          64130000.0,
+          87990000.0
+        ]
+      ],
+      "uncertainty_factors": [
+        [
+          1.011999318774446,
+          1.011,
+          1.011,
+          1.012,
+          1.0120069754577328
+        ],
+        [
+          1.012,
+          1.011,
+          1.011,
+          1.012,
+          1.012
+        ]
+      ]
+    },
+    "He3aBe7g": {
+      "references": [
+        [
+          "He3 + a > Be7 + g   [He3_a__Be7_g]   ref=Iliadis et al. 2016",
+          "detailed balance: alpha=1.11289e+10 beta=1.5 gamma=-18.4179  Q=1.58713",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Iliadis et al., ApJ 831 (2016) 107",
+          "arXiv:1608.05853"
+        ]
+      ],
+      "table_blobs": [
+        "457eea2ac3869069eb81e499b89ce9d58d02cbb3",
+        "d59df3327330aa52eb618d934b4d771c0f9c78bf"
+      ]
+    },
+    "Be7nLi7p": {
+      "references": [
+        [
+          "Be7 + n > Li7 + p   [Be7_n__Li7_p]   ref=de Souza et al. 2020",
+          "detailed balance: alpha=1.00215 beta=0 gamma=-19.0806  Q=1.64424",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Above 1 GK: Descouvemont et al., Atomic Data and Nuclear Data Tables",
+          "88 (2004), 203, arXiv:astro-ph/0407101",
+          "Below 1 GK: de Souza, Tan Hong Kiat, Coc, Iliadis ApJ 894 (2020) 134,",
+          "arXiv:1912.06210"
+        ]
+      ],
+      "table_blobs": [
+        "c50e3f364fee36d1db15d7d47b970bdb1c9ad793",
+        "f81e1495dbd256505294368055111469372165c5"
+      ]
+    },
+    "Li7paa": {
+      "references": [
+        [
+          "Li7 + p > a + a   [Li7_p__a_a]   ref=Descouvemont et al. 2004",
+          "detailed balance: alpha=4.6898 beta=0 gamma=-201.295  Q=17.3462",
+          "T9                 rate                error"
+        ],
+        [
+          "PRIMAT v0.2.2, 23 June 2023",
+          "Descouvemont et al., Atomic Data and Nuclear Data Tables 88 (2004), 203",
+          "arXiv:astro-ph/0407101"
+        ]
+      ],
+      "table_blobs": [
+        "6c4f840cb740a31eb7fbc0a833518a4f886208bc",
+        "7c88d8bba4ce85030739953d852b00c176752abe"
+      ]
+    }
+  },
+  "He3dap_paper": [
+    1277800.0,
+    5493300.0,
+    24479000.0,
+    64133000.0,
+    87989000.0
+  ],
+  "He3dap_point_Rmatrix": [
+    1278523.4109190358,
+    5502346.394893366,
+    24531820.258196373,
+    64212431.327089526,
+    88085387.19213213
+  ],
+  "He3dap_point_quadrature_change": [
+    3.3306690738754696e-15,
+    2.6645352591003757e-15,
+    1.84297022087776e-14,
+    2.2737367544323206e-13,
+    5.264721991693477e-11
+  ],
+  "dp_Mossa_rates": [
+    25.703502242873103,
+    54.72482674433301,
+    128.90637189035712,
+    263.6392481922809,
+    363.1640138704336
+  ],
+  "dp_Mossa_fraction_32_263_keV": [
+    0.837407202056877,
+    0.9305746879075566,
+    0.9242696898621665,
+    0.7421443268436809,
+    0.6086302137811805
+  ],
+  "output_order": [
+    "D/H",
+    "Yp"
+  ],
+  "baseline": [
+    2.4364848080357577e-05,
+    0.24724829303100435
+  ],
+  "dlnO_dln_rate": {
+    "dpHe3g": [
+      -0.3465298032628363,
+      0.00022933050557067002
+    ],
+    "He3dap": [
+      -0.014531273596411454,
+      5.113391593868121e-05
+    ],
+    "ddHe3n": [
+      -0.5430916781015884,
+      0.006011565244555589
+    ],
+    "ddtp": [
+      -0.45585261174863445,
+      0.005198585588605253
+    ]
+  },
+  "dlnO_dq": {
+    "dpHe3g": [
+      -0.007389302828691627,
+      4.9902095690614205e-06
+    ],
+    "He3dap": [
+      -0.0001341257649973949,
+      5.577908728852034e-07
+    ],
+    "ddHe3n": [
+      -0.005941390393749717,
+      6.576616331197235e-05
+    ],
+    "ddtp": [
+      -0.004987000238848125,
+      5.687221462349013e-05
+    ]
+  },
+  "atlas": {
+    "dpHe3g": {
+      "Yp": {
+        "fiducial": 0.2469140171,
+        "per_q": -1.58e-06,
+        "dlnO_dq": -6.398988678557286e-06,
+        "absolute_shift_over_observational_sigma": 0.0005266666666666666,
+        "flatness_flag": true
+      },
+      "DH": {
+        "fiducial": 2.44545387,
+        "per_q": -0.0179274522,
+        "dlnO_dq": -0.007330930433784874,
+        "absolute_shift_over_observational_sigma": 0.6181880068965516,
+        "flatness_flag": false
+      }
+    },
+    "He3dap": {
+      "Yp": {
+        "fiducial": 0.246914313,
+        "per_q": 1.42e-07,
+        "dlnO_dq": 5.750982933095498e-07,
+        "absolute_shift_over_observational_sigma": 4.733333333333333e-05,
+        "flatness_flag": false
+      },
+      "DH": {
+        "fiducial": 2.445397054,
+        "per_q": -0.0004363260972,
+        "dlnO_dq": -0.00017842750586711062,
+        "absolute_shift_over_observational_sigma": 0.015045727489655172,
+        "flatness_flag": false
+      }
+    },
+    "Be7nLi7p": {
+      "Yp": {
+        "fiducial": 0.2469143125,
+        "per_q": 1.49e-09,
+        "dlnO_dq": 6.03448210398901e-09,
+        "absolute_shift_over_observational_sigma": 4.966666666666666e-07,
+        "flatness_flag": false
+      },
+      "DH": {
+        "fiducial": 2.44544255,
+        "per_q": -6.17e-05,
+        "dlnO_dq": -2.5230607032661632e-05,
+        "absolute_shift_over_observational_sigma": 0.0021275862068965514,
+        "flatness_flag": true
+      }
+    }
+  },
+  "dd_relative_error": [
+    [
+      0.0004075443637057141,
+      0.0003270045850407577
+    ],
+    [
+      0.010737615644218601,
+      0.015711065706297545
+    ]
+  ],
+  "projected_order": [
+    "rate at T9=0.5",
+    "rate at T9=0.8",
+    "D/H",
+    "Yp"
+  ],
+  "projected": {
+    "5": {
+      "GOE": {
+        "sd_unit_fraction": [
+          0.01910846757453182,
+          0.012204735060030732,
+          0.006320558013699901,
+          2.586395189209382e-06
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            3.9949453604546035e-05,
+            -1.2213122815068631e-08
+          ],
+          [
+            -1.2213122815068631e-08,
+            6.689440074765436e-12
+          ]
+        ]
+      },
+      "GUE": {
+        "sd_unit_fraction": [
+          0.013611640303474086,
+          0.008671542904070587,
+          0.004504331525546449,
+          1.8372983301994623e-06
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            2.0289002492031597e-05,
+            -6.173267979843456e-09
+          ],
+          [
+            -6.173267979843456e-09,
+            3.3756651541537326e-12
+          ]
+        ]
+      },
+      "Poisson": {
+        "sd_unit_fraction": [
+          0.1506237208670457,
+          0.12000559998453031,
+          0.050297957641360344,
+          2.6305675341192643e-05
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.0025298845428920794,
+            -1.1280138318593523e-06
+          ],
+          [
+            -1.1280138318593521e-06,
+            6.919885551562307e-10
+          ]
+        ]
+      }
+    },
+    "10": {
+      "GOE": {
+        "sd_unit_fraction": [
+          0.037944168832500985,
+          0.024294924187366958,
+          0.012546083408339565,
+          5.1494851278851566e-06
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.00015740420888901333,
+            -4.833745004364198e-08
+          ],
+          [
+            -4.833745004364198e-08,
+            2.651719708231041e-11
+          ]
+        ]
+      },
+      "GUE": {
+        "sd_unit_fraction": [
+          0.027223280576218263,
+          0.017343085805163454,
+          0.009008662930566956,
+          3.67459665970603e-06
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            8.11560077965712e-05,
+            -2.4693071822953737e-08
+          ],
+          [
+            -2.4693071822953737e-08,
+            1.3502660611522713e-11
+          ]
+        ]
+      },
+      "Poisson": {
+        "sd_unit_fraction": [
+          0.2130141088652754,
+          0.16971354705884326,
+          0.07113205385607925,
+          3.720184283489813e-05
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.005059769085784159,
+            -2.2560276637187047e-06
+          ],
+          [
+            -2.2560276637187042e-06,
+            1.3839771103124614e-09
+          ]
+        ]
+      }
+    },
+    "20": {
+      "GOE": {
+        "sd_unit_fraction": [
+          0.07484799525414226,
+          0.04814676624697916,
+          0.02473209416797293,
+          1.0208799943643725e-05
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.0006116764819334807,
+            -1.8942406855281473e-07
+          ],
+          [
+            -1.8942406855281473e-07,
+            1.0421959628934013e-10
+          ]
+        ]
+      },
+      "GUE": {
+        "sd_unit_fraction": [
+          0.05444654905657434,
+          0.03468617040165223,
+          0.018017292945885485,
+          7.349193039503452e-06
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.0003246228450978548,
+            -9.877222866816452e-08
+          ],
+          [
+            -9.877222866816452e-08,
+            5.401063833188599e-11
+          ]
+        ]
+      },
+      "Poisson": {
+        "sd_unit_fraction": [
+          0.3012474417340914,
+          0.24001119996906062,
+          0.10059591528272069,
+          5.2611350682385286e-05
+        ],
+        "cov_ln_DH_ln_Yp_unit_fraction": [
+          [
+            0.010119538171568318,
+            -4.512055327437409e-06
+          ],
+          [
+            -4.5120553274374085e-06,
+            2.767954220624923e-09
+          ]
+        ]
+      }
+    }
+  },
+  "grid_relative_change": [
+    3.23471178377277e-05,
+    7.891513189917099e-05,
+    5.5665122975723236e-05,
+    0.00012477253221598872
+  ],
+  "upper_T9_relative_change": [
+    0.0,
+    0.0,
+    1.0629275237761249e-10,
+    3.6208723941388854e-06
+  ]
+}

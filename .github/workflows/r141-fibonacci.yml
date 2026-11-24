@@ -1,0 +1,45 @@
+name: R141 Fibonacci identities
+on:
+  pull_request:
+    paths:
+      - 'analysis/R141_RIEMANN_CORPUS/spectral/fibonacci*'
+      - 'analysis/R141_RIEMANN_CORPUS/bbn/finite_controls.py'
+      - '.github/workflows/r141-fibonacci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+          sparse-checkout: |
+            analysis/R141_RIEMANN_CORPUS/spectral
+            reproductions/R141_INTEGRATED_20261122/results/45044020368-1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: 52c7910a95b5dea26ee9363996ea9d831393063c
+          path: reference
+          persist-credentials: false
+          sparse-checkout: reproductions/R141_ZETA_657_20261122/results/45038065048
+      - name: Enumerate rotations and verify exact determinants
+        run: |
+          mkdir -p "$RUNNER_TEMP/fibonacci"
+          python3 analysis/R141_RIEMANN_CORPUS/spectral/fibonacci.py --verify --out "$RUNNER_TEMP/fibonacci/rings.json"
+      - name: Check the review against the actual widths, covariance and ordinates
+        run: |
+          python3 analysis/R141_RIEMANN_CORPUS/spectral/fibonacci_review.py \
+            reproductions/R141_INTEGRATED_20261122/results/45044020368-1 \
+            reference/reproductions/R141_ZETA_657_20261122/results/45038065048/zeros657.json \
+            > "$RUNNER_TEMP/fibonacci/review.json"
+          python3 -c 'import json,os; d=json.load(open(os.environ["RUNNER_TEMP"]+"/fibonacci/rings.json")); print("Mixed labelled words:",sum(row["mixed_words"] for row in d["exhaustive"].values())); print("n=24:",d["exhaustive"]["24"]); print("Average order:",d["order_of_averaging"])'
+          cat "$RUNNER_TEMP/fibonacci/review.json"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: fibonacci-exact
+          path: ${{ runner.temp }}/fibonacci
+          if-no-files-found: error
+          retention-days: 90
