@@ -1,0 +1,224 @@
+{
+  "experiment_summary": {
+    "native_absent_length_events": {
+      "mu_A": 0,
+      "mu_B": 0,
+      "mu_union": 0,
+      "I2": 0
+    },
+    "R140_geometry_native_spectator": {
+      "overlap": 1,
+      "I2": "-1/64",
+      "P19": "0"
+    },
+    "R140_geometry_controlled_coherent": {
+      "overlap": "1/2",
+      "I2": "-1/128",
+      "P19": "1/128"
+    }
+  },
+  "lengths_native": {
+    "1@0": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    },
+    "1@1": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    },
+    "1@2": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    },
+    "8@0": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    },
+    "8@1": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    },
+    "8@2": {
+      "word": "33333333",
+      "patterns": 256,
+      "ends": 1
+    }
+  },
+  "sectors": {
+    "published_phi0": {
+      "physical": [
+        "-1/96",
+        "1/768",
+        "1/768"
+      ],
+      "transported_detector": [
+        "-1/96",
+        "1/768",
+        "1/768"
+      ],
+      "fixed_detector": [
+        "-1/96",
+        "1/768",
+        "1/768"
+      ]
+    },
+    "published_phi_pi2": {
+      "physical": [
+        "0",
+        "-sqrt(3)/768",
+        "sqrt(3)/768"
+      ],
+      "transported_detector": [
+        "0",
+        "-sqrt(3)/768",
+        "sqrt(3)/768"
+      ],
+      "fixed_detector": [
+        "0",
+        "sqrt(3)/768",
+        "-sqrt(3)/768"
+      ]
+    },
+    "asymmetric_phi0": {
+      "physical": [
+        "0",
+        "0",
+        "1/128"
+      ],
+      "transported_detector": [
+        "0",
+        "0",
+        "1/128"
+      ],
+      "fixed_detector": [
+        "0",
+        "1/128",
+        "0"
+      ]
+    }
+  },
+  "phase_runs": {
+    "flat": {
+      "baseline": {
+        "sum": "1",
+        "P19": "0",
+        "changed": {},
+        "other_delta": "0"
+      },
+      "one_history": {
+        "sum": "65/64",
+        "P19": "1/64",
+        "changed": {
+          "19": "1/64"
+        },
+        "other_delta": "0"
+      },
+      "first_length": {
+        "sum": "1",
+        "P19": "1/64",
+        "changed": {
+          "0": "-1/32",
+          "2": "-1/16",
+          "4": "-1/64",
+          "8": "1/64",
+          "12": "1/32",
+          "19": "1/64",
+          "21": "1/32",
+          "28": "-1/32",
+          "30": "1/32",
+          "35": "1/64"
+        },
+        "other_delta": "-1/64"
+      }
+    },
+    "H6": {
+      "baseline": {
+        "sum": "1",
+        "P19": "1/128",
+        "changed": {},
+        "other_delta": "0"
+      },
+      "one_history": {
+        "sum": "129/128",
+        "P19": "1/64",
+        "changed": {
+          "19": "1/128"
+        },
+        "other_delta": "0"
+      },
+      "first_length": {
+        "sum": "1",
+        "P19": "1/64",
+        "changed": {
+          "0": "-1/64",
+          "2": "-1/32",
+          "4": "-1/128",
+          "8": "1/64",
+          "12": "1/64",
+          "19": "1/128",
+          "21": "1/64",
+          "28": "-1/64",
+          "30": "1/64"
+        },
+        "other_delta": "-1/128"
+      }
+    }
+  },
+  "controlled_bit_preparations": {
+    "coherent": {
+      "overlap": "1/2",
+      "I2": "-1/128",
+      "P19": "1/128",
+      "arm_density_matrices_equal": false
+    },
+    "dephased_same_populations": {
+      "overlap": "0",
+      "I2": "0",
+      "P19": "1/64",
+      "arm_density_matrices_equal": false
+    },
+    "fully_mixed": {
+      "overlap": "0",
+      "I2": "0",
+      "P19": "1/64",
+      "arm_density_matrices_equal": true
+    },
+    "all_endpoints": {
+      "compared_vectors": 40,
+      "mismatches": 0,
+      "normalization": "1"
+    }
+  },
+  "same_Dop_adjoint_seams": [
+    {
+      "I2_zero": "1/192",
+      "I2_pi2": "1/96",
+      "Z6": "33593616"
+    },
+    {
+      "I2_zero": "1/192",
+      "I2_pi2": "-1/96",
+      "Z6": "33593616"
+    }
+  ],
+  "SU3_trace_polynomial": {
+    "symbolic_identity": true,
+    "seams": [
+      {
+        "I2_at_zero": "1/192",
+        "I2_at_pi_2": "0",
+        "Z6": 33592320
+      },
+      {
+        "I2_at_zero": "1/192",
+        "I2_at_pi_2": "1/96",
+        "Z6": 33593616
+      }
+    ]
+  }
+}
