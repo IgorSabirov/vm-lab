@@ -1,7 +1,7 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "ecedd910c30895b360715ff1d9cc585372baec376905b59fd1091de8ed253d58",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "c7ab8c4179870348e66d20599c3af85d149d535cdbf2f750eb882028b752ee20",
     "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "ea4daa430d8992e3f2325c4f216c9da5814d63fd888fb7d51374ac6b3c32dc78",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
@@ -125,7 +125,7 @@
     "component": 45,
     "external": 18,
     "decision": 4,
-    "source": 303
+    "source": 306
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -6874,6 +6874,42 @@
       "size_bytes": 13770
     },
     {
+      "key": "source:analysis/R149/peer_audit/README.md",
+      "id": "analysis/R149/peer_audit/README.md",
+      "kind": "source",
+      "title": "analysis/R149/peer_audit/README.md",
+      "status": null,
+      "path": "analysis/R149/peer_audit/README.md",
+      "fragment": "",
+      "sha256": "778f6ab39505aabf86ad86fcc149660a5df19f8f3d7fe2d7502e4e1d868a5da2",
+      "git_blob_sha": "b28ec41829a8f741e8db927c8c067344cf63d8fe",
+      "size_bytes": 29871
+    },
+    {
+      "key": "source:analysis/R149/peer_audit/checks.json",
+      "id": "analysis/R149/peer_audit/checks.json",
+      "kind": "source",
+      "title": "analysis/R149/peer_audit/checks.json",
+      "status": null,
+      "path": "analysis/R149/peer_audit/checks.json",
+      "fragment": "",
+      "sha256": "3d0573303d9a1a896b5c67fed74ee3a1f83f3fb2c7e57fed0f34eeeff91e255a",
+      "git_blob_sha": "b35f4ecf385cf73ce19db1d7caa5b2fb539a4859",
+      "size_bytes": 7883
+    },
+    {
+      "key": "source:analysis/R149/peer_audit/verify.py",
+      "id": "analysis/R149/peer_audit/verify.py",
+      "kind": "source",
+      "title": "analysis/R149/peer_audit/verify.py",
+      "status": null,
+      "path": "analysis/R149/peer_audit/verify.py",
+      "fragment": "",
+      "sha256": "3a16e4cae43f708a5f68014c43bd9ff90e796559a60e3858ccf2aeafef291aa0",
+      "git_blob_sha": "29a91d082568a67660ea7bb249610dd8d17b45af",
+      "size_bytes": 8881
+    },
+    {
       "key": "source:analysis/R149/seam/README.md",
       "id": "analysis/R149/seam/README.md",
       "kind": "source",
@@ -6881,9 +6917,9 @@
       "status": null,
       "path": "analysis/R149/seam/README.md",
       "fragment": "",
-      "sha256": "0311bb37c1a7cd69807e8c27b88e2a7434deeb42121cee3918ae2707431d646d",
-      "git_blob_sha": "373861397a85b1fbc1a4c7a7629e037c967f38ff",
-      "size_bytes": 7416
+      "sha256": "a9aef8ceb9203bf11d66ba3f518ba3ac36e3de9d7dc5a8345d246c9f9eb0584a",
+      "git_blob_sha": "f60a6e79a98093f6ae031b08c12a7df439a50f65",
+      "size_bytes": 8237
     },
     {
       "key": "source:analysis/R149/seam/replay.py",
@@ -6905,9 +6941,9 @@
       "status": null,
       "path": "analysis/R149/yang_mills/README.md",
       "fragment": "",
-      "sha256": "94d801bc27196a01412f98bab517fb6b32be804991c07667490bfe9a69c6667b",
-      "git_blob_sha": "31fbfca0bc78802f3060e0d463740ee89f817875",
-      "size_bytes": 15030
+      "sha256": "aae6f5e1cc98db6a5af735be7eae4ef234eb504928964d5e42ad880666d48381",
+      "git_blob_sha": "19f35de54d3bb549172e26a6133c588869242a2a",
+      "size_bytes": 15906
     },
     {
       "key": "source:analysis/R149/yang_mills/checks.json",
@@ -6965,9 +7001,9 @@
       "status": null,
       "path": "analysis/R149_DEFECT_ATLAS/REPORT.md",
       "fragment": "",
-      "sha256": "0dca3d3068de1847fe9ee0953d90f744c42314066b8b8fdea8f5526e3ca48d6f",
-      "git_blob_sha": "e1358d469993a8adc978ffa66457c0ed09eb7dbe",
-      "size_bytes": 17104
+      "sha256": "dfe04b6d1efb73e2c8ec9b19ec73c4dc11eafdf256183f8c18ebf257f1711591",
+      "git_blob_sha": "2bd5405bc5d4559032781d547533a95db663559c",
+      "size_bytes": 18177
     },
     {
       "key": "source:analysis/R149_DEFECT_ATLAS/verify.py",
@@ -12312,6 +12348,11 @@
     },
     {
       "source": "result:R130",
+      "target": "source:analysis/R149/peer_audit/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R130",
       "target": "source:analysis/R149/seam/README.md",
       "relation": "managed_evidence_source"
     },
@@ -12836,6 +12877,11 @@
     },
     {
       "source": "result:R135",
+      "target": "source:analysis/R149/peer_audit/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R135",
       "target": "source:analysis/R149/yang_mills/README.md",
       "relation": "managed_evidence_source"
     },
@@ -12992,6 +13038,11 @@
     {
       "source": "result:R140",
       "target": "source:analysis/R141_RIEMANN_CORPUS/review/R140_H6_table.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R140",
+      "target": "source:analysis/R149/peer_audit/README.md",
       "relation": "managed_evidence_source"
     },
     {
@@ -14388,6 +14439,21 @@
       "source": "result:R149",
       "target": "question:U010",
       "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/peer_audit/README.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/peer_audit/checks.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R149",
+      "target": "source:analysis/R149/peer_audit/verify.py",
+      "relation": "managed_evidence_source"
     },
     {
       "source": "result:R149",
