@@ -1,0 +1,48 @@
+{
+  "base": {
+    "profile": "source_baseline",
+    "CAMB_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+    "forutils_sha": "841f06d5356877e90437f94b2d976dd98f7f923c",
+    "compiler": "GNU Fortran (Debian 14.2.0-19) 14.2.0",
+    "build_command": "make -C fortran python CLUSTER_SAFE=1 -j1",
+    "numerical_changes": [],
+    "RECFAST_Nz": 10000,
+    "RECFAST_delta_z": 1.0,
+    "RECFAST_DVERK_tolerance": 1e-05,
+    "recfast_source_sha256": "14363a425b2352f837e1d353b885ebdfac5430f31517525ed6e75412269159f5",
+    "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad"
+  },
+  "fine": {
+    "profile": "source_refined",
+    "CAMB_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+    "forutils_sha": "841f06d5356877e90437f94b2d976dd98f7f923c",
+    "compiler": "GNU Fortran (Debian 14.2.0-19) 14.2.0",
+    "build_command": "make -C fortran python CLUSTER_SAFE=1 -j1",
+    "numerical_changes": [
+      "Nz=20000 (delta_z=0.5)",
+      "DVERK tolerance=1e-6",
+      "Multiply all five cubic-spline curvature terms by delta_z**2 (unity for the stock grid)"
+    ],
+    "RECFAST_Nz": 20000,
+    "RECFAST_delta_z": 0.5,
+    "RECFAST_DVERK_tolerance": 1e-06,
+    "recfast_source_sha256": "244ae6949898f0917e543c220655eff279aeb8e5f2838e51a8f685e53b27b9c9",
+    "library_sha256": "7e6cfa3a405bcf0636226e0698476db328f98858c1a48bbac717658064d7ac13",
+    "patch_sha256": "dc4b7c41c1cc7f4a716d61041ba7c034f387da82bae555f6a0bba2ef1d74ecc0"
+  },
+  "wheel_sha256": "32851453fc0ff45d283bca6012d43ca38a0eee19faa90a4833d2d8202b4c265f",
+  "compiler_packages": [
+    {
+      "file": "gfortran-14-x86-64-linux-gnu_14.2.0-19_amd64.deb",
+      "sha256": "520b3283edc193b75644d655654834662f56f9006a78751d91feb882b74ca684",
+      "source_url": "https://deb.debian.org/debian/pool/main/g/gcc-14/gfortran-14-x86-64-linux-gnu_14.2.0-19_amd64.deb"
+    },
+    {
+      "file": "libgfortran-14-dev_14.2.0-19_amd64.deb",
+      "sha256": "8460dfd941d9f60e92516e5c4e3f8bb08e60983e7526f376a7c87969a8a2dbfb",
+      "source_url": "https://deb.debian.org/debian/pool/main/g/gcc-14/libgfortran-14-dev_14.2.0-19_amd64.deb"
+    }
+  ],
+  "adapter_sha256": "670bb93e37334b0df16733284c10c11cb0633299b0a0085afc55b8d783824d91",
+  "physics_runs_performed": 0
+}

@@ -386,3 +386,6 @@ ADD не становится целью проекта и не подменяе
 
 Полная методика C1: [REPRODUCTION_PROTOCOL_C1_v0.1](../ADD_PABLO_CORRESPONDENCE_20261116/REPRODUCTION_PROTOCOL_C1_v0.1.md). Разбор соседей и уточнения: [NEIGHBOR_CRITIQUE_AND_REVISED_RESEARCH_LINE](../ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md).
 
+## Дополнение от 25 ноября 2026
+
+Для штатного именованного переноса опубликовано сравнение одного входа при QI и Q и контроль альтернативного назначения битов на 5 440 словах C1. [Битовое правило R126](../ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/README.md#r126).

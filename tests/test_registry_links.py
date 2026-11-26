@@ -15,7 +15,7 @@ class RegistryIntegrity(unittest.TestCase):
         tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup)
         dst=Path(tmp.name)
         for p in (mod.MAIN,mod.MAIN_MD,mod.QUESTIONS,mod.QUESTIONS_MD,mod.PREMISES,mod.EXTERNAL):
-            f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_text((ROOT/p).read_text())
+            f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/p).read_bytes())
         for row in json.loads((ROOT/mod.EXTERNAL).read_text())['external_integrations']:
             f=dst/row['contract'];f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/row['contract']).read_bytes())
             for p in row.get('managed_sources', []):
@@ -23,7 +23,7 @@ class RegistryIntegrity(unittest.TestCase):
         data=json.loads((dst/mod.MAIN).read_text())
         for row in data['results']+data.get('external_reviews',[]):
             for p in row.get('managed_sources',[]):
-                f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_text((ROOT/p).read_text())
+                f=dst/p;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/p).read_bytes())
         for source in (ROOT/'decisions').glob('D[0-9]*.json'):
             f=dst/'decisions'/source.name;f.parent.mkdir(exist_ok=True);f.write_bytes(source.read_bytes())
             ref=json.loads(source.read_text())['ratification']['reference'];f=dst/ref;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes((ROOT/ref).read_bytes())
@@ -40,6 +40,19 @@ class RegistryIntegrity(unittest.TestCase):
         self.assertEqual(g['counts']['premise'],66)
         self.assertIn('premise:C01',{n['key'] for n in g['nodes']})
         self.assertIn('construct:C001',{n['key'] for n in g['nodes']})
+
+    def test_html_atlas_pairs_and_stale_source(self):
+        root = self.fixture()
+        _, graph = mod.build(root)
+        pairs = [e for e in graph['edges'] if e['relation'] == 'model_comparison']
+        self.assertEqual(len(pairs), 28)
+        self.assertTrue(all(p['symmetric'] and p['mapping'] and p['control'] for p in pairs))
+        model = json.loads((root / mod.MAIN).read_text())['model_atlas']
+        atlas = json.loads((root / model).read_text())
+        file = root / atlas['html_path']
+        file.write_bytes(file.read_bytes() + b' ')
+        with self.assertRaisesRegex(ValueError, 'stale for this HTML'):
+            mod.build(root)
 
     def test_component_genealogy_preserves_typed_boundaries(self):
         p=self.fixture();_,g=mod.build(p)

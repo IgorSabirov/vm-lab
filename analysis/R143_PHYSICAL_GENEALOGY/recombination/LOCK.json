@@ -1,0 +1,202 @@
+{
+  "id": "R143-HYREC2-RECFAST-LUMINA-v1",
+  "date": "2026-11-23",
+  "parent_commit": "a32d21e11c4283e45b999bb428e1becce8ff70a8",
+  "scope": "Homogeneous recombination and matter-temperature histories on a shared Lumina LCDM background; no perturbation/streaming/CCC+TL or reionization run.",
+  "addresses": {
+    "result": "R143",
+    "evidence": [
+      "E06",
+      "E07",
+      "E10"
+    ],
+    "related_result": "R138",
+    "shared_boundary": "R137",
+    "open_question": "U014",
+    "issue": "https://github.com/IgorSabirov/vm-lab/issues/199"
+  },
+  "sources": {
+    "Lumina": "https://arxiv.org/html/2605.15310v1",
+    "Lumina_sections": [
+      "Table 2",
+      "5.3",
+      "5.4",
+      "8.4"
+    ],
+    "R138_commit": "0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a",
+    "HYREC2": {
+      "repository": "https://github.com/nanoomlee/HYREC-2",
+      "commit": "038dc8d71baed5c30a4fdd55576b97637ba5b879",
+      "model": "SWIFT=4 (direct HYREC-2)",
+      "paper": "https://arxiv.org/abs/2007.14114"
+    },
+    "CAMB": {
+      "repository": "https://github.com/cmbant/CAMB",
+      "version": "1.6.5",
+      "commit": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+      "wheel_sha256": "32851453fc0ff45d283bca6012d43ca38a0eee19faa90a4833d2d8202b4c265f",
+      "recombination": "Planck-era RECFAST 1.5.2; not a RECFAST preset labelled hyrec",
+      "forutils_commit": "841f06d5356877e90437f94b2d976dd98f7f923c",
+      "primary_engine_build": "Pinned CAMB 1.6.5 source, same isolated gfortran toolchain for baseline and numerical refinement; wheel used only for Python packaging/dependencies."
+    }
+  },
+  "cosmology": {
+    "H0_km_s_Mpc": 67.66,
+    "h": 0.6766,
+    "Omega_m": 0.3096,
+    "Omega_b": 0.04897,
+    "Omega_c": 0.26063,
+    "omega_b": 0.0224178568132,
+    "omega_c": 0.1193131717628,
+    "Omega_k": 0.0,
+    "Omega_Lambda": "1 - Omega_m - Omega_r, evaluated with CAMB constants",
+    "Omega_Lambda_published_rounded": 0.6903,
+    "Tcmb0_K": 2.7255,
+    "N_eff": 3.046,
+    "num_massive_neutrinos": 0,
+    "sum_mnu_eV": 0.0,
+    "Yp_mass_fraction": 0.24,
+    "BBN_prediction": false,
+    "w": -1.0,
+    "wa": 0.0,
+    "reionization": false,
+    "external_energy_injection": 0
+  },
+  "printed_neutrino_temperature": {
+    "Tnu_table_K": 1.9524,
+    "choice": "Use the explicitly declared N_eff=3.046, not the incompatible printed Tnu simultaneously. The effective common temperature follows equation (26)."
+  },
+  "composition": {
+    "xe_definition": "n_e / n_H, with n_H all hydrogen nuclei",
+    "primary": "Both histories use CAMB-derived nH0 and fHe, with Yp=0.24. The HYREC adapter sets these two public cosmology fields explicitly after initialization. Upstream rate equations and atomic tables are unchanged.",
+    "nH0_cm3": 1.9122166025036682e-07,
+    "fHe": 0.07951538891741466,
+    "HYREC_native_nH0_cm3": 1.912270807905817e-07,
+    "HYREC_native_fHe": 0.07951330436486959
+  },
+  "background": "Direct HYREC H callback queries the same CAMB background. No independent approximate H table is used for the primary comparison.",
+  "recfast": {
+    "RECFAST_fudge": 1.125,
+    "RECFAST_fudge_He": 0.86,
+    "RECFAST_Heswitch": 6,
+    "RECFAST_Hswitch": true,
+    "AGauss1": -0.14,
+    "zGauss1": 7.28,
+    "wGauss1": 0.18,
+    "AGauss2": 0.079,
+    "zGauss2": 6.73,
+    "wGauss2": 0.33,
+    "native_Nz": 10000,
+    "native_zinitial": 10000,
+    "native_DVERK_tolerance": 1e-05
+  },
+  "grid": {
+    "z_min": 10.0,
+    "z_max": 8000.0,
+    "log1pz_points": 6001,
+    "landmarks": [
+      10,
+      20,
+      30,
+      49,
+      50,
+      100,
+      124.8,
+      200,
+      300,
+      500,
+      800,
+      1000,
+      1100,
+      1200,
+      1500,
+      1600,
+      2000,
+      2500,
+      3000,
+      4000,
+      5000,
+      6000,
+      7000,
+      8000
+    ],
+    "a_definition": "1/(1+z)",
+    "boundary_z": 49.0,
+    "boundary_a": 0.02
+  },
+  "epochs": [
+    {
+      "label": "early helium",
+      "z_min": 4000,
+      "z_max": 8000
+    },
+    {
+      "label": "neutral-helium formation",
+      "z_min": 1600,
+      "z_max": 4000
+    },
+    {
+      "label": "hydrogen recombination",
+      "z_min": 500,
+      "z_max": 1600
+    },
+    {
+      "label": "residual ionization and cooling",
+      "z_min": 50,
+      "z_max": 500
+    },
+    {
+      "label": "late homogeneous cooling",
+      "z_min": 10,
+      "z_max": 50
+    }
+  ],
+  "metrics": {
+    "residual": "HYREC2 minus RECFAST",
+    "relative_residual": "(HYREC2 - RECFAST)/RECFAST",
+    "outputs": [
+      "xe",
+      "Tgas_K",
+      "H_s_inv",
+      "Tgamma_K"
+    ],
+    "summary": [
+      "boundary z49",
+      "per-epoch signed range and max absolute/relative residual with location"
+    ],
+    "Lumina_temperature": "Tcmb0*(1+z)^2/(1+124.8), compare only z<=124.8; printed z49=54.17K; formula z49=54.16335453100158K"
+  },
+  "controls": {
+    "HYREC_internal_step": [
+      0.004,
+      0.002
+    ],
+    "HYREC_native_composition": "One additional history on exactly the same H; isolates the native density/helium conversion convention.",
+    "RECFAST_internal_refinement": "Separate source build with Nz=20000, DVERK tolerance=1e-6, and the required delta_z**2 factor in five cubic-spline curvature terms. At baseline delta_z=1 that factor is identically 1. Atomic and recombination equations are unchanged.",
+    "CAMB_output_refinement": "AccuracyBoost and BackgroundTimeStepBoost doubled; label as external sampling refinement, not a change of native RECFAST internal steps."
+  },
+  "acceptance": {
+    "completion": "Two actually executed histories, shared inputs verified, finite positive arrays with exact z49, source provenance, residuals by epoch and numerical controls. Publish disagreement as a result; no forced solver-agreement gate.",
+    "normalization": "Preserve fixed Yp; record both used and native nH0/fHe. Verify H and Tgamma conventions.",
+    "precision": "Report all measured refinements. Interpret differences only above their measured numerical sensitivity; no empirical calibration to align histories.",
+    "scientific_acceptance": false,
+    "U014": "Remains open: linear perturbations, relative streaming and the actual Lumina IC files are outside this run."
+  },
+  "runtime_plan": {
+    "execution": "Current local R143 workspace; isolated pinned dependencies",
+    "estimated_solver_seconds": "under 30 for three HYREC histories; CAMB background/RECFAST expected seconds",
+    "preparation": "download/compilation measured separately; no large simulation"
+  },
+  "code_sha256": {
+    "experiment.py": "d7dcdde205913a4062261e2d532d16c4fe2f06fe1076c6ade79aeecf06f7e434",
+    "analyze.py": "0fa56fa8f8bdfb7674f3b556c3a4003e8766b5573eea338d776aadca1ec158ff",
+    "recfast_adapter.py": "670bb93e37334b0df16733284c10c11cb0633299b0a0085afc55b8d783824d91",
+    "hyrec_adapter.py": "2e6609c3df3c6435c667a3efa8734408521eb87860f388840bb3363f7cc85e76",
+    "hyrec_adapter.c": "d14c62d773b62eeafcbdf066261465eee38286cf757408431051daf05aee9d34",
+    "recfast_refinement.patch": "dc4b7c41c1cc7f4a716d61041ba7c034f387da82bae555f6a0bba2ef1d74ecc0"
+  },
+  "build_receipt_sha256": {
+    "CAMB_BUILD.json": "83d97b883a737e4d2f2cd86dab946c4bf407995e92e0ada297438d893644c522",
+    "HYREC_BUILD.json": "d136429a45bfb743bcb94a2e8d04555763e1b6844622504686fa5b19083b96d4"
+  }
+}

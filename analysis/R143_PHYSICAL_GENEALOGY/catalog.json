@@ -1,0 +1,906 @@
+[
+  {
+    "id": "nuclear",
+    "title": "Классические замыкания ядер",
+    "system": "Числа протонов или нейтронов в определённом изотопе, порядок уровней со спин-орбитальной связью.",
+    "observable": "Щель по массам, энергия первого возбуждения и назначение орбитали; отдельно вид ядра в реакции.",
+    "donors": "Mayer; ENSDF; NUBASE2020",
+    "missing": "Фиксировать изотоп, Z или N и канал. Из выхода ⁴He нельзя извлечь оболочечную щель.",
+    "search": "яд[ер].{0,5} оболоч|nuclear shell|магическ.{0,5} яд|⁴He|4He|\\bHe4\\b|гелий.4|\\bYp\\b|\\bY_p\\b|Yₚ|NUBASE|ENSDF",
+    "claims": [
+      {
+        "id": "nuclear.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.2",
+        "value": 8,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.3",
+        "value": 20,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.4",
+        "value": 28,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.5",
+        "value": 50,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.6",
+        "value": 82,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      },
+      {
+        "id": "nuclear.7",
+        "value": 126,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed conditional count; energy gaps not evaluated"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L8"
+  },
+  {
+    "id": "local",
+    "title": "Локальные замыкания",
+    "system": "Нейтронно-избыточные O, K и Ca в конкретных цепочках N=16,32,34.",
+    "observable": "Сравнение масс или однонейтронного удаления при фиксированном N и изменении Z.",
+    "donors": "Kanungo; массы K; ⁵⁴Ca",
+    "missing": "Подобрать независимые цепочки и проверить перенос назначения орбитали.",
+    "search": "24O|O-24|²⁴O|54Ca|⁵⁴Ca|(?:калия|кальция|potassium|calcium|\\bCa\\b|\\bK\\b).{0,30}N\\s*=\\s*(32|34)|оболоч.{0,8} эволюц",
+    "claims": [
+      {
+        "id": "local.1",
+        "value": 16,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "donor observations"
+      },
+      {
+        "id": "local.2",
+        "value": 32,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "donor observations"
+      },
+      {
+        "id": "local.3",
+        "value": 34,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "donor observations"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L9"
+  },
+  {
+    "id": "osc3",
+    "title": "Оболочки изотропного 3D-осциллятора",
+    "system": "Независимые частицы со спином ½ в трёхмерной равночастотной гармонической ловушке.",
+    "observable": "Суммарная ёмкость многообразий фиксированного числа квантов.",
+    "donors": "Аналитический осциллятор R142",
+    "missing": "Указать три частоты, спин и правило заполнения; общий осцилляторный резервуар этого не задаёт.",
+    "search": "oscillator|осциллятор|harmonic trap|гармоническ.{0,6} ловушк",
+    "claims": [
+      {
+        "id": "osc3.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.2",
+        "value": 8,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.3",
+        "value": 20,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.4",
+        "value": 40,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.5",
+        "value": 70,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.6",
+        "value": 112,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "osc3.7",
+        "value": 168,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L10"
+  },
+  {
+    "id": "noble",
+    "title": "Замкнутые электронные оболочки",
+    "system": "Нейтральные He, Ne, Ar, Kr, Xe, Rn, Og в основном состоянии.",
+    "observable": "Конфигурация и скачок последовательных энергий ионизации; отдельно доли зарядовых состояний.",
+    "donors": "IUPAC; NIST ASD",
+    "missing": "Проверить энергии соседей; полную ионизацию He и нейтральный He различать.",
+    "search": "noble gas|благородн.{0,5} газ|\\bHe I\\b|He II|HeIII|H/He|атом.{0,7}гели|ион[аы]?.{0,7}гели|helium recombination",
+    "claims": [
+      {
+        "id": "noble.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.2",
+        "value": 10,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.3",
+        "value": 18,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.4",
+        "value": 36,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.5",
+        "value": 54,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.6",
+        "value": 86,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      },
+      {
+        "id": "noble.7",
+        "value": 118,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "tabulated"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L11"
+  },
+  {
+    "id": "sodium",
+    "title": "Электронные оболочки кластеров Na",
+    "system": "Свободные кластеры натрия заданного размера и заряда в пучке.",
+    "observable": "Пики выхода в масс-спектре; нижняя модельная ёмкость вне диапазона исходного опыта.",
+    "donors": "Knight et al.",
+    "missing": "Нужны поразмерные интенсивности по зарядам и единый фон.",
+    "search": "натри.{0,12}кластер|кластер.{0,12}натри|sodium cluster|Na cluster|jellium",
+    "claims": [
+      {
+        "id": "sodium.1",
+        "value": 8,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "reported features"
+      },
+      {
+        "id": "sodium.2",
+        "value": 20,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "reported features"
+      },
+      {
+        "id": "sodium.3",
+        "value": 40,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "reported features"
+      },
+      {
+        "id": "sodium.4",
+        "value": 58,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "reported features"
+      },
+      {
+        "id": "sodium.5",
+        "value": 92,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "reported features"
+      },
+      {
+        "id": "sodium_low.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "model only"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L12"
+  },
+  {
+    "id": "dot",
+    "title": "Оболочки квантовых точек",
+    "system": "Электроны в ограниченной полупроводниковой структуре; для ряда R142 — почти круглая одиночная точка.",
+    "observable": "Спектр добавления при заполнении. Для связанных точек дополнительно фиксировать топологию и ток.",
+    "donors": "Tarucha; Emary; Pöltl–Emary–Brandes",
+    "missing": "Приборное сопоставление и малые контроли выполнены. Для количественного предсказания Δ₂(N) в новой модели нужны зарядовые сектора, электронные спин и орбитали, потенциал и независимая энергетическая калибровка; в E002c этого отображения нет.",
+    "search": "quantum[\\s-]+dots?|квантов\\w*\\s+точ[ек]|квантов\\w*\\s+точк|Emary|Tarucha|Coulomb blockade",
+    "claims": [
+      {
+        "id": "dot.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      },
+      {
+        "id": "dot.2",
+        "value": 6,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      },
+      {
+        "id": "dot.3",
+        "value": 12,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      },
+      {
+        "id": "dot.4",
+        "value": 20,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      },
+      {
+        "id": "dot.5",
+        "value": 30,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      },
+      {
+        "id": "dot.6",
+        "value": 42,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed model"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L13"
+  },
+  {
+    "id": "atomic",
+    "title": "Ёмкость главного слоя атома",
+    "system": "Состояния одного атомного электрона с заданным n, полным набором l,m и спином.",
+    "observable": "Счёт состояний 2n²; заселённость ионизуемого газа сама эту ёмкость не измеряет.",
+    "donors": "NIST ASD; спектральный счёт",
+    "missing": "Разрешить главное квантовое число и вырождения.",
+    "search": "hydrogenic|главн.{0,6} (сло|квант)|orbital degener|атомн.{0,7} оболоч|recombination",
+    "claims": [
+      {
+        "id": "atomic.1",
+        "value": 2,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "atomic.2",
+        "value": 8,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "atomic.3",
+        "value": 18,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "atomic.4",
+        "value": 32,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "atomic.5",
+        "value": 50,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      },
+      {
+        "id": "atomic.6",
+        "value": 72,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "computed"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L14"
+  },
+  {
+    "id": "bosonic",
+    "title": "Критическая размерность бозонной струны",
+    "system": "Мироволистовые поля и репараметризационные духи бозонной струны.",
+    "observable": "Баланс центрального заряда; отдельно амплитуды рассеяния в том же семействе теорий.",
+    "donors": "Tong; струнные амплитуды R134",
+    "missing": "Построить баланс материи и духов с фиксированным содержанием.",
+    "search": "мироволист|world.?sheet|Veneziano|Венциано|Венециано|бозонн.{0,4} струн|bosonic string",
+    "claims": [
+      {
+        "id": "string.1",
+        "value": 26,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "conditional deduction"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L15"
+  },
+  {
+    "id": "super",
+    "title": "Критическая размерность суперструны",
+    "system": "Суперконформная материя и духи на мировом листе.",
+    "observable": "Баланс центральных зарядов RNS; амплитуда без указания сектора не идентифицирует содержание полей.",
+    "donors": "Суперструнное продолжение; мироволистовый аудит R142",
+    "missing": "Явно задать RNS-сектор и супердухи.",
+    "search": "\\bRNS\\b|superstring|type.IIB|string.worldsheet|суперструн|superghost|Вирасоро|Virasoro",
+    "claims": [
+      {
+        "id": "string.2",
+        "value": 10,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "conditional deduction"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L15"
+  },
+  {
+    "id": "anomaly",
+    "title": "Сокращение десятимерной аномалии",
+    "system": "Хиральная 10D супергравитация с калибровочным сектором.",
+    "observable": "Неприводимый член I₁₂ и факторизация полинома следов; размерность алгебры необходима в этой постановке.",
+    "donors": "Green–Schwarz",
+    "missing": "Зафиксировать фермионы и нормировку Tr, проверить остаточные члены.",
+    "search": "Green.Schwarz|Грин.{0,4}Шварц|I₁₂|SO\\(32\\)|E8.{0,5}E8|аномали.{0,10}10D",
+    "claims": [
+      {
+        "id": "anomaly.1",
+        "value": 496,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "necessary condition"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L15"
+  },
+  {
+    "id": "color",
+    "title": "Цветовое калибровочное поле SU(3)",
+    "system": "Присоединённое представление SU(3) цвета или явно указанная чистая теория Янга–Миллса SU(3).",
+    "observable": "Восемь независимых компонент алгебры; на решётке отдельно EOS, петля Полякова, фазовый скачок.",
+    "donors": "PDG QCD; CCM; Giusti; Shirogane",
+    "missing": "Указать, физический ли это цвет, чистый глюонный эталон или гипотетический скрытый сектор.",
+    "search": "SU\\s*\\(?3\\)?|su_3|глюон|gluon|glueball|глюбол|Полякова|Polyakov",
+    "claims": [
+      {
+        "id": "color.1",
+        "value": 8,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "exact"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L16"
+  },
+  {
+    "id": "space",
+    "title": "Типы пространственных групп",
+    "system": "Трёхмерный периодический кристалл и его дискретная пространственная симметрия.",
+    "observable": "Идентификация пространственной группы или классификация типов.",
+    "donors": "IUCr",
+    "missing": "Назвать решётку Браве и операции; периодическая сетка симуляции сама не является кристаллом.",
+    "search": "space groups?|пространственн.{0,5} групп|Bravais|Браве|кристаллограф",
+    "claims": [
+      {
+        "id": "space.1",
+        "value": 230,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "literature"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L16"
+  },
+  {
+    "id": "kissing",
+    "title": "Контактное число в 3D",
+    "system": "Одна сфера и максимальное число равных неперекрывающихся сфер, касающихся её.",
+    "observable": "Геометрическое доказательство или упаковка с контролем расстояний.",
+    "donors": "Геометрическая задача равных сфер",
+    "missing": "Задать метрику, диаметры и запрет перекрытия.",
+    "search": "kissing number|контактн.{0,4} числ|sphere pack|упаковк.{0,9} шар",
+    "claims": [
+      {
+        "id": "kissing.1",
+        "value": 12,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "literature"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L16"
+  },
+  {
+    "id": "alpha_hist",
+    "title": "Формулы Эддингтона и Уайлера",
+    "system": "Исторические точные гипотезы о низкоэнергетической электромагнитной константе.",
+    "observable": "Проверка каждой фиксированной формулы на одной версии эталона.",
+    "donors": "Eddington; Wyler; CODATA",
+    "missing": "Различать три формулы, историю выбора и измерительный вход.",
+    "search": "Eddington|Эддингтон|Эддингтан|Wyler|Уайлер|Вайлер",
+    "claims": [
+      {
+        "id": "alpha136.1",
+        "value": 136,
+        "units": "1",
+        "tier": "T4 candidate; selection history separate",
+        "r142_status": "rejected"
+      },
+      {
+        "id": "alpha137.1",
+        "value": 137,
+        "units": "1",
+        "tier": "T4 candidate; selection history separate",
+        "r142_status": "rejected"
+      },
+      {
+        "id": "alpha137.03608.1",
+        "value": 137.0360824481643,
+        "units": "1",
+        "tier": "T4 candidate; selection history separate",
+        "r142_status": "rejected"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L17"
+  },
+  {
+    "id": "alpha",
+    "title": "Электромагнитная постоянная тонкой структуры",
+    "system": "Низкоэнергетическая α_EM как вход микрофизики, измеренное безразмерное отношение.",
+    "observable": "Версия, масштаб и роль параметра в скоростях, атомных или лабораторных ограничениях.",
+    "donors": "CODATA; PRIMAT",
+    "missing": "Проверить, какие скорости пересчитываются при изменении α_EM.",
+    "search": "fine.structure|тонк.{0,4} структур|alpha.{0,5}em|α.{0,3}EM|CODATA",
+    "claims": [
+      {
+        "id": "alpha_input.1",
+        "value": 137.035999177,
+        "units": "1",
+        "tier": "T2",
+        "r142_status": "measured input"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L17"
+  },
+  {
+    "id": "koide",
+    "title": "Отношение Коиде",
+    "system": "Тройка масс заряженных лептонов e, μ, τ в одной схеме.",
+    "observable": "Q и выбор решения для τ; наличие матриц Юкавы указывает на носитель в донорской теории.",
+    "donors": "Koide; PDG; CCM",
+    "missing": "Разрешить все три массы, схему и датировку выбора ветви.",
+    "search": "Koide|Коиде|Yukawa|Юкав|заряженн.{0,5} лептон",
+    "claims": [
+      {
+        "id": "Koide.1",
+        "value": 0.6666666666666666,
+        "units": "1",
+        "tier": "T3",
+        "r142_status": "compatible"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L18"
+  },
+  {
+    "id": "phi",
+    "title": "Фибоначчиева квазипериодическая цепочка",
+    "system": "Последовательность двух типов узлов, например поляритонный микропровод.",
+    "observable": "Открытая спектральная щель, метка интегральной плотности состояний и отключение контраста.",
+    "donors": "Tanese et al.",
+    "missing": "Выделить измерения мод поляритонной цепи; детерминант серий двоичного кольца имеет свой оператор.",
+    "search": "фибоначчи|Fibonacci|поляритон|polariton|квазипериод",
+    "claims": [
+      {
+        "id": "phi.1",
+        "value": 1.618033988749895,
+        "units": "1",
+        "tier": "T0",
+        "r142_status": "exact"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L19"
+  },
+  {
+    "id": "feig",
+    "title": "Каскад Фейгенбаума и контроль другого класса",
+    "system": "Однопараметрические карты с квадратичным максимумом; квартичная карта как контроль.",
+    "observable": "Последовательные параметры бифуркаций или суперустойчивых циклов, отношение интервалов.",
+    "donors": "Feigenbaum",
+    "missing": "Одно удвоение периода не задаёт каскад; нужны последовательные пороги одного класса.",
+    "search": "Feigenbaum|Фейгенбаум|удвоени.{0,4} период|period.doubl|логистическ.{0,4} карт",
+    "claims": [
+      {
+        "id": "logistic.1",
+        "value": 4.6692011246997795,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed finite period"
+      },
+      {
+        "id": "sine.1",
+        "value": 4.669199300085443,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed finite period"
+      },
+      {
+        "id": "quartic.1",
+        "value": 7.284724598524132,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "computed finite period"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L20"
+  },
+  {
+    "id": "graphene",
+    "title": "Магический угол графена",
+    "system": "Два скрученных слоя графена; заданные геометрия и межслойное туннелирование.",
+    "observable": "Скорость/ширина зоны или транспорт при известном угле и конвенции.",
+    "donors": "Bistritzer–MacDonald; Cao; Tarnopolsky",
+    "missing": "Нужны параметры и наблюдаемая одного устройства.",
+    "search": "graphene|графен|moiré|moire|муар|twisted bilayer",
+    "claims": [
+      {
+        "id": "angle.1",
+        "value": 1.1,
+        "units": "deg",
+        "tier": "T2 device / T1 conditional prediction",
+        "r142_status": "donor; parameter dependent"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L21"
+  },
+  {
+    "id": "dirac",
+    "title": "Большое отношение Дирака",
+    "system": "Кулоновская и ньютоновская силы для пары e–p; закон изменения G составляет отдельную гипотезу.",
+    "observable": "Отношение сил при одной эпохе. Временной тест требует локальной шкалы часов.",
+    "donors": "CODATA; Williams et al.; CCC–BBN S2",
+    "missing": "Согласовать безразмерные переменные и учесть общие константы при сравнении ошибок.",
+    "search": "Dirac large|Дирак.{0,9} больш|lunar laser|лазерн.{0,14}Лун|alpha_G|α_G|m_p/m_e|дрейф.{0,9}констант",
+    "claims": [
+      {
+        "id": "Dirac.1",
+        "value": 1e+39,
+        "units": "1",
+        "tier": "T3",
+        "r142_status": "order only"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L22"
+  },
+  {
+    "id": "lambda",
+    "title": "Космологическая постоянная и планковский масштаб",
+    "system": "Фоновая плотность Λ в заданной космологии с собственными H₀ и ΩΛ.",
+    "observable": "Λℓₚ² или ρΛ/ρₚ с отношением 8π между конвенциями.",
+    "donors": "Planck; Weinberg; фон Lumina",
+    "missing": "Задать единицы и отличить параметр фона от объяснения его величины.",
+    "search": "ΛCDM|LCDM|Omega.lambda|Omega_L|ΩΛ|dark.energy|т[её]мн.{0,4} энерг",
+    "claims": [
+      {
+        "id": "Lambda.1",
+        "value": 2.848515862040189e-122,
+        "units": "1",
+        "tier": "T3",
+        "r142_status": "computed scale"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L23"
+  },
+  {
+    "id": "mond",
+    "title": "Галактические ускорения и MOND",
+    "system": "Дисковые галактики, вращение газа и звёзд, распределение барионов.",
+    "observable": "g_obs(R), g_bar(R), a₀ из галактик; H₀ и выбор космологического масштаба отдельно.",
+    "donors": "SPARC; McGaugh; CCC_SPARC",
+    "missing": "Согласовать галактики, радиусы, M/L, расстояния; определить использование Vobs при реконструкции.",
+    "search": "SPARC|\\bMOND\\b|Милгром|radial acceleration|крив.{0,7} вращения",
+    "claims": [
+      {
+        "id": "MOND.1",
+        "value": 0.15915494309189535,
+        "units": "1",
+        "tier": "T3",
+        "r142_status": "open"
+      },
+      {
+        "id": "a0.1",
+        "value": 1.2e-10,
+        "units": "m/s²",
+        "tier": "T2",
+        "r142_status": "calibration"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L24"
+  },
+  {
+    "id": "efimov",
+    "title": "Эфимовские тримеры",
+    "system": "Три резонансно взаимодействующих бозона, эксперимент с ультрахолодным Cs.",
+    "observable": "Положения двух трёхчастичных резонансов по длине рассеяния.",
+    "donors": "Kraemer; Huang et al.",
+    "missing": "Учесть температуру, дальность и потери при извлечении отношения.",
+    "search": "Efimov|Эфимов|тр[ие][ххё].{0,6} резонанс|\\btrimers?\\b|ультрахолодн",
+    "claims": [
+      {
+        "id": "Efimov.1",
+        "value": 22.69422945019774,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "compatible"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L28"
+  },
+  {
+    "id": "bkt",
+    "title": "Переход БКТ",
+    "system": "Двумерная система с непрерывной фазой и вихрями, например плёнка ⁴He.",
+    "observable": "Фазовая жёсткость Υ со стороны сверхтекучей фазы при Tc.",
+    "donors": "Nelson–Kosterlitz; Bishop–Reppy",
+    "missing": "Указать нормировку, размер и частоту. Ядро ⁴He в BBN не является плёнкой.",
+    "search": "Kosterlitz|Костерлиц|Березинск|БКТ|\\bBKT\\b|phase stiffness|фазов.{0,5} ж[её]стк",
+    "claims": [
+      {
+        "id": "BKT.1",
+        "value": 0.6366197723675814,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "literature"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L29"
+  },
+  {
+    "id": "haldane",
+    "title": "Щель Холдейна",
+    "system": "Изотропная антиферромагнитная спин-1 цепь Гейзенберга; материал CsNiCl₃.",
+    "observable": "Щель Δ и независимый обмен J с контролем размера и межцепочечной связи.",
+    "donors": "White–Huse; нейтроны в CsNiCl₃",
+    "missing": "Проверить конкретные S,J, геометрию и предел длины.",
+    "search": "Haldane|Х[оа]лдейн|CsNiCl|Гейзенберг|Heisenberg",
+    "claims": [
+      {
+        "id": "Haldane.1",
+        "value": 0.41,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "numerical donor"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L30"
+  },
+  {
+    "id": "hall",
+    "title": "Целый и дробный квантовый эффект Холла",
+    "system": "Двумерные электроны в магнитном поле; топологическая зона или коррелированная жидкость.",
+    "observable": "Проводимость и число Черна для целого случая; заполнение и дробный заряд для дробного.",
+    "donors": "TKNN; Laughlin",
+    "missing": "Описать сектора и измерение, отделить обычный магнитотранспорт.",
+    "search": "quantum Hall|эффект.{0,4} Холла|Laughlin|Лафлин|TKNN|chern number|число Черна",
+    "claims": [
+      {
+        "id": "Hall.1",
+        "value": "C",
+        "units": "e²/h",
+        "tier": "T1",
+        "r142_status": "conditional"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L74"
+  },
+  {
+    "id": "mix",
+    "title": "Смешивание активных нейтрино",
+    "system": "Активные нейтрино трёх ароматов и предсказание Ue3=0.",
+    "observable": "Осцилляционные вероятности и θ₁₃. Смешивание тяжёлого стерильного нейтрино требует иных параметров.",
+    "donors": "Daya Bay; CCM; донор кинетики ν",
+    "missing": "Нужны конкретная матрица и спектры реактора; не приписывать их расчёту слабых скоростей.",
+    "search": "PMNS|трибимакс|Daya Bay|neutrino mixing|flavou?r mixing|смешивани.{0,14}нейтрино|θ.?13|flavour oscill|осцилляц.{0,15}нейтрино",
+    "claims": [
+      {
+        "id": "mixing.1",
+        "value": 0,
+        "units": "1",
+        "tier": "T1",
+        "r142_status": "rejected"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L73"
+  },
+  {
+    "id": "mass",
+    "title": "Отношение масс протона и электрона",
+    "system": "Массы свободных протона и электрона в одной конвенции.",
+    "observable": "μ=mₚ/mₑ; при дрейфе сравнить с независимой границей на Δμ/μ.",
+    "donors": "CODATA; S2",
+    "missing": "Зафиксировать эпоху и шкалу масс; независимый вывод масс остаётся отдельным вопросом.",
+    "search": "1836\\.1|m_p/m_e|mₚ/mₑ|proton.electron mass|мас.{0,15}протон.{0,12}электрон",
+    "claims": [
+      {
+        "id": "mass_ratio.1",
+        "value": 1836.15,
+        "units": "1",
+        "tier": "T2 input",
+        "r142_status": "measured input"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L71"
+  },
+  {
+    "id": "omega",
+    "title": "Декуплет барионов и Ω⁻",
+    "system": "Барионы SU(3) аромата, масса и квантовые числа омега-минус.",
+    "observable": "Правило интервалов масс и поиск Ω⁻ в опыте.",
+    "donors": "Barnes et al.; PDG",
+    "missing": "Разделить ароматную и цветовую SU(3), восстановить дооткрытийный набор масс.",
+    "search": "декуплет|decuplet|омега.минус|Ω⁻|Omega.minus",
+    "claims": [
+      {
+        "id": "Omega.1",
+        "value": 1678.6,
+        "units": "MeV",
+        "tier": "T1 approximate",
+        "r142_status": "retrospective"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L70"
+  },
+  {
+    "id": "balmer",
+    "title": "Серия Бальмера водорода",
+    "system": "Нейтральный водород и переходы n→2. Рекомбинация водорода — иной наблюдаемый того же носителя.",
+    "observable": "Длины волн одной серии при заданной приведённой массе.",
+    "donors": "NIST ASD; водород в рекомбинационных пакетах",
+    "missing": "Выделить переходы и их частоты, проверить другую серию.",
+    "search": "Balmer|Бальмер|\\bH I\\b|нейтральн.{0,8} водород|рекомбинац.{0,25}(водород|H/He|атом)|hydrogen recombination|H/He",
+    "claims": [
+      {
+        "id": "Balmer3.1",
+        "value": 656.4696063382917,
+        "units": "nm",
+        "tier": "T1",
+        "r142_status": "computed"
+      },
+      {
+        "id": "Balmer4.1",
+        "value": 486.2737824728087,
+        "units": "nm",
+        "tier": "T1",
+        "r142_status": "computed"
+      },
+      {
+        "id": "Balmer5.1",
+        "value": 434.1730200650078,
+        "units": "nm",
+        "tier": "T1",
+        "r142_status": "computed"
+      },
+      {
+        "id": "Balmer6.1",
+        "value": 410.2935039614324,
+        "units": "nm",
+        "tier": "T1",
+        "r142_status": "computed"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L69"
+  },
+  {
+    "id": "bode",
+    "title": "Правило Тициуса–Боде",
+    "system": "Орбиты планет Солнечной системы и исторический выбор пропусков.",
+    "observable": "Следующие орбитальные радиусы при замороженных индексах.",
+    "donors": "JPL",
+    "missing": "Сохранить промахи и историческое правило включения Плутона.",
+    "search": "Titius|Тициус|планетн.{0,6} орбит|плутон|нептун|Neptune|Uranus",
+    "claims": [
+      {
+        "id": "Uranus.1",
+        "value": 19.599999999999998,
+        "units": "AU",
+        "tier": "T4 if indices selected post hoc",
+        "r142_status": "retrospective"
+      },
+      {
+        "id": "Neptune.1",
+        "value": 38.8,
+        "units": "AU",
+        "tier": "T4 if indices selected post hoc",
+        "r142_status": "retrospective"
+      },
+      {
+        "id": "Pluto.1",
+        "value": 77.2,
+        "units": "AU",
+        "tier": "T4 if indices selected post hoc",
+        "r142_status": "retrospective"
+      }
+    ],
+    "catalog_source": "https://github.com/IgorSabirov/vm-lab/blob/15052f12371f1366e8e51f5d251033b1376739c0/analysis/R142_MAGIC_NUMBERS/DONORS.md#L72"
+  }
+]

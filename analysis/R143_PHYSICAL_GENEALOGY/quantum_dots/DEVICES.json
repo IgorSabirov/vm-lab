@@ -1,0 +1,172 @@
+{
+  "quantity": {
+    "mu": "E(N)-E(N-1)",
+    "Delta2": "mu(N+1)-mu(N)=E(N+1)-2E(N)+E(N-1)",
+    "units": "meV",
+    "N": "number of electrons in one physical dot",
+    "warning": "Current-peak height and stationary drain current are not Delta2; measured peak spacings need a charge-dependent gate-to-energy conversion."
+  },
+  "tarucha_1996": [
+    {
+      "id": "D0.50",
+      "source": "Tarucha1996",
+      "mesa_diameter_um": 0.5,
+      "well_thickness_nm": 12,
+      "barrier_thicknesses_nm": [
+        9,
+        7.5
+      ],
+      "electron_temperature_K_approx": 0.2,
+      "bias_microvolt": 150,
+      "enhanced_shell_N": [
+        2,
+        6,
+        12
+      ],
+      "observed_scope": "Fig1(b) addition spectrum; Fig2 first24 magnetic current peaks, even-odd pairing reported up to40; general gate control starts at0 and exceeds40.",
+      "gate_energy_conversion_meV_per_V": {
+        "N1": 57,
+        "N6": 42,
+        "nearN20": 33
+      }
+    },
+    {
+      "id": "D0.44",
+      "source": "Tarucha1996",
+      "mesa_diameter_um": 0.44,
+      "enhanced_shell_N": [
+        2,
+        6,
+        12
+      ],
+      "observed_scope": "Second addition spectrum in Fig1(b); enhanced energies at N2,6,12 stated for both devices. No per-device raw values/errors supplied."
+    }
+  ],
+  "austing_1999": [
+    {
+      "id": "W",
+      "source": "Austing1999",
+      "mesa_L_um": null,
+      "mesa_S_um": null,
+      "mesa_diameter_um": 0.5,
+      "nominal_beta_reported": 1.0,
+      "N_range_Fig3": [
+        1,
+        17
+      ],
+      "temperature_K_upper": 0.3,
+      "B_T_Fig3": 0,
+      "delta2_at_N4_meV": 3.1,
+      "delta2_at_N4_uncertainty_meV": null,
+      "first_upmoving_pair": null,
+      "delta_interval_source_interpretation": [
+        1,
+        1
+      ],
+      "delta_interval_endpoints_open": false,
+      "delta_independently_measured": false,
+      "experimental_data_type": "Text-reported value and pair rank; no statistical error/covariance supplied for this transcription.",
+      "test": "Circular shell-count control"
+    },
+    {
+      "id": "X",
+      "source": "Austing1999",
+      "mesa_L_um": 0.55,
+      "mesa_S_um": 0.4,
+      "mesa_diameter_um": null,
+      "nominal_beta_reported": 1.375,
+      "N_range_Fig3": [
+        1,
+        17
+      ],
+      "temperature_K_upper": 0.3,
+      "B_T_Fig3": 0,
+      "delta2_at_N4_meV": 2.7,
+      "delta2_at_N4_uncertainty_meV": null,
+      "first_upmoving_pair": 3,
+      "delta_interval_source_interpretation": [
+        1,
+        2
+      ],
+      "delta_interval_endpoints_open": true,
+      "delta_independently_measured": false,
+      "experimental_data_type": "Text-reported value and pair rank; no statistical error/covariance supplied for this transcription.",
+      "test": "Predict first-upmoving pair from delta=nominal L/S as a falsifiable surrogate; do not fit delta to the observed rank."
+    },
+    {
+      "id": "Y",
+      "source": "Austing1999",
+      "mesa_L_um": 0.65,
+      "mesa_S_um": 0.45,
+      "mesa_diameter_um": null,
+      "nominal_beta_reported": 1.44,
+      "N_range_Fig3": [
+        1,
+        17
+      ],
+      "temperature_K_upper": 0.3,
+      "B_T_Fig3": 0,
+      "delta2_at_N4_meV": 3.1,
+      "delta2_at_N4_uncertainty_meV": null,
+      "first_upmoving_pair": 5,
+      "delta_interval_source_interpretation": [
+        3,
+        4
+      ],
+      "delta_interval_endpoints_open": true,
+      "delta_independently_measured": false,
+      "experimental_data_type": "Text-reported value and pair rank; no statistical error/covariance supplied for this transcription.",
+      "test": "Predict first-upmoving pair from delta=nominal L/S as a falsifiable surrogate; do not fit delta to the observed rank."
+    },
+    {
+      "id": "Z",
+      "source": "Austing1999",
+      "mesa_L_um": 0.6,
+      "mesa_S_um": 0.4,
+      "mesa_diameter_um": null,
+      "nominal_beta_reported": 1.5,
+      "N_range_Fig3": [
+        1,
+        17
+      ],
+      "temperature_K_upper": 0.3,
+      "B_T_Fig3": 0,
+      "delta2_at_N4_meV": 2.5,
+      "delta2_at_N4_uncertainty_meV": null,
+      "first_upmoving_pair": 4,
+      "delta_interval_source_interpretation": [
+        2,
+        3
+      ],
+      "delta_interval_endpoints_open": true,
+      "delta_independently_measured": false,
+      "experimental_data_type": "Text-reported value and pair rank; no statistical error/covariance supplied for this transcription.",
+      "test": "Predict first-upmoving pair from delta=nominal L/S as a falsifiable surrogate; do not fit delta to the observed rank."
+    }
+  ],
+  "observed_vs_model": {
+    "reported_enhanced_shells_1996": [
+      2,
+      6,
+      12
+    ],
+    "ideal_extensions_not_observed_shells_in_this_paper": [
+      20,
+      30,
+      42
+    ],
+    "reported_half_shell_features_W_1999": [
+      4,
+      9,
+      16
+    ],
+    "half_shell_warning": "Exchange/Hund effects; absent from the independent spin-degenerate constant-interaction control."
+  },
+  "austing_fig3_display_offsets_meV": {
+    "W": 9,
+    "X": 6,
+    "Y": 3,
+    "Z": 0
+  },
+  "prediction_status": "Retrospective source comparison. Formula fixed without fitting the observed pair ranks; neither a blind test nor an independent measurement of delta."
+}

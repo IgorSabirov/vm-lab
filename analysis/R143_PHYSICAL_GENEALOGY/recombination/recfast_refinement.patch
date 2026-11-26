@@ -1,0 +1,61 @@
+diff --git a/fortran/recfast.f90 b/fortran/recfast.f90
+index c1bebda..a20510b 100644
+--- a/fortran/recfast.f90
++++ b/fortran/recfast.f90
+@@ -216,7 +216,7 @@
+ 
+     real(dl), parameter ::  zinitial = 1e4_dl !highest redshift
+     real(dl), parameter ::  zfinal=0._dl
+-    integer,  parameter :: Nz=10000
++    integer,  parameter :: Nz=20000
+     real(dl), parameter :: delta_z = (zinitial-zfinal)/Nz
+ 
+     integer, parameter ::  RECFAST_Heswitch_default = 6
+@@ -394,7 +394,7 @@
+                 az=zst - ihi
+                 bz=1-az
+                 TRecfast_tm=az*Calc%Tmrec(ilo)+bz*Calc%Tmrec(ihi)+ &
+-                    ((az**3-az)*Calc%dTmrec(ilo)+(bz**3-bz)*Calc%dTmrec(ihi))/6._dl
++                    ((az**3-az)*Calc%dTmrec(ilo)+(bz**3-bz)*Calc%dTmrec(ihi))*delta_z**2/6._dl
+             endif
+         endif
+     end associate
+@@ -424,7 +424,7 @@
+                 bz=1-az
+ 
+                 TRecfast_ts=az*Calc%tsrec(ilo)+bz*Calc%tsrec(ihi)+ &
+-                    ((az**3-az)*Calc%dtsrec(ilo)+(bz**3-bz)*Calc%dtsrec(ihi))/6._dl
++                    ((az**3-az)*Calc%dtsrec(ilo)+(bz**3-bz)*Calc%dtsrec(ihi))*delta_z**2/6._dl
+             endif
+         endif
+     end associate
+@@ -450,7 +450,7 @@
+                 az=zst - ihi
+                 bz=1-az
+                 TRecfast_xe=az*Calc%xrec(ilo)+bz*Calc%xrec(ihi)+ &
+-                    ((az**3-az)*Calc%dxrec(ilo)+(bz**3-bz)*Calc%dxrec(ihi))/6._dl
++                    ((az**3-az)*Calc%dxrec(ilo)+(bz**3-bz)*Calc%dxrec(ihi))*delta_z**2/6._dl
+             endif
+         endif
+     end associate
+@@ -479,9 +479,9 @@
+                 az=zst - ihi
+                 bz=1-az
+                 xe=az*Calc%xrec(ilo)+bz*Calc%xrec(ihi)+ &
+-                    ((az**3-az)*Calc%dxrec(ilo)+(bz**3-bz)*Calc%dxrec(ihi))/6._dl
++                    ((az**3-az)*Calc%dxrec(ilo)+(bz**3-bz)*Calc%dxrec(ihi))*delta_z**2/6._dl
+                 Tm=az*Calc%Tmrec(ilo)+bz*Calc%Tmrec(ihi)+ &
+-                    ((az**3-az)*Calc%dTmrec(ilo)+(bz**3-bz)*Calc%dTmrec(ihi))/6._dl
++                    ((az**3-az)*Calc%dTmrec(ilo)+(bz**3-bz)*Calc%dTmrec(ihi))*delta_z**2/6._dl
+ 
+             endif
+         endif
+@@ -512,7 +512,7 @@
+     real(dl) :: y(4)
+     real(dl) :: C10, tau_21Ts
+     integer :: ind, nw
+-    real(dl), parameter :: tol=1.D-5                !Tolerance for R-K
++    real(dl), parameter :: tol=1.D-6                !Tolerance for R-K
+     procedure(TClassDverk) :: dverk
+ 
+ 

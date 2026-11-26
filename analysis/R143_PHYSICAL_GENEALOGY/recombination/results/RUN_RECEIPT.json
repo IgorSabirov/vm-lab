@@ -1,0 +1,217 @@
+{
+  "started_UTC": "2026-11-23T05:29:22.312794+00:00",
+  "lock_sha256": "ea042542cbc74785a11f9f521c204bd30d2e33a4258aa7706236f58d8fc3a832",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "OMP_NUM_THREADS": "1",
+  "CAMB": {
+    "camb_version": "1.6.5",
+    "camb_source_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+    "recfast_version": "Recfast_1.5.2",
+    "module_path": "/workspace/scratch/d056424f8c10/recfast_build/compiled_base/camb",
+    "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad",
+    "recfast_parameters": {
+      "RECFAST_fudge": 1.125,
+      "RECFAST_fudge_He": 0.86,
+      "RECFAST_Heswitch": 6,
+      "RECFAST_Hswitch": true,
+      "AGauss1": -0.14,
+      "AGauss2": 0.079,
+      "zGauss1": 7.28,
+      "zGauss2": 6.73,
+      "wGauss1": 0.18,
+      "wGauss2": 0.33
+    },
+    "base_RECFAST_Nz": 10000,
+    "base_RECFAST_zinitial": 10000.0,
+    "base_RECFAST_delta_z": 1.0,
+    "base_RECFAST_DVERK_tolerance": 1e-05,
+    "compiled_build": {
+      "profile": "source_baseline",
+      "CAMB_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+      "forutils_sha": "841f06d5356877e90437f94b2d976dd98f7f923c",
+      "compiler": "GNU Fortran (Debian 14.2.0-19) 14.2.0",
+      "build_command": "make -C fortran python CLUSTER_SAFE=1 -j1",
+      "numerical_changes": [],
+      "RECFAST_Nz": 10000,
+      "RECFAST_delta_z": 1.0,
+      "RECFAST_DVERK_tolerance": 1e-05,
+      "recfast_source_sha256": "14363a425b2352f837e1d353b885ebdfac5430f31517525ed6e75412269159f5",
+      "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad"
+    }
+  },
+  "composition": {
+    "Yp_mass_fraction": 0.24,
+    "m_H_kg": 1.673575e-27,
+    "m_He4_kg": 6.646479073e-27,
+    "mHe_over_mH": 3.971425883512839,
+    "G_SI": 6.6743e-11,
+    "Mpc_m": 3.085677581e+22,
+    "c_m_s": 299792458.0,
+    "nH_coefficient_cm3": 1.1223528180878582e-05,
+    "nH0_cm3": 1.9122166025036682e-07,
+    "fHe": 0.07951538891741466,
+    "xe_definition": "n_e/n_H (hydrogen nuclei)"
+  },
+  "RECFAST_seconds": 0.021588745999906678,
+  "grid_points": 6023,
+  "z_range": [
+    10.0,
+    8000.0
+  ],
+  "inputs": {
+    "H0": 67.66,
+    "Omega_b": 0.04897,
+    "Omega_c": 0.26063,
+    "Omega_k": 0.0,
+    "Yp": 0.24,
+    "Tcmb": 2.7255,
+    "Neff": 3.046
+  },
+  "CAMB_background_Omega": {
+    "baryon": 0.04897,
+    "cdm": 0.26063,
+    "photon": 5.4020151352432006e-05,
+    "neutrino": 3.736946011672243e-05,
+    "de": 0.6903086103885309
+  },
+  "code_sha256": {
+    "experiment.py": "d7dcdde205913a4062261e2d532d16c4fe2f06fe1076c6ade79aeecf06f7e434",
+    "recfast_adapter.py": "670bb93e37334b0df16733284c10c11cb0633299b0a0085afc55b8d783824d91",
+    "hyrec_adapter.py": "2e6609c3df3c6435c667a3efa8734408521eb87860f388840bb3363f7cc85e76",
+    "hyrec_adapter.c": "d14c62d773b62eeafcbdf066261465eee38286cf757408431051daf05aee9d34"
+  },
+  "build_receipt": {
+    "profile": "source_baseline",
+    "CAMB_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+    "forutils_sha": "841f06d5356877e90437f94b2d976dd98f7f923c",
+    "compiler": "GNU Fortran (Debian 14.2.0-19) 14.2.0",
+    "build_command": "make -C fortran python CLUSTER_SAFE=1 -j1",
+    "numerical_changes": [],
+    "RECFAST_Nz": 10000,
+    "RECFAST_delta_z": 1.0,
+    "RECFAST_DVERK_tolerance": 1e-05,
+    "recfast_source_sha256": "14363a425b2352f837e1d353b885ebdfac5430f31517525ed6e75412269159f5",
+    "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad"
+  },
+  "build_receipt_sha256": "5447b2c40c086aee90c79063628996d554c0ef04ab1ef72368398cbe83fad3c7",
+  "HYREC": {
+    "main": {
+      "native_nH0_cm3": 1.912270807905817e-07,
+      "native_fHe": 0.07951330436486959,
+      "used_nH0_cm3": 1.9122166025036682e-07,
+      "used_fHe": 0.07951538891741466,
+      "dlna": 0.004,
+      "internal_grid_size": 2248.0,
+      "hubble_callback_calls": 4687.0,
+      "model_code": 4.0,
+      "integration_zmax": 8000.0,
+      "integration_zmin": 0.0,
+      "elapsed_seconds": 0.013105945999996038,
+      "model": "HYREC-2 SWIFT",
+      "H_callback_max_relative_roundtrip": 2.220446049250313e-16,
+      "H_callback_probes_z": [
+        0.0,
+        10.0,
+        49.0,
+        100.0,
+        500.0,
+        1100.0,
+        3000.0,
+        8000.0
+      ],
+      "H_callback_probes_s_inv": [
+        2.1927112675872277e-18,
+        4.462078232774044e-17,
+        4.3453250458737242e-16,
+        1.2567352414706681e-15,
+        1.4658459028409457e-14,
+        5.1306314877058835e-14,
+        2.7544499553357113e-13,
+        1.600970108960707e-12
+      ]
+    },
+    "half_step": {
+      "native_nH0_cm3": 1.912270807905817e-07,
+      "native_fHe": 0.07951330436486959,
+      "used_nH0_cm3": 1.9122166025036682e-07,
+      "used_fHe": 0.07951538891741466,
+      "dlna": 0.002,
+      "internal_grid_size": 4495.0,
+      "hubble_callback_calls": 8787.0,
+      "model_code": 4.0,
+      "integration_zmax": 8000.0,
+      "integration_zmin": 0.0,
+      "elapsed_seconds": 0.020526508000330068,
+      "model": "HYREC-2 SWIFT",
+      "H_callback_max_relative_roundtrip": 2.220446049250313e-16,
+      "H_callback_probes_z": [
+        0.0,
+        10.0,
+        49.0,
+        100.0,
+        500.0,
+        1100.0,
+        3000.0,
+        8000.0
+      ],
+      "H_callback_probes_s_inv": [
+        2.1927112675872277e-18,
+        4.462078232774044e-17,
+        4.3453250458737242e-16,
+        1.2567352414706681e-15,
+        1.4658459028409457e-14,
+        5.1306314877058835e-14,
+        2.7544499553357113e-13,
+        1.600970108960707e-12
+      ]
+    },
+    "native_composition": {
+      "native_nH0_cm3": 1.912270807905817e-07,
+      "native_fHe": 0.07951330436486959,
+      "used_nH0_cm3": 1.912270807905817e-07,
+      "used_fHe": 0.07951330436486959,
+      "dlna": 0.004,
+      "internal_grid_size": 2248.0,
+      "hubble_callback_calls": 4687.0,
+      "model_code": 4.0,
+      "integration_zmax": 8000.0,
+      "integration_zmin": 0.0,
+      "elapsed_seconds": 0.012282057000447821,
+      "model": "HYREC-2 SWIFT",
+      "H_callback_max_relative_roundtrip": 2.220446049250313e-16,
+      "H_callback_probes_z": [
+        0.0,
+        10.0,
+        49.0,
+        100.0,
+        500.0,
+        1100.0,
+        3000.0,
+        8000.0
+      ],
+      "H_callback_probes_s_inv": [
+        2.1927112675872277e-18,
+        4.462078232774044e-17,
+        4.3453250458737242e-16,
+        1.2567352414706681e-15,
+        1.4658459028409457e-14,
+        5.1306314877058835e-14,
+        2.7544499553357113e-13,
+        1.600970108960707e-12
+      ]
+    },
+    "library_sha256": "dc8d8f84b36321fad8cd344d63f283f856bdf649975b3337386b0fde809d98b2"
+  },
+  "CAMB_external_sampling_control_seconds": 0.03491513299923099,
+  "CAMB_external_sampling_control": {
+    "AccuracyBoost": 2.0,
+    "BackgroundTimeStepBoost": 2.0,
+    "description": "Changes the CAMB thermal sampling; native RECFAST Nz/tol unchanged.",
+    "max_H_relative_change": 0.0
+  },
+  "histories_sha256": "78de13a2daa81b4a28c3c045ae22acf583406b4a44d0c020da0fd8f1585469eb",
+  "hyrec_input_sha256": "836d62e746703f777072ba4669826339121d7a813aa6e718e0620147f959bbe4",
+  "finite_positive": true,
+  "primary_H_callback_exact": true
+}

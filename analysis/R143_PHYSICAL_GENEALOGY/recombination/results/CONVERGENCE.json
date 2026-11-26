@@ -1,0 +1,2213 @@
+{
+  "id": "R143-HYREC2-NUMERICAL-FOLLOWUP-v1",
+  "status": "TWO_PREDECLARED_REFINEMENTS_EXECUTED",
+  "scientific_acceptance": false,
+  "started_UTC": "2026-11-23T05:31:29.705324+00:00",
+  "finished_UTC": "2026-11-23T05:31:29.872625+00:00",
+  "plan_sha256": "c120f6c7650655464eef24cd66161378e40a3d60a336b05d625e8edc1bb4e362",
+  "input_sha256": {
+    "LOCK.json": "ea042542cbc74785a11f9f521c204bd30d2e33a4258aa7706236f58d8fc3a832",
+    "results/SUMMARY.json": "e325198e704bc9abae54b70390ce2d9b20e8680159373f7df6afe9a458620c77",
+    "results/histories.csv": "78de13a2daa81b4a28c3c045ae22acf583406b4a44d0c020da0fd8f1585469eb",
+    "results/RUN_RECEIPT.json": "a15de4f284c11c35382ca15ddf09cbea86e72740c22e860bb6f08fb73aec7091",
+    "results/recfast_internal_refined.csv": "01439c76ddb8f7f544da6508f65ab93f2c272c9eb1a4c256b88cc00f90f67ed4",
+    "results/recfast_internal_refined_receipt.json": "70c4ba6df5363f6081518dabd12bfce99c6c25de28536bd0f343a855402a6c42",
+    "results/hyrec_input.dat": "836d62e746703f777072ba4669826339121d7a813aa6e718e0620147f959bbe4",
+    "hyrec_adapter.py": "2e6609c3df3c6435c667a3efa8734408521eb87860f388840bb3363f7cc85e76",
+    "hyrec_adapter.c": "d14c62d773b62eeafcbdf066261465eee38286cf757408431051daf05aee9d34",
+    "recfast_adapter.py": "670bb93e37334b0df16733284c10c11cb0633299b0a0085afc55b8d783824d91"
+  },
+  "convergence_script_sha256": "abfe17615058af1f084e92d207c5df33a96bfc91940aa346bbf7075c02730773",
+  "CAMB": {
+    "camb_version": "1.6.5",
+    "camb_source_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+    "recfast_version": "Recfast_1.5.2",
+    "module_path": "/workspace/scratch/d056424f8c10/recfast_build/compiled_base/camb",
+    "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad",
+    "recfast_parameters": {
+      "RECFAST_fudge": 1.125,
+      "RECFAST_fudge_He": 0.86,
+      "RECFAST_Heswitch": 6,
+      "RECFAST_Hswitch": true,
+      "AGauss1": -0.14,
+      "AGauss2": 0.079,
+      "zGauss1": 7.28,
+      "zGauss2": 6.73,
+      "wGauss1": 0.18,
+      "wGauss2": 0.33
+    },
+    "base_RECFAST_Nz": 10000,
+    "base_RECFAST_zinitial": 10000.0,
+    "base_RECFAST_delta_z": 1.0,
+    "base_RECFAST_DVERK_tolerance": 1e-05,
+    "compiled_build": {
+      "profile": "source_baseline",
+      "CAMB_sha": "53c1f1c0208f75223cf3da2b163187deb7310f42",
+      "forutils_sha": "841f06d5356877e90437f94b2d976dd98f7f923c",
+      "compiler": "GNU Fortran (Debian 14.2.0-19) 14.2.0",
+      "build_command": "make -C fortran python CLUSTER_SAFE=1 -j1",
+      "numerical_changes": [],
+      "RECFAST_Nz": 10000,
+      "RECFAST_delta_z": 1.0,
+      "RECFAST_DVERK_tolerance": 1e-05,
+      "recfast_source_sha256": "14363a425b2352f837e1d353b885ebdfac5430f31517525ed6e75412269159f5",
+      "library_sha256": "0fbff05aeadba509eb8851884885b53ccb42644f2d636b443ccec706af8c93ad"
+    }
+  },
+  "HYREC_library_sha256": "dc8d8f84b36321fad8cd344d63f283f856bdf649975b3337386b0fde809d98b2",
+  "background_repeat_seconds": 0.009823377999964578,
+  "background_max_relative_change": 0.0,
+  "new_HYREC_runs": [
+    {
+      "dlna": 0.001,
+      "native_nH0_cm3": 1.912270807905817e-07,
+      "native_fHe": 0.07951330436486959,
+      "used_nH0_cm3": 1.9122166025036682e-07,
+      "used_fHe": 0.07951538891741466,
+      "internal_grid_size": 8989.0,
+      "hubble_callback_calls": 16377.0,
+      "model_code": 4.0,
+      "integration_zmax": 8000.0,
+      "integration_zmin": 0.0,
+      "elapsed_seconds": 0.03611761200045294,
+      "model": "HYREC-2 SWIFT",
+      "H_callback_max_relative_roundtrip": 2.220446049250313e-16,
+      "H_callback_probes_z": [
+        0.0,
+        10.0,
+        49.0,
+        100.0,
+        500.0,
+        1100.0,
+        3000.0,
+        8000.0
+      ],
+      "H_callback_probes_s_inv": [
+        2.1927112675872277e-18,
+        4.462078232774044e-17,
+        4.3453250458737242e-16,
+        1.2567352414706681e-15,
+        1.4658459028409457e-14,
+        5.1306314877058835e-14,
+        2.7544499553357113e-13,
+        1.600970108960707e-12
+      ]
+    },
+    {
+      "dlna": 0.0005,
+      "native_nH0_cm3": 1.912270807905817e-07,
+      "native_fHe": 0.07951330436486959,
+      "used_nH0_cm3": 1.9122166025036682e-07,
+      "used_fHe": 0.07951538891741466,
+      "internal_grid_size": 17976.0,
+      "hubble_callback_calls": 32704.0,
+      "model_code": 4.0,
+      "integration_zmax": 8000.0,
+      "integration_zmin": 0.0,
+      "elapsed_seconds": 0.07006387699948391,
+      "model": "HYREC-2 SWIFT",
+      "H_callback_max_relative_roundtrip": 2.220446049250313e-16,
+      "H_callback_probes_z": [
+        0.0,
+        10.0,
+        49.0,
+        100.0,
+        500.0,
+        1100.0,
+        3000.0,
+        8000.0
+      ],
+      "H_callback_probes_s_inv": [
+        2.1927112675872277e-18,
+        4.462078232774044e-17,
+        4.3453250458737242e-16,
+        1.2567352414706681e-15,
+        1.4658459028409457e-14,
+        5.1306314877058835e-14,
+        2.7544499553357113e-13,
+        1.600970108960707e-12
+      ]
+    }
+  ],
+  "total_new_HYREC_solver_seconds": 0.10618148899993685,
+  "new_HYREC_run_count": 2,
+  "grid_points": 6023,
+  "same_exact_output_grid": true,
+  "boundary_z49": [
+    {
+      "dlna": 0.004,
+      "xe": 0.00023478127442262212,
+      "Tgas_K": 48.76953741851954,
+      "vs_Lumina_formula_K": -5.39381711248204,
+      "vs_Lumina_formula_relative": -0.09958425136675708
+    },
+    {
+      "dlna": 0.002,
+      "xe": 0.00023478489370794395,
+      "Tgas_K": 48.76980398584367,
+      "vs_Lumina_formula_K": -5.3935505451579075,
+      "vs_Lumina_formula_relative": -0.09957932982291173
+    },
+    {
+      "dlna": 0.001,
+      "xe": 0.00023478520777863544,
+      "Tgas_K": 48.76982717130274,
+      "vs_Lumina_formula_K": -5.393527359698844,
+      "vs_Lumina_formula_relative": -0.09957890175749251
+    },
+    {
+      "dlna": 0.0005,
+      "xe": 0.0002347852791507551,
+      "Tgas_K": 48.76983242244349,
+      "vs_Lumina_formula_K": -5.393522108558088,
+      "vs_Lumina_formula_relative": -0.09957880480742731
+    }
+  ],
+  "consecutive_step_changes": [
+    {
+      "previous_dlna": 0.004,
+      "next_dlna": 0.002,
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 1.6095169986907187e-05,
+          "z_max_abs": 1556.6718091116861,
+          "signed_at_max_abs": 1.6095169986907187e-05,
+          "max_abs_relative": 8.58254273276858e-05,
+          "z_max_abs_relative": 15.974278802575743,
+          "min_signed_relative": -7.86077078881258e-06,
+          "max_signed_relative": 8.58254273276858e-05
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.6075020605308055,
+          "z_max_abs": 807.596165192962,
+          "signed_at_max_abs": 0.6075020605308055,
+          "max_abs_relative": 0.00028849364923788466,
+          "z_max_abs_relative": 769.4518441877029,
+          "min_signed_relative": -0.0002246373845059335,
+          "max_signed_relative": 0.00028849364923788466
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 1.6095169986907187e-05,
+          "z_max_abs": 1556.6718091116861,
+          "signed_at_max_abs": 1.6095169986907187e-05,
+          "max_abs_relative": 6.243947016700435e-05,
+          "z_max_abs_relative": 733.1069247719931,
+          "min_signed_relative": -7.86077078881258e-06,
+          "max_signed_relative": 6.243947016700435e-05
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.6075020605308055,
+          "z_max_abs": 807.596165192962,
+          "signed_at_max_abs": 0.6075020605308055,
+          "max_abs_relative": 0.00028849364923788466,
+          "z_max_abs_relative": 769.4518441877029,
+          "min_signed_relative": -0.0002246373845059335,
+          "max_signed_relative": 0.00028849364923788466
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": 3.6192853218282913e-09,
+        "xe_relative": 1.5415562125697946e-05,
+        "Tgas_abs_K": 0.00026656732413243844,
+        "Tgas_relative": 5.465857136233154e-06
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 1.099852882102681e-07,
+            "z_max_abs": 5728.923935396921,
+            "signed_at_max_abs": -1.099852882102681e-07,
+            "max_abs_relative": 1.0006428784337272e-07,
+            "z_max_abs_relative": 5728.923935396921,
+            "min_signed_relative": -1.0006428784337272e-07,
+            "max_signed_relative": 9.241508381882866e-08
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0006490934338216903,
+            "z_max_abs": 4143.251186485058,
+            "signed_at_max_abs": -0.0006490934338216903,
+            "max_abs_relative": 5.74665312261607e-08,
+            "z_max_abs_relative": 4143.251186485058,
+            "min_signed_relative": -5.74665312261607e-08,
+            "max_signed_relative": 7.2024844213880405e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 1.099852882102681e-07,
+              "z_max_abs": 5728.923935396921,
+              "signed_at_max_abs": -1.099852882102681e-07,
+              "max_abs_relative": 1.0006428784337272e-07,
+              "z_max_abs_relative": 5728.923935396921,
+              "min_signed_relative": -1.0006428784337272e-07,
+              "max_signed_relative": 9.241508381882866e-08
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0006490934338216903,
+              "z_max_abs": 4143.251186485058,
+              "signed_at_max_abs": -0.0006490934338216903,
+              "max_abs_relative": 5.74665312261607e-08,
+              "z_max_abs_relative": 4143.251186485058,
+              "min_signed_relative": -5.74665312261607e-08,
+              "max_signed_relative": 7.2024844213880405e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 1.4192393456013974e-06,
+            "z_max_abs": 2851.857947298712,
+            "signed_at_max_abs": -1.4192393456013974e-06,
+            "max_abs_relative": 1.373830570639589e-06,
+            "z_max_abs_relative": 1731.770094824071,
+            "min_signed_relative": -1.373830570639589e-06,
+            "max_signed_relative": 9.650145936952973e-07
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 1.7839311112766154e-06,
+            "z_max_abs": 1637.385348453661,
+            "signed_at_max_abs": 1.7839311112766154e-06,
+            "max_abs_relative": 3.9949954961459114e-10,
+            "z_max_abs_relative": 1637.385348453661,
+            "min_signed_relative": -3.037878724068337e-10,
+            "max_signed_relative": 3.9949954961459114e-10
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 1.4192393456013974e-06,
+              "z_max_abs": 2851.857947298712,
+              "signed_at_max_abs": -1.4192393456013974e-06,
+              "max_abs_relative": 1.373830570639589e-06,
+              "z_max_abs_relative": 1731.770094824071,
+              "min_signed_relative": -1.373830570639589e-06,
+              "max_signed_relative": 9.650145936952973e-07
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 1.7839311112766154e-06,
+              "z_max_abs": 1637.385348453661,
+              "signed_at_max_abs": 1.7839311112766154e-06,
+              "max_abs_relative": 3.9949954961459114e-10,
+              "z_max_abs_relative": 1637.385348453661,
+              "min_signed_relative": -3.037878724068337e-10,
+              "max_signed_relative": 3.9949954961459114e-10
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 1.6095169986907187e-05,
+            "z_max_abs": 1556.6718091116861,
+            "signed_at_max_abs": 1.6095169986907187e-05,
+            "max_abs_relative": 6.243947016700435e-05,
+            "z_max_abs_relative": 733.1069247719931,
+            "min_signed_relative": -7.86077078881258e-06,
+            "max_signed_relative": 6.243947016700435e-05
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.6075020605308055,
+            "z_max_abs": 807.596165192962,
+            "signed_at_max_abs": 0.6075020605308055,
+            "max_abs_relative": 0.00028849364923788466,
+            "z_max_abs_relative": 769.4518441877029,
+            "min_signed_relative": -0.0002246373845059335,
+            "max_signed_relative": 0.00028849364923788466
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 1.6095169986907187e-05,
+              "z_max_abs": 1556.6718091116861,
+              "signed_at_max_abs": 1.6095169986907187e-05,
+              "max_abs_relative": 6.243947016700435e-05,
+              "z_max_abs_relative": 733.1069247719931,
+              "min_signed_relative": -7.86077078881258e-06,
+              "max_signed_relative": 6.243947016700435e-05
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.6075020605308055,
+              "z_max_abs": 807.596165192962,
+              "signed_at_max_abs": 0.6075020605308055,
+              "max_abs_relative": 0.00028849364923788466,
+              "z_max_abs_relative": 769.4518441877029,
+              "min_signed_relative": -0.0002246373845059335,
+              "max_signed_relative": 0.00028849364923788466
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 2.686091229726472e-08,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": 2.686091229726472e-08,
+            "max_abs_relative": 3.976600864134224e-05,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": 1.5453455466778696e-05,
+            "max_signed_relative": 3.976600864134224e-05
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 0.0011446100149896665,
+            "z_max_abs": 218.092698697513,
+            "signed_at_max_abs": 0.0011446100149896665,
+            "max_abs_relative": 5.442465996192361e-06,
+            "z_max_abs_relative": 50.0,
+            "min_signed_relative": 4.97204248735351e-07,
+            "max_signed_relative": 5.442465996192361e-06
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 2.686091229726472e-08,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": 2.686091229726472e-08,
+              "max_abs_relative": 3.976600864134224e-05,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": 1.5453455466778696e-05,
+              "max_signed_relative": 3.976600864134224e-05
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 0.0011446100149896665,
+              "z_max_abs": 218.092698697513,
+              "signed_at_max_abs": 0.0011446100149896665,
+              "max_abs_relative": 5.442465996192361e-06,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 4.97204248735351e-07,
+              "max_signed_relative": 5.442465996192361e-06
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 1.7394869034927356e-08,
+            "z_max_abs": 15.974278802575743,
+            "signed_at_max_abs": 1.7394869034927356e-08,
+            "max_abs_relative": 8.58254273276858e-05,
+            "z_max_abs_relative": 15.974278802575743,
+            "min_signed_relative": -6.175145009439334e-07,
+            "max_signed_relative": 8.58254273276858e-05
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 0.000275307744502129,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 0.000275307744502129,
+            "max_abs_relative": 6.695582010639934e-06,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": 5.442465996192361e-06,
+            "max_signed_relative": 6.695582010639934e-06
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 3.6402245705898385e-09,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 3.6402245705898385e-09,
+              "max_abs_relative": 1.5453455466778696e-05,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 1.5415562125765336e-05,
+              "max_signed_relative": 1.5453455466778696e-05
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 0.000275307744502129,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 0.000275307744502129,
+              "max_abs_relative": 5.465857136287154e-06,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": 5.442465996192361e-06,
+              "max_signed_relative": 5.465857136287154e-06
+            }
+          }
+        }
+      ]
+    },
+    {
+      "previous_dlna": 0.002,
+      "next_dlna": 0.001,
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.24880793770164977,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": -0.24880793770164977,
+          "max_abs_relative": 0.25345593390933896,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.25345593390933896,
+          "max_signed_relative": 0.01752216423038759
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.4019498763782394,
+          "z_max_abs": 823.739760116232,
+          "signed_at_max_abs": 0.4019498763782394,
+          "max_abs_relative": 0.00017895497733871101,
+          "z_max_abs_relative": 823.739760116232,
+          "min_signed_relative": -0.00016870591104931694,
+          "max_signed_relative": 0.00017895497733871101
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.24880793770164977,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": -0.24880793770164977,
+          "max_abs_relative": 0.25345593390933896,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.25345593390933896,
+          "max_signed_relative": 0.01752216423038759
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.4019498763782394,
+          "z_max_abs": 823.739760116232,
+          "signed_at_max_abs": 0.4019498763782394,
+          "max_abs_relative": 0.00017895497733871101,
+          "z_max_abs_relative": 823.739760116232,
+          "min_signed_relative": -0.00016870591104931694,
+          "max_signed_relative": 0.00017895497733871101
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": 3.140706914916795e-10,
+        "xe_relative": 1.3376954817179154e-06,
+        "Tgas_abs_K": 2.318545906376812e-05,
+        "Tgas_relative": 4.754060334288823e-07
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 1.2745902999711234e-08,
+            "z_max_abs": 4152.363937040361,
+            "signed_at_max_abs": -1.2745902999711234e-08,
+            "max_abs_relative": 1.1807059919435186e-08,
+            "z_max_abs_relative": 4152.363937040361,
+            "min_signed_relative": -1.1807059919435186e-08,
+            "max_signed_relative": 5.7835500845076015e-09
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0009617859650461469,
+            "z_max_abs": 4152.363937040361,
+            "signed_at_max_abs": -0.0009617859650461469,
+            "max_abs_relative": 8.496347347930777e-08,
+            "z_max_abs_relative": 4152.363937040361,
+            "min_signed_relative": -8.496347347930777e-08,
+            "max_signed_relative": 7.695002146627042e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 1.2745902999711234e-08,
+              "z_max_abs": 4152.363937040361,
+              "signed_at_max_abs": -1.2745902999711234e-08,
+              "max_abs_relative": 1.1807059919435186e-08,
+              "z_max_abs_relative": 4152.363937040361,
+              "min_signed_relative": -1.1807059919435186e-08,
+              "max_signed_relative": 5.7835500845076015e-09
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0009617859650461469,
+              "z_max_abs": 4152.363937040361,
+              "signed_at_max_abs": -0.0009617859650461469,
+              "max_abs_relative": 8.496347347930777e-08,
+              "z_max_abs_relative": 4152.363937040361,
+              "min_signed_relative": -8.496347347930777e-08,
+              "max_signed_relative": 7.695002146627042e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.15869214504546858,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": -0.15869214504546858,
+            "max_abs_relative": 0.14707338748195573,
+            "z_max_abs_relative": 2845.598591451853,
+            "min_signed_relative": -0.14707338748195573,
+            "max_signed_relative": 0.007276730146331669
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.00019631945724540856,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": -0.00019631945724540856,
+            "max_abs_relative": 2.5304109069412975e-08,
+            "z_max_abs_relative": 2845.598591451853,
+            "min_signed_relative": -2.5304109069412975e-08,
+            "max_signed_relative": 1.2943879781004492e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.15869214504546858,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": -0.15869214504546858,
+              "max_abs_relative": 0.14707338748195573,
+              "z_max_abs_relative": 2845.598591451853,
+              "min_signed_relative": -0.14707338748195573,
+              "max_signed_relative": 0.007276730146331669
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.00019631945724540856,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": -0.00019631945724540856,
+              "max_abs_relative": 2.5304109069412975e-08,
+              "z_max_abs_relative": 2845.598591451853,
+              "min_signed_relative": -2.5304109069412975e-08,
+              "max_signed_relative": 1.2943879781004492e-09
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.24880793770164977,
+            "z_max_abs": 1544.742862776362,
+            "signed_at_max_abs": -0.24880793770164977,
+            "max_abs_relative": 0.25345593390933896,
+            "z_max_abs_relative": 1544.742862776362,
+            "min_signed_relative": -0.25345593390933896,
+            "max_signed_relative": 0.01752216423038759
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.4019498763782394,
+            "z_max_abs": 823.739760116232,
+            "signed_at_max_abs": 0.4019498763782394,
+            "max_abs_relative": 0.00017895497733871101,
+            "z_max_abs_relative": 823.739760116232,
+            "min_signed_relative": -0.00016870591104931694,
+            "max_signed_relative": 0.00017895497733871101
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.24880793770164977,
+              "z_max_abs": 1544.742862776362,
+              "signed_at_max_abs": -0.24880793770164977,
+              "max_abs_relative": 0.25345593390933896,
+              "z_max_abs_relative": 1544.742862776362,
+              "min_signed_relative": -0.25345593390933896,
+              "max_signed_relative": 0.01752216423038759
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.4019498763782394,
+              "z_max_abs": 823.739760116232,
+              "signed_at_max_abs": 0.4019498763782394,
+              "max_abs_relative": 0.00017895497733871101,
+              "z_max_abs_relative": 823.739760116232,
+              "min_signed_relative": -0.00016870591104931694,
+              "max_signed_relative": 0.00017895497733871101
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 2.3054756384142602e-09,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": 2.3054756384142602e-09,
+            "max_abs_relative": 3.4129860356064947e-06,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": 1.3409785376333184e-06,
+            "max_signed_relative": 3.4129860356064947e-06
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 9.928354575095e-05,
+            "z_max_abs": 217.85221490195457,
+            "signed_at_max_abs": 9.928354575095e-05,
+            "max_abs_relative": 4.732925133223293e-07,
+            "z_max_abs_relative": 50.0,
+            "min_signed_relative": 4.262665573623311e-08,
+            "max_signed_relative": 4.732925133223293e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 2.3054756384142602e-09,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": 2.3054756384142602e-09,
+              "max_abs_relative": 3.4129860356064947e-06,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": 1.3409785376333184e-06,
+              "max_signed_relative": 3.4129860356064947e-06
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 9.928354575095e-05,
+              "z_max_abs": 217.85221490195457,
+              "signed_at_max_abs": 9.928354575095e-05,
+              "max_abs_relative": 4.732925133223293e-07,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 4.262665573623311e-08,
+              "max_signed_relative": 4.732925133223293e-07
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 6.289865513576642e-09,
+            "z_max_abs": 15.992930836758429,
+            "signed_at_max_abs": 6.289865513576642e-09,
+            "max_abs_relative": 3.102889891933991e-05,
+            "z_max_abs_relative": 15.992930836758429,
+            "min_signed_relative": -2.2160530634983903e-06,
+            "max_signed_relative": 3.102889891933991e-05
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 2.394168444652678e-05,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 2.394168444652678e-05,
+            "max_abs_relative": 6.865959066471349e-07,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": 4.732925133223293e-07,
+            "max_signed_relative": 6.865959066471349e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 3.15886532128171e-10,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 3.15886532128171e-10,
+              "max_abs_relative": 1.3409785376333184e-06,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 1.3376954817304456e-06,
+              "max_signed_relative": 1.3409785376333184e-06
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 2.394168444652678e-05,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 2.394168444652678e-05,
+              "max_abs_relative": 4.7540603342384e-07,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": 4.732925133223293e-07,
+              "max_signed_relative": 4.7540603342384e-07
+            }
+          }
+        }
+      ]
+    },
+    {
+      "previous_dlna": 0.001,
+      "next_dlna": 0.0005,
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.24885353126347842,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": 0.24885353126347842,
+          "max_abs_relative": 0.33956787110338094,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.01715403508498818,
+          "max_signed_relative": 0.33956787110338094
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.11402145379179274,
+          "z_max_abs": 834.6808212073107,
+          "signed_at_max_abs": 0.11402145379179274,
+          "max_abs_relative": 5.2463298939533334e-05,
+          "z_max_abs_relative": 793.5117782202556,
+          "min_signed_relative": -5.2463298939533334e-05,
+          "max_signed_relative": 5.008864425348536e-05
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.24885353126347842,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": 0.24885353126347842,
+          "max_abs_relative": 0.33956787110338094,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.01715403508498818,
+          "max_signed_relative": 0.33956787110338094
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.11402145379179274,
+          "z_max_abs": 834.6808212073107,
+          "signed_at_max_abs": 0.11402145379179274,
+          "max_abs_relative": 5.2463298939533334e-05,
+          "z_max_abs_relative": 793.5117782202556,
+          "min_signed_relative": -5.2463298939533334e-05,
+          "max_signed_relative": 5.008864425348536e-05
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": 7.137211966725364e-11,
+        "xe_relative": 3.0398899641959076e-07,
+        "Tgas_abs_K": 5.25114075600186e-06,
+        "Tgas_relative": 1.0767191649385666e-07
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 6.263505492043464e-09,
+            "z_max_abs": 4152.363937040361,
+            "signed_at_max_abs": -6.263505492043464e-09,
+            "max_abs_relative": 5.802145640455481e-09,
+            "z_max_abs_relative": 4152.363937040361,
+            "min_signed_relative": -5.802145640455481e-09,
+            "max_signed_relative": 6.756242841531476e-10
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0004655764678318519,
+            "z_max_abs": 4152.363937040361,
+            "signed_at_max_abs": -0.0004655764678318519,
+            "max_abs_relative": 4.112869045268639e-08,
+            "z_max_abs_relative": 4152.363937040361,
+            "min_signed_relative": -4.112869045268639e-08,
+            "max_signed_relative": 4.780644306720447e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 6.263505492043464e-09,
+              "z_max_abs": 4152.363937040361,
+              "signed_at_max_abs": -6.263505492043464e-09,
+              "max_abs_relative": 5.802145640455481e-09,
+              "z_max_abs_relative": 4152.363937040361,
+              "min_signed_relative": -5.802145640455481e-09,
+              "max_signed_relative": 6.756242841531476e-10
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0004655764678318519,
+              "z_max_abs": 4152.363937040361,
+              "signed_at_max_abs": -0.0004655764678318519,
+              "max_abs_relative": 4.112869045268639e-08,
+              "z_max_abs_relative": 4152.363937040361,
+              "min_signed_relative": -4.112869045268639e-08,
+              "max_signed_relative": 4.780644306720447e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.15861199399667392,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": 0.15861199399667392,
+            "max_abs_relative": 0.17234672079802135,
+            "z_max_abs_relative": 2845.598591451853,
+            "min_signed_relative": -0.007290506047546203,
+            "max_signed_relative": 0.17234672079802135
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.0001962403293873649,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": 0.0001962403293873649,
+            "max_abs_relative": 2.529391072062892e-08,
+            "z_max_abs_relative": 2845.598591451853,
+            "min_signed_relative": -1.3034453034092694e-09,
+            "max_signed_relative": 2.529391072062892e-08
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.15861199399667392,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": 0.15861199399667392,
+              "max_abs_relative": 0.17234672079802135,
+              "z_max_abs_relative": 2845.598591451853,
+              "min_signed_relative": -0.007290506047546203,
+              "max_signed_relative": 0.17234672079802135
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.0001962403293873649,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": 0.0001962403293873649,
+              "max_abs_relative": 2.529391072062892e-08,
+              "z_max_abs_relative": 2845.598591451853,
+              "min_signed_relative": -1.3034453034092694e-09,
+              "max_signed_relative": 2.529391072062892e-08
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.24885353126347842,
+            "z_max_abs": 1544.742862776362,
+            "signed_at_max_abs": 0.24885353126347842,
+            "max_abs_relative": 0.33956787110338094,
+            "z_max_abs_relative": 1544.742862776362,
+            "min_signed_relative": -0.01715403508498818,
+            "max_signed_relative": 0.33956787110338094
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.11402145379179274,
+            "z_max_abs": 834.6808212073107,
+            "signed_at_max_abs": 0.11402145379179274,
+            "max_abs_relative": 5.2463298939533334e-05,
+            "z_max_abs_relative": 793.5117782202556,
+            "min_signed_relative": -5.2463298939533334e-05,
+            "max_signed_relative": 5.008864425348536e-05
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.24885353126347842,
+              "z_max_abs": 1544.742862776362,
+              "signed_at_max_abs": 0.24885353126347842,
+              "max_abs_relative": 0.33956787110338094,
+              "z_max_abs_relative": 1544.742862776362,
+              "min_signed_relative": -0.01715403508498818,
+              "max_signed_relative": 0.33956787110338094
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.11402145379179274,
+              "z_max_abs": 834.6808212073107,
+              "signed_at_max_abs": 0.11402145379179274,
+              "max_abs_relative": 5.2463298939533334e-05,
+              "z_max_abs_relative": 793.5117782202556,
+              "min_signed_relative": -5.2463298939533334e-05,
+              "max_signed_relative": 5.008864425348536e-05
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 5.328217457089418e-10,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": 5.328217457089418e-10,
+            "max_abs_relative": 7.887773528086338e-07,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": 3.0473678124149527e-07,
+            "max_signed_relative": 7.887773528086338e-07
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 2.25760476268988e-05,
+            "z_max_abs": 218.33344674653532,
+            "signed_at_max_abs": 2.25760476268988e-05,
+            "max_abs_relative": 1.0721977904208182e-07,
+            "z_max_abs_relative": 50.0,
+            "min_signed_relative": 9.85821940597334e-09,
+            "max_signed_relative": 1.0721977904208182e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 5.328217457089418e-10,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": 5.328217457089418e-10,
+              "max_abs_relative": 7.887773528086338e-07,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": 3.0473678124149527e-07,
+              "max_signed_relative": 7.887773528086338e-07
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 2.25760476268988e-05,
+              "z_max_abs": 218.33344674653532,
+              "signed_at_max_abs": 2.25760476268988e-05,
+              "max_abs_relative": 1.0721977904208182e-07,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 9.85821940597334e-09,
+              "max_signed_relative": 1.0721977904208182e-07
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 1.9997278987880437e-09,
+            "z_max_abs": 16.01160336656177,
+            "signed_at_max_abs": 1.9997278987880437e-09,
+            "max_abs_relative": 9.863775812249858e-06,
+            "z_max_abs_relative": 16.01160336656177,
+            "min_signed_relative": 1.9400663590520068e-07,
+            "max_signed_relative": 9.863775812249858e-06
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 5.423756469724594e-06,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 5.423756469724594e-06,
+            "max_abs_relative": 1.81520051222214e-07,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": 1.0721977904208182e-07,
+            "max_signed_relative": 1.81520051222214e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 7.178517136730185e-11,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 7.178517136730185e-11,
+              "max_abs_relative": 3.0473678124149527e-07,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 3.039889963363707e-07,
+              "max_signed_relative": 3.0473678124149527e-07
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 5.423756469724594e-06,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 5.423756469724594e-06,
+              "max_abs_relative": 1.0767191644041234e-07,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": 1.0721977904208182e-07,
+              "max_signed_relative": 1.0767191644041234e-07
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "comparison_to_fine_RECFAST": [
+    {
+      "HYREC_dlna": 0.004,
+      "reference": "RECFAST internal refinement Nz=20000, tol=1e-6",
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.0030472896550470807,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.0030472896550470807,
+          "max_abs_relative": 0.010220846719130549,
+          "z_max_abs_relative": 15.974278802575743,
+          "min_signed_relative": -0.010220846719130549,
+          "max_signed_relative": 0.0030346671174870977
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.6957154088959214,
+          "z_max_abs": 807.596165192962,
+          "signed_at_max_abs": -0.6957154088959214,
+          "max_abs_relative": 0.00031592300506881176,
+          "z_max_abs_relative": 807.596165192962,
+          "min_signed_relative": -0.00031592300506881176,
+          "max_signed_relative": 0.0003016671786988413
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.0030472896550470807,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.0030472896550470807,
+          "max_abs_relative": 0.0030346671174870977,
+          "z_max_abs_relative": 1805.6139973008103,
+          "min_signed_relative": -0.0027114518245943465,
+          "max_signed_relative": 0.0030346671174870977
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.6957154088959214,
+          "z_max_abs": 807.596165192962,
+          "signed_at_max_abs": -0.6957154088959214,
+          "max_abs_relative": 0.00031592300506881176,
+          "z_max_abs_relative": 807.596165192962,
+          "min_signed_relative": -0.00031592300506881176,
+          "max_signed_relative": 0.0003016671786988413
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": -4.3112152212521765e-07,
+        "xe_relative": -0.0018329030678574387,
+        "Tgas_abs_K": 0.009870940146051055,
+        "Tgas_relative": 0.00020244068220676148
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 9.289651993182879e-05,
+            "z_max_abs": 4993.925695700747,
+            "signed_at_max_abs": 9.289651993182879e-05,
+            "max_abs_relative": 8.605454871744693e-05,
+            "z_max_abs_relative": 4993.925695700747,
+            "min_signed_relative": -7.24218929125001e-06,
+            "max_signed_relative": 8.605454871744693e-05
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0014589961338060675,
+            "z_max_abs": 4125.085623408235,
+            "signed_at_max_abs": -0.0014589961338060675,
+            "max_abs_relative": 1.3123741223891587e-07,
+            "z_max_abs_relative": 4000.0,
+            "min_signed_relative": -1.3123741223891587e-07,
+            "max_signed_relative": 7.643001591093022e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 9.289651993182879e-05,
+              "z_max_abs": 4993.925695700747,
+              "signed_at_max_abs": 9.289651993182879e-05,
+              "max_abs_relative": 8.605454871744693e-05,
+              "z_max_abs_relative": 4993.925695700747,
+              "min_signed_relative": -7.24218929125001e-06,
+              "max_signed_relative": 8.605454871744693e-05
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0014589961338060675,
+              "z_max_abs": 4125.085623408235,
+              "signed_at_max_abs": -0.0014589961338060675,
+              "max_abs_relative": 1.3123741223891587e-07,
+              "z_max_abs_relative": 4000.0,
+              "min_signed_relative": -1.3123741223891587e-07,
+              "max_signed_relative": 7.643001591093022e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.0030472896550470807,
+            "z_max_abs": 1805.6139973008103,
+            "signed_at_max_abs": 0.0030472896550470807,
+            "max_abs_relative": 0.0030346671174870977,
+            "z_max_abs_relative": 1805.6139973008103,
+            "min_signed_relative": -0.0008962890902328278,
+            "max_signed_relative": 0.0030346671174870977
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.0022404674336939934,
+            "z_max_abs": 1600.0,
+            "signed_at_max_abs": -0.0022404674336939934,
+            "max_abs_relative": 5.134538052671838e-07,
+            "z_max_abs_relative": 1600.0,
+            "min_signed_relative": -5.134538052671838e-07,
+            "max_signed_relative": -1.3123741223891587e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.0030472896550470807,
+              "z_max_abs": 1805.6139973008103,
+              "signed_at_max_abs": 0.0030472896550470807,
+              "max_abs_relative": 0.0030346671174870977,
+              "z_max_abs_relative": 1805.6139973008103,
+              "min_signed_relative": -0.0008962890902328278,
+              "max_signed_relative": 0.0030346671174870977
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.0022404674336939934,
+              "z_max_abs": 1600.0,
+              "signed_at_max_abs": -0.0022404674336939934,
+              "max_abs_relative": 5.134538052671838e-07,
+              "z_max_abs_relative": 1600.0,
+              "min_signed_relative": -5.134538052671838e-07,
+              "max_signed_relative": -1.3123741223891587e-07
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.00037867908486033386,
+            "z_max_abs": 1556.6718091116861,
+            "signed_at_max_abs": 0.00037867908486033386,
+            "max_abs_relative": 0.0027114518245943465,
+            "z_max_abs_relative": 565.4963183499524,
+            "min_signed_relative": -0.0027114518245943465,
+            "max_signed_relative": 0.0011646408293613914
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.6957154088959214,
+            "z_max_abs": 807.596165192962,
+            "signed_at_max_abs": -0.6957154088959214,
+            "max_abs_relative": 0.00031592300506881176,
+            "z_max_abs_relative": 807.596165192962,
+            "min_signed_relative": -0.00031592300506881176,
+            "max_signed_relative": 0.0002106413578523713
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.00037867908486033386,
+              "z_max_abs": 1556.6718091116861,
+              "signed_at_max_abs": 0.00037867908486033386,
+              "max_abs_relative": 0.0027114518245943465,
+              "z_max_abs_relative": 565.4963183499524,
+              "min_signed_relative": -0.0027114518245943465,
+              "max_signed_relative": 0.0011646408293613914
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.6957154088959214,
+              "z_max_abs": 807.596165192962,
+              "signed_at_max_abs": -0.6957154088959214,
+              "max_abs_relative": 0.00031592300506881176,
+              "z_max_abs_relative": 807.596165192962,
+              "min_signed_relative": -0.00031592300506881176,
+              "max_signed_relative": 0.0002106413578523713
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 1.6851078175605114e-06,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": -1.6851078175605114e-06,
+            "max_abs_relative": 0.0024884954459172322,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": -0.0024884954459172322,
+            "max_signed_relative": 0.0014587485954719603
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 0.059960717090348226,
+            "z_max_abs": 137.5913641990241,
+            "signed_at_max_abs": 0.059960717090348226,
+            "max_abs_relative": 0.0003016671786988413,
+            "z_max_abs_relative": 85.04708023480951,
+            "min_signed_relative": -4.268734472672317e-05,
+            "max_signed_relative": 0.0003016671786988413
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 1.6851078175605114e-06,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": -1.6851078175605114e-06,
+              "max_abs_relative": 0.0024884954459172322,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": -0.0024884954459172322,
+              "max_signed_relative": 0.0014587485954719603
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 0.059960717090348226,
+              "z_max_abs": 137.5913641990241,
+              "signed_at_max_abs": 0.059960717090348226,
+              "max_abs_relative": 0.0003016671786988413,
+              "z_max_abs_relative": 85.04708023480951,
+              "min_signed_relative": -4.268734472672317e-05,
+              "max_signed_relative": 0.0003016671786988413
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 2.092925462558455e-06,
+            "z_max_abs": 15.974278802575743,
+            "signed_at_max_abs": -2.092925462558455e-06,
+            "max_abs_relative": 0.010220846719130549,
+            "z_max_abs_relative": 15.974278802575743,
+            "min_signed_relative": -0.010220846719130549,
+            "max_signed_relative": -0.0017164360188525044
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 0.010562078866854563,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 0.010562078866854563,
+            "max_abs_relative": 0.00028571295707830607,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": -0.00028571295707830607,
+            "max_signed_relative": 0.00020884178247803747
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 4.3112152212521765e-07,
+              "z_max_abs": 49.0,
+              "signed_at_max_abs": -4.3112152212521765e-07,
+              "max_abs_relative": 0.0018329030678574034,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": -0.0018329030678574034,
+              "max_signed_relative": -0.0017164360188525044
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 0.010562078866854563,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 0.010562078866854563,
+              "max_abs_relative": 0.00020884178247803747,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 0.00020244068220665826,
+              "max_signed_relative": 0.00020884178247803747
+            }
+          }
+        }
+      ]
+    },
+    {
+      "HYREC_dlna": 0.002,
+      "reference": "RECFAST internal refinement Nz=20000, tol=1e-6",
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.003047837639737816,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.003047837639737816,
+          "max_abs_relative": 0.010187199370192883,
+          "z_max_abs_relative": 16.01160336656177,
+          "min_signed_relative": -0.010187199370192883,
+          "max_signed_relative": 0.0030352128323058733
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.3870729013460732,
+          "z_max_abs": 823.739760116232,
+          "signed_at_max_abs": -0.3870729013460732,
+          "max_abs_relative": 0.00030629908738380625,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -0.00027901928808220174,
+          "max_signed_relative": 0.00030629908738380625
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.003047837639737816,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.003047837639737816,
+          "max_abs_relative": 0.0030352128323058733,
+          "z_max_abs_relative": 1805.6139973008103,
+          "min_signed_relative": -0.0026627534961699145,
+          "max_signed_relative": 0.0030352128323058733
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.3870729013460732,
+          "z_max_abs": 823.739760116232,
+          "signed_at_max_abs": -0.3870729013460732,
+          "max_abs_relative": 0.00030629908738380625,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -0.00017230179992727617,
+          "max_signed_relative": 0.00030629908738380625
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": -4.2750223680338936e-07,
+        "xe_relative": -0.0018175157609627846,
+        "Tgas_abs_K": 0.010137507470183493,
+        "Tgas_relative": 0.00020790764585476573
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 9.289759506181383e-05,
+            "z_max_abs": 4993.925695700747,
+            "signed_at_max_abs": 9.289759506181383e-05,
+            "max_abs_relative": 8.605554466245911e-05,
+            "z_max_abs_relative": 4993.925695700747,
+            "min_signed_relative": -7.241094627211715e-06,
+            "max_signed_relative": 8.605554466245911e-05
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0014592673451261362,
+            "z_max_abs": 4138.702311689142,
+            "signed_at_max_abs": -0.0014592673451261362,
+            "max_abs_relative": 1.3123334597381912e-07,
+            "z_max_abs_relative": 4000.0,
+            "min_signed_relative": -1.3123334597381912e-07,
+            "max_signed_relative": 5.339510238826929e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 9.289759506181383e-05,
+              "z_max_abs": 4993.925695700747,
+              "signed_at_max_abs": 9.289759506181383e-05,
+              "max_abs_relative": 8.605554466245911e-05,
+              "z_max_abs_relative": 4993.925695700747,
+              "min_signed_relative": -7.241094627211715e-06,
+              "max_signed_relative": 8.605554466245911e-05
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0014592673451261362,
+              "z_max_abs": 4138.702311689142,
+              "signed_at_max_abs": -0.0014592673451261362,
+              "max_abs_relative": 1.3123334597381912e-07,
+              "z_max_abs_relative": 4000.0,
+              "min_signed_relative": -1.3123334597381912e-07,
+              "max_signed_relative": 5.339510238826929e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.003047837639737816,
+            "z_max_abs": 1805.6139973008103,
+            "signed_at_max_abs": 0.003047837639737816,
+            "max_abs_relative": 0.0030352128323058733,
+            "z_max_abs_relative": 1805.6139973008103,
+            "min_signed_relative": -0.0008961995001885653,
+            "max_signed_relative": 0.0030352128323058733
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.002238841322650842,
+            "z_max_abs": 1600.0,
+            "signed_at_max_abs": -0.002238841322650842,
+            "max_abs_relative": 5.130811451292426e-07,
+            "z_max_abs_relative": 1600.0,
+            "min_signed_relative": -5.130811451292426e-07,
+            "max_signed_relative": -1.3123334597381912e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.003047837639737816,
+              "z_max_abs": 1805.6139973008103,
+              "signed_at_max_abs": 0.003047837639737816,
+              "max_abs_relative": 0.0030352128323058733,
+              "z_max_abs_relative": 1805.6139973008103,
+              "min_signed_relative": -0.0008961995001885653,
+              "max_signed_relative": 0.0030352128323058733
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.002238841322650842,
+              "z_max_abs": 1600.0,
+              "signed_at_max_abs": -0.002238841322650842,
+              "max_abs_relative": 5.130811451292426e-07,
+              "z_max_abs_relative": 1600.0,
+              "min_signed_relative": -5.130811451292426e-07,
+              "max_signed_relative": -1.3123334597381912e-07
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.00039477425484724105,
+            "z_max_abs": 1556.6718091116861,
+            "signed_at_max_abs": 0.00039477425484724105,
+            "max_abs_relative": 0.0026627534961699145,
+            "z_max_abs_relative": 566.1188077538987,
+            "min_signed_relative": -0.0026627534961699145,
+            "max_signed_relative": 0.001158389601516251
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.3870729013460732,
+            "z_max_abs": 823.739760116232,
+            "signed_at_max_abs": -0.3870729013460732,
+            "max_abs_relative": 0.00017230179992727617,
+            "z_max_abs_relative": 823.739760116232,
+            "min_signed_relative": -0.00017230179992727617,
+            "max_signed_relative": 0.0001560416383458337
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.00039477425484724105,
+              "z_max_abs": 1556.6718091116861,
+              "signed_at_max_abs": 0.00039477425484724105,
+              "max_abs_relative": 0.0026627534961699145,
+              "z_max_abs_relative": 566.1188077538987,
+              "min_signed_relative": -0.0026627534961699145,
+              "max_signed_relative": 0.001158389601516251
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.3870729013460732,
+              "z_max_abs": 823.739760116232,
+              "signed_at_max_abs": -0.3870729013460732,
+              "max_abs_relative": 0.00017230179992727617,
+              "z_max_abs_relative": 823.739760116232,
+              "min_signed_relative": -0.00017230179992727617,
+              "max_signed_relative": 0.0001560416383458337
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 1.6582469052632467e-06,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": -1.6582469052632467e-06,
+            "max_abs_relative": 0.002448828394807296,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": -0.002448828394807296,
+            "max_signed_relative": 0.0014773301720814817
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 0.06092638745485601,
+            "z_max_abs": 138.04873604657328,
+            "signed_at_max_abs": 0.06092638745485601,
+            "max_abs_relative": 0.00030629908738380625,
+            "z_max_abs_relative": 84.85828734546041,
+            "min_signed_relative": -4.182999897924272e-05,
+            "max_signed_relative": 0.00030629908738380625
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 1.6582469052632467e-06,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": -1.6582469052632467e-06,
+              "max_abs_relative": 0.002448828394807296,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": -0.002448828394807296,
+              "max_signed_relative": 0.0014773301720814817
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 0.06092638745485601,
+              "z_max_abs": 138.04873604657328,
+              "signed_at_max_abs": 0.06092638745485601,
+              "max_abs_relative": 0.00030629908738380625,
+              "z_max_abs_relative": 84.85828734546041,
+              "min_signed_relative": -4.182999897924272e-05,
+              "max_signed_relative": 0.00030629908738380625
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 2.086505717939578e-06,
+            "z_max_abs": 16.01160336656177,
+            "signed_at_max_abs": -2.086505717939578e-06,
+            "max_abs_relative": 0.010187199370192883,
+            "z_max_abs_relative": 16.01160336656177,
+            "min_signed_relative": -0.010187199370192883,
+            "max_signed_relative": -0.0017010090882533047
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 0.010837386611356692,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 0.010837386611356692,
+            "max_abs_relative": 0.00027901928808220174,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": -0.00027901928808220174,
+            "max_signed_relative": 0.00021428538508852954
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 4.2750223680338936e-07,
+              "z_max_abs": 49.0,
+              "signed_at_max_abs": -4.2750223680338936e-07,
+              "max_abs_relative": 0.0018175157609627512,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": -0.0018175157609627512,
+              "max_signed_relative": -0.0017010090882533047
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 0.010837386611356692,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 0.010837386611356692,
+              "max_abs_relative": 0.00021428538508852954,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 0.00020790764585479292,
+              "max_signed_relative": 0.00021428538508852954
+            }
+          }
+        }
+      ]
+    },
+    {
+      "HYREC_dlna": 0.001,
+      "reference": "RECFAST internal refinement Nz=20000, tol=1e-6",
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.2487948718583749,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": -0.2487948718583749,
+          "max_abs_relative": 0.25344599732999673,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.25344599732999673,
+          "max_signed_relative": 0.01753503182366434
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.10766811809708088,
+          "z_max_abs": 822.8344969603186,
+          "signed_at_max_abs": -0.10766811809708088,
+          "max_abs_relative": 0.0003067010687321396,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -0.0002783328837490557,
+          "max_signed_relative": 0.0003067010687321396
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.2487948718583749,
+          "z_max_abs": 1544.742862776362,
+          "signed_at_max_abs": -0.2487948718583749,
+          "max_abs_relative": 0.25344599732999673,
+          "z_max_abs_relative": 1544.742862776362,
+          "min_signed_relative": -0.25344599732999673,
+          "max_signed_relative": 0.01753503182366434
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.10766811809708088,
+          "z_max_abs": 822.8344969603186,
+          "signed_at_max_abs": -0.10766811809708088,
+          "max_abs_relative": 0.0003067010687321396,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -4.798048031436141e-05,
+          "max_signed_relative": 0.0003067010687321396
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": -4.271881661118977e-07,
+        "xe_relative": -0.0018161804967636863,
+        "Tgas_abs_K": 0.010160692929247261,
+        "Tgas_relative": 0.00020838315072868596
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 9.28976996714681e-05,
+            "z_max_abs": 4993.925695700747,
+            "signed_at_max_abs": 9.28976996714681e-05,
+            "max_abs_relative": 8.605564156745185e-05,
+            "z_max_abs_relative": 4993.925695700747,
+            "min_signed_relative": -7.240985481735071e-06,
+            "max_signed_relative": 8.605564156745185e-05
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0014310595488495892,
+            "z_max_abs": 4000.0,
+            "signed_at_max_abs": -0.0014310595488495892,
+            "max_abs_relative": 1.3123297315917864e-07,
+            "z_max_abs_relative": 4000.0,
+            "min_signed_relative": -1.3123297315917864e-07,
+            "max_signed_relative": 7.714979106851515e-09
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 9.28976996714681e-05,
+              "z_max_abs": 4993.925695700747,
+              "signed_at_max_abs": 9.28976996714681e-05,
+              "max_abs_relative": 8.605564156745185e-05,
+              "z_max_abs_relative": 4993.925695700747,
+              "min_signed_relative": -7.240985481735071e-06,
+              "max_signed_relative": 8.605564156745185e-05
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0014310595488495892,
+              "z_max_abs": 4000.0,
+              "signed_at_max_abs": -0.0014310595488495892,
+              "max_abs_relative": 1.3123297315917864e-07,
+              "z_max_abs_relative": 4000.0,
+              "min_signed_relative": -1.3123297315917864e-07,
+              "max_signed_relative": 7.714979106851515e-09
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.15867422958216615,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": -0.15867422958216615,
+            "max_abs_relative": 0.14705922544951655,
+            "z_max_abs_relative": 2845.598591451853,
+            "min_signed_relative": -0.14705922544951655,
+            "max_signed_relative": 0.00729032787628699
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.002387282561358006,
+            "z_max_abs": 2845.598591451853,
+            "signed_at_max_abs": -0.002387282561358006,
+            "max_abs_relative": 5.145570664717991e-07,
+            "z_max_abs_relative": 1600.0,
+            "min_signed_relative": -5.145570664717991e-07,
+            "max_signed_relative": -1.3123297315917864e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.15867422958216615,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": -0.15867422958216615,
+              "max_abs_relative": 0.14705922544951655,
+              "z_max_abs_relative": 2845.598591451853,
+              "min_signed_relative": -0.14705922544951655,
+              "max_signed_relative": 0.00729032787628699
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.002387282561358006,
+              "z_max_abs": 2845.598591451853,
+              "signed_at_max_abs": -0.002387282561358006,
+              "max_abs_relative": 5.145570664717991e-07,
+              "z_max_abs_relative": 1600.0,
+              "min_signed_relative": -5.145570664717991e-07,
+              "max_signed_relative": -1.3123297315917864e-07
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.2487948718583749,
+            "z_max_abs": 1544.742862776362,
+            "signed_at_max_abs": -0.2487948718583749,
+            "max_abs_relative": 0.25344599732999673,
+            "z_max_abs_relative": 1544.742862776362,
+            "min_signed_relative": -0.25344599732999673,
+            "max_signed_relative": 0.01753503182366434
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.10766811809708088,
+            "z_max_abs": 822.8344969603186,
+            "signed_at_max_abs": -0.10766811809708088,
+            "max_abs_relative": 4.798048031436141e-05,
+            "z_max_abs_relative": 822.8344969603186,
+            "min_signed_relative": -4.798048031436141e-05,
+            "max_signed_relative": 4.565284675886421e-05
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.2487948718583749,
+              "z_max_abs": 1544.742862776362,
+              "signed_at_max_abs": -0.2487948718583749,
+              "max_abs_relative": 0.25344599732999673,
+              "z_max_abs_relative": 1544.742862776362,
+              "min_signed_relative": -0.25344599732999673,
+              "max_signed_relative": 0.01753503182366434
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.10766811809708088,
+              "z_max_abs": 822.8344969603186,
+              "signed_at_max_abs": -0.10766811809708088,
+              "max_abs_relative": 4.798048031436141e-05,
+              "z_max_abs_relative": 822.8344969603186,
+              "min_signed_relative": -4.798048031436141e-05,
+              "max_signed_relative": 4.565284675886421e-05
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 1.6559414296248324e-06,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": -1.6559414296248324e-06,
+            "max_abs_relative": 0.0024454237665888045,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": -0.0024454237665888045,
+            "max_signed_relative": 0.0014789422538242275
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 0.06101023239142478,
+            "z_max_abs": 138.04873604657328,
+            "signed_at_max_abs": 0.06101023239142478,
+            "max_abs_relative": 0.0003067010687321396,
+            "z_max_abs_relative": 84.85828734546041,
+            "min_signed_relative": -4.1756245792453486e-05,
+            "max_signed_relative": 0.0003067010687321396
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 1.6559414296248324e-06,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": -1.6559414296248324e-06,
+              "max_abs_relative": 0.0024454237665888045,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": -0.0024454237665888045,
+              "max_signed_relative": 0.0014789422538242275
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 0.06101023239142478,
+              "z_max_abs": 138.04873604657328,
+              "signed_at_max_abs": 0.06101023239142478,
+              "max_abs_relative": 0.0003067010687321396,
+              "z_max_abs_relative": 84.85828734546041,
+              "min_signed_relative": -4.1756245792453486e-05,
+              "max_signed_relative": 0.0003067010687321396
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 2.0838531543653784e-06,
+            "z_max_abs": 16.030296414507177,
+            "signed_at_max_abs": -2.0838531543653784e-06,
+            "max_abs_relative": 0.01017310119072766,
+            "z_max_abs_relative": 16.030296414507177,
+            "min_signed_relative": -0.01017310119072766,
+            "max_signed_relative": -0.0016996703907323511
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 0.010861328295803219,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 0.010861328295803219,
+            "max_abs_relative": 0.0002783328837490557,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": -0.0002783328837490557,
+            "max_signed_relative": 0.00021475877902152037
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 4.271881661118977e-07,
+              "z_max_abs": 49.0,
+              "signed_at_max_abs": -4.271881661118977e-07,
+              "max_abs_relative": 0.001816180496763642,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": -0.001816180496763642,
+              "max_signed_relative": -0.0016996703907323511
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 0.010861328295803219,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 0.010861328295803219,
+              "max_abs_relative": 0.00021475877902152037,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 0.000208383150728766,
+              "max_signed_relative": 0.00021475877902152037
+            }
+          }
+        }
+      ]
+    },
+    {
+      "HYREC_dlna": 0.0005,
+      "reference": "RECFAST internal refinement Nz=20000, tol=1e-6",
+      "all_nodes": {
+        "xe": {
+          "points": 6023,
+          "max_abs": 0.003047904119959144,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.003047904119959144,
+          "max_abs_relative": 0.010172106645548669,
+          "z_max_abs_relative": 16.030296414507177,
+          "min_signed_relative": -0.010172106645548669,
+          "max_signed_relative": 0.003035279037151643
+        },
+        "Tgas_K": {
+          "points": 6023,
+          "max_abs": 0.06348444253853813,
+          "z_max_abs": 829.1922668974053,
+          "signed_at_max_abs": -0.06348444253853813,
+          "max_abs_relative": 0.0003067924871300467,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -0.0002781514142208328,
+          "max_signed_relative": 0.0003067924871300467
+        }
+      },
+      "z_ge_49": {
+        "xe": {
+          "points": 4642,
+          "max_abs": 0.003047904119959144,
+          "z_max_abs": 1805.6139973008103,
+          "signed_at_max_abs": 0.003047904119959144,
+          "max_abs_relative": 0.003035279037151643,
+          "z_max_abs_relative": 1805.6139973008103,
+          "min_signed_relative": -0.0026577247583167494,
+          "max_signed_relative": 0.003035279037151643
+        },
+        "Tgas_K": {
+          "points": 4642,
+          "max_abs": 0.06348444253853813,
+          "z_max_abs": 829.1922668974053,
+          "signed_at_max_abs": -0.06348444253853813,
+          "max_abs_relative": 0.0003067924871300467,
+          "z_max_abs_relative": 84.85828734546041,
+          "min_signed_relative": -4.173938486689696e-05,
+          "max_signed_relative": 0.0003067924871300467
+        }
+      },
+      "boundary_z49": {
+        "xe_abs": -4.271167939922304e-07,
+        "xe_relative": -0.0018158770598661889,
+        "Tgas_abs_K": 0.010165944070003263,
+        "Tgas_relative": 0.000208490845082121
+      },
+      "epochs": [
+        {
+          "label": "early helium",
+          "z_min": 4000,
+          "z_max": 8000,
+          "xe": {
+            "points": 636,
+            "max_abs": 9.289770248388507e-05,
+            "z_max_abs": 4993.925695700747,
+            "signed_at_max_abs": 9.289770248388507e-05,
+            "max_abs_relative": 8.605564417272998e-05,
+            "z_max_abs_relative": 4993.925695700747,
+            "min_signed_relative": -7.240984360628887e-06,
+            "max_signed_relative": 8.605564417272998e-05
+          },
+          "Tgas_K": {
+            "points": 636,
+            "max_abs": 0.0014310595288407058,
+            "z_max_abs": 4000.0,
+            "signed_at_max_abs": -0.0014310595288407058,
+            "max_abs_relative": 1.3123297132429675e-07,
+            "z_max_abs_relative": 4000.0,
+            "min_signed_relative": -1.3123297132429675e-07,
+            "max_signed_relative": 7.744211558179435e-14
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 636,
+              "max_abs": 9.289770248388507e-05,
+              "z_max_abs": 4993.925695700747,
+              "signed_at_max_abs": 9.289770248388507e-05,
+              "max_abs_relative": 8.605564417272998e-05,
+              "z_max_abs_relative": 4993.925695700747,
+              "min_signed_relative": -7.240984360628887e-06,
+              "max_signed_relative": 8.605564417272998e-05
+            },
+            "Tgas_K": {
+              "points": 636,
+              "max_abs": 0.0014310595288407058,
+              "z_max_abs": 4000.0,
+              "signed_at_max_abs": -0.0014310595288407058,
+              "max_abs_relative": 1.3123297132429675e-07,
+              "z_max_abs_relative": 4000.0,
+              "min_signed_relative": -1.3123297132429675e-07,
+              "max_signed_relative": 7.744211558179435e-14
+            }
+          }
+        },
+        {
+          "label": "neutral-helium formation",
+          "z_min": 1600,
+          "z_max": 4000,
+          "xe": {
+            "points": 839,
+            "max_abs": 0.003047904119959144,
+            "z_max_abs": 1805.6139973008103,
+            "signed_at_max_abs": 0.003047904119959144,
+            "max_abs_relative": 0.003035279037151643,
+            "z_max_abs_relative": 1805.6139973008103,
+            "min_signed_relative": -0.000896184035235713,
+            "max_signed_relative": 0.003035279037151643
+          },
+          "Tgas_K": {
+            "points": 839,
+            "max_abs": 0.0022412543430618825,
+            "z_max_abs": 1600.0,
+            "signed_at_max_abs": -0.0022412543430618825,
+            "max_abs_relative": 5.136341433534541e-07,
+            "z_max_abs_relative": 1600.0,
+            "min_signed_relative": -5.136341433534541e-07,
+            "max_signed_relative": -1.3123297132429675e-07
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 839,
+              "max_abs": 0.003047904119959144,
+              "z_max_abs": 1805.6139973008103,
+              "signed_at_max_abs": 0.003047904119959144,
+              "max_abs_relative": 0.003035279037151643,
+              "z_max_abs_relative": 1805.6139973008103,
+              "min_signed_relative": -0.000896184035235713,
+              "max_signed_relative": 0.003035279037151643
+            },
+            "Tgas_K": {
+              "points": 839,
+              "max_abs": 0.0022412543430618825,
+              "z_max_abs": 1600.0,
+              "signed_at_max_abs": -0.0022412543430618825,
+              "max_abs_relative": 5.136341433534541e-07,
+              "z_max_abs_relative": 1600.0,
+              "min_signed_relative": -5.136341433534541e-07,
+              "max_signed_relative": -1.3123297132429675e-07
+            }
+          }
+        },
+        {
+          "label": "hydrogen recombination",
+          "z_min": 500,
+          "z_max": 1600,
+          "xe": {
+            "points": 1064,
+            "max_abs": 0.0003585221786113757,
+            "z_max_abs": 1212.965538694442,
+            "signed_at_max_abs": 0.0003585221786113757,
+            "max_abs_relative": 0.0026577247583167494,
+            "z_max_abs_relative": 565.4963183499524,
+            "min_signed_relative": -0.0026577247583167494,
+            "max_signed_relative": 0.0011575290338650874
+          },
+          "Tgas_K": {
+            "points": 1064,
+            "max_abs": 0.06348444253853813,
+            "z_max_abs": 829.1922668974053,
+            "signed_at_max_abs": -0.06348444253853813,
+            "max_abs_relative": 3.0375928155368416e-05,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": -3.0375928155368416e-05,
+            "max_signed_relative": 1.9244748852996903e-05
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 1064,
+              "max_abs": 0.0003585221786113757,
+              "z_max_abs": 1212.965538694442,
+              "signed_at_max_abs": 0.0003585221786113757,
+              "max_abs_relative": 0.0026577247583167494,
+              "z_max_abs_relative": 565.4963183499524,
+              "min_signed_relative": -0.0026577247583167494,
+              "max_signed_relative": 0.0011575290338650874
+            },
+            "Tgas_K": {
+              "points": 1064,
+              "max_abs": 0.06348444253853813,
+              "z_max_abs": 829.1922668974053,
+              "signed_at_max_abs": -0.06348444253853813,
+              "max_abs_relative": 3.0375928155368416e-05,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": -3.0375928155368416e-05,
+              "max_signed_relative": 1.9244748852996903e-05
+            }
+          }
+        },
+        {
+          "label": "residual ionization and cooling",
+          "z_min": 50,
+          "z_max": 500,
+          "xe": {
+            "points": 2087,
+            "max_abs": 1.6554086078791235e-06,
+            "z_max_abs": 500.0,
+            "signed_at_max_abs": -1.6554086078791235e-06,
+            "max_abs_relative": 0.0024446369181308812,
+            "z_max_abs_relative": 500.0,
+            "min_signed_relative": -0.0024446369181308812,
+            "max_signed_relative": 0.0014793087602524447
+          },
+          "Tgas_K": {
+            "points": 2087,
+            "max_abs": 0.06102930075491031,
+            "z_max_abs": 138.04873604657328,
+            "signed_at_max_abs": 0.06102930075491031,
+            "max_abs_relative": 0.0003067924871300467,
+            "z_max_abs_relative": 84.85828734546041,
+            "min_signed_relative": -4.173938486689696e-05,
+            "max_signed_relative": 0.0003067924871300467
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 2087,
+              "max_abs": 1.6554086078791235e-06,
+              "z_max_abs": 500.0,
+              "signed_at_max_abs": -1.6554086078791235e-06,
+              "max_abs_relative": 0.0024446369181308812,
+              "z_max_abs_relative": 500.0,
+              "min_signed_relative": -0.0024446369181308812,
+              "max_signed_relative": 0.0014793087602524447
+            },
+            "Tgas_K": {
+              "points": 2087,
+              "max_abs": 0.06102930075491031,
+              "z_max_abs": 138.04873604657328,
+              "signed_at_max_abs": 0.06102930075491031,
+              "max_abs_relative": 0.0003067924871300467,
+              "z_max_abs_relative": 84.85828734546041,
+              "min_signed_relative": -4.173938486689696e-05,
+              "max_signed_relative": 0.0003067924871300467
+            }
+          }
+        },
+        {
+          "label": "late homogeneous cooling",
+          "z_min": 10,
+          "z_max": 50,
+          "xe": {
+            "points": 1401,
+            "max_abs": 2.0836494322093175e-06,
+            "z_max_abs": 16.030296414507177,
+            "signed_at_max_abs": -2.0836494322093175e-06,
+            "max_abs_relative": 0.010172106645548669,
+            "z_max_abs_relative": 16.030296414507177,
+            "min_signed_relative": -0.010172106645548669,
+            "max_signed_relative": -0.0016993661719031936
+          },
+          "Tgas_K": {
+            "points": 1401,
+            "max_abs": 0.010866752052272943,
+            "z_max_abs": 50.0,
+            "signed_at_max_abs": 0.010866752052272943,
+            "max_abs_relative": 0.0002781514142208328,
+            "z_max_abs_relative": 10.0,
+            "min_signed_relative": -0.0002781514142208328,
+            "max_signed_relative": 0.00021486602182695127
+          },
+          "z_ge_49": {
+            "xe": {
+              "points": 20,
+              "max_abs": 4.271167939922304e-07,
+              "z_max_abs": 49.0,
+              "signed_at_max_abs": -4.271167939922304e-07,
+              "max_abs_relative": 0.0018158770598661921,
+              "z_max_abs_relative": 49.0,
+              "min_signed_relative": -0.0018158770598661921,
+              "max_signed_relative": -0.0016993661719031936
+            },
+            "Tgas_K": {
+              "points": 20,
+              "max_abs": 0.010866752052272943,
+              "z_max_abs": 50.0,
+              "signed_at_max_abs": 0.010866752052272943,
+              "max_abs_relative": 0.00021486602182695127,
+              "z_max_abs_relative": 50.0,
+              "min_signed_relative": 0.0002084908450822196,
+              "max_signed_relative": 0.00021486602182695127
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "additional_histories_sha256": "3560717a8042aedbe0e9855de26be36f0e453738d723de86abbc6eb413ace3b8",
+  "limitations": [
+    "Only two additional step sizes were executed. No extrapolated zero-step limit is asserted.",
+    "Changes under refinement measure numerical sensitivity, not a rigorous error bound.",
+    "The original LOCK, primary histories and SUMMARY are preserved unchanged."
+  ]
+}

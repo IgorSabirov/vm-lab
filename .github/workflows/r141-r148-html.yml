@@ -1,0 +1,84 @@
+name: R141–R148 offline HTML
+on:
+  push:
+    branches: [main, research/r141-r148-html]
+  pull_request:
+    branches: [main, research/r141-r148-html]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: r141-r148-html-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # A push to the active research branch already exercises its exact commit.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository || github.head_ref != 'research/r141-r148-html'
+    runs-on: ubuntu-24.04
+    outputs:
+      changed: ${{ steps.patch.outputs.changed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check lxml==6.1.1 sympy==1.14.0 mpmath==1.3.0 jsonschema==4.26.0 numpy==2.3.5 scipy==1.17.0
+      - name: Build, replay and check native and offline records
+        run: |
+          python -m unittest discover -s analysis/BKT_SOUND_20261124/tests
+          python analysis/R141_R148_MODEL/build_html.py --write --replay
+          python analysis/R141_R148_MODEL/build_html.py
+          python analysis/R141_R148_MODEL/sync_html.py
+          python -m unittest discover -s tests -p 'test_registry_links.py'
+          python -m unittest discover -s tests -p 'test_r141_html.py'
+      - id: patch
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            git diff --binary --full-index > "$RUNNER_TEMP/model.patch"
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.patch.outputs.changed == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: verified-html-patch
+          path: ${{ runner.temp }}/model.patch
+          retention-days: 1
+
+  publish:
+    needs: build
+    if: needs.build.outputs.changed == 'true' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/research/r141-r148-html')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: verified-html-patch
+          path: ${{ runner.temp }}/model-build
+      - name: Publish verified files to the same branch
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git apply --index --whitespace=nowarn "$RUNNER_TEMP/model-build/model.patch"
+          while IFS= read -r -d '' path; do
+            case "$path" in
+              analysis/R141_R148_MODEL/R141-R148.html|analysis/R141_R148_MODEL/ATLAS.json|analysis/R141_R148_MODEL/PAIRS.md|analysis/R141_R148_MODEL/build_state.json) ;;
+              analysis/R141_R148_MODEL/ym_graph/YM_R130_R148_pilot.zip|analysis/R141_R148_MODEL/ym_graph/R130_step5_13_14.zip) ;;
+              analysis/NOW_RESULTS_SYNTHESIS_20261106/R14[1-8].json|analysis/NOW_RESULTS_SYNTHESIS_20261106/R14[1-8].md|analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json|analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) ;;
+              analysis/REGISTRY_LINKS/INDEX.json|analysis/REGISTRY_LINKS/INDEX.md) ;;
+              *) echo "Unexpected output: $path" >&2; exit 1 ;;
+            esac
+          done < <(git diff --cached --name-only -z)
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Rebuild the offline R141–R148 model'
+          git push origin "HEAD:refs/heads/$BRANCH"
