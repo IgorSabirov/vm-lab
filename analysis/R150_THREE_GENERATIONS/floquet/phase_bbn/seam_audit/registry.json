@@ -1,0 +1,183 @@
+{
+  "partition": {
+    "id": "partition",
+    "class": "PROVEN",
+    "statement": "Active B, x≥0. Odd winding sector; published 12-point replay.",
+    "formula": "Z0-Zπ=4N Σ_{m odd>0} I_{mN}(x)",
+    "test": "run.py::spectral",
+    "depends_on": [],
+    "status": "checked",
+    "tolerance": 4e-14
+  },
+  "parity": {
+    "id": "parity",
+    "class": "PROVEN",
+    "statement": "Full kernel at two twists; even L is an abstract control.",
+    "formula": "dim ker i(F-F†)=(3,1) for even N; (2,2) for odd N",
+    "test": "run.py::spectral",
+    "depends_on": [],
+    "status": "checked",
+    "tolerance": 0
+  },
+  "factor": {
+    "id": "factor",
+    "class": "PROVEN",
+    "statement": "Sign on the last source of the long cycle.",
+    "formula": "Fπ=F0 Z",
+    "test": "run.py::spectral",
+    "depends_on": [],
+    "status": "checked",
+    "tolerance": 1e-13
+  },
+  "overlap": {
+    "id": "overlap",
+    "class": "PROVEN",
+    "statement": "Twisted eigenbasis; Z and I have the same transition intensities.",
+    "formula": "W†ZV=diag(exp(-iβ)) W†V diag(exp(iα))",
+    "test": "run.py::spectral",
+    "depends_on": [
+      "factor"
+    ],
+    "status": "checked",
+    "tolerance": 2e-13
+  },
+  "channels": {
+    "id": "channels",
+    "class": "PROVEN",
+    "statement": "Uniform periodic input under one antiperiodic step, measured in the old kernel.",
+    "formula": "Λ=4(N-2)/N² (even N)",
+    "test": "run.py::spectral",
+    "depends_on": [
+      "factor"
+    ],
+    "status": "checked",
+    "tolerance": 2e-13
+  },
+  "sign_controls": {
+    "id": "sign_controls",
+    "class": "MODEL",
+    "statement": "Cycle products for five explicit signed lifts on odd L=3,5,7,9,15.",
+    "formula": "(fixed-loop sign, product on long cycle)",
+    "test": "run.py::word_sign_tests",
+    "depends_on": [
+      "factor"
+    ],
+    "status": "checked",
+    "tolerance": 0
+  },
+  "commutation": {
+    "id": "commutation",
+    "class": "PROVEN",
+    "statement": "L=7, single-vertex grading; swap S01 is even, rank-two edge hop odd.",
+    "formula": "[S01,Z]=0, {edge,Z}=0",
+    "test": "run.py::kinetics",
+    "depends_on": [
+      "factor"
+    ],
+    "status": "checked",
+    "tolerance": 1e-13
+  },
+  "hazard_controls": {
+    "id": "hazard_controls",
+    "class": "DIAGNOSTIC",
+    "statement": "Totals and mode-resolved hazards depend on operator and drive.",
+    "formula": "h_i=Σ_j |W†OV|²_ji sigmoid(E0_i-Eπ_j+b)",
+    "test": "run.py::kinetics",
+    "depends_on": [
+      "overlap"
+    ],
+    "status": "checked",
+    "tolerance": 2e-13
+  },
+  "transient": {
+    "id": "transient",
+    "class": "MODEL",
+    "statement": "L=7, x=4, b=0; half fixed / half uniform, dimensionless t=1.",
+    "formula": "(P0(1)-Pπ(1))/(P0(∞)-Pπ(∞))",
+    "test": "run.py::kinetics",
+    "depends_on": [
+      "hazard_controls"
+    ],
+    "status": "checked",
+    "tolerance": 1e-08
+  },
+  "response_input": {
+    "id": "response_input",
+    "class": "DIAGNOSTIC",
+    "statement": "Ten central differences; positive/negative amplitude 0.00030 MeV.",
+    "formula": "M_ki=Δ ln Y_k / 0.00060 MeV",
+    "test": "run.py::response",
+    "depends_on": [],
+    "status": "checked",
+    "tolerance": 1e-11
+  },
+  "response_rank": {
+    "id": "response_rank",
+    "class": "DIAGNOSTIC",
+    "statement": "First-order ranks in the stored basis, unweighted.",
+    "formula": "rank M=4; rank M_hold restricted to ker M_D=3",
+    "test": "run.py::response",
+    "depends_on": [
+      "response_input"
+    ],
+    "status": "checked",
+    "tolerance": 0
+  },
+  "relic_control": {
+    "id": "relic_control",
+    "class": "MODEL",
+    "statement": "One fixed density screen at 80 keV; exact Bose integral for a collisionless relic.",
+    "formula": "ρν1=7π² Tν⁴/120, ρX/ρν1=0.17",
+    "test": "run.py::cosmology",
+    "depends_on": [],
+    "status": "checked",
+    "tolerance": 1e-09
+  },
+  "physical_rate": {
+    "id": "physical_rate",
+    "class": "HYPOTHESIS",
+    "statement": "Obtain sector dynamics, bath spectrum and absolute normalization from a specified interaction.",
+    "formula": "Γr(T), Γreverse(T)",
+    "test": null,
+    "depends_on": [
+      "factor",
+      "sign_controls"
+    ],
+    "status": "open"
+  },
+  "nuclear_bridge": {
+    "id": "nuclear_bridge",
+    "class": "HYPOTHESIS",
+    "statement": "Obtain a signed nuclear response independently of the fitted abundances.",
+    "formula": "δB_D(T), H(T)",
+    "test": null,
+    "depends_on": [
+      "physical_rate"
+    ],
+    "status": "open"
+  },
+  "local_box": {
+    "id": "local_box",
+    "class": "MODEL",
+    "statement": "Tangent response for differences bounded by 0.30 keV per knot; fixed linear D/H.",
+    "formula": "max m_He·a for |a_i|≤0.00030 MeV, m_D·a=0; primal plus dual check",
+    "test": "run.py::response",
+    "depends_on": [
+      "response_input"
+    ],
+    "status": "checked",
+    "tolerance": 1e-12
+  },
+  "ceiling": {
+    "id": "ceiling",
+    "class": "PROVEN",
+    "statement": "Finite active-layer bias bounded strictly for x>0; proof in README. Checked finite samples and limit to numeric tolerance.",
+    "formula": "0 < log(Z0/Zπ) < ln 2, sup = ln 2",
+    "test": "run.py::spectral",
+    "depends_on": [
+      "partition"
+    ],
+    "status": "checked",
+    "tolerance": 1e-12
+  }
+}
