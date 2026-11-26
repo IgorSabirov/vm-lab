@@ -1,0 +1,93 @@
+{
+  "R130": {
+    "name_depths": [
+      [
+        8,
+        8,
+        7,
+        9,
+        9,
+        9,
+        7
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    ],
+    "weights": [
+      "1/128",
+      "32/128"
+    ],
+    "word_b": "33/128",
+    "coherence_echo_baseline": "1089/16384",
+    "echo_overlap": "(32-32i)/16384",
+    "four_seams": {
+      "1": {
+        "word": "33/128",
+        "echo_word_joint": "1153/16384",
+        "plus_joint": "41/256",
+        "minus_joint": "25/256"
+      },
+      "-1": {
+        "word": "33/128",
+        "echo_word_joint": "1025/16384",
+        "plus_joint": "25/256",
+        "minus_joint": "41/256"
+      },
+      "1j": {
+        "word": "33/128",
+        "echo_word_joint": "1153/16384",
+        "plus_joint": "41/256",
+        "minus_joint": "25/256"
+      },
+      "(-0-1j)": {
+        "word": "33/128",
+        "echo_word_joint": "1025/16384",
+        "plus_joint": "25/256",
+        "minus_joint": "41/256"
+      }
+    },
+    "next_forward_steps_disjoint": 12
+  },
+  "H6": {
+    "norms": [
+      "1/128",
+      "1/128"
+    ],
+    "overlap": "-1/256",
+    "normalized_overlap": "-1/2",
+    "coordinate_probabilities": [
+      "1/256",
+      "1/256",
+      "1/128 - cos(phi)/128"
+    ],
+    "visibility": "1/2",
+    "scalar_singlet_cross_at_0": "-1/64"
+  },
+  "toy": [
+    {
+      "phi": 0,
+      "word_plus_before": 0.4999999999999999,
+      "joint_plus_name0_before": 0.24999999999999994,
+      "word_plus_after": 0.9999999999999998
+    },
+    {
+      "phi": 0.7,
+      "word_plus_before": 0.4999999999999999,
+      "joint_plus_name0_before": 0.24999999999999994,
+      "word_plus_after": 0.882421093642244
+    },
+    {
+      "phi": 3.141592653589793,
+      "word_plus_before": 0.4999999999999999,
+      "joint_plus_name0_before": 0.24999999999999994,
+      "word_plus_after": 3.7493994566546427e-33
+    }
+  ]
+}

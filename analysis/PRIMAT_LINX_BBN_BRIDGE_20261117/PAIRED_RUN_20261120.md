@@ -1,5 +1,7 @@
 # Парные интегрирования BBN и перенос в CLASS
 
+При линейном согласовании гелия между ранним и поздним возмущениями H остаются 0,80517 и 0,80567 п.п. разницы по дейтерию. Перерасчёт выполнен по первичным выходам с общими входами. [Расчёт и границы](../R150_THREE_GENERATIONS/floquet/phase_bbn/README.md#bridge).
+
 20 ноября 2026 г. Copilot на GitHub запустил две нативные проверки, 17 общих задач в двух реализациях и шесть расчётов CLASS. В каждой из 17 пар обе сети прошли интервал от 8.617 до 0.00517 МэВ. Для каждой пары сохранены 384 отсчёта восьми содержаний. Каждый набор CLASS содержит 2499 мультиполей от 2 до 2500 и 40 000 строк фоновой эволюции. [Задание #140](https://github.com/IgorSabirov/vm-lab/issues/140) · [исполнение](https://github.com/IgorSabirov/vm-lab/actions/runs/44719756079) · [исходные массивы](https://github.com/IgorSabirov/vm-lab/tree/d503ee0f1f89c99c8560803dc46277d544ef15ba/reproductions/BBN_COSMO_20261120/results/44719756079) · [SHA-256](https://github.com/IgorSabirov/vm-lab/blob/d503ee0f1f89c99c8560803dc46277d544ef15ba/reproductions/BBN_COSMO_20261120/results/44719756079/MANIFEST.sha256).
 
 | Расчёт | Yp (BBN) | D/H × 10⁵ |
