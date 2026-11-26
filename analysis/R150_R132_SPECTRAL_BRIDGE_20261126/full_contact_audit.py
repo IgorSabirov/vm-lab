@@ -100,8 +100,7 @@ def run():
     for N in (14,30,60,100,200,500,1000,2000,5000):
         k=periodic_cycle_root(N,v_E2)
         gap=2*math.cos(k)-2*math.cos(math.pi/N)
-        gap_rows.append({"N":N,"k_periodic":k,"top_gap_over_J":gap,
-                         "N3_top_gap_over_J":gap*N**3})
+        gap_rows.append({"N":N, "N3_top_gap_over_J":gap*N**3})
     checks={
         "matrix_hermiticity_residual":max(
             float(np.max(np.abs(contact_matrix(N,v_E2,a)
