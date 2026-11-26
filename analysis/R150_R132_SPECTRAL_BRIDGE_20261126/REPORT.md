@@ -725,3 +725,7 @@ E_{0,\max}-E_{\pi,\max}
 ## 15. Two-contact continuum limit
 
 The independent port/cycle scaling is recorded in [TWO_CONTACT_CONTINUUM_REPORT.md](TWO_CONTACT_CONTINUUM_REPORT.md). The finite model uses up=N^2 lambda_p/J and gc=N lambda_c/J; a shared lambda lies on the restricted line up=N gc and cannot represent a generic finite point in the two-contact plane. The continuum cycle has a point interaction and includes bound states. Full R150 carrier preparations all and one have distinct limiting normalizations. This is a scalar Laplace/D-squared result, not a first-order Dirac contact construction or closure of the R133 path tests.
+
+## Двухконтактный континуум (26.11.2026)
+
+Двухконтактный предел, гибридизация, инерция, ансамблевое усиление, обратная задача и размерное вложение. Физическая приёмка не меняется. [Подробная аналитика и код](continuum/README.md).
