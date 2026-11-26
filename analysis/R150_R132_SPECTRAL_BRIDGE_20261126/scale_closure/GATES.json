@@ -1,0 +1,100 @@
+{
+  "task": "R150–R132: dimensional energy scale through spectral geometry",
+  "baseline_commit": "9f93ecaa66e9c6509ab57b8f1ccfb0adbe127adf",
+  "parent_pr": 221,
+  "status": "STRUCTURE_PASS_METHOD_PASS_PHYSICAL_OPEN",
+  "scientific_acceptance": false,
+  "bbn_used_for_calibration": false,
+  "scope": "fixed marked carrier; independent dimensional calibration",
+  "completed": [
+    {
+      "id": "SCALE-01",
+      "state": "PASS",
+      "evidence": "REPORT.md"
+    },
+    {
+      "id": "SCALE-02",
+      "state": "PASS",
+      "evidence": "continuum/README.md"
+    },
+    {
+      "id": "SCALE-03",
+      "state": "PASS_STRUCTURE",
+      "evidence": "dirac/report.md"
+    },
+    {
+      "id": "SCALE-04",
+      "state": "PASS_EXISTENCE",
+      "evidence": "dirac/report.md"
+    },
+    {
+      "id": "SCALE-05",
+      "state": "PASS_MARKED_CIRCLE",
+      "evidence": "dirac/R133_CONTACT_FORM_AND_RESOLVENT_LIMIT.md"
+    },
+    {
+      "id": "SCALE-06",
+      "state": "PASS",
+      "evidence": "continuum/CALIBRATION_AUDIT_20261126.md"
+    },
+    {
+      "id": "SCALE-07",
+      "state": "METHOD_PASS_SYNTHETIC",
+      "evidence": "continuum/calibration.py"
+    },
+    {
+      "id": "SCALE-08",
+      "state": "PASS_DISTINCTION",
+      "evidence": "dirac/R132_FIRST_ORDER_CONTACT.md"
+    }
+  ],
+  "open": [
+    {
+      "id": "SCALE-09",
+      "state": "OPEN",
+      "deliverable": "independent dimensional anchor, carrier/operator/observable mapping, source and uncertainties",
+      "depends_on": []
+    },
+    {
+      "id": "SCALE-10",
+      "state": "OPEN",
+      "deliverable": "predeclared physical dispersion and probe, independent distinguishing holdout",
+      "depends_on": [
+        "SCALE-09"
+      ]
+    },
+    {
+      "id": "SCALE-11",
+      "state": "OPEN",
+      "deliverable": "joint covariance calibration and holdout replay",
+      "depends_on": [
+        "SCALE-09",
+        "SCALE-10"
+      ]
+    },
+    {
+      "id": "SCALE-12",
+      "state": "OPEN",
+      "deliverable": "dimensionful scale with uncertainties, independent physical verification",
+      "depends_on": [
+        "SCALE-09",
+        "SCALE-10",
+        "SCALE-11"
+      ]
+    }
+  ],
+  "negative_outcome": "NO_ANCHOR_IN_SEARCHED_SCOPE is a valid completed search report, not physical PASS",
+  "excluded_as_blockers": [
+    "general ADD deletion/fusion transport",
+    "absolute EOS and gravitational zero",
+    "BBN predictions",
+    "SM generations"
+  ],
+  "prohibitions": [
+    "fit to Yp/D/H, T_REF or target contrast",
+    "identify by numerical proximity",
+    "promote synthetic input to measured scale",
+    "conflate K,D,F"
+  ],
+  "new_computations_claimed": false
+}
