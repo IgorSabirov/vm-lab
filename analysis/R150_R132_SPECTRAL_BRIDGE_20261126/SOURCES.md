@@ -15,9 +15,13 @@ The report is based on the supplied research note dated 2026-11-26 and on the fo
 | analysis/R150_THREE_GENERATIONS/REPORT.md | 316b10a9a5567e7bdc0e4016f4e366e9e65e0f13 | R150 model status and current BBN boundary |
 | analysis/R150_THREE_GENERATIONS/floquet/CORE.md | c70f87c5e044878563cb328cc46e86feec4fb549 | Active/passive carrier decomposition |
 | analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/MODEL.md | d580845ade6b935ae7f1f56463a87b3b2de8665d | Hamiltonian, seams and network conventions |
+| analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py | 579e7ff62318f0e40c0ac707b6790bb7f0208bd6 | Exact signed-step and diagonal-contact matrix used by the network bench |
 | analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/experiment_review/README.md | 7fb28da89055549dd62c1ff1f321e3779164f895 | E1–E6 limitations and BBN test status |
 | analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/NETWORK_RESULTS.md | 58015e6a532a8f7c9d9cec3d8af6e456951f526d | Network outputs and open physical inputs |
 
 verify.py uses a self-contained standard-library implementation of the identities and finite sums in this report. It does not import the previous analysis notebooks, the original R150 production pipeline, PRIMAT or LINX. Thus its PASS is an independent numerical check of the formulas stated here, not an independent physical experiment or a re-run of all parent-card tests.
 
 No new R identifier or scientific-acceptance status is created by this child report. The generated REGISTRY_LINKS/INDEX is intentionally not edited by hand; navigation is added by explicit links in each parent R report.
+
+
+The full-contact audit ports the matrix construction from network_bench/graph.py. Its NumPy implementation and numerical receipt are full_contact_audit.py and FULL_CONTACT_CHECKS.json; it is a finite-matrix audit, not a BBN rerun.
