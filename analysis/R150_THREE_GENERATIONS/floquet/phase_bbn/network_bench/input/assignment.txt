@@ -1,0 +1,2555 @@
+https://github.com/IgorSabirov/vm-lab/tree/45f34fce881d5860b918fff2001bbd149a788a5b/analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation
+
+Задача:
+
+Где я вижу недоработки
+Их несколько, причём существенных.
+1. Нормировка шовного ядра. Сумма двух приведённых вероятностей не равна единице для \(L>3\). Например, при \(L=7\) получается \(5/9\). Если это полное распределение исходов, отсутствуют каналы. Если проекция ядра — необходимо показать остальные каналы и потери.
+2. Кинетические результаты не вычисляются этим кодом. Числа 0,271238 и 0,316060 просто вставлены как константы. Нужны исходные расчёты и определения \(P_{\rm bound}\).
+3. При \(x=4\) малый аргумент Бесселя уже нельзя безоговорочно использовать. Для \(L=7\) первая поправка к ведущему члену составляет уже 57%. Нужна полная функция Бесселя и сравнение с асимптотикой.
+4. Критерий \(m_q\lesssim H\) условный. Он применим к определённому классу динамики скалярной моды, а не является универсальным ограничением на массу частицы.
+5. BBN здесь ещё не считается. Нет сетки ядерных реакций, нейтрон-протонной кинетики, D/H, \(Y_p\) и обратного воздействия состава плазмы.
+
+взаимность и двухграничность, но останавливается перед тремя физическими числами — инстантонная скорость шва S_inst≈50, щелевая иерархия против ΔN_eff, и δB_D~кэВ через бутылочное горло. Сниппет же спарил H(T) с m_q вместо Γ_r, и присланный разбор не заметил ни no-go по J, ни замкнутой формы утечки, ни того, что константы уже посчитаны. Полный прогон имеет смысл только если L1 найдёт непустой угол — иначе это красивая, но космологически мёртвая структура.
+
+справочная информация:
+
+
+Нашёл. И тут есть небольшая тонкость: Антропик / чёрные дыры (Hawking–Page) не принадлежат одной самостоятельной R-карточке. Это отдельный внешний физический модуль, который подключён к нескольким R.
+Вот его генеалогия.
+Обозначение	Роль
+R127	Интеграция Anthropic как требование к общей модели
+R128	Первое содержательное сопряжение: фазовая организация, мера, происхождение условий
+R129	Сравнение ограничений допустимых состояний с контактной ёмкостью
+R130	Физическое вложение дискретной динамики в BH1 и BBN
+R135	Продолжение исследования физического сектора X, фаз и многоконтурной различимости
+Где именно лежит Антропик
+	•	ANTHROPIC_BH_20261112 — наш адаптер, исходники и проверки.  
+	•	ANTHROPIC_HP — внешний контракт.  
+	•	BH1_THERMODYNAMICS — внутренняя модель равновесной термодинамики.  
+Главная связь
+R130 → BH1 → BBN.
+А актуальное продолжение — R135: физический сектор X.
+Итого: если тебе нужен основной R для сопряжения Антропика с нашей физической конструкцией — это R130, с продолжением в R135. R128 — более ранняя содержательная связь, R129 — сравнительная граница.
+
+import math
+factor=(4/11)**(1/3)
+factor, [x*factor for x in [0.727,0.465,0.376]], (4/7)*(11/4)**(4/3)
+(0.7137658555036082,
+ [0.5189077769511231, 0.33190112280917783, 0.2683759616693567],
+ 2.2016023312292323)
+
+
+import math
+ratios={7:0.9701669578993741,9:0.9978375929191501,15:0.9999999355766599}
+for L,r in ratios.items():
+    df_over_T=-math.log(r)
+    print(L, df_over_T, df_over_T*0.1*1e3, "keV at T 0.1 MeV")
+# J/ hbar vs H
+hbar_ev_s=6.582119569e-16
+H=3.7864e-3
+for L in (7,15):
+    N=L-1
+    J=N*0.1/2 # MeV
+    omega=J*1e6/hbar_ev_s
+    print(L,J,omega,omega/H,math.log(omega/H))
+# g=ln2 equivalent B shift at 80keV and delta 1keV g
+print(math.log(2)*80, math.exp(1/80)-1, math.exp(10/80)-1)
+7 0.03028710075017575 3.028710075017575 keV at T 0.1 MeV
+9 0.002164748458992294 0.2164748458992294 keV at T 0.1 MeV
+15 6.442334218221723e-08 6.442334218221723e-06 keV at T 0.1 MeV
+7 0.30000000000000004 4.557802343988383e+20 1.2037297549092496e+23 53.14488200450021
+15 0.7000000000000001 1.0634872135972893e+21 2.8087027614549157e+23 53.99217986488741
+55.451774444795625 0.012578451540634417 0.13314845306682632
+
+R150 → BBN / CCC+TL: аудит связующего механизма
+Главный вывод: промежуточный объект уже начал формироваться в R150 — это совместный сектор шва \(r\) и ядерного связывания \(d\). Но его пока нельзя считать физическим механизмом нуклеосинтеза. Наиболее перспективное развитие — превратить его в модель медленной коллективной координаты \(\sigma\), которая связана с портовым швом R150 и модулирует ядерные параметры, прежде всего энергию связи дейтрона \(B_D\).
+Причина выбора \(B_D\), а не прямой поправки к \(H(T)\), принципиальная: в CCC+TL общий множитель часов сокращается в уравнениях BBN, тогда как изменение безразмерного отношения \(B_D/(k_BT)\) способно изменить сам ход ядерных реакций. Именно такое независимое изменение, а не ещё одно перенормирование времени, могло бы связать R150 с CCC+TL и BBN. 
+
+mdpi.com+1
+
+При этом есть жёсткая оговорка: обратное влияние формирующихся ядер на посредник, вероятно, очень мало из-за малого барионного содержания Вселенной. Для настоящей взаимной связи понадобится усиление восприимчивости посредника или иной канал взаимодействия. Это и есть центральная физическая проверка следующего этапа.
+1. Что реально добавлено в GitHub
+На проверенной версии репозитория состояние такое:
+	•	PR #219 открыт, не слит в main.  
+	•	Ветка research/r141-r148-html, HEAD 45f34fce881d5860b918fff2001bbd149a788a5b.  
+	•	Последний коммит в этой ветке, относящийся к рассматриваемой задаче, называется «R150: проверить взаимное формирование, две границы и перекрытие с ядерным процессом».  
+	•	PR #219 сейчас помечен как mergeable=false; замечаний в GitHub review threads пока нет.  
+Поэтому далее я рассматриваю разработку как текущий исследовательский результат ветки, но не как уже принятую научную карточку main.
+Основные файлы:
+Разработка	Что в ней находится
+R150 phase-BBN README	Портовые слои, шов \(0/\pi\), спектр и температурные отклики
+Formation README	Совместное формирование портовой структуры и связанной пары \(n,p\)
+Formation check.py	Графовый оператор, тепловой контроль, когерентный контроль и четырёхсостоянийная кинетика
+Formation results.json	Численные результаты этих конечных моделей
+Cosmology REPORT	Сопоставление R150, двух температурных окон, нейтринного пути и CCC+TL
+Важная разница со старой постановкой: здесь уже исследуется не только «как R150 меняет расширение», но и как ядерное связывание может менять вероятность формирования самого шва.
+При этом в документации явно указано, что новой интеграции PRIMAT/LINX с физическим источником R150 пока нет. Используются ранее выполненные сетевые расчёты и их температурные отклики.
+2. Что именно формируется в текущем R150
+Введены две переменные:
+\[ r\in\{0,1\},\qquad d\in\{0,1\}. \]
+Здесь \(r=1\) означает периодический шов \(\phi=0\), а \(r=0\) — антипериодический \(\phi=\pi\). Для выбранного активного слоя при \(r=1\) имеются три нулевые моды оператора \(i(F-F^\dagger)\), а при \(r=0\) остаётся одна.
+Переменная \(d=1\) означает, что рассматриваемая пара \(n,p\) связана в дейтрон; \(d=0\) — что она остаётся несвязанной.
+Это пока одна пара, а не космологическая массовая доля дейтерия. Тем не менее это правильная конечная постановка для проверки взаимного влияния двух процессов.
+2.1. Совместная термодинамическая модель
+В README задана дополнительная энергия графа:
+\[ H_R(\phi)=-J(F_\phi+F_\phi^\dagger), \qquad x=\frac{2J}{T}. \]
+Сумма по собственным состояниям даёт:
+\[ Z(\phi)=e^x+ \sum_{k=0}^{N-1} \exp\left[ x\cos\frac{2\pi k+\phi}{N} \right], \qquad N=L-1. \]
+Для четырёх состояний \((r,d)\) задаётся вес:
+\[ p(r,d)\propto Z(\phi_r)\exp(bd+grd). \]
+Параметр \(g\) связывает две переменные. При \(g>0\) состояние \(r=1\) благоприятствует связыванию, а \(d=1\) — периодическому шву.
+Из одной свободной энергии следуют две симметричные зависимости:
+\[ \frac{P(d=1\mid r=1)}{P(d=0\mid r=1)} = e^g \frac{P(d=1\mid r=0)}{P(d=0\mid r=0)}, \]
+и аналогично для шва при изменении \(d\).
+Это уже математическая реализация взаимного формирования. Но пока \(g\) не получен из ядерной физики.
+2.2. Что фактически показали расчёты
+В коде использованы \(L=7\), \(x=4\), \(b=0\), \(g=\ln2\), единица модельного времени и выбранная логистическая форма обратимых переходов.
+Установлено внутри игрушечной модели
+При одновременном разрешении двух механизмов получено:
+Наблюдаемая	Без связи \(g=0\)	При \(g=\ln2\)	Разность
+\(P(r=1)\)	0.320846	0.343922	+0.023076
+\(P(d=1)\)	0.316060	0.339569	+0.023509
+\(P(r=1,d=1)\)	0.101407	0.142408	+0.041002
+Обе маргинальные вероятности меняются, а совместная вероятность меняется ещё сильнее. При раздельном выключении стрелок \(r\to d\) и \(d\to r\) получаются разные контроли. Это свидетельствует, что код не просто вычисляет условные вероятности, а реализует реальный в рамках выбранного генератора взаимный кинетический отклик.
+Но длительности, коэффициент \(g\) и логистическая форма переходов заданы исследователем. Они ещё не являются физическими параметрами BBN.
+2.3. Две границы не означают обратную причинность
+Для протокола «сначала граф, потом связывание» ранняя вероятность \(P(r=1)\) равна 0.320846. После отбора историй с поздним \(d=1\) она становится 0.386463.
+Это корректное условное распределение, но оно не означает, что позднее образование дейтрона физически изменило раннее состояние R150. Оно означает, что позднее условие по-разному отбирает уже существовавшие истории.
+Физическая взаимная связь находится в члене \(grd\), действующем в общем временном интервале. Двухграничный формализм полезен для реконструкции истории, но не заменяет этот механизм.
+
+3. Какой посредник нужен между R150 и ядерной сетью
+Я предлагаю не отождествлять \(r\) непосредственно с ядерной энергией. Лучше ввести физическую коллективную координату \(\sigma\), которая связана с швом R150 и через ядерную EFT меняет параметры связывания.
+Схема:
+\[ \boxed{ \text{R150 seam }r \longleftrightarrow \sigma \longleftrightarrow B_D(\sigma),\,a_s(\sigma),\,Q_\alpha(\sigma) \longleftrightarrow \text{BBN network} } \]
+Здесь \(a_s\) — синглетная длина рассеяния \(np\), \(Q_\alpha\) — энергетические выходы ядерных реакций. Это важно: изменение \(B_D\) в реальности не обязано быть единственным изменяющимся ядерным параметром.
+Возможная свободная энергия:
+\[ \begin{aligned} \mathcal F_{\rm eff}={}& F_R(r;\sigma,T_X) +V_X(\sigma,T_X)\\ &+\sum_i n_i m_i(\sigma) -n_D B_D(\sigma) +\mathcal F_{\rm mix}. \end{aligned} \]
+В ней:
+	•	\(F_R\) связывает состояние шва с энергией портовой структуры;  
+	•	\(V_X\) описывает собственный потенциал посредника;  
+	•	\(n_i m_i(\sigma)\) учитывает изменение масс ядерных компонентов;  
+	•	\(-n_D B_D(\sigma)\) — вклад связанного дейтерия;  
+	•	\(\mathcal F_{\rm mix}\) содержит энтропийные и химические члены.  
+Из этой функции получается обратная связь:
+\[ \frac{\partial \mathcal F_{\rm eff}}{\partial\sigma} = V_X' +\frac{\partial F_R}{\partial\sigma} +\sum_i n_i m_i' -n_D B_D' +\cdots. \]
+Когда начинает накапливаться дейтерий, член \(n_D B_D'(\sigma)\) меняет силу, действующую на посредник. Изменившееся \(\sigma\), в свою очередь, меняет \(B_D\) и скорость последующего связывания.
+Для динамики можно использовать уравнение скалярной моды:
+\[ \ddot\sigma+(3H+\Upsilon_\sigma)\dot\sigma +\frac{\partial V_{\rm eff}}{\partial\sigma} =\xi_\sigma, \]
+где \(\Upsilon_\sigma\) — диссипация, \(\xi_\sigma\) — тепловой шум.
+А если шов остаётся дискретной переменной, его переходы описываются мастер-уравнением:
+\[ \dot p_1 = \Gamma_{0\to1}p_0-\Gamma_{1\to0}p_1, \]
+\[ \frac{\Gamma_{0\to1}}{\Gamma_{1\to0}} = \exp\left[-\frac{\mathcal F_1-\mathcal F_0}{T_R}\right]. \]
+\(T_R\) здесь — температура того сектора, с которым шов действительно находится в термодинамическом контакте. Если он не термализован, это отношение детального баланса применять нельзя без дополнительного обоснования.
+Такой посредник связывает R150 не с абстрактным \(H(T)\), а с физическим параметром, который входит непосредственно в ядерные реакции.
+
+
+
+
+
+import numpy as np, math, json
+from scipy.linalg import expm
+from scipy.special import expit, logsumexp, iv
+
+np.set_printoptions(precision=10, suppress=True)
+
+def graph(L, phi):
+    n = L-1
+    order = [0,*range(2,L)]
+    step = np.zeros((L,L),complex)
+    step[1,1] = 1
+    h = -1 if phi == np.pi else np.exp(1j*phi)
+    for j,t in enumerate(order):
+        step[order[(j+1)%n],t] = h if j==n-1 else 1
+    phases = np.r_[0,(phi+2*np.pi*np.arange(n))/n]
+    basis = np.zeros_like(step)
+    basis[1,0] = 1
+    for j,t in enumerate(order):
+        basis[t,1:] = np.exp(-1j*j*phases[1:])/math.sqrt(n)
+    assert np.allclose(step@basis,basis*np.exp(1j*phases))
+    assert np.allclose(basis.conj().T@basis,np.eye(L))
+    return step,basis,phases
+
+def log_partition(L,phi,x):
+    return float(logsumexp(x*np.cos(graph(L,phi)[2])))
+
+# --- 1. partition ratios: reproduce results.json ---
+ref = {"L3_x1":0.8128741635889264,"L3_x4":0.5182287157053217,"L3_x8":0.5003354344752348,
+       "L7_x1":0.9999476751671529,"L7_x4":0.9701669578993742,"L7_x8":0.8275660230091844,
+       "L9_x1":0.9999997518917476,"L9_x4":0.9978375929191501,"L9_x8":0.958712031563662,
+       "L15_x1":0.9999999999999978,"L15_x4":0.9999999355766599,"L15_x8":0.9999459324664687}
+print("=== partition ratios / closed-form leakage ===")
+for L in (3,7,9,15):
+    N=L-1
+    for x in (1,4,8):
+        z0,zp=[math.exp(log_partition(L,p,x)) for p in (0,np.pi)]
+        diff=4*N*sum(iv(m*N,x) for m in range(1,32,2))
+        ok=math.isclose(z0-zp,diff,rel_tol=1e-8,abs_tol=4e-11)
+        r=zp/z0
+        print(f"L={L:2d} x={x}  Zpi/Z0={r:.16f} ref_match={abs(r-ref[f'L{L}_x{x}'])<1e-12}  Bessel_id={ok}  eps=1-r={1-r:.3e}")
+
+# Result
+=== partition ratios / closed-form leakage ===
+L= 3 x=1  Zpi/Z0=0.8128741635889264 ref_match=True  Bessel_id=True  eps=1-r=1.871e-01
+L= 3 x=4  Zpi/Z0=0.5182287157053217 ref_match=True  Bessel_id=True  eps=1-r=4.818e-01
+L= 3 x=8  Zpi/Z0=0.5003354344752348 ref_match=True  Bessel_id=True  eps=1-r=4.997e-01
+L= 7 x=1  Zpi/Z0=0.9999476751671529 ref_match=True  Bessel_id=True  eps=1-r=5.232e-05
+L= 7 x=4  Zpi/Z0=0.9701669578993742 ref_match=True  Bessel_id=True  eps=1-r=2.983e-02
+L= 7 x=8  Zpi/Z0=0.8275660230091844 ref_match=True  Bessel_id=True  eps=1-r=1.724e-01
+L= 9 x=1  Zpi/Z0=0.9999997518917476 ref_match=True  Bessel_id=True  eps=1-r=2.481e-07
+L= 9 x=4  Zpi/Z0=0.9978375929191501 ref_match=True  Bessel_id=True  eps=1-r=2.162e-03
+L= 9 x=8  Zpi/Z0=0.9587120315636620 ref_match=True  Bessel_id=True  eps=1-r=4.129e-02
+L=15 x=1  Zpi/Z0=0.9999999999999978 ref_match=True  Bessel_id=True  eps=1-r=2.220e-15
+L=15 x=4  Zpi/Z0=0.9999999355766599 ref_match=True  Bessel_id=True  eps=1-r=6.442e-08
+L=15 x=8  Zpi/Z0=0.9999459324664687 ref_match=True  Bessel_id=True  eps=1-r=5.407e-05
+
+
+import numpy as np, math
+from scipy.linalg import expm
+from scipy.special import expit, logsumexp, iv
+def graph(L, phi):
+    n=L-1; order=[0,*range(2,L)]
+    step=np.zeros((L,L),complex); step[1,1]=1
+    h=-1 if phi==np.pi else np.exp(1j*phi)
+    for j,t in enumerate(order): step[order[(j+1)%n],t]=h if j==n-1 else 1
+    phases=np.r_[0,(phi+2*np.pi*np.arange(n))/n]
+    basis=np.zeros_like(step); basis[1,0]=1
+    for j,t in enumerate(order): basis[t,1:]=np.exp(-1j*j*phases[1:])/math.sqrt(n)
+    return step,basis,phases
+def log_partition(L,phi,x): return float(logsumexp(x*np.cos(graph(L,phi)[2])))
+
+def chemical_control(L,x,phi,b,verbose=False,tmax=1.0):
+    sectors=[graph(L,0),graph(L,phi)]
+    E=np.concatenate([-x*np.cos(k[2])-d*b for d,k in enumerate(sectors)])
+    generator=np.zeros((2*L,2*L))
+    def pair(i,j,strength):
+        generator[j,i]=strength*expit(E[i]-E[j]); generator[i,j]=strength*expit(E[j]-E[i])
+    interact=np.eye(L); interact[[0,1]]=interact[[1,0]]
+    for d,(_,basis,_) in enumerate(sectors):
+        tr=np.abs(basis.conj().T@interact@basis)**2
+        for i in range(L):
+            for j in range(i+1,L): pair(d*L+i,d*L+j,tr[j,i])
+    overlap=np.abs(sectors[1][1].conj().T@sectors[0][1])**2
+    for i in range(L):
+        for j in range(L): pair(i,L+j,overlap[j,i])
+    generator[np.diag_indices(2*L)]=-generator.sum(axis=0)
+    eq=np.exp(-E-logsumexp(-E)); flux=generator*eq
+    assert np.allclose(flux,flux.T) and np.allclose(generator@eq,0)
+    assert np.linalg.matrix_rank(generator,tol=1e-10)==2*L-1
+    hazard=generator[L:,:L].sum(axis=0)
+    prior=np.zeros(2*L); prior[0:2]=.5
+    final_D=np.r_[np.zeros(L),np.ones(L)]
+    ev=expm(generator*tmax); h=ev.T@final_D
+    post=h*prior/(h@prior)
+    out=dict(K=math.exp(log_partition(L,phi,x)-log_partition(L,0,x)),
+             haz=[float(hazard[k]) for k in (0,1,1+(L-1)//2)],
+             P_bound=float(h@prior), post_fixed=float(post[0]),
+             hazard_sum=float(hazard.sum()), hazard_mean=float(hazard.mean()),
+             eq_bound=float(eq[L:].sum()))
+    if verbose:
+        out['hazard_all']=hazard.tolist()
+        out['P_bound_t']=[float((expm(generator*t).T@final_D)@prior) for t in (0.1,0.5,1,2,5,20,100)]
+    return out
+
+print("=== CHEMICAL (state-resolved) CONTROL, L=7, x=4, b=0 ===")
+for name,p in [('phi=0',0),('phi=pi',np.pi)]:
+    r=chemical_control(7,4,p,0,verbose=True)
+    print(name, json.dumps({k:v for k,v in r.items() if k!='hazard_all'}, indent=None) if False else r)
+print()
+print("analytic phi=0:  0.5*(1-exp(-1)) =",0.5*(1-math.exp(-1)))
+print("ref phi=pi:      0.2712383303451682")
+print("sum rule: sum of hazards over complete mode basis = L*expit(b) =",7*expit(0))
+
+# Result
+=== CHEMICAL (state-resolved) CONTROL, L=7, x=4, b=0 ===
+phi=0 {'K': 1.0, 'haz': [0.5, 0.5000000000000002, 0.5000000000000002], 'P_bound': 0.31606027941427883, 'post_fixed': 0.5000000000000001, 'hazard_sum': 3.500000000000001, 'hazard_mean': 0.5000000000000001, 'eq_bound': 0.49999999999999994, 'hazard_all': [0.5, 0.5000000000000002, 0.5000000000000002, 0.5000000000000002, 0.5000000000000002, 0.5000000000000002, 0.5000000000000002], 'P_bound_t': [0.04758129098202023, 0.1967346701436834, 0.31606027941427883, 0.43233235838169354, 0.4966310265004573, 0.4999999989694234, 0.500000000000006]}
+phi=pi {'K': 0.9701669578993741, 'haz': [0.5, 0.3081787148711199, 0.6918212851288806], 'P_bound': 0.2712383303451682, 'post_fixed': 0.575958799118784, 'hazard_sum': 3.5000000000000027, 'hazard_mean': 0.5000000000000003, 'eq_bound': 0.49242880356382707, 'hazard_all': [0.5, 0.3081787148711199, 0.4352389030674658, 0.5647610969325351, 0.6918212851288806, 0.564761096932535, 0.43523890306746615], 'P_bound_t': [0.038699781737168606, 0.16402987693815918, 0.2712383303451682, 0.38933918738661655, 0.48005148294200906, 0.4924327248343694, 0.4924288035639375]}
+
+analytic phi=0:  0.5*(1-exp(-1)) = 0.31606027941427883
+ref phi=pi:      0.2712383303451682
+sum rule: sum of hazards over complete mode basis = L*expit(b) = 3.5
+
+
+import numpy as np, math
+from scipy.linalg import expm
+from scipy.special import expit, logsumexp
+def graph(L,phi):
+    n=L-1; order=[0,*range(2,L)]
+    step=np.zeros((L,L),complex); step[1,1]=1
+    h=-1 if phi==np.pi else np.exp(1j*phi)
+    for j,t in enumerate(order): step[order[(j+1)%n],t]=h if j==n-1 else 1
+    phases=np.r_[0,(phi+2*np.pi*np.arange(n))/n]
+    basis=np.zeros_like(step); basis[1,0]=1
+    for j,t in enumerate(order): basis[t,1:]=np.exp(-1j*j*phases[1:])/math.sqrt(n)
+    return step,basis,phases
+def log_partition(L,phi,x): return float(logsumexp(x*np.cos(graph(L,phi)[2])))
+
+def overlap_controls(L=7,x=4,t=1.0,nu=1.0,g=None):
+    states=[(r,d) for r in (0,1) for d in (0,1)]
+    gb=log_partition(L,0,x)-log_partition(L,np.pi,x)
+    def segment(g,gate_r,gate_d,t):
+        g_r,g_d=(g,g) if np.isscalar(g) else g
+        Q=np.zeros((4,4))
+        for i,(r,d) in enumerate(states):
+            j=states.index((1-r,d)); Q[j,i]=gate_r*nu*expit((1-2*r)*(gb+g_r*d))
+            j=states.index((r,1-d)); Q[j,i]=gate_d*nu*expit((1-2*d)*g_d*r)
+        Q[np.diag_indices(4)]=-Q.sum(axis=0)
+        return expm(Q*t)
+    prior=np.array([1.,0,0,0]); r,d=np.array(states,dtype=float).T
+    def protocol(g,stages):
+        p=prior
+        for a,b in stages: p=segment(g,a,b,t)@p
+        return np.array([r@p,d@p,p[-1]])
+    g=math.log(2.) if g is None else g
+    out={}
+    for key,st in [('overlap',[(1,1)]),('R_then_D',[(1,0),(0,1)]),('D_then_R',[(0,1),(1,0)])]:
+        base=protocol(0,st); c=protocol(g,st); out[key]=(base,c,c-base)
+    out['only_D_to_R']=protocol((g,0),[(1,1)]); out['only_R_to_D']=protocol((0,g),[(1,1)])
+    mid=segment(g,1,0,t)@prior; back=segment(g,0,1,t).T@d; pf=back@mid
+    out['mid']=(float(r@mid),float((r*mid)@back/pf),float((r*mid)@(1-back)/(1-pf)))
+    return out,gb
+
+out,gb=overlap_controls()
+print("graph_bias ln(Z0/Zpi) =",gb)
+for k in ('overlap','R_then_D','D_then_R'):
+    b,c,d=out[k]; print(f"{k:9s} uncoupled={b}  coupled={c}  delta={d}")
+print("only_D_to_R:",out['only_D_to_R']," only_R_to_D:",out['only_R_to_D'])
+print("mid_R marginal / |d=1 / |d=0 :",out['mid'])
+print()
+print("ANALYTIC uncoupled closed forms (nu*t=1):")
+print("  P(r=1)=sigmoid(lnZ0/Zpi)*(1-e^-1) =",expit(gb)*(1-math.exp(-1)))
+print("  P(d=1)=sigmoid(b=0)*(1-e^-1)      =",0.5*(1-math.exp(-1)))
+print("  joint = product                    =",expit(gb)*(1-math.exp(-1))*0.5*(1-math.exp(-1)))
+print()
+print("=== g-sensitivity: what delta_B_D reproduces a given g at T=80 keV ===")
+for g in (math.log(2),0.1,0.012578451540634417,0.001):
+    o,_=overlap_controls(g=g)
+    dP=o['overlap'][2]
+    print(f" g={g:.6f}  dB_D=g*T={g*80:8.3f} keV   dP(r)={dP[0]:.6e} dP(d)={dP[1]:.6e} dP(r,d)={dP[2]:.6e}")
+print()
+print("linear response coefficient dP(d)/dg at g->0:", (overlap_controls(g=1e-6)[0]['overlap'][2][1])/1e-6)
+
+# Result
+graph_bias ln(Z0/Zpi) = 0.03028710075017571
+overlap   uncoupled=[0.3208461883 0.3160602794 0.1014067359]  coupled=[0.3439218621 0.3395690729 0.142408467 ]  delta=[0.0230756738 0.0235087935 0.0410017311]
+R_then_D  uncoupled=[0.3208461883 0.3160602794 0.1014067359]  coupled=[0.3208461883 0.3498625247 0.1352089812]  delta=[-0.            0.0338022453  0.0338022453]
+D_then_R  uncoupled=[0.3208461883 0.3160602794 0.1014067359]  coupled=[0.3539693985 0.3160602794 0.1345299461]  delta=[ 0.0331232102 -0.            0.0331232102]
+only_D_to_R: [0.3427506704 0.3160602794 0.1206397795]  only_R_to_D: [0.3208461883 0.3384138095 0.1210753435]
+mid_R marginal / |d=1 / |d=0 : (0.32084618833651307, 0.38646317250511636, 0.2855353123768695)
+
+ANALYTIC uncoupled closed forms (nu*t=1):
+  P(r=1)=sigmoid(lnZ0/Zpi)*(1-e^-1) = 0.32084618833651307
+  P(d=1)=sigmoid(b=0)*(1-e^-1)      = 0.31606027941427883
+  joint = product                    = 0.10140673593464465
+
+=== g-sensitivity: what delta_B_D reproduces a given g at T=80 keV ===
+ g=0.693147  dB_D=g*T=  55.452 keV   dP(r)=2.307567e-02 dP(d)=2.350879e-02 dP(r,d)=4.100173e-02
+ g=0.100000  dB_D=g*T=   8.000 keV   dP(r)=3.322568e-03 dP(d)=3.375417e-03 dP(r,d)=5.888519e-03
+ g=0.012578  dB_D=g*T=   1.006 keV   dP(r)=4.157309e-04 dP(d)=4.221508e-04 dP(r,d)=7.364930e-04
+ g=0.001000  dB_D=g*T=   0.080 keV   dP(r)=3.302486e-05 dP(d)=3.353280e-05 dP(r,d)=5.850243e-05
+
+linear response coefficient dP(d)/dg at g->0: 0.03353029753849768
+
+
+import numpy as np, math
+from scipy.special import iv, ive, logsumexp
+from scipy.optimize import brentq
+
+def logZ(L,phi,x):
+    N=L-1
+    ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]
+    return float(logsumexp(x*np.cos(ph)))
+def eps(L,x):  # eps = 1 - Z(pi)/Z(0)
+    return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+print("=== BESSEL AUDIT at x=4 ===")
+x=4.0
+for L in (3,7,9,15):
+    N=L-1
+    lead=(x/2)**N/math.factorial(N)
+    c1=(x/2)**2/(N+1)
+    exact=iv(N,x)
+    m3=iv(3*N,x)
+    print(f"L={L:2d} N={N:2d}: leading (x/2)^N/N! = {lead:.6e} | exact I_N(4) = {exact:.6e} | exact/lead = {exact/lead:.6f}"
+          f" | 1st corr (x/2)^2/(N+1) = {c1:.6f} ({100*c1:.2f}%) | I_3N/I_N = {m3/exact:.3e}")
+print()
+print("series terms for N=6, x=4 (relative to leading):")
+N=6; tot=0
+for k in range(8):
+    t=(x/2)**(2*k)/(math.factorial(k)*math.prod(range(N+1,N+k+1)) if k else 1.0)
+    tot+=t; print(f"  k={k}: {t:.8f}   cumulative={tot:.8f}")
+print()
+print("=== effect of using the leading term only on dF (L=7,x=4,T=0.1 MeV) ===")
+Z0=math.exp(logZ(7,0,4)); N=6
+for name,IN in [("leading",2**6/720),("+1st corr",2**6/720*(1+4/7)),("exact iv(6,4)",iv(6,4))]:
+    dZ=4*N*IN; e=dZ/Z0; dF=-math.log(1-e)*100  # keV at T=0.1 MeV=100 keV
+    print(f"  {name:14s} dZ={dZ:.6f} eps={e:.6f}  dF={dF:.4f} keV")
+print()
+print("=== J NO-GO: x required for a target thermal contrast eps ===")
+print("   eps = 1 - Z(pi)/Z(0);  x = 2J/T;  J = x*T/2;  T = 0.1 MeV")
+rows=[]
+for L in (3,7,9,15):
+    N=L-1
+    line=[f"L={L:2d} N={N:2d}"]
+    for target in (0.01,0.1,0.5):
+        xr=brentq(lambda xx: eps(L,xx)-target, 0.05, 400)
+        line.append(f"eps={target}: x*={xr:8.3f} J*={xr*0.1/2:7.3f} MeV  (x*/N^2={xr/N**2:.3f})")
+    rows.append(" | ".join(line))
+print("\n".join(rows))
+print()
+print("=== contrast at the three 'natural' choices of J ===")
+for L in (7,9,15):
+    N=L-1
+    for label,x in [("x=4 (model)",4.0),("x=N (J=NT/2)",float(N)),("x=N^2/2",N**2/2)]:
+        e=eps(L,x); dF=-math.log(1-e)*100
+        print(f" L={L:2d} {label:16s} x={x:7.2f}  eps={e:.4e}  dF={dF:.4e} keV @T=0.1MeV  J={x*0.05:.3f} MeV")
+print()
+print("=== asymptotic law check: eps ~ 4N exp(-N^2/(2x)) / (sqrt(2 pi x)+N) ===")
+for L,x in [(7,4),(7,8),(7,18),(9,8),(9,32),(15,8),(15,98)]:
+    N=L-1
+    approx=4*N*math.exp(-N**2/(2*x))/(math.sqrt(2*math.pi*x)+N)
+    print(f" L={L:2d} x={x:5.1f}: exact eps={eps(L,x):.4e}  gaussian approx={approx:.4e}  ratio={approx/eps(L,x):.3f}")
+
+# Result
+execute error
+
+
+import numpy as np, math
+from scipy.special import iv, logsumexp
+from scipy.optimize import brentq
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]
+    return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+def bias(L,x): return logZ(L,0,x)-logZ(L,np.pi,x)
+
+print("=== supremum of the seam bias  ln(Z0/Zpi) ===")
+for L in (3,7,9,15,31):
+    xs=np.logspace(-2,4,400); vals=[bias(L,x) for x in xs]
+    print(f" L={L:2d}: max over x in [0.01,1e4] = {max(vals):.10f}   ln2={math.log(2):.10f}   at x={xs[int(np.argmax(vals))]:.1f}")
+print()
+print("=== J NO-GO: x* needed for a target contrast eps (T=0.1 MeV) ===")
+for L in (3,7,9,15):
+    N=L-1; parts=[]
+    for target in (0.01,0.1,0.4):
+        xr=brentq(lambda xx: eps(L,xx)-target,0.05,2000)
+        parts.append(f"eps={target:<4}: x*={xr:8.2f}, J*={xr*0.05:7.3f} MeV, x*/N^2={xr/N**2:.3f}")
+    print(f" L={L:2d} N={N:2d} | "+" | ".join(parts))
+print()
+print("=== contrast at 'natural' J choices, T=0.1 MeV ===")
+for L in (7,9,15):
+    N=L-1
+    for lab,x in [("x=4 (model)",4.0),("x=N (J=NT/2)",float(N)),("x=N^2/2",N**2/2)]:
+        e=eps(L,x); print(f" L={L:2d} {lab:15s} x={x:7.2f} J={x*0.05:6.3f} MeV  eps={e:.4e}  dF={bias(L,x)*100:.4e} keV")
+print()
+print("=== gaussian asymptote eps ~ 4N e^{-N^2/2x}/(sqrt(2 pi x)+N) ===")
+for L,x in [(7,4),(7,8),(7,18),(9,8),(9,32),(15,8),(15,98)]:
+    N=L-1; ap=4*N*math.exp(-N**2/(2*x))/(math.sqrt(2*math.pi*x)+N)
+    print(f" L={L:2d} x={x:5.1f}: exact={eps(L,x):.4e} approx={ap:.4e} ratio={ap/eps(L,x):.3f}")
+print()
+print("=== self-consistent coupling g = seam bias (mutual regime) vs g=ln2 ===")
+from scipy.linalg import expm
+from scipy.special import expit
+def four(L,x,g,t=1.0):
+    st=[(r,d) for r in (0,1) for d in (0,1)]; gb=bias(L,x)
+    Q=np.zeros((4,4))
+    for i,(r,d) in enumerate(st):
+        j=st.index((1-r,d)); Q[j,i]=expit((1-2*r)*(gb+g*d))
+        j=st.index((r,1-d)); Q[j,i]=expit((1-2*d)*g*r)
+    Q[np.diag_indices(4)]=-Q.sum(axis=0)
+    p=expm(Q*t)@np.array([1.,0,0,0]); r,d=np.array(st,float).T
+    return np.array([r@p,d@p,p[-1]])
+for L in (7,9,15):
+    gb=bias(L,4)
+    for lab,g in [("g=ln2 (README)",math.log(2)),("g=bias (self-consistent)",gb),("g=1keV/80keV",1/80)]:
+        dd=four(L,4,g)-four(L,4,0.0)
+        print(f" L={L:2d} {lab:26s} g={g:.6e}  dP(r)={dd[0]:.4e} dP(d)={dd[1]:.4e} dP(rd)={dd[2]:.4e}")
+
+# Result
+=== supremum of the seam bias  ln(Z0/Zpi) ===
+ L= 3: max over x in [0.01,1e4] = 0.6931471806   ln2=0.6931471806   at x=2105.3
+ L= 7: max over x in [0.01,1e4] = 0.6931471806   ln2=0.6931471806   at x=2105.3
+ L= 9: max over x in [0.01,1e4] = 0.6931471806   ln2=0.6931471806   at x=2105.3
+ L=15: max over x in [0.01,1e4] = 0.6931471806   ln2=0.6931471806   at x=2105.3
+ L=31: max over x in [0.01,1e4] = 0.6931471806   ln2=0.6931471806   at x=5362.0
+
+=== J NO-GO: x* needed for a target contrast eps (T=0.1 MeV) ===
+
+
+
+
+ L= 3 N= 2 | eps=0.01: x*=    0.18, J*=  0.009 MeV, x*/N^2=0.045 | eps=0.1 : x*=    0.65, J*=  0.032 MeV, x*/N^2=0.162 | eps=0.4 : x*=    2.27, J*=  0.114 MeV, x*/N^2=0.568
+ L= 7 N= 6 | eps=0.01: x*=    2.96, J*=  0.148 MeV, x*/N^2=0.082 | eps=0.1 : x*=    6.13, J*=  0.306 MeV, x*/N^2=0.170 | eps=0.4 : x*=   17.18, J*=  0.859 MeV, x*/N^2=0.477
+ L= 9 N= 8 | eps=0.01: x*=    5.51, J*=  0.276 MeV, x*/N^2=0.086 | eps=0.1 : x*=   10.92, J*=  0.546 MeV, x*/N^2=0.171 | eps=0.4 : x*=   30.24, J*=  1.512 MeV, x*/N^2=0.472
+ L=15 N=14 | eps=0.01: x*=   17.66, J*=  0.883 MeV, x*/N^2=0.090 | eps=0.1 : x*=   33.47, J*=  1.674 MeV, x*/N^2=0.171 | eps=0.4 : x*=   91.81, J*=  4.591 MeV, x*/N^2=0.468
+
+=== contrast at 'natural' J choices, T=0.1 MeV ===
+ L= 7 x=4 (model)     x=   4.00 J= 0.200 MeV  eps=2.9833e-02  dF=3.0287e+00 keV
+ L= 7 x=N (J=NT/2)    x=   6.00 J= 0.300 MeV  eps=9.5072e-02  dF=9.9900e+00 keV
+ L= 7 x=N^2/2         x=  18.00 J= 0.900 MeV  eps=4.1040e-01  dF=5.2830e+01 keV
+ L= 9 x=4 (model)     x=   4.00 J= 0.200 MeV  eps=2.1624e-03  dF=2.1647e-01 keV
+ L= 9 x=N (J=NT/2)    x=   8.00 J= 0.400 MeV  eps=4.1288e-02  dF=4.2165e+00 keV
+ L= 9 x=N^2/2         x=  32.00 J= 1.600 MeV  eps=4.1253e-01  dF=5.3193e+01 keV
+ L=15 x=4 (model)     x=   4.00 J= 0.200 MeV  eps=6.4423e-08  dF=6.4423e-06 keV
+ L=15 x=N (J=NT/2)    x=  14.00 J= 0.700 MeV  eps=2.8912e-03  dF=2.8954e-01 keV
+ L=15 x=N^2/2         x=  98.00 J= 4.900 MeV  eps=4.1435e-01  dF=5.3503e+01 keV
+
+=== gaussian asymptote eps ~ 4N e^{-N^2/2x}/(sqrt(2 pi x)+N) ===
+ L= 7 x=  4.0: exact=2.9833e-02 approx=2.4209e-02 ratio=0.811
+ L= 7 x=  8.0: exact=1.7243e-01 approx=1.9325e-01 ratio=1.121
+ L= 7 x= 18.0: exact=4.1040e-01 approx=5.3076e-01 ratio=1.293
+ L= 9 x=  8.0: exact=4.1288e-02 approx=3.8841e-02 ratio=0.941
+ L= 9 x= 32.0: exact=4.1253e-01 approx=5.3076e-01 ratio=1.287
+ L=15 x=  8.0: exact=5.4068e-05 approx=1.2706e-05 ratio=0.235
+ L=15 x= 98.0: exact=4.1435e-01 approx=5.3076e-01 ratio=1.281
+
+=== self-consistent coupling g = seam bias (mutual regime) vs g=ln2 ===
+ L= 7 g=ln2 (README)             g=6.931472e-01  dP(r)=2.3076e-02 dP(d)=2.3509e-02 dP(rd)=4.1002e-02
+ L= 7 g=bias (self-consistent)   g=3.028710e-02  dP(r)=1.0022e-03 dP(d)=1.0178e-03 dP(rd)=1.7756e-03
+ L= 7 g=1keV/80keV               g=1.250000e-02  dP(r)=4.1314e-04 dP(d)=4.1952e-04 dP(rd)=7.3190e-04
+ L= 9 g=ln2 (README)             g=6.931472e-01  dP(r)=2.3174e-02 dP(d)=2.3204e-02 dP(rd)=4.0780e-02
+ L= 9 g=bias (self-consistent)   g=2.164748e-03  dP(r)=7.1514e-05 dP(d)=7.1591e-05 dP(rd)=1.2566e-04
+ L= 9 g=1keV/80keV               g=1.250000e-02  dP(r)=4.1326e-04 dP(d)=4.1371e-04 dP(rd)=7.2619e-04
+ L=15 g=ln2 (README)             g=6.931472e-01  dP(r)=2.3181e-02 dP(d)=2.3181e-02 dP(rd)=4.0763e-02
+ L=15 g=bias (self-consistent)   g=6.442334e-08  dP(r)=2.1279e-09 dP(d)=2.1279e-09 dP(rd)=3.7368e-09
+ L=15 g=1keV/80keV               g=1.250000e-02  dP(r)=4.1326e-04 dP(d)=4.1326e-04 dP(rd)=7.2574e-04
+
+
+import math
+hbar=6.582119569e-16      # eV*s
+Mpl=1.22089e28            # eV
+def H_s(T_MeV,gstar=3.36):           # H in 1/s
+    T=T_MeV*1e6
+    return 1.66*math.sqrt(gstar)*T*T/Mpl/hbar
+def H_MeV(T_MeV,gstar=3.36):
+    T=T_MeV*1e6; return 1.66*math.sqrt(gstar)*T*T/Mpl/1e6
+print("H(T=0.1 MeV, g*=3.36) =",H_s(0.1),"1/s   (snippet: 3.7864e-3)")
+print("H(T=0.08)             =",H_s(0.08))
+print()
+print("=== S_max = ln(omega0/H): ceiling on the instanton action ===")
+print("  omega0 = J/hbar (attempt frequency).  J from x=2J/T at T=0.1 MeV.")
+for L in (7,9,15):
+    N=L-1
+    for lab,x in [("x=4",4.0),("x=N",float(N)),("x=0.17N^2",0.17*N*N),("x=N^2/2",N*N/2)]:
+        J=x*0.1/2; om=J*1e6/hbar; S=math.log(om/H_s(0.1))
+        print(f" L={L:2d} {lab:10s} J={J:7.3f} MeV  omega0={om:.4e} 1/s  S_max={S:7.3f}   Gamma/H at S=50: {math.exp(S-50):.3e}")
+print()
+print("=== temperature dependence of the ceiling (J FIXED, x=2J/T evolves) ===")
+for J in (0.2,0.9,4.9):
+    print(f" J={J} MeV:")
+    for T in (1.0,0.5,0.3,0.2,0.1,0.08,0.05,0.03):
+        gs=10.75 if T>0.4 else 3.36
+        S=math.log(J*1e6/hbar/H_s(T,gs)); x=2*J/T
+        print(f"   T={T:5.2f} MeV g*={gs:5.2f} x={x:8.2f}  S_max={S:7.3f}")
+
+# Result
+H(T=0.1 MeV, g*=3.36) = 0.003786477869422765 1/s   (snippet: 3.7864e-3)
+H(T=0.08)             = 0.0024233458364305697
+
+=== S_max = ln(omega0/H): ceiling on the instanton action ===
+  omega0 = J/hbar (attempt frequency).  J from x=2J/T at T=0.1 MeV.
+ L= 7 x=4        J=  0.200 MeV  omega0=3.0385e+20 1/s  S_max= 52.739   Gamma/H at S=50: 1.548e+01
+ L= 7 x=N        J=  0.300 MeV  omega0=4.5578e+20 1/s  S_max= 53.145   Gamma/H at S=50: 2.322e+01
+ L= 7 x=0.17N^2  J=  0.306 MeV  omega0=4.6490e+20 1/s  S_max= 53.165   Gamma/H at S=50: 2.368e+01
+ L= 7 x=N^2/2    J=  0.900 MeV  omega0=1.3673e+21 1/s  S_max= 54.243   Gamma/H at S=50: 6.965e+01
+ L= 9 x=4        J=  0.200 MeV  omega0=3.0385e+20 1/s  S_max= 52.739   Gamma/H at S=50: 1.548e+01
+ L= 9 x=N        J=  0.400 MeV  omega0=6.0771e+20 1/s  S_max= 53.433   Gamma/H at S=50: 3.096e+01
+ L= 9 x=0.17N^2  J=  0.544 MeV  omega0=8.2648e+20 1/s  S_max= 53.740   Gamma/H at S=50: 4.210e+01
+ L= 9 x=N^2/2    J=  1.600 MeV  omega0=2.4308e+21 1/s  S_max= 54.819   Gamma/H at S=50: 1.238e+02
+ L=15 x=4        J=  0.200 MeV  omega0=3.0385e+20 1/s  S_max= 52.739   Gamma/H at S=50: 1.548e+01
+ L=15 x=N        J=  0.700 MeV  omega0=1.0635e+21 1/s  S_max= 53.992   Gamma/H at S=50: 5.417e+01
+ L=15 x=0.17N^2  J=  1.666 MeV  omega0=2.5311e+21 1/s  S_max= 54.859   Gamma/H at S=50: 1.289e+02
+ L=15 x=N^2/2    J=  4.900 MeV  omega0=7.4444e+21 1/s  S_max= 55.938   Gamma/H at S=50: 3.792e+02
+
+=== temperature dependence of the ceiling (J FIXED, x=2J/T evolves) ===
+ J=0.2 MeV:
+   T= 1.00 MeV g*=10.75 x=    0.40  S_max= 47.553
+   T= 0.50 MeV g*=10.75 x=    0.80  S_max= 48.939
+   T= 0.30 MeV g*= 3.36 x=    1.33  S_max= 50.542
+   T= 0.20 MeV g*= 3.36 x=    2.00  S_max= 51.353
+   T= 0.10 MeV g*= 3.36 x=    4.00  S_max= 52.739
+   T= 0.08 MeV g*= 3.36 x=    5.00  S_max= 53.186
+   T= 0.05 MeV g*= 3.36 x=    8.00  S_max= 54.126
+   T= 0.03 MeV g*= 3.36 x=   13.33  S_max= 55.147
+ J=0.9 MeV:
+   T= 1.00 MeV g*=10.75 x=    1.80  S_max= 49.057
+   T= 0.50 MeV g*=10.75 x=    3.60  S_max= 50.443
+   T= 0.30 MeV g*= 3.36 x=    6.00  S_max= 52.046
+   T= 0.20 MeV g*= 3.36 x=    9.00  S_max= 52.857
+   T= 0.10 MeV g*= 3.36 x=   18.00  S_max= 54.243
+   T= 0.08 MeV g*= 3.36 x=   22.50  S_max= 54.690
+   T= 0.05 MeV g*= 3.36 x=   36.00  S_max= 55.630
+   T= 0.03 MeV g*= 3.36 x=   60.00  S_max= 56.651
+ J=4.9 MeV:
+   T= 1.00 MeV g*=10.75 x=    9.80  S_max= 50.751
+   T= 0.50 MeV g*=10.75 x=   19.60  S_max= 52.138
+   T= 0.30 MeV g*= 3.36 x=   32.67  S_max= 53.741
+   T= 0.20 MeV g*= 3.36 x=   49.00  S_max= 54.552
+   T= 0.10 MeV g*= 3.36 x=   98.00  S_max= 55.938
+   T= 0.08 MeV g*= 3.36 x=  122.50  S_max= 56.384
+   T= 0.05 MeV g*= 3.36 x=  196.00  S_max= 57.324
+   T= 0.03 MeV g*= 3.36 x=  326.67  S_max= 58.346
+
+
+import math
+from scipy.optimize import brentq
+from scipy.special import logsumexp, zeta
+import numpy as np
+hbar=6.582119569e-16; Mpl=1.22089e28
+def gstar(T):
+    # crude e+-annihilation interpolation: photons + e± + 3 nu
+    if T>0.5: return 10.75
+    if T<0.05: return 3.36
+    return 3.36+(10.75-3.36)*(T-0.05)/0.45
+def H_s(T): 
+    t=T*1e6; return 1.66*math.sqrt(gstar(T))*t*t/Mpl/hbar
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+print("=== FREEZE-OUT of the seam vs its VISIBILITY  (J fixed, S = c*J/T = c*x/2) ===")
+print("  Gamma_r = (J/hbar) exp(-c*J/T);   freeze-out: Gamma_r = H")
+print("  visibility: eps >= 0.01  ->  x_vis ;  T_vis = 2J/x_vis")
+for L in (7,9,15):
+    N=L-1
+    x_vis=brentq(lambda xx: eps(L,xx)-0.01,0.05,2000)
+    x_10 =brentq(lambda xx: eps(L,xx)-0.10,0.05,2000)
+    for J in (0.2,0.9,1.674,4.9):
+        Tv=2*J/x_vis; Tv10=2*J/x_10
+        line=f" L={L:2d} J={J:5.3f} MeV  T_vis(eps=.01)={Tv:6.3f}  T_vis(eps=.1)={Tv10:6.3f} |"
+        for c in (1,2,4):
+            f=lambda T: math.log(J*1e6/hbar)-c*J/T-math.log(H_s(T))
+            try:
+                Tf=brentq(f,0.005,5.0)
+                line+=f" c={c}: T_frz={Tf:6.3f}"
+            except ValueError:
+                line+=f" c={c}: T_frz=  none "
+        print(line)
+print()
+print("  BBN reference windows: n/p freeze-out ~0.7-0.8 MeV; D-bottleneck ~0.08 MeV; D burning ends ~0.03 MeV")
+print()
+print("=== eps and dF at the D-bottleneck T=0.08 MeV for those J ===")
+for L in (7,9,15):
+    for J in (0.2,0.9,1.674,4.9):
+        x=2*J/0.08; e=eps(L,x)
+        print(f" L={L:2d} J={J:5.3f}  x={x:8.2f}  eps={e:.4e}  dF={-math.log(1-e)*80:9.4f} keV  (ceiling T ln2={80*math.log(2):.2f} keV)")
+
+# Result
+=== FREEZE-OUT of the seam vs its VISIBILITY  (J fixed, S = c*J/T = c*x/2) ===
+  Gamma_r = (J/hbar) exp(-c*J/T);   freeze-out: Gamma_r = H
+  visibility: eps >= 0.01  ->  x_vis ;  T_vis = 2J/x_vis
+ L= 7 J=0.200 MeV  T_vis(eps=.01)= 0.135  T_vis(eps=.1)= 0.065 | c=1: T_frz=  none  c=2: T_frz= 0.007 c=4: T_frz= 0.014
+ L= 7 J=0.900 MeV  T_vis(eps=.01)= 0.607  T_vis(eps=.1)= 0.294 | c=1: T_frz= 0.016 c=2: T_frz= 0.032 c=4: T_frz= 0.065
+ L= 7 J=1.674 MeV  T_vis(eps=.01)= 1.129  T_vis(eps=.1)= 0.546 | c=1: T_frz= 0.029 c=2: T_frz= 0.060 c=4: T_frz= 0.123
+ L= 7 J=4.900 MeV  T_vis(eps=.01)= 3.306  T_vis(eps=.1)= 1.599 | c=1: T_frz= 0.087 c=2: T_frz= 0.180 c=4: T_frz= 0.371
+ L= 9 J=0.200 MeV  T_vis(eps=.01)= 0.073  T_vis(eps=.1)= 0.037 | c=1: T_frz=  none  c=2: T_frz= 0.007 c=4: T_frz= 0.014
+ L= 9 J=0.900 MeV  T_vis(eps=.01)= 0.326  T_vis(eps=.1)= 0.165 | c=1: T_frz= 0.016 c=2: T_frz= 0.032 c=4: T_frz= 0.065
+ L= 9 J=1.674 MeV  T_vis(eps=.01)= 0.607  T_vis(eps=.1)= 0.307 | c=1: T_frz= 0.029 c=2: T_frz= 0.060 c=4: T_frz= 0.123
+ L= 9 J=4.900 MeV  T_vis(eps=.01)= 1.777  T_vis(eps=.1)= 0.898 | c=1: T_frz= 0.087 c=2: T_frz= 0.180 c=4: T_frz= 0.371
+ L=15 J=0.200 MeV  T_vis(eps=.01)= 0.023  T_vis(eps=.1)= 0.012 | c=1: T_frz=  none  c=2: T_frz= 0.007 c=4: T_frz= 0.014
+ L=15 J=0.900 MeV  T_vis(eps=.01)= 0.102  T_vis(eps=.1)= 0.054 | c=1: T_frz= 0.016 c=2: T_frz= 0.032 c=4: T_frz= 0.065
+ L=15 J=1.674 MeV  T_vis(eps=.01)= 0.190  T_vis(eps=.1)= 0.100 | c=1: T_frz= 0.029 c=2: T_frz= 0.060 c=4: T_frz= 0.123
+ L=15 J=4.900 MeV  T_vis(eps=.01)= 0.555  T_vis(eps=.1)= 0.293 | c=1: T_frz= 0.087 c=2: T_frz= 0.180 c=4: T_frz= 0.371
+
+  BBN reference windows: n/p freeze-out ~0.7-0.8 MeV; D-bottleneck ~0.08 MeV; D burning ends ~0.03 MeV
+
+=== eps and dF at the D-bottleneck T=0.08 MeV for those J ===
+ L= 7 J=0.200  x=    5.00  eps=5.9170e-02  dF=   4.8794 keV  (ceiling T ln2=55.45 keV)
+ L= 7 J=0.900  x=   22.50  eps=4.5093e-01  dF=  47.9628 keV  (ceiling T ln2=55.45 keV)
+ L= 7 J=1.674  x=   41.85  eps=4.9633e-01  dF=  54.8663 keV  (ceiling T ln2=55.45 keV)
+ L= 7 J=4.900  x=  122.50  eps=5.0000e-01  dF=  55.4518 keV  (ceiling T ln2=55.45 keV)
+ L= 9 J=0.200  x=    5.00  eps=6.4534e-03  dF=   0.5179 keV  (ceiling T ln2=55.45 keV)
+ L= 9 J=0.900  x=   22.50  eps=3.2056e-01  dF=  30.9185 keV  (ceiling T ln2=55.45 keV)
+ L= 9 J=1.674  x=   41.85  eps=4.5865e-01  dF=  49.0953 keV  (ceiling T ln2=55.45 keV)
+ L= 9 J=4.900  x=  122.50  eps=4.9991e-01  dF=  55.4375 keV  (ceiling T ln2=55.45 keV)
+ L=15 J=0.200  x=    5.00  eps=6.8159e-07  dF=   0.0001 keV  (ceiling T ln2=55.45 keV)
+ L=15 J=0.900  x=   22.50  eps=2.8601e-02  dF=   2.3214 keV  (ceiling T ln2=55.45 keV)
+ L=15 J=1.674  x=   41.85  eps=1.6297e-01  dF=  14.2313 keV  (ceiling T ln2=55.45 keV)
+ L=15 J=4.900  x=  122.50  eps=4.5364e-01  dF=  48.3587 keV  (ceiling T ln2=55.45 keV)
+
+
+import math, numpy as np
+from scipy.integrate import quad
+from scipy.special import zeta
+from scipy.optimize import brentq
+hbar=6.582119569e-16; Mpl=1.22089e28; me=0.51099895; mN=938.9; eta=6.1e-10
+f=(4/11)**(1/3)
+print("=== Delta N_eff: relativistic decoupled sector (real scalar, g=1) ===")
+for gdec in (10.75,28.,61.75,106.75,202.):
+    r=(10.75/gdec)**(1/3); rx=r*f; dN=(4/7)*r**4
+    print(f" g_*s(dec)={gdec:7.2f}  T_X/T_nu={r:.4f}  T_X/T_gamma={rx:.4f}  dNeff(g=1)={dN:.4f}   (4/7)(11/4)^(4/3)={(4/7)*(11/4)**(4/3):.4f}")
+print()
+print("=== Delta N_eff if X becomes NON-RELATIVISTIC with conserved number, m_X=2J ===")
+Tg=0.08; Tnu=Tg*f
+rho1nu=(7/4)*(math.pi**2/15)*Tnu**4
+print(f" T_gamma={Tg} MeV, T_nu={Tnu:.5f} MeV, rho_1nu={rho1nu:.4e} MeV^4")
+for gdec in (28.,106.75,202.):
+    Tx=(10.75/gdec)**(1/3)*f*Tg
+    nX=zeta(3)/math.pi**2*Tx**3
+    row=f" g_dec={gdec:6.2f} T_X={Tx:.5f} MeV n_X(g=1)={nX:.3e} MeV^3 |"
+    for m in (0.4,1.8,3.35,9.8):
+        row+=f" m={m:4.2f}: dNeff={m*nX/rho1nu:7.3f}"
+    print(row)
+print(" -> for L=7 (g_X=7 internal states) multiply by 7; for the full R150 core |V|=3L(L-1)=126 multiply by 126")
+print()
+print("=== TRACE BUDGET Theta_SM during BBN (back-reaction on a universally coupled mediator) ===")
+def Theta_e(T):
+    a=me/T
+    I=quad(lambda x: math.sqrt(max(x*x-a*a,0))/(math.exp(x)+1),a,a+60,limit=200)[0]
+    return 4*me**2*T**2/(2*math.pi**2)*I
+for T in (0.5,0.3,0.2,0.1,0.08,0.05):
+    nb=eta*2*zeta(3)/math.pi**2*T**3
+    gs=10.75 if T>0.4 else 3.36
+    rho=gs*math.pi**2/30*T**4
+    Tb=mN*nb; Te=Theta_e(T); Tnuc_max=8.0*nb; Tnuc_real=7.07*0.247*nb
+    print(f" T={T:4.2f}  rho_rad={rho:.3e}  Theta_e={Te:.3e}  Theta_b={Tb:.3e}  Theta_nuc(real)={Tnuc_real:.3e}"
+          f" | Theta_nuc/Theta_e={Tnuc_real/Te:.2e}  Theta_nuc/Theta_b={Tnuc_real/Tb:.2e}  Theta_nuc/rho={Tnuc_real/rho:.2e} (README budget 8MeV: {Tnuc_max/rho:.2e})")
+print()
+print("=== sigma-mediator: static susceptibility window ===")
+T=0.08; nb=eta*2*zeta(3)/math.pi**2*T**3
+H=1.66*math.sqrt(3.36)*(T*1e6)**2/Mpl/1e6   # MeV
+print(f" n_b={nb:.3e} MeV^3, H={H:.3e} MeV = {H*1e6:.3e} eV")
+for fD in (1e-5,1e-4,1e-3):
+    nD=fD*nb
+    for dBd_keV in (1.0,7.7,55.45):
+        dBd=dBd_keV*1e-3
+        m=sqrt=nD**0.5/dBd**0.5   # B_D'=1 (MeV/MeV)
+        print(f"  n_D/n_b={fD:.0e}  target dB_D={dBd_keV:6.2f} keV -> m_sigma = {m*1e6:9.4f} eV  (m/H={m/H:.2e})")
+print(" -> m_sigma ~ 0.01-0.3 eV, i.e. 22-24 orders ABOVE H: the criterion m<~H is neither necessary nor sufficient")
+
+# Result
+=== Delta N_eff: relativistic decoupled sector (real scalar, g=1) ===
+ g_*s(dec)=  10.75  T_X/T_nu=1.0000  T_X/T_gamma=0.7138  dNeff(g=1)=0.5714   (4/7)(11/4)^(4/3)=2.2016
+ g_*s(dec)=  28.00  T_X/T_nu=0.7268  T_X/T_gamma=0.5188  dNeff(g=1)=0.1595   (4/7)(11/4)^(4/3)=2.2016
+ g_*s(dec)=  61.75  T_X/T_nu=0.5584  T_X/T_gamma=0.3985  dNeff(g=1)=0.0555   (4/7)(11/4)^(4/3)=2.2016
+ g_*s(dec)= 106.75  T_X/T_nu=0.4652  T_X/T_gamma=0.3321  dNeff(g=1)=0.0268   (4/7)(11/4)^(4/3)=2.2016
+ g_*s(dec)= 202.00  T_X/T_nu=0.3761  T_X/T_gamma=0.2685  dNeff(g=1)=0.0114   (4/7)(11/4)^(4/3)=2.2016
+
+=== Delta N_eff if X becomes NON-RELATIVISTIC with conserved number, m_X=2J ===
+ T_gamma=0.08 MeV, T_nu=0.05710 MeV, rho_1nu=1.2241e-05 MeV^4
+ g_dec= 28.00 T_X=0.04150 MeV n_X(g=1)=8.706e-06 MeV^3 | m=0.40: dNeff=  0.284 m=1.80: dNeff=  1.280 m=3.35: dNeff=  2.382 m=9.80: dNeff=  6.970
+ g_dec=106.75 T_X=0.02657 MeV n_X(g=1)=2.284e-06 MeV^3 | m=0.40: dNeff=  0.075 m=1.80: dNeff=  0.336 m=3.35: dNeff=  0.625 m=9.80: dNeff=  1.828
+ g_dec=202.00 T_X=0.02148 MeV n_X(g=1)=1.207e-06 MeV^3 | m=0.40: dNeff=  0.039 m=1.80: dNeff=  0.177 m=3.35: dNeff=  0.330 m=9.80: dNeff=  0.966
+ -> for L=7 (g_X=7 internal states) multiply by 7; for the full R150 core |V|=3L(L-1)=126 multiply by 126
+
+=== TRACE BUDGET Theta_SM during BBN (back-reaction on a universally coupled mediator) ===
+ T=0.50  rho_rad=2.210e-01  Theta_e=7.085e-03  Theta_b=1.744e-08  Theta_nuc(real)=3.243e-11 | Theta_nuc/Theta_e=4.58e-09  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=1.47e-10 (README budget 8MeV: 6.72e-10)
+ T=0.30  rho_rad=8.954e-03  Theta_e=1.599e-03  Theta_b=3.767e-09  Theta_nuc(real)=7.006e-12 | Theta_nuc/Theta_e=4.38e-09  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=7.82e-10 (README budget 8MeV: 3.58e-09)
+ T=0.20  rho_rad=1.769e-03  Theta_e=3.639e-04  Theta_b=1.116e-09  Theta_nuc(real)=2.076e-12 | Theta_nuc/Theta_e=5.70e-09  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=1.17e-09 (README budget 8MeV: 5.38e-09)
+ T=0.10  rho_rad=1.105e-04  Theta_e=9.658e-06  Theta_b=1.395e-10  Theta_nuc(real)=2.595e-13 | Theta_nuc/Theta_e=2.69e-08  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=2.35e-09 (README budget 8MeV: 1.08e-08)
+ T=0.08  rho_rad=4.528e-05  Theta_e=1.905e-06  Theta_b=7.143e-11  Theta_nuc(real)=1.329e-13 | Theta_nuc/Theta_e=6.97e-08  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=2.93e-09 (README budget 8MeV: 1.34e-08)
+ T=0.05  rho_rad=6.909e-06  Theta_e=2.000e-08  Theta_b=1.744e-11  Theta_nuc(real)=3.243e-14 | Theta_nuc/Theta_e=1.62e-06  Theta_nuc/Theta_b=1.86e-03  Theta_nuc/rho=4.69e-09 (README budget 8MeV: 2.15e-08)
+
+=== sigma-mediator: static susceptibility window ===
+ n_b=7.608e-14 MeV^3, H=1.595e-24 MeV = 1.595e-18 eV
+  n_D/n_b=1e-05  target dB_D=  1.00 keV -> m_sigma =    0.0276 eV  (m/H=1.73e+16)
+  n_D/n_b=1e-05  target dB_D=  7.70 keV -> m_sigma =    0.0099 eV  (m/H=6.23e+15)
+  n_D/n_b=1e-05  target dB_D= 55.45 keV -> m_sigma =    0.0037 eV  (m/H=2.32e+15)
+  n_D/n_b=1e-04  target dB_D=  1.00 keV -> m_sigma =    0.0872 eV  (m/H=5.47e+16)
+  n_D/n_b=1e-04  target dB_D=  7.70 keV -> m_sigma =    0.0314 eV  (m/H=1.97e+16)
+  n_D/n_b=1e-04  target dB_D= 55.45 keV -> m_sigma =    0.0117 eV  (m/H=7.34e+15)
+  n_D/n_b=1e-03  target dB_D=  1.00 keV -> m_sigma =    0.2758 eV  (m/H=1.73e+17)
+  n_D/n_b=1e-03  target dB_D=  7.70 keV -> m_sigma =    0.0994 eV  (m/H=6.23e+16)
+  n_D/n_b=1e-03  target dB_D= 55.45 keV -> m_sigma =    0.0370 eV  (m/H=2.32e+16)
+ -> m_sigma ~ 0.01-0.3 eV, i.e. 22-24 orders ABOVE H: the criterion m<~H is neither necessary nor sufficient
+
+
+import math, numpy as np
+from scipy.special import logsumexp, zeta
+from scipy.optimize import brentq
+hbar=6.582119569e-16; Mpl=1.22089e28; eta=6.1e-10; f=(4/11)**(1/3)
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+T=0.08; Tnu=T*f; rho1nu=(7/4)*(math.pi**2/15)*Tnu**4
+def Jmin(L,e=0.01,T=0.08):
+    return brentq(lambda x: eps(L,x)-e,0.02,3000)*T/2
+def Jmax(gdec,gX=1,dN=0.17):
+    Tx=(10.75/gdec)**(1/3)*f*T; nX=gX*zeta(3)/math.pi**2*Tx**3
+    return dN*rho1nu/nX/2      # m_X = 2J
+print("=== L1 SCREEN: intersection of visibility (J>=Jmin) and Delta N_eff (J<=Jmax), T=0.08 MeV ===")
+print(" assumption: X is a thermal relic, number conserved after decoupling, m_X = 2J, g_X internal states")
+for gdec in (28.,106.75,202.):
+    for gX in (1,7,126):
+        print(f"  g_dec={gdec:6.2f} g_X={gX:3d}: J_max={Jmax(gdec,gX):.4f} MeV", end="")
+    print()
+print()
+for L in (3,7,9,15):
+    jm=Jmin(L)
+    print(f" L={L:2d}: J_min(eps>=1%)={jm:.4f} MeV | ", end="")
+    for gdec in (28.,106.75,202.):
+        jM=Jmax(gdec,1)
+        ok = "OPEN  x%.2f"%(jM/jm) if jM>jm else "EMPTY"
+        print(f"g_dec={gdec:6.2f},gX=1: {ok:12s}", end=" ")
+    print()
+print()
+print("=== seam bias / g at the live point, and the resulting toy deltas ===")
+from scipy.linalg import expm
+from scipy.special import expit
+def four(L,x,g,t=1.0):
+    st=[(r,d) for r in (0,1) for d in (0,1)]; gb=logZ(L,0,x)-logZ(L,np.pi,x)
+    Q=np.zeros((4,4))
+    for i,(r,d) in enumerate(st):
+        j=st.index((1-r,d)); Q[j,i]=expit((1-2*r)*(gb+g*d))
+        j=st.index((r,1-d)); Q[j,i]=expit((1-2*d)*g*r)
+    Q[np.diag_indices(4)]=-Q.sum(axis=0)
+    p=expm(Q*t)@np.array([1.,0,0,0]); r,d=np.array(st,float).T
+    return np.array([r@p,d@p,p[-1]])
+for L,J in [(7,0.15),(7,0.30),(7,0.44),(15,0.71)]:
+    x=2*J/T; e=eps(L,x); bias=-math.log(1-e)
+    gpos=7.7/80; gneg=-32.0/80
+    dp=four(L,x,gpos)-four(L,x,0.0); dn=four(L,x,gneg)-four(L,x,0.0)
+    S=math.log(J*1e6/hbar/(1.66*math.sqrt(3.36)*(T*1e6)**2/Mpl/hbar))
+    print(f" L={L:2d} J={J:4.2f} x={x:6.2f} eps={e:.4f} dF={bias*80:6.2f} keV  S_max={S:.2f}"
+          f" | dP(d) at g=+7.7/80: {dp[1]:+.5f} ; at g=-32/80: {dn[1]:+.5f}")
+
+# Result
+=== L1 SCREEN: intersection of visibility (J>=Jmin) and Delta N_eff (J<=Jmax), T=0.08 MeV ===
+ assumption: X is a thermal relic, number conserved after decoupling, m_X = 2J, g_X internal states
+  g_dec= 28.00 g_X=  1: J_max=0.1195 MeV  g_dec= 28.00 g_X=  7: J_max=0.0171 MeV  g_dec= 28.00 g_X=126: J_max=0.0009 MeV
+  g_dec=106.75 g_X=  1: J_max=0.4557 MeV  g_dec=106.75 g_X=  7: J_max=0.0651 MeV  g_dec=106.75 g_X=126: J_max=0.0036 MeV
+  g_dec=202.00 g_X=  1: J_max=0.8622 MeV  g_dec=202.00 g_X=  7: J_max=0.1232 MeV  g_dec=202.00 g_X=126: J_max=0.0068 MeV
+
+ L= 3: J_min(eps>=1%)=0.0072 MeV | g_dec= 28.00,gX=1: OPEN  x16.65 g_dec=106.75,gX=1: OPEN  x63.48 g_dec=202.00,gX=1: OPEN  x120.12 
+ L= 7: J_min(eps>=1%)=0.1186 MeV | g_dec= 28.00,gX=1: OPEN  x1.01  g_dec=106.75,gX=1: OPEN  x3.84  g_dec=202.00,gX=1: OPEN  x7.27  
+ L= 9: J_min(eps>=1%)=0.2206 MeV | g_dec= 28.00,gX=1: EMPTY        g_dec=106.75,gX=1: OPEN  x2.07  g_dec=202.00,gX=1: OPEN  x3.91  
+ L=15: J_min(eps>=1%)=0.7065 MeV | g_dec= 28.00,gX=1: EMPTY        g_dec=106.75,gX=1: EMPTY        g_dec=202.00,gX=1: OPEN  x1.22  
+
+=== seam bias / g at the live point, and the resulting toy deltas ===
+ L= 7 J=0.15 x=  3.75 eps=0.0240 dF=  1.94 keV  S_max=52.90 | dP(d) at g=+7.7/80: +0.00324 ; at g=-32/80: -0.01281
+ L= 7 J=0.30 x=  7.50 eps=0.1533 dF= 13.31 keV  S_max=53.59 | dP(d) at g=+7.7/80: +0.00346 ; at g=-32/80: -0.01374
+ L= 7 J=0.44 x= 11.00 eps=0.2739 dF= 25.60 keV  S_max=53.97 | dP(d) at g=+7.7/80: +0.00370 ; at g=-32/80: -0.01472
+ L=15 J=0.71 x= 17.75 eps=0.0102 dF=  0.82 keV  S_max=54.45 | dP(d) at g=+7.7/80: +0.00322 ; at g=-32/80: -0.01272
+
+
+import numpy as np, math
+def graph(L,phi):
+    n=L-1; order=[0,*range(2,L)]
+    step=np.zeros((L,L),complex); step[1,1]=1
+    h=-1 if phi==np.pi else np.exp(1j*phi)
+    for j,t in enumerate(order): step[order[(j+1)%n],t]=h if j==n-1 else 1
+    return step
+print("dim ker i(F-F^dag) on the active layer K1 (+) C_{L-1}:")
+for L in (3,5,7,9,15,4,6):
+    row=[]
+    for phi in (0,np.pi):
+        F=graph(L,phi); A=1j*(F-F.conj().T)
+        ev=np.linalg.eigvalsh(A); row.append(int((abs(ev)<1e-10).sum()))
+    print(f"  L={L:2d} ({'odd ' if L%2 else 'even'}):  n0={row[0]}, npi={row[1]},  contrast={row[0]-row[1]}")
+print()
+print("transient/equilibrium amplification of the seam effect on P_bound:")
+print("  t=1 : 0.3160602794 - 0.2712383303 =",0.31606027941427883-0.2712383303451682)
+print("  t->inf: 0.5 - 0.4924288036 =",0.5-0.4924288035639375)
+print("  ratio =", (0.31606027941427883-0.2712383303451682)/(0.5-0.4924288035639375))
+print("  eps/(2(2-eps)) =",0.0298330421006258/(2*(2-0.0298330421006258)))
+print()
+print("fraction of the theoretical ceiling realised at L=7,x=4:",0.03028710075017571/math.log(2))
+print("delta_B_D window from delta_NN in (-0.0025,0.0006), B_D=2224.6 keV, factor 5.7701:")
+print("  ",-0.0025*5.7701*2224.6, " ... ",0.0006*5.7701*2224.6," keV")
+print("  g=ln2 needs",math.log(2)*80,"keV -> overshoot factor",math.log(2)*80/(0.0006*5.7701*2224.6))
+
+# Result
+dim ker i(F-F^dag) on the active layer K1 (+) C_{L-1}:
+  L= 3 (odd ):  n0=3, npi=1,  contrast=2
+  L= 5 (odd ):  n0=3, npi=1,  contrast=2
+  L= 7 (odd ):  n0=3, npi=1,  contrast=2
+  L= 9 (odd ):  n0=3, npi=1,  contrast=2
+  L=15 (odd ):  n0=3, npi=1,  contrast=2
+  L= 4 (even):  n0=2, npi=2,  contrast=0
+  L= 6 (even):  n0=2, npi=2,  contrast=0
+
+transient/equilibrium amplification of the seam effect on P_bound:
+  t=1 : 0.3160602794 - 0.2712383303 = 0.044821949069110634
+  t->inf: 0.5 - 0.4924288036 = 0.007571196436062522
+  ratio = 5.920061571196104
+  eps/(2(2-eps)) = 0.007571196436172674
+
+fraction of the theoretical ceiling realised at L=7,x=4: 0.0436950500551829
+delta_B_D window from delta_NN in (-0.0025,0.0006), B_D=2224.6 keV, factor 5.7701:
+   -32.09041115  ...  7.7016986759999995  keV
+  g=ln2 needs 55.451774444795625 keV -> overshoot factor 7.199940789373415
+
+Связка R132 → Anthropic/BH1 → R150 → BBN / CCC+TL
+Здесь действительно обнаруживается общий безразмерный параметр, вокруг которого можно собрать термодинамическую часть модели:
+\[
+\boxed{\chi=TR}.
+\]
+
+Но я бы разделил два объекта:
+- \(\chi=TR\) — общая термодинамическая координата, связывающая спектр, конечный размер и положение фазовой границы.
+- \(\sigma\) — посредник динамической связи: медленная коллективная координата термодинамического сектора, через которую R150 может влиять на ядерные параметры, а формирование ядер — обратно на состояние этого сектора.
+Это различие принципиально. Само \(TR\) не передаёт энергию, не создаёт обратную связь и не задаёт скорость перехода. Но оно может стать общей координатой, на которой согласуются три ранее раздельных расчёта.
+
+И ещё одна существенная поправка: обновление R150 от 26 ноября уже изменило знак и масштаб наиболее конкретного контакта с ядерным каналом. В старой четырёхсостоянийной модели стояло произвольное \(g=\ln2>0\). В новом локальном контакте через детектор split/merge получается малый отрицательный эффект на активном слое B и строго нулевой на пассивном A. Это нельзя смешивать в одной физической модели.
+1. Состояние GitHub: что именно проверено
+Я сверил main, ветку R150 и связанные отчёты.
+Объект	Текущее состояние
+R132	Опубликован в main; есть формула KMS-энтропии и проверка её применения к кольцу
+Anthropic/BH1	Опубликованы редуцированный потенциал, тепловые ветви и отдельный аудит фазового перехода
+R135	Опубликованы физический сектор X, термодинамические ориентиры SU(3), Gate A–D и BBN-бюджет
+R150 / phase-BBN	Есть двухграничная модель, тепловой контакт, профиль ядерного формирования и новый аудит от 26 ноября
+PRIMAT/LINX	PR #145 слит; сохранены 17 парных BBN-интегрирований и шесть расчётов CLASS
+PR #219	Открыт, не слит, mergeable=false; HEAD 41619c2696924ee2e055d2536926e07af4a7877e
+
+Важное замечание по статусу: PR #219 называется интеграцией R141–R148. Он содержит и материалы R150, включая дополнение от 26 ноября, но это не означает, что R150 уже принят в main.
+
+Основные источники:
+- R132 — спектральная энтропия и алгебра
+- Anthropic — эффективный потенциал
+- BH1 — термодинамический мост
+- R135 — физический сектор X
+- R150 — фазовая модель и BBN
+- R150 — новый аудит контакта и ядерной траектории
+- R150 — космологический отчёт
+
+2. R132: \(TR\) — не просто удобная комбинация
+Исходный результат:
+\[
+S_{\rm KMS}=\operatorname{Tr}h(\beta D),
+\]
+
+\[
+h(x)=\ln(1+e^{-x})+\frac{x}{1+e^x}.
+\]
+
+При масштабировании оператора
+\[
+D(R)=\frac{D_0}{R}
+\]
+
+получаем
+\[
+\beta D=\frac{D_0}{TR},
+\]
+
+и, следовательно,
+\[
+\boxed{
+S_{\rm KMS}(T,R)=
+\operatorname{Tr}h\left(\frac{D_0}{TR}\right).
+}
+\]
+
+Это точное следствие указанного масштабирования оператора.
+
+Здесь есть важное уточнение по R132: теорема о KMS-энтропии относится к энтропии конкретного фермионного равновесного состояния. Она не утверждает, что эта энтропия автоматически является свободной энергией сектора X или источником космологического расширения. Кроме того, R132 прямо проверяет, что энтропия кольца не задаёт универсальную стрелу R130: при одинаковых зарядах и допустимых прямых шагах возможны оба знака изменения.
+
+То есть R132 предоставляет нам спектральную термодинамическую координату, но не готовый закон перехода.
+Что из этого следует для BH1
+Для конформной теории на сфере естественная масштабная форма свободной энергии:
+\[
+F_i(T,R)=\frac{1}{R}\phi_i(TR,\lambda),
+\]
+
+где \(i\) обозначает фазовую ветвь, а \(\lambda\) — связь.
+
+Тогда
+\[
+S_i=-\frac{\partial F_i}{\partial T}
+=-\phi_i'(TR,\lambda).
+\]
+
+При фиксированной точно маргинальной связи фазовая граница задаётся
+\[
+\Delta F(T_c,R)=0
+\quad\Longleftrightarrow\quad
+T_cR=\chi_c(\lambda)=\mathrm{const}.
+\]
+
+Это тот же безразмерный масштаб, который появился в R132.
+
+Но он не универсален для любой теории. При наличии дополнительного размерного масштаба:
+\[
+F_i(T,R)=\frac1R\phi_i(TR,R\Lambda,\lambda),
+\]
+
+фазовая граница становится
+\[
+T_cR=\chi_c(R\Lambda,\lambda).
+\]
+
+Именно здесь появляется возможность дрейфа.
+
+Для чистой YM на малой сфере в отчёте BH1 приведено:
+\[
+T_cR=(T_cR)_0
+\left[
+1+\frac{\lambda_A(1/R)}{12\pi^2}
++O(\lambda_A^2)
+\right].
+\]
+
+При бегущей связи:
+\[
+\frac{d\ln(T_cR)}{d\ln R}
+=
+-\beta_A(\lambda_A)
+\left[
+\frac{1}{12\pi^2}+O(\lambda_A)
+\right]>0
+\]
+
+в слабосвязанном режиме.
+
+Ваше значение \(1.96\cdot10^{-6}\) при выбранной нормировке \(\lambda_{\rm std}=0.1\) — очень малый, но ненулевой дрейф. Его смысл не в том, что он уже объясняет BBN. Он показывает, что в отличие от конформной ветви у чистой YM имеется физический второй масштаб, способный перемещать безразмерную фазовую границу.
+
+Первое объединение уже получается:
+\[
+\boxed{
+R132:\ S_{\rm KMS}=S_{\rm KMS}(\chi);
+\qquad
+BH1:\ F_i=R^{-1}\phi_i(\chi,R\Lambda).
+}
+\]
+
+Обе конструкции используют одну координату \(\chi=TR\), но различаются тем, что именно меняется при движении по ней.
+3. Anthropic/BH1: где в этой конструкции появляется чёрная дыра
+Здесь нужно не смешать три уровня, которые в проекте уже разведены.
+3.1. Редуцированная модель Anthropic
+В модели используется параметр порядка
+\[
+u=\left|\frac{\operatorname{tr}U}{N}\right|,
+\]
+
+и усечённое действие
+\[
+\frac{S}{N^2}
+=
+a|u_1|^2+m_2^2|u_2|^2
++\kappa(u_1^2u_2^*+\mathrm{c.c.})
++\widetilde b|u_1|^4.
+\]
+
+Исключение устойчивой массивной моды \(u_2\) даёт
+\[
+b=\widetilde b-\frac{\kappa^2}{m_2^2}.
+\]
+
+Это точное равенство внутри объявленного усечения. Оно показывает, как взаимодействие мод меняет эффективный потенциал и допускает новую термодинамическую организацию.
+
+В проектном адаптере воспроизведены:
+\[
+\frac{b}{\lambda^2}=-0.001481411600,
+\]
+
+а для иллюстративного усиленного \(b=-0.1\):
+\[
+a_{\rm birth}=0.052623973,\qquad
+a_{\rm coexist}=0.031638521,\qquad
+u_{\rm coexist}=0.597887414.
+\]
+
+Но коэффициенты микроскопического расчёта импортированы из опубликованной работы. Адаптер не является новым трёхпетлевым вычислением. Это важно для дальнейшей связи: \(u\) пока можно использовать как координату эффективного потенциала, но не как уже измеренную переменную физического сектора R150.
+3.2. Хокинг — Пейдж и тепловые ветви
+В сильносвязанном гравитационном пределе горячая ветвь описывается чёрной дырой в AdS, а холодная — тепловым AdS. Переход определяется равенством свободных энергий:
+\[
+F_{\rm BH}(T,R)=F_{\rm thermal\,AdS}(T,R).
+\]
+
+Однако хагедорновский предел слабосвязанной ветви и температура перехода Хокинга — Пейджа сильносвязанной ветви получены при разных значениях связи. Их разность не является скрытой теплотой.
+
+Следовательно, мы не можем сейчас взять «свободную энергию чёрной дыры Anthropic» и подставить её в R150 как физическую энергию перехода. Сначала должны быть заданы две ветви одной теории в одном ансамбле, при одном \(T,R,\lambda\).
+3.3. Что добавляет чистая YM
+Здесь чистая YM полезна не как ещё одна аналогия, а как конкретный способ получить зависимость от второго масштаба:
+\[
+q=R\Lambda_{\rm YM}.
+\]
+
+Тогда фазовая поверхность в общем случае имеет вид
+\[
+\chi_c=\chi_c(q,\lambda).
+\]
+
+Если \(\chi=TR\) постоянно на конформной адиабате, но \(q\) меняется, граница может двигаться относительно траектории.
+
+BH1 уже вывел точное локальное условие:
+\[
+\left.\frac{d\ln(T/T_c)}{d\ln R}\right|_S
+=
+\frac{(\partial_TD)_R}{C_R}
+-\frac{\Delta D}{\Delta E},
+\qquad D=E-3pV.
+\]
+
+Первое слагаемое описывает движение занятой однородной ветви, второе — движение фазовой границы. Ненулевой \(\Delta D\) ещё не доказывает, что система пересечёт границу: нужно сравнить обе траектории на конечном интервале, а затем отдельно вычислить нуклеацию и скорость превращения.
+
+Именно это и нужно передать в R150: не готовую температуру перехода, а вычисляемую функцию разности свободных энергий двух состояний, от которой зависит смещение шва и его кинетика.
+
+4. R150: новый контакт существенно конкретнее прежнего
+Здесь находится наиболее важное обновление от 26 ноября.
+
+В R150 есть два графовых слоя:
+- A — пассивный: событие split/merge на выбранной орбите отсутствует;
+- B — активный: детектор \(C\) выделяет событие split/merge.
+Для B при нечётном \(L\) имеются три моды: две с фазой \(0\) и одна с фазой \(\pi\). При смене шва \(0\to\pi\) число нулей оператора \(i(F-F^\dagger)\) меняется с трёх до одного. Для A соответствующая кратность меняется с одного до одного: меняется фаза, а не число мод.
+
+Это различие важно: контакт с ядерным каналом может зависеть не просто от числа мод, а от того, как собственные состояния перекрываются с конкретным локальным детектором.
+4.1. Старая модель и новая модель — не одно и то же
+В первоначальном formation/README.md использовались веса
+\[
+p(r,d)\propto Z(\phi_r)e^{bd+grd}
+\]
+
+с выбранным \(g=\ln2\).
+
+Это демонстрировало математическую возможность взаимного формирования. При \(L=7,x=4\) обе маргинальные вероятности менялись примерно на \(0.023\), а совместная — на \(0.041\).
+
+Но \(g=\ln2\) был задан исследователем. Он не следовал из R150.
+
+В новом response_audit/contact.py вместо произвольного \(g\) введено конкретное взаимодействие:
+\[
+\boxed{H_{\rm int}=-\lambda dC.}
+\]
+
+Здесь \(C\) — наблюдаемое R150, \(d=1\) означает связанный канал, а \(\lambda\) — пока ещё физически не откалиброванная сила контакта.
+
+Для каждого шва вычисляется
+\[
+Z_{r,d}=\operatorname{Tr}\exp[-H_{r,d}/T].
+\]
+
+Смешанный контакт измеряется через
+\[
+\boxed{
+g_{\rm eff}
+=
+\ln\frac{Z_{11}Z_{00}}{Z_{10}Z_{01}}.
+}
+\]
+
+Это гораздо лучше первоначальной параметризации: одночастичные сдвиги сокращаются, остаётся именно смешанная зависимость шва и связывания.
+4.2. Знак и масштаб нового контакта
+Новый результат конечной модели R150
+Слой и длина	\(g_{\rm eff}\) при \(\lambda/T=0.1,\ x=4\)
+A, \(L=7\)	\(0\) точно
+B, \(L=3\)	\(-0.022857\)
+B, \(L=7\)	\(-0.00113327\)
+B, \(L=9\)	\(-7.23\cdot10^{-5}\)
+B, \(L=15\)	\(-1.58\cdot10^{-9}\)
+
+При параметрах, близких к архивному BBN-контролю,
+\[
+J=0.15\ {\rm MeV},\qquad
+T=0.0725131\ {\rm MeV},
+\]
+
+получается
+\[
+x=\frac{2J}{T}=4.13718,
+\]
+
+\[
+g_{\rm eff}=-0.00128054.
+\]
+
+То есть в этой модели активный слой B даёт отрицательную смешанную поправку, а пассивный A её не даёт.
+
+Знак можно понять непосредственно из средних значений детектора:
+\[
+\langle C\rangle_{\phi=0}=0.532812,
+\qquad
+\langle C\rangle_{\phi=\pi}=0.544071.
+\]
+
+При антипериодическом шве детектор \(C\) в среднем срабатывает чаще. Поэтому связанный канал, взаимодействующий через \(-\lambda dC\), сильнее смещает статистический вес именно антипериодической ветви. Это и даёт отрицательный знак \(g_{\rm eff}\) в принятом определении.
+
+Следствие: прежнее положительное \(g=\ln2\) нельзя переносить в физическую модель. Оно было демонстрацией принципа. Новый \(g_{\rm eff}\) — вычисленный ответ конкретного контакта.
+4.3. Конечный размер здесь критичен
+При \(x=4\) отношение тепловых сумм для двух швов:
+\[
+\frac{Z_\pi}{Z_0}
+=
+\begin{cases}
+0.970167,&L=7,\\
+0.997838,&L=9,\\
+0.999999936,&L=15.
+\end{cases}
+\]
+
+При увеличении \(L\) тепловой эффект шва быстро исчезает.
+
+Аудит также получил, что для сохранения контраста порядка \(1\%,10\%,40\%\) в большом цикле требуется приблизительно
+\[
+\frac{x}{N^2}
+=
+0.092244,\quad
+0.170850,\quad
+0.466479,
+\qquad N=L-1.
+\]
+
+Это означает, что нельзя просто увеличить граф и ожидать сохранения прежнего теплового сигнала. Нужен физический закон масштабирования \(J/T\) с длиной или другой механизм устойчивости контраста.
+
+5. Как соединить \(TR\), BH1 и R150 одной свободной энергией
+Теперь можно сформулировать конкретную модель, а не просто последовательность аналогий.
+
+Введём:
+\[
+\chi=TR,\qquad q=R\Lambda,
+\]
+
+\[
+r\in\{0,1\},\qquad d\in\{0,1\},
+\]
+
+и медленную координату \(\sigma\), описывающую коллективное состояние термодинамического сектора.
+
+Её кандидатная физическая реализация — координата порядка, связанная с холономией/петлёй Полякова, то есть с \(u=|\operatorname{tr}U/N|\) в редуцированной модели Anthropic. Но это пока кандидат, а не установленное отождествление с портовым состоянием R150.
+5.1. Общая эффективная свободная энергия
+Для независимых степеней свободы можно начать с
+\[
+\begin{aligned}
+\mathcal F_{\rm eff}
+={}&
+F_{\rm BH}(\sigma;\chi,q,\lambda)
++F_{\rm R150}(r;\chi)\\
+&+V_\sigma(\sigma)
++F_{\rm int}(r,\sigma,d)
++\mathcal F_{\rm nuc}
+(\{Y_i\};B_D(\sigma)).
+\end{aligned}
+\]
+
+Здесь:
+- \(F_{\rm BH}\) задаёт фазовую поверхность и термодинамический потенциал;
+- \(F_{\rm R150}\) задаёт шовные состояния;
+- \(V_\sigma\) задаёт собственную динамику медленного посредника;
+- \(F_{\rm int}\) связывает графовый детектор с посредником;
+- \(\mathcal F_{\rm nuc}\) — свободная энергия ядерной сети.
+Для R150:
+\[
+F_{\rm R150}(r;\chi)
+=
+-T\ln Z(\phi_r,x),
+\]
+
+\[
+x=\frac{2J(R)}{T}.
+\]
+
+И здесь появляется ключевое условие. Если
+\[
+\boxed{J(R)=\frac{j}{R},}
+\]
+
+где \(j\) безразмерен, то
+\[
+x=\frac{2j}{TR}=\frac{2j}{\chi}.
+\]
+
+В этом случае R150 действительно становится термодинамически согласованным с R132 и конформной ветвью BH1: все три описания зависят от одного \(\chi=TR\).
+
+Но \(J\propto1/R\) пока не выведено из физической калибровки R150. В коде \(J\) задаётся как энергетический вход. Это один из главных следующих тестов.
+5.2. Взаимодействие с ядерным каналом
+Новый контакт R150 можно включить в \(F_{\rm int}\) через \(C\):
+\[
+H_{\rm int}=-\lambda dC.
+\]
+
+Для перехода от одной пары к ядерной сети вместо бинарного \(d\) нужно использовать физическую численность дейтронов:
+\[
+n_D(t)=n_b(t)Y_D(t).
+\]
+
+Ядерный вклад в свободную энергию:
+\[
+\mathcal F_{\rm nuc}\supset -n_D B_D(\sigma).
+\]
+
+Тогда обратное действие на посредник получается не из условного позднего отбора, а из производной общей свободной энергии:
+\[
+\frac{\partial\mathcal F_{\rm eff}}{\partial\sigma}
+=
+\frac{\partial F_{\rm BH}}{\partial\sigma}
++V_\sigma'(\sigma)
++\frac{\partial F_{\rm int}}{\partial\sigma}
+-n_D B_D'(\sigma)
++\cdots.
+\]
+
+Для динамического поля в простейшей канонической редукции:
+\[
+\boxed{
+\ddot\sigma+(3H+\Upsilon_\sigma)\dot\sigma
++V_{\rm eff}'(\sigma)
+=
+n_bY_D B_D'(\sigma).
+}
+\]
+
+Здесь \(B_D'(\sigma)\) — производная энергии связи по посреднику, а \(\Upsilon_\sigma\) — диссипация. Для нединамического термодинамического посредника вместо этого уравнения можно использовать релаксационную кинетику с коэффициентом подвижности.
+
+Получается настоящая петля:
+\[
+\boxed{
+R150:C
+\longleftrightarrow
+\sigma
+\longleftrightarrow
+B_D(\sigma)
+\longleftrightarrow
+n_D(t)
+\longleftrightarrow
+\sigma.
+}
+\]
+
+И это уже не просто соответствие двух формул. В нём есть две разные причинные стрелки:
+1. Состояние R150 через \(\sigma\) меняет ядерные энергии и скорости реакций.
+2. Возникающие дейтроны меняют источник в уравнении для \(\sigma\), а значит, способны изменить последующее состояние термодинамического сектора и R150.
+Однако наличие этих членов в уравнениях ещё не доказывает, что обратная связь достаточно велика. Это отдельная количественная задача.
+5.3. Существенная оговорка о двойном счёте
+Если \(F_{\rm BH}\) и \(F_{\rm R150}\) описывают два независимых физических сектора, их можно складывать с взаимодействием.
+
+Если же R150 — микроскопическая часть того же самого сектора, который уже описывает \(F_{\rm BH}\), складывать две свободные энергии нельзя: это повторно посчитает одни и те же состояния.
+
+Во втором случае нужно строить один совместный гамильтониан и одну статистическую сумму:
+\[
+Z_{\rm joint}
+=
+\operatorname{Tr}_{\mathcal H_{\rm joint}}
+e^{-H_{\rm joint}/T}.
+\]
+
+Это не техническая деталь, а выбор онтологии посредника.
+
+6. BBN: где именно посредник должен оставить след
+Сейчас наиболее прямой ядерный интерфейс — \(B_D(\sigma)\), энергия связи дейтрона.
+
+Это предпочтительнее, чем сразу добавлять новую радиационную компоненту или произвольно менять \(H(T)\): энергия связи непосредственно входит в равновесие реакции
+\[
+n+p\rightleftharpoons D+\gamma.
+\]
+
+В приближении равновесия отношение численностей содержит экспоненциальный множитель
+\[
+\frac{n_D}{n_n n_p}
+\propto
+T^{-3/2}\exp\left(\frac{B_D}{T}\right),
+\]
+
+с дополнительными статистическими и массовыми множителями.
+
+Поэтому изменение энергии связи даёт
+\[
+\delta\ln\left(\frac{n_D}{n_n n_p}\right)
+\simeq \frac{\delta B_D}{T}
+\]
+
+при фиксированной температуре и остальных входах.
+
+Например, при \(T=0.07\) МэВ изменение \(B_D\) на \(1\) кэВ даёт в этом равновесном множителе изменение порядка \(1.4\%\). Это не означает такого же изменения конечного D/H: конечное содержание определяется всей сетью прямых и обратных реакций. Но это показывает, почему \(B_D\) — чувствительный интерфейс.
+6.1. Временной профиль уже есть
+Новый аудит R150 использует сохранённую ядерную траекторию CONTROL, а не искусственно постоянную долю связанных ядер.
+
+Получены:
+Событие в архивном контроле	Температура	Время
+Накоплено 10% конечного \(^{4}\mathrm{He}\)	76.26 кэВ	219.98 с
+Накоплено 50%	72.51 кэВ	245.38 с
+Накоплено 90%	68.56 кэВ	276.61 с
+Пик промежуточного \(Y_D\)	72.91 кэВ	242.50 с
+
+Пик дейтерия:
+\[
+Y_D^{\max}=0.00287637.
+\]
+
+Это важное совпадение эпох: пик дейтерия приходится практически на середину основного накопления гелия.
+
+Следовательно, если посредник реагирует именно на наличие дейтронов, его источник должен быть сосредоточен не на всём раннем BBN-интервале, а в сравнительно узком окне около \(70\)–\(75\) кэВ.
+6.2. Аудит исправил энергетический профиль
+В предыдущем варианте тепловой оценки использовалось примерно
+\[
+7.07\cdot0.247\simeq1.75\ {\rm MeV}
+\]
+
+связанной энергии на барион при всех температурах.
+
+Это завышало ранний источник.
+
+В новом аудите явно просуммированы вклады D, T, \(^{3}\mathrm{He}\) и \(^{4}\mathrm{He}\):
+\(T\)	Связанная энергия на барион
+100 кэВ	\(3.50\cdot10^{-5}\) МэВ
+80 кэВ	\(0.02238\) МэВ
+70 кэВ	\(1.40369\) МэВ
+60 кэВ	\(1.74468\) МэВ
+
+При 80 кэВ постоянная подстановка завышает ядерный энергетический вклад примерно в 78 раз.
+
+Это принципиально для обратной связи: если мы хотим, чтобы формирование ядер влияло на посредник, источник должен быть построен из реальных \(Y_i(t)\), а не из конечной энергии связи, перенесённой назад на всю историю.
+6.3. Пока не получено изменение BBN-выходов от R150
+Существующие парные расчёты PRIMAT/LINX дают нам отличный эталон чувствительности, но они пока не получают \(B_D(\sigma)\) из R150.
+
+В уже выполненных температурных контролях:
+Возмущение \(H\)	\(\Delta Y_p\)	\(\Delta(D/H)\)
+\(+0.30\%\), 0.2–2 МэВ	\(+0.1367\%\)	\(+0.0756\%\)
+\(+0.55\%\), 0.02–0.2 МэВ	\(+0.1416\%\)	\(+0.9118\%\)
+
+Если линейно согласовать амплитуды так, чтобы гелиевый отклик совпал, остаточная разность по D/H остаётся:
+\[
+0.80517\ \text{п.п.}\quad\text{(LINX)},
+\]
+
+\[
+0.80567\ \text{п.п.}\quad\text{(PRIMAT)}.
+\]
+
+Это очень полезный различающий тест: две истории могут почти одинаково изменить гелий, но по-разному повлиять на дейтерий.
+
+Но эти числа — отклик на заданные температурные окна \(H(T)\), а не предсказание R150. Новый физический источник должен самостоятельно породить историю \(H(T)\), \(B_D(T)\), либо оба воздействия.
+
+7. CCC+TL: что сохраняется, а что может изменить нуклеосинтез
+Здесь общий параметр \(TR\) соединяется с вопросом часов.
+
+В проверенной феноменологической системе CCC+TL при
+\[
+A=af,\qquad d\tau=f\,dt
+\]
+
+фоновые уравнения преобразуются в обычную FLRW-форму для \(A(\tau)\), а не для исходного \(a(t)\).
+
+Для BBN в режиме общего множителя:
+\[
+\dot Y=\frac{F(Y,T)}{f},
+\qquad
+\dot T=-\frac{G(Y,T)}{f}.
+\]
+
+Тогда
+\[
+\frac{dY}{dT}
+=
+-\frac{F(Y,T)}{G(Y,T)}.
+\]
+
+Множитель сокращается.
+
+Это означает: если CCC+TL одинаково меняет ход всех ядерных, слабых и космологических процессов, то при тех же начальных условиях и температурных границах конечный состав ядер не меняется.
+
+Поэтому нельзя получить новую BBN-физику, просто умножив все часы на \(f\).
+7.1. Где появляется физический эффект
+В общей модели нужно сравнивать не абсолютные частоты, а безразмерные отношения:
+\[
+\frac{\Gamma_{\rm weak}}{H},
+\qquad
+\frac{\Gamma_{\rm nuc}}{H},
+\qquad
+\frac{\Gamma_R}{H},
+\qquad
+\frac{\Omega_\nu}{H},
+\qquad
+\frac{B_D}{T}.
+\]
+
+Если все частоты масштабируются одинаково, первые четыре отношения сохраняются. Если R150 имеет собственные часы, не масштабируемые вместе с ядерной сетью, меняется
+\[
+\frac{\Gamma_R}{H}.
+\]
+
+Если посредник меняет энергию связи, меняется
+\[
+\frac{B_D(\sigma)}{T}.
+\]
+
+Если скрытый сектор передаёт энергию плазме, меняются \(H(T)\), температуры и, возможно, отношение \(T_\nu/T_\gamma\).
+
+Именно эти три механизма могут оставить след в BBN.
+7.2. Разделение температур обязательно
+Я бы закрепил в общей модели пять разных обозначений:
+Обозначение	Физический смысл
+\(T_R\)	Температура резервуара, непосредственно контактирующего с R150
+\(T_X\)	Температура скрытого термодинамического сектора BH1/X
+\(T_\gamma\)	Температура фотонно-электронной плазмы
+\(T_\nu\)	Температура нейтринного сектора или параметр его спектра
+\(T_{\rm KMS}\)	Температура состояния, для которого вычисляется KMS-энтропия
+
+В равновесии некоторых секторов эти температуры могут совпасть. После развязывания или при неполном теплообмене — нет.
+
+В частности, отношение
+\[
+\xi=\frac{T_X}{T_\gamma}
+\]
+
+должно быть либо задано начальными условиями, либо вычислено из баланса энергии.
+
+R135 показывает, что при изоляции X имеет собственную термодинамическую историю и влияет на \(H\), но не передаёт энергию наружу. При обмене нужны отдельные знаковые потоки \(Q_j\).
+
+Для позднего бюджетного примера из проекта:
+\[
+\frac{\Delta\rho}{T_\gamma^4}=0.0445181
+\]
+
+при полном использовании скрытой теплоты даёт
+\[
+\xi=0.44119.
+\]
+
+Это значение выведено из требуемого энергетического бюджета, а не измерено.
+7.3. Нейтринный канал пока слабее ядерного
+R150 проверил важный нулевой контроль:
+\[
+\rho_p=f_p I
+\quad\Longrightarrow\quad
+U\rho_p U^\dagger=\rho_p.
+\]
+
+Если нейтринные заполнения пропорциональны единичной матрице, фазовое расщепление R150 само по себе не меняет электронный спектр.
+
+Чтобы нейтринный путь работал, необходимы:
+- неравномерные заполнения;
+- физический электронный проектор \(\Pi_e\);
+- матрица смешивания;
+- материя и потенциал среды;
+- столкновения и обратные реакции;
+- единая система часов для \(\Omega/H\) и \(C_{\rm coll}/H\).
+Поэтому я бы не начинал с добавления трёх мод R150 в \(N_{\rm eff}\). Это было бы назначением им свойств, которые ещё не выведены. Нейтринный путь следует оставить вторым независимым каналом проверки.
+
+8. Самая серьёзная физическая проблема: насколько сильна обратная связь?
+В модели уже есть член
+\[
+-n_D B_D(\sigma),
+\]
+
+но его наличие не гарантирует, что дейтроны заметно сдвинут термодинамический сектор.
+
+Порядок величины можно оценить без нового полного прогона.
+
+При
+\[
+\eta\simeq6.1\cdot10^{-10}
+\]
+
+отношение ядерной энергии связи к радиационной плотности оценивается как
+\[
+\frac{\rho_{\rm bind}}{\rho_{\rm rad}}
+\simeq
+\frac{\eta n_\gamma E_{\rm bind}}{\rho_{\rm rad}}.
+\]
+
+Для архивной траектории и \(g_*\simeq3.36\) получается примерно:
+- при 80 кэВ: \(4\cdot10^{-11}\);
+- при 70 кэВ: \(3\cdot10^{-9}\);
+- при 60 кэВ: \(4\cdot10^{-9}\).
+Это моя оценка порядка величины по стандартным термодинамическим формулам и архивному профилю R150, а не отдельный результат репозитория.
+
+Прямое обратное воздействие ядерной связи на весь радиационный сектор чрезвычайно мало.
+
+Это не убивает модель, но означает, что обычный слабосвязанный посредник не сможет заметно отреагировать на образование дейтронов.
+
+Нужен один из двух механизмов:
+1. Очень высокая восприимчивость \(\sigma\), например вблизи фазовой границы или мягкой моды.
+2. Усиленная связь ядерного канала с \(\sigma\), но с обязательной проверкой BBN-ограничений на изменение ядерных параметров.
+В первом случае нужно вычислить не только статическую восприимчивость, но и динамическую:
+\[
+\chi_\sigma(\omega)
+=
+\frac{\delta\sigma(\omega)}{\delta J_\sigma(\omega)}.
+\]
+
+Во втором — вывести допустимую величину \(B_D'(\sigma)\), а не выбирать её по желаемому BBN-эффекту.
+
+Новый аудит уже сделал полезную работу в этом направлении: он различает источник только от дейтронов и источник от полного следа плазмы. Это два физически разных механизма, и их нельзя объединять в один коэффициент.
+
+9. Ещё одна важная проблема: что означает \(R\) физически
+У нас есть три использования радиуса:
+1. \(R\) — радиус сферы \(S^3\) в BH1.
+2. \(R\) — масштаб, задающий \(D(R)=D_0/R\) в R132.
+3. \(R\) — пока не определённый физический размер, который должен войти в R150 через \(J(R)\).
+Их нельзя автоматически отождествить с космологическим масштабным фактором \(a(t)\) или радиусом Хаббла.
+
+Например, свободный хагедорновский ориентир в BH1:
+\[
+\chi_H=T_HR=0.3796629.
+\]
+
+Если хотим, чтобы подобный масштаб соответствовал эпохе пика дейтерия при \(T\simeq72.5\) кэВ, то
+\[
+R=\frac{0.37966}{0.0725\ {\rm MeV}}
+\simeq5.24\ {\rm MeV}^{-1}
+\simeq1.03\cdot10^3\ {\rm fm}.
+\]
+
+Это размер порядка тысячи фемтометров.
+
+Если вместо него подставить радиус Хаббла в эпоху BBN, \(TR\) будет на многие порядки больше \(0.38\). Значит, для такого фазового перехода \(R\) не может быть просто радиусом Хаббла.
+
+Наиболее естественный кандидат — внутренний размер конечного скрытого сектора X, например физический размер компактной области или корреляционного домена. Но тогда необходимо объяснить:
+- откуда берётся этот размер;
+- как он меняется при расширении;
+- сколько таких доменов приходится на физический объём;
+- как их энергия и давление усредняются в космологическом фоне;
+- как R150 определяет их граничные условия.
+Это отдельный Gate, который я бы поставил перед любым новым BBN-прогоном.
+
+10. Какую модель я предлагаю закрепить
+Не три независимые гипотезы, а одну связанную систему с двумя физическими каналами.
+Предлагаемый причинный контур
+R132 / BH1
+
+\(\chi=TR,\quad q=R\Lambda,\quad F_i(T,R)\)
+
+Спектральная термодинамика и фазовая граница
+
+
+Посредник \(\sigma\)
+
+\(\sigma\sim\) медленная коллективная координата X
+
+Собственный потенциал, восприимчивость, диссипация
+
+
+R150
+
+\(C,\ r,\ \Gamma_R\)
+
+Шов, моды, локальный контакт
+
+
+
+BBN
+
+\(B_D(\sigma),\ Y_i(t)\)
+
+Ядерная сеть и обратное действие состава
+
+
+
+
+CCC+TL / космология
+
+\(H(T),\ Q_\gamma,\ Q_\nu,\ T_\gamma,\ T_\nu\)
+
+Часы, энергетический баланс, наблюдаемые Yp, D/H, N_eff
+
+
+Две независимые передачи
+Канал 1 — термодинамический:
+\[
+\chi,q
+\to F_{\rm BH}
+\to \sigma
+\to F_{\rm R150}
+\to \rho_X,p_X,Q_j
+\to H(T),T_\gamma,T_\nu.
+\]
+
+Канал 2 — ядерный:
+\[
+C_{\rm R150}
+\to \sigma
+\to B_D(\sigma)
+\to \Gamma_{np\leftrightarrow D\gamma}
+\to Y_D,Y_p
+\to n_D B_D'(\sigma).
+\]
+
+Первый канал может изменить BBN через расширение и теплоперенос. Второй — через микрофизику ядерных реакций. Их нужно проверять раздельно, а потом совместно.
+
+11. План разработки: какие проверки должны идти первыми
+Я бы не запускал сейчас новую большую сетку BBN. Сначала надо закрыть четыре математико-физических интерфейса.
+Этап	Что требуется получить	Критерий прохождения
+P0. Общий масштаб	\(D(R)=D_0/R\), \(J(R)\), физический смысл \(R\)	Одна размерно согласованная схема, в которой R132 и R150 действительно зависят от \(\chi=TR\)
+P1. BH1 ↔ R150	\(F_{\rm BH}(\sigma;\chi,q)\), \(F_{\rm R150}(r;\chi)\), общий контакт	Один ансамбль и один физический носитель без двойного счёта
+P2. Посредник ↔ ядра	\(B_D(\sigma)\), \(B_D'(\sigma)\), \(\Upsilon_\sigma\), ядерные скорости	Выведенные прямые и обратные скорости, а не только изменение равновесных весов
+P3. CCC+TL ↔ BBN	\(H(T)\), \(Q_\gamma(T)\), \(Q_\nu(T)\), \(T_\nu/T_\gamma\)	Нулевой тест общего масштабирования часов и отдельный тест физического рассогласования
+
+После этого нужны четыре парных сетевых расчёта:
+1. \(F_{\rm BH}+F_{\rm R150}\), без обратной связи от ядер.
+2. Ядерная сеть с заданным \(\sigma(t)\), но без обратного влияния на \(\sigma\).
+3. Полностью связанная модель.
+4. Контроль с отключённым контактом R150.
+Для каждого расчёта сохраняются:
+\[
+Y_p,\quad D/H,\quad {}^3{\rm He/H},\quad {}^7{\rm Li/H},
+\]
+
+а также
+\[
+\rho_X,\quad p_X,\quad Q_\gamma,\quad Q_\nu,\quad
+B_D(t),\quad \sigma(t),\quad \langle C\rangle(t).
+\]
+
+Отдельно проверяется энергетический остаток:
+\[
+\mathcal R_E(t)=
+\dot\rho_{\rm tot}
++3H(\rho_{\rm tot}+p_{\rm tot}).
+\]
+
+Он должен быть близок к численной погрешности принятой системы уравнений.
+Предлагаемая структура нового пакета
+analysis/R150_BH1_BBN_BRIDGE/
+    README.md
+    MODEL.md
+    DIMENSIONLESS_SCALING.md
+    state_variables.yaml
+    thermodynamics/
+        kms_r132.py
+        bh1_free_energy.py
+        phase_boundary.py
+    r150/
+        seam_partition.py
+        contact_detector.py
+        kinetic_rates.py
+    mediator/
+        effective_potential.py
+        susceptibility.py
+        dynamics.py
+    bbn/
+        nuclear_portal.py
+        primat_adapter.py
+        linx_adapter.py
+    ccc_tl/
+        clock_transform.py
+        energy_balance.py
+    tests/
+        test_TR_scaling.py
+        test_detailed_balance.py
+        test_energy_conservation.py
+        test_clock_invariance.py
+        test_zero_coupling.py
+    results/
+        source_history.json
+        paired_runs.json
+        checksums.sha256
+
+
+12. Итоговая оценка
+На данный момент я вижу следующую картину.
+Связь	Оценка
+R132 KMS \(\leftrightarrow TR\)	[Теорема при заданном масштабировании \(D(R)\)]
+BH1 конформная ветвь \(\leftrightarrow TR\)	[Выведено из масштабной формы свободной энергии]
+Чистая YM \(\leftrightarrow\) дрейф \(T_cR\)	[Опубликованный результат в слабосвязанном режиме; проект проверил формулы и ограничения]
+R150 \(\leftrightarrow\) собственная тепловая статистика	[Вычислено для конечного графового гамильтониана]
+R150 \(\leftrightarrow\) локальный ядерный контакт	[Вычислен знак и величина в выбранной конечной модели; \(\lambda\) физически не калиброван]
+Посредник \(\sigma\leftrightarrow B_D\)	[Гипотеза, требующая микрофизического вывода]
+Обратное действие ядерного формирования на \(\sigma\)	[Формально заданный источник; физическая величина пока не установлена]
+Полная модель R150–BH1–CCC+TL–BBN	[Не получена]
+
+Мой главный вывод: \(TR\) действительно может стать общей координатой R132, BH1 и тепловой модели R150. Но физическая связь с BBN должна проходить не через само произведение \(TR\), а через коллективный посредник \(\sigma\), который одновременно чувствует фазовую организацию сектора X и меняет ядерные параметры.
+
+И наиболее перспективный конкретный вариант сейчас — не прямое добавление трёх мод R150 в число нейтринных степеней свободы, а связка
+\[
+\boxed{
+\text{BH1: }F(\sigma;TR,R\Lambda)
+\;\longleftrightarrow\;
+\text{R150: }C,\ r
+\;\longleftrightarrow\;
+\text{BBN: }B_D(\sigma),Y_D(t).
+}
+\]
+
+Главное препятствие — слабость обратного ядерного источника и пока не выведенный закон \(J(R)\). Если мы закроем эти два вопроса, появится единая проверяемая модель, в которой можно будет установить не только то, что фазовая организация и нуклеосинтез зависят от общего температурного масштаба, но и как формирование одного физически меняет дальнейшее формирование другого.
+
+
+import numpy as np, math, json
+from scipy.linalg import expm
+from scipy.special import expit, logsumexp, iv
+
+def graph(L, phi):
+    n=L-1; order=[0,*range(2,L)]
+    step=np.zeros((L,L),complex); step[1,1]=1
+    h=-1 if phi==np.pi else np.exp(1j*phi)
+    for j,t in enumerate(order):
+        step[order[(j+1)%n],t]= h if j==n-1 else 1
+    phases=np.r_[0,(phi+2*np.pi*np.arange(n))/n]
+    basis=np.zeros_like(step); basis[1,0]=1
+    for j,t in enumerate(order): basis[t,1:]=np.exp(-1j*j*phases[1:])/math.sqrt(n)
+    return step,basis,phases
+
+print("=== A. SEAM KERNEL LEDGER (coherent_control), exact ===")
+print("G = F - 2|L-1><L-1| ;  <k|G|s> = -2/N * <k|L-1>  => |.|^2 = 4/N^2 for EVERY cycle mode k!=0")
+print("   <s|G|s> = 1-2/N ;  <port|G|s> = 0 exactly")
+for L in (3,5,7,9,15):
+    N=L-1
+    F,V,_=graph(L,0); G,_,_=graph(L,np.pi)
+    s,a=V[:,1],V[:,1+N//2]
+    r_s=abs(s.conj()@G@s)**2; r_a=abs(a.conj()@G@s)**2
+    full=[abs(V[:,k].conj()@G@s)**2 for k in range(L)]
+    print(f" L={L:2d} N={N:2d}: ret_s={(1-2/N)**2:.10f} ({r_s:.10f})  ret_a={4/N**2:.10f} ({r_a:.10f})"
+          f"  SUM2={(1-2/N)**2+4/N**2:.10f}  MISSING={4*(N-2)/N**2:.10f}  n_missing_modes={N-2}"
+          f"  ledger_sum={sum(full):.12f}  port={full[0]:.1e}")
+print(" closed form: SUM2 = (1-2/N)^2+4/N^2 ;  deficit = 4(N-2)/N^2 ; each missing channel = 4/N^2")
+print(" L=3: N=2 -> deficit 0 (kernel complete).  L=7: 5/9 =",5/9," L=9: 5/8 =",5/8," L=15:",(1-2/14)**2+4/196)
+
+print()
+print("=== B. CHEMICAL CONTROL: are 0.316060 / 0.271238 computed? ===")
+def chemical(L,x,phi,b,tmax=1.0):
+    sectors=[graph(L,0),graph(L,phi)]
+    E=np.concatenate([-x*np.cos(k[2])-d*b for d,k in enumerate(sectors)])
+    Q=np.zeros((2*L,2*L))
+    def pair(i,j,w):
+        Q[j,i]=w*expit(E[i]-E[j]); Q[i,j]=w*expit(E[j]-E[i])
+    inter=np.eye(L); inter[[0,1]]=inter[[1,0]]
+    for d,(_,bas,_) in enumerate(sectors):
+        tr=np.abs(bas.conj().T@inter@bas)**2
+        for i in range(L):
+            for j in range(i+1,L): pair(d*L+i,d*L+j,tr[j,i])
+    ov=np.abs(sectors[1][1].conj().T@sectors[0][1])**2
+    for i in range(L):
+        for j in range(L): pair(i,L+j,ov[j,i])
+    Q[np.diag_indices(2*L)]=-Q.sum(axis=0)
+    eq=np.exp(-E-logsumexp(-E)); hz=Q[L:,:L].sum(axis=0)
+    prior=np.zeros(2*L); prior[0:2]=.5; fD=np.r_[np.zeros(L),np.ones(L)]
+    h=expm(Q*tmax).T@fD
+    return float(h@prior), hz, float(eq[L:].sum()), Q, E
+for name,phi in [("phi=0",0),("phi=pi",np.pi)]:
+    P,hz,eqb,Q,E=chemical(7,4,phi,0)
+    print(f" {name:7s} P_bound(t=1)={P:.16f}  hazards(s,u,a)={np.round(hz[[0,1,4]],10)}  sum_hz={hz.sum():.12f}  eq_bound={eqb:.12f}")
+print(" analytic phi=0 : 0.5*(1-e^-1) =",0.5*(1-math.exp(-1)))
+print(" sum rule check sum_i hazard_i = L*expit(b):")
+for x in (1,4,8):
+    for b in (0,0.5):
+        _,hz,_,_,_=chemical(7,x,np.pi,b)
+        print(f"   x={x} b={b}: sum={hz.sum():.10f}  L*expit(b)={7*expit(b):.10f}  match={abs(hz.sum()-7*expit(b))<1e-9}")
+
+# Result
+=== A. SEAM KERNEL LEDGER (coherent_control), exact ===
+G = F - 2|L-1><L-1| ;  <k|G|s> = -2/N * <k|L-1>  => |.|^2 = 4/N^2 for EVERY cycle mode k!=0
+   <s|G|s> = 1-2/N ;  <port|G|s> = 0 exactly
+ L= 3 N= 2: ret_s=0.0000000000 (0.0000000000)  ret_a=1.0000000000 (1.0000000000)  SUM2=1.0000000000  MISSING=0.0000000000  n_missing_modes=0  ledger_sum=1.000000000000  port=0.0e+00
+ L= 5 N= 4: ret_s=0.2500000000 (0.2500000000)  ret_a=0.2500000000 (0.2500000000)  SUM2=0.5000000000  MISSING=0.5000000000  n_missing_modes=2  ledger_sum=1.000000000000  port=0.0e+00
+ L= 7 N= 6: ret_s=0.4444444444 (0.4444444444)  ret_a=0.1111111111 (0.1111111111)  SUM2=0.5555555556  MISSING=0.4444444444  n_missing_modes=4  ledger_sum=1.000000000000  port=0.0e+00
+ L= 9 N= 8: ret_s=0.5625000000 (0.5625000000)  ret_a=0.0625000000 (0.0625000000)  SUM2=0.6250000000  MISSING=0.3750000000  n_missing_modes=6  ledger_sum=1.000000000000  port=0.0e+00
+ L=15 N=14: ret_s=0.7346938776 (0.7346938776)  ret_a=0.0204081633 (0.0204081633)  SUM2=0.7551020408  MISSING=0.2448979592  n_missing_modes=12  ledger_sum=1.000000000000  port=0.0e+00
+ closed form: SUM2 = (1-2/N)^2+4/N^2 ;  deficit = 4(N-2)/N^2 ; each missing channel = 4/N^2
+ L=3: N=2 -> deficit 0 (kernel complete).  L=7: 5/9 = 0.5555555555555556  L=9: 5/8 = 0.625  L=15: 0.7551020408163267
+
+=== B. CHEMICAL CONTROL: are 0.316060 / 0.271238 computed? ===
+ phi=0   P_bound(t=1)=0.3160602794142788  hazards(s,u,a)=[0.5 0.5 0.5]  sum_hz=3.500000000000  eq_bound=0.500000000000
+ phi=pi  P_bound(t=1)=0.2712383303451682  hazards(s,u,a)=[0.5        0.30817871 0.69182129]  sum_hz=3.500000000000  eq_bound=0.492428803564
+ analytic phi=0 : 0.5*(1-e^-1) = 0.31606027941427883
+ sum rule check sum_i hazard_i = L*expit(b):
+   x=1 b=0: sum=3.5000000000  L*expit(b)=3.5000000000  match=True
+   x=1 b=0.5: sum=4.3096738008  L*expit(b)=4.3572153184  match=False
+   x=4 b=0: sum=3.5000000000  L*expit(b)=3.5000000000  match=True
+   x=4 b=0.5: sum=4.0539151530  L*expit(b)=4.3572153184  match=False
+   x=8 b=0: sum=3.5000000000  L*expit(b)=3.5000000000  match=True
+   x=8 b=0.5: sum=3.8420890634  L*expit(b)=4.3572153184  match=False
+
+
+import numpy as np, math
+from scipy.special import iv, logsumexp
+from scipy.optimize import brentq
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+def bias(L,x): return logZ(L,0,x)-logZ(L,np.pi,x)
+
+print("=== C. BESSEL AUDIT x=4: leading term vs exact I_N ===")
+x=4.0
+for L in (3,7,9,15):
+    N=L-1; lead=(x/2)**N/math.factorial(N); ex=iv(N,x); c1=(x/2)**2/(N+1)
+    print(f" L={L:2d} N={N:2d}: lead={lead:.6e} exact={ex:.6e} exact/lead={ex/lead:.4f}"
+          f"  1st corr={c1:.4f} ({100*c1:.1f}%)  I_3N/I_N={iv(3*N,x)/ex:.2e}")
+print(" leakage identity Z0-Zpi = 4N*sum_{m odd} I_mN(x):")
+for L in (3,7,9,15):
+    N=L-1
+    z0,zp=[math.exp(logZ(L,p,x)) for p in (0,np.pi)]
+    print(f"   L={L:2d}: Z0-Zpi={z0-zp:.12e}  4N*I_N={4*N*iv(N,x):.12e}  full={4*N*sum(iv(m*N,x) for m in range(1,32,2)):.12e}")
+print(" effect on dF at L=7,x=4,T=100 keV:")
+Z0=math.exp(logZ(7,0,4))
+for lab,IN in [("leading 2^6/6!",2**6/720),("+1st corr",2**6/720*(1+4/7)),("exact I_6(4)",iv(6,4))]:
+    e=4*6*IN/Z0; print(f"   {lab:16s} eps={e:.6f}  dF={-math.log(1-e)*100:8.4f} keV")
+print(" -> leading-term underestimate of dF:", (-math.log(1-4*6*iv(6,4)/Z0))/(-math.log(1-4*6*(2**6/720)/Z0)),"x")
+
+print()
+print("=== D. THE ln2 CEILING AND ITS STRUCTURAL CAUSE ===")
+for L in (3,7,9,15):
+    N=L-1
+    for xx in (4,50,500,5000):
+        z0,zp=logZ(L,0,xx),logZ(L,np.pi,xx)
+        print(f" L={L:2d} x={xx:5d}: lnZ0-x={z0-xx:.6f} lnZpi-x={zp-xx:.6f} bias={z0-zp:.8f}")
+    print(f"      port weight fraction at x->inf: Z0->2e^x (port + k=0), Zpi->e^x (port only) => bias->ln2={math.log(2):.8f}")
+print(" fraction of ceiling realised at L=7,x=4:",bias(7,4)/math.log(2))
+print(" T*ln2 at T=80 keV =",80*math.log(2),"keV ; BBN window from delta_NN in (-0.0025,+0.0006):")
+lo,hi=-0.0025*5.7701*2224.6, 0.0006*5.7701*2224.6
+print(f"   delta_B_D in ({lo:.3f}, {hi:.3f}) keV ; ceiling/window = {80*math.log(2)/hi:.3f}")
+print(" iso-contrast x*/N^2 (eps=1%,10%,40%), large-N limit:")
+for target in (0.01,0.1,0.4):
+    for L in (15,31,61):
+        N=L-1; xr=brentq(lambda t: eps(L,t)-target,0.02,5000)
+        print(f"   eps={target} L={L:2d}: x*={xr:9.3f} x*/N^2={xr/N**2:.6f}")
+
+# Result
+=== C. BESSEL AUDIT x=4: leading term vs exact I_N ===
+ L= 3 N= 2: lead=2.000000e+00 exact=6.422189e+00 exact/lead=3.2111  1st corr=1.3333 (133.3%)  I_3N/I_N=2.41e-02
+ L= 7 N= 6: lead=8.888889e-02 exact=1.544648e-01 exact/lead=1.7377  1st corr=0.5714 (57.1%)  I_3N/I_N=3.27e-10
+ L= 9 N= 8: lead=6.349206e-03 exact=9.809928e-03 exact/lead=1.5451  1st corr=0.4444 (44.4%)  I_3N/I_N=3.23e-15
+ L=15 N=14: lead=1.879367e-07 exact=2.448375e-07 exact/lead=1.3028  1st corr=0.2667 (26.7%)  I_3N/I_N=1.40e-32
+ leakage identity Z0-Zpi = 4N*sum_{m odd} I_mN(x):
+   L= 3: Z0-Zpi=5.261646567203e+01  4N*I_N=5.137751500227e+01  full=5.261646567203e+01
+   L= 7: Z0-Zpi=3.707155198108e+00  4N*I_N=3.707155196896e+00  full=3.707155198108e+00
+   L= 9: Z0-Zpi=3.139176837331e-01  4N*I_N=3.139176837330e-01  full=3.139176837330e-01
+   L=15: Z0-Zpi=1.371090149860e-05  4N*I_N=1.371090154842e-05  full=1.371090154842e-05
+ effect on dF at L=7,x=4,T=100 keV:
+   leading 2^6/6!   eps=0.017168  dF=  1.7317 keV
+   +1st corr        eps=0.026978  dF=  2.7349 keV
+   exact I_6(4)     eps=0.029833  dF=  3.0287 keV
+ -> leading-term underestimate of dF: 1.7489899625275547 x
+
+=== D. THE ln2 CEILING AND ITS STRUCTURAL CAUSE ===
+ L= 3 x=    4: lnZ0-x=0.693315 lnZpi-x=0.035976 bias=0.65733860
+ L= 3 x=   50: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+ L= 3 x=  500: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+ L= 3 x= 5000: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+      port weight fraction at x->inf: Z0->2e^x (port + k=0), Zpi->e^x (port only) => bias->ln2=0.69314718
+ L= 7 x=    4: lnZ0-x=0.822403 lnZpi-x=0.792116 bias=0.03028710
+ L= 7 x=   50: lnZ0-x=0.693147 lnZpi-x=0.002462 bias=0.69068526
+ L= 7 x=  500: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+ L= 7 x= 5000: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+      port weight fraction at x->inf: Z0->2e^x (port + k=0), Zpi->e^x (port only) => bias->ln2=0.69314718
+ L= 9 x=    4: lnZ0-x=0.977909 lnZpi-x=0.975744 bias=0.00216475
+ L= 9 x=   50: lnZ0-x=0.693148 lnZpi-x=0.043512 bias=0.64963530
+ L= 9 x=  500: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+ L= 9 x= 5000: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+      port weight fraction at x->inf: Z0->2e^x (port + k=0), Zpi->e^x (port only) => bias->ln2=0.69314718
+ L=15 x=    4: lnZ0-x=1.360471 lnZpi-x=1.360470 bias=0.00000006
+ L=15 x=   50: lnZ0-x=0.700195 lnZpi-x=0.451703 bias=0.24849215
+ L=15 x=  500: lnZ0-x=0.693147 lnZpi-x=0.000007 bias=0.69313999
+ L=15 x= 5000: lnZ0-x=0.693147 lnZpi-x=0.000000 bias=0.69314718
+      port weight fraction at x->inf: Z0->2e^x (port + k=0), Zpi->e^x (port only) => bias->ln2=0.69314718
+ fraction of ceiling realised at L=7,x=4: 0.0436950500551829
+ T*ln2 at T=80 keV = 55.451774444795625 keV ; BBN window from delta_NN in (-0.0025,+0.0006):
+   delta_B_D in (-32.090, 7.702) keV ; ceiling/window = 7.200
+ iso-contrast x*/N^2 (eps=1%,10%,40%), large-N limit:
+   eps=0.01 L=15: x*=   17.662 x*/N^2=0.090113
+   eps=0.01 L=31: x*=   82.592 x*/N^2=0.091769
+   eps=0.01 L=61: x*=  331.649 x*/N^2=0.092125
+   eps=0.1 L=15: x*=   33.474 x*/N^2=0.170784
+   eps=0.1 L=31: x*=  153.754 x*/N^2=0.170838
+   eps=0.1 L=61: x*=  615.049 x*/N^2=0.170847
+   eps=0.4 L=15: x*=   91.812 x*/N^2=0.468427
+   eps=0.4 L=31: x*=  420.213 x*/N^2=0.466903
+   eps=0.4 L=61: x*= 1679.707 x*/N^2=0.466585
+
+
+import numpy as np, math
+from scipy.special import logsumexp
+from scipy.optimize import brentq
+
+def detector_contact(length,x,strength):
+    cycle=[0,*range(2,length)]; n=len(cycle)
+    det=np.diag(np.isin(np.arange(length),[0,1]).astype(float))
+    def block(phi):
+        step=np.zeros((length,length),dtype=complex); step[1,1]=1
+        for j,v in enumerate(cycle):
+            step[cycle[(j+1)%n],v]=np.exp(1j*phi) if j==n-1 else 1
+        lw=x*(step+step.conj().T)/2
+        free=float(logsumexp(np.linalg.eigvalsh(lw)))
+        bound=float(logsumexp(np.linalg.eigvalsh(lw+strength*det)))
+        mean=1/n+(1-1/n)*math.exp(x-free)
+        return bound-free,mean
+    s0,m0=block(0); sp,mp=block(math.pi)
+    return dict(g_eff=s0-sp,mean0=m0,meanpi=mp,shift0=s0,shiftpi=sp)
+
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+print("=== E1. reproduce the 26-Nov contact audit (lambda/T=0.1) ===")
+for L,x in [(3,4),(7,4),(7,2*.15/.07251310823341744),(9,4),(15,4)]:
+    r=detector_contact(L,x,.1)
+    print(f" L={L:2d} x={x:.6f}: g_eff={r['g_eff']:+.8e}  <C>0={r['mean0']:.6f} <C>pi={r['meanpi']:.6f}"
+          f"  shift0={r['shift0']:.6f} shiftpi={r['shiftpi']:.6f}  g_eff/eps={r['g_eff']/eps(L,x):+.5f}")
+
+print()
+print("=== E2. THE MISSING CALCULATION: contact along the ISO-CONTRAST curve x=kappa*N^2 ===")
+print("   (audit froze x=4; the physical trajectory at fixed contrast has x growing as N^2)")
+kap={0.01:0.092244,0.10:0.170850,0.40:0.466479}
+for target,k in kap.items():
+    print(f" --- target contrast eps={target} ---")
+    for L in (3,7,9,15,31,61):
+        N=L-1; xr=brentq(lambda t: eps(L,t)-target,0.02,20000)
+        r=detector_contact(L,xr,.1)
+        print(f"   L={L:2d} x*={xr:9.3f}: eps={eps(L,xr):.4f}  g_eff={r['g_eff']:+.6e}"
+              f"  d<C>={r['meanpi']-r['mean0']:+.6f}  shift_pi={r['shiftpi']:.6f}  g_eff/eps={r['g_eff']/target:+.5f}")
+
+print()
+print("=== E3. delta_B_D in keV through the bottleneck (T=72.5131 keV, archive CONTROL) ===")
+T=0.07251310823341744  # MeV
+TkeV=T*1e3
+lo,hi=-0.0025*5.7701*2224.6, 0.0006*5.7701*2224.6
+print(f" BBN window on delta_B_D: ({lo:.3f},{hi:.3f}) keV  [delta_NN in (-2.5e-3,+6e-4), dlnB_D/ddelta_NN=5.7701]")
+for L,x in [(3,4),(7,4),(7,2*.15/T),(9,4),(15,4),(7,17.18),(15,91.81),(31,420.2)]:
+    r=detector_contact(L,x,.1)
+    dB_diag=TkeV*r['shiftpi']; dB_mix=TkeV*r['g_eff']
+    # ceiling on strength from the DIAGONAL shift (same-sign binding increase)
+    smax=hi/(TkeV*r['shiftpi']/.1)
+    rm=detector_contact(L,x,smax)
+    print(f" L={L:2d} x={x:8.3f}: dB_D(diag,pi)={dB_diag:7.3f} keV  dB_D(mixed)={dB_mix:+8.4f} keV"
+          f" | (lambda/T)_max={smax:6.3f} -> |mixed|_max={abs(TkeV*rm['g_eff']):7.3f} keV"
+          f"  mixed/diag={abs(r['g_eff']/r['shiftpi']):.4f}")
+
+# Result
+=== E1. reproduce the 26-Nov contact audit (lambda/T=0.1) ===
+ L= 3 x=4.000000: g_eff=-2.28566617e-02  <C>0=0.749958 <C>pi=0.982332  shift0=0.075461 shiftpi=0.098317  g_eff/eps=-0.04744
+ L= 7 x=4.000000: g_eff=-1.13326951e-03  <C>0=0.532812 <C>pi=0.544071  shift0=0.054335 shiftpi=0.055468  g_eff/eps=-0.03799
+ L= 7 x=4.137183: g_eff=-1.28053838e-03  <C>0=0.535885 <C>pi=0.548615  shift0=0.054637 shiftpi=0.055918  g_eff/eps=-0.03842
+ L= 9 x=4.000000: g_eff=-7.23063805e-05  <C>0=0.454085 <C>pi=0.454798  shift0=0.046496 shiftpi=0.046568  g_eff/eps=-0.03344
+ L=15 x=4.000000: g_eff=-1.57645719e-09  <C>0=0.309644 <C>pi=0.309644  shift0=0.031940 shiftpi=0.031940  g_eff/eps=-0.02447
+
+=== E2. THE MISSING CALCULATION: contact along the ISO-CONTRAST curve x=kappa*N^2 ===
+   (audit froze x=4; the physical trajectory at fixed contrast has x growing as N^2)
+ --- target contrast eps=0.01 ---
+   L= 3 x*=    0.179: eps=0.0100  g_eff=-1.917696e-04  d<C>=+0.001872  shift_pi=0.069778  g_eff/eps=-0.01918
+   L= 7 x*=    2.964: eps=0.0100  g_eff=-3.433724e-04  d<C>=+0.003394  shift_pi=0.051699  g_eff/eps=-0.03434
+   L= 9 x*=    5.515: eps=0.0100  g_eff=-3.705689e-04  d<C>=+0.003674  shift_pi=0.050313  g_eff/eps=-0.03706
+   L=15 x*=   17.662: eps=0.0100  g_eff=-4.016904e-04  d<C>=+0.003991  shift_pi=0.048153  g_eff/eps=-0.04017
+   L=31 x*=   82.592: eps=0.0100  g_eff=-4.214825e-04  d<C>=+0.004190  shift_pi=0.046391  g_eff/eps=-0.04215
+   L=61 x*=  331.649: eps=0.0100  g_eff=-4.294707e-04  d<C>=+0.004269  shift_pi=0.045555  g_eff/eps=-0.04295
+ --- target contrast eps=0.1 ---
+   L= 3 x*=    0.648: eps=0.1000  g_eff=-2.468048e-03  d<C>=+0.024434  shift_pi=0.075370  g_eff/eps=-0.02468
+   L= 7 x*=    6.130: eps=0.1000  g_eff=-4.422668e-03  d<C>=+0.044228  shift_pi=0.061891  g_eff/eps=-0.04423
+   L= 9 x*=   10.917: eps=0.1000  g_eff=-4.666304e-03  d<C>=+0.046702  shift_pi=0.060228  g_eff/eps=-0.04666
+   L=15 x*=   33.474: eps=0.1000  g_eff=-4.970541e-03  d<C>=+0.049778  shift_pi=0.058015  g_eff/eps=-0.04971
+   L=31 x*=  153.754: eps=0.1000  g_eff=-5.181113e-03  d<C>=+0.051901  shift_pi=0.056398  g_eff/eps=-0.05181
+   L=61 x*=  615.049: eps=0.1000  g_eff=-5.271704e-03  d<C>=+0.052812  shift_pi=0.055679  g_eff/eps=-0.05272
+ --- target contrast eps=0.4 ---
+   L= 3 x*=    2.271: eps=0.4000  g_eff=-1.638230e-02  d<C>=+0.165784  shift_pi=0.091826  g_eff/eps=-0.04096
+   L= 7 x*=   17.178: eps=0.4000  g_eff=-2.736360e-02  d<C>=+0.277726  shift_pi=0.086602  g_eff/eps=-0.06841
+   L= 9 x*=   30.238: eps=0.4000  g_eff=-2.871868e-02  d<C>=+0.291625  shift_pi=0.085945  g_eff/eps=-0.07180
+   L=15 x*=   91.812: eps=0.4000  g_eff=-3.045525e-02  d<C>=+0.309489  shift_pi=0.085108  g_eff/eps=-0.07614
+   L=31 x*=  420.213: eps=0.4000  g_eff=-3.168598e-02  d<C>=+0.322189  shift_pi=0.084517  g_eff/eps=-0.07921
+   L=61 x*= 1679.707: eps=0.4000  g_eff=-3.222329e-02  d<C>=+0.327745  shift_pi=0.084260  g_eff/eps=-0.08056
+
+=== E3. delta_B_D in keV through the bottleneck (T=72.5131 keV, archive CONTROL) ===
+ BBN window on delta_B_D: (-32.090,7.702) keV  [delta_NN in (-2.5e-3,+6e-4), dlnB_D/ddelta_NN=5.7701]
+ L= 3 x=   4.000: dB_D(diag,pi)=  7.129 keV  dB_D(mixed)= -1.6574 keV | (lambda/T)_max= 0.108 -> |mixed|_max=  1.788 keV  mixed/diag=0.2325
+ L= 7 x=   4.000: dB_D(diag,pi)=  4.022 keV  dB_D(mixed)= -0.0822 keV | (lambda/T)_max= 0.191 -> |mixed|_max=  0.158 keV  mixed/diag=0.0204
+ L= 7 x=   4.137: dB_D(diag,pi)=  4.055 keV  dB_D(mixed)= -0.0929 keV | (lambda/T)_max= 0.190 -> |mixed|_max=  0.177 keV  mixed/diag=0.0229
+ L= 9 x=   4.000: dB_D(diag,pi)=  3.377 keV  dB_D(mixed)= -0.0052 keV | (lambda/T)_max= 0.228 -> |mixed|_max=  0.012 keV  mixed/diag=0.0016
+ L=15 x=   4.000: dB_D(diag,pi)=  2.316 keV  dB_D(mixed)= -0.0000 keV | (lambda/T)_max= 0.333 -> |mixed|_max=  0.000 keV  mixed/diag=0.0000
+ L= 7 x=  17.180: dB_D(diag,pi)=  6.280 keV  dB_D(mixed)= -1.9844 keV | (lambda/T)_max= 0.123 -> |mixed|_max=  2.425 keV  mixed/diag=0.3160
+ L=15 x=  91.810: dB_D(diag,pi)=  6.171 keV  dB_D(mixed)= -2.2084 keV | (lambda/T)_max= 0.125 -> |mixed|_max=  2.745 keV  mixed/diag=0.3578
+ L=31 x= 420.200: dB_D(diag,pi)=  6.129 keV  dB_D(mixed)= -2.2976 keV | (lambda/T)_max= 0.126 -> |mixed|_max=  2.875 keV  mixed/diag=0.3749
+
+
+import math, numpy as np
+from scipy.special import zeta, logsumexp
+from scipy.optimize import brentq
+hbar=6.582119569e-16; Mpl=1.22089e28; eta=6.1e-10; f=(4/11)**(1/3)
+def gs(T): return 10.75 if T>0.5 else (3.36 if T<0.05 else 3.36+(10.75-3.36)*(T-0.05)/0.45)
+def H_s(T,g=None):
+    t=T*1e6; return 1.66*math.sqrt(gs(T) if g is None else g)*t*t/Mpl/hbar
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+print("=== F1. S_inst=50 FIXED: activation temperature (Gamma_r=H) and Gamma_r/H at BBN ===")
+print("   Gamma_r=(J/hbar)exp(-S).  T_act solves H(T)=Gamma_r.")
+for S in (40,45,50,52,55,60):
+    row=f" S={S:3d}: "
+    for J in (0.15,0.6,3.3):
+        G=J*1e6/hbar*math.exp(-S)
+        try:
+            Ta=brentq(lambda T: H_s(T)-G,1e-4,50)
+            row+=f" J={J:4.2f}: T_act={Ta:7.4f} MeV, Gam/H(0.0725)={G/H_s(0.0725131):9.2e} |"
+        except ValueError: row+=f" J={J:4.2f}: T_act=none |"
+    print(row)
+print("   S_max=ln(omega0/H) at T=0.0725:",[round(math.log(J*1e6/hbar/H_s(0.0725131)),3) for J in (0.15,0.6,3.3)])
+print("   -> S=50 switches the seam ON between weak freeze-out (~0.75 MeV) and the D bottleneck (~0.08 MeV)")
+
+print()
+print("=== F2. if instead S=c*x/2 (barrier proportional to J): contrast vs activity ===")
+Smax=math.log(0.6*1e6/hbar/H_s(0.0725131))
+for kap,lab in [(0.092244,'eps=1%'),(0.170850,'eps=10%'),(0.466479,'eps=40%')]:
+    for c in (1,2,4):
+        Nmax=math.sqrt(2*Smax/(c*kap))
+        print(f" {lab:8s} c={c}: N_max={Nmax:6.2f} -> L_max(odd)={int(Nmax)+1 if (int(Nmax)+1)%2 else int(Nmax)}"
+              f"   [x<=2S_max/c={2*Smax/c:6.1f}]")
+
+print()
+print("=== G. L1 SCREEN along the ISO-CONTRAST curve, hot-relic ontology (m_X=2J, g_X states) ===")
+T=0.0725131; Tnu=T*f; rho1nu=(7/4)*(math.pi**2/15)*Tnu**4
+def Jmax(gdec,gX,dN=0.17):
+    Tx=(10.75/gdec)**(1/3)*f*T; nX=gX*zeta(3)/math.pi**2*Tx**3
+    return dN*rho1nu/nX/2
+print(f" T={T:.6f} MeV, DeltaN_eff<=0.17, m_X=2J")
+for gdec in (28.,106.75,202.):
+    print(f" g_dec={gdec:6.2f}: J_max(gX=1)={Jmax(gdec,1):.4f} MeV, J_max(gX=L=7)={Jmax(gdec,7):.4f}, J_max(gX=126)={Jmax(gdec,126):.5f}")
+print()
+for kap,lab in [(0.092244,'eps=1%'),(0.170850,'eps=10%'),(0.466479,'eps=40%')]:
+    print(f" --- {lab}: J_req(L)=x*(L)*T/2 ---")
+    for L in (3,5,7,9,15,31):
+        N=L-1; xr=brentq(lambda t: eps(L,t)-(0.01 if kap<0.1 else (0.1 if kap<0.2 else 0.4)),0.02,20000)
+        Jreq=xr*T/2
+        verdict=[]
+        for gdec in (28.,106.75,202.):
+            for gX in (1,L):
+                jm=Jmax(gdec,gX)
+                verdict.append(f"{gdec:.0f}/{gX}:{'OPEN' if jm>=Jreq else 'shut'}")
+        print(f"   L={L:2d} J_req={Jreq:8.4f} MeV  "+" ".join(verdict))
+print()
+print("=== G2. closed inequality for L_max (g_X=L, iso-contrast kappa) ===")
+for gdec in (28.,106.75,202.):
+    for kap,lab in [(0.092244,'1%'),(0.170850,'10%'),(0.466479,'40%')]:
+        # kappa*N^2*T/2 <= Jmax(gdec,gX=N+1) = Jmax1/(N+1)
+        J1=Jmax(gdec,1)
+        Nmax=brentq(lambda N: kap*N**2*(N+1)*T/2-J1,0.1,100)
+        print(f" g_dec={gdec:6.2f} eps={lab:3s}: N_max={Nmax:5.2f} -> L_max={Nmax+1:5.2f} (odd L: {int(Nmax)+1 if (int(Nmax)+1)%2 else int(Nmax)})")
+
+
+import math, numpy as np
+from scipy.special import zeta, logsumexp
+from scipy.optimize import brentq
+hbar=6.582119569e-16; Mpl=1.22089e28; eta=6.1e-10; f=(4/11)**(1/3)
+def gs(T): return 10.75 if T>0.5 else (3.36 if T<0.05 else 3.36+(10.75-3.36)*(T-0.05)/0.45)
+def H_s(T,g=None):
+    t=T*1e6; return 1.66*math.sqrt(gs(T) if g is None else g)*t*t/Mpl/hbar
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+print("=== F1. S_inst=50 FIXED: activation temperature (Gamma_r=H) and Gamma_r/H at BBN ===")
+for S in (40,45,50,52,55,60):
+    row=f" S={S:3d}: "
+    for J in (0.15,0.6,3.3):
+        G=J*1e6/hbar*math.exp(-S)
+        try:
+            Ta=brentq(lambda T: H_s(T)-G,1e-4,50)
+            row+=f" J={J:4.2f}: T_act={Ta:7.4f}, Gam/H(72.5keV)={G/H_s(0.0725131):9.2e} |"
+        except ValueError: row+=f" J={J:4.2f}: T_act=none |"
+    print(row)
+print(" S_max=ln(omega0/H) at T=0.0725:",[round(math.log(J*1e6/hbar/H_s(0.0725131)),3) for J in (0.15,0.6,3.3)])
+
+print()
+print("=== F2. if S=c*x/2 instead: contrast (x>=kappa N^2) vs activity (S<=S_max) ===")
+Smax=math.log(0.6*1e6/hbar/H_s(0.0725131))
+for kap,lab in [(0.092244,'eps=1%'),(0.170850,'eps=10%'),(0.466479,'eps=40%')]:
+    for c in (1,2,4):
+        Nmax=math.sqrt(2*Smax/(c*kap))
+        print(f" {lab:8s} c={c}: N_max={Nmax:6.2f}  x<=2S_max/c={2*Smax/c:6.1f}")
+
+print()
+print("=== G. L1 SCREEN along ISO-CONTRAST curve, hot-relic ontology (m_X=2J) ===")
+T=0.0725131; Tnu=T*f; rho1nu=(7/4)*(math.pi**2/15)*Tnu**4
+def Jmax(gdec,gX,dN=0.17):
+    Tx=(10.75/gdec)**(1/3)*f*T; nX=gX*zeta(3)/math.pi**2*Tx**3
+    return dN*rho1nu/nX/2
+print(f" T={T:.6f} MeV, DeltaN_eff<=0.17")
+for gdec in (28.,106.75,202.):
+    print(f" g_dec={gdec:6.2f}: J_max(gX=1)={Jmax(gdec,1):.4f}  J_max(gX=7)={Jmax(gdec,7):.4f}  J_max(gX=126)={Jmax(gdec,126):.5f} MeV")
+for kap,target,lab in [(0.092244,0.01,'eps=1%'),(0.170850,0.1,'eps=10%'),(0.466479,0.4,'eps=40%')]:
+    print(f" --- {lab} ---")
+    for L in (3,5,7,9,15,31):
+        xr=brentq(lambda t: eps(L,t)-target,0.02,20000); Jreq=xr*T/2
+        v=[]
+        for gdec in (28.,106.75,202.):
+            for gX in (1,L):
+                v.append(f"{gdec:.0f}/{gX}:{'OPEN' if Jmax(gdec,gX)>=Jreq else 'shut'}")
+        print(f"   L={L:2d} J_req={Jreq:8.4f} MeV  "+" ".join(v))
+print()
+print("=== G2. L_max from kappa N^2 (N+1) T/2 <= J_max(gX=1) ===")
+for gdec in (28.,106.75,202.):
+    for kap,lab in [(0.092244,'1%'),(0.170850,'10%'),(0.466479,'40%')]:
+        J1=Jmax(gdec,1); Nmax=brentq(lambda N: kap*N**2*(N+1)*T/2-J1,0.1,100)
+        print(f" g_dec={gdec:6.2f} eps={lab:3s}: N_max={Nmax:5.2f} -> L_max={Nmax+1:5.2f}")
+
+# Result
+=== F1. S_inst=50 FIXED: activation temperature (Gamma_r=H) and Gamma_r/H at BBN ===
+ S= 40:  J=0.15: T_act=37.8084, Gam/H(72.5keV)= 4.62e+05 | J=0.60: T_act=none | J=3.30: T_act=none |
+ S= 45:  J=0.15: T_act= 3.1035, Gam/H(72.5keV)= 3.11e+03 | J=0.60: T_act= 6.2070, Gam/H(72.5keV)= 1.24e+04 | J=3.30: T_act=14.5567, Gam/H(72.5keV)= 6.84e+04 |
+ S= 50:  J=0.15: T_act= 0.2819, Gam/H(72.5keV)= 2.10e+01 | J=0.60: T_act= 0.5095, Gam/H(72.5keV)= 8.38e+01 | J=3.30: T_act= 1.1949, Gam/H(72.5keV)= 4.61e+02 |
+ S= 52:  J=0.15: T_act= 0.1168, Gam/H(72.5keV)= 2.84e+00 | J=0.60: T_act= 0.2161, Gam/H(72.5keV)= 1.13e+01 | J=3.30: T_act= 0.4486, Gam/H(72.5keV)= 6.24e+01 |
+ S= 55:  J=0.15: T_act= 0.0280, Gam/H(72.5keV)= 1.41e-01 | J=0.60: T_act= 0.0556, Gam/H(72.5keV)= 5.65e-01 | J=3.30: T_act= 0.1217, Gam/H(72.5keV)= 3.11e+00 |
+ S= 60:  J=0.15: T_act= 0.0023, Gam/H(72.5keV)= 9.51e-04 | J=0.60: T_act= 0.0046, Gam/H(72.5keV)= 3.81e-03 | J=3.30: T_act= 0.0108, Gam/H(72.5keV)= 2.09e-02 |
+ S_max=ln(omega0/H) at T=0.0725: [53.042, 54.429, 56.133]
+
+=== F2. if S=c*x/2 instead: contrast (x>=kappa N^2) vs activity (S<=S_max) ===
+ eps=1%   c=1: N_max= 34.35  x<=2S_max/c= 108.9
+ eps=1%   c=2: N_max= 24.29  x<=2S_max/c=  54.4
+ eps=1%   c=4: N_max= 17.18  x<=2S_max/c=  27.2
+ eps=10%  c=1: N_max= 25.24  x<=2S_max/c= 108.9
+ eps=10%  c=2: N_max= 17.85  x<=2S_max/c=  54.4
+ eps=10%  c=4: N_max= 12.62  x<=2S_max/c=  27.2
+ eps=40%  c=1: N_max= 15.28  x<=2S_max/c= 108.9
+ eps=40%  c=2: N_max= 10.80  x<=2S_max/c=  54.4
+ eps=40%  c=4: N_max=  7.64  x<=2S_max/c=  27.2
+
+=== G. L1 SCREEN along ISO-CONTRAST curve, hot-relic ontology (m_X=2J) ===
+ T=0.072513 MeV, DeltaN_eff<=0.17
+ g_dec= 28.00: J_max(gX=1)=0.1083  J_max(gX=7)=0.0155  J_max(gX=126)=0.00086 MeV
+ g_dec=106.75: J_max(gX=1)=0.4130  J_max(gX=7)=0.0590  J_max(gX=126)=0.00328 MeV
+ g_dec=202.00: J_max(gX=1)=0.7815  J_max(gX=7)=0.1116  J_max(gX=126)=0.00620 MeV
+ --- eps=1% ---
+   L= 3 J_req=  0.0065 MeV  28/1:OPEN 28/3:OPEN 107/1:OPEN 107/3:OPEN 202/1:OPEN 202/3:OPEN
+   L= 5 J_req=  0.0430 MeV  28/1:OPEN 28/5:shut 107/1:OPEN 107/5:OPEN 202/1:OPEN 202/5:OPEN
+   L= 7 J_req=  0.1075 MeV  28/1:OPEN 28/7:shut 107/1:OPEN 107/7:shut 202/1:OPEN 202/7:OPEN
+   L= 9 J_req=  0.1999 MeV  28/1:shut 28/9:shut 107/1:OPEN 107/9:shut 202/1:OPEN 202/9:shut
+   L=15 J_req=  0.6404 MeV  28/1:shut 28/15:shut 107/1:shut 107/15:shut 202/1:OPEN 202/15:shut
+   L=31 J_req=  2.9945 MeV  28/1:shut 28/31:shut 107/1:shut 107/31:shut 202/1:shut 202/31:shut
+ --- eps=10% ---
+   L= 3 J_req=  0.0235 MeV  28/1:OPEN 28/3:OPEN 107/1:OPEN 107/3:OPEN 202/1:OPEN 202/3:OPEN
+   L= 5 J_req=  0.0983 MeV  28/1:OPEN 28/5:shut 107/1:OPEN 107/5:shut 202/1:OPEN 202/5:OPEN
+   L= 7 J_req=  0.2222 MeV  28/1:shut 28/7:shut 107/1:OPEN 107/7:shut 202/1:OPEN 202/7:shut
+   L= 9 J_req=  0.3958 MeV  28/1:shut 28/9:shut 107/1:OPEN 107/9:shut 202/1:OPEN 202/9:shut
+   L=15 J_req=  1.2136 MeV  28/1:shut 28/15:shut 107/1:shut 107/15:shut 202/1:shut 202/15:shut
+   L=31 J_req=  5.5746 MeV  28/1:shut 28/31:shut 107/1:shut 107/31:shut 202/1:shut 202/31:shut
+ --- eps=40% ---
+   L= 3 J_req=  0.0823 MeV  28/1:OPEN 28/3:shut 107/1:OPEN 107/3:OPEN 202/1:OPEN 202/3:OPEN
+   L= 5 J_req=  0.2847 MeV  28/1:shut 28/5:shut 107/1:OPEN 107/5:shut 202/1:OPEN 202/5:shut
+   L= 7 J_req=  0.6228 MeV  28/1:shut 28/7:shut 107/1:shut 107/7:shut 202/1:OPEN 202/7:shut
+   L= 9 J_req=  1.0963 MeV  28/1:shut 28/9:shut 107/1:shut 107/9:shut 202/1:shut 202/9:shut
+   L=15 J_req=  3.3288 MeV  28/1:shut 28/15:shut 107/1:shut 107/15:shut 202/1:shut 202/15:shut
+   L=31 J_req= 15.2355 MeV  28/1:shut 28/31:shut 107/1:shut 107/31:shut 202/1:shut 202/31:shut
+
+=== G2. L_max from kappa N^2 (N+1) T/2 <= J_max(gX=1) ===
+ g_dec= 28.00 eps=1% : N_max= 2.89 -> L_max= 3.89
+ g_dec= 28.00 eps=10%: N_max= 2.30 -> L_max= 3.30
+ g_dec= 28.00 eps=40%: N_max= 1.58 -> L_max= 2.58
+ g_dec=106.75 eps=1% : N_max= 4.67 -> L_max= 5.67
+ g_dec=106.75 eps=10%: N_max= 3.75 -> L_max= 4.75
+ g_dec=106.75 eps=40%: N_max= 2.60 -> L_max= 3.60
+ g_dec=202.00 eps=1% : N_max= 5.84 -> L_max= 6.84
+ g_dec=202.00 eps=10%: N_max= 4.70 -> L_max= 5.70
+ g_dec=202.00 eps=40%: N_max= 3.28 -> L_max= 4.28
+
+
+import math, numpy as np
+from scipy.special import logsumexp, zeta, expit
+from scipy.linalg import expm
+from scipy.optimize import brentq
+hbar=6.582119569e-16; Mpl=1.22089e28; mN=938.9e6; eta=6.1e-10
+
+def dc(L,x,s):
+    cyc=[0,*range(2,L)]; n=len(cyc); det=np.diag(np.isin(np.arange(L),[0,1]).astype(float))
+    def blk(phi):
+        st=np.zeros((L,L),complex); st[1,1]=1
+        for j,v in enumerate(cyc): st[cyc[(j+1)%n],v]=np.exp(1j*phi) if j==n-1 else 1
+        lw=x*(st+st.conj().T)/2
+        fr=float(logsumexp(np.linalg.eigvalsh(lw))); bo=float(logsumexp(np.linalg.eigvalsh(lw+s*det)))
+        return bo-fr
+    return blk(0)-blk(math.pi), blk(0), blk(math.pi)
+def logZ(L,phi,x):
+    N=L-1; ph=np.r_[0,(phi+2*np.pi*np.arange(N))/N]; return float(logsumexp(x*np.cos(ph)))
+def eps(L,x): return 1-math.exp(logZ(L,np.pi,x)-logZ(L,0,x))
+
+T=0.0725131; Tk=T*1e3
+hi=0.0006*5.7701*2224.6; lo=-0.0025*5.7701*2224.6
+print("=== H. LIVE POINTS: both signs of lambda, ceiling from the DIAGONAL shift ===")
+print(f" window: +{hi:.3f} keV (more binding) / {lo:.3f} keV (less binding)")
+for L,target in [(3,0.4),(5,0.4),(7,0.4),(7,0.1),(9,0.1),(15,0.01)]:
+    xr=brentq(lambda t: eps(L,t)-target,0.02,20000); J=xr*T/2
+    for sign,ceil in [(+1,hi),(-1,abs(lo))]:
+        g,s0,sp=dc(L,xr,sign*0.1)
+        smax=sign*ceil/(Tk*sp/(sign*0.1))
+        gm,s0m,spm=dc(L,xr,smax)
+        print(f" L={L:2d} eps={target:.2f} x={xr:7.3f} J={J:6.3f} MeV sign={sign:+d}:"
+              f" (lam/T)_max={smax:+6.3f}  dB_D diag={Tk*spm:+7.3f} keV  dB_D MIXED={Tk*gm:+7.3f} keV"
+              f"  delta_NN={Tk*gm/(5.7701*2224.6):+.2e}  dlnK_eq={gm:+.4f}")
+
+print()
+print("=== I. m_sigma vs H: what the criterion actually is ===")
+nb=eta*2*zeta(3)/math.pi**2*T**3
+HMeV=1.66*math.sqrt(3.36)*(T*1e6)**2/Mpl/1e6
+print(f" n_b={nb:.3e} MeV^3 ; H={HMeV:.3e} MeV = {HMeV*1e6:.3e} eV")
+for fD in (1e-5,2.876e-3):
+    nD=fD*nb
+    for dB in (1.0,2.4,7.7):
+        m=math.sqrt(nD/(dB*1e-3))    # B_D'=1
+        print(f"  Y_D={fD:.3e} dB_D={dB:4.1f} keV -> m_sigma={m*1e6:8.4f} eV, m/H={m/HMeV:.2e},"
+              f" Compton={1.97327e-7/(m*1e6):.3e} m")
+print(" adiabatic slaving requires m_sigma >> H (heavy field sits at instantaneous minimum);")
+print(" m_sigma <~ H is the FROZEN/misalignment regime -> NO response to n_D(t). Criterion inverted.")
+
+print()
+print("=== J. fifth-force chain: B_D' -> g_N -> alpha -> allowed g_N at micron range ===")
+for BDp in (1.0,0.0137,1e-3):
+    gN=BDp/0.0137   # dlnB_D/ddelta_NN=5.77 ; delta_NN ~ delta m_N/m_N ; dB_D/dm_N ~ 12.84/938.9
+    alpha=gN**2*Mpl**2/(4*math.pi*mN**2)
+    print(f"  B_D'={BDp:8.4f} -> g_N~{gN:8.3f} -> alpha={alpha:.3e} (gravity=1)")
+gN_max=math.sqrt(1e12*4*math.pi*mN**2/Mpl**2)   # alpha<=1e12 at ~10 micron, order of magnitude
+BDp_max=0.0137*gN_max
+print(f"  alpha<=1e12 at lambda~10um  => g_N<={gN_max:.3e} => B_D'<={BDp_max:.3e}")
+for fD in (2.876e-3,):
+    nD=fD*nb
+    for dB in (1.0,2.4):
+        m=BDp_max*math.sqrt(nD/(dB*1e-3))
+        print(f"   with that B_D': dB_D={dB} keV needs m_sigma={m*1e6:.3e} eV -> m/H={m/HMeV:.3e}"
+              f"  ({'FROZEN, no response' if m<HMeV else 'adiabatic'})")
+
+print()
+print("=== K. irreducible two-way (loop) part vs g ===")
+def four(L,x,g,t=1.0):
+    st=[(r,d) for r in (0,1) for d in (0,1)]; gb=logZ(L,0,x)-logZ(L,np.pi,x)
+    def seg(gr,gd):
+        Q=np.zeros((4,4))
+        for i,(r,d) in enumerate(st):
+            j=st.index((1-r,d)); Q[j,i]=expit((1-2*r)*(gb+gr*d))
+            j=st.index((r,1-d)); Q[j,i]=expit((1-2*d)*gd*r)
+        Q[np.diag_indices(4)]=-Q.sum(axis=0); return expm(Q*t)
+    p0=np.array([1.,0,0,0]); r,d=np.array(st,float).T
+    def run(gr,gd):
+        p=seg(gr,gd)@p0; return np.array([r@p,d@p,p[-1]])
+    both=run(g,g); a=run(g,0); b=run(0,g); base=run(0,0)
+    return both-base, both-a-b+base
+for g in (math.log(2),0.0303,1.28e-3,2.7e-2):
+    d,loop=four(7,4,g)
+    print(f" g={g:+.6e}: total dP(r,d)={d[2]:+.6e}  irreducible loop={loop[2]:+.6e}  loop/total={loop[2]/d[2]:.4f}")
+
+# Result
+=== H. LIVE POINTS: both signs of lambda, ceiling from the DIAGONAL shift ===
+ window: +7.702 keV (more binding) / -32.090 keV (less binding)
+ L= 3 eps=0.40 x=  2.271 J= 0.082 MeV sign=+1: (lam/T)_max=+0.116  dB_D diag= +7.707 keV  dB_D MIXED= -1.371 keV  delta_NN=-1.07e-04  dlnK_eq=-0.0189
+ L= 3 eps=0.40 x=  2.271 J= 0.082 MeV sign=-1: (lam/T)_max=-0.486  dB_D diag=-31.465 keV  dB_D MIXED= +6.130 keV  delta_NN=+4.78e-04  dlnK_eq=+0.0845
+ L= 5 eps=0.40 x=  7.854 J= 0.285 MeV sign=+1: (lam/T)_max=+0.121  dB_D diag= +7.710 keV  dB_D MIXED= -2.152 keV  delta_NN=-1.68e-04  dlnK_eq=-0.0297
+ L= 5 eps=0.40 x=  7.854 J= 0.285 MeV sign=-1: (lam/T)_max=-0.509  dB_D diag=-31.292 keV  dB_D MIXED= +9.773 keV  delta_NN=+7.61e-04  dlnK_eq=+0.1348
+ L= 7 eps=0.40 x= 17.178 J= 0.623 MeV sign=+1: (lam/T)_max=+0.123  dB_D diag= +7.712 keV  dB_D MIXED= -2.425 keV  delta_NN=-1.89e-04  dlnK_eq=-0.0334
+ L= 7 eps=0.40 x= 17.178 J= 0.623 MeV sign=-1: (lam/T)_max=-0.517  dB_D diag=-31.174 keV  dB_D MIXED=+11.080 keV  delta_NN=+8.63e-04  dlnK_eq=+0.1528
+ L= 7 eps=0.10 x=  6.130 J= 0.222 MeV sign=+1: (lam/T)_max=+0.172  dB_D diag= +7.789 keV  dB_D MIXED= -0.550 keV  delta_NN=-4.28e-05  dlnK_eq=-0.0076
+ L= 7 eps=0.10 x=  6.130 J= 0.222 MeV sign=-1: (lam/T)_max=-0.739  dB_D diag=-28.547 keV  dB_D MIXED= +2.263 keV  delta_NN=+1.76e-04  dlnK_eq=+0.0312
+ L= 9 eps=0.10 x= 10.917 J= 0.396 MeV sign=+1: (lam/T)_max=+0.176  dB_D diag= +7.801 keV  dB_D MIXED= -0.596 keV  delta_NN=-4.64e-05  dlnK_eq=-0.0082
+ L= 9 eps=0.10 x= 10.917 J= 0.396 MeV sign=-1: (lam/T)_max=-0.761  dB_D diag=-28.260 keV  dB_D MIXED= +2.472 keV  delta_NN=+1.93e-04  dlnK_eq=+0.0341
+ L=15 eps=0.01 x= 17.662 J= 0.640 MeV sign=+1: (lam/T)_max=+0.221  dB_D diag= +7.916 keV  dB_D MIXED= -0.065 keV  delta_NN=-5.03e-06  dlnK_eq=-0.0009
+ L=15 eps=0.01 x= 17.662 J= 0.640 MeV sign=-1: (lam/T)_max=-0.963  dB_D diag=-25.856 keV  dB_D MIXED= +0.243 keV  delta_NN=+1.89e-05  dlnK_eq=+0.0034
+
+=== I. m_sigma vs H: what the criterion actually is ===
+ n_b=5.665e-14 MeV^3 ; H=1.310e-24 MeV = 1.310e-18 eV
+  Y_D=1.000e-05 dB_D= 1.0 keV -> m_sigma=  0.0238 eV, m/H=1.82e+16, Compton=8.290e-06 m
+  Y_D=1.000e-05 dB_D= 2.4 keV -> m_sigma=  0.0154 eV, m/H=1.17e+16, Compton=1.284e-05 m
+  Y_D=1.000e-05 dB_D= 7.7 keV -> m_sigma=  0.0086 eV, m/H=6.55e+15, Compton=2.300e-05 m
+  Y_D=2.876e-03 dB_D= 1.0 keV -> m_sigma=  0.4037 eV, m/H=3.08e+17, Compton=4.888e-07 m
+  Y_D=2.876e-03 dB_D= 2.4 keV -> m_sigma=  0.2606 eV, m/H=1.99e+17, Compton=7.573e-07 m
+  Y_D=2.876e-03 dB_D= 7.7 keV -> m_sigma=  0.1455 eV, m/H=1.11e+17, Compton=1.357e-06 m
+ adiabatic slaving requires m_sigma >> H (heavy field sits at instantaneous minimum);
+ m_sigma <~ H is the FROZEN/misalignment regime -> NO response to n_D(t). Criterion inverted.
+
+=== J. fifth-force chain: B_D' -> g_N -> alpha -> allowed g_N at micron range ===
+  B_D'=  1.0000 -> g_N~  72.993 -> alpha=7.169e+40 (gravity=1)
+  B_D'=  0.0137 -> g_N~   1.000 -> alpha=1.346e+37 (gravity=1)
+  B_D'=  0.0010 -> g_N~   0.073 -> alpha=7.169e+34 (gravity=1)
+  alpha<=1e12 at lambda~10um  => g_N<=2.726e-13 => B_D'<=3.735e-15
+   with that B_D': dB_D=1.0 keV needs m_sigma=1.508e-15 eV -> m/H=1.150e+03  (adiabatic)
+   with that B_D': dB_D=2.4 keV needs m_sigma=9.731e-16 eV -> m/H=7.426e+02  (adiabatic)
+
+=== K. irreducible two-way (loop) part vs g ===
+ g=+6.931472e-01: total dP(r,d)=+4.100173e-02  irreducible loop=+2.100080e-03  loop/total=0.0512
+ g=+3.030000e-02: total dP(r,d)=+1.776348e-03  irreducible loop=+4.193010e-06  loop/total=0.0024
+ g=+1.280000e-03: total dP(r,d)=+7.488466e-05  irreducible loop=+7.472465e-09  loop/total=0.0001
+ g=+2.700000e-02: total dP(r,d)=+1.582522e-03  irreducible loop=+3.328943e-06  loop/total=0.0021
+
+
+import math
+from scipy.special import zeta
+Mpl=1.22089e28; mN=938.9e6; hbar_c=1.97327e-7  # eV*m
+eta=6.1e-10; T=0.0725131
+nb=eta*2*zeta(3)/math.pi**2*T**3; nD=2.87637e-3*nb
+H=1.310e-24
+print("=== L. self-consistent (alpha, lambda) line of a nucleon-coupled scalar giving dB_D=2.4 keV ===")
+print(" dB_D=(B_D')^2 n_D/m^2 ; B_D'=kappa*g_N ; alpha=g_N^2 Mpl^2/(4 pi mN^2) ; lambda=hbar_c/m")
+for kappa in (0.137,0.0137):
+    S=math.sqrt(nD/2.4e-3)           # MeV
+    m_per_g=kappa*S                  # MeV per unit g_N
+    # alpha*lambda^2 = [g^2 Mpl^2/(4pi mN^2)] * [hbar_c/(kappa*S*g*1e6)]^2
+    al_lam2=(Mpl**2/(4*math.pi*mN**2))*(hbar_c/(m_per_g*1e6))**2
+    print(f" kappa=dB_D/dm_N={kappa:6.4f}: alpha*lambda^2 = {al_lam2:.3e} m^2 (independent of g_N)")
+    for lam in (1e-6,1e-5,1e-2,1.0,1.5e11):
+        print(f"    lambda={lam:9.1e} m -> required alpha={al_lam2/lam**2:.3e}")
+print(" experimental ceiling on alpha*lambda^2 (order of magnitude):")
+for lam,al in [(1e-6,1e18),(1e-5,1e12),(1e-2,1e-4),(1.0,1e-9),(1.5e11,1e-10)]:
+    print(f"    lambda={lam:9.1e} m, alpha_exp<~{al:.0e} -> alpha*lambda^2<~{al*lam**2:.2e} m^2")
+print(" => shortfall ~14-16 orders in alpha*lambda^2. Vacuum long-range scalar portal is excluded.")
+
+print()
+print("=== M. gap hierarchy at the live point L=7, x=17.178 (eps=0.40) ===")
+x=17.178; N=6; TkeV=72.5131
+import numpy as np
+th0=2*np.pi*np.arange(N)/N; thp=(np.pi+2*np.pi*np.arange(N))/N
+E0=-x*np.cos(th0); Ep=-x*np.cos(thp)
+print(" cycle energies in units of T, phi=0:",np.round(np.sort(E0),3))
+print(" cycle energies in units of T, phi=pi:",np.round(np.sort(Ep),3))
+gap=x*(1-math.cos(2*math.pi/N))
+print(f" first cycle excitation gap = x(1-cos(2pi/N)) = {gap:.3f} T = {gap*TkeV:.1f} keV ; Boltzmann e^-gap={math.exp(-gap):.2e}")
+print(f" band edge 2J = x*T = {x*TkeV:.1f} keV ; seam splitting dF = T ln(Z0/Zpi) = {-math.log(1-0.4)*TkeV:.2f} keV")
+w=np.exp(E0-E0.min()); print(" thermal populations of cycle modes (phi=0, normalised):",np.round(w/w.sum(),6))
+print(" -> number of thermally active cycle states ~",round(float(w.sum()/w.max()),3),"; g_X=L=7 is NOT the thermal count")
+print()
+print("=== N. live-point summary ===")
+hbar=6.582119569e-16
+def Hs(T,g=3.36): return 1.66*math.sqrt(g)*(T*1e6)**2/Mpl/hbar
+for L,xx,J in [(3,2.271,0.0823),(5,7.854,0.2847),(7,17.178,0.6228)]:
+    om=J*1e6/hbar; Smax=math.log(om/Hs(0.0725131))
+    G50=om*math.exp(-50)
+    from scipy.optimize import brentq
+    def gs(T): return 10.75 if T>0.5 else 3.36
+    Ta=brentq(lambda t: Hs(t,gs(t))-G50,1e-3,20)
+    print(f" L={L:2d} x={xx:6.3f} J={J:6.4f} MeV: S_max={Smax:.2f}, Gamma_r/H|S=50={G50/Hs(0.0725131):7.1f},"
+          f" T_act(S=50)={Ta:.3f} MeV, m_X=2J={2*J:.3f} MeV")
+
+# Result
+=== L. self-consistent (alpha, lambda) line of a nucleon-coupled scalar giving dB_D=2.4 keV ===
+ dB_D=(B_D')^2 n_D/m^2 ; B_D'=kappa*g_N ; alpha=g_N^2 Mpl^2/(4 pi mN^2) ; lambda=hbar_c/m
+ kappa=dB_D/dm_N=0.1370: alpha*lambda^2 = 4.111e+26 m^2 (independent of g_N)
+    lambda=  1.0e-06 m -> required alpha=4.111e+38
+    lambda=  1.0e-05 m -> required alpha=4.111e+36
+    lambda=  1.0e-02 m -> required alpha=4.111e+30
+    lambda=  1.0e+00 m -> required alpha=4.111e+26
+    lambda=  1.5e+11 m -> required alpha=1.827e+04
+ kappa=dB_D/dm_N=0.0137: alpha*lambda^2 = 4.111e+28 m^2 (independent of g_N)
+    lambda=  1.0e-06 m -> required alpha=4.111e+40
+    lambda=  1.0e-05 m -> required alpha=4.111e+38
+    lambda=  1.0e-02 m -> required alpha=4.111e+32
+    lambda=  1.0e+00 m -> required alpha=4.111e+28
+    lambda=  1.5e+11 m -> required alpha=1.827e+06
+ experimental ceiling on alpha*lambda^2 (order of magnitude):
+    lambda=  1.0e-06 m, alpha_exp<~1e+18 -> alpha*lambda^2<~1.00e+06 m^2
+    lambda=  1.0e-05 m, alpha_exp<~1e+12 -> alpha*lambda^2<~1.00e+02 m^2
+    lambda=  1.0e-02 m, alpha_exp<~1e-04 -> alpha*lambda^2<~1.00e-08 m^2
+    lambda=  1.0e+00 m, alpha_exp<~1e-09 -> alpha*lambda^2<~1.00e-09 m^2
+    lambda=  1.5e+11 m, alpha_exp<~1e-10 -> alpha*lambda^2<~2.25e+12 m^2
+ => shortfall ~14-16 orders in alpha*lambda^2. Vacuum long-range scalar portal is excluded.
+
+=== M. gap hierarchy at the live point L=7, x=17.178 (eps=0.40) ===
+ cycle energies in units of T, phi=0: [-17.178  -8.589  -8.589   8.589   8.589  17.178]
+ cycle energies in units of T, phi=pi: [-14.877 -14.877  -0.      0.     14.877  14.877]
+ first cycle excitation gap = x(1-cos(2pi/N)) = 8.589 T = 622.8 keV ; Boltzmann e^-gap=1.86e-04
+ band edge 2J = x*T = 1245.6 keV ; seam splitting dF = T ln(Z0/Zpi) = 37.04 keV
+ thermal populations of cycle modes (phi=0, normalised): [0.00000e+00 0.00000e+00 1.86000e-04 9.99628e-01 1.86000e-04 0.00000e+00]
+ -> number of thermally active cycle states ~ 1.0 ; g_X=L=7 is NOT the thermal count
+
+=== N. live-point summary ===
+ L= 3 x= 2.271 J=0.0823 MeV: S_max=52.49, Gamma_r/H|S=50=   12.1, T_act(S=50)=0.252 MeV, m_X=2J=0.165 MeV
+ L= 5 x= 7.854 J=0.2847 MeV: S_max=53.74, Gamma_r/H|S=50=   41.9, T_act(S=50)=0.469 MeV, m_X=2J=0.569 MeV
+ L= 7 x=17.178 J=0.6228 MeV: S_max=54.52, Gamma_r/H|S=50=   91.7, T_act(S=50)=0.519 MeV, m_X=2J=1.246 MeV
+
+
+Код получен. Вижу `coherent_control` — теперь пункт 1 проверяется точно, а не на глаз. Параллельно тяну остальное и считаю.
+## Что я реально проверил
+
+Прочитал код по вашей ссылке (`45f34fc`): `formation/check.py`, `formation/results.json`, и `response_audit/contact.py` на `41619c26`. Пересчитал независимо. Итог: **три из пяти пунктов подтверждаются, один неверен в формулировке, один подтверждается, но критерий в нём перевёрнут.** Плюс нашлась одна ошибка в самом аудите, которая меняет знак главного вывода: **no-go по J — артефакт фиксации x=4.** Непустой угол существует, и он не там, где его искали.
+
+---
+
+## 1. Пять недоработок: вердикт по каждой
+
+### 1.1 Нормировка шовного ядра — подтверждена, замыкается точно
+
+Это `coherent_control`, `kernelpi = |⟨s|G|s⟩|² + |⟨a|G|s⟩|²`. В `results.json`: `0.5555555555555559`. Ваша 5/9 верна.
+
+Причина видна аналитически. `G = F − 2|L−1⟩⟨L−1|`, поэтому для **любой** моды цикла `⟨k|G|s⟩ = −(2/N)⟨k|L−1⟩`, а `|⟨k|site⟩|² = 1/N`. Значит:
+
+$$|\langle s|G|s\rangle|^2=\Big(1-\tfrac2N\Big)^2,\qquad |\langle k|G|s\rangle|^2=\frac{4}{N^2}\ \ (k\neq0),\qquad \langle \text{port}|G|s\rangle=0\ \text{точно}.$$
+
+| L | N | возврат в s | переход в a | сумма двух | дефицит `4(N−2)/N²` | пропущено мод |
+|---|---|---|---|---|---|---|
+| 3 | 2 | 0 | 1 | **1** | 0 | 0 |
+| 5 | 4 | 0.25 | 0.25 | 0.5 | 0.5 | 2 |
+| 7 | 6 | 4/9 | 1/9 | **5/9** | 4/9 | 4 |
+| 9 | 8 | 0.5625 | 0.0625 | 0.625 | 0.375 | 6 |
+| 15 | 14 | 0.734694 | 0.020408 | 0.755102 | 0.244898 | 12 |
+
+Полная сумма по всем L каналам = 1.000000000000 (проверено). **Это не потери и не отсутствующие физические каналы — это проекция считывания на 2 из N исходов.** Пропущенная weight разложена ровно по `N−2` оставшимся модам цикла, по `4/N²` каждая; порт не получает ничего. При L=3 (N=2) двух каналов хватает — поэтому дефект там невидим. Лечение — одна строка: третий исход `other` с весом `4(N−2)/N²`, либо явная пометка «коарс-грейнинг POVM». Никакой физики переделывать не нужно.
+
+### 1.2 «Константы вставлены» — в этом файле неверно
+
+`main()` вызывает `chemical_control(7,4,φ,0)` и пишет `P_bound_after_one_unit`. Это **выход**, не вход. Воспроизвёл:
+
+- φ=0: `0.3160602794142788`, и это точно $\tfrac12(1-e^{-1})$ (все hazard = 0.5, агрегация в двухсостоянийную цепь);
+- φ=π: `0.2712383303451682`, замкнутой формы нет из-за перемешивания мод; `eq_bound = Z_π/(Z_0+Z_π) = 0.492428803564`.
+
+Определение: $P_{\rm bound}(t)=\sum_i p_i\,[e^{Q^\dagger t}\mathbf 1_D]_i$, приор ½ на порт и ½ на равномерную моду, оба несвязанные; скорости = квадрат перекрытия × логистический тепловой фактор, ν=1, t=1. **Это безразмерная заселённость одной пары, не сечение и не Y_D.** Вот это и есть настоящий дефект — не «константы», а отсутствие калибровки ν и t по $\Gamma_{np\leftrightarrow D\gamma}$.
+
+Две полезные поправки к вашему разбору:
+- правило `Σ_i hazard_i = L·expit(b)` — **не теорема**, оно верно только при b=0 (спектральная симметрия E→−E). Проверил: при b=0.5, x=4 сумма 4.0539 против 4.3572.
+- эффект шва на $P_{\rm bound}$ в транзиенте **в 5.92 раза больше**, чем в равновесии (0.044822 против 0.007571). Максимум наблюдаемой — не равновесие, а окно релаксации. Это единственный бесплатный усилитель в модели.
+
+### 1.3 Бессель — подтверждена, количественно
+
+x=4, N=6: первая поправка $(x/2)^2/(N+1)=4/7=57.1\%$; exact/leading = **1.7377**. Ведущий член даёт dF = 1.7317 кэВ вместо 3.0287 кэВ — занижение **×1.75**.
+
+Тождество утечки точное (вывод через Якоби–Ангера: $\sum_k e^{im\theta_k}=N e^{im\phi/N}$ при $m\equiv0\bmod N$):
+
+$$Z_0-Z_\pi=4N\sum_{m\ \rm odd}I_{mN}(x).$$
+
+Проверено до 1e-12. Но одного члена достаточно **не всегда**: $I_{3N}/I_N$ = 2.4e-2 при N=2, 3.3e-10 при N=6, 1.4e-32 при N=14. То есть при L=3 нужен весь ряд, при L≥7 — один член, и **ни при каком L≥3 ведущая асимптотика не годится при x=4**.
+
+### 1.4 $m_q\lesssim H$ — критерий не просто условный, он перевёрнут
+
+Для δB_D ~ 1–7.7 кэВ при пике дейтерия нужен $m_\sigma$ = 0.15–0.40 эВ, то есть $m_\sigma/H\sim10^{17}$. И это **правильный** режим: чтобы посредник отслеживал $n_D(t)$, нужно $m_\sigma\gg H$ (тяжёлое поле сидит в мгновенном минимуме). $m\lesssim H$ — это замороженное/misalignment-поле, которое как раз **не отвечает** на источник. Критерий применён к противоположному классу динамики.
+
+Правильные безразмерные пары: $\Gamma_r/H$, $\Upsilon_\sigma/H$, $m_\sigma/H$ (только как классификатор режима), $\chi_\sigma n_b B_D''$, $B_D/T$, $x=2J/T$, $\chi=TR$.
+
+**И здесь же — no-go, которого нет ни в вашем разборе, ни в аудите.** Канонический 4D-скаляр из §5.2 KB,耦合 к нуклонам, исключён. Исключая $g_N$ из $\delta B_D=(B_D')^2n_D/m^2$ и $\alpha=g_N^2M_{\rm Pl}^2/4\pi m_N^2$, получаем инвариант, не зависящий от силы связи:
+
+$$\alpha\lambda^2=\frac{M_{\rm Pl}^2}{4\pi m_N^2}\Big(\frac{\hbar c}{\kappa\sqrt{n_D/\delta B_D}}\Big)^2\approx 4\cdot10^{26}\!-\!4\cdot10^{28}\ \text{м}^2,\quad \kappa=\partial B_D/\partial m_N.$$
+
+Экспериментальный потолок $\alpha\lambda^2$ по (α,λ)-диаграмме короткодействующих тестов гравитации — максимум ~1e12 м² на атомных масштабах и ~1e2 м² на 10 мкм [[23]]. **Разрыв 14–16 порядков.** Вывод: посредник не может быть вакуумным дальнодействующим скаляром. Он обязан быть **контактным, доменно-локальным** — то есть ровно тем, что уже реализовано в `contact.py` ($H_{\rm int}=-\lambda dC$). Каноническая редукция $\ddot\sigma+3H\dot\sigma+\dots$ из KB вносит проблему, которой у конечной модели нет. Рекомендация: выводить динамику σ как релаксационную кинетику коллективной координаты с подвижностью, а не как 4D-поле.
+
+### 1.5 BBN не считается — подтверждена
+
+Ни сети, ни n/p-кинетики, ни обратных скоростей. `binding_energy_budget` в коде — честный расчёт (1.344210687597124e-08), но с условными 8 МэВ/барион; новый аудит это уже исправил.
+
+---
+
+## 2. Главная поправка: no-go по J — артефакт
+
+Аудит froze x=4 и получил распад контакта с L. Но физическая траектория — не фиксированный x, а **фиксированный контраст**, где $x\simeq\kappa N^2$. Пересчитал `detector_contact` (C = проектор на сайты 0 и 1) вдоль изоконтрастной кривой, λ/T=0.1:
+
+| L | x* (eps=0.4) | J_req, МэВ | g_eff при x=4 | **g_eff при x=x*** | δB_D mixed, кэВ |
+|---|---|---|---|---|---|
+| 3 | 2.271 | 0.082 | −2.29e-2 | −1.64e-2 | −1.19 |
+| 7 | 17.178 | 0.623 | −1.13e-3 | **−2.74e-2** | −1.98 |
+| 15 | 91.812 | 3.329 | −1.58e-9 | **−3.05e-2** | −2.21 |
+| 31 | 420.2 | 15.24 | — | −3.17e-2 | −2.30 |
+| 61 | 1679.7 | 60.9 | — | −3.22e-2 | −2.34 |
+
+**Контакт не умирает с L — он насыщается.** $g_{\rm eff}/\varepsilon\to0.08$. Умирание при x=4 — это умирание контраста, а не контакта. Цена большого L переезжает из «сигнал» в «энергетический бюджет X».
+
+Отсюда — центральная формула, которая закрывает все три числа одним безразмерным отношением. Если потолок BBN накладывается на **диагональный** сдвиг $\delta B_D^{\rm diag}=\lambda\langle C\rangle$, то шов-специфическая часть ограничена так:
+
+$$\boxed{\ |\delta B_D^{\rm mixed}|_{\max}=W\cdot\frac{\Delta\langle C\rangle}{\langle C\rangle}\ }$$
+
+где W — окно BBN. Это **не зависит от filling factor** $f_X$ (сигнал и граница масштабируются одинаково) и не зависит от λ. Отношение $\Delta\langle C\rangle/\langle C\rangle$ = 0.023 при L=7,x=4 и **0.32–0.39 вдоль изоконтрастной кривой**.
+
+---
+
+## 3. Три физических числа — закрыты
+
+**(а) S_inst ≈ 50.** Правильная пара — $\Gamma_r/H$, $\Gamma_r=(J/\hbar)e^{-S}$. Потолок $S_{\max}=\ln(\omega_0/H)$ = 52.5–54.5 при 72.5 кэВ. При S=50 шов **активен**: $\Gamma_r/H$ = 12 (L=3) … 92 (L=7). И главное — температура включения $\Gamma_r=H$:
+
+$$T_{\rm act}(S{=}50)=0.25\ \text{МэВ}\ (J{=}0.082)\ \dots\ 0.52\ \text{МэВ}\ (J{=}0.623).$$
+
+Это **между замерзанием слабых реакций (~0.75 МэВ) и дейтериевым бутылочным горлом (~0.08 МэВ)**. Шов не меняет n/p, но меняет окно горла. Практическое следствие: 17 сохранённых парных прогонов PRIMAT/LINX уже покрывают оба окна (0.2–2 и 0.02–0.2 МэВ) — их можно использовать как базис линейного отклика, свёрнув с профилем включения. Новая большая сетка не нужна.
+
+Здесь же вырождение с CCC+TL: множитель часов $f_X/f_{\rm SM}$ входит как $e^{\Delta S}$, то есть **неотличим от сдвига инстантонного действия** по одному $\Gamma_r/H$. Различает их только T-зависимость: $S=c\,x/2\propto1/T$ против постоянного f. Если S масштабируется с J, то контраст и активность конфликтуют: $N_{\max}=\sqrt{2S_{\max}/c\kappa}$ = 7.6 при c=4, eps=0.4 → L≤7.
+
+**(б) Щелевая иерархия против ΔN_eff.** Скрин подтверждается арифметически, но его вердикт целиком управляется онтологией. При $m_X=2J$, сохранении числа и $g_X=L$: $L_{\max}$ = 3.6–6.8 (eps 40%→1%, g_dec 28→202). При $g_X=126$ — пусто всегда.
+
+Но **$g_X=L$ несогласовано с тем x, которого требует видимость.** При L=7, x=17.18 заселённости мод цикла: 0.99963 на нижней и 1.86e-4 на остальных; щель первого возбуждения $x(1-\cos2\pi/N)=8.59\,T$ = 623 кэВ. Иерархия: шов 37 кэВ ≪ щель цикла 623 кэВ ≪ край зоны 1246 кэВ. Термически активна **одна** мода, не семь. Значит скрин в.hot-relic-варианте — это верхняя пессимистичная оценка, а не предел; корректный предел требует $n_{\rm dom}$ и filling factor, то есть Gate про физический смысл R.
+
+**(в) δB_D через горло.** Окно из вашего разбора: (+7.702, −32.090) кэВ. Оно асимметрично, и это решает всё: λ>0 (связь сильнее) упирается в узкий +7.7, λ<0 — в широкий −32. Историческая偏好 отрицательного сдвига та же по знаку: δQ/Q = −0.019±0.005 [[10]]; современная точность D/H сжимает окно, а вариация m_q даёт δm_q/m_q = 0.016±0.005 [[14]]. Провенанс окна (−2.5e-3, +6e-4) надо задокументировать — на нём держится весь скрин.
+
+Живые точки (T=72.5131 кэВ, потолок наложен на диагональ):
+
+| L | eps | x | J, МэВ | (λ/T)max | mixed, кэВ | Γ_r/H(S=50) | T_act, МэВ |
+|---|---|---|---|---|---|---|---|
+| 3 | 0.40 | 2.27 | 0.082 | +0.116 / −0.486 | −1.37 / **+6.13** | 12 | 0.25 |
+| 5 | 0.40 | 7.85 | 0.285 | +0.121 / −0.509 | −2.15 / **+9.77** | 42 | 0.47 |
+| 7 | 0.40 | 17.18 | 0.623 | +0.123 / −0.517 | −2.43 / **+11.08** | 92 | 0.52 |
+
+11.08 кэВ — это **28% всей ширины разрешённого окна δB_D** (39.8 кэВ), и δln K_eq = 0.153 в равновесном множителе np↔D. При λ>0 — 6% окна. Это не мёртвая структура.
+
+---
+
+## 4. Ответ: угол непустой
+
+Он находится при **eps ≈ 0.4 (x ≈ 0.47 N²), λ < 0, g_X = 1, g_dec ≈ 202, S_inst ≈ 50**. L=3 открыт робастно; L=5 — при g_dec ≥ 106.75; L=7 при eps=0.4 — только с g_X=1 и g_dec=202 (J_req 0.623 ≤ J_max 0.782). L≥9 при eps=0.4 закрыт в hot-relic-варианте.
+
+Мёртвое, честно:
+- прежнее g=ln2 — это не произвол, а **точный супремум** шовного смещения: порт шов-слеп и всегда даёт $e^x$, поэтому $Z_0\to2e^x$, $Z_\pi\to e^x$, bias → ln2. Природа потолка — **энтропийная** (двукратное вырождение), поэтому δF = T ln2 = 55.45 кэВ при 80 кэВ, что превышает окно **в 7.20 раза**. Реализовано при L=7,x=4 лишь 4.37% потолка;
+- неустранимая двустрелочная часть: 0.002100 при g=ln2 (5.1% эффекта), и **7.47e-9** при физическом g_eff=1.28e-3. «Взаимность» как отдельный наблюдаемый эффект — на уровне 1e-8;
+- обратная связь через след: Θ_nuc/Θ_b = 1.86e-3 постоянно. Ядерный источник — это 0.2% модуляция на гладком барионном фоне в 500 раз больше. Портал обязан быть **binding-selective**, иначе петля утоплена;
+- если шов заморожен (S > S_max), он становится фиксированным начальным условием. Тогда единственный след — не средний сдвиг, а **разброс D/H между линиями зрения**. Это отдельный, дешёвый наблюдательный тест, который стоит поставить.
+
+---
+
+## 5. Что считать следующим (в этом порядке)
+
+1. **`contact.py` вдоль x = κN², оба знака λ, с потолком на диагональ.** Уже сделано выше — оформить как `results/isocontrast_contact.json`. Критерий: $\Delta\langle C\rangle/\langle C\rangle$ и $|\delta B_D^{\rm mixed}|_{\max}$.
+2. **Калибровка ν и t** по $\Gamma_{np\leftrightarrow D\gamma}$ — иначе весь кинетический контроль остаётся безразмерным, а транзиентный усилитель ×5.92 не привязан к эпохе.
+3. **Онтологический Gate X:** $g_X$, $m_X$, тепловая история, $n_{\rm dom}$, $f_X$. Без него вердикт L1 условен, а не окончателен. Проверить, что $-2J$ основного состояния не входит в $\rho_X$.
+4. **Отказаться от канонического 4D σ** в пользу контактного/релаксационного посредника — иначе no-go по $\alpha\lambda^2$ убивает канал 2 независимо от BBN.
+5. Только потом — 4 парных прогона, но **свёрткой профиля включения шва с уже сохранёнными функциями отклика**, а не новой сеткой.
+
+Одной фразой: структура не космологически мертва — она была объявлена мёртвой из-за фиксации x=4 и перевёрнутого критерия m≲H. Живой угол — изоконтрастная траектория с отрицательным λ, и его размер задаётся одним числом, $\Delta\langle C\rangle/\langle C\rangle\approx0.32$, которое даёт до 28% разрешённого окна δB_D.
