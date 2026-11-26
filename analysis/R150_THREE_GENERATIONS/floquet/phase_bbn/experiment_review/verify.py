@@ -4,6 +4,7 @@ import csv
 import hashlib
 import io
 import json
+import sys
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -18,6 +19,8 @@ def read(path):
 
 
 def verify_summary(path, reference):
+    if path.read_bytes() != reference.read_bytes():
+        raise ValueError('Summary is not identical. Use --mode physical for a cross-environment repeat.')
     run = read(path)
     saved = read(reference)
     assert run['rtol'] == saved['rtol'] and run['outputs'] == saved['outputs']
@@ -40,15 +43,15 @@ def verify_summary(path, reference):
             a,b,c,d = [vector(label, arm) for label in labels]
             return a-b-c+d
         np.testing.assert_allclose(contrast('pulse')-contrast('off'),run[key],rtol=0,atol=2e-14)
-        # Different BLAS/ODE versions can shift the smallest graph residual.
-        np.testing.assert_allclose(run[key],saved[key],rtol=.005,atol=8e-8)
+        np.testing.assert_array_equal(run[key],saved[key])
     return run
 
 
 def check_package():
-    for line in (ROOT/'SHA256SUMS').read_text().splitlines():
-        expected, filename = line.split('  ',1)
-        assert hashlib.sha256((ROOT/filename).read_bytes()).hexdigest() == expected, filename
+    for directory in (ROOT, ROOT/'followup'):
+        for line in (directory/'SHA256SUMS').read_text().splitlines():
+            expected, filename = line.split('  ',1)
+            assert hashlib.sha256((directory/filename).read_bytes()).hexdigest() == expected, filename
     fine = read(DATA/'e6_fine.json')
     with ZipFile(DATA/'e6_trajectories.zip') as archive:
         assert archive.testzip() is None
@@ -80,6 +83,10 @@ def check_package():
 
 
 if __name__ == '__main__':
+    if '--mode' in sys.argv:
+        from followup.review_verify import main
+        main()
+        sys.exit(0)
     parser = argparse.ArgumentParser()
     parser.add_argument('--base',type=Path,default=DATA/'e6_base.json')
     parser.add_argument('--fine',type=Path,default=DATA/'e6_fine.json')
