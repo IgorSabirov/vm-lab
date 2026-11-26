@@ -25,3 +25,7 @@ No new R identifier or scientific-acceptance status is created by this child rep
 
 
 The full-contact audit ports the matrix construction from network_bench/graph.py. Its NumPy implementation and numerical receipt are full_contact_audit.py and FULL_CONTACT_CHECKS.json; it is a finite-matrix audit, not a BBN rerun.
+
+## Продолжение: поверхность контакта (26.11.2026)
+
+Основание: 23c94f1473174500179c2fa454d773e2bf7686da и штатная функция contacts в [graph.py](../R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py). Входные разборы из исследовательского сеанса: «Аудит связки R130–R132–R135–R150» (20261126-131741) и вычислительный журнал (20261126-131756); результаты сверены с опубликованным FULL_CONTACT_CHECKS.json. Оригинальный автономный Python и JSON перенесены без изменения, полный повтор побайтно совпал. [Отчёт](CONTACT_SURFACE.md), [квитанция и хеши](CONTACT_SURFACE_REPLAY.json). Математические доноры: rank-one perturbation, Chebyshev determinant, theta sums/Poisson, Bessel winding expansion. Никаких новых измерений X или ядерных обилий. Полный checkout и нативные BBN-сети не запускались.
