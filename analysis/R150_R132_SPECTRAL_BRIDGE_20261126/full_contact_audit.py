@@ -94,8 +94,25 @@ def run():
     J_E2=.1185
     J_L7=target_x(7,.4)*TREF/2.0
     v_E2=lam/J_E2
-    peak_rows=[peak(N,v) for v in (0.0,v_E2,-v_E2)
-               for N in (2,6,14,30,60)]
+    def compact_peak(N,v):
+        row=peak(N,v)
+        out={k:row[k] for k in ("N","lambda_over_J","sup_DF_over_J","supremum_location")}
+        if row["supremum_location"]=="T_to_0_limit":
+            out["zero_T_gap_over_J"]=row["zero_T_top_gap_over_J"]
+        else:
+            out["T_peak_over_J"]=row["finite_search_argmax_T_over_J"]
+        return out
+    peak_rows=[
+        compact_peak(6,0.0),
+        compact_peak(6,v_E2),
+        compact_peak(6,-v_E2),
+        compact_peak(14,v_E2),
+        compact_peak(30,v_E2),
+        compact_peak(60,v_E2),
+        compact_peak(14,-v_E2),
+        compact_peak(30,-v_E2),
+        compact_peak(60,-v_E2),
+    ]
     gap_rows=[]
     for N in (14,30,60,100,200,500,1000,2000,5000):
         k=periodic_cycle_root(N,v_E2)
