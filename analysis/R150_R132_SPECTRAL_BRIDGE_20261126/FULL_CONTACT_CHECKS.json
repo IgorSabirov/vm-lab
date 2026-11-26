@@ -1,0 +1,153 @@
+{
+  "schema": "r150-full-contact-audit-v1",
+  "status": "FINITE_MATRIX_AUDIT_REPRODUCED; LARGE_N_SCALING_IS_NUMERICAL_WITH_ASYMPTOTIC_DERIVATION",
+  "source_definition": {
+    "source": "analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py",
+    "step": "signed permutation on cycle [0,2,...,L-1] plus fixed state 1",
+    "C": "diag(1,1,0,...,0), one contact on fixed state and one on cycle vertex 0",
+    "matrix": "A_phi = step_phi + step_phi.T + (lambda/J) C",
+    "partition": "Z_phi = Tr exp(A_phi/(T/J)); common normalization cancels in ratios"
+  },
+  "bench_parameters": {
+    "TREF_MeV": 0.07251310823341744,
+    "lambda_default_MeV": -0.007251310823341745,
+    "J_E2_MeV": 0.1185,
+    "lambda_over_J_E2": -0.0611924963995084,
+    "J_L7_isocontrast_target_0p4_MeV": 0.6228296514114963,
+    "lambda_over_J_L7_isocontrast": -0.011642526663443788
+  },
+  "L7_contact_at_80keV": {
+    "E2_J": {
+      "pure_hopping_contrast": 0.00997750859473967,
+      "full_contact_contrast": 0.010277549860048252
+    },
+    "L7_isocontrast_J": {
+      "pure_hopping_contrast": 0.376086761568992,
+      "full_contact_contrast": 0.39028347845779765
+    }
+  },
+  "L7_contact_at_TREF": {
+    "L7_isocontrast_J": {
+      "pure_hopping_contrast": 0.4,
+      "full_contact_contrast": 0.4166621355941875
+    }
+  },
+  "peak_table": [
+    {
+      "N": 6,
+      "lambda_over_J": 0,
+      "sup_DF_over_J": 0.06096244838435862,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.14118446308990787
+    },
+    {
+      "N": 6,
+      "lambda_over_J": -0.0611924963995084,
+      "sup_DF_over_J": 0.07773112537006238,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.10857591750099051
+    },
+    {
+      "N": 6,
+      "lambda_over_J": 0.0611924963995084,
+      "sup_DF_over_J": 0.049241169752077506,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.167139679142514
+    },
+    {
+      "N": 14,
+      "lambda_over_J": -0.0611924963995084,
+      "sup_DF_over_J": 0.04606702379666426,
+      "supremum_location": "T_to_0_limit",
+      "zero_T_gap_over_J": 0.04606702379666405
+    },
+    {
+      "N": 30,
+      "lambda_over_J": -0.0611924963995084,
+      "sup_DF_over_J": 0.009193339979778115,
+      "supremum_location": "T_to_0_limit",
+      "zero_T_gap_over_J": 0.009193339979778115
+    },
+    {
+      "N": 60,
+      "lambda_over_J": -0.0611924963995084,
+      "sup_DF_over_J": 0.0019689410991061695,
+      "supremum_location": "T_to_0_limit",
+      "zero_T_gap_over_J": 0.0019689410991061695
+    },
+    {
+      "N": 14,
+      "lambda_over_J": 0.0611924963995084,
+      "sup_DF_over_J": 0.003820463592477914,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.04780208603841662
+    },
+    {
+      "N": 30,
+      "lambda_over_J": 0.0611924963995084,
+      "sup_DF_over_J": 0.00005297917486326397,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.019490225622252902
+    },
+    {
+      "N": 60,
+      "lambda_over_J": 0.0611924963995084,
+      "sup_DF_over_J": 2.2709872248673486e-8,
+      "supremum_location": "finite_T",
+      "T_peak_over_J": 0.009104920346502584
+    }
+  ],
+  "negative_contact_cycle_gap_asymptotic": [
+    {
+      "N": 14,
+      "N3_top_gap_over_J": 126.4079132980486
+    },
+    {
+      "N": 30,
+      "N3_top_gap_over_J": 248.2201794540331
+    },
+    {
+      "N": 60,
+      "N3_top_gap_over_J": 425.2912774067408
+    },
+    {
+      "N": 100,
+      "N3_top_gap_over_J": 591.3373323971349
+    },
+    {
+      "N": 200,
+      "N3_top_gap_over_J": 826.3242654180658
+    },
+    {
+      "N": 500,
+      "N3_top_gap_over_J": 1065.475236289304
+    },
+    {
+      "N": 1000,
+      "N3_top_gap_over_J": 1170.686976470492
+    },
+    {
+      "N": 2000,
+      "N3_top_gap_over_J": 1228.7281467848743
+    },
+    {
+      "N": 5000,
+      "N3_top_gap_over_J": 1265.2633107901324
+    }
+  ],
+  "asymptotic_candidate": {
+    "formula": "N^3 (E_top,periodic - E_top,antiperiodic)/J -> 8*pi^2/abs(lambda/J)",
+    "predicted_limit": 1290.3025673806173,
+    "status": "DERIVED_FROM_SMALL_k_EXPANSION_OF_TRANSFER_MATRIX_QUANTIZATION; numerical convergence is slow"
+  },
+  "checks": {
+    "matrix_hermiticity_residual": 0,
+    "lambda_zero_matches_pure_hopping_N6_80keV": 5.551115123125783e-16,
+    "transfer_root_matches_dense_top_gap_N60": 8.881784197001252e-16
+  },
+  "provenance": {
+    "upstream_graph_py_blob": "579e7ff62318f0e40c0ac707b6790bb7f0208bd6",
+    "method": "NumPy finite-matrix implementation executed in the review session; the checked-in script reproduces the same matrix and optimization calculations. This is not a run of the BBN integrator.",
+    "scope": "Layer-B graph matrix only; no PRIMAT/LINX execution, no physical calibration of lambda."
+  }
+}

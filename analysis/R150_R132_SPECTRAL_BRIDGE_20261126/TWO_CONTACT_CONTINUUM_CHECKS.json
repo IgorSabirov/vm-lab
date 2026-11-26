@@ -1,0 +1,81 @@
+{
+  "schema": "r132-r133-r150-two-contact-continuum-receipt-v1",
+  "status": "ANALYTICAL_LIMIT_DERIVED; FINITE_N_HEAT_TRACE_CONVERGENCE_NUMERICALLY_CHECKED; PHYSICAL_EMBEDDING_CONDITIONAL",
+  "source_graph": "analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py",
+  "source_blob": "579e7ff62318f0e40c0ac707b6790bb7f0208bd6",
+  "operator": {
+    "finite": "A_phi,N=(2+u_p/N^2) direct_sum (S_phi,N+S_phi,N^dagger+(g_c/N)P0)",
+    "relative": "K_phi,N=(-u_p) direct_sum [N^2(2I-S-S^dagger)-g_c*N*P0]",
+    "continuum_cycle": "-d^2/dx^2-g_c*delta_0 on a unit circle with twist phi",
+    "secular": "cos(phi)=cos(q)-(g_c/(2q))*sin(q)",
+    "bound": "cos(phi)=cosh(kappa)-(g_c/(2kappa))*sinh(kappa), E=-kappa^2",
+    "Xi": "exp(u_p/y)+sum_E exp(-E/y)",
+    "Phi_iso": "y*ln(Xi_0/Xi_pi)"
+  },
+  "bound_state_rules": {
+    "periodic": "one bound state iff g_c>0; g_c=2*kappa*tanh(kappa/2)",
+    "antiperiodic": "one bound state iff g_c>4; g_c=2*kappa*coth(kappa/2)",
+    "antiperiodic_threshold": "g_c=4",
+    "repulsive": "g_c<0: no bound states"
+  },
+  "isolated_convergence_u1_g2_y3": [
+    {"N": 32, "Phi_N": 2.445068870371549, "abs_error": 0.0012612763315287268},
+    {"N": 64, "Phi_N": 2.4460148346797896, "abs_error": 0.0003153120232881612},
+    {"N": 128, "Phi_N": 2.446251319155113, "abs_error": 0.00007882754796462166},
+    {"N": 256, "Phi_N": 2.4463104398003495, "abs_error": 0.000019706902728344744}
+  ],
+  "isolated_limit_u1_g2_y3": 2.446330146703078,
+  "bound_case_u5_g5_y3": {
+    "Phi_limit": 2.585608751542503,
+    "N256": 2.585534230139256,
+    "abs_error": 0.00007452140324692991
+  },
+  "full_carrier_u1_g2_y3": {
+    "Phi_all": 1.3328215469677185,
+    "N2_M_all_over_J": [1.3038635194327792, 1.3185668847732073, 1.3257508301933356, 1.3293004076710844],
+    "Psi_one": 1.0761306593376205,
+    "N3_M_one_over_J": [1.0978356468838797, 1.0869745911187465, 1.0815503415661851, 1.0788399126815875],
+    "N": [32, 64, 128, 256]
+  },
+  "full_carrier_bound_case_u5_g5_y3": {
+    "Phi_all": 2.22475055191433,
+    "Psi_one": 1.5709230142444177,
+    "N256_all": 2.222867102114961,
+    "N256_one": 1.5778021297442137
+  },
+  "thermodynamic_witness_u1_g2_y3": {
+    "Phi": 2.446330146703078,
+    "dPhi_dy": 0.22884178301652014,
+    "DeltaS_over_kB": -0.22884178301652014,
+    "DeltaU_over_Estar": 1.7598047976535174,
+    "dPhi_dup": -0.487460547025087,
+    "dPhi_dg": 0.6128210476452622,
+    "finite_difference_step": 0.0001
+  },
+  "checks": {
+    "continuum_secular_max_abs_residual": 7.993605777301127e-15,
+    "finite_operator_hermitian": true,
+    "port_eigenvalue": "-u_p",
+    "selected_refinement_errors_decrease_monotonically": true,
+    "antiperiodic_bound_threshold": 4.0
+  },
+  "physical_scaling": {
+    "ell_X": "N*a_N",
+    "J_N": "N^2*E_star",
+    "E_star": "hbar^2/(2*m_X*ell_X^2)",
+    "lambda_p": "u_p*E_star",
+    "lambda_c": "g_c*E_star*N",
+    "Gamma": "lambda_c*a_N=g_c*E_star*ell_X",
+    "absolute_band_edge": "-2*J_N diverges unless subtracted/anchored"
+  },
+  "limits": {
+    "no_BBN": true,
+    "no_PRIMAT": true,
+    "no_LINX": true,
+    "no_abundance_fit": true,
+    "no_physical_mass_or_length_calibration": true,
+    "no_first_order_Dirac_contact_proof": true,
+    "no_R133_path_intertwining_closure": true
+  },
+  "tested_N": [8, 16, 32, 64, 128, 256]
+}

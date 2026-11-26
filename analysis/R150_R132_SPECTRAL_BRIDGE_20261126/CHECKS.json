@@ -1,0 +1,133 @@
+{
+  "schema": "r150-r132-spectral-bridge-checks-v1",
+  "status": "PASS_NUMERICAL_REIMPLEMENTATION_OF_STATED_FORMULAS_ONLY",
+  "provenance": {
+    "branch": "research/r150-r132-spectral-bridge-20261126",
+    "base_commit": "b17c871ce37697c8beb36bf295797b5161ab11d2",
+    "reviewed_commit": "f33df29adfd254482cf7614f25d3b994632d3053",
+    "method": "Independent compact Python reimplementation in the review session; not a runtime execution of repository verify.py and not a rerun of R150 production, PRIMAT or LINX."
+  },
+  "operator": {
+    "canonical_permutation_sizes_checked": 29,
+    "L_range": [
+      3,
+      31
+    ],
+    "max_unitarity_residual": 0,
+    "max_dagger_d_identity_residual": 0,
+    "max_hop_shift_residual": 0,
+    "scope_limit": "Tests the canonical fixed-point-plus-cycle representative, not the full source-state bit engine or seam term -lambda dC.",
+    "source_rule_cycle_decomposition": {
+      "rule": "F=(t -> t+1 mod L) composed with transposition (0 1), transposition applied first",
+      "L_range": [
+        3,
+        31
+      ],
+      "cases": 29,
+      "fixed_vertex": 1,
+      "cycle_order_formula": "(0,2,3,...,L-1)",
+      "cycle_length": "L-1",
+      "max_permutation_mismatch_after_basis_reordering": 0,
+      "note": "Explicitly enumerated from R150 floquet/CORE.md; matrix identity residuals use the conjugate canonical basis."
+    }
+  },
+  "finite_cycle_scaling": [
+    {
+      "N": 2,
+      "N2_Tmax_over_J": 4.695546270591514,
+      "N2_DFmax_over_J": 1.8742294203242802
+    },
+    {
+      "N": 6,
+      "N2_Tmax_over_J": 5.082640770574759,
+      "N2_DFmax_over_J": 2.1946481418369177
+    },
+    {
+      "N": 14,
+      "N2_Tmax_over_J": 5.161187390755625,
+      "N2_DFmax_over_J": 2.234628118404434
+    },
+    {
+      "N": 60,
+      "N2_Tmax_over_J": 5.178736516225388,
+      "N2_DFmax_over_J": 2.243274994858064
+    },
+    {
+      "N": 240,
+      "N2_Tmax_over_J": 5.179691473310701,
+      "N2_DFmax_over_J": 2.243743090855982
+    },
+    {
+      "N": 1920,
+      "N2_Tmax_over_J": 5.179754234335235,
+      "N2_DFmax_over_J": 2.2437738143804933
+    }
+  ],
+  "asymptotic_coefficients": {
+    "isolated": {
+      "y_at_max": 5.179755166650221,
+      "coefficient": 2.243774302060755
+    },
+    "all_active": {
+      "y_at_max": 5.614569408458491,
+      "coefficient": 1.0058352789343585
+    },
+    "one_active": {
+      "y_at_max": 5.9476039788328325,
+      "coefficient": 0.9232208939700054
+    }
+  },
+  "L7_full_carrier": [
+    {
+      "preparation": "isolated",
+      "Tmax_over_J": 0.1411844663221532,
+      "DFmax_over_J": 0.06096244838435887
+    },
+    {
+      "preparation": "all_active",
+      "Tmax_over_J": 0.15124597221361827,
+      "DFmax_over_J": 0.02331194454838285
+    },
+    {
+      "preparation": "one_active",
+      "Tmax_over_J": 0.15739589662690365,
+      "DFmax_over_J": 0.004389184597423688
+    }
+  ],
+  "dimensional_example": {
+    "M_MeV": 0.01585,
+    "ell_fm": 19950,
+    "epsilon_MeV": 0.009891076711779448,
+    "J_MeV": 0.003086227082596396,
+    "Tref_MeV": 0.08
+  },
+  "relativistic_contrast_at_80keV": {
+    "6": 0.000003409199739623503,
+    "8": 1.2019292461307174e-7
+  },
+  "one_percent_inverse_calibration": {
+    "6": {
+      "epsilon_MeV": 0.04814373224596455,
+      "J_MeV": 0.0731173171788999,
+      "ell_fm": 4098.705505253804,
+      "contrast": 0.010000000000000009
+    },
+    "8": {
+      "epsilon_MeV": 0.06595253162782216,
+      "J_MeV": 0.1372156601930247,
+      "ell_fm": 2991.9546002197335,
+      "contrast": 0.010000000000000009
+    }
+  },
+  "ultra_relativistic_limit_fixed_epsilon_over_T": {
+    "6": 0.00528048954576632,
+    "8": 0.0030935819585217184
+  },
+  "E2_quadratic_crosscheck": {
+    "fourJ_MeV": 0.474,
+    "J_MeV": 0.1185,
+    "N6_quadratic_contrast_at_80keV": 0.00997750859473967,
+    "same_M_relativistic_epsilon_MeV": 0.061289884972970866,
+    "N6_relativistic_contrast_at_80keV": 0.019793617560854848
+  }
+}

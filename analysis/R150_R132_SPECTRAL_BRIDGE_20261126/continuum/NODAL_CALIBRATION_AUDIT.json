@@ -1,0 +1,49 @@
+{
+  "schema": "independent-nodal-audit-v1",
+  "date": "2026-11-26",
+  "base": "a49619be14a9a83460c2f113c2b6b9387d10fa7f",
+  "provenance": "Local NumPy/SciPy calculation OPENBLAS_NUM_THREADS=1; script packages calculation with explicit asserts; rounding may vary. Review thermodynamic and noise results not newly rerun.",
+  "N": [
+    16,
+    32,
+    64,
+    128
+  ],
+  "contact_seed": 7,
+  "contact_sets": 24,
+  "nodal_levels": 48,
+  "max_abs_eigenvalue_deviation": 1.9671375639518374e-11,
+  "max_normalized_vector_residual": 1.3124740650837955e-11,
+  "finite_N": [
+    {
+      "N": 32,
+      "bias_pct": -0.8008458823709375,
+      "sigma_Estar": 0.0000018055823325466302,
+      "sigma_Eref": 0.00011329261027195134,
+      "cov": -1.598242851530177e-10
+    },
+    {
+      "N": 128,
+      "bias_pct": -0.050190232056823714,
+      "sigma_Estar": 0.0000017920218206939287,
+      "sigma_Eref": 0.00011319855276203135,
+      "cov": -1.5840816429093509e-10
+    },
+    {
+      "N": 256,
+      "bias_pct": -0.01254927769228642,
+      "sigma_Estar": 0.000001791347201918415,
+      "sigma_Eref": 0.00011319387348759469,
+      "cov": -1.5833779623888944e-10
+    }
+  ],
+  "physical_noise_MeV": 0.0001,
+  "gap_slope": 2.373732131931855,
+  "neutron_1fm_Estar_MeV": 20.72124855009137,
+  "electron_1um_Estar_neV": 38.0998211383624,
+  "electron_1um_gap_neV": 3008.241299103191,
+  "electron_1um_gap_GHz": 0.7273895100451976,
+  "cov_continuum": -1.5831434944115278e-10,
+  "scientific_acceptance": false,
+  "new_BBN_runs": 0
+}
