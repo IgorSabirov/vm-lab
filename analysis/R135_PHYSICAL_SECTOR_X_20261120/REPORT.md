@@ -197,3 +197,7 @@ E*=.02 МэВ и E_ref=.137 МэВ — синтетика. Спектральн�
 ## Генеалогия размерной точки X (27.11.2026)
 
 Исторический след 3.41e−6 — прямой условный Rel-выход f33df29. Логарифмическая точка M,ell воспроизводит исходный N=8 максимум, но физическая независимость и критерий выбора OPEN. Никакой новой BBN/EOS-калибровки. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+09-LAB ≠ 09-X. Legacy 3.41e−6 conditional iso output, not target. X carrier/operator/scale, statistics, portal/UV and energy budget OPEN. 0.96% local equal independent fractional error budget for 10% C only at assigned X point; BBN not calibration. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).

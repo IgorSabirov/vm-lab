@@ -132,3 +132,7 @@ Bojowald–Das–Scherrer задали эффективное G(a) и рассч
 ## Генеалогия размерной точки X (27.11.2026)
 
 Первичный температурный максимум N=8, поздняя Rel-проверка N=6, физическая длина и сеточное уточнение — разные события. Восстановленная точная и округлённая пары различены; границы континуальной теоремы неизменны. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+N physical vs regulator, fixed C, AP wrap, conditional N6/continuum ratio 7.54, nonmonotone. Richardson only controlled asymptotic range. TI Berry π candidate, separate radii/domain; lifted resolvent theorem unchanged. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).

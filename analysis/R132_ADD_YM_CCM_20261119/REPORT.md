@@ -172,3 +172,7 @@ H+2JI=Jd_F†d_F−λdC. Квадрат Дирака задаёт hopping, но 
 ## Генеалогия размерной точки X (27.11.2026)
 
 N=8 размерный пример и Tmax/ΔFmax восстановлены из архива; M=10^(-1.8) MeV, ell=10^(4.3) fm — воспроизводимый кандидат генератора. Критерий выбора и первичный скан OPEN; NR peak задаёт лишь M ell². [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+Контактный MODEL-LOCK: разделённая разность f[ki,kj]=2M/(sqrt(M²+2Mki)+sqrt(M²+2Mkj)) для первой вариации H2; f' только diagonal/degenerate limit. Mode-resolved Δ_ac, domain, independent V,M and K/D/F branch, no physical PASS. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).

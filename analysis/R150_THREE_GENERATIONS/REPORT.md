@@ -155,3 +155,7 @@ SCALE-05/06/11: аналитический бюджет активных уро�
 ## Генеалогия размерной точки X (27.11.2026)
 
 Исходные N=8/L=9, Tmax=.24704 keV, ΔFmax=.10684 keV и J=.0030856 MeV восстановлены. Логарифмическая точка reproduces; источник скана/selection OPEN. Поздний малый контраст N=6 не независимое предсказание; физические статусы F/поколений неизменны. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+Six MODEL-LOCK decisions; family L=N+1 has N−1 identical active layers, C_all=(N−1)C_one exactly. LAB calibration/holdout and independent X pathway separated. Optical J_width correction and thermal free/iso values in review. No promotion of F, index, generations, physical gates or scientific acceptance. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).

@@ -119,3 +119,7 @@
 ## Генеалогия размерной точки X (27.11.2026)
 
 Историческое происхождение условного Rel-контраста прослежено до f33df29; первичный размерный пример N=8 и вероятная log-grid точка восстановлены из архива и арифметики. Независимость M,ell и выбор точки OPEN. Это не отменяет аналитический результат о первом различающем моменте f(K), доказательство не зависит от этой калибровки. HTML не изменять. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+Fixed finite N free/iso NR T^-N vs Rel T^-1; port-on requires new moment audit. With isolated common reference p_port, C_iso=1−p_port(0)/p_port(π); normalized populations without shared energy reference insufficient. Flux/T and mode/probe holdout OPEN. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
