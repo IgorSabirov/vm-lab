@@ -397,6 +397,13 @@
           "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/dirac/su2_haar_peter_weyl_fusion/REPORT.md"
         ],
         "evidence_base": "c4c6400384fa69229bb2480316d0c1270634ade8"
+      },
+      "long_range_projection_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Winding and projection alter C, including sign and leading power; temporal generator and physical metric not inferred.",
+        "limit": "Physical geometry, clock, dimensionful mapping and X remain OPEN.",
+        "closure_not_claimed": true
       }
     },
     {
@@ -1073,6 +1080,13 @@
         "status": "OPEN",
         "report": "analysis/R149_DEFECT_ATLAS/REPORT.md",
         "contribution": "Две детерминированные длины и смена чётности дают различающие чтения. Для U010 нужны причинное использование следа и восстановление условий преемником."
+      },
+      "long_range_projection_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Effective long-range winding and port-reference signal do not establish transfer of actual resources, clock or means of next action.",
+        "limit": "No new U010 closure; physical operator, preparation and next action not established.",
+        "closure_not_claimed": true
       }
     },
     {
@@ -1789,5 +1803,35 @@
     "new_vm_jobs": 0,
     "physical_mechanism_selected": false,
     "execution_authorized": false
+  },
+  "long_range_projection_20261127": {
+    "date": "2026-11-27",
+    "status": "OPEN_PHYSICAL_MAPPING_AND_OBSERVABLE_PROJECTION",
+    "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+    "evidence_commit": "03207718f0de31ce5d36659332c5c75ae094574d",
+    "questions": [
+      "U006",
+      "U010"
+    ],
+    "open_links": [
+      "L09"
+    ],
+    "records": [
+      "R130",
+      "R132",
+      "R133",
+      "R135",
+      "R139",
+      "R142",
+      "R143",
+      "R149",
+      "R150"
+    ],
+    "known": "Finite hopping: winding distance bound p*≥ceil(N/R); exact Δ1 through odd winding harmonics. One-band NR may be negative while full scalar NR trace is nonnegative. T^-1 does not uniquely identify Rel.",
+    "unknown": "No derivation of X, physical clock, port equilibrium or full microscopic operator. Whether a candidate carrier realizes finite hopping or continuum projected band, independent signed J_r, operator and probe, spectral band/precision errors in C, and physical meaning of f(K) remain OPEN.",
+    "next_step": "09-LAB-LONG-RANGE-B: fix scope and independently calibrate J_r and covariance, measure mode-resolved spectra and port-off/on, direct contrast error bound before holdout, verify leakage/band completeness and scalar diamagnetic sign control; include NN/optical NR/f alternatives. 09-X separately.",
+    "closure": "No new closure condition for U006/U010; retain original criteria. LAB model/physical validation alone does not establish origin of physical geometry/time or reproduction of conditions.",
+    "scientific_acceptance": false,
+    "legacy_target": false
   }
 }
