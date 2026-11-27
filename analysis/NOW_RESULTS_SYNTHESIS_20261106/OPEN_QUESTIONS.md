@@ -477,3 +477,12 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 - [U010](#u010): опорный порт, winding и статистический след не доказывают физического воспроизводства следующего носителя и условий дальнейшего действия. OPEN.
 
 09-LAB-LONG-RANGE-A — MODEL_PASS_WITH_SCOPE; 09-LAB-LONG-RANGE-B — OPEN: граница усечения по непосредственной ошибке C, band/precision tail, подготовка равновесия и физическая калибровка. Все прежние критерии закрытия U/L сохранены. Независимый 09-X OPEN; 3.41e−6 не target. Научная приёмка не повышена.
+
+## 27 ноября 2026 — идентифицируемость оператора и физического вмешательства
+
+[Отчёт, данные, replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md). Exact f(K_NN)=positive long-range Fourier operator for all φ; даже полные свободные спектры и C(T) не устанавливают microscopic origin. Распределённый контакт f(K+hB), AP parity zero, weighted Wilson walks/cancellation и nonlocal continuum являются условными модельными результатами, а не физической идентификацией.
+
+- [U006](#u006), [L09](RESULTS_REGISTER.md#l09): physical kinetic zero, branch/domain, controlled H/rho/A/B_j, Wilson phases, physical geometry/clock/scale и X mechanism OPEN. Нужны независимые вмешательства, а не переименование спектра.
+- [U010](#u010): port response, trace moment and canonical Gibbs model do not establish physical reproduction of the next carrier and conditions of its action. OPEN.
+
+09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL: 7 work items, включая независимую калибровку B_j и coherent probe, rank/nullspace, physical thermal preparation, contrast precision и robust covariance/power. Если контролируемые семейства тождественны, корректный результат — класс эквивалентности; микроскопический вывод не разрешён. SCALE-09–12, 09-X, U/L unchanged. No scientific acceptance.

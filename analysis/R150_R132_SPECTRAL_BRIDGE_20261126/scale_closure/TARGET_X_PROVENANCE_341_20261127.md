@@ -43,3 +43,7 @@ Legacy conditional output — not a target. Сохранить verified lineage 
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 New operator-sensitivity negative control at fixed historical dimensionless parameters: NN NR +1.55027e−11, NN f +3.40920e−6, optical first-band NR −9.12684e−6, first-band f −4.24251e−6; multi-band f≈+1.27624e−7. Full NR numerically unresolved (analytic nonnegative scalar trace). This is a conditional comparison, not a reconstruction of the original choice of M,ell; their selection rule remains OPEN. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).
+
+## Операторная генеалогия и неидентифицируемость (27.11.2026)
+
+[Exact operator-equivalence audit](operator_identifiability_20261127/REPORT.md): f(K_NN) admits identical positive long-range Fourier representation at every phase. Therefore even exact reproduction of legacy number and full free spectrum cannot identify microscopic origin or justify the choice M,ell. Common kinetic zero before nonlinear f, port reference, branch, full controlled family and preparation are part of provenance. 3.41e−6 remains legacy conditional result, not target/prior/independent calibration; original M,ell selection OPEN. No BBN or PRIMAT/LINX derivation.
