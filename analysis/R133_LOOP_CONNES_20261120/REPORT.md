@@ -140,3 +140,9 @@ N physical vs regulator, fixed C, AP wrap, conditional N6/continuum ratio 7.54, 
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Winding range on universal cover differs from shortest graph distance; finite moment bound p*≥ceil(N/R), r=N full winding. Complete scalar Schrödinger heat kernel yields C≥0 under stated assumptions; projection may change sign. Infinite-dimensional continuum does not inherit finite-model T^-1 law; physical operator, domain and direct C convergence remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Фиксированный R в узлах ≠ фиксированный d=RC/N. Nonlocal continuum unit circle H=Pφ²+2g(1−cos(Pφ/2)): C_free~2g²/T²; g=1 T²C при T=500,1000,2000 =1.999987,1.999997,1.999999. AP twisted reflection защищает ноль p→антипод у NN/optical при finite h. Калибровочно-ковариантная проекция не обязана сохранять positivity.
+
+**Дополнение — ограничение идентифицируемости:** Локальный континуум, конечная модель и нелокальный континуум различны; p* alone не доказывает сходимость. Physical spinor/domain, embedding, observable convergence OPEN. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

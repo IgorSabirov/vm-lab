@@ -175,3 +175,9 @@ F=QI допускает точный спектральный логарифм �
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Signed spatial powers S^r on a twisted ring do not redefine temporal F. On the universal cover pR<N forbids nonzero odd winding; finite-N contrast moment order can drop from N to 1. Physical clock and causal transport remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Пространственный S и f(K_NN) имеют точное LR-представление для любого φ; статическая эквивалентность не идентифицирует физический F. Wilson-хорды N6 при фиксированных локальных потоках дают p*=6→5→4→3.
+
+**Дополнение — ограничение идентифицируемости:** Независимый физический такт, причинный транспорт и BBN-портал OPEN; пространственная голономия не часы. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

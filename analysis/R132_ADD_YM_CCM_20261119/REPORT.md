@@ -180,3 +180,9 @@ N=8 размерный пример и Tmax/ΔFmax восстановлены и
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Fourier-calibrated optical J1/E_R=1/π² at s=3.35203828, not bandwidth root 3.40181871. Signed J2/J1≈−.089567, J3/J1≈.013084, J6/J1≈−9.5944e−5. Fréchet matrix replay error 8.25e−6. At t=2 first-band NR contrast −4.133e−7 versus multi-band NR +1.030e−8. Direct observable error is required; spectrum/trace convergence alone insufficient. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Точное f(K_NN)=2Σ j̃_r[I−(Sφ^r+Sφ†r)/2], j̃_r>0 по Bernstein/Bessel; j̃2/j̃1=.0572500 против optical −.0895674. Комплексный seam исправлен: real-cast φ=1.2 даёт ||S†S−I||₂=.868697, complex R24 на 129 фазах max opnorm 2.985e−14. Df_K[B] на 7-state port+cycle распределён, NN φ=0 row (.870526,.056604,.007098,.002071,.007098,.056604); AP антиподальный ноль exact twisted parity у NN и optical R6 при допустимом h. Forward/central difference errors <7.60e−7/<1.32e−12. Schur strict h/J bound NN≈3.247; J_N scalar alias.
+
+**Дополнение — ограничение идентифицируемости:** Идентичные свободные H не различаются даже полным спектром, C(T), eigenvectors; произвольная эффективная controlled family тоже может совпасть. Физический ноль до f, strict radicand margin, независимо калиброванные B_j, H/rho/A/B_j и один restricted U, coherent rank/nullspace test OPEN. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

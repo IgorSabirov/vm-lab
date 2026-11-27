@@ -92,3 +92,9 @@ TI candidate native AP/D requires explicit spinor intertwiner, restricted U, dom
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Signed winding terms of a projected physical operator neither derive the ADD bit rule nor identify temporal F. Intertwiner and full physical operator/probe mapping remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Точное LR-представление f(K_NN) есть пространственное операторное тождество, не вывод именованного F. AP антиподальный ноль — общая симметрийная защита, не уникальный Dirac fingerprint. Controlled H/rho/A/B_j требуют общего restricted U.
+
+**Дополнение — ограничение идентифицируемости:** Физический spinor intertwiner, независимые interventions и coherent probes, named transport OPEN. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

@@ -205,3 +205,9 @@ E*=.02 МэВ и E_ref=.137 МэВ — синтетика. Спектральн�
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Legacy t=25.921618 dimensionless point: NN f gives +3.40920e−6, optical first-band f −4.24251e−6 and multi-band f≈+1.27624e−7. Full scalar NR numerically unresolved (≈5e−13 floor; analytic nonnegative). Optical second-band threshold 20.416855 J1 below T. Model contrast not independent X anchor; physical full operator, Gibbs preparation, scale, portal/energy budget OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Exact f(K_NN) LR-equivalence исключает вывод microscopic Rel/X из free H. Optical common-zero Δ1/J1=−.00230265747, Δ2/J1²=−.04552745166, equality numerator terms t=9.88585, second-band threshold weight .126785; для ≤10% второго члена t≈98.86. Нет доказанного широкого first-band T^-1 window. Iso — canonical one-particle port+cycle, не gas EOS.
+
+**Дополнение — ограничение идентифицируемости:** Независимая X калибровка, density/statistics, физический ноль, controlled operator, locality, full trace/precision, portal OPEN; 3.41e−6 не таргет, BBN не калибрует. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).
