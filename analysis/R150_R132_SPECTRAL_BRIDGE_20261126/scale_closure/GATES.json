@@ -352,9 +352,10 @@
           "09-MODEL-LOCK",
           "09-LAB-SCALE",
           "09-LAB-OP",
-          "09-LAB-LONG-RANGE-B"
+          "09-LAB-LONG-RANGE-B",
+          "09-LAB-OP-IDENTIFIABILITY"
         ],
-        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power; T^-1 is nonunique; NN/optical NR/f alternatives, direct projection C error"
+        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power; T^-1 is nonunique; NN/optical NR/f alternatives, direct projection C error; distinguish restricted controlled families, not identical free operators; joint H/rho/A/B_j mapping, independent phase/energy reference, robust power"
       },
       {
         "id": "11-LAB",
@@ -399,6 +400,55 @@
         ],
         "deliverable": "physical operator/projection completeness, direct C convergence and absolute error budget, same-device J_r covariance, band/precision/diamagnetic and leakage controls, operator/probe, held-out discrimination",
         "evidence": "long_range_20261127/REPORT.md"
+      },
+      {
+        "id": "09-LAB-OP-IDENTIFIABILITY",
+        "state": "OPEN_PHYSICAL",
+        "depends_on": [
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP",
+          "09-LAB-LONG-RANGE-B"
+        ],
+        "deliverable": "restricted operational equivalence class, independent interventions/readouts, physical energy zero/domain, Wilson phases, continuum/projection/Gibbs scope and robust holdout power; physical origin not inferred from identical free H",
+        "evidence": "operator_identifiability_20261127/REPORT.md",
+        "work_items": [
+          {
+            "id": "OPERATOR-EQUIVALENCE",
+            "state": "ANALYTIC_PASS_WITH_SCOPE",
+            "limit": "physical origin OPEN"
+          },
+          {
+            "id": "ENERGY-ZERO-DOMAIN",
+            "state": "METHOD_PASS_MODEL",
+            "limit": "physical zero/domain OPEN"
+          },
+          {
+            "id": "WILSON-PATH-GENERAL",
+            "state": "ANALYTIC_AND_MODEL_PASS_WITH_SCOPE",
+            "limit": "independent path/phase OPEN"
+          },
+          {
+            "id": "CONTINUUM-LOCALITY",
+            "state": "COUNTEREXAMPLE_PASS_WITH_SCOPE",
+            "limit": "physical embedding OPEN"
+          },
+          {
+            "id": "THERMAL-TRACE-CLOSURE",
+            "state": "MODEL_CONTROLS_PASS",
+            "limit": "Gibbs/band/precision/window OPEN"
+          },
+          {
+            "id": "RESPONSE-TOMOGRAPHY",
+            "state": "MODEL_PASS_FIRST_ORDER_AND_SYMMETRY",
+            "limit": "independent interventions and readout completeness OPEN"
+          },
+          {
+            "id": "ROBUST-POWER",
+            "state": "OPEN",
+            "limit": "covariance and prospective discrimination OPEN"
+          }
+        ]
       }
     ],
     "legacy_output": {
@@ -413,6 +463,14 @@
       "report": "long_range_20261127/REPORT.md",
       "results": "long_range_20261127/RESULTS.json",
       "replay": "long_range_20261127/replay.py",
+      "physical_status": "OPEN"
+    },
+    "operator_identifiability": {
+      "important_result": "exact f(K_NN)=positive long-range Fourier series for all phi; contact distribution; Wilson weighted path cancellation; nonlocal continuum power law",
+      "important_limit": "identical free operators and unrestricted controlled equivalents cannot reveal microscopic origin; r=N aliases scalar detuning; AP antipode zero not unique; finite canonical iso not vacuum or gas",
+      "report": "operator_identifiability_20261127/REPORT.md",
+      "results": "operator_identifiability_20261127/RESULTS.json",
+      "replay": "operator_identifiability_20261127/replay.py",
       "physical_status": "OPEN"
     }
   }

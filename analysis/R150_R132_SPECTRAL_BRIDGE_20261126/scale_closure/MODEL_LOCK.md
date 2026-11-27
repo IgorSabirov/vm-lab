@@ -34,3 +34,7 @@ MODEL-LOCK считается заполненным после выбора sco
 ## Long-range / winding / band completeness (27.11.2026)
 
 **Добавление к ML1/ML2/ML5/ML6:** указать signed J_r и winding на накрытии, отличие J_width и Fourier J1, independent J_r covariance, band/projection scope и error непосредственно C. Не идентифицировать Rel по T^-1 отдельно. Отдельно domain/physical f vs functional transform. [Отчёт и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+**Identity/zero/domain additions (all OPEN physical):** fix restricted H and full intervention family (H1/H2), common U for H, preparations, probes, B_j; source of M/J and kinetic zero before f, port energy and common phase energy reference, strictly positive radicand margin for derivative; S complex/unitary, winding on universal cover, cycle basis/Wilson constraints; fixed R vs fixed physical d; canonical one-particle iso with actual port, not vacuum; independent thermal preparation, direct contrast tail bound, robust power and calibration. No model-free discrimination of identical controlled operators. [Report, data and replay](operator_identifiability_20261127/REPORT.md).

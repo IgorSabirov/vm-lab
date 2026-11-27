@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-27",
+  "baseline": "03aee2e6508cd7709035532055aa5e3bce938220",
+  "source_attachment_sha256": "1cb2611614ef1b113de9918483b69c5a96105bd5efcd64926cdf5a0dc7ddf696",
+  "scope": "ANALYTIC_AND_NUMERICAL_MODEL_ONLY",
+  "scientific_acceptance": false,
+  "physical_anchor": "OPEN",
+  "N": 6,
+  "M_over_J": 5.13572059858461,
+  "free_equivalence": {
+    "Jt1_over_J": 0.7642947329594257,
+    "Jt_ratios": [
+      1,
+      0.0572500216,
+      0.0065772004,
+      0.000945814546,
+      0.000152435246,
+      0.0000263328655,
+      0.00000476673338,
+      8.92428782e-7,
+      1.71384533e-7,
+      3.35742443e-8,
+      6.68313429e-9,
+      1.34788336e-9
+    ],
+    "all_positive": "proved Bernstein/Bessel integral",
+    "eta": 1.467252550421213,
+    "ratio_limit": 0.23055806245330848,
+    "ratio_r10": 0.19905539010290907,
+    "opnorm_129_phases": [
+      [
+        1,
+        0.18665642267389268
+      ],
+      [
+        3,
+        0.0033539947090910367
+      ],
+      [
+        6,
+        0.000017720207904276328
+      ],
+      [
+        12,
+        1.0537359137893908e-9
+      ],
+      [
+        24,
+        2.984621846007887e-14
+      ]
+    ],
+    "equivalence_scope": "same operational dictionary; complete free operator identity, not physical origin"
+  },
+  "real_cast_negative_control": [
+    [
+      0.37,
+      0.13076572063520597,
+      0.09328152131465473
+    ],
+    [
+      1.2,
+      0.8686968577706227,
+      0.18843497409272736
+    ]
+  ],
+  "port": {
+    "canonical_one_particle_Z7_at_t_0_3": 2.071440406150824,
+    "row_NN_phi0": [
+      0.87052562,
+      0.0566042,
+      0.00709767,
+      0.00207062,
+      0.00709767,
+      0.0566042
+    ],
+    "row_NN_phi_pi": [
+      0.87050347,
+      0.05654181,
+      0.00675473,
+      0,
+      -0.00675473,
+      -0.05654181
+    ],
+    "row_Opt_R6_phi0": [
+      0.87961306,
+      0.05756801,
+      0.00206815,
+      0.00111462,
+      0.00206815,
+      0.05756801
+    ],
+    "row_Opt_R6_phi_pi": [
+      0.87961784,
+      0.05754525,
+      0.00206107,
+      0,
+      -0.00206107,
+      -0.05754525
+    ],
+    "forward_max_NN": 7.441232635258008e-7,
+    "forward_max_Opt": 7.59767578085456e-7,
+    "central_max": 1.310041918695104e-12,
+    "eps": 0.00001,
+    "AP_antipode": "exact even-N twisted reflection; h=.1,.5,1 model checks; not unique f",
+    "strict_h_bound_NN": [
+      3.2469028059892717,
+      3.2478783489615206
+    ],
+    "strict_h_bound_Opt_R6": [
+      3.1877766763731232,
+      3.187910005691831
+    ]
+  },
+  "chords": {
+    "J2": -0.1,
+    "rows_columns": [
+      "chords",
+      "pstar",
+      "Delta",
+      "cycle_rank"
+    ],
+    "rows": [
+      [
+        0,
+        6,
+        -24,
+        1
+      ],
+      [
+        1,
+        5,
+        -2,
+        2
+      ],
+      [
+        2,
+        4,
+        -0.16,
+        3
+      ],
+      [
+        3,
+        3,
+        -0.012,
+        4
+      ]
+    ],
+    "phase_rule": "uniform gauge, fixed local Wilson variations"
+  },
+  "cancellation": {
+    "J": [
+      1,
+      1,
+      1,
+      -0.5
+    ],
+    "Delta": [
+      0,
+      0,
+      78,
+      1224
+    ],
+    "pstar": 3
+  },
+  "J6_scalar_residual_10pct": [
+    [
+      0.5,
+      0.00070059182855204
+    ],
+    [
+      1,
+      0.000070284616484058
+    ],
+    [
+      2,
+      0.0000035526398617096
+    ],
+    [
+      5,
+      4.2963263075476e-8
+    ],
+    [
+      25.92161816320308,
+      1.1852315218309e-11
+    ]
+  ],
+  "two_hop_roots": [
+    0.4530603631857191,
+    1.512236330948123,
+    14.626597176371321
+  ],
+  "nonlocal_continuum_g1_T2C": [
+    [
+      200,
+      2.0028977439363707
+    ],
+    [
+      500,
+      1.9999866667211232
+    ],
+    [
+      1000,
+      1.9999966671277472
+    ],
+    [
+      2000,
+      1.9999991663247203
+    ]
+  ],
+  "optical_depth_controls": [
+    [
+      0.01,
+      10.64180859556563,
+      0.016568558460140048
+    ],
+    [
+      0.001,
+      20.842555463477407,
+      0.0021381683098902204
+    ],
+    [
+      0.0001,
+      33.83567440054141,
+      0.00025832319052754293
+    ]
+  ],
+  "thermal_window": {
+    "Delta1": -0.0023026574739519745,
+    "Delta2": -0.04552745166166883,
+    "term_equality_t": 9.885849757656656,
+    "threshold_weight": 0.12678525400984156,
+    "second_to_first_10pct_t": 98.85849757656656,
+    "scope": "numerator only; offset/truncation explicit; not full C error bound"
+  },
+  "open": [
+    "physical OP/probe and intervention class",
+    "energy zero, domain",
+    "Wilson path realization",
+    "physical continuum locality",
+    "thermal preparation and projection",
+    "robust power",
+    "X independent calibration"
+  ]
+}

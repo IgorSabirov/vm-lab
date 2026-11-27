@@ -23,3 +23,7 @@ OPEN. Условные M_X,ℓ_X,N не независимые измерени�
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 Legacy dimensionless point t=25.921618 exceeds optical second-band threshold. NN f +3.40920e−6; optical first-band f −4.24251e−6, multiband spectral f≈+1.27624e−7. Full scalar NR unresolved at double precision; analytic nonnegative in stated class. Magnitude/temperature exponent alone cannot identify X or Rel. Require full physical operator, projection error on C and independent X mechanism; no BBN calibration or promotion. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+Free operator identity f(K_NN)=positive long-range expansion proves no free-spectrum-only attribution of microscopic relativistic origin. Independent controlled family, physical zero/domain, mode/probe, locality, ensemble and full thermal projection are required; no inference from T exponent or 3.41e−6. Canonical port+ring one-particle trace is not physical gas EOS; derive density/statistics/portal separately. X remains OPEN. [Report, data and replay](operator_identifiability_20261127/REPORT.md).

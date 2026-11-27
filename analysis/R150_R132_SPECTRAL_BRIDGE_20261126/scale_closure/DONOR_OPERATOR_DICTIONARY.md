@@ -26,3 +26,7 @@
 ## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
 
 For optical ring, separate Fourier J1 and quarter bandwidth J_width (s_F=3.35203828, s_width=3.40181871). Signed J2…J6, winding and band scope must be independently calibrated. A finite synthetic ring can realize winding links only with explicit phase/path convention; sinusoidal J_r are correlated, not independently programmable. Direct C error and band leakage/precision, port equilibrium and full spectral weights required. T^-1 nonunique. 09-LAB-LONG-RANGE-B OPEN. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+Candidate programmable momentum-state platform for NN/NNN and chord Wilson experiment (Li/An/Gou scoped ingredients, no complete device). Real sinusoidal lattice for independently calibrated physical scale and all-band control; at |J2/J1|=.01, s≈10.6418, J1/E_R=.01657 (not 1/π²). No direct J6 bond at N6 (scalar winding alias); require independent path interferometry. Positive Fourier coefficients of f(K_NN) differ from signed optical family; independent full-phase mode/offset calibration needed. Use complex seam; coherent probes and independently calibrated B_j, canonical one-particle preparation; LAB/X OPEN. [Report, data and replay](operator_identifiability_20261127/REPORT.md).

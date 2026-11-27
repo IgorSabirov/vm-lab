@@ -21,3 +21,7 @@
 ## Long-range / winding / band completeness (27.11.2026)
 
 **Существенная ревизия, 27.11.2026:** T^-1 не уникальный Rel-дискриминатор. NN NR/f(K) vs Optical NR/f(K) (first-band/full separately), independent signed J_r and covariance; mode IDs/full flux sweep, port-off/on, joint C(T) and spectral weights. Предрегистрировать epsilon_C относительно separation; знак требует error<|C| с запасом; tail/precision/measurement budget. Полная скалярная модель C≥0; first-band может менять знак. 09-LAB-LONG-RANGE-B prerequisite для физического holdout, не новый барьер математического исследования. [Отчёт и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+**Critical revision:** f(K_NN) and its positive long-range Fourier expansion are identical operators for all phi. Restrict alternatives by independently calibrated couplings/interventions, include exact-equivalent null as negative control; distinguish H1 vs H2 through full phase-sensitive response to ±h, finite h, independent local diagonal/link-phase intervention; rank/nullspace/holdout of H,rho,A,B_j under same restricted U. AP antipodal zero not unique; J_N aliases relative detuning, independent Wilson paths; chord test 6→5→4→3. Thermal C secondary, canonical one-particle iso port; no assumed Floquet-Gibbs, no universal T^-1 or asymptotic window. Joint covariance/robust power, fixed temperature/phase grid and energy-zero/domain. 09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL; no experimental PASS. [Report, data and replay](operator_identifiability_20261127/REPORT.md).

@@ -100,3 +100,7 @@ SCALE-05/06/11: локальная спектральная поправка р�
 ## Long-range / winding / band completeness (27.11.2026)
 
 **Важный новый результат и ограничение:** 09-LAB-LONG-RANGE-A MODEL_PASS_WITH_SCOPE; B OPEN. Дальние winding-гармоники снижают p* и лишают T^-1 уникальности, однозонная проекция меняет знак C. Полный след и физический якорь не установлены; SCALE-09–12 OPEN.  [Отчёт и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+**Important new result / limit:** exact free operator equivalence; local contact spreads under f and AP parity protects antipode; weighted Wilson paths/cancellation, J_N scalar alias, nonlocal continuum counterexample and canonical one-particle correction. 09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL, seven scoped work items; 10-LAB revised. No new R numbers or scientific status promotion. [Report, data and replay](operator_identifiability_20261127/REPORT.md).
