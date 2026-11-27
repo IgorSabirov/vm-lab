@@ -197,6 +197,16 @@
         "id": "TARGET_X_RELATIVISTIC_CONTROL",
         "state": "NEGATIVE_CONTROL_WITH_SCOPE",
         "evidence": "conditional K parameter regime not percent-accurate nonrelativistic; no X identification"
+      },
+      {
+        "id": "SCALE-06_NODAL_FINITE_SIZE_COEFFICIENTS",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "exact finite N and fixed odd m expansion through N^-4; contact protection distinct from grid error"
+      },
+      {
+        "id": "SCALE-11_MULTIBRANCH_EXTRAPOLATION",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "70-digit regularized root and Richardson audit, 4 active branches N<=3072; joint physical covariance/fit OPEN"
       }
     ],
     "finite_size_spectral_asymptotics": {
@@ -205,7 +215,20 @@
       "replay": "../continuum/finite_size_20261127/replay.py",
       "numeric_summary": "../continuum/finite_size_20261127/RESULTS.json",
       "scope": "fixed mark, simple isolated active scalar root away from poles; E_N=e+A/N^2+B/N^4+O(N^-6); unchanged lifted-resolvent theorem and first-order/physical gates",
-      "scientific_acceptance": false
+      "scientific_acceptance": false,
+      "multi_root_extension": {
+        "state": "PASS_WITH_SCOPE",
+        "report": "../continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md",
+        "replay": "../continuum/finite_size_20261127/multi_root.py",
+        "selected_results": "../continuum/finite_size_20261127/MULTI_ROOT_RESULTS.json",
+        "precision_dps": 70,
+        "active_branches": 4,
+        "finite_roots": 32,
+        "N_max": 3072,
+        "richardson": "R_N=(4E_2N−E_N)/3; R_N−e=−B/(4N^4)+O(N^-6)",
+        "scope": "fixed marked scalar K, simple roots off poles; no physical calibration",
+        "scientific_acceptance": false
+      }
     }
   }
 }

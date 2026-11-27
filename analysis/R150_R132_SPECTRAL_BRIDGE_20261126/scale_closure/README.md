@@ -86,3 +86,9 @@ J=N²E*. E_ref — конвенция измерительного нуля, а 
 [Согласованный аудит](REVIEW_20261127.md) · [Словарь доноров](DONOR_OPERATOR_DICTIONARY.md) · [Проект предрегистрации SCALE-10](SCALE10_HOLDOUT_PREREG.md) · [Код](verify_scale09_20261127.py) · [Числа](REPLAY_SUMMARY_20261127.json) · [Контракт X](TARGET_X_IDENTIFICATION_CONTRACT.md).
 
 SCALE-05: Θ(N⁻¹) поднятой резольвенты остаётся; отдельно для простых фиксированных собственных значений проверено Θ(N⁻²). SCALE-09B: contact/phase method; 09B2: Fuhrer model correction + orbital magnetometry method, independent sample provenance still OPEN. SCALE-10: exact two-sector ratios and coherent probe ready for preregistration, not physical PASS. SCALE-11 regularized scalar replay, joint covariance OPEN. SCALE-09–12 remain OPEN; no scientific acceptance change.
+
+## Многокорневой спектральный аудит и экстраполяция (27.11.2026)
+
+SCALE-05/06/11: локальная спектральная поправка расширена на ground и три положительных уровня; Ричардсон, signed A/B и остаток N⁻⁴. При известном физическом N использовать точную дискретную формулу; при вычислительном уточнении учитывать ΔA,ΔB и общую ковариацию. SCALE-11 остаётся OPEN для совместной физической метрологии.
+
+[Аналитика, код и численная проверка](../continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md).
