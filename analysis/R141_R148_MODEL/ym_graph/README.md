@@ -46,3 +46,7 @@ diff -u analysis/R141_R148_MODEL/ym_graph/pilot/results.json /tmp/ym-pilot.json
 python3 analysis/R141_R148_MODEL/ym_graph/step5/check.py > /tmp/r130-step5.json
 diff -u analysis/R141_R148_MODEL/ym_graph/step5/results.json /tmp/r130-step5.json
 ```
+
+## Дополнение 27.11.2026: R141–ЯМ–Мёбиус
+
+E₃→E(r), связные корреляторы, глюболный контроль; #164/#165 открыты. [Отчёт, границы и replay](../../../analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md).

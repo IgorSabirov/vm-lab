@@ -211,3 +211,7 @@ Legacy t=25.921618 dimensionless point: NN f gives +3.40920e−6, optical first-
 **ВАЖНО — идентифицируемость, 27.11.2026.** Exact f(K_NN) LR-equivalence исключает вывод microscopic Rel/X из free H. Optical common-zero Δ1/J1=−.00230265747, Δ2/J1²=−.04552745166, equality numerator terms t=9.88585, second-band threshold weight .126785; для ≤10% второго члена t≈98.86. Нет доказанного широкого first-band T^-1 window. Iso — canonical one-particle port+cycle, не gas EOS.
 
 **Дополнение — ограничение идентифицируемости:** Независимая X калибровка, density/statistics, физический ноль, controlled operator, locality, full trace/precision, portal OPEN; 3.41e−6 не таргет, BBN не калибрует. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).
+
+## Дополнение 27.11.2026: R141–ЯМ–Мёбиус
+
+Скрининг/глюболы→масштаб/EOS→BH1/X/BBN — условный маршрут, не новые физические данные. [Отчёт, границы и replay](../../analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md).
