@@ -18,3 +18,7 @@
 ## Массивная дисперсия и голономия (27.11.2026)
 
 Новый conditional Rel donor mapping: massive D_M positive branch на свободном кольце, TI — линейная D и Berry-фаза (не X); Debbarma — контроль contact/parity; Roy — programmable six-site open chain (не замкнутый портовый носитель); persistent current — ∂F/∂Φ, не прямой Gibbs contrast. Различить f(K)+V и f(K+V), измерить физические M,J,C независимо. Никакой физической приёмки. [Доказательства, код и донорский паспорт](../relativistic_holonomy_20261127/REPORT.md).
+
+## Программа LAB (27.11.2026)
+
+Добавить два кандидата: momentum-state ring (Li 2022 ladder, Gou 2020 dissipative ring — не полный R150, J=ℏΩ/2 при указанной two-level convention, импульсный шаг ≠ ℓ); real painted ring + azimuthal lattice + side port (Bell/Gauthier — предшественники, не полная комбинация). J_width≠J1 автоматически; deep-lattice formula asymptotic; при s=4.463 численно J_width/E_R=.0761682, равенство 1/π² при s≈3.401819. TI retrospective desk-study: E_edge=(ℏv_F/R)min_l|l+1/2−Φ/Φ0|, full gap=2E_edge; independent v_F, geometry/flux, sample lineage, lever arm, Zeeman, band bending and oxide; U_TI/spinor/domain OPEN. TI не единственный D-аналог. GaAs: same-device/same-wafer independent mass, lever arm, mode identity and multi-subband/interaction systematics; predicted Δ13 not observed. TOF populations not automatically A_ab(ω), common reference needed for C_hol. Все новые ссылки — candidate metadata, физические данные не приняты. [Аудит](MODEL_LOCK_REVIEW_20261127.md) · [MODEL-LOCK](MODEL_LOCK.md).

@@ -296,5 +296,97 @@
         "selection_rule": "OPEN"
       }
     }
+  },
+  "lab_program": {
+    "state": "PROPOSED_NOT_LOCKED",
+    "date": "2026-11-27",
+    "review": "MODEL_LOCK_REVIEW_20261127.md",
+    "model_lock": "MODEL_LOCK.md",
+    "prediction_draft": "PREDICTIONS_LOCK_DRAFT_20261127.json",
+    "replay": "model_lock_replay.py",
+    "scientific_acceptance": false,
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "bbn_calibration_used": false,
+    "promotion_rule": "LAB_PASS never automatically promotes physical SCALE-09..12, TARGET_X, Gate D, U006/U010 or scientific acceptance; X requires independently identified carrier/operator/scale and verification.",
+    "gates": [
+      {
+        "id": "09-MODEL-LOCK",
+        "state": "PROPOSED",
+        "depends_on": [],
+        "deliverable": "six model/probe decisions with provenance, independently measured inputs and locked scope"
+      },
+      {
+        "id": "09-LAB-SCALE",
+        "state": "OPEN",
+        "inherits": [
+          "SCALE-09B2_SAME_WAFER_MASS",
+          "SCALE-09B2_ORBITAL_MAGNETOMETRY_MASS"
+        ],
+        "deliverable": "same-device dimensional data and uncertainty; independent J or justified m,C"
+      },
+      {
+        "id": "09-LAB-OP",
+        "state": "PARTIAL",
+        "inherits": [
+          "SCALE-09B_CARRIER_OPERATOR_DICTIONARY"
+        ],
+        "deliverable": "physical operator, mode, phase, preparation, probe, restricted U and error dictionary"
+      },
+      {
+        "id": "09-LAB-D",
+        "state": "DESK_STUDY_READY",
+        "inherits": [
+          "SCALE-09D_ANTIPERIODIC_SEAM_DONOR"
+        ],
+        "deliverable": "retrospective zero-fit TI candidate test with independently sourced inputs; no data extracted/test executed"
+      },
+      {
+        "id": "10-LAB",
+        "state": "READY_FOR_PREREGISTRATION",
+        "inherits": [
+          "SCALE-10_TWO_PHASE_HOLDOUT",
+          "SCALE-10_DISPERSION_HOLDOUT"
+        ],
+        "depends_on": [
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP"
+        ],
+        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power"
+      },
+      {
+        "id": "11-LAB",
+        "state": "OPEN_METHOD_READY",
+        "inherits": [
+          "SCALE-11_REGULARIZED_SCALAR_MODEL",
+          "SCALE-11_MULTIBRANCH_EXTRAPOLATION"
+        ],
+        "depends_on": [
+          "10-LAB"
+        ],
+        "deliverable": "joint physical covariance/calibration/holdout"
+      },
+      {
+        "id": "09-X",
+        "state": "OPEN",
+        "depends_on": [],
+        "deliverable": "independent target carrier mechanism and scale; separate from laboratory analogue"
+      },
+      {
+        "id": "12-X",
+        "state": "OPEN",
+        "depends_on": [
+          "09-X"
+        ],
+        "deliverable": "independent physical target scale with uncertainty and verified holdout; original SCALE-12 dependencies retained"
+      }
+    ],
+    "legacy_output": {
+      "value": 0.00000340919973954173,
+      "role": "conditional Rel iso output; not target",
+      "selection_rule": "OPEN"
+    },
+    "technical_note": "Baseline test-integrity/merge-gate failure; stale REGISTRY_LINKS/INDEX.json; repair separately with generator, no bypass."
   }
 }
