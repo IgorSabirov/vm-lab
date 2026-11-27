@@ -96,7 +96,7 @@
     "promote synthetic input to measured scale",
     "conflate K,D,F"
   ],
-  "new_computations_claimed": false,
+  "new_computations_claimed": true,
   "donor_audit_2026_11_26": {
     "report": "DONOR_AUDIT_20261126.md",
     "overall_SCALE_09": "OPEN",
@@ -146,7 +146,58 @@
       "Do not equate laboratory analog with cosmological X",
       "Do not conflate K, D and F",
       "Do not identify Fuhrer 180 micro-eV maximum addition spacing with m=1 to m=3",
-      "Separate 23Na and 87Rb BEC mass scales"
+      "Separate 23Na and 87Rb BEC mass scales",
+      "Errata and followup: REVIEW_20261127.md; Fuhrer 180 micro-eV is spacing after charging subtraction, not raw addition spacing; same-wafer/device distinction remains."
+    ]
+  },
+  "review_2026_11_27": {
+    "report": "REVIEW_20261127.md",
+    "replay": "verify_scale09_20261127.py",
+    "numeric_summary": "REPLAY_SUMMARY_20261127.json",
+    "dictionary": "DONOR_OPERATOR_DICTIONARY.md",
+    "target_contract": "TARGET_X_IDENTIFICATION_CONTRACT.md",
+    "holdout": "SCALE10_HOLDOUT_PREREG.md",
+    "scope": "independent mathematical and conditional modeling controls; no new physical data",
+    "scientific_acceptance": false,
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "bbn_calibration_used": false,
+    "subgates": [
+      {
+        "id": "SCALE-05_FIXED_MARK_SPECTRAL_RATE",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "O(N^-2) simple isolated eigenvalues, N=12..768; original lifted-resolvent Θ(N^-1) theorem unchanged"
+      },
+      {
+        "id": "SCALE-09B_CONTACT_INTERFERENCE",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "single-port rank-one dark mode; phase and geometry control; Debbarma analogy, physical operator map open"
+      },
+      {
+        "id": "SCALE-09B2_ORBITAL_MAGNETOMETRY_MASS",
+        "state": "METHOD_FOUND_WITH_SCOPE",
+        "evidence": "slope + independently identified l and lever arm; same-device mass not yet measured"
+      },
+      {
+        "id": "SCALE-09B2_FUHRER_MODE_ASSIGNMENT",
+        "state": "PARTIAL",
+        "evidence": "primary 65 nm; self-consistent hard-wall count 200; real mode assignment and covariance open"
+      },
+      {
+        "id": "SCALE-10_TWO_PHASE_HOLDOUT",
+        "state": "READY_FOR_PREREGISTRATION",
+        "evidence": "exact R_a,R_p and coherent probe; no physical holdout executed"
+      },
+      {
+        "id": "SCALE-11_REGULARIZED_SCALAR_MODEL",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "regularized determinant and normalization; joint physical fit OPEN"
+      },
+      {
+        "id": "TARGET_X_RELATIVISTIC_CONTROL",
+        "state": "NEGATIVE_CONTROL_WITH_SCOPE",
+        "evidence": "conditional K parameter regime not percent-accurate nonrelativistic; no X identification"
+      }
     ]
   }
 }
