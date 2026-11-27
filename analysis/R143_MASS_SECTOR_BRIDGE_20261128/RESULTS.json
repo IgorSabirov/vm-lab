@@ -10,66 +10,113 @@
   "phase_sweep": [
     {
       "phi_over_pi": 0,
-      "P_port": 0.5714285714285714,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.5714285714285714,
+      "P_vector": 0.5714285714285713,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 0.25,
-      "P_port": 0.5322887255269254,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.5322887255269254,
+      "P_vector": 0.5322887255269254,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 0.5,
-      "P_port": 0.4,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.4000000000000001,
+      "P_vector": 0.4,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 0.75,
-      "P_port": 0.1633634483861181,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.1633634483861181,
+      "P_vector": 0.16336344838611805,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 1,
-      "P_port": 0,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 4.9991992755395254e-33,
+      "P_vector": 4.999199275539527e-33,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 1.25,
-      "P_port": 0.163363448386118,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.163363448386118,
+      "P_vector": 0.16336344838611802,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 1.5,
-      "P_port": 0.4,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.3999999999999999,
+      "P_vector": 0.39999999999999986,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 1.75,
-      "P_port": 0.5322887255269254,
-      "rank_Q": 3,
-      "n_plus_M": 1,
-      "n_minus_M": 0
+      "P_formula": 0.5322887255269254,
+      "P_vector": 0.5322887255269254,
+      "rank_Q": 3
     },
     {
       "phi_over_pi": 2,
-      "P_port": 0.5714285714285714,
-      "rank_Q": 3,
+      "P_formula": 0.5714285714285714,
+      "P_vector": 0.5714285714285713,
+      "rank_Q": 3
+    }
+  ],
+  "mass_edge_tests": [
+    {
+      "phi_over_pi": 0,
       "n_plus_M": 1,
-      "n_minus_M": 0
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.25,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.5,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.75,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.25,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.5,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.75,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 2,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
     }
   ],
   "generic_rectangular_tests": [
@@ -111,16 +158,16 @@
     }
   ],
   "max_residuals": {
-    "chiral_anticommutator": 0,
-    "D2_identity": 3.552713678800501e-15,
-    "F_kernel": 5.06539099576862e-16,
-    "Q_null": 5.551115123125783e-17,
-    "nonzero_spectrum": 5.329070518200751e-15
+    "chiral": 0,
+    "D2": 3.552713678800501e-15,
+    "Fkernel": 5.06539099576862e-16,
+    "Qnull": 5.551115123125783e-17,
+    "spectrum": 5.329070518200751e-15
   },
   "checks": {
     "all_rank_3": true,
-    "port_formula_matches_vector": true,
-    "mass_edge_index_identity": true,
-    "generic_rectangular_index_identity": true
+    "P_matches": true,
+    "mass_index": true,
+    "generic_index": true
   }
 }
