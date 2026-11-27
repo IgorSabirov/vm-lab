@@ -230,5 +230,38 @@
         "scientific_acceptance": false
       }
     }
+  },
+  "relativistic_holonomy_2026_11_27": {
+    "state": "MODEL_PASS_WITH_SCOPE",
+    "report": "../relativistic_holonomy_20261127/REPORT.md",
+    "replay": "../relativistic_holonomy_20261127/replay.py",
+    "results": "../relativistic_holonomy_20261127/RESULTS.json",
+    "donors": "../relativistic_holonomy_20261127/DONORS.md",
+    "subgates": [
+      {
+        "id": "SCALE-05_FREE_THERMAL_DISCRETIZATION",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "fixed C,T,M, free ring+port; A_C=-.000241243209574; N<=3072; no change to full resolvent theorem"
+      },
+      {
+        "id": "TARGET_X_REL_HOLONOMY",
+        "state": "MODEL_PASS_WITH_SCOPE",
+        "evidence": "conditional iso 3.40919973954e-6; all/one/continuum differ; target origin OPEN"
+      },
+      {
+        "id": "SCALE-09B_MASSIVE_CONTACT",
+        "state": "PARTIAL",
+        "evidence": "free local first order factorization; contact ordering and mass/domain/physical mapping OPEN"
+      },
+      {
+        "id": "SCALE-10_DISPERSION_HOLDOUT",
+        "state": "READY_FOR_PREREGISTRATION",
+        "evidence": "NR/Rel/sqrt K ratios, T-dependence, phase, independent calibration required; no physical holdout"
+      }
+    ],
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "scientific_acceptance": false,
+    "bbn_calibration_used": false
   }
 }

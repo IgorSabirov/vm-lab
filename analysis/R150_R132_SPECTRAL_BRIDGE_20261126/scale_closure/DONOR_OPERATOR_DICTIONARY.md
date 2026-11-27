@@ -14,3 +14,7 @@
 | X/R135 | неизвестный физический носитель, условное K-вложение | M,ℓ назначены | TARGET_X OPEN; no calibration from BBN |
 
 Первичные источники и ограничения: [донорский аудит](DONOR_AUDIT_20261126.md), [ревизия](REVIEW_20261127.md), [holdout](SCALE10_HOLDOUT_PREREG.md). Для каждого будущего измерения записать source/version/sample ID, Hilbert space, H, phase convention, mapping U/observable/projector, preparation/probe, energy units, covariance, independent inputs, scope/negative control. Статусы FOUND означают наличие донора, а не доказанный операторный изоморфизм.
+
+## Массивная дисперсия и голономия (27.11.2026)
+
+Новый conditional Rel donor mapping: massive D_M positive branch на свободном кольце, TI — линейная D и Berry-фаза (не X); Debbarma — контроль contact/parity; Roy — programmable six-site open chain (не замкнутый портовый носитель); persistent current — ∂F/∂Φ, не прямой Gibbs contrast. Различить f(K)+V и f(K+V), измерить физические M,J,C независимо. Никакой физической приёмки. [Доказательства, код и донорский паспорт](../relativistic_holonomy_20261127/REPORT.md).
