@@ -1,0 +1,49 @@
+# SCALE-09 / TARGET_X — генеалогия 3.41×10⁻⁶
+
+Аудит 27.11.2026. Область: история действующего PR #222, история конкретного пути REPORT.md, родительская ревизия и девять файлов, перечисленных в исходном SOURCES.md, плюс graph.py. Не претензия на исчерпывающий поиск всех веток, удалённых объектов, архивов и непубликованных записок.
+
+## 1. Хронология и точные источники
+
+| UTC | Коммит | Свидетельство |
+|---|---|---|
+| 2026-11-26 06:38:28 | [1f3c3b5](https://github.com/IgorSabirov/vm-lab/commit/1f3c3b50373ea1dd7d5f8deb7d48cc7b91b99d76) | Первое появление network_bench/graph.py в проверенной истории пути; общий NR-решатель target_x(length,target). В исходном сканировании строки 103–108 заданы eps=.01,.1,.4, не 3.41e−6. |
+| 2026-11-26 13:04:30 | [f33df29](https://github.com/IgorSabirov/vm-lab/commit/f33df29adfd254482cf7614f25d3b994632d3053) | Созданы дочерние REPORT.md, SOURCES.md и verify.py. REPORT §5.1 содержит вычисленный Rel iso C(N=6)=3.40919974e−6, N=8=1.20192925e−7. |
+| 2026-11-26 13:07:37 | [420fc89](https://github.com/IgorSabirov/vm-lab/commit/420fc89f9bfd9cbd97d9461b7f83df93f2823342) | Первый сохранённый CHECKS.json, числовая квитанция 0.000003409199739623503 для N=6. |
+| 2026-11-27 01:53:43 | [0256631](https://github.com/IgorSabirov/vm-lab/commit/025663120f420ab1e6ba17f320eb0b9025b97da3) | REVIEW_20261127.md и TARGET_X_IDENTIFICATION_CONTRACT.md используют округлённое 3.41e−6 как число для проверки происхождения/конвенции; не вход физической калибровки. |
+
+Доказательства:
+- [REPORT.md, строки 354–387](https://github.com/IgorSabirov/vm-lab/blob/f33df29adfd254482cf7614f25d3b994632d3053/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/REPORT.md#L354-L387): назначенные M_X=0.01585 MeV, ell_X=1.995×10⁴ fm, T=.08 MeV; J=.0030862271 MeV. Таблица Rel является **результатом**, не таргетом.
+- [verify.py, строки 185–195](https://github.com/IgorSabirov/vm-lab/blob/f33df29adfd254482cf7614f25d3b994632d3053/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/verify.py#L185-L195): z_relativistic=1+Σ exp(−(sqrt(M²+(epsilon*s_k)²)−M)/T), rel_contrast=1−zpi/z0.
+- [verify.py, строки 217–244](https://github.com/IgorSabirov/vm-lab/blob/f33df29adfd254482cf7614f25d3b994632d3053/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/verify.py#L217-L244): M, ell, Tref заданы, epsilon=hbar_c/ell, J=epsilon²/(2M), relativistic[str(N)] вычисляется напрямую. Единственная обратная задача в этом блоке — rel_contrast−0.01.
+- [verify.py, строки 293–294](https://github.com/IgorSabirov/vm-lab/blob/f33df29adfd254482cf7614f25d3b994632d3053/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/verify.py#L293-L294): значение 3.40919974e−6 употреблено как assert для воспроизводимости результата, а не как вход поиска корня. Assert не является независимым измерением.
+- [CHECKS.json, строки 103–107](https://github.com/IgorSabirov/vm-lab/blob/420fc89f9bfd9cbd97d9461b7f83df93f2823342/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/CHECKS.json#L103-L107): сохранённый результат.
+- [graph.py, строки 14–36](https://github.com/IgorSabirov/vm-lab/blob/1f3c3b50373ea1dd7d5f8deb7d48cc7b91b99d76/analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py#L14-L36), [79–115](https://github.com/IgorSabirov/vm-lab/blob/1f3c3b50373ea1dd7d5f8deb7d48cc7b91b99d76/analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py#L79-L115): NR-обратная задача, независимая от данного Rel-вычисления. При внешней диагностической подстановке 3.41e−6 получается x≈0.61569, J≈22.32 keV при T_REF=72.513 keV. Это не подтверждение исторического использования именно этого таргета.
+- [SOURCES.md, строки 1–21](https://github.com/IgorSabirov/vm-lab/blob/f33df29adfd254482cf7614f25d3b994632d3053/analysis/R150_R132_SPECTRAL_BRIDGE_20261126/SOURCES.md#L1-L21): отчёт основан на supplied research note от 26.11.2026 и указанных базовых источниках.
+
+## 2. Отрицательный контроль родительской ревизии
+
+В непосредственном родителе b17c871ce37697c8beb36bf295797b5161ab11d2 путь дочернего REPORT.md отсутствует (404; diff первого коммита подтверждает added). Проверены девять исходных файлов по зафиксированным blob SHA в SOURCES.md и network_bench/graph.py: текстовых совпадений для вариантов 3.4092e−6 / 3.41e−6 / 0.0000034, M=0.01585 MeV / 15.85 keV, ell=19950 / 1.995×10⁴ в релевантных обозначениях не обнаружено. Проверка на конкретные числовые записи не исключает иных обозначений или предшествующего вывода из формул. Исходная предоставленная записка отдельно в этом коммите не архивирована; её точная версия и история выбора M,ell не восстановлены.
+
+## 3. Решение по происхождению и научному статусу
+
+Генеалогия опубликованного числа прослежена до **прямого условного Rel-расчёта**, а не до NR-калибровки на данный таргет. Позднее воспроизведение 3.40919973954e−6 есть повтор того же расчёта с той же дисперсией, подготовкой и параметрами, а не независимое физическое предсказание и не совпадение двух исторически независимо откалиброванных моделей. Обратная NR-подстановка показывает лишь, какой J потребовался бы при задании этого числа как входа.
+
+Остаётся OPEN: происхождение M_X и ell_X до первого найденного коммита, их независимость от любых предварительных контрастов/BBN, физическая идентификация X и независимый масштаб. Не заявлять доказанную замкнутую калибровку; не заявлять независимый физический holdout. Не подгонять по T_REF, D/H, Yp или контрасту. Аналитический механизм R149 (первый различающий момент f(K)) от этой генеалогии не зависит. STRUCTURE PASS / METHOD PASS / PHYSICAL ANCHOR OPEN. SCALE-09/10/11/12 остаются OPEN в физической части.
+
+## Дополнение: восстановление исходного размерного примера
+
+В архиве 26.11 найдены исходные ориентиры N=8, Tmax=.24704 keV, ΔFmax=.10684 keV, eps=.0098898 MeV, J=.0030856 MeV. Кандидат M=10^(-1.8) MeV, ell=10^(4.3) fm воспроизводит все шесть округлённых величин; точный первичный скан и критерий выбора не найдены. NR peak фиксирует лишь M ell², не отдельные M,ell. История исходной записки/независимость входов OPEN. [Архив, replay, машинная генеалогия](provenance_recovery_20261127/REPORT.md).
+
+Дополнение: допубликационные r150_r132_scale.py и JSON (26.11, 12:28 UTC) документируют безразмерную методику и **иной синтетический** размерный пример M=100 MeV, C=1000 fm, N=6. Переход к назначенным X M=.01585 MeV, ell=19950 fm не документирован. См. [архив и уточнение хронологии](provenance_recovery_20261127/REPORT.md#дополнение-найден-датированный-допубликационный-пакет-2611-1228-utc).
+
+## Решение о дальнейшем использовании (27.11.2026)
+
+Legacy conditional output — not a target. Сохранить verified lineage f33df29 → 420fc89, log-grid reconstruction и prepublication example. Приоритет перейти к независимой калибровке; не продолжать археологию как блокер. Предположение, что исходный расчёт сделал сосед, не является свидетельством происхождения. Правило выбора M,ell и историческая PRIMAT/LINX связь OPEN. [MODEL-LOCK](MODEL_LOCK.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+New operator-sensitivity negative control at fixed historical dimensionless parameters: NN NR +1.55027e−11, NN f +3.40920e−6, optical first-band NR −9.12684e−6, first-band f −4.24251e−6; multi-band f≈+1.27624e−7. Full NR numerically unresolved (analytic nonnegative scalar trace). This is a conditional comparison, not a reconstruction of the original choice of M,ell; their selection rule remains OPEN. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).
+
+## Операторная генеалогия и неидентифицируемость (27.11.2026)
+
+[Exact operator-equivalence audit](operator_identifiability_20261127/REPORT.md): f(K_NN) admits identical positive long-range Fourier representation at every phase. Therefore even exact reproduction of legacy number and full free spectrum cannot identify microscopic origin or justify the choice M,ell. Common kinetic zero before nonlinear f, port reference, branch, full controlled family and preparation are part of provenance. 3.41e−6 remains legacy conditional result, not target/prior/independent calibration; original M,ell selection OPEN. No BBN or PRIMAT/LINX derivation.

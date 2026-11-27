@@ -1,0 +1,92 @@
+{
+  "schema": "research-number-provenance-v1",
+  "id": "<stable-package-id>",
+  "scope": [
+    "R..."
+  ],
+  "base_commit": "<input-sha>",
+  "events": [
+    {
+      "id": "E1",
+      "type": "input_assigned",
+      "status": "DOCUMENTED",
+      "time_utc": null,
+      "description": "Question, prior state, reason for choice; unknown if not recorded.",
+      "source": {
+        "path": "<original-input>",
+        "commit": "<fixed-sha>",
+        "lines": "<range>",
+        "original_sha256": null,
+        "source_kind": "original_or_extract"
+      },
+      "values": [
+        {
+          "id": "parameter-id",
+          "role": "INPUT_ASSIGNED",
+          "value_exact": "<full precision>",
+          "display": "<rounded>",
+          "unit": "<unit>",
+          "definition": "<observable/parameter convention>"
+        }
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "E2",
+      "type": "scan_selection",
+      "status": "OPEN",
+      "description": "Preserve axes, ranges, objective, constraints, alternatives and selection rule; do not infer unknown history.",
+      "source": {
+        "path": "<code>",
+        "output": "<raw-output>"
+      },
+      "scan": {
+        "axes": null,
+        "grid": null,
+        "objective": null,
+        "constraints": null,
+        "selected_index": null,
+        "alternatives": null,
+        "reason": null,
+        "seed": null,
+        "environment": null,
+        "command": null
+      },
+      "depends_on": [
+        "E1"
+      ]
+    },
+    {
+      "id": "E3",
+      "type": "computed_output",
+      "status": "REPRODUCED",
+      "description": "State physical/model scope separately.",
+      "source": {
+        "path": "<replay-code>",
+        "output": "<stdout>",
+        "precision_dps": null
+      },
+      "values": [],
+      "depends_on": [
+        "E1",
+        "E2"
+      ],
+      "relations": [
+        {
+          "type": "derives_from",
+          "target": "E1"
+        }
+      ]
+    },
+    {
+      "id": "E4",
+      "type": "open_question",
+      "status": "OPEN",
+      "description": "Exact missing source and closure criterion.",
+      "depends_on": [
+        "E2"
+      ]
+    }
+  ],
+  "scientific_acceptance": false
+}

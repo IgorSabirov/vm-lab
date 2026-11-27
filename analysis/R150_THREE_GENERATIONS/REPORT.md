@@ -130,3 +130,42 @@ $$Q:(3,2)_{1/6},\quad u^c:(\bar3,1)_{-2/3},\quad d^c:(\bar3,1)_{1/3},\quad L:(1,
 ## Слияние двух спинорных каналов и относительная мода (26.11.2026)
 
 В исправленной модели волокна имеют размерность 2: старые каналы (p,v₁,v₂), новые (p,w), w=c₁v₁+c₂v₂, |c₁|²+|c₂|²=1. Если B_old связывает порт только с v₁, то в ограниченном fused-анзаце h′=hc₁, остаточная связь с отброшенной относительной модой равна h c₂, а портовый блок PBQBP=h²|c₂|²I₂. Для h=1 проверены четыре пары коэффициентов; точное переплетение только p–w модели требует c₂=0. Это не универсальный no-go: сохранение относительного канала или полной энергозависимой Feshbach-резольвенты меняет вывод. h не калиброван и не выведен из ADD; число поколений, индекс F и BBN не меняются. [Код и таблицы](../R150_R132_SPECTRAL_BRIDGE_20261126/dirac/su2_haar_peter_weyl_fusion/REPORT.md).
+
+
+## Размерная калибровка и доноры SCALE-09 (26.11.2026)
+
+Донорская карта расширена экспериментами GaAs, Al, TI, InAs и тороидальными BEC. Это подтверждает независимые лабораторные аналоги для K/D-ветвей, голономии и контактной чётности, но не идентифицирует скрытый сектор X. См. [полный аудит доноров SCALE-09](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/DONOR_AUDIT_20261126.md) и [обновлённую карту доноров и откликов](DONORS_AND_RESPONSE.md). Статусы: донорский поиск FOUND; TARGET_X_IDENTIFICATION=OPEN, physical_anchor=OPEN, scientific_acceptance=false. BBN-величины не использованы для калибровки.
+
+## SCALE-09–11: независимая ревизия (27.11.2026)
+
+SCALE-09 продвинут, физический якорь OPEN: свободный N=6 антифазный K-спектр 72±36√3,72 (3 дублета), R_a=1 имитирует равномерную лестницу, R_p=.5 разрешает неоднозначность в заявленном семействе. Контактная тройка у резонанса (2 активных + dark) и изоспектральное фазовое переключение — разные механизмы, не вывод трёх хиральных поколений. Новая проверка K/D/F и когерентный holdout, уточнённый Fuhrer и TARGET_X релятивистский контроль. SCALE-09–12, physical_anchor, TARGET_X и scientific_acceptance не повышаются; BBN не использован для fit.
+
+[Полный согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/REVIEW_20261127.md) · [Вычислительное воспроизведение](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/verify_scale09_20261127.py) · [Holdout](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/SCALE10_HOLDOUT_PREREG.md).
+
+## Многокорневой спектральный аудит и экстраполяция (27.11.2026)
+
+SCALE-05/06/11: аналитический бюджет активных уровней A/N²+B/N⁴. Контроль четырёх ветвей 70 знаков, N≤3072; основной уровень пропускался при поиске выше −u. Экстраполяция первой положительной моды при N=1536 снижает ошибку 3.33e−6→1.46e−13. Это вычислительная точность, не физическая метрология или вывод поколений; E*, физический носитель и SCALE-09–12 OPEN. При физическом N=6 использовать точную конечную формулу.
+
+[Аналитика, код и численная проверка](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md).
+
+## Массивная дисперсия и голономия (27.11.2026)
+
+В исходной геометрии L=7 с неподвижным портом conditional Rel iso C≈3.4092e−6, но all/one и continuum различны. N=6 физическое или сеточное — OPEN, контактный массивный оператор/положительная проекция требуют независимого вывода. Число семей, индекс F и физическая приёмка не изменены. [Отчёт, доказательство и код](../R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/REPORT.md).
+
+## Генеалогия размерной точки X (27.11.2026)
+
+Исходные N=8/L=9, Tmax=.24704 keV, ΔFmax=.10684 keV и J=.0030856 MeV восстановлены. Логарифмическая точка reproduces; источник скана/selection OPEN. Поздний малый контраст N=6 не независимое предсказание; физические статусы F/поколений неизменны. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+Six MODEL-LOCK decisions; family L=N+1 has N−1 identical active layers, C_all=(N−1)C_one exactly. LAB calibration/holdout and independent X pathway separated. Optical J_width correction and thermal free/iso values in review. No promotion of F, index, generations, physical gates or scientific acceptance. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+IMPORTANT: New four-model negative control, NN NR/f and optical NR/f with independent Fourier J_r. Ratios (R_a,R_p)=(1,.5),(.822264,.431547),(1.356214,.681766),(1.108303,.577642). Optical correction at t=.2 ≈15× original NR/f separation. Projection may change sign and leading moment; T^-1 not unique Rel. Port shot-noise conditional maxima (NN .1367/20.54σ, .5153/6.37σ; optical .1033/15.55σ, .3769/6.40σ), not experimental power. LONG-RANGE-A MODEL_PASS_WITH_SCOPE/B OPEN; no change to F, index, generations, physical acceptance. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Iso — точно canonical one-particle 7-state порт+цикл, Z7=1+Z_ring=2.071440406150824 при φ=0,t=.3; 1 — реальный порт, не вакуум. f(K_NN) exact LR, j̃1/J=.764294733,j̃2/j̃1=.05725; optical J2/J1<0, arbitrary LR may exactly mimic. Complex seam fixed; H2 contact distributed, AP antipode parity zero у NN и optical при допустимых h. Chord test 6→5→4→3; b1=1→4. J6 scalar residual for 10% NN contrast error at t=.5,1,2,5,25.92: 7.006e−4,7.028e−5,3.553e−6,4.296e−8,1.185e−11. Optical deep controls |J2/J1|=.01/.001/.0001 at s=10.6418/20.8426/33.8357, J1/E_R=.0165686/.00213817/.000258323. 09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL with seven work items.
+
+**Дополнение — ограничение идентифицируемости:** Нужны физический ноль/domain, независимо калиброванные B_j и coherent tomography, Wilson paths, Gibbs preparation и covariance; AP zero не уникален, full free H не устанавливает механизм. Нет demonstrated arbitrary J1..J6 или full loop+port/Gibbs. Power двух fixed models не robust power. X/SCALE-09–12/generations unchanged. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

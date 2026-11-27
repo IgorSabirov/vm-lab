@@ -1,0 +1,29 @@
+# R135 TARGET_X: контракт идентификации
+
+OPEN. Условные M_X,ℓ_X,N не независимые измерения. Если задан K, E*=ℏ²/(2MC²) идентифицирует только MC² (C — длина окружности). Требуются независимо обоснованные M либо C, носитель/Hilbert space, физическая дисперсия (включая relativistic regime), явное отображение оператора и наблюдаемой, фазовая конвенция, source/portal/UV matching, errors/covariance, независимый holdout и полный energy budget. В текущем условном вложении J/M≈.195, E_top/M≈.779, поэтому нерелятивистская K-аппроксимация всего спектра неконтролируема на процентном уровне. См. REVIEW §6: условная square-root проверка меняет ratios, не является выводом физической D или X. Не использовать 3.41e−6 без определения контраста и входов. BBN, Yp/DH, T_REF и целевой контраст запрещены для калибровки E*. При отсутствии отображения записать NO_IDENTIFIABLE_X_MAPPING_IN_SPECIFIED_MODEL, а не универсальный запрет X. Не менять Gate D/U006/научную приёмку.
+
+## Массивная дисперсия и голономия (27.11.2026)
+
+Условная модель iso при исходных назначенных M,ell,N,T даёт 3.40919973954e−6 без нового fit; all 9.53227e−7, one 1.90645e−7, fixed-C continuum 4.52065e−7. Происхождение целевого числа не установлено; это не независимый holdout. T/M≈5.05, конечный Gibbs trace не EOS газа; physical ensemble, mass/contact ordering, N physical vs grid, density/portal OPEN. [Доказательства, код и донорский паспорт](../relativistic_holonomy_20261127/REPORT.md).
+
+## Генеалогия числа 3.41e−6 (27.11.2026)
+
+Первое подтверждённое появление в проверенной истории — f33df29 (26.11.2026 13:04:30 UTC), REPORT.md §5.1, verify.py run(): прямой условный Rel iso результат при назначенных M,ell,T,N, не NR-таргет; 420fc89 сохраняет CHECKS.json. Позднейший Rel-повтор — воспроизводимость исходного расчёта, не независимый holdout. Историческое использование 3.41e−6 в target_x не подтверждено; фактическое происхождение M,ell до supplied research note OPEN. [Первичные ссылки, отрицательный контроль и границы поиска](TARGET_X_PROVENANCE_341_20261127.md).
+
+## Дополнение: восстановление исходного размерного примера
+
+В архиве 26.11 найдены исходные ориентиры N=8, Tmax=.24704 keV, ΔFmax=.10684 keV, eps=.0098898 MeV, J=.0030856 MeV. Кандидат M=10^(-1.8) MeV, ell=10^(4.3) fm воспроизводит все шесть округлённых величин; точный первичный скан и критерий выбора не найдены. NR peak фиксирует лишь M ell², не отдельные M,ell. История исходной записки/независимость входов OPEN. [Архив, replay, машинная генеалогия](provenance_recovery_20261127/REPORT.md).
+
+Дополнение: допубликационные r150_r132_scale.py и JSON (26.11, 12:28 UTC) документируют безразмерную методику и **иной синтетический** размерный пример M=100 MeV, C=1000 fm, N=6. Переход к назначенным X M=.01585 MeV, ell=19950 fm не документирован. См. [архив и уточнение хронологии](provenance_recovery_20261127/REPORT.md#дополнение-найден-датированный-допубликационный-пакет-2611-1228-utc).
+
+## Разделение LAB и X, режим сохранения legacy output (27.11.2026)
+
+09-X ведётся независимо от 09-LAB, который не идентифицирует X даже при successful holdout. [MODEL-LOCK](MODEL_LOCK.md) требует явных N/branch/contact/ensemble/mass/probe decisions. Число 3.41e−6 сохраняется как legacy conditional Rel iso output, not target/prior/holdout; первичное правило выбора M,ell OPEN; остановка археологии не означает найденный источник. Не связывать с PRIMAT/LINX без первичного расчёта. Оценка локальной чувствительности gᵀCov g относится только к исходной условной точке. 12-X требует собственного dimensionful anchor, uncertainties, independent verification, portal/UV/energy budget; no LAB promotion. [Согласованный аудит](MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Legacy dimensionless point t=25.921618 exceeds optical second-band threshold. NN f +3.40920e−6; optical first-band f −4.24251e−6, multiband spectral f≈+1.27624e−7. Full scalar NR unresolved at double precision; analytic nonnegative in stated class. Magnitude/temperature exponent alone cannot identify X or Rel. Require full physical operator, projection error on C and independent X mechanism; no BBN calibration or promotion. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).
+
+## Operator identifiability (27.11.2026)
+
+Free operator identity f(K_NN)=positive long-range expansion proves no free-spectrum-only attribution of microscopic relativistic origin. Independent controlled family, physical zero/domain, mode/probe, locality, ensemble and full thermal projection are required; no inference from T exponent or 3.41e−6. Canonical port+ring one-particle trace is not physical gas EOS; derive density/statistics/portal separately. X remains OPEN. [Report, data and replay](operator_identifiability_20261127/REPORT.md).

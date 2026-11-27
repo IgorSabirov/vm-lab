@@ -173,3 +173,49 @@ M=F_π−F_0=T ln(Z_0/Z_π) даёт ΔU=M−T∂_T M, ΔS=−∂_T M, ∂_λ M=
 E*=.02 МэВ и E_ref=.137 МэВ — синтетика. Спектральные интервалы определяют масштаб, а два уровневых отсчёта в общей энергетической конвенции — спектральный offset, не абсолютную гравитирующую энергию. При квадратичной дисперсии m_X c² C_X²=(ℏc)²/(2E*), разделение требует независимой геометрии или массы. Нейтрон и C_X=1 фм дают 20.72125 МэВ, не кэВ. QCD/SU(3) числа без словаря наблюдаемых — benchmarks; отрицательный поиск якоря ограничен линией моста, не всем корпусом. EOS, мера, плотность, часы, портал и Gate D открыты; не калибровать по D/H или Yp.
 
 [Уточнения, численный контроль и протокол](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/CALIBRATION_AUDIT_20261126.md).
+
+## SCALE-09–11: независимая ревизия (27.11.2026)
+
+Отрицательный контроль условного K-вложения: M_X=15.85 keV, ℓ=19950 fm, N=6, J=3.086227 keV, J/M=.1947, E_top/M=.779; условное square-root чтение изменяет периодические уровни на −8.2%,−19.1%,−23.1% и двухфазовый отпечаток (1,.5)→(.822264,.431547). Не вывод физического релятивистского оператора X. Контраст 3.41e−6 требует формулы; нельзя исключить сокращения по одной оценке ошибки. Нужны независимые M/C, носитель, портал/UV matching, covariance, holdout; TARGET_X и Gate D OPEN, BBN не калибровка.
+
+[Полный согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/REVIEW_20261127.md) · [Вычислительное воспроизведение](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/verify_scale09_20261127.py) · [Holdout](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/SCALE10_HOLDOUT_PREREG.md).
+
+## Конечно-сеточная поправка N⁻²/N⁻⁴ (27.11.2026)
+
+Аналитический бюджет сеточной ошибки активного скалярного уровня уточнён до N⁻⁴. Размерная поправка требует независимого E*=J/N²; данные не определяют X, EOS, абсолютную энергию, портал или BBN. Gate D, TARGET_X и физическая приёмка открыты. [Доказательство и результаты](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/finite_size_20261127/REPORT.md).
+
+## Многокорневой спектральный аудит и экстраполяция (27.11.2026)
+
+Для фиксированного вычислительного уточнения размерная систематика интервала E*[(A_j−A_i)/N²+(B_j−B_i)/N⁴+…]; общие параметры и N создают коррелированную систематику. При условном физическом N=6 использовать точную дискретную модель; Ричардсон не изменяет физический носитель и не калибрует E*. TARGET_X, Gate D, BBN OPEN.
+
+[Аналитика, код и численная проверка](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md).
+
+## Массивная дисперсия и голономия (27.11.2026)
+
+Условный Rel iso C=3.40919973954e−6, all/one 9.53227e−7/1.90645e−7; fixed-C continuum 4.52065e−7. Это не идентификация X. ΔF и ΔU конечного носителя не EOS/ρ_X, T/M≈5.05. Gate D, независимый scale, ансамбль и портал OPEN. [Отчёт, доказательство и код](../R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/REPORT.md).
+
+## Генеалогия размерной точки X (27.11.2026)
+
+Исторический след 3.41e−6 — прямой условный Rel-выход f33df29. Логарифмическая точка M,ell воспроизводит исходный N=8 максимум, но физическая независимость и критерий выбора OPEN. Никакой новой BBN/EOS-калибровки. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+09-LAB ≠ 09-X. Legacy 3.41e−6 conditional iso output, not target. X carrier/operator/scale, statistics, portal/UV and energy budget OPEN. 0.96% local equal independent fractional error budget for 10% C only at assigned X point; BBN not calibration. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Legacy t=25.921618 dimensionless point: NN f gives +3.40920e−6, optical first-band f −4.24251e−6 and multi-band f≈+1.27624e−7. Full scalar NR numerically unresolved (≈5e−13 floor; analytic nonnegative). Optical second-band threshold 20.416855 J1 below T. Model contrast not independent X anchor; physical full operator, Gibbs preparation, scale, portal/energy budget OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Exact f(K_NN) LR-equivalence исключает вывод microscopic Rel/X из free H. Optical common-zero Δ1/J1=−.00230265747, Δ2/J1²=−.04552745166, equality numerator terms t=9.88585, second-band threshold weight .126785; для ≤10% второго члена t≈98.86. Нет доказанного широкого first-band T^-1 window. Iso — canonical one-particle port+cycle, не gas EOS.
+
+**Дополнение — ограничение идентифицируемости:** Независимая X калибровка, density/statistics, физический ноль, controlled operator, locality, full trace/precision, portal OPEN; 3.41e−6 не таргет, BBN не калибрует. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).
+
+## Дополнение 27.11.2026: R141–ЯМ–Мёбиус
+
+Скрининг/глюболы→масштаб/EOS→BH1/X/BBN — условный маршрут, не новые физические данные. [Отчёт, границы и replay](../../analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md).
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+LAB-профиль и верхний портовый уровень — новый методический донор #222; X не калиброван. [Отчёт, данные, протокол и происхождение](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

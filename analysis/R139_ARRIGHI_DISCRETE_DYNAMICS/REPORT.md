@@ -84,3 +84,17 @@ OPENBLAS_NUM_THREADS=1 python analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py 
 ## Независимый SU(2)-контроль Haar и QBP (26.11.2026)
 
 Для фундаментального SU(2)-представления проверена формула Шура T(B)=Tr(B)I₂/2 на 40 000 Haar-пробах: максимальные ошибки унитарности/детерминанта 5.56e−16/6.68e−16; Frobenius-ошибка twirl σₓ равна 0.0094675. Конечное среднее не является точным проектором: T²−T имеет норму 0.00739987. Для Bₓ=xσₓx† и проектора P_av на постоянные сечения точное Haar-среднее даёт P_av B P_av=0, а потому (QBP_av)†(QBP_av)=P_av. При n=400 дефект грамовой матрицы 0.00153548; отдельные 100-повторные серии n=100…6400 согласуются с ожидаемым дефектом 1/n. Это дополнение к Q8/PG-аудиту, а не замена физического калибровочного проектора P_G. [Код, JSON и оговорки](../R150_R132_SPECTRAL_BRIDGE_20261126/dirac/su2_haar_peter_weyl_fusion/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+TI candidate native AP/D requires explicit spinor intertwiner, restricted U, domain and named transport. Desk-study retrospective, not X or U010 closure. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Signed winding terms of a projected physical operator neither derive the ADD bit rule nor identify temporal F. Intertwiner and full physical operator/probe mapping remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Точное LR-представление f(K_NN) есть пространственное операторное тождество, не вывод именованного F. AP антиподальный ноль — общая симметрийная защита, не уникальный Dirac fingerprint. Controlled H/rho/A/B_j требуют общего restricted U.
+
+**Дополнение — ограничение идентифицируемости:** Физический spinor intertwiner, независимые interventions и coherent probes, named transport OPEN. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

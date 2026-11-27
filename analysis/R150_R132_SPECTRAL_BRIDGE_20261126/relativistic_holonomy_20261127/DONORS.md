@@ -1,0 +1,16 @@
+# Донорский паспорт: разграничение дисперсии, геометрии, контактов и термодинамики
+
+Продолжение [первичного аудита](../scale_closure/DONOR_AUDIT_20261126.md), [словаря](../scale_closure/DONOR_OPERATOR_DICTIONARY.md), [ревизии](../scale_closure/REVIEW_20261127.md). Никакие новые физические данные не заявлены. Повторная проверка открытых первичных HTML/abstract: Fuhrer (библиографическая страница, детали из ранее опубликованного аудита PDF), Kriisa Fig.4, Debbarma full text Fig.2–4, Münning Eq.1, Roy Eq.5/Fig.1. Остальные перечислены из предыдущего донорского аудита, не выдавать за заново проверенные PDF.
+
+| Донор | Что измерено / назначение | Ограничение |
+|---|---|---|
+| [Fuhrer 2001](https://doi.org/10.1038/35101552) | AB geometry, addition spectroscopy; 75 mT -> r_AB=132.485 nm; E*=.820642 μeV, Δ13=64.7953 μeV при принятой m*=.067me | Из прежнего полного аудита: 65 nm, около 200 электронов, Δ≈180 μeV после EC; 64.7953 расчёт, не измеренная линия. Same-device mass OPEN. |
+| [Kriisa 2019](https://www.nature.com/articles/s41598-019-39186-2) | CR/magnetoplasmon fits 0.0670±.0003, .0677±.0004 me, Fig.4 | другие образцы; при σC/C=.5%, rho=0 условная σE*/E*=1.0957%; с σm=1%, rho=.45 ->1.70294%. Не измеренная совместная ковариация. |
+| [Debbarma 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC8759086/) | orbital parity, π shift, avoided crossings, g_orb=290; l≈6 условно -> m*/me=.0413793; D_AB=66 nm выведен из 1.2 T | InAs/InAsSb, не GaAs; AB-derived diameter не независимый контроль; l и lever arm должны быть независимы. |
+| [Münning 2021](https://www.nature.com/articles/s41467-021-21230-3) / [Cho 2015](https://www.nature.com/articles/ncomms8634) | TI Dirac subbands, half integer l, Berry π, flux compensation | структурный донор D; не массивная дисперсия X и не операторный изоморфизм без U. |
+| [Roy 2025](https://www.nature.com/articles/s41467-025-57818-2) | шесть трансмонов, 640 ns, PST J_n=(π/2τ)√(n(N−n)); J_n/(2π) MHz=.873464,1.104854,1.171875,1.104854,.873464 | открытая неоднородная цепь, не кольцо с портом; метод программируемой реализации. |
+| [Cassé 2000](https://doi.org/10.1103/PhysRevB.62.2624), [Keyser 2002](https://arxiv.org/abs/cond-mat/0202403) | transport AB / контактный crossover | проводимость не отношение Gibbs traces; выделить mode IDs, linewidth. |
+| [Bleszynski-Jayich 2009](https://doi.org/10.1126/science.1178139) | равновесный persistent current, геометрия и T | diffusive E_Th, не ballistic K; I=-∂F/∂Φ, требуется интегрирование с нормировкой и контроль статистики. |
+| [Ramanathan 2011](https://arxiv.org/abs/1101.0019), [Eckel 2014](https://arxiv.org/abs/1402.2958) | 23Na BEC, циркуляция/weak link/hysteresis | взаимодействующий GPE; отдельно Rb87. Na R=19.5 μm Er/h=.578114 Hz; Rb R=12,19.5 μm .403821,.152926 Hz (расчёт). |
+
+Для каждого prospective устройства: sample ID, mass/geometry calibration независимо от holdout, Hamiltonian/observable map, AB vs AAS vs Berry, phase reference, temperature and probe, raw spectra, units and covariance; измерить обе фазы, protected modes and active avoided crossings; сравнить NR, massive Rel, massless sqrt K при фиксированном N. Не использовать T_REF или D/H/Yp; общий SCALE-09 OPEN. Не увеличивать физическое покрытие R143 без новых данных.
