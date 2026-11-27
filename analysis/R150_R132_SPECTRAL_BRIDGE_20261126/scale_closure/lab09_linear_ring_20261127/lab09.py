@@ -16,6 +16,8 @@ from pathlib import Path
 
 import numpy as np
 
+import hf_recovery
+
 LINES_MHZ = np.array([6588.8172, 6627.8914, 6713.2201, 6791.6168])
 Z_MAX = 5.0
 WEIGHT_SIGMA = 5e-6
@@ -348,6 +350,16 @@ def published_ring_extract():
 
 
 def synthetic_kit(name):
+    if name.startswith("hf_"):
+        import hf_port
+        if name not in hf_port.HF_LIMITS:
+            raise KeyError(name)
+        kit = _record(name, nup=6600., g=1., protocol="detuned", readout="spectral_derivative")
+        on = kit["port_on"]
+        del on["port_weights"], on["sigma_weight"]
+        on["branch_ids"] = list(range(7))
+        on["spectral_sweep"] = hf_port.make_sweep(name, on["source_id"])
+        return jsonable(kit)
     if name == "detuned":
         return _record("detuned", nup=6600.0, g=1.0, protocol="detuned")
     if name == "resonant_one_doublet":
@@ -500,7 +512,7 @@ def evaluate_kit(kit):
             "comparison": comparison,
             "rejected_predicates": {
                 "idealized_weight_gate": idealized_weight_gate(kit),
-            } if port_on else {},
+            } if port_on and "port_weights" in port_on else {},
         })
 
     present = port_off is not None and calibration is not None and port_on is not None
@@ -521,7 +533,8 @@ def evaluate_kit(kit):
         "INDEPENDENT_CALIBRATION", independent,
         "g and the port-weight map are not taken from the port-on record or the holdout",
         "method"))
-    readout_ok = calibration.get("readout") == "calibrated_projector"
+    spectral = ("spectral_sweep" in port_on or calibration.get("readout") == "spectral_derivative")
+    readout_ok = calibration.get("readout") == ("spectral_derivative" if spectral else "calibrated_projector")
     checks.append(_check(
         "CALIBRATED_READOUT", readout_ok,
         "peak height is not a port weight; readout must be a calibrated projector",
@@ -533,8 +546,9 @@ def evaluate_kit(kit):
     matrix = circulant(coefficients)
     bare, vectors_bare = diagonalize(matrix)
     bare = np.sort(bare.real)
-    off = np.sort(np.asarray(port_off["frequencies_mhz"], dtype=float))
-    off_z = _max_z(off - bare, port_off["sigma_mhz"])
+    off = np.asarray(port_off["frequencies_mhz"], dtype=float)
+    off_order = np.argsort(off)
+    off_z = _max_z(off[off_order] - bare, np.asarray(port_off["sigma_mhz"])[off_order])
     checks.append(_check(
         "PORT_OFF_MATCHES_A", off_z <= z_max,
         f"max z of port-off frequencies against locked A is {off_z:.3e}",
@@ -550,21 +564,49 @@ def evaluate_kit(kit):
     predicted_values, predicted_vectors = diagonalize(hamiltonian(matrix, nup, g, phase))
     predicted_weights = port_weights(predicted_vectors)
     predicted_values, predicted_weights = sorted_observable(predicted_values, predicted_weights)
-    observed_values = np.asarray(port_on["frequencies_mhz"], dtype=float)
-    observed_weights = np.asarray(port_on["port_weights"], dtype=float)
-    observed_values, observed_weights = sorted_observable(observed_values, observed_weights)
-    frequency_z = _max_z(observed_values - predicted_values, port_on["sigma_freq_mhz"])
-    weight_z = _max_z(observed_weights - predicted_weights, port_on["sigma_weight"])
+    observed_values = np.asarray(port_on.get("frequencies_mhz", []), dtype=float)
+    if observed_values.shape != (7,) or np.shape(port_on.get("sigma_freq_mhz")) != (7,):
+        checks.append(_check("SPECTRUM_COMPLETE", False, "seven central lines and errors required", "method"))
+        return finish()
+    order = np.argsort(observed_values)
+    observed_values = observed_values[order]
+    freq_sigma = np.asarray(port_on["sigma_freq_mhz"], float)[order]
+    frequency_z = _max_z(observed_values - predicted_values, freq_sigma)
+    if spectral:
+        try:
+            fit = hf_recovery.from_records(kit)
+            mode = port_on["spectral_sweep"]["normalization"]
+            weight_z, sum_z = hf_recovery.slope_scores(fit, mode, predicted_weights, order, z_max)
+        except hf_recovery.SweepError as exc:
+            checks.append(_check(exc.gate, False, str(exc), "method"))
+            return finish()
+        observed_weights = fit["weights"][order]
+        weight_sigma = np.sqrt(np.maximum(0., np.diag(fit["covariance"])))[order]
+        diagnostics["spectral_recovery"] = {
+            "normalization": mode, "step": fit["step"], "confidence": fit["confidence"],
+            "branch_ids": [port_on["branch_ids"][j] for j in order],
+            "intervals": fit["intervals"][order], "covariance": fit["covariance"][np.ix_(order, order)],
+            "denominator": fit["denominator"], "denominator_sigma": fit["denominator_sigma"],
+            "denominator_bias_bound": fit["denominator_bias_bound"],
+        }
+        if mode == "both":
+            diagnostics["spectral_recovery"]["trace_weights"] = fit["trace_estimate"]["weights"][order]
+    else:
+        observed_weights = np.asarray(port_on["port_weights"], dtype=float)[order]
+        weight_sigma = np.asarray(port_on["sigma_weight"], dtype=float)[order]
+        weight_z = _max_z(observed_weights - predicted_weights, weight_sigma)
+        sum_z = abs(float(np.sum(observed_weights) - 1.0)) / np.linalg.norm(weight_sigma)
     checks.append(_check(
         "FORWARD_SPECTRUM", frequency_z <= z_max and weight_z <= z_max,
         f"frequency z {frequency_z:.3e}, port-weight z {weight_z:.3e}",
         "method"))
-    weight_sum_sigma = float(np.sqrt(np.sum(np.square(port_on["sigma_weight"]))))
-    sum_z = abs(float(np.sum(observed_weights) - 1.0)) / weight_sum_sigma
-    checks.append(_check(
-        "PORT_WEIGHT_SUM", sum_z <= z_max,
-        f"sum of port weights differs from 1 by z {sum_z:.3e}",
-        "method"))
+    if sum_z is None:
+        checks.append(_check("TRACE_SUM_IDENTITY", True, "trace-normalized weights sum to one by construction", "control"))
+    else:
+        checks.append(_check(
+            "PORT_WEIGHT_SUM", sum_z <= z_max,
+            f"sum of port weights differs from 1 by z {sum_z:.3e}",
+            "method"))
 
     tolerance = z_max * float(np.median(port_on["sigma_freq_mhz"]))
     residual_upper = float(port_off["residual_coupling_upper_mhz"])
@@ -636,13 +678,13 @@ def evaluate_kit(kit):
             "values": observed_weights.tolist(),
             "prediction": predicted_weights.tolist(),
             "residual": (observed_weights - predicted_weights).tolist(),
-            "sigma": list(port_on["sigma_weight"]),
+            "sigma": list(weight_sigma),
         },
         "frequencies_mhz": {
             "values": observed_values.tolist(),
             "prediction": predicted_values.tolist(),
             "residual": (observed_values - predicted_values).tolist(),
-            "sigma": list(port_on["sigma_freq_mhz"]),
+            "sigma": list(freq_sigma),
         },
     }
     extra.update(gap_payload)
@@ -650,14 +692,16 @@ def evaluate_kit(kit):
 
 
 def catalog_names():
+    import hf_port
     return [
         "detuned", "resonant_one_doublet", "resonant_other_doublet",
         "detuned_within_noise", "wrong_g", "dependent_calibration",
-        "peak_height", "loose_residual", "half_gap",
+        "peak_height", "loose_residual", "half_gap", *hf_port.HF_LIMITS,
     ]
 
 
 def build_results():
+    import hf_port
     controls = reference_controls()
     kits = {}
     for name in catalog_names():
@@ -679,7 +723,11 @@ def build_results():
         "failed_checks": extract["comparison"]["failed_checks"],
     }
     positive = ["detuned", "resonant_one_doublet", "resonant_other_doublet", "detuned_within_noise"]
+    positive.extend(name for name, limit in hf_port.HF_LIMITS.items() if limit is None)
+    spectral = hf_port.campaign()
+    hf_port.assert_spectral(spectral)
     return jsonable({
+        "spectral_recovery": spectral,
         "scope": "method acceptance for one linear 6+1 ring; synthetic known answers are not a measured anchor",
         "scientific_acceptance": False,
         "physical_anchor": "OPEN",
@@ -752,13 +800,17 @@ def assert_reference(controls=None):
         "loose_residual": ("METHOD_FAIL_SYNTHETIC", "RESIDUAL_COUPLING"),
         "half_gap": ("METHOD_FAIL_SYNTHETIC", "GAP_DEFINITION"),
     }
+    import hf_port
+    for name, limit in hf_port.HF_LIMITS.items():
+        expected[name] = (("METHOD_FAIL_SYNTHETIC", limit) if limit else
+                          ("METHOD_PASS_SYNTHETIC", "PHYSICAL_OPEN_NO_SAME_ASSEMBLY_PORT_KIT"))
     for name, (decision, limit) in expected.items():
         result = evaluate_kit(synthetic_kit(name))
         if result["linear_decision"] != decision or result["limit"] != limit:
             raise AssertionError(f"{name}: {result['linear_decision']} {result['limit']}")
         if result["scientific_acceptance"] or result["holdout_consumed"]:
             raise AssertionError("synthetic evaluation promoted acceptance or consumed a holdout")
-        gate = result["rejected_predicates"]["idealized_weight_gate"]
+        gate = result["rejected_predicates"].get("idealized_weight_gate", {})
         if name in {"detuned", "resonant_one_doublet"} and gate["linear_decision"] != "METHOD_FAIL_SYNTHETIC":
             raise AssertionError("idealized weights unexpectedly pass at sigma 5e-6")
         if name == "detuned" and (result["comparison"]["max_abs_weight_residual"] > 1e-12
