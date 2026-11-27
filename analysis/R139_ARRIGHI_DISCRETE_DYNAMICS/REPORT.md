@@ -88,3 +88,7 @@ OPENBLAS_NUM_THREADS=1 python analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/verify.py 
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 TI candidate native AP/D requires explicit spinor intertwiner, restricted U, domain and named transport. Desk-study retrospective, not X or U010 closure. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Signed winding terms of a projected physical operator neither derive the ADD bit rule nor identify temporal F. Intertwiner and full physical operator/probe mapping remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

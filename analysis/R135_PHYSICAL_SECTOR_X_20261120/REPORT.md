@@ -201,3 +201,7 @@ E*=.02 МэВ и E_ref=.137 МэВ — синтетика. Спектральн�
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 09-LAB ≠ 09-X. Legacy 3.41e−6 conditional iso output, not target. X carrier/operator/scale, statistics, portal/UV and energy budget OPEN. 0.96% local equal independent fractional error budget for 10% C only at assigned X point; BBN not calibration. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Legacy t=25.921618 dimensionless point: NN f gives +3.40920e−6, optical first-band f −4.24251e−6 and multi-band f≈+1.27624e−7. Full scalar NR numerically unresolved (≈5e−13 floor; analytic nonnegative). Optical second-band threshold 20.416855 J1 below T. Model contrast not independent X anchor; physical full operator, Gibbs preparation, scale, portal/energy budget OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

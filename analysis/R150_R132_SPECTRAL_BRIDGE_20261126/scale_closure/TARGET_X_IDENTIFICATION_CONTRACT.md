@@ -19,3 +19,7 @@ OPEN. Условные M_X,ℓ_X,N не независимые измерени�
 ## Разделение LAB и X, режим сохранения legacy output (27.11.2026)
 
 09-X ведётся независимо от 09-LAB, который не идентифицирует X даже при successful holdout. [MODEL-LOCK](MODEL_LOCK.md) требует явных N/branch/contact/ensemble/mass/probe decisions. Число 3.41e−6 сохраняется как legacy conditional Rel iso output, not target/prior/holdout; первичное правило выбора M,ell OPEN; остановка археологии не означает найденный источник. Не связывать с PRIMAT/LINX без первичного расчёта. Оценка локальной чувствительности gᵀCov g относится только к исходной условной точке. 12-X требует собственного dimensionful anchor, uncertainties, independent verification, portal/UV/energy budget; no LAB promotion. [Согласованный аудит](MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Legacy dimensionless point t=25.921618 exceeds optical second-band threshold. NN f +3.40920e−6; optical first-band f −4.24251e−6, multiband spectral f≈+1.27624e−7. Full scalar NR unresolved at double precision; analytic nonnegative in stated class. Magnitude/temperature exponent alone cannot identify X or Rel. Require full physical operator, projection error on C and independent X mechanism; no BBN calibration or promotion. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).

@@ -159,3 +159,7 @@ SCALE-05/06/11: аналитический бюджет активных уро�
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 Six MODEL-LOCK decisions; family L=N+1 has N−1 identical active layers, C_all=(N−1)C_one exactly. LAB calibration/holdout and independent X pathway separated. Optical J_width correction and thermal free/iso values in review. No promotion of F, index, generations, physical gates or scientific acceptance. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+IMPORTANT: New four-model negative control, NN NR/f and optical NR/f with independent Fourier J_r. Ratios (R_a,R_p)=(1,.5),(.822264,.431547),(1.356214,.681766),(1.108303,.577642). Optical correction at t=.2 ≈15× original NR/f separation. Projection may change sign and leading moment; T^-1 not unique Rel. Port shot-noise conditional maxima (NN .1367/20.54σ, .5153/6.37σ; optical .1033/15.55σ, .3769/6.40σ), not experimental power. LONG-RANGE-A MODEL_PASS_WITH_SCOPE/B OPEN; no change to F, index, generations, physical acceptance. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

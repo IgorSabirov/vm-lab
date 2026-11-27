@@ -171,3 +171,7 @@ F=QI допускает точный спектральный логарифм �
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 Физический F требует отдельного размерного такта, генератора и ветви логарифма. Пространственная голономия не такт. PRIMAT/LINX и BBN только после независимой калибровки, не якорь; 3.41e−6 условный Rel iso output, не target. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Signed spatial powers S^r on a twisted ring do not redefine temporal F. On the universal cover pR<N forbids nonzero odd winding; finite-N contrast moment order can drop from N to 1. Physical clock and causal transport remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

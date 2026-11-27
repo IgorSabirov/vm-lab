@@ -136,3 +136,7 @@ Bojowald–Das–Scherrer задали эффективное G(a) и рассч
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 N physical vs regulator, fixed C, AP wrap, conditional N6/continuum ratio 7.54, nonmonotone. Richardson only controlled asymptotic range. TI Berry π candidate, separate radii/domain; lifted resolvent theorem unchanged. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Winding range on universal cover differs from shortest graph distance; finite moment bound p*≥ceil(N/R), r=N full winding. Complete scalar Schrödinger heat kernel yields C≥0 under stated assumptions; projection may change sign. Infinite-dimensional continuum does not inherit finite-model T^-1 law; physical operator, domain and direct C convergence remain OPEN. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

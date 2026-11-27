@@ -39,3 +39,7 @@
 ## Решение о дальнейшем использовании (27.11.2026)
 
 Legacy conditional output — not a target. Сохранить verified lineage f33df29 → 420fc89, log-grid reconstruction и prepublication example. Приоритет перейти к независимой калибровке; не продолжать археологию как блокер. Предположение, что исходный расчёт сделал сосед, не является свидетельством происхождения. Правило выбора M,ell и историческая PRIMAT/LINX связь OPEN. [MODEL-LOCK](MODEL_LOCK.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+New operator-sensitivity negative control at fixed historical dimensionless parameters: NN NR +1.55027e−11, NN f +3.40920e−6, optical first-band NR −9.12684e−6, first-band f −4.24251e−6; multi-band f≈+1.27624e−7. Full NR numerically unresolved (analytic nonnegative scalar trace). This is a conditional comparison, not a reconstruction of the original choice of M,ell; their selection rule remains OPEN. [Общий отчёт, данные и replay](long_range_20261127/REPORT.md).

@@ -176,3 +176,7 @@ N=8 размерный пример и Tmax/ΔFmax восстановлены и
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 Контактный MODEL-LOCK: разделённая разность f[ki,kj]=2M/(sqrt(M²+2Mki)+sqrt(M²+2Mkj)) для первой вариации H2; f' только diagonal/degenerate limit. Mode-resolved Δ_ac, domain, independent V,M and K/D/F branch, no physical PASS. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+Fourier-calibrated optical J1/E_R=1/π² at s=3.35203828, not bandwidth root 3.40181871. Signed J2/J1≈−.089567, J3/J1≈.013084, J6/J1≈−9.5944e−5. Fréchet matrix replay error 8.25e−6. At t=2 first-band NR contrast −4.133e−7 versus multi-band NR +1.030e−8. Direct observable error is required; spectrum/trace convergence alone insufficient. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).

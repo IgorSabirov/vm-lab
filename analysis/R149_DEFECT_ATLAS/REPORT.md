@@ -123,3 +123,7 @@
 ## MODEL-LOCK / LAB–X (27.11.2026)
 
 Fixed finite N free/iso NR T^-N vs Rel T^-1; port-on requires new moment audit. With isolated common reference p_port, C_iso=1−p_port(0)/p_port(π); normalized populations without shared energy reference insufficient. Flux/T and mode/probe holdout OPEN. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+IMPORTANT: For finite signed hopping ring with maximal displacement R on the universal cover, p*≥ceil(N/R); equality requires nonzero net minimal winding coefficient. N6 optical coefficients yield p*=(6,3,2,2,2,1), Δ1=4NΣ_l J_(2l+1)N; J6 is a full winding, not an ordinary shortest neighbor. C_iso~(−1)^(p*+1)Δ_p*/[(N+1)p*!T^p*]. NR can yield T^-1. First-band NR sign changes near t=1.70835; at t=2 first-band −4.133e−7 versus multi-band +1.030e−8. Full scalar C≥0; no transfer of finite projected exponent/sign to continuum. Preserve existing determinant/I2 results, G7 and U010 remain open. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
