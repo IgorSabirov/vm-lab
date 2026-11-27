@@ -30,3 +30,7 @@
 3.41e−6 = округлённый legacy conditional Rel iso output: M=15.85 keV, ℓ=19950 fm, N=6, T=80 keV, J=3.0862270825964 keV, free+port, f(K), first confirmed f33df29; исходное правило выбора M,ℓ OPEN. Археологию можно остановить без научного вывода о происхождении; гипотеза о расчёте соседа или PRIMAT/LINX не доказана. Не использовать как target, prior, independent anchor/holdout или критерий оптимизации. См. [генеалогию](TARGET_X_PROVENANCE_341_20261127.md).
 
 MODEL-LOCK считается заполненным после выбора scope и регистрации всех шести решений с источниками, до доступа к удержанным данным. Машинный черновик намеренно содержит null; хэш-коммит черновика не является научной предрегистрацией. Сохранить raw inputs/outputs, независимость калибровки и контроля, ковариацию, alpha/power, stopping rule, отрицательные исходы. NO_ANCHOR_IN_SEARCHED_SCOPE и NO_IDENTIFIABLE_X_MAPPING_IN_SPECIFIED_MODEL допустимы с протоколом поиска, не physical PASS.
+
+## Long-range / winding / band completeness (27.11.2026)
+
+**Добавление к ML1/ML2/ML5/ML6:** указать signed J_r и winding на накрытии, отличие J_width и Fourier J1, independent J_r covariance, band/projection scope и error непосредственно C. Не идентифицировать Rel по T^-1 отдельно. Отдельно domain/physical f vs functional transform. [Отчёт и replay](long_range_20261127/REPORT.md).

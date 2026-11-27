@@ -96,3 +96,7 @@ SCALE-05/06/11: локальная спектральная поправка р�
 ## Согласованная программа после донорского аудита (27.11.2026)
 
 [MODEL-LOCK](MODEL_LOCK.md) · [согласованный аудит и поправки](MODEL_LOCK_REVIEW_20261127.md) · [машинный черновик предрегистрации](PREDICTIONS_LOCK_DRAFT_20261127.json). Разделить 09-LAB (размерный якорь и оператор на одном носителе) и 09-X (самостоятельный механизм, physical mapping); 10/11-LAB разрешено продвигать без повышения X. 09-MODEL-LOCK PROPOSED; ни один выбор физической ветви не ратифицирован. 09-LAB-D retrospective desk-study может идти параллельно. Не считать 3.41e−6 целью: legacy conditional Rel iso output, selection OPEN. Подгейты SCALE-09–12 и scientific_acceptance не изменены.
+
+## Long-range / winding / band completeness (27.11.2026)
+
+**Важный новый результат и ограничение:** 09-LAB-LONG-RANGE-A MODEL_PASS_WITH_SCOPE; B OPEN. Дальние winding-гармоники снижают p* и лишают T^-1 уникальности, однозонная проекция меняет знак C. Полный след и физический якорь не установлены; SCALE-09–12 OPEN.  [Отчёт и replay](long_range_20261127/REPORT.md).

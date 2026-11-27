@@ -351,9 +351,10 @@
         "depends_on": [
           "09-MODEL-LOCK",
           "09-LAB-SCALE",
-          "09-LAB-OP"
+          "09-LAB-OP",
+          "09-LAB-LONG-RANGE-B"
         ],
-        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power"
+        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power; T^-1 is nonunique; NN/optical NR/f alternatives, direct projection C error"
       },
       {
         "id": "11-LAB",
@@ -380,6 +381,24 @@
           "09-X"
         ],
         "deliverable": "independent physical target scale with uncertainty and verified holdout; original SCALE-12 dependencies retained"
+      },
+      {
+        "id": "09-LAB-LONG-RANGE-A",
+        "state": "MODEL_PASS_WITH_SCOPE",
+        "deliverable": "finite/projected winding harmonics, p* lower bound and tested equality, four-model contrast/ratios, first-band sign, Fourier J1..Jr",
+        "evidence": "long_range_20261127/REPORT.md"
+      },
+      {
+        "id": "09-LAB-LONG-RANGE-B",
+        "state": "OPEN",
+        "depends_on": [
+          "09-LAB-LONG-RANGE-A",
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP"
+        ],
+        "deliverable": "physical operator/projection completeness, direct C convergence and absolute error budget, same-device J_r covariance, band/precision/diamagnetic and leakage controls, operator/probe, held-out discrimination",
+        "evidence": "long_range_20261127/REPORT.md"
       }
     ],
     "legacy_output": {
@@ -387,6 +406,14 @@
       "role": "conditional Rel iso output; not target",
       "selection_rule": "OPEN"
     },
-    "technical_note": "Baseline test-integrity/merge-gate failure; stale REGISTRY_LINKS/INDEX.json; repair separately with generator, no bypass."
+    "technical_note": "Baseline test-integrity/merge-gate failure; stale REGISTRY_LINKS/INDEX.json; repair separately with generator, no bypass.",
+    "long_range": {
+      "important_result": "finite winding moment lower bound; exact Delta1; nonunique T^-1",
+      "important_limit": "projected one-band contrast may change sign; full scalar diamagnetic constraint; X not calibrated",
+      "report": "long_range_20261127/REPORT.md",
+      "results": "long_range_20261127/RESULTS.json",
+      "replay": "long_range_20261127/replay.py",
+      "physical_status": "OPEN"
+    }
   }
 }
