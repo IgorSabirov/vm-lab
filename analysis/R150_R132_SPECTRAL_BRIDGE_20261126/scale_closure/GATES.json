@@ -334,6 +334,15 @@
         "deliverable": "physical operator, mode, phase, preparation, probe, restricted U and error dictionary"
       },
       {
+        "id": "09-LAB-LINEAR-RING",
+        "state": "METHOD_PASS_SYNTHETIC",
+        "physical": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+        "depends_on": [],
+        "deliverable": "locked 6+1 acceptance against the exact Hamiltonian; independent g; calibrated port weights; port-off residual bound. Synthetic known-answer pass is not a measured anchor",
+        "evidence": "lab09_linear_ring_20261127/REPORT.md",
+        "does_not_close": ["09-LAB-SCALE", "09-LAB-OP", "SCALE-09", "SCALE-10", "SCALE-11", "SCALE-12", "scientific_acceptance"]
+      },
+      {
         "id": "09-LAB-D",
         "state": "DESK_STUDY_READY",
         "inherits": [
@@ -472,6 +481,19 @@
       "results": "operator_identifiability_20261127/RESULTS.json",
       "replay": "operator_identifiability_20261127/replay.py",
       "physical_status": "OPEN"
+    },
+    "linear_ring": {
+      "important_result": "exact single-site 6+1 spectrum of the symmetric Fig. 10 circulant; known-answer synthetics pass the locked Hamiltonian",
+      "important_limit": "ideal weights 0, 1/2 and 1 fail those synthetics at sigma 5e-6; no same-assembly port-off/on kit in the searched scope",
+      "state": "METHOD_PASS_SYNTHETIC",
+      "physical_status": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+      "report": "lab09_linear_ring_20261127/REPORT.md",
+      "results": "lab09_linear_ring_20261127/RESULTS.json",
+      "replay": "lab09_linear_ring_20261127/replay.py",
+      "code": "lab09_linear_ring_20261127/lab09.py",
+      "scientific_acceptance": false,
+      "scale_gate": "OPEN",
+      "operator_gate": "PARTIAL"
     }
   },
   "r141_grok_samefree_20261127": {

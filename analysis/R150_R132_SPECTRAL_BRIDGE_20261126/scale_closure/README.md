@@ -104,3 +104,8 @@ SCALE-05/06/11: локальная спектральная поправка р�
 ## Operator identifiability (27.11.2026)
 
 **Important new result / limit:** exact free operator equivalence; local contact spreads under f and AP parity protects antipode; weighted Wilson paths/cancellation, J_N scalar alias, nonlocal continuum counterexample and canonical one-particle correction. 09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL, seven scoped work items; 10-LAB revised. No new R numbers or scientific status promotion. [Report, data and replay](operator_identifiability_20261127/REPORT.md).
+
+## Линейное кольцо 6+1 (27.11.2026)
+
+**Контроль метода, не физический якорь:** 09-LAB-LINEAR-RING = METHOD_PASS_SYNTHETIC. Точный оператор 6+1 на циркулянте Fig. 10 воспроизводит разные яркие сдвиги и полный гибридный зазор; синтетические известные ответы проходят только это правило. Идеальные веса 0, 1/2 и 1 при том же σ их отвергают. Одной сборки port-off/on нет, поэтому 09-LAB-SCALE остаётся OPEN, 09-LAB-OP остаётся PARTIAL, SCALE-09–12 и scientific_acceptance не повышены. [Отчёт, данные и replay](lab09_linear_ring_20261127/REPORT.md).
+

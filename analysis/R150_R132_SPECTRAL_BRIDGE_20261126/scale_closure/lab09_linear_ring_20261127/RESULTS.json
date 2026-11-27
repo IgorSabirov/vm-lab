@@ -1,0 +1,408 @@
+{
+  "scope": "method acceptance for one linear 6+1 ring; synthetic known answers are not a measured anchor",
+  "scientific_acceptance": false,
+  "physical_anchor": "OPEN",
+  "gates": {
+    "09-LAB-LINEAR-RING": "METHOD_PASS_SYNTHETIC",
+    "09-LAB-SCALE": "OPEN",
+    "09-LAB-OP": "PARTIAL",
+    "SCALE-09": "OPEN",
+    "SCALE-10": "OPEN",
+    "SCALE-11": "OPEN",
+    "SCALE-12": "OPEN"
+  },
+  "bbn_used_for_calibration": false,
+  "target_contrast_used": false,
+  "holdout_consumed": false,
+  "acceptance_rule": "exact locked Hamiltonian; z<=5 on frequencies and calibrated port weights",
+  "rejected_rule": "ideal port weights 0, 1/2 and 1 at the same sigma",
+  "reference": {
+    "ring": {
+      "source": "SCALE09_LAB_PLAN.md digitized Barkhofen Fig. 10 lines; not a new digitization",
+      "lines_mhz": [
+        6588.8172,
+        6627.8914,
+        6713.2201,
+        6791.6168
+      ],
+      "coefficients_mhz": {
+        "c0": 6677.1095,
+        "c1": 48.02138333333293,
+        "c2": 6.553750000000036,
+        "c3": 5.357033333333523,
+        "opposite_matrix_element": 5.357033333333523,
+        "prefactor_S3_plus_Sinv3": 2.6785166666667615
+      },
+      "neighbour_window_mhz": [
+        48.004,
+        48.032
+      ],
+      "nn_sum_residual_mhz": 39.32250000000204,
+      "nn_min_line_error_mhz": 9.83062500000051,
+      "nn_model": "REJECTED_BY_FOUR_LINES",
+      "eigenvalues_mhz": [
+        6588.817200000002,
+        6627.8914,
+        6627.891400000001,
+        6713.220099999999,
+        6713.220100000001,
+        6791.616800000001
+      ],
+      "site0_weights": [
+        0.16666666666668403,
+        0.0,
+        0.33333333333331805,
+        0.0,
+        0.33333333333334036,
+        0.16666666666665764
+      ],
+      "distinct_lines_recovered": true
+    },
+    "cases": {
+      "detuned_g1_nup6600": {
+        "bright_shifts_khz": [
+          11.945715796173317,
+          2.9441225642585778
+        ],
+        "leading_shifts_khz": [
+          11.951115158554712,
+          2.944117990827945
+        ],
+        "dark_shifts_khz": [
+          -2.7284841053187847e-09,
+          -3.637978807091713e-09
+        ],
+        "dark_port_weights": [
+          1.1955721681603436e-24,
+          6.124849097232946e-26
+        ]
+      },
+      "resonant_g0.2": {
+        "lower": {
+          "full_gap_mhz": 0.23093936481291166,
+          "nearest_gap_mhz": 0.11545650232983462,
+          "leading_gap_mhz": 0.2309401076758503,
+          "hybrid_port_weights": [
+            0.5000538428659705,
+            0.4999397106830687
+          ]
+        },
+        "upper": {
+          "full_gap_mhz": 0.2309397549552159,
+          "nearest_gap_mhz": 0.1154074725081955,
+          "leading_gap_mhz": 0.2309401076758503,
+          "hybrid_port_weights": [
+            0.5002685482358361,
+            0.4997281050313348
+          ]
+        }
+      }
+    }
+  },
+  "kits": {
+    "detuned": {
+      "linear_decision": "METHOD_PASS_SYNTHETIC",
+      "limit": "PHYSICAL_OPEN_NO_SAME_ASSEMBLY_PORT_KIT",
+      "failed_checks": [],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_DETUNED_UNDRESSED_WEIGHT",
+        "max_z": 357.74993031083557,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "bright_doublet_shifts_khz": [
+          11.945715796173317,
+          2.9441225642585778
+        ],
+        "bright_shifts_are_distinct": true,
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "resonant_one_doublet": {
+      "linear_decision": "METHOD_PASS_SYNTHETIC",
+      "limit": "PHYSICAL_OPEN_NO_SAME_ASSEMBLY_PORT_KIT",
+      "failed_checks": [],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 12.057863386261134,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.23093936481291166,
+          "predicted_hybrid_gap_mhz": 0.23093936481291166,
+          "nearest_to_bare_gap_mhz": 0.11545650232983462,
+          "nearest_over_hybrid": 0.49994292841052934,
+          "leading_gap_mhz": 0.23094010767584502
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "resonant_other_doublet": {
+      "linear_decision": "METHOD_PASS_SYNTHETIC",
+      "limit": "PHYSICAL_OPEN_NO_SAME_ASSEMBLY_PORT_KIT",
+      "failed_checks": [],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 54.378993733039664,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.2309397549552159,
+          "predicted_hybrid_gap_mhz": 0.2309397549552159,
+          "nearest_to_bare_gap_mhz": 0.1154074725081955,
+          "nearest_over_hybrid": 0.4997297781431155,
+          "leading_gap_mhz": 0.23094010767585274
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "detuned_within_noise": {
+      "linear_decision": "METHOD_PASS_SYNTHETIC",
+      "limit": "PHYSICAL_OPEN_NO_SAME_ASSEMBLY_PORT_KIT",
+      "failed_checks": [],
+      "max_abs_weight_residual": 9.236623994870548e-06,
+      "max_abs_frequency_residual_mhz": 1.3597473298432305e-06,
+      "weight_z": 1.8473247989741093,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_DETUNED_UNDRESSED_WEIGHT",
+        "max_z": 357.0030446945704,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "bright_doublet_shifts_khz": [
+          11.945715796173317,
+          2.9441225642585778
+        ],
+        "bright_shifts_are_distinct": true,
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "wrong_g": {
+      "linear_decision": "METHOD_FAIL_SYNTHETIC",
+      "limit": "FORWARD_SPECTRUM",
+      "failed_checks": [
+        "FORWARD_SPECTRUM",
+        "HYBRID_GAP"
+      ],
+      "max_abs_weight_residual": 0.00010241368920754779,
+      "max_abs_frequency_residual_mhz": 0.1732688216961833,
+      "weight_z": 20.482737841509557,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 12.057863386261134,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.23093936481291166,
+          "predicted_hybrid_gap_mhz": 0.5773386618111545,
+          "nearest_to_bare_gap_mhz": 0.11545650232983462,
+          "nearest_over_hybrid": 0.49994292841052934,
+          "leading_gap_mhz": 0.5773502691896125
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "dependent_calibration": {
+      "linear_decision": "METHOD_FAIL_SYNTHETIC",
+      "limit": "INDEPENDENT_CALIBRATION",
+      "failed_checks": [
+        "INDEPENDENT_CALIBRATION"
+      ],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 12.057863386261134,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.23093936481291166,
+          "predicted_hybrid_gap_mhz": 0.23093936481291166,
+          "nearest_to_bare_gap_mhz": 0.11545650232983462,
+          "nearest_over_hybrid": 0.49994292841052934,
+          "leading_gap_mhz": 0.23094010767584502
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "peak_height": {
+      "linear_decision": "METHOD_FAIL_SYNTHETIC",
+      "limit": "CALIBRATED_READOUT",
+      "failed_checks": [
+        "CALIBRATED_READOUT"
+      ],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 12.057863386261134,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.23093936481291166,
+          "predicted_hybrid_gap_mhz": 0.23093936481291166,
+          "nearest_to_bare_gap_mhz": 0.11545650232983462,
+          "nearest_over_hybrid": 0.49994292841052934,
+          "leading_gap_mhz": 0.23094010767584502
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "loose_residual": {
+      "linear_decision": "METHOD_FAIL_SYNTHETIC",
+      "limit": "RESIDUAL_COUPLING",
+      "failed_checks": [
+        "RESIDUAL_COUPLING"
+      ],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_DETUNED_UNDRESSED_WEIGHT",
+        "max_z": 357.74993031083557,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "bright_doublet_shifts_khz": [
+          11.945715796173317,
+          2.9441225642585778
+        ],
+        "bright_shifts_are_distinct": true,
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "half_gap": {
+      "linear_decision": "METHOD_FAIL_SYNTHETIC",
+      "limit": "GAP_DEFINITION",
+      "failed_checks": [
+        "GAP_DEFINITION",
+        "CLAIMED_GAP"
+      ],
+      "max_abs_weight_residual": 0.0,
+      "max_abs_frequency_residual_mhz": 0.0,
+      "weight_z": 0.0,
+      "idealized_weight_gate": {
+        "linear_decision": "METHOD_FAIL_SYNTHETIC",
+        "limit": "IDEAL_RESONANT_HALF_WEIGHT",
+        "max_z": 12.057863386261134,
+        "rule": "compare port weights with 0, 1/2 or 1; not the acceptance rule"
+      },
+      "diagnostics": {
+        "gap": {
+          "hybrid_gap_mhz": 0.23093936481291166,
+          "predicted_hybrid_gap_mhz": 0.23093936481291166,
+          "nearest_to_bare_gap_mhz": 0.11545650232983462,
+          "nearest_over_hybrid": 0.49994292841052934,
+          "leading_gap_mhz": 0.23094010767584502
+        },
+        "unperturbed_site0_weights": [
+          0.16666666666668403,
+          0.0,
+          0.33333333333331805,
+          0.0,
+          0.33333333333334036,
+          0.16666666666665764
+        ]
+      }
+    },
+    "barkhofen_fig10_ring_only": {
+      "linear_decision": "INCOMPLETE_KIT",
+      "limit": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+      "failed_checks": [
+        "KIT_COMPLETE"
+      ]
+    }
+  },
+  "positive_kits": [
+    "detuned",
+    "resonant_one_doublet",
+    "resonant_other_doublet",
+    "detuned_within_noise"
+  ],
+  "searched_scope": {
+    "result": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+    "found": "four digitized symmetric-ring lines and their circulant",
+    "missing": "one assembly with port-off, independently calibrated g and port weights, and port-on",
+    "not_claimed": "a search of every archive or a statement that no such experiment exists"
+  }
+}
