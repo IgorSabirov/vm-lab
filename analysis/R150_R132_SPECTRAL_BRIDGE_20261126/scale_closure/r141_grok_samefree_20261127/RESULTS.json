@@ -1,0 +1,624 @@
+{
+  "schema": "r141-grok-samefree-log-transcription-v1",
+  "date": "2026-11-27",
+  "base_commit": "6f078d67c3614ecdab97052f2ca7c2adb4f5f478",
+  "provenance": "User-supplied Grok stdout in four logs; selected numerical receipts transcribed. No original Python files supplied. No new replay/physical runs in publication turn. Earlier independent assistant checks and analytical extensions labeled separately.",
+  "units": "J1=1; M/J=5.13572059858461; N=6; ring+one fixed port. theta radians. E measured from common ring zero; port parameter parent or physical according to branch.",
+  "coefficients": {
+    "J_over_J1": [
+      1,
+      -0.0895673535,
+      0.0130843932,
+      -0.0023203345,
+      0.000456704308,
+      -0.0000959440614
+    ],
+    "scope": "reported approximate Mathieu first-band Fourier harmonics at s_F=3.35203828; not same as effective finite matrix entries"
+  },
+  "exact_nn": {
+    "T6": 161,
+    "U5": 144,
+    "g0": "9/20",
+    "gpi": "4/9",
+    "h0": "2 sqrt(5)/3",
+    "hpi": "3/2",
+    "Ep_pi_fixed_h": "-1/81",
+    "G_column_over_J_inverse": [
+      0.45,
+      0.175,
+      0.075,
+      0.05,
+      0.075,
+      0.175
+    ],
+    "profile": [
+      "1",
+      "7/18",
+      "1/6",
+      "1/9",
+      "1/6",
+      "7/18"
+    ],
+    "norm_G_squared": "111/400",
+    "probabilities": [
+      "60/97",
+      "27/97",
+      "49/1164",
+      "3/388",
+      "1/291",
+      "3/388",
+      "49/1164"
+    ],
+    "retuned_pi_port": "12/19"
+  },
+  "fixed_h_holdout": {
+    "e0": -1,
+    "e_pi": -0.9921826165945062,
+    "kappa_pi": 0.9589193795269774,
+    "d_bpi_d_b0": 1.013664224558397,
+    "delta": 0.00781738340549376,
+    "ideal_5sigma_equal_independent_sigma_over_J": 0.001098017730696302,
+    "eplus0": 4.118382902772534,
+    "epluspi": 3.9517783487788987,
+    "upper_kappa0": 0.34239322058145605,
+    "upper_pi_real_wavenumber": 2.921554738298637,
+    "upper_pi_pi_minus_k": 0.22003791529115627,
+    "port_inversion_Jacobian_rows_h2_Ep_cols_eMinus_ePlus": [
+      [
+        -0.701900050970039,
+        12.207758300686322
+      ],
+      [
+        1.3008119265078832,
+        5.493491235242232
+      ]
+    ],
+    "scope": "NN, Ep=0, fixed h0, phase holdout"
+  },
+  "residual_normalization": {
+    "R_ring": "norm(Q0 (S+S^dag-qhat) psi)/norm(psi_ring)",
+    "R_mask": "same numerator/norm(Q0 psi)",
+    "qhat": "real least squares with Q0 applied to both vectors",
+    "opt_NR_ratio": 2.0021227231,
+    "NN_bad_seam_residual": 1.293865,
+    "NN_corrected_seam_residual": 1.29661412e-15,
+    "near_zero_qj": "do not divide"
+  },
+  "matched_energy_optical_NR": [
+    {
+      "R": 1,
+      "h": 1.490711985,
+      "epi": -0.9921826166,
+      "qhat0": 3,
+      "Rring0": 0,
+      "Rringpi": 0,
+      "deltaq0": 0,
+      "antipode_ratio0": 0.111111,
+      "eplus0": 4.1183829028,
+      "top0": 4,
+      "upper_excess0": 0.118383
+    },
+    {
+      "R": 2,
+      "h": 1.440574981,
+      "epi": -0.9987092018,
+      "qhat0": 3.00237275,
+      "Rring0": 0.114172,
+      "Rringpi": 0.083802,
+      "deltaq0": -0.7161088861,
+      "antipode_ratio0": 0.062536,
+      "eplus0": 4.1044520186,
+      "top0": 4,
+      "upper_excess0": 0.104452
+    },
+    {
+      "R": 3,
+      "h": 1.449620473,
+      "epi": -0.9963506842,
+      "qhat0": 3.01433679,
+      "Rring0": 0.094621,
+      "Rringpi": 0.084592,
+      "deltaq0": -0.6060544174,
+      "antipode_ratio0": 0.075921,
+      "eplus0": 4.1561834944,
+      "top0": 4.0523375728,
+      "upper_excess0": 0.103846
+    },
+    {
+      "R": 6,
+      "h": 1.448394201,
+      "epi": -0.9971181206,
+      "qhat0": 3.01346575,
+      "Rring0": 0.09765173,
+      "Rringpi": 0.0820838,
+      "deltaq0": -0.6289213638,
+      "antipode_ratio0": 0.074664,
+      "eplus0": 4.1576585211,
+      "top0": 4.05416439,
+      "upper_excess0": 0.103494,
+      "Rring_upper0": 0.02066327
+    }
+  ],
+  "samefree": {
+    "definition": "A=f_M(K_R), out=A+local port contact, in=f_M(K_R+local parent contact); same free RING at h=0; port detuning must separately be locked. Table rows from r141_samefree.py stdout, not rerun here.",
+    "row_fields": [
+      "E_minus0",
+      "P_minus0",
+      "qhat_minus0",
+      "Rring_minus0",
+      "Rmask_minus0",
+      "E_plus0",
+      "P_plus0",
+      "E_minus_pi",
+      "P_minus_pi",
+      "E_plus_pi",
+      "P_plus_pi"
+    ],
+    "calibrations": [
+      {
+        "R": 1,
+        "mode": "Ep=0",
+        "out": [
+          -1,
+          0.61811781,
+          3.279233,
+          0.07508057,
+          0.15817218,
+          3.25170773,
+          0.07302563,
+          -0.99177061,
+          0.63112743,
+          3.18937227,
+          0.09776811
+        ],
+        "in": [
+          -1,
+          0.61996705,
+          2.902643,
+          0,
+          0,
+          3.13803539,
+          0.02845003,
+          -0.98847018,
+          0.63699306,
+          3.02497324,
+          0.05049197
+        ]
+      },
+      {
+        "R": 1,
+        "mode": "Pp=Pp_out_Ep0",
+        "out": [
+          -1,
+          0.61811781,
+          3.279233,
+          0.07508057,
+          0.15817218,
+          3.25170773,
+          0.07302563,
+          -0.99177061,
+          0.63112743,
+          3.18937227,
+          0.09776811
+        ],
+        "in": [
+          -1,
+          0.61811781,
+          2.902643,
+          0,
+          0,
+          3.13873276,
+          0.02886399,
+          -0.9884126,
+          0.63516154,
+          3.02618128,
+          0.05110523
+        ]
+      },
+      {
+        "R": 1,
+        "mode": "Pp=60/97",
+        "out": [
+          -1,
+          0.6185567,
+          3.279233,
+          0.07508057,
+          0.15817218,
+          3.25113149,
+          0.07273659,
+          -0.99178026,
+          0.63156336,
+          3.18861177,
+          0.09747147
+        ],
+        "in": [
+          -1,
+          0.6185567,
+          2.902643,
+          0,
+          0,
+          3.13856645,
+          0.02876513,
+          -0.98842627,
+          0.63559627,
+          3.02589343,
+          0.05095898
+        ]
+      },
+      {
+        "R": 2,
+        "mode": "Ep=0",
+        "out": [
+          -1,
+          0.6093635,
+          3.298675,
+          0.04651353,
+          0.10214133,
+          3.22680137,
+          0.06032369,
+          -0.99837109,
+          0.61320311,
+          3.11366069,
+          0.0923736
+        ],
+        "in": [
+          -1,
+          0.61179548,
+          2.908238,
+          0.11179919,
+          0.21584206,
+          3.13125475,
+          0.02433108,
+          -0.99774669,
+          0.61688153,
+          2.96143831,
+          0.04816928
+        ]
+      },
+      {
+        "R": 2,
+        "mode": "Pp=Pp_out_Ep0",
+        "out": [
+          -1,
+          0.6093635,
+          3.298675,
+          0.04651353,
+          0.10214133,
+          3.22680137,
+          0.06032369,
+          -0.99837109,
+          0.61320311,
+          3.11366069,
+          0.0923736
+        ],
+        "in": [
+          -1,
+          0.6093635,
+          2.908238,
+          0.11179919,
+          0.21584206,
+          3.13203303,
+          0.0247739,
+          -0.99773246,
+          0.6144569,
+          2.96292448,
+          0.04893136
+        ]
+      },
+      {
+        "R": 2,
+        "mode": "Pp=60/97",
+        "out": [
+          -1,
+          0.6185567,
+          3.298675,
+          0.04651353,
+          0.10214133,
+          3.21731756,
+          0.05557196,
+          -0.99840966,
+          0.62237524,
+          3.09940595,
+          0.08667414
+        ],
+        "in": [
+          -1,
+          0.6185567,
+          2.908238,
+          0.11179919,
+          0.21584206,
+          3.1291546,
+          0.02314709,
+          -0.99778624,
+          0.62362089,
+          2.95741171,
+          0.04611611
+        ]
+      },
+      {
+        "R": 3,
+        "mode": "Ep=0",
+        "out": [
+          -1,
+          0.6113897,
+          3.308079,
+          0.0275377,
+          0.06018287,
+          3.2583846,
+          0.05907685,
+          -0.99600525,
+          0.61820703,
+          3.13224106,
+          0.09253221
+        ],
+        "in": [
+          -1,
+          0.61384688,
+          2.918693,
+          0.09197828,
+          0.17651046,
+          3.16347261,
+          0.023833,
+          -0.99446037,
+          0.62274291,
+          2.97874986,
+          0.04817518
+        ]
+      },
+      {
+        "R": 3,
+        "mode": "Pp=Pp_out_Ep0",
+        "out": [
+          -1,
+          0.6113897,
+          3.308079,
+          0.0275377,
+          0.06018287,
+          3.2583846,
+          0.05907685,
+          -0.99600525,
+          0.61820703,
+          3.13224106,
+          0.09253221
+        ],
+        "in": [
+          -1,
+          0.6113897,
+          2.918693,
+          0.09197828,
+          0.17651046,
+          3.16424938,
+          0.0242687,
+          -0.99442463,
+          0.62029649,
+          2.9802601,
+          0.04894523
+        ]
+      },
+      {
+        "R": 3,
+        "mode": "Pp=60/97",
+        "out": [
+          -1,
+          0.6185567,
+          3.308079,
+          0.0275377,
+          0.06018287,
+          3.25101469,
+          0.05542155,
+          -0.99607973,
+          0.6253504,
+          3.12096559,
+          0.08804891
+        ],
+        "in": [
+          -1,
+          0.6185567,
+          2.918693,
+          0.09197828,
+          0.17651046,
+          3.16201773,
+          0.02302275,
+          -0.99452886,
+          0.62743068,
+          2.97591269,
+          0.0467335
+        ]
+      },
+      {
+        "R": 6,
+        "mode": "Ep=0",
+        "out": [
+          -1,
+          0.61114423,
+          3.307588,
+          0.03033333,
+          0.06634954,
+          3.25893665,
+          0.05876196,
+          -0.99674834,
+          0.61717147,
+          3.12770912,
+          0.09270938
+        ],
+        "in": [
+          -1,
+          0.6136068,
+          2.917989,
+          0.09496635,
+          0.18242777,
+          3.16442955,
+          0.02372451,
+          -0.99549025,
+          0.62150775,
+          2.97422357,
+          0.04829146
+        ]
+      },
+      {
+        "R": 6,
+        "mode": "Pp=Pp_out_Ep0",
+        "out": [
+          -1,
+          0.61114423,
+          3.307588,
+          0.03033333,
+          0.06634954,
+          3.25893665,
+          0.05876196,
+          -0.99674834,
+          0.61717147,
+          3.12770912,
+          0.09270938
+        ],
+        "in": [
+          -1,
+          0.61114423,
+          2.917989,
+          0.09496635,
+          0.18242777,
+          3.16520446,
+          0.02415856,
+          -0.99546115,
+          0.61905539,
+          2.97573904,
+          0.04906586
+        ]
+      },
+      {
+        "R": 6,
+        "mode": "Pp=60/97",
+        "out": [
+          -1,
+          0.6185567,
+          3.307588,
+          0.03033333,
+          0.06634954,
+          3.25136303,
+          0.05500924,
+          -0.99681092,
+          0.6245608,
+          3.11604975,
+          0.0880673
+        ],
+        "in": [
+          -1,
+          0.6185567,
+          2.917989,
+          0.09496635,
+          0.18242777,
+          3.16290866,
+          0.02287887,
+          -0.99554872,
+          0.62643574,
+          2.9712401,
+          0.0467738
+        ]
+      }
+    ],
+    "state_count": 96,
+    "scope": "rows summarize four edge states per order and calibration; full vectors not supplied in final log; reconstruct via replay.py; h,Ep not printed for every double calibration"
+  },
+  "effective_hoppings_theta0": [
+    {
+      "R": 1,
+      "before_J1": 1,
+      "before_J2ratio": 0,
+      "before_J3ratio": 0,
+      "after_J1": 0.764414886922,
+      "after_J2ratio": 0.058188,
+      "after_J3ratio": 0.013153
+    },
+    {
+      "R": 2,
+      "before_J1": 1,
+      "before_J2ratio": -0.089567,
+      "before_J3ratio": 0,
+      "after_J1": 0.772362106249,
+      "after_J2ratio": -0.032428,
+      "after_J3ratio": -0.007562
+    },
+    {
+      "R": 3,
+      "before_J1": 1,
+      "before_J2ratio": -0.089567,
+      "before_J3ratio": 0.026169,
+      "after_J1": 0.770140157262,
+      "after_J2ratio": -0.029636,
+      "after_J3ratio": 0.019391
+    },
+    {
+      "R": 6,
+      "before_J1": 1.000456704308,
+      "before_J2ratio": -0.091846,
+      "before_J3ratio": 0.026157,
+      "after_J1": 0.770630295258,
+      "after_J2ratio": -0.031937,
+      "after_J3ratio": 0.018845
+    }
+  ],
+  "long_range_thermal": {
+    "definition": "C=(Z0-Zpi)/Z0, free ring one particle only, K=sum J_r(2I-S^r-S^-r), no port or vacuum",
+    "J2_only_roots": [
+      0.45306036,
+      1.51223633,
+      14.62659716
+    ],
+    "Delta_definition": "Tr K_pi^p - Tr K_0^p",
+    "Delta1": -0.002302657473601144,
+    "Delta2_shifted": -0.04449442239373269,
+    "Delta2_bare_rounded": -0.03600629701912,
+    "T_two_terms_equal": 9.661537354956122,
+    "NN_moments": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -24
+    ],
+    "minimum_orders_in_specific_truncations": [
+      6,
+      3,
+      2,
+      2,
+      2,
+      1
+    ],
+    "counterexample": {
+      "J": [
+        1,
+        1,
+        1,
+        -0.5
+      ],
+      "reported_bare_moments": [
+        0,
+        0,
+        78,
+        -336
+      ]
+    },
+    "J6_only_perturbation": {
+      "bare": -0.0003837762456,
+      "shift": -0.00014126428613003839,
+      "phase_pi_ring_weight": 0.3680510137725774
+    },
+    "Mathieu": {
+      "W_over_J1": 4.054253407042815,
+      "W_over_4J1": 1.0135633517607037,
+      "band2_min_minus_band1_min_over_J1": 20.41685537958439
+    },
+    "boundary": "temperature comparison of moment terms depends on common energy zero; 10% criterion T~97J exceeds band2-min gap; no proof of a clean physical first-band regime from this alone"
+  },
+  "branch_boundary": {
+    "m_current": 5.13572059858461,
+    "hmax_NN_theta0": 3.246902805989274,
+    "m_gold": 2,
+    "hmax_gold": 1.4907119849998598,
+    "physical_status": "OPEN"
+  },
+  "scientific_acceptance": false,
+  "physical_runs": 0,
+  "replay_execution_this_turn": false
+}

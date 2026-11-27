@@ -73,3 +73,7 @@ diff -u results/temporal.json /tmp/r148-temporal.json
 ## Дополнение 27.11.2026: R141–ЯМ–Мёбиус
 
 Точный replay золотого сдвига и условный маршрут к ЯМ; не доказательство RH/ЯМ. [Отчёт, границы и replay](../../analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md).
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+Мост R141–R150: same-free/double-calibration, профили, различие локальной и нелокальной реализации. [Отчёт, данные, протокол и происхождение](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

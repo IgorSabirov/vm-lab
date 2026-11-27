@@ -71,3 +71,7 @@ Deep-lattice exact Fourier controls: |J2/J1|=.01,.001,.0001 at s=10.64180860,20.
 7 ROBUST-POWER — OPEN; joint covariance, worst-case distinguishability, prospective holdout.
 
 Do not duplicate prior 09-LAB-LONG-RANGE-A/B. 10-LAB requires revised intervention-based holdout; four fixed branch predictions are negative controls, not exhaustive alternatives. No amount of data can distinguish hypotheses that are identical throughout the allowed intervention/probe class. Need independently restricted class and alternatives, then estimate conditional power; if not identifiable report equivalence class (no forced microscopic attribution). U006/U010, L09, X, G7, Gate D, scientific acceptance and physical SCALE-09–12 remain OPEN. Legacy 3.41e−6 not target, prior or calibration. No automatic merge.
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+Grok samefree: общий ring A=f(K), двойная калибровка E_-,P_p, профиль invariant to h,Ep. При разных Ep free port не совпадает автоматически. Аналитические u,v как отдельный следующий тест. [Отчёт, данные, протокол и происхождение](../../../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

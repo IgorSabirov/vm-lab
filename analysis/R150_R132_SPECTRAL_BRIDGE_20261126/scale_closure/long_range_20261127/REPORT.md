@@ -86,3 +86,7 @@ Daleckii–Krein derivative: Df_K[V]_ij=2Vij/(sqrt(1+2λi/M)+sqrt(1+2λj/M)), in
 ## Уточнение следующего прохода — operator identifiability (27.11.2026)
 
 [Новый отчёт и replay](../operator_identifiability_20261127/REPORT.md) уточняет, не заменяя long-range результаты: f(K_NN) тождественно positive Fourier hopping при всех φ; J_N aliases relative scalar detuning, AP antipode zero is reflection protection, weighted Wilson cancellations matter. **Iso = one-particle canonical port+cycle; 1 is the actual zero-energy port, not vacuum.** Arbitrary free LR can exactly mimic f; require independently calibrated intervention family. Complex seam dtype mandatory for intermediate phases; 0/π controls unaffected by previous real cast. Common-zero optical Δ2/J1²=−.04552745166, numerator term equality t≈9.88585. 09-LAB-OP-IDENTIFIABILITY OPEN_PHYSICAL; all prior physical statuses retained.
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+Дополнение: signed effective J2 compensation after f, J3 test, alias, J6 Hellmann–Feynman, corrected covariant residual and thermal definitions. Версии Δ2 не заменять друг другом. [Отчёт, данные, протокол и происхождение](../../../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

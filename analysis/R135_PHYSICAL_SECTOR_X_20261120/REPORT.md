@@ -215,3 +215,7 @@ Legacy t=25.921618 dimensionless point: NN f gives +3.40920e−6, optical first-
 ## Дополнение 27.11.2026: R141–ЯМ–Мёбиус
 
 Скрининг/глюболы→масштаб/EOS→BH1/X/BBN — условный маршрут, не новые физические данные. [Отчёт, границы и replay](../../analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md).
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+LAB-профиль и верхний портовый уровень — новый методический донор #222; X не калиброван. [Отчёт, данные, протокол и происхождение](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

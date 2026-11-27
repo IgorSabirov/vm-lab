@@ -38,3 +38,7 @@ MODEL-LOCK считается заполненным после выбора sco
 ## Operator identifiability (27.11.2026)
 
 **Identity/zero/domain additions (all OPEN physical):** fix restricted H and full intervention family (H1/H2), common U for H, preparations, probes, B_j; source of M/J and kinetic zero before f, port energy and common phase energy reference, strictly positive radicand margin for derivative; S complex/unitary, winding on universal cover, cycle basis/Wilson constraints; fixed R vs fixed physical d; canonical one-particle iso with actual port, not vacuum; independent thermal preparation, direct contrast tail bound, robust power and calibration. No model-free discrimination of identical controlled operators. [Report, data and replay](operator_identifiability_20261127/REPORT.md).
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+Дополнительный проект к ML2/ML3/ML5/ML6: общий физический свободный оператор, отдельно port-off E_p; два калибровочных канала и удержанный профиль/верхняя мода. Остаток с ковариантным швом, не q_j на узле. Статусы решений OPEN. [Отчёт, данные, протокол и происхождение](../../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).

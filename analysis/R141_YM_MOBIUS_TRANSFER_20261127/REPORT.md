@@ -43,3 +43,7 @@ G7 OPEN_BH1_X_BBN: после физической идентификации о
 
 ## 7. Воспроизведение и происхождение
 node replay.mjs > obtained.json; сравнить с CHECKS.json. Целые следы/орбиты хранятся строками; точное поле использует BigInt, последние знаки справочных логарифмов зависят от libm. Обновлены R130, R131, R132, R133, R135, R140, R141, R142, R143, R144, R145, R146, R147, R148, R149, R150; адресные выводы и ограничения в LINKS.json. Исходные материалы: [R141–R147](../R141_R147_MODEL/README.md), [R141–R148](../R141_R148_MODEL/README.md), [ym_graph](../R141_R148_MODEL/ym_graph/README.md), [R132](../R132_ADD_YM_CCM_20261119/REPORT.md), [R135](../R135_PHYSICAL_SECTOR_X_20261120/REPORT.md), [R149–SU(3)](../R149/yang_mills/README.md).
+
+## 27.11.2026 — R141 / Grok same-free и двойная калибровка
+
+Точный NN-портовый эталон и проверяемый bridge R141→#222; оптический оператор не NN; золотая точка не physical YM gap. [Отчёт, данные, протокол и происхождение](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md).
