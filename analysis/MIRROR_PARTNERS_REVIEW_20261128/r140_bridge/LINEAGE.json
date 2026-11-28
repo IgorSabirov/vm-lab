@@ -1,0 +1,57 @@
+{
+  "schema": "research-lineage-v1",
+  "date": "2026-11-28",
+  "time_precision": "day",
+  "source_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+  "branch": "research/mirror-partners-review-20261128",
+  "pr": 223,
+  "request": {
+    "text": "Исследуй и сформируй мост #223-140",
+    "source": "current user message; extracted text",
+    "original_attachment_sha256": null
+  },
+  "events": [
+    {
+      "id": "BR223140-E01",
+      "role": "INPUT_DERIVED",
+      "before": "C' and H6 W were established separately; R140 absent from #223 source map",
+      "decision": "Define H-=C'H+ using actual names, extend both F slices",
+      "reason": "C' sends particle types{1,8}to{2,4} and cannot be identified with T/J",
+      "parents": [
+        "R130",
+        "R132",
+        "R140",
+        "#223"
+      ]
+    },
+    {
+      "id": "BR223140-E02",
+      "role": "INPUT_DERIVED",
+      "decision": "Use d=q1-q2 as mirror observable; test q descent explicitly",
+      "reason": "W pairs opposite q values, whereas d is constant in each complementary register"
+    },
+    {
+      "id": "BR223140-E03",
+      "role": "INPUT_ASSIGNED",
+      "decision": "Keep induced register copy lift and holonomy-inverting lift separate",
+      "reason": "J M J=M^-1; same-M invariance is a different condition",
+      "alternatives": [
+        "field identity in reflected register coordinates",
+        "oriented holonomy inversion h→h^-1"
+      ]
+    },
+    {
+      "id": "BR223140-E04",
+      "role": "NEGATIVE_CONTROL",
+      "decision": "Use complex c=(1,i,0)/sqrt2 and full first-step phase gate",
+      "reason": "Real zero-phase data can conceal wrong field orientation; do not rephase one finished history"
+    },
+    {
+      "id": "BR223140-E05",
+      "role": "PREDICTED_OUTPUT",
+      "decision": "Read mirror-sector d without reading A/B",
+      "reason": "Both paths carry same d within one sector; orthogonal path record is separate control"
+    }
+  ],
+  "scientific_status_promoted": false
+}

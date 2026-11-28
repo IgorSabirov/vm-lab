@@ -1,0 +1,102 @@
+{
+  "schema": "mirror-r140-run-plan-v1",
+  "date": "2026-11-28",
+  "user_request": "Исследуй и сформируй мост #223-140",
+  "source_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+  "target_pr": 223,
+  "target_results": [
+    "R130",
+    "R132",
+    "R140",
+    "R141"
+  ],
+  "execution_platform": "GitHub Actions",
+  "platform_basis": "Standing owner selection in COMPUTE_AUTHORITY.md and infra/METHODOLOGY_GPT_COPILOT_20261117.md; no change of platform",
+  "scope": "Finite algebraic and coherent-history bridge on existing laws; no physical parameter fit, ensemble campaign, or new physical architecture",
+  "independent_review": "REVIEW.md, completed before first execution",
+  "contracts": [
+    {
+      "id": "BRIDGE-01",
+      "ancestor": "R130/#223",
+      "question": "Is C' defined on the actual named carrier, including both F slices?",
+      "expected": "24 named states; F,T,C intertwiners; true complementary sectors",
+      "test": "Actual engine permutations; no atomic renaming",
+      "negative": "F does not close on one six-state slice"
+    },
+    {
+      "id": "BRIDGE-02",
+      "ancestor": "R132/R140",
+      "question": "Which mirror charge survives W?",
+      "expected": "d=q1-q2 maps to sector sign; q does not descend; chi=0 in one-particle sector",
+      "test": "Exact SymPy matrices and kernel witnesses",
+      "negative": "W q W†=0 does not imply W q=0"
+    },
+    {
+      "id": "BRIDGE-03",
+      "ancestor": "R140/#223",
+      "question": "Does C' map all coherent geometric histories?",
+      "expected": "92 length histories and40 named endpoints; exact amplitude covariance; 2-site square covariance",
+      "test": "Gaussian rational named propagation vs frozen export",
+      "negative": "A and B have different length records and cannot be C' partners"
+    },
+    {
+      "id": "BRIDGE-04",
+      "ancestor": "R140/H6",
+      "question": "Which field law is conjugated by a mirror?",
+      "expected": "Induced copy lift preserves M,J; holonomy inversion maps M→M^-1,J→J",
+      "test": "Every output amplitude, scalar phase gates, transformed input/detectors",
+      "negative": "Field J with unchanged M fails; complex preparation detects wrong sign"
+    },
+    {
+      "id": "BRIDGE-05",
+      "ancestor": "R140/observer",
+      "question": "Does reading the mirror sector erase the path interference?",
+      "expected": "d record retains within-sector I2; orthogonal A/B record makes I2 zero",
+      "test": "Exact Gram overlaps and measurement effects",
+      "negative": "Sector record and path record are different instruments"
+    }
+  ],
+  "zero_row": {
+    "law": "Existing named C2, eps=(+1,-1), existing local R140 coin at theta=pi/4",
+    "geometry": "Existing start(1,2,0), its exact named C' image; independent2-patch control(1,2,12)",
+    "field": "H6 character permutations M,J; both declared mirror lifts",
+    "preparations": [
+      {
+        "value": "(1,1,0)/sqrt2",
+        "role": "REGRESSION_REFERENCE"
+      },
+      {
+        "value": "(1,i,0)/sqrt2",
+        "role": "NEGATIVE_CONTROL"
+      }
+    ],
+    "phase_gates": {
+      "values": [
+        "0",
+        "pi/2"
+      ],
+      "role": "INPUT_ASSIGNED",
+      "implementation": "unitary gate on complete L=3 sector after first full step"
+    },
+    "measurement": "Declared transformed detectors; d-sector record versus path record",
+    "physical_acceptance": false
+  },
+  "forecast_before_calibration": {
+    "register_main_seconds": [
+      1,
+      10
+    ],
+    "history_main_seconds": [
+      5,
+      40
+    ],
+    "calibration_seconds": [
+      2,
+      15
+    ],
+    "basis": "Agent static operation count: matrices≤24x24,8-step fixed replay, at most256 microscopic choices for the reference pair; no sweeps",
+    "hard_runtime_limit": null
+  },
+  "calibration": "Module calibrate functions on proper representative subsets; recorded separately; execution forecast written before run",
+  "preservation": "Immutable run-ID directories; whole existing Git tree retained; no deletions, merges, new R/U, or scientific status promotions"
+}
