@@ -95,3 +95,41 @@
 Дефектная слепота двойственна: узловая мода не чувствует локальный контакт, но локальный пробник тоже её не видит. Для оператора P₀ и порта матричные элементы между узловой модой и любым состоянием нулевые; требуется независимый пространственный канал с ненулевым перекрытием. Проверять фазу, нулевые производные по контактам и спектральный проектор при вырождении. Не тождество с I₂ или бинарным детерминантом. HTML не изменён.
 
 [Уточнения, численный контроль и протокол](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/CALIBRATION_AUDIT_20261126.md).
+
+## SCALE-09–11: независимая ревизия (27.11.2026)
+
+Различать геометрическую слепоту f(0)=0 и интерференционную h1f(0)+h2f(d)=0. Для свободного дублета при g_i=0 один порт оставляет rank-1 dark mode даже при двух антиподальных контактах: N=96 сохраняются 48 уровней. φ=π,d=.5 изоспектральные знаки меняют относительную фазу; независимый s-пробник различает P=0 и 2/N. Не тождество с бинарным детерминантом или I₂. HTML не изменять.
+
+[Полный согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/REVIEW_20261127.md) · [Вычислительное воспроизведение](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/verify_scale09_20261127.py) · [Holdout](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/SCALE10_HOLDOUT_PREREG.md).
+
+## Конечно-сеточная поправка N⁻²/N⁻⁴ (27.11.2026)
+
+При φ=π узловая мода нечувствительна к u,g,h, но имеет собственную сеточную дисперсию λ_m=(mπ)²−(mπ)⁴/(12N²)+(mπ)⁶/(360N⁴)+O(N⁻⁶) для фиксированного нечётного m. Активная ветвь имеет другие контактно-зависимые коэффициенты. Различать защищённость контакта, сеточную ошибку и дефект считывания; не отождествлять с бинарной маской или I₂. [Доказательство и результаты](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/finite_size_20261127/REPORT.md).
+
+## Многокорневой спектральный аудит и экстраполяция (27.11.2026)
+
+Многомодовый контроль: A_m=−(mπ)⁴/12, B_m=(mπ)⁶/360 для защищённой узловой моды, m=1,3,5; активные A_j зависят от контакта, включая положительный A_ground. В интервальной калибровке учитывать ΔA, а не считать защищённость отсутствием дисперсии. HTML не изменять.
+
+[Аналитика, код и численная проверка](../R150_R132_SPECTRAL_BRIDGE_20261126/continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md).
+
+## Массивная дисперсия и голономия (27.11.2026)
+
+Спектральное считывание f(K) меняет первый различающий момент свободного N-цикла с N на 1, доказано через положительное тепловое ядро. Это не новый Sorkin I₂, бинарная маска или фундаментальная нелокальность. HTML не обновляется. [Отчёт, доказательство и код](../R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/REPORT.md).
+
+## Генеалогия размерной точки X (27.11.2026)
+
+Историческое происхождение условного Rel-контраста прослежено до f33df29; первичный размерный пример N=8 и вероятная log-grid точка восстановлены из архива и арифметики. Независимость M,ell и выбор точки OPEN. Это не отменяет аналитический результат о первом различающем моменте f(K), доказательство не зависит от этой калибровки. HTML не изменять. [Первичные свидетельства, replay и генеалогия](../../analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md).
+
+## MODEL-LOCK / LAB–X (27.11.2026)
+
+Fixed finite N free/iso NR T^-N vs Rel T^-1; port-on requires new moment audit. With isolated common reference p_port, C_iso=1−p_port(0)/p_port(π); normalized populations without shared energy reference insufficient. Flux/T and mode/probe holdout OPEN. [Согласованный аудит](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/MODEL_LOCK_REVIEW_20261127.md).
+
+## Важный результат / ограничение: winding, long-range и полнота следа (27.11.2026)
+
+IMPORTANT: For finite signed hopping ring with maximal displacement R on the universal cover, p*≥ceil(N/R); equality requires nonzero net minimal winding coefficient. N6 optical coefficients yield p*=(6,3,2,2,2,1), Δ1=4NΣ_l J_(2l+1)N; J6 is a full winding, not an ordinary shortest neighbor. C_iso~(−1)^(p*+1)Δ_p*/[(N+1)p*!T^p*]. NR can yield T^-1. First-band NR sign changes near t=1.70835; at t=2 first-band −4.133e−7 versus multi-band +1.030e−8. Full scalar C≥0; no transfer of finite projected exponent/sign to continuum. Preserve existing determinant/I2 results, G7 and U010 remain open. [Общий отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md).
+
+## Идентифицируемость оператора и физического вмешательства (27.11.2026)
+
+**ВАЖНО — идентифицируемость, 27.11.2026.** Точное f(K_NN)=positive LR hopping; j̃_r>0 via Bernstein/Bessel, j̃2/j̃1=.0572500, η=1.46725255, ratio limit .230558. Общий p* — первый ненулевой weighted Wilson-trace difference. Для R<N,p0=ceil(N/R): Δ_p0=4N(−1)^(p0+1)Σ_{r1+…+rp0=N}Π J_ri, ri∈[1,R]. N6,R4 Δ2=−24(J3²+2J2J4); (1,1,1,−.5) даёт Δ1=Δ2=0,Δ3=78. N6 chords 0→2,2→4,4→0 (J2=−.1) дают p*/Δ=(6,−24),(5,−2),(4,−.16),(3,−.012), b1=1→4 при locked Peierls Wilson variations. J_N aliases scalar shift 2J_N(1−cosφ)I. При fixed signed J2 три конечных C zeros .45306036,1.51223633,14.62659718. Nonlocal continuum C~2g²/T²; AP antipodal zero общий parity control.
+
+**Дополнение — ограничение идентифицируемости:** Длина пути — нижняя граница, компенсация весов повышает p*. J_N scalar alias не доказательство физического winding; free f и equivalent LR неразличимы. Три нуля не фазовые переходы; локальный/nonlocal continuum и projection различны. Не новый I2 или determinant, G7/U010 OPEN. [Полный отчёт, данные и replay](../R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md).

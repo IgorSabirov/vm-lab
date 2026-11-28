@@ -1,0 +1,68 @@
+{
+  "research": "R138",
+  "question": {
+    "id": "U014",
+    "url": "https://github.com/IgorSabirov/vm-lab/blob/research/r137-lumina-independent/analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014",
+    "relation": "shared_physical_boundary"
+  },
+  "parent_result_ids": [],
+  "scientific_acceptance": false,
+  "candidates": [
+    {
+      "name": "HYREC-2",
+      "role": "recombination_reference",
+      "output": "x_e(a), T_m(a)",
+      "condition": "direct implementation and identical abundances/background",
+      "source": "https://github.com/nanoomlee/HYREC-2"
+    },
+    {
+      "name": "CAMB",
+      "role": "linear_reference",
+      "output": "H(a), two-fluid density/velocity, Weyl potential",
+      "condition": "specified gauge, k/h, k² scaling and primordial normalization",
+      "source": "https://camb.readthedocs.io/en/latest/transfer_variables.html"
+    },
+    {
+      "name": "drft/py_vbc",
+      "role": "conditional_streaming_response",
+      "output": "local power ratios with and without vbc",
+      "condition": "two physical fluids, stated angle, matched thermal and transfer histories",
+      "source": "https://github.com/lconaboy/drft/tree/e006ed28e916b3f7b87219a7cff5d0b8bd9b96be"
+    },
+    {
+      "name": "CICsASS",
+      "role": "method_source_for_py_vbc",
+      "output": "vbc_transfer method",
+      "condition": "shared numerical ancestry with py_vbc",
+      "source": "https://arxiv.org/abs/1204.1344"
+    },
+    {
+      "name": "BCCOMICS",
+      "role": "environment_control",
+      "output": "local response to density and Vcb",
+      "condition": "less than 4 cMpc, version >=1.5 and >=1.5.1 for underdensities",
+      "source": "https://github.com/KJ-Ahn/BCCOMICS"
+    },
+    {
+      "name": "MUSIC",
+      "role": "drft_test_IC_generator",
+      "output": "two-fluid RAMSES ICs",
+      "condition": "distinct from the production generator for Lumina",
+      "source": "https://github.com/lconaboy/drft/tree/e006ed28e916b3f7b87219a7cff5d0b8bd9b96be"
+    },
+    {
+      "name": "AREPO/N-GenIC",
+      "role": "Lumina_receiving_interface",
+      "output": "species transfer at z=49 and 2LPT",
+      "condition": "actual Lumina settings required for numerical reproduction",
+      "source": "https://arxiv.org/html/2605.15310v1"
+    },
+    {
+      "name": "21cmSPACE",
+      "role": "boundary_overlap",
+      "output": "cosmic dawn checks at z about 50 and below",
+      "condition": "CAMB and RECFAST inherited at initialization",
+      "source": "https://www.cosmicdawnlab.com/21cmSPACE/"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "registry_id": "NOW_OPEN_QUESTIONS",
-  "version": 6,
-  "date": "2026-11-12",
+  "version": 9,
+  "date": "2026-11-28",
   "timezone": "Europe/Moscow",
   "evidence_commit": "fde5943a4fb93a06c988bd095f0fee2b703865c3",
   "purpose": "Реестр того, что мы пока не можем объяснить, различить, вывести или реализовать. Вопрос сохраняется в точке возникновения и связан с основным реестром.",
   "main_registry": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json",
-  "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы. 12.11: CCC_TL_20261112 добавляет граничную ссылку к U006; статусы и условия закрытия сохранены.",
+  "coverage": "U001–U012; условный результат R129 связан с U010. Новых вопросов и закрытия U/L нет. U001 и U008 сохраняют ответы. 12.11: CCC_TL_20261112 добавляет граничную ссылку к U006; статусы и условия закрытия сохранены.\n\n28.11.2026: восстановлены существующие R136–R138 и U013–U014 из закреплённых веток #194/#206, #198 и #200. 150 R, 14 U; научные статусы не повышены, новых расчётов нет. R137/R138 независимы, общая граница U014 не создаёт родительской связи.",
   "user_instruction": "Фиксируй вопрос а точке его возникновения, я не могу сейчас ответить формируй реестр к реестру того что мы неспособны",
   "workflow": [
     "Сразу записывать вопрос и точное место возникновения: результат/поле/вмешательство, коммит и источник; рядом с исходным наблюдением ставить ссылку на U-ID.",
@@ -397,6 +397,25 @@
           "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/dirac/su2_haar_peter_weyl_fusion/REPORT.md"
         ],
         "evidence_base": "c4c6400384fa69229bb2480316d0c1270634ade8"
+      },
+      "long_range_projection_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Winding and projection alter C, including sign and leading power; temporal generator and physical metric not inferred.",
+        "limit": "Physical geometry, clock, dimensionful mapping and X remain OPEN.",
+        "closure_not_claimed": true
+      },
+      "operator_identifiability_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Exact free f(K_NN)/LR operator equivalence and nonlocal continuum counterexample do not fix physical geometry/time; physical intervention and scale remain independent.",
+        "limit": "No inference of physical origin from identical free H; independently fix intervention dictionary and physical scale/clock.",
+        "closure_not_claimed": true
+      },
+      "port_interference_20261128": {
+        "question": "Какие независимые настройки реализуют MΓ и все фазы контуров на одной физической сборке? Для различения нужны калибровка связей и двух пространственных пробников, port-off/on и отложенная настройка. Размерные параметры X остаются условными.",
+        "source": "analysis/R143_MASS_SECTOR_BRIDGE_20261128/port_interference/REPORT.md",
+        "status": "OPEN"
       }
     },
     {
@@ -1073,6 +1092,25 @@
         "status": "OPEN",
         "report": "analysis/R149_DEFECT_ATLAS/REPORT.md",
         "contribution": "Две детерминированные длины и смена чётности дают различающие чтения. Для U010 нужны причинное использование следа и восстановление условий преемником."
+      },
+      "long_range_projection_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Effective long-range winding and port-reference signal do not establish transfer of actual resources, clock or means of next action.",
+        "limit": "No new U010 closure; physical operator, preparation and next action not established.",
+        "closure_not_claimed": true
+      },
+      "operator_identifiability_20261127": {
+        "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md",
+        "status": "OPEN",
+        "known": "Distributed port response and weighted Wilson moments characterize controlled model operators, not physical transfer of means for the next action.",
+        "limit": "Operational equivalence and canonical one-particle preparation do not prove actual carrier reproduction, record inheritance or energy budget.",
+        "closure_not_claimed": true
+      },
+      "port_interference_20261128": {
+        "question": "Как отличить восстановление фазовой структуры от воспроизведения одной портовой кривой? Сохранить независимо измеренные K₁/K₂ или фазовую опору и проверить второй пробник. Пара 2+z и 1+2z показывает предел одного веса.",
+        "source": "analysis/R143_MASS_SECTOR_BRIDGE_20261128/port_interference/REPORT.md",
+        "status": "OPEN"
       }
     },
     {
@@ -1151,6 +1189,130 @@
       "resolution_source": null,
       "user_answer_required_now": false,
       "genealogy_note": "Ретроспективная адресация прежнего предложения, не новая пререгистрация; связи L08/L10 не закрываются одним локальным тестом."
+    },
+    {
+      "id": "U013",
+      "title": "Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β?",
+      "kind": "NOT_ESTIMATED",
+      "status": "OPEN",
+      "origin_kind": "numerical_reproduction",
+      "records": [
+        "R135",
+        "R136"
+      ],
+      "construct_ids": [],
+      "open_links": [],
+      "origin": {
+        "commit": "649c1d987acdcf227a15ca7d41fd29fb455c7b08",
+        "path": "infra/r135/research/20261121_donors/PHASE_FLOW_AND_SIGMA_AUDIT.md",
+        "locator": "§1, контроль на фиксированном времени потока"
+      },
+      "evidence_sources": [
+        "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+        "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+        "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+        "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+        "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json"
+      ],
+      "known": "Шкала из ссылки [7], восстановленная по 100 вершинам опубликованной кривой отдельно от энтальпии, помещает объёмные βc на x=0.99735 и 0.99875. Остатки J₁₅−J₃ становятся +0.0244 и −0.0293 при Nt=8, t/a²=1.4, NNLO μ₀. D=0.000622844634102 по неокруглённой реконструкции. Архивная разность двух округлённых якорей 0.000622900 сохраняется для повтора. На рис. 15 раздельный сдвиг восьми локальных координат на ±½ единицы EPS дал максимальное |δD|=3.46×10⁻⁶. При локальных якобианах диагональный порог z=1.96 достигается при ρ=0.787 для ρ_β=0 и при ρ=0.540 для ρ_β=1. Отдельный #201: при t→0 межобъёмная разность остатков derivative−SFtX равна +0.47968±0.24411 (z=1.965 при ρₓ=0), а средний остаток +0.07788±0.12206 (z≈0.64); это объёмная зависимость разности методов, не общий методный сдвиг. При t/a²=1.4 контраст +0.50252±0.24348 (z=2.064), но временные варианты используют общую информацию. Контроль по следу I_trace=+0.355±0.09612 номинален и выбран после просмотра энтальпии.",
+      "unknown": "Точная β-сетка рис. 15, реализация нормировки и совместная ковариация не установлены. Необходимость исправления публикации открыта. Не ограничена объёмно-зависимая методная систематика: ΔJ≈0.02–0.05 может индуцировать δD масштаба 2.9×10⁻⁴–7.3×10⁻⁴. Неизвестная joint jackknife covariance остаётся отдельной границей; D и GLS — один контраст, не независимые тесты. Точность горизонтального округления EPS проверена отдельно от неизвестной авторской шкалы. Для #201 не измерена межобъёмная ковариация ρₓ; 1.965σ — условное значение при независимости, подверженное отбору из нескольких контрастов. Два объёма не проверяют закон c+b/N_s^q. Следовый контроль не является независимым подтверждением.",
+      "next_step": "Сначала получить совместные реплики рис. 15/3, включая βc в каждой реплике. Отдельно получить точные β-узлы и нормировку. Для #201 нужны парные блоки метода производных и SFtX на пересечении конфигураций, общая маска фаз, реплики двух времён и межобъёмные общие входы. Для проверки закона масштабирования нужен дополнительный сопоставимый объём или внешний контроль. Доступные независимо проверки полной t-серии рис. 3 и последней холодной точки рис. 16 сохраняются.",
+      "closure": "Либо восстановлена согласованность на двух объёмах с совместной ошибкой, либо воспроизведён устойчивый остаток при совпадающих условиях и локализован источник. При недостаточной мощности сохранять открытую границу.",
+      "decision": "Открыто отдельное исследование #193.",
+      "registered_date": "2026-11-21",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Origin: #167 EOS phase-input work and the Shirogane donor audit in draft PR #185 (commit 649c1d9). R135 is the programmatic context, not physical evidence for the calibration. R136 is the independent response track, tracked by #193 and implemented for review in draft PR #194. Direct scientific sources are Shirogane 2016 (arXiv:1605.02997, calibration F(n)) and Shirogane 2021 (arXiv:2011.10292, phase-resolved jumps and beta_c values). R136 has reconstructed the calibration curve and checked the sign on both volumes, but exact Fig. 15 beta nodes/normalization and joint jackknife covariance remain missing. U013 remains OPEN; no publication error is yet established. Extended R136 audit (2026-11-22): fixed exploratory polynomial domain/window loss; signs of residuals stable across fit/interpolation variants; Figure-3 flow-time drift negative on both volumes, difference 0.54 sigma. Covariance/GLS significance remains scenario-dependent (rho threshold about 0.79 under one illustrative common-rho model); no measured joint jackknife covariance. Full clean-VM replay of all extension blocks not confirmed. U013 remains OPEN; no publication error established.",
+      "limit": "Совместная ковариация фаз, J₃ и βc, фактическая сетка β рис. 15 и неопределённость калибровки остаются открытыми. Разность оценивателей и конечное время потока сохраняются как возможные методные вклады.",
+      "subquestions": [
+        {
+          "issue": 201,
+          "url": "https://github.com/IgorSabirov/vm-lab/issues/201",
+          "parent_question": "U013",
+          "parent_result": "R136",
+          "status": "OPEN",
+          "question": "Меняется ли на фиксированном Nt разность оценок скачка энтальпии методом производных и SFtX с пространственным объёмом?",
+          "primary_contrast": "(derivative−SFtX)_48−(derivative−SFtX)_64 at Nt=8, t→0, NNLO mu0",
+          "answer_criterion": "Estimate the paired contrast with joint uncertainties and matched phase selection; test any proposed volume law on an additional geometry or external prediction.",
+          "sources": [
+            "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+            "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+            "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json"
+          ],
+          "current_exploratory": {
+            "t_to_zero": {
+              "mean_residual": 0.07788,
+              "mean_sigma_diagonal": 0.12206,
+              "mean_z": 0.638,
+              "volume_interaction": 0.47968,
+              "interaction_sigma_rho_x_zero": 0.24411,
+              "interaction_z_rho_x_zero": 1.965
+            },
+            "finite_flow_time": {
+              "volume_interaction": 0.50252,
+              "interaction_sigma_rho_x_zero": 0.24348,
+              "interaction_z_rho_x_zero": 2.064,
+              "shared_information_with_t_to_zero": true
+            },
+            "trace_control": {
+              "volume_interaction": 0.355,
+              "interaction_sigma_diagonal": 0.09612,
+              "nominal_z": 3.693,
+              "independent_confirmation": false,
+              "selection_note": "Selected after viewing enthalpy; same ensembles/operators; rounding and systematics weaken interpretation."
+            },
+            "interpretation": "Volume dependence of the difference between derivative and SFtX estimators; not evidence of a common method offset. Cross-volume covariance and multiplicity remain unresolved."
+          },
+          "next_step": "Obtain paired blocks/replicas on intersecting configurations for derivative and SFtX, common phase mask, both flow times and both volumes; estimate the full 4-vector covariance. Obtain a third comparable volume or an external prediction before fitting a finite-volume law."
+        }
+      ]
+    },
+    {
+      "id": "U014",
+      "title": "Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции?",
+      "kind": "NOT_ESTIMATED",
+      "status": "OPEN",
+      "origin_kind": "cosmological_matching",
+      "records": [
+        "R137"
+      ],
+      "construct_ids": [],
+      "open_links": [],
+      "origin": "Самостоятельная постановка по открытым данным Lumina и вопросу сопряжения CCC+TL/BBN; донор #195 → задача #196.",
+      "evidence_sources": [
+        "analysis/R137_LUMINA/REPORT.md",
+        "analysis/R137_LUMINA/verify.py",
+        "analysis/R137_LUMINA/CHECKS.json",
+        "analysis/R137_LUMINA/DATA_REQUEST.md"
+      ],
+      "known": "Четыре открытые таблицы проверены. Δτ(3,49)=0,03906762. Полностью ионизованное продолжение ниже z=3 даёт 28,15% общей τ. Независимое интегрирование даёт 0,01530341 против 0,01530663 в таблице. R138 сверил методы второго этапа. При z=49 в таблице RECFAST из drft Tgas=48,86766 K, xₑ=0,000241144. Lumina задаёт 54,17 K по уравнению (27).",
+      "unknown": "Остаются точные входные передаточные функции Lumina и массовая история электронов для z≥3. Вклад параметров и теплового предписания в разность 5,30 K требует контроля на одинаковых входах. Для выбранного варианта CCC+TL открыты рекомбинация и эволюция возмущений.",
+      "next_step": "При одинаковых Yp, η, фоне и радиационной плотности сверить RECFAST, прямой HYREC-2 и тепловое предписание Lumina. Сравнить выходы CAMB на общей k-сетке с указанной калибровкой, проверить drft при нулевом и заданном потоке. Воспроизвести Δτ по исходной истории электронов. Для CCC+TL задать часы, гравитационный источник и законы роста.",
+      "closure": "Явно определён тёмный сектор либо его замена. Проверены остатки по фону, газу и возмущениям на общей сетке с заданной точностью. Проверена совместимость последующей эволюции либо локализовано конкретное физическое расхождение. При нехватке уравнений или данных вопрос открыт. Соглашения для k, скоростей, потенциалов, тепловой истории и допуски фиксируются до сравнения. В версии без CDM сравниваются движение барионов и гравитационные потенциалы.",
+      "decision": "Самостоятельное исследование R137 в #196.",
+      "registered_date": "2026-11-22",
+      "answer": null,
+      "resolution_source": null,
+      "user_answer_required_now": false,
+      "genealogy_note": "Самостоятельный вопрос. Связи с другими результатами не предполагаются без отдельного указания владельца.",
+      "related_research": [
+        {
+          "id": "R138",
+          "relation": "shared_physical_boundary",
+          "scope": "post-BBN recombination and growth donor synthesis",
+          "url": "https://github.com/IgorSabirov/vm-lab/issues/199"
+        }
+      ]
     }
   ],
   "existing_open_links": [
@@ -1347,6 +1509,75 @@
       "action": "Сверка протокола и возврат результатов в U006/U010.",
       "source": "analysis/NOW_PROJECT_INTEGRATION_20261119/session_20261120/REPORT.md",
       "new_production_runs": 0
+    },
+    {
+      "date": "2026-11-28",
+      "action": "Портовые контроли и границы физического переноса добавлены к U006 и U010.",
+      "source": "analysis/R143_MASS_SECTOR_BRIDGE_20261128/port_interference/REPORT.md"
+    },
+    {
+      "date": "2026-11-21",
+      "action": "Зарегистрирован U013 для R136.",
+      "source": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md"
+    },
+    {
+      "date": "2026-11-22",
+      "action": "R136_R140_COMMON_REGISTRY_SYNC",
+      "branches": [
+        "research/r136-shirogane-calibration",
+        "research/r140-haar-sorkin"
+      ],
+      "records": [
+        "R136",
+        "R139",
+        "R140"
+      ],
+      "questions": [
+        "U003",
+        "U006",
+        "U013"
+      ],
+      "new_scientific_runs": 0,
+      "status_changes": [],
+      "scientific_status_promoted": false,
+      "note": "Сведены результаты и границы двух веток. D136 отделён от декогеренционного функционала Соркина; физическое отображение R136-наблюдаемой в ADD histories отсутствует."
+    },
+    {
+      "date": "2026-11-22",
+      "action": "R137_REGISTERED_AS_INDEPENDENT_OBJECT",
+      "source": "analysis/R137_LUMINA/REPORT.md",
+      "questions": [
+        "U014"
+      ],
+      "new_scientific_runs": 0,
+      "comment": "Никакие parent-result links не назначены."
+    },
+    {
+      "date": "2026-11-22",
+      "action": "U014 остаётся OPEN. Добавлены стандартные доноры и численная сверка входной температуры.",
+      "source": "https://github.com/IgorSabirov/vm-lab/issues/199"
+    },
+    {
+      "date": "2026-11-28",
+      "action": "REGISTRY_CONSOLIDATION_R136_R138",
+      "questions": [
+        "U013",
+        "U014"
+      ],
+      "records": [
+        "R136",
+        "R137",
+        "R138"
+      ],
+      "new_scientific_runs": 0,
+      "status_changes": [],
+      "source_commits": {
+        "R136": "414be6e3dc2d294e693689a8cbc506374a735ae1",
+        "R136_registry": "440c08ccd1cd0125aa46c25e7a276cced1c83f5c",
+        "R137": "873480d376f20e304a1d9649c22cc88be6fef975",
+        "R138": "0adbf1e757e48fdf98a6da5a2cc3cf11b12b554a"
+      },
+      "note": "28.11.2026: восстановлены существующие R136–R138 и U013–U014 из закреплённых веток #194/#206, #198 и #200. 150 R, 14 U; научные статусы не повышены, новых расчётов нет. R137/R138 независимы, общая граница U014 не создаёт родительской связи."
     }
   ],
   "pre_parent_link_completion_20261109": {
@@ -1789,5 +2020,66 @@
     "new_vm_jobs": 0,
     "physical_mechanism_selected": false,
     "execution_authorized": false
+  },
+  "long_range_projection_20261127": {
+    "date": "2026-11-27",
+    "status": "OPEN_PHYSICAL_MAPPING_AND_OBSERVABLE_PROJECTION",
+    "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md",
+    "evidence_commit": "03207718f0de31ce5d36659332c5c75ae094574d",
+    "questions": [
+      "U006",
+      "U010"
+    ],
+    "open_links": [
+      "L09"
+    ],
+    "records": [
+      "R130",
+      "R132",
+      "R133",
+      "R135",
+      "R139",
+      "R142",
+      "R143",
+      "R149",
+      "R150"
+    ],
+    "known": "Finite hopping: winding distance bound p*≥ceil(N/R); exact Δ1 through odd winding harmonics. One-band NR may be negative while full scalar NR trace is nonnegative. T^-1 does not uniquely identify Rel.",
+    "unknown": "No derivation of X, physical clock, port equilibrium or full microscopic operator. Whether a candidate carrier realizes finite hopping or continuum projected band, independent signed J_r, operator and probe, spectral band/precision errors in C, and physical meaning of f(K) remain OPEN.",
+    "next_step": "09-LAB-LONG-RANGE-B: fix scope and independently calibrate J_r and covariance, measure mode-resolved spectra and port-off/on, direct contrast error bound before holdout, verify leakage/band completeness and scalar diamagnetic sign control; include NN/optical NR/f alternatives. 09-X separately.",
+    "closure": "No new closure condition for U006/U010; retain original criteria. LAB model/physical validation alone does not establish origin of physical geometry/time or reproduction of conditions.",
+    "scientific_acceptance": false,
+    "legacy_target": false
+  },
+  "operator_identifiability_20261127": {
+    "date": "2026-11-27",
+    "status": "OPEN_PHYSICAL_OPERATOR_IDENTIFIABILITY",
+    "source": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md",
+    "evidence_commit": "9d1e87166864a898a76490cc1e7311fbab533ab2",
+    "questions": [
+      "U006",
+      "U010"
+    ],
+    "open_links": [
+      "L09"
+    ],
+    "records": [
+      "R130",
+      "R132",
+      "R133",
+      "R135",
+      "R139",
+      "R140",
+      "R142",
+      "R143",
+      "R149",
+      "R150"
+    ],
+    "known": "Exact f(K_NN) equals positive LR Fourier hopping for every twist. Free operator data cannot distinguish equivalent microscopic models. Local contact may spread under f; AP antipodal zero is common twisted reflection symmetry. J_N aliases relative scalar shift. Weighted Wilson paths and cancellation change p*; nonlocal continuum may retain power law. Iso is canonical one-particle port+cycle, not vacuum or gas.",
+    "unknown": "Physical origin, clock, scale, operator embedding and independently calibrated interventions B_j, coherent probes, restricted common U, Wilson path phases, kinetic zero/domain, ensemble preparation and robust covariance/power remain OPEN. Equivalence can persist across all allowed interventions if their effective maps are identical.",
+    "next_step": "09-LAB-OP-IDENTIFIABILITY: restrict candidate controlled families with independent calibration, fix H/rho/A/B_j and Wilson conventions, test rank/nullspaces and held-out responses ±h and distinct local interventions. If indistinguishable, report equivalence class, not microscopic attribution. Verify canonical port preparation separately, directly control C projection and precision; 09-X separate.",
+    "closure": "Existing U006/U010 and L09 closure criteria unchanged; analytic/model PASS does not establish physical metric/clock or causal reproduction of carrier.",
+    "scientific_acceptance": false,
+    "legacy_target": false
   }
 }

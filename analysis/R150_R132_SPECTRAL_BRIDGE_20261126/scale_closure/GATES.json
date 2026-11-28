@@ -1,0 +1,518 @@
+{
+  "task": "R150–R132: dimensional energy scale through spectral geometry",
+  "baseline_commit": "9f93ecaa66e9c6509ab57b8f1ccfb0adbe127adf",
+  "parent_pr": 221,
+  "status": "STRUCTURE_PASS_METHOD_PASS_PHYSICAL_OPEN",
+  "scientific_acceptance": false,
+  "bbn_used_for_calibration": false,
+  "scope": "fixed marked carrier; independent dimensional calibration",
+  "completed": [
+    {
+      "id": "SCALE-01",
+      "state": "PASS",
+      "evidence": "REPORT.md"
+    },
+    {
+      "id": "SCALE-02",
+      "state": "PASS",
+      "evidence": "continuum/README.md"
+    },
+    {
+      "id": "SCALE-03",
+      "state": "PASS_STRUCTURE",
+      "evidence": "dirac/report.md"
+    },
+    {
+      "id": "SCALE-04",
+      "state": "PASS_EXISTENCE",
+      "evidence": "dirac/report.md"
+    },
+    {
+      "id": "SCALE-05",
+      "state": "PASS_MARKED_CIRCLE",
+      "evidence": "dirac/R133_CONTACT_FORM_AND_RESOLVENT_LIMIT.md"
+    },
+    {
+      "id": "SCALE-06",
+      "state": "PASS",
+      "evidence": "continuum/CALIBRATION_AUDIT_20261126.md"
+    },
+    {
+      "id": "SCALE-07",
+      "state": "METHOD_PASS_SYNTHETIC",
+      "evidence": "continuum/calibration.py"
+    },
+    {
+      "id": "SCALE-08",
+      "state": "PASS_DISTINCTION",
+      "evidence": "dirac/R132_FIRST_ORDER_CONTACT.md"
+    }
+  ],
+  "open": [
+    {
+      "id": "SCALE-09",
+      "state": "OPEN",
+      "deliverable": "independent dimensional anchor, carrier/operator/observable mapping, source and uncertainties",
+      "depends_on": []
+    },
+    {
+      "id": "SCALE-10",
+      "state": "OPEN",
+      "deliverable": "predeclared physical dispersion and probe, independent distinguishing holdout",
+      "depends_on": [
+        "SCALE-09"
+      ]
+    },
+    {
+      "id": "SCALE-11",
+      "state": "OPEN",
+      "deliverable": "joint covariance calibration and holdout replay",
+      "depends_on": [
+        "SCALE-09",
+        "SCALE-10"
+      ]
+    },
+    {
+      "id": "SCALE-12",
+      "state": "OPEN",
+      "deliverable": "dimensionful scale with uncertainties, independent physical verification",
+      "depends_on": [
+        "SCALE-09",
+        "SCALE-10",
+        "SCALE-11"
+      ]
+    }
+  ],
+  "negative_outcome": "NO_ANCHOR_IN_SEARCHED_SCOPE is a valid completed search report, not physical PASS",
+  "excluded_as_blockers": [
+    "general ADD deletion/fusion transport",
+    "absolute EOS and gravitational zero",
+    "BBN predictions",
+    "SM generations"
+  ],
+  "prohibitions": [
+    "fit to Yp/D/H, T_REF or target contrast",
+    "identify by numerical proximity",
+    "promote synthetic input to measured scale",
+    "conflate K,D,F"
+  ],
+  "new_computations_claimed": true,
+  "donor_audit_2026_11_26": {
+    "report": "DONOR_AUDIT_20261126.md",
+    "overall_SCALE_09": "OPEN",
+    "analog_donor_search": "FOUND",
+    "subgates": [
+      {
+        "id": "SCALE-09A_ANALOG_DIMENSIONAL_DONOR",
+        "state": "FOUND",
+        "evidence": "GaAs Cassé/Fuhrer/Keyser; low-N InAs is addition-spectrum control only"
+      },
+      {
+        "id": "SCALE-09A2_MULTIGEOMETRY_C2_TEST",
+        "state": "FOUND_WITH_SCOPE",
+        "evidence": "Bleszynski-Jayich Al rings: diffusive Thouless scale; not ballistic K"
+      },
+      {
+        "id": "SCALE-09A3_ULTIMATE_MASS_KINEMATIC",
+        "state": "FOUND_WITH_SCOPE",
+        "evidence": "23Na and 87Rb toroidal BEC: atomic mass and circulation; interacting system"
+      },
+      {
+        "id": "SCALE-09B_CARRIER_OPERATOR_DICTIONARY",
+        "state": "PARTIAL",
+        "evidence": "K/D/F and observable classes separated; R150 carrier mapping remains open"
+      },
+      {
+        "id": "SCALE-09B2_SAME_WAFER_MASS",
+        "state": "OPEN",
+        "evidence": "GaAs cyclotron mass is not measured in the same ring devices"
+      },
+      {
+        "id": "SCALE-09D_ANTIPERIODIC_SEAM_DONOR",
+        "state": "FOUND",
+        "evidence": "Munning TI half-integer subbands plus Cho flux-dependent transport"
+      },
+      {
+        "id": "SCALE-09E_CONTACT_PARITY_DONOR",
+        "state": "FOUND",
+        "evidence": "Debbarma, Grbic, Eckel/Ramanathan; phase/contact controls"
+      }
+    ],
+    "target_x_identification": "OPEN",
+    "physical_anchor": "OPEN",
+    "scientific_acceptance": false,
+    "bbn_calibration_used": false,
+    "notes": [
+      "Do not equate laboratory analog with cosmological X",
+      "Do not conflate K, D and F",
+      "Do not identify Fuhrer 180 micro-eV maximum addition spacing with m=1 to m=3",
+      "Separate 23Na and 87Rb BEC mass scales",
+      "Errata and followup: REVIEW_20261127.md; Fuhrer 180 micro-eV is spacing after charging subtraction, not raw addition spacing; same-wafer/device distinction remains."
+    ]
+  },
+  "review_2026_11_27": {
+    "report": "REVIEW_20261127.md",
+    "replay": "verify_scale09_20261127.py",
+    "numeric_summary": "REPLAY_SUMMARY_20261127.json",
+    "dictionary": "DONOR_OPERATOR_DICTIONARY.md",
+    "target_contract": "TARGET_X_IDENTIFICATION_CONTRACT.md",
+    "holdout": "SCALE10_HOLDOUT_PREREG.md",
+    "scope": "independent mathematical and conditional modeling controls; no new physical data",
+    "scientific_acceptance": false,
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "bbn_calibration_used": false,
+    "subgates": [
+      {
+        "id": "SCALE-05_FIXED_MARK_SPECTRAL_RATE",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "O(N^-2) simple isolated eigenvalues, N=12..768; original lifted-resolvent Θ(N^-1) theorem unchanged"
+      },
+      {
+        "id": "SCALE-09B_CONTACT_INTERFERENCE",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "single-port rank-one dark mode; phase and geometry control; Debbarma analogy, physical operator map open"
+      },
+      {
+        "id": "SCALE-09B2_ORBITAL_MAGNETOMETRY_MASS",
+        "state": "METHOD_FOUND_WITH_SCOPE",
+        "evidence": "slope + independently identified l and lever arm; same-device mass not yet measured"
+      },
+      {
+        "id": "SCALE-09B2_FUHRER_MODE_ASSIGNMENT",
+        "state": "PARTIAL",
+        "evidence": "primary 65 nm; self-consistent hard-wall count 200; real mode assignment and covariance open"
+      },
+      {
+        "id": "SCALE-10_TWO_PHASE_HOLDOUT",
+        "state": "READY_FOR_PREREGISTRATION",
+        "evidence": "exact R_a,R_p and coherent probe; no physical holdout executed"
+      },
+      {
+        "id": "SCALE-11_REGULARIZED_SCALAR_MODEL",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "regularized determinant and normalization; joint physical fit OPEN"
+      },
+      {
+        "id": "TARGET_X_RELATIVISTIC_CONTROL",
+        "state": "NEGATIVE_CONTROL_WITH_SCOPE",
+        "evidence": "conditional K parameter regime not percent-accurate nonrelativistic; no X identification"
+      },
+      {
+        "id": "SCALE-06_NODAL_FINITE_SIZE_COEFFICIENTS",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "exact finite N and fixed odd m expansion through N^-4; contact protection distinct from grid error"
+      },
+      {
+        "id": "SCALE-11_MULTIBRANCH_EXTRAPOLATION",
+        "state": "METHOD_PASS_MODEL",
+        "evidence": "70-digit regularized root and Richardson audit, 4 active branches N<=3072; joint physical covariance/fit OPEN"
+      }
+    ],
+    "finite_size_spectral_asymptotics": {
+      "state": "PASS_WITH_SCOPE",
+      "report": "../continuum/finite_size_20261127/REPORT.md",
+      "replay": "../continuum/finite_size_20261127/replay.py",
+      "numeric_summary": "../continuum/finite_size_20261127/RESULTS.json",
+      "scope": "fixed mark, simple isolated active scalar root away from poles; E_N=e+A/N^2+B/N^4+O(N^-6); unchanged lifted-resolvent theorem and first-order/physical gates",
+      "scientific_acceptance": false,
+      "multi_root_extension": {
+        "state": "PASS_WITH_SCOPE",
+        "report": "../continuum/finite_size_20261127/MULTI_ROOT_RICHARDSON.md",
+        "replay": "../continuum/finite_size_20261127/multi_root.py",
+        "selected_results": "../continuum/finite_size_20261127/MULTI_ROOT_RESULTS.json",
+        "precision_dps": 70,
+        "active_branches": 4,
+        "finite_roots": 32,
+        "N_max": 3072,
+        "richardson": "R_N=(4E_2N−E_N)/3; R_N−e=−B/(4N^4)+O(N^-6)",
+        "scope": "fixed marked scalar K, simple roots off poles; no physical calibration",
+        "scientific_acceptance": false
+      }
+    }
+  },
+  "relativistic_holonomy_2026_11_27": {
+    "state": "MODEL_PASS_WITH_SCOPE",
+    "report": "../relativistic_holonomy_20261127/REPORT.md",
+    "replay": "../relativistic_holonomy_20261127/replay.py",
+    "results": "../relativistic_holonomy_20261127/RESULTS.json",
+    "donors": "../relativistic_holonomy_20261127/DONORS.md",
+    "subgates": [
+      {
+        "id": "SCALE-05_FREE_THERMAL_DISCRETIZATION",
+        "state": "PASS_WITH_SCOPE",
+        "evidence": "fixed C,T,M, free ring+port; A_C=-.000241243209574; N<=3072; no change to full resolvent theorem"
+      },
+      {
+        "id": "TARGET_X_REL_HOLONOMY",
+        "state": "MODEL_PASS_WITH_SCOPE",
+        "evidence": "conditional iso 3.40919973954e-6; all/one/continuum differ; target origin OPEN"
+      },
+      {
+        "id": "SCALE-09B_MASSIVE_CONTACT",
+        "state": "PARTIAL",
+        "evidence": "free local first order factorization; contact ordering and mass/domain/physical mapping OPEN"
+      },
+      {
+        "id": "SCALE-10_DISPERSION_HOLDOUT",
+        "state": "READY_FOR_PREREGISTRATION",
+        "evidence": "NR/Rel/sqrt K ratios, T-dependence, phase, independent calibration required; no physical holdout"
+      }
+    ],
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "scientific_acceptance": false,
+    "bbn_calibration_used": false
+  },
+  "target_x_contrast_provenance_2026_11_27": {
+    "state": "TRACE_TO_PUBLISHED_CONDITIONAL_OUTPUT",
+    "report": "TARGET_X_PROVENANCE_341_20261127.md",
+    "first_confirmed_commit": "f33df29adfd254482cf7614f25d3b994632d3053",
+    "parent": "b17c871ce37697c8beb36bf295797b5161ab11d2",
+    "first_numeric_receipt": "420fc89f9bfd9cbd97d9461b7f83df93f2823342",
+    "role": "computed Rel iso output and regression reference, not historical NR target; no independent holdout",
+    "scope": "report path history, parent and named source files; not all branches or unpublished notes",
+    "upstream_M_ell_origin": "OPEN",
+    "historical_nr_fit_to_this_number": "NOT_ESTABLISHED",
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "scientific_acceptance": false,
+    "bbn_calibration_used": false,
+    "recovery": {
+      "state": "LOG_GRID_CANDIDATE_REPRODUCED_NOT_HISTORICALLY_VERIFIED",
+      "source": "provenance_recovery_20261127/REPORT.md",
+      "manifest": "provenance_recovery_20261127/LINEAGE.json",
+      "upstream_origin": "OPEN",
+      "selection_rule": "OPEN",
+      "nr_peak_identifiability": "ONLY_M_ELL_SQUARED",
+      "historical_fit": "NOT_ESTABLISHED",
+      "physical_anchor": "OPEN",
+      "prepublication_method": {
+        "state": "DOCUMENTED",
+        "script": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/prepublication/r150_r132_scale.py",
+        "receipt": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/prepublication/r150_r132_scale_results.json",
+        "source_utc": "2026-11-26T12:28:25Z",
+        "scope": "dimensionless method and distinct synthetic example only",
+        "selection_rule": "OPEN"
+      }
+    }
+  },
+  "lab_program": {
+    "state": "PROPOSED_NOT_LOCKED",
+    "date": "2026-11-27",
+    "review": "MODEL_LOCK_REVIEW_20261127.md",
+    "model_lock": "MODEL_LOCK.md",
+    "prediction_draft": "PREDICTIONS_LOCK_DRAFT_20261127.json",
+    "replay": "model_lock_replay.py",
+    "scientific_acceptance": false,
+    "physical_anchor": "OPEN",
+    "target_x_identification": "OPEN",
+    "bbn_calibration_used": false,
+    "promotion_rule": "LAB_PASS never automatically promotes physical SCALE-09..12, TARGET_X, Gate D, U006/U010 or scientific acceptance; X requires independently identified carrier/operator/scale and verification.",
+    "gates": [
+      {
+        "id": "09-MODEL-LOCK",
+        "state": "PROPOSED",
+        "depends_on": [],
+        "deliverable": "six model/probe decisions with provenance, independently measured inputs and locked scope"
+      },
+      {
+        "id": "09-LAB-SCALE",
+        "state": "OPEN",
+        "inherits": [
+          "SCALE-09B2_SAME_WAFER_MASS",
+          "SCALE-09B2_ORBITAL_MAGNETOMETRY_MASS"
+        ],
+        "deliverable": "same-device dimensional data and uncertainty; independent J or justified m,C"
+      },
+      {
+        "id": "09-LAB-OP",
+        "state": "PARTIAL",
+        "inherits": [
+          "SCALE-09B_CARRIER_OPERATOR_DICTIONARY"
+        ],
+        "deliverable": "physical operator, mode, phase, preparation, probe, restricted U and error dictionary"
+      },
+      {
+        "id": "09-LAB-LINEAR-RING",
+        "state": "METHOD_PASS_SYNTHETIC",
+        "physical": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+        "depends_on": [],
+        "deliverable": "locked 6+1 acceptance against the exact Hamiltonian; independent g; calibrated port weights; port-off residual bound. Synthetic known-answer pass is not a measured anchor",
+        "evidence": "lab09_linear_ring_20261127/REPORT.md",
+        "does_not_close": ["09-LAB-SCALE", "09-LAB-OP", "SCALE-09", "SCALE-10", "SCALE-11", "SCALE-12", "scientific_acceptance"]
+      },
+      {
+        "id": "09-LAB-D",
+        "state": "DESK_STUDY_READY",
+        "inherits": [
+          "SCALE-09D_ANTIPERIODIC_SEAM_DONOR"
+        ],
+        "deliverable": "retrospective zero-fit TI candidate test with independently sourced inputs; no data extracted/test executed"
+      },
+      {
+        "id": "10-LAB",
+        "state": "READY_FOR_PREREGISTRATION",
+        "inherits": [
+          "SCALE-10_TWO_PHASE_HOLDOUT",
+          "SCALE-10_DISPERSION_HOLDOUT"
+        ],
+        "depends_on": [
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP",
+          "09-LAB-LONG-RANGE-B",
+          "09-LAB-OP-IDENTIFIABILITY"
+        ],
+        "deliverable": "predeclared full phase sweep, port on/off, mode/probe and T holdouts, covariance/power; T^-1 is nonunique; NN/optical NR/f alternatives, direct projection C error; distinguish restricted controlled families, not identical free operators; joint H/rho/A/B_j mapping, independent phase/energy reference, robust power"
+      },
+      {
+        "id": "11-LAB",
+        "state": "OPEN_METHOD_READY",
+        "inherits": [
+          "SCALE-11_REGULARIZED_SCALAR_MODEL",
+          "SCALE-11_MULTIBRANCH_EXTRAPOLATION"
+        ],
+        "depends_on": [
+          "10-LAB"
+        ],
+        "deliverable": "joint physical covariance/calibration/holdout"
+      },
+      {
+        "id": "09-X",
+        "state": "OPEN",
+        "depends_on": [],
+        "deliverable": "independent target carrier mechanism and scale; separate from laboratory analogue"
+      },
+      {
+        "id": "12-X",
+        "state": "OPEN",
+        "depends_on": [
+          "09-X"
+        ],
+        "deliverable": "independent physical target scale with uncertainty and verified holdout; original SCALE-12 dependencies retained"
+      },
+      {
+        "id": "09-LAB-LONG-RANGE-A",
+        "state": "MODEL_PASS_WITH_SCOPE",
+        "deliverable": "finite/projected winding harmonics, p* lower bound and tested equality, four-model contrast/ratios, first-band sign, Fourier J1..Jr",
+        "evidence": "long_range_20261127/REPORT.md"
+      },
+      {
+        "id": "09-LAB-LONG-RANGE-B",
+        "state": "OPEN",
+        "depends_on": [
+          "09-LAB-LONG-RANGE-A",
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP"
+        ],
+        "deliverable": "physical operator/projection completeness, direct C convergence and absolute error budget, same-device J_r covariance, band/precision/diamagnetic and leakage controls, operator/probe, held-out discrimination",
+        "evidence": "long_range_20261127/REPORT.md"
+      },
+      {
+        "id": "09-LAB-OP-IDENTIFIABILITY",
+        "state": "OPEN_PHYSICAL",
+        "depends_on": [
+          "09-MODEL-LOCK",
+          "09-LAB-SCALE",
+          "09-LAB-OP",
+          "09-LAB-LONG-RANGE-B"
+        ],
+        "deliverable": "restricted operational equivalence class, independent interventions/readouts, physical energy zero/domain, Wilson phases, continuum/projection/Gibbs scope and robust holdout power; physical origin not inferred from identical free H",
+        "evidence": "operator_identifiability_20261127/REPORT.md",
+        "work_items": [
+          {
+            "id": "OPERATOR-EQUIVALENCE",
+            "state": "ANALYTIC_PASS_WITH_SCOPE",
+            "limit": "physical origin OPEN"
+          },
+          {
+            "id": "ENERGY-ZERO-DOMAIN",
+            "state": "METHOD_PASS_MODEL",
+            "limit": "physical zero/domain OPEN"
+          },
+          {
+            "id": "WILSON-PATH-GENERAL",
+            "state": "ANALYTIC_AND_MODEL_PASS_WITH_SCOPE",
+            "limit": "independent path/phase OPEN"
+          },
+          {
+            "id": "CONTINUUM-LOCALITY",
+            "state": "COUNTEREXAMPLE_PASS_WITH_SCOPE",
+            "limit": "physical embedding OPEN"
+          },
+          {
+            "id": "THERMAL-TRACE-CLOSURE",
+            "state": "MODEL_CONTROLS_PASS",
+            "limit": "Gibbs/band/precision/window OPEN"
+          },
+          {
+            "id": "RESPONSE-TOMOGRAPHY",
+            "state": "MODEL_PASS_FIRST_ORDER_AND_SYMMETRY",
+            "limit": "independent interventions and readout completeness OPEN"
+          },
+          {
+            "id": "ROBUST-POWER",
+            "state": "OPEN",
+            "limit": "covariance and prospective discrimination OPEN"
+          }
+        ]
+      }
+    ],
+    "legacy_output": {
+      "value": 0.00000340919973954173,
+      "role": "conditional Rel iso output; not target",
+      "selection_rule": "OPEN"
+    },
+    "technical_note": "Baseline test-integrity/merge-gate failure; stale REGISTRY_LINKS/INDEX.json; repair separately with generator, no bypass.",
+    "long_range": {
+      "important_result": "finite winding moment lower bound; exact Delta1; nonunique T^-1",
+      "important_limit": "projected one-band contrast may change sign; full scalar diamagnetic constraint; X not calibrated",
+      "report": "long_range_20261127/REPORT.md",
+      "results": "long_range_20261127/RESULTS.json",
+      "replay": "long_range_20261127/replay.py",
+      "physical_status": "OPEN"
+    },
+    "operator_identifiability": {
+      "important_result": "exact f(K_NN)=positive long-range Fourier series for all phi; contact distribution; Wilson weighted path cancellation; nonlocal continuum power law",
+      "important_limit": "identical free operators and unrestricted controlled equivalents cannot reveal microscopic origin; r=N aliases scalar detuning; AP antipode zero not unique; finite canonical iso not vacuum or gas",
+      "report": "operator_identifiability_20261127/REPORT.md",
+      "results": "operator_identifiability_20261127/RESULTS.json",
+      "replay": "operator_identifiability_20261127/replay.py",
+      "physical_status": "OPEN"
+    },
+    "linear_ring": {
+      "important_result": "exact single-site 6+1 spectrum of the symmetric Fig. 10 circulant; known-answer synthetics pass the locked Hamiltonian",
+      "important_limit": "ideal weights 0, 1/2 and 1 fail those synthetics at sigma 5e-6; no same-assembly port-off/on kit in the searched scope",
+      "state": "METHOD_PASS_SYNTHETIC",
+      "physical_status": "NO_ANCHOR_IN_SEARCHED_SCOPE",
+      "report": "lab09_linear_ring_20261127/REPORT.md",
+      "results": "lab09_linear_ring_20261127/RESULTS.json",
+      "replay": "lab09_linear_ring_20261127/replay.py",
+      "code": "lab09_linear_ring_20261127/lab09.py",
+      "scientific_acceptance": false,
+      "scale_gate": "OPEN",
+      "operator_gate": "PARTIAL"
+    }
+  },
+  "r141_grok_samefree_20261127": {
+    "status": "ANALYTIC_LOG_CHECKS_WITH_SCOPE_PHYSICAL_OPEN",
+    "report": "r141_grok_samefree_20261127/REPORT.md",
+    "results": "r141_grok_samefree_20261127/RESULTS.json",
+    "protocol": "r141_grok_samefree_20261127/PROTOCOL.md",
+    "source": "r141_grok_samefree_20261127/SOURCES.md",
+    "replay": "r141_grok_samefree_20261127/replay.py",
+    "replay_execution": "PENDING_RECONSTRUCTED_FROM_STDOUT",
+    "related_gates": [
+      "09-LAB-OP-IDENTIFIABILITY",
+      "09-LAB-LONG-RANGE-B",
+      "10-LAB",
+      "11-LAB"
+    ],
+    "new_physical_runs": 0,
+    "scientific_acceptance": false,
+    "prior_gate_states_unchanged": true,
+    "limits": "common free ring not automatically common off-port; local known support; independent A, port reference, covariance and holdout OPEN"
+  }
+}

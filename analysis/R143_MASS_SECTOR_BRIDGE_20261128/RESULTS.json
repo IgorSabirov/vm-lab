@@ -1,0 +1,173 @@
+{
+  "schema": "R143_MASS_SECTOR_BRIDGE_v1",
+  "status": "MODEL_REPLAY_ONLY_NOT_PHYSICAL_CALIBRATION",
+  "parameters_dimensionless": {
+    "t": 1.0,
+    "g": 1.0,
+    "M": 2.4,
+    "v": 1.7
+  },
+  "phase_sweep": [
+    {
+      "phi_over_pi": 0.0,
+      "P_formula": 0.5714285714285714,
+      "P_vector": 0.5714285714285713,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 0.25,
+      "P_formula": 0.5322887255269254,
+      "P_vector": 0.5322887255269254,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 0.5,
+      "P_formula": 0.4000000000000001,
+      "P_vector": 0.4,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 0.75,
+      "P_formula": 0.1633634483861181,
+      "P_vector": 0.16336344838611805,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 1.0,
+      "P_formula": 4.9991992755395254e-33,
+      "P_vector": 4.999199275539527e-33,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 1.25,
+      "P_formula": 0.163363448386118,
+      "P_vector": 0.16336344838611802,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 1.5,
+      "P_formula": 0.3999999999999999,
+      "P_vector": 0.39999999999999986,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 1.75,
+      "P_formula": 0.5322887255269254,
+      "P_vector": 0.5322887255269254,
+      "rank_Q": 3
+    },
+    {
+      "phi_over_pi": 2.0,
+      "P_formula": 0.5714285714285714,
+      "P_vector": 0.5714285714285713,
+      "rank_Q": 3
+    }
+  ],
+  "mass_edge_tests": [
+    {
+      "phi_over_pi": 0.0,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.25,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.5,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 0.75,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.0,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.25,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.5,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 1.75,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    },
+    {
+      "phi_over_pi": 2.0,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "index": 1
+    }
+  ],
+  "generic_rectangular_tests": [
+    {
+      "N_A": 2,
+      "N_B": 3,
+      "rank_Q": 2,
+      "index": 1,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "edge_difference": 1
+    },
+    {
+      "N_A": 3,
+      "N_B": 4,
+      "rank_Q": 3,
+      "index": 1,
+      "n_plus_M": 1,
+      "n_minus_M": 0,
+      "edge_difference": 1
+    },
+    {
+      "N_A": 4,
+      "N_B": 6,
+      "rank_Q": 4,
+      "index": 2,
+      "n_plus_M": 2,
+      "n_minus_M": 0,
+      "edge_difference": 2
+    },
+    {
+      "N_A": 5,
+      "N_B": 3,
+      "rank_Q": 3,
+      "index": -2,
+      "n_plus_M": 0,
+      "n_minus_M": 2,
+      "edge_difference": -2
+    }
+  ],
+  "max_residuals": {
+    "chiral": 0.0,
+    "D2": 3.5596458096434965e-15,
+    "Fkernel": 7.2377686124476805e-16,
+    "Qnull": 5.551115123125783e-17,
+    "spectrum": 5.329070518200751e-15
+  },
+  "checks": {
+    "all_rank_3": true,
+    "P_matches": true,
+    "mass_index": true,
+    "generic_index": true
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "schema": "research-number-provenance-v1",
+  "id": "R150-X-SCALE-20261127",
+  "scope": [
+    "R132",
+    "R133",
+    "R135",
+    "R150",
+    "R142",
+    "R149",
+    "R130",
+    "R143"
+  ],
+  "base_commit": "9ece7b9645d341feedb05133a1ef81b692b5231e",
+  "events": [
+    {
+      "id": "E0",
+      "type": "source_missing",
+      "status": "OPEN",
+      "description": "Initial supplied research note referenced by first REPORT/SOURCES; exact original, author and scan selection unavailable.",
+      "source": {
+        "commit": "f33df29adfd254482cf7614f25d3b994632d3053",
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/SOURCES.md",
+        "lines": "1-21"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "E1",
+      "type": "input",
+      "status": "DOCUMENTED",
+      "description": "Assigned rounded M=.01585 MeV, ell=1.995e4 fm; source of assignment open.",
+      "source": {
+        "commit": "f33df29adfd254482cf7614f25d3b994632d3053",
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/verify.py",
+        "lines": "217-244"
+      },
+      "depends_on": [
+        "E0"
+      ],
+      "values": {
+        "M_MeV": "0.01585",
+        "ell_fm": "1.995e4",
+        "T_MeV": "0.080"
+      }
+    },
+    {
+      "id": "E2",
+      "type": "computed_output",
+      "status": "DOCUMENTED",
+      "description": "Direct Rel iso N=6,8; separate inverse target .01.",
+      "source": {
+        "commit": "420fc89f9bfd9cbd97d9461b7f83df93f2823342",
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/CHECKS.json",
+        "lines": "103-107"
+      },
+      "depends_on": [
+        "E1"
+      ],
+      "values": {
+        "contrast_N6": "0.000003409199739623503"
+      }
+    },
+    {
+      "id": "E3",
+      "type": "source_excerpt",
+      "status": "DOCUMENTED_LATER_AUDIT",
+      "description": "26 Nov archive audit quotes earlier N=8 peak; source upload after first commit, not original note.",
+      "source": {
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/ARCHIVE_EXCERPTS.md",
+        "original_names": [
+          "Вставленный текст(20261126-131741).txt",
+          "Вставленный текст (2)(20261126-131756).txt"
+        ],
+        "uploaded_utc": [
+          "2026-11-26T13:17:41Z",
+          "2026-11-26T13:17:55Z"
+        ]
+      },
+      "depends_on": [
+        "E0",
+        "E1"
+      ],
+      "values": {
+        "J_MeV": "0.0030856",
+        "epsilon_MeV": "0.0098898",
+        "Tmax_keV": "0.24704",
+        "deltaFmax_keV": "0.10684",
+        "N": 8
+      }
+    },
+    {
+      "id": "E4",
+      "type": "reconstructed_candidate",
+      "status": "REPRODUCED_NOT_HISTORICALLY_VERIFIED",
+      "description": "Unrounded log-grid candidate reproduces all six printed quantities; original grid and selection rule not recovered.",
+      "source": {
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/replay.py",
+        "output": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/STDOUT.txt",
+        "precision_dps": 60
+      },
+      "depends_on": [
+        "E3"
+      ],
+      "values": {
+        "M_MeV": "10**(-1.8)",
+        "ell_fm": "10**4.3",
+        "J_MeV": "0.003085623579345172967672",
+        "Tmax_keV": "0.2470374406001022509992",
+        "deltaFmax_keV": "0.1068365650674123020747"
+      }
+    },
+    {
+      "id": "E5",
+      "type": "negative_control",
+      "status": "REPRODUCED",
+      "description": "log10(M/MeV)+2log10(ell/fm)=6.8: identical J and NR peak, distinct Rel contrasts; peak cannot uniquely identify M and ell.",
+      "source": {
+        "path": "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/STDOUT.txt"
+      },
+      "depends_on": [
+        "E4"
+      ]
+    },
+    {
+      "id": "E6",
+      "type": "open_question",
+      "status": "OPEN",
+      "description": "Recover initial note, exact scan axes/range/steps, objective, alternatives and selection reason; distinguish independent physical constraint from model scenario; no fit to target/BBN.",
+      "depends_on": [
+        "E0",
+        "E3",
+        "E4",
+        "E5",
+        "E7"
+      ]
+    },
+    {
+      "id": "E7",
+      "type": "prepublication_method_archive",
+      "status": "DOCUMENTED",
+      "description": "Earlier dimensionless scale experiment. Different synthetic dimensional example M=100 MeV C=1000 fm N=6; not X. Establishes method already present; no proof of date of original missing note.",
+      "source": {
+        "paths": [
+          "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/prepublication/r150_r132_scale.py",
+          "analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/prepublication/r150_r132_scale_results.json"
+        ],
+        "uploaded_utc": [
+          "2026-11-26T12:28:25+00:00",
+          "2026-11-26T12:28:28+00:00"
+        ],
+        "representation": "complete extracted text, original byte hash unavailable"
+      },
+      "depends_on": [],
+      "values": {
+        "N8_Tmax_over_J": "0.08006078319709563",
+        "N8_deltaFmax_over_J": "0.03462397869350131",
+        "illustrative_M_MeV": "100",
+        "illustrative_C_fm": "1000",
+        "illustrative_J_MeV": "0.007008828694880758",
+        "matrix_checks": 120,
+        "abundance_inputs": false,
+        "physical_scale_calibrated": false
+      }
+    }
+  ],
+  "physical_anchor": "OPEN",
+  "scientific_acceptance": false
+}

@@ -1,0 +1,12 @@
+# Provenance / источник чисел
+
+Все сведения извлечены из предоставленных пользователем журналов в текущей беседе 27.11.2026. Не импортировались исходные private вложения или UI-фрагменты. Полные исходники .py Грока не предоставлены; stdout не является независимо запущенным здесь исходником. Сохранены filenames, идентификаторы запусков и значения/погрешности. Не заявлять выполненный replay из этого коммита.
+
+- Вставленный текст(20261127-135816).txt: stdout `/workspace/artifacts/r141_verify.py` (exact golden algebra, NN spectra, gauge, two-level inversion, three branches, domain, first erroneous LR block, moments) и `r141_followup.py` (corrected LR, J6, thermal, Mathieu). Отброшенный block сохраняется описанием дефекта, не scientific evidence.
+- Вставленный Markdown(10).md: `r141_careful.py`, 53 строки, первая версия NN residual и optical lower/upper, некорректный seam и bracket failed.
+- Вставленный Markdown(20261127-142346).md: `r141_careful.py` исправленная версия, 19 длинных строк; covariant q, 48 state combinations, R_mask, fixed E calibration, J2-only C(T).
+- Вставленный текст(20261127-142950).txt: `r141_samefree.py`, 151 строка; exact relation Rmask/Rring, finite effective hoppings, same free ring, 96 state rows, calibration modes Ep=0/Pp_out/60/97. Last phrase "Analyzing J3 compensation of J2-induced residual" indicates pending investigation, not a new result.
+- Текстовые аналитические заключения пользователя/Грока в беседе: correction 2ΣJ_r diagonal, phase seam, energy zero, exact Chebyshev form, thermal moment shift, limits.
+- Предшествующий разбор ChatGPT и файл Вставленный текст(20261127-132244).txt: R141–#222 transfer/resolvent and proposed A1–A4/B1–B5. Отдельно добавлены u,v mass estimator and conditional operator separation lemma; не атрибутируются Гроку.
+
+База корпуса 6f078d67c3614ecdab97052f2ca7c2adb4f5f478: [MODEL_LOCK](../MODEL_LOCK.md), [GATES](../GATES.json), [operator_identifiability](../operator_identifiability_20261127/REPORT.md), [long range](../long_range_20261127/REPORT.md), [R141–YM](../../../R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md). Числовые receipts в RESULTS.json используют точность печати журналов. replay.py — самостоятельно восстановленная реализация по формулам и округлённым коэффициентам, не копия исходников Грока и не запущен в этой публикации. При расхождении сверять input/source versions; предыдущие отчёты не переписывать.

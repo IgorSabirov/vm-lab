@@ -1,0 +1,242 @@
+{
+  "question": "U013",
+  "status": "OPEN",
+  "provenance": {
+    "canonical_curve_reconstruction": {
+      "value": 0.0006228446341021154,
+      "source": "verify.run(FIGURES.json): implied_origin_difference_48_minus_64"
+    },
+    "rounded_anchor_replay": {
+      "value": 0.0006229000000006479,
+      "inputs": [
+        6.0636007,
+        6.0629778
+      ],
+      "source": "CHECKS.json: per-volume beta_origin_implied_by_J; rounded before subtraction"
+    },
+    "curve_secant_proxy": {
+      "value": 0.0006287825842153719,
+      "inputs": [
+        0.024438471,
+        -0.029300048
+      ],
+      "source": "CHECKS.json: fig15_fig3_curve.residual and archived secants"
+    },
+    "table_secant_proxy": {
+      "value": 0.0006248028380636249,
+      "inputs": [
+        0.036564317,
+        -0.01009902
+      ],
+      "source": "CHECKS.json: fig15_fig3_table_local.residual and archived secants"
+    }
+  },
+  "axis": {
+    "tick_eps_units": [
+      1122.0,
+      2062.0,
+      3001.0,
+      3941.0,
+      4881.0,
+      5820.0,
+      6760.0
+    ],
+    "tick_labels": [
+      0.988,
+      0.992,
+      0.996,
+      1.0,
+      1.004,
+      1.008,
+      1.012
+    ],
+    "x_per_eps_unit": 4.256936452239175e-06,
+    "max_tick_fit_residual_eps": 0.35712656791633585,
+    "unrounded_marker_baseline": 0.0006228445488556389,
+    "horizontal_derivatives": [
+      -0.6228592780632125,
+      0.6219823056748999
+    ],
+    "uniform_rounding_sigma": {
+      "ticks": 8.677628988555682e-08,
+      "local_markers": 9.412819348880263e-07,
+      "combined_independent": 9.452734024782717e-07
+    },
+    "shared_axis_tick_refits": {
+      "min": -3.410786231228258e-07,
+      "max": 3.411827167454362e-07,
+      "cases": 128
+    },
+    "common_marker_translation": {
+      "min": -1.8666037604475605e-09,
+      "max": 1.866610865874918e-09,
+      "cases": 2
+    },
+    "separate_volume_translations": {
+      "min": -2.6496057543567986e-06,
+      "max": 2.649605761462226e-06,
+      "cases": 4
+    },
+    "separate_local_markers": {
+      "min": -3.4584587433883485e-06,
+      "max": 3.458458355254379e-06,
+      "cases": 256
+    },
+    "interpretation": "Half an integer EPS unit per input. Enumerated stress-test endpoints, not standard errors."
+  },
+  "local_inputs": [
+    {
+      "volume": "48",
+      "x": 0.9967848666977199,
+      "slope": 68.96265414767059,
+      "hot": 0.021571971471486796,
+      "cold": 0.009035505528513205,
+      "fig3": 0.022559457,
+      "beta_c": 0.00018
+    },
+    {
+      "volume": "64",
+      "x": 0.9991833167646843,
+      "slope": 109.74766852044883,
+      "hot": 0.015883026596295046,
+      "cold": 0.007872475762789611,
+      "fig3": 0.014992044,
+      "beta_c": 0.00014
+    }
+  ],
+  "assumptions": "Interpolated marginal errors at matching roots; zero cross-volume J covariance, zero beta_c/J covariance; fixed local F and piecewise slopes; correlations illustrative.",
+  "scenarios": [
+    {
+      "rho_beta": -1,
+      "sigma_beta_difference": 0.00032,
+      "common_rho_threshold": null,
+      "pairs": [
+        {
+          "hc": 0,
+          "r153": 0,
+          "z": 1.0250914374523319
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.5,
+          "z": 1.3537417493830985
+        },
+        {
+          "hc": 0.7,
+          "r153": 0.7,
+          "z": 1.5252392527813143
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.9,
+          "z": 1.6890475483285845
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.9,
+          "z": 1.749246466181764
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.5,
+          "z": 1.397866790129896
+        }
+      ],
+      "contour_at_hc": {
+        "-1": 1.0612641424384859,
+        "0": 1.0082046541169207,
+        "0.5": 1.021548123271911,
+        "0.9": 1.1238024208506165,
+        "1": 1.1914483102589595
+      }
+    },
+    {
+      "rho_beta": 0,
+      "sigma_beta_difference": 0.0002280350850198276,
+      "common_rho_threshold": 0.7869933075277522,
+      "pairs": [
+        {
+          "hc": 0,
+          "r153": 0,
+          "z": 1.1031548166644154
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.5,
+          "z": 1.5509015556063723
+        },
+        {
+          "hc": 0.7,
+          "r153": 0.7,
+          "z": 1.8259289530276244
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.9,
+          "z": 2.129085276344003
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.9,
+          "z": 2.2536389629477585
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.5,
+          "z": 1.6182926123084507
+        }
+      ],
+      "contour_at_hc": {
+        "-1": 0.9170631025648657,
+        "0": 0.8187390590584142,
+        "0.5": 0.7840977067942737,
+        "0.9": 0.80150327970978,
+        "1": 0.8285337591391202
+      }
+    },
+    {
+      "rho_beta": 1,
+      "sigma_beta_difference": 4.000000000000002e-05,
+      "common_rho_threshold": 0.5397939320876967,
+      "pairs": [
+        {
+          "hc": 0,
+          "r153": 0,
+          "z": 1.2022847846904314
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.5,
+          "z": 1.8704473986316978
+        },
+        {
+          "hc": 0.7,
+          "r153": 0.7,
+          "z": 2.4252136043176256
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.9,
+          "z": 3.3207067226192084
+        },
+        {
+          "hc": 0.5,
+          "r153": 0.9,
+          "z": 3.8640595853457143
+        },
+        {
+          "hc": 0.9,
+          "r153": 0.5,
+          "z": 1.9923425633992624
+        }
+      ],
+      "contour_at_hc": {
+        "-1": 0.7728620626912459,
+        "0": 0.6292734639999077,
+        "0.5": 0.5466472903166367,
+        "0.9": 0.47920413856894345,
+        "1": 0.4656192080192809
+      }
+    }
+  ]
+}
