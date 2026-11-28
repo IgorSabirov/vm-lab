@@ -2,6 +2,7 @@
 """Preserve the completed arithmetic bridge and append its existing-R links."""
 from __future__ import annotations
 import hashlib
+import argparse
 import json
 import os
 from pathlib import Path
@@ -25,7 +26,10 @@ def append(path, marker, text):
         p.write_text(before.rstrip() + "\n\n" + text.rstrip() + "\n")
 
 def main():
-    run = os.environ["GITHUB_RUN_ID"]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--evidence-run", help="Reuse preserved results without scientific execution")
+    args = parser.parse_args()
+    run = args.evidence_run or os.environ["GITHUB_RUN_ID"]
     out = ROOT / PACKAGE / "runs" / run
     receipt = json.loads((out / "run_receipt.json").read_text())
     result = json.loads((out / "RESULTS.json").read_text())
