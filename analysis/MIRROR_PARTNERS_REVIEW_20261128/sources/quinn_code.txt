@@ -1,0 +1,636 @@
+# Identify the survivors and build the TRUE conjugation table empirically
+def pack(a,b): return (a&1)+2*(b&1)+2*(a&2)+4*(b&2)
+def unpack(s): return ((s&1)+2*((s>>2)&1), ((s>>1)&1)+2*((s>>3)&1))
+perms=list(itertools.permutations(range(4)))
+test_words=[named(w) for L in (2,3) for w in itertools.product(range(16),repeat=L)]
+same=[]; exch=[]
+for conv in ('direct','swap'):
+    for f in perms:
+        for g in perms:
+            p=[0]*16
+            for s in range(16):
+                a,b=unpack(s); p[s]=pack(f[a],g[b]) if conv=='direct' else pack(f[b],g[a])
+            def sigma(x,p=p): return mirror_only(tuple((u,p[s]) for u,s in x))
+            ok_s=ok_e=True
+            for x in test_words:
+                lhs=sigma(forward(sigma(x),(1,-1)))
+                if ok_s and not equal(lhs,forward(x,(1,-1))): ok_s=False
+                if ok_e and not equal(lhs,forward(x,(-1,1))): ok_e=False
+                if not ok_s and not ok_e: break
+            if ok_s: same.append((conv,f,g,p))
+            if ok_e: exch.append((conv,f,g,p))
+print("same-arrow survivors:", [(c,f,g) for c,f,g,_ in same])
+print("exchange  survivors:", [(c,f,g) for c,f,g,_ in exch])
+if same:
+    c,f,g,p=same[0]
+    print("same survivor label map p:", p)
+    print("  is p the identity?", p==list(range(16)))
+    # what is sigma on a single vertex? compare to known ops
+    x=named((3,0,0))
+    print("  sigma(3,0,0) word:", word(sigma(x)), " M word:", word(mirror_only(x)),
+          " r2 word:", word(r2(x)))
+
+print("\n=== Empirical conjugation table (failures over all L=1..3 C2 rings / L=3..6 C1) ===")
+def fail_rate(fn, words, channels):
+    bad=0; n=0
+    for w in words:
+        x=named(w); n+=1
+        bad += not equal(fn(x), transport(x,channels))
+    return bad,n
+c1w=[w for L in range(3,7) for w in itertools.product(range(4),repeat=L)]
+c2w=[w for L in range(1,4) for w in itertools.product(range(16),repeat=L)]
+# Q conjugation: does op Q op equal Q or Q^{-1}?
+def conjQ(op,x,ch): return op(transport(op(x),ch))
+for name,op,words,ch in [("M (C1)",mirror_only,c1w,1),("B (C1)",swap_bits,c1w,1),
+                          ("C=MB (C1)",C1,c1w,1),("M (C2)",mirror_only,c2w,2),
+                          ("R (C2)",r2,c2w,2),("C2=MR (C2)",C2,c2w,2)]:
+    eqF=eqFi=0
+    for w in words:
+        x=named(w)
+        y=conjQ(op,x,ch)
+        eqF  += equal(y, transport(x,ch))
+        eqFi += equal(y, transport(x,ch,True))
+    print(f"{name:12s} op Q op = Q : {eqF}/{len(words)}   = Q^-1 : {eqFi}/{len(words)}")
+
+# Result
+same-arrow survivors: [('swap', (0, 1, 2, 3), (0, 1, 2, 3))]
+exchange  survivors: [('swap', (0, 2, 1, 3), (0, 2, 1, 3))]
+same survivor label map p: [0, 2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15]
+  is p the identity? False
+  sigma(3,0,0) word: (15, 15, 12)  M word: (0, 0, 3)  r2 word: (12, 0, 0)
+
+=== Empirical conjugation table (failures over all L=1..3 C2 rings / L=3..6 C1) ===
+
+
+
+
+M (C1)       op Q op = Q : 16/5440   = Q^-1 : 5440/5440
+B (C1)       op Q op = Q : 16/5440   = Q^-1 : 5440/5440
+
+
+
+
+C=MB (C1)    op Q op = Q : 5440/5440   = Q^-1 : 16/5440
+M (C2)       op Q op = Q : 48/4368   = Q^-1 : 4368/4368
+R (C2)       op Q op = Q : 48/4368   = Q^-1 : 4368/4368
+
+
+
+
+C2=MR (C2)   op Q op = Q : 4368/4368   = Q^-1 : 48/4368
+
+
+# C2' = M B2 (within-channel port swap) — verify it is the same-arrow mirror in C2
+def B2(x):  # swap a<->b inside EACH channel: bits (0<->1) and (2<->3)
+    return tuple((u, ((s&1)<<1)|((s&2)>>1)|((s&4)<<1)|((s&8)>>1)) for u,s in x)
+def Cp(x): return mirror_only(B2(x))
+tot=0; inv=0; same=0; exch=0; distinct_from_C2=0; distinct_from_T=0
+for L in range(1,4):
+    for w in itertools.product(range(16),repeat=L):
+        x=named(w); tot+=1
+        inv  += not equal(Cp(Cp(x)),x)
+        same += not equal(Cp(forward(Cp(x),(1,-1))), forward(x,(1,-1)))
+        exch += not equal(Cp(forward(Cp(x),(1,-1))), forward(x,(-1,1)))
+        distinct_from_C2 += not equal(Cp(x), C2(x))
+print(f"C2'=M B2 on {tot} C2 rings:  C2'^2=id fails={inv}")
+print(f"  C2' F(+,-) C2' = F(+,-) fails = {same}   <-- SAME-ARROW MIRROR IN C2")
+print(f"  C2' F(+,-) C2' = F(-,+) fails = {exch}")
+print(f"  C2' != C2(=MR) on {distinct_from_C2}/{tot} states")
+# interaction conjugation
+def Iop(x,eps): return interact(x,eps)
+bad=0
+for L in range(1,4):
+    for w in itertools.product(range(16),repeat=L):
+        x=named(w)
+        bad += not equal(B2(interact(B2(x),(1,-1)),(1,-1)), interact(x,(-1,1)))
+print(f"  B2 I2(+,-) B2 = I2(-,+) fails = {bad}  (port swap flips each channel orientation)")
+
+# ================= BLOCK 3: 3+1+3 graphs vs benzyl 6+1 =================
+print("\n=== Static spectral check: three 7-vertex graphs ===")
+def analyze(name, edges, n, mirror, center):
+    A=np.zeros((n,n))
+    for i,j in edges: A[i,j]=A[j,i]=1
+    ev,U=np.linalg.eigh(A)
+    nz=int(np.sum(np.abs(ev)<1e-10))
+    # bipartite?
+    col={}; bip=True
+    for s in range(n):
+        if s in col: continue
+        col[s]=0; stack=[s]
+        while stack:
+            u=stack.pop()
+            for v in range(n):
+                if A[u,v]:
+                    if v not in col: col[v]=1-col[u]; stack.append(v)
+                    elif col[v]==col[u]: bip=False
+    sizes=Counter(col.values()) if bip else None
+    # mirror orbits
+    seen=set(); orbits=[]
+    for i in range(n):
+        if i in seen: continue
+        o={i,mirror[i]}; seen|=o; orbits.append(sorted(o))
+    out={"graph":name,"bipartite":bip,"bipartition":dict(sizes) if bip else None,
+         "mirror_orbits":orbits,"zero_modes":nz,
+         "spectrum":np.round(ev,6).tolist()}
+    if nz:
+        Z=U[:,np.abs(ev)<1e-10]
+        par=[]; cw=[]
+        for k in range(Z.shape[1]):
+            v=Z[:,k]; vp=v[[mirror[i] for i in range(n))]
+            par.append(float(np.vdot(v,vp)/np.vdot(v,v)))
+            cw.append(float(abs(v[center])**2/np.vdot(v,v)))
+        out["zero_mode_mirror_parity"]=par; out["zero_mode_center_weight"]=cw
+    return out
+
+# benzyl C6+1 (Phi=0), mirror through vertices 0 and 3, pendant 6 at 0
+bz=[(i,(i+1)%6) for i in range(6)]+[(0,6)]
+print(analyze("benzyl C6+1 (3+4)", bz, 7, [0,5,4,3,2,1,6], 6))
+# spider: center 0, two P3 arms 0-1-2-3 and 0-4-5-6 ; mirror swaps arms
+sp=[(0,1),(1,2),(2,3),(0,4),(4,5),(5,6)]
+print(analyze("spider two-P3 (3+1+3)", sp, 7, [0,4,5,6,1,2,3], 0))
+# bowtie of two triangles: center 0, tri {1,2,3}+edge0-1, tri {4,5,6}+edge0-4
+bt=[(1,2),(2,3),(3,1),(0,1),(4,5),(5,6),(6,4),(0,4)]
+print(analyze("two-triangles (3+1+3)", bt, 7, [0,4,5,6,1,2,3], 0))
+
+# Result
+execute error
+
+
+def B2(x):
+    return tuple((u, ((s&1)<<1)|((s&2)>>1)|((s&4)<<1)|((s&8)>>1)) for u,s in x)
+def Cp(x): return mirror_only(B2(x))
+tot=0; inv=0; same=0; exch=0; distinct_from_C2=0
+for L in range(1,4):
+    for w in itertools.product(range(16),repeat=L):
+        x=named(w); tot+=1
+        inv  += not equal(Cp(Cp(x)),x)
+        same += not equal(Cp(forward(Cp(x),(1,-1))), forward(x,(1,-1)))
+        exch += not equal(Cp(forward(Cp(x),(1,-1))), forward(x,(-1,1)))
+        distinct_from_C2 += not equal(Cp(x), C2(x))
+print(f"C2'=M B2 on {tot} C2 rings:  C2'^2=id fails={inv}")
+print(f"  C2' F(+,-) C2' = F(+,-) fails = {same}   <-- SAME-ARROW MIRROR IN C2")
+print(f"  C2' F(+,-) C2' = F(-,+) fails = {exch}")
+print(f"  C2' != C2(=MR) on {distinct_from_C2}/{tot} states")
+bad=0
+for L in range(1,4):
+    for w in itertools.product(range(16),repeat=L):
+        x=named(w)
+        bad += not equal(B2(interact(B2(x),(1,-1)),(1,-1)), interact(x,(-1,1)))
+print(f"  B2 I2(+,-) B2 = I2(-,+) fails = {bad}")
+
+print("\n=== Static spectral check: three 7-vertex graphs ===")
+def analyze(name, edges, n, mirror, center):
+    A=np.zeros((n,n))
+    for i,j in edges: A[i,j]=A[j,i]=1
+    ev,U=np.linalg.eigh(A)
+    nz=int(np.sum(np.abs(ev)<1e-10))
+    col={}; bip=True
+    for s in range(n):
+        if s in col: continue
+        col[s]=0; stack=[s]
+        while stack:
+            u=stack.pop()
+            for v in range(n):
+                if A[u,v]:
+                    if v not in col: col[v]=1-col[u]; stack.append(v)
+                    elif col[v]==col[u]: bip=False
+    sizes=Counter(col.values()) if bip else None
+    seen=set(); orbits=[]
+    for i in range(n):
+        if i in seen: continue
+        o={i,mirror[i]}; seen|=o; orbits.append(sorted(o))
+    out={"graph":name,"bipartite":bip,"bipartition":dict(sizes) if bip else None,
+         "mirror_orbits":orbits,"zero_modes":nz,"spectrum":np.round(ev,6).tolist()}
+    if nz:
+        Z=U[:,np.abs(ev)<1e-10]; par=[]; cw=[]
+        for k in range(Z.shape[1]):
+            v=Z[:,k]; vp=v[[mirror[i] for i in range(n)]]
+            par.append(round(float(np.vdot(v,vp)/np.vdot(v,v)),6))
+            cw.append(round(float(abs(v[center])**2/np.vdot(v,v)),6))
+        out["zero_mode_mirror_parity"]=par; out["zero_mode_center_weight"]=cw
+    return out
+bz=[(i,(i+1)%6) for i in range(6)]+[(0,6)]
+print(analyze("benzyl C6+1", bz, 7, [0,5,4,3,2,1,6], 6))
+sp=[(0,1),(1,2),(2,3),(0,4),(4,5),(5,6)]
+print(analyze("spider two-P3", sp, 7, [0,4,5,6,1,2,3], 0))
+bt=[(1,2),(2,3),(3,1),(0,1),(4,5),(5,6),(6,4),(0,4)]
+print(analyze("two-triangles", bt, 7, [0,4,5,6,1,2,3], 0))
+
+# Result
+execute error
+
+
+bad=0
+for L in range(1,4):
+    for w in itertools.product(range(16),repeat=L):
+        x=named(w)
+        bad += not equal(B2(interact(B2(x),(1,-1))), interact(x,(-1,1)))
+print(f"B2 I2(+,-) B2 = I2(-,+) fails = {bad} / 4368  (port swap flips each channel orientation)")
+
+print("\n=== Static spectral check: three 7-vertex graphs ===")
+def analyze(name, edges, n, mirror, center):
+    A=np.zeros((n,n))
+    for i,j in edges: A[i,j]=A[j,i]=1
+    ev,U=np.linalg.eigh(A)
+    nz=int(np.sum(np.abs(ev)<1e-10))
+    col={}; bip=True
+    for s in range(n):
+        if s in col: continue
+        col[s]=0; stack=[s]
+        while stack:
+            u=stack.pop()
+            for v in range(n):
+                if A[u,v]:
+                    if v not in col: col[v]=1-col[u]; stack.append(v)
+                    elif col[v]==col[u]: bip=False
+    sizes=Counter(col.values()) if bip else None
+    seen=set(); orbits=[]
+    for i in range(n):
+        if i in seen: continue
+        o={i,mirror[i]}; seen|=o; orbits.append(sorted(o))
+    out={"graph":name,"bipartite":bip,"bipartition":dict(sizes) if bip else None,
+         "mirror_orbits":orbits,"zero_modes":nz,"spectrum":np.round(ev,6).tolist()}
+    if nz:
+        Z=U[:,np.abs(ev)<1e-10]; par=[]; cw=[]
+        for k in range(Z.shape[1]):
+            v=Z[:,k]; vp=v[[mirror[i] for i in range(n)]]
+            par.append(round(float(np.vdot(v,vp)/np.vdot(v,v)),6))
+            cw.append(round(float(abs(v[center])**2/np.vdot(v,v)),6))
+        out["zero_mode_mirror_parity"]=par; out["zero_mode_center_weight"]=cw
+    return out
+bz=[(i,(i+1)%6) for i in range(6)]+[(0,6)]
+print(analyze("benzyl C6+1", bz, 7, [0,5,4,3,2,1,6], 6))
+sp=[(0,1),(1,2),(2,3),(0,4),(4,5),(5,6)]
+print(analyze("spider two-P3", sp, 7, [0,4,5,6,1,2,3], 0))
+bt=[(1,2),(2,3),(3,1),(0,1),(4,5),(5,6),(6,4),(0,4)]
+print(analyze("two-triangles", bt, 7, [0,4,5,6,1,2,3], 0))
+
+# Result
+execute error
+
+
+import numpy as np
+from collections import Counter
+def analyze(name, edges, n, mirror, center):
+    A=np.zeros((n,n))
+    for i,j in edges: A[i,j]=A[j,i]=1
+    ev,U=np.linalg.eigh(A)
+    nz=int(np.sum(np.abs(ev)<1e-10))
+    col={}; bip=True
+    for s in range(n):
+        if s in col: continue
+        col[s]=0; stack=[s]
+        while stack:
+            u=stack.pop()
+            for v in range(n):
+                if A[u,v]:
+                    if v not in col: col[v]=1-col[u]; stack.append(v)
+                    elif col[v]==col[u]: bip=False
+    sizes=Counter(col.values()) if bip else None
+    seen=set(); orbits=[]
+    for i in range(n):
+        if i in seen: continue
+        o={i,mirror[i]}; seen|=o; orbits.append(sorted(o))
+    out={"graph":name,"bipartite":bip,"bipartition":dict(sizes) if bip else None,
+         "mirror_orbits":orbits,"zero_modes":nz,"spectrum":np.round(ev,6).tolist()}
+    if nz:
+        Z=U[:,np.abs(ev)<1e-10]; par=[]; cw=[]
+        for k in range(Z.shape[1]):
+            v=Z[:,k]; vp=v[[mirror[i] for i in range(n)]]
+            par.append(round(float(np.vdot(v,vp)/np.vdot(v,v)),6))
+            cw.append(round(float(abs(v[center])**2/np.vdot(v,v)),6))
+        out["zero_mode_mirror_parity"]=par; out["zero_mode_center_weight"]=cw
+    return out
+bz=[(i,(i+1)%6) for i in range(6)]+[(0,6)]
+print(analyze("benzyl C6+1", bz, 7, [0,5,4,3,2,1,6], 6))
+sp=[(0,1),(1,2),(2,3),(0,4),(4,5),(5,6)]
+print(analyze("spider two-P3 (3+1+3)", sp, 7, [0,4,5,6,1,2,3], 0))
+bt=[(1,2),(2,3),(3,1),(0,1),(4,5),(5,6),(6,4),(0,4)]
+print(analyze("two-triangles (3+1+3)", bt, 7, [0,4,5,6,1,2,3], 0))
+
+# Result
+{'graph': 'benzyl C6+1', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 5], [2, 4], [3], [6]], 'zero_modes': 1, 'spectrum': [-2.101003, -1.25928, -1.0, 0.0, 1.0, 1.25928, 2.101003], 'zero_mode_mirror_parity': [1.0], 'zero_mode_center_weight': [0.571429]}
+{'graph': 'spider two-P3 (3+1+3)', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 1, 'spectrum': [-1.847759, -1.414214, -0.765367, 0.0, 0.765367, 1.414214, 1.847759], 'zero_mode_mirror_parity': [-1.0], 'zero_mode_center_weight': [0.0]}
+{'graph': 'two-triangles (3+1+3)', 'bipartite': False, 'bipartition': None, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 0, 'spectrum': [-1.813607, -1.0, -1.0, -1.0, 0.470683, 2.0, 2.342923]}
+
+
+
+from itertools import product
+
+# Движок восстановлен по включённому в подборку исходнику
+# analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/verify.py (R130).
+def left(u):  return u[1] if u[0]=='v' else ('l',u)
+def right(u): return u[2] if u[0]=='v' else ('r',u)
+def join(x,y):
+    if x[0]=='l' and y[0]=='r' and x[1]==y[1]: return x[1]
+    return ('v',x,y)
+def mirror_name(u):
+    if u[0]=='atom': return u
+    if u[0]=='l': return right(mirror_name(u[1]))
+    if u[0]=='r': return left(mirror_name(u[1]))
+    return join(mirror_name(u[2]),mirror_name(u[1]))
+def named(w): return tuple((('atom',i),s) for i,s in enumerate(w))
+def canonical(x):
+    return (frozenset(x), frozenset((x[i][0],x[(i+1)%len(x)][0]) for i in range(len(x))))
+def equal(x,y): return canonical(x)==canonical(y)
+def word(x): return tuple(s for u,s in x)
+def cyclic(w): return min(w[i:]+w[:i] for i in range(len(w)))
+def transport(x,channels=1,inverse=False):
+    a=sum(1<<(2*c) for c in range(channels)); b=2*a
+    return tuple((join(right(u),left(x[(i+1)%len(x)][0])),
+                  ((s&a)|(x[(i+1)%len(x)][1]&b)) if inverse else ((s&b)|(x[(i+1)%len(x)][1]&a)))
+                 for i,(u,s) in enumerate(x))
+def interact(x,eps=(1,)):
+    split={3<<(2*c):((1<<(2*c),2<<(2*c)) if e==1 else (2<<(2*c),1<<(2*c))) for c,e in enumerate(eps)}
+    merge={v:k for k,v in split.items()}
+    n=len(x)
+    starts={i for i in range(n) if n>1 and (x[i][1],x[(i+1)%n][1]) in merge}
+    ends={(i+1)%n for i in starts}
+    start=next(i for i in range(n) if i not in ends)
+    out,k=[],0
+    while k<n:
+        i=(start+k)%n; u,s=x[i]
+        if i in starts:
+            v,t=x[(i+1)%n]; out.append((join(u,v),merge[s,t])); k+=2
+        elif s in split:
+            a,b=split[s]; out.extend(((left(u),a),(right(u),b))); k+=1
+        else: out.append((u,s)); k+=1
+    return tuple(out)
+def forward(x,eps=(1,)):  return transport(interact(x,eps),len(eps))
+def backward(x,eps=(1,)): return interact(transport(x,len(eps),True),eps)
+def swap_bits(x): return tuple((u,((s&1)<<1)|((s&2)>>1)) for u,s in x)
+def reflected_swap(x): return tuple((mirror_name(u),s) for u,s in reversed(swap_bits(x)))
+def r2(x): return tuple((u,((s&1)<<3)|((s&2)<<1)|((s&4)>>1)|((s&8)>>3)) for u,s in x)
+
+# --- Воспроизведение опубликованных чисел C1 (L=3..6, 5440 слов) ---
+c1={'states':0,'CFC=F_fail':0,'CFC=Finv_fail':0,'BFB=Finv_fail':0,'S2=tau_fail':0}
+witness=None
+for n in range(3,7):
+    for w in product(range(4),repeat=n):
+        x=named(w); y=forward(x)
+        tau=tuple((x[i][0],(x[(i+1)%n][1]&1)|(x[(i-1)%n][1]&2)) for i in range(n))
+        tft=reflected_swap(forward(reflected_swap(x)))
+        c1['states']+=1
+        c1['CFC=F_fail']+= not equal(tft,y)
+        bad=not equal(tft,backward(x))
+        c1['CFC=Finv_fail']+=bad
+        if bad and witness is None: witness=w
+        c1['BFB=Finv_fail']+= not equal(swap_bits(forward(swap_bits(x))),backward(x))
+        s2=transport(reflected_swap(transport(reflected_swap(x))))
+        c1['S2=tau_fail']+= not equal(s2,tau)
+print("C1 воспроизведение:",c1,"первый контрпример:",witness)
+
+# Result
+C1 воспроизведение: {'states': 5440, 'CFC=F_fail': 0, 'CFC=Finv_fail': 5428, 'BFB=Finv_fail': 5175, 'S2=tau_fail': 0} первый контрпример: (0, 0, 1)
+
+
+# --- C2: воспроизведение T=I2R и НОВАЯ проверка C2'=M∘B2 (B2: a_i<->b_i внутри каждого канала) ---
+def swap_bits2(x):  # B2: биты 1<->2 и 4<->8
+    return tuple((u,((s&1)<<1)|((s&2)>>1)|((s&4)<<1)|((s&8)>>1)) for u,s in x)
+def C2prime(x): return tuple((mirror_name(u),s) for u,s in reversed(swap_bits2(x)))
+def chi(w): return sum(int((s&5)==5)-int((s&10)==10) for s in w)
+
+res={}
+for eps in product((1,-1),repeat=2):
+    cnt={'states':0,'T2_fail':0,'TFT=Finv_fail':0,
+         'C2p_squared_fail':0,'C2p_F_C2p=F_fail':0,'C2p_F_C2p=Finv_fail':0,
+         'chi_F_conserved_fail':0,'chi_C2p_odd_fail':0,'chi_T_odd_fail':0,
+         'C2pT_reversor_fail':0,'C2pT_involution_fail':0}
+    def T(x): return interact(r2(x),eps)
+    for n in range(1,4):
+        for w in product(range(16),repeat=n):
+            x=named(w); cnt['states']+=1
+            cnt['T2_fail']+= not equal(T(T(x)),x)
+            cnt['TFT=Finv_fail']+= not equal(T(forward(T(x),eps)),backward(x,eps))
+            cp=C2prime(x)
+            cnt['C2p_squared_fail']+= not equal(C2prime(cp),x)
+            cnt['C2p_F_C2p=F_fail']+= not equal(C2prime(forward(cp,eps)),forward(x,eps))
+            cnt['C2p_F_C2p=Finv_fail']+= not equal(C2prime(forward(cp,eps)),backward(x,eps))
+            cnt['chi_F_conserved_fail']+= chi(word(forward(x,eps)))!=chi(w)
+            cnt['chi_C2p_odd_fail']+= chi(word(cp))!=-chi(w)
+            cnt['chi_T_odd_fail']+= chi(word(T(x)))!=-chi(w)
+            tc=lambda z: C2prime(T(z))
+            cnt['C2pT_reversor_fail']+= not equal(tc(forward(tc(x),eps)),backward(x,eps))
+            cnt['C2pT_involution_fail']+= not equal(tc(tc(x)),x)
+    res[str(eps)]=cnt
+for k,v in res.items(): print(k,v)
+
+# Result
+(1, 1) {'states': 4368, 'T2_fail': 1574, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 1574}
+(1, -1) {'states': 4368, 'T2_fail': 0, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 0}
+(-1, 1) {'states': 4368, 'T2_fail': 0, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 0}
+(-1, -1) {'states': 4368, 'T2_fail': 1574, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 1574}
+
+
+# --- Чётность ориентационных счётчиков под M, B, C=MB на бинарных C1-словах ---
+def M_word(w): return tuple(reversed(w))          # чистое отражение, метки сохранены
+def B_word(w): return tuple({0:0,1:2,2:1,3:3}[s] for s in w)
+def C_word(w): return M_word(B_word(w))
+def N(w,a,b): return sum(w[i]==a and w[(i+1)%len(w)]==b for i in range(len(w)))
+def Jsign(w): return N(w,1,2)-N(w,2,1)
+def Mminus(w):
+    n=len(w)
+    f=sum(tuple(w[(i+j)%n] for j in range(4))==(0,1,0,1) for i in range(n))
+    r=sum(tuple(w[(i+j)%n] for j in range(4))==(1,0,1,0) for i in range(n))
+    return f-r
+stats={'words':0,'J_M_odd_fail':0,'J_B_odd_fail':0,'J_C_even_fail':0,
+       'Mm_M_odd_fail':0,'Mm_B_odd_fail':0,'Mm_C_even_fail':0,
+       'imbalance_C_odd_fail':0,'imbalance_F_conserved_fail':0,
+       'length_equivariance_fail':0}
+for n in range(3,9):
+    for w in product(range(2),repeat=n):   # алфавит {0,1} -> подготовка 0->1,1->2 как в R141/R144
+        s=tuple(1+b for b in w)
+        stats['words']+=1
+        stats['J_M_odd_fail']+= Jsign(M_word(s))!=-Jsign(s)
+        stats['J_B_odd_fail']+= Jsign(B_word(s))!=-Jsign(s)
+        stats['J_C_even_fail']+= Jsign(C_word(s))!=Jsign(s)
+        stats['Mm_M_odd_fail']+= Mminus(M_word(s))!=-Mminus(s)
+        stats['Mm_B_odd_fail']+= Mminus(B_word(s))!=-Mminus(s)
+        stats['Mm_C_even_fail']+= Mminus(C_word(s))!=Mminus(s)
+        imb=lambda v: v.count(1)-v.count(2)
+        stats['imbalance_C_odd_fail']+= imb(C_word(s))!=-imb(s)
+        x=named(s); y=forward(x)
+        stats['imbalance_F_conserved_fail']+= imb(word(y))!=imb(s)
+        cx=named(C_word(s))
+        for t in range(4):
+            x=forward(x); cx=forward(cx)
+            stats['length_equivariance_fail']+= len(x)!=len(cx)
+print(stats)
+
+# Result
+{'words': 504, 'J_M_odd_fail': 0, 'J_B_odd_fail': 0, 'J_C_even_fail': 0, 'Mm_M_odd_fail': 0, 'Mm_B_odd_fail': 0, 'Mm_C_even_fail': 0, 'imbalance_C_odd_fail': 0, 'imbalance_F_conserved_fail': 0, 'length_equivariance_fail': 0}
+
+
+# Уточнение: M_- считается на бинарной маске (как в R144 pilot), B на маске = 0<->1.
+def Mm_mask(w):
+    n=len(w)
+    f=sum(tuple(w[(i+j)%n] for j in range(4))==(0,1,0,1) for i in range(n))
+    r=sum(tuple(w[(i+j)%n] for j in range(4))==(1,0,1,0) for i in range(n))
+    return f-r
+fail={'M_odd':0,'B_odd':0,'C_even':0,'words':0,'nonzero':0}
+for n in range(4,10):
+    for w in product(range(2),repeat=n):
+        Mw=tuple(reversed(w)); Bw=tuple(1-b for b in w); Cw=tuple(reversed(Bw))
+        v=Mm_mask(w)
+        fail['words']+=1; fail['nonzero']+= (v!=0)
+        fail['M_odd']+= Mm_mask(Mw)!=-v
+        fail['B_odd']+= Mm_mask(Bw)!=-v
+        fail['C_even']+= Mm_mask(Cw)!=v
+print(fail)
+
+# --- Бензил C6+1: группа автоморфизмов, чётность нулевой моды, P_p(Phi), спектр +-Phi ---
+import numpy as np, itertools, math
+edges=[(i,(i+1)%6) for i in range(6)]+[(0,6)]
+E=set(frozenset(e) for e in edges)
+def is_auto(p):
+    return all(frozenset((p[a],p[b])) in E for a,b in edges)
+autos=[p for p in itertools.permutations(range(7)) if is_auto(p)]
+A={0,2,4}; B={1,3,5,6}
+exchange=[p for p in autos if set(p[i] for i in A)==B]
+print("порядок Aut(C6+1):",len(autos),"обменов A<->B:",len(exchange))
+print("автоморфизмы:",autos)
+def Q6p1(phi,t=1.0,g=1.0):
+    return np.array([[t,0,t*np.exp(-1j*phi),g],[t,t,0,0],[0,t,t,0]],complex)
+for phi in [0,math.pi/2,math.pi]:
+    q=Q6p1(phi); b=np.array([1,-1,1,-(1+np.exp(-1j*phi))],complex); b/=np.linalg.norm(b)
+    psi=np.r_[np.zeros(3),b]
+    refl=np.array([0,5,4,3,2,1,6])           # j -> -j mod 6, порт фиксирован
+    par=np.vdot(psi,psi[refl])
+    Pp=abs(b[-1])**2; Pf=(2+2*math.cos(phi))/(5+2*math.cos(phi))
+    print(f"Phi/pi={phi/math.pi:.2f}  rank Q={np.linalg.matrix_rank(q)}  P_p={Pp:.6f} (формула {Pf:.6f})  <psi|R|psi>={par.real:.6f}")
+def A7(phi):
+    a=np.zeros((7,7),complex)
+    for i in range(6):
+        j=(i+1)%6; q=np.exp(1j*phi) if i==5 else 1.0
+        a[i,j]=q; a[j,i]=np.conj(q)
+    a[0,6]=a[6,0]=1; return a
+for phi in [0.3,0.9,1.7]:
+    d=np.max(np.abs(np.linalg.eigvalsh(A7(phi))-np.linalg.eigvalsh(A7(-phi))))
+    print(f"спектр A7(+Phi) vs A7(-Phi), Phi={phi}: max |Δ| = {d:.2e}")
+
+# Result
+{'M_odd': 0, 'B_odd': 0, 'C_even': 0, 'words': 1008, 'nonzero': 248}
+порядок Aut(C6+1): 2 обменов A<->B: 0
+автоморфизмы: [(0, 1, 2, 3, 4, 5, 6), (0, 5, 4, 3, 2, 1, 6)]
+Phi/pi=0.00  rank Q=3  P_p=0.571429 (формула 0.571429)  <psi|R|psi>=0.714286
+Phi/pi=0.50  rank Q=3  P_p=0.400000 (формула 0.400000)  <psi|R|psi>=0.600000
+Phi/pi=1.00  rank Q=3  P_p=0.000000 (формула 0.000000)  <psi|R|psi>=0.333333
+спектр A7(+Phi) vs A7(-Phi), Phi=0.3: max |Δ| = 0.00e+00
+спектр A7(+Phi) vs A7(-Phi), Phi=0.9: max |Δ| = 0.00e+00
+спектр A7(+Phi) vs A7(-Phi), Phi=1.7: max |Δ| = 0.00e+00
+
+
+import numpy as np, math
+# Отладка чётности нулевой моды при Phi=0
+b=np.array([1,-1,1,-2],complex); b/=np.linalg.norm(b)
+psi=np.r_[np.zeros(3),b]
+print("psi =",np.round(psi.real,4))
+refl=np.array([0,5,4,3,2,1,6])
+print("R psi =",np.round(psi[refl].real,4))
+print("overlap =",np.vdot(psi,psi[refl]))
+# Проверка: нулевой вектор матрицы A7(0) напрямую
+a=np.zeros((7,7),complex)
+for i in range(6):
+    j=(i+1)%6; a[i,j]=a[j,i]=1
+a[0,6]=a[6,0]=1
+ev,V=np.linalg.eigh(a); k=np.argmin(abs(ev))
+v=V[:,k]; v=v/ v[np.argmax(abs(v))]*abs(v[np.argmax(abs(v))])/abs(v[np.argmax(abs(v))])
+v=V[:,k]*np.sign(V[np.argmax(abs(V[:,k])),k])
+print("eig psi =",np.round(v.real,4),"overlap R =",np.vdot(v,v[refl]))
+
+# Result
+psi = [ 0.      0.      0.      0.378  -0.378   0.378  -0.7559]
+R psi = [ 0.      0.378  -0.378   0.378   0.      0.     -0.7559]
+overlap = (0.7142857142857142+0j)
+eig psi = [ 0.     -0.378   0.      0.378   0.     -0.378   0.7559] overlap R = (0.9999999999999999+0j)
+
+
+import numpy as np, math
+# Корректное чередование: psi=(0,b1,0,b3,0,b5,bp)
+refl=np.array([0,5,4,3,2,1,6])
+def psi0(phi):
+    b=np.array([1,-1,1,-(1+np.exp(-1j*phi))],complex)
+    psi=np.zeros(7,complex); psi[[1,3,5,6]]=b
+    return psi/np.linalg.norm(psi)
+for phi in [0,math.pi/2,math.pi]:
+    p=psi0(phi)
+    ov=np.vdot(p,p[refl])
+    print(f"Phi/pi={phi/math.pi:.2f}: |<psi|R psi>|={abs(ov):.6f}, P_p={abs(p[6])**2:.6f}")
+# Антиунитарное зеркало R∘K при любом Phi: H(-Phi)=conj(H(Phi)) с точностью до переноса шва
+def A7(phi,seam=5):
+    a=np.zeros((7,7),complex)
+    for i in range(6):
+        j=(i+1)%6; q=np.exp(1j*phi) if i==seam else 1.0
+        a[i,j]=q; a[j,i]=np.conj(q)
+    a[0,6]=a[6,0]=1; return a
+phi=0.9
+# отражение j->-j переносит шов (5,0)->(0,1) и меняет знак потока; сверяем спектр с H(-phi)
+R=np.zeros((7,7)); 
+for j in range(7): R[refl[j],j]=1
+Ar=R@A7(phi)@R.T
+d=np.max(np.abs(np.linalg.eigvalsh(Ar)-np.linalg.eigvalsh(A7(-phi))))
+print("спектр R H(Phi) R^T vs H(-Phi): max |Δ| =",f"{d:.2e}")
+d2=np.max(np.abs(np.linalg.eigvalsh(A7(phi).conj())-np.linalg.eigvalsh(A7(-phi))))
+print("спектр conj H(Phi) vs H(-Phi): max |Δ| =",f"{d2:.2e}")
+
+# Result
+Phi/pi=0.00: |<psi|R psi>|=1.000000, P_p=0.571429
+Phi/pi=0.50: |<psi|R psi>|=1.000000, P_p=0.400000
+Phi/pi=1.00: |<psi|R psi>|=1.000000, P_p=0.000000
+спектр R H(Phi) R^T vs H(-Phi): max |Δ| = 6.66e-16
+спектр conj H(Phi) vs H(-Phi): max |Δ| = 0.00e+00
+
+
+import numpy as np
+# Шесть одноузловых зарядов R132 на 16 метках; действия B2 и R как перестановок меток.
+labels=list(range(16))
+def bits(s): return [(s>>k)&1 for k in range(4)]
+Q6=np.array([[a,b,c,d,a*c,b*d] for a,b,c,d in map(bits,labels)],float)  # a1,b1,a2,b2,a1a2,b1b2
+B2=[((s&1)<<1)|((s&2)>>1)|((s&4)<<1)|((s&8)>>1) for s in labels]
+R =[int(f"{s:04b}"[::-1],2) for s in labels]
+PB=np.eye(16)[B2]; PR=np.eye(16)[R]
+# заряд q(v) сохраняется; нечётность под операцией = Q6 v -> -Q6 v на всех метках
+def odd_space(P):
+    M=Q6[P].T@np.linalg.pinv(Q6.T)  # действие на коэффициентах зарядов
+    # проще: ищем комбинации c такие, что c·Q6(P s) = -c·Q6(s) для всех s
+    A=Q6[P]+Q6
+    from numpy.linalg import svd
+    u,s,vh=svd(A); ns=vh[s<1e-10].conj().T if A.shape[0]>=A.shape[1] else None
+    # ядро A^T? решаем A^T c = 0
+    u,s,vh=svd(A.T); return vh[len(s):].conj().T if len(s)<A.shape[1] else vh[s<1e-10].conj().T
+def nullspace(M,tol=1e-10):
+    u,s,vh=np.linalg.svd(M); return vh[s<tol].conj().T
+oddB=nullspace((Q6[B2]+Q6).T)   # c: Q6[B2]^T c = -Q6^T c
+oddR=nullspace((Q6[R]+Q6).T)
+print("размерность C-нечётных зарядов:",oddB.shape[1]," T-нечётных:",oddR.shape[1])
+# пересечение: стекаем оба условия
+both=nullspace(np.vstack([(Q6[B2]+Q6).T,(Q6[R]+Q6).T]))
+print("размерность пересечения (нечётных под ОБЕИМИ):",both.shape[1])
+print("базис пересечения (a1,b1,a2,b2,a1a2,b1b2):",np.round(both[:,0]/both[5,0],3) if both.shape[1] else None)
+
+# Result
+execute error
+
+
+import numpy as np
+labels=list(range(16))
+def bits(s): return [(s>>k)&1 for k in range(4)]
+Q6=np.array([[a,b,c,d,a*c,b*d] for a,b,c,d in map(bits,labels)],float)
+B2=[((s&1)<<1)|((s&2)>>1)|((s&4)<<1)|((s&8)>>1) for s in labels]
+R =[int(f"{s:04b}"[::-1],2) for s in labels]
+def ns(M,tol=1e-10):
+    u,s,vh=np.linalg.svd(M,full_matrices=False)
+    return vh[s<tol].conj().T
+oddB=ns(Q6[B2]+Q6)          # c в R^6: (Q6[B2]+Q6) c = 0
+oddR=ns(Q6[R]+Q6)
+both=ns(np.vstack([Q6[B2]+Q6, Q6[R]+Q6]))
+print("C-нечётных:",oddB.shape[1]," T-нечётных:",oddR.shape[1]," под обеими:",both.shape[1])
+if both.shape[1]:
+    v=both[:,0]; v=v/v[np.argmax(abs(v))]
+    print("единственный общий нечётный заряд (a1,b1,a2,b2,a1a2,b1b2):",np.round(v,3))
+
+# Result
+C-нечётных: 3  T-нечётных: 3  под обеими: 2
+единственный общий нечётный заряд (a1,b1,a2,b2,a1a2,b1b2): [-1.     1.    -1.     1.    -0.258  0.258]
+
+

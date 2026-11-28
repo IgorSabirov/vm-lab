@@ -1,0 +1,100 @@
+{
+  "kind": "packaging_record_not_scientific_run",
+  "date": "2026-11-28",
+  "science_executed_during_packaging": false,
+  "paths_relative_to": "analysis/MIRROR_PARTNERS_REVIEW_20261128",
+  "excluded_from_copy": [
+    "__pycache__",
+    "*.pyc"
+  ],
+  "byte_identical_original_package_files": [
+    "checks/original_audit/original_cells_replay.txt",
+    "checks/original_audit/source_manifest.json",
+    "checks/original_audit/replay_original_cells.py",
+    "checks/original_audit/environment.json",
+    "checks/original_audit/run_all.py",
+    "checks/original_audit/requirements.txt",
+    "checks/original_audit/package_manifest.json",
+    "checks/original_audit/run_receipt.json",
+    "checks/original_audit/README.md",
+    "checks/original_audit/original_cells_replay.json",
+    "checks/original_audit/original_quinn.txt",
+    "checks/original_audit/original_cells_syntax.json",
+    "checks/original_audit/source_reports/R130_REPORT.md",
+    "checks/original_audit/source_reports/C2_S3_REPORT.md",
+    "checks/original_audit/source_reports/R149_benzyl_REPORT.md",
+    "checks/original_audit/source_reports/R132_REPORT.md",
+    "checks/original_audit/dynamics/check.py",
+    "checks/original_audit/dynamics/stdout.txt",
+    "checks/original_audit/dynamics/source_engine.py",
+    "checks/original_audit/dynamics/results.json",
+    "checks/original_audit/dynamics/ANALYSIS.md",
+    "checks/original_audit/graphs/verify_graphs.py",
+    "checks/original_audit/graphs/analysis.md",
+    "checks/original_audit/graphs/results.json",
+    "checks/original_audit/charges/REPORT.md",
+    "checks/original_audit/charges/reproduce.py",
+    "checks/original_audit/charges/results.json",
+    "checks/original_audit/logs/graphs_verify_graphs.stderr.txt",
+    "checks/original_audit/logs/replay_original_cells.stderr.txt",
+    "checks/original_audit/logs/charges_reproduce.stdout.txt",
+    "checks/original_audit/logs/charges_reproduce.stderr.txt",
+    "checks/original_audit/logs/replay_original_cells.stdout.txt",
+    "checks/original_audit/logs/dynamics_check.stdout.txt",
+    "checks/original_audit/logs/graphs_verify_graphs.stdout.txt",
+    "checks/original_audit/logs/dynamics_check.stderr.txt"
+  ],
+  "byte_identical_followup_files": [
+    "checks/followup/graphs/NOTE.md",
+    "checks/followup/graphs/verify.py",
+    "checks/followup/graphs/results.json",
+    "checks/followup/corpus/REPORT.md",
+    "checks/followup/algebra/REPORT.md",
+    "checks/followup/algebra/results.json"
+  ],
+  "changed_copied_files": [
+    {
+      "path": "checks/followup/algebra/check.py",
+      "change": "Заменён только абсолютный путь к движку на Path(__file__).resolve().parents[2] / original_audit / dynamics / source_engine.py.",
+      "source": {
+        "bytes": 2934,
+        "sha256": "98cdb77cefc6683b7075fb1f8fe08f25ed03a40ef021a03ddf808ff9989a8826"
+      },
+      "packaged": {
+        "bytes": 2930,
+        "sha256": "d9e22231fd27a44a5f530c1ff287d9b9d6726f6d321295488fac08b0688c8e0b"
+      },
+      "engine_bytes_identical_to_previous_followup_engine": true
+    }
+  ],
+  "new_packaging_files": [
+    "sources/MANIFEST.json",
+    "checks/run_all.py",
+    "checks/README.md",
+    "checks/RESULTS.json",
+    "checks/PACKAGING.json"
+  ],
+  "source_attachments_manifest": "sources/MANIFEST.json",
+  "verification": {
+    "python_syntax": {
+      "method": "py_compile to a temporary directory outside this package; modules not executed",
+      "files": [
+        "checks/followup/algebra/check.py",
+        "checks/followup/graphs/verify.py",
+        "checks/original_audit/charges/reproduce.py",
+        "checks/original_audit/dynamics/check.py",
+        "checks/original_audit/dynamics/source_engine.py",
+        "checks/original_audit/graphs/verify_graphs.py",
+        "checks/original_audit/replay_original_cells.py",
+        "checks/original_audit/run_all.py",
+        "checks/run_all.py"
+      ],
+      "passed": true
+    },
+    "historical_original_manifest_files_verified": 34,
+    "relative_engine_path_resolves": true,
+    "new_runner_executed": false,
+    "scientific_scripts_executed": false
+  },
+  "preservation_note": "Все старые журналы, результаты, окружение и квитанция оставлены побайтово. Новая оболочка не запускалась; она выполняет будущие проверки в отдельной копии."
+}

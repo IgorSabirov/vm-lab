@@ -1,0 +1,114 @@
+CELL 1 (1-53): completed
+same-arrow survivors: [('swap', (0, 1, 2, 3), (0, 1, 2, 3))]
+exchange  survivors: [('swap', (0, 2, 1, 3), (0, 2, 1, 3))]
+same survivor label map p: [0, 2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15]
+  is p the identity? False
+  sigma(3,0,0) word: (15, 15, 12)  M word: (0, 0, 3)  r2 word: (12, 0, 0)
+
+=== Empirical conjugation table (failures over all L=1..3 C2 rings / L=3..6 C1) ===
+M (C1)       op Q op = Q : 16/5440   = Q^-1 : 5440/5440
+B (C1)       op Q op = Q : 16/5440   = Q^-1 : 5440/5440
+C=MB (C1)    op Q op = Q : 5440/5440   = Q^-1 : 16/5440
+M (C2)       op Q op = Q : 48/4368   = Q^-1 : 4368/4368
+R (C2)       op Q op = Q : 48/4368   = Q^-1 : 4368/4368
+C2=MR (C2)   op Q op = Q : 4368/4368   = Q^-1 : 48/4368
+
+
+CELL 2 (83-153): error
+Traceback (most recent call last):
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/replay_original_cells.py", line 54, in main
+    compiled = compile(code, str(ATTACHMENT), "exec")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/original_quinn.txt", line 139
+    v=Z[:,k]; vp=v[[mirror[i] for i in range(n))]
+                                               ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '['
+
+
+CELL 3 (159-217): error
+C2'=M B2 on 4368 C2 rings:  C2'^2=id fails=0
+  C2' F(+,-) C2' = F(+,-) fails = 0   <-- SAME-ARROW MIRROR IN C2
+  C2' F(+,-) C2' = F(-,+) fails = 1574
+  C2' != C2(=MR) on 4284/4368 states
+Traceback (most recent call last):
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/replay_original_cells.py", line 56, in main
+    exec(compiled, namespace)
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/original_quinn.txt", line 178, in <module>
+    bad += not equal(B2(interact(B2(x),(1,-1)),(1,-1)), interact(x,(-1,1)))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: B2() takes 1 positional argument but 2 were given
+
+
+CELL 4 (223-266): completed
+B2 I2(+,-) B2 = I2(-,+) fails = 0 / 4368  (port swap flips each channel orientation)
+
+=== Static spectral check: three 7-vertex graphs ===
+{'graph': 'benzyl C6+1', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 5], [2, 4], [3], [6]], 'zero_modes': 1, 'spectrum': [-2.101003, -1.25928, -1.0, 0.0, 1.0, 1.25928, 2.101003], 'zero_mode_mirror_parity': [1.0], 'zero_mode_center_weight': [0.571429]}
+{'graph': 'spider two-P3', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 1, 'spectrum': [-1.847759, -1.414214, -0.765367, 0.0, 0.765367, 1.414214, 1.847759], 'zero_mode_mirror_parity': [-1.0], 'zero_mode_center_weight': [0.0]}
+{'graph': 'two-triangles', 'bipartite': False, 'bipartition': None, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 0, 'spectrum': [-1.813607, -1.0, -1.0, -1.0, 0.470683, 2.0, 2.342923]}
+
+
+CELL 5 (272-309): completed
+{'graph': 'benzyl C6+1', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 5], [2, 4], [3], [6]], 'zero_modes': 1, 'spectrum': [-2.101003, -1.25928, -1.0, 0.0, 1.0, 1.25928, 2.101003], 'zero_mode_mirror_parity': [1.0], 'zero_mode_center_weight': [0.571429]}
+{'graph': 'spider two-P3 (3+1+3)', 'bipartite': True, 'bipartition': {0: 3, 1: 4}, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 1, 'spectrum': [-1.847759, -1.414214, -0.765367, 0.0, 0.765367, 1.414214, 1.847759], 'zero_mode_mirror_parity': [-1.0], 'zero_mode_center_weight': [0.0]}
+{'graph': 'two-triangles (3+1+3)', 'bipartite': False, 'bipartition': None, 'mirror_orbits': [[0], [1, 4], [2, 5], [3, 6]], 'zero_modes': 0, 'spectrum': [-1.813607, -1.0, -1.0, -1.0, 0.470683, 2.0, 2.342923]}
+
+
+CELL 6 (318-381): completed
+C1 воспроизведение: {'states': 5440, 'CFC=F_fail': 0, 'CFC=Finv_fail': 5428, 'BFB=Finv_fail': 5175, 'S2=tau_fail': 0} первый контрпример: (0, 0, 1)
+
+
+CELL 7 (387-416): completed
+(1, 1) {'states': 4368, 'T2_fail': 1574, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 1574}
+(1, -1) {'states': 4368, 'T2_fail': 0, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 0}
+(-1, 1) {'states': 4368, 'T2_fail': 0, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 0}
+(-1, -1) {'states': 4368, 'T2_fail': 1574, 'TFT=Finv_fail': 0, 'C2p_squared_fail': 0, 'C2p_F_C2p=F_fail': 0, 'C2p_F_C2p=Finv_fail': 4326, 'chi_F_conserved_fail': 0, 'chi_C2p_odd_fail': 0, 'chi_T_odd_fail': 0, 'C2pT_reversor_fail': 0, 'C2pT_involution_fail': 1574}
+
+
+CELL 8 (425-458): completed
+{'words': 504, 'J_M_odd_fail': 0, 'J_B_odd_fail': 0, 'J_C_even_fail': 0, 'Mm_M_odd_fail': 0, 'Mm_B_odd_fail': 0, 'Mm_C_even_fail': 0, 'imbalance_C_odd_fail': 0, 'imbalance_F_conserved_fail': 0, 'length_equivariance_fail': 0}
+
+
+CELL 9 (464-509): completed
+{'M_odd': 0, 'B_odd': 0, 'C_even': 0, 'words': 1008, 'nonzero': 248}
+порядок Aut(C6+1): 2 обменов A<->B: 0
+автоморфизмы: [(0, 1, 2, 3, 4, 5, 6), (0, 5, 4, 3, 2, 1, 6)]
+Phi/pi=0.00  rank Q=3  P_p=0.571429 (формула 0.571429)  <psi|R|psi>=0.714286
+Phi/pi=0.50  rank Q=3  P_p=0.400000 (формула 0.400000)  <psi|R|psi>=0.600000
+Phi/pi=1.00  rank Q=3  P_p=0.000000 (формула 0.000000)  <psi|R|psi>=0.333333
+спектр A7(+Phi) vs A7(-Phi), Phi=0.3: max |Δ| = 0.00e+00
+спектр A7(+Phi) vs A7(-Phi), Phi=0.9: max |Δ| = 0.00e+00
+спектр A7(+Phi) vs A7(-Phi), Phi=1.7: max |Δ| = 0.00e+00
+
+
+CELL 10 (523-539): completed
+psi = [ 0.      0.      0.      0.378  -0.378   0.378  -0.7559]
+R psi = [ 0.      0.378  -0.378   0.378   0.      0.     -0.7559]
+overlap = (0.7142857142857142+0j)
+eig psi = [ 0.     -0.378   0.      0.378   0.     -0.378   0.7559] overlap R = (0.9999999999999999+0j)
+
+
+CELL 11 (548-574): completed
+Phi/pi=0.00: |<psi|R psi>|=1.000000, P_p=0.571429
+Phi/pi=0.50: |<psi|R psi>|=1.000000, P_p=0.400000
+Phi/pi=1.00: |<psi|R psi>|=1.000000, P_p=0.000000
+спектр R H(Phi) R^T vs H(-Phi): max |Δ| = 6.66e-16
+спектр conj H(Phi) vs H(-Phi): max |Δ| = 0.00e+00
+
+
+CELL 12 (584-609): error
+Traceback (most recent call last):
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/replay_original_cells.py", line 56, in main
+    exec(compiled, namespace)
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/original_quinn.txt", line 603, in <module>
+    oddB=nullspace((Q6[B2]+Q6).T)   # c: Q6[B2]^T c = -Q6^T c
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/70baa0aaa6dd/quinn_code_review_20261128/package/ToV-Quinn-mirror-code-review/original_quinn.txt", line 602, in nullspace
+    u,s,vh=np.linalg.svd(M); return vh[s<tol].conj().T
+                                    ~~^^^^^^^
+IndexError: boolean index did not match indexed array along axis 0; size of axis is 16 but size of corresponding boolean axis is 6
+
+
+CELL 13 (615-630): completed
+C-нечётных: 3  T-нечётных: 3  под обеими: 2
+единственный общий нечётный заряд (a1,b1,a2,b2,a1a2,b1b2): [-1.     1.    -1.     1.    -0.258  0.258]

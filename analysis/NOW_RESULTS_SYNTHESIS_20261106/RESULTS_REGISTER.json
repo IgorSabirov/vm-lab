@@ -12105,6 +12105,30 @@
       ],
       "note": "28.11.2026: восстановлены существующие R136–R138 и U013–U014 из закреплённых веток #194/#206, #198 и #200. 150 R, 14 U; научные статусы не повышены, новых расчётов нет. R137/R138 независимы, общая граница U014 не создаёт родительской связи.",
       "scientific_status_promoted": false
+    },
+    {
+      "id": "MIRROR_PARTNERS_REVIEW_20261128",
+      "date": "2026-11-28",
+      "base_commit": "3ae1d270f65dd353672dd15786add8394c419cb2",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R047",
+        "R048",
+        "R052",
+        "R053",
+        "R130",
+        "R132",
+        "R141",
+        "R149",
+        "R150"
+      ],
+      "linked_questions": [
+        "U006",
+        "U007"
+      ],
+      "note": "Сохранены завершённый разбор зеркальности, три присланных исходника и прежние проверки. Добавлены навигационные обратные связи; статусы R/U и содержание исходных результатов не изменены. Новых научных запусков при сохранении нет.",
+      "scientific_status_promoted": false
     }
   ],
   "lineage_edges": [
@@ -18960,6 +18984,105 @@
         }
       ],
       "new_production_runs": 0
+    },
+    {
+      "id": "MIRROR_PARTNERS_REVIEW_20261128",
+      "title": "Зеркальные партнёры: разбор кода и двух отзывов Квина",
+      "status": "REVIEWED_WITH_SCOPE_LIMITS",
+      "date": "2026-11-28",
+      "base_commit": "3ae1d270f65dd353672dd15786add8394c419cb2",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/SOURCE_MAP.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/FILES.sha256",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_code.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_review_1.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_review_2.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/checks/RESULTS.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R047",
+          "relation": "clock_comparison",
+          "claim": "Общие PW-часы задают условный параметр совместной динамики при явных предпосылках.",
+          "rationale": "Согласованная спектральная опора, чтение часов и подготовка остаются входами; общий параметр сам не выводит термодинамическую стрелу.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#pw-clock"
+        },
+        {
+          "target": "result:R048",
+          "relation": "scope_boundary",
+          "claim": "Операционная эквивалентность зависит от доступной подсистемы и сравниваемой пары состояний.",
+          "rationale": "Разделены полное SWAP-эхо, сравнение ветвей в одинаковое время и стандартное trace distance; калибровочная эквивалентность не приписывается.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#observer-echo"
+        },
+        {
+          "target": "result:R052",
+          "relation": "scope_boundary",
+          "claim": "Реконнекция позволяет обнаружить прежде скрытое различие.",
+          "rationale": "Исправлена прежняя атрибуция R053: исходный результат принадлежит R052; квадратичный член отделён от поздней точной формулы.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#internal-detection"
+        },
+        {
+          "target": "result:R053",
+          "relation": "classification_only",
+          "claim": "Связь с зеркальными наблюдателями проходит через достаточное описание и доступность различий.",
+          "rationale": "Источник формулы реконнекции остаётся R052; сопоставление не объявляет два зеркальных наблюдателя уже построенными.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#internal-detection"
+        },
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "C′=MB₂ сохраняет полный прямой закон опорной C2; обращения проверяются с обратным оператором.",
+          "rationale": "Сохранены конечные проверки и локальное обоснование; различены M/B, T и C′, а счёт 0/574 ограничен свежими атомарными именами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#c2-dynamics"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Общий нечётный сектор шести аддитивных зарядов имеет размерность два.",
+          "rationale": "Заряды q и χ различают некоторые партнёрские секторы; их число не является числом пространственных координат или определением стрелы.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#charges"
+        },
+        {
+          "target": "result:R141",
+          "relation": "classification_only",
+          "claim": "Два арифметических листа являются чередующимися сечениями пространства конфигураций.",
+          "rationale": "Периоды и дзета-функция сохраняются; обмен листов и запрет записи b₂ не интерпретируются автоматически как две физические вселенные или запрет возникновения.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#two-sheets"
+        },
+        {
+          "target": "result:R149",
+          "relation": "scope_boundary",
+          "claim": "Бензильная нулевая мода и фазовое зеркало требуют согласованных базиса и шва.",
+          "rationale": "Проверены портовые веса и оператор G₊RK; изоспектральность и чётность одной моды не заменяют симметрию полного оператора.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#benzyl"
+        },
+        {
+          "target": "result:R150",
+          "relation": "scope_boundary",
+          "claim": "Пространственное 3+1+3 совместимо с индексом 1; ограничение относится к весу единственной нулевой моды в центре.",
+          "rationale": "P7 служит контрпримером широкому запрету; хиральные доли, пространственные орбиты, массовые края и Floquet-индексы сопоставляются при фиксированных определениях.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#graph"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "Сопоставление партнёров даёт ограничения для совместной динамики и пространственно-материальной зависимости.",
+          "rationale": "Пункт 10 использует конструкции 1–9 и три масштаба; происхождение метрики и физическая общая стрела этим разбором не выведены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#question-10"
+        },
+        {
+          "target": "question:U007",
+          "relation": "scope_boundary",
+          "claim": "Обращение носителя отделено от обращения полного физического процесса.",
+          "rationale": "У T=IεR проверяется TFT⁻¹=F⁻¹; коммутирующее C′ и обращение носителя не реализуют обращение аппарата, среды и записи.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#reversal"
+        }
+      ],
+      "excluded_links": []
     }
   ],
   "architecture_components": [

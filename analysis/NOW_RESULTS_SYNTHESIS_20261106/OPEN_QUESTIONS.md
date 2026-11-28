@@ -128,6 +128,8 @@
 
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
+**Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#question-10); `scope_boundary`. Пункт 10 использует конструкции 1–9 и три масштаба; происхождение метрики и физическая общая стрела этим разбором не выведены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
 **Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#ccc-identity); `scope_boundary`. CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
 **Внешний разбор:** [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md#scope); `scope_boundary`. Происхождение геометрии остаётся открытым. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
@@ -188,6 +190,8 @@
 
 <!-- generated:review-card-question-u007 -->
 **Внешний разбор:** [ADD_NEIGHBOR_20261117](../../analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/REPORT.md#c2); `scope_boundary`. Обращение носителя C2 не реализует обращение аппарата, ресурсов, отходов и среды. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u007).
+
+**Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#reversal); `scope_boundary`. У T=IεR проверяется TFT⁻¹=F⁻¹; коммутирующее C′ и обращение носителя не реализуют обращение аппарата, среды и записи. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u007).
 <!-- /generated:review-card-question-u007 -->
 
 
@@ -480,6 +484,8 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md) | `scope_boundary` | Пункт 10 использует конструкции 1–9 и три масштаба; происхождение метрики и физическая общая стрела этим разбором не выведены. |
+| [question:U007](../REGISTRY_LINKS/INDEX.md#question-u007) | [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md) | `scope_boundary` | У T=IεR проверяется TFT⁻¹=F⁻¹; коммутирующее C′ и обращение носителя не реализуют обращение аппарата, среды и записи. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | CCC Гупты не заменяется конформно-циклическим crossover; происхождение геометрии остаётся открытым. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Отрицательное заключение о D/I3 отозвано; активность/энтропия не закрывают функциональное продолжение. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [NEIGHBOR_COLLIDER_20261118](../../analysis/NEIGHBOR_COLLIDER_REVIEW_20261118/REPORT.md) | `scope_boundary` | Происхождение геометрии остаётся открытым. |
