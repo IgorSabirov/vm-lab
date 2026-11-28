@@ -1,0 +1,93 @@
+{
+  "schema": "galois-h6-review-plan-v1",
+  "date": "2026-11-28",
+  "source_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+  "request": "Иследуй подробно, не упускай детали.",
+  "mode": "proof first, exact finite arithmetic and archived-matrix comparison",
+  "execution_platform": "GitHub Actions, continuing owner's selected platform",
+  "no_runtime_cap": true,
+  "old_R140_replay": false,
+  "science_modules": [
+    "check.py"
+  ],
+  "pre_run_estimate": {
+    "calibration_seconds": [
+      0.000001,
+      0.1
+    ],
+    "main_seconds": [
+      0.001,
+      1
+    ],
+    "environment_and_checkout": "technical overhead, recorded separately by GitHub"
+  },
+  "zero_line": {
+    "carriers": [
+      "existing named C2 register,24 states",
+      "existing arithmetic quotient O/(phi^6-1)=O/(4),16 elements",
+      "chosen unit sector,12 states",
+      "existing H6 field and specified R140 instrument"
+    ],
+    "laws": "ring multiplication, native Galois, unit inversion; compare to archived F,T,C,d",
+    "measure": "counting Hilbert spaces and normalized fibre lifts are explicit; no new physical measure inferred",
+    "preparation": "reuse W dagger preparation from archived H6 bridge",
+    "apparatus": "reuse compatible effects, sector d readout and old history results"
+  },
+  "choice_provenance": {
+    "modulus4": "Chosen analytically after reading full register: first dyadic modulus retaining -1 and six-step phi; same as already defined n=3 ordinary factor. Not a blind prediction or physical scale.",
+    "prior_work": "parity/REPORT.md already contains F4x, H6 cycle/reflection and110; new result is native Galois and complete mod4 register.",
+    "new_architecture_selected": false
+  },
+  "contracts": [
+    {
+      "id": "G01",
+      "parent": "R141/R146",
+      "before": "integral A and arithmetic factors exist",
+      "expect": "P Galois reverses A; G descends for all n and both boundary signs",
+      "evidence": "analytic ideal proof; n1..12 implementation check",
+      "negative": "isolate failed identity or invalid quotient"
+    },
+    {
+      "id": "G02",
+      "parent": "R140/R150",
+      "before": "F4x->H6 cycle/reflection already published",
+      "expect": "A and native P yield exact archived M,J,read110; account for pullback convention",
+      "evidence": "all3 images and prior conjugate R",
+      "negative": "retain only qualified representation comparison"
+    },
+    {
+      "id": "G03",
+      "parent": "#223/R130/R132",
+      "before": "24 named states,12 reduced;F,T,C,d archived",
+      "expect": "12unitsO/4 reproduce all reduced columns and normalized W24 identities",
+      "evidence": "all12images and integer incidence Q, no old engine execution",
+      "negative": "no claim full bridge from mere dimension match"
+    },
+    {
+      "id": "G04",
+      "parent": "R146",
+      "before": "ordinary and signed groups distinct",
+      "expect": "mod2 both signs iff3|n; mod4 ordinary iff3|n and signed never",
+      "evidence": "analytic orders;24finitecases",
+      "negative": "restrict the quotient domain"
+    },
+    {
+      "id": "G05",
+      "parent": "R141/R146",
+      "before": "coker and torus periodic groups isomorphic",
+      "expect": "equivariant identification needs -P sign; n2 F5 counterexample",
+      "evidence": "separate analytic topology proof",
+      "execution": false
+    },
+    {
+      "id": "G06",
+      "parent": "R141/#223",
+      "before": "two-sheet sector recorded",
+      "expect": "m3 one-particle slice exactly old12; mirror doubles24; broader L and Pi proofs",
+      "evidence": "separate analytic sheets proof with m2 exception",
+      "execution": false
+    }
+  ],
+  "sufficient_stop": "all exact operator comparisons pass and analytic objections reviewed; no new history scan or unrelated infrastructure audit",
+  "scientific_status_promotions": false
+}

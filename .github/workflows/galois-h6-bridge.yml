@@ -1,0 +1,55 @@
+name: Galois and full mirror register bridge
+on:
+  push:
+    branches: ['research/mirror-partners-review-20261128']
+    paths:
+      - 'analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/*.py'
+      - '.github/workflows/galois-h6-bridge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-arithmetic:
+    if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/research/mirror-partners-review-20261128'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/
+            /analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json
+            /analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json
+            /decisions/
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Materialize pinned inputs and navigation
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/prepare_checkout.py
+      - name: Run reviewed arithmetic checks
+        id: replay
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/run.py
+      - name: Integrate results and check navigation
+        id: integrate
+        if: success()
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/integrate.py
+      - name: Preserve exact evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: galois-h6-bridge-${{ github.run_id }}
+          path: analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/${{ github.run_id }}/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Publish preserved outputs without deletions
+        if: always() && steps.replay.outcome != 'skipped'
+        env:
+          INTEGRATION_OUTCOME: ${{ steps.integrate.outcome }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/publish_results.py
