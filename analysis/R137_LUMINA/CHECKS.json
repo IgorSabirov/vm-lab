@@ -1,0 +1,105 @@
+{
+  "sources": {
+    "HI_reion_lumina.txt": {
+      "url": "https://lumina-simulation.com/data/HI_reion_lumina.txt",
+      "sha256": "e5f3b99fd5a99be26f7296d5624537e8db239111ebe52533dbb1d52fa22c0b70",
+      "rows": 258,
+      "z_range": [
+        4.774995,
+        29.428494
+      ]
+    },
+    "HeIII_reion_lumina.txt": {
+      "url": "https://lumina-simulation.com/data/HeIII_reion_lumina.txt",
+      "sha256": "b6aba40dd00d10329ccf00f9d475a3681980a25d88ce2de93d99fc05cb95e1e6",
+      "rows": 294,
+      "z_range": [
+        2.992408,
+        29.428494
+      ]
+    },
+    "sfrd_lumina.txt": {
+      "url": "https://lumina-simulation.com/data/sfrd_lumina.txt",
+      "sha256": "a15cf35aa5004b09f1c2cd6c5c24cb7e927bcc85e3dfc4ec0bc319568679c2bd",
+      "rows": 246,
+      "z_range": [
+        2.991495,
+        27.433528
+      ]
+    },
+    "tau_cmb_vs_z_lumina.txt": {
+      "url": "https://lumina-simulation.com/data/tau_cmb_vs_z_lumina.txt",
+      "sha256": "2dcc52854764c6a52f9f6bd98777e3b51804a057240d9b1dfe9a7d2939814386",
+      "rows": 981,
+      "z_range": [
+        0.0,
+        49.0
+      ]
+    }
+  },
+  "median_volume_fraction_crossings": {
+    "HI_half": {
+      "z": 6.857728348736361,
+      "bracket": [
+        6.824436,
+        6.87693
+      ]
+    },
+    "HeIII_half": {
+      "z": 4.003586741494266,
+      "bracket": [
+        3.975592,
+        4.023341
+      ]
+    }
+  },
+  "SFRD_at_last_sample_Msun_per_yr_per_cMpc3": 0.109422378,
+  "tau_tabulated": {
+    "0": 0.0,
+    "3": 0.0153066302,
+    "6": 0.0389807088,
+    "10": 0.0531364814,
+    "49": 0.0543742529
+  },
+  "tau_bins": [
+    {
+      "z": [
+        0,
+        3
+      ],
+      "delta_tau": 0.0153066302,
+      "fraction": 0.28150511287300833
+    },
+    {
+      "z": [
+        3,
+        6
+      ],
+      "delta_tau": 0.0236740786,
+      "fraction": 0.43539133574008143
+    },
+    {
+      "z": [
+        6,
+        10
+      ],
+      "delta_tau": 0.014155772599999998,
+      "fraction": 0.2603396248226888
+    },
+    {
+      "z": [
+        10,
+        49
+      ],
+      "delta_tau": 0.0012377715000000053,
+      "fraction": 0.02276392656422145
+    }
+  ],
+  "tau_3_to_49": 0.0390676227,
+  "fully_ionized_low_z_control": {
+    "model": "published rounded background + HII and HeIII, Yp=0.24",
+    "tau_0_to_3_integrated": 0.015303406373819918,
+    "relative_residual_vs_table": -0.00021061632364272054,
+    "quadrature_abs_change_2048_to_4096": 2.8373544486148816e-10
+  }
+}

@@ -4,7 +4,7 @@
 
 [Результаты](../NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md) · [66 предпосылок](../FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md) · [Вопросы](../NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md)
 
-Число записей: result=147, construct=42, link=10, question=12, premise=66, obligation=9, review=16, component=45, external=18, decision=4, source=452.
+Число записей: result=150, construct=42, link=10, question=14, premise=66, obligation=9, review=16, component=45, external=18, decision=4, source=477.
 
 ## Предпосылка → результаты
 
@@ -1945,6 +1945,24 @@ PRyMordial: дополнительный BBN-приёмник — [исходн�
 **Входящие:** [R112](#result-r112) `informs_not_closes`; [R113](#result-r113) `informs_not_closes`.
 **Исходящие:** [L08](#link-l08) `related_open_link`; [L10](#link-l10) `related_open_link`.
 
+<a id="question-u013"></a>
+
+### question:U013
+
+Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u013).
+
+**Входящие:** [R135](#result-r135) `informs_not_closes`; [R136](#result-r136) `informs_not_closes`.
+**Исходящие:** нет.
+
+<a id="question-u014"></a>
+
+### question:U014
+
+Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции? — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md#u014).
+
+**Входящие:** [R137](#result-r137) `informs_not_closes`.
+**Исходящие:** нет.
+
 <a id="result-r001"></a>
 
 ### result:R001
@@ -3158,7 +3176,34 @@ ADD: воспроизведение C1/A, симметрия C2 и активн�
 Физический сектор X и многоконтурная различимость — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r135).
 
 **Входящие:** [R130](#result-r130) `parent`; [R131](#result-r131) `parent`; [R132](#result-r132) `parent`; [R133](#result-r133) `parent`; [R134](#result-r134) `parent`.
-**Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [R149](#result-r149) `parent`; [R150](#result-r150) `parent`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/AUDIT.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-audit-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/REVISION.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-revision-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/revision-results.json](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-revision-results-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/emergence/REPORT.md](#source-analysis-r140_haar_sorkin-emergence-report-md) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/README.md](#source-analysis-r141_r148_model-ym_graph-readme-md) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/pilot/results.json](#source-analysis-r141_r148_model-ym_graph-pilot-results-json) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/step5/results.json](#source-analysis-r141_r148_model-ym_graph-step5-results-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/CHECKS.json](#source-analysis-r141_ym_mobius_transfer_20261127-checks-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/DONORS.md](#source-analysis-r141_ym_mobius_transfer_20261127-donors-md) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/LINKS.json](#source-analysis-r141_ym_mobius_transfer_20261127-links-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md](#source-analysis-r141_ym_mobius_transfer_20261127-report-md) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/replay.mjs](#source-analysis-r141_ym_mobius_transfer_20261127-replay-mjs) `managed_evidence_source`; [analysis/R143_MASS_SECTOR_BRIDGE_20261128/port_interference/REPORT.md](#source-analysis-r143_mass_sector_bridge_20261128-port_interference-report-md) `managed_evidence_source`; [analysis/R149/peer_audit/README.md](#source-analysis-r149-peer_audit-readme-md) `managed_evidence_source`; [analysis/R149/yang_mills/README.md](#source-analysis-r149-yang_mills-readme-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/CONTACT_SURFACE.md](#source-analysis-r150_r132_spectral_bridge_20261126-contact_surface-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/CALIBRATION_AUDIT_20261126.md](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-calibration_audit_20261126-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/NODAL_CALIBRATION_AUDIT.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-nodal_calibration_audit-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/README.md](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-readme-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/calibration.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-calibration-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/nodal_calibration_audit.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-nodal_calibration_audit-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/reference_results.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-reference_results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/validate.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-validate-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/validation.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-validation-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/DONORS.md](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-donors-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/ARCHIVE_EXCERPTS.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-archive_excerpts-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/LINEAGE.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-lineage-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/STDOUT.txt](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-stdout-txt) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/LINKS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-links-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/PROTOCOL.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-protocol-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/SOURCES.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-sources-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-replay-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/README.md](#source-analysis-r150_three_generations-floquet-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/NETWORK_RESULTS.md](#source-analysis-r150_three_generations-floquet-phase_bbn-network_results-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/cosmology/REPORT.md](#source-analysis-r150_three_generations-floquet-phase_bbn-cosmology-report-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/cosmology/check.py](#source-analysis-r150_three_generations-floquet-phase_bbn-cosmology-check-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/deuterium_diagnostic/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-deuterium_diagnostic-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/deuterium_diagnostic/result.json](#source-analysis-r150_three_generations-floquet-phase_bbn-deuterium_diagnostic-result-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/experiment_review/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-experiment_review-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/experiment_review/followup/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-experiment_review-followup-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/check.py](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-check-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/control.csv](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-control-csv) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/trajectory.py](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-trajectory-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/independent_history/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-independent_history-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-graph-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/results/energy.json](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-results-energy-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/results/finite_model.json](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-results-finite_model-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/seam_audit/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-seam_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/seam_audit/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-seam_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/physical_audit/README.md](#source-analysis-r150_three_generations-floquet-physical_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/physical_audit/results.json](#source-analysis-r150_three_generations-floquet-physical_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/results.json](#source-analysis-r150_three_generations-floquet-results-json) `managed_evidence_source`.
+**Исходящие:** [X_MICROPHYSICS](#component-x_microphysics) `methodological_parent_not_physical_evidence`; [C037](#construct-c037) `addresses`; [U006](#question-u006) `informs_not_closes`; [U013](#question-u013) `informs_not_closes`; [R136](#result-r136) `parent`; [R149](#result-r149) `parent`; [R150](#result-r150) `parent`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/AUDIT.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-audit-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/REPORT.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-report-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/REVISION.md](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-revision-md) `managed_evidence_source`; [analysis/ADD_NEIGHBOR_SYNTHESIS_20261117/bit_rule/review/revision-results.json](#source-analysis-add_neighbor_synthesis_20261117-bit_rule-review-revision-results-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/CHECKS.json](#source-analysis-r135_physical_sector_x_20261120-checks-json) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/NEIGHBOR_ORIGINAL.txt](#source-analysis-r135_physical_sector_x_20261120-neighbor_original-txt) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md](#source-analysis-r135_physical_sector_x_20261120-report-md) `managed_evidence_source`; [analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py](#source-analysis-r135_physical_sector_x_20261120-verify-py) `managed_evidence_source`; [analysis/R140_HAAR_SORKIN/emergence/REPORT.md](#source-analysis-r140_haar_sorkin-emergence-report-md) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/README.md](#source-analysis-r141_r148_model-ym_graph-readme-md) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/pilot/results.json](#source-analysis-r141_r148_model-ym_graph-pilot-results-json) `managed_evidence_source`; [analysis/R141_R148_MODEL/ym_graph/step5/results.json](#source-analysis-r141_r148_model-ym_graph-step5-results-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/CHECKS.json](#source-analysis-r141_ym_mobius_transfer_20261127-checks-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/DONORS.md](#source-analysis-r141_ym_mobius_transfer_20261127-donors-md) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/LINKS.json](#source-analysis-r141_ym_mobius_transfer_20261127-links-json) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/REPORT.md](#source-analysis-r141_ym_mobius_transfer_20261127-report-md) `managed_evidence_source`; [analysis/R141_YM_MOBIUS_TRANSFER_20261127/replay.mjs](#source-analysis-r141_ym_mobius_transfer_20261127-replay-mjs) `managed_evidence_source`; [analysis/R143_MASS_SECTOR_BRIDGE_20261128/port_interference/REPORT.md](#source-analysis-r143_mass_sector_bridge_20261128-port_interference-report-md) `managed_evidence_source`; [analysis/R149/peer_audit/README.md](#source-analysis-r149-peer_audit-readme-md) `managed_evidence_source`; [analysis/R149/yang_mills/README.md](#source-analysis-r149-yang_mills-readme-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/CONTACT_SURFACE.md](#source-analysis-r150_r132_spectral_bridge_20261126-contact_surface-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/CALIBRATION_AUDIT_20261126.md](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-calibration_audit_20261126-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/NODAL_CALIBRATION_AUDIT.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-nodal_calibration_audit-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/README.md](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-readme-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/calibration.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-calibration-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/nodal_calibration_audit.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-nodal_calibration_audit-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/reference_results.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-reference_results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/validate.py](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-validate-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/continuum/validation.json](#source-analysis-r150_r132_spectral_bridge_20261126-continuum-validation-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/DONORS.md](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-donors-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/relativistic_holonomy_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-relativistic_holonomy_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/long_range_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-long_range_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/operator_identifiability_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-operator_identifiability_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/ARCHIVE_EXCERPTS.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-archive_excerpts-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/LINEAGE.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-lineage-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/STDOUT.txt](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-stdout-txt) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/provenance_recovery_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-provenance_recovery_20261127-replay-py) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/LINKS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-links-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/PROTOCOL.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-protocol-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/REPORT.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-report-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/RESULTS.json](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-results-json) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/SOURCES.md](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-sources-md) `managed_evidence_source`; [analysis/R150_R132_SPECTRAL_BRIDGE_20261126/scale_closure/r141_grok_samefree_20261127/replay.py](#source-analysis-r150_r132_spectral_bridge_20261126-scale_closure-r141_grok_samefree_20261127-replay-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/README.md](#source-analysis-r150_three_generations-floquet-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/NETWORK_RESULTS.md](#source-analysis-r150_three_generations-floquet-phase_bbn-network_results-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/cosmology/REPORT.md](#source-analysis-r150_three_generations-floquet-phase_bbn-cosmology-report-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/cosmology/check.py](#source-analysis-r150_three_generations-floquet-phase_bbn-cosmology-check-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/deuterium_diagnostic/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-deuterium_diagnostic-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/deuterium_diagnostic/result.json](#source-analysis-r150_three_generations-floquet-phase_bbn-deuterium_diagnostic-result-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/experiment_review/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-experiment_review-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/experiment_review/followup/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-experiment_review-followup-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/check.py](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-check-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/control.csv](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-control-csv) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/response_audit/trajectory.py](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-response_audit-trajectory-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/formation/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-formation-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/independent_history/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-independent_history-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/graph.py](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-graph-py) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/results/energy.json](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-results-energy-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/network_bench/results/finite_model.json](#source-analysis-r150_three_generations-floquet-phase_bbn-network_bench-results-finite_model-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/seam_audit/README.md](#source-analysis-r150_three_generations-floquet-phase_bbn-seam_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/phase_bbn/seam_audit/results.json](#source-analysis-r150_three_generations-floquet-phase_bbn-seam_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/physical_audit/README.md](#source-analysis-r150_three_generations-floquet-physical_audit-readme-md) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/physical_audit/results.json](#source-analysis-r150_three_generations-floquet-physical_audit-results-json) `managed_evidence_source`; [analysis/R150_THREE_GENERATIONS/floquet/results.json](#source-analysis-r150_three_generations-floquet-results-json) `managed_evidence_source`.
+
+<a id="result-r136"></a>
+
+### result:R136
+
+Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r136).
+
+**Входящие:** [R135](#result-r135) `parent`.
+**Исходящие:** [U013](#question-u013) `informs_not_closes`; [analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json](#source-analysis-r136_shirogane_calibration-checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg](#source-analysis-r136_shirogane_calibration-correlation_map-svg) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md](#source-analysis-r136_shirogane_calibration-estimator_domain-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json](#source-analysis-r136_shirogane_calibration-extended_checks-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json](#source-analysis-r136_shirogane_calibration-figures-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json](#source-analysis-r136_shirogane_calibration-method_volume-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md](#source-analysis-r136_shirogane_calibration-method_volume-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md](#source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/REPORT.md](#source-analysis-r136_shirogane_calibration-report-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json](#source-analysis-r136_shirogane_calibration-statistical_budget-json) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md](#source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py](#source-analysis-r136_shirogane_calibration-audit_invariant_d-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py](#source-analysis-r136_shirogane_calibration-audit_method_volume-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py](#source-analysis-r136_shirogane_calibration-audit_statistical_budget-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/extract.py](#source-analysis-r136_shirogane_calibration-extract-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py](#source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py) `managed_evidence_source`; [analysis/R136_SHIROGANE_CALIBRATION/verify.py](#source-analysis-r136_shirogane_calibration-verify-py) `managed_evidence_source`.
+
+<a id="result-r137"></a>
+
+### result:R137
+
+Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r137).
+
+**Входящие:** нет.
+**Исходящие:** [U014](#question-u014) `informs_not_closes`; [analysis/R137_LUMINA/CHECKS.json](#source-analysis-r137_lumina-checks-json) `managed_evidence_source`; [analysis/R137_LUMINA/DATA_REQUEST.md](#source-analysis-r137_lumina-data_request-md) `managed_evidence_source`; [analysis/R137_LUMINA/REPORT.md](#source-analysis-r137_lumina-report-md) `managed_evidence_source`; [analysis/R137_LUMINA/verify.py](#source-analysis-r137_lumina-verify-py) `managed_evidence_source`.
+
+<a id="result-r138"></a>
+
+### result:R138
+
+Доноры эволюции от BBN через рекомбинацию и тёмные века до a=1/50 — [исходная карточка](../../analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md#r138).
+
+**Входящие:** нет.
+**Исходящие:** [analysis/R138_POST_BBN_DONORS/CHECKS.json](#source-analysis-r138_post_bbn_donors-checks-json) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/DONORS.json](#source-analysis-r138_post_bbn_donors-donors-json) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/REPORT.md](#source-analysis-r138_post_bbn_donors-report-md) `managed_evidence_source`; [analysis/R138_POST_BBN_DONORS/check_tables.py](#source-analysis-r138_post_bbn_donors-check_tables-py) `managed_evidence_source`.
 
 <a id="result-r139"></a>
 
@@ -5078,6 +5123,231 @@ analysis/R135_PHYSICAL_SECTOR_X_20261120/REPORT.md — [исходная кар�
 analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py — [исходная карточка](../../analysis/R135_PHYSICAL_SECTOR_X_20261120/verify.py).
 
 **Входящие:** [R135](#result-r135) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-checks-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json
+
+analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-correlation_map-svg"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg
+
+analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-estimator_domain-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md
+
+analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-extended_checks-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json
+
+analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-figures-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json
+
+analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-method_volume-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json
+
+analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-method_volume-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md
+
+analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-r136_1_invariant_d_audit_20261122-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md
+
+analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-report-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md
+
+analysis/R136_SHIROGANE_CALIBRATION/REPORT.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/REPORT.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-statistical_budget-json"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json
+
+analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-archived_peer_audit-r136_1_audit-md"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md
+
+analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_invariant_d-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_method_volume-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-audit_statistical_budget-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py
+
+analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-extract-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/extract.py
+
+analysis/R136_SHIROGANE_CALIBRATION/extract.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/extract.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-test_gls_contrast_units-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py
+
+analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r136_shirogane_calibration-verify-py"></a>
+
+### source:analysis/R136_SHIROGANE_CALIBRATION/verify.py
+
+analysis/R136_SHIROGANE_CALIBRATION/verify.py — [исходная карточка](../../analysis/R136_SHIROGANE_CALIBRATION/verify.py).
+
+**Входящие:** [R136](#result-r136) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-checks-json"></a>
+
+### source:analysis/R137_LUMINA/CHECKS.json
+
+analysis/R137_LUMINA/CHECKS.json — [исходная карточка](../../analysis/R137_LUMINA/CHECKS.json).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-data_request-md"></a>
+
+### source:analysis/R137_LUMINA/DATA_REQUEST.md
+
+analysis/R137_LUMINA/DATA_REQUEST.md — [исходная карточка](../../analysis/R137_LUMINA/DATA_REQUEST.md).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-report-md"></a>
+
+### source:analysis/R137_LUMINA/REPORT.md
+
+analysis/R137_LUMINA/REPORT.md — [исходная карточка](../../analysis/R137_LUMINA/REPORT.md).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r137_lumina-verify-py"></a>
+
+### source:analysis/R137_LUMINA/verify.py
+
+analysis/R137_LUMINA/verify.py — [исходная карточка](../../analysis/R137_LUMINA/verify.py).
+
+**Входящие:** [R137](#result-r137) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-checks-json"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/CHECKS.json
+
+analysis/R138_POST_BBN_DONORS/CHECKS.json — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/CHECKS.json).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-donors-json"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/DONORS.json
+
+analysis/R138_POST_BBN_DONORS/DONORS.json — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/DONORS.json).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-report-md"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/REPORT.md
+
+analysis/R138_POST_BBN_DONORS/REPORT.md — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/REPORT.md).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
+**Исходящие:** нет.
+
+<a id="source-analysis-r138_post_bbn_donors-check_tables-py"></a>
+
+### source:analysis/R138_POST_BBN_DONORS/check_tables.py
+
+analysis/R138_POST_BBN_DONORS/check_tables.py — [исходная карточка](../../analysis/R138_POST_BBN_DONORS/check_tables.py).
+
+**Входящие:** [R138](#result-r138) `managed_evidence_source`.
 **Исходящие:** нет.
 
 <a id="source-analysis-r139_arrighi_discrete_dynamics-checks-json"></a>

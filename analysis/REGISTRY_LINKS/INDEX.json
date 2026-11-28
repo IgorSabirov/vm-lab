@@ -1,8 +1,8 @@
 {
   "schema": "vm-lab-registry-links-v4",
   "sources": {
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "757227667ae54cf2a77f9df3dcefd064e3d7c2992a0e35fc23ffe369028fcab0",
-    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "753b1e25acbde8b0dc52e978e3c9a423c8f2a8af707ebb944287549bf3a1b057",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json": "4561bf9173f4abb82c65a328cf93db961a4bbbeb0ecd480e2719d5087840da52",
+    "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.json": "c9fd4e89146c53254ce457f7ced2eee5466c37d4543063ffb4f5c30ad6b34c39",
     "analysis/FOUNDATIONS_LITERATURE_20261103/PREMISES_CURRENT.md": "8faf1f6440e5dfcbde89bfc1ddb48ea20559a3671ac9cd265569ea88d66cb496",
     "analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json": "c9537c2fa74c77896258e16c7dc258fde517e2e7a454062c0b4c8133459ef44b",
     "infra/external/contracts/ISINGCAUSET.json": "90b647e0cc31ca226ae9747306382d85996405ad648d5b9703885474e25bee85",
@@ -115,17 +115,17 @@
     "analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/bbn_transfer_controls.py": "940ea18f2fb54123b3c6ac4443a19146b0de2977bc150c0c563fd947a9e37026"
   },
   "counts": {
-    "result": 147,
+    "result": 150,
     "construct": 42,
     "link": 10,
-    "question": 12,
+    "question": 14,
     "premise": 66,
     "obligation": 9,
     "review": 16,
     "component": 45,
     "external": 18,
     "decision": 4,
-    "source": 452
+    "source": 477
   },
   "semantics": "Typed navigation; a link never proves a claim or closes a question. Literature Lxx and research link Lxxx namespaces are not inferred from prose.",
   "nodes": [
@@ -1984,6 +1984,24 @@
       "fragment": "u012"
     },
     {
+      "key": "question:U013",
+      "id": "U013",
+      "kind": "question",
+      "title": "Совместимы ли фазовые скачки на рис. 3 и 15 Shirogane при одинаковой β?",
+      "status": "OPEN",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
+      "fragment": "u013"
+    },
+    {
+      "key": "question:U014",
+      "id": "U014",
+      "kind": "question",
+      "title": "Какая версия CCC+TL даёт сравнимое с Lumina начальное состояние при a=1/50 и закон дальнейшей эволюции?",
+      "status": "OPEN",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/OPEN_QUESTIONS.md",
+      "fragment": "u014"
+    },
+    {
       "key": "result:R001",
       "id": "R001",
       "kind": "result",
@@ -3197,6 +3215,33 @@
       "status": "КОНЕЧНЫЕ ТОЖДЕСТВА И СВИДЕТЕЛИ ПРОВЕРЕНЫ · ФИЗИЧЕСКАЯ ИДЕНТИФИКАЦИЯ И GATE D ОТКРЫТЫ",
       "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
       "fragment": "r135"
+    },
+    {
+      "key": "result:R136",
+      "id": "R136",
+      "kind": "result",
+      "title": "Независимая проверка температурной калибровки Shirogane и согласованности фазовых данных",
+      "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · ЗНАК СДВИГА И ЧИСЛЕННЫЕ КОНТРОЛИ ПРОВЕРЕНЫ",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r136"
+    },
+    {
+      "key": "result:R137",
+      "id": "R137",
+      "kind": "result",
+      "title": "Lumina. Проверка сопряжения CCC+TL/BBN с радиационной гидродинамикой при a=1/50",
+      "status": "ИССЛЕДОВАНИЕ ОТКРЫТО · СТАНДАРТНЫЙ НИЗКОКРАСНОСМЕЩЁННЫЙ ВКЛАД В τ ПРОВЕРЕН",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r137"
+    },
+    {
+      "key": "result:R138",
+      "id": "R138",
+      "kind": "result",
+      "title": "Доноры эволюции от BBN через рекомбинацию и тёмные века до a=1/50",
+      "status": "СИНТЕЗ ДОНОРОВ И ПРОВЕРКА ТАБЛИЦ · ФИЗИЧЕСКОЕ СОПРЯЖЕНИЕ ОТКРЫТО",
+      "path": "analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.md",
+      "fragment": "r138"
     },
     {
       "key": "result:R139",
@@ -5297,6 +5342,306 @@
       "sha256": "f1579aefd9bb0a3cddeaf16db34dc45c4a8c79f77f60d77c3f9c85ff60787c14",
       "git_blob_sha": "648acd2e635530fbfba957620ea94d2d88aee7ab",
       "size_bytes": 6902
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+      "fragment": "",
+      "sha256": "0e890b0c60a793105a7e84afd1ccdb4f3fcb7cbcd74d0e4a2b415da13112b9b2",
+      "git_blob_sha": "0fa8d720bc461aded4b187a62003e016c61fd5d0",
+      "size_bytes": 4653
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+      "fragment": "",
+      "sha256": "42ef2e4fe9ad4834b3fd59a1b1fb42e17c38b8ec0a1436e910e001bf2ae0c2c6",
+      "git_blob_sha": "952a91ce4af99d9d92c7bd602d80e6abe2e7646f",
+      "size_bytes": 106436
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "fragment": "",
+      "sha256": "033e11678ab89b1def029d5ec3ee77bf7832c81b4a64a1dca7b818953d156e66",
+      "git_blob_sha": "3972e3415bf9f32c77b793c10f6dc6b5dec3e179",
+      "size_bytes": 4676
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+      "fragment": "",
+      "sha256": "0a1cd049fae5b6cfce5316eb612726b4361512b6ecf36ba265dfb2729ec02996",
+      "git_blob_sha": "c85c95d0cff48deb0251b3a36b1d3c21eaa6212b",
+      "size_bytes": 19556
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+      "fragment": "",
+      "sha256": "50a8cc099ac0d9ce6e4c02a055193c1effee71a78a0de1519ff146cfa16f13bc",
+      "git_blob_sha": "90200fd8179d186232ab284245950255303d1077",
+      "size_bytes": 11326
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+      "fragment": "",
+      "sha256": "6b8684f0cd3de1ff6f01aeffeb08da7f021e4dafe6b62df47d3a5bd3954335ba",
+      "git_blob_sha": "4d5bb84d68866c31f8391e17cab6a2e6db4d6429",
+      "size_bytes": 5454
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+      "fragment": "",
+      "sha256": "d2b9bd417f441ed97ca6ac4fee1ba7a82631d641899cc0f4846e3316a16c1742",
+      "git_blob_sha": "d4744307b0cc81cc14471b41911bed53d29edaa1",
+      "size_bytes": 15199
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "fragment": "",
+      "sha256": "9336d7719ebf4ebf807fcf4a87486559e5e97ac03e34036735b4460954a9d2a6",
+      "git_blob_sha": "dfdefe2b06761d66bd578098194bb5ca762f3734",
+      "size_bytes": 20686
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "fragment": "",
+      "sha256": "fcc137cde6a29b1d1b4787109f616cc786abb1fab99bb82e4e92cb2eae4f59d8",
+      "git_blob_sha": "d858453b0d25c1c1c83fc557db9e2366d03dd210",
+      "size_bytes": 49585
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "fragment": "",
+      "sha256": "0c35ba7308fd6325f5f3fb950927e3faf9cee2a056ad5d5959e06fe2b7e0194a",
+      "git_blob_sha": "8e8b13c6605d2868f13579caf3df15dbafef11b6",
+      "size_bytes": 5756
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "fragment": "",
+      "sha256": "dac773c56abe800189edead32dc4ee9613319164070e98c086f83e519b176073",
+      "git_blob_sha": "0318df61b06765545d9bda3729a6051452e02529",
+      "size_bytes": 16739
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "fragment": "",
+      "sha256": "f5bf1b8cc8e7372b9793c5a166b7973ce6df43cc948c7a64fc070329d4c7393d",
+      "git_blob_sha": "68bb9a608b8c8f232134bb4db7fd4ad53e8f4c6a",
+      "size_bytes": 3347
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+      "fragment": "",
+      "sha256": "18fe8917218984e3fa11de14a0cfb711f528eb8fe44bc2ca590921bc8af8f0d9",
+      "git_blob_sha": "0dd46ec5a2f334a95ce6a58b756b790bf4afbade",
+      "size_bytes": 5346
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+      "fragment": "",
+      "sha256": "661aeb32f9a81e4eacc98e7e25997c69816943f897c21e568a92a2ddfb0cb0f3",
+      "git_blob_sha": "0f52964558d490bd7ecb46042c9c6e218dbfa488",
+      "size_bytes": 10277
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "fragment": "",
+      "sha256": "3adc49b2e83db289dd934e9dbdc019813a9e6cad5affd6b3274a75da5c8b0941",
+      "git_blob_sha": "9ce8642d8e5d0ddd6fd906d3eeaa98e497a12e83",
+      "size_bytes": 5119
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+      "fragment": "",
+      "sha256": "7a5f98f7be2b0f2c0ffe1a02f67b426ab409adab85a9a5c94e3d2839c2364d8e",
+      "git_blob_sha": "f0df99fdac75cd139f1f364ebae6aac0164d32db",
+      "size_bytes": 3741
+    },
+    {
+      "key": "source:analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+      "id": "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+      "kind": "source",
+      "title": "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+      "status": null,
+      "path": "analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+      "fragment": "",
+      "sha256": "1a356ef3eabd4c3ec6c77863ce65c9de9e3df97f69b29e3d21428a8e478781a8",
+      "git_blob_sha": "9a4b7f75dd944250539d6f5e38c517e311c5b9eb",
+      "size_bytes": 5887
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/CHECKS.json",
+      "id": "analysis/R137_LUMINA/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/CHECKS.json",
+      "status": null,
+      "path": "analysis/R137_LUMINA/CHECKS.json",
+      "fragment": "",
+      "sha256": "5a0e4477a475fab78e22a1cdc3ebbb398e412bfe452d9c2ea72bece508da769a",
+      "git_blob_sha": "993b50f2db2e8bb2fe78c50b0a0fdc9ef7c8d6a7",
+      "size_bytes": 2444
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/DATA_REQUEST.md",
+      "id": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "status": null,
+      "path": "analysis/R137_LUMINA/DATA_REQUEST.md",
+      "fragment": "",
+      "sha256": "c59b114e45e8cf135ade1b9d9b2ebef0fb556a2f0b1d420c043668175a4df95a",
+      "git_blob_sha": "c9ee6161421e31d8e3299841c31743a298aff59f",
+      "size_bytes": 2404
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/REPORT.md",
+      "id": "analysis/R137_LUMINA/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/REPORT.md",
+      "status": null,
+      "path": "analysis/R137_LUMINA/REPORT.md",
+      "fragment": "",
+      "sha256": "674b6bf3d22c7bfd7a66d96653f7ec3c15bbfbb1af5da63f3927870f44d57d4f",
+      "git_blob_sha": "81f8e91ffeb1141e5e5c771d96164a38010a81a4",
+      "size_bytes": 16492
+    },
+    {
+      "key": "source:analysis/R137_LUMINA/verify.py",
+      "id": "analysis/R137_LUMINA/verify.py",
+      "kind": "source",
+      "title": "analysis/R137_LUMINA/verify.py",
+      "status": null,
+      "path": "analysis/R137_LUMINA/verify.py",
+      "fragment": "",
+      "sha256": "52a5ac0920dbb683cdcde591b3c315844d97475ee326d192ee4c856e529e0df8",
+      "git_blob_sha": "685d68f3b9c0b6ded441bc923a633a0249cd17b9",
+      "size_bytes": 4424
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "id": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "fragment": "",
+      "sha256": "02609c765b786311a8acb107c649d20a682e8371caff3e2ea030f6d20c7931bc",
+      "git_blob_sha": "01c5eb78f4055be3fa96f0d8bdc42aba6b28f5a3",
+      "size_bytes": 1472
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "id": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "fragment": "",
+      "sha256": "fbeb97d1162161685543a19368f656081af803d6af4d413930db65e969393b7c",
+      "git_blob_sha": "7aeadc727af47c7456a3e38cd1c573a5f6a7f1b0",
+      "size_bytes": 2554
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "id": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "fragment": "",
+      "sha256": "8f646618a7d65af6f8528290d9d9cd4b455562369bdc1b7371655c14533e91be",
+      "git_blob_sha": "57e7099a66b70397593def8382ad9562878b2e87",
+      "size_bytes": 15626
+    },
+    {
+      "key": "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "id": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "kind": "source",
+      "title": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "status": null,
+      "path": "analysis/R138_POST_BBN_DONORS/check_tables.py",
+      "fragment": "",
+      "sha256": "d1e2d001c957193e047260fb303ae927483e92282e058e885067636ac16d9f03",
+      "git_blob_sha": "f85b95f6fa6a0a031759ac4129174847f6c8f587",
+      "size_bytes": 2882
     },
     {
       "key": "source:analysis/R139_ARRIGHI_DISCRETE_DYNAMICS/CHECKS.json",
@@ -15648,6 +15993,16 @@
     },
     {
       "source": "result:R135",
+      "target": "question:U013",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R135",
+      "target": "result:R136",
+      "relation": "parent"
+    },
+    {
+      "source": "result:R135",
       "target": "result:R149",
       "relation": "parent"
     },
@@ -16034,6 +16389,141 @@
     {
       "source": "result:R135",
       "target": "source:analysis/R150_THREE_GENERATIONS/floquet/results.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "question:U013",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/CORRELATION_MAP.svg",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/ESTIMATOR_DOMAIN.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/EXTENDED_CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/FIGURES.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/METHOD_VOLUME.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/R136_1_INVARIANT_D_AUDIT_20261122.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/STATISTICAL_BUDGET.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/archived_peer_audit/R136_1_audit.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_invariant_D.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_method_volume.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/audit_statistical_budget.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/extract.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/test_gls_contrast_units.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R136",
+      "target": "source:analysis/R136_SHIROGANE_CALIBRATION/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "question:U014",
+      "relation": "informs_not_closes"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/DATA_REQUEST.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R137",
+      "target": "source:analysis/R137_LUMINA/verify.py",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/CHECKS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/DONORS.json",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/REPORT.md",
+      "relation": "managed_evidence_source"
+    },
+    {
+      "source": "result:R138",
+      "target": "source:analysis/R138_POST_BBN_DONORS/check_tables.py",
       "relation": "managed_evidence_source"
     },
     {
