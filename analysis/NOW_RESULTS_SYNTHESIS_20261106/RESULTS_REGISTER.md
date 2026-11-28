@@ -3987,6 +3987,12 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R127](../REGISTRY_LINKS/INDEX.md#result-r127) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Интеграция инструментов не доказывает совместимость законов. Статус карточки сохранён. |
 | [result:R128](../REGISTRY_LINKS/INDEX.md#result-r128) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Происхождение условий не устанавливается воспроизведением поведения. Статус карточки сохранён. |
 | [result:R129](../REGISTRY_LINKS/INDEX.md#result-r129) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Точный конечный расчёт, разведочный выбор и независимость реализации различаются. Статус карточки сохранён. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `scope_boundary` | Все матрицы F,T,C′ и заряд d согласованы с 12 единицами O/(4). |
+| [result:R132](../REGISTRY_LINKS/INDEX.md#result-r132) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `scope_boundary` | d=ε и p=N(x) различены; q не спускается через прежний W. |
+| [result:R140](../REGISTRY_LINKS/INDEX.md#result-r140) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `operational_requirement` | Старый опыт используется без повторного исполнения; управление, подготовка и прибор остаются входами. |
+| [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `scope_boundary` | Уточнены прямое включение, нативное Галуа и фактор O/(4). |
+| [result:R146](../REGISTRY_LINKS/INDEX.md#result-r146) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `scope_boundary` | Доказаны геометрическое действие, поправка знака θ и границы знаковой башни. |
+| [result:R150](../REGISTRY_LINKS/INDEX.md#result-r150) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `premise_context_not_evidence` | Прежний результат атрибутирован; массы и поколения не выводятся новым представлением. |
 | [construct:C041](../REGISTRY_LINKS/INDEX.md#construct-c041) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Контрпример ограничивает кандидата G, не опровергает условную спецификацию полного профиля продолжения. Статус существующей записи сохраняется. |
 | [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Релятивистская совместимость и происхождение причинной геометрии остаются разными требованиями. Статус существующей записи сохраняется. |
 | [link:L04](../REGISTRY_LINKS/INDEX.md#link-l04) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Носитель и механизм чтения не возникают из интерпретации f как среднего. Статус существующей записи сохраняется. |
@@ -4058,6 +4064,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [ADD_SPECTRAL_SESSION_20261120](../../analysis/ADD_CONNES_PORT_TRANSPORT_20261120/REPORT.md#flux-control); `scope_boundary`. Рёберный и вершинный следы считывают разные направления контакта. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs); `operational_requirement`. Шагу графа нужны физическое время, энергия и барионно-фотонный баланс. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4); `scope_boundary`. Все матрицы F,T,C′ и заряд d согласованы с 12 единицами O/(4). [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#c2-dynamics); `scope_boundary`. Сохранены конечные проверки и локальное обоснование; различены M/B, T и C′, а счёт 0/574 ограничен свежими атомарными именами. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
@@ -4198,6 +4206,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [ADD_SPECTRAL_SESSION_20261120](../../analysis/R133_LOOP_CONNES_20261120/entropy_block_review/REPORT.md#kms-length); `scope_boundary`. На фиксированном невзвешенном кольце полная KMS-энтропия определяется длиной. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 
 **Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics); `scope_boundary`. Для передачи спектральных параметров нужны обоснованный переход к МэВ и выбор нормировки. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
+
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4); `scope_boundary`. d=ε и p=N(x) различены; q не спускается через прежний W. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#charges); `scope_boundary`. Заряды q и χ различают некоторые партнёрские секторы; их число не является числом пространственных координат или определением стрелы. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 
@@ -4501,6 +4511,8 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): Для Ψχ(x)=x†χ и Bₓ
 
 
 <!-- generated:review-card-result-r141 -->
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#sheets); `scope_boundary`. Уточнены прямое включение, нативное Галуа и фактор O/(4). [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
+
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#two-sheets); `classification_only`. Периоды и дзета-функция сохраняются; обмен листов и запрет записи b₂ не интерпретируются автоматически как две физические вселенные или запрет возникновения. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
 
 **Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register); `scope_boundary`. Именные срезы представлены явно и отделены от зеркальных секторов. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
@@ -4651,6 +4663,13 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): Для Ψχ(x)=x†χ и Bₓ
 <a id="r146"></a>
 
 ### R146. Перельман. Геометризация, поток Риччи и гомологии отображающего тора
+
+
+
+<!-- generated:review-card-result-r146 -->
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#geometry); `scope_boundary`. Доказаны геометрическое действие, поправка знака θ и границы знаковой башни. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r146).
+<!-- /generated:review-card-result-r146 -->
+
 
 **Статус:** OPEN · проверенные частные результаты общей модели
 
@@ -4909,6 +4928,8 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): 40 000 Haar-проб: Schur t
 
 
 <!-- generated:review-card-result-r140 -->
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer); `operational_requirement`. Старый опыт используется без повторного исполнения; управление, подготовка и прибор остаются входами. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r140).
+
 **Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#field); `operational_requirement`. Два подъёма поля различены; все выходы и инструменты записи проверены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r140).
 <!-- /generated:review-card-result-r140 -->
 
@@ -5009,6 +5030,8 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): 40 000 Haar-проб: Schur t
 
 
 <!-- generated:review-card-result-r150 -->
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#provenance); `premise_context_not_evidence`. Прежний результат атрибутирован; массы и поколения не выводятся новым представлением. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r150).
+
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#graph); `scope_boundary`. P7 служит контрпримером широкому запрету; хиральные доли, пространственные орбиты, массовые края и Floquet-индексы сопоставляются при фиксированных определениях. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r150).
 <!-- /generated:review-card-result-r150 -->
 

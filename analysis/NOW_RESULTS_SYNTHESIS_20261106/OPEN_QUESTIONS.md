@@ -126,6 +126,8 @@
 
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#bbn); `scope_boundary`. COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#scope); `joint_model_requirement`. Сложение кольца, локальность, энергетический оператор и физическое время остаются отдельными интерфейсами. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
+
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
 
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#question-10); `scope_boundary`. Пункт 10 использует конструкции 1–9 и три масштаба; происхождение метрики и физическая общая стрела этим разбором не выведены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u006).
@@ -292,6 +294,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md#genealogy); `scope_boundary`. COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md#science); `scope_boundary`. Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
+
+**Внешний разбор:** [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer); `operational_requirement`. Равенства операторов сохраняют согласованные вероятности, но не выводят закон приготовления. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
 **Внешний разбор:** [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/LINEAGE.md#corpus); `scope_boundary`. Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#question-u010).
 
@@ -485,6 +489,8 @@ U010 остаётся OPEN; U001 RESOLVED, U008 ANSWERED_WITHIN_DECLARED_CLASS. 
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR02: Следующий PASS не переписывает исходный FAIL.; COR15: reliable=true/ambiguous=false не восстанавливают исходную точность.; COR16: Космологическое отображение/кинетика не определены. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [CORPUS_RECONCILIATION_20261115](../../analysis/CORPUS_RECONCILIATION_20261115/REPORT.md) | `scope_boundary` | COR01: Новый закон или физическая полнота не приняты.; COR19: Fallback Mahalanobis не convex hull; первичные npz/prereg не прочитаны.; COR20: Новая физическая связка/мера/контракт не выбраны. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [EXTERNAL_20261112](../../infra/reviews/EXTERNAL_20261112/REPORT.md) | `scope_boundary` | Автоматизация не производит аппарат и не закрывает вопрос возникновения. Статус карточки сохранён. |
+| [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `joint_model_requirement` | Сложение кольца, локальность, энергетический оператор и физическое время остаются отдельными интерфейсами. |
+| [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [GALOIS_FULL_MIRROR_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md) | `operational_requirement` | Равенства операторов сохраняют согласованные вероятности, но не выводят закон приготовления. |
 | [question:U006](../REGISTRY_LINKS/INDEX.md#question-u006) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Радиус исходной S³ не считается выведенной причинной геометрией. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [HP_BRANCH_BALANCE_20261115](../../analysis/HP_BRANCH_BALANCE_REVIEW_20261115/REPORT.md) | `scope_boundary` | Энергетический баланс не воспроизводит средства действия следующего носителя. Статус существующей записи сохраняется. |
 | [question:U010](../REGISTRY_LINKS/INDEX.md#question-u010) | [METHOD_20261112](../../infra/reviews/GITHUB_20261112/METHOD_ASSESSMENT.md) | `scope_boundary` | Функция и воспроизводство условий различаются. Научный статус не изменяется. |

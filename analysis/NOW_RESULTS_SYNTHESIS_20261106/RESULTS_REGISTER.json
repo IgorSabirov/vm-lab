@@ -12148,6 +12148,27 @@
       ],
       "scientific_status_promoted": false,
       "note": "Построен и проверен конечный мост; прежние R/U и review-записи сохранены."
+    },
+    {
+      "id": "GALOIS_FULL_MIRROR_BRIDGE_20261128",
+      "date": "2026-11-28",
+      "base_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R130",
+        "R132",
+        "R140",
+        "R141",
+        "R146",
+        "R150"
+      ],
+      "linked_questions": [
+        "U006",
+        "U010"
+      ],
+      "scientific_status_promoted": false,
+      "note": "Явное представление полного регистра и разбор вложения; старые данные и статусы сохранены."
     }
   ],
   "lineage_edges": [
@@ -19174,6 +19195,101 @@
           "claim": "Sector recording differs from path recording.",
           "rationale": "Изометрия записи d сохраняет I₂; запись A/B его обнуляет. Самопроизводство аппарата не выведено.",
           "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observer"
+        }
+      ],
+      "excluded_links": []
+    },
+    {
+      "id": "GALOIS_FULL_MIRROR_BRIDGE_20261128",
+      "title": "Галуа, модуль4 и полный арифметический мост #223–R140–R141–R146",
+      "status": "REPRODUCED_ARITHMETIC_REGISTER_WITH_ANALYTIC_SCOPE_PROOFS",
+      "date": "2026-11-28",
+      "base_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/ALGEBRA_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/LATEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/LINEAGE.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/README.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REVIEW.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REVIEW.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/RUN_PLAN.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/SHEETS_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/SOURCE_MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/TOPOLOGY_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/check.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/integrate.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/prepare_checkout.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/publish_results.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/run.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/sources/ATTACHMENT_20261128.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/RESULTS.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/calibration.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/checks.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/environment.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/forecast.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/registration_check.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/run_receipt.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/source_hashes.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "The complete named register has an explicit arithmetic representation.",
+          "rationale": "Все матрицы F,T,C′ и заряд d согласованы с 12 единицами O/(4).",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Mirror charge and sheet parity have distinct arithmetic readouts.",
+          "rationale": "d=ε и p=N(x) различены; q не спускается через прежний W.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4"
+        },
+        {
+          "target": "result:R140",
+          "relation": "operational_requirement",
+          "claim": "Exact representation preserves the specified experiment with lifted states and effects.",
+          "rationale": "Старый опыт используется без повторного исполнения; управление, подготовка и прибор остаются входами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer"
+        },
+        {
+          "target": "result:R141",
+          "relation": "scope_boundary",
+          "claim": "The two-sheet one-particle sector is already contained in the full register.",
+          "rationale": "Уточнены прямое включение, нативное Галуа и фактор O/(4).",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#sheets"
+        },
+        {
+          "target": "result:R146",
+          "relation": "scope_boundary",
+          "claim": "Galois acts on the mapping torus and requires an equivariant map for its finite observables.",
+          "rationale": "Доказаны геометрическое действие, поправка знака θ и границы знаковой башни.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#geometry"
+        },
+        {
+          "target": "result:R150",
+          "relation": "premise_context_not_evidence",
+          "claim": "The prior F4x and H6 parity construction is a parent, not a new mass prediction.",
+          "rationale": "Прежний результат атрибутирован; массы и поколения не выводятся новым представлением.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#provenance"
+        },
+        {
+          "target": "question:U006",
+          "relation": "joint_model_requirement",
+          "claim": "An explicit arithmetic representation does not identify a unique physical carrier.",
+          "rationale": "Сложение кольца, локальность, энергетический оператор и физическое время остаются отдельными интерфейсами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Coherent preparation and the detector remain specified inputs.",
+          "rationale": "Равенства операторов сохраняют согласованные вероятности, но не выводят закон приготовления.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer"
         }
       ],
       "excluded_links": []
