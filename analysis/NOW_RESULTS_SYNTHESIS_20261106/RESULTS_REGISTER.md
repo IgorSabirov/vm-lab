@@ -4027,6 +4027,10 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 | [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md) | `classification_only` | Периоды и дзета-функция сохраняются; обмен листов и запрет записи b₂ не интерпретируются автоматически как две физические вселенные или запрет возникновения. |
 | [result:R149](../REGISTRY_LINKS/INDEX.md#result-r149) | [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md) | `scope_boundary` | Проверены портовые веса и оператор G₊RK; изоспектральность и чётность одной моды не заменяют симметрию полного оператора. |
 | [result:R150](../REGISTRY_LINKS/INDEX.md#result-r150) | [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md) | `scope_boundary` | P7 служит контрпримером широкому запрету; хиральные доли, пространственные орбиты, массовые края и Floquet-индексы сопоставляются при фиксированных определениях. |
+| [result:R130](../REGISTRY_LINKS/INDEX.md#result-r130) | [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md) | `scope_boundary` | Проверены24 именованных состояния и оба среза F, без переименования атомов. |
+| [result:R132](../REGISTRY_LINKS/INDEX.md#result-r132) | [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md) | `scope_boundary` | Заряд d различает реализации; явный вектор ядра запрещает спуск q. |
+| [result:R140](../REGISTRY_LINKS/INDEX.md#result-r140) | [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md) | `operational_requirement` | Два подъёма поля различены; все выходы и инструменты записи проверены. |
+| [result:R141](../REGISTRY_LINKS/INDEX.md#result-r141) | [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md) | `scope_boundary` | Именные срезы представлены явно и отделены от зеркальных секторов. |
 | [construct:C042](../REGISTRY_LINKS/INDEX.md#construct-c042) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `joint_model_requirement` | Частоты взаимодействий и закон энергии нужны для часов и совместной проверки BBN/CERN; X не задан. |
 | [link:L09](../REGISTRY_LINKS/INDEX.md#link-l09) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `joint_model_requirement` | Данные CERN применимы только через одну физическую модель X и не выводят пространство-время из R130. |
 | [result:R126](../REGISTRY_LINKS/INDEX.md#result-r126) | [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md) | `scope_boundary` | Старое ядро в приложении сохраняется отдельно от текущей именованной реализации R130. |
@@ -4056,6 +4060,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#bh1-epochs); `operational_requirement`. Шагу графа нужны физическое время, энергия и барионно-фотонный баланс. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#c2-dynamics); `scope_boundary`. Сохранены конечные проверки и локальное обоснование; различены M/B, T и C′, а счёт 0/574 ограничен свежими атомарными именами. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
+
+**Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register); `scope_boundary`. Проверены24 именованных состояния и оба среза F, без переименования атомов. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
 **Внешний разбор:** [NEIGHBOR_CERN_20261118](../../analysis/NEIGHBOR_CERN_REVIEW_20261118/REPORT.md#operators); `scope_boundary`. Предложенный ремонт ориентации уже реализован; числа соседнего census не выдаются за новый полный прогон. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r130).
 
@@ -4194,6 +4200,8 @@ A0: 72/108; A1: 16/108; A2/A3: 0/108. Ремонт полезен относит
 **Внешний разбор:** [BBN_DONORS_TRANSFER_20261120](../../analysis/NEIGHBOR_EXTERNAL_DATA_USE_20261119/BBN_METHOD_TRANSFER.md#microphysics); `scope_boundary`. Для передачи спектральных параметров нужны обоснованный переход к МэВ и выбор нормировки. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#charges); `scope_boundary`. Заряды q и χ различают некоторые партнёрские секторы; их число не является числом пространственных координат или определением стрелы. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
+
+**Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observable); `scope_boundary`. Заряд d различает реализации; явный вектор ядра запрещает спуск q. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r132).
 <!-- /generated:review-card-result-r132 -->
 
 
@@ -4494,6 +4502,8 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): Для Ψχ(x)=x†χ и Bₓ
 
 <!-- generated:review-card-result-r141 -->
 **Внешний разбор:** [MIRROR_PARTNERS_REVIEW_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#two-sheets); `classification_only`. Периоды и дзета-функция сохраняются; обмен листов и запрет записи b₂ не интерпретируются автоматически как две физические вселенные или запрет возникновения. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
+
+**Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register); `scope_boundary`. Именные срезы представлены явно и отделены от зеркальных секторов. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r141).
 <!-- /generated:review-card-result-r141 -->
 
 
@@ -4895,6 +4905,13 @@ SU(2) Haar/Peter–Weyl/fusion audit (26.11.2026): 40 000 Haar-проб: Schur t
 <a id="r140"></a>
 
 ### R140. Мера Хаара и квантовые истории Соркина на именованных кольцах ADD
+
+
+
+<!-- generated:review-card-result-r140 -->
+**Внешний разбор:** [MIRROR_R140_BRIDGE_20261128](../../analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#field); `operational_requirement`. Два подъёма поля различены; все выходы и инструменты записи проверены. [Все связи карточки](../REGISTRY_LINKS/INDEX.md#result-r140).
+<!-- /generated:review-card-result-r140 -->
+
 
 **Статус:** OPEN · ПОСТРОЕН НЕЙТРАЛЬНЫЙ СЕКТОР U(1) И КОНЕЧНЫЙ СВИДЕТЕЛЬ ИНТЕРФЕРЕНЦИИ
 

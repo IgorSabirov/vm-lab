@@ -12129,6 +12129,25 @@
       ],
       "note": "Сохранены завершённый разбор зеркальности, три присланных исходника и прежние проверки. Добавлены навигационные обратные связи; статусы R/U и содержание исходных результатов не изменены. Новых научных запусков при сохранении нет.",
       "scientific_status_promoted": false
+    },
+    {
+      "id": "MIRROR_R140_BRIDGE_20261128",
+      "date": "2026-11-28",
+      "base_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R130",
+        "R132",
+        "R140",
+        "R141"
+      ],
+      "linked_questions": [
+        "U006",
+        "U010"
+      ],
+      "scientific_status_promoted": false,
+      "note": "Построен и проверен конечный мост; прежние R/U и review-записи сохранены."
     }
   ],
   "lineage_edges": [
@@ -19080,6 +19099,81 @@
           "claim": "Обращение носителя отделено от обращения полного физического процесса.",
           "rationale": "У T=IεR проверяется TFT⁻¹=F⁻¹; коммутирующее C′ и обращение носителя не реализуют обращение аппарата, среды и записи.",
           "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#reversal"
+        }
+      ],
+      "excluded_links": []
+    },
+    {
+      "id": "MIRROR_R140_BRIDGE_20261128",
+      "title": "Мост #223 ↔ R140/H6: зеркальные регистры, заряд d и когерентные истории",
+      "status": "REPRODUCED_FINITE_BRIDGE_WITH_SCOPE_LIMITS",
+      "date": "2026-11-28",
+      "base_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REGISTER_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/HISTORY_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REVIEW.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/register_bridge.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/history_bridge.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/run.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/RUN_PLAN.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/SOURCE_MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/LINEAGE.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/LATEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/RESULTS.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/calibration.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/environment.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/forecast.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/history_bridge.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/register_bridge.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/run_receipt.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/source_hashes.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "C′ acts on the full named carrier.",
+          "rationale": "Проверены24 именованных состояния и оба среза F, без переименования атомов.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "d descends through W; q does not.",
+          "rationale": "Заряд d различает реализации; явный вектор ядра запрещает спуск q.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observable"
+        },
+        {
+          "target": "result:R140",
+          "relation": "operational_requirement",
+          "claim": "Mirror covariance includes geometry, field and instrument.",
+          "rationale": "Два подъёма поля различены; все выходы и инструменты записи проверены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#field"
+        },
+        {
+          "target": "result:R141",
+          "relation": "scope_boundary",
+          "claim": "The full F retains both named slices.",
+          "rationale": "Именные срезы представлены явно и отделены от зеркальных секторов.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register"
+        },
+        {
+          "target": "question:U006",
+          "relation": "joint_model_requirement",
+          "claim": "Paired representations require a physical map.",
+          "rationale": "Пространственное3+1+3, центральные часы и общая физическая стрела не выведены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Sector recording differs from path recording.",
+          "rationale": "Изометрия записи d сохраняет I₂; запись A/B его обнуляет. Самопроизводство аппарата не выведено.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observer"
         }
       ],
       "excluded_links": []

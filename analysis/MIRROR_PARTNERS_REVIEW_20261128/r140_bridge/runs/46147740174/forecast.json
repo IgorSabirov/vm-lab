@@ -1,0 +1,55 @@
+{
+  "written_before_main": true,
+  "created_at_utc": "2026-11-28T13:04:26.306200+00:00",
+  "calibration_seconds": 0.8463221699999934,
+  "expected_main_seconds": 16.92644339999987,
+  "range_seconds": [
+    1.6926443399999869,
+    169.2644339999987
+  ],
+  "model": "Conservative finite exact-matrix/8-step estimate; scale 20 times representative calibration, floor 5 s; range is a forecast, never a termination rule.",
+  "scope": [
+    {
+      "id": "BRIDGE-01",
+      "ancestor": "R130/#223",
+      "question": "Is C' defined on the actual named carrier, including both F slices?",
+      "expected": "24 named states; F,T,C intertwiners; true complementary sectors",
+      "test": "Actual engine permutations; no atomic renaming",
+      "negative": "F does not close on one six-state slice"
+    },
+    {
+      "id": "BRIDGE-02",
+      "ancestor": "R132/R140",
+      "question": "Which mirror charge survives W?",
+      "expected": "d=q1-q2 maps to sector sign; q does not descend; chi=0 in one-particle sector",
+      "test": "Exact SymPy matrices and kernel witnesses",
+      "negative": "W q W†=0 does not imply W q=0"
+    },
+    {
+      "id": "BRIDGE-03",
+      "ancestor": "R140/#223",
+      "question": "Does C' map all coherent geometric histories?",
+      "expected": "92 length histories and40 named endpoints; exact amplitude covariance; 2-site square covariance",
+      "test": "Gaussian rational named propagation vs frozen export",
+      "negative": "A and B have different length records and cannot be C' partners"
+    },
+    {
+      "id": "BRIDGE-04",
+      "ancestor": "R140/H6",
+      "question": "Which field law is conjugated by a mirror?",
+      "expected": "Induced copy lift preserves M,J; holonomy inversion maps M→M^-1,J→J",
+      "test": "Every output amplitude, scalar phase gates, transformed input/detectors",
+      "negative": "Field J with unchanged M fails; complex preparation detects wrong sign"
+    },
+    {
+      "id": "BRIDGE-05",
+      "ancestor": "R140/observer",
+      "question": "Does reading the mirror sector erase the path interference?",
+      "expected": "d record retains within-sector I2; orthogonal A/B record makes I2 zero",
+      "test": "Exact Gram overlaps and measurement effects",
+      "negative": "Sector record and path record are different instruments"
+    }
+  ],
+  "preparation_and_publication_excluded": true,
+  "hard_runtime_limit": null
+}
