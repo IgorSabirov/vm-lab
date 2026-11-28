@@ -1,0 +1,28 @@
+{
+  "schema": "galois-bridge-independent-review-v1",
+  "status": "REVIEWED_BEFORE_EXECUTION",
+  "check_sha256": "695d9bbba6e4f1e2f8759a3e6808e6ef87f37d0e7cb4871e92beb367e4800ecc",
+  "review_mode": "independent static code reading and analytic mathematical derivation",
+  "reviewed_source_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+  "scientific_code_imported": false,
+  "calibration_executed": false,
+  "main_calculation_executed": false,
+  "old_R140_replayed": false,
+  "blocking_findings": [],
+  "reviewed_files": [
+    "check.py",
+    "ALGEBRA_PROOF.md"
+  ],
+  "independent_proof": "TOPOLOGY_PROOF.md",
+  "review_scope": [
+    "Exact ring arithmetic in the phi,1 basis and permutation conventions",
+    "Native Galois reduction and attribution of the previously published mod-2 H6 pair",
+    "Complete 12-unit factor modulo 4 and archived full F,T,C,d representation",
+    "Independent integer reconstruction of the 24-to-12 coisometry and q kernel witness",
+    "Four-to-one reduction modulo 2 and loss of mirror and sheet labels",
+    "Finite n=1..12 controls distinguished from all-n analytic theorems",
+    "Characteristic-zero intertwiner no-go and rejection of nonunit inversion",
+    "Analytic larger-factor lift T_n=E_n G_n on the preimage of the mod-4 unit sector"
+  ],
+  "execution_scope_note": "The script compares the new arithmetic representation to the saved register archive. It does not re-execute R130/R140, enumerate all larger quotient rings, or numerically test the Sol metric and linking-form proofs."
+}

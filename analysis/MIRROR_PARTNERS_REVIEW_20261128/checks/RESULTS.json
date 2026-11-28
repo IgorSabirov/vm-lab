@@ -1,0 +1,120 @@
+{
+  "kind": "index_of_preserved_previous_results",
+  "packaging_date": "2026-11-28",
+  "paths_relative_to": "analysis/MIRROR_PARTNERS_REVIEW_20261128/checks",
+  "science_executed_during_packaging": false,
+  "status": "Результаты прошлых запусков перенесены без пересчёта. Этот индекс не является новой квитанцией выполнения.",
+  "new_run_command": "python analysis/MIRROR_PARTNERS_REVIEW_20261128/checks/run_all.py",
+  "previous_original_audit": {
+    "environment": "original_audit/environment.json",
+    "receipt": "original_audit/run_receipt.json",
+    "logs": "original_audit/logs/",
+    "source_manifest": "original_audit/source_manifest.json",
+    "package_manifest": "original_audit/package_manifest.json",
+    "recorded_script_exits": [
+      {
+        "script": "replay_original_cells.py",
+        "exit_code": 0
+      },
+      {
+        "script": "dynamics/check.py",
+        "exit_code": 0
+      },
+      {
+        "script": "charges/reproduce.py",
+        "exit_code": 0
+      },
+      {
+        "script": "graphs/verify_graphs.py",
+        "exit_code": 0
+      }
+    ],
+    "captured_original_cell_errors": [
+      {
+        "cell": 2,
+        "exception_type": "SyntaxError"
+      },
+      {
+        "cell": 3,
+        "exception_type": "TypeError"
+      },
+      {
+        "cell": 12,
+        "exception_type": "IndexError"
+      }
+    ],
+    "note": "Коды завершения и ошибки прочитаны из сохранённых файлов прежнего запуска. Ожидаемые ошибки исходных ячеек перехватываются программой воспроизведения."
+  },
+  "results": [
+    {
+      "path": "original_audit/original_cells_syntax.json",
+      "kind": "historical_syntax_record",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 1302,
+      "sha256": "b410cc49ff979b1208c26d56cb63592ba063e31f1740b62bec5ded90e8815c78",
+      "provenance_note": "Прежний разбор синтаксиса исходных ячеек."
+    },
+    {
+      "path": "original_audit/original_cells_replay.json",
+      "kind": "captured_original_cells",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 11052,
+      "sha256": "6fa3900c7b6a4f282c17d3a1b2dbd5226aec869dc5be6c4b358e125d9fd1921a",
+      "previous_run_receipt": "original_audit/run_receipt.json"
+    },
+    {
+      "path": "original_audit/dynamics/results.json",
+      "kind": "dynamics_checks",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 3291,
+      "sha256": "680d30049d7438f10a0b5c6f9a5460ae885d4f7e694bf9d9fc2060b682cf90a6",
+      "previous_run_receipt": "original_audit/run_receipt.json"
+    },
+    {
+      "path": "original_audit/charges/results.json",
+      "kind": "charge_checks",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 2021,
+      "sha256": "acc50da5a490ac2c8820b1557edf6ffd7081fd2f90557b1d945ddffef8acc228",
+      "previous_run_receipt": "original_audit/run_receipt.json"
+    },
+    {
+      "path": "original_audit/graphs/results.json",
+      "kind": "graph_checks",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 7258,
+      "sha256": "0f3b5fb5004f1191320279db6c6d4863ce930af904786b7f1ac20a7a24f23177",
+      "previous_run_receipt": "original_audit/run_receipt.json"
+    },
+    {
+      "path": "followup/algebra/results.json",
+      "kind": "followup_algebra_checks",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 12312,
+      "sha256": "d43c19d35c0c740805d491a2b10b711cc0dc79e9fdda6a7497ed524fd80b29f0",
+      "provenance_note": "Сохранённый результат прежней проверки. Отдельная квитанция и stdout/stderr в переданной папке отсутствуют; при упаковке не создавались."
+    },
+    {
+      "path": "followup/graphs/results.json",
+      "kind": "followup_graph_checks",
+      "provenance": "preserved_previous_result",
+      "regenerated_during_packaging": false,
+      "bytes": 2672,
+      "sha256": "4ad3626ca9072d1523584fc7c7101d026252bbe0de45316835e17f887ef5a9ad",
+      "provenance_note": "Сохранённый результат прежней проверки. Отдельная квитанция и stdout/stderr в переданной папке отсутствуют; при упаковке не создавались."
+    }
+  ],
+  "analytic_source_review": {
+    "path": "followup/corpus/REPORT.md",
+    "kind": "source_reading_and_analytic_comparison",
+    "numerical_execution": false,
+    "note": "Сохранённый текст сопоставления с корпусом; не выдаётся за вычислительный запуск."
+  },
+  "packaging_verification": "PACKAGING.json"
+}

@@ -12105,6 +12105,70 @@
       ],
       "note": "28.11.2026: восстановлены существующие R136–R138 и U013–U014 из закреплённых веток #194/#206, #198 и #200. 150 R, 14 U; научные статусы не повышены, новых расчётов нет. R137/R138 независимы, общая граница U014 не создаёт родительской связи.",
       "scientific_status_promoted": false
+    },
+    {
+      "id": "MIRROR_PARTNERS_REVIEW_20261128",
+      "date": "2026-11-28",
+      "base_commit": "3ae1d270f65dd353672dd15786add8394c419cb2",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R047",
+        "R048",
+        "R052",
+        "R053",
+        "R130",
+        "R132",
+        "R141",
+        "R149",
+        "R150"
+      ],
+      "linked_questions": [
+        "U006",
+        "U007"
+      ],
+      "note": "Сохранены завершённый разбор зеркальности, три присланных исходника и прежние проверки. Добавлены навигационные обратные связи; статусы R/U и содержание исходных результатов не изменены. Новых научных запусков при сохранении нет.",
+      "scientific_status_promoted": false
+    },
+    {
+      "id": "MIRROR_R140_BRIDGE_20261128",
+      "date": "2026-11-28",
+      "base_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R130",
+        "R132",
+        "R140",
+        "R141"
+      ],
+      "linked_questions": [
+        "U006",
+        "U010"
+      ],
+      "scientific_status_promoted": false,
+      "note": "Построен и проверен конечный мост; прежние R/U и review-записи сохранены."
+    },
+    {
+      "id": "GALOIS_FULL_MIRROR_BRIDGE_20261128",
+      "date": "2026-11-28",
+      "base_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+      "new_records": [],
+      "linked_results": [
+        "R130",
+        "R132",
+        "R140",
+        "R141",
+        "R146",
+        "R150"
+      ],
+      "linked_questions": [
+        "U006",
+        "U010"
+      ],
+      "scientific_status_promoted": false,
+      "note": "Явное представление полного регистра и разбор вложения; старые данные и статусы сохранены."
     }
   ],
   "lineage_edges": [
@@ -18960,6 +19024,275 @@
         }
       ],
       "new_production_runs": 0
+    },
+    {
+      "id": "MIRROR_PARTNERS_REVIEW_20261128",
+      "title": "Зеркальные партнёры: разбор кода и двух отзывов Квина",
+      "status": "REVIEWED_WITH_SCOPE_LIMITS",
+      "date": "2026-11-28",
+      "base_commit": "3ae1d270f65dd353672dd15786add8394c419cb2",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/SOURCE_MAP.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/FILES.sha256",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_code.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_review_1.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/quinn_review_2.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/sources/MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/checks/RESULTS.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R047",
+          "relation": "clock_comparison",
+          "claim": "Общие PW-часы задают условный параметр совместной динамики при явных предпосылках.",
+          "rationale": "Согласованная спектральная опора, чтение часов и подготовка остаются входами; общий параметр сам не выводит термодинамическую стрелу.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#pw-clock"
+        },
+        {
+          "target": "result:R048",
+          "relation": "scope_boundary",
+          "claim": "Операционная эквивалентность зависит от доступной подсистемы и сравниваемой пары состояний.",
+          "rationale": "Разделены полное SWAP-эхо, сравнение ветвей в одинаковое время и стандартное trace distance; калибровочная эквивалентность не приписывается.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#observer-echo"
+        },
+        {
+          "target": "result:R052",
+          "relation": "scope_boundary",
+          "claim": "Реконнекция позволяет обнаружить прежде скрытое различие.",
+          "rationale": "Исправлена прежняя атрибуция R053: исходный результат принадлежит R052; квадратичный член отделён от поздней точной формулы.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#internal-detection"
+        },
+        {
+          "target": "result:R053",
+          "relation": "classification_only",
+          "claim": "Связь с зеркальными наблюдателями проходит через достаточное описание и доступность различий.",
+          "rationale": "Источник формулы реконнекции остаётся R052; сопоставление не объявляет два зеркальных наблюдателя уже построенными.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#internal-detection"
+        },
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "C′=MB₂ сохраняет полный прямой закон опорной C2; обращения проверяются с обратным оператором.",
+          "rationale": "Сохранены конечные проверки и локальное обоснование; различены M/B, T и C′, а счёт 0/574 ограничен свежими атомарными именами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#c2-dynamics"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Общий нечётный сектор шести аддитивных зарядов имеет размерность два.",
+          "rationale": "Заряды q и χ различают некоторые партнёрские секторы; их число не является числом пространственных координат или определением стрелы.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#charges"
+        },
+        {
+          "target": "result:R141",
+          "relation": "classification_only",
+          "claim": "Два арифметических листа являются чередующимися сечениями пространства конфигураций.",
+          "rationale": "Периоды и дзета-функция сохраняются; обмен листов и запрет записи b₂ не интерпретируются автоматически как две физические вселенные или запрет возникновения.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#two-sheets"
+        },
+        {
+          "target": "result:R149",
+          "relation": "scope_boundary",
+          "claim": "Бензильная нулевая мода и фазовое зеркало требуют согласованных базиса и шва.",
+          "rationale": "Проверены портовые веса и оператор G₊RK; изоспектральность и чётность одной моды не заменяют симметрию полного оператора.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#benzyl"
+        },
+        {
+          "target": "result:R150",
+          "relation": "scope_boundary",
+          "claim": "Пространственное 3+1+3 совместимо с индексом 1; ограничение относится к весу единственной нулевой моды в центре.",
+          "rationale": "P7 служит контрпримером широкому запрету; хиральные доли, пространственные орбиты, массовые края и Floquet-индексы сопоставляются при фиксированных определениях.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#graph"
+        },
+        {
+          "target": "question:U006",
+          "relation": "scope_boundary",
+          "claim": "Сопоставление партнёров даёт ограничения для совместной динамики и пространственно-материальной зависимости.",
+          "rationale": "Пункт 10 использует конструкции 1–9 и три масштаба; происхождение метрики и физическая общая стрела этим разбором не выведены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#question-10"
+        },
+        {
+          "target": "question:U007",
+          "relation": "scope_boundary",
+          "claim": "Обращение носителя отделено от обращения полного физического процесса.",
+          "rationale": "У T=IεR проверяется TFT⁻¹=F⁻¹; коммутирующее C′ и обращение носителя не реализуют обращение аппарата, среды и записи.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/REPORT.md#reversal"
+        }
+      ],
+      "excluded_links": []
+    },
+    {
+      "id": "MIRROR_R140_BRIDGE_20261128",
+      "title": "Мост #223 ↔ R140/H6: зеркальные регистры, заряд d и когерентные истории",
+      "status": "REPRODUCED_FINITE_BRIDGE_WITH_SCOPE_LIMITS",
+      "date": "2026-11-28",
+      "base_commit": "fcc006b30e120fb536eba09288deeaf2dc42f167",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REGISTER_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/HISTORY_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REVIEW.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/register_bridge.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/history_bridge.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/run.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/RUN_PLAN.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/SOURCE_MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/LINEAGE.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/LATEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/RESULTS.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/calibration.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/environment.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/forecast.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/history_bridge.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/register_bridge.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/run_receipt.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/runs/46147740174/source_hashes.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "C′ acts on the full named carrier.",
+          "rationale": "Проверены24 именованных состояния и оба среза F, без переименования атомов.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "d descends through W; q does not.",
+          "rationale": "Заряд d различает реализации; явный вектор ядра запрещает спуск q.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observable"
+        },
+        {
+          "target": "result:R140",
+          "relation": "operational_requirement",
+          "claim": "Mirror covariance includes geometry, field and instrument.",
+          "rationale": "Два подъёма поля различены; все выходы и инструменты записи проверены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#field"
+        },
+        {
+          "target": "result:R141",
+          "relation": "scope_boundary",
+          "claim": "The full F retains both named slices.",
+          "rationale": "Именные срезы представлены явно и отделены от зеркальных секторов.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#register"
+        },
+        {
+          "target": "question:U006",
+          "relation": "joint_model_requirement",
+          "claim": "Paired representations require a physical map.",
+          "rationale": "Пространственное3+1+3, центральные часы и общая физическая стрела не выведены.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Sector recording differs from path recording.",
+          "rationale": "Изометрия записи d сохраняет I₂; запись A/B его обнуляет. Самопроизводство аппарата не выведено.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/r140_bridge/REPORT.md#observer"
+        }
+      ],
+      "excluded_links": []
+    },
+    {
+      "id": "GALOIS_FULL_MIRROR_BRIDGE_20261128",
+      "title": "Галуа, модуль4 и полный арифметический мост #223–R140–R141–R146",
+      "status": "REPRODUCED_ARITHMETIC_REGISTER_WITH_ANALYTIC_SCOPE_PROOFS",
+      "date": "2026-11-28",
+      "base_commit": "7aae9af516972c6e7975095baaaf56e4f70af8c5",
+      "report": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+      "managed_sources": [
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/ALGEBRA_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/LATEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/LINEAGE.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/README.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REVIEW.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REVIEW.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/RUN_PLAN.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/SHEETS_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/SOURCE_MANIFEST.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/TOPOLOGY_PROOF.md",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/check.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/integrate.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/prepare_checkout.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/publish_results.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/run.py",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/sources/ATTACHMENT_20261128.txt",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/RESULTS.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/calibration.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/checks.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/environment.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/forecast.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/registration_check.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/run_receipt.json",
+        "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/runs/46150140935/source_hashes.json"
+      ],
+      "scientific_status_promoted": false,
+      "links": [
+        {
+          "target": "result:R130",
+          "relation": "scope_boundary",
+          "claim": "The complete named register has an explicit arithmetic representation.",
+          "rationale": "Все матрицы F,T,C′ и заряд d согласованы с 12 единицами O/(4).",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4"
+        },
+        {
+          "target": "result:R132",
+          "relation": "scope_boundary",
+          "claim": "Mirror charge and sheet parity have distinct arithmetic readouts.",
+          "rationale": "d=ε и p=N(x) различены; q не спускается через прежний W.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#mod4"
+        },
+        {
+          "target": "result:R140",
+          "relation": "operational_requirement",
+          "claim": "Exact representation preserves the specified experiment with lifted states and effects.",
+          "rationale": "Старый опыт используется без повторного исполнения; управление, подготовка и прибор остаются входами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer"
+        },
+        {
+          "target": "result:R141",
+          "relation": "scope_boundary",
+          "claim": "The two-sheet one-particle sector is already contained in the full register.",
+          "rationale": "Уточнены прямое включение, нативное Галуа и фактор O/(4).",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#sheets"
+        },
+        {
+          "target": "result:R146",
+          "relation": "scope_boundary",
+          "claim": "Galois acts on the mapping torus and requires an equivariant map for its finite observables.",
+          "rationale": "Доказаны геометрическое действие, поправка знака θ и границы знаковой башни.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#geometry"
+        },
+        {
+          "target": "result:R150",
+          "relation": "premise_context_not_evidence",
+          "claim": "The prior F4x and H6 parity construction is a parent, not a new mass prediction.",
+          "rationale": "Прежний результат атрибутирован; массы и поколения не выводятся новым представлением.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#provenance"
+        },
+        {
+          "target": "question:U006",
+          "relation": "joint_model_requirement",
+          "claim": "An explicit arithmetic representation does not identify a unique physical carrier.",
+          "rationale": "Сложение кольца, локальность, энергетический оператор и физическое время остаются отдельными интерфейсами.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#scope"
+        },
+        {
+          "target": "question:U010",
+          "relation": "operational_requirement",
+          "claim": "Coherent preparation and the detector remain specified inputs.",
+          "rationale": "Равенства операторов сохраняют согласованные вероятности, но не выводят закон приготовления.",
+          "evidence": "analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/REPORT.md#observer"
+        }
+      ],
+      "excluded_links": []
     }
   ],
   "architecture_components": [

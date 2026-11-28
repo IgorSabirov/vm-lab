@@ -1,0 +1,97 @@
+name: Preserve completed Galois bridge publication
+on:
+  push:
+    branches: ['research/mirror-partners-review-20261128']
+    paths:
+      - '.github/workflows/preserve-galois-bridge.yml'
+permissions:
+  contents: read
+jobs:
+  preserve-completed-evidence:
+    if: github.repository == 'IgorSabirov/vm-lab' && github.ref == 'refs/heads/research/mirror-partners-review-20261128'
+    runs-on: ubuntu-24.04
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/
+            /analysis/NOW_RESULTS_SYNTHESIS_20261106/RESULTS_REGISTER.json
+            /analysis/FOUR_CANDIDATE_INTEGRATION_20261108/SOURCE_INDEX.json
+            /decisions/
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Materialize pinned inputs and navigation
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/prepare_checkout.py
+      - name: Integrate existing successful evidence without replay
+        run: python analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge/integrate.py --evidence-run 46150140935
+      - name: Package exact publication changes outside the checkout
+        run: |
+          python - <<'PY'
+          import importlib.util
+          import json
+          import os
+          from pathlib import Path, PurePosixPath
+          import subprocess
+
+          root = Path(os.environ['GITHUB_WORKSPACE']).resolve()
+          package = 'analysis/MIRROR_PARTNERS_REVIEW_20261128/galois_bridge'
+          spec = importlib.util.spec_from_file_location(
+              'galois_publication_declarations', root / package / 'publish_results.py')
+          publisher = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(publisher)
+          exact = set(publisher.EXACT) | {
+              package + '/REPORT.md', package + '/LATEST.json'}
+
+          def git_paths(*args):
+              raw = subprocess.check_output(['git', *args, '-z'], cwd=root)
+              return [item.decode('utf-8') for item in raw.split(b'\0') if item]
+
+          source = subprocess.check_output(
+              ['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+          deleted = git_paths('diff', '--name-only', '--diff-filter=D', 'HEAD')
+          if deleted:
+              raise AssertionError('Deletions are forbidden: ' + repr(deleted))
+          tracked = git_paths('diff', '--name-only', 'HEAD')
+          new = git_paths('ls-files', '--others', '--exclude-standard')
+          candidates = sorted(set(tracked + new))
+          files = []
+          for path in candidates:
+              relative = PurePosixPath(path)
+              if relative.is_absolute() or '..' in relative.parts:
+                  raise AssertionError('Invalid repository path: ' + path)
+              if path not in exact and not path.startswith(package + '/runs/'):
+                  raise AssertionError('Unexpected changed path: ' + path)
+              local = root / path
+              if not local.is_file() or local.is_symlink():
+                  raise AssertionError('Expected a regular existing file: ' + path)
+              files.append({'path': path, 'content': local.read_bytes().decode('utf-8')})
+          if not files:
+              raise AssertionError('No publication changes were produced')
+
+          destination = Path(os.environ['RUNNER_TEMP']) / 'galois-publication' / 'publication.json'
+          if destination.resolve().is_relative_to(root):
+              raise AssertionError('Publication JSON must remain outside the Git checkout')
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_text(json.dumps({
+              'source_commit': source,
+              'evidence_run': '46150140935',
+              'scientific_replay_performed': False,
+              'deleted_files': 0,
+              'files': files,
+          }, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps({'source_commit': source, 'files': len(files),
+                            'evidence_run': '46150140935', 'deleted_files': 0}))
+          PY
+      - name: Preserve publication payload
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: galois-publication-${{ github.run_id }}
+          path: ${{ runner.temp }}/galois-publication/publication.json
+          if-no-files-found: error
+          retention-days: 90
